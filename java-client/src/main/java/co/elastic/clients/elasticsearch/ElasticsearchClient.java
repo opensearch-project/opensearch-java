@@ -113,7 +113,6 @@ import co.elastic.clients.elasticsearch.api.ingest.IngestClient;
 import co.elastic.clients.elasticsearch.api.license.LicenseClient;
 import co.elastic.clients.elasticsearch.api.logstash.LogstashClient;
 import co.elastic.clients.elasticsearch.api.nodes.NodesClient;
-import co.elastic.clients.elasticsearch.api.rollup.RollupClient;
 import co.elastic.clients.elasticsearch.api.searchable_snapshots.SearchableSnapshotsClient;
 import co.elastic.clients.elasticsearch.api.shutdown.ShutdownClient;
 import co.elastic.clients.elasticsearch.api.snapshot.SnapshotClient;
@@ -188,10 +187,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	public NodesClient nodes() {
 		return new NodesClient(this.transport);
-	}
-
-	public RollupClient rollup() {
-		return new RollupClient(this.transport);
 	}
 
 	public SearchableSnapshotsClient searchableSnapshots() {
