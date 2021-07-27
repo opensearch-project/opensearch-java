@@ -106,7 +106,6 @@ import co.elastic.clients.elasticsearch.api.cluster.ClusterClient;
 import co.elastic.clients.elasticsearch.api.dangling_indices.DanglingIndicesClient;
 import co.elastic.clients.elasticsearch.api.enrich.EnrichClient;
 import co.elastic.clients.elasticsearch.api.features.FeaturesClient;
-import co.elastic.clients.elasticsearch.api.graph.GraphClient;
 import co.elastic.clients.elasticsearch.api.ilm.IlmClient;
 import co.elastic.clients.elasticsearch.api.indices.IndicesClient;
 import co.elastic.clients.elasticsearch.api.ingest.IngestClient;
@@ -158,10 +157,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	public FeaturesClient features() {
 		return new FeaturesClient(this.transport);
-	}
-
-	public GraphClient graph() {
-		return new GraphClient(this.transport);
 	}
 
 	public IlmClient ilm() {
