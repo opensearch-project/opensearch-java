@@ -118,7 +118,6 @@ import co.elastic.clients.elasticsearch.api.rollup.RollupClient;
 import co.elastic.clients.elasticsearch.api.searchable_snapshots.SearchableSnapshotsClient;
 import co.elastic.clients.elasticsearch.api.shutdown.ShutdownClient;
 import co.elastic.clients.elasticsearch.api.snapshot.SnapshotClient;
-import co.elastic.clients.elasticsearch.api.ssl.SslClient;
 import co.elastic.clients.elasticsearch.api.tasks.TasksClient;
 import co.elastic.clients.elasticsearch.api.text_structure.TextStructureClient;
 import co.elastic.clients.elasticsearch.api.transform.TransformClient;
@@ -210,10 +209,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	public SnapshotClient snapshot() {
 		return new SnapshotClient(this.transport);
-	}
-
-	public SslClient ssl() {
-		return new SslClient(this.transport);
 	}
 
 	public TasksClient tasks() {
