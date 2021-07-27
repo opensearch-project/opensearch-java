@@ -113,7 +113,6 @@ import co.elastic.clients.elasticsearch.api.ingest.IngestAsyncClient;
 import co.elastic.clients.elasticsearch.api.license.LicenseAsyncClient;
 import co.elastic.clients.elasticsearch.api.logstash.LogstashAsyncClient;
 import co.elastic.clients.elasticsearch.api.nodes.NodesAsyncClient;
-import co.elastic.clients.elasticsearch.api.searchable_snapshots.SearchableSnapshotsAsyncClient;
 import co.elastic.clients.elasticsearch.api.shutdown.ShutdownAsyncClient;
 import co.elastic.clients.elasticsearch.api.snapshot.SnapshotAsyncClient;
 import co.elastic.clients.elasticsearch.api.tasks.TasksAsyncClient;
@@ -188,10 +187,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	public NodesAsyncClient nodes() {
 		return new NodesAsyncClient(this.transport);
-	}
-
-	public SearchableSnapshotsAsyncClient searchableSnapshots() {
-		return new SearchableSnapshotsAsyncClient(this.transport);
 	}
 
 	public ShutdownAsyncClient shutdown() {
