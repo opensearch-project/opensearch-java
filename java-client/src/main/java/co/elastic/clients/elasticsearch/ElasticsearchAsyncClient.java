@@ -101,7 +101,6 @@ import co.elastic.clients.elasticsearch._global.UpdateByQueryRethrottleRequest;
 import co.elastic.clients.elasticsearch._global.UpdateByQueryRethrottleResponse;
 import co.elastic.clients.elasticsearch._global.UpdateRequest;
 import co.elastic.clients.elasticsearch._global.UpdateResponse;
-import co.elastic.clients.elasticsearch.api.async_search.AsyncSearchAsyncClient;
 import co.elastic.clients.elasticsearch.api.autoscaling.AutoscalingAsyncClient;
 import co.elastic.clients.elasticsearch.api.cat.CatAsyncClient;
 import co.elastic.clients.elasticsearch.api.ccr.CcrAsyncClient;
@@ -153,10 +152,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	}
 
 	// ----- Child clients
-
-	public AsyncSearchAsyncClient asyncSearch() {
-		return new AsyncSearchAsyncClient(this.transport);
-	}
 
 	public AutoscalingAsyncClient autoscaling() {
 		return new AutoscalingAsyncClient(this.transport);
