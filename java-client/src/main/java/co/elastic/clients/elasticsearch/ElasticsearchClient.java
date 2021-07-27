@@ -103,7 +103,6 @@ import co.elastic.clients.elasticsearch._global.UpdateRequest;
 import co.elastic.clients.elasticsearch._global.UpdateResponse;
 import co.elastic.clients.elasticsearch.api.autoscaling.AutoscalingClient;
 import co.elastic.clients.elasticsearch.api.cat.CatClient;
-import co.elastic.clients.elasticsearch.api.ccr.CcrClient;
 import co.elastic.clients.elasticsearch.api.cluster.ClusterClient;
 import co.elastic.clients.elasticsearch.api.dangling_indices.DanglingIndicesClient;
 import co.elastic.clients.elasticsearch.api.enrich.EnrichClient;
@@ -155,10 +154,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	public CatClient cat() {
 		return new CatClient(this.transport);
-	}
-
-	public CcrClient ccr() {
-		return new CcrClient(this.transport);
 	}
 
 	public ClusterClient cluster() {
