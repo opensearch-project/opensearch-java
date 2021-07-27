@@ -132,7 +132,6 @@ import co.elastic.clients.elasticsearch.api.tasks.TasksAsyncClient;
 import co.elastic.clients.elasticsearch.api.text_structure.TextStructureAsyncClient;
 import co.elastic.clients.elasticsearch.api.transform.TransformAsyncClient;
 import co.elastic.clients.elasticsearch.api.watcher.WatcherAsyncClient;
-import co.elastic.clients.elasticsearch.api.xpack.XpackAsyncClient;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -277,10 +276,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	public WatcherAsyncClient watcher() {
 		return new WatcherAsyncClient(this.transport);
-	}
-
-	public XpackAsyncClient xpack() {
-		return new XpackAsyncClient(this.transport);
 	}
 
 	// ----- Endpoint: bulk
