@@ -123,7 +123,6 @@ import co.elastic.clients.elasticsearch.api.security.SecurityAsyncClient;
 import co.elastic.clients.elasticsearch.api.shutdown.ShutdownAsyncClient;
 import co.elastic.clients.elasticsearch.api.slm.SlmAsyncClient;
 import co.elastic.clients.elasticsearch.api.snapshot.SnapshotAsyncClient;
-import co.elastic.clients.elasticsearch.api.sql.SqlAsyncClient;
 import co.elastic.clients.elasticsearch.api.ssl.SslAsyncClient;
 import co.elastic.clients.elasticsearch.api.tasks.TasksAsyncClient;
 import co.elastic.clients.elasticsearch.api.text_structure.TextStructureAsyncClient;
@@ -237,10 +236,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	public SnapshotAsyncClient snapshot() {
 		return new SnapshotAsyncClient(this.transport);
-	}
-
-	public SqlAsyncClient sql() {
-		return new SqlAsyncClient(this.transport);
 	}
 
 	public SslAsyncClient ssl() {

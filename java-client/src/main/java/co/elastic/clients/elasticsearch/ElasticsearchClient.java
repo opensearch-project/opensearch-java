@@ -123,7 +123,6 @@ import co.elastic.clients.elasticsearch.api.security.SecurityClient;
 import co.elastic.clients.elasticsearch.api.shutdown.ShutdownClient;
 import co.elastic.clients.elasticsearch.api.slm.SlmClient;
 import co.elastic.clients.elasticsearch.api.snapshot.SnapshotClient;
-import co.elastic.clients.elasticsearch.api.sql.SqlClient;
 import co.elastic.clients.elasticsearch.api.ssl.SslClient;
 import co.elastic.clients.elasticsearch.api.tasks.TasksClient;
 import co.elastic.clients.elasticsearch.api.text_structure.TextStructureClient;
@@ -236,10 +235,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	public SnapshotClient snapshot() {
 		return new SnapshotClient(this.transport);
-	}
-
-	public SqlClient sql() {
-		return new SqlClient(this.transport);
 	}
 
 	public SslClient ssl() {
