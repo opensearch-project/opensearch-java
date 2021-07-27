@@ -101,7 +101,6 @@ import co.elastic.clients.elasticsearch._global.UpdateByQueryRethrottleRequest;
 import co.elastic.clients.elasticsearch._global.UpdateByQueryRethrottleResponse;
 import co.elastic.clients.elasticsearch._global.UpdateRequest;
 import co.elastic.clients.elasticsearch._global.UpdateResponse;
-import co.elastic.clients.elasticsearch.api.autoscaling.AutoscalingClient;
 import co.elastic.clients.elasticsearch.api.cat.CatClient;
 import co.elastic.clients.elasticsearch.api.cluster.ClusterClient;
 import co.elastic.clients.elasticsearch.api.dangling_indices.DanglingIndicesClient;
@@ -146,10 +145,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	}
 
 	// ----- Child clients
-
-	public AutoscalingClient autoscaling() {
-		return new AutoscalingClient(this.transport);
-	}
 
 	public CatClient cat() {
 		return new CatClient(this.transport);
