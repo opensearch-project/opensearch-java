@@ -107,7 +107,6 @@ import co.elastic.clients.elasticsearch.api.ccr.CcrAsyncClient;
 import co.elastic.clients.elasticsearch.api.cluster.ClusterAsyncClient;
 import co.elastic.clients.elasticsearch.api.dangling_indices.DanglingIndicesAsyncClient;
 import co.elastic.clients.elasticsearch.api.enrich.EnrichAsyncClient;
-import co.elastic.clients.elasticsearch.api.eql.EqlAsyncClient;
 import co.elastic.clients.elasticsearch.api.features.FeaturesAsyncClient;
 import co.elastic.clients.elasticsearch.api.graph.GraphAsyncClient;
 import co.elastic.clients.elasticsearch.api.ilm.IlmAsyncClient;
@@ -175,10 +174,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	public EnrichAsyncClient enrich() {
 		return new EnrichAsyncClient(this.transport);
-	}
-
-	public EqlAsyncClient eql() {
-		return new EqlAsyncClient(this.transport);
 	}
 
 	public FeaturesAsyncClient features() {
