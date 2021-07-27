@@ -113,7 +113,6 @@ import co.elastic.clients.elasticsearch.api.ingest.IngestClient;
 import co.elastic.clients.elasticsearch.api.license.LicenseClient;
 import co.elastic.clients.elasticsearch.api.logstash.LogstashClient;
 import co.elastic.clients.elasticsearch.api.migration.MigrationClient;
-import co.elastic.clients.elasticsearch.api.monitoring.MonitoringClient;
 import co.elastic.clients.elasticsearch.api.nodes.NodesClient;
 import co.elastic.clients.elasticsearch.api.rollup.RollupClient;
 import co.elastic.clients.elasticsearch.api.searchable_snapshots.SearchableSnapshotsClient;
@@ -192,10 +191,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	public MigrationClient migration() {
 		return new MigrationClient(this.transport);
-	}
-
-	public MonitoringClient monitoring() {
-		return new MonitoringClient(this.transport);
 	}
 
 	public NodesClient nodes() {
