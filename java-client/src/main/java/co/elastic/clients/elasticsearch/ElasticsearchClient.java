@@ -101,38 +101,19 @@ import co.elastic.clients.elasticsearch._global.UpdateByQueryRethrottleRequest;
 import co.elastic.clients.elasticsearch._global.UpdateByQueryRethrottleResponse;
 import co.elastic.clients.elasticsearch._global.UpdateRequest;
 import co.elastic.clients.elasticsearch._global.UpdateResponse;
-import co.elastic.clients.elasticsearch.api.async_search.AsyncSearchClient;
-import co.elastic.clients.elasticsearch.api.autoscaling.AutoscalingClient;
 import co.elastic.clients.elasticsearch.api.cat.CatClient;
-import co.elastic.clients.elasticsearch.api.ccr.CcrClient;
 import co.elastic.clients.elasticsearch.api.cluster.ClusterClient;
 import co.elastic.clients.elasticsearch.api.dangling_indices.DanglingIndicesClient;
-import co.elastic.clients.elasticsearch.api.enrich.EnrichClient;
-import co.elastic.clients.elasticsearch.api.eql.EqlClient;
 import co.elastic.clients.elasticsearch.api.features.FeaturesClient;
-import co.elastic.clients.elasticsearch.api.graph.GraphClient;
 import co.elastic.clients.elasticsearch.api.ilm.IlmClient;
 import co.elastic.clients.elasticsearch.api.indices.IndicesClient;
 import co.elastic.clients.elasticsearch.api.ingest.IngestClient;
-import co.elastic.clients.elasticsearch.api.license.LicenseClient;
-import co.elastic.clients.elasticsearch.api.logstash.LogstashClient;
-import co.elastic.clients.elasticsearch.api.migration.MigrationClient;
-import co.elastic.clients.elasticsearch.api.ml.MlClient;
-import co.elastic.clients.elasticsearch.api.monitoring.MonitoringClient;
 import co.elastic.clients.elasticsearch.api.nodes.NodesClient;
-import co.elastic.clients.elasticsearch.api.rollup.RollupClient;
-import co.elastic.clients.elasticsearch.api.searchable_snapshots.SearchableSnapshotsClient;
-import co.elastic.clients.elasticsearch.api.security.SecurityClient;
 import co.elastic.clients.elasticsearch.api.shutdown.ShutdownClient;
-import co.elastic.clients.elasticsearch.api.slm.SlmClient;
 import co.elastic.clients.elasticsearch.api.snapshot.SnapshotClient;
-import co.elastic.clients.elasticsearch.api.sql.SqlClient;
-import co.elastic.clients.elasticsearch.api.ssl.SslClient;
 import co.elastic.clients.elasticsearch.api.tasks.TasksClient;
-import co.elastic.clients.elasticsearch.api.text_structure.TextStructureClient;
 import co.elastic.clients.elasticsearch.api.transform.TransformClient;
 import co.elastic.clients.elasticsearch.api.watcher.WatcherClient;
-import co.elastic.clients.elasticsearch.api.xpack.XpackClient;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -154,20 +135,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	// ----- Child clients
 
-	public AsyncSearchClient asyncSearch() {
-		return new AsyncSearchClient(this.transport);
-	}
-
-	public AutoscalingClient autoscaling() {
-		return new AutoscalingClient(this.transport);
-	}
-
 	public CatClient cat() {
 		return new CatClient(this.transport);
-	}
-
-	public CcrClient ccr() {
-		return new CcrClient(this.transport);
 	}
 
 	public ClusterClient cluster() {
@@ -178,20 +147,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 		return new DanglingIndicesClient(this.transport);
 	}
 
-	public EnrichClient enrich() {
-		return new EnrichClient(this.transport);
-	}
-
-	public EqlClient eql() {
-		return new EqlClient(this.transport);
-	}
-
 	public FeaturesClient features() {
 		return new FeaturesClient(this.transport);
-	}
-
-	public GraphClient graph() {
-		return new GraphClient(this.transport);
 	}
 
 	public IlmClient ilm() {
@@ -206,68 +163,20 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 		return new IngestClient(this.transport);
 	}
 
-	public LicenseClient license() {
-		return new LicenseClient(this.transport);
-	}
-
-	public LogstashClient logstash() {
-		return new LogstashClient(this.transport);
-	}
-
-	public MigrationClient migration() {
-		return new MigrationClient(this.transport);
-	}
-
-	public MlClient ml() {
-		return new MlClient(this.transport);
-	}
-
-	public MonitoringClient monitoring() {
-		return new MonitoringClient(this.transport);
-	}
-
 	public NodesClient nodes() {
 		return new NodesClient(this.transport);
-	}
-
-	public RollupClient rollup() {
-		return new RollupClient(this.transport);
-	}
-
-	public SearchableSnapshotsClient searchableSnapshots() {
-		return new SearchableSnapshotsClient(this.transport);
-	}
-
-	public SecurityClient security() {
-		return new SecurityClient(this.transport);
 	}
 
 	public ShutdownClient shutdown() {
 		return new ShutdownClient(this.transport);
 	}
 
-	public SlmClient slm() {
-		return new SlmClient(this.transport);
-	}
-
 	public SnapshotClient snapshot() {
 		return new SnapshotClient(this.transport);
 	}
 
-	public SqlClient sql() {
-		return new SqlClient(this.transport);
-	}
-
-	public SslClient ssl() {
-		return new SslClient(this.transport);
-	}
-
 	public TasksClient tasks() {
 		return new TasksClient(this.transport);
-	}
-
-	public TextStructureClient textStructure() {
-		return new TextStructureClient(this.transport);
 	}
 
 	public TransformClient transform() {
@@ -276,10 +185,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	public WatcherClient watcher() {
 		return new WatcherClient(this.transport);
-	}
-
-	public XpackClient xpack() {
-		return new XpackClient(this.transport);
 	}
 
 	// ----- Endpoint: bulk
