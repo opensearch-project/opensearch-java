@@ -112,7 +112,6 @@ import co.elastic.clients.elasticsearch.api.nodes.NodesClient;
 import co.elastic.clients.elasticsearch.api.shutdown.ShutdownClient;
 import co.elastic.clients.elasticsearch.api.snapshot.SnapshotClient;
 import co.elastic.clients.elasticsearch.api.tasks.TasksClient;
-import co.elastic.clients.elasticsearch.api.watcher.WatcherClient;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -176,10 +175,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	public TasksClient tasks() {
 		return new TasksClient(this.transport);
-	}
-
-	public WatcherClient watcher() {
-		return new WatcherClient(this.transport);
 	}
 
 	// ----- Endpoint: bulk
