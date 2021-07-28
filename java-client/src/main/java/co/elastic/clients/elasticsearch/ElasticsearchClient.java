@@ -26,10 +26,7 @@ package co.elastic.clients.elasticsearch;
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch.async_search.ElasticsearchAsyncSearchClient;
-import co.elastic.clients.elasticsearch.autoscaling.ElasticsearchAutoscalingClient;
 import co.elastic.clients.elasticsearch.cat.ElasticsearchCatClient;
-import co.elastic.clients.elasticsearch.ccr.ElasticsearchCcrClient;
 import co.elastic.clients.elasticsearch.cluster.ElasticsearchClusterClient;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
@@ -111,31 +108,16 @@ import co.elastic.clients.elasticsearch.core.UpdateByQueryRethrottleResponse;
 import co.elastic.clients.elasticsearch.core.UpdateRequest;
 import co.elastic.clients.elasticsearch.core.UpdateResponse;
 import co.elastic.clients.elasticsearch.dangling_indices.ElasticsearchDanglingIndicesClient;
-import co.elastic.clients.elasticsearch.enrich.ElasticsearchEnrichClient;
-import co.elastic.clients.elasticsearch.eql.ElasticsearchEqlClient;
 import co.elastic.clients.elasticsearch.features.ElasticsearchFeaturesClient;
-import co.elastic.clients.elasticsearch.graph.ElasticsearchGraphClient;
 import co.elastic.clients.elasticsearch.ilm.ElasticsearchIlmClient;
 import co.elastic.clients.elasticsearch.indices.ElasticsearchIndicesClient;
 import co.elastic.clients.elasticsearch.ingest.ElasticsearchIngestClient;
-import co.elastic.clients.elasticsearch.license.ElasticsearchLicenseClient;
-import co.elastic.clients.elasticsearch.logstash.ElasticsearchLogstashClient;
-import co.elastic.clients.elasticsearch.migration.ElasticsearchMigrationClient;
-import co.elastic.clients.elasticsearch.ml.ElasticsearchMlClient;
-import co.elastic.clients.elasticsearch.monitoring.ElasticsearchMonitoringClient;
 import co.elastic.clients.elasticsearch.nodes.ElasticsearchNodesClient;
-import co.elastic.clients.elasticsearch.rollup.ElasticsearchRollupClient;
-import co.elastic.clients.elasticsearch.searchable_snapshots.ElasticsearchSearchableSnapshotsClient;
-import co.elastic.clients.elasticsearch.security.ElasticsearchSecurityClient;
 import co.elastic.clients.elasticsearch.shutdown.ElasticsearchShutdownClient;
-import co.elastic.clients.elasticsearch.slm.ElasticsearchSlmClient;
 import co.elastic.clients.elasticsearch.snapshot.ElasticsearchSnapshotClient;
-import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlClient;
-import co.elastic.clients.elasticsearch.ssl.ElasticsearchSslClient;
 import co.elastic.clients.elasticsearch.tasks.ElasticsearchTasksClient;
 import co.elastic.clients.elasticsearch.transform.ElasticsearchTransformClient;
 import co.elastic.clients.elasticsearch.watcher.ElasticsearchWatcherClient;
-import co.elastic.clients.elasticsearch.xpack.ElasticsearchXpackClient;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.JsonEndpoint;
@@ -168,20 +150,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	// ----- Child clients
 
-	public ElasticsearchAsyncSearchClient asyncSearch() {
-		return new ElasticsearchAsyncSearchClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchAutoscalingClient autoscaling() {
-		return new ElasticsearchAutoscalingClient(this.transport, this.transportOptions);
-	}
-
 	public ElasticsearchCatClient cat() {
 		return new ElasticsearchCatClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchCcrClient ccr() {
-		return new ElasticsearchCcrClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchClusterClient cluster() {
@@ -192,20 +162,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return new ElasticsearchDanglingIndicesClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchEnrichClient enrich() {
-		return new ElasticsearchEnrichClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchEqlClient eql() {
-		return new ElasticsearchEqlClient(this.transport, this.transportOptions);
-	}
-
 	public ElasticsearchFeaturesClient features() {
 		return new ElasticsearchFeaturesClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchGraphClient graph() {
-		return new ElasticsearchGraphClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchIlmClient ilm() {
@@ -220,60 +178,16 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return new ElasticsearchIngestClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchLicenseClient license() {
-		return new ElasticsearchLicenseClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchLogstashClient logstash() {
-		return new ElasticsearchLogstashClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchMigrationClient migration() {
-		return new ElasticsearchMigrationClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchMlClient ml() {
-		return new ElasticsearchMlClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchMonitoringClient monitoring() {
-		return new ElasticsearchMonitoringClient(this.transport, this.transportOptions);
-	}
-
 	public ElasticsearchNodesClient nodes() {
 		return new ElasticsearchNodesClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchRollupClient rollup() {
-		return new ElasticsearchRollupClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchSearchableSnapshotsClient searchableSnapshots() {
-		return new ElasticsearchSearchableSnapshotsClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchSecurityClient security() {
-		return new ElasticsearchSecurityClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchShutdownClient shutdown() {
 		return new ElasticsearchShutdownClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchSlmClient slm() {
-		return new ElasticsearchSlmClient(this.transport, this.transportOptions);
-	}
-
 	public ElasticsearchSnapshotClient snapshot() {
 		return new ElasticsearchSnapshotClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchSqlClient sql() {
-		return new ElasticsearchSqlClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchSslClient ssl() {
-		return new ElasticsearchSslClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchTasksClient tasks() {
@@ -286,10 +200,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public ElasticsearchWatcherClient watcher() {
 		return new ElasticsearchWatcherClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchXpackClient xpack() {
-		return new ElasticsearchXpackClient(this.transport, this.transportOptions);
 	}
 
 	// ----- Endpoint: bulk
