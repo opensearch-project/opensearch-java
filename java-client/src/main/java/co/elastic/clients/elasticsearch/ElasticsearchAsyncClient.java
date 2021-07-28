@@ -115,8 +115,6 @@ import co.elastic.clients.elasticsearch.nodes.ElasticsearchNodesAsyncClient;
 import co.elastic.clients.elasticsearch.shutdown.ElasticsearchShutdownAsyncClient;
 import co.elastic.clients.elasticsearch.snapshot.ElasticsearchSnapshotAsyncClient;
 import co.elastic.clients.elasticsearch.tasks.ElasticsearchTasksAsyncClient;
-import co.elastic.clients.elasticsearch.transform.ElasticsearchTransformAsyncClient;
-import co.elastic.clients.elasticsearch.watcher.ElasticsearchWatcherAsyncClient;
 import co.elastic.clients.transport.BooleanResponse;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
@@ -189,14 +187,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
     public ElasticsearchTasksAsyncClient tasks() {
         return new ElasticsearchTasksAsyncClient(this.transport, this.transportOptions);
-    }
-
-    public ElasticsearchTransformAsyncClient transform() {
-        return new ElasticsearchTransformAsyncClient(this.transport, this.transportOptions);
-    }
-
-    public ElasticsearchWatcherAsyncClient watcher() {
-        return new ElasticsearchWatcherAsyncClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: bulk
