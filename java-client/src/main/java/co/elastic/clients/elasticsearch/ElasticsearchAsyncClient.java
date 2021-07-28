@@ -113,7 +113,6 @@ import co.elastic.clients.elasticsearch.api.nodes.NodesAsyncClient;
 import co.elastic.clients.elasticsearch.api.shutdown.ShutdownAsyncClient;
 import co.elastic.clients.elasticsearch.api.snapshot.SnapshotAsyncClient;
 import co.elastic.clients.elasticsearch.api.tasks.TasksAsyncClient;
-import co.elastic.clients.elasticsearch.api.text_structure.TextStructureAsyncClient;
 import co.elastic.clients.elasticsearch.api.transform.TransformAsyncClient;
 import co.elastic.clients.elasticsearch.api.watcher.WatcherAsyncClient;
 import co.elastic.clients.util.ObjectBuilder;
@@ -184,10 +183,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	public TasksAsyncClient tasks() {
 		return new TasksAsyncClient(this.transport);
-	}
-
-	public TextStructureAsyncClient textStructure() {
-		return new TextStructureAsyncClient(this.transport);
 	}
 
 	public TransformAsyncClient transform() {
