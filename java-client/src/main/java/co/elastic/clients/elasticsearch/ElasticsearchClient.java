@@ -108,7 +108,6 @@ import co.elastic.clients.elasticsearch.api.features.FeaturesClient;
 import co.elastic.clients.elasticsearch.api.ilm.IlmClient;
 import co.elastic.clients.elasticsearch.api.indices.IndicesClient;
 import co.elastic.clients.elasticsearch.api.ingest.IngestClient;
-import co.elastic.clients.elasticsearch.api.license.LicenseClient;
 import co.elastic.clients.elasticsearch.api.logstash.LogstashClient;
 import co.elastic.clients.elasticsearch.api.nodes.NodesClient;
 import co.elastic.clients.elasticsearch.api.shutdown.ShutdownClient;
@@ -164,10 +163,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	public IngestClient ingest() {
 		return new IngestClient(this.transport);
-	}
-
-	public LicenseClient license() {
-		return new LicenseClient(this.transport);
 	}
 
 	public LogstashClient logstash() {

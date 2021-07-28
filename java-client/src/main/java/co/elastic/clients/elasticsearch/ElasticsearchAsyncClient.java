@@ -108,7 +108,6 @@ import co.elastic.clients.elasticsearch.api.features.FeaturesAsyncClient;
 import co.elastic.clients.elasticsearch.api.ilm.IlmAsyncClient;
 import co.elastic.clients.elasticsearch.api.indices.IndicesAsyncClient;
 import co.elastic.clients.elasticsearch.api.ingest.IngestAsyncClient;
-import co.elastic.clients.elasticsearch.api.license.LicenseAsyncClient;
 import co.elastic.clients.elasticsearch.api.logstash.LogstashAsyncClient;
 import co.elastic.clients.elasticsearch.api.nodes.NodesAsyncClient;
 import co.elastic.clients.elasticsearch.api.shutdown.ShutdownAsyncClient;
@@ -165,10 +164,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	public IngestAsyncClient ingest() {
 		return new IngestAsyncClient(this.transport);
-	}
-
-	public LicenseAsyncClient license() {
-		return new LicenseAsyncClient(this.transport);
 	}
 
 	public LogstashAsyncClient logstash() {
