@@ -105,7 +105,6 @@ import co.elastic.clients.elasticsearch.api.cat.CatAsyncClient;
 import co.elastic.clients.elasticsearch.api.cluster.ClusterAsyncClient;
 import co.elastic.clients.elasticsearch.api.dangling_indices.DanglingIndicesAsyncClient;
 import co.elastic.clients.elasticsearch.api.features.FeaturesAsyncClient;
-import co.elastic.clients.elasticsearch.api.ilm.IlmAsyncClient;
 import co.elastic.clients.elasticsearch.api.indices.IndicesAsyncClient;
 import co.elastic.clients.elasticsearch.api.ingest.IngestAsyncClient;
 import co.elastic.clients.elasticsearch.api.nodes.NodesAsyncClient;
@@ -148,10 +147,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	public FeaturesAsyncClient features() {
 		return new FeaturesAsyncClient(this.transport);
-	}
-
-	public IlmAsyncClient ilm() {
-		return new IlmAsyncClient(this.transport);
 	}
 
 	public IndicesAsyncClient indices() {
