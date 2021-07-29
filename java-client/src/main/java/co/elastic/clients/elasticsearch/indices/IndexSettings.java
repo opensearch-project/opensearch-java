@@ -128,9 +128,6 @@ public class IndexSettings implements ToJsonp {
 	private final String finalPipeline;
 
 	@Nullable
-	private final IndexSettingsLifecycle lifecycle;
-
-	@Nullable
 	private final String providedName;
 
 	@Nullable
@@ -199,7 +196,6 @@ public class IndexSettings implements ToJsonp {
 		this.gcDeletes = builder.gcDeletes;
 		this.defaultPipeline = builder.defaultPipeline;
 		this.finalPipeline = builder.finalPipeline;
-		this.lifecycle = builder.lifecycle;
 		this.providedName = builder.providedName;
 		this.creationDate = builder.creationDate;
 		this.uuid = builder.uuid;
@@ -453,14 +449,6 @@ public class IndexSettings implements ToJsonp {
 	@Nullable
 	public String finalPipeline() {
 		return this.finalPipeline;
-	}
-
-	/**
-	 * API name: {@code lifecycle}
-	 */
-	@Nullable
-	public IndexSettingsLifecycle lifecycle() {
-		return this.lifecycle;
 	}
 
 	/**
@@ -744,12 +732,6 @@ public class IndexSettings implements ToJsonp {
 			generator.write(this.finalPipeline);
 
 		}
-		if (this.lifecycle != null) {
-
-			generator.writeKey("lifecycle");
-			this.lifecycle.toJsonp(generator, mapper);
-
-		}
 		if (this.providedName != null) {
 
 			generator.writeKey("provided_name");
@@ -935,9 +917,6 @@ public class IndexSettings implements ToJsonp {
 
 		@Nullable
 		private String finalPipeline;
-
-		@Nullable
-		private IndexSettingsLifecycle lifecycle;
 
 		@Nullable
 		private String providedName;
@@ -1230,21 +1209,6 @@ public class IndexSettings implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code lifecycle}
-		 */
-		public BuilderT lifecycle(@Nullable IndexSettingsLifecycle value) {
-			this.lifecycle = value;
-			return self();
-		}
-
-		/**
-		 * API name: {@code lifecycle}
-		 */
-		public BuilderT lifecycle(Function<IndexSettingsLifecycle.Builder, ObjectBuilder<IndexSettingsLifecycle>> fn) {
-			return this.lifecycle(fn.apply(new IndexSettingsLifecycle.Builder()).build());
-		}
-
-		/**
 		 * API name: {@code provided_name}
 		 */
 		public BuilderT providedName(@Nullable String value) {
@@ -1422,7 +1386,6 @@ public class IndexSettings implements ToJsonp {
 				"index.default_pipeline");
 		op.add(AbstractBuilder::finalPipeline, JsonpDeserializer.stringDeserializer(), "final_pipeline",
 				"index.final_pipeline");
-		op.add(AbstractBuilder::lifecycle, IndexSettingsLifecycle.DESERIALIZER, "lifecycle", "index.lifecycle");
 		op.add(AbstractBuilder::providedName, JsonpDeserializer.stringDeserializer(), "provided_name",
 				"index.provided_name");
 		op.add(AbstractBuilder::creationDate, JsonpDeserializer.stringDeserializer(), "creation_date",

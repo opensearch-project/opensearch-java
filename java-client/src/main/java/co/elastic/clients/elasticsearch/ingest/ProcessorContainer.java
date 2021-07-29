@@ -55,8 +55,6 @@ public class ProcessorContainer extends TaggedUnion<ProcessorContainer.Tag, Obje
 
 		dotExpander("dot_expander"),
 
-		enrich("enrich"),
-
 		fail("fail"),
 
 		foreach("foreach"),
@@ -247,23 +245,6 @@ public class ProcessorContainer extends TaggedUnion<ProcessorContainer.Tag, Obje
 	 */
 	public DotExpanderProcessor dotExpander() {
 		return get(Tag.dotExpander);
-	}
-
-	/**
-	 * Is this {@link ProcessorContainer} of a {@code enrich} kind?
-	 */
-	public boolean isEnrich() {
-		return is(Tag.enrich);
-	}
-
-	/**
-	 * Get the {@code enrich} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code enrich} kind.
-	 */
-	public EnrichProcessor enrich() {
-		return get(Tag.enrich);
 	}
 
 	/**
@@ -809,17 +790,6 @@ public class ProcessorContainer extends TaggedUnion<ProcessorContainer.Tag, Obje
 			return this.dotExpander(f.apply(new DotExpanderProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<ProcessorContainer> enrich(EnrichProcessor v) {
-			this.$variant = v;
-			this.$tag = Tag.enrich;
-			return new ObjectBuilder.Constant<>(this.build());
-		}
-
-		public ObjectBuilder<ProcessorContainer> enrich(
-				Function<EnrichProcessor.Builder, ObjectBuilder<EnrichProcessor>> f) {
-			return this.enrich(f.apply(new EnrichProcessor.Builder()).build());
-		}
-
 		public ObjectBuilder<ProcessorContainer> fail(FailProcessor v) {
 			this.$variant = v;
 			this.$tag = Tag.fail;
@@ -1112,7 +1082,6 @@ public class ProcessorContainer extends TaggedUnion<ProcessorContainer.Tag, Obje
 		op.add(Builder::date, DateProcessor.DESERIALIZER, "date");
 		op.add(Builder::dateIndexName, DateIndexNameProcessor.DESERIALIZER, "date_index_name");
 		op.add(Builder::dotExpander, DotExpanderProcessor.DESERIALIZER, "dot_expander");
-		op.add(Builder::enrich, EnrichProcessor.DESERIALIZER, "enrich");
 		op.add(Builder::fail, FailProcessor.DESERIALIZER, "fail");
 		op.add(Builder::foreach, ForeachProcessor.DESERIALIZER, "foreach");
 		op.add(Builder::json, JsonProcessor.DESERIALIZER, "json");
