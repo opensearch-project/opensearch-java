@@ -68,9 +68,6 @@ public final class ClusterStateMetadata implements ToJsonp {
 	@Nullable
 	private final Map<String, JsonValue> indexTemplate;
 
-	@Nullable
-	private final ClusterStateIndexLifecycle indexLifecycle;
-
 	// ---------------------------------------------------------------------------------------------
 
 	protected ClusterStateMetadata(Builder builder) {
@@ -85,7 +82,6 @@ public final class ClusterStateMetadata implements ToJsonp {
 		this.repositories = builder.repositories;
 		this.componentTemplate = builder.componentTemplate;
 		this.indexTemplate = builder.indexTemplate;
-		this.indexLifecycle = builder.indexLifecycle;
 
 	}
 
@@ -162,14 +158,6 @@ public final class ClusterStateMetadata implements ToJsonp {
 	@Nullable
 	public Map<String, JsonValue> indexTemplate() {
 		return this.indexTemplate;
-	}
-
-	/**
-	 * API name: {@code index_lifecycle}
-	 */
-	@Nullable
-	public ClusterStateIndexLifecycle indexLifecycle() {
-		return this.indexLifecycle;
 	}
 
 	/**
@@ -253,12 +241,6 @@ public final class ClusterStateMetadata implements ToJsonp {
 			generator.writeEnd();
 
 		}
-		if (this.indexLifecycle != null) {
-
-			generator.writeKey("index_lifecycle");
-			this.indexLifecycle.toJsonp(generator, mapper);
-
-		}
 
 	}
 
@@ -292,9 +274,6 @@ public final class ClusterStateMetadata implements ToJsonp {
 
 		@Nullable
 		private Map<String, JsonValue> indexTemplate;
-
-		@Nullable
-		private ClusterStateIndexLifecycle indexLifecycle;
 
 		/**
 		 * API name: {@code cluster_uuid}
@@ -461,22 +440,6 @@ public final class ClusterStateMetadata implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code index_lifecycle}
-		 */
-		public Builder indexLifecycle(@Nullable ClusterStateIndexLifecycle value) {
-			this.indexLifecycle = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code index_lifecycle}
-		 */
-		public Builder indexLifecycle(
-				Function<ClusterStateIndexLifecycle.Builder, ObjectBuilder<ClusterStateIndexLifecycle>> fn) {
-			return this.indexLifecycle(fn.apply(new ClusterStateIndexLifecycle.Builder()).build());
-		}
-
-		/**
 		 * Builds a {@link ClusterStateMetadata}.
 		 *
 		 * @throws NullPointerException
@@ -515,7 +478,6 @@ public final class ClusterStateMetadata implements ToJsonp {
 				"component_template");
 		op.add(Builder::indexTemplate,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "index_template");
-		op.add(Builder::indexLifecycle, ClusterStateIndexLifecycle.DESERIALIZER, "index_lifecycle");
 
 	}
 
