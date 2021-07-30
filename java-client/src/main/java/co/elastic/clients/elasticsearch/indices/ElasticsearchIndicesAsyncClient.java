@@ -1421,43 +1421,6 @@ public class ElasticsearchIndicesAsyncClient
 		return open(fn.apply(new OpenRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: indices.promote_data_stream
-
-	/**
-	 * Promotes a data stream from a replicated data stream managed by CCR to a
-	 * regular data stream
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<PromoteDataStreamResponse> promoteDataStream(PromoteDataStreamRequest request)
-			throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<PromoteDataStreamRequest, PromoteDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<PromoteDataStreamRequest, PromoteDataStreamResponse, ErrorResponse>) PromoteDataStreamRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Promotes a data stream from a replicated data stream managed by CCR to a
-	 * regular data stream
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link PromoteDataStreamRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<PromoteDataStreamResponse> promoteDataStream(
-			Function<PromoteDataStreamRequest.Builder, ObjectBuilder<PromoteDataStreamRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return promoteDataStream(fn.apply(new PromoteDataStreamRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: indices.put_alias
 
 	/**

@@ -88,14 +88,6 @@ public class ProcessorBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link EnrichProcessor enrich} {@code Processor}
-	 * variant.
-	 */
-	public static EnrichProcessor.Builder enrich() {
-		return new EnrichProcessor.Builder();
-	}
-
-	/**
 	 * Creates a builder for the {@link FailProcessor fail} {@code Processor}
 	 * variant.
 	 */
