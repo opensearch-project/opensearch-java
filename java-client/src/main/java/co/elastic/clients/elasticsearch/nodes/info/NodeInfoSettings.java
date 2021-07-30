@@ -69,9 +69,6 @@ public class NodeInfoSettings implements JsonpSerializable {
 	private final NodeInfoSettingsNetwork network;
 
 	@Nullable
-	private final NodeInfoXpack xpack;
-
-	@Nullable
 	private final NodeInfoScript script;
 
 	@Nullable
@@ -95,7 +92,6 @@ public class NodeInfoSettings implements JsonpSerializable {
 		this.bootstrap = builder.bootstrap;
 		this.transport = ModelTypeHelper.requireNonNull(builder.transport, this, "transport");
 		this.network = builder.network;
-		this.xpack = builder.xpack;
 		this.script = builder.script;
 		this.search = builder.search;
 		this.ingest = builder.ingest;
@@ -189,14 +185,6 @@ public class NodeInfoSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code xpack}
-	 */
-	@Nullable
-	public final NodeInfoXpack xpack() {
-		return this.xpack;
-	}
-
-	/**
 	 * API name: {@code script}
 	 */
 	@Nullable
@@ -274,11 +262,6 @@ public class NodeInfoSettings implements JsonpSerializable {
 			this.network.serialize(generator, mapper);
 
 		}
-		if (this.xpack != null) {
-			generator.writeKey("xpack");
-			this.xpack.serialize(generator, mapper);
-
-		}
 		if (this.script != null) {
 			generator.writeKey("script");
 			this.script.serialize(generator, mapper);
@@ -329,9 +312,6 @@ public class NodeInfoSettings implements JsonpSerializable {
 
 		@Nullable
 		private NodeInfoSettingsNetwork network;
-
-		@Nullable
-		private NodeInfoXpack xpack;
 
 		@Nullable
 		private NodeInfoScript script;
@@ -512,21 +492,6 @@ public class NodeInfoSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code xpack}
-		 */
-		public final Builder xpack(@Nullable NodeInfoXpack value) {
-			this.xpack = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code xpack}
-		 */
-		public final Builder xpack(Function<NodeInfoXpack.Builder, ObjectBuilder<NodeInfoXpack>> fn) {
-			return this.xpack(fn.apply(new NodeInfoXpack.Builder()).build());
-		}
-
-		/**
 		 * API name: {@code script}
 		 */
 		public final Builder script(@Nullable NodeInfoScript value) {
@@ -606,7 +571,6 @@ public class NodeInfoSettings implements JsonpSerializable {
 		op.add(Builder::bootstrap, NodeInfoBootstrap._DESERIALIZER, "bootstrap");
 		op.add(Builder::transport, NodeInfoSettingsTransport._DESERIALIZER, "transport");
 		op.add(Builder::network, NodeInfoSettingsNetwork._DESERIALIZER, "network");
-		op.add(Builder::xpack, NodeInfoXpack._DESERIALIZER, "xpack");
 		op.add(Builder::script, NodeInfoScript._DESERIALIZER, "script");
 		op.add(Builder::search, NodeInfoSearch._DESERIALIZER, "search");
 		op.add(Builder::ingest, NodeInfoSettingsIngest._DESERIALIZER, "ingest");
