@@ -175,9 +175,6 @@ public class IndexSettings implements JsonpSerializable {
 	private final String finalPipeline;
 
 	@Nullable
-	private final IndexSettingsLifecycle lifecycle;
-
-	@Nullable
 	private final String lifecycleName;
 
 	@Nullable
@@ -266,7 +263,6 @@ public class IndexSettings implements JsonpSerializable {
 		this.gcDeletes = builder.gcDeletes;
 		this.defaultPipeline = builder.defaultPipeline;
 		this.finalPipeline = builder.finalPipeline;
-		this.lifecycle = builder.lifecycle;
 		this.lifecycleName = builder.lifecycleName;
 		this.providedName = builder.providedName;
 		this.creationDate = builder.creationDate;
@@ -609,14 +605,6 @@ public class IndexSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code lifecycle}
-	 */
-	@Nullable
-	public final IndexSettingsLifecycle lifecycle() {
-		return this.lifecycle;
-	}
-
-	/**
 	 * API name: {@code lifecycle.name}
 	 */
 	@Nullable
@@ -951,11 +939,7 @@ public class IndexSettings implements JsonpSerializable {
 			generator.write(this.finalPipeline);
 
 		}
-		if (this.lifecycle != null) {
-			generator.writeKey("lifecycle");
-			this.lifecycle.serialize(generator, mapper);
 
-		}
 		if (this.lifecycleName != null) {
 			generator.writeKey("lifecycle.name");
 			generator.write(this.lifecycleName);
@@ -1160,9 +1144,6 @@ public class IndexSettings implements JsonpSerializable {
 
 		@Nullable
 		private String finalPipeline;
-
-		@Nullable
-		private IndexSettingsLifecycle lifecycle;
 
 		@Nullable
 		private String lifecycleName;
@@ -1605,22 +1586,6 @@ public class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code lifecycle}
-		 */
-		public final Builder lifecycle(@Nullable IndexSettingsLifecycle value) {
-			this.lifecycle = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code lifecycle}
-		 */
-		public final Builder lifecycle(
-				Function<IndexSettingsLifecycle.Builder, ObjectBuilder<IndexSettingsLifecycle>> fn) {
-			return this.lifecycle(fn.apply(new IndexSettingsLifecycle.Builder()).build());
-		}
-
-		/**
 		 * API name: {@code lifecycle.name}
 		 */
 		public final Builder lifecycleName(@Nullable String value) {
@@ -1852,7 +1817,6 @@ public class IndexSettings implements JsonpSerializable {
 				"index.default_pipeline");
 		op.add(Builder::finalPipeline, JsonpDeserializer.stringDeserializer(), "final_pipeline",
 				"index.final_pipeline");
-		op.add(Builder::lifecycle, IndexSettingsLifecycle._DESERIALIZER, "lifecycle", "index.lifecycle");
 		op.add(Builder::lifecycleName, JsonpDeserializer.stringDeserializer(), "lifecycle.name",
 				"index.lifecycle.name");
 		op.add(Builder::providedName, JsonpDeserializer.stringDeserializer(), "provided_name", "index.provided_name");
