@@ -65,9 +65,6 @@ public final class NodeInfoSettings implements ToJsonp {
 	private final NodeInfoSettingsNetwork network;
 
 	@Nullable
-	private final NodeInfoXpack xpack;
-
-	@Nullable
 	private final NodeInfoScript script;
 
 	@Nullable
@@ -88,7 +85,6 @@ public final class NodeInfoSettings implements ToJsonp {
 		this.bootstrap = builder.bootstrap;
 		this.transport = Objects.requireNonNull(builder.transport, "transport");
 		this.network = builder.network;
-		this.xpack = builder.xpack;
 		this.script = builder.script;
 		this.search = builder.search;
 
@@ -177,14 +173,6 @@ public final class NodeInfoSettings implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code xpack}
-	 */
-	@Nullable
-	public NodeInfoXpack xpack() {
-		return this.xpack;
-	}
-
-	/**
 	 * API name: {@code script}
 	 */
 	@Nullable
@@ -261,12 +249,6 @@ public final class NodeInfoSettings implements ToJsonp {
 			this.network.toJsonp(generator, mapper);
 
 		}
-		if (this.xpack != null) {
-
-			generator.writeKey("xpack");
-			this.xpack.toJsonp(generator, mapper);
-
-		}
 		if (this.script != null) {
 
 			generator.writeKey("script");
@@ -314,9 +296,6 @@ public final class NodeInfoSettings implements ToJsonp {
 
 		@Nullable
 		private NodeInfoSettingsNetwork network;
-
-		@Nullable
-		private NodeInfoXpack xpack;
 
 		@Nullable
 		private NodeInfoScript script;
@@ -491,21 +470,6 @@ public final class NodeInfoSettings implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code xpack}
-		 */
-		public Builder xpack(@Nullable NodeInfoXpack value) {
-			this.xpack = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code xpack}
-		 */
-		public Builder xpack(Function<NodeInfoXpack.Builder, ObjectBuilder<NodeInfoXpack>> fn) {
-			return this.xpack(fn.apply(new NodeInfoXpack.Builder()).build());
-		}
-
-		/**
 		 * API name: {@code script}
 		 */
 		public Builder script(@Nullable NodeInfoScript value) {
@@ -568,7 +532,6 @@ public final class NodeInfoSettings implements ToJsonp {
 		op.add(Builder::bootstrap, NodeInfoBootstrap.DESERIALIZER, "bootstrap");
 		op.add(Builder::transport, NodeInfoSettingsTransport.DESERIALIZER, "transport");
 		op.add(Builder::network, NodeInfoSettingsNetwork.DESERIALIZER, "network");
-		op.add(Builder::xpack, NodeInfoXpack.DESERIALIZER, "xpack");
 		op.add(Builder::script, NodeInfoScript.DESERIALIZER, "script");
 		op.add(Builder::search, NodeInfoSearch.DESERIALIZER, "search");
 

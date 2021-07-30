@@ -1050,35 +1050,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 		return open(fn.apply(new OpenRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: indices.promote_data_stream
-
-	/**
-	 * Promotes a data stream from a replicated data stream managed by CCR to a
-	 * regular data stream
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html"
-	 */
-
-	public PromoteDataStreamResponse promoteDataStream(PromoteDataStreamRequest request) throws IOException {
-		return this.transport.performRequest(request, PromoteDataStreamRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Promotes a data stream from a replicated data stream managed by CCR to a
-	 * regular data stream
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html"
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final PromoteDataStreamResponse promoteDataStream(
-			Function<PromoteDataStreamRequest.Builder, ObjectBuilder<PromoteDataStreamRequest>> fn) throws IOException {
-		return promoteDataStream(fn.apply(new PromoteDataStreamRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: indices.put_alias
 
 	/**
