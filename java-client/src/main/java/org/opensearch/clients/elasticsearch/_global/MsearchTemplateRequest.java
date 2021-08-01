@@ -436,8 +436,8 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 	/**
 	 * Create an "{@code msearch_template}" endpoint.
 	 */
-	public static <TDocument> Endpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ElasticsearchError> createMsearchTemplateEndpoint(
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+	public static <TDocument> Endpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ElasticsearchError>
+	createMsearchTemplateEndpoint(JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT.withResponseDeserializer(
 				MsearchTemplateResponse.createMsearchTemplateResponseDeserializer(tDocumentDeserializer));
 	}

@@ -83,7 +83,8 @@ public final class MigrateToDataStreamRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.migrate_to_data_stream}".
 	 */
-	public static final Endpoint<MigrateToDataStreamRequest, MigrateToDataStreamResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<MigrateToDataStreamRequest, MigrateToDataStreamResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -132,7 +132,8 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.delete_component_template}".
 	 */
-	public static final Endpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "DELETE";

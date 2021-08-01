@@ -89,7 +89,8 @@ public final class FieldCapabilitiesBodyIndexFilterTerm implements ToJsonp {
 		 * API name: {@code versionControl}
 		 */
 		public Builder versioncontrol(
-				Function<FieldCapabilitiesBodyIndexFilterTermVersionControl.Builder, ObjectBuilder<FieldCapabilitiesBodyIndexFilterTermVersionControl>> fn) {
+				Function<FieldCapabilitiesBodyIndexFilterTermVersionControl.Builder,
+					ObjectBuilder<FieldCapabilitiesBodyIndexFilterTermVersionControl>> fn) {
 			return this
 					.versioncontrol(fn.apply(new FieldCapabilitiesBodyIndexFilterTermVersionControl.Builder()).build());
 		}

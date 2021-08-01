@@ -178,7 +178,8 @@ public final class ReloadSearchAnalyzersRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.reload_search_analyzers}".
 	 */
-	public static final Endpoint<ReloadSearchAnalyzersRequest, ReloadSearchAnalyzersResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ReloadSearchAnalyzersRequest, ReloadSearchAnalyzersResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

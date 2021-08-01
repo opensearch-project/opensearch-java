@@ -193,7 +193,8 @@ public final class Collector implements ToJsonp {
 		 * Set {@link #children(List)} to a singleton list.
 		 */
 		public Builder children(
-				Function<org.opensearch.clients.elasticsearch._global.search.Collector.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._global.search.Collector>> fn) {
+				Function<org.opensearch.clients.elasticsearch._global.search.Collector.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._global.search.Collector>> fn) {
 			return this.children(
 					fn.apply(new org.opensearch.clients.elasticsearch._global.search.Collector.Builder()).build());
 		}
@@ -202,7 +203,8 @@ public final class Collector implements ToJsonp {
 		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
 		public Builder addChildren(
-				Function<org.opensearch.clients.elasticsearch._global.search.Collector.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._global.search.Collector>> fn) {
+				Function<org.opensearch.clients.elasticsearch._global.search.Collector.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._global.search.Collector>> fn) {
 			return this.addChildren(
 					fn.apply(new org.opensearch.clients.elasticsearch._global.search.Collector.Builder()).build());
 		}

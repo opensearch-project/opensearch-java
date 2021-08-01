@@ -710,7 +710,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	/**
 	 * Create a json deserializer for UpdateRequest
 	 */
-	public static <TDocument, TPartialDocument> JsonpDeserializer<UpdateRequest<TDocument, TPartialDocument>> createUpdateRequestDeserializer(
+	public static <TDocument, TPartialDocument> JsonpDeserializer<UpdateRequest<TDocument, TPartialDocument>>
+	createUpdateRequestDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer,
 			JsonpDeserializer<TPartialDocument> tPartialDocumentDeserializer) {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument, TPartialDocument>>) Builder::new,

@@ -416,7 +416,8 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 	/**
 	 * Endpoint "{@code cluster.put_component_template}".
 	 */
-	public static final Endpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "PUT";

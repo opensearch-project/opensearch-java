@@ -728,7 +728,8 @@ public class ErrorCause implements ToJsonp {
 		 * API name: {@code caused_by}
 		 */
 		public BuilderT causedBy(
-				Function<org.opensearch.clients.elasticsearch._types.ErrorCause.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.ErrorCause>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.ErrorCause.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._types.ErrorCause>> fn) {
 			return this.causedBy(fn.apply(new org.opensearch.clients.elasticsearch._types.ErrorCause.Builder()).build());
 		}
 
@@ -779,7 +780,8 @@ public class ErrorCause implements ToJsonp {
 		 * Set {@link #rootCause(List)} to a singleton list.
 		 */
 		public BuilderT rootCause(
-				Function<org.opensearch.clients.elasticsearch._types.ErrorCause.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.ErrorCause>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.ErrorCause.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._types.ErrorCause>> fn) {
 			return this.rootCause(fn.apply(new org.opensearch.clients.elasticsearch._types.ErrorCause.Builder()).build());
 		}
 
@@ -787,7 +789,8 @@ public class ErrorCause implements ToJsonp {
 		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
 		 */
 		public BuilderT addRootCause(
-				Function<org.opensearch.clients.elasticsearch._types.ErrorCause.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.ErrorCause>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.ErrorCause.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._types.ErrorCause>> fn) {
 			return this
 					.addRootCause(fn.apply(new org.opensearch.clients.elasticsearch._types.ErrorCause.Builder()).build());
 		}

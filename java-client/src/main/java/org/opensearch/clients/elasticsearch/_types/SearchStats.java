@@ -424,7 +424,8 @@ public final class SearchStats implements ToJsonp {
 		 * Set {@link #groups(Map)} to a singleton map.
 		 */
 		public Builder groups(String key,
-				Function<org.opensearch.clients.elasticsearch._types.SearchStats.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.SearchStats>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.SearchStats.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._types.SearchStats>> fn) {
 			return this.groups(Collections.singletonMap(key,
 					fn.apply(new org.opensearch.clients.elasticsearch._types.SearchStats.Builder()).build()));
 		}
@@ -433,7 +434,8 @@ public final class SearchStats implements ToJsonp {
 		 * Add a key/value to {@link #groups(Map)}, creating the map if needed.
 		 */
 		public Builder putGroups(String key,
-				Function<org.opensearch.clients.elasticsearch._types.SearchStats.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.SearchStats>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.SearchStats.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._types.SearchStats>> fn) {
 			return this.putGroups(key,
 					fn.apply(new org.opensearch.clients.elasticsearch._types.SearchStats.Builder()).build());
 		}

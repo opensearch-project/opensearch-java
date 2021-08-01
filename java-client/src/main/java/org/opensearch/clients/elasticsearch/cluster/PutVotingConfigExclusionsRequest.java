@@ -199,7 +199,8 @@ public final class PutVotingConfigExclusionsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.post_voting_config_exclusions}".
 	 */
-	public static final Endpoint<PutVotingConfigExclusionsRequest, PutVotingConfigExclusionsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutVotingConfigExclusionsRequest, PutVotingConfigExclusionsResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

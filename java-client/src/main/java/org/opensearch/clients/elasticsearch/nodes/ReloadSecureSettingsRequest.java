@@ -175,7 +175,8 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements To
 	/**
 	 * Endpoint "{@code nodes.reload_secure_settings}".
 	 */
-	public static final Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

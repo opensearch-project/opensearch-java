@@ -352,7 +352,8 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 	/**
 	 * Endpoint "{@code indices.simulate_index_template}".
 	 */
-	public static final Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

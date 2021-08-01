@@ -143,7 +143,8 @@ public final class NestedIdentity implements ToJsonp {
 		 * API name: {@code _nested}
 		 */
 		public Builder nested(
-				Function<org.opensearch.clients.elasticsearch._global.search.NestedIdentity.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._global.search.NestedIdentity>> fn) {
+				Function<org.opensearch.clients.elasticsearch._global.search.NestedIdentity.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._global.search.NestedIdentity>> fn) {
 			return this.nested(
 					fn.apply(new org.opensearch.clients.elasticsearch._global.search.NestedIdentity.Builder()).build());
 		}

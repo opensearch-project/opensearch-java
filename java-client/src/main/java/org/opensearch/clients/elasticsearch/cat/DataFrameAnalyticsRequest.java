@@ -133,7 +133,8 @@ public final class DataFrameAnalyticsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.ml_data_frame_analytics}".
 	 */
-	public static final Endpoint<DataFrameAnalyticsRequest, DataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DataFrameAnalyticsRequest, DataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "GET";

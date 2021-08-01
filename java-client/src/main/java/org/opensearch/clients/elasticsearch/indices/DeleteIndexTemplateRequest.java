@@ -83,7 +83,8 @@ public final class DeleteIndexTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.delete_index_template}".
 	 */
-	public static final Endpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "DELETE";

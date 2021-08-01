@@ -103,7 +103,8 @@ public final class FieldCapabilitiesBodyIndexFilterTermVersionControl implements
 	 */
 	public static final JsonpDeserializer<FieldCapabilitiesBodyIndexFilterTermVersionControl> DESERIALIZER = ObjectBuilderDeserializer
 			.createForObject(Builder::new,
-					FieldCapabilitiesBodyIndexFilterTermVersionControl::setupFieldCapabilitiesBodyIndexFilterTermVersionControlDeserializer);
+					FieldCapabilitiesBodyIndexFilterTermVersionControl::
+						setupFieldCapabilitiesBodyIndexFilterTermVersionControlDeserializer);
 
 	protected static void setupFieldCapabilitiesBodyIndexFilterTermVersionControlDeserializer(
 			DelegatingDeserializer<FieldCapabilitiesBodyIndexFilterTermVersionControl.Builder> op) {

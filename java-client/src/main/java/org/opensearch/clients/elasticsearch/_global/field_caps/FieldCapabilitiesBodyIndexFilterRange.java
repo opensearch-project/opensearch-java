@@ -89,7 +89,8 @@ public final class FieldCapabilitiesBodyIndexFilterRange implements ToJsonp {
 		 * API name: {@code timestamp}
 		 */
 		public Builder timestamp(
-				Function<FieldCapabilitiesBodyIndexFilterRangeTimestamp.Builder, ObjectBuilder<FieldCapabilitiesBodyIndexFilterRangeTimestamp>> fn) {
+				Function<FieldCapabilitiesBodyIndexFilterRangeTimestamp.Builder,
+					ObjectBuilder<FieldCapabilitiesBodyIndexFilterRangeTimestamp>> fn) {
 			return this.timestamp(fn.apply(new FieldCapabilitiesBodyIndexFilterRangeTimestamp.Builder()).build());
 		}
 

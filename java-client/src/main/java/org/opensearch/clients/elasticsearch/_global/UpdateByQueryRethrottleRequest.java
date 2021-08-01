@@ -108,7 +108,8 @@ public final class UpdateByQueryRethrottleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code update_by_query_rethrottle}".
 	 */
-	public static final Endpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

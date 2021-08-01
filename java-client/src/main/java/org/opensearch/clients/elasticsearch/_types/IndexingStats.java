@@ -438,7 +438,8 @@ public final class IndexingStats implements ToJsonp {
 		 * Set {@link #types(Map)} to a singleton map.
 		 */
 		public Builder types(String key,
-				Function<org.opensearch.clients.elasticsearch._types.IndexingStats.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.IndexingStats>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.IndexingStats.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._types.IndexingStats>> fn) {
 			return this.types(Collections.singletonMap(key,
 					fn.apply(new org.opensearch.clients.elasticsearch._types.IndexingStats.Builder()).build()));
 		}
@@ -447,7 +448,8 @@ public final class IndexingStats implements ToJsonp {
 		 * Add a key/value to {@link #types(Map)}, creating the map if needed.
 		 */
 		public Builder putTypes(String key,
-				Function<org.opensearch.clients.elasticsearch._types.IndexingStats.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.IndexingStats>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.IndexingStats.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._types.IndexingStats>> fn) {
 			return this.putTypes(key,
 					fn.apply(new org.opensearch.clients.elasticsearch._types.IndexingStats.Builder()).build());
 		}

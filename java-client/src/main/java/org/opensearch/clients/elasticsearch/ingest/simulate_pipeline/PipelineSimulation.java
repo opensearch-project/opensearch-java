@@ -226,7 +226,8 @@ public final class PipelineSimulation implements ToJsonp {
 		 * Set {@link #processorResults(List)} to a singleton list.
 		 */
 		public Builder processorResults(
-				Function<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation>> fn) {
+				Function<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation>> fn) {
 			return this.processorResults(
 					fn.apply(new org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder())
 							.build());
@@ -236,7 +237,8 @@ public final class PipelineSimulation implements ToJsonp {
 		 * Add a value to {@link #processorResults(List)}, creating the list if needed.
 		 */
 		public Builder addProcessorResults(
-				Function<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation>> fn) {
+				Function<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation>> fn) {
 			return this.addProcessorResults(
 					fn.apply(new org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder())
 							.build());

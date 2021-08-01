@@ -163,7 +163,8 @@ public final class ExplanationDetail implements ToJsonp {
 		 * Set {@link #details(List)} to a singleton list.
 		 */
 		public Builder details(
-				Function<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail>> fn) {
+				Function<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail>> fn) {
 			return this.details(
 					fn.apply(new org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail.Builder()).build());
 		}
@@ -172,7 +173,8 @@ public final class ExplanationDetail implements ToJsonp {
 		 * Add a value to {@link #details(List)}, creating the list if needed.
 		 */
 		public Builder addDetails(
-				Function<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail>> fn) {
+				Function<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail>> fn) {
 			return this.addDetails(
 					fn.apply(new org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail.Builder()).build());
 		}

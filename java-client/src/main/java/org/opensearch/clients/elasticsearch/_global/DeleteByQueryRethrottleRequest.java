@@ -108,7 +108,8 @@ public final class DeleteByQueryRethrottleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code delete_by_query_rethrottle}".
 	 */
-	public static final Endpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

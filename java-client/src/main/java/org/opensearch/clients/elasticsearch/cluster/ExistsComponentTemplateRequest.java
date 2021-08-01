@@ -190,7 +190,8 @@ public final class ExistsComponentTemplateRequest extends RequestBase implements
 	/**
 	 * Endpoint "{@code cluster.exists_component_template}".
 	 */
-	public static final Endpoint<ExistsComponentTemplateRequest, ExistsComponentTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ExistsComponentTemplateRequest, ExistsComponentTemplateResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "HEAD";

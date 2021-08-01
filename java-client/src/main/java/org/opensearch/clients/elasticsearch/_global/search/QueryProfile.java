@@ -223,7 +223,8 @@ public final class QueryProfile implements ToJsonp {
 		 * Set {@link #children(List)} to a singleton list.
 		 */
 		public Builder children(
-				Function<org.opensearch.clients.elasticsearch._global.search.QueryProfile.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._global.search.QueryProfile>> fn) {
+				Function<org.opensearch.clients.elasticsearch._global.search.QueryProfile.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._global.search.QueryProfile>> fn) {
 			return this.children(
 					fn.apply(new org.opensearch.clients.elasticsearch._global.search.QueryProfile.Builder()).build());
 		}
@@ -232,7 +233,8 @@ public final class QueryProfile implements ToJsonp {
 		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
 		public Builder addChildren(
-				Function<org.opensearch.clients.elasticsearch._global.search.QueryProfile.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._global.search.QueryProfile>> fn) {
+				Function<org.opensearch.clients.elasticsearch._global.search.QueryProfile.Builder,
+					ObjectBuilder<org.opensearch.clients.elasticsearch._global.search.QueryProfile>> fn) {
 			return this.addChildren(
 					fn.apply(new org.opensearch.clients.elasticsearch._global.search.QueryProfile.Builder()).build());
 		}

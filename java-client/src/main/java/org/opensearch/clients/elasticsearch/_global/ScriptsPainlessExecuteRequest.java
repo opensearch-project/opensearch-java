@@ -227,8 +227,8 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	/**
 	 * Create an "{@code scripts_painless_execute}" endpoint.
 	 */
-	public static <TResult> Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ElasticsearchError> createScriptsPainlessExecuteEndpoint(
-			JsonpDeserializer<TResult> tResultDeserializer) {
+	public static <TResult> Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ElasticsearchError>
+	createScriptsPainlessExecuteEndpoint(JsonpDeserializer<TResult> tResultDeserializer) {
 		return ENDPOINT.withResponseDeserializer(
 				ScriptsPainlessExecuteResponse.createScriptsPainlessExecuteResponseDeserializer(tResultDeserializer));
 	}

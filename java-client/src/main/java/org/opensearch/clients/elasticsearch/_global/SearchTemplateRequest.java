@@ -698,8 +698,8 @@ public final class SearchTemplateRequest extends RequestBase implements ToJsonp 
 	/**
 	 * Create an "{@code search_template}" endpoint.
 	 */
-	public static <TDocument> Endpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ElasticsearchError> createSearchTemplateEndpoint(
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+	public static <TDocument> Endpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ElasticsearchError>
+	createSearchTemplateEndpoint(JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT.withResponseDeserializer(
 				SearchTemplateResponse.createSearchTemplateResponseDeserializer(tDocumentDeserializer));
 	}

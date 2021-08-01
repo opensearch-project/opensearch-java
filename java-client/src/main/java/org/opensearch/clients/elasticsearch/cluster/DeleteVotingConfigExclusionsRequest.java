@@ -121,7 +121,8 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase imple
 	/**
 	 * Endpoint "{@code cluster.delete_voting_config_exclusions}".
 	 */
-	public static final Endpoint<DeleteVotingConfigExclusionsRequest, DeleteVotingConfigExclusionsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteVotingConfigExclusionsRequest, DeleteVotingConfigExclusionsResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "DELETE";

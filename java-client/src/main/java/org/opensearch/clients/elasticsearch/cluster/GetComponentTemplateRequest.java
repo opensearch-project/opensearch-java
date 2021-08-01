@@ -157,7 +157,8 @@ public final class GetComponentTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.get_component_template}".
 	 */
-	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ElasticsearchError> ENDPOINT =
+		new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "GET";
