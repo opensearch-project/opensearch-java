@@ -19,7 +19,9 @@
 
 allprojects {
     group = "co.elastic.clients"
-    version = System.getenv("VERSION") ?: "8.0.0-SNAPSHOT"
+    // Release manager provides a $VERSION. If not present, it's a local or CI snapshot build.
+    version = System.getenv("VERSION") ?:
+        (File(project.rootDir, "config/version.txt").readText().trim() + "-SNAPSHOT")
 
     repositories {
         mavenCentral()
@@ -53,7 +55,10 @@ tasks.register<Task>(name = "resolveDependencies") {
 tasks.register<Task>(name = "publishForReleaseManager") {
     group = "Publishing"
     description = "Publishes artifacts in a format suitable for the Elastic release manager"
-    dependsOn(":java-client:publishAllPublicationsToBuildRepository")
+    dependsOn(
+        ":java-client:publishAllPublicationsToBuildRepository",
+        ":java-client:generateLicenseReport"
+    )
     doLast {
         val version = this.project.version.toString()
         val isSnapshot = version.endsWith("SNAPSHOT")
