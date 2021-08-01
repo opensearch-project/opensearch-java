@@ -17,10 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package org.opensearch.clients.base;
 
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
 
 public class ElasticsearchError {
 

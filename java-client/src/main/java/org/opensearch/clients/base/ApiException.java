@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package org.opensearch.clients.base;
 
 import java.io.IOException;
 

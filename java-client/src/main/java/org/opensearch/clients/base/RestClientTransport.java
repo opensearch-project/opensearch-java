@@ -17,11 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package org.opensearch.clients.base;
 
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.ToJsonp;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
 import org.elasticsearch.client.Cancellable;

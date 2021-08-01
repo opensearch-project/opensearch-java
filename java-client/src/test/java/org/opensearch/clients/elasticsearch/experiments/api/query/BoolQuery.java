@@ -17,15 +17,15 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments.api.query;
+package org.opensearch.clients.elasticsearch.experiments.api.query;
 
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
-import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.Union2;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.ToJsonp;
+import org.opensearch.clients.util.ObjectBuilder;
+import org.opensearch.clients.util.Union2;
 
 import javax.annotation.Nullable;
 import jakarta.json.stream.JsonGenerator;

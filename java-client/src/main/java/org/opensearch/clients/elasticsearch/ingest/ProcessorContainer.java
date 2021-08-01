@@ -21,16 +21,16 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.ingest;
+package org.opensearch.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.BuildFunctionDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
-import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.StringEnum;
-import co.elastic.clients.util.TaggedUnion;
+import org.opensearch.clients.json.BuildFunctionDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.json.ToJsonp;
+import org.opensearch.clients.util.ObjectBuilder;
+import org.opensearch.clients.util.StringEnum;
+import org.opensearch.clients.util.TaggedUnion;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;

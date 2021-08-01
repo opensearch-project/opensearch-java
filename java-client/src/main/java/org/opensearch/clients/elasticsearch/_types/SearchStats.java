@@ -21,15 +21,15 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types;
+package org.opensearch.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.json.DelegatingDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.json.ToJsonp;
+import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Collections;
@@ -69,7 +69,7 @@ public final class SearchStats implements ToJsonp {
 	private final Number suggestTotal;
 
 	@Nullable
-	private final Map<String, co.elastic.clients.elasticsearch._types.SearchStats> groups;
+	private final Map<String, org.opensearch.clients.elasticsearch._types.SearchStats> groups;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -188,7 +188,7 @@ public final class SearchStats implements ToJsonp {
 	 * API name: {@code groups}
 	 */
 	@Nullable
-	public Map<String, co.elastic.clients.elasticsearch._types.SearchStats> groups() {
+	public Map<String, org.opensearch.clients.elasticsearch._types.SearchStats> groups() {
 		return this.groups;
 	}
 
@@ -250,7 +250,7 @@ public final class SearchStats implements ToJsonp {
 
 			generator.writeKey("groups");
 			generator.writeStartObject();
-			for (Map.Entry<String, co.elastic.clients.elasticsearch._types.SearchStats> item0 : this.groups
+			for (Map.Entry<String, org.opensearch.clients.elasticsearch._types.SearchStats> item0 : this.groups
 					.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().toJsonp(generator, mapper);
@@ -296,7 +296,7 @@ public final class SearchStats implements ToJsonp {
 		private Number suggestTotal;
 
 		@Nullable
-		private Map<String, co.elastic.clients.elasticsearch._types.SearchStats> groups;
+		private Map<String, org.opensearch.clients.elasticsearch._types.SearchStats> groups;
 
 		/**
 		 * API name: {@code fetch_current}
@@ -405,7 +405,7 @@ public final class SearchStats implements ToJsonp {
 		/**
 		 * API name: {@code groups}
 		 */
-		public Builder groups(@Nullable Map<String, co.elastic.clients.elasticsearch._types.SearchStats> value) {
+		public Builder groups(@Nullable Map<String, org.opensearch.clients.elasticsearch._types.SearchStats> value) {
 			this.groups = value;
 			return this;
 		}
@@ -413,7 +413,7 @@ public final class SearchStats implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #groups(Map)}, creating the map if needed.
 		 */
-		public Builder putGroups(String key, co.elastic.clients.elasticsearch._types.SearchStats value) {
+		public Builder putGroups(String key, org.opensearch.clients.elasticsearch._types.SearchStats value) {
 			if (this.groups == null) {
 				this.groups = new HashMap<>();
 			}
@@ -425,18 +425,18 @@ public final class SearchStats implements ToJsonp {
 		 * Set {@link #groups(Map)} to a singleton map.
 		 */
 		public Builder groups(String key,
-				Function<co.elastic.clients.elasticsearch._types.SearchStats.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.SearchStats>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.SearchStats.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.SearchStats>> fn) {
 			return this.groups(Collections.singletonMap(key,
-					fn.apply(new co.elastic.clients.elasticsearch._types.SearchStats.Builder()).build()));
+					fn.apply(new org.opensearch.clients.elasticsearch._types.SearchStats.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #groups(Map)}, creating the map if needed.
 		 */
 		public Builder putGroups(String key,
-				Function<co.elastic.clients.elasticsearch._types.SearchStats.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.SearchStats>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.SearchStats.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.SearchStats>> fn) {
 			return this.putGroups(key,
-					fn.apply(new co.elastic.clients.elasticsearch._types.SearchStats.Builder()).build());
+					fn.apply(new org.opensearch.clients.elasticsearch._types.SearchStats.Builder()).build());
 		}
 
 		/**
@@ -475,7 +475,7 @@ public final class SearchStats implements ToJsonp {
 		op.add(Builder::suggestTimeInMillis, JsonpDeserializer.numberDeserializer(), "suggest_time_in_millis");
 		op.add(Builder::suggestTotal, JsonpDeserializer.numberDeserializer(), "suggest_total");
 		op.add(Builder::groups, JsonpDeserializer
-				.stringMapDeserializer(co.elastic.clients.elasticsearch._types.SearchStats.DESERIALIZER), "groups");
+				.stringMapDeserializer(org.opensearch.clients.elasticsearch._types.SearchStats.DESERIALIZER), "groups");
 
 	}
 

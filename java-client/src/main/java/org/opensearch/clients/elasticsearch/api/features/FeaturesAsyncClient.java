@@ -21,15 +21,15 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.api.features;
+package org.opensearch.clients.elasticsearch.api.features;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.features.GetFeaturesRequest;
-import co.elastic.clients.elasticsearch.features.GetFeaturesResponse;
-import co.elastic.clients.elasticsearch.features.ResetFeaturesRequest;
-import co.elastic.clients.elasticsearch.features.ResetFeaturesResponse;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.base.ApiClient;
+import org.opensearch.clients.base.Transport;
+import org.opensearch.clients.elasticsearch.features.GetFeaturesRequest;
+import org.opensearch.clients.elasticsearch.features.GetFeaturesResponse;
+import org.opensearch.clients.elasticsearch.features.ResetFeaturesRequest;
+import org.opensearch.clients.elasticsearch.features.ResetFeaturesResponse;
+import org.opensearch.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;

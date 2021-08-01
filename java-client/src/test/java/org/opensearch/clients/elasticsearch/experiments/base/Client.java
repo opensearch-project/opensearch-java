@@ -17,13 +17,13 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments.base;
+package org.opensearch.clients.elasticsearch.experiments.base;
 
-import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.experiments.api.FooRequest;
-import co.elastic.clients.elasticsearch.experiments.api.FooResponse;
+import org.opensearch.clients.util.ObjectBuilder;
+import org.opensearch.clients.base.Endpoint;
+import org.opensearch.clients.base.Transport;
+import org.opensearch.clients.elasticsearch.experiments.api.FooRequest;
+import org.opensearch.clients.elasticsearch.experiments.api.FooResponse;
 
 import java.io.IOException;
 import java.util.function.Function;

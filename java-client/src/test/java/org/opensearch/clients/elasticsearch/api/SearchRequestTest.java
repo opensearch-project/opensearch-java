@@ -17,10 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.api;
+package org.opensearch.clients.elasticsearch.api;
 
-import co.elastic.clients.elasticsearch._global.SearchRequest;
-import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.clients.elasticsearch._global.SearchRequest;
+import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
 import org.junit.Assert;
 import org.junit.Test;
 

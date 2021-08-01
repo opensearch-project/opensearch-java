@@ -21,15 +21,15 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.task;
+package org.opensearch.clients.elasticsearch.task;
 
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.json.DelegatingDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.json.ToJsonp;
+import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -50,7 +50,7 @@ public final class Info implements ToJsonp {
 	private final Boolean cancellable;
 
 	@Nullable
-	private final List<co.elastic.clients.elasticsearch.task.Info> children;
+	private final List<org.opensearch.clients.elasticsearch.task.Info> children;
 
 	@Nullable
 	private final String description;
@@ -110,7 +110,7 @@ public final class Info implements ToJsonp {
 	 * API name: {@code children}
 	 */
 	@Nullable
-	public List<co.elastic.clients.elasticsearch.task.Info> children() {
+	public List<org.opensearch.clients.elasticsearch.task.Info> children() {
 		return this.children;
 	}
 
@@ -201,7 +201,7 @@ public final class Info implements ToJsonp {
 
 			generator.writeKey("children");
 			generator.writeStartArray();
-			for (co.elastic.clients.elasticsearch.task.Info item0 : this.children) {
+			for (org.opensearch.clients.elasticsearch.task.Info item0 : this.children) {
 				item0.toJsonp(generator, mapper);
 
 			}
@@ -271,7 +271,7 @@ public final class Info implements ToJsonp {
 		private Boolean cancellable;
 
 		@Nullable
-		private List<co.elastic.clients.elasticsearch.task.Info> children;
+		private List<org.opensearch.clients.elasticsearch.task.Info> children;
 
 		@Nullable
 		private String description;
@@ -313,7 +313,7 @@ public final class Info implements ToJsonp {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(@Nullable List<co.elastic.clients.elasticsearch.task.Info> value) {
+		public Builder children(@Nullable List<org.opensearch.clients.elasticsearch.task.Info> value) {
 			this.children = value;
 			return this;
 		}
@@ -321,7 +321,7 @@ public final class Info implements ToJsonp {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(co.elastic.clients.elasticsearch.task.Info... value) {
+		public Builder children(org.opensearch.clients.elasticsearch.task.Info... value) {
 			this.children = Arrays.asList(value);
 			return this;
 		}
@@ -329,7 +329,7 @@ public final class Info implements ToJsonp {
 		/**
 		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
-		public Builder addChildren(co.elastic.clients.elasticsearch.task.Info value) {
+		public Builder addChildren(org.opensearch.clients.elasticsearch.task.Info value) {
 			if (this.children == null) {
 				this.children = new ArrayList<>();
 			}
@@ -341,16 +341,16 @@ public final class Info implements ToJsonp {
 		 * Set {@link #children(List)} to a singleton list.
 		 */
 		public Builder children(
-				Function<co.elastic.clients.elasticsearch.task.Info.Builder, ObjectBuilder<co.elastic.clients.elasticsearch.task.Info>> fn) {
-			return this.children(fn.apply(new co.elastic.clients.elasticsearch.task.Info.Builder()).build());
+				Function<org.opensearch.clients.elasticsearch.task.Info.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch.task.Info>> fn) {
+			return this.children(fn.apply(new org.opensearch.clients.elasticsearch.task.Info.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
 		public Builder addChildren(
-				Function<co.elastic.clients.elasticsearch.task.Info.Builder, ObjectBuilder<co.elastic.clients.elasticsearch.task.Info>> fn) {
-			return this.addChildren(fn.apply(new co.elastic.clients.elasticsearch.task.Info.Builder()).build());
+				Function<org.opensearch.clients.elasticsearch.task.Info.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch.task.Info>> fn) {
+			return this.addChildren(fn.apply(new org.opensearch.clients.elasticsearch.task.Info.Builder()).build());
 		}
 
 		/**
@@ -468,7 +468,7 @@ public final class Info implements ToJsonp {
 		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
 		op.add(Builder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");
 		op.add(Builder::children,
-				JsonpDeserializer.arrayDeserializer(co.elastic.clients.elasticsearch.task.Info.DESERIALIZER),
+				JsonpDeserializer.arrayDeserializer(org.opensearch.clients.elasticsearch.task.Info.DESERIALIZER),
 				"children");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(

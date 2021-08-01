@@ -20,4 +20,4 @@
 /**
  * Experiments for the design of high-level client classes and usage illustration of the XContent-related classes.
  */
-package co.elastic.clients.elasticsearch.experiments;
+package org.opensearch.clients.elasticsearch.experiments;

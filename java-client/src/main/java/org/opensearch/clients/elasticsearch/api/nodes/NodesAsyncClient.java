@@ -21,21 +21,21 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.api.nodes;
+package org.opensearch.clients.elasticsearch.api.nodes;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.nodes.HotThreadsRequest;
-import co.elastic.clients.elasticsearch.nodes.HotThreadsResponse;
-import co.elastic.clients.elasticsearch.nodes.InfoRequest;
-import co.elastic.clients.elasticsearch.nodes.InfoResponse;
-import co.elastic.clients.elasticsearch.nodes.ReloadSecureSettingsRequest;
-import co.elastic.clients.elasticsearch.nodes.ReloadSecureSettingsResponse;
-import co.elastic.clients.elasticsearch.nodes.StatsRequest;
-import co.elastic.clients.elasticsearch.nodes.StatsResponse;
-import co.elastic.clients.elasticsearch.nodes.UsageRequest;
-import co.elastic.clients.elasticsearch.nodes.UsageResponse;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.base.ApiClient;
+import org.opensearch.clients.base.Transport;
+import org.opensearch.clients.elasticsearch.nodes.HotThreadsRequest;
+import org.opensearch.clients.elasticsearch.nodes.HotThreadsResponse;
+import org.opensearch.clients.elasticsearch.nodes.InfoRequest;
+import org.opensearch.clients.elasticsearch.nodes.InfoResponse;
+import org.opensearch.clients.elasticsearch.nodes.ReloadSecureSettingsRequest;
+import org.opensearch.clients.elasticsearch.nodes.ReloadSecureSettingsResponse;
+import org.opensearch.clients.elasticsearch.nodes.StatsRequest;
+import org.opensearch.clients.elasticsearch.nodes.StatsResponse;
+import org.opensearch.clients.elasticsearch.nodes.UsageRequest;
+import org.opensearch.clients.elasticsearch.nodes.UsageResponse;
+import org.opensearch.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;

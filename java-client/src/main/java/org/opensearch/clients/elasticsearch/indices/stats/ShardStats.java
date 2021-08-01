@@ -21,31 +21,31 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.indices.stats;
+package org.opensearch.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.elasticsearch._types.BulkStats;
-import co.elastic.clients.elasticsearch._types.CompletionStats;
-import co.elastic.clients.elasticsearch._types.DocStats;
-import co.elastic.clients.elasticsearch._types.FielddataStats;
-import co.elastic.clients.elasticsearch._types.FlushStats;
-import co.elastic.clients.elasticsearch._types.GetStats;
-import co.elastic.clients.elasticsearch._types.IndexingStats;
-import co.elastic.clients.elasticsearch._types.MergesStats;
-import co.elastic.clients.elasticsearch._types.RecoveryStats;
-import co.elastic.clients.elasticsearch._types.RefreshStats;
-import co.elastic.clients.elasticsearch._types.RequestCacheStats;
-import co.elastic.clients.elasticsearch._types.SearchStats;
-import co.elastic.clients.elasticsearch._types.SegmentsStats;
-import co.elastic.clients.elasticsearch._types.StoreStats;
-import co.elastic.clients.elasticsearch._types.TranslogStats;
-import co.elastic.clients.elasticsearch._types.WarmerStats;
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.elasticsearch._types.BulkStats;
+import org.opensearch.clients.elasticsearch._types.CompletionStats;
+import org.opensearch.clients.elasticsearch._types.DocStats;
+import org.opensearch.clients.elasticsearch._types.FielddataStats;
+import org.opensearch.clients.elasticsearch._types.FlushStats;
+import org.opensearch.clients.elasticsearch._types.GetStats;
+import org.opensearch.clients.elasticsearch._types.IndexingStats;
+import org.opensearch.clients.elasticsearch._types.MergesStats;
+import org.opensearch.clients.elasticsearch._types.RecoveryStats;
+import org.opensearch.clients.elasticsearch._types.RefreshStats;
+import org.opensearch.clients.elasticsearch._types.RequestCacheStats;
+import org.opensearch.clients.elasticsearch._types.SearchStats;
+import org.opensearch.clients.elasticsearch._types.SegmentsStats;
+import org.opensearch.clients.elasticsearch._types.StoreStats;
+import org.opensearch.clients.elasticsearch._types.TranslogStats;
+import org.opensearch.clients.elasticsearch._types.WarmerStats;
+import org.opensearch.clients.json.DelegatingDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.json.ToJsonp;
+import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;

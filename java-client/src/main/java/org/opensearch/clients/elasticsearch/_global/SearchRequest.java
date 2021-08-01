@@ -21,27 +21,27 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._global;
+package org.opensearch.clients.elasticsearch._global;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.elasticsearch._global.search.FieldCollapse;
-import co.elastic.clients.elasticsearch._global.search.Highlight;
-import co.elastic.clients.elasticsearch._global.search.PointInTimeReference;
-import co.elastic.clients.elasticsearch._global.search.Rescore;
-import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.ScriptField;
-import co.elastic.clients.elasticsearch._types.SlicedScroll;
-import co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer;
-import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.Endpoint;
+import org.opensearch.clients.elasticsearch._global.search.FieldCollapse;
+import org.opensearch.clients.elasticsearch._global.search.Highlight;
+import org.opensearch.clients.elasticsearch._global.search.PointInTimeReference;
+import org.opensearch.clients.elasticsearch._global.search.Rescore;
+import org.opensearch.clients.elasticsearch._types.RequestBase;
+import org.opensearch.clients.elasticsearch._types.ScriptField;
+import org.opensearch.clients.elasticsearch._types.SlicedScroll;
+import org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer;
+import org.opensearch.clients.elasticsearch._types.mapping.RuntimeField;
+import org.opensearch.clients.elasticsearch._types.query_dsl.QueryContainer;
+import org.opensearch.clients.json.DelegatingDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.json.ToJsonp;
+import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;

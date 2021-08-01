@@ -17,11 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.json;
+package org.opensearch.clients.elasticsearch.json;
 
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.jackson.JacksonJsonpMapper;
+import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.util;
+package org.opensearch.clients.util;
 
 /**
  * Represents an operation that accepts 4 input arguments and returns no

@@ -17,17 +17,17 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments;
+package org.opensearch.clients.elasticsearch.experiments;
 
 
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.RestClientTransport;
-import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch._global.SearchResponse;
-import co.elastic.clients.elasticsearch.indices.CreateResponse;
-import co.elastic.clients.elasticsearch.indices.IndexState;
-import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.clients.base.BooleanResponse;
+import org.opensearch.clients.base.RestClientTransport;
+import org.opensearch.clients.base.Transport;
+import org.opensearch.clients.elasticsearch.ElasticsearchClient;
+import org.opensearch.clients.elasticsearch._global.SearchResponse;
+import org.opensearch.clients.elasticsearch.indices.CreateResponse;
+import org.opensearch.clients.elasticsearch.indices.IndexState;
+import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.JsonValue;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;

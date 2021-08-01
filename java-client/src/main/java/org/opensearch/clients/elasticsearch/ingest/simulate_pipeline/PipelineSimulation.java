@@ -21,15 +21,15 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.ingest.simulate_pipeline;
+package org.opensearch.clients.elasticsearch.ingest.simulate_pipeline;
 
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.json.DelegatingDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.json.ToJsonp;
+import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -45,7 +45,7 @@ public final class PipelineSimulation implements ToJsonp {
 	private final DocumentSimulation doc;
 
 	@Nullable
-	private final List<co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation> processorResults;
+	private final List<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation> processorResults;
 
 	@Nullable
 	private final String tag;
@@ -80,7 +80,7 @@ public final class PipelineSimulation implements ToJsonp {
 	 * API name: {@code processor_results}
 	 */
 	@Nullable
-	public List<co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation> processorResults() {
+	public List<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation> processorResults() {
 		return this.processorResults;
 	}
 
@@ -129,7 +129,7 @@ public final class PipelineSimulation implements ToJsonp {
 
 			generator.writeKey("processor_results");
 			generator.writeStartArray();
-			for (co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation item0 : this.processorResults) {
+			for (org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation item0 : this.processorResults) {
 				item0.toJsonp(generator, mapper);
 
 			}
@@ -167,7 +167,7 @@ public final class PipelineSimulation implements ToJsonp {
 		private DocumentSimulation doc;
 
 		@Nullable
-		private List<co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation> processorResults;
+		private List<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation> processorResults;
 
 		@Nullable
 		private String tag;
@@ -197,7 +197,7 @@ public final class PipelineSimulation implements ToJsonp {
 		 * API name: {@code processor_results}
 		 */
 		public Builder processorResults(
-				@Nullable List<co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation> value) {
+				@Nullable List<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation> value) {
 			this.processorResults = value;
 			return this;
 		}
@@ -206,7 +206,7 @@ public final class PipelineSimulation implements ToJsonp {
 		 * API name: {@code processor_results}
 		 */
 		public Builder processorResults(
-				co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation... value) {
+				org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation... value) {
 			this.processorResults = Arrays.asList(value);
 			return this;
 		}
@@ -215,7 +215,7 @@ public final class PipelineSimulation implements ToJsonp {
 		 * Add a value to {@link #processorResults(List)}, creating the list if needed.
 		 */
 		public Builder addProcessorResults(
-				co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation value) {
+				org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation value) {
 			if (this.processorResults == null) {
 				this.processorResults = new ArrayList<>();
 			}
@@ -227,9 +227,9 @@ public final class PipelineSimulation implements ToJsonp {
 		 * Set {@link #processorResults(List)} to a singleton list.
 		 */
 		public Builder processorResults(
-				Function<co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder, ObjectBuilder<co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation>> fn) {
+				Function<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation>> fn) {
 			return this.processorResults(
-					fn.apply(new co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder())
+					fn.apply(new org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder())
 							.build());
 		}
 
@@ -237,9 +237,9 @@ public final class PipelineSimulation implements ToJsonp {
 		 * Add a value to {@link #processorResults(List)}, creating the list if needed.
 		 */
 		public Builder addProcessorResults(
-				Function<co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder, ObjectBuilder<co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation>> fn) {
+				Function<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation>> fn) {
 			return this.addProcessorResults(
-					fn.apply(new co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder())
+					fn.apply(new org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.Builder())
 							.build());
 		}
 
@@ -292,7 +292,7 @@ public final class PipelineSimulation implements ToJsonp {
 		op.add(Builder::doc, DocumentSimulation.DESERIALIZER, "doc");
 		op.add(Builder::processorResults,
 				JsonpDeserializer.arrayDeserializer(
-						co.elastic.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.DESERIALIZER),
+						org.opensearch.clients.elasticsearch.ingest.simulate_pipeline.PipelineSimulation.DESERIALIZER),
 				"processor_results");
 		op.add(Builder::tag, JsonpDeserializer.stringDeserializer(), "tag");
 		op.add(Builder::processorType, JsonpDeserializer.stringDeserializer(), "processor_type");

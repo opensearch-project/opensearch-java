@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.json.jackson;
+package org.opensearch.clients.json.jackson;
 
 import com.fasterxml.jackson.core.JsonToken;
 

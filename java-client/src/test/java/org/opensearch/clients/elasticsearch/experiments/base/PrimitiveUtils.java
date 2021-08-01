@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments.base;
+package org.opensearch.clients.elasticsearch.experiments.base;
 
 /**
  * Support functions for primitive fields in generated classes

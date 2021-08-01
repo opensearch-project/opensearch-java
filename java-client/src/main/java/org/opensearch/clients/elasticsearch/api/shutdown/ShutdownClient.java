@@ -21,17 +21,17 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.api.shutdown;
+package org.opensearch.clients.elasticsearch.api.shutdown;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.shutdown.DeleteNodeRequest;
-import co.elastic.clients.elasticsearch.shutdown.DeleteNodeResponse;
-import co.elastic.clients.elasticsearch.shutdown.GetNodeRequest;
-import co.elastic.clients.elasticsearch.shutdown.GetNodeResponse;
-import co.elastic.clients.elasticsearch.shutdown.PutNodeRequest;
-import co.elastic.clients.elasticsearch.shutdown.PutNodeResponse;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.base.ApiClient;
+import org.opensearch.clients.base.Transport;
+import org.opensearch.clients.elasticsearch.shutdown.DeleteNodeRequest;
+import org.opensearch.clients.elasticsearch.shutdown.DeleteNodeResponse;
+import org.opensearch.clients.elasticsearch.shutdown.GetNodeRequest;
+import org.opensearch.clients.elasticsearch.shutdown.GetNodeResponse;
+import org.opensearch.clients.elasticsearch.shutdown.PutNodeRequest;
+import org.opensearch.clients.elasticsearch.shutdown.PutNodeResponse;
+import org.opensearch.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;

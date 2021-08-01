@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package org.opensearch.clients.base;
 
 /**
  * An API response that has boolean value according to the HTTP status code.

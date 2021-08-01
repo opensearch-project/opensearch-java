@@ -17,9 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.json.jackson;
+package org.opensearch.clients.elasticsearch.json.jackson;
 
-import co.elastic.clients.json.jackson.JacksonJsonProvider;
+import org.opensearch.clients.json.jackson.JacksonJsonProvider;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import org.junit.Assert;

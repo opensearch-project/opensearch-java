@@ -21,17 +21,17 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.api.dangling_indices;
+package org.opensearch.clients.elasticsearch.api.dangling_indices;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.dangling_indices.IndexDeleteRequest;
-import co.elastic.clients.elasticsearch.dangling_indices.IndexDeleteResponse;
-import co.elastic.clients.elasticsearch.dangling_indices.IndexImportRequest;
-import co.elastic.clients.elasticsearch.dangling_indices.IndexImportResponse;
-import co.elastic.clients.elasticsearch.dangling_indices.IndicesListRequest;
-import co.elastic.clients.elasticsearch.dangling_indices.IndicesListResponse;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.base.ApiClient;
+import org.opensearch.clients.base.Transport;
+import org.opensearch.clients.elasticsearch.dangling_indices.IndexDeleteRequest;
+import org.opensearch.clients.elasticsearch.dangling_indices.IndexDeleteResponse;
+import org.opensearch.clients.elasticsearch.dangling_indices.IndexImportRequest;
+import org.opensearch.clients.elasticsearch.dangling_indices.IndexImportResponse;
+import org.opensearch.clients.elasticsearch.dangling_indices.IndicesListRequest;
+import org.opensearch.clients.elasticsearch.dangling_indices.IndicesListResponse;
+import org.opensearch.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;

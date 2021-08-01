@@ -21,15 +21,15 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.indices;
+package org.opensearch.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.AdditionalProperties;
-import co.elastic.clients.elasticsearch.indices.get_field_mapping.TypeFieldMappings;
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.base.AdditionalProperties;
+import org.opensearch.clients.elasticsearch.indices.get_field_mapping.TypeFieldMappings;
+import org.opensearch.clients.json.DelegatingDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 

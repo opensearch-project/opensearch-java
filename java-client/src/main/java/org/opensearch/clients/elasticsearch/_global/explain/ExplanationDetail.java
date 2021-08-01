@@ -21,15 +21,15 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._global.explain;
+package org.opensearch.clients.elasticsearch._global.explain;
 
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.json.DelegatingDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.json.ToJsonp;
+import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -45,7 +45,7 @@ public final class ExplanationDetail implements ToJsonp {
 	private final String description;
 
 	@Nullable
-	private final List<co.elastic.clients.elasticsearch._global.explain.ExplanationDetail> details;
+	private final List<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail> details;
 
 	private final Number value;
 
@@ -70,7 +70,7 @@ public final class ExplanationDetail implements ToJsonp {
 	 * API name: {@code details}
 	 */
 	@Nullable
-	public List<co.elastic.clients.elasticsearch._global.explain.ExplanationDetail> details() {
+	public List<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail> details() {
 		return this.details;
 	}
 
@@ -99,7 +99,7 @@ public final class ExplanationDetail implements ToJsonp {
 
 			generator.writeKey("details");
 			generator.writeStartArray();
-			for (co.elastic.clients.elasticsearch._global.explain.ExplanationDetail item0 : this.details) {
+			for (org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail item0 : this.details) {
 				item0.toJsonp(generator, mapper);
 
 			}
@@ -121,7 +121,7 @@ public final class ExplanationDetail implements ToJsonp {
 		private String description;
 
 		@Nullable
-		private List<co.elastic.clients.elasticsearch._global.explain.ExplanationDetail> details;
+		private List<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail> details;
 
 		private Number value;
 
@@ -137,7 +137,7 @@ public final class ExplanationDetail implements ToJsonp {
 		 * API name: {@code details}
 		 */
 		public Builder details(
-				@Nullable List<co.elastic.clients.elasticsearch._global.explain.ExplanationDetail> value) {
+				@Nullable List<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail> value) {
 			this.details = value;
 			return this;
 		}
@@ -145,7 +145,7 @@ public final class ExplanationDetail implements ToJsonp {
 		/**
 		 * API name: {@code details}
 		 */
-		public Builder details(co.elastic.clients.elasticsearch._global.explain.ExplanationDetail... value) {
+		public Builder details(org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail... value) {
 			this.details = Arrays.asList(value);
 			return this;
 		}
@@ -153,7 +153,7 @@ public final class ExplanationDetail implements ToJsonp {
 		/**
 		 * Add a value to {@link #details(List)}, creating the list if needed.
 		 */
-		public Builder addDetails(co.elastic.clients.elasticsearch._global.explain.ExplanationDetail value) {
+		public Builder addDetails(org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail value) {
 			if (this.details == null) {
 				this.details = new ArrayList<>();
 			}
@@ -165,18 +165,18 @@ public final class ExplanationDetail implements ToJsonp {
 		 * Set {@link #details(List)} to a singleton list.
 		 */
 		public Builder details(
-				Function<co.elastic.clients.elasticsearch._global.explain.ExplanationDetail.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._global.explain.ExplanationDetail>> fn) {
+				Function<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail>> fn) {
 			return this.details(
-					fn.apply(new co.elastic.clients.elasticsearch._global.explain.ExplanationDetail.Builder()).build());
+					fn.apply(new org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #details(List)}, creating the list if needed.
 		 */
 		public Builder addDetails(
-				Function<co.elastic.clients.elasticsearch._global.explain.ExplanationDetail.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._global.explain.ExplanationDetail>> fn) {
+				Function<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail>> fn) {
 			return this.addDetails(
-					fn.apply(new co.elastic.clients.elasticsearch._global.explain.ExplanationDetail.Builder()).build());
+					fn.apply(new org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail.Builder()).build());
 		}
 
 		/**
@@ -211,7 +211,7 @@ public final class ExplanationDetail implements ToJsonp {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::details, JsonpDeserializer.arrayDeserializer(
-				co.elastic.clients.elasticsearch._global.explain.ExplanationDetail.DESERIALIZER), "details");
+				org.opensearch.clients.elasticsearch._global.explain.ExplanationDetail.DESERIALIZER), "details");
 		op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
 
 	}

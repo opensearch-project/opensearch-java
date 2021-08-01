@@ -40,7 +40,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'co.elastic.clients:elasticsearch-java:7.15.0-SNAPSHOT'
+    implementation 'org.opensearch.clients:elasticsearch-java:7.15.0-SNAPSHOT'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
 }
 ```
@@ -62,7 +62,7 @@ In the `pom.xml` for your project add the following repository definition and de
     
   <dependencies>
     <dependency>
-      <groupId>co.elastic.clients</groupId>
+      <groupId>org.opensearch.clients</groupId>
       <artifactId>elasticsearch-java</artifactId>
       <version>7.15.0-SNAPSHOT</version>
     </dependency>

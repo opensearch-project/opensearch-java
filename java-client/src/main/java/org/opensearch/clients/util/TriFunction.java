@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.util;
+package org.opensearch.clients.util;
 
 /**
  * Represents a function that accepts 3 arguments and produces a result.

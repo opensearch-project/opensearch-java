@@ -17,9 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.json;
+package org.opensearch.clients.json;
 
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.util.ObjectBuilder;
 
 import jakarta.json.stream.JsonParser;
 import java.util.function.Consumer;

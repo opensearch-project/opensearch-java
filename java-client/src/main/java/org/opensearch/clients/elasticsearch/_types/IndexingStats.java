@@ -21,15 +21,15 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types;
+package org.opensearch.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.json.DelegatingDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.json.ToJsonp;
+import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -73,7 +73,7 @@ public final class IndexingStats implements ToJsonp {
 	private final Number indexFailed;
 
 	@Nullable
-	private final Map<String, co.elastic.clients.elasticsearch._types.IndexingStats> types;
+	private final Map<String, org.opensearch.clients.elasticsearch._types.IndexingStats> types;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -194,7 +194,7 @@ public final class IndexingStats implements ToJsonp {
 	 * API name: {@code types}
 	 */
 	@Nullable
-	public Map<String, co.elastic.clients.elasticsearch._types.IndexingStats> types() {
+	public Map<String, org.opensearch.clients.elasticsearch._types.IndexingStats> types() {
 		return this.types;
 	}
 
@@ -264,7 +264,7 @@ public final class IndexingStats implements ToJsonp {
 
 			generator.writeKey("types");
 			generator.writeStartObject();
-			for (Map.Entry<String, co.elastic.clients.elasticsearch._types.IndexingStats> item0 : this.types
+			for (Map.Entry<String, org.opensearch.clients.elasticsearch._types.IndexingStats> item0 : this.types
 					.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().toJsonp(generator, mapper);
@@ -312,7 +312,7 @@ public final class IndexingStats implements ToJsonp {
 		private Number indexFailed;
 
 		@Nullable
-		private Map<String, co.elastic.clients.elasticsearch._types.IndexingStats> types;
+		private Map<String, org.opensearch.clients.elasticsearch._types.IndexingStats> types;
 
 		/**
 		 * API name: {@code index_current}
@@ -421,7 +421,7 @@ public final class IndexingStats implements ToJsonp {
 		/**
 		 * API name: {@code types}
 		 */
-		public Builder types(@Nullable Map<String, co.elastic.clients.elasticsearch._types.IndexingStats> value) {
+		public Builder types(@Nullable Map<String, org.opensearch.clients.elasticsearch._types.IndexingStats> value) {
 			this.types = value;
 			return this;
 		}
@@ -429,7 +429,7 @@ public final class IndexingStats implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #types(Map)}, creating the map if needed.
 		 */
-		public Builder putTypes(String key, co.elastic.clients.elasticsearch._types.IndexingStats value) {
+		public Builder putTypes(String key, org.opensearch.clients.elasticsearch._types.IndexingStats value) {
 			if (this.types == null) {
 				this.types = new HashMap<>();
 			}
@@ -441,18 +441,18 @@ public final class IndexingStats implements ToJsonp {
 		 * Set {@link #types(Map)} to a singleton map.
 		 */
 		public Builder types(String key,
-				Function<co.elastic.clients.elasticsearch._types.IndexingStats.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.IndexingStats>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.IndexingStats.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.IndexingStats>> fn) {
 			return this.types(Collections.singletonMap(key,
-					fn.apply(new co.elastic.clients.elasticsearch._types.IndexingStats.Builder()).build()));
+					fn.apply(new org.opensearch.clients.elasticsearch._types.IndexingStats.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #types(Map)}, creating the map if needed.
 		 */
 		public Builder putTypes(String key,
-				Function<co.elastic.clients.elasticsearch._types.IndexingStats.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.IndexingStats>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.IndexingStats.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.IndexingStats>> fn) {
 			return this.putTypes(key,
-					fn.apply(new co.elastic.clients.elasticsearch._types.IndexingStats.Builder()).build());
+					fn.apply(new org.opensearch.clients.elasticsearch._types.IndexingStats.Builder()).build());
 		}
 
 		/**
@@ -491,7 +491,7 @@ public final class IndexingStats implements ToJsonp {
 		op.add(Builder::indexTotal, JsonpDeserializer.numberDeserializer(), "index_total");
 		op.add(Builder::indexFailed, JsonpDeserializer.numberDeserializer(), "index_failed");
 		op.add(Builder::types, JsonpDeserializer
-				.stringMapDeserializer(co.elastic.clients.elasticsearch._types.IndexingStats.DESERIALIZER), "types");
+				.stringMapDeserializer(org.opensearch.clients.elasticsearch._types.IndexingStats.DESERIALIZER), "types");
 
 	}
 

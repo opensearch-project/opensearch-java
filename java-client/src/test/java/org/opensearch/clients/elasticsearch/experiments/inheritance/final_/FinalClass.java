@@ -17,14 +17,14 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments.inheritance.final_;
+package org.opensearch.clients.elasticsearch.experiments.inheritance.final_;
 
-import co.elastic.clients.elasticsearch.experiments.inheritance.child.ChildClass;
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.elasticsearch.experiments.inheritance.child.ChildClass;
+import org.opensearch.clients.json.DelegatingDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.util.ObjectBuilder;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;

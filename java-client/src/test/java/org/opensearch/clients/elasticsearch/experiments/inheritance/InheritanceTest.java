@@ -17,11 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments.inheritance;
+package org.opensearch.clients.elasticsearch.experiments.inheritance;
 
-import co.elastic.clients.elasticsearch.experiments.inheritance.child.ChildClass;
-import co.elastic.clients.elasticsearch.experiments.inheritance.final_.FinalClass;
-import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.clients.elasticsearch.experiments.inheritance.child.ChildClass;
+import org.opensearch.clients.elasticsearch.experiments.inheritance.final_.FinalClass;
+import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
 import org.junit.Assert;
 import org.junit.Test;
 

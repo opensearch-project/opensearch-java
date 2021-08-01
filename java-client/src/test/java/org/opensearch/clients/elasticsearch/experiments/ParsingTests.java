@@ -17,11 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments;
+package org.opensearch.clients.elasticsearch.experiments;
 
-import co.elastic.clients.elasticsearch.experiments.api.FooRequest;
-import co.elastic.clients.elasticsearch.experiments.api.query.TermsQuery;
-import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.clients.elasticsearch.experiments.api.FooRequest;
+import org.opensearch.clients.elasticsearch.experiments.api.query.TermsQuery;
+import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
 import org.junit.Assert;
 import org.junit.Test;
 

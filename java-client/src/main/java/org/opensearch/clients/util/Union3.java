@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.util;
+package org.opensearch.clients.util;
 
 public class Union3<A, B, C> {
 

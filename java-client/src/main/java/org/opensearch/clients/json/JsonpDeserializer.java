@@ -17,9 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.json;
+package org.opensearch.clients.json;
 
-import co.elastic.clients.util.TriFunction;
+import org.opensearch.clients.util.TriFunction;
 
 import jakarta.json.JsonNumber;
 import jakarta.json.JsonValue;

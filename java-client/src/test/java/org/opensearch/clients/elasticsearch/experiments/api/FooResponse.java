@@ -17,9 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments.api;
+package org.opensearch.clients.elasticsearch.experiments.api;
 
-import co.elastic.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
 
 public class FooResponse {
 

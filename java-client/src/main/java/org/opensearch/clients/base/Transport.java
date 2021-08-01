@@ -17,9 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package org.opensearch.clients.base;
 
-import co.elastic.clients.json.JsonpMapper;
+import org.opensearch.clients.json.JsonpMapper;
 import org.elasticsearch.client.RequestOptions;
 
 import java.io.IOException;

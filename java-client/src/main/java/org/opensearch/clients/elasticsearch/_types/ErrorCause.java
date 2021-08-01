@@ -21,16 +21,16 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types;
+package org.opensearch.clients.elasticsearch._types;
 
-import co.elastic.clients.elasticsearch._global.scripts_painless_execute.PainlessExecutionPosition;
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.elasticsearch._global.scripts_painless_execute.PainlessExecutionPosition;
+import org.opensearch.clients.json.DelegatingDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.json.ToJsonp;
+import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -52,7 +52,7 @@ public class ErrorCause implements ToJsonp {
 	private final String reason;
 
 	@Nullable
-	private final co.elastic.clients.elasticsearch._types.ErrorCause causedBy;
+	private final org.opensearch.clients.elasticsearch._types.ErrorCause causedBy;
 
 	@Nullable
 	private final JsonValue shard;
@@ -61,7 +61,7 @@ public class ErrorCause implements ToJsonp {
 	private final String stackTrace;
 
 	@Nullable
-	private final List<co.elastic.clients.elasticsearch._types.ErrorCause> rootCause;
+	private final List<org.opensearch.clients.elasticsearch._types.ErrorCause> rootCause;
 
 	@Nullable
 	private final Number bytesLimit;
@@ -182,7 +182,7 @@ public class ErrorCause implements ToJsonp {
 	 * API name: {@code caused_by}
 	 */
 	@Nullable
-	public co.elastic.clients.elasticsearch._types.ErrorCause causedBy() {
+	public org.opensearch.clients.elasticsearch._types.ErrorCause causedBy() {
 		return this.causedBy;
 	}
 
@@ -206,7 +206,7 @@ public class ErrorCause implements ToJsonp {
 	 * API name: {@code root_cause}
 	 */
 	@Nullable
-	public List<co.elastic.clients.elasticsearch._types.ErrorCause> rootCause() {
+	public List<org.opensearch.clients.elasticsearch._types.ErrorCause> rootCause() {
 		return this.rootCause;
 	}
 
@@ -429,7 +429,7 @@ public class ErrorCause implements ToJsonp {
 
 			generator.writeKey("root_cause");
 			generator.writeStartArray();
-			for (co.elastic.clients.elasticsearch._types.ErrorCause item0 : this.rootCause) {
+			for (org.opensearch.clients.elasticsearch._types.ErrorCause item0 : this.rootCause) {
 				item0.toJsonp(generator, mapper);
 
 			}
@@ -626,7 +626,7 @@ public class ErrorCause implements ToJsonp {
 		private String reason;
 
 		@Nullable
-		private co.elastic.clients.elasticsearch._types.ErrorCause causedBy;
+		private org.opensearch.clients.elasticsearch._types.ErrorCause causedBy;
 
 		@Nullable
 		private JsonValue shard;
@@ -635,7 +635,7 @@ public class ErrorCause implements ToJsonp {
 		private String stackTrace;
 
 		@Nullable
-		private List<co.elastic.clients.elasticsearch._types.ErrorCause> rootCause;
+		private List<org.opensearch.clients.elasticsearch._types.ErrorCause> rootCause;
 
 		@Nullable
 		private Number bytesLimit;
@@ -722,7 +722,7 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * API name: {@code caused_by}
 		 */
-		public BuilderT causedBy(@Nullable co.elastic.clients.elasticsearch._types.ErrorCause value) {
+		public BuilderT causedBy(@Nullable org.opensearch.clients.elasticsearch._types.ErrorCause value) {
 			this.causedBy = value;
 			return self();
 		}
@@ -731,8 +731,8 @@ public class ErrorCause implements ToJsonp {
 		 * API name: {@code caused_by}
 		 */
 		public BuilderT causedBy(
-				Function<co.elastic.clients.elasticsearch._types.ErrorCause.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.ErrorCause>> fn) {
-			return this.causedBy(fn.apply(new co.elastic.clients.elasticsearch._types.ErrorCause.Builder()).build());
+				Function<org.opensearch.clients.elasticsearch._types.ErrorCause.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.ErrorCause>> fn) {
+			return this.causedBy(fn.apply(new org.opensearch.clients.elasticsearch._types.ErrorCause.Builder()).build());
 		}
 
 		/**
@@ -754,7 +754,7 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * API name: {@code root_cause}
 		 */
-		public BuilderT rootCause(@Nullable List<co.elastic.clients.elasticsearch._types.ErrorCause> value) {
+		public BuilderT rootCause(@Nullable List<org.opensearch.clients.elasticsearch._types.ErrorCause> value) {
 			this.rootCause = value;
 			return self();
 		}
@@ -762,7 +762,7 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * API name: {@code root_cause}
 		 */
-		public BuilderT rootCause(co.elastic.clients.elasticsearch._types.ErrorCause... value) {
+		public BuilderT rootCause(org.opensearch.clients.elasticsearch._types.ErrorCause... value) {
 			this.rootCause = Arrays.asList(value);
 			return self();
 		}
@@ -770,7 +770,7 @@ public class ErrorCause implements ToJsonp {
 		/**
 		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
 		 */
-		public BuilderT addRootCause(co.elastic.clients.elasticsearch._types.ErrorCause value) {
+		public BuilderT addRootCause(org.opensearch.clients.elasticsearch._types.ErrorCause value) {
 			if (this.rootCause == null) {
 				this.rootCause = new ArrayList<>();
 			}
@@ -782,17 +782,17 @@ public class ErrorCause implements ToJsonp {
 		 * Set {@link #rootCause(List)} to a singleton list.
 		 */
 		public BuilderT rootCause(
-				Function<co.elastic.clients.elasticsearch._types.ErrorCause.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.ErrorCause>> fn) {
-			return this.rootCause(fn.apply(new co.elastic.clients.elasticsearch._types.ErrorCause.Builder()).build());
+				Function<org.opensearch.clients.elasticsearch._types.ErrorCause.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.ErrorCause>> fn) {
+			return this.rootCause(fn.apply(new org.opensearch.clients.elasticsearch._types.ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
 		 */
 		public BuilderT addRootCause(
-				Function<co.elastic.clients.elasticsearch._types.ErrorCause.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.ErrorCause>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.ErrorCause.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.ErrorCause>> fn) {
 			return this
-					.addRootCause(fn.apply(new co.elastic.clients.elasticsearch._types.ErrorCause.Builder()).build());
+					.addRootCause(fn.apply(new org.opensearch.clients.elasticsearch._types.ErrorCause.Builder()).build());
 		}
 
 		/**
@@ -1084,11 +1084,11 @@ public class ErrorCause implements ToJsonp {
 
 		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(AbstractBuilder::reason, JsonpDeserializer.stringDeserializer(), "reason");
-		op.add(AbstractBuilder::causedBy, co.elastic.clients.elasticsearch._types.ErrorCause.DESERIALIZER, "caused_by");
+		op.add(AbstractBuilder::causedBy, org.opensearch.clients.elasticsearch._types.ErrorCause.DESERIALIZER, "caused_by");
 		op.add(AbstractBuilder::shard, JsonpDeserializer.jsonValueDeserializer(), "shard");
 		op.add(AbstractBuilder::stackTrace, JsonpDeserializer.stringDeserializer(), "stack_trace");
 		op.add(AbstractBuilder::rootCause,
-				JsonpDeserializer.arrayDeserializer(co.elastic.clients.elasticsearch._types.ErrorCause.DESERIALIZER),
+				JsonpDeserializer.arrayDeserializer(org.opensearch.clients.elasticsearch._types.ErrorCause.DESERIALIZER),
 				"root_cause");
 		op.add(AbstractBuilder::bytesLimit, JsonpDeserializer.numberDeserializer(), "bytes_limit");
 		op.add(AbstractBuilder::bytesWanted, JsonpDeserializer.numberDeserializer(), "bytes_wanted");

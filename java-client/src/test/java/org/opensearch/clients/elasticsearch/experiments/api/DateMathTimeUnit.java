@@ -17,10 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments.api;
+package org.opensearch.clients.elasticsearch.experiments.api;
 
-import co.elastic.clients.util.StringEnum;
-import co.elastic.clients.json.JsonpDeserializer;
+import org.opensearch.clients.util.StringEnum;
+import org.opensearch.clients.json.JsonpDeserializer;
 
 public enum DateMathTimeUnit implements StringEnum {
 

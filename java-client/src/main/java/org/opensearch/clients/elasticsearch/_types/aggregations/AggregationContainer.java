@@ -21,17 +21,17 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package org.opensearch.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
-import co.elastic.clients.json.BuildFunctionDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
-import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.StringEnum;
-import co.elastic.clients.util.TaggedUnion;
+import org.opensearch.clients.elasticsearch._types.query_dsl.QueryContainer;
+import org.opensearch.clients.json.BuildFunctionDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.json.ToJsonp;
+import org.opensearch.clients.util.ObjectBuilder;
+import org.opensearch.clients.util.StringEnum;
+import org.opensearch.clients.util.TaggedUnion;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
@@ -203,7 +203,7 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 	}
 
 	@Nullable
-	private final Map<String, co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer> aggs;
+	private final Map<String, org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer> aggs;
 
 	@Nullable
 	private final Map<String, JsonValue> meta;
@@ -219,7 +219,7 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 	 * API name: {@code aggs}
 	 */
 	@Nullable
-	public Map<String, co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer> aggs() {
+	public Map<String, org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer> aggs() {
 		return this.aggs;
 	}
 
@@ -262,7 +262,7 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code aggregations} kind.
 	 */
-	public Map<String, co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer> aggregations() {
+	public Map<String, org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer> aggregations() {
 		return get(Tag.aggregations);
 	}
 
@@ -1465,7 +1465,7 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 			switch (this.tag) {
 				case aggregations :
 					generator.writeStartObject();
-					for (Map.Entry<String, co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer> item0 : this.<Map<String, co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer>>get(
+					for (Map.Entry<String, org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer> item0 : this.<Map<String, org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer>>get(
 							Tag.aggregations).entrySet()) {
 						generator.writeKey(item0.getKey());
 						item0.getValue().toJsonp(generator, mapper);
@@ -1541,7 +1541,7 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 
 			generator.writeKey("aggs");
 			generator.writeStartObject();
-			for (Map.Entry<String, co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer> item0 : this.aggs
+			for (Map.Entry<String, org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer> item0 : this.aggs
 					.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().toJsonp(generator, mapper);
@@ -1570,7 +1570,7 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 		private Object $variant;
 
 		@Nullable
-		private Map<String, co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer> aggs;
+		private Map<String, org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer> aggs;
 
 		@Nullable
 		private Map<String, JsonValue> meta;
@@ -1579,7 +1579,7 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 		 * API name: {@code aggs}
 		 */
 		public Builder aggs(
-				@Nullable Map<String, co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer> value) {
+				@Nullable Map<String, org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer> value) {
 			this.aggs = value;
 			return this;
 		}
@@ -1588,7 +1588,7 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 		 */
 		public Builder putAggs(String key,
-				co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer value) {
+				org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer value) {
 			if (this.aggs == null) {
 				this.aggs = new HashMap<>();
 			}
@@ -1600,9 +1600,9 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 		 * Set {@link #aggs(Map)} to a singleton map.
 		 */
 		public Builder aggs(String key,
-				Function<co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer>> fn) {
 			return this.aggs(Collections.singletonMap(key,
-					fn.apply(new co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.Builder())
+					fn.apply(new org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer.Builder())
 							.build()));
 		}
 
@@ -1610,9 +1610,9 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 		 */
 		public Builder putAggs(String key,
-				Function<co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer>> fn) {
+				Function<org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer>> fn) {
 			return this.putAggs(key,
-					fn.apply(new co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.Builder())
+					fn.apply(new org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer.Builder())
 							.build());
 		}
 
@@ -1647,7 +1647,7 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 		}
 
 		public ContainerBuilder aggregations(
-				Map<String, co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer> v) {
+				Map<String, org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer> v) {
 			this.$variant = v;
 			this.$tag = Tag.aggregations;
 			return new ContainerBuilder();
@@ -2331,7 +2331,7 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 			 * API name: {@code aggs}
 			 */
 			public ContainerBuilder aggs(
-					@Nullable Map<String, co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer> value) {
+					@Nullable Map<String, org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer> value) {
 				Builder.this.aggs = value;
 				return this;
 			}
@@ -2340,7 +2340,7 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 			 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 			 */
 			public ContainerBuilder putAggs(String key,
-					co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer value) {
+					org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer value) {
 				if (Builder.this.aggs == null) {
 					Builder.this.aggs = new HashMap<>();
 				}
@@ -2352,10 +2352,10 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 			 * Set {@link #aggs(Map)} to a singleton map.
 			 */
 			public ContainerBuilder aggs(String key,
-					Function<co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer>> fn) {
+					Function<org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer>> fn) {
 				return this.aggs(Collections.singletonMap(key,
 						fn.apply(
-								new co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.Builder())
+								new org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer.Builder())
 								.build()));
 			}
 
@@ -2363,10 +2363,10 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 			 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 			 */
 			public ContainerBuilder putAggs(String key,
-					Function<co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer>> fn) {
+					Function<org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer>> fn) {
 				return this.putAggs(key,
 						fn.apply(
-								new co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.Builder())
+								new org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer.Builder())
 								.build());
 			}
 
@@ -2408,14 +2408,14 @@ public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, 
 
 		op.add(Builder::aggs,
 				JsonpDeserializer.stringMapDeserializer(
-						co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.DESERIALIZER),
+						org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer.DESERIALIZER),
 				"aggs");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"meta");
 		op.add(Builder::adjacencyMatrix, AdjacencyMatrixAggregation.DESERIALIZER, "adjacency_matrix");
 		op.add(Builder::aggregations,
 				JsonpDeserializer.stringMapDeserializer(
-						co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer.DESERIALIZER),
+						org.opensearch.clients.elasticsearch._types.aggregations.AggregationContainer.DESERIALIZER),
 				"aggregations");
 		op.add(Builder::autoDateHistogram, AutoDateHistogramAggregation.DESERIALIZER, "auto_date_histogram");
 		op.add(Builder::avg, JsonpDeserializer.jsonValueDeserializer(), "avg");

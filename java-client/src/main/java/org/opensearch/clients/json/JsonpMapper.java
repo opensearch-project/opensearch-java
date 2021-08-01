@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.json;
+package org.opensearch.clients.json;
 
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;

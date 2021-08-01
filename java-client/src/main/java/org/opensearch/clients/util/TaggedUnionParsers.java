@@ -17,10 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.util;
+package org.opensearch.clients.util;
 
-import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpUtils;
+import org.opensearch.clients.json.JsonpDeserializer;
 
 import jakarta.json.JsonObject;
 import jakarta.json.stream.JsonParser;

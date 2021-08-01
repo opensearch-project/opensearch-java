@@ -21,14 +21,14 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.cat;
+package org.opensearch.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.Endpoint;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 

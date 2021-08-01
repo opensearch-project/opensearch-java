@@ -17,9 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.json;
+package org.opensearch.clients.json;
 
-import co.elastic.clients.util.QuadConsumer;
+import org.opensearch.clients.util.QuadConsumer;
 
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;

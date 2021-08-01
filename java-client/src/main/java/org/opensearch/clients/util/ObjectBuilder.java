@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.util;
+package org.opensearch.clients.util;
 
 /**
  * Base interface for all object builders.

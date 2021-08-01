@@ -21,17 +21,17 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.cluster;
+package org.opensearch.clients.elasticsearch.cluster;
 
-import co.elastic.clients.elasticsearch.cluster.stats.ClusterIndices;
-import co.elastic.clients.elasticsearch.cluster.stats.ClusterNodes;
-import co.elastic.clients.elasticsearch.nodes.NodesResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.elasticsearch.cluster.stats.ClusterIndices;
+import org.opensearch.clients.elasticsearch.cluster.stats.ClusterNodes;
+import org.opensearch.clients.elasticsearch.nodes.NodesResponseBase;
+import org.opensearch.clients.json.DelegatingDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;

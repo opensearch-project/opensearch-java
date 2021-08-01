@@ -21,15 +21,15 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._global.search;
+package org.opensearch.clients.elasticsearch._global.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.json.DelegatingDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
+import org.opensearch.clients.json.ToJsonp;
+import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -51,7 +51,7 @@ public final class QueryProfile implements ToJsonp {
 	private final String type;
 
 	@Nullable
-	private final List<co.elastic.clients.elasticsearch._global.search.QueryProfile> children;
+	private final List<org.opensearch.clients.elasticsearch._global.search.QueryProfile> children;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -97,7 +97,7 @@ public final class QueryProfile implements ToJsonp {
 	 * API name: {@code children}
 	 */
 	@Nullable
-	public List<co.elastic.clients.elasticsearch._global.search.QueryProfile> children() {
+	public List<org.opensearch.clients.elasticsearch._global.search.QueryProfile> children() {
 		return this.children;
 	}
 
@@ -128,7 +128,7 @@ public final class QueryProfile implements ToJsonp {
 
 			generator.writeKey("children");
 			generator.writeStartArray();
-			for (co.elastic.clients.elasticsearch._global.search.QueryProfile item0 : this.children) {
+			for (org.opensearch.clients.elasticsearch._global.search.QueryProfile item0 : this.children) {
 				item0.toJsonp(generator, mapper);
 
 			}
@@ -153,7 +153,7 @@ public final class QueryProfile implements ToJsonp {
 		private String type;
 
 		@Nullable
-		private List<co.elastic.clients.elasticsearch._global.search.QueryProfile> children;
+		private List<org.opensearch.clients.elasticsearch._global.search.QueryProfile> children;
 
 		/**
 		 * API name: {@code breakdown}
@@ -197,7 +197,7 @@ public final class QueryProfile implements ToJsonp {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(@Nullable List<co.elastic.clients.elasticsearch._global.search.QueryProfile> value) {
+		public Builder children(@Nullable List<org.opensearch.clients.elasticsearch._global.search.QueryProfile> value) {
 			this.children = value;
 			return this;
 		}
@@ -205,7 +205,7 @@ public final class QueryProfile implements ToJsonp {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(co.elastic.clients.elasticsearch._global.search.QueryProfile... value) {
+		public Builder children(org.opensearch.clients.elasticsearch._global.search.QueryProfile... value) {
 			this.children = Arrays.asList(value);
 			return this;
 		}
@@ -213,7 +213,7 @@ public final class QueryProfile implements ToJsonp {
 		/**
 		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
-		public Builder addChildren(co.elastic.clients.elasticsearch._global.search.QueryProfile value) {
+		public Builder addChildren(org.opensearch.clients.elasticsearch._global.search.QueryProfile value) {
 			if (this.children == null) {
 				this.children = new ArrayList<>();
 			}
@@ -225,18 +225,18 @@ public final class QueryProfile implements ToJsonp {
 		 * Set {@link #children(List)} to a singleton list.
 		 */
 		public Builder children(
-				Function<co.elastic.clients.elasticsearch._global.search.QueryProfile.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._global.search.QueryProfile>> fn) {
+				Function<org.opensearch.clients.elasticsearch._global.search.QueryProfile.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._global.search.QueryProfile>> fn) {
 			return this.children(
-					fn.apply(new co.elastic.clients.elasticsearch._global.search.QueryProfile.Builder()).build());
+					fn.apply(new org.opensearch.clients.elasticsearch._global.search.QueryProfile.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
 		public Builder addChildren(
-				Function<co.elastic.clients.elasticsearch._global.search.QueryProfile.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._global.search.QueryProfile>> fn) {
+				Function<org.opensearch.clients.elasticsearch._global.search.QueryProfile.Builder, ObjectBuilder<org.opensearch.clients.elasticsearch._global.search.QueryProfile>> fn) {
 			return this.addChildren(
-					fn.apply(new co.elastic.clients.elasticsearch._global.search.QueryProfile.Builder()).build());
+					fn.apply(new org.opensearch.clients.elasticsearch._global.search.QueryProfile.Builder()).build());
 		}
 
 		/**
@@ -266,7 +266,7 @@ public final class QueryProfile implements ToJsonp {
 		op.add(Builder::timeInNanos, JsonpDeserializer.numberDeserializer(), "time_in_nanos");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(
-				co.elastic.clients.elasticsearch._global.search.QueryProfile.DESERIALIZER), "children");
+				org.opensearch.clients.elasticsearch._global.search.QueryProfile.DESERIALIZER), "children");
 
 	}
 

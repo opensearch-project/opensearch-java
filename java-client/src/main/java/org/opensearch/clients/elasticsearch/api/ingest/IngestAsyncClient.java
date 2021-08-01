@@ -21,23 +21,23 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.api.ingest;
+package org.opensearch.clients.elasticsearch.api.ingest;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.ingest.DeletePipelineRequest;
-import co.elastic.clients.elasticsearch.ingest.DeletePipelineResponse;
-import co.elastic.clients.elasticsearch.ingest.GeoIpStatsRequest;
-import co.elastic.clients.elasticsearch.ingest.GeoIpStatsResponse;
-import co.elastic.clients.elasticsearch.ingest.GetPipelineRequest;
-import co.elastic.clients.elasticsearch.ingest.GetPipelineResponse;
-import co.elastic.clients.elasticsearch.ingest.ProcessorGrokRequest;
-import co.elastic.clients.elasticsearch.ingest.ProcessorGrokResponse;
-import co.elastic.clients.elasticsearch.ingest.PutPipelineRequest;
-import co.elastic.clients.elasticsearch.ingest.PutPipelineResponse;
-import co.elastic.clients.elasticsearch.ingest.SimulatePipelineRequest;
-import co.elastic.clients.elasticsearch.ingest.SimulatePipelineResponse;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.base.ApiClient;
+import org.opensearch.clients.base.Transport;
+import org.opensearch.clients.elasticsearch.ingest.DeletePipelineRequest;
+import org.opensearch.clients.elasticsearch.ingest.DeletePipelineResponse;
+import org.opensearch.clients.elasticsearch.ingest.GeoIpStatsRequest;
+import org.opensearch.clients.elasticsearch.ingest.GeoIpStatsResponse;
+import org.opensearch.clients.elasticsearch.ingest.GetPipelineRequest;
+import org.opensearch.clients.elasticsearch.ingest.GetPipelineResponse;
+import org.opensearch.clients.elasticsearch.ingest.ProcessorGrokRequest;
+import org.opensearch.clients.elasticsearch.ingest.ProcessorGrokResponse;
+import org.opensearch.clients.elasticsearch.ingest.PutPipelineRequest;
+import org.opensearch.clients.elasticsearch.ingest.PutPipelineResponse;
+import org.opensearch.clients.elasticsearch.ingest.SimulatePipelineRequest;
+import org.opensearch.clients.elasticsearch.ingest.SimulatePipelineResponse;
+import org.opensearch.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;

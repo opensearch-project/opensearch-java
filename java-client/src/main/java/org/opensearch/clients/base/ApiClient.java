@@ -17,9 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package org.opensearch.clients.base;
 
-import co.elastic.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpDeserializer;
 import org.elasticsearch.client.RequestOptions;
 
 import javax.annotation.Nullable;

@@ -21,17 +21,17 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.api.tasks;
+package org.opensearch.clients.elasticsearch.api.tasks;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch.task.CancelRequest;
-import co.elastic.clients.elasticsearch.task.CancelResponse;
-import co.elastic.clients.elasticsearch.task.GetRequest;
-import co.elastic.clients.elasticsearch.task.GetResponse;
-import co.elastic.clients.elasticsearch.task.ListRequest;
-import co.elastic.clients.elasticsearch.task.ListResponse;
-import co.elastic.clients.util.ObjectBuilder;
+import org.opensearch.clients.base.ApiClient;
+import org.opensearch.clients.base.Transport;
+import org.opensearch.clients.elasticsearch.task.CancelRequest;
+import org.opensearch.clients.elasticsearch.task.CancelResponse;
+import org.opensearch.clients.elasticsearch.task.GetRequest;
+import org.opensearch.clients.elasticsearch.task.GetResponse;
+import org.opensearch.clients.elasticsearch.task.ListRequest;
+import org.opensearch.clients.elasticsearch.task.ListResponse;
+import org.opensearch.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;

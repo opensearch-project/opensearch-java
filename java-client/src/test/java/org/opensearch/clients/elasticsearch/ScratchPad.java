@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch;
+package org.opensearch.clients.elasticsearch;
 
 import org.junit.Test;
 
