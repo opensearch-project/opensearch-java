@@ -28,10 +28,7 @@ import org.opensearch.clients.elasticsearch.indices.get_mapping.IndexMappingReco
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 
 // typedef: indices.get_mapping.Response
 public final class GetMappingResponse extends AdditionalProperties<String, IndexMappingRecord> {

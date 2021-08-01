@@ -27,9 +27,7 @@ import org.opensearch.clients.elasticsearch._types.AcknowledgedResponseBase;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
 
 // typedef: indices.put_alias.Response
 public final class PutAliasResponse extends AcknowledgedResponseBase {

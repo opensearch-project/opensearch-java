@@ -23,6 +23,8 @@
 
 package org.opensearch.clients.elasticsearch._global;
 
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.base.ElasticsearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.elasticsearch._types.RequestBase;
@@ -31,18 +33,13 @@ import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.json.ToJsonp;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.Number;
-import java.lang.String;
+
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.terms_enum.Request
 public final class TermsEnumRequest extends RequestBase implements ToJsonp {

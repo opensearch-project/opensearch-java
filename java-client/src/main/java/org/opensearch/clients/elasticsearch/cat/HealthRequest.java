@@ -25,15 +25,11 @@ package org.opensearch.clients.elasticsearch.cat;
 
 import org.opensearch.clients.base.ElasticsearchError;
 import org.opensearch.clients.base.Endpoint;
-import org.opensearch.clients.json.JsonpDeserializer;
-import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
+
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.Nullable;
 
 // typedef: cat.health.Request
 public final class HealthRequest extends CatRequestBase {

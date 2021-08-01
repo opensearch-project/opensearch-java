@@ -20,10 +20,10 @@
 package org.opensearch.clients.json.jackson;
 
 import com.fasterxml.jackson.core.JsonStreamContext;
-
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerationException;
 import jakarta.json.stream.JsonGenerator;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;

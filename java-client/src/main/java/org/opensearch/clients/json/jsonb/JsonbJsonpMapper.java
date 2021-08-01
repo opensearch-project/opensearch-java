@@ -19,13 +19,13 @@
 
 package org.opensearch.clients.json.jsonb;
 
-import org.opensearch.clients.json.JsonpMapper;
-import org.opensearch.clients.json.JsonpDeserializer;
 import jakarta.json.bind.spi.JsonbProvider;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
 
 import java.io.CharArrayReader;
 import java.io.CharArrayWriter;

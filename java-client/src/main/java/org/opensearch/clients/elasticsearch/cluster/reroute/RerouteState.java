@@ -23,6 +23,8 @@
 
 package org.opensearch.clients.elasticsearch.cluster.reroute;
 
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.elasticsearch._types.NodeAttributes;
 import org.opensearch.clients.elasticsearch.cluster.ClusterStateDeletedSnapshots;
 import org.opensearch.clients.elasticsearch.cluster.ClusterStateMetadata;
@@ -32,19 +34,15 @@ import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.json.ToJsonp;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
-import java.lang.String;
+
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteState
 public final class RerouteState implements ToJsonp {

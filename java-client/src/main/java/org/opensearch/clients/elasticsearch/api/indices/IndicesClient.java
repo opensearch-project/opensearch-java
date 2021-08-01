@@ -23,6 +23,7 @@
 
 package org.opensearch.clients.elasticsearch.api.indices;
 
+import org.elasticsearch.client.RequestOptions;
 import org.opensearch.clients.base.ApiClient;
 import org.opensearch.clients.base.BooleanResponse;
 import org.opensearch.clients.base.Transport;
@@ -87,8 +88,6 @@ import org.opensearch.clients.elasticsearch.indices.MigrateToDataStreamRequest;
 import org.opensearch.clients.elasticsearch.indices.MigrateToDataStreamResponse;
 import org.opensearch.clients.elasticsearch.indices.OpenRequest;
 import org.opensearch.clients.elasticsearch.indices.OpenResponse;
-import org.opensearch.clients.elasticsearch.indices.PromoteDataStreamRequest;
-import org.opensearch.clients.elasticsearch.indices.PromoteDataStreamResponse;
 import org.opensearch.clients.elasticsearch.indices.PutAliasRequest;
 import org.opensearch.clients.elasticsearch.indices.PutAliasResponse;
 import org.opensearch.clients.elasticsearch.indices.PutIndexTemplateRequest;
@@ -132,10 +131,10 @@ import org.opensearch.clients.elasticsearch.indices.UpgradeResponse;
 import org.opensearch.clients.elasticsearch.indices.ValidateQueryRequest;
 import org.opensearch.clients.elasticsearch.indices.ValidateQueryResponse;
 import org.opensearch.clients.util.ObjectBuilder;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.function.Function;
-import javax.annotation.Nullable;
-import org.elasticsearch.client.RequestOptions;
 
 /**
  * Client for the indices namespace.

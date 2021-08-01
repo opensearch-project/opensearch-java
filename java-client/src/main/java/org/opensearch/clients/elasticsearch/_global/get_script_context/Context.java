@@ -23,21 +23,19 @@
 
 package org.opensearch.clients.elasticsearch._global.get_script_context;
 
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.json.ToJsonp;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.get_script_context.Context
 public final class Context implements ToJsonp {

@@ -23,6 +23,7 @@
 
 package org.opensearch.clients.elasticsearch.api.tasks;
 
+import org.elasticsearch.client.RequestOptions;
 import org.opensearch.clients.base.ApiClient;
 import org.opensearch.clients.base.Transport;
 import org.opensearch.clients.elasticsearch.task.CancelRequest;
@@ -32,10 +33,10 @@ import org.opensearch.clients.elasticsearch.task.GetResponse;
 import org.opensearch.clients.elasticsearch.task.ListRequest;
 import org.opensearch.clients.elasticsearch.task.ListResponse;
 import org.opensearch.clients.util.ObjectBuilder;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.function.Function;
-import javax.annotation.Nullable;
-import org.elasticsearch.client.RequestOptions;
 
 /**
  * Client for the tasks namespace.

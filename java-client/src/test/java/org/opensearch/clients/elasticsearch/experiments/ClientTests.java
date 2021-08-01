@@ -19,6 +19,7 @@
 
 package org.opensearch.clients.elasticsearch.experiments;
 
+import org.junit.Test;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.elasticsearch.experiments.api.Bar;
 import org.opensearch.clients.elasticsearch.experiments.api.FooRequest;
@@ -26,7 +27,6 @@ import org.opensearch.clients.elasticsearch.experiments.api.FooResponse;
 import org.opensearch.clients.elasticsearch.experiments.api.query.Query;
 import org.opensearch.clients.elasticsearch.experiments.api.query.TermsQuery;
 import org.opensearch.clients.elasticsearch.experiments.base.Client;
-import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Collections;

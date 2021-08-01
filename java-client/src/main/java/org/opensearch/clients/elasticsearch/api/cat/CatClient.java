@@ -23,6 +23,7 @@
 
 package org.opensearch.clients.elasticsearch.api.cat;
 
+import org.elasticsearch.client.RequestOptions;
 import org.opensearch.clients.base.ApiClient;
 import org.opensearch.clients.base.Transport;
 import org.opensearch.clients.elasticsearch.cat.AliasesRequest;
@@ -76,10 +77,10 @@ import org.opensearch.clients.elasticsearch.cat.TrainedModelsResponse;
 import org.opensearch.clients.elasticsearch.cat.TransformsRequest;
 import org.opensearch.clients.elasticsearch.cat.TransformsResponse;
 import org.opensearch.clients.util.ObjectBuilder;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.function.Function;
-import javax.annotation.Nullable;
-import org.elasticsearch.client.RequestOptions;
 
 /**
  * Client for the cat namespace.

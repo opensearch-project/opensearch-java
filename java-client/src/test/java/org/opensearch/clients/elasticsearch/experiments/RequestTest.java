@@ -19,15 +19,6 @@
 
 package org.opensearch.clients.elasticsearch.experiments;
 
-
-import org.opensearch.clients.base.BooleanResponse;
-import org.opensearch.clients.base.RestClientTransport;
-import org.opensearch.clients.base.Transport;
-import org.opensearch.clients.elasticsearch.ElasticsearchClient;
-import org.opensearch.clients.elasticsearch._global.SearchResponse;
-import org.opensearch.clients.elasticsearch.indices.CreateResponse;
-import org.opensearch.clients.elasticsearch.indices.IndexState;
-import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.JsonValue;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;
@@ -36,6 +27,14 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.opensearch.clients.base.BooleanResponse;
+import org.opensearch.clients.base.RestClientTransport;
+import org.opensearch.clients.base.Transport;
+import org.opensearch.clients.elasticsearch.ElasticsearchClient;
+import org.opensearch.clients.elasticsearch._global.SearchResponse;
+import org.opensearch.clients.elasticsearch.indices.CreateResponse;
+import org.opensearch.clients.elasticsearch.indices.IndexState;
+import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 
 import java.io.IOException;

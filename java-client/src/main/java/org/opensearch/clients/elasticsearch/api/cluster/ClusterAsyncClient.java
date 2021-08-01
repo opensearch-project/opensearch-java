@@ -23,6 +23,7 @@
 
 package org.opensearch.clients.elasticsearch.api.cluster;
 
+import org.elasticsearch.client.RequestOptions;
 import org.opensearch.clients.base.ApiClient;
 import org.opensearch.clients.base.Transport;
 import org.opensearch.clients.elasticsearch.cluster.AllocationExplainRequest;
@@ -56,11 +57,11 @@ import org.opensearch.clients.elasticsearch.cluster.StateResponse;
 import org.opensearch.clients.elasticsearch.cluster.StatsRequest;
 import org.opensearch.clients.elasticsearch.cluster.StatsResponse;
 import org.opensearch.clients.util.ObjectBuilder;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
-import javax.annotation.Nullable;
-import org.elasticsearch.client.RequestOptions;
 
 /**
  * Client for the cluster namespace.

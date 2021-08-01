@@ -23,6 +23,7 @@
 
 package org.opensearch.clients.elasticsearch._global.search;
 
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.json.BuildFunctionDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
@@ -31,10 +32,8 @@ import org.opensearch.clients.json.ToJsonp;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.StringEnum;
 import org.opensearch.clients.util.TaggedUnion;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
+
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 public class SmoothingModelContainer extends TaggedUnion<SmoothingModelContainer.Tag, Object> implements ToJsonp {
 

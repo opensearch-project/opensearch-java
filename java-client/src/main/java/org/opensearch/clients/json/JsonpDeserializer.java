@@ -19,13 +19,13 @@
 
 package org.opensearch.clients.json;
 
-import org.opensearch.clients.util.TriFunction;
-
 import jakarta.json.JsonNumber;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
+import org.opensearch.clients.util.TriFunction;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumSet;

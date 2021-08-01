@@ -26,15 +26,11 @@ package org.opensearch.clients.elasticsearch.indices;
 import org.opensearch.clients.base.ElasticsearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.elasticsearch._types.RequestBase;
-import org.opensearch.clients.json.JsonpDeserializer;
-import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: indices.get_upgrade.Request
 public final class GetUpgradeRequest extends RequestBase {

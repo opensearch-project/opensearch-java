@@ -23,16 +23,14 @@
 
 package org.opensearch.clients.elasticsearch._global.rank_eval;
 
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricExpectedReciprocalRank
 public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {

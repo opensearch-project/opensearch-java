@@ -23,17 +23,15 @@
 
 package org.opensearch.clients.elasticsearch.indices;
 
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.elasticsearch._types.AcknowledgedResponseBase;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
+
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: indices.open.Response
 public final class OpenResponse extends AcknowledgedResponseBase {

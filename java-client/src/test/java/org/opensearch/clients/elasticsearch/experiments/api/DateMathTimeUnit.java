@@ -19,8 +19,8 @@
 
 package org.opensearch.clients.elasticsearch.experiments.api;
 
-import org.opensearch.clients.util.StringEnum;
 import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.util.StringEnum;
 
 public enum DateMathTimeUnit implements StringEnum {
 

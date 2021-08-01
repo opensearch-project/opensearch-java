@@ -19,9 +19,8 @@
 
 package org.opensearch.clients.base;
 
-import org.opensearch.clients.json.JsonpMapper;
-import org.opensearch.clients.json.JsonpDeserializer;
-import org.opensearch.clients.json.ToJsonp;
+import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
 import org.elasticsearch.client.Cancellable;
@@ -29,9 +28,10 @@ import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.Response;
 import org.elasticsearch.client.ResponseListener;
 import org.elasticsearch.client.RestClient;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ToJsonp;
 
-import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonParser;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

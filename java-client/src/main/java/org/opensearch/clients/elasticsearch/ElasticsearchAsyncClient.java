@@ -23,6 +23,7 @@
 
 package org.opensearch.clients.elasticsearch;
 
+import org.elasticsearch.client.RequestOptions;
 import org.opensearch.clients.base.ApiClient;
 import org.opensearch.clients.base.BooleanResponse;
 import org.opensearch.clients.base.Transport;
@@ -112,11 +113,11 @@ import org.opensearch.clients.elasticsearch.api.shutdown.ShutdownAsyncClient;
 import org.opensearch.clients.elasticsearch.api.snapshot.SnapshotAsyncClient;
 import org.opensearch.clients.elasticsearch.api.tasks.TasksAsyncClient;
 import org.opensearch.clients.util.ObjectBuilder;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
-import javax.annotation.Nullable;
-import org.elasticsearch.client.RequestOptions;
 
 /**
  * Client for the namespace.

@@ -23,17 +23,16 @@
 
 package org.opensearch.clients.elasticsearch.indices;
 
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.json.ToJsonp;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
-import jakarta.json.stream.JsonGenerator;
+
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationDisk
 public final class IndexRoutingAllocationDisk implements ToJsonp {

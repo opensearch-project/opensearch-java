@@ -23,6 +23,7 @@
 
 package org.opensearch.clients.elasticsearch.api.dangling_indices;
 
+import org.elasticsearch.client.RequestOptions;
 import org.opensearch.clients.base.ApiClient;
 import org.opensearch.clients.base.Transport;
 import org.opensearch.clients.elasticsearch.dangling_indices.IndexDeleteRequest;
@@ -32,11 +33,11 @@ import org.opensearch.clients.elasticsearch.dangling_indices.IndexImportResponse
 import org.opensearch.clients.elasticsearch.dangling_indices.IndicesListRequest;
 import org.opensearch.clients.elasticsearch.dangling_indices.IndicesListResponse;
 import org.opensearch.clients.util.ObjectBuilder;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
-import javax.annotation.Nullable;
-import org.elasticsearch.client.RequestOptions;
 
 /**
  * Client for the dangling_indices namespace.

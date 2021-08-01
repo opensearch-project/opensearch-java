@@ -19,15 +19,15 @@
 
 package org.opensearch.clients.elasticsearch.experiments.inheritance;
 
-import org.opensearch.clients.elasticsearch.experiments.inheritance.child.ChildClass;
-import org.opensearch.clients.elasticsearch.experiments.inheritance.final_.FinalClass;
-import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
-import org.junit.Assert;
-import org.junit.Test;
-
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import org.junit.Assert;
+import org.junit.Test;
+import org.opensearch.clients.elasticsearch.experiments.inheritance.child.ChildClass;
+import org.opensearch.clients.elasticsearch.experiments.inheritance.final_.FinalClass;
+import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
+
 import java.io.ByteArrayOutputStream;
 import java.io.StringReader;
 

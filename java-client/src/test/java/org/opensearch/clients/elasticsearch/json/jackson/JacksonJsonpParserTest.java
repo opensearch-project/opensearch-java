@@ -19,11 +19,11 @@
 
 package org.opensearch.clients.elasticsearch.json.jackson;
 
-import org.opensearch.clients.json.jackson.JacksonJsonProvider;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import org.junit.Assert;
 import org.junit.Test;
+import org.opensearch.clients.json.jackson.JacksonJsonProvider;
 
 import java.io.StringReader;
 

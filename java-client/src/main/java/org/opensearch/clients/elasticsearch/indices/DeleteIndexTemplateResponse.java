@@ -27,9 +27,7 @@ import org.opensearch.clients.elasticsearch._types.AcknowledgedResponseBase;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
 
 // typedef: indices.delete_index_template.Response
 public final class DeleteIndexTemplateResponse extends AcknowledgedResponseBase {

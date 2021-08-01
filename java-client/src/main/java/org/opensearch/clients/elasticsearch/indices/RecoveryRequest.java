@@ -26,20 +26,15 @@ package org.opensearch.clients.elasticsearch.indices;
 import org.opensearch.clients.base.ElasticsearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.elasticsearch._types.RequestBase;
-import org.opensearch.clients.json.JsonpDeserializer;
-import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.String;
+
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import javax.annotation.Nullable;
 
 // typedef: indices.recovery.Request
 public final class RecoveryRequest extends RequestBase {

@@ -19,12 +19,12 @@
 
 package org.opensearch.clients.util;
 
-import org.opensearch.clients.json.JsonpUtils;
-import org.opensearch.clients.json.JsonpDeserializer;
-
 import jakarta.json.JsonObject;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpUtils;
+
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.function.BiFunction;

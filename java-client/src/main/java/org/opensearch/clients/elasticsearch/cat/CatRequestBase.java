@@ -24,11 +24,6 @@
 package org.opensearch.clients.elasticsearch.cat;
 
 import org.opensearch.clients.elasticsearch._types.RequestBase;
-import org.opensearch.clients.json.JsonpDeserializer;
-import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
-import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
 
 // typedef: cat._types.CatRequestBase
 public abstract class CatRequestBase extends RequestBase {

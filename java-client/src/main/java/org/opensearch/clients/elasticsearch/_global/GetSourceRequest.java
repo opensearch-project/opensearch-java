@@ -26,13 +26,10 @@ package org.opensearch.clients.elasticsearch._global;
 import org.opensearch.clients.base.ElasticsearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.json.JsonpDeserializer;
-import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
-import java.util.Collections;
+
 import javax.annotation.Nullable;
+import java.util.Collections;
 
 // typedef: _global.get_source.Request
 public final class GetSourceRequest extends GetRequest {

@@ -27,10 +27,7 @@ import org.opensearch.clients.base.ElasticsearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.elasticsearch._types.RequestBase;
 import org.opensearch.clients.json.JsonpDeserializer;
-import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
-import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
+
 import java.util.Collections;
 
 // typedef: ingest.geo_ip_stats.Request

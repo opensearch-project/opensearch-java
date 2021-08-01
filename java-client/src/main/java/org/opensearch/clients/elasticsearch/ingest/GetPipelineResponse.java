@@ -27,10 +27,7 @@ import org.opensearch.clients.base.AdditionalProperties;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 
 // typedef: ingest.get_pipeline.Response
 public final class GetPipelineResponse extends AdditionalProperties<String, Pipeline> {

@@ -19,9 +19,6 @@
 
 package org.opensearch.clients.elasticsearch.json;
 
-import org.opensearch.clients.json.JsonpMapper;
-import org.opensearch.clients.json.jackson.JacksonJsonpMapper;
-import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -29,6 +26,9 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.junit.Assert;
 import org.junit.Test;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.jackson.JacksonJsonpMapper;
+import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
 
 import java.io.StringReader;
 import java.io.StringWriter;

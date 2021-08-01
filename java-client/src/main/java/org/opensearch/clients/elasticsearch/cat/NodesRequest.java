@@ -23,17 +23,14 @@
 
 package org.opensearch.clients.elasticsearch.cat;
 
+import jakarta.json.JsonValue;
 import org.opensearch.clients.base.ElasticsearchError;
 import org.opensearch.clients.base.Endpoint;
-import org.opensearch.clients.json.JsonpDeserializer;
-import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
-import jakarta.json.stream.JsonGenerator;
+
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.Nullable;
 
 // typedef: cat.nodes.Request
 public final class NodesRequest extends CatRequestBase {

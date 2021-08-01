@@ -23,6 +23,8 @@
 
 package org.opensearch.clients.elasticsearch.cluster;
 
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.elasticsearch.cluster.allocation_explain.AllocationDecision;
 import org.opensearch.clients.elasticsearch.cluster.allocation_explain.ClusterInfo;
 import org.opensearch.clients.elasticsearch.cluster.allocation_explain.CurrentNode;
@@ -32,20 +34,15 @@ import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.json.ToJsonp;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.Number;
-import java.lang.String;
+
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.Response
 public final class AllocationExplainResponse implements ToJsonp {

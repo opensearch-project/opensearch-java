@@ -23,6 +23,7 @@
 
 package org.opensearch.clients.elasticsearch.api.nodes;
 
+import org.elasticsearch.client.RequestOptions;
 import org.opensearch.clients.base.ApiClient;
 import org.opensearch.clients.base.Transport;
 import org.opensearch.clients.elasticsearch.nodes.HotThreadsRequest;
@@ -36,11 +37,11 @@ import org.opensearch.clients.elasticsearch.nodes.StatsResponse;
 import org.opensearch.clients.elasticsearch.nodes.UsageRequest;
 import org.opensearch.clients.elasticsearch.nodes.UsageResponse;
 import org.opensearch.clients.util.ObjectBuilder;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
-import javax.annotation.Nullable;
-import org.elasticsearch.client.RequestOptions;
 
 /**
  * Client for the nodes namespace.

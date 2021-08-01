@@ -23,17 +23,16 @@
 
 package org.opensearch.clients.elasticsearch._global.reindex_rethrottle;
 
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.elasticsearch._spec_utils.BaseNode;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
-import jakarta.json.stream.JsonGenerator;
+
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.ReindexNode
 public final class ReindexNode extends BaseNode {

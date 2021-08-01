@@ -23,12 +23,6 @@
 
 package org.opensearch.clients.elasticsearch._types;
 
-import org.opensearch.clients.json.JsonpDeserializer;
-import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
-import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
 // typedef: _types.RequestBase
 public abstract class RequestBase {
 	protected RequestBase() {

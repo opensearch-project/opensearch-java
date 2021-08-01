@@ -28,10 +28,7 @@ import org.opensearch.clients.elasticsearch.cluster.remote_info.ClusterRemoteInf
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 
 // typedef: cluster.remote_info.Response
 public final class RemoteInfoResponse extends AdditionalProperties<String, ClusterRemoteInfo> {

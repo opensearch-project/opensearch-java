@@ -23,6 +23,7 @@
 
 package org.opensearch.clients.elasticsearch.api.features;
 
+import org.elasticsearch.client.RequestOptions;
 import org.opensearch.clients.base.ApiClient;
 import org.opensearch.clients.base.Transport;
 import org.opensearch.clients.elasticsearch.features.GetFeaturesRequest;
@@ -30,10 +31,10 @@ import org.opensearch.clients.elasticsearch.features.GetFeaturesResponse;
 import org.opensearch.clients.elasticsearch.features.ResetFeaturesRequest;
 import org.opensearch.clients.elasticsearch.features.ResetFeaturesResponse;
 import org.opensearch.clients.util.ObjectBuilder;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.function.Function;
-import javax.annotation.Nullable;
-import org.elasticsearch.client.RequestOptions;
 
 /**
  * Client for the features namespace.

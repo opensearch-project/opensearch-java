@@ -23,6 +23,8 @@
 
 package org.opensearch.clients.elasticsearch._types.aggregations;
 
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.elasticsearch._types.query_dsl.QueryContainer;
 import org.opensearch.clients.json.BuildFunctionDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
@@ -32,14 +34,12 @@ import org.opensearch.clients.json.ToJsonp;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.StringEnum;
 import org.opensearch.clients.util.TaggedUnion;
-import jakarta.json.JsonValue;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
+
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 public class AggregationContainer extends TaggedUnion<AggregationContainer.Tag, Object> implements ToJsonp {
 

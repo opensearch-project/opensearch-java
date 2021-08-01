@@ -19,13 +19,13 @@
 
 package org.opensearch.clients.util;
 
-import org.opensearch.clients.json.JsonpMapper;
-import org.opensearch.clients.json.JsonpDeserializer;
-import org.opensearch.clients.json.ToJsonp;
-
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ToJsonp;
+
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;

@@ -28,10 +28,7 @@ import org.opensearch.clients.elasticsearch.indices.recovery.RecoveryStatus;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 
 // typedef: indices.recovery.Response
 public final class RecoveryResponse extends AdditionalProperties<String, RecoveryStatus> {

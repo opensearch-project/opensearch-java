@@ -23,6 +23,7 @@
 
 package org.opensearch.clients.elasticsearch.api.snapshot;
 
+import org.elasticsearch.client.RequestOptions;
 import org.opensearch.clients.base.ApiClient;
 import org.opensearch.clients.base.Transport;
 import org.opensearch.clients.elasticsearch.snapshot.CleanupRepositoryRequest;
@@ -48,10 +49,10 @@ import org.opensearch.clients.elasticsearch.snapshot.StatusResponse;
 import org.opensearch.clients.elasticsearch.snapshot.VerifyRepositoryRequest;
 import org.opensearch.clients.elasticsearch.snapshot.VerifyRepositoryResponse;
 import org.opensearch.clients.util.ObjectBuilder;
+
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.function.Function;
-import javax.annotation.Nullable;
-import org.elasticsearch.client.RequestOptions;
 
 /**
  * Client for the snapshot namespace.

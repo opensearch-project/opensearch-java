@@ -23,6 +23,7 @@
 
 package org.opensearch.clients.elasticsearch.cluster;
 
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.elasticsearch._types.AcknowledgedResponseBase;
 import org.opensearch.clients.elasticsearch.cluster.reroute.RerouteExplanation;
 import org.opensearch.clients.elasticsearch.cluster.reroute.RerouteState;
@@ -30,15 +31,14 @@ import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
+
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Response
 public final class RerouteResponse extends AcknowledgedResponseBase {

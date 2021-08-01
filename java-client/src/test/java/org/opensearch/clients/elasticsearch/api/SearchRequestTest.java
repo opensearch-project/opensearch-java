@@ -19,14 +19,14 @@
 
 package org.opensearch.clients.elasticsearch.api;
 
-import org.opensearch.clients.elasticsearch._global.SearchRequest;
-import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
-import org.junit.Assert;
-import org.junit.Test;
-
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import org.junit.Assert;
+import org.junit.Test;
+import org.opensearch.clients.elasticsearch._global.SearchRequest;
+import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;

@@ -19,8 +19,8 @@
 
 package org.opensearch.clients.base;
 
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.ObjectDeserializer;
 
 public class ElasticsearchError {
 

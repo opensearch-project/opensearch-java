@@ -19,9 +19,9 @@
 
 package org.opensearch.clients.json;
 
+import jakarta.json.stream.JsonParser;
 import org.opensearch.clients.util.ObjectBuilder;
 
-import jakarta.json.stream.JsonParser;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 

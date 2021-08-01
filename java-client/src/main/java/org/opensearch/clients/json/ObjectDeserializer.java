@@ -19,11 +19,11 @@
 
 package org.opensearch.clients.json;
 
-import org.opensearch.clients.util.QuadConsumer;
-
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
+import org.opensearch.clients.util.QuadConsumer;
+
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;

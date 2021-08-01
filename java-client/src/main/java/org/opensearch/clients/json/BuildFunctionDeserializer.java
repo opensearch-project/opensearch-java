@@ -20,6 +20,7 @@
 package org.opensearch.clients.json;
 
 import jakarta.json.stream.JsonParser;
+
 import java.util.function.Function;
 
 /**

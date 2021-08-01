@@ -23,19 +23,17 @@
 
 package org.opensearch.clients.elasticsearch.indices;
 
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.base.AdditionalProperties;
 import org.opensearch.clients.elasticsearch._types.ShardStatistics;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices.flush_synced.Response
 public final class FlushSyncedResponse extends AdditionalProperties<String, ShardStatistics> {

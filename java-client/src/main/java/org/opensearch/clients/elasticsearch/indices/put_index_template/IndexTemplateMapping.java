@@ -23,6 +23,7 @@
 
 package org.opensearch.clients.elasticsearch.indices.put_index_template;
 
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.elasticsearch._types.mapping.TypeMapping;
 import org.opensearch.clients.elasticsearch.indices.Alias;
 import org.opensearch.clients.elasticsearch.indices.IndexSettings;
@@ -30,15 +31,14 @@ import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.json.ToJsonp;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
+
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices.put_index_template.IndexTemplateMapping
 public final class IndexTemplateMapping implements ToJsonp {

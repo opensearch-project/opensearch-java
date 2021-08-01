@@ -24,10 +24,6 @@
 package org.opensearch.clients.elasticsearch.indices;
 
 import org.opensearch.clients.json.JsonpDeserializer;
-import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
-import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
 
 // typedef: indices.exists.Response
 public final class ExistsResponse {

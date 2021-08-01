@@ -19,13 +19,12 @@
 
 package org.opensearch.clients.util;
 
-import org.opensearch.clients.json.JsonpMapper;
-import org.opensearch.clients.json.JsonpDeserializer;
-
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
 
 /**
  * A tagged union (also known as variant, sum type or coproduct) with two members.

@@ -23,17 +23,16 @@
 
 package org.opensearch.clients.elasticsearch.task;
 
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.elasticsearch._spec_utils.BaseNode;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
-import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
-import jakarta.json.stream.JsonGenerator;
+
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 // typedef: task._types.TaskExecutingNode
 public final class TaskExecutingNode extends BaseNode {
