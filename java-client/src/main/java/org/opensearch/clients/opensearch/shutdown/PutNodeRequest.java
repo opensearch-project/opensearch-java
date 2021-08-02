@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch.shutdown;
 
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.json.DelegatingDeserializer;
@@ -147,7 +147,7 @@ public final class PutNodeRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code shutdown.put_node}".
 	 */
-	public static final Endpoint<PutNodeRequest, PutNodeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutNodeRequest, PutNodeResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "PUT";

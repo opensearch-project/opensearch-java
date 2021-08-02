@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch.cluster;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.opensearch._types.mapping.TypeMapping;
@@ -416,7 +416,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements To
 	/**
 	 * Endpoint "{@code cluster.put_component_template}".
 	 */
-	public static final Endpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ElasticsearchError> ENDPOINT =
+	public static final Endpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, OpenSearchError> ENDPOINT =
 		new Endpoint.Simple<>(
 			// Request method
 			request -> {

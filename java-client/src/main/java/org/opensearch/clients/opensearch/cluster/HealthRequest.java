@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch.cluster;
 
 import jakarta.json.JsonValue;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -444,7 +444,7 @@ public final class HealthRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.health}".
 	 */
-	public static final Endpoint<HealthRequest, HealthResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<HealthRequest, HealthResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "GET";

@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._global.search.FieldCollapse;
 import org.opensearch.clients.opensearch._global.search.Highlight;
@@ -2343,7 +2343,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Create an "{@code search}" endpoint.
 	 */
-	public static <TDocument> Endpoint<SearchRequest, SearchResponse<TDocument>, ElasticsearchError> createSearchEndpoint(
+	public static <TDocument> Endpoint<SearchRequest, SearchResponse<TDocument>, OpenSearchError> createSearchEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT
 				.withResponseDeserializer(SearchResponse.createSearchResponseDeserializer(tDocumentDeserializer));

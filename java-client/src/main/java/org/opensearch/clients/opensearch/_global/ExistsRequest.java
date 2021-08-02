@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.JsonValue;
 import org.opensearch.clients.base.BooleanResponse;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -421,7 +421,7 @@ public final class ExistsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code exists}".
 	 */
-	public static final Endpoint<ExistsRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
+	public static final Endpoint<ExistsRequest, BooleanResponse, OpenSearchError> ENDPOINT = new Endpoint.Boolean<>(
 			// Request method
 			request -> {
 				return "HEAD";

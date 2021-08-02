@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch.indices;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.opensearch.indices.put_index_template.IndexTemplateMapping;
@@ -415,7 +415,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements ToJson
 	/**
 	 * Endpoint "{@code indices.put_index_template}".
 	 */
-	public static final Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "PUT";

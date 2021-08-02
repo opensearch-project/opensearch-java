@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch.ingest;
 
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.opensearch.ingest.simulate_pipeline.Document;
@@ -254,7 +254,7 @@ public final class SimulatePipelineRequest extends RequestBase implements ToJson
 	/**
 	 * Endpoint "{@code ingest.simulate}".
 	 */
-	public static final Endpoint<SimulatePipelineRequest, SimulatePipelineResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<SimulatePipelineRequest, SimulatePipelineResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

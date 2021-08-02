@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.opensearch._types.ElasticsearchVersionInfo;
+import org.opensearch.clients.opensearch._types.OpenSearchVersionInfo;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
@@ -45,7 +45,7 @@ public final class InfoResponse implements ToJsonp {
 
 	private final String tagline;
 
-	private final ElasticsearchVersionInfo version;
+	private final OpenSearchVersionInfo version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -90,7 +90,7 @@ public final class InfoResponse implements ToJsonp {
 	/**
 	 * API name: {@code version}
 	 */
-	public ElasticsearchVersionInfo version() {
+	public OpenSearchVersionInfo version() {
 		return this.version;
 	}
 
@@ -136,7 +136,7 @@ public final class InfoResponse implements ToJsonp {
 
 		private String tagline;
 
-		private ElasticsearchVersionInfo version;
+		private OpenSearchVersionInfo version;
 
 		/**
 		 * API name: {@code cluster_name}
@@ -173,7 +173,7 @@ public final class InfoResponse implements ToJsonp {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(ElasticsearchVersionInfo value) {
+		public Builder version(OpenSearchVersionInfo value) {
 			this.version = value;
 			return this;
 		}
@@ -181,8 +181,8 @@ public final class InfoResponse implements ToJsonp {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Function<ElasticsearchVersionInfo.Builder, ObjectBuilder<ElasticsearchVersionInfo>> fn) {
-			return this.version(fn.apply(new ElasticsearchVersionInfo.Builder()).build());
+		public Builder version(Function<OpenSearchVersionInfo.Builder, ObjectBuilder<OpenSearchVersionInfo>> fn) {
+			return this.version(fn.apply(new OpenSearchVersionInfo.Builder()).build());
 		}
 
 		/**
@@ -211,7 +211,7 @@ public final class InfoResponse implements ToJsonp {
 		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::tagline, JsonpDeserializer.stringDeserializer(), "tagline");
-		op.add(Builder::version, ElasticsearchVersionInfo.DESERIALIZER, "version");
+		op.add(Builder::version, OpenSearchVersionInfo.DESERIALIZER, "version");
 
 	}
 

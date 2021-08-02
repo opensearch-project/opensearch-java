@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch.cluster;
 
 import jakarta.json.JsonValue;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -157,7 +157,7 @@ public final class GetComponentTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.get_component_template}".
 	 */
-	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ElasticsearchError> ENDPOINT =
+	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, OpenSearchError> ENDPOINT =
 		new Endpoint.Simple<>(
 			// Request method
 			request -> {

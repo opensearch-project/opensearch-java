@@ -23,7 +23,7 @@
 
 package org.opensearch.clients.opensearch._global;
 
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -204,7 +204,7 @@ public final class GetSourceRequest extends GetRequest {
 	/**
 	 * Create an "{@code get_source}" endpoint.
 	 */
-	public static <TDocument> Endpoint<GetSourceRequest, GetSourceResponse<TDocument>, ElasticsearchError> createGetSourceEndpoint(
+	public static <TDocument> Endpoint<GetSourceRequest, GetSourceResponse<TDocument>, OpenSearchError> createGetSourceEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT
 				.withResponseDeserializer(GetSourceResponse.createGetSourceResponseDeserializer(tDocumentDeserializer));

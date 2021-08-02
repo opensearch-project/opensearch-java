@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch.indices;
 
 import jakarta.json.JsonValue;
 import org.opensearch.clients.base.BooleanResponse;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -179,7 +179,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.exists_template}".
 	 */
-	public static final Endpoint<ExistsTemplateRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
+	public static final Endpoint<ExistsTemplateRequest, BooleanResponse, OpenSearchError> ENDPOINT = new Endpoint.Boolean<>(
 			// Request method
 			request -> {
 				return "HEAD";

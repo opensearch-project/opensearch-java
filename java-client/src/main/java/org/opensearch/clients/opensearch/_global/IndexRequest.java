@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.json.DelegatingDeserializer;
@@ -462,7 +462,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements ToJson
 	/**
 	 * Endpoint "{@code index}".
 	 */
-	public static final Endpoint<IndexRequest<?>, IndexResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<IndexRequest<?>, IndexResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				final int _id = 1 << 0;

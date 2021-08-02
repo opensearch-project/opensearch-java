@@ -23,7 +23,7 @@
 
 package org.opensearch.clients.opensearch.cat;
 
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.json.JsonpDeserializer;
 
@@ -47,7 +47,7 @@ public final class NodeAttributesRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.nodeattrs}".
 	 */
-	public static final Endpoint<NodeAttributesRequest, NodeAttributesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<NodeAttributesRequest, NodeAttributesResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "GET";

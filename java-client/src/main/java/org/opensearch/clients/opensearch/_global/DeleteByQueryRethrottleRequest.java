@@ -23,7 +23,7 @@
 
 package org.opensearch.clients.opensearch._global;
 
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -108,7 +108,7 @@ public final class DeleteByQueryRethrottleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code delete_by_query_rethrottle}".
 	 */
-	public static final Endpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ElasticsearchError> ENDPOINT =
+	public static final Endpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, OpenSearchError> ENDPOINT =
 		new Endpoint.Simple<>(
 			// Request method
 			request -> {

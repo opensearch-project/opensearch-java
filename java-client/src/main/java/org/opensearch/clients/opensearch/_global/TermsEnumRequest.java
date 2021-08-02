@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.opensearch._types.query_dsl.QueryContainer;
@@ -375,7 +375,7 @@ public final class TermsEnumRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code terms_enum}".
 	 */
-	public static final Endpoint<TermsEnumRequest, TermsEnumResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<TermsEnumRequest, TermsEnumResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

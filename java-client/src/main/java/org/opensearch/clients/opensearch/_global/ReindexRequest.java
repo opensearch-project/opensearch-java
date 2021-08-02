@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._global.reindex.Destination;
 import org.opensearch.clients.opensearch._global.reindex.Source;
@@ -479,7 +479,7 @@ public final class ReindexRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code reindex}".
 	 */
-	public static final Endpoint<ReindexRequest, ReindexResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ReindexRequest, ReindexResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

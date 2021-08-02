@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch.indices;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.json.DelegatingDeserializer;
@@ -319,7 +319,7 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code indices.clone}".
 	 */
-	public static final Endpoint<CloneRequest, CloneResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CloneRequest, CloneResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "PUT";

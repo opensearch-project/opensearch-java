@@ -23,7 +23,7 @@
 
 package org.opensearch.clients.opensearch._global;
 
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.json.JsonpDeserializer;
@@ -48,7 +48,7 @@ public final class GetScriptContextRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code get_script_context}".
 	 */
-	public static final Endpoint<GetScriptContextRequest, GetScriptContextResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetScriptContextRequest, GetScriptContextResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "GET";

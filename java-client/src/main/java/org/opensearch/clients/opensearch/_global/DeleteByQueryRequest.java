@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.opensearch._types.SlicedScroll;
@@ -1104,7 +1104,7 @@ public final class DeleteByQueryRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code delete_by_query}".
 	 */
-	public static final Endpoint<DeleteByQueryRequest, DeleteByQueryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteByQueryRequest, DeleteByQueryResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

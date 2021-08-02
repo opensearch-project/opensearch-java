@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._global.rank_eval.RankEvalMetric;
 import org.opensearch.clients.opensearch._global.rank_eval.RankEvalRequestItem;
@@ -376,7 +376,7 @@ public final class RankEvalRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code rank_eval}".
 	 */
-	public static final Endpoint<RankEvalRequest, RankEvalResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RankEvalRequest, RankEvalResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

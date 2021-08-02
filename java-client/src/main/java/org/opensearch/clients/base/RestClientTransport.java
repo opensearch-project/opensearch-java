@@ -23,11 +23,11 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
-import org.elasticsearch.client.Cancellable;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.Response;
-import org.elasticsearch.client.ResponseListener;
-import org.elasticsearch.client.RestClient;
+import org.opensearch.client.Cancellable;
+import org.opensearch.client.RequestOptions;
+import org.opensearch.client.Response;
+import org.opensearch.client.ResponseListener;
+import org.opensearch.client.RestClient;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ToJsonp;
@@ -60,8 +60,8 @@ public class RestClientTransport implements Transport {
         RequestOptions options
     ) throws IOException {
 
-        org.elasticsearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint, options);
-        org.elasticsearch.client.Response clientResp = restClient.performRequest(clientReq);
+        org.opensearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint, options);
+        org.opensearch.client.Response clientResp = restClient.performRequest(clientReq);
         return getHighLevelResponse(clientResp, endpoint);
     }
 
@@ -70,7 +70,7 @@ public class RestClientTransport implements Transport {
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
         RequestOptions options
     ) {
-        org.elasticsearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint, options);
+        org.opensearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint, options);
 
         RequestFuture<ResponseT> future = new RequestFuture<>();
 
@@ -107,7 +107,7 @@ public class RestClientTransport implements Transport {
         }
     }
 
-    private <RequestT> org.elasticsearch.client.Request prepareLowLevelRequest(
+    private <RequestT> org.opensearch.client.Request prepareLowLevelRequest(
         RequestT request,
         Endpoint<RequestT, ?, ?> endpoint,
         RequestOptions options
@@ -116,7 +116,7 @@ public class RestClientTransport implements Transport {
         String path = endpoint.requestUrl(request);
         Map<String, String> params = endpoint.queryParameters(request);
 
-        org.elasticsearch.client.Request clientReq = new org.elasticsearch.client.Request(method, path);
+        org.opensearch.client.Request clientReq = new org.opensearch.client.Request(method, path);
         clientReq.addParameters(params);
         if (options != null) {
             clientReq.setOptions(options);
@@ -136,7 +136,7 @@ public class RestClientTransport implements Transport {
     }
 
     private <ResponseT, ErrorT> ResponseT getHighLevelResponse(
-        org.elasticsearch.client.Response clientResp,
+        org.opensearch.client.Response clientResp,
         Endpoint<?, ResponseT, ErrorT> endpoint
     ) throws IOException {
 

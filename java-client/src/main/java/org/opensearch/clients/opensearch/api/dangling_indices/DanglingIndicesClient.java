@@ -23,7 +23,7 @@
 
 package org.opensearch.clients.opensearch.api.dangling_indices;
 
-import org.elasticsearch.client.RequestOptions;
+import org.opensearch.client.RequestOptions;
 import org.opensearch.clients.base.ApiClient;
 import org.opensearch.clients.base.Transport;
 import org.opensearch.clients.opensearch.dangling_indices.IndexDeleteRequest;

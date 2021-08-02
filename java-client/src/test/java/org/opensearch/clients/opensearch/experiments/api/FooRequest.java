@@ -20,7 +20,7 @@
 package org.opensearch.clients.opensearch.experiments.api;
 
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch.experiments.api.query.Query;
 import org.opensearch.clients.json.JsonpDeserializer;
@@ -296,7 +296,7 @@ public class FooRequest implements ToJsonp {
   // Endpoint
   //===========================================
 
-  public static final Endpoint<FooRequest, FooResponse, ElasticsearchError> ENDPOINT =
+  public static final Endpoint<FooRequest, FooResponse, OpenSearchError> ENDPOINT =
     new Endpoint.Simple<>(
       r -> "POST",
       r -> "/foo",

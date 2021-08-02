@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._global.msearch_template.TemplateItem;
 import org.opensearch.clients.opensearch._types.RequestBase;
@@ -436,7 +436,7 @@ public final class MsearchTemplateRequest extends RequestBase implements ToJsonp
 	/**
 	 * Create an "{@code msearch_template}" endpoint.
 	 */
-	public static <TDocument> Endpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ElasticsearchError>
+	public static <TDocument> Endpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, OpenSearchError>
 	createMsearchTemplateEndpoint(JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT.withResponseDeserializer(
 				MsearchTemplateResponse.createMsearchTemplateResponseDeserializer(tDocumentDeserializer));

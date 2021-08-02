@@ -22,7 +22,7 @@ package org.opensearch.clients.base;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.ObjectDeserializer;
 
-public class ElasticsearchError {
+public class OpenSearchError {
 
   // TODO: add fields for the detailed representation of errors
   // See org.elasticsearch.rest.BytesRestResponse.build() and ElasticsearchException
@@ -30,9 +30,9 @@ public class ElasticsearchError {
   private int status;
   private String error;
 
-  private ElasticsearchError() {}
+  private OpenSearchError() {}
 
-  public ElasticsearchError(int status, String error) {
+  public OpenSearchError(int status, String error) {
     this.status = status;
     this.error = error;
   }
@@ -53,15 +53,15 @@ public class ElasticsearchError {
     this.error = error;
   }
 
-  public static final JsonpDeserializer<ElasticsearchError> PARSER;
+  public static final JsonpDeserializer<OpenSearchError> PARSER;
 
   static {
-    ObjectDeserializer<ElasticsearchError> op = new ObjectDeserializer<>(
-        ElasticsearchError::new
+    ObjectDeserializer<OpenSearchError> op = new ObjectDeserializer<>(
+        OpenSearchError::new
     );
 
-    op.add(ElasticsearchError::status, "status");
-    op.add(ElasticsearchError::error, JsonpDeserializer.stringDeserializer(), "error");
+    op.add(OpenSearchError::status, "status");
+    op.add(OpenSearchError::error, JsonpDeserializer.stringDeserializer(), "error");
 
     PARSER = op;
   }

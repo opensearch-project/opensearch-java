@@ -23,7 +23,7 @@
 
 package org.opensearch.clients.opensearch.cat;
 
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.json.JsonpDeserializer;
 
@@ -47,7 +47,7 @@ public final class PendingTasksRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.pending_tasks}".
 	 */
-	public static final Endpoint<PendingTasksRequest, PendingTasksResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PendingTasksRequest, PendingTasksResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "GET";

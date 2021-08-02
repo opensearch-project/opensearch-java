@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.json.DelegatingDeserializer;
@@ -120,7 +120,7 @@ public final class ClosePointInTimeRequest extends RequestBase implements ToJson
 	/**
 	 * Endpoint "{@code close_point_in_time}".
 	 */
-	public static final Endpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "DELETE";
