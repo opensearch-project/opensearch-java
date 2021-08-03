@@ -23,7 +23,7 @@
 
 package org.opensearch.clients.opensearch.core;
 
-import org.opensearch.clients.opensearch._types.ElasticsearchVersionInfo;
+import org.opensearch.clients.opensearch._types.OpenSearchVersionInfo;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializable;
 import org.opensearch.clients.json.JsonpDeserializer;
@@ -48,7 +48,7 @@ public class InfoResponse implements JsonpSerializable {
 
 	private final String tagline;
 
-	private final ElasticsearchVersionInfo version;
+	private final OpenSearchVersionInfo version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -97,7 +97,7 @@ public class InfoResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public final ElasticsearchVersionInfo version() {
+	public final OpenSearchVersionInfo version() {
 		return this.version;
 	}
 
@@ -143,7 +143,7 @@ public class InfoResponse implements JsonpSerializable {
 
 		private String tagline;
 
-		private ElasticsearchVersionInfo version;
+		private OpenSearchVersionInfo version;
 
 		/**
 		 * Required - API name: {@code cluster_name}
@@ -180,7 +180,7 @@ public class InfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public final Builder version(ElasticsearchVersionInfo value) {
+		public final Builder version(OpenSearchVersionInfo value) {
 			this.version = value;
 			return this;
 		}
@@ -189,8 +189,8 @@ public class InfoResponse implements JsonpSerializable {
 		 * Required - API name: {@code version}
 		 */
 		public final Builder version(
-				Function<ElasticsearchVersionInfo.Builder, ObjectBuilder<ElasticsearchVersionInfo>> fn) {
-			return this.version(fn.apply(new ElasticsearchVersionInfo.Builder()).build());
+				Function<OpenSearchVersionInfo.Builder, ObjectBuilder<OpenSearchVersionInfo>> fn) {
+			return this.version(fn.apply(new OpenSearchVersionInfo.Builder()).build());
 		}
 
 		/**
@@ -220,7 +220,7 @@ public class InfoResponse implements JsonpSerializable {
 		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::tagline, JsonpDeserializer.stringDeserializer(), "tagline");
-		op.add(Builder::version, ElasticsearchVersionInfo._DESERIALIZER, "version");
+		op.add(Builder::version, OpenSearchVersionInfo._DESERIALIZER, "version");
 
 	}
 
