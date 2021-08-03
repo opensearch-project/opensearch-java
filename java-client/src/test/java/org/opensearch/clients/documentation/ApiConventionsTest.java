@@ -19,8 +19,8 @@
 
 package org.opensearch.clients.documentation;
 
-import org.opensearch.clients.opensearch.ElasticsearchAsyncClient;
-import org.opensearch.clients.opensearch.ElasticsearchClient;
+import org.opensearch.clients.opensearch.OpenSearchAsyncClient;
+import org.opensearch.clients.opensearch.OpenSearchClient;
 import org.opensearch.clients.opensearch._types.NodeStatistics;
 import org.opensearch.clients.opensearch._types.SortOrder;
 import org.opensearch.clients.opensearch._types.aggregations.Aggregation;
@@ -55,15 +55,15 @@ public class ApiConventionsTest extends Assert {
 
         //tag::blocking-and-async
         // Synchronous blocking client
-        ElasticsearchClient client = new ElasticsearchClient(transport);
+        OpenSearchClient client = new OpenSearchClient(transport);
 
         if (client.exists(b -> b.index("products").id("foo")).value()) {
             logger.info("product exists");
         }
 
         // Asynchronous non-blocking client
-        ElasticsearchAsyncClient asyncClient =
-            new ElasticsearchAsyncClient(transport);
+        OpenSearchAsyncClient asyncClient =
+            new OpenSearchAsyncClient(transport);
 
         asyncClient
             .exists(b -> b.index("products").id("foo"))
@@ -78,7 +78,7 @@ public class ApiConventionsTest extends Assert {
 
     @Test(expected = TransportException.class)
     public void builders() throws Exception {
-        ElasticsearchClient client = new ElasticsearchClient(transport);
+        OpenSearchClient client = new OpenSearchClient(transport);
 
         //tag::builders
         CreateIndexResponse createResponse = client.indices().create(
@@ -94,7 +94,7 @@ public class ApiConventionsTest extends Assert {
 
     @Test(expected = TransportException.class)
     public void builderLambdas() throws Exception {
-        ElasticsearchClient client = new ElasticsearchClient(transport);
+        OpenSearchClient client = new OpenSearchClient(transport);
 
         //tag::builder-lambdas
         CreateIndexResponse createResponse = client.indices()
@@ -109,7 +109,7 @@ public class ApiConventionsTest extends Assert {
 
     @Test(expected = TransportException.class)
     public void builderLambdasShort() throws Exception {
-        ElasticsearchClient client = new ElasticsearchClient(transport);
+        OpenSearchClient client = new OpenSearchClient(transport);
 
         //tag::builder-lambdas-short
         CreateIndexResponse createResponse = client.indices()
@@ -124,7 +124,7 @@ public class ApiConventionsTest extends Assert {
 
     @Test(expected = TransportException.class)
     public void builderIntervals() throws Exception {
-        ElasticsearchClient client = new ElasticsearchClient(transport);
+        OpenSearchClient client = new OpenSearchClient(transport);
 
         //tag::builder-intervals
         SearchResponse<SomeApplicationData> results = client

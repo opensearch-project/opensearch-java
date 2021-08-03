@@ -35,16 +35,8 @@ import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 
-// typedef: _types.ElasticsearchVersionInfo
-
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Base.ts#L58-L68">API
- *      specification</a>
- */
 @JsonpDeserializable
-public class ElasticsearchVersionInfo implements JsonpSerializable {
+public final class OpenSearchVersionInfo implements JsonpSerializable {
 	private final String buildDate;
 
 	private final String buildFlavor;
@@ -65,7 +57,7 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ElasticsearchVersionInfo(Builder builder) {
+	private OpenSearchVersionInfo(Builder builder) {
 
 		this.buildDate = ApiTypeHelper.requireNonNull(builder.buildDate, this, "buildDate");
 		this.buildFlavor = ApiTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
@@ -81,7 +73,7 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 
 	}
 
-	public static ElasticsearchVersionInfo of(Function<Builder, ObjectBuilder<ElasticsearchVersionInfo>> fn) {
+	public static OpenSearchVersionInfo of(Function<Builder, ObjectBuilder<OpenSearchVersionInfo>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -191,10 +183,9 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ElasticsearchVersionInfo}.
+	 * Builder for {@link OpenSearchVersionInfo}.
 	 */
-
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ElasticsearchVersionInfo> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenSearchVersionInfo> {
 		private String buildDate;
 
 		private String buildFlavor;
@@ -286,28 +277,28 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link ElasticsearchVersionInfo}.
+		 * Builds a {@link OpenSearchVersionInfo}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ElasticsearchVersionInfo build() {
-			_checkSingleUse();
 
-			return new ElasticsearchVersionInfo(this);
+		public OpenSearchVersionInfo build() {
+			_checkSingleUse();
+			return new OpenSearchVersionInfo(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ElasticsearchVersionInfo}
+	 * Json deserializer for OpenSearchVersionInfo
 	 */
-	public static final JsonpDeserializer<ElasticsearchVersionInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoDeserializer);
+	public static final JsonpDeserializer<OpenSearchVersionInfo> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, OpenSearchVersionInfo::setupElasticsearchVersionInfoDeserializer);
 
 	protected static void setupElasticsearchVersionInfoDeserializer(
-			ObjectDeserializer<ElasticsearchVersionInfo.Builder> op) {
+			ObjectDeserializer<OpenSearchVersionInfo.Builder> op) {
 
 		op.add(Builder::buildDate, JsonpDeserializer.stringDeserializer(), "build_date");
 		op.add(Builder::buildFlavor, JsonpDeserializer.stringDeserializer(), "build_flavor");

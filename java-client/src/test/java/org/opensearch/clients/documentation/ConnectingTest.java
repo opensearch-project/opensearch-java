@@ -19,7 +19,7 @@
 
 package org.opensearch.clients.documentation;
 
-import org.opensearch.clients.opensearch.ElasticsearchClient;
+import org.opensearch.clients.opensearch.OpenSearchClient;
 import org.opensearch.clients.opensearch.core.SearchResponse;
 import org.opensearch.clients.opensearch.core.search.Hit;
 import org.opensearch.clients.json.jackson.JacksonJsonpMapper;
@@ -47,7 +47,7 @@ public class ConnectingTest {
             restClient, new JacksonJsonpMapper());
 
         // And create the API client
-        ElasticsearchClient client = new ElasticsearchClient(transport);
+        OpenSearchClient client = new OpenSearchClient(transport);
         //end::create-client
 
         //tag::first-request
