@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch.cluster;
 
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.json.DelegatingDeserializer;
@@ -190,7 +190,7 @@ public final class ExistsComponentTemplateRequest extends RequestBase implements
 	/**
 	 * Endpoint "{@code cluster.exists_component_template}".
 	 */
-	public static final Endpoint<ExistsComponentTemplateRequest, ExistsComponentTemplateResponse, ElasticsearchError> ENDPOINT =
+	public static final Endpoint<ExistsComponentTemplateRequest, ExistsComponentTemplateResponse, OpenSearchError> ENDPOINT =
 		new Endpoint.Simple<>(
 			// Request method
 			request -> {

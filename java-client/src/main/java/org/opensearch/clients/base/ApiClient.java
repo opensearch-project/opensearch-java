@@ -19,7 +19,7 @@
 
 package org.opensearch.clients.base;
 
-import org.elasticsearch.client.RequestOptions;
+import org.opensearch.client.RequestOptions;
 import org.opensearch.clients.json.JsonpDeserializer;
 
 import javax.annotation.Nullable;

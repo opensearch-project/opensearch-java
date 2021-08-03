@@ -33,8 +33,8 @@ import org.opensearch.clients.util.ObjectBuilder;
 
 import java.util.Objects;
 
-// typedef: _types.ElasticsearchVersionInfo
-public final class ElasticsearchVersionInfo implements ToJsonp {
+// typedef: _types.OpenSearchVersionInfo
+public final class OpenSearchVersionInfo implements ToJsonp {
 	private final String buildDate;
 
 	private final String buildFlavor;
@@ -55,7 +55,7 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ElasticsearchVersionInfo(Builder builder) {
+	protected OpenSearchVersionInfo(Builder builder) {
 
 		this.buildDate = Objects.requireNonNull(builder.buildDate, "build_date");
 		this.buildFlavor = Objects.requireNonNull(builder.buildFlavor, "build_flavor");
@@ -177,9 +177,9 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ElasticsearchVersionInfo}.
+	 * Builder for {@link OpenSearchVersionInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<ElasticsearchVersionInfo> {
+	public static class Builder implements ObjectBuilder<OpenSearchVersionInfo> {
 		private String buildDate;
 
 		private String buildFlavor;
@@ -271,27 +271,27 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 		}
 
 		/**
-		 * Builds a {@link ElasticsearchVersionInfo}.
+		 * Builds a {@link OpenSearchVersionInfo}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ElasticsearchVersionInfo build() {
+		public OpenSearchVersionInfo build() {
 
-			return new ElasticsearchVersionInfo(this);
+			return new OpenSearchVersionInfo(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ElasticsearchVersionInfo
+	 * Json deserializer for OpenSearchVersionInfo
 	 */
-	public static final JsonpDeserializer<ElasticsearchVersionInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoDeserializer);
+	public static final JsonpDeserializer<OpenSearchVersionInfo> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, OpenSearchVersionInfo::setupOpenSearchVersionInfoDeserializer);
 
-	protected static void setupElasticsearchVersionInfoDeserializer(
-			DelegatingDeserializer<ElasticsearchVersionInfo.Builder> op) {
+	protected static void setupOpenSearchVersionInfoDeserializer(
+			DelegatingDeserializer<OpenSearchVersionInfo.Builder> op) {
 
 		op.add(Builder::buildDate, JsonpDeserializer.stringDeserializer(), "build_date");
 		op.add(Builder::buildFlavor, JsonpDeserializer.stringDeserializer(), "build_flavor");

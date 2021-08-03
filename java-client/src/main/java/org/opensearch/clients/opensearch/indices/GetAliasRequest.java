@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch.indices;
 
 import jakarta.json.JsonValue;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -245,7 +245,7 @@ public final class GetAliasRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.get_alias}".
 	 */
-	public static final Endpoint<GetAliasRequest, GetAliasResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetAliasRequest, GetAliasResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "GET";

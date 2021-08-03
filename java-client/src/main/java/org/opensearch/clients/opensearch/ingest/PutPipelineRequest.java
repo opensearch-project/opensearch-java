@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch.ingest;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.json.DelegatingDeserializer;
@@ -365,7 +365,7 @@ public final class PutPipelineRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code ingest.put_pipeline}".
 	 */
-	public static final Endpoint<PutPipelineRequest, PutPipelineResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutPipelineRequest, PutPipelineResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "PUT";

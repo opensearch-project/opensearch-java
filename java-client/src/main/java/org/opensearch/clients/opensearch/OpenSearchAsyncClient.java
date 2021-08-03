@@ -23,7 +23,7 @@
 
 package org.opensearch.clients.opensearch;
 
-import org.elasticsearch.client.RequestOptions;
+import org.opensearch.client.RequestOptions;
 import org.opensearch.clients.base.ApiClient;
 import org.opensearch.clients.base.BooleanResponse;
 import org.opensearch.clients.base.Transport;
@@ -122,13 +122,13 @@ import java.util.function.Function;
 /**
  * Client for the namespace.
  */
-public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient> {
+public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
 
-	public ElasticsearchAsyncClient(Transport transport) {
+	public OpenSearchAsyncClient(Transport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchAsyncClient(Transport transport, RequestOptions options) {
+	public OpenSearchAsyncClient(Transport transport, RequestOptions options) {
 		super(transport, options);
 	}
 
@@ -1242,23 +1242,23 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	// ----- Misc
 
 	/**
-	 * Creates a new {@link #ElasticsearchAsyncClient} with specific request
+	 * Creates a new {@link #OpenSearchAsyncClient} with specific request
 	 * options.
 	 */
 	@Override
-	public ElasticsearchAsyncClient withRequestOptions(@Nullable RequestOptions options) {
-		return new ElasticsearchAsyncClient(transport, options);
+	public OpenSearchAsyncClient withRequestOptions(@Nullable RequestOptions options) {
+		return new OpenSearchAsyncClient(transport, options);
 	}
 
 	/**
-	 * Creates a new {@link #ElasticsearchAsyncClient} with specific request
+	 * Creates a new {@link #OpenSearchAsyncClient} with specific request
 	 * options, inheriting existing options.
 	 *
 	 * @param fn
 	 *            a function taking an options builder initialized with the current
 	 *            request options, or initialized with default values.
 	 */
-	public ElasticsearchAsyncClient withRequestOptions(Function<RequestOptions.Builder, RequestOptions.Builder> fn) {
+	public OpenSearchAsyncClient withRequestOptions(Function<RequestOptions.Builder, RequestOptions.Builder> fn) {
 		RequestOptions.Builder builder = requestOptions == null
 				? RequestOptions.DEFAULT.toBuilder()
 				: requestOptions.toBuilder();

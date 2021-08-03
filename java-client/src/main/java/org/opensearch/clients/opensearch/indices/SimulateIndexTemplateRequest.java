@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.json.DelegatingDeserializer;
@@ -352,7 +352,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 	/**
 	 * Endpoint "{@code indices.simulate_index_template}".
 	 */
-	public static final Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ElasticsearchError> ENDPOINT =
+	public static final Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, OpenSearchError> ENDPOINT =
 		new Endpoint.Simple<>(
 			// Request method
 			request -> {

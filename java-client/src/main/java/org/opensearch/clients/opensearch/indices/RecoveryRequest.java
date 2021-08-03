@@ -23,7 +23,7 @@
 
 package org.opensearch.clients.opensearch.indices;
 
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -156,7 +156,7 @@ public final class RecoveryRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.recovery}".
 	 */
-	public static final Endpoint<RecoveryRequest, RecoveryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RecoveryRequest, RecoveryResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "GET";

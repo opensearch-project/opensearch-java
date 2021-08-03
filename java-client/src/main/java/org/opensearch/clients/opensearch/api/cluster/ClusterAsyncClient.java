@@ -23,7 +23,7 @@
 
 package org.opensearch.clients.opensearch.api.cluster;
 
-import org.elasticsearch.client.RequestOptions;
+import org.opensearch.client.RequestOptions;
 import org.opensearch.clients.base.ApiClient;
 import org.opensearch.clients.base.Transport;
 import org.opensearch.clients.opensearch.cluster.AllocationExplainRequest;

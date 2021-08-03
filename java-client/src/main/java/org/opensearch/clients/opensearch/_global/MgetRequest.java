@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._global.mget.Operation;
 import org.opensearch.clients.opensearch._types.RequestBase;
@@ -594,7 +594,7 @@ public final class MgetRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Create an "{@code mget}" endpoint.
 	 */
-	public static <TDocument> Endpoint<MgetRequest, MgetResponse<TDocument>, ElasticsearchError> createMgetEndpoint(
+	public static <TDocument> Endpoint<MgetRequest, MgetResponse<TDocument>, OpenSearchError> createMgetEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT.withResponseDeserializer(MgetResponse.createMgetResponseDeserializer(tDocumentDeserializer));
 	}

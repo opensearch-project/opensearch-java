@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch.cat;
 
 import jakarta.json.JsonValue;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.util.ObjectBuilder;
 
@@ -133,7 +133,7 @@ public final class ShardsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.shards}".
 	 */
-	public static final Endpoint<ShardsRequest, ShardsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ShardsRequest, ShardsResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "GET";

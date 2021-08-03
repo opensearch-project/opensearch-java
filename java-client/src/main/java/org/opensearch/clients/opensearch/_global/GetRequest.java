@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.JsonValue;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.json.JsonpDeserializer;
@@ -601,7 +601,7 @@ public class GetRequest extends RequestBase {
 	/**
 	 * Create an "{@code get}" endpoint.
 	 */
-	public static <TDocument> Endpoint<GetRequest, GetResponse<TDocument>, ElasticsearchError> createGetEndpoint(
+	public static <TDocument> Endpoint<GetRequest, GetResponse<TDocument>, OpenSearchError> createGetEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return ENDPOINT.withResponseDeserializer(GetResponse.createGetResponseDeserializer(tDocumentDeserializer));
 	}

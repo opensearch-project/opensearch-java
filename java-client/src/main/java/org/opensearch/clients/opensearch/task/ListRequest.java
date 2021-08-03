@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch.task;
 
 import jakarta.json.JsonValue;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -268,7 +268,7 @@ public final class ListRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code tasks.list}".
 	 */
-	public static final Endpoint<ListRequest, ListResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ListRequest, ListResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "GET";

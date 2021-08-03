@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch._global;
 
 import org.opensearch.clients.base.BooleanResponse;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.json.JsonpDeserializer;
@@ -49,7 +49,7 @@ public final class PingRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ping}".
 	 */
-	public static final Endpoint<PingRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
+	public static final Endpoint<PingRequest, BooleanResponse, OpenSearchError> ENDPOINT = new Endpoint.Boolean<>(
 			// Request method
 			request -> {
 				return "HEAD";

@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch.ingest;
 
 import jakarta.json.JsonValue;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -132,7 +132,7 @@ public final class DeletePipelineRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ingest.delete_pipeline}".
 	 */
-	public static final Endpoint<DeletePipelineRequest, DeletePipelineResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeletePipelineRequest, DeletePipelineResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "DELETE";

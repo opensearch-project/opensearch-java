@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch.cluster;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.json.DelegatingDeserializer;
@@ -263,7 +263,7 @@ public final class PutSettingsRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code cluster.put_settings}".
 	 */
-	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "PUT";

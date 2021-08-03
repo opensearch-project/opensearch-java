@@ -20,7 +20,7 @@
 package org.opensearch.clients.opensearch.experiments.generics;
 
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
@@ -99,7 +99,7 @@ public class GenericClass<GenParam> implements ToJsonp {
     }
 
 
-    public static <GenParam> Endpoint<Boolean, GenericClass<GenParam>, ElasticsearchError> endpoint(
+    public static <GenParam> Endpoint<Boolean, GenericClass<GenParam>, OpenSearchError> endpoint(
         JsonpDeserializer<GenParam> genParamDeserializer
     ) {
         return new Endpoint.Simple<>(

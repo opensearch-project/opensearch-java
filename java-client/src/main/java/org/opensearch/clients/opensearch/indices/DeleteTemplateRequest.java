@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch.indices;
 
 import jakarta.json.JsonValue;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -132,7 +132,7 @@ public final class DeleteTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.delete_template}".
 	 */
-	public static final Endpoint<DeleteTemplateRequest, DeleteTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteTemplateRequest, DeleteTemplateResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "DELETE";

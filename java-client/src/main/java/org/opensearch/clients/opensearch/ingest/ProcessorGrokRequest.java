@@ -23,7 +23,7 @@
 
 package org.opensearch.clients.opensearch.ingest;
 
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.json.JsonpDeserializer;
@@ -48,7 +48,7 @@ public final class ProcessorGrokRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ingest.processor_grok}".
 	 */
-	public static final Endpoint<ProcessorGrokRequest, ProcessorGrokResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ProcessorGrokRequest, ProcessorGrokResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "GET";

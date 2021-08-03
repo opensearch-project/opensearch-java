@@ -23,7 +23,7 @@
 
 package org.opensearch.clients.opensearch._global;
 
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -108,7 +108,7 @@ public final class ReindexRethrottleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code reindex_rethrottle}".
 	 */
-	public static final Endpoint<ReindexRethrottleRequest, ReindexRethrottleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ReindexRethrottleRequest, ReindexRethrottleResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

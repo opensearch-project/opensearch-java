@@ -25,6 +25,9 @@ allprojects {
 
     repositories {
         mavenCentral()
+        mavenLocal()
+        maven(url = "https://plugins.gradle.org/m2/")
+        jcenter()
     }
 
     apply(plugin = "checkstyle")
@@ -68,7 +71,7 @@ tasks.register<Task>(name = "publishForReleaseManager") {
         val releaseDir = File(rootProject.buildDir, "release")
         releaseDir.mkdirs()
 
-        File(rootProject.buildDir, "repository/co/elastic/clients").listFiles()?.forEach { artifact ->
+        File(rootProject.buildDir, "repository/org/opensearch/clients").listFiles()?.forEach { artifact ->
             println("Releasing artifact " + artifact.name)
 
             val versionDir = File(artifact, version)

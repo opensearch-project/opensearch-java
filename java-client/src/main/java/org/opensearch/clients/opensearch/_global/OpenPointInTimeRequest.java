@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.JsonValue;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -132,7 +132,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code open_point_in_time}".
 	 */
-	public static final Endpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

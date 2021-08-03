@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._global.mtermvectors.Operation;
 import org.opensearch.clients.opensearch._types.RequestBase;
@@ -544,7 +544,7 @@ public final class MtermvectorsRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code mtermvectors}".
 	 */
-	public static final Endpoint<MtermvectorsRequest, MtermvectorsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<MtermvectorsRequest, MtermvectorsResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

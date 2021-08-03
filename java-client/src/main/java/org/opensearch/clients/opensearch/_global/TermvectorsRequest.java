@@ -25,7 +25,7 @@ package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._global.termvectors.Filter;
 import org.opensearch.clients.opensearch._types.RequestBase;
@@ -584,7 +584,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	/**
 	 * Endpoint "{@code termvectors}".
 	 */
-	public static final Endpoint<TermvectorsRequest<?>, TermvectorsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<TermvectorsRequest<?>, TermvectorsResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch.indices;
 
 import jakarta.json.JsonValue;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.util.ObjectBuilder;
@@ -111,7 +111,7 @@ public final class GetDataStreamRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.get_data_stream}".
 	 */
-	public static final Endpoint<GetDataStreamRequest, GetDataStreamResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetDataStreamRequest, GetDataStreamResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "GET";

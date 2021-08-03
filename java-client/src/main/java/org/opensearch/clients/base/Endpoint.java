@@ -75,7 +75,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
   @Nullable
   JsonpDeserializer<ErrorT> errorParser(int statusCode);
 
-  class Simple<RequestT, ResponseT> implements Endpoint<RequestT, ResponseT, ElasticsearchError> {
+  class Simple<RequestT, ResponseT> implements Endpoint<RequestT, ResponseT, OpenSearchError> {
 
     private static final Function<?, Map<String, String>> EMPTY_MAP = x -> Collections.emptyMap();
 
@@ -148,8 +148,8 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     }
 
     @Override
-    public JsonpDeserializer<ElasticsearchError> errorParser(int statusCode) {
-      return ElasticsearchError.PARSER;
+    public JsonpDeserializer<OpenSearchError> errorParser(int statusCode) {
+      return OpenSearchError.PARSER;
     }
 
     public <NewResponseT> Simple<RequestT, NewResponseT> withResponseDeserializer(JsonpDeserializer<NewResponseT> newResponseParser) {

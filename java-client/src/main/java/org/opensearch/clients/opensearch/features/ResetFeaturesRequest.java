@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch.features;
 
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.json.DelegatingDeserializer;
@@ -161,7 +161,7 @@ public final class ResetFeaturesRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code features.reset_features}".
 	 */
-	public static final Endpoint<ResetFeaturesRequest, ResetFeaturesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ResetFeaturesRequest, ResetFeaturesResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
 			// Request method
 			request -> {
 				return "POST";

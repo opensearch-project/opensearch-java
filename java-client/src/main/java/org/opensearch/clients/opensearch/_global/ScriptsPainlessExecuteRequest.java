@@ -24,7 +24,7 @@
 package org.opensearch.clients.opensearch._global;
 
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.clients.base.ElasticsearchError;
+import org.opensearch.clients.base.OpenSearchError;
 import org.opensearch.clients.base.Endpoint;
 import org.opensearch.clients.opensearch._global.scripts_painless_execute.PainlessContextSetup;
 import org.opensearch.clients.opensearch._types.InlineScript;
@@ -227,7 +227,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	/**
 	 * Create an "{@code scripts_painless_execute}" endpoint.
 	 */
-	public static <TResult> Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ElasticsearchError>
+	public static <TResult> Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, OpenSearchError>
 	createScriptsPainlessExecuteEndpoint(JsonpDeserializer<TResult> tResultDeserializer) {
 		return ENDPOINT.withResponseDeserializer(
 				ScriptsPainlessExecuteResponse.createScriptsPainlessExecuteResponseDeserializer(tResultDeserializer));

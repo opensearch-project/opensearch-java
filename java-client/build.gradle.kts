@@ -21,6 +21,15 @@ import com.github.jk1.license.ProjectData
 import com.github.jk1.license.render.ReportRenderer
 import java.io.FileWriter
 
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven(url = "https://plugins.gradle.org/m2/")
+        jcenter()
+    }
+}
+
 plugins {
     java
     checkstyle
@@ -29,8 +38,8 @@ plugins {
 }
 
 java {
-    targetCompatibility = JavaVersion.VERSION_1_8
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_10
+    sourceCompatibility = JavaVersion.VERSION_1_10
 
     withJavadocJar()
     withSourcesJar()
@@ -107,11 +116,11 @@ publishing {
 }
 
 dependencies {
-    val elasticsearchVersion = "7.12.0"
+    val opensearchVersion = "1.0.0-SNAPSHOT"
     val jacksonVersion = "2.12.0"
 
     // Apache 2.0
-    implementation("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
+    implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
 
     // Apache 2.0
     implementation("com.google.code.findbugs:jsr305:3.0.2")
@@ -144,14 +153,14 @@ dependencies {
     testImplementation("junit", "junit" , "4.12")
 
     // MIT
-    testImplementation("org.testcontainers", "testcontainers", "1.15.3")
-    testImplementation("org.testcontainers", "elasticsearch", "1.15.3")
+    // testImplementation("org.testcontainers", "testcontainers", "1.15.3")
+    // testImplementation("org.testcontainers", "elasticsearch", "1.15.3")
 }
 
 
 licenseReport {
     renderers = arrayOf(SpdxReporter(File(rootProject.buildDir, "release/dependencies.csv")))
-    excludeGroups = arrayOf("org.elasticsearch.client")
+    excludeGroups = arrayOf("org.opensearch.client")
 }
 
 class SpdxReporter(val dest: File) : ReportRenderer {

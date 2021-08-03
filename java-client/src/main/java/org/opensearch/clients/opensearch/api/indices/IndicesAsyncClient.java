@@ -23,7 +23,7 @@
 
 package org.opensearch.clients.opensearch.api.indices;
 
-import org.elasticsearch.client.RequestOptions;
+import org.opensearch.client.RequestOptions;
 import org.opensearch.clients.base.ApiClient;
 import org.opensearch.clients.base.BooleanResponse;
 import org.opensearch.clients.base.Transport;
