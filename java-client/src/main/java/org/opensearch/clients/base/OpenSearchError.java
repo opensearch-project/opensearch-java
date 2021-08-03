@@ -1,4 +1,12 @@
 /*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
+/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -17,6 +25,11 @@
  * under the License.
  */
 
+/*
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
+ */
+
 package org.opensearch.clients.base;
 
 import org.opensearch.clients.json.JsonpDeserializer;
@@ -25,7 +38,7 @@ import org.opensearch.clients.json.ObjectDeserializer;
 public class OpenSearchError {
 
   // TODO: add fields for the detailed representation of errors
-  // See org.elasticsearch.rest.BytesRestResponse.build() and ElasticsearchException
+  // See org.opensearch.rest.BytesRestResponse.build() and OpenSearchException
 
   private int status;
   private String error;
