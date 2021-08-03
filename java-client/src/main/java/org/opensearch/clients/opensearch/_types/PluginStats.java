@@ -42,7 +42,7 @@ public final class PluginStats implements ToJsonp {
 
 	private final String description;
 
-	private final String elasticsearchVersion;
+	private final String opensearchVersion;
 
 	private final List<String> extendedPlugins;
 
@@ -64,7 +64,7 @@ public final class PluginStats implements ToJsonp {
 
 		this.classname = Objects.requireNonNull(builder.classname, "classname");
 		this.description = Objects.requireNonNull(builder.description, "description");
-		this.elasticsearchVersion = Objects.requireNonNull(builder.elasticsearchVersion, "elasticsearch_version");
+		this.opensearchVersion = Objects.requireNonNull(builder.opensearchVersion, "opensearch_version");
 		this.extendedPlugins = Objects.requireNonNull(builder.extendedPlugins, "extended_plugins");
 		this.hasNativeController = Objects.requireNonNull(builder.hasNativeController, "has_native_controller");
 		this.javaVersion = Objects.requireNonNull(builder.javaVersion, "java_version");
@@ -90,10 +90,10 @@ public final class PluginStats implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code elasticsearch_version}
+	 * API name: {@code opensearch_version}
 	 */
-	public String elasticsearchVersion() {
-		return this.elasticsearchVersion;
+	public String opensearchVersion() {
+		return this.opensearchVersion;
 	}
 
 	/**
@@ -162,8 +162,8 @@ public final class PluginStats implements ToJsonp {
 		generator.writeKey("description");
 		generator.write(this.description);
 
-		generator.writeKey("elasticsearch_version");
-		generator.write(this.elasticsearchVersion);
+		generator.writeKey("opensearch_version");
+		generator.write(this.opensearchVersion);
 
 		generator.writeKey("extended_plugins");
 		generator.writeStartArray();
@@ -203,7 +203,7 @@ public final class PluginStats implements ToJsonp {
 
 		private String description;
 
-		private String elasticsearchVersion;
+		private String opensearchVersion;
 
 		private List<String> extendedPlugins;
 
@@ -236,10 +236,10 @@ public final class PluginStats implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code elasticsearch_version}
+		 * API name: {@code opensearch_version}
 		 */
-		public Builder elasticsearchVersion(String value) {
-			this.elasticsearchVersion = value;
+		public Builder opensearchVersion(String value) {
+			this.opensearchVersion = value;
 			return this;
 		}
 
@@ -342,7 +342,7 @@ public final class PluginStats implements ToJsonp {
 
 		op.add(Builder::classname, JsonpDeserializer.stringDeserializer(), "classname");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::elasticsearchVersion, JsonpDeserializer.stringDeserializer(), "elasticsearch_version");
+		op.add(Builder::opensearchVersion, JsonpDeserializer.stringDeserializer(), "opensearch_version");
 		op.add(Builder::extendedPlugins, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"extended_plugins");
 		op.add(Builder::hasNativeController, JsonpDeserializer.booleanDeserializer(), "has_native_controller");
