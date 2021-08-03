@@ -121,7 +121,6 @@ import org.opensearch.clients.transport.TransportOptions;
 import org.opensearch.clients.transport.endpoints.BooleanResponse;
 import org.opensearch.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import org.opensearch.clients.util.ObjectBuilder;
-
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -129,19 +128,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the namespace.
  */
-public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, ElasticsearchClient> {
+public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSearchClient> {
 
-	public ElasticsearchClient(ElasticsearchTransport transport) {
+	public OpenSearchClient(ElasticsearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+	public OpenSearchClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchClient(this.transport, transportOptions);
+	public OpenSearchClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpenSearchClient(this.transport, transportOptions);
 	}
 
 	// ----- Child clients

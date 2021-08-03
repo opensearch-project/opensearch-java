@@ -19,7 +19,7 @@
 
 package org.opensearch.clients.documentation;
 
-import org.opensearch.clients.opensearch.ElasticsearchClient;
+import org.opensearch.clients.opensearch.OpenSearchClient;
 import org.opensearch.clients.json.jackson.JacksonJsonpMapper;
 import org.opensearch.clients.transport.ElasticsearchTransport;
 import org.opensearch.clients.transport.rest_client.RestClientTransport;
@@ -57,7 +57,7 @@ public class MigrateHlrcTest {
             new JacksonJsonpMapper()
         );
 
-        ElasticsearchClient esClient = new ElasticsearchClient(transport);
+        OpenSearchClient esClient = new OpenSearchClient(transport);
 
         // hlrc and esClient share the same httpClient
         //end::migrate
