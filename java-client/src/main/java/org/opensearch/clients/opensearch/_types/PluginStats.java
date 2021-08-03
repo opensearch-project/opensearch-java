@@ -46,7 +46,7 @@ public class PluginStats implements JsonpSerializable {
 
 	private final String description;
 
-	private final String elasticsearchVersion;
+	private final String opensearchVersion;
 
 	private final List<String> extendedPlugins;
 
@@ -68,8 +68,8 @@ public class PluginStats implements JsonpSerializable {
 
 		this.classname = ModelTypeHelper.requireNonNull(builder.classname, this, "classname");
 		this.description = ModelTypeHelper.requireNonNull(builder.description, this, "description");
-		this.elasticsearchVersion = ModelTypeHelper.requireNonNull(builder.elasticsearchVersion, this,
-				"elasticsearchVersion");
+		this.opensearchVersion = ModelTypeHelper.requireNonNull(builder.opensearchVersion, this,
+				"opensearchVersion");
 		this.extendedPlugins = ModelTypeHelper.unmodifiableRequired(builder.extendedPlugins, this, "extendedPlugins");
 		this.hasNativeController = ModelTypeHelper.requireNonNull(builder.hasNativeController, this,
 				"hasNativeController");
@@ -100,10 +100,10 @@ public class PluginStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code elasticsearch_version}
+	 * API name: {@code opensearch_version}
 	 */
-	public final String elasticsearchVersion() {
-		return this.elasticsearchVersion;
+	public String opensearchVersion() {
+		return this.opensearchVersion;
 	}
 
 	/**
@@ -172,8 +172,8 @@ public class PluginStats implements JsonpSerializable {
 		generator.writeKey("description");
 		generator.write(this.description);
 
-		generator.writeKey("elasticsearch_version");
-		generator.write(this.elasticsearchVersion);
+		generator.writeKey("opensearch_version");
+		generator.write(this.opensearchVersion);
 
 		if (ModelTypeHelper.isDefined(this.extendedPlugins)) {
 			generator.writeKey("extended_plugins");
@@ -215,7 +215,7 @@ public class PluginStats implements JsonpSerializable {
 
 		private String description;
 
-		private String elasticsearchVersion;
+		private String opensearchVersion;
 
 		private List<String> extendedPlugins;
 
@@ -250,8 +250,8 @@ public class PluginStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code elasticsearch_version}
 		 */
-		public final Builder elasticsearchVersion(String value) {
-			this.elasticsearchVersion = value;
+		public final Builder opensearchVersion(String value) {
+			this.opensearchVersion = value;
 			return this;
 		}
 
@@ -344,7 +344,7 @@ public class PluginStats implements JsonpSerializable {
 
 		op.add(Builder::classname, JsonpDeserializer.stringDeserializer(), "classname");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::elasticsearchVersion, JsonpDeserializer.stringDeserializer(), "elasticsearch_version");
+		op.add(Builder::opensearchVersion, JsonpDeserializer.stringDeserializer(), "opensearch_version");
 		op.add(Builder::extendedPlugins, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"extended_plugins");
 		op.add(Builder::hasNativeController, JsonpDeserializer.booleanDeserializer(), "has_native_controller");
