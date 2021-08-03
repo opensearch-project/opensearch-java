@@ -19,8 +19,8 @@
 
 package org.opensearch.clients.opensearch.end_to_end;
 
-import org.opensearch.clients.opensearch.ElasticsearchAsyncClient;
-import org.opensearch.clients.opensearch.ElasticsearchClient;
+import org.opensearch.clients.opensearch.OpenSearchClient;
+import org.opensearch.clients.opensearch.OpenSearchAsyncClient;
 import org.opensearch.clients.opensearch._types.ElasticsearchException;
 import org.opensearch.clients.opensearch._types.Refresh;
 import org.opensearch.clients.opensearch._types.aggregations.HistogramAggregate;
@@ -72,7 +72,7 @@ public class RequestTest extends Assert {
     private static final JsonpMapper mapper = new JsonbJsonpMapper();
     private static RestClient restClient;
     private static ElasticsearchTransport transport;
-    private static ElasticsearchClient client;
+    private static OpenSearchClient client;
 
     @BeforeClass
     public static void setup() {
@@ -90,7 +90,7 @@ public class RequestTest extends Assert {
             .setHttpClientConfigCallback(hc -> hc.setDefaultCredentialsProvider(credsProv))
             .build();
         transport = new RestClientTransport(restClient, mapper);
-        client = new ElasticsearchClient(transport);
+        client = new OpenSearchClient(transport);
     }
 
     @AfterClass
@@ -108,7 +108,7 @@ public class RequestTest extends Assert {
 
     @Test
     public void testIndexCreation() throws Exception {
-        ElasticsearchAsyncClient asyncClient = new ElasticsearchAsyncClient(transport);
+        OpenSearchAsyncClient asyncClient = new OpenSearchAsyncClient(transport);
 
         // Ping the server
         assertTrue(client.ping().value());
@@ -287,7 +287,7 @@ public class RequestTest extends Assert {
 
 
         ExecutionException ee = assertThrows(ExecutionException.class, () -> {
-            ElasticsearchAsyncClient aClient = new ElasticsearchAsyncClient(transport);
+            OpenSearchAsyncClient aClient = new OpenSearchAsyncClient(transport);
             GetResponse<String> response = aClient.get(
                 _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             ).get();

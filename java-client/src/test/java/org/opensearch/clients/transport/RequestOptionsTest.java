@@ -19,7 +19,7 @@
 
 package org.opensearch.clients.transport;
 
-import org.opensearch.clients.opensearch.ElasticsearchClient;
+import org.opensearch.clients.opensearch.OpenSearchClient;
 import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.clients.transport.rest_client.RestClientTransport;
 import com.sun.net.httpserver.HttpServer;
@@ -93,7 +93,7 @@ public class RequestOptionsTest extends Assert {
         restClient.close();
     }
 
-    private Properties getProps(ElasticsearchClient client) throws IOException {
+    private Properties getProps(OpenSearchClient client) throws IOException {
         ResponseException ex = assertThrows(ResponseException.class, client::info);
         assertEquals(418, ex.getResponse().getStatusLine().getStatusCode());
         Properties result = new Properties();
@@ -104,7 +104,7 @@ public class RequestOptionsTest extends Assert {
     @Test
     public void testDefaultHeaders() throws IOException {
         final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
-        final ElasticsearchClient client = new ElasticsearchClient(trsp);
+        final OpenSearchClient client = new OpenSearchClient(trsp);
 
         Properties props = getProps(client);
 
@@ -119,7 +119,7 @@ public class RequestOptionsTest extends Assert {
     @Test
     public void testClientHeader() throws IOException {
         final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
-        final ElasticsearchClient client = new ElasticsearchClient(trsp)
+        final OpenSearchClient client = new OpenSearchClient(trsp)
             .withTransportOptions(trsp.options().with(
                 b -> b.addHeader("X-Foo", "Bar")
                     .addHeader("uSer-agEnt", "MegaClient/1.2.3")
@@ -134,7 +134,7 @@ public class RequestOptionsTest extends Assert {
     @Test
     public void testQueryParameter() throws IOException {
         final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
-        final ElasticsearchClient client = new ElasticsearchClient(trsp)
+        final OpenSearchClient client = new OpenSearchClient(trsp)
             .withTransportOptions(trsp.options().with(
                     b -> b.setParameter("format", "pretty")
                 )
@@ -147,7 +147,7 @@ public class RequestOptionsTest extends Assert {
     @Test
     public void testMissingProductHeader() {
         final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
-        final ElasticsearchClient client = new ElasticsearchClient(trsp);
+        final OpenSearchClient client = new OpenSearchClient(trsp);
 
         final TransportException ex = assertThrows(TransportException.class, client::ping);
         assertTrue(ex.getMessage().contains("Missing [X-Elastic-Product] header"));
