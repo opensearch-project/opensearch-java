@@ -25,8 +25,6 @@ package org.opensearch.clients.util;
  * Unlike most other functional interfaces, {@code TriConsumer} is expected
  * to operate via side-effects.
  *
- * @see java.util.function.Consumer
- * @see java.util.function.BiConsumer
  */
 @FunctionalInterface
 public interface TriConsumer<T, U, V> {

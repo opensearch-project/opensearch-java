@@ -27,8 +27,6 @@ package org.opensearch.clients.util;
  * @param <U> the type of the second argument to the function
  * @param <R> the type of the result of the function
  *
- * @see java.util.function.Function
- * @see java.util.function.BiFunction
  */
 @FunctionalInterface
 public interface TriFunction<T, U, V, R> {

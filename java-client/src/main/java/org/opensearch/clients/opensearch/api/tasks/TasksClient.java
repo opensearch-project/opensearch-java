@@ -56,7 +56,6 @@ public class TasksClient extends ApiClient<TasksClient> {
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 */
 
 	public CancelResponse cancel(CancelRequest request) throws IOException {
@@ -66,7 +65,6 @@ public class TasksClient extends ApiClient<TasksClient> {
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -83,7 +81,6 @@ public class TasksClient extends ApiClient<TasksClient> {
 	/**
 	 * Returns information about a task.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 */
 
 	public GetResponse get(GetRequest request) throws IOException {
@@ -93,7 +90,6 @@ public class TasksClient extends ApiClient<TasksClient> {
 	/**
 	 * Returns information about a task.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -109,7 +105,6 @@ public class TasksClient extends ApiClient<TasksClient> {
 	/**
 	 * Returns a list of tasks.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 */
 
 	public ListResponse list(ListRequest request) throws IOException {
@@ -119,7 +114,6 @@ public class TasksClient extends ApiClient<TasksClient> {
 	/**
 	 * Returns a list of tasks.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

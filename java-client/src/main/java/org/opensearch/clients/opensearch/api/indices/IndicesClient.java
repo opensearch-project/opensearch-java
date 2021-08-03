@@ -154,7 +154,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Adds a block to an index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html"
 	 */
 
 	public AddBlockResponse addBlock(AddBlockRequest request) throws IOException {
@@ -164,7 +163,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Adds a block to an index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -182,7 +180,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Performs the analysis process on a text and return the tokens breakdown of
 	 * the text.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-analyze.html"
 	 */
 
 	public AnalyzeResponse analyze(AnalyzeRequest request) throws IOException {
@@ -193,7 +190,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Performs the analysis process on a text and return the tokens breakdown of
 	 * the text.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-analyze.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -210,7 +206,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Clears all or specific caches for one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html"
 	 */
 
 	public ClearCacheResponse clearCache(ClearCacheRequest request) throws IOException {
@@ -220,7 +215,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Clears all or specific caches for one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -237,7 +231,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Clones an index
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clone-index.html"
 	 */
 
 	public CloneResponse clone(CloneRequest request) throws IOException {
@@ -247,7 +240,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Clones an index
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clone-index.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -264,7 +256,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Closes an index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html"
 	 */
 
 	public CloseResponse close(CloseRequest request) throws IOException {
@@ -274,7 +265,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Closes an index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -291,7 +281,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Creates an index with optional settings and mappings.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-create-index.html"
 	 */
 
 	public CreateResponse create(CreateRequest request) throws IOException {
@@ -301,7 +290,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Creates an index with optional settings and mappings.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-create-index.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -318,7 +306,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Creates a data stream
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html"
 	 */
 
 	public CreateDataStreamResponse createDataStream(CreateDataStreamRequest request) throws IOException {
@@ -328,7 +315,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Creates a data stream
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -345,7 +331,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Provides statistics on operations happening in a data stream.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html"
 	 */
 
 	public DataStreamsStatsResponse dataStreamsStats(DataStreamsStatsRequest request) throws IOException {
@@ -355,7 +340,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Provides statistics on operations happening in a data stream.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -372,7 +356,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Deletes an index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-index.html"
 	 */
 
 	public DeleteResponse delete(DeleteRequest request) throws IOException {
@@ -382,7 +365,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Deletes an index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-index.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -399,7 +381,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Deletes an alias.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html"
 	 */
 
 	public DeleteAliasResponse deleteAlias(DeleteAliasRequest request) throws IOException {
@@ -409,7 +390,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Deletes an alias.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -426,7 +406,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Deletes a data stream.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html"
 	 */
 
 	public DeleteDataStreamResponse deleteDataStream(DeleteDataStreamRequest request) throws IOException {
@@ -436,7 +415,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Deletes a data stream.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -453,7 +431,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Deletes an index template.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 */
 
 	public DeleteIndexTemplateResponse deleteIndexTemplate(DeleteIndexTemplateRequest request) throws IOException {
@@ -463,7 +440,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Deletes an index template.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -481,7 +457,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Deletes an index template.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 */
 
 	public DeleteTemplateResponse deleteTemplate(DeleteTemplateRequest request) throws IOException {
@@ -491,7 +466,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Deletes an index template.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -508,7 +482,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about whether a particular index exists.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html"
 	 */
 
 	public BooleanResponse exists(ExistsRequest request) throws IOException {
@@ -518,7 +491,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about whether a particular index exists.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -535,7 +507,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about whether a particular alias exists.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html"
 	 */
 
 	public BooleanResponse existsAlias(ExistsAliasRequest request) throws IOException {
@@ -545,7 +516,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about whether a particular alias exists.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -562,7 +532,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about whether a particular index template exists.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 */
 
 	public BooleanResponse existsIndexTemplate(ExistsIndexTemplateRequest request) throws IOException {
@@ -572,7 +541,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about whether a particular index template exists.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -590,7 +558,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about whether a particular index template exists.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 */
 
 	public BooleanResponse existsTemplate(ExistsTemplateRequest request) throws IOException {
@@ -600,7 +567,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about whether a particular index template exists.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -618,7 +584,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Returns information about whether a particular document type exists.
 	 * (DEPRECATED)
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-types-exists.html"
 	 */
 
 	public BooleanResponse existsType(ExistsTypeRequest request) throws IOException {
@@ -629,7 +594,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Returns information about whether a particular document type exists.
 	 * (DEPRECATED)
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-types-exists.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -646,7 +610,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Performs the flush operation on one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-flush.html"
 	 */
 
 	public FlushResponse flush(FlushRequest request) throws IOException {
@@ -656,7 +619,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Performs the flush operation on one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-flush.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -674,7 +636,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Performs a synced flush operation on one or more indices. Synced flush is
 	 * deprecated and will be removed in 8.0. Use flush instead
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-synced-flush-api.html"
 	 */
 
 	public FlushSyncedResponse flushSynced(FlushSyncedRequest request) throws IOException {
@@ -685,7 +646,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Performs a synced flush operation on one or more indices. Synced flush is
 	 * deprecated and will be removed in 8.0. Use flush instead
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-synced-flush-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -702,7 +662,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Performs the force merge operation on one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html"
 	 */
 
 	public ForcemergeResponse forcemerge(ForcemergeRequest request) throws IOException {
@@ -712,7 +671,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Performs the force merge operation on one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -730,7 +688,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Freezes an index. A frozen index has almost no overhead on the cluster
 	 * (except for maintaining its metadata in memory) and is read-only.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/freeze-index-api.html"
 	 */
 
 	public FreezeResponse freeze(FreezeRequest request) throws IOException {
@@ -741,7 +698,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Freezes an index. A frozen index has almost no overhead on the cluster
 	 * (except for maintaining its metadata in memory) and is read-only.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/freeze-index-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -758,7 +714,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-index.html"
 	 */
 
 	public GetResponse get(GetRequest request) throws IOException {
@@ -768,7 +723,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-index.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -784,7 +738,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns an alias.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html"
 	 */
 
 	public GetAliasResponse getAlias(GetAliasRequest request) throws IOException {
@@ -794,7 +747,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns an alias.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -811,7 +763,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns data streams.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html"
 	 */
 
 	public GetDataStreamResponse getDataStream(GetDataStreamRequest request) throws IOException {
@@ -821,7 +772,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns data streams.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -838,7 +788,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns mapping for one or more fields.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-field-mapping.html"
 	 */
 
 	public GetFieldMappingResponse getFieldMapping(GetFieldMappingRequest request) throws IOException {
@@ -848,7 +797,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns mapping for one or more fields.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-field-mapping.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -865,7 +813,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns an index template.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 */
 
 	public GetIndexTemplateResponse getIndexTemplate(GetIndexTemplateRequest request) throws IOException {
@@ -875,7 +822,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns an index template.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -892,7 +838,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns mappings for one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html"
 	 */
 
 	public GetMappingResponse getMapping(GetMappingRequest request) throws IOException {
@@ -902,7 +847,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns mappings for one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -919,7 +863,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns settings for one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html"
 	 */
 
 	public GetSettingsResponse getSettings(GetSettingsRequest request) throws IOException {
@@ -929,7 +872,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns settings for one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -946,7 +888,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns an index template.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 */
 
 	public GetTemplateResponse getTemplate(GetTemplateRequest request) throws IOException {
@@ -956,7 +897,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns an index template.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -973,7 +913,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * DEPRECATED Returns a progress status of current upgrade.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html"
 	 */
 
 	public GetUpgradeResponse getUpgrade(GetUpgradeRequest request) throws IOException {
@@ -983,7 +922,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * DEPRECATED Returns a progress status of current upgrade.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1000,7 +938,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Migrates an alias to a data stream
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html"
 	 */
 
 	public MigrateToDataStreamResponse migrateToDataStream(MigrateToDataStreamRequest request) throws IOException {
@@ -1010,7 +947,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Migrates an alias to a data stream
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1028,7 +964,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Opens an index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html"
 	 */
 
 	public OpenResponse open(OpenRequest request) throws IOException {
@@ -1038,7 +973,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Opens an index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1054,7 +988,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Creates or updates an alias.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html"
 	 */
 
 	public PutAliasResponse putAlias(PutAliasRequest request) throws IOException {
@@ -1064,7 +997,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Creates or updates an alias.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1081,7 +1013,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Creates or updates an index template.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 */
 
 	public PutIndexTemplateResponse putIndexTemplate(PutIndexTemplateRequest request) throws IOException {
@@ -1091,7 +1022,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Creates or updates an index template.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1108,7 +1038,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Updates the index mappings.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-mapping.html"
 	 */
 
 	public PutMappingResponse putMapping(PutMappingRequest request) throws IOException {
@@ -1118,7 +1047,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Updates the index mappings.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-mapping.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1135,7 +1063,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Updates the index settings.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html"
 	 */
 
 	public PutSettingsResponse putSettings(PutSettingsRequest request) throws IOException {
@@ -1145,7 +1072,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Updates the index settings.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1162,7 +1088,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Creates or updates an index template.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 */
 
 	public PutTemplateResponse putTemplate(PutTemplateRequest request) throws IOException {
@@ -1172,7 +1097,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Creates or updates an index template.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1189,7 +1113,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about ongoing index shard recoveries.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html"
 	 */
 
 	public RecoveryResponse recovery(RecoveryRequest request) throws IOException {
@@ -1199,7 +1122,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about ongoing index shard recoveries.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1216,7 +1138,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Performs the refresh operation in one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html"
 	 */
 
 	public RefreshResponse refresh(RefreshRequest request) throws IOException {
@@ -1226,7 +1147,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Performs the refresh operation in one or more indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1243,7 +1163,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Reloads an index's search analyzers and their resources.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-reload-analyzers.html"
 	 */
 
 	public ReloadSearchAnalyzersResponse reloadSearchAnalyzers(ReloadSearchAnalyzersRequest request)
@@ -1254,7 +1173,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Reloads an index's search analyzers and their resources.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-reload-analyzers.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1272,7 +1190,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about any matching indices, aliases, and data streams
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-index-api.html"
 	 */
 
 	public ResolveIndexResponse resolveIndex(ResolveIndexRequest request) throws IOException {
@@ -1282,7 +1199,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Returns information about any matching indices, aliases, and data streams
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-index-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1300,7 +1216,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Updates an alias to point to a new index when the existing index is
 	 * considered to be too large or too old.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-rollover-index.html"
 	 */
 
 	public RolloverResponse rollover(RolloverRequest request) throws IOException {
@@ -1311,7 +1226,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Updates an alias to point to a new index when the existing index is
 	 * considered to be too large or too old.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-rollover-index.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1328,7 +1242,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Provides low-level information about segments in a Lucene index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html"
 	 */
 
 	public SegmentsResponse segments(SegmentsRequest request) throws IOException {
@@ -1338,7 +1251,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Provides low-level information about segments in a Lucene index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1355,7 +1267,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Provides store information for shard copies of indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html"
 	 */
 
 	public ShardStoresResponse shardStores(ShardStoresRequest request) throws IOException {
@@ -1365,7 +1276,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Provides store information for shard copies of indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1382,7 +1292,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Allow to shrink an existing index into a new index with fewer primary shards.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shrink-index.html"
 	 */
 
 	public ShrinkResponse shrink(ShrinkRequest request) throws IOException {
@@ -1392,7 +1301,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Allow to shrink an existing index into a new index with fewer primary shards.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shrink-index.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1410,7 +1318,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Simulate matching the given index name against the index templates in the
 	 * system
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 */
 
 	public SimulateIndexTemplateResponse simulateIndexTemplate(SimulateIndexTemplateRequest request)
@@ -1422,7 +1329,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Simulate matching the given index name against the index templates in the
 	 * system
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1440,7 +1346,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Simulate resolving the given template name or body
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 */
 
 	public SimulateTemplateResponse simulateTemplate(SimulateTemplateRequest request) throws IOException {
@@ -1450,7 +1355,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Simulate resolving the given template name or body
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1468,7 +1372,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Allows you to split an existing index into a new index with more primary
 	 * shards.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-split-index.html"
 	 */
 
 	public SplitResponse split(SplitRequest request) throws IOException {
@@ -1479,7 +1382,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Allows you to split an existing index into a new index with more primary
 	 * shards.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-split-index.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1496,7 +1398,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Provides statistics on operations happening in an index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html"
 	 */
 
 	public StatsResponse stats(StatsRequest request) throws IOException {
@@ -1506,7 +1407,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Provides statistics on operations happening in an index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1524,7 +1424,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Unfreezes an index. When a frozen index is unfrozen, the index goes through
 	 * the normal recovery process and becomes writeable again.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/unfreeze-index-api.html"
 	 */
 
 	public UnfreezeResponse unfreeze(UnfreezeRequest request) throws IOException {
@@ -1535,7 +1434,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	 * Unfreezes an index. When a frozen index is unfrozen, the index goes through
 	 * the normal recovery process and becomes writeable again.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/unfreeze-index-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1552,7 +1450,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Updates index aliases.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html"
 	 */
 
 	public UpdateAliasesResponse updateAliases(UpdateAliasesRequest request) throws IOException {
@@ -1562,7 +1459,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Updates index aliases.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1579,7 +1475,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * DEPRECATED Upgrades to the current version of Lucene.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html"
 	 */
 
 	public UpgradeResponse upgrade(UpgradeRequest request) throws IOException {
@@ -1589,7 +1484,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * DEPRECATED Upgrades to the current version of Lucene.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -1606,7 +1500,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Allows a user to validate a potentially expensive query without executing it.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html"
 	 */
 
 	public ValidateQueryResponse validateQuery(ValidateQueryRequest request) throws IOException {
@@ -1616,7 +1509,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	/**
 	 * Allows a user to validate a potentially expensive query without executing it.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

@@ -72,7 +72,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Removes stale data from repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html"
 	 */
 
 	public CleanupRepositoryResponse cleanupRepository(CleanupRepositoryRequest request) throws IOException {
@@ -82,7 +81,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Removes stale data from repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -100,7 +98,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	 * Clones indices from one snapshot into another snapshot in the same
 	 * repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 */
 
 	public CloneResponse clone(CloneRequest request) throws IOException {
@@ -111,7 +108,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	 * Clones indices from one snapshot into another snapshot in the same
 	 * repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -128,7 +124,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Creates a snapshot in a repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 */
 
 	public CreateResponse create(CreateRequest request) throws IOException {
@@ -138,7 +133,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Creates a snapshot in a repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -155,7 +149,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Creates a repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 */
 
 	public CreateRepositoryResponse createRepository(CreateRepositoryRequest request) throws IOException {
@@ -165,7 +158,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Creates a repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -182,7 +174,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Deletes a snapshot.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 */
 
 	public DeleteResponse delete(DeleteRequest request) throws IOException {
@@ -192,7 +183,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Deletes a snapshot.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -209,7 +199,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Deletes a repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 */
 
 	public DeleteRepositoryResponse deleteRepository(DeleteRepositoryRequest request) throws IOException {
@@ -219,7 +208,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Deletes a repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -236,7 +224,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Returns information about a snapshot.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 */
 
 	public GetResponse get(GetRequest request) throws IOException {
@@ -246,7 +233,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Returns information about a snapshot.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -262,7 +248,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Returns information about a repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 */
 
 	public GetRepositoryResponse getRepository(GetRepositoryRequest request) throws IOException {
@@ -272,7 +257,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Returns information about a repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -289,7 +273,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Restores a snapshot.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 */
 
 	public RestoreResponse restore(RestoreRequest request) throws IOException {
@@ -299,7 +282,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Restores a snapshot.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -316,7 +298,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Returns information about the status of a snapshot.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 */
 
 	public StatusResponse status(StatusRequest request) throws IOException {
@@ -326,7 +307,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Returns information about the status of a snapshot.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -343,7 +323,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Verifies a repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 */
 
 	public VerifyRepositoryResponse verifyRepository(VerifyRepositoryRequest request) throws IOException {
@@ -353,7 +332,6 @@ public class SnapshotClient extends ApiClient<SnapshotClient> {
 	/**
 	 * Verifies a repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

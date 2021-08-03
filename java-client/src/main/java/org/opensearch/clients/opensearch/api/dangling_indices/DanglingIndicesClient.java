@@ -56,7 +56,6 @@ public class DanglingIndicesClient extends ApiClient<DanglingIndicesClient> {
 	/**
 	 * Deletes the specified dangling index
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
 	 */
 
 	public IndexDeleteResponse deleteDanglingIndex(IndexDeleteRequest request) throws IOException {
@@ -66,7 +65,6 @@ public class DanglingIndicesClient extends ApiClient<DanglingIndicesClient> {
 	/**
 	 * Deletes the specified dangling index
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -83,7 +81,6 @@ public class DanglingIndicesClient extends ApiClient<DanglingIndicesClient> {
 	/**
 	 * Imports the specified dangling index
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
 	 */
 
 	public IndexImportResponse importDanglingIndex(IndexImportRequest request) throws IOException {
@@ -93,7 +90,6 @@ public class DanglingIndicesClient extends ApiClient<DanglingIndicesClient> {
 	/**
 	 * Imports the specified dangling index
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -110,7 +106,6 @@ public class DanglingIndicesClient extends ApiClient<DanglingIndicesClient> {
 	/**
 	 * Returns all dangling indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
 	 */
 
 	public IndicesListResponse listDanglingIndices(IndicesListRequest request) throws IOException {
@@ -120,7 +115,6 @@ public class DanglingIndicesClient extends ApiClient<DanglingIndicesClient> {
 	/**
 	 * Returns all dangling indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

@@ -25,8 +25,6 @@ package org.opensearch.clients.util;
  * Unlike most other functional interfaces, {@code QuadConsumer} is expected
  * to operate via side-effects.
  *
- * @see java.util.function.Consumer
- * @see java.util.function.BiConsumer
  */
 @FunctionalInterface
 public interface QuadConsumer<T, U, V, X> {

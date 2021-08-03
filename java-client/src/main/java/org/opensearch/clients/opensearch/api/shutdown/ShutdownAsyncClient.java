@@ -57,7 +57,6 @@ public class ShutdownAsyncClient extends ApiClient<ShutdownAsyncClient> {
 	/**
 	 * Removes a node from the shutdown list
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
 	 */
 
 	public CompletableFuture<DeleteNodeResponse> deleteNode(DeleteNodeRequest request) throws IOException {
@@ -67,7 +66,6 @@ public class ShutdownAsyncClient extends ApiClient<ShutdownAsyncClient> {
 	/**
 	 * Removes a node from the shutdown list
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -84,7 +82,6 @@ public class ShutdownAsyncClient extends ApiClient<ShutdownAsyncClient> {
 	/**
 	 * Retrieve status of a node or nodes that are currently marked as shutting down
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
 	 */
 
 	public CompletableFuture<GetNodeResponse> getNode(GetNodeRequest request) throws IOException {
@@ -94,7 +91,6 @@ public class ShutdownAsyncClient extends ApiClient<ShutdownAsyncClient> {
 	/**
 	 * Retrieve status of a node or nodes that are currently marked as shutting down
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -111,7 +107,6 @@ public class ShutdownAsyncClient extends ApiClient<ShutdownAsyncClient> {
 	/**
 	 * Adds a node to be shut down
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
 	 */
 
 	public CompletableFuture<PutNodeResponse> putNode(PutNodeRequest request) throws IOException {
@@ -121,7 +116,6 @@ public class ShutdownAsyncClient extends ApiClient<ShutdownAsyncClient> {
 	/**
 	 * Adds a node to be shut down
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

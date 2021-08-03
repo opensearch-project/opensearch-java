@@ -63,7 +63,6 @@ public class IngestAsyncClient extends ApiClient<IngestAsyncClient> {
 	/**
 	 * Deletes a pipeline.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html"
 	 */
 
 	public CompletableFuture<DeletePipelineResponse> deletePipeline(DeletePipelineRequest request) throws IOException {
@@ -73,7 +72,6 @@ public class IngestAsyncClient extends ApiClient<IngestAsyncClient> {
 	/**
 	 * Deletes a pipeline.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -90,7 +88,6 @@ public class IngestAsyncClient extends ApiClient<IngestAsyncClient> {
 	/**
 	 * Returns statistical information about geoip databases
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/geoip-stats-api.html"
 	 */
 	public CompletableFuture<GeoIpStatsResponse> geoIpStats() throws IOException {
 		return this.transport.performRequestAsync(GeoIpStatsRequest.INSTANCE, GeoIpStatsRequest.ENDPOINT,
@@ -102,7 +99,6 @@ public class IngestAsyncClient extends ApiClient<IngestAsyncClient> {
 	/**
 	 * Returns a pipeline.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html"
 	 */
 
 	public CompletableFuture<GetPipelineResponse> getPipeline(GetPipelineRequest request) throws IOException {
@@ -112,7 +108,6 @@ public class IngestAsyncClient extends ApiClient<IngestAsyncClient> {
 	/**
 	 * Returns a pipeline.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -129,7 +124,6 @@ public class IngestAsyncClient extends ApiClient<IngestAsyncClient> {
 	/**
 	 * Returns a list of the built-in patterns.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/grok-processor.html#grok-processor-rest-get"
 	 */
 	public CompletableFuture<ProcessorGrokResponse> processorGrok() throws IOException {
 		return this.transport.performRequestAsync(ProcessorGrokRequest.INSTANCE, ProcessorGrokRequest.ENDPOINT,
@@ -141,7 +135,6 @@ public class IngestAsyncClient extends ApiClient<IngestAsyncClient> {
 	/**
 	 * Creates or updates a pipeline.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html"
 	 */
 
 	public CompletableFuture<PutPipelineResponse> putPipeline(PutPipelineRequest request) throws IOException {
@@ -151,7 +144,6 @@ public class IngestAsyncClient extends ApiClient<IngestAsyncClient> {
 	/**
 	 * Creates or updates a pipeline.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -168,7 +160,6 @@ public class IngestAsyncClient extends ApiClient<IngestAsyncClient> {
 	/**
 	 * Allows to simulate a pipeline with example documents.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html"
 	 */
 
 	public CompletableFuture<SimulatePipelineResponse> simulate(SimulatePipelineRequest request) throws IOException {
@@ -178,7 +169,6 @@ public class IngestAsyncClient extends ApiClient<IngestAsyncClient> {
 	/**
 	 * Allows to simulate a pipeline with example documents.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

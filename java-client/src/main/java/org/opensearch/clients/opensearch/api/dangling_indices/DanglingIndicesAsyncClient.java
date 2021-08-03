@@ -57,7 +57,6 @@ public class DanglingIndicesAsyncClient extends ApiClient<DanglingIndicesAsyncCl
 	/**
 	 * Deletes the specified dangling index
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
 	 */
 
 	public CompletableFuture<IndexDeleteResponse> deleteDanglingIndex(IndexDeleteRequest request) throws IOException {
@@ -67,7 +66,6 @@ public class DanglingIndicesAsyncClient extends ApiClient<DanglingIndicesAsyncCl
 	/**
 	 * Deletes the specified dangling index
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -84,7 +82,6 @@ public class DanglingIndicesAsyncClient extends ApiClient<DanglingIndicesAsyncCl
 	/**
 	 * Imports the specified dangling index
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
 	 */
 
 	public CompletableFuture<IndexImportResponse> importDanglingIndex(IndexImportRequest request) throws IOException {
@@ -94,7 +91,6 @@ public class DanglingIndicesAsyncClient extends ApiClient<DanglingIndicesAsyncCl
 	/**
 	 * Imports the specified dangling index
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -111,7 +107,6 @@ public class DanglingIndicesAsyncClient extends ApiClient<DanglingIndicesAsyncCl
 	/**
 	 * Returns all dangling indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
 	 */
 
 	public CompletableFuture<IndicesListResponse> listDanglingIndices(IndicesListRequest request) throws IOException {
@@ -121,7 +116,6 @@ public class DanglingIndicesAsyncClient extends ApiClient<DanglingIndicesAsyncCl
 	/**
 	 * Returns all dangling indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
