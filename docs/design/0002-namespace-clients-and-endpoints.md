@@ -68,7 +68,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
 A base implementation allows to quickly create an implementation for ES requests. The endpoint for a request lives as a static constant in the request class.
 
 ```java
-public static final Endpoint<FooRequest, FooResponse, ElasticsearchError> ENDPOINT =
+public static final Endpoint<FooRequest, FooResponse, OpenSearchError> ENDPOINT =
     new Endpoint.Simple<>(
       r -> "POST",
       r -> "/foo",
@@ -81,7 +81,7 @@ public static final Endpoint<FooRequest, FooResponse, ElasticsearchError> ENDPOI
 If a user wants to create a stripped-down version of the API with filtered field, they have to provide their own response class with a new endpoint that delegates to the original one.
 
 ```java
-public static final Endpoint<FooRequest, ReducedFooResponse, ElasticsearchError> FILTERED =
+public static final Endpoint<FooRequest, ReducedFooResponse, OpenSearchError> FILTERED =
     new Endpoint.Simple<>(
       FooRequest.ENDPOINT::method,
       FooRequest.ENDPOINT::requestUrl,

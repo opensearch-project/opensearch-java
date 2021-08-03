@@ -118,7 +118,6 @@ import org.opensearch.clients.transport.BooleanResponse;
 import org.opensearch.clients.transport.Transport;
 import org.opensearch.clients.transport.TransportOptions;
 import org.opensearch.clients.util.ObjectBuilder;
-
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
@@ -127,19 +126,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the namespace.
  */
-public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient> {
+public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
 
-    public ElasticsearchAsyncClient(Transport transport) {
+    public OpenSearchAsyncClient(Transport transport) {
         super(transport, null);
     }
 
-    public ElasticsearchAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+    public OpenSearchAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
     }
 
     @Override
-    public ElasticsearchAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-        return new ElasticsearchAsyncClient(this.transport, transportOptions);
+    public OpenSearchAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchAsyncClient(this.transport, transportOptions);
     }
 
     // ----- Child clients
