@@ -1,4 +1,12 @@
 /*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
+/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -17,6 +25,11 @@
  * under the License.
  */
 
+/*
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
+ */
+
 package org.opensearch.clients.util;
 
 /**
@@ -25,8 +38,6 @@ package org.opensearch.clients.util;
  * Unlike most other functional interfaces, {@code QuadConsumer} is expected
  * to operate via side-effects.
  *
- * @see java.util.function.Consumer
- * @see java.util.function.BiConsumer
  */
 @FunctionalInterface
 public interface QuadConsumer<T, U, V, X> {
