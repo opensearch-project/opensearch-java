@@ -1,4 +1,12 @@
 /*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
+/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -15,6 +23,11 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
+ */
+
+/*
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 //----------------------------------------------------
@@ -62,7 +75,6 @@ public class IngestClient extends ApiClient<IngestClient> {
 	/**
 	 * Deletes a pipeline.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html"
 	 */
 
 	public DeletePipelineResponse deletePipeline(DeletePipelineRequest request) throws IOException {
@@ -72,7 +84,6 @@ public class IngestClient extends ApiClient<IngestClient> {
 	/**
 	 * Deletes a pipeline.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -89,7 +100,6 @@ public class IngestClient extends ApiClient<IngestClient> {
 	/**
 	 * Returns statistical information about geoip databases
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/geoip-stats-api.html"
 	 */
 	public GeoIpStatsResponse geoIpStats() throws IOException {
 		return this.transport.performRequest(GeoIpStatsRequest.INSTANCE, GeoIpStatsRequest.ENDPOINT,
@@ -101,7 +111,6 @@ public class IngestClient extends ApiClient<IngestClient> {
 	/**
 	 * Returns a pipeline.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html"
 	 */
 
 	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException {
@@ -111,7 +120,6 @@ public class IngestClient extends ApiClient<IngestClient> {
 	/**
 	 * Returns a pipeline.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -128,7 +136,6 @@ public class IngestClient extends ApiClient<IngestClient> {
 	/**
 	 * Returns a list of the built-in patterns.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/grok-processor.html#grok-processor-rest-get"
 	 */
 	public ProcessorGrokResponse processorGrok() throws IOException {
 		return this.transport.performRequest(ProcessorGrokRequest.INSTANCE, ProcessorGrokRequest.ENDPOINT,
@@ -140,7 +147,6 @@ public class IngestClient extends ApiClient<IngestClient> {
 	/**
 	 * Creates or updates a pipeline.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html"
 	 */
 
 	public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException {
@@ -150,7 +156,6 @@ public class IngestClient extends ApiClient<IngestClient> {
 	/**
 	 * Creates or updates a pipeline.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -167,7 +172,6 @@ public class IngestClient extends ApiClient<IngestClient> {
 	/**
 	 * Allows to simulate a pipeline with example documents.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html"
 	 */
 
 	public SimulatePipelineResponse simulate(SimulatePipelineRequest request) throws IOException {
@@ -177,7 +181,6 @@ public class IngestClient extends ApiClient<IngestClient> {
 	/**
 	 * Allows to simulate a pipeline with example documents.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

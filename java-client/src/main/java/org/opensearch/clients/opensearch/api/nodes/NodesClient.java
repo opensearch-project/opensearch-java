@@ -1,4 +1,12 @@
 /*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
+/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -15,6 +23,11 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
+ */
+
+/*
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 //----------------------------------------------------
@@ -60,7 +73,6 @@ public class NodesClient extends ApiClient<NodesClient> {
 	/**
 	 * Returns information about hot threads on each node in the cluster.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html"
 	 */
 
 	public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException {
@@ -70,7 +82,6 @@ public class NodesClient extends ApiClient<NodesClient> {
 	/**
 	 * Returns information about hot threads on each node in the cluster.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -87,7 +98,6 @@ public class NodesClient extends ApiClient<NodesClient> {
 	/**
 	 * Returns information about nodes in the cluster.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html"
 	 */
 
 	public InfoResponse info(InfoRequest request) throws IOException {
@@ -97,7 +107,6 @@ public class NodesClient extends ApiClient<NodesClient> {
 	/**
 	 * Returns information about nodes in the cluster.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -113,7 +122,6 @@ public class NodesClient extends ApiClient<NodesClient> {
 	/**
 	 * Reloads secure settings.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings"
 	 */
 
 	public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request) throws IOException {
@@ -123,7 +131,6 @@ public class NodesClient extends ApiClient<NodesClient> {
 	/**
 	 * Reloads secure settings.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -141,7 +148,6 @@ public class NodesClient extends ApiClient<NodesClient> {
 	/**
 	 * Returns statistical information about nodes in the cluster.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html"
 	 */
 
 	public StatsResponse stats(StatsRequest request) throws IOException {
@@ -151,7 +157,6 @@ public class NodesClient extends ApiClient<NodesClient> {
 	/**
 	 * Returns statistical information about nodes in the cluster.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -168,7 +173,6 @@ public class NodesClient extends ApiClient<NodesClient> {
 	/**
 	 * Returns low-level information about REST actions usage on nodes.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html"
 	 */
 
 	public UsageResponse usage(UsageRequest request) throws IOException {
@@ -178,7 +182,6 @@ public class NodesClient extends ApiClient<NodesClient> {
 	/**
 	 * Returns low-level information about REST actions usage on nodes.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

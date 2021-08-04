@@ -1,4 +1,12 @@
 /*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
+/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -15,6 +23,11 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
+ */
+
+/*
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 //----------------------------------------------------
@@ -101,7 +114,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Shows information about currently configured aliases to indices including
 	 * filter and routing infos.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html"
 	 */
 
 	public AliasesResponse aliases(AliasesRequest request) throws IOException {
@@ -112,7 +124,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Shows information about currently configured aliases to indices including
 	 * filter and routing infos.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -130,7 +141,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Provides a snapshot of how many shards are allocated to each data node and
 	 * how much disk space they are using.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html"
 	 */
 
 	public AllocationResponse allocation(AllocationRequest request) throws IOException {
@@ -141,7 +151,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Provides a snapshot of how many shards are allocated to each data node and
 	 * how much disk space they are using.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -159,7 +168,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Provides quick access to the document count of the entire cluster, or
 	 * individual indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html"
 	 */
 
 	public CountResponse count(CountRequest request) throws IOException {
@@ -170,7 +178,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Provides quick access to the document count of the entire cluster, or
 	 * individual indices.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -188,7 +195,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Shows how much heap memory is currently being used by fielddata on every data
 	 * node in the cluster.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html"
 	 */
 
 	public FielddataResponse fielddata(FielddataRequest request) throws IOException {
@@ -199,7 +205,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Shows how much heap memory is currently being used by fielddata on every data
 	 * node in the cluster.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -216,7 +221,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns a concise representation of the cluster health.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html"
 	 */
 
 	public HealthResponse health(HealthRequest request) throws IOException {
@@ -226,7 +230,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns a concise representation of the cluster health.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -243,7 +246,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns help for the Cat APIs.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat.html"
 	 */
 	public HelpResponse help() throws IOException {
 		return this.transport.performRequest(HelpRequest.INSTANCE, HelpRequest.ENDPOINT, this.requestOptions);
@@ -255,7 +257,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Returns information about indices: number of primaries and replicas, document
 	 * counts, disk size, ...
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html"
 	 */
 
 	public IndicesResponse indices(IndicesRequest request) throws IOException {
@@ -266,7 +267,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Returns information about indices: number of primaries and replicas, document
 	 * counts, disk size, ...
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -283,7 +283,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns information about the master node.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-master.html"
 	 */
 	public MasterResponse master() throws IOException {
 		return this.transport.performRequest(MasterRequest.INSTANCE, MasterRequest.ENDPOINT, this.requestOptions);
@@ -294,7 +293,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Gets configuration and usage information about data frame analytics jobs.
 	 *
-	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-dfanalytics.html"
 	 */
 
 	public DataFrameAnalyticsResponse mlDataFrameAnalytics(DataFrameAnalyticsRequest request) throws IOException {
@@ -304,7 +302,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Gets configuration and usage information about data frame analytics jobs.
 	 *
-	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-dfanalytics.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -322,7 +319,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Gets configuration and usage information about datafeeds.
 	 *
-	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-datafeeds.html"
 	 */
 
 	public DatafeedsResponse mlDatafeeds(DatafeedsRequest request) throws IOException {
@@ -332,7 +328,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Gets configuration and usage information about datafeeds.
 	 *
-	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-datafeeds.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -349,7 +344,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Gets configuration and usage information about anomaly detection jobs.
 	 *
-	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-anomaly-detectors.html"
 	 */
 
 	public JobsResponse mlJobs(JobsRequest request) throws IOException {
@@ -359,7 +353,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Gets configuration and usage information about anomaly detection jobs.
 	 *
-	 * @see "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-anomaly-detectors.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -375,7 +368,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Gets configuration and usage information about inference trained models.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-trained-model.html"
 	 */
 
 	public TrainedModelsResponse mlTrainedModels(TrainedModelsRequest request) throws IOException {
@@ -385,7 +377,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Gets configuration and usage information about inference trained models.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-trained-model.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -402,7 +393,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns information about custom node attributes.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodeattrs.html"
 	 */
 	public NodeAttributesResponse nodeattrs() throws IOException {
 		return this.transport.performRequest(NodeAttributesRequest.INSTANCE, NodeAttributesRequest.ENDPOINT,
@@ -414,7 +404,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns basic statistics about performance of cluster nodes.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html"
 	 */
 
 	public NodesResponse nodes(NodesRequest request) throws IOException {
@@ -424,7 +413,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns basic statistics about performance of cluster nodes.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -441,7 +429,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns a concise representation of the cluster pending tasks.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-pending-tasks.html"
 	 */
 	public PendingTasksResponse pendingTasks() throws IOException {
 		return this.transport.performRequest(PendingTasksRequest.INSTANCE, PendingTasksRequest.ENDPOINT,
@@ -453,7 +440,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns information about installed plugins across nodes node.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-plugins.html"
 	 */
 	public PluginsResponse plugins() throws IOException {
 		return this.transport.performRequest(PluginsRequest.INSTANCE, PluginsRequest.ENDPOINT, this.requestOptions);
@@ -464,7 +450,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns information about index shard recoveries, both on-going completed.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html"
 	 */
 
 	public RecoveryResponse recovery(RecoveryRequest request) throws IOException {
@@ -474,7 +459,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns information about index shard recoveries, both on-going completed.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -491,7 +475,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns information about snapshot repositories registered in the cluster.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-repositories.html"
 	 */
 	public RepositoriesResponse repositories() throws IOException {
 		return this.transport.performRequest(RepositoriesRequest.INSTANCE, RepositoriesRequest.ENDPOINT,
@@ -503,7 +486,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Provides low-level information about the segments in the shards of an index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html"
 	 */
 
 	public SegmentsResponse segments(SegmentsRequest request) throws IOException {
@@ -513,7 +495,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Provides low-level information about the segments in the shards of an index.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -530,7 +511,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Provides a detailed view of shard allocation on nodes.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html"
 	 */
 
 	public ShardsResponse shards(ShardsRequest request) throws IOException {
@@ -540,7 +520,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Provides a detailed view of shard allocation on nodes.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -557,7 +536,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns all snapshots in a specific repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html"
 	 */
 
 	public SnapshotsResponse snapshots(SnapshotsRequest request) throws IOException {
@@ -567,7 +545,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns all snapshots in a specific repository.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -585,7 +562,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Returns information about the tasks currently executing on one or more nodes
 	 * in the cluster.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 */
 
 	public TasksResponse tasks(TasksRequest request) throws IOException {
@@ -596,7 +572,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Returns information about the tasks currently executing on one or more nodes
 	 * in the cluster.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -613,7 +588,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns information about existing templates.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html"
 	 */
 
 	public TemplatesResponse templates(TemplatesRequest request) throws IOException {
@@ -623,7 +597,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Returns information about existing templates.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -641,7 +614,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Returns cluster-wide thread pool statistics per node. By default the active,
 	 * queue and rejected statistics are returned for all thread pools.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html"
 	 */
 
 	public ThreadPoolResponse threadPool(ThreadPoolRequest request) throws IOException {
@@ -652,7 +624,6 @@ public class CatClient extends ApiClient<CatClient> {
 	 * Returns cluster-wide thread pool statistics per node. By default the active,
 	 * queue and rejected statistics are returned for all thread pools.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -669,7 +640,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Gets configuration and usage information about transforms.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-transforms.html"
 	 */
 
 	public TransformsResponse transforms(TransformsRequest request) throws IOException {
@@ -679,7 +649,6 @@ public class CatClient extends ApiClient<CatClient> {
 	/**
 	 * Gets configuration and usage information about transforms.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-transforms.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

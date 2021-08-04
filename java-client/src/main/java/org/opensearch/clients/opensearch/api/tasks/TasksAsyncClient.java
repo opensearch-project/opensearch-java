@@ -1,4 +1,12 @@
 /*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
+/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -15,6 +23,11 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
+ */
+
+/*
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 //----------------------------------------------------
@@ -57,7 +70,6 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 */
 
 	public CompletableFuture<CancelResponse> cancel(CancelRequest request) throws IOException {
@@ -67,7 +79,6 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -84,7 +95,6 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 	/**
 	 * Returns information about a task.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 */
 
 	public CompletableFuture<GetResponse> get(GetRequest request) throws IOException {
@@ -94,7 +104,6 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 	/**
 	 * Returns information about a task.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -111,7 +120,6 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 	/**
 	 * Returns a list of tasks.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 */
 
 	public CompletableFuture<ListResponse> list(ListRequest request) throws IOException {
@@ -121,7 +129,6 @@ public class TasksAsyncClient extends ApiClient<TasksAsyncClient> {
 	/**
 	 * Returns a list of tasks.
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

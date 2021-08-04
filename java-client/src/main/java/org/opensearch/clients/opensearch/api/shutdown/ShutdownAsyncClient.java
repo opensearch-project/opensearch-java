@@ -1,4 +1,12 @@
 /*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
+/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -15,6 +23,11 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
+ */
+
+/*
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 //----------------------------------------------------
@@ -57,7 +70,6 @@ public class ShutdownAsyncClient extends ApiClient<ShutdownAsyncClient> {
 	/**
 	 * Removes a node from the shutdown list
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
 	 */
 
 	public CompletableFuture<DeleteNodeResponse> deleteNode(DeleteNodeRequest request) throws IOException {
@@ -67,7 +79,6 @@ public class ShutdownAsyncClient extends ApiClient<ShutdownAsyncClient> {
 	/**
 	 * Removes a node from the shutdown list
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -84,7 +95,6 @@ public class ShutdownAsyncClient extends ApiClient<ShutdownAsyncClient> {
 	/**
 	 * Retrieve status of a node or nodes that are currently marked as shutting down
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
 	 */
 
 	public CompletableFuture<GetNodeResponse> getNode(GetNodeRequest request) throws IOException {
@@ -94,7 +104,6 @@ public class ShutdownAsyncClient extends ApiClient<ShutdownAsyncClient> {
 	/**
 	 * Retrieve status of a node or nodes that are currently marked as shutting down
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -111,7 +120,6 @@ public class ShutdownAsyncClient extends ApiClient<ShutdownAsyncClient> {
 	/**
 	 * Adds a node to be shut down
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
 	 */
 
 	public CompletableFuture<PutNodeResponse> putNode(PutNodeRequest request) throws IOException {
@@ -121,7 +129,6 @@ public class ShutdownAsyncClient extends ApiClient<ShutdownAsyncClient> {
 	/**
 	 * Adds a node to be shut down
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set

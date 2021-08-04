@@ -1,4 +1,12 @@
 /*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
+/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -15,6 +23,11 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
+ */
+
+/*
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
  */
 
 //----------------------------------------------------
@@ -55,7 +68,6 @@ public class FeaturesClient extends ApiClient<FeaturesClient> {
 	 * Gets a list of features which can be included in snapshots using the
 	 * feature_states field when creating a snapshot
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html"
 	 */
 
 	public GetFeaturesResponse getFeatures(GetFeaturesRequest request) throws IOException {
@@ -66,7 +78,6 @@ public class FeaturesClient extends ApiClient<FeaturesClient> {
 	 * Gets a list of features which can be included in snapshots using the
 	 * feature_states field when creating a snapshot
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
@@ -83,7 +94,6 @@ public class FeaturesClient extends ApiClient<FeaturesClient> {
 	/**
 	 * Resets the internal state of features, usually by deleting system indices
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 */
 
 	public ResetFeaturesResponse resetFeatures(ResetFeaturesRequest request) throws IOException {
@@ -93,7 +103,6 @@ public class FeaturesClient extends ApiClient<FeaturesClient> {
 	/**
 	 * Resets the internal state of features, usually by deleting system indices
 	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html"
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
