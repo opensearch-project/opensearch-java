@@ -1,109 +1,91 @@
-<img alt="Elastic logo" align="right" width="auto" height="auto" src="https://www.elastic.co/static-res/images/elastic-logo-200.png">
+[![Code style and license headers](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml)
+[![Build](https://github.com/opensearch-project/opensearch-java/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/build.yml)
+[![Chat](https://img.shields.io/badge/chat-on%20forums-blue)](https://discuss.opendistrocommunity.dev/c/clients/)
+![PRs welcome!](https://img.shields.io/badge/PRs-welcome!-success)
 
-# Elasticsearch Java Client
+![OpenSearch logo](OpenSearch.svg)
 
-The official Java client for [Elasticsearch](https://github.com/elastic/elasticsearch).
+OpenSearch Java Client
 
----
+- [Welcome!](#welcome)
+- [Project Resources](#project-resources)
+- [Code of Conduct](#code-of-conduct)
+- [License](#license)
+- [Copyright](#copyright)
 
-**Note: this project is still in beta.** This client is meant to replace the existing [Java High Level Client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html) and remove all dependencies to the Elasticsearch server code base.
+## Welcome!
 
----
+**opensearch-java** is [a community-driven, open source fork](https://aws.amazon.com/blogs/opensource/introducing-opensearch/) of elasticsearch-java licensed under the [Apache v2.0 License](LICENSE.txt).
+For more information, see [opensearch.org](https://opensearch.org/).
+This client is meant to replace the existing [OpenSearch Java High Level REST Client](https://opensearch.org/docs/latest/clients/java-rest-high-level/).
 
-The Java client for Elasticsearch provides strongly typed requests and responses for all Elasticsearch APIs. It delegates protocol handling to an http client such as the [Elasticsearch Low Level REST client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html) that takes care of all transport-level concerns (http connection establishment and pooling, retries, etc).
 
-The `docs/design` folder contains records of the major decisions in the design of the API. Most notably:
+**Note: This project is in beta stage and is for testing and feedback purposes only.**
+## Project Resources
 
-- Object construction is based on the [builder pattern](https://www.informit.com/articles/article.aspx?p=1216151).
-- Nested objects can be constructed with builder lambdas, allowing for clean and expressive DSL-like code.
-- Optional values are represented as `null` with `@Nullable` annotations instead of the newer  `Optional`, the Java ecosystem being still very null-based.
+* [Project Website](https://opensearch.org/)
+* [Downloads](https://opensearch.org/downloads.html).
+* [Documentation](https://opensearch.org/docs/)
+* Need help? Try [Forums](https://discuss.opendistrocommunity.dev/)
+* [Project Principles](https://opensearch.org/#principles)
+* [Contributing to OpenSearch](CONTRIBUTING.md)
+* [Maintainer Responsibilities](MAINTAINERS.md)
+* [Release Management](RELEASING.md)
+* [Admin Responsibilities](ADMINS.md)
+* [Security](SECURITY.md)
 
-## Getting started
+## Setup
 
-Please refer to [the full documentation on elastic.co](https://www.elasticco/guide/en/elasticsearch/client/java-api-client/current/index.html) for comprehensive information.
-
-### Installing the library
-
-This library requires at least Java 8.
-
-Along with this library, you also need a JSON/object mapping library. `elasticsearch-java` has built-in support for [Jackson](https://github.com/FasterXML/jackson) and [JSON-B](http://json-b.net/) implementations such as [Eclipse Yasson](https://github.com/eclipse-ee4j/yasson).
-
-Releases are hosted on [Maven Central](https://search.maven.org/search?q=g:org.opensearch.clients). If you are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is available at https://snapshots.elastic.co/maven/.
-
-Gradle project (Groovy flavor) setup using Jackson:
-
-```groovy
-dependencies {
-    implementation 'org.opensearch.clients:elasticsearch-java:7.15.0'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
-}
+1. Set `JAVA_HOME` to point to a JDK >= 11
+2. Checkout and build the [opensearch-java](https://github.com/opensearch-project/opensearch-java) project.
+```shell
+git clone https://github.com/opensearch-project/opensearch-java.git
+cd opensearch-java
+./gradlew build
 ```
+3. Launch Intellij IDEA, choose Import Project, and select the `settings.gradle.kts` file in the root of this project.
 
-In the `pom.xml` for your project add the following repository definition and dependencies:
-
-```xml
-<project>
-  <dependencies>
-    <dependency>
-      <groupId>org.opensearch.clients</groupId>
-      <artifactId>elasticsearch-java</artifactId>
-      <version>7.15.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.12.3</version>
-    </dependency>
-  </dependencies>
-
-</project>
-```
-
-### Your first request
+## Example
 
 ```java
-// Create the low-level client
-RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build();
+try (RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build()) {
+    String index = "test-index";
 
-// Create the transport that provides JSON and http services to API clients
-Transport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+    // Create Client
+    Transport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+    OpenSearchClient client = new OpenSearchClient(transport);
 
-// And create our API client
-ElasticsearchClient client = new ElasticsearchClient(transport);
+    // Create Index
+    CreateRequest createIndexRequest = new CreateRequest.Builder().index(index).build();
+    CreateResponse createIndexResponse = client.indices().create(createIndexRequest);
+    assert createIndexResponse.acknowledged();
 
-// Search all items in an index that contains documents of type AppData
-SearchResponse search = client.search(s -> s
-    .index("test-index"),
-    AppData.class
-);
+    // Index Document
+    IndexData indexData = new IndexData("foo", "bar");
+    IndexRequest<IndexData> indexRequest = new IndexRequest.Builder<IndexData>().index(index).id("1").value(indexData).build();
+    IndexResponse indexResponse = client.index(indexRequest);
+    assert Objects.equals(indexResponse.id(), "1");
 
-if (search.hits().hits().isEmpty()) {
-    System.out.println("No match");
-} else {
-    for (Hit<AppData> hit : search.hits().hits()) {
-        processAppData(hit._source());
-    }
+    // Search Documents
+    SearchResponse<IndexData> searchResponse = client.search(s -> s.index(index), IndexData.class);
+    assert !searchResponse.hits().hits().isEmpty();
+    searchResponse.hits().hits().stream().map(Hit::source).forEach(System.out::println);
+
+    // Delete Index
+    DeleteRequest deleteRequest = new DeleteRequest.Builder().index(index).build();
+    DeleteResponse deleteResponse = client.indices().delete(deleteRequest);
+    assert deleteResponse.acknowledged();
 }
 ```
 
-## Compatibility
+## Code of Conduct
 
-The `main` branch targets the next major release (8.0) and the `7.x` branch targets the next minor release. Support is still incomplete as the API code is generated from the [Elasticsearch Specification](https://github.com/elastic/elasticsearch-specification) that is also still a work in progress.
+This project has adopted the [Amazon Open Source Code of Conduct](CODE_OF_CONDUCT.md). For more information see the [Code of Conduct FAQ](https://aws.github.io/code-of-conduct-faq), or contact [opensource-codeofconduct@amazon.com](mailto:opensource-codeofconduct@amazon.com) with any additional questions or comments.
 
-The Elasticsearch Java client is forward compatible; meaning that the client supports communicating with greater minor versions of Elasticsearch. Elastic language clients are also backwards compatible with lesser supported minor Elasticsearch versions.
+## License
 
-## Current status
+This project is licensed under the [Apache v2.0 License](LICENSE.txt).
 
-Beta state means we don't expect large architectural changes and the library is already fairly usable. This library also essentially deals with request & response serialization & deserialization and delegates all http request processing to the battle-tested [Low Level Rest Client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html).
+## Copyright
 
-What's missing falls in two main categories, related to the [Elasticsearch specification](https://github.com/elastic/elasticsearch-specification):
-* incomplete support for some data types used in specification (e.g. unions). Until they have been implemented in the code generator, they are represented as raw `JsonValue` objects.
-* incomplete APIs: as the API specification is still incomplete, so are their implementations in this library since their code is entirely generated from the spec.
-
-## Contributing
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md)
-
-## Licence
-
-This software is licensed under the [Apache License 2.0](https://github.com/elastic/elasticsearch-java/blob/main/LICENSE).
+Copyright 2020-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
