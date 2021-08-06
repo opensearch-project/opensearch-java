@@ -70,7 +70,7 @@ tasks.register<Task>(name = "resolveDependencies") {
 
 tasks.register<Task>(name = "publishForReleaseManager") {
     group = "Publishing"
-    description = "Publishes artifacts in a format suitable for the Elastic release manager"
+    description = "Publishes artifacts in a format suitable for the release manager"
     dependsOn(
         ":java-client:publishAllPublicationsToBuildRepository",
         ":java-client:generateLicenseReport"
