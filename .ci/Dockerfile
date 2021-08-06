@@ -1,4 +1,10 @@
 #
+# SPDX-License-Identifier: Apache-2.0
+#
+# The OpenSearch Contributors require contributions made to
+# this file be licensed under the Apache-2.0 license or a
+# compatible open source license.
+#
 # Licensed to Elasticsearch B.V. under one or more contributor
 # license agreements. See the NOTICE file distributed with
 # this work for additional information regarding copyright
@@ -16,13 +22,16 @@
 # specific language governing permissions and limitations
 # under the License.
 #
+# Modifications Copyright OpenSearch Contributors. See
+# GitHub history for details.
+#
 
 # Build a Docker image that has Gradle and all project dependencies ready.
 # Needs to be run with .git and java-client/src mounted under /elasticsearch-java.
 
 FROM openjdk:15
 
-WORKDIR /elasticsearch-java/
+WORKDIR /opensearch-java/
 
 # Download and initialize Gradle
 COPY gradlew ./
