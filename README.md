@@ -1,25 +1,91 @@
-<img alt="Elastic logo" align="right" width="auto" height="auto" src="https://www.elastic.co/static-res/images/elastic-logo-200.png">
+[![Code style and license headers](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml)
+[![Build](https://github.com/opensearch-project/opensearch-java/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/build.yml)
+[![Chat](https://img.shields.io/badge/chat-on%20forums-blue)](https://discuss.opendistrocommunity.dev/c/clients/)
+![PRs welcome!](https://img.shields.io/badge/PRs-welcome!-success)
 
-# Elasticsearch Java Client
+![OpenSearch logo](OpenSearch.svg)
 
-The official Java client for [Elasticsearch](https://github.com/elastic/elasticsearch).
+OpenSearch Java Client
 
-The Java client for Elasticsearch provides strongly typed requests and responses for all Elasticsearch APIs. It delegates protocol handling to an http client such as the [Elasticsearch Low Level REST client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html) that takes care of all transport-level concerns (http connection establishment and pooling, retries, etc).
+- [Welcome!](#welcome)
+- [Project Resources](#project-resources)
+- [Code of Conduct](#code-of-conduct)
+- [License](#license)
+- [Copyright](#copyright)
 
-The `docs/design` folder contains records of the major decisions in the design of the API. Most notably:
+## Welcome!
 
-- Object construction is based on the [builder pattern](https://www.informit.com/articles/article.aspx?p=1216151).
-- Nested objects can be constructed with builder lambdas, allowing for clean and expressive DSL-like code.
-- Optional values are represented as `null` with `@Nullable` annotations instead of the newer  `Optional`, the Java ecosystem being still very null-based.
+**opensearch-java** is [a community-driven, open source fork](https://aws.amazon.com/blogs/opensource/introducing-opensearch/) of elasticsearch-java licensed under the [Apache v2.0 License](LICENSE.txt).
+For more information, see [opensearch.org](https://opensearch.org/).
+This client is meant to replace the existing [OpenSearch Java High Level REST Client](https://opensearch.org/docs/latest/clients/java-rest-high-level/).
 
-## Documentation
 
-Please refer to [the full documentation on elastic.co](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/index.html) for comprehensive information.
+**Note: This project is in beta stage and is for testing and feedback purposes only.**
+## Project Resources
 
-## Contributing
+* [Project Website](https://opensearch.org/)
+* [Downloads](https://opensearch.org/downloads.html).
+* [Documentation](https://opensearch.org/docs/)
+* Need help? Try [Forums](https://discuss.opendistrocommunity.dev/)
+* [Project Principles](https://opensearch.org/#principles)
+* [Contributing to OpenSearch](CONTRIBUTING.md)
+* [Maintainer Responsibilities](MAINTAINERS.md)
+* [Release Management](RELEASING.md)
+* [Admin Responsibilities](ADMINS.md)
+* [Security](SECURITY.md)
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md)
+## Setup
 
-## Licence
+1. Set `JAVA_HOME` to point to a JDK >= 11
+2. Checkout and build the [opensearch-java](https://github.com/opensearch-project/opensearch-java) project.
+```shell
+git clone https://github.com/opensearch-project/opensearch-java.git
+cd opensearch-java
+./gradlew build
+```
+3. Launch Intellij IDEA, choose Import Project, and select the `settings.gradle.kts` file in the root of this project.
 
-This software is licensed under the [Apache License 2.0](https://github.com/elastic/elasticsearch-java/blob/main/LICENSE).
+## Example
+
+```java
+try (RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build()) {
+    String index = "test-index";
+
+    // Create Client
+    Transport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+    OpenSearchClient client = new OpenSearchClient(transport);
+
+    // Create Index
+    CreateRequest createIndexRequest = new CreateRequest.Builder().index(index).build();
+    CreateResponse createIndexResponse = client.indices().create(createIndexRequest);
+    assert createIndexResponse.acknowledged();
+
+    // Index Document
+    IndexData indexData = new IndexData("foo", "bar");
+    IndexRequest<IndexData> indexRequest = new IndexRequest.Builder<IndexData>().index(index).id("1").value(indexData).build();
+    IndexResponse indexResponse = client.index(indexRequest);
+    assert Objects.equals(indexResponse.id(), "1");
+
+    // Search Documents
+    SearchResponse<IndexData> searchResponse = client.search(s -> s.index(index), IndexData.class);
+    assert !searchResponse.hits().hits().isEmpty();
+    searchResponse.hits().hits().stream().map(Hit::source).forEach(System.out::println);
+
+    // Delete Index
+    DeleteRequest deleteRequest = new DeleteRequest.Builder().index(index).build();
+    DeleteResponse deleteResponse = client.indices().delete(deleteRequest);
+    assert deleteResponse.acknowledged();
+}
+```
+
+## Code of Conduct
+
+This project has adopted the [Amazon Open Source Code of Conduct](CODE_OF_CONDUCT.md). For more information see the [Code of Conduct FAQ](https://aws.github.io/code-of-conduct-faq), or contact [opensource-codeofconduct@amazon.com](mailto:opensource-codeofconduct@amazon.com) with any additional questions or comments.
+
+## License
+
+This project is licensed under the [Apache v2.0 License](LICENSE.txt).
+
+## Copyright
+
+Copyright 2020-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
