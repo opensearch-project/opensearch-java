@@ -27,7 +27,7 @@
 #
 
 # Build a Docker image that has Gradle and all project dependencies ready.
-# Needs to be run with .git and java-client/src mounted under /elasticsearch-java.
+# Needs to be run with .git and java-client/src mounted under /opensearch-java.
 
 FROM openjdk:15
 

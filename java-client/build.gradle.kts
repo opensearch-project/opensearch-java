@@ -68,9 +68,9 @@ tasks.withType<Jar> {
     }
 
     manifest {
-        attributes["Implementation-Title"] = "Elasticsearch Java client"
-        attributes["Implementation-Vendor"] = "Elastic"
-        attributes["Implementation-URL"] = "https://github.com/elastic/elasticsearch-java/"
+        attributes["Implementation-Title"] = "OpenSearch Java client"
+        attributes["Implementation-Vendor"] = "OpenSearch"
+        attributes["Implementation-URL"] = "https://github.com/opensearch-project/opensearch-java/"
         attributes["Build-Date"] = rootProject.extra["buildTime"]
     }
 
