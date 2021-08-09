@@ -82,6 +82,10 @@ tasks.withType<Jar> {
     }
 }
 
+tasks.test {
+    systemProperty("tests.security.manager", "false")
+}
+
 publishing {
     repositories {
         maven {
@@ -134,6 +138,7 @@ dependencies {
 
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
+    implementation("org.opensearch.test", "framework", opensearchVersion)
 
     // Apache 2.0
     implementation("com.google.code.findbugs:jsr305:3.0.2")
@@ -145,7 +150,7 @@ dependencies {
     // Needed even if using Jackson to have an implementation of the Jsonp object model
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/jsonp
-    implementation("org.glassfish", "jakarta.json", "2.0.1")
+    // implementation("org.glassfish", "jakarta.json", "2.0.1")
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // http://json-b.net/
@@ -163,13 +168,10 @@ dependencies {
     testImplementation("org.eclipse", "yasson", "2.0.2")
 
     // Eclipse 1.0
-    testImplementation("junit", "junit" , "4.12")
-
-    // MIT
-    // testImplementation("org.testcontainers", "testcontainers", "1.15.3")
-    // testImplementation("org.testcontainers", "elasticsearch", "1.15.3")
+    testImplementation("junit", "junit" , "4.12") {
+        exclude(group = "org.hamcrest")
+    }
 }
-
 
 licenseReport {
     renderers = arrayOf(SpdxReporter(File(rootProject.buildDir, "release/dependencies.csv")))

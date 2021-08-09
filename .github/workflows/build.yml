@@ -26,6 +26,12 @@ jobs:
       - name: Build OpenSearch
         working-directory: ./OpenSearch
         run: ./gradlew publishToMavenLocal
+      - name: Run Docker
+        run: |
+          image=docker.elastic.co/elasticsearch/elasticsearch-oss
+          version=7.10.0
+          docker run -p 9200:9200 -p 9300:9300 -d -e "discovery.type=single-node" $image:$version
+          sleep 90
       - name: Checkout Branch
         uses: actions/checkout@v2
       - name: Build with Gradle

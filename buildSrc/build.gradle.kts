@@ -35,5 +35,8 @@ dependencies {
 }
 
 repositories {
-    maven("https://plugins.gradle.org/m2/")
+    mavenCentral()
+    mavenLocal()
+    maven(url = "https://plugins.gradle.org/m2/")
+    jcenter()
 }
