@@ -29,7 +29,7 @@
 
 # ------------------------------------------------------- #
 #
-# Skeleton for common build entry script for all elastic
+# Skeleton for common build entry script for all OpenSearch
 # clients. Needs to be adapted to individual client usage.
 #
 # Must be called: ./.ci/make.sh <target> <params>
