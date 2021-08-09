@@ -18,7 +18,7 @@ This allows writing code in a fluent and strongly typed way, leveraging the IDE 
 
 The client should also be open for extension, in at least two areas:
 - allow custom endpoints to be defined, to support plugins that extend the ES API,
-- allow overriding response types, to use the [`filter_path` query parameter](https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#common-options-response-filtering) that allows removing fields from the response. As the filter may remove fields that are expected to exist in the standard response, a new - stripped down - response type must be provided by the user for the same request type and URL. This is real-world use case, as shown by [elasticsearch#53846](https://github.com/elastic/elasticsearch/issues/53846).
+- allow overriding response types, to use the `filter_path` query parameter that allows removing fields from the response. As the filter may remove fields that are expected to exist in the standard response, a new - stripped down - response type must be provided by the user for the same request type and URL.
 
 ## Decision Drivers
 

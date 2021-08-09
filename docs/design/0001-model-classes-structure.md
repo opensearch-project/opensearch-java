@@ -6,7 +6,7 @@
 
 ## Context and Problem Statement
 
-Elasticsearch request and response objects are data classes: they have no attached behavior.
+OpenSearch request and response objects are data classes: they have no attached behavior.
 
 Java has two ways to represent such classes:
 * as JavaBeans: mutable classes with getters and setters,
@@ -191,7 +191,7 @@ This provides property-like access in Scala. Kotlin will require method calls bu
 
 **Building nested objects**
 
-There are many nested objects in the Elasticsearch API, which will also use the fluent builder pattern. Let's extend `FooRequest` with an innder `Bar` object:
+There are many nested objects in the OpenSearch API, which will also use the fluent builder pattern. Let's extend `FooRequest` with an innder `Bar` object:
 
 ```java
 FooResponse r = client.foo(
