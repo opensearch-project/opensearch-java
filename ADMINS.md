@@ -8,6 +8,9 @@ This document explains who the admins are (see below), what they do in this repo
 | -------------------------| --------------------------------------- | ----------- |
 | Charlotte                | [CEHENKLE](https://github.com/CEHENKLE) | Amazon |
 | Henri Yandell            | [hyandell](https://github.com/hyandell) | Amazon      |
+| Mital Awachat            | [mitalawachat](https://github.com/mitalawachat) | Amazon |
+| Bukhtawar Khan           | [Bukhtawar](https://github.com/Bukhtawar) | Amazon |
+| Ranjith Ramachandra      | [rramachand21](https://github.com/rramachand21) | Amazon |
 
 
 ## Admin Responsibilities
