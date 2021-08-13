@@ -38,7 +38,6 @@ package org.opensearch.clients.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.opensearch.indices.resolve_index.ResolveIndexAliasItem;
-import org.opensearch.clients.opensearch.indices.resolve_index.ResolveIndexDataStreamsItem;
 import org.opensearch.clients.opensearch.indices.resolve_index.ResolveIndexItem;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializer;
@@ -59,15 +58,12 @@ public final class ResolveIndexResponse implements ToJsonp {
 
 	private final List<ResolveIndexAliasItem> aliases;
 
-	private final List<ResolveIndexDataStreamsItem> dataStreams;
-
 	// ---------------------------------------------------------------------------------------------
 
 	protected ResolveIndexResponse(Builder builder) {
 
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
 		this.aliases = Objects.requireNonNull(builder.aliases, "aliases");
-		this.dataStreams = Objects.requireNonNull(builder.dataStreams, "data_streams");
 
 	}
 
@@ -83,13 +79,6 @@ public final class ResolveIndexResponse implements ToJsonp {
 	 */
 	public List<ResolveIndexAliasItem> aliases() {
 		return this.aliases;
-	}
-
-	/**
-	 * API name: {@code data_streams}
-	 */
-	public List<ResolveIndexDataStreamsItem> dataStreams() {
-		return this.dataStreams;
 	}
 
 	/**
@@ -119,14 +108,6 @@ public final class ResolveIndexResponse implements ToJsonp {
 		}
 		generator.writeEnd();
 
-		generator.writeKey("data_streams");
-		generator.writeStartArray();
-		for (ResolveIndexDataStreamsItem item0 : this.dataStreams) {
-			item0.toJsonp(generator, mapper);
-
-		}
-		generator.writeEnd();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -138,8 +119,6 @@ public final class ResolveIndexResponse implements ToJsonp {
 		private List<ResolveIndexItem> indices;
 
 		private List<ResolveIndexAliasItem> aliases;
-
-		private List<ResolveIndexDataStreamsItem> dataStreams;
 
 		/**
 		 * API name: {@code indices}
@@ -224,49 +203,6 @@ public final class ResolveIndexResponse implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code data_streams}
-		 */
-		public Builder dataStreams(List<ResolveIndexDataStreamsItem> value) {
-			this.dataStreams = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code data_streams}
-		 */
-		public Builder dataStreams(ResolveIndexDataStreamsItem... value) {
-			this.dataStreams = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
-		 */
-		public Builder addDataStreams(ResolveIndexDataStreamsItem value) {
-			if (this.dataStreams == null) {
-				this.dataStreams = new ArrayList<>();
-			}
-			this.dataStreams.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #dataStreams(List)} to a singleton list.
-		 */
-		public Builder dataStreams(
-				Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>> fn) {
-			return this.dataStreams(fn.apply(new ResolveIndexDataStreamsItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
-		 */
-		public Builder addDataStreams(
-				Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>> fn) {
-			return this.addDataStreams(fn.apply(new ResolveIndexDataStreamsItem.Builder()).build());
-		}
-
-		/**
 		 * Builds a {@link ResolveIndexResponse}.
 		 *
 		 * @throws NullPointerException
@@ -291,8 +227,6 @@ public final class ResolveIndexResponse implements ToJsonp {
 
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(ResolveIndexItem.DESERIALIZER), "indices");
 		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(ResolveIndexAliasItem.DESERIALIZER), "aliases");
-		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(ResolveIndexDataStreamsItem.DESERIALIZER),
-				"data_streams");
 
 	}
 

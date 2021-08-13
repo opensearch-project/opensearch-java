@@ -50,16 +50,10 @@ import org.opensearch.clients.opensearch.indices.CloneRequest;
 import org.opensearch.clients.opensearch.indices.CloneResponse;
 import org.opensearch.clients.opensearch.indices.CloseRequest;
 import org.opensearch.clients.opensearch.indices.CloseResponse;
-import org.opensearch.clients.opensearch.indices.CreateDataStreamRequest;
-import org.opensearch.clients.opensearch.indices.CreateDataStreamResponse;
 import org.opensearch.clients.opensearch.indices.CreateRequest;
 import org.opensearch.clients.opensearch.indices.CreateResponse;
-import org.opensearch.clients.opensearch.indices.DataStreamsStatsRequest;
-import org.opensearch.clients.opensearch.indices.DataStreamsStatsResponse;
 import org.opensearch.clients.opensearch.indices.DeleteAliasRequest;
 import org.opensearch.clients.opensearch.indices.DeleteAliasResponse;
-import org.opensearch.clients.opensearch.indices.DeleteDataStreamRequest;
-import org.opensearch.clients.opensearch.indices.DeleteDataStreamResponse;
 import org.opensearch.clients.opensearch.indices.DeleteIndexTemplateRequest;
 import org.opensearch.clients.opensearch.indices.DeleteIndexTemplateResponse;
 import org.opensearch.clients.opensearch.indices.DeleteRequest;
@@ -77,12 +71,8 @@ import org.opensearch.clients.opensearch.indices.FlushSyncedRequest;
 import org.opensearch.clients.opensearch.indices.FlushSyncedResponse;
 import org.opensearch.clients.opensearch.indices.ForcemergeRequest;
 import org.opensearch.clients.opensearch.indices.ForcemergeResponse;
-import org.opensearch.clients.opensearch.indices.FreezeRequest;
-import org.opensearch.clients.opensearch.indices.FreezeResponse;
 import org.opensearch.clients.opensearch.indices.GetAliasRequest;
 import org.opensearch.clients.opensearch.indices.GetAliasResponse;
-import org.opensearch.clients.opensearch.indices.GetDataStreamRequest;
-import org.opensearch.clients.opensearch.indices.GetDataStreamResponse;
 import org.opensearch.clients.opensearch.indices.GetFieldMappingRequest;
 import org.opensearch.clients.opensearch.indices.GetFieldMappingResponse;
 import org.opensearch.clients.opensearch.indices.GetIndexTemplateRequest;
@@ -97,8 +87,6 @@ import org.opensearch.clients.opensearch.indices.GetTemplateRequest;
 import org.opensearch.clients.opensearch.indices.GetTemplateResponse;
 import org.opensearch.clients.opensearch.indices.GetUpgradeRequest;
 import org.opensearch.clients.opensearch.indices.GetUpgradeResponse;
-import org.opensearch.clients.opensearch.indices.MigrateToDataStreamRequest;
-import org.opensearch.clients.opensearch.indices.MigrateToDataStreamResponse;
 import org.opensearch.clients.opensearch.indices.OpenRequest;
 import org.opensearch.clients.opensearch.indices.OpenResponse;
 import org.opensearch.clients.opensearch.indices.PutAliasRequest;
@@ -115,8 +103,6 @@ import org.opensearch.clients.opensearch.indices.RecoveryRequest;
 import org.opensearch.clients.opensearch.indices.RecoveryResponse;
 import org.opensearch.clients.opensearch.indices.RefreshRequest;
 import org.opensearch.clients.opensearch.indices.RefreshResponse;
-import org.opensearch.clients.opensearch.indices.ReloadSearchAnalyzersRequest;
-import org.opensearch.clients.opensearch.indices.ReloadSearchAnalyzersResponse;
 import org.opensearch.clients.opensearch.indices.ResolveIndexRequest;
 import org.opensearch.clients.opensearch.indices.ResolveIndexResponse;
 import org.opensearch.clients.opensearch.indices.RolloverRequest;
@@ -135,8 +121,6 @@ import org.opensearch.clients.opensearch.indices.SplitRequest;
 import org.opensearch.clients.opensearch.indices.SplitResponse;
 import org.opensearch.clients.opensearch.indices.StatsRequest;
 import org.opensearch.clients.opensearch.indices.StatsResponse;
-import org.opensearch.clients.opensearch.indices.UnfreezeRequest;
-import org.opensearch.clients.opensearch.indices.UnfreezeResponse;
 import org.opensearch.clients.opensearch.indices.UpdateAliasesRequest;
 import org.opensearch.clients.opensearch.indices.UpdateAliasesResponse;
 import org.opensearch.clients.opensearch.indices.UpgradeRequest;
@@ -314,56 +298,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 		return create(fn.apply(new CreateRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: indices.create_data_stream
-
-	/**
-	 * Creates a data stream
-	 *
-	 */
-
-	public CreateDataStreamResponse createDataStream(CreateDataStreamRequest request) throws IOException {
-		return this.transport.performRequest(request, CreateDataStreamRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Creates a data stream
-	 *
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final CreateDataStreamResponse createDataStream(
-			Function<CreateDataStreamRequest.Builder, ObjectBuilder<CreateDataStreamRequest>> fn) throws IOException {
-		return createDataStream(fn.apply(new CreateDataStreamRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.data_streams_stats
-
-	/**
-	 * Provides statistics on operations happening in a data stream.
-	 *
-	 */
-
-	public DataStreamsStatsResponse dataStreamsStats(DataStreamsStatsRequest request) throws IOException {
-		return this.transport.performRequest(request, DataStreamsStatsRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Provides statistics on operations happening in a data stream.
-	 *
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final DataStreamsStatsResponse dataStreamsStats(
-			Function<DataStreamsStatsRequest.Builder, ObjectBuilder<DataStreamsStatsRequest>> fn) throws IOException {
-		return dataStreamsStats(fn.apply(new DataStreamsStatsRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: indices.delete
 
 	/**
@@ -412,31 +346,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	public final DeleteAliasResponse deleteAlias(
 			Function<DeleteAliasRequest.Builder, ObjectBuilder<DeleteAliasRequest>> fn) throws IOException {
 		return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.delete_data_stream
-
-	/**
-	 * Deletes a data stream.
-	 *
-	 */
-
-	public DeleteDataStreamResponse deleteDataStream(DeleteDataStreamRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteDataStreamRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Deletes a data stream.
-	 *
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final DeleteDataStreamResponse deleteDataStream(
-			Function<DeleteDataStreamRequest.Builder, ObjectBuilder<DeleteDataStreamRequest>> fn) throws IOException {
-		return deleteDataStream(fn.apply(new DeleteDataStreamRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.delete_index_template
@@ -695,33 +604,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 		return forcemerge(fn.apply(new ForcemergeRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: indices.freeze
-
-	/**
-	 * Freezes an index. A frozen index has almost no overhead on the cluster
-	 * (except for maintaining its metadata in memory) and is read-only.
-	 *
-	 */
-
-	public FreezeResponse freeze(FreezeRequest request) throws IOException {
-		return this.transport.performRequest(request, FreezeRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Freezes an index. A frozen index has almost no overhead on the cluster
-	 * (except for maintaining its metadata in memory) and is read-only.
-	 *
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final FreezeResponse freeze(Function<FreezeRequest.Builder, ObjectBuilder<FreezeRequest>> fn)
-			throws IOException {
-		return freeze(fn.apply(new FreezeRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: indices.get
 
 	/**
@@ -769,31 +651,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	public final GetAliasResponse getAlias(Function<GetAliasRequest.Builder, ObjectBuilder<GetAliasRequest>> fn)
 			throws IOException {
 		return getAlias(fn.apply(new GetAliasRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.get_data_stream
-
-	/**
-	 * Returns data streams.
-	 *
-	 */
-
-	public GetDataStreamResponse getDataStream(GetDataStreamRequest request) throws IOException {
-		return this.transport.performRequest(request, GetDataStreamRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Returns data streams.
-	 *
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final GetDataStreamResponse getDataStream(
-			Function<GetDataStreamRequest.Builder, ObjectBuilder<GetDataStreamRequest>> fn) throws IOException {
-		return getDataStream(fn.apply(new GetDataStreamRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.get_field_mapping
@@ -944,32 +801,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	public final GetUpgradeResponse getUpgrade(Function<GetUpgradeRequest.Builder, ObjectBuilder<GetUpgradeRequest>> fn)
 			throws IOException {
 		return getUpgrade(fn.apply(new GetUpgradeRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.migrate_to_data_stream
-
-	/**
-	 * Migrates an alias to a data stream
-	 *
-	 */
-
-	public MigrateToDataStreamResponse migrateToDataStream(MigrateToDataStreamRequest request) throws IOException {
-		return this.transport.performRequest(request, MigrateToDataStreamRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Migrates an alias to a data stream
-	 *
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final MigrateToDataStreamResponse migrateToDataStream(
-			Function<MigrateToDataStreamRequest.Builder, ObjectBuilder<MigrateToDataStreamRequest>> fn)
-			throws IOException {
-		return migrateToDataStream(fn.apply(new MigrateToDataStreamRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.open
@@ -1169,33 +1000,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	public final RefreshResponse refresh(Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn)
 			throws IOException {
 		return refresh(fn.apply(new RefreshRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.reload_search_analyzers
-
-	/**
-	 * Reloads an index's search analyzers and their resources.
-	 *
-	 */
-
-	public ReloadSearchAnalyzersResponse reloadSearchAnalyzers(ReloadSearchAnalyzersRequest request)
-			throws IOException {
-		return this.transport.performRequest(request, ReloadSearchAnalyzersRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Reloads an index's search analyzers and their resources.
-	 *
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final ReloadSearchAnalyzersResponse reloadSearchAnalyzers(
-			Function<ReloadSearchAnalyzersRequest.Builder, ObjectBuilder<ReloadSearchAnalyzersRequest>> fn)
-			throws IOException {
-		return reloadSearchAnalyzers(fn.apply(new ReloadSearchAnalyzersRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.resolve_index
@@ -1429,33 +1233,6 @@ public class IndicesClient extends ApiClient<IndicesClient> {
 	public final StatsResponse stats(Function<StatsRequest.Builder, ObjectBuilder<StatsRequest>> fn)
 			throws IOException {
 		return stats(fn.apply(new StatsRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.unfreeze
-
-	/**
-	 * Unfreezes an index. When a frozen index is unfrozen, the index goes through
-	 * the normal recovery process and becomes writeable again.
-	 *
-	 */
-
-	public UnfreezeResponse unfreeze(UnfreezeRequest request) throws IOException {
-		return this.transport.performRequest(request, UnfreezeRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Unfreezes an index. When a frozen index is unfrozen, the index goes through
-	 * the normal recovery process and becomes writeable again.
-	 *
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final UnfreezeResponse unfreeze(Function<UnfreezeRequest.Builder, ObjectBuilder<UnfreezeRequest>> fn)
-			throws IOException {
-		return unfreeze(fn.apply(new UnfreezeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.update_aliases
