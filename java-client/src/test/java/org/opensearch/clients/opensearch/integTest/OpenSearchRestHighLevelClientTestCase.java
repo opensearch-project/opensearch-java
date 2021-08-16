@@ -57,7 +57,7 @@ public abstract class OpenSearchRestHighLevelClientTestCase extends OpenSearchRe
             // Create the transport that provides JSON and http services to API clients
             Transport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
             // Create API client
-            restHighLevelClient = new HighLevelClient(transport);
+            restHighLevelClient = new OpenSearchClient(transport);
         }
     }
 
@@ -81,11 +81,5 @@ public abstract class OpenSearchRestHighLevelClientTestCase extends OpenSearchRe
 
     protected static OpenSearchClient highLevelClient() {
         return restHighLevelClient;
-    }
-
-    private static class HighLevelClient extends OpenSearchClient {
-        private HighLevelClient(Transport transport) {
-            super(transport);
-        }
     }
 }

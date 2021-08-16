@@ -60,12 +60,13 @@ public class PingAndInfoIT extends OpenSearchRestHighLevelClientTestCase {
 
         @SuppressWarnings("unchecked")
         Map<String, Object> versionMap = (Map<String, Object>) infoAsMap.get("version");
-        assertEquals(versionMap.get("build_type"), info.version().buildType());
-        assertEquals(versionMap.get("build_hash"), info.version().buildHash());
         assertEquals(versionMap.get("build_date"), info.version().buildDate());
+        assertEquals(versionMap.get("build_hash"), info.version().buildHash());
         assertEquals(versionMap.get("build_snapshot"), info.version().buildSnapshot());
-        assertTrue(versionMap.get("number").toString().startsWith(info.version().number()));
+        assertEquals(versionMap.get("build_type"), info.version().buildType());
+        assertEquals(versionMap.get("distribution"), info.version().distribution());
         assertEquals(versionMap.get("lucene_version"), info.version().luceneVersion());
+        assertTrue(versionMap.get("number").toString().startsWith(info.version().number()));
     }
 
 }

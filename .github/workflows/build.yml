@@ -28,9 +28,14 @@ jobs:
         run: ./gradlew publishToMavenLocal
       - name: Run Docker
         run: |
-          image=docker.elastic.co/elasticsearch/elasticsearch-oss
-          version=7.10.0
-          docker run -p 9200:9200 -p 9300:9300 -d -e "discovery.type=single-node" $image:$version
+          echo "FROM opensearchproject/opensearch:1.0.0" >> Dockerfile
+          echo "RUN /usr/share/opensearch/bin/opensearch-plugin remove opensearch-security" >> Dockerfile
+          echo "RUN rm /usr/share/opensearch/config/opensearch.yml" >> Dockerfile
+          echo "RUN echo 'cluster.name: \"docker-cluster\"' >> /usr/share/opensearch/config/opensearch.yml" >> Dockerfile
+          echo "RUN echo 'network.host: 0.0.0.0' >> /usr/share/opensearch/config/opensearch.yml" >> Dockerfile
+          echo "RUN cat /usr/share/opensearch/config/opensearch.yml" >> Dockerfile
+          docker build -t opensearch-search:test .
+          docker run -p 9200:9200 -p 9600:9600 -d -e "discovery.type=single-node" opensearch-search:test
           sleep 90
       - name: Checkout Branch
         uses: actions/checkout@v2
