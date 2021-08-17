@@ -125,7 +125,7 @@ public final class NodeInfo implements ToJsonp {
 	protected NodeInfo(Builder builder) {
 
 		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
-		this.buildFlavor = Objects.requireNonNull(builder.buildFlavor, "build_flavor");
+		this.buildFlavor = builder.buildFlavor;
 		this.buildHash = Objects.requireNonNull(builder.buildHash, "build_hash");
 		this.buildType = Objects.requireNonNull(builder.buildType, "build_type");
 		this.host = Objects.requireNonNull(builder.host, "host");
