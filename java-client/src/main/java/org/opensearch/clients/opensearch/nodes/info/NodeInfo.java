@@ -126,7 +126,7 @@ public class NodeInfo implements JsonpSerializable {
 	private NodeInfo(Builder builder) {
 
 		this.attributes = ModelTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.buildFlavor = ModelTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
+		this.buildFlavor = builder.buildFlavor;
 		this.buildHash = ModelTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
 		this.buildType = ModelTypeHelper.requireNonNull(builder.buildType, this, "buildType");
 		this.host = ModelTypeHelper.requireNonNull(builder.host, this, "host");
