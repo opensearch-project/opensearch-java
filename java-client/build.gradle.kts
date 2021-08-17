@@ -81,6 +81,10 @@ tasks.withType<Jar> {
     }
 }
 
+tasks.test {
+    systemProperty("tests.security.manager", "false")
+}
+
 publishing {
     repositories {
         maven {
@@ -134,6 +138,7 @@ dependencies {
 
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
+    implementation("org.opensearch.test", "framework", opensearchVersion)
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
@@ -160,22 +165,11 @@ dependencies {
     // https://eclipse-ee4j.github.io/yasson/
     testImplementation("org.eclipse", "yasson", "2.0.2")
 
-    // EPL-1.0
-    // https://junit.org/junit4/
-    testImplementation("junit", "junit" , "4.12")
-
-    // MIT
-    // testImplementation("org.testcontainers", "testcontainers", "1.15.3")
-    // testImplementation("org.testcontainers", "elasticsearch", "1.15.3")
-    // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.116")
-
-    // MIT
-    // https://www.testcontainers.org/
-    // testImplementation("org.testcontainers", "testcontainers", "1.15.3")
-    // testImplementation("org.testcontainers", "elasticsearch", "1.15.3")
+    // Eclipse 1.0
+    testImplementation("junit", "junit" , "4.12") {
+        exclude(group = "org.hamcrest")
+    }
 }
-
 
 licenseReport {
     renderers = arrayOf(SpdxReporter(File(rootProject.buildDir, "release/dependencies.csv")))
