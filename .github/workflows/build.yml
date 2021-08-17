@@ -28,5 +28,10 @@ jobs:
         run: ./gradlew publishToMavenLocal
       - name: Checkout Branch
         uses: actions/checkout@v2
+      - name: Run Docker
+        run: |
+          docker build -t opensearch-search:test -f .ci/Dockerfile.server .
+          docker run -p 9200:9200 -p 9600:9600 -d -e "discovery.type=single-node" opensearch-search:test
+          sleep 60
       - name: Build with Gradle
         run: ./gradlew build
