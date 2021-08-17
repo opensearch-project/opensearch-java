@@ -50,6 +50,8 @@ import java.util.Objects;
 public final class OpenSearchVersionInfo implements ToJsonp {
 	private final String buildDate;
 
+	private final String buildFlavor;
+
 	private final String buildHash;
 
 	private final Boolean buildSnapshot;
@@ -71,10 +73,11 @@ public final class OpenSearchVersionInfo implements ToJsonp {
 	protected OpenSearchVersionInfo(Builder builder) {
 
 		this.buildDate = Objects.requireNonNull(builder.buildDate, "build_date");
+		this.buildFlavor = builder.buildFlavor;
 		this.buildHash = Objects.requireNonNull(builder.buildHash, "build_hash");
 		this.buildSnapshot = Objects.requireNonNull(builder.buildSnapshot, "build_snapshot");
 		this.buildType = Objects.requireNonNull(builder.buildType, "build_type");
-		this.distribution = Objects.requireNonNull(builder.distribution, "distribution");
+		this.distribution = builder.distribution;
 		this.luceneVersion = Objects.requireNonNull(builder.luceneVersion, "lucene_version");
 		this.minimumIndexCompatibilityVersion = Objects.requireNonNull(builder.minimumIndexCompatibilityVersion,
 				"minimum_index_compatibility_version");
@@ -89,6 +92,13 @@ public final class OpenSearchVersionInfo implements ToJsonp {
 	 */
 	public String buildDate() {
 		return this.buildDate;
+	}
+
+	/**
+	 * API name: {@code build_flavor}
+	 */
+	public String buildFlavor() {
+		return this.buildFlavor;
 	}
 
 	/**
@@ -161,6 +171,9 @@ public final class OpenSearchVersionInfo implements ToJsonp {
 		generator.writeKey("build_date");
 		generator.write(this.buildDate);
 
+		generator.writeKey("build_flavor");
+		generator.write(this.buildFlavor);
+
 		generator.writeKey("build_hash");
 		generator.write(this.buildHash);
 
@@ -195,6 +208,8 @@ public final class OpenSearchVersionInfo implements ToJsonp {
 	public static class Builder implements ObjectBuilder<OpenSearchVersionInfo> {
 		private String buildDate;
 
+		private String buildFlavor;
+
 		private String buildHash;
 
 		private Boolean buildSnapshot;
@@ -216,6 +231,14 @@ public final class OpenSearchVersionInfo implements ToJsonp {
 		 */
 		public Builder buildDate(String value) {
 			this.buildDate = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code build_flavor}
+		 */
+		public Builder buildFlavor(String value) {
+			this.buildFlavor = value;
 			return this;
 		}
 
@@ -307,6 +330,7 @@ public final class OpenSearchVersionInfo implements ToJsonp {
 			DelegatingDeserializer<OpenSearchVersionInfo.Builder> op) {
 
 		op.add(Builder::buildDate, JsonpDeserializer.stringDeserializer(), "build_date");
+		op.add(Builder::buildFlavor, JsonpDeserializer.stringDeserializer(), "build_flavor");
 		op.add(Builder::buildHash, JsonpDeserializer.stringDeserializer(), "build_hash");
 		op.add(Builder::buildSnapshot, JsonpDeserializer.booleanDeserializer(), "build_snapshot");
 		op.add(Builder::buildType, JsonpDeserializer.stringDeserializer(), "build_type");
