@@ -64,16 +64,12 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 	@Nullable
 	private final String typeDefault;
 
-	@Nullable
-	private final NodeInfoSettingsTransportFeatures features;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeInfoSettingsTransport(Builder builder) {
 
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.typeDefault = builder.typeDefault;
-		this.features = builder.features;
 
 	}
 
@@ -97,14 +93,6 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code features}
-	 */
-	@Nullable
-	public final NodeInfoSettingsTransportFeatures features() {
-		return this.features;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -123,11 +111,6 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 			generator.write(this.typeDefault);
 
 		}
-		if (this.features != null) {
-			generator.writeKey("features");
-			this.features.serialize(generator, mapper);
-
-		}
 
 	}
 
@@ -142,9 +125,6 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 
 		@Nullable
 		private String typeDefault;
-
-		@Nullable
-		private NodeInfoSettingsTransportFeatures features;
 
 		/**
 		 * Required - API name: {@code type}
@@ -168,22 +148,6 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 		public final Builder typeDefault(@Nullable String value) {
 			this.typeDefault = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code features}
-		 */
-		public final Builder features(@Nullable NodeInfoSettingsTransportFeatures value) {
-			this.features = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code features}
-		 */
-		public final Builder features(
-				Function<NodeInfoSettingsTransportFeatures.Builder, ObjectBuilder<NodeInfoSettingsTransportFeatures>> fn) {
-			return this.features(fn.apply(new NodeInfoSettingsTransportFeatures.Builder()).build());
 		}
 
 		/**
@@ -212,7 +176,6 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 
 		op.add(Builder::type, NodeInfoSettingsTransportType._DESERIALIZER, "type");
 		op.add(Builder::typeDefault, JsonpDeserializer.stringDeserializer(), "type.default");
-		op.add(Builder::features, NodeInfoSettingsTransportFeatures._DESERIALIZER, "features");
 
 	}
 
