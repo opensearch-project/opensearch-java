@@ -55,13 +55,13 @@ import java.util.function.Function;
 public final class OpenSearchVersionInfo implements JsonpSerializable {
 	private final String buildDate;
 
-	private final String buildFlavor;
-
 	private final String buildHash;
 
 	private final boolean buildSnapshot;
 
 	private final String buildType;
+
+	private final String distribution;
 
 	private final String luceneVersion;
 
@@ -76,10 +76,10 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 	private OpenSearchVersionInfo(Builder builder) {
 
 		this.buildDate = ModelTypeHelper.requireNonNull(builder.buildDate, this, "buildDate");
-		this.buildFlavor = ModelTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
 		this.buildHash = ModelTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
 		this.buildSnapshot = ModelTypeHelper.requireNonNull(builder.buildSnapshot, this, "buildSnapshot");
 		this.buildType = ModelTypeHelper.requireNonNull(builder.buildType, this, "buildType");
+		this.distribution = ModelTypeHelper.requireNonNull(builder.distribution, this, "distribution");
 		this.luceneVersion = ModelTypeHelper.requireNonNull(builder.luceneVersion, this, "luceneVersion");
 		this.minimumIndexCompatibilityVersion = ModelTypeHelper.requireNonNull(builder.minimumIndexCompatibilityVersion,
 				this, "minimumIndexCompatibilityVersion");
@@ -101,14 +101,7 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code build_flavor}
-	 */
-	public final String buildFlavor() {
-		return this.buildFlavor;
-	}
-
-	/**
-	 * Required - API name: {@code build_hash}
+	 * API name: {@code build_hash}
 	 */
 	public final String buildHash() {
 		return this.buildHash;
@@ -129,7 +122,14 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code lucene_version}
+	 * API name: {@code distribution}
+	 */
+	public String distribution() {
+		return this.distribution;
+	}
+
+	/**
+	 * API name: {@code lucene_version}
 	 */
 	public final String luceneVersion() {
 		return this.luceneVersion;
@@ -170,9 +170,6 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 		generator.writeKey("build_date");
 		generator.write(this.buildDate);
 
-		generator.writeKey("build_flavor");
-		generator.write(this.buildFlavor);
-
 		generator.writeKey("build_hash");
 		generator.write(this.buildHash);
 
@@ -181,6 +178,9 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 
 		generator.writeKey("build_type");
 		generator.write(this.buildType);
+
+		generator.writeKey("distribution");
+		generator.write(this.distribution);
 
 		generator.writeKey("lucene_version");
 		generator.write(this.luceneVersion);
@@ -204,13 +204,13 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenSearchVersionInfo> {
 		private String buildDate;
 
-		private String buildFlavor;
-
 		private String buildHash;
 
 		private Boolean buildSnapshot;
 
 		private String buildType;
+
+		private String distribution;
 
 		private String luceneVersion;
 
@@ -229,15 +229,7 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code build_flavor}
-		 */
-		public final Builder buildFlavor(String value) {
-			this.buildFlavor = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code build_hash}
+		 * API name: {@code build_hash}
 		 */
 		public final Builder buildHash(String value) {
 			this.buildHash = value;
@@ -261,7 +253,15 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code lucene_version}
+		 * API name: {@code distribution}
+		 */
+		public Builder distribution(String value) {
+			this.distribution = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code lucene_version}
 		 */
 		public final Builder luceneVersion(String value) {
 			this.luceneVersion = value;
@@ -317,10 +317,10 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 			DelegatingDeserializer<OpenSearchVersionInfo.Builder> op) {
 
 		op.add(Builder::buildDate, JsonpDeserializer.stringDeserializer(), "build_date");
-		op.add(Builder::buildFlavor, JsonpDeserializer.stringDeserializer(), "build_flavor");
 		op.add(Builder::buildHash, JsonpDeserializer.stringDeserializer(), "build_hash");
 		op.add(Builder::buildSnapshot, JsonpDeserializer.booleanDeserializer(), "build_snapshot");
 		op.add(Builder::buildType, JsonpDeserializer.stringDeserializer(), "build_type");
+		op.add(Builder::distribution, JsonpDeserializer.stringDeserializer(), "distribution");
 		op.add(Builder::luceneVersion, JsonpDeserializer.stringDeserializer(), "lucene_version");
 		op.add(Builder::minimumIndexCompatibilityVersion, JsonpDeserializer.stringDeserializer(),
 				"minimum_index_compatibility_version");
