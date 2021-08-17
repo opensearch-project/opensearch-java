@@ -56,16 +56,12 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 	@Nullable
 	private final String type_default;
 
-	@Nullable
-	private final NodeInfoSettingsTransportFeatures features;
-
 	// ---------------------------------------------------------------------------------------------
 
 	protected NodeInfoSettingsTransport(Builder builder) {
 
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.type_default = builder.type_default;
-		this.features = builder.features;
 
 	}
 
@@ -82,14 +78,6 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 	@Nullable
 	public String type_default() {
 		return this.type_default;
-	}
-
-	/**
-	 * API name: {@code features}
-	 */
-	@Nullable
-	public NodeInfoSettingsTransportFeatures features() {
-		return this.features;
 	}
 
 	/**
@@ -112,12 +100,6 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 			generator.write(this.type_default);
 
 		}
-		if (this.features != null) {
-
-			generator.writeKey("features");
-			this.features.toJsonp(generator, mapper);
-
-		}
 
 	}
 
@@ -131,9 +113,6 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 
 		@Nullable
 		private String type_default;
-
-		@Nullable
-		private NodeInfoSettingsTransportFeatures features;
 
 		/**
 		 * API name: {@code type}
@@ -149,22 +128,6 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 		public Builder type_default(@Nullable String value) {
 			this.type_default = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code features}
-		 */
-		public Builder features(@Nullable NodeInfoSettingsTransportFeatures value) {
-			this.features = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code features}
-		 */
-		public Builder features(
-				Function<NodeInfoSettingsTransportFeatures.Builder, ObjectBuilder<NodeInfoSettingsTransportFeatures>> fn) {
-			return this.features(fn.apply(new NodeInfoSettingsTransportFeatures.Builder()).build());
 		}
 
 		/**
@@ -192,7 +155,6 @@ public final class NodeInfoSettingsTransport implements ToJsonp {
 
 		op.add(Builder::type, JsonpDeserializer.jsonValueDeserializer(), "type");
 		op.add(Builder::type_default, JsonpDeserializer.stringDeserializer(), "type.default");
-		op.add(Builder::features, NodeInfoSettingsTransportFeatures.DESERIALIZER, "features");
 
 	}
 
