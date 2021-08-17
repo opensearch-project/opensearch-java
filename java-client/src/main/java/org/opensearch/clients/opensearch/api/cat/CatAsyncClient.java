@@ -45,10 +45,6 @@ import org.opensearch.clients.opensearch.cat.AllocationRequest;
 import org.opensearch.clients.opensearch.cat.AllocationResponse;
 import org.opensearch.clients.opensearch.cat.CountRequest;
 import org.opensearch.clients.opensearch.cat.CountResponse;
-import org.opensearch.clients.opensearch.cat.DataFrameAnalyticsRequest;
-import org.opensearch.clients.opensearch.cat.DataFrameAnalyticsResponse;
-import org.opensearch.clients.opensearch.cat.DatafeedsRequest;
-import org.opensearch.clients.opensearch.cat.DatafeedsResponse;
 import org.opensearch.clients.opensearch.cat.FielddataRequest;
 import org.opensearch.clients.opensearch.cat.FielddataResponse;
 import org.opensearch.clients.opensearch.cat.HealthRequest;
@@ -57,8 +53,6 @@ import org.opensearch.clients.opensearch.cat.HelpRequest;
 import org.opensearch.clients.opensearch.cat.HelpResponse;
 import org.opensearch.clients.opensearch.cat.IndicesRequest;
 import org.opensearch.clients.opensearch.cat.IndicesResponse;
-import org.opensearch.clients.opensearch.cat.JobsRequest;
-import org.opensearch.clients.opensearch.cat.JobsResponse;
 import org.opensearch.clients.opensearch.cat.MasterRequest;
 import org.opensearch.clients.opensearch.cat.MasterResponse;
 import org.opensearch.clients.opensearch.cat.NodeAttributesRequest;
@@ -85,10 +79,6 @@ import org.opensearch.clients.opensearch.cat.TemplatesRequest;
 import org.opensearch.clients.opensearch.cat.TemplatesResponse;
 import org.opensearch.clients.opensearch.cat.ThreadPoolRequest;
 import org.opensearch.clients.opensearch.cat.ThreadPoolResponse;
-import org.opensearch.clients.opensearch.cat.TrainedModelsRequest;
-import org.opensearch.clients.opensearch.cat.TrainedModelsResponse;
-import org.opensearch.clients.opensearch.cat.TransformsRequest;
-import org.opensearch.clients.opensearch.cat.TransformsResponse;
 import org.opensearch.clients.util.ObjectBuilder;
 
 import javax.annotation.Nullable;
@@ -287,108 +277,6 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	 */
 	public CompletableFuture<MasterResponse> master() throws IOException {
 		return this.transport.performRequestAsync(MasterRequest.INSTANCE, MasterRequest.ENDPOINT, this.requestOptions);
-	}
-
-	// ----- Endpoint: cat.ml_data_frame_analytics
-
-	/**
-	 * Gets configuration and usage information about data frame analytics jobs.
-	 *
-	 */
-
-	public CompletableFuture<DataFrameAnalyticsResponse> mlDataFrameAnalytics(DataFrameAnalyticsRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, DataFrameAnalyticsRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Gets configuration and usage information about data frame analytics jobs.
-	 *
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final CompletableFuture<DataFrameAnalyticsResponse> mlDataFrameAnalytics(
-			Function<DataFrameAnalyticsRequest.Builder, ObjectBuilder<DataFrameAnalyticsRequest>> fn)
-			throws IOException {
-		return mlDataFrameAnalytics(fn.apply(new DataFrameAnalyticsRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: cat.ml_datafeeds
-
-	/**
-	 * Gets configuration and usage information about datafeeds.
-	 *
-	 */
-
-	public CompletableFuture<DatafeedsResponse> mlDatafeeds(DatafeedsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DatafeedsRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Gets configuration and usage information about datafeeds.
-	 *
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final CompletableFuture<DatafeedsResponse> mlDatafeeds(
-			Function<DatafeedsRequest.Builder, ObjectBuilder<DatafeedsRequest>> fn) throws IOException {
-		return mlDatafeeds(fn.apply(new DatafeedsRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: cat.ml_jobs
-
-	/**
-	 * Gets configuration and usage information about anomaly detection jobs.
-	 *
-	 */
-
-	public CompletableFuture<JobsResponse> mlJobs(JobsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, JobsRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Gets configuration and usage information about anomaly detection jobs.
-	 *
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final CompletableFuture<JobsResponse> mlJobs(Function<JobsRequest.Builder, ObjectBuilder<JobsRequest>> fn)
-			throws IOException {
-		return mlJobs(fn.apply(new JobsRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: cat.ml_trained_models
-
-	/**
-	 * Gets configuration and usage information about inference trained models.
-	 *
-	 */
-
-	public CompletableFuture<TrainedModelsResponse> mlTrainedModels(TrainedModelsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, TrainedModelsRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Gets configuration and usage information about inference trained models.
-	 *
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final CompletableFuture<TrainedModelsResponse> mlTrainedModels(
-			Function<TrainedModelsRequest.Builder, ObjectBuilder<TrainedModelsRequest>> fn) throws IOException {
-		return mlTrainedModels(fn.apply(new TrainedModelsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: cat.nodeattrs
@@ -637,31 +525,6 @@ public class CatAsyncClient extends ApiClient<CatAsyncClient> {
 	public final CompletableFuture<ThreadPoolResponse> threadPool(
 			Function<ThreadPoolRequest.Builder, ObjectBuilder<ThreadPoolRequest>> fn) throws IOException {
 		return threadPool(fn.apply(new ThreadPoolRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: cat.transforms
-
-	/**
-	 * Gets configuration and usage information about transforms.
-	 *
-	 */
-
-	public CompletableFuture<TransformsResponse> transforms(TransformsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, TransformsRequest.ENDPOINT, this.requestOptions);
-	}
-
-	/**
-	 * Gets configuration and usage information about transforms.
-	 *
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 */
-
-	public final CompletableFuture<TransformsResponse> transforms(
-			Function<TransformsRequest.Builder, ObjectBuilder<TransformsRequest>> fn) throws IOException {
-		return transforms(fn.apply(new TransformsRequest.Builder()).build());
 	}
 
 	// ----- Misc
