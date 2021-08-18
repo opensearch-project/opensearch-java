@@ -17,11 +17,12 @@ This document explains who the maintainers are (see below), what they do in this
 
 ## Current Maintainers
 
-| Maintainer               | GitHub ID                                       | Affiliation |
-| ------------------------ | ----------------------------------------------- | ----------- |
-| Mital Awachat            | [mitalawachat](https://github.com/mitalawachat) | Amazon      |
-| Bukhtawar Khan           | [Bukhtawar](https://github.com/Bukhtawar)       | Amazon      |
-| Vamshi Vijay Nakkirtha   | [vamshin](https://github.com/vamshin)           | Amazon      |
+| Maintainer               | GitHub ID                                              | Affiliation |
+| ------------------------ | ------------------------------------------------------ | ----------- |
+| Bukhtawar Khan           | [Bukhtawar](https://github.com/Bukhtawar)              | Amazon      |
+| Madhusudhan Konda        | [madhusudhankonda](https://github.com/madhusudhankonda)| Chocolateminds|
+| Mital Awachat            | [mitalawachat](https://github.com/mitalawachat)        | Amazon      |
+| Vamshi Vijay Nakkirtha   | [vamshin](https://github.com/vamshin)                  | Amazon      |
 
 ## Maintainer Responsibilities
 
