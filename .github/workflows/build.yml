@@ -33,5 +33,9 @@ jobs:
           docker build -t opensearch-search:test -f .ci/Dockerfile.server .
           docker run -p 9200:9200 -p 9600:9600 -d -e "discovery.type=single-node" opensearch-search:test
           sleep 60
+      - name: Run Unit Test
+        run: ./gradlew clean unitTest
+      - name: Run Integration Test
+        run: ./gradlew clean integrationTest
       - name: Build with Gradle
         run: ./gradlew build
