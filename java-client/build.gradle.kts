@@ -85,6 +85,12 @@ tasks.test {
     systemProperty("tests.security.manager", "false")
 }
 
+val unitTest = task<Test>("unitTest") {
+    filter {
+        excludeTestsMatching("org.opensearch.clients.opensearch.integTest.*")
+    }
+}
+
 publishing {
     repositories {
         maven {
