@@ -93,10 +93,14 @@ val unitTest = task<Test>("unitTest") {
 }
 
 val integrationTest = task<Test>("integrationTest") {
-    systemProperty("tests.security.manager", "false")
     filter {
         includeTestsMatching("org.opensearch.clients.opensearch.integTest.*")
     }
+    systemProperty("tests.security.manager", "false")
+    // Basic auth settings for integration test
+    systemProperty("https", System.getProperty("https", "true"))
+    systemProperty("user", System.getProperty("user", "admin"))
+    systemProperty("password", System.getProperty("password", "admin"))
 }
 
 publishing {
