@@ -91,52 +91,6 @@ val unitTest = task<Test>("unitTest") {
     }
 }
 
-publishing {
-    repositories {
-        maven {
-            // See https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry
-            name = "ESJavaGithubPackages"
-            url = uri("https://maven.pkg.github.com/elastic/elasticsearch-java")
-            credentials(PasswordCredentials::class)
-        }
-
-        maven {
-            name = "Build"
-            url = uri("${rootProject.buildDir}/repository")
-        }
-    }
-
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["java"])
-            pom {
-                name.set("Elasticsearch Java Client")
-                artifactId = "elasticsearch-java"
-                description.set("Next-gen Elasticsearch Java Client")
-                url.set("https://github.com/elastic/elasticsearch-java/")
-                licenses {
-                    license {
-                        name.set("The Apache Software License, Version 2.0")
-                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
-                    }
-                }
-                developers {
-                    developer {
-                        name.set("Elastic")
-                        url.set("https://www.elastic.co")
-                        inceptionYear.set("2020")
-                    }
-                }
-                scm {
-                    connection.set("scm:git:https://github.com/elastic/elasticsearch-java.git")
-                    developerConnection.set("scm:git:ssh://git@github.com:elastic/elasticsearch-java.git")
-                    url.set("https://github.com/elastic/elasticsearch-java/")
-                }
-            }
-        }
-    }
-}
-
 dependencies {
 
     val opensearchVersion = "1.2.4"
