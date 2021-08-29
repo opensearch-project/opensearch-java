@@ -48,6 +48,39 @@ cd opensearch-java
 ```
 4. Launch Intellij IDEA, choose Import Project, and select the `settings.gradle.kts` file in the root of this project.
 
+## Example
+
+```java
+try (RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build()) {
+    String index = "test-index";
+
+    // Create Client
+    Transport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+    OpenSearchClient client = new OpenSearchClient(transport);
+
+    // Create Index
+    CreateRequest createIndexRequest = new CreateRequest.Builder().index(index).build();
+    CreateResponse createIndexResponse = client.indices().create(createIndexRequest);
+    assert createIndexResponse.acknowledged();
+
+    // Index Document
+    IndexData indexData = new IndexData("foo", "bar");
+    IndexRequest<IndexData> indexRequest = new IndexRequest.Builder<IndexData>().index(index).id("1").value(indexData).build();
+    IndexResponse indexResponse = client.index(indexRequest);
+    assert Objects.equals(indexResponse.id(), "1");
+
+    // Search Documents
+    SearchResponse<IndexData> searchResponse = client.search(s -> s.index(index), IndexData.class);
+    assert !searchResponse.hits().hits().isEmpty();
+    searchResponse.hits().hits().stream().map(Hit::source).forEach(System.out::println);
+
+    // Delete Index
+    DeleteRequest deleteRequest = new DeleteRequest.Builder().index(index).build();
+    DeleteResponse deleteResponse = client.indices().delete(deleteRequest);
+    assert deleteResponse.acknowledged();
+}
+```
+
 ## Code of Conduct
 
 This project has adopted the [Amazon Open Source Code of Conduct](CODE_OF_CONDUCT.md). For more information see the [Code of Conduct FAQ](https://aws.github.io/code-of-conduct-faq), or contact [opensource-codeofconduct@amazon.com](mailto:opensource-codeofconduct@amazon.com) with any additional questions or comments.
