@@ -102,12 +102,12 @@ val integrationTest = task<Test>("integrationTest") {
 }
 
 dependencies {
-    val opensearchVersion = "1.0.0-SNAPSHOT"
+    val opensearchVersion = "1.0.0"
     val jacksonVersion = "2.12.0"
 
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
-    implementation("org.opensearch.test", "framework", opensearchVersion)
+    testImplementation("org.opensearch.test", "framework", opensearchVersion)
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
