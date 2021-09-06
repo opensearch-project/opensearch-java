@@ -98,7 +98,7 @@ dependencies {
 
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
-    implementation("org.opensearch.test", "framework", opensearchVersion)
+    testImplementation("org.opensearch.test", "framework", opensearchVersion)
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
