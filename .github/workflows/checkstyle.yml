@@ -10,18 +10,7 @@ jobs:
         with:
           java-version: '14'
           distribution: 'adopt'
-      - name: Checkout OpenSearch
-        uses: actions/checkout@v2
-        with:
-          repository: 'opensearch-project/OpenSearch'
-          path: OpenSearch
-          ref: '1.0.0'
-      - name: Build OpenSearch
-        working-directory: ./OpenSearch
-        run: ./gradlew publishToMavenLocal
-
       - uses: actions/checkout@v2
-
       - name: Check style and license headers
         run: |
           ./gradlew checkstyleMain checkstyleTest

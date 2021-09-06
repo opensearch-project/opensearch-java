@@ -33,20 +33,13 @@ OpenSearch Java Client
 ## Setup
 
 1. Set `JAVA_HOME` to point to a JDK >= 11
-2. Checkout and build [OpenSearch](https://github.com/opensearch-project/OpenSearch) project. Example:
-```shell
-git clone https://github.com/opensearch-project/OpenSearch.git
-cd OpenSearch
-git checkout 1.0.0
-./gradlew publishToMavenLocal
-```
-3. Once the above command successfully publishes the artifacts to your local repo, the next step is to checkout and build the [opensearch-java](https://github.com/opensearch-project/opensearch-java) project.
+2. Checkout and build the [opensearch-java](https://github.com/opensearch-project/opensearch-java) project.
 ```shell
 git clone https://github.com/opensearch-project/opensearch-java.git
 cd opensearch-java
 ./gradlew build
 ```
-4. Launch Intellij IDEA, choose Import Project, and select the `settings.gradle.kts` file in the root of this project.
+3. Launch Intellij IDEA, choose Import Project, and select the `settings.gradle.kts` file in the root of this project.
 
 ## Example
 
