@@ -43,6 +43,7 @@ buildscript {
     }
 }
 
+
 plugins {
     java
     checkstyle
@@ -185,6 +186,55 @@ class SpdxReporter(val dest: File) : ReportRenderer {
                 // See https://spdx.github.io/spdx-spec/appendix-IV-SPDX-license-expressions/#composite-license-expressions
                 val licenseId = licenseIds.joinToString(" OR ")
                 out.append("${quote(depName)},${quote(depUrl)},${quote(depVersion)},,${quote(licenseId)}\n")
+            }
+        }
+    }
+}
+
+tasks.withType<Jar> {
+    doLast {
+        ant.withGroovyBuilder {
+            "checksum"("algorithm" to "md5", "file" to archivePath)
+            "checksum"("algorithm" to "sha1", "file" to archivePath)
+            "checksum"("algorithm" to "sha-256", "file" to archivePath, "fileext" to ".sha256")
+            "checksum"("algorithm" to "sha-512", "file" to archivePath, "fileext" to ".sha512")
+        }
+    }
+}
+
+publishing {
+    repositories{
+        maven {
+            url = uri("${rootProject.buildDir}/repository")
+        }
+    }
+    publications {
+        create<MavenPublication>("publishMaven") {
+            from(components["java"])
+            pom {
+                name.set("OpenSearch Java Client")
+                packaging = "jar"
+                artifactId = "opensearch-java"
+                description.set("High level OpenSearch Java Client")
+                url.set("https://github.com/opensearch-project/opensearch-java/")
+                scm {
+                    connection.set("scm:git@github.com:opensearch-project/opensearch-java.git")
+                    developerConnection.set("scm:git@github.com:opensearch-project/opensearch-java.git")
+                    url.set("git@github.com:opensearch-project/opensearch-java.git")
+                }
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+                developers {
+                    developer {
+                        name.set("opensearch-project")
+                        url.set("https://www.opensearch.org")
+                        inceptionYear.set("2021")
+                    }
+                }
             }
         }
     }
