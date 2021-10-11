@@ -1,0 +1,255 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+/*
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package org.opensearch.client.opensearch.indices.recovery;
+
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import org.opensearch.client.json.DelegatingDeserializer;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.ObjectBuilderDeserializer;
+import org.opensearch.client.json.ToJsonp;
+import org.opensearch.client.util.ObjectBuilder;
+
+import javax.annotation.Nullable;
+import java.util.Objects;
+
+// typedef: indices.recovery.TranslogStatus
+public final class TranslogStatus implements ToJsonp {
+	private final JsonValue percent;
+
+	private final Number recovered;
+
+	private final Number total;
+
+	private final Number totalOnStart;
+
+	@Nullable
+	private final String totalTime;
+
+	private final JsonValue totalTimeInMillis;
+
+	// ---------------------------------------------------------------------------------------------
+
+	protected TranslogStatus(Builder builder) {
+
+		this.percent = Objects.requireNonNull(builder.percent, "percent");
+		this.recovered = Objects.requireNonNull(builder.recovered, "recovered");
+		this.total = Objects.requireNonNull(builder.total, "total");
+		this.totalOnStart = Objects.requireNonNull(builder.totalOnStart, "total_on_start");
+		this.totalTime = builder.totalTime;
+		this.totalTimeInMillis = Objects.requireNonNull(builder.totalTimeInMillis, "total_time_in_millis");
+
+	}
+
+	/**
+	 * API name: {@code percent}
+	 */
+	public JsonValue percent() {
+		return this.percent;
+	}
+
+	/**
+	 * API name: {@code recovered}
+	 */
+	public Number recovered() {
+		return this.recovered;
+	}
+
+	/**
+	 * API name: {@code total}
+	 */
+	public Number total() {
+		return this.total;
+	}
+
+	/**
+	 * API name: {@code total_on_start}
+	 */
+	public Number totalOnStart() {
+		return this.totalOnStart;
+	}
+
+	/**
+	 * API name: {@code total_time}
+	 */
+	@Nullable
+	public String totalTime() {
+		return this.totalTime;
+	}
+
+	/**
+	 * API name: {@code total_time_in_millis}
+	 */
+	public JsonValue totalTimeInMillis() {
+		return this.totalTimeInMillis;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		toJsonpInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("percent");
+		generator.write(this.percent);
+
+		generator.writeKey("recovered");
+		generator.write(this.recovered.doubleValue());
+
+		generator.writeKey("total");
+		generator.write(this.total.doubleValue());
+
+		generator.writeKey("total_on_start");
+		generator.write(this.totalOnStart.doubleValue());
+
+		if (this.totalTime != null) {
+
+			generator.writeKey("total_time");
+			generator.write(this.totalTime);
+
+		}
+
+		generator.writeKey("total_time_in_millis");
+		generator.write(this.totalTimeInMillis);
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link TranslogStatus}.
+	 */
+	public static class Builder implements ObjectBuilder<TranslogStatus> {
+		private JsonValue percent;
+
+		private Number recovered;
+
+		private Number total;
+
+		private Number totalOnStart;
+
+		@Nullable
+		private String totalTime;
+
+		private JsonValue totalTimeInMillis;
+
+		/**
+		 * API name: {@code percent}
+		 */
+		public Builder percent(JsonValue value) {
+			this.percent = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code recovered}
+		 */
+		public Builder recovered(Number value) {
+			this.recovered = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total}
+		 */
+		public Builder total(Number value) {
+			this.total = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_on_start}
+		 */
+		public Builder totalOnStart(Number value) {
+			this.totalOnStart = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_time}
+		 */
+		public Builder totalTime(@Nullable String value) {
+			this.totalTime = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_time_in_millis}
+		 */
+		public Builder totalTimeInMillis(JsonValue value) {
+			this.totalTimeInMillis = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link TranslogStatus}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public TranslogStatus build() {
+
+			return new TranslogStatus(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for TranslogStatus
+	 */
+	public static final JsonpDeserializer<TranslogStatus> DESERIALIZER = ObjectBuilderDeserializer
+			.createForObject(Builder::new, TranslogStatus::setupTranslogStatusDeserializer);
+
+	protected static void setupTranslogStatusDeserializer(DelegatingDeserializer<TranslogStatus.Builder> op) {
+
+		op.add(Builder::percent, JsonpDeserializer.jsonValueDeserializer(), "percent");
+		op.add(Builder::recovered, JsonpDeserializer.numberDeserializer(), "recovered");
+		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::totalOnStart, JsonpDeserializer.numberDeserializer(), "total_on_start");
+		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "total_time_in_millis");
+
+	}
+
+}
