@@ -37,6 +37,7 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.opensearch.clients.opensearch.experiments.api.FooRequest;
 import org.opensearch.clients.opensearch.experiments.api.query.TermsQuery;
@@ -88,6 +89,7 @@ public class ParsingTests extends Assert {
   }
 
   @Test
+  @Ignore("Requires lenient serializers")
   public void testVariants() throws Exception {
 
     try {
