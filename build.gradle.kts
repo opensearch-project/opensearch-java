@@ -31,7 +31,7 @@
  */
 
 allprojects {
-    group = "org.opensearch.clients"
+    group = "org.opensearch.client"
     // Release manager provides a $VERSION. If not present, it's a local or CI snapshot build.
     version = System.getenv("VERSION") ?:
         (File(project.rootDir, "config/version.txt").readText().trim() + "-SNAPSHOT")
@@ -84,7 +84,7 @@ tasks.register<Task>(name = "publishForReleaseManager") {
         val releaseDir = File(rootProject.buildDir, "release")
         releaseDir.mkdirs()
 
-        File(rootProject.buildDir, "repository/org/opensearch/clients").listFiles()?.forEach { artifact ->
+        File(rootProject.buildDir, "repository/org/opensearch/client").listFiles()?.forEach { artifact ->
             println("Releasing artifact " + artifact.name)
 
             val versionDir = File(artifact, version)
