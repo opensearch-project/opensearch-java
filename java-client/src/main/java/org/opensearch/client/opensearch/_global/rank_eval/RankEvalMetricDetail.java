@@ -86,7 +86,7 @@ public final class RankEvalMetricDetail implements ToJsonp {
 
 	/**
 	 * The unrated_docs section contains an _index and _id entry for each document
-	 * in the search result for this query that didn’t have a ratings value. This
+	 * in the search result for this query that didn't have a ratings value. This
 	 * can be used to ask the user to supply ratings for these documents
 	 *
 	 * API name: {@code unrated_docs}
@@ -190,7 +190,7 @@ public final class RankEvalMetricDetail implements ToJsonp {
 
 		/**
 		 * The unrated_docs section contains an _index and _id entry for each document
-		 * in the search result for this query that didn’t have a ratings value. This
+		 * in the search result for this query that didn't have a ratings value. This
 		 * can be used to ask the user to supply ratings for these documents
 		 *
 		 * API name: {@code unrated_docs}
@@ -202,7 +202,7 @@ public final class RankEvalMetricDetail implements ToJsonp {
 
 		/**
 		 * The unrated_docs section contains an _index and _id entry for each document
-		 * in the search result for this query that didn’t have a ratings value. This
+		 * in the search result for this query that didn't have a ratings value. This
 		 * can be used to ask the user to supply ratings for these documents
 		 *
 		 * API name: {@code unrated_docs}

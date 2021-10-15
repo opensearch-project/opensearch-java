@@ -96,7 +96,7 @@ public final class ClusterNodes implements ToJsonp {
 	}
 
 	/**
-	 * Contains counts for nodes selected by the request’s node filters.
+	 * Contains counts for nodes selected by the request's node filters.
 	 *
 	 * API name: {@code count}
 	 */
@@ -291,7 +291,7 @@ public final class ClusterNodes implements ToJsonp {
 		private List<String> versions;
 
 		/**
-		 * Contains counts for nodes selected by the request’s node filters.
+		 * Contains counts for nodes selected by the request's node filters.
 		 *
 		 * API name: {@code count}
 		 */
@@ -301,7 +301,7 @@ public final class ClusterNodes implements ToJsonp {
 		}
 
 		/**
-		 * Contains counts for nodes selected by the request’s node filters.
+		 * Contains counts for nodes selected by the request's node filters.
 		 *
 		 * API name: {@code count}
 		 */

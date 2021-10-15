@@ -82,7 +82,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 	}
 
 	/**
-	 * The search request’s ID, used to group result details later.
+	 * The search request's ID, used to group result details later.
 	 *
 	 * API name: {@code id}
 	 */
@@ -199,7 +199,7 @@ public final class RankEvalRequestItem implements ToJsonp {
 		private Map<String, JsonValue> params;
 
 		/**
-		 * The search request’s ID, used to group result details later.
+		 * The search request's ID, used to group result details later.
 		 *
 		 * API name: {@code id}
 		 */

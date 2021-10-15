@@ -182,7 +182,7 @@ public final class NodeInfo implements ToJsonp {
 	}
 
 	/**
-	 * The node’s host name.
+	 * The node's host name.
 	 *
 	 * API name: {@code host}
 	 */
@@ -199,7 +199,7 @@ public final class NodeInfo implements ToJsonp {
 	}
 
 	/**
-	 * The node’s IP address.
+	 * The node's IP address.
 	 *
 	 * API name: {@code ip}
 	 */
@@ -630,7 +630,7 @@ public final class NodeInfo implements ToJsonp {
 		}
 
 		/**
-		 * The node’s host name.
+		 * The node's host name.
 		 *
 		 * API name: {@code host}
 		 */
@@ -655,7 +655,7 @@ public final class NodeInfo implements ToJsonp {
 		}
 
 		/**
-		 * The node’s IP address.
+		 * The node's IP address.
 		 *
 		 * API name: {@code ip}
 		 */

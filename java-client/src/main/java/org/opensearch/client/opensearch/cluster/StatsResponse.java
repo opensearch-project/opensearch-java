@@ -105,7 +105,7 @@ public final class StatsResponse extends NodesResponseBase {
 	}
 
 	/**
-	 * Contains statistics about nodes selected by the request’s node filters.
+	 * Contains statistics about nodes selected by the request's node filters.
 	 *
 	 * API name: {@code nodes}
 	 */
@@ -216,7 +216,7 @@ public final class StatsResponse extends NodesResponseBase {
 		}
 
 		/**
-		 * Contains statistics about nodes selected by the request’s node filters.
+		 * Contains statistics about nodes selected by the request's node filters.
 		 *
 		 * API name: {@code nodes}
 		 */
@@ -226,7 +226,7 @@ public final class StatsResponse extends NodesResponseBase {
 		}
 
 		/**
-		 * Contains statistics about nodes selected by the request’s node filters.
+		 * Contains statistics about nodes selected by the request's node filters.
 		 *
 		 * API name: {@code nodes}
 		 */
