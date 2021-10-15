@@ -46,6 +46,14 @@ allprojects {
     apply(plugin = "checkstyle")
 }
 
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+tasks.withType<Test> {
+    systemProperty("file.encoding", "UTF-8")
+}
+
+
 // Find git information.
 // The ".git" directory may not exist when resolving dependencies in the Docker image build
 if (File(rootProject.rootDir, ".git").exists()) {
