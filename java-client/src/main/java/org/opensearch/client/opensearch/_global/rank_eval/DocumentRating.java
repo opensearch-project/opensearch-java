@@ -74,7 +74,7 @@ public final class DocumentRating implements ToJsonp {
 	}
 
 	/**
-	 * The document’s index. For data streams, this should be the document’s backing
+	 * The document's index. For data streams, this should be the document's backing
 	 * index.
 	 *
 	 * API name: {@code _index}
@@ -84,7 +84,7 @@ public final class DocumentRating implements ToJsonp {
 	}
 
 	/**
-	 * The document’s relevance with regard to this search request.
+	 * The document's relevance with regard to this search request.
 	 *
 	 * API name: {@code rating}
 	 */
@@ -137,7 +137,7 @@ public final class DocumentRating implements ToJsonp {
 		}
 
 		/**
-		 * The document’s index. For data streams, this should be the document’s backing
+		 * The document's index. For data streams, this should be the document's backing
 		 * index.
 		 *
 		 * API name: {@code _index}
@@ -148,7 +148,7 @@ public final class DocumentRating implements ToJsonp {
 		}
 
 		/**
-		 * The document’s relevance with regard to this search request.
+		 * The document's relevance with regard to this search request.
 		 *
 		 * API name: {@code rating}
 		 */

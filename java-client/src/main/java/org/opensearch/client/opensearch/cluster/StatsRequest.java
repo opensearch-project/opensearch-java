@@ -89,7 +89,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Period to wait for each node to respond. If a node does not respond before
 	 * its timeout expires, the response does not include its stats. However, timed
-	 * out nodes are included in the response’s _nodes.failed property. Defaults to
+	 * out nodes are included in the response's _nodes.failed property. Defaults to
 	 * no timeout.
 	 *
 	 * API name: {@code timeout}
@@ -136,7 +136,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Period to wait for each node to respond. If a node does not respond before
 		 * its timeout expires, the response does not include its stats. However, timed
-		 * out nodes are included in the response’s _nodes.failed property. Defaults to
+		 * out nodes are included in the response's _nodes.failed property. Defaults to
 		 * no timeout.
 		 *
 		 * API name: {@code timeout}
