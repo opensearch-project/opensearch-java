@@ -30,6 +30,10 @@ pipeline {
                                     )
                             ])
                     ])
+                    if (params.REF.isEmpty() || params.VERSION.isEmpty()) {
+                        currentBuild.result = 'ABORTED'
+                        error('One or both of the parameters is empty')
+                    }                    
                 }
             }
         }
