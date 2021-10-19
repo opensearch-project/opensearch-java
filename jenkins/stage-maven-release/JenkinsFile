@@ -11,6 +11,7 @@ pipeline {
     }
     environment {
         ARTIFACT_PATH = "/usr/share/opensearch/.m2/repository/org/opensearch/client/opensearch-java/${VERSION}"
+        OUTPUT_DIR = "$WORKSPACE/maven-signed"
         VERSION = "${params.VERSION}"
     }
     stages {
@@ -33,11 +34,11 @@ pipeline {
                     if (params.REF.isEmpty() || params.VERSION.isEmpty()) {
                         currentBuild.result = 'ABORTED'
                         error('One or both of the parameters is empty')
-                    }                    
+                    }
                 }
             }
         }
-        stage('Publish to maven local') {
+        stage('Publish to Maven Local') {
             steps {
                 // checkout the commit
                 git url: 'https://github.com/opensearch-project/opensearch-java.git', branch: 'main'
@@ -45,10 +46,9 @@ pipeline {
 
                 //publish to maven local
                 sh('./gradlew publishtoMavenLocal')
-                sh('ls -l ${ARTIFACT_PATH}')
             }
-        }
-        stage('Sign the artifacts') {
+        }      
+        stage('Sign') {
             environment {
               // These ENV variables are required by https://github.com/opensearch-project/opensearch-signer-client
               // This client is invoked internally by the sign script.
@@ -84,25 +84,39 @@ pipeline {
                     }
             }
         }
+        stage('Generate checksums') {
+            steps {
+                 dir("$OUTPUT_DIR/org"){
+                    // copy only required artifacts to other folder so that not everything from .m2 gets staged
+                    sh('cp -r /usr/share/opensearch/.m2/repository/org/opensearch $OUTPUT_DIR/org/')
+                    sh('bash -O extglob -c "rm -rf $OUTPUT_DIR/org/opensearch/!(client)"')
+                    sh '''
+                    for file in $(find \$OUTPUT_DIR/org/opensearch/client/opensearch-java/\${VERSION} -type f)
+                        do
+                        if [ \${file##*.} != "asc" ]
+                        then
+                            echo "Creating checksum for \$file"
+                            (md5sum \$file | cut -d \' \' -f 1) > \$file.md5
+                            (sha1sum \$file | cut -d \' \' -f 1) > \$file.sha1
+                            (sha256sum \$file | cut -d \' \' -f 1) > \$file.sha256
+                            (sha512sum \$file | cut -d \' \' -f 1) > \$file.sha512
+                        fi
+                        done
+                    '''
+                    }
+                    sh('ls -l \$OUTPUT_DIR/org/opensearch/client/opensearch-java/\${VERSION}')
+                }
+        }
         stage('Stage maven artifacts') {
             tools {
               maven "maven-3.8.2"
             }
             environment {
-              OUTPUT_DIR = "$WORKSPACE/maven-signed"
               REPO_URL = "https://aws.oss.sonatype.org/"
               STAGING_PROFILE_ID = "${SONATYPE_STAGING_PROFILE_ID}"
               BUILD_ID = "${BUILD_NUMBER}"
             }
             steps {
-                // copy artifacts to other folder so that not everything from .m2 gets staged
-                dir("$OUTPUT_DIR"){
-                    sh('cp -r /usr/share/opensearch/.m2/repository/org/opensearch/ $OUTPUT_DIR/org/')
-                    sh('bash -O extglob -c "rm -rf $OUTPUT_DIR/org/opensearch/!(client)"')
-                    sh('ls -l $OUTPUT_DIR/org/')
-
-                }
-
                 // checkout the build repo
                 git url: 'https://github.com/opensearch-project/opensearch-build.git', branch: 'main'
 
@@ -111,6 +125,11 @@ pipeline {
                     sh('$WORKSPACE/publish/stage-maven-release.sh $OUTPUT_DIR')
                 }
             }
+            post() {
+                        always {
+                            cleanWs disableDeferredWipeout: true, deleteDirs: true
+                        }
+                    }
         }
     }
 }
