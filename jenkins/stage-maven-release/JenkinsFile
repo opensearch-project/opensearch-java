@@ -46,6 +46,9 @@ pipeline {
 
                 //publish to maven local
                 sh('./gradlew publishtoMavenLocal')
+
+                //Rename maven-metadata-local.xml to maven-metadata.xml
+                sh('mv /usr/share/opensearch/.m2/repository/org/opensearch/client/opensearch-java/maven-metadata-local.xml /usr/share/opensearch/.m2/repository/org/opensearch/client/opensearch-java/maven-metadata.xml')
             }
         }      
         stage('Sign') {
@@ -91,7 +94,7 @@ pipeline {
                     sh('cp -r /usr/share/opensearch/.m2/repository/org/opensearch $OUTPUT_DIR/org/')
                     sh('bash -O extglob -c "rm -rf $OUTPUT_DIR/org/opensearch/!(client)"')
                     sh '''
-                    for file in $(find \$OUTPUT_DIR/org/opensearch/client/opensearch-java/\${VERSION} -type f)
+                    for file in $(find \$OUTPUT_DIR/org/opensearch/client/opensearch-java/ -type f)
                         do
                         if [ \${file##*.} != "asc" ]
                         then
