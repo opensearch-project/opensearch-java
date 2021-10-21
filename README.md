@@ -15,8 +15,12 @@ OpenSearch Java Client
 
 ## Welcome!
 
-**opensearch-java** is [a community-driven, open source fork](https://aws.amazon.com/blogs/opensource/introducing-opensearch/) of elasticsearch-java licensed under the [Apache v2.0 License](LICENSE.txt). For more information, see [opensearch.org](https://opensearch.org/).
+**opensearch-java** is [a community-driven, open source fork](https://aws.amazon.com/blogs/opensource/introducing-opensearch/) of elasticsearch-java licensed under the [Apache v2.0 License](LICENSE.txt). 
+For more information, see [opensearch.org](https://opensearch.org/).
+This client is meant to replace the existing [OpenSearch Java High Level REST Client](https://opensearch.org/docs/latest/clients/java-rest-high-level/).
 
+
+**Note: This project is in beta stage and is for testing and feedback purposes only.**
 ## Project Resources
 
 * [Project Website](https://opensearch.org/)
