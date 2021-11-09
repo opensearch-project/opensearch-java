@@ -67,7 +67,7 @@ public class JacksonJsonProvider extends JsonProvider {
     private JsonFactory jsonFactory = new JsonFactory();
 
     public JacksonJsonProvider(JsonFactory jsonFactory) {
-        this.jsonFactory = new JsonFactory();
+        this.jsonFactory = jsonFactory;
     }
 
     public JacksonJsonProvider() {
