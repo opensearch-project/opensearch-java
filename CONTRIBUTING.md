@@ -21,7 +21,7 @@ Docker is used for some tests to spawn an Elasticsearch server.
 
 This is a multi-project build. The Java client is in the [`java-client`](./java-client) subproject. Additional subprojects will come with more extensive API tests and examples.
 
-The `org.opensearch.clients.elasticsearch` package and its children are all entirely generated, and the generator is not part of this repository. Because of this, PRs will not work for this part of the code. If you want to suggest changes to the generated code, open an issue describing how the code should look like, so that we can discuss on updating the generator.
+The `org.opensearch.clients.opensearch` package and its children are all entirely generated, and the generator is not part of this repository. Because of this, PRs will not work for this part of the code. If you want to suggest changes to the generated code, open an issue describing how the code should look like, so that we can discuss on updating the generator.
 
 Other packages contain support classes and frameworks that provide the plumbing between the generated code and the http client and JSON object mapping libraries. PRs are more than welcome on code in these packages.
 

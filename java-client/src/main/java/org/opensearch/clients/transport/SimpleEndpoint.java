@@ -19,7 +19,7 @@
 
 package org.opensearch.clients.transport;
 
-import org.opensearch.clients.elasticsearch._types.ErrorResponse;
+import org.opensearch.clients.opensearch._types.ErrorResponse;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.apache.http.client.utils.URLEncodedUtils;
 

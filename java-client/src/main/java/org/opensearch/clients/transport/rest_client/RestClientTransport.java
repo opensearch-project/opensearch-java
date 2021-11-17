@@ -19,8 +19,8 @@
 
 package org.opensearch.clients.transport.rest_client;
 
-import org.opensearch.clients.elasticsearch._types.ElasticsearchException;
-import org.opensearch.clients.elasticsearch._types.ErrorResponse;
+import org.opensearch.clients.opensearch._types.ElasticsearchException;
+import org.opensearch.clients.opensearch._types.ErrorResponse;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.NdJsonpSerializable;
