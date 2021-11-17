@@ -1,0 +1,134 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package org.opensearch.clients.elasticsearch._types.aggregations;
+
+import org.opensearch.clients.json.DelegatingDeserializer;
+import org.opensearch.clients.json.JsonpDeserializable;
+import org.opensearch.clients.json.JsonpDeserializer;
+import org.opensearch.clients.json.JsonpMapper;
+import org.opensearch.clients.json.ObjectBuilderDeserializer;
+import org.opensearch.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+// typedef: _types.aggregations.MatrixStatsAggregation
+@JsonpDeserializable
+public class MatrixStatsAggregation extends MatrixAggregation implements AggregationVariant {
+	@Nullable
+	private final MatrixStatsMode mode;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private MatrixStatsAggregation(Builder builder) {
+		super(builder);
+
+		this.mode = builder.mode;
+
+	}
+
+	public static MatrixStatsAggregation of(Function<Builder, ObjectBuilder<MatrixStatsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "matrix_stats";
+	}
+
+	/**
+	 * API name: {@code mode}
+	 */
+	@Nullable
+	public final MatrixStatsMode mode() {
+		return this.mode;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
+		if (this.mode != null) {
+			generator.writeKey("mode");
+			this.mode.serialize(generator, mapper);
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link MatrixStatsAggregation}.
+	 */
+	public static class Builder extends MatrixAggregation.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<MatrixStatsAggregation> {
+		@Nullable
+		private MatrixStatsMode mode;
+
+		/**
+		 * API name: {@code mode}
+		 */
+		public final Builder mode(@Nullable MatrixStatsMode value) {
+			this.mode = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link MatrixStatsAggregation}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public MatrixStatsAggregation build() {
+			_checkSingleUse();
+
+			return new MatrixStatsAggregation(this);
+		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link MatrixStatsAggregation}
+	 */
+	public static final JsonpDeserializer<MatrixStatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MatrixStatsAggregation::setupMatrixStatsAggregationDeserializer, Builder::build);
+
+	protected static void setupMatrixStatsAggregationDeserializer(
+			DelegatingDeserializer<MatrixStatsAggregation.Builder> op) {
+		setupMatrixAggregationDeserializer(op);
+		op.add(Builder::mode, MatrixStatsMode._DESERIALIZER, "mode");
+
+	}
+
+}

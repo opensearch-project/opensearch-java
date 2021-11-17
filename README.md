@@ -28,13 +28,13 @@ This library requires at least Java 8.
 
 Along with this library, you also need a JSON/object mapping library. `elasticsearch-java` has built-in support for [Jackson](https://github.com/FasterXML/jackson) and [JSON-B](http://json-b.net/) implementations such as [Eclipse Yasson](https://github.com/eclipse-ee4j/yasson).
 
-Releases are hosted on [Maven Central](https://search.maven.org/search?q=g:co.elastic.clients). If you are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is available at https://snapshots.elastic.co/maven/.
+Releases are hosted on [Maven Central](https://search.maven.org/search?q=g:org.opensearch.clients). If you are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is available at https://snapshots.elastic.co/maven/.
 
 Gradle project (Groovy flavor) setup using Jackson:
 
 ```groovy
 dependencies {
-    implementation 'co.elastic.clients:elasticsearch-java:7.15.0'
+    implementation 'org.opensearch.clients:elasticsearch-java:7.15.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
 }
 ```
@@ -45,7 +45,7 @@ In the `pom.xml` for your project add the following repository definition and de
 <project>
   <dependencies>
     <dependency>
-      <groupId>co.elastic.clients</groupId>
+      <groupId>org.opensearch.clients</groupId>
       <artifactId>elasticsearch-java</artifactId>
       <version>7.15.0</version>
     </dependency>
