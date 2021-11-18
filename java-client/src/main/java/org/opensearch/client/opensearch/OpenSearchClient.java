@@ -37,9 +37,9 @@
 package org.opensearch.client.opensearch;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
-import org.opensearch.client.opensearch.cat.ElasticsearchCatClient;
-import org.opensearch.client.opensearch.cluster.ElasticsearchClusterClient;
+import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch.cat.OpensearchCatClient;
+import org.opensearch.client.opensearch.cluster.OpensearchClusterClient;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.ClearScrollRequest;
@@ -119,14 +119,14 @@ import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.core.UpdateRequest;
 import org.opensearch.client.opensearch.core.UpdateResponse;
-import org.opensearch.client.opensearch.dangling_indices.ElasticsearchDanglingIndicesClient;
-import org.opensearch.client.opensearch.features.ElasticsearchFeaturesClient;
-import org.opensearch.client.opensearch.indices.ElasticsearchIndicesClient;
-import org.opensearch.client.opensearch.ingest.ElasticsearchIngestClient;
-import org.opensearch.client.opensearch.nodes.ElasticsearchNodesClient;
-import org.opensearch.client.opensearch.shutdown.ElasticsearchShutdownClient;
-import org.opensearch.client.opensearch.snapshot.ElasticsearchSnapshotClient;
-import org.opensearch.client.opensearch.tasks.ElasticsearchTasksClient;
+import org.opensearch.client.opensearch.dangling_indices.OpensearchDanglingIndicesClient;
+import org.opensearch.client.opensearch.features.OpensearchFeaturesClient;
+import org.opensearch.client.opensearch.indices.OpensearchIndicesClient;
+import org.opensearch.client.opensearch.ingest.OpensearchIngestClient;
+import org.opensearch.client.opensearch.nodes.OpensearchNodesClient;
+import org.opensearch.client.opensearch.shutdown.OpensearchShutdownClient;
+import org.opensearch.client.opensearch.snapshot.OpensearchSnapshotClient;
+import org.opensearch.client.opensearch.tasks.OpensearchTasksClient;
 import org.opensearch.client.transport.BooleanResponse;
 import org.opensearch.client.transport.Transport;
 import org.opensearch.client.transport.TransportOptions;
@@ -155,44 +155,44 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     // ----- Child clients
 
-    public ElasticsearchCatClient cat() {
-        return new ElasticsearchCatClient(this.transport, this.transportOptions);
+    public OpensearchCatClient cat() {
+        return new OpensearchCatClient(this.transport, this.transportOptions);
     }
 
-    public ElasticsearchClusterClient cluster() {
-        return new ElasticsearchClusterClient(this.transport, this.transportOptions);
+    public OpensearchClusterClient cluster() {
+        return new OpensearchClusterClient(this.transport, this.transportOptions);
     }
 
-    public ElasticsearchDanglingIndicesClient danglingIndices() {
-        return new ElasticsearchDanglingIndicesClient(this.transport, this.transportOptions);
+    public OpensearchDanglingIndicesClient danglingIndices() {
+        return new OpensearchDanglingIndicesClient(this.transport, this.transportOptions);
     }
 
-    public ElasticsearchFeaturesClient features() {
-        return new ElasticsearchFeaturesClient(this.transport, this.transportOptions);
+    public OpensearchFeaturesClient features() {
+        return new OpensearchFeaturesClient(this.transport, this.transportOptions);
     }
 
-    public ElasticsearchIndicesClient indices() {
-        return new ElasticsearchIndicesClient(this.transport, this.transportOptions);
+    public OpensearchIndicesClient indices() {
+        return new OpensearchIndicesClient(this.transport, this.transportOptions);
     }
 
-    public ElasticsearchIngestClient ingest() {
-        return new ElasticsearchIngestClient(this.transport, this.transportOptions);
+    public OpensearchIngestClient ingest() {
+        return new OpensearchIngestClient(this.transport, this.transportOptions);
     }
 
-    public ElasticsearchNodesClient nodes() {
-        return new ElasticsearchNodesClient(this.transport, this.transportOptions);
+    public OpensearchNodesClient nodes() {
+        return new OpensearchNodesClient(this.transport, this.transportOptions);
     }
 
-    public ElasticsearchShutdownClient shutdown() {
-        return new ElasticsearchShutdownClient(this.transport, this.transportOptions);
+    public OpensearchShutdownClient shutdown() {
+        return new OpensearchShutdownClient(this.transport, this.transportOptions);
     }
 
-    public ElasticsearchSnapshotClient snapshot() {
-        return new ElasticsearchSnapshotClient(this.transport, this.transportOptions);
+    public OpensearchSnapshotClient snapshot() {
+        return new OpensearchSnapshotClient(this.transport, this.transportOptions);
     }
 
-    public ElasticsearchTasksClient tasks() {
-        return new ElasticsearchTasksClient(this.transport, this.transportOptions);
+    public OpensearchTasksClient tasks() {
+        return new OpensearchTasksClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: bulk
@@ -206,7 +206,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public BulkResponse bulk(BulkRequest request) throws IOException, ElasticsearchException {
+    public BulkResponse bulk(BulkRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, BulkRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -222,7 +222,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public final BulkResponse bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return bulk(fn.apply(new BulkRequest.Builder()).build());
     }
 
@@ -235,7 +235,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public BulkResponse bulk() throws IOException, ElasticsearchException {
+    public BulkResponse bulk() throws IOException, OpensearchException {
         return this.transport.performRequest(new BulkRequest.Builder().build(), BulkRequest.ENDPOINT,
                 this.transportOptions);
     }
@@ -250,7 +250,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public ClearScrollResponse clearScroll(ClearScrollRequest request) throws IOException, ElasticsearchException {
+    public ClearScrollResponse clearScroll(ClearScrollRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, ClearScrollRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -266,7 +266,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final ClearScrollResponse clearScroll(
             Function<ClearScrollRequest.Builder, ObjectBuilder<ClearScrollRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return clearScroll(fn.apply(new ClearScrollRequest.Builder()).build());
     }
 
@@ -278,7 +278,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public ClearScrollResponse clearScroll() throws IOException, ElasticsearchException {
+    public ClearScrollResponse clearScroll() throws IOException, OpensearchException {
         return this.transport.performRequest(new ClearScrollRequest.Builder().build(), ClearScrollRequest.ENDPOINT,
                 this.transportOptions);
     }
@@ -294,7 +294,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public ClosePointInTimeResponse closePointInTime(ClosePointInTimeRequest request)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request, ClosePointInTimeRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -310,7 +310,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final ClosePointInTimeResponse closePointInTime(
             Function<ClosePointInTimeRequest.Builder, ObjectBuilder<ClosePointInTimeRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return closePointInTime(fn.apply(new ClosePointInTimeRequest.Builder()).build());
     }
 
@@ -324,7 +324,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public CountResponse count(CountRequest request) throws IOException, ElasticsearchException {
+    public CountResponse count(CountRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, CountRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -339,7 +339,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public final CountResponse count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return count(fn.apply(new CountRequest.Builder()).build());
     }
 
@@ -351,7 +351,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public CountResponse count() throws IOException, ElasticsearchException {
+    public CountResponse count() throws IOException, OpensearchException {
         return this.transport.performRequest(new CountRequest.Builder().build(), CountRequest.ENDPOINT,
                 this.transportOptions);
     }
@@ -370,7 +370,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public <TDocument> CreateResponse create(CreateRequest<TDocument> request)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request, CreateRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -389,7 +389,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final <TDocument> CreateResponse create(
             Function<CreateRequest.Builder<TDocument>, ObjectBuilder<CreateRequest<TDocument>>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
     }
 
@@ -403,7 +403,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public DeleteResponse delete(DeleteRequest request) throws IOException, ElasticsearchException {
+    public DeleteResponse delete(DeleteRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, DeleteRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -418,7 +418,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public final DeleteResponse delete(Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return delete(fn.apply(new DeleteRequest.Builder()).build());
     }
 
@@ -433,7 +433,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public DeleteByQueryResponse deleteByQuery(DeleteByQueryRequest request)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request, DeleteByQueryRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -449,7 +449,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final DeleteByQueryResponse deleteByQuery(
             Function<DeleteByQueryRequest.Builder, ObjectBuilder<DeleteByQueryRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return deleteByQuery(fn.apply(new DeleteByQueryRequest.Builder()).build());
     }
 
@@ -465,7 +465,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public DeleteByQueryRethrottleResponse deleteByQueryRethrottle(DeleteByQueryRethrottleRequest request)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request, DeleteByQueryRethrottleRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -482,7 +482,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final DeleteByQueryRethrottleResponse deleteByQueryRethrottle(
             Function<DeleteByQueryRethrottleRequest.Builder, ObjectBuilder<DeleteByQueryRethrottleRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return deleteByQueryRethrottle(fn.apply(new DeleteByQueryRethrottleRequest.Builder()).build());
     }
 
@@ -496,7 +496,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public DeleteScriptResponse deleteScript(DeleteScriptRequest request) throws IOException, ElasticsearchException {
+    public DeleteScriptResponse deleteScript(DeleteScriptRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, DeleteScriptRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -512,7 +512,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final DeleteScriptResponse deleteScript(
             Function<DeleteScriptRequest.Builder, ObjectBuilder<DeleteScriptRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return deleteScript(fn.apply(new DeleteScriptRequest.Builder()).build());
     }
 
@@ -526,7 +526,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public BooleanResponse exists(ExistsRequest request) throws IOException, ElasticsearchException {
+    public BooleanResponse exists(ExistsRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, ExistsRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -541,7 +541,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return exists(fn.apply(new ExistsRequest.Builder()).build());
     }
 
@@ -555,7 +555,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException, ElasticsearchException {
+    public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, ExistsSourceRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -571,7 +571,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final BooleanResponse existsSource(
             Function<ExistsSourceRequest.Builder, ObjectBuilder<ExistsSourceRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return existsSource(fn.apply(new ExistsSourceRequest.Builder()).build());
     }
 
@@ -586,7 +586,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public <TDocument> ExplainResponse<TDocument> explain(ExplainRequest request, Class<TDocument> tDocumentClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request,
                 ExplainRequest.createExplainEndpoint(getDeserializer(tDocumentClass)), this.transportOptions);
     }
@@ -603,7 +603,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final <TDocument> ExplainResponse<TDocument> explain(
             Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn, Class<TDocument> tDocumentClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentClass);
     }
 
@@ -618,7 +618,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public FieldCapsResponse fieldCaps(FieldCapsRequest request) throws IOException, ElasticsearchException {
+    public FieldCapsResponse fieldCaps(FieldCapsRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, FieldCapsRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -634,7 +634,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public final FieldCapsResponse fieldCaps(Function<FieldCapsRequest.Builder, ObjectBuilder<FieldCapsRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return fieldCaps(fn.apply(new FieldCapsRequest.Builder()).build());
     }
 
@@ -647,7 +647,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public FieldCapsResponse fieldCaps() throws IOException, ElasticsearchException {
+    public FieldCapsResponse fieldCaps() throws IOException, OpensearchException {
         return this.transport.performRequest(new FieldCapsRequest.Builder().build(), FieldCapsRequest.ENDPOINT,
                 this.transportOptions);
     }
@@ -663,7 +663,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public <TDocument> GetResponse<TDocument> get(GetRequest request, Class<TDocument> tDocumentClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request, GetRequest.createGetEndpoint(getDeserializer(tDocumentClass)),
                 this.transportOptions);
     }
@@ -679,7 +679,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public final <TDocument> GetResponse<TDocument> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn,
-                                                        Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+                                                        Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
         return get(fn.apply(new GetRequest.Builder()).build(), tDocumentClass);
     }
 
@@ -693,7 +693,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public GetScriptResponse getScript(GetScriptRequest request) throws IOException, ElasticsearchException {
+    public GetScriptResponse getScript(GetScriptRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, GetScriptRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -708,7 +708,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public final GetScriptResponse getScript(Function<GetScriptRequest.Builder, ObjectBuilder<GetScriptRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return getScript(fn.apply(new GetScriptRequest.Builder()).build());
     }
 
@@ -721,7 +721,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
      * on elastic.co</a>
      */
-    public GetScriptContextResponse getScriptContext() throws IOException, ElasticsearchException {
+    public GetScriptContextResponse getScriptContext() throws IOException, OpensearchException {
         return this.transport.performRequest(GetScriptContextRequest._INSTANCE, GetScriptContextRequest.ENDPOINT,
                 this.transportOptions);
     }
@@ -735,7 +735,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
      * on elastic.co</a>
      */
-    public GetScriptLanguagesResponse getScriptLanguages() throws IOException, ElasticsearchException {
+    public GetScriptLanguagesResponse getScriptLanguages() throws IOException, OpensearchException {
         return this.transport.performRequest(GetScriptLanguagesRequest._INSTANCE, GetScriptLanguagesRequest.ENDPOINT,
                 this.transportOptions);
     }
@@ -751,7 +751,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public <TDocument> GetSourceResponse<TDocument> getSource(GetSourceRequest request, Class<TDocument> tDocumentClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request,
                 GetSourceRequest.createGetSourceEndpoint(getDeserializer(tDocumentClass)), this.transportOptions);
     }
@@ -768,7 +768,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final <TDocument> GetSourceResponse<TDocument> getSource(
             Function<GetSourceRequest.Builder, ObjectBuilder<GetSourceRequest>> fn, Class<TDocument> tDocumentClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return getSource(fn.apply(new GetSourceRequest.Builder()).build(), tDocumentClass);
     }
 
@@ -782,7 +782,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public <TDocument> IndexResponse index(IndexRequest<TDocument> request) throws IOException, ElasticsearchException {
+    public <TDocument> IndexResponse index(IndexRequest<TDocument> request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, IndexRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -798,7 +798,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final <TDocument> IndexResponse index(
             Function<IndexRequest.Builder<TDocument>, ObjectBuilder<IndexRequest<TDocument>>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return index(fn.apply(new IndexRequest.Builder<TDocument>()).build());
     }
 
@@ -811,7 +811,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
      * on elastic.co</a>
      */
-    public InfoResponse info() throws IOException, ElasticsearchException {
+    public InfoResponse info() throws IOException, OpensearchException {
         return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -826,7 +826,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public <TDocument> KnnSearchResponse<TDocument> knnSearch(KnnSearchRequest request, Class<TDocument> tDocumentClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request,
                 KnnSearchRequest.createKnnSearchEndpoint(getDeserializer(tDocumentClass)), this.transportOptions);
     }
@@ -843,7 +843,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final <TDocument> KnnSearchResponse<TDocument> knnSearch(
             Function<KnnSearchRequest.Builder, ObjectBuilder<KnnSearchRequest>> fn, Class<TDocument> tDocumentClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return knnSearch(fn.apply(new KnnSearchRequest.Builder()).build(), tDocumentClass);
     }
 
@@ -858,7 +858,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public <TDocument> MgetResponse<TDocument> mget(MgetRequest request, Class<TDocument> tDocumentClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request, MgetRequest.createMgetEndpoint(getDeserializer(tDocumentClass)),
                 this.transportOptions);
     }
@@ -874,7 +874,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public final <TDocument> MgetResponse<TDocument> mget(Function<MgetRequest.Builder, ObjectBuilder<MgetRequest>> fn,
-                                                          Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+                                                          Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
         return mget(fn.apply(new MgetRequest.Builder()).build(), tDocumentClass);
     }
 
@@ -889,7 +889,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public <TDocument> MsearchResponse<TDocument> msearch(MsearchRequest request, Class<TDocument> tDocumentClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request,
                 MsearchRequest.createMsearchEndpoint(getDeserializer(tDocumentClass)), this.transportOptions);
     }
@@ -906,7 +906,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final <TDocument> MsearchResponse<TDocument> msearch(
             Function<MsearchRequest.Builder, ObjectBuilder<MsearchRequest>> fn, Class<TDocument> tDocumentClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return msearch(fn.apply(new MsearchRequest.Builder()).build(), tDocumentClass);
     }
 
@@ -921,7 +921,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(MsearchTemplateRequest request,
-                                                                          Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+                                                                          Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
         return this.transport.performRequest(request,
                 MsearchTemplateRequest.createMsearchTemplateEndpoint(getDeserializer(tDocumentClass)),
                 this.transportOptions);
@@ -939,7 +939,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(
             Function<MsearchTemplateRequest.Builder, ObjectBuilder<MsearchTemplateRequest>> fn,
-            Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+            Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
         return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentClass);
     }
 
@@ -953,7 +953,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public MtermvectorsResponse mtermvectors(MtermvectorsRequest request) throws IOException, ElasticsearchException {
+    public MtermvectorsResponse mtermvectors(MtermvectorsRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, MtermvectorsRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -969,7 +969,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final MtermvectorsResponse mtermvectors(
             Function<MtermvectorsRequest.Builder, ObjectBuilder<MtermvectorsRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return mtermvectors(fn.apply(new MtermvectorsRequest.Builder()).build());
     }
 
@@ -981,7 +981,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public MtermvectorsResponse mtermvectors() throws IOException, ElasticsearchException {
+    public MtermvectorsResponse mtermvectors() throws IOException, OpensearchException {
         return this.transport.performRequest(new MtermvectorsRequest.Builder().build(), MtermvectorsRequest.ENDPOINT,
                 this.transportOptions);
     }
@@ -997,7 +997,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public OpenPointInTimeResponse openPointInTime(OpenPointInTimeRequest request)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request, OpenPointInTimeRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -1013,7 +1013,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final OpenPointInTimeResponse openPointInTime(
             Function<OpenPointInTimeRequest.Builder, ObjectBuilder<OpenPointInTimeRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return openPointInTime(fn.apply(new OpenPointInTimeRequest.Builder()).build());
     }
 
@@ -1026,7 +1026,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
      * on elastic.co</a>
      */
-    public BooleanResponse ping() throws IOException, ElasticsearchException {
+    public BooleanResponse ping() throws IOException, OpensearchException {
         return this.transport.performRequest(PingRequest._INSTANCE, PingRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -1040,7 +1040,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public PutScriptResponse putScript(PutScriptRequest request) throws IOException, ElasticsearchException {
+    public PutScriptResponse putScript(PutScriptRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, PutScriptRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -1055,7 +1055,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public final PutScriptResponse putScript(Function<PutScriptRequest.Builder, ObjectBuilder<PutScriptRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return putScript(fn.apply(new PutScriptRequest.Builder()).build());
     }
 
@@ -1070,7 +1070,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public RankEvalResponse rankEval(RankEvalRequest request) throws IOException, ElasticsearchException {
+    public RankEvalResponse rankEval(RankEvalRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, RankEvalRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -1086,7 +1086,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public final RankEvalResponse rankEval(Function<RankEvalRequest.Builder, ObjectBuilder<RankEvalRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return rankEval(fn.apply(new RankEvalRequest.Builder()).build());
     }
 
@@ -1102,7 +1102,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public ReindexResponse reindex(ReindexRequest request) throws IOException, ElasticsearchException {
+    public ReindexResponse reindex(ReindexRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, ReindexRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -1119,7 +1119,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public final ReindexResponse reindex(Function<ReindexRequest.Builder, ObjectBuilder<ReindexRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return reindex(fn.apply(new ReindexRequest.Builder()).build());
     }
 
@@ -1133,7 +1133,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public ReindexResponse reindex() throws IOException, ElasticsearchException {
+    public ReindexResponse reindex() throws IOException, OpensearchException {
         return this.transport.performRequest(new ReindexRequest.Builder().build(), ReindexRequest.ENDPOINT,
                 this.transportOptions);
     }
@@ -1149,7 +1149,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public ReindexRethrottleResponse reindexRethrottle(ReindexRethrottleRequest request)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request, ReindexRethrottleRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -1165,7 +1165,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final ReindexRethrottleResponse reindexRethrottle(
             Function<ReindexRethrottleRequest.Builder, ObjectBuilder<ReindexRethrottleRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return reindexRethrottle(fn.apply(new ReindexRethrottleRequest.Builder()).build());
     }
 
@@ -1181,7 +1181,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
             ScriptsPainlessExecuteRequest request, Class<TResult> tResultClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request,
                 ScriptsPainlessExecuteRequest.createScriptsPainlessExecuteEndpoint(getDeserializer(tResultClass)),
                 this.transportOptions);
@@ -1199,7 +1199,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
             Function<ScriptsPainlessExecuteRequest.Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn,
-            Class<TResult> tResultClass) throws IOException, ElasticsearchException {
+            Class<TResult> tResultClass) throws IOException, OpensearchException {
         return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), tResultClass);
     }
 
@@ -1214,7 +1214,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public <TDocument> SearchResponse<TDocument> search(SearchRequest request, Class<TDocument> tDocumentClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request,
                 SearchRequest.createSearchEndpoint(getDeserializer(tDocumentClass)), this.transportOptions);
     }
@@ -1231,7 +1231,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final <TDocument> SearchResponse<TDocument> search(
             Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn, Class<TDocument> tDocumentClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
     }
 
@@ -1246,7 +1246,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public SearchMvtResponse searchMvt(SearchMvtRequest request) throws IOException, ElasticsearchException {
+    public SearchMvtResponse searchMvt(SearchMvtRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, SearchMvtRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -1262,7 +1262,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public final SearchMvtResponse searchMvt(Function<SearchMvtRequest.Builder, ObjectBuilder<SearchMvtRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return searchMvt(fn.apply(new SearchMvtRequest.Builder()).build());
     }
 
@@ -1277,7 +1277,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public SearchShardsResponse searchShards(SearchShardsRequest request) throws IOException, ElasticsearchException {
+    public SearchShardsResponse searchShards(SearchShardsRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, SearchShardsRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -1294,7 +1294,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final SearchShardsResponse searchShards(
             Function<SearchShardsRequest.Builder, ObjectBuilder<SearchShardsRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return searchShards(fn.apply(new SearchShardsRequest.Builder()).build());
     }
 
@@ -1307,7 +1307,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public SearchShardsResponse searchShards() throws IOException, ElasticsearchException {
+    public SearchShardsResponse searchShards() throws IOException, OpensearchException {
         return this.transport.performRequest(new SearchShardsRequest.Builder().build(), SearchShardsRequest.ENDPOINT,
                 this.transportOptions);
     }
@@ -1323,7 +1323,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public <TDocument> SearchTemplateResponse<TDocument> searchTemplate(SearchTemplateRequest request,
-                                                                        Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+                                                                        Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
         return this.transport.performRequest(request,
                 SearchTemplateRequest.createSearchTemplateEndpoint(getDeserializer(tDocumentClass)),
                 this.transportOptions);
@@ -1341,7 +1341,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final <TDocument> SearchTemplateResponse<TDocument> searchTemplate(
             Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn,
-            Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+            Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
         return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentClass);
     }
 
@@ -1357,7 +1357,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      * on elastic.co</a>
      */
 
-    public TermsEnumResponse termsEnum(TermsEnumRequest request) throws IOException, ElasticsearchException {
+    public TermsEnumResponse termsEnum(TermsEnumRequest request) throws IOException, OpensearchException {
         return this.transport.performRequest(request, TermsEnumRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -1374,7 +1374,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public final TermsEnumResponse termsEnum(Function<TermsEnumRequest.Builder, ObjectBuilder<TermsEnumRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return termsEnum(fn.apply(new TermsEnumRequest.Builder()).build());
     }
 
@@ -1390,7 +1390,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public <TDocument> TermvectorsResponse termvectors(TermvectorsRequest<TDocument> request)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request, TermvectorsRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -1407,7 +1407,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final <TDocument> TermvectorsResponse termvectors(
             Function<TermvectorsRequest.Builder<TDocument>, ObjectBuilder<TermvectorsRequest<TDocument>>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return termvectors(fn.apply(new TermvectorsRequest.Builder<TDocument>()).build());
     }
 
@@ -1423,7 +1423,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
             UpdateRequest<TDocument, TPartialDocument> request, Class<TDocument> tDocumentClass)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request,
                 UpdateRequest.createUpdateEndpoint(getDeserializer(tDocumentClass)), this.transportOptions);
     }
@@ -1440,7 +1440,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
             Function<UpdateRequest.Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>>> fn,
-            Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+            Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
         return update(fn.apply(new UpdateRequest.Builder<TDocument, TPartialDocument>()).build(), tDocumentClass);
     }
 
@@ -1456,7 +1456,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public UpdateByQueryResponse updateByQuery(UpdateByQueryRequest request)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request, UpdateByQueryRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -1473,7 +1473,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final UpdateByQueryResponse updateByQuery(
             Function<UpdateByQueryRequest.Builder, ObjectBuilder<UpdateByQueryRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return updateByQuery(fn.apply(new UpdateByQueryRequest.Builder()).build());
     }
 
@@ -1489,7 +1489,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
      */
 
     public UpdateByQueryRethrottleResponse updateByQueryRethrottle(UpdateByQueryRethrottleRequest request)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return this.transport.performRequest(request, UpdateByQueryRethrottleRequest.ENDPOINT, this.transportOptions);
     }
 
@@ -1506,7 +1506,7 @@ public class OpenSearchClient extends ApiClient<OpenSearchClient> {
 
     public final UpdateByQueryRethrottleResponse updateByQueryRethrottle(
             Function<UpdateByQueryRethrottleRequest.Builder, ObjectBuilder<UpdateByQueryRethrottleRequest>> fn)
-            throws IOException, ElasticsearchException {
+            throws IOException, OpensearchException {
         return updateByQueryRethrottle(fn.apply(new UpdateByQueryRethrottleRequest.Builder()).build());
     }
 

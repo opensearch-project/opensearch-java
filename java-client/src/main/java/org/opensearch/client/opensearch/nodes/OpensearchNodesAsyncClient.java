@@ -24,31 +24,32 @@
 package org.opensearch.client.opensearch.nodes;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.transport.Transport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
  * Client for the nodes namespace.
  */
-public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient> {
+public class OpensearchNodesAsyncClient extends ApiClient<OpensearchNodesAsyncClient> {
 
-	public ElasticsearchNodesClient(org.opensearch.client.transport.Transport transport) {
+	public OpensearchNodesAsyncClient(org.opensearch.client.transport.Transport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchNodesClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public OpensearchNodesAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchNodesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchNodesClient(this.transport, transportOptions);
+	public OpensearchNodesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchNodesAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: nodes.hot_threads
@@ -61,8 +62,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, HotThreadsRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<HotThreadsResponse> hotThreads(HotThreadsRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, HotThreadsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -76,8 +78,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public final HotThreadsResponse hotThreads(Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<HotThreadsResponse> hotThreads(
+			Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
+			throws IOException, OpensearchException {
 		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
 	}
 
@@ -89,8 +92,8 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public HotThreadsResponse hotThreads() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest.ENDPOINT,
+	public CompletableFuture<HotThreadsResponse> hotThreads() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new HotThreadsRequest.Builder().build(), HotThreadsRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -104,8 +107,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public NodesInfoResponse info(NodesInfoRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, NodesInfoRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<NodesInfoResponse> info(NodesInfoRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, NodesInfoRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -119,8 +123,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public final NodesInfoResponse info(Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<NodesInfoResponse> info(
+			Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
+			throws IOException, OpensearchException {
 		return info(fn.apply(new NodesInfoRequest.Builder()).build());
 	}
 
@@ -132,8 +137,8 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public NodesInfoResponse info() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new NodesInfoRequest.Builder().build(), NodesInfoRequest.ENDPOINT,
+	public CompletableFuture<NodesInfoResponse> info() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new NodesInfoRequest.Builder().build(), NodesInfoRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -147,9 +152,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ReloadSecureSettingsRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings(ReloadSecureSettingsRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, ReloadSecureSettingsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -163,9 +168,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public final ReloadSecureSettingsResponse reloadSecureSettings(
+	public final CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings(
 			Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
 	}
 
@@ -177,8 +182,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ReloadSecureSettingsRequest.Builder().build(),
+	public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings()
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new ReloadSecureSettingsRequest.Builder().build(),
 				ReloadSecureSettingsRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -192,8 +198,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public NodesStatsResponse stats(NodesStatsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, NodesStatsRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<NodesStatsResponse> stats(NodesStatsRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, NodesStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -207,8 +214,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public final NodesStatsResponse stats(Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<NodesStatsResponse> stats(
+			Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
+			throws IOException, OpensearchException {
 		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
 	}
 
@@ -220,8 +228,8 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public NodesStatsResponse stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new NodesStatsRequest.Builder().build(), NodesStatsRequest.ENDPOINT,
+	public CompletableFuture<NodesStatsResponse> stats() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new NodesStatsRequest.Builder().build(), NodesStatsRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -235,8 +243,8 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public UsageResponse usage(UsageRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, UsageRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<UsageResponse> usage(UsageRequest request) throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, UsageRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -250,8 +258,8 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public final UsageResponse usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<UsageResponse> usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
+			throws IOException, OpensearchException {
 		return usage(fn.apply(new UsageRequest.Builder()).build());
 	}
 
@@ -263,8 +271,8 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchNodesClient
 	 *      on elastic.co</a>
 	 */
 
-	public UsageResponse usage() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new UsageRequest.Builder().build(), UsageRequest.ENDPOINT,
+	public CompletableFuture<UsageResponse> usage() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new UsageRequest.Builder().build(), UsageRequest.ENDPOINT,
 				this.transportOptions);
 	}
 

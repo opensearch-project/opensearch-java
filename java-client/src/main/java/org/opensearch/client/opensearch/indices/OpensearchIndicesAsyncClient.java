@@ -24,7 +24,7 @@
 package org.opensearch.client.opensearch.indices;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.transport.BooleanResponse;
 import org.opensearch.client.transport.Transport;
 import org.opensearch.client.transport.TransportOptions;
@@ -38,19 +38,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the indices namespace.
  */
-public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndicesAsyncClient> {
+public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsyncClient> {
 
-	public ElasticsearchIndicesAsyncClient(Transport transport) {
+	public OpensearchIndicesAsyncClient(Transport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchIndicesAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public OpensearchIndicesAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchIndicesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchIndicesAsyncClient(this.transport, transportOptions);
+	public OpensearchIndicesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchIndicesAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: indices.add_block
@@ -64,7 +64,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<AddBlockResponse> addBlock(AddBlockRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, AddBlockRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -81,7 +81,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<AddBlockResponse> addBlock(
 			Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return addBlock(fn.apply(new AddBlockRequest.Builder()).build());
 	}
 
@@ -97,7 +97,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<AnalyzeResponse> analyze(AnalyzeRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, AnalyzeRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -115,7 +115,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<AnalyzeResponse> analyze(
 			Function<AnalyzeRequest.Builder, ObjectBuilder<AnalyzeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return analyze(fn.apply(new AnalyzeRequest.Builder()).build());
 	}
 
@@ -128,7 +128,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<AnalyzeResponse> analyze() throws IOException, ElasticsearchException {
+	public CompletableFuture<AnalyzeResponse> analyze() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new AnalyzeRequest.Builder().build(), AnalyzeRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -144,7 +144,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<ClearCacheResponse> clearCache(ClearCacheRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, ClearCacheRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -161,7 +161,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<ClearCacheResponse> clearCache(
 			Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
 	}
 
@@ -173,7 +173,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ClearCacheResponse> clearCache() throws IOException, ElasticsearchException {
+	public CompletableFuture<ClearCacheResponse> clearCache() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -189,7 +189,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<CloneIndexResponse> clone(CloneIndexRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, CloneIndexRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -206,7 +206,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<CloneIndexResponse> clone(
 			Function<CloneIndexRequest.Builder, ObjectBuilder<CloneIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return clone(fn.apply(new CloneIndexRequest.Builder()).build());
 	}
 
@@ -221,7 +221,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<CloseIndexResponse> close(CloseIndexRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, CloseIndexRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -238,7 +238,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<CloseIndexResponse> close(
 			Function<CloseIndexRequest.Builder, ObjectBuilder<CloseIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return close(fn.apply(new CloseIndexRequest.Builder()).build());
 	}
 
@@ -253,7 +253,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<CreateIndexResponse> create(CreateIndexRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, CreateIndexRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -270,7 +270,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<CreateIndexResponse> create(
 			Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return create(fn.apply(new CreateIndexRequest.Builder()).build());
 	}
 
@@ -285,7 +285,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<DeleteIndexResponse> delete(DeleteIndexRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, DeleteIndexRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -302,7 +302,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<DeleteIndexResponse> delete(
 			Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
 	}
 
@@ -317,7 +317,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<DeleteAliasResponse> deleteAlias(DeleteAliasRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, DeleteAliasRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -334,7 +334,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<DeleteAliasResponse> deleteAlias(
 			Function<DeleteAliasRequest.Builder, ObjectBuilder<DeleteAliasRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
 	}
 
@@ -349,7 +349,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<DeleteIndexTemplateResponse> deleteIndexTemplate(DeleteIndexTemplateRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, DeleteIndexTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -366,7 +366,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<DeleteIndexTemplateResponse> deleteIndexTemplate(
 			Function<DeleteIndexTemplateRequest.Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
 	}
 
@@ -381,7 +381,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<DeleteTemplateResponse> deleteTemplate(DeleteTemplateRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, DeleteTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -398,7 +398,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<DeleteTemplateResponse> deleteTemplate(
 			Function<DeleteTemplateRequest.Builder, ObjectBuilder<DeleteTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deleteTemplate(fn.apply(new DeleteTemplateRequest.Builder()).build());
 	}
 
@@ -413,7 +413,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<DiskUsageResponse> diskUsage(DiskUsageRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, DiskUsageRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -430,7 +430,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<DiskUsageResponse> diskUsage(
 			Function<DiskUsageRequest.Builder, ObjectBuilder<DiskUsageRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
 	}
 
@@ -444,7 +444,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<BooleanResponse> exists(ExistsRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<BooleanResponse> exists(ExistsRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, ExistsRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -461,7 +461,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<BooleanResponse> exists(
 			Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return exists(fn.apply(new ExistsRequest.Builder()).build());
 	}
 
@@ -476,7 +476,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<BooleanResponse> existsAlias(ExistsAliasRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, ExistsAliasRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -493,7 +493,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<BooleanResponse> existsAlias(
 			Function<ExistsAliasRequest.Builder, ObjectBuilder<ExistsAliasRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return existsAlias(fn.apply(new ExistsAliasRequest.Builder()).build());
 	}
 
@@ -508,7 +508,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<BooleanResponse> existsIndexTemplate(ExistsIndexTemplateRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, ExistsIndexTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -525,7 +525,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<BooleanResponse> existsIndexTemplate(
 			Function<ExistsIndexTemplateRequest.Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return existsIndexTemplate(fn.apply(new ExistsIndexTemplateRequest.Builder()).build());
 	}
 
@@ -540,7 +540,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<BooleanResponse> existsTemplate(ExistsTemplateRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, ExistsTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -557,7 +557,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<BooleanResponse> existsTemplate(
 			Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
 	}
 
@@ -573,7 +573,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<BooleanResponse> existsType(ExistsTypeRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, ExistsTypeRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -591,7 +591,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<BooleanResponse> existsType(
 			Function<ExistsTypeRequest.Builder, ObjectBuilder<ExistsTypeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return existsType(fn.apply(new ExistsTypeRequest.Builder()).build());
 	}
 
@@ -605,7 +605,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<FlushResponse> flush(FlushRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<FlushResponse> flush(FlushRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, FlushRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -621,7 +621,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public final CompletableFuture<FlushResponse> flush(Function<FlushRequest.Builder, ObjectBuilder<FlushRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return flush(fn.apply(new FlushRequest.Builder()).build());
 	}
 
@@ -633,7 +633,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<FlushResponse> flush() throws IOException, ElasticsearchException {
+	public CompletableFuture<FlushResponse> flush() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new FlushRequest.Builder().build(), FlushRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -649,7 +649,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<ForcemergeResponse> forcemerge(ForcemergeRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, ForcemergeRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -666,7 +666,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<ForcemergeResponse> forcemerge(
 			Function<ForcemergeRequest.Builder, ObjectBuilder<ForcemergeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return forcemerge(fn.apply(new ForcemergeRequest.Builder()).build());
 	}
 
@@ -678,7 +678,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ForcemergeResponse> forcemerge() throws IOException, ElasticsearchException {
+	public CompletableFuture<ForcemergeResponse> forcemerge() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new ForcemergeRequest.Builder().build(), ForcemergeRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -693,7 +693,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetIndexResponse> get(GetIndexRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<GetIndexResponse> get(GetIndexRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, GetIndexRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -710,7 +710,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<GetIndexResponse> get(
 			Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return get(fn.apply(new GetIndexRequest.Builder()).build());
 	}
 
@@ -725,7 +725,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<GetAliasResponse> getAlias(GetAliasRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, GetAliasRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -742,7 +742,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<GetAliasResponse> getAlias(
 			Function<GetAliasRequest.Builder, ObjectBuilder<GetAliasRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getAlias(fn.apply(new GetAliasRequest.Builder()).build());
 	}
 
@@ -754,7 +754,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetAliasResponse> getAlias() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetAliasResponse> getAlias() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new GetAliasRequest.Builder().build(), GetAliasRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -770,7 +770,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<GetFieldMappingResponse> getFieldMapping(GetFieldMappingRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, GetFieldMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -787,7 +787,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<GetFieldMappingResponse> getFieldMapping(
 			Function<GetFieldMappingRequest.Builder, ObjectBuilder<GetFieldMappingRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
 	}
 
@@ -802,7 +802,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate(GetIndexTemplateRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, GetIndexTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -819,7 +819,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<GetIndexTemplateResponse> getIndexTemplate(
 			Function<GetIndexTemplateRequest.Builder, ObjectBuilder<GetIndexTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getIndexTemplate(fn.apply(new GetIndexTemplateRequest.Builder()).build());
 	}
 
@@ -831,7 +831,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new GetIndexTemplateRequest.Builder().build(),
 				GetIndexTemplateRequest.ENDPOINT, this.transportOptions);
 	}
@@ -847,7 +847,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<GetMappingResponse> getMapping(GetMappingRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, GetMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -864,7 +864,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<GetMappingResponse> getMapping(
 			Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getMapping(fn.apply(new GetMappingRequest.Builder()).build());
 	}
 
@@ -876,7 +876,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetMappingResponse> getMapping() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetMappingResponse> getMapping() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new GetMappingRequest.Builder().build(), GetMappingRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -892,7 +892,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<GetSettingsResponse> getSettings(GetSettingsRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, GetSettingsRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -909,7 +909,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<GetSettingsResponse> getSettings(
 			Function<GetSettingsRequest.Builder, ObjectBuilder<GetSettingsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getSettings(fn.apply(new GetSettingsRequest.Builder()).build());
 	}
 
@@ -921,7 +921,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetSettingsResponse> getSettings() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetSettingsResponse> getSettings() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new GetSettingsRequest.Builder().build(), GetSettingsRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -937,7 +937,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<GetTemplateResponse> getTemplate(GetTemplateRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, GetTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -954,7 +954,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<GetTemplateResponse> getTemplate(
 			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
 	}
 
@@ -966,7 +966,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTemplateResponse> getTemplate() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetTemplateResponse> getTemplate() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new GetTemplateRequest.Builder().build(), GetTemplateRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -981,7 +981,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<OpenResponse> open(OpenRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<OpenResponse> open(OpenRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, OpenRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -997,7 +997,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public final CompletableFuture<OpenResponse> open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return open(fn.apply(new OpenRequest.Builder()).build());
 	}
 	
@@ -1012,7 +1012,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<PutAliasResponse> putAlias(PutAliasRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, PutAliasRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1029,7 +1029,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<PutAliasResponse> putAlias(
 			Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return putAlias(fn.apply(new PutAliasRequest.Builder()).build());
 	}
 
@@ -1044,7 +1044,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<PutIndexTemplateResponse> putIndexTemplate(PutIndexTemplateRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, PutIndexTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1061,7 +1061,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<PutIndexTemplateResponse> putIndexTemplate(
 			Function<PutIndexTemplateRequest.Builder, ObjectBuilder<PutIndexTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return putIndexTemplate(fn.apply(new PutIndexTemplateRequest.Builder()).build());
 	}
 
@@ -1076,7 +1076,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<PutMappingResponse> putMapping(PutMappingRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, PutMappingRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1093,7 +1093,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<PutMappingResponse> putMapping(
 			Function<PutMappingRequest.Builder, ObjectBuilder<PutMappingRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return putMapping(fn.apply(new PutMappingRequest.Builder()).build());
 	}
 
@@ -1108,7 +1108,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<PutSettingsResponse> putSettings(PutSettingsRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, PutSettingsRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1125,7 +1125,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<PutSettingsResponse> putSettings(
 			Function<PutSettingsRequest.Builder, ObjectBuilder<PutSettingsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return putSettings(fn.apply(new PutSettingsRequest.Builder()).build());
 	}
 
@@ -1137,7 +1137,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutSettingsResponse> putSettings() throws IOException, ElasticsearchException {
+	public CompletableFuture<PutSettingsResponse> putSettings() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new PutSettingsRequest.Builder().build(), PutSettingsRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -1153,7 +1153,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<PutTemplateResponse> putTemplate(PutTemplateRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, PutTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1170,7 +1170,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<PutTemplateResponse> putTemplate(
 			Function<PutTemplateRequest.Builder, ObjectBuilder<PutTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return putTemplate(fn.apply(new PutTemplateRequest.Builder()).build());
 	}
 
@@ -1185,7 +1185,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<RecoveryResponse> recovery(RecoveryRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, RecoveryRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1202,7 +1202,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<RecoveryResponse> recovery(
 			Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return recovery(fn.apply(new RecoveryRequest.Builder()).build());
 	}
 
@@ -1214,7 +1214,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RecoveryResponse> recovery() throws IOException, ElasticsearchException {
+	public CompletableFuture<RecoveryResponse> recovery() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new RecoveryRequest.Builder().build(), RecoveryRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -1230,7 +1230,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<RefreshResponse> refresh(RefreshRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, RefreshRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1247,7 +1247,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<RefreshResponse> refresh(
 			Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return refresh(fn.apply(new RefreshRequest.Builder()).build());
 	}
 
@@ -1259,7 +1259,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RefreshResponse> refresh() throws IOException, ElasticsearchException {
+	public CompletableFuture<RefreshResponse> refresh() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new RefreshRequest.Builder().build(), RefreshRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -1275,7 +1275,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<ResolveIndexResponse> resolveIndex(ResolveIndexRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, ResolveIndexRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1292,7 +1292,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<ResolveIndexResponse> resolveIndex(
 			Function<ResolveIndexRequest.Builder, ObjectBuilder<ResolveIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return resolveIndex(fn.apply(new ResolveIndexRequest.Builder()).build());
 	}
 
@@ -1308,7 +1308,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<RolloverResponse> rollover(RolloverRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, RolloverRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1326,7 +1326,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<RolloverResponse> rollover(
 			Function<RolloverRequest.Builder, ObjectBuilder<RolloverRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return rollover(fn.apply(new RolloverRequest.Builder()).build());
 	}
 
@@ -1341,7 +1341,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<SegmentsResponse> segments(SegmentsRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, SegmentsRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1358,7 +1358,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<SegmentsResponse> segments(
 			Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return segments(fn.apply(new SegmentsRequest.Builder()).build());
 	}
 
@@ -1370,7 +1370,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SegmentsResponse> segments() throws IOException, ElasticsearchException {
+	public CompletableFuture<SegmentsResponse> segments() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new SegmentsRequest.Builder().build(), SegmentsRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -1386,7 +1386,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<ShardStoresResponse> shardStores(ShardStoresRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, ShardStoresRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1403,7 +1403,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<ShardStoresResponse> shardStores(
 			Function<ShardStoresRequest.Builder, ObjectBuilder<ShardStoresRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return shardStores(fn.apply(new ShardStoresRequest.Builder()).build());
 	}
 
@@ -1415,7 +1415,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ShardStoresResponse> shardStores() throws IOException, ElasticsearchException {
+	public CompletableFuture<ShardStoresResponse> shardStores() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new ShardStoresRequest.Builder().build(), ShardStoresRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -1430,7 +1430,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ShrinkResponse> shrink(ShrinkRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<ShrinkResponse> shrink(ShrinkRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, ShrinkRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1447,7 +1447,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<ShrinkResponse> shrink(
 			Function<ShrinkRequest.Builder, ObjectBuilder<ShrinkRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return shrink(fn.apply(new ShrinkRequest.Builder()).build());
 	}
 
@@ -1463,7 +1463,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<SimulateIndexTemplateResponse> simulateIndexTemplate(SimulateIndexTemplateRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, SimulateIndexTemplateRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -1482,7 +1482,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<SimulateIndexTemplateResponse> simulateIndexTemplate(
 			Function<SimulateIndexTemplateRequest.Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return simulateIndexTemplate(fn.apply(new SimulateIndexTemplateRequest.Builder()).build());
 	}
 
@@ -1497,7 +1497,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<SimulateTemplateResponse> simulateTemplate(SimulateTemplateRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, SimulateTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1514,7 +1514,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<SimulateTemplateResponse> simulateTemplate(
 			Function<SimulateTemplateRequest.Builder, ObjectBuilder<SimulateTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return simulateTemplate(fn.apply(new SimulateTemplateRequest.Builder()).build());
 	}
 
@@ -1526,7 +1526,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SimulateTemplateResponse> simulateTemplate() throws IOException, ElasticsearchException {
+	public CompletableFuture<SimulateTemplateResponse> simulateTemplate() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new SimulateTemplateRequest.Builder().build(),
 				SimulateTemplateRequest.ENDPOINT, this.transportOptions);
 	}
@@ -1542,7 +1542,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SplitResponse> split(SplitRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<SplitResponse> split(SplitRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, SplitRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1559,7 +1559,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public final CompletableFuture<SplitResponse> split(Function<SplitRequest.Builder, ObjectBuilder<SplitRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return split(fn.apply(new SplitRequest.Builder()).build());
 	}
 
@@ -1574,7 +1574,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<IndicesStatsResponse> stats(IndicesStatsRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, IndicesStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1591,7 +1591,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<IndicesStatsResponse> stats(
 			Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return stats(fn.apply(new IndicesStatsRequest.Builder()).build());
 	}
 
@@ -1603,43 +1603,9 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<IndicesStatsResponse> stats() throws IOException, ElasticsearchException {
+	public CompletableFuture<IndicesStatsResponse> stats() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new IndicesStatsRequest.Builder().build(),
 				IndicesStatsRequest.ENDPOINT, this.transportOptions);
-	}
-
-	// ----- Endpoint: indices.unfreeze
-
-	/**
-	 * Unfreezes an index. When a frozen index is unfrozen, the index goes through
-	 * the normal recovery process and becomes writeable again.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/unfreeze-index-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<UnfreezeResponse> unfreeze(UnfreezeRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(request, UnfreezeRequest.ENDPOINT, this.transportOptions);
-	}
-
-	/**
-	 * Unfreezes an index. When a frozen index is unfrozen, the index goes through
-	 * the normal recovery process and becomes writeable again.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link UnfreezeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/unfreeze-index-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<UnfreezeResponse> unfreeze(
-			Function<UnfreezeRequest.Builder, ObjectBuilder<UnfreezeRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return unfreeze(fn.apply(new UnfreezeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.update_aliases
@@ -1653,7 +1619,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<UpdateAliasesResponse> updateAliases(UpdateAliasesRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, UpdateAliasesRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1670,7 +1636,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<UpdateAliasesResponse> updateAliases(
 			Function<UpdateAliasesRequest.Builder, ObjectBuilder<UpdateAliasesRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return updateAliases(fn.apply(new UpdateAliasesRequest.Builder()).build());
 	}
 
@@ -1682,7 +1648,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UpdateAliasesResponse> updateAliases() throws IOException, ElasticsearchException {
+	public CompletableFuture<UpdateAliasesResponse> updateAliases() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new UpdateAliasesRequest.Builder().build(),
 				UpdateAliasesRequest.ENDPOINT, this.transportOptions);
 	}
@@ -1698,7 +1664,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 */
 
 	public CompletableFuture<ValidateQueryResponse> validateQuery(ValidateQueryRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, ValidateQueryRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -1715,7 +1681,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 
 	public final CompletableFuture<ValidateQueryResponse> validateQuery(
 			Function<ValidateQueryRequest.Builder, ObjectBuilder<ValidateQueryRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return validateQuery(fn.apply(new ValidateQueryRequest.Builder()).build());
 	}
 
@@ -1727,7 +1693,7 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient<ElasticsearchIndi
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ValidateQueryResponse> validateQuery() throws IOException, ElasticsearchException {
+	public CompletableFuture<ValidateQueryResponse> validateQuery() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new ValidateQueryRequest.Builder().build(),
 				ValidateQueryRequest.ENDPOINT, this.transportOptions);
 	}

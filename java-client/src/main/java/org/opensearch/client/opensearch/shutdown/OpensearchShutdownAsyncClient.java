@@ -24,7 +24,7 @@
 package org.opensearch.client.opensearch.shutdown;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.transport.Transport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -37,19 +37,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the shutdown namespace.
  */
-public class ElasticsearchShutdownAsyncClient extends ApiClient<ElasticsearchShutdownAsyncClient> {
+public class OpensearchShutdownAsyncClient extends ApiClient<OpensearchShutdownAsyncClient> {
 
-	public ElasticsearchShutdownAsyncClient(Transport transport) {
+	public OpensearchShutdownAsyncClient(Transport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchShutdownAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public OpensearchShutdownAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchShutdownAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchShutdownAsyncClient(this.transport, transportOptions);
+	public OpensearchShutdownAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchShutdownAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: shutdown.delete_node
@@ -64,7 +64,7 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient<ElasticsearchShu
 	 */
 
 	public CompletableFuture<DeleteNodeResponse> deleteNode(DeleteNodeRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, DeleteNodeRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -82,7 +82,7 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient<ElasticsearchShu
 
 	public final CompletableFuture<DeleteNodeResponse> deleteNode(
 			Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deleteNode(fn.apply(new DeleteNodeRequest.Builder()).build());
 	}
 
@@ -99,7 +99,7 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient<ElasticsearchShu
 	 */
 
 	public CompletableFuture<GetNodeResponse> getNode(GetNodeRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, GetNodeRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -118,7 +118,7 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient<ElasticsearchShu
 
 	public final CompletableFuture<GetNodeResponse> getNode(
 			Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getNode(fn.apply(new GetNodeRequest.Builder()).build());
 	}
 
@@ -132,7 +132,7 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient<ElasticsearchShu
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetNodeResponse> getNode() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetNodeResponse> getNode() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new GetNodeRequest.Builder().build(), GetNodeRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -149,7 +149,7 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient<ElasticsearchShu
 	 */
 
 	public CompletableFuture<PutNodeResponse> putNode(PutNodeRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, PutNodeRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -167,7 +167,7 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient<ElasticsearchShu
 
 	public final CompletableFuture<PutNodeResponse> putNode(
 			Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return putNode(fn.apply(new PutNodeRequest.Builder()).build());
 	}
 

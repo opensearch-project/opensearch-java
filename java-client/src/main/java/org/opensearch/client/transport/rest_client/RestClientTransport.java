@@ -19,7 +19,7 @@
 
 package org.opensearch.client.transport.rest_client;
 
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -234,7 +234,7 @@ public class RestClientTransport implements Transport {
                 }
 
                 // TODO: have the endpoint provide the exception constructor
-                throw new ElasticsearchException((ErrorResponse) error);
+                throw new OpensearchException((ErrorResponse) error);
 
             } else if (endpoint instanceof BooleanEndpoint) {
                 BooleanEndpoint<?> bep = (BooleanEndpoint<?>) endpoint;

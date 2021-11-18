@@ -27,11 +27,11 @@ package org.opensearch.client.opensearch._types;
  * additional details that depend on the error type and the API endpoint that
  * was called.
  */
-public class ElasticsearchException extends RuntimeException {
+public class OpensearchException extends RuntimeException {
 
 	private final ErrorResponse response;
 
-	public ElasticsearchException(ErrorResponse response) {
+	public OpensearchException(ErrorResponse response) {
 		super(response.error().type() != null
 				? "[" + response.error().type() + "] " + response.error().reason()
 				: response.error().reason());
