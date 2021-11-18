@@ -1,12 +1,4 @@
 /*
- * SPDX-License-Identifier: Apache-2.0
- *
- * The OpenSearch Contributors require contributions made to
- * this file be licensed under the Apache-2.0 license or a
- * compatible open source license.
- */
-
-/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -25,18 +17,20 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 //----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
 package org.opensearch.clients.opensearch.indices;
 
+<<<<<<< HEAD
 import org.opensearch.clients.opensearch._types.ErrorResponse;
+=======
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import org.opensearch.clients.base.OpenSearchError;
+import org.opensearch.clients.base.Endpoint;
+>>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.opensearch._types.analysis.CharFilter;
 import org.opensearch.clients.opensearch._types.analysis.TokenFilter;
@@ -492,7 +486,11 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code indices.analyze}".
 	 */
+<<<<<<< HEAD
 	public static final Endpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+=======
+	public static final Endpoint<AnalyzeRequest, AnalyzeResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
+>>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 			// Request method
 			request -> {
 				return "POST";

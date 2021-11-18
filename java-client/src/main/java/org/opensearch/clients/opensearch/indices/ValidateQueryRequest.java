@@ -1,12 +1,4 @@
 /*
- * SPDX-License-Identifier: Apache-2.0
- *
- * The OpenSearch Contributors require contributions made to
- * this file be licensed under the Apache-2.0 license or a
- * compatible open source license.
- */
-
-/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -25,20 +17,22 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 //----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
 package org.opensearch.clients.opensearch.indices;
 
+<<<<<<< HEAD
 import org.opensearch.clients.opensearch._types.DefaultOperator;
 import org.opensearch.clients.opensearch._types.ErrorResponse;
 import org.opensearch.clients.opensearch._types.ExpandWildcardOptions;
+=======
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import org.opensearch.clients.base.OpenSearchError;
+import org.opensearch.clients.base.Endpoint;
+>>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.opensearch._types.query_dsl.Query;
 import org.opensearch.clients.json.DelegatingDeserializer;
@@ -591,7 +585,11 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code indices.validate_query}".
 	 */
+<<<<<<< HEAD
 	public static final Endpoint<ValidateQueryRequest, ValidateQueryResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+=======
+	public static final Endpoint<ValidateQueryRequest, ValidateQueryResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
+>>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 			// Request method
 			request -> {
 				return "POST";

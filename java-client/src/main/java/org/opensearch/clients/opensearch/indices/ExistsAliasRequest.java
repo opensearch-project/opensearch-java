@@ -1,12 +1,4 @@
 /*
- * SPDX-License-Identifier: Apache-2.0
- *
- * The OpenSearch Contributors require contributions made to
- * this file be licensed under the Apache-2.0 license or a
- * compatible open source license.
- */
-
-/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -25,19 +17,21 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 //----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
 package org.opensearch.clients.opensearch.indices;
 
+<<<<<<< HEAD
 import org.opensearch.clients.opensearch._types.ErrorResponse;
 import org.opensearch.clients.opensearch._types.ExpandWildcardOptions;
+=======
+import jakarta.json.JsonValue;
+import org.opensearch.clients.base.BooleanResponse;
+import org.opensearch.clients.base.OpenSearchError;
+import org.opensearch.clients.base.Endpoint;
+>>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.transport.BooleanEndpoint;
 import org.opensearch.clients.transport.BooleanResponse;
@@ -291,7 +285,11 @@ public class ExistsAliasRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.exists_alias}".
 	 */
+<<<<<<< HEAD
 	public static final Endpoint<ExistsAliasRequest, BooleanResponse, ErrorResponse> ENDPOINT = new BooleanEndpoint<>(
+=======
+	public static final Endpoint<ExistsAliasRequest, BooleanResponse, OpenSearchError> ENDPOINT = new Endpoint.Boolean<>(
+>>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 			// Request method
 			request -> {
 				return "HEAD";
