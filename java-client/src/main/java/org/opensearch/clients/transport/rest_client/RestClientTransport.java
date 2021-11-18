@@ -250,9 +250,10 @@ public class RestClientTransport implements Transport {
                 JsonpDeserializer<ResponseT> responseParser = endpoint.responseParser();
                 if (responseParser != null) {
                     // Expecting a body
-                    InputStream content = clientResp.getEntity().getContent();
-                    JsonParser parser = mapper.jsonProvider().createParser(content);
-                    response = responseParser.deserialize(parser, mapper);
+                    try (InputStream content = clientResp.getEntity().getContent()) {
+                        JsonParser parser = mapper.jsonProvider().createParser(content);
+                        response = responseParser.deserialize(parser, mapper);
+                    }
                 }
                 return response;
             }
