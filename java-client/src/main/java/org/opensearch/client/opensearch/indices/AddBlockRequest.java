@@ -23,13 +23,8 @@
 
 package org.opensearch.client.opensearch.indices;
 
-<<<<<<< HEAD
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcardOptions;
-=======
-import org.opensearch.client.base.OpenSearchError;
-import org.opensearch.client.base.Endpoint;
->>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch.indices.add_block.IndicesBlockOptions;
 import org.opensearch.client.transport.Endpoint;
@@ -286,11 +281,7 @@ public class AddBlockRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.add_block}".
 	 */
-<<<<<<< HEAD
 	public static final Endpoint<AddBlockRequest, AddBlockResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
-=======
-	public static final Endpoint<AddBlockRequest, AddBlockResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
->>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 			// Request method
 			request -> {
 				return "PUT";

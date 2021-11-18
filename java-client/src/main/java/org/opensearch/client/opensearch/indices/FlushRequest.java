@@ -23,13 +23,8 @@
 
 package org.opensearch.client.opensearch.indices;
 
-<<<<<<< HEAD
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcardOptions;
-=======
-import org.opensearch.client.base.OpenSearchError;
-import org.opensearch.client.base.Endpoint;
->>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.SimpleEndpoint;
@@ -287,11 +282,7 @@ public class FlushRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.flush}".
 	 */
-<<<<<<< HEAD
 	public static final Endpoint<FlushRequest, FlushResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
-=======
-	public static final Endpoint<FlushRequest, FlushResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
->>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 			// Request method
 			request -> {
 				return "POST";

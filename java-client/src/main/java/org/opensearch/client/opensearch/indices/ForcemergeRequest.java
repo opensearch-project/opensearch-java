@@ -23,13 +23,8 @@
 
 package org.opensearch.client.opensearch.indices;
 
-<<<<<<< HEAD
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcardOptions;
-=======
-import org.opensearch.client.base.OpenSearchError;
-import org.opensearch.client.base.Endpoint;
->>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.SimpleEndpoint;
@@ -305,11 +300,7 @@ public class ForcemergeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.forcemerge}".
 	 */
-<<<<<<< HEAD
 	public static final Endpoint<ForcemergeRequest, ForcemergeResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
-=======
-	public static final Endpoint<ForcemergeRequest, ForcemergeResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
->>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 			// Request method
 			request -> {
 				return "POST";
