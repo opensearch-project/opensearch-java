@@ -261,83 +261,6 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchIndicesCl
 		return create(fn.apply(new CreateIndexRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: indices.create_data_stream
-
-	/**
-	 * Creates a data stream
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CreateDataStreamResponse createDataStream(CreateDataStreamRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CreateDataStreamRequest.ENDPOINT, this.transportOptions);
-	}
-
-	/**
-	 * Creates a data stream
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link CreateDataStreamRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CreateDataStreamResponse createDataStream(
-			Function<CreateDataStreamRequest.Builder, ObjectBuilder<CreateDataStreamRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return createDataStream(fn.apply(new CreateDataStreamRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.data_streams_stats
-
-	/**
-	 * Provides statistics on operations happening in a data stream.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public DataStreamsStatsResponse dataStreamsStats(DataStreamsStatsRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DataStreamsStatsRequest.ENDPOINT, this.transportOptions);
-	}
-
-	/**
-	 * Provides statistics on operations happening in a data stream.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link DataStreamsStatsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final DataStreamsStatsResponse dataStreamsStats(
-			Function<DataStreamsStatsRequest.Builder, ObjectBuilder<DataStreamsStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return dataStreamsStats(fn.apply(new DataStreamsStatsRequest.Builder()).build());
-	}
-
-	/**
-	 * Provides statistics on operations happening in a data stream.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public DataStreamsStatsResponse dataStreamsStats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new DataStreamsStatsRequest.Builder().build(),
-				DataStreamsStatsRequest.ENDPOINT, this.transportOptions);
-	}
-
 	// ----- Endpoint: indices.delete
 
 	/**
@@ -397,38 +320,6 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchIndicesCl
 			Function<DeleteAliasRequest.Builder, ObjectBuilder<DeleteAliasRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.delete_data_stream
-
-	/**
-	 * Deletes a data stream.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public DeleteDataStreamResponse deleteDataStream(DeleteDataStreamRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteDataStreamRequest.ENDPOINT, this.transportOptions);
-	}
-
-	/**
-	 * Deletes a data stream.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link DeleteDataStreamRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final DeleteDataStreamResponse deleteDataStream(
-			Function<DeleteDataStreamRequest.Builder, ObjectBuilder<DeleteDataStreamRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return deleteDataStream(fn.apply(new DeleteDataStreamRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.delete_index_template
@@ -839,51 +730,6 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchIndicesCl
 				this.transportOptions);
 	}
 
-	// ----- Endpoint: indices.get_data_stream
-
-	/**
-	 * Returns data streams.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public GetDataStreamResponse getDataStream(GetDataStreamRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetDataStreamRequest.ENDPOINT, this.transportOptions);
-	}
-
-	/**
-	 * Returns data streams.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetDataStreamRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final GetDataStreamResponse getDataStream(
-			Function<GetDataStreamRequest.Builder, ObjectBuilder<GetDataStreamRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return getDataStream(fn.apply(new GetDataStreamRequest.Builder()).build());
-	}
-
-	/**
-	 * Returns data streams.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public GetDataStreamResponse getDataStream() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetDataStreamRequest.Builder().build(), GetDataStreamRequest.ENDPOINT,
-				this.transportOptions);
-	}
-
 	// ----- Endpoint: indices.get_field_mapping
 
 	/**
@@ -1090,38 +936,6 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchIndicesCl
 	public GetTemplateResponse getTemplate() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetTemplateRequest.Builder().build(), GetTemplateRequest.ENDPOINT,
 				this.transportOptions);
-	}
-
-	// ----- Endpoint: indices.migrate_to_data_stream
-
-	/**
-	 * Migrates an alias to a data stream
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public MigrateToDataStreamResponse migrateToDataStream(MigrateToDataStreamRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, MigrateToDataStreamRequest.ENDPOINT, this.transportOptions);
-	}
-
-	/**
-	 * Migrates an alias to a data stream
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link MigrateToDataStreamRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final MigrateToDataStreamResponse migrateToDataStream(
-			Function<MigrateToDataStreamRequest.Builder, ObjectBuilder<MigrateToDataStreamRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return migrateToDataStream(fn.apply(new MigrateToDataStreamRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.open
@@ -1405,38 +1219,6 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchIndicesCl
 	public RefreshResponse refresh() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new RefreshRequest.Builder().build(), RefreshRequest.ENDPOINT,
 				this.transportOptions);
-	}
-
-	// ----- Endpoint: indices.reload_search_analyzers
-
-	/**
-	 * Reloads an index's search analyzers and their resources.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-reload-analyzers.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public ReloadSearchAnalyzersResponse reloadSearchAnalyzers(ReloadSearchAnalyzersRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ReloadSearchAnalyzersRequest.ENDPOINT, this.transportOptions);
-	}
-
-	/**
-	 * Reloads an index's search analyzers and their resources.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link ReloadSearchAnalyzersRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-reload-analyzers.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final ReloadSearchAnalyzersResponse reloadSearchAnalyzers(
-			Function<ReloadSearchAnalyzersRequest.Builder, ObjectBuilder<ReloadSearchAnalyzersRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return reloadSearchAnalyzers(fn.apply(new ReloadSearchAnalyzersRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.resolve_index

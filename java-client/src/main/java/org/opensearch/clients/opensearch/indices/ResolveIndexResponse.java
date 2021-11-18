@@ -1,12 +1,4 @@
 /*
- * SPDX-License-Identifier: Apache-2.0
- *
- * The OpenSearch Contributors require contributions made to
- * this file be licensed under the Apache-2.0 license or a
- * compatible open source license.
- */
-
-/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -25,11 +17,6 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 //----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
@@ -37,7 +24,6 @@
 package org.opensearch.clients.opensearch.indices;
 
 import org.opensearch.clients.opensearch.indices.resolve_index.ResolveIndexAliasItem;
-import org.opensearch.clients.opensearch.indices.resolve_index.ResolveIndexDataStreamsItem;
 import org.opensearch.clients.opensearch.indices.resolve_index.ResolveIndexItem;
 import org.opensearch.clients.json.DelegatingDeserializer;
 import org.opensearch.clients.json.JsonpDeserializable;
@@ -62,16 +48,12 @@ public class ResolveIndexResponse implements JsonpSerializable {
 
 	private final List<ResolveIndexAliasItem> aliases;
 
-	private final List<ResolveIndexDataStreamsItem> dataStreams;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private ResolveIndexResponse(Builder builder) {
 
 		this.indices = ModelTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 		this.aliases = ModelTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
-		this.dataStreams = ModelTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
-
 	}
 
 	public static ResolveIndexResponse of(Function<Builder, ObjectBuilder<ResolveIndexResponse>> fn) {
@@ -90,13 +72,6 @@ public class ResolveIndexResponse implements JsonpSerializable {
 	 */
 	public final List<ResolveIndexAliasItem> aliases() {
 		return this.aliases;
-	}
-
-	/**
-	 * Required - API name: {@code data_streams}
-	 */
-	public final List<ResolveIndexDataStreamsItem> dataStreams() {
-		return this.dataStreams;
 	}
 
 	/**
@@ -130,16 +105,6 @@ public class ResolveIndexResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ModelTypeHelper.isDefined(this.dataStreams)) {
-			generator.writeKey("data_streams");
-			generator.writeStartArray();
-			for (ResolveIndexDataStreamsItem item0 : this.dataStreams) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
 
 	}
 
@@ -152,8 +117,6 @@ public class ResolveIndexResponse implements JsonpSerializable {
 		private List<ResolveIndexItem> indices;
 
 		private List<ResolveIndexAliasItem> aliases;
-
-		private List<ResolveIndexDataStreamsItem> dataStreams;
 
 		/**
 		 * Required - API name: {@code indices}
@@ -213,35 +176,6 @@ public class ResolveIndexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code data_streams}
-		 */
-		public final Builder dataStreams(List<ResolveIndexDataStreamsItem> value) {
-			this.dataStreams = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code data_streams}
-		 */
-		public final Builder dataStreams(ResolveIndexDataStreamsItem... value) {
-			this.dataStreams = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code data_streams}
-		 */
-		@SafeVarargs
-		public final Builder dataStreams(
-				Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>>... fns) {
-			this.dataStreams = new ArrayList<>(fns.length);
-			for (Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>> fn : fns) {
-				this.dataStreams.add(fn.apply(new ResolveIndexDataStreamsItem.Builder()).build());
-			}
-			return this;
-		}
-
-		/**
 		 * Builds a {@link ResolveIndexResponse}.
 		 *
 		 * @throws NullPointerException
@@ -267,8 +201,6 @@ public class ResolveIndexResponse implements JsonpSerializable {
 
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(ResolveIndexItem._DESERIALIZER), "indices");
 		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(ResolveIndexAliasItem._DESERIALIZER), "aliases");
-		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(ResolveIndexDataStreamsItem._DESERIALIZER),
-				"data_streams");
 
 	}
 

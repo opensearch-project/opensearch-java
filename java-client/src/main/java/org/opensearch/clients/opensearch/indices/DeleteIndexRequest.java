@@ -1,12 +1,4 @@
 /*
- * SPDX-License-Identifier: Apache-2.0
- *
- * The OpenSearch Contributors require contributions made to
- * this file be licensed under the Apache-2.0 license or a
- * compatible open source license.
- */
-
-/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -25,19 +17,20 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 //----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
 package org.opensearch.clients.opensearch.indices;
 
+<<<<<<< HEAD:java-client/src/main/java/org/opensearch/clients/opensearch/indices/DeleteIndexRequest.java
 import org.opensearch.clients.opensearch._types.ErrorResponse;
 import org.opensearch.clients.opensearch._types.ExpandWildcardOptions;
+=======
+import jakarta.json.JsonValue;
+import org.opensearch.clients.base.OpenSearchError;
+import org.opensearch.clients.base.Endpoint;
+>>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8)):java-client/src/main/java/org/opensearch/clients/opensearch/indices/DeleteRequest.java
 import org.opensearch.clients.opensearch._types.RequestBase;
 import org.opensearch.clients.transport.Endpoint;
 import org.opensearch.clients.transport.SimpleEndpoint;
@@ -278,7 +271,11 @@ public class DeleteIndexRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.delete}".
 	 */
+<<<<<<< HEAD:java-client/src/main/java/org/opensearch/clients/opensearch/indices/DeleteIndexRequest.java
 	public static final Endpoint<DeleteIndexRequest, DeleteIndexResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
+=======
+	public static final Endpoint<DeleteRequest, DeleteResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
+>>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8)):java-client/src/main/java/org/opensearch/clients/opensearch/indices/DeleteRequest.java
 			// Request method
 			request -> {
 				return "DELETE";
