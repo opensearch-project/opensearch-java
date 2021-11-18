@@ -139,8 +139,8 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If false, the meta layer’s feature is the bounding box of the tile. If true,
-	 * the meta layer’s feature is a bounding box resulting from a geo_bounds
+	 * If false, the meta layer's feature is the bounding box of the tile. If true,
+	 * the meta layer's feature is a bounding box resulting from a geo_bounds
 	 * aggregation. The aggregation runs on &lt;field&gt; values that intersect the
 	 * &lt;zoom&gt;/&lt;x&gt;/&lt;y&gt; tile with wrap_longitude set to false. The
 	 * resulting bounding box may be larger than the vector tile.
@@ -186,7 +186,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Additional zoom levels available through the aggs layer. For example, if
 	 * &lt;zoom&gt; is 7 and grid_precision is 8, you can zoom in up to level 15.
-	 * Accepts 0-8. If 0, results don’t include the aggs layer.
+	 * Accepts 0-8. If 0, results don't include the aggs layer.
 	 * <p>
 	 * API name: {@code grid_precision}
 	 */
@@ -240,7 +240,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * Maximum number of features to return in the hits layer. Accepts 0-10000. If
-	 * 0, results don’t include the hits layer.
+	 * 0, results don't include the hits layer.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -251,7 +251,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * Sorts features in the hits layer. By default, the API calculates a bounding
-	 * box for each feature. It sorts features based on this box’s diagonal length,
+	 * box for each feature. It sorts features based on this box's diagonal length,
 	 * from longest to shortest.
 	 * <p>
 	 * API name: {@code sort}
@@ -450,8 +450,8 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If false, the meta layer’s feature is the bounding box of the tile. If true,
-		 * the meta layer’s feature is a bounding box resulting from a geo_bounds
+		 * If false, the meta layer's feature is the bounding box of the tile. If true,
+		 * the meta layer's feature is a bounding box resulting from a geo_bounds
 		 * aggregation. The aggregation runs on &lt;field&gt; values that intersect the
 		 * &lt;zoom&gt;/&lt;x&gt;/&lt;y&gt; tile with wrap_longitude set to false. The
 		 * resulting bounding box may be larger than the vector tile.
@@ -511,7 +511,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * Additional zoom levels available through the aggs layer. For example, if
 		 * &lt;zoom&gt; is 7 and grid_precision is 8, you can zoom in up to level 15.
-		 * Accepts 0-8. If 0, results don’t include the aggs layer.
+		 * Accepts 0-8. If 0, results don't include the aggs layer.
 		 * <p>
 		 * API name: {@code grid_precision}
 		 */
@@ -599,7 +599,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Maximum number of features to return in the hits layer. Accepts 0-10000. If
-		 * 0, results don’t include the hits layer.
+		 * 0, results don't include the hits layer.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -610,7 +610,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Sorts features in the hits layer. By default, the API calculates a bounding
-		 * box for each feature. It sorts features based on this box’s diagonal length,
+		 * box for each feature. It sorts features based on this box's diagonal length,
 		 * from longest to shortest.
 		 * <p>
 		 * API name: {@code sort}
@@ -622,7 +622,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Sorts features in the hits layer. By default, the API calculates a bounding
-		 * box for each feature. It sorts features based on this box’s diagonal length,
+		 * box for each feature. It sorts features based on this box's diagonal length,
 		 * from longest to shortest.
 		 * <p>
 		 * API name: {@code sort}

@@ -89,7 +89,7 @@ public class WildcardQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Allows case insensitive matching of the pattern with the indexed field values
 	 * when set to true. Default is false which means the case sensitivity of
-	 * matching depends on the underlying field’s mapping.
+	 * matching depends on the underlying field's mapping.
 	 * <p>
 	 * API name: {@code case_insensitive}
 	 */
@@ -190,7 +190,7 @@ public class WildcardQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Allows case insensitive matching of the pattern with the indexed field values
 		 * when set to true. Default is false which means the case sensitivity of
-		 * matching depends on the underlying field’s mapping.
+		 * matching depends on the underlying field's mapping.
 		 * <p>
 		 * API name: {@code case_insensitive}
 		 */
