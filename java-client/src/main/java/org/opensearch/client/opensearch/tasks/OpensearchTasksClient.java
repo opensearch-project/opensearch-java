@@ -24,7 +24,7 @@
 package org.opensearch.client.opensearch.tasks;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.transport.Transport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -36,19 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the tasks namespace.
  */
-public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTasksClient> {
+public class OpensearchTasksClient extends ApiClient<OpensearchTasksClient> {
 
-	public ElasticsearchTasksClient(Transport transport) {
+	public OpensearchTasksClient(Transport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchTasksClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public OpensearchTasksClient(Transport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchTasksClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchTasksClient(this.transport, transportOptions);
+	public OpensearchTasksClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchTasksClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: tasks.cancel
@@ -61,7 +61,7 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTasksClient
 	 *      on elastic.co</a>
 	 */
 
-	public CancelResponse cancel(CancelRequest request) throws IOException, ElasticsearchException {
+	public CancelResponse cancel(CancelRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequest(request, CancelRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -77,7 +77,7 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTasksClient
 	 */
 
 	public final CancelResponse cancel(Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return cancel(fn.apply(new CancelRequest.Builder()).build());
 	}
 
@@ -89,7 +89,7 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTasksClient
 	 *      on elastic.co</a>
 	 */
 
-	public CancelResponse cancel() throws IOException, ElasticsearchException {
+	public CancelResponse cancel() throws IOException, OpensearchException {
 		return this.transport.performRequest(new CancelRequest.Builder().build(), CancelRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -104,7 +104,7 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTasksClient
 	 *      on elastic.co</a>
 	 */
 
-	public GetTasksResponse get(GetTasksRequest request) throws IOException, ElasticsearchException {
+	public GetTasksResponse get(GetTasksRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequest(request, GetTasksRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -120,7 +120,7 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTasksClient
 	 */
 
 	public final GetTasksResponse get(Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return get(fn.apply(new GetTasksRequest.Builder()).build());
 	}
 
@@ -134,7 +134,7 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTasksClient
 	 *      on elastic.co</a>
 	 */
 
-	public ListResponse list(ListRequest request) throws IOException, ElasticsearchException {
+	public ListResponse list(ListRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequest(request, ListRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -150,7 +150,7 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTasksClient
 	 */
 
 	public final ListResponse list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return list(fn.apply(new ListRequest.Builder()).build());
 	}
 
@@ -162,7 +162,7 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTasksClient
 	 *      on elastic.co</a>
 	 */
 
-	public ListResponse list() throws IOException, ElasticsearchException {
+	public ListResponse list() throws IOException, OpensearchException {
 		return this.transport.performRequest(new ListRequest.Builder().build(), ListRequest.ENDPOINT,
 				this.transportOptions);
 	}

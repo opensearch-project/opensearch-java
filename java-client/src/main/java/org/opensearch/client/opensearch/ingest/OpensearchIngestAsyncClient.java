@@ -24,7 +24,7 @@
 package org.opensearch.client.opensearch.ingest;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.transport.Transport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -36,19 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the ingest namespace.
  */
-public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchIngestAsyncClient> {
+public class OpensearchIngestAsyncClient extends ApiClient<OpensearchIngestAsyncClient> {
 
-	public ElasticsearchIngestAsyncClient(Transport transport) {
+	public OpensearchIngestAsyncClient(Transport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchIngestAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public OpensearchIngestAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchIngestAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchIngestAsyncClient(this.transport, transportOptions);
+	public OpensearchIngestAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchIngestAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: ingest.delete_pipeline
@@ -62,7 +62,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchInges
 	 */
 
 	public CompletableFuture<DeletePipelineResponse> deletePipeline(DeletePipelineRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, DeletePipelineRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -79,7 +79,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchInges
 
 	public final CompletableFuture<DeletePipelineResponse> deletePipeline(
 			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
 	}
 
@@ -92,7 +92,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchInges
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/geoip-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GeoIpStatsResponse> geoIpStats() throws IOException, ElasticsearchException {
+	public CompletableFuture<GeoIpStatsResponse> geoIpStats() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -108,7 +108,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchInges
 	 */
 
 	public CompletableFuture<GetPipelineResponse> getPipeline(GetPipelineRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, GetPipelineRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -125,7 +125,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchInges
 
 	public final CompletableFuture<GetPipelineResponse> getPipeline(
 			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
 	}
 
@@ -137,7 +137,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchInges
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetPipelineResponse> getPipeline() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetPipelineResponse> getPipeline() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new GetPipelineRequest.Builder().build(), GetPipelineRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -151,7 +151,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchInges
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/grok-processor.html#grok-processor-rest-get">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<ProcessorGrokResponse> processorGrok() throws IOException, ElasticsearchException {
+	public CompletableFuture<ProcessorGrokResponse> processorGrok() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -167,7 +167,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchInges
 	 */
 
 	public CompletableFuture<PutPipelineResponse> putPipeline(PutPipelineRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, PutPipelineRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -184,7 +184,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchInges
 
 	public final CompletableFuture<PutPipelineResponse> putPipeline(
 			Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
 	}
 
@@ -199,7 +199,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchInges
 	 */
 
 	public CompletableFuture<SimulateResponse> simulate(SimulateRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, SimulateRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -216,7 +216,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchInges
 
 	public final CompletableFuture<SimulateResponse> simulate(
 			Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return simulate(fn.apply(new SimulateRequest.Builder()).build());
 	}
 
@@ -228,7 +228,7 @@ public class ElasticsearchIngestAsyncClient extends ApiClient<ElasticsearchInges
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SimulateResponse> simulate() throws IOException, ElasticsearchException {
+	public CompletableFuture<SimulateResponse> simulate() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new SimulateRequest.Builder().build(), SimulateRequest.ENDPOINT,
 				this.transportOptions);
 	}

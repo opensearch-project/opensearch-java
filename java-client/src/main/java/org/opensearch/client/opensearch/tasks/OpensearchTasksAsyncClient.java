@@ -24,7 +24,7 @@
 package org.opensearch.client.opensearch.tasks;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.transport.Transport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -37,19 +37,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the tasks namespace.
  */
-public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTasksAsyncClient> {
+public class OpensearchTasksAsyncClient extends ApiClient<OpensearchTasksAsyncClient> {
 
-	public ElasticsearchTasksAsyncClient(Transport transport) {
+	public OpensearchTasksAsyncClient(Transport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchTasksAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public OpensearchTasksAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchTasksAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchTasksAsyncClient(this.transport, transportOptions);
+	public OpensearchTasksAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchTasksAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: tasks.cancel
@@ -62,7 +62,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTasksA
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CancelResponse> cancel(CancelRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<CancelResponse> cancel(CancelRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, CancelRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -79,7 +79,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTasksA
 
 	public final CompletableFuture<CancelResponse> cancel(
 			Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return cancel(fn.apply(new CancelRequest.Builder()).build());
 	}
 
@@ -91,7 +91,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTasksA
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CancelResponse> cancel() throws IOException, ElasticsearchException {
+	public CompletableFuture<CancelResponse> cancel() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new CancelRequest.Builder().build(), CancelRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -106,7 +106,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTasksA
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTasksResponse> get(GetTasksRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<GetTasksResponse> get(GetTasksRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, GetTasksRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -123,7 +123,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTasksA
 
 	public final CompletableFuture<GetTasksResponse> get(
 			Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return get(fn.apply(new GetTasksRequest.Builder()).build());
 	}
 
@@ -137,7 +137,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTasksA
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ListResponse> list(ListRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<ListResponse> list(ListRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(request, ListRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -153,7 +153,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTasksA
 	 */
 
 	public final CompletableFuture<ListResponse> list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return list(fn.apply(new ListRequest.Builder()).build());
 	}
 
@@ -165,7 +165,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTasksA
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ListResponse> list() throws IOException, ElasticsearchException {
+	public CompletableFuture<ListResponse> list() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new ListRequest.Builder().build(), ListRequest.ENDPOINT,
 				this.transportOptions);
 	}

@@ -21,7 +21,7 @@ package org.opensearch.client.opensearch.end_to_end;
 
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.opensearch._types.aggregations.HistogramAggregate;
 import org.opensearch.client.opensearch.cat.NodesResponse;
 import org.opensearch.client.opensearch.core.BulkResponse;
@@ -239,7 +239,7 @@ public class RequestTest extends Assert {
             GetResponse<String> response = client.get(
                 _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             );
-        } catch(ElasticsearchException ex) {
+        } catch(OpensearchException ex) {
             assertEquals(404, ex.status());
             assertEquals("index_not_found_exception", ex.error().type());
             assertEquals("doesnotexist", ex.error().metadata().get("index").to(String.class));
@@ -251,7 +251,7 @@ public class RequestTest extends Assert {
                 _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             ).get();
         } catch(ExecutionException ee) {
-            ElasticsearchException ex = ((ElasticsearchException) ee.getCause());
+            OpensearchException ex = ((OpensearchException) ee.getCause());
             assertEquals(404, ex.status());
             assertEquals("index_not_found_exception", ex.error().type());
         }

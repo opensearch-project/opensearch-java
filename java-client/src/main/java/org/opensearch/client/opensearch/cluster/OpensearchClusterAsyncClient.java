@@ -24,32 +24,33 @@
 package org.opensearch.client.opensearch.cluster;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.transport.BooleanResponse;
 import org.opensearch.client.transport.Transport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
  * Client for the cluster namespace.
  */
-public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterClient> {
+public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsyncClient> {
 
-	public ElasticsearchClusterClient(Transport transport) {
+	public OpensearchClusterAsyncClient(Transport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchClusterClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public OpensearchClusterAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchClusterClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchClusterClient(this.transport, transportOptions);
+	public OpensearchClusterAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchClusterAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: cluster.allocation_explain
@@ -62,9 +63,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public AllocationExplainResponse allocationExplain(AllocationExplainRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, AllocationExplainRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<AllocationExplainResponse> allocationExplain(AllocationExplainRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, AllocationExplainRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -78,9 +79,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final AllocationExplainResponse allocationExplain(
+	public final CompletableFuture<AllocationExplainResponse> allocationExplain(
 			Function<AllocationExplainRequest.Builder, ObjectBuilder<AllocationExplainRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return allocationExplain(fn.apply(new AllocationExplainRequest.Builder()).build());
 	}
 
@@ -92,8 +93,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public AllocationExplainResponse allocationExplain() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new AllocationExplainRequest.Builder().build(),
+	public CompletableFuture<AllocationExplainResponse> allocationExplain() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new AllocationExplainRequest.Builder().build(),
 				AllocationExplainRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -107,9 +108,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteComponentTemplateResponse deleteComponentTemplate(DeleteComponentTemplateRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteComponentTemplateRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<DeleteComponentTemplateResponse> deleteComponentTemplate(
+			DeleteComponentTemplateRequest request) throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, DeleteComponentTemplateRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	/**
@@ -123,9 +125,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final DeleteComponentTemplateResponse deleteComponentTemplate(
+	public final CompletableFuture<DeleteComponentTemplateResponse> deleteComponentTemplate(
 			Function<DeleteComponentTemplateRequest.Builder, ObjectBuilder<DeleteComponentTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deleteComponentTemplate(fn.apply(new DeleteComponentTemplateRequest.Builder()).build());
 	}
 
@@ -139,9 +141,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, DeleteVotingConfigExclusionsRequest.ENDPOINT,
+	public CompletableFuture<BooleanResponse> deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, DeleteVotingConfigExclusionsRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -156,9 +158,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final BooleanResponse deleteVotingConfigExclusions(
+	public final CompletableFuture<BooleanResponse> deleteVotingConfigExclusions(
 			Function<DeleteVotingConfigExclusionsRequest.Builder, ObjectBuilder<DeleteVotingConfigExclusionsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deleteVotingConfigExclusions(fn.apply(new DeleteVotingConfigExclusionsRequest.Builder()).build());
 	}
 
@@ -170,8 +172,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse deleteVotingConfigExclusions() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new DeleteVotingConfigExclusionsRequest.Builder().build(),
+	public CompletableFuture<BooleanResponse> deleteVotingConfigExclusions()
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new DeleteVotingConfigExclusionsRequest.Builder().build(),
 				DeleteVotingConfigExclusionsRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -185,9 +188,10 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse existsComponentTemplate(ExistsComponentTemplateRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ExistsComponentTemplateRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<BooleanResponse> existsComponentTemplate(ExistsComponentTemplateRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, ExistsComponentTemplateRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	/**
@@ -201,9 +205,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final BooleanResponse existsComponentTemplate(
+	public final CompletableFuture<BooleanResponse> existsComponentTemplate(
 			Function<ExistsComponentTemplateRequest.Builder, ObjectBuilder<ExistsComponentTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return existsComponentTemplate(fn.apply(new ExistsComponentTemplateRequest.Builder()).build());
 	}
 
@@ -217,9 +221,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public GetComponentTemplateResponse getComponentTemplate(GetComponentTemplateRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetComponentTemplateRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<GetComponentTemplateResponse> getComponentTemplate(GetComponentTemplateRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, GetComponentTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -233,9 +237,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final GetComponentTemplateResponse getComponentTemplate(
+	public final CompletableFuture<GetComponentTemplateResponse> getComponentTemplate(
 			Function<GetComponentTemplateRequest.Builder, ObjectBuilder<GetComponentTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getComponentTemplate(fn.apply(new GetComponentTemplateRequest.Builder()).build());
 	}
 
@@ -247,8 +251,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public GetComponentTemplateResponse getComponentTemplate() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetComponentTemplateRequest.Builder().build(),
+	public CompletableFuture<GetComponentTemplateResponse> getComponentTemplate()
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new GetComponentTemplateRequest.Builder().build(),
 				GetComponentTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -262,8 +267,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public GetSettingsResponse getSettings(GetSettingsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, GetSettingsRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<GetSettingsResponse> getSettings(GetSettingsRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, GetSettingsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -277,9 +283,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final GetSettingsResponse getSettings(
+	public final CompletableFuture<GetSettingsResponse> getSettings(
 			Function<GetSettingsRequest.Builder, ObjectBuilder<GetSettingsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getSettings(fn.apply(new GetSettingsRequest.Builder()).build());
 	}
 
@@ -291,8 +297,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public GetSettingsResponse getSettings() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetSettingsRequest.Builder().build(), GetSettingsRequest.ENDPOINT,
+	public CompletableFuture<GetSettingsResponse> getSettings() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new GetSettingsRequest.Builder().build(), GetSettingsRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -306,8 +312,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public HealthResponse health(HealthRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, HealthRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<HealthResponse> health(HealthRequest request) throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, HealthRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -321,8 +327,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<HealthResponse> health(
+			Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
+			throws IOException, OpensearchException {
 		return health(fn.apply(new HealthRequest.Builder()).build());
 	}
 
@@ -334,8 +341,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public HealthResponse health() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new HealthRequest.Builder().build(), HealthRequest.ENDPOINT,
+	public CompletableFuture<HealthResponse> health() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new HealthRequest.Builder().build(), HealthRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -350,8 +357,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public PendingTasksResponse pendingTasks(PendingTasksRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PendingTasksRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<PendingTasksResponse> pendingTasks(PendingTasksRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, PendingTasksRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -366,9 +374,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final PendingTasksResponse pendingTasks(
+	public final CompletableFuture<PendingTasksResponse> pendingTasks(
 			Function<PendingTasksRequest.Builder, ObjectBuilder<PendingTasksRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return pendingTasks(fn.apply(new PendingTasksRequest.Builder()).build());
 	}
 
@@ -381,9 +389,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public PendingTasksResponse pendingTasks() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new PendingTasksRequest.Builder().build(), PendingTasksRequest.ENDPOINT,
-				this.transportOptions);
+	public CompletableFuture<PendingTasksResponse> pendingTasks() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new PendingTasksRequest.Builder().build(),
+				PendingTasksRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.post_voting_config_exclusions
@@ -396,9 +404,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse postVotingConfigExclusions(PostVotingConfigExclusionsRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PostVotingConfigExclusionsRequest.ENDPOINT,
+	public CompletableFuture<BooleanResponse> postVotingConfigExclusions(PostVotingConfigExclusionsRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, PostVotingConfigExclusionsRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -413,9 +421,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final BooleanResponse postVotingConfigExclusions(
+	public final CompletableFuture<BooleanResponse> postVotingConfigExclusions(
 			Function<PostVotingConfigExclusionsRequest.Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return postVotingConfigExclusions(fn.apply(new PostVotingConfigExclusionsRequest.Builder()).build());
 	}
 
@@ -427,8 +435,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse postVotingConfigExclusions() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new PostVotingConfigExclusionsRequest.Builder().build(),
+	public CompletableFuture<BooleanResponse> postVotingConfigExclusions() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new PostVotingConfigExclusionsRequest.Builder().build(),
 				PostVotingConfigExclusionsRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -442,9 +450,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public PutComponentTemplateResponse putComponentTemplate(PutComponentTemplateRequest request)
-			throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutComponentTemplateRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(PutComponentTemplateRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, PutComponentTemplateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -458,9 +466,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final PutComponentTemplateResponse putComponentTemplate(
+	public final CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(
 			Function<PutComponentTemplateRequest.Builder, ObjectBuilder<PutComponentTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return putComponentTemplate(fn.apply(new PutComponentTemplateRequest.Builder()).build());
 	}
 
@@ -474,8 +482,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public PutSettingsResponse putSettings(PutSettingsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, PutSettingsRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<PutSettingsResponse> putSettings(PutSettingsRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, PutSettingsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -489,9 +498,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final PutSettingsResponse putSettings(
+	public final CompletableFuture<PutSettingsResponse> putSettings(
 			Function<PutSettingsRequest.Builder, ObjectBuilder<PutSettingsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return putSettings(fn.apply(new PutSettingsRequest.Builder()).build());
 	}
 
@@ -503,8 +512,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public PutSettingsResponse putSettings() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new PutSettingsRequest.Builder().build(), PutSettingsRequest.ENDPOINT,
+	public CompletableFuture<PutSettingsResponse> putSettings() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new PutSettingsRequest.Builder().build(), PutSettingsRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -517,8 +526,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-remote-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public RemoteInfoResponse remoteInfo() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(RemoteInfoRequest._INSTANCE, RemoteInfoRequest.ENDPOINT,
+	public CompletableFuture<RemoteInfoResponse> remoteInfo() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(RemoteInfoRequest._INSTANCE, RemoteInfoRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -532,8 +541,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public RerouteResponse reroute(RerouteRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RerouteRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<RerouteResponse> reroute(RerouteRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, RerouteRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -547,8 +557,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final RerouteResponse reroute(Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<RerouteResponse> reroute(
+			Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn)
+			throws IOException, OpensearchException {
 		return reroute(fn.apply(new RerouteRequest.Builder()).build());
 	}
 
@@ -560,8 +571,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public RerouteResponse reroute() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new RerouteRequest.Builder().build(), RerouteRequest.ENDPOINT,
+	public CompletableFuture<RerouteResponse> reroute() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new RerouteRequest.Builder().build(), RerouteRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -575,8 +586,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public StateResponse state(StateRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, StateRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<StateResponse> state(StateRequest request) throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, StateRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -590,8 +601,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final StateResponse state(Function<StateRequest.Builder, ObjectBuilder<StateRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<StateResponse> state(Function<StateRequest.Builder, ObjectBuilder<StateRequest>> fn)
+			throws IOException, OpensearchException {
 		return state(fn.apply(new StateRequest.Builder()).build());
 	}
 
@@ -603,8 +614,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public StateResponse state() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new StateRequest.Builder().build(), StateRequest.ENDPOINT,
+	public CompletableFuture<StateResponse> state() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new StateRequest.Builder().build(), StateRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -618,8 +629,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public ClusterStatsResponse stats(ClusterStatsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ClusterStatsRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<ClusterStatsResponse> stats(ClusterStatsRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, ClusterStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -633,9 +645,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public final ClusterStatsResponse stats(
+	public final CompletableFuture<ClusterStatsResponse> stats(
 			Function<ClusterStatsRequest.Builder, ObjectBuilder<ClusterStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return stats(fn.apply(new ClusterStatsRequest.Builder()).build());
 	}
 
@@ -647,9 +659,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchClusterCl
 	 *      on elastic.co</a>
 	 */
 
-	public ClusterStatsResponse stats() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ClusterStatsRequest.Builder().build(), ClusterStatsRequest.ENDPOINT,
-				this.transportOptions);
+	public CompletableFuture<ClusterStatsResponse> stats() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new ClusterStatsRequest.Builder().build(),
+				ClusterStatsRequest.ENDPOINT, this.transportOptions);
 	}
 
 }

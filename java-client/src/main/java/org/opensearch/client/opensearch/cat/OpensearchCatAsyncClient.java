@@ -24,31 +24,32 @@
 package org.opensearch.client.opensearch.cat;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.transport.Transport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
  * Client for the cat namespace.
  */
-public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
+public class OpensearchCatAsyncClient extends ApiClient<OpensearchCatAsyncClient> {
 
-	public ElasticsearchCatClient(Transport transport) {
+	public OpensearchCatAsyncClient(Transport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchCatClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public OpensearchCatAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchCatClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchCatClient(this.transport, transportOptions);
+	public OpensearchCatAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchCatAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: cat.aliases
@@ -62,8 +63,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public AliasesResponse aliases(AliasesRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, AliasesRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<AliasesResponse> aliases(AliasesRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, AliasesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -78,8 +80,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final AliasesResponse aliases(Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<AliasesResponse> aliases(
+			Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn)
+			throws IOException, OpensearchException {
 		return aliases(fn.apply(new AliasesRequest.Builder()).build());
 	}
 
@@ -92,8 +95,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public AliasesResponse aliases() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new AliasesRequest.Builder().build(), AliasesRequest.ENDPOINT,
+	public CompletableFuture<AliasesResponse> aliases() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new AliasesRequest.Builder().build(), AliasesRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -108,8 +111,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public AllocationResponse allocation(AllocationRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, AllocationRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<AllocationResponse> allocation(AllocationRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, AllocationRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -124,8 +128,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final AllocationResponse allocation(Function<AllocationRequest.Builder, ObjectBuilder<AllocationRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<AllocationResponse> allocation(
+			Function<AllocationRequest.Builder, ObjectBuilder<AllocationRequest>> fn)
+			throws IOException, OpensearchException {
 		return allocation(fn.apply(new AllocationRequest.Builder()).build());
 	}
 
@@ -138,8 +143,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public AllocationResponse allocation() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new AllocationRequest.Builder().build(), AllocationRequest.ENDPOINT,
+	public CompletableFuture<AllocationResponse> allocation() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new AllocationRequest.Builder().build(), AllocationRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -154,8 +159,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CountResponse count(CountRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, CountRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<CountResponse> count(CountRequest request) throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, CountRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -170,8 +175,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final CountResponse count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<CountResponse> count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
+			throws IOException, OpensearchException {
 		return count(fn.apply(new CountRequest.Builder()).build());
 	}
 
@@ -184,8 +189,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public CountResponse count() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new CountRequest.Builder().build(), CountRequest.ENDPOINT,
+	public CompletableFuture<CountResponse> count() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new CountRequest.Builder().build(), CountRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -200,8 +205,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public FielddataResponse fielddata(FielddataRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, FielddataRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<FielddataResponse> fielddata(FielddataRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, FielddataRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -216,8 +222,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final FielddataResponse fielddata(Function<FielddataRequest.Builder, ObjectBuilder<FielddataRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<FielddataResponse> fielddata(
+			Function<FielddataRequest.Builder, ObjectBuilder<FielddataRequest>> fn)
+			throws IOException, OpensearchException {
 		return fielddata(fn.apply(new FielddataRequest.Builder()).build());
 	}
 
@@ -230,8 +237,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public FielddataResponse fielddata() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new FielddataRequest.Builder().build(), FielddataRequest.ENDPOINT,
+	public CompletableFuture<FielddataResponse> fielddata() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new FielddataRequest.Builder().build(), FielddataRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -245,8 +252,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public HealthResponse health(HealthRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, HealthRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<HealthResponse> health(HealthRequest request) throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, HealthRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -260,8 +267,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<HealthResponse> health(
+			Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
+			throws IOException, OpensearchException {
 		return health(fn.apply(new HealthRequest.Builder()).build());
 	}
 
@@ -273,8 +281,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public HealthResponse health() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new HealthRequest.Builder().build(), HealthRequest.ENDPOINT,
+	public CompletableFuture<HealthResponse> health() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new HealthRequest.Builder().build(), HealthRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -287,8 +295,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public HelpResponse help() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(HelpRequest._INSTANCE, HelpRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<HelpResponse> help() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(HelpRequest._INSTANCE, HelpRequest.ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.indices
@@ -302,8 +310,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public IndicesResponse indices(IndicesRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, IndicesRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<IndicesResponse> indices(IndicesRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, IndicesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -318,8 +327,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final IndicesResponse indices(Function<IndicesRequest.Builder, ObjectBuilder<IndicesRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<IndicesResponse> indices(
+			Function<IndicesRequest.Builder, ObjectBuilder<IndicesRequest>> fn)
+			throws IOException, OpensearchException {
 		return indices(fn.apply(new IndicesRequest.Builder()).build());
 	}
 
@@ -332,8 +342,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public IndicesResponse indices() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new IndicesRequest.Builder().build(), IndicesRequest.ENDPOINT,
+	public CompletableFuture<IndicesResponse> indices() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new IndicesRequest.Builder().build(), IndicesRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -346,8 +356,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-master.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public MasterResponse master() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(MasterRequest._INSTANCE, MasterRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<MasterResponse> master() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(MasterRequest._INSTANCE, MasterRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.nodeattrs
@@ -359,8 +370,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodeattrs.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public NodeattrsResponse nodeattrs() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(NodeattrsRequest._INSTANCE, NodeattrsRequest.ENDPOINT,
+	public CompletableFuture<NodeattrsResponse> nodeattrs() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(NodeattrsRequest._INSTANCE, NodeattrsRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -374,8 +385,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public NodesResponse nodes(NodesRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, NodesRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<NodesResponse> nodes(NodesRequest request) throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, NodesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -389,8 +400,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final NodesResponse nodes(Function<NodesRequest.Builder, ObjectBuilder<NodesRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<NodesResponse> nodes(Function<NodesRequest.Builder, ObjectBuilder<NodesRequest>> fn)
+			throws IOException, OpensearchException {
 		return nodes(fn.apply(new NodesRequest.Builder()).build());
 	}
 
@@ -402,8 +413,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public NodesResponse nodes() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new NodesRequest.Builder().build(), NodesRequest.ENDPOINT,
+	public CompletableFuture<NodesResponse> nodes() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new NodesRequest.Builder().build(), NodesRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -416,8 +427,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-pending-tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public PendingTasksResponse pendingTasks() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(PendingTasksRequest._INSTANCE, PendingTasksRequest.ENDPOINT,
+	public CompletableFuture<PendingTasksResponse> pendingTasks() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(PendingTasksRequest._INSTANCE, PendingTasksRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -430,8 +441,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-plugins.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public PluginsResponse plugins() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(PluginsRequest._INSTANCE, PluginsRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<PluginsResponse> plugins() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(PluginsRequest._INSTANCE, PluginsRequest.ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.recovery
@@ -444,8 +456,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public RecoveryResponse recovery(RecoveryRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, RecoveryRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<RecoveryResponse> recovery(RecoveryRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, RecoveryRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -459,8 +472,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final RecoveryResponse recovery(Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<RecoveryResponse> recovery(
+			Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
+			throws IOException, OpensearchException {
 		return recovery(fn.apply(new RecoveryRequest.Builder()).build());
 	}
 
@@ -472,8 +486,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public RecoveryResponse recovery() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new RecoveryRequest.Builder().build(), RecoveryRequest.ENDPOINT,
+	public CompletableFuture<RecoveryResponse> recovery() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new RecoveryRequest.Builder().build(), RecoveryRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -486,8 +500,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-repositories.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public RepositoriesResponse repositories() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(RepositoriesRequest._INSTANCE, RepositoriesRequest.ENDPOINT,
+	public CompletableFuture<RepositoriesResponse> repositories() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(RepositoriesRequest._INSTANCE, RepositoriesRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -501,8 +515,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public SegmentsResponse segments(SegmentsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, SegmentsRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<SegmentsResponse> segments(SegmentsRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, SegmentsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -516,8 +531,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final SegmentsResponse segments(Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<SegmentsResponse> segments(
+			Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
+			throws IOException, OpensearchException {
 		return segments(fn.apply(new SegmentsRequest.Builder()).build());
 	}
 
@@ -529,8 +545,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public SegmentsResponse segments() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new SegmentsRequest.Builder().build(), SegmentsRequest.ENDPOINT,
+	public CompletableFuture<SegmentsResponse> segments() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new SegmentsRequest.Builder().build(), SegmentsRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -544,8 +560,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public ShardsResponse shards(ShardsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ShardsRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<ShardsResponse> shards(ShardsRequest request) throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, ShardsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -559,8 +575,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final ShardsResponse shards(Function<ShardsRequest.Builder, ObjectBuilder<ShardsRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<ShardsResponse> shards(
+			Function<ShardsRequest.Builder, ObjectBuilder<ShardsRequest>> fn)
+			throws IOException, OpensearchException {
 		return shards(fn.apply(new ShardsRequest.Builder()).build());
 	}
 
@@ -572,8 +589,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public ShardsResponse shards() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ShardsRequest.Builder().build(), ShardsRequest.ENDPOINT,
+	public CompletableFuture<ShardsResponse> shards() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new ShardsRequest.Builder().build(), ShardsRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -587,8 +604,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public SnapshotsResponse snapshots(SnapshotsRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, SnapshotsRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<SnapshotsResponse> snapshots(SnapshotsRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, SnapshotsRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -602,8 +620,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final SnapshotsResponse snapshots(Function<SnapshotsRequest.Builder, ObjectBuilder<SnapshotsRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<SnapshotsResponse> snapshots(
+			Function<SnapshotsRequest.Builder, ObjectBuilder<SnapshotsRequest>> fn)
+			throws IOException, OpensearchException {
 		return snapshots(fn.apply(new SnapshotsRequest.Builder()).build());
 	}
 
@@ -615,8 +634,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public SnapshotsResponse snapshots() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new SnapshotsRequest.Builder().build(), SnapshotsRequest.ENDPOINT,
+	public CompletableFuture<SnapshotsResponse> snapshots() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new SnapshotsRequest.Builder().build(), SnapshotsRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -631,8 +650,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public TasksResponse tasks(TasksRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, TasksRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<TasksResponse> tasks(TasksRequest request) throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, TasksRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -647,8 +666,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final TasksResponse tasks(Function<TasksRequest.Builder, ObjectBuilder<TasksRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<TasksResponse> tasks(Function<TasksRequest.Builder, ObjectBuilder<TasksRequest>> fn)
+			throws IOException, OpensearchException {
 		return tasks(fn.apply(new TasksRequest.Builder()).build());
 	}
 
@@ -661,8 +680,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public TasksResponse tasks() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new TasksRequest.Builder().build(), TasksRequest.ENDPOINT,
+	public CompletableFuture<TasksResponse> tasks() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new TasksRequest.Builder().build(), TasksRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -676,8 +695,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public TemplatesResponse templates(TemplatesRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, TemplatesRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<TemplatesResponse> templates(TemplatesRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, TemplatesRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -691,8 +711,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final TemplatesResponse templates(Function<TemplatesRequest.Builder, ObjectBuilder<TemplatesRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<TemplatesResponse> templates(
+			Function<TemplatesRequest.Builder, ObjectBuilder<TemplatesRequest>> fn)
+			throws IOException, OpensearchException {
 		return templates(fn.apply(new TemplatesRequest.Builder()).build());
 	}
 
@@ -704,8 +725,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public TemplatesResponse templates() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new TemplatesRequest.Builder().build(), TemplatesRequest.ENDPOINT,
+	public CompletableFuture<TemplatesResponse> templates() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new TemplatesRequest.Builder().build(), TemplatesRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -720,8 +741,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public ThreadPoolResponse threadPool(ThreadPoolRequest request) throws IOException, ElasticsearchException {
-		return this.transport.performRequest(request, ThreadPoolRequest.ENDPOINT, this.transportOptions);
+	public CompletableFuture<ThreadPoolResponse> threadPool(ThreadPoolRequest request)
+			throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(request, ThreadPoolRequest.ENDPOINT, this.transportOptions);
 	}
 
 	/**
@@ -736,8 +758,9 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public final ThreadPoolResponse threadPool(Function<ThreadPoolRequest.Builder, ObjectBuilder<ThreadPoolRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<ThreadPoolResponse> threadPool(
+			Function<ThreadPoolRequest.Builder, ObjectBuilder<ThreadPoolRequest>> fn)
+			throws IOException, OpensearchException {
 		return threadPool(fn.apply(new ThreadPoolRequest.Builder()).build());
 	}
 
@@ -750,8 +773,8 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchCatClient> {
 	 *      on elastic.co</a>
 	 */
 
-	public ThreadPoolResponse threadPool() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ThreadPoolRequest.Builder().build(), ThreadPoolRequest.ENDPOINT,
+	public CompletableFuture<ThreadPoolResponse> threadPool() throws IOException, OpensearchException {
+		return this.transport.performRequestAsync(new ThreadPoolRequest.Builder().build(), ThreadPoolRequest.ENDPOINT,
 				this.transportOptions);
 	}
 

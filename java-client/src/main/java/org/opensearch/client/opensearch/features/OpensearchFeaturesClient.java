@@ -24,30 +24,29 @@
 package org.opensearch.client.opensearch.features;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.transport.Transport;
 import org.opensearch.client.transport.TransportOptions;
 
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 import javax.annotation.Nullable;
 
 /**
  * Client for the features namespace.
  */
-public class ElasticsearchFeaturesAsyncClient extends ApiClient<ElasticsearchFeaturesAsyncClient> {
+public class OpensearchFeaturesClient extends ApiClient<OpensearchFeaturesClient> {
 
-	public ElasticsearchFeaturesAsyncClient(Transport transport) {
+	public OpensearchFeaturesClient(Transport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchFeaturesAsyncClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public OpensearchFeaturesClient(Transport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchFeaturesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchFeaturesAsyncClient(this.transport, transportOptions);
+	public OpensearchFeaturesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchFeaturesClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: features.get_features
@@ -60,8 +59,8 @@ public class ElasticsearchFeaturesAsyncClient extends ApiClient<ElasticsearchFea
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetFeaturesResponse> getFeatures() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(GetFeaturesRequest._INSTANCE, GetFeaturesRequest.ENDPOINT,
+	public GetFeaturesResponse getFeatures() throws IOException, OpensearchException {
+		return this.transport.performRequest(GetFeaturesRequest._INSTANCE, GetFeaturesRequest.ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -74,8 +73,8 @@ public class ElasticsearchFeaturesAsyncClient extends ApiClient<ElasticsearchFea
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<ResetFeaturesResponse> resetFeatures() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest.ENDPOINT,
+	public ResetFeaturesResponse resetFeatures() throws IOException, OpensearchException {
+		return this.transport.performRequest(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest.ENDPOINT,
 				this.transportOptions);
 	}
 

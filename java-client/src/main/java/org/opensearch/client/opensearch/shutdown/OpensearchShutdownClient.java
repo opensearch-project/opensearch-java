@@ -24,7 +24,7 @@
 package org.opensearch.client.opensearch.shutdown;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.transport.Transport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -36,19 +36,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the shutdown namespace.
  */
-public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdownClient> {
+public class OpensearchShutdownClient extends ApiClient<OpensearchShutdownClient> {
 
-	public ElasticsearchShutdownClient(Transport transport) {
+	public OpensearchShutdownClient(Transport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchShutdownClient(Transport transport, @Nullable TransportOptions transportOptions) {
+	public OpensearchShutdownClient(Transport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchShutdownClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchShutdownClient(this.transport, transportOptions);
+	public OpensearchShutdownClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchShutdownClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: shutdown.delete_node
@@ -62,7 +62,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteNodeResponse deleteNode(DeleteNodeRequest request) throws IOException, ElasticsearchException {
+	public DeleteNodeResponse deleteNode(DeleteNodeRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequest(request, DeleteNodeRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -79,7 +79,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 */
 
 	public final DeleteNodeResponse deleteNode(Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deleteNode(fn.apply(new DeleteNodeRequest.Builder()).build());
 	}
 
@@ -95,7 +95,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 *      on elastic.co</a>
 	 */
 
-	public GetNodeResponse getNode(GetNodeRequest request) throws IOException, ElasticsearchException {
+	public GetNodeResponse getNode(GetNodeRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequest(request, GetNodeRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -113,7 +113,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 */
 
 	public final GetNodeResponse getNode(Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getNode(fn.apply(new GetNodeRequest.Builder()).build());
 	}
 
@@ -127,7 +127,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 *      on elastic.co</a>
 	 */
 
-	public GetNodeResponse getNode() throws IOException, ElasticsearchException {
+	public GetNodeResponse getNode() throws IOException, OpensearchException {
 		return this.transport.performRequest(new GetNodeRequest.Builder().build(), GetNodeRequest.ENDPOINT,
 				this.transportOptions);
 	}
@@ -143,7 +143,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 *      on elastic.co</a>
 	 */
 
-	public PutNodeResponse putNode(PutNodeRequest request) throws IOException, ElasticsearchException {
+	public PutNodeResponse putNode(PutNodeRequest request) throws IOException, OpensearchException {
 		return this.transport.performRequest(request, PutNodeRequest.ENDPOINT, this.transportOptions);
 	}
 
@@ -160,7 +160,7 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchShutdown
 	 */
 
 	public final PutNodeResponse putNode(Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return putNode(fn.apply(new PutNodeRequest.Builder()).build());
 	}
 
