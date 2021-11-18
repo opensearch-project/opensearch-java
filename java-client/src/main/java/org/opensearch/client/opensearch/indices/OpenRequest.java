@@ -23,14 +23,9 @@
 
 package org.opensearch.client.opensearch.indices;
 
-<<<<<<< HEAD
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcardOptions;
-=======
 import jakarta.json.JsonValue;
-import org.opensearch.client.base.OpenSearchError;
-import org.opensearch.client.base.Endpoint;
->>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.transport.Endpoint;
@@ -300,11 +295,7 @@ public class OpenRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.open}".
 	 */
-<<<<<<< HEAD
 	public static final Endpoint<OpenRequest, OpenResponse, ErrorResponse> ENDPOINT = new SimpleEndpoint<>(
-=======
-	public static final Endpoint<OpenRequest, OpenResponse, OpenSearchError> ENDPOINT = new Endpoint.Simple<>(
->>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 			// Request method
 			request -> {
 				return "POST";

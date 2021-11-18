@@ -23,14 +23,8 @@
 
 package org.opensearch.client.opensearch.indices;
 
-<<<<<<< HEAD
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcardOptions;
-=======
-import org.opensearch.client.base.BooleanResponse;
-import org.opensearch.client.base.OpenSearchError;
-import org.opensearch.client.base.Endpoint;
->>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.BooleanEndpoint;
 import org.opensearch.client.transport.BooleanResponse;
@@ -284,11 +278,7 @@ public class ExistsAliasRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.exists_alias}".
 	 */
-<<<<<<< HEAD
 	public static final Endpoint<ExistsAliasRequest, BooleanResponse, ErrorResponse> ENDPOINT = new BooleanEndpoint<>(
-=======
-	public static final Endpoint<ExistsAliasRequest, BooleanResponse, OpenSearchError> ENDPOINT = new Endpoint.Boolean<>(
->>>>>>> 1cbedd1b (Use org.opensearch instead of org.elasticsearch in client code (#8))
 			// Request method
 			request -> {
 				return "HEAD";
