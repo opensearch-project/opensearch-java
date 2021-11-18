@@ -84,7 +84,7 @@ tasks.register<Task>(name = "publishForReleaseManager") {
         val releaseDir = File(rootProject.buildDir, "release")
         releaseDir.mkdirs()
 
-        File(rootProject.buildDir, "repository/org/opensearch/clients").listFiles()?.forEach { artifact ->
+        File(rootProject.buildDir, "repository/org/opensearch/client").listFiles()?.forEach { artifact ->
             println("Releasing artifact " + artifact.name)
 
             val versionDir = File(artifact, version)
