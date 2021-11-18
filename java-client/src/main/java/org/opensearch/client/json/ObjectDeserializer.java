@@ -257,7 +257,7 @@ public class ObjectDeserializer<ObjectType> extends DelegatingDeserializer<Objec
 
     public void add(ObjIntConsumer<ObjectType> setter, String name, String... deprecatedNames) {
         // FIXME (perf): add specialized deserializer to avoid intermediate boxing
-        add(setter::accept, integerDeserializer(), name, deprecatedNames);
+        add(setter::accept, JsonpDeserializer.integerDeserializer(), name, deprecatedNames);
     }
 
 // Experiment: avoid boxing, allow multiple primitive parsers (e.g. int as number & string)
