@@ -13,7 +13,7 @@ the {ref}/rest-apis.html[{es} API documentation].
 
 The Java client follows this structure: feature groups are called “namespaces”, 
 and each namespace is located in a subpackage of 
-`org.opensearch.clients.opensearch`. The only exceptions are the “search” and
+`org.opensearch.client.opensearch`. The only exceptions are the “search” and
 “document” APIs which are located in the `_core` subpackage.
 
 Each of the namespace clients can be accessed from the top level {es} client. 
