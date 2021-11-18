@@ -249,7 +249,7 @@ There are five kinds of objects in the {java-client} with different life cycles:
 
 **Object mapper**::
 Stateless and thread-safe, but can be costly to create. 
-It’s usually a singleton that is created at application startup and used to 
+It's usually a singleton that is created at application startup and used to
 create the transport.
 
 **Transport**:: 

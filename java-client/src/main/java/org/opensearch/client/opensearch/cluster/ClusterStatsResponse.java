@@ -109,7 +109,7 @@ public class ClusterStatsResponse extends NodesResponseBase {
 	}
 
 	/**
-	 * Required - Contains statistics about nodes selected by the request’s node
+	 * Required - Contains statistics about nodes selected by the request's node
 	 * filters.
 	 * <p>
 	 * API name: {@code nodes}
@@ -223,7 +223,7 @@ public class ClusterStatsResponse extends NodesResponseBase {
 		}
 
 		/**
-		 * Required - Contains statistics about nodes selected by the request’s node
+		 * Required - Contains statistics about nodes selected by the request's node
 		 * filters.
 		 * <p>
 		 * API name: {@code nodes}
@@ -234,7 +234,7 @@ public class ClusterStatsResponse extends NodesResponseBase {
 		}
 
 		/**
-		 * Required - Contains statistics about nodes selected by the request’s node
+		 * Required - Contains statistics about nodes selected by the request's node
 		 * filters.
 		 * <p>
 		 * API name: {@code nodes}
