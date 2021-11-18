@@ -87,7 +87,7 @@ public class RankEvalRequestItem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The search request’s ID, used to group result details later.
+	 * Required - The search request's ID, used to group result details later.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -201,7 +201,7 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		private Map<String, JsonData> params;
 
 		/**
-		 * Required - The search request’s ID, used to group result details later.
+		 * Required - The search request's ID, used to group result details later.
 		 * <p>
 		 * API name: {@code id}
 		 */

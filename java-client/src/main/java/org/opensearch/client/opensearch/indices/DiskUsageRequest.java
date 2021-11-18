@@ -139,7 +139,7 @@ public class DiskUsageRequest extends RequestBase {
 
 	/**
 	 * Required - Comma-separated list of data streams, indices, and aliases used to
-	 * limit the request. It’s recommended to execute this API with a single index
+	 * limit the request. It's recommended to execute this API with a single index
 	 * (or the latest backing index of a data stream) as the API consumes resources
 	 * significantly.
 	 * <p>
@@ -287,7 +287,7 @@ public class DiskUsageRequest extends RequestBase {
 
 		/**
 		 * Required - Comma-separated list of data streams, indices, and aliases used to
-		 * limit the request. It’s recommended to execute this API with a single index
+		 * limit the request. It's recommended to execute this API with a single index
 		 * (or the latest backing index of a data stream) as the API consumes resources
 		 * significantly.
 		 * <p>

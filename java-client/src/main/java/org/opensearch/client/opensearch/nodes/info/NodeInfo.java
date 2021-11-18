@@ -187,7 +187,7 @@ public class NodeInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The node’s host name.
+	 * Required - The node's host name.
 	 * <p>
 	 * API name: {@code host}
 	 */
@@ -204,7 +204,7 @@ public class NodeInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The node’s IP address.
+	 * Required - The node's IP address.
 	 * <p>
 	 * API name: {@code ip}
 	 */
@@ -605,7 +605,7 @@ public class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The node’s host name.
+		 * Required - The node's host name.
 		 * <p>
 		 * API name: {@code host}
 		 */
@@ -630,7 +630,7 @@ public class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The node’s IP address.
+		 * Required - The node's IP address.
 		 * <p>
 		 * API name: {@code ip}
 		 */

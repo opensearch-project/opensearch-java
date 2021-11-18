@@ -104,7 +104,7 @@ public class ClusterNodes implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Contains counts for nodes selected by the request’s node filters.
+	 * Required - Contains counts for nodes selected by the request's node filters.
 	 * <p>
 	 * API name: {@code count}
 	 */
@@ -311,7 +311,7 @@ public class ClusterNodes implements JsonpSerializable {
 		private List<String> versions;
 
 		/**
-		 * Required - Contains counts for nodes selected by the request’s node filters.
+		 * Required - Contains counts for nodes selected by the request's node filters.
 		 * <p>
 		 * API name: {@code count}
 		 */
@@ -321,7 +321,7 @@ public class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Contains counts for nodes selected by the request’s node filters.
+		 * Required - Contains counts for nodes selected by the request's node filters.
 		 * <p>
 		 * API name: {@code count}
 		 */
