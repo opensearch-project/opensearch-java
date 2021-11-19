@@ -29,7 +29,6 @@
  * Modifications Copyright OpenSearch Contributors. See
  * GitHub history for details.
  */
-
 package org.opensearch.client.opensearch.json;
 
 import org.opensearch.client.json.JsonpMapper;

@@ -29,7 +29,6 @@
  * Modifications Copyright OpenSearch Contributors. See
  * GitHub history for details.
  */
-
 /**
  * Experiments for the design of high-level client classes and usage illustration of the XContent-related classes.
  */

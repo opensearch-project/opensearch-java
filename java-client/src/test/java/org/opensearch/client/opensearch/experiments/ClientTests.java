@@ -29,7 +29,6 @@
  * Modifications Copyright OpenSearch Contributors. See
  * GitHub history for details.
  */
-
 package org.opensearch.client.opensearch.experiments;
 
 import org.opensearch.client.opensearch.experiments.api.Bar;

@@ -29,7 +29,6 @@
  * Modifications Copyright OpenSearch Contributors. See
  * GitHub history for details.
  */
-
 dependencies {
     implementation("org.ajoberstar.grgit:grgit-gradle:4.0.1")
 }

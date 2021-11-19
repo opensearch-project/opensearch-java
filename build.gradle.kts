@@ -29,7 +29,6 @@
  * Modifications Copyright OpenSearch Contributors. See
  * GitHub history for details.
  */
-
 allprojects {
     group = "org.opensearch.clients"
     // Release manager provides a $VERSION. If not present, it's a local or CI snapshot build.

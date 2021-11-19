@@ -29,7 +29,6 @@
  * Modifications Copyright OpenSearch Contributors. See
  * GitHub history for details.
  */
-
 package org.opensearch.client.opensearch.experiments.base;
 
 import org.opensearch.client.json.JsonpDeserializer;
