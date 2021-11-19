@@ -90,6 +90,10 @@ tasks.withType<Jar> {
 
 tasks.test {
     systemProperty("tests.security.manager", "false")
+    // Basic auth settings for integration test
+    systemProperty("https", System.getProperty("https", "true"))
+    systemProperty("user", System.getProperty("user", "admin"))
+    systemProperty("password", System.getProperty("password", "admin"))
 }
 
 val unitTest = task<Test>("unitTest") {
