@@ -96,7 +96,7 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	private final Boolean writeIndexOnly;
 
 	@Nullable
-	private final AllField allField;
+	private final AllField all;
 
 	@Nullable
 	private final Boolean dateDetection;
@@ -111,10 +111,10 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	private final List<Map<String, DynamicTemplate>> dynamicTemplates;
 
 	@Nullable
-	private final FieldNamesField fieldNamesField;
+	private final FieldNamesField fieldNames;
 
 	@Nullable
-	private final IndexField indexField;
+	private final IndexField indexSetting;
 
 	@Nullable
 	private final Map<String, JsonValue> meta;
@@ -126,13 +126,13 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	private final Map<String, JsonValue> properties;
 
 	@Nullable
-	private final RoutingField routingField;
+	private final RoutingField routing;
 
 	@Nullable
-	private final SizeField sizeField;
+	private final SizeField size;
 
 	@Nullable
-	private final SourceField sourceField;
+	private final SourceField source;
 
 	@Nullable
 	private final Map<String, RuntimeField> runtime;
@@ -150,19 +150,19 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 		this.writeIndexOnly = builder.writeIndexOnly;
-		this.allField = builder.allField;
+		this.all= builder.all;
 		this.dateDetection = builder.dateDetection;
 		this.dynamic = builder.dynamic;
 		this.dynamicDateFormats = builder.dynamicDateFormats;
 		this.dynamicTemplates = builder.dynamicTemplates;
-		this.fieldNamesField = builder.fieldNamesField;
-		this.indexField = builder.indexField;
+		this.fieldNames= builder.fieldNames;
+		this.indexSetting = builder.indexSetting;
 		this.meta = builder.meta;
 		this.numericDetection = builder.numericDetection;
 		this.properties = builder.properties;
-		this.routingField = builder.routingField;
-		this.sizeField = builder.sizeField;
-		this.sourceField = builder.sourceField;
+		this.routing= builder.routing;
+		this.size= builder.size;
+		this.source= builder.source;
 		this.runtime = builder.runtime;
 
 	}
@@ -240,11 +240,11 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code all_field}
+	 * API name: {@code all}
 	 */
 	@Nullable
-	public AllField allField() {
-		return this.allField;
+	public AllField all() {
+		return this.all;
 	}
 
 	/**
@@ -280,20 +280,18 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code field_names_field}
+	 * API name: {@code field_names}
 	 */
 	@Nullable
-	public FieldNamesField fieldNamesField() {
-		return this.fieldNamesField;
+	public FieldNamesField fieldNames() {
+		return this.fieldNames;
 	}
 
 	/**
-	 * API name: {@code index_field}
+	 * API name: {@code index}
 	 */
 	@Nullable
-	public IndexField indexField() {
-		return this.indexField;
-	}
+	public IndexField indexSetting() { return this.indexSetting; }
 
 	/**
 	 * API name: {@code meta}
@@ -320,27 +318,27 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code routing_field}
+	 * API name: {@code routing}
 	 */
 	@Nullable
-	public RoutingField routingField() {
-		return this.routingField;
+	public RoutingField routing() {
+		return this.routing;
 	}
 
 	/**
-	 * API name: {@code size_field}
+	 * API name: {@code size}
 	 */
 	@Nullable
-	public SizeField sizeField() {
-		return this.sizeField;
+	public SizeField size() {
+		return this.size;
 	}
 
 	/**
-	 * API name: {@code source_field}
+	 * API name: {@code source}
 	 */
 	@Nullable
-	public SourceField sourceField() {
-		return this.sourceField;
+	public SourceField source() {
+		return this.source;
 	}
 
 	/**
@@ -362,10 +360,10 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 
 	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.allField != null) {
+		if (this.all != null) {
 
-			generator.writeKey("all_field");
-			this.allField.toJsonp(generator, mapper);
+			generator.writeKey("all");
+			this.all.toJsonp(generator, mapper);
 
 		}
 		if (this.dateDetection != null) {
@@ -408,16 +406,16 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 			generator.writeEnd();
 
 		}
-		if (this.fieldNamesField != null) {
+		if (this.fieldNames != null) {
 
-			generator.writeKey("field_names_field");
-			this.fieldNamesField.toJsonp(generator, mapper);
+			generator.writeKey("field_names");
+			this.fieldNames.toJsonp(generator, mapper);
 
 		}
-		if (this.indexField != null) {
+		if (this.index!= null) {
 
-			generator.writeKey("index_field");
-			this.indexField.toJsonp(generator, mapper);
+			generator.writeKey("index");
+			this.indexSetting.toJsonp(generator, mapper);
 
 		}
 		if (this.meta != null) {
@@ -450,22 +448,22 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 			generator.writeEnd();
 
 		}
-		if (this.routingField != null) {
+		if (this.routing!= null) {
 
-			generator.writeKey("routing_field");
-			this.routingField.toJsonp(generator, mapper);
-
-		}
-		if (this.sizeField != null) {
-
-			generator.writeKey("size_field");
-			this.sizeField.toJsonp(generator, mapper);
+			generator.writeKey("routing");
+			this.routing.toJsonp(generator, mapper);
 
 		}
-		if (this.sourceField != null) {
+		if (this.size!= null) {
 
-			generator.writeKey("source_field");
-			this.sourceField.toJsonp(generator, mapper);
+			generator.writeKey("size");
+			this.size.toJsonp(generator, mapper);
+
+		}
+		if (this.source!= null) {
+
+			generator.writeKey("source");
+			this.source.toJsonp(generator, mapper);
 
 		}
 		if (this.runtime != null) {
@@ -517,7 +515,7 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		private Boolean writeIndexOnly;
 
 		@Nullable
-		private AllField allField;
+		private AllField all;
 
 		@Nullable
 		private Boolean dateDetection;
@@ -532,10 +530,10 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		private List<Map<String, DynamicTemplate>> dynamicTemplates;
 
 		@Nullable
-		private FieldNamesField fieldNamesField;
+		private FieldNamesField fieldNames;
 
 		@Nullable
-		private IndexField indexField;
+		private IndexField indexSetting;
 
 		@Nullable
 		private Map<String, JsonValue> meta;
@@ -547,13 +545,13 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		private Map<String, JsonValue> properties;
 
 		@Nullable
-		private RoutingField routingField;
+		private RoutingField routing;
 
 		@Nullable
-		private SizeField sizeField;
+		private SizeField size;
 
 		@Nullable
-		private SourceField sourceField;
+		private SourceField source;
 
 		@Nullable
 		private Map<String, RuntimeField> runtime;
@@ -650,18 +648,18 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code all_field}
+		 * API name: {@code all}
 		 */
-		public Builder allField(@Nullable AllField value) {
-			this.allField = value;
+		public Builder all(@Nullable AllField value) {
+			this.all = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code all_field}
+		 * API name: {@code all}
 		 */
-		public Builder allField(Function<AllField.Builder, ObjectBuilder<AllField>> fn) {
-			return this.allField(fn.apply(new AllField.Builder()).build());
+		public Builder all(Function<AllField.Builder, ObjectBuilder<AllField>> fn) {
+			return this.all(fn.apply(new AllField.Builder()).build());
 		}
 
 		/**
@@ -736,33 +734,33 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code field_names_field}
+		 * API name: {@code field_names}
 		 */
-		public Builder fieldNamesField(@Nullable FieldNamesField value) {
-			this.fieldNamesField = value;
+		public Builder fieldNames(@Nullable FieldNamesField value) {
+			this.fieldNames= value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code field_names_field}
+		 * API name: {@code field_names}
 		 */
-		public Builder fieldNamesField(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
-			return this.fieldNamesField(fn.apply(new FieldNamesField.Builder()).build());
+		public Builder fieldNames(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
+			return this.fieldNames(fn.apply(new FieldNamesField.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code index_field}
+		 * API name: {@code index}
 		 */
-		public Builder indexField(@Nullable IndexField value) {
-			this.indexField = value;
+		public Builder indexSetting(@Nullable IndexField value) {
+			this.indexSetting = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code index_field}
+		 * API name: {@code index}
 		 */
-		public Builder indexField(Function<IndexField.Builder, ObjectBuilder<IndexField>> fn) {
-			return this.indexField(fn.apply(new IndexField.Builder()).build());
+		public Builder indexSetting(Function<IndexField.Builder, ObjectBuilder<IndexField>> fn) {
+			return this.indexSetting(fn.apply(new IndexField.Builder()).build());
 		}
 
 		/**
@@ -812,48 +810,48 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code routing_field}
+		 * API name: {@code routing}
 		 */
-		public Builder routingField(@Nullable RoutingField value) {
-			this.routingField = value;
+		public Builder routing(@Nullable RoutingField value) {
+			this.routing = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code routing_field}
+		 * API name: {@code routing}
 		 */
-		public Builder routingField(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {
-			return this.routingField(fn.apply(new RoutingField.Builder()).build());
+		public Builder routing(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {
+			return this.routing(fn.apply(new RoutingField.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code size_field}
+		 * API name: {@code size}
 		 */
-		public Builder sizeField(@Nullable SizeField value) {
-			this.sizeField = value;
+		public Builder size(@Nullable SizeField value) {
+			this.size = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code size_field}
+		 * API name: {@code size}
 		 */
-		public Builder sizeField(Function<SizeField.Builder, ObjectBuilder<SizeField>> fn) {
-			return this.sizeField(fn.apply(new SizeField.Builder()).build());
+		public Builder size(Function<SizeField.Builder, ObjectBuilder<SizeField>> fn) {
+			return this.size(fn.apply(new SizeField.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code source_field}
+		 * API name: {@code source}
 		 */
-		public Builder sourceField(@Nullable SourceField value) {
-			this.sourceField = value;
+		public Builder source(@Nullable SourceField value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code source_field}
+		 * API name: {@code source}
 		 */
-		public Builder sourceField(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
-			return this.sourceField(fn.apply(new SourceField.Builder()).build());
+		public Builder source(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
+			return this.source(fn.apply(new SourceField.Builder()).build());
 		}
 
 		/**
@@ -911,23 +909,23 @@ public final class PutMappingRequest extends RequestBase implements ToJsonp {
 
 	protected static void setupPutMappingRequestDeserializer(DelegatingDeserializer<PutMappingRequest.Builder> op) {
 
-		op.add(Builder::allField, AllField.DESERIALIZER, "all_field");
+		op.add(Builder::all, AllField.DESERIALIZER, "all");
 		op.add(Builder::dateDetection, JsonpDeserializer.booleanDeserializer(), "date_detection");
 		op.add(Builder::dynamic, JsonpDeserializer.jsonValueDeserializer(), "dynamic");
 		op.add(Builder::dynamicDateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"dynamic_date_formats");
 		op.add(Builder::dynamicTemplates, JsonpDeserializer.arrayDeserializer(
 				JsonpDeserializer.stringMapDeserializer(DynamicTemplate.DESERIALIZER)), "dynamic_templates");
-		op.add(Builder::fieldNamesField, FieldNamesField.DESERIALIZER, "field_names_field");
-		op.add(Builder::indexField, IndexField.DESERIALIZER, "index_field");
+		op.add(Builder::fieldNames, FieldNamesField.DESERIALIZER, "field_names");
+		op.add(Builder::indexSetting, IndexField.DESERIALIZER, "index");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"meta");
 		op.add(Builder::numericDetection, JsonpDeserializer.booleanDeserializer(), "numeric_detection");
 		op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"properties");
-		op.add(Builder::routingField, RoutingField.DESERIALIZER, "routing_field");
-		op.add(Builder::sizeField, SizeField.DESERIALIZER, "size_field");
-		op.add(Builder::sourceField, SourceField.DESERIALIZER, "source_field");
+		op.add(Builder::routing, RoutingField.DESERIALIZER, "routing");
+		op.add(Builder::size, SizeField.DESERIALIZER, "size");
+		op.add(Builder::source, SourceField.DESERIALIZER, "source");
 		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER), "runtime");
 
 	}
