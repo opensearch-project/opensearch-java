@@ -58,7 +58,7 @@ public class MediaType {
      *
      * @return new {@link MediaType} for ES-specific JSON
      */
-    public static MediaType vendorElasticsearchJSON() {
+    public static MediaType vendorOpensearchJSON() {
         Map<String, Object> parameters = new HashMap<>();
         if (Objects.equals(System.getenv("ELASTIC_CLIENT_APIVERSIONING"), "1")) {
             Version clientVersion = ClientMetadata.getClientVersion();
@@ -66,7 +66,7 @@ public class MediaType {
                 parameters.put("compatible-with", clientVersion.major());
             }
         }
-        return new MediaType("application", "vnd.elasticsearch+json", parameters);
+        return new MediaType("application", "json", parameters);
     }
 
     private final String type;

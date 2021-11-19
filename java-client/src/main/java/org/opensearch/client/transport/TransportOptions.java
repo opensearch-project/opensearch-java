@@ -62,8 +62,8 @@ public class TransportOptions {
 
                 // Default headers
                 Arrays.asList(
-                    AcceptType.forMediaType(MediaType.vendorElasticsearchJSON()).toHeader(),
-                    ContentType.forMediaType(MediaType.vendorElasticsearchJSON()).toHeader(),
+                    AcceptType.forMediaType(MediaType.vendorOpensearchJSON()).toHeader(),
+                    ContentType.forMediaType(MediaType.vendorOpensearchJSON()).toHeader(),
                     ClientMetadata.forLocalSystem().toHeader(),
                     UserAgent.DEFAULT.toHeader()
                 ),
