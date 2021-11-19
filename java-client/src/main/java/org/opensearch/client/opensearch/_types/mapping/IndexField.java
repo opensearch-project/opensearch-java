@@ -46,7 +46,7 @@ import org.opensearch.client.util.ObjectBuilder;
 
 import java.util.Objects;
 
-// typedef: _types.mapping.IndexSetting
+// typedef: _types.mapping.IndexField
 public final class IndexField implements ToJsonp {
 	private final Boolean enabled;
 
