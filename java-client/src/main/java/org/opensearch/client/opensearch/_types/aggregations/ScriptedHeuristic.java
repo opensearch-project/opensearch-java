@@ -29,7 +29,6 @@
  * Modifications Copyright OpenSearch Contributors. See
  * GitHub history for details.
  */
-
 //----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------

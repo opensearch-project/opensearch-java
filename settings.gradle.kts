@@ -29,6 +29,5 @@
  * Modifications Copyright OpenSearch Contributors. See
  * GitHub history for details.
  */
-
 rootProject.name = "opensearch-java"
 include("java-client")

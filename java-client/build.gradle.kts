@@ -29,7 +29,6 @@
  * Modifications Copyright OpenSearch Contributors. See
  * GitHub history for details.
  */
-
 import com.github.jk1.license.ProjectData
 import com.github.jk1.license.render.ReportRenderer
 import java.io.FileWriter
