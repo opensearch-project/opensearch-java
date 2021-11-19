@@ -98,7 +98,7 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code build_date}
 	 */
-	public final String buildDate() {
+	public String buildDate() {
 		return this.buildDate;
 	}
 
@@ -112,21 +112,21 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 	/**
 	 * API name: {@code build_hash}
 	 */
-	public final String buildHash() {
+	public String buildHash() {
 		return this.buildHash;
 	}
 
 	/**
 	 * Required - API name: {@code build_snapshot}
 	 */
-	public final boolean buildSnapshot() {
+	public boolean buildSnapshot() {
 		return this.buildSnapshot;
 	}
 
 	/**
 	 * Required - API name: {@code build_type}
 	 */
-	public final String buildType() {
+	public String buildType() {
 		return this.buildType;
 	}
 
@@ -140,28 +140,28 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 	/**
 	 * API name: {@code lucene_version}
 	 */
-	public final String luceneVersion() {
+	public String luceneVersion() {
 		return this.luceneVersion;
 	}
 
 	/**
 	 * Required - API name: {@code minimum_index_compatibility_version}
 	 */
-	public final String minimumIndexCompatibilityVersion() {
+	public String minimumIndexCompatibilityVersion() {
 		return this.minimumIndexCompatibilityVersion;
 	}
 
 	/**
 	 * Required - API name: {@code minimum_wire_compatibility_version}
 	 */
-	public final String minimumWireCompatibilityVersion() {
+	public String minimumWireCompatibilityVersion() {
 		return this.minimumWireCompatibilityVersion;
 	}
 
 	/**
 	 * Required - API name: {@code number}
 	 */
-	public final String number() {
+	public String number() {
 		return this.number;
 	}
 
