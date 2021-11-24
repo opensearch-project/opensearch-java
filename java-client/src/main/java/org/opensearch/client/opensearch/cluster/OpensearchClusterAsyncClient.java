@@ -70,9 +70,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	/**
 	 * Provides explanations for shard allocations in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-allocation-explain.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<AllocationExplainResponse> allocationExplain(AllocationExplainRequest request)
@@ -86,9 +83,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AllocationExplainRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-allocation-explain.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<AllocationExplainResponse> allocationExplain(
@@ -99,10 +93,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Provides explanations for shard allocations in the cluster.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-allocation-explain.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<AllocationExplainResponse> allocationExplain() throws IOException, OpensearchException {
@@ -114,10 +104,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Deletes a component template
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteComponentTemplateResponse> deleteComponentTemplate(
@@ -132,9 +118,7 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteComponentTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<DeleteComponentTemplateResponse> deleteComponentTemplate(
@@ -147,10 +131,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Clears cluster voting config exclusions.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<BooleanResponse> deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request)
@@ -165,9 +145,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteVotingConfigExclusionsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<BooleanResponse> deleteVotingConfigExclusions(
@@ -179,9 +156,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	/**
 	 * Clears cluster voting config exclusions.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<BooleanResponse> deleteVotingConfigExclusions()
@@ -194,10 +168,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Returns information about whether a particular component template exist
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<BooleanResponse> existsComponentTemplate(ExistsComponentTemplateRequest request)
@@ -212,9 +182,7 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsComponentTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<BooleanResponse> existsComponentTemplate(
@@ -227,10 +195,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Returns one or more component templates
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetComponentTemplateResponse> getComponentTemplate(GetComponentTemplateRequest request)
@@ -244,9 +208,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetComponentTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetComponentTemplateResponse> getComponentTemplate(
@@ -257,10 +218,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Returns one or more component templates
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetComponentTemplateResponse> getComponentTemplate()
@@ -273,10 +230,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Returns cluster settings.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-get-settings.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetSettingsResponse> getSettings(GetSettingsRequest request)
@@ -290,9 +243,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSettingsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-get-settings.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetSettingsResponse> getSettings(
@@ -303,10 +253,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Returns cluster settings.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-get-settings.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetSettingsResponse> getSettings() throws IOException, OpensearchException {
@@ -318,10 +264,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Returns basic information about the health of the cluster.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-health.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<HealthResponse> health(HealthRequest request) throws IOException, OpensearchException {
@@ -334,9 +276,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link HealthRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-health.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<HealthResponse> health(
@@ -347,10 +286,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Returns basic information about the health of the cluster.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-health.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<HealthResponse> health() throws IOException, OpensearchException {
@@ -363,10 +298,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	/**
 	 * Returns a list of any cluster-level changes (e.g. create index, update
 	 * mapping, allocate or fail shard) which have not yet been executed.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-pending.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PendingTasksResponse> pendingTasks(PendingTasksRequest request)
@@ -381,9 +312,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PendingTasksRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-pending.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PendingTasksResponse> pendingTasks(
@@ -396,9 +324,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * Returns a list of any cluster-level changes (e.g. create index, update
 	 * mapping, allocate or fail shard) which have not yet been executed.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-pending.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PendingTasksResponse> pendingTasks() throws IOException, OpensearchException {
@@ -410,10 +335,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Updates the cluster voting config exclusions by node ids or node names.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<BooleanResponse> postVotingConfigExclusions(PostVotingConfigExclusionsRequest request)
@@ -428,9 +349,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PostVotingConfigExclusionsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<BooleanResponse> postVotingConfigExclusions(
@@ -442,9 +360,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	/**
 	 * Updates the cluster voting config exclusions by node ids or node names.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<BooleanResponse> postVotingConfigExclusions() throws IOException, OpensearchException {
@@ -456,10 +371,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Creates or updates a component template
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(PutComponentTemplateRequest request)
@@ -473,9 +384,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutComponentTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(
@@ -489,9 +397,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	/**
 	 * Updates the cluster settings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutSettingsResponse> putSettings(PutSettingsRequest request)
@@ -505,9 +410,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutSettingsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutSettingsResponse> putSettings(
@@ -518,10 +420,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Updates the cluster settings.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutSettingsResponse> putSettings() throws IOException, OpensearchException {
@@ -533,10 +431,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Returns the information about configured remote clusters.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-remote-info.html">Documentation
-	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<RemoteInfoResponse> remoteInfo() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(RemoteInfoRequest._INSTANCE, RemoteInfoRequest.ENDPOINT,
@@ -547,10 +441,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Allows to manually change the allocation of individual shards in the cluster.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-reroute.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<RerouteResponse> reroute(RerouteRequest request)
@@ -564,9 +454,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RerouteRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-reroute.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<RerouteResponse> reroute(
@@ -578,9 +465,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	/**
 	 * Allows to manually change the allocation of individual shards in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-reroute.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<RerouteResponse> reroute() throws IOException, OpensearchException {
@@ -593,9 +477,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	/**
 	 * Returns a comprehensive information about the state of the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-state.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<StateResponse> state(StateRequest request) throws IOException, OpensearchException {
@@ -608,9 +489,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link StateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-state.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StateResponse> state(Function<StateRequest.Builder, ObjectBuilder<StateRequest>> fn)
@@ -620,10 +498,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Returns a comprehensive information about the state of the cluster.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-state.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<StateResponse> state() throws IOException, OpensearchException {
@@ -635,10 +509,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Returns high-level overview of cluster statistics.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-stats.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ClusterStatsResponse> stats(ClusterStatsRequest request)
@@ -652,9 +522,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ClusterStatsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-stats.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ClusterStatsResponse> stats(
@@ -665,10 +532,6 @@ public class OpensearchClusterAsyncClient extends ApiClient<OpensearchClusterAsy
 
 	/**
 	 * Returns high-level overview of cluster statistics.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-stats.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ClusterStatsResponse> stats() throws IOException, OpensearchException {

@@ -68,9 +68,7 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchIngestAsync
 	/**
 	 * Deletes a pipeline.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<DeletePipelineResponse> deletePipeline(DeletePipelineRequest request)
@@ -84,9 +82,7 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchIngestAsync
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeletePipelineRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<DeletePipelineResponse> deletePipeline(
@@ -100,9 +96,7 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchIngestAsync
 	/**
 	 * Returns statistical information about geoip databases
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/geoip-stats-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 	public CompletableFuture<GeoIpStatsResponse> geoIpStats() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest.ENDPOINT,
@@ -114,9 +108,7 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchIngestAsync
 	/**
 	 * Returns a pipeline.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetPipelineResponse> getPipeline(GetPipelineRequest request)
@@ -130,9 +122,7 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchIngestAsync
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetPipelineRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<GetPipelineResponse> getPipeline(
@@ -144,9 +134,7 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchIngestAsync
 	/**
 	 * Returns a pipeline.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetPipelineResponse> getPipeline() throws IOException, OpensearchException {
@@ -159,9 +147,7 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchIngestAsync
 	/**
 	 * Returns a list of the built-in patterns.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/grok-processor.html#grok-processor-rest-get">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 	public CompletableFuture<ProcessorGrokResponse> processorGrok() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest.ENDPOINT,
@@ -173,9 +159,7 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchIngestAsync
 	/**
 	 * Creates or updates a pipeline.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<PutPipelineResponse> putPipeline(PutPipelineRequest request)
@@ -189,9 +173,7 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchIngestAsync
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutPipelineRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<PutPipelineResponse> putPipeline(
@@ -205,9 +187,7 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchIngestAsync
 	/**
 	 * Allows to simulate a pipeline with example documents.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<SimulateResponse> simulate(SimulateRequest request)
@@ -221,9 +201,7 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchIngestAsync
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<SimulateResponse> simulate(
@@ -235,9 +213,7 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchIngestAsync
 	/**
 	 * Allows to simulate a pipeline with example documents.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<SimulateResponse> simulate() throws IOException, OpensearchException {

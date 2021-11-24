@@ -69,9 +69,7 @@ public class OpensearchShutdownClient extends ApiClient<OpensearchShutdownClient
 	 * Removes a node from the shutdown list. Designed for indirect use by ECE/ESS
 	 * and ECK. Direct use is not supported.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public DeleteNodeResponse deleteNode(DeleteNodeRequest request) throws IOException, OpensearchException {
@@ -85,9 +83,7 @@ public class OpensearchShutdownClient extends ApiClient<OpensearchShutdownClient
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteNodeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final DeleteNodeResponse deleteNode(Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn)
@@ -102,9 +98,7 @@ public class OpensearchShutdownClient extends ApiClient<OpensearchShutdownClient
 	 * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
 	 * supported.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetNodeResponse getNode(GetNodeRequest request) throws IOException, OpensearchException {
@@ -119,9 +113,7 @@ public class OpensearchShutdownClient extends ApiClient<OpensearchShutdownClient
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetNodeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final GetNodeResponse getNode(Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn)
@@ -134,9 +126,7 @@ public class OpensearchShutdownClient extends ApiClient<OpensearchShutdownClient
 	 * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
 	 * supported.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetNodeResponse getNode() throws IOException, OpensearchException {
@@ -150,9 +140,7 @@ public class OpensearchShutdownClient extends ApiClient<OpensearchShutdownClient
 	 * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
 	 * Direct use is not supported.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public PutNodeResponse putNode(PutNodeRequest request) throws IOException, OpensearchException {
@@ -166,9 +154,7 @@ public class OpensearchShutdownClient extends ApiClient<OpensearchShutdownClient
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutNodeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final PutNodeResponse putNode(Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn)

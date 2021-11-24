@@ -68,9 +68,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	/**
 	 * Returns information about hot threads on each node in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException, OpensearchException {
@@ -83,9 +81,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link HotThreadsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final HotThreadsResponse hotThreads(Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
@@ -96,9 +92,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	/**
 	 * Returns information about hot threads on each node in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public HotThreadsResponse hotThreads() throws IOException, OpensearchException {
@@ -111,9 +105,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	/**
 	 * Returns information about nodes in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public NodesInfoResponse info(NodesInfoRequest request) throws IOException, OpensearchException {
@@ -126,9 +118,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link NodesInfoRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final NodesInfoResponse info(Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
@@ -139,9 +129,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	/**
 	 * Returns information about nodes in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public NodesInfoResponse info() throws IOException, OpensearchException {
@@ -154,9 +142,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	/**
 	 * Reloads secure settings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request)
@@ -170,9 +156,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ReloadSecureSettingsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final ReloadSecureSettingsResponse reloadSecureSettings(
@@ -184,9 +168,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	/**
 	 * Reloads secure settings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException, OpensearchException {
@@ -199,9 +181,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	/**
 	 * Returns statistical information about nodes in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public NodesStatsResponse stats(NodesStatsRequest request) throws IOException, OpensearchException {
@@ -214,9 +194,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link NodesStatsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final NodesStatsResponse stats(Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
@@ -227,9 +205,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	/**
 	 * Returns statistical information about nodes in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public NodesStatsResponse stats() throws IOException, OpensearchException {
@@ -242,9 +218,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	/**
 	 * Returns low-level information about REST actions usage on nodes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public UsageResponse usage(UsageRequest request) throws IOException, OpensearchException {
@@ -257,9 +231,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link UsageRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final UsageResponse usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
@@ -270,9 +242,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchNodesClient> {
 	/**
 	 * Returns low-level information about REST actions usage on nodes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public UsageResponse usage() throws IOException, OpensearchException {

@@ -69,9 +69,7 @@ public class OpensearchTasksAsyncClient extends ApiClient<OpensearchTasksAsyncCl
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<CancelResponse> cancel(CancelRequest request) throws IOException, OpensearchException {
@@ -84,9 +82,7 @@ public class OpensearchTasksAsyncClient extends ApiClient<OpensearchTasksAsyncCl
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CancelRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<CancelResponse> cancel(
@@ -98,9 +94,7 @@ public class OpensearchTasksAsyncClient extends ApiClient<OpensearchTasksAsyncCl
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<CancelResponse> cancel() throws IOException, OpensearchException {
@@ -113,9 +107,7 @@ public class OpensearchTasksAsyncClient extends ApiClient<OpensearchTasksAsyncCl
 	/**
 	 * Returns information about a task.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetTasksResponse> get(GetTasksRequest request) throws IOException, OpensearchException {
@@ -128,9 +120,7 @@ public class OpensearchTasksAsyncClient extends ApiClient<OpensearchTasksAsyncCl
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTasksRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<GetTasksResponse> get(
@@ -144,9 +134,7 @@ public class OpensearchTasksAsyncClient extends ApiClient<OpensearchTasksAsyncCl
 	/**
 	 * Returns a list of tasks.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<ListResponse> list(ListRequest request) throws IOException, OpensearchException {
@@ -159,9 +147,7 @@ public class OpensearchTasksAsyncClient extends ApiClient<OpensearchTasksAsyncCl
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ListRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<ListResponse> list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn)
@@ -172,9 +158,7 @@ public class OpensearchTasksAsyncClient extends ApiClient<OpensearchTasksAsyncCl
 	/**
 	 * Returns a list of tasks.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<ListResponse> list() throws IOException, OpensearchException {

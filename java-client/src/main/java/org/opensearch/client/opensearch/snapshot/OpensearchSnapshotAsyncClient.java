@@ -69,9 +69,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	/**
 	 * Removes stale data from repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<CleanupRepositoryResponse> cleanupRepository(CleanupRepositoryRequest request)
@@ -85,9 +83,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CleanupRepositoryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<CleanupRepositoryResponse> cleanupRepository(
@@ -102,9 +98,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	 * Clones indices from one snapshot into another snapshot in the same
 	 * repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<CloneSnapshotResponse> clone(CloneSnapshotRequest request)
@@ -119,9 +113,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CloneSnapshotRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<CloneSnapshotResponse> clone(
@@ -135,9 +127,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	/**
 	 * Creates a snapshot in a repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<CreateSnapshotResponse> create(CreateSnapshotRequest request)
@@ -151,9 +141,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateSnapshotRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<CreateSnapshotResponse> create(
@@ -167,9 +155,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	/**
 	 * Creates a repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<CreateRepositoryResponse> createRepository(CreateRepositoryRequest request)
@@ -183,9 +169,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateRepositoryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<CreateRepositoryResponse> createRepository(
@@ -199,9 +183,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	/**
 	 * Deletes one or more snapshots.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<DeleteSnapshotResponse> delete(DeleteSnapshotRequest request)
@@ -215,9 +197,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSnapshotRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<DeleteSnapshotResponse> delete(
@@ -231,9 +211,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	/**
 	 * Deletes a repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<DeleteRepositoryResponse> deleteRepository(DeleteRepositoryRequest request)
@@ -247,9 +225,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRepositoryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<DeleteRepositoryResponse> deleteRepository(
@@ -263,9 +239,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	/**
 	 * Returns information about a snapshot.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetSnapshotResponse> get(GetSnapshotRequest request)
@@ -279,9 +253,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSnapshotRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<GetSnapshotResponse> get(
@@ -295,9 +267,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	/**
 	 * Returns information about a repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetRepositoryResponse> getRepository(GetRepositoryRequest request)
@@ -311,9 +281,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRepositoryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<GetRepositoryResponse> getRepository(
@@ -325,9 +293,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	/**
 	 * Returns information about a repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetRepositoryResponse> getRepository() throws IOException, OpensearchException {
@@ -340,9 +306,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	/**
 	 * Restores a snapshot.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<RestoreResponse> restore(RestoreRequest request)
@@ -356,9 +320,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RestoreRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<RestoreResponse> restore(
@@ -372,9 +334,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	/**
 	 * Returns information about the status of a snapshot.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<StatusResponse> status(StatusRequest request) throws IOException, OpensearchException {
@@ -387,9 +347,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link StatusRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<StatusResponse> status(
@@ -401,9 +359,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	/**
 	 * Returns information about the status of a snapshot.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<StatusResponse> status() throws IOException, OpensearchException {
@@ -416,9 +372,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	/**
 	 * Verifies a repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<VerifyRepositoryResponse> verifyRepository(VerifyRepositoryRequest request)
@@ -432,9 +386,7 @@ public class OpensearchSnapshotAsyncClient extends ApiClient<OpensearchSnapshotA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link VerifyRepositoryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<VerifyRepositoryResponse> verifyRepository(
