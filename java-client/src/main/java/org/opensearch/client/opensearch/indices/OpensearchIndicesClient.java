@@ -69,9 +69,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Adds a block to an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public AddBlockResponse addBlock(AddBlockRequest request) throws IOException, OpensearchException {
@@ -84,9 +82,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AddBlockRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final AddBlockResponse addBlock(Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn)
@@ -100,9 +96,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * Performs the analysis process on a text and return the tokens breakdown of
 	 * the text.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-analyze.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public AnalyzeResponse analyze(AnalyzeRequest request) throws IOException, OpensearchException {
@@ -116,9 +110,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AnalyzeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-analyze.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final AnalyzeResponse analyze(Function<AnalyzeRequest.Builder, ObjectBuilder<AnalyzeRequest>> fn)
@@ -130,9 +122,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * Performs the analysis process on a text and return the tokens breakdown of
 	 * the text.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-analyze.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public AnalyzeResponse analyze() throws IOException, OpensearchException {
@@ -145,9 +135,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Clears all or specific caches for one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public ClearCacheResponse clearCache(ClearCacheRequest request) throws IOException, OpensearchException {
@@ -160,9 +148,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCacheRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final ClearCacheResponse clearCache(Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
@@ -173,9 +159,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Clears all or specific caches for one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public ClearCacheResponse clearCache() throws IOException, OpensearchException {
@@ -188,9 +172,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Clones an index
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clone-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CloneIndexResponse clone(CloneIndexRequest request) throws IOException, OpensearchException {
@@ -203,9 +185,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CloneIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clone-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CloneIndexResponse clone(Function<CloneIndexRequest.Builder, ObjectBuilder<CloneIndexRequest>> fn)
@@ -218,9 +198,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Closes an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CloseIndexResponse close(CloseIndexRequest request) throws IOException, OpensearchException {
@@ -233,9 +211,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CloseIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CloseIndexResponse close(Function<CloseIndexRequest.Builder, ObjectBuilder<CloseIndexRequest>> fn)
@@ -248,9 +224,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Creates an index with optional settings and mappings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-create-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CreateIndexResponse create(CreateIndexRequest request) throws IOException, OpensearchException {
@@ -263,9 +237,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-create-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CreateIndexResponse create(Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn)
@@ -278,9 +250,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Deletes an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public DeleteIndexResponse delete(DeleteIndexRequest request) throws IOException, OpensearchException {
@@ -293,9 +263,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final DeleteIndexResponse delete(Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn)
@@ -308,9 +276,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Deletes an alias.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public DeleteAliasResponse deleteAlias(DeleteAliasRequest request) throws IOException, OpensearchException {
@@ -323,9 +289,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAliasRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final DeleteAliasResponse deleteAlias(
@@ -339,9 +303,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Deletes an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public DeleteIndexTemplateResponse deleteIndexTemplate(DeleteIndexTemplateRequest request)
@@ -355,9 +317,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteIndexTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final DeleteIndexTemplateResponse deleteIndexTemplate(
@@ -371,9 +331,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Deletes an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public DeleteTemplateResponse deleteTemplate(DeleteTemplateRequest request)
@@ -387,9 +345,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final DeleteTemplateResponse deleteTemplate(
@@ -403,9 +359,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Analyzes the disk usage of each field of an index or data stream
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-disk-usage.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public DiskUsageResponse diskUsage(DiskUsageRequest request) throws IOException, OpensearchException {
@@ -418,9 +372,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DiskUsageRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-disk-usage.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final DiskUsageResponse diskUsage(Function<DiskUsageRequest.Builder, ObjectBuilder<DiskUsageRequest>> fn)
@@ -433,9 +385,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns information about whether a particular index exists.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public BooleanResponse exists(ExistsRequest request) throws IOException, OpensearchException {
@@ -448,9 +398,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn)
@@ -463,9 +411,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns information about whether a particular alias exists.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public BooleanResponse existsAlias(ExistsAliasRequest request) throws IOException, OpensearchException {
@@ -478,9 +424,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsAliasRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final BooleanResponse existsAlias(Function<ExistsAliasRequest.Builder, ObjectBuilder<ExistsAliasRequest>> fn)
@@ -493,9 +437,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns information about whether a particular index template exists.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public BooleanResponse existsIndexTemplate(ExistsIndexTemplateRequest request)
@@ -509,9 +451,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsIndexTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final BooleanResponse existsIndexTemplate(
@@ -525,9 +465,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns information about whether a particular index template exists.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public BooleanResponse existsTemplate(ExistsTemplateRequest request) throws IOException, OpensearchException {
@@ -540,9 +478,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final BooleanResponse existsTemplate(
@@ -557,9 +493,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * Returns information about whether a particular document type exists.
 	 * (DEPRECATED)
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-types-exists.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public BooleanResponse existsType(ExistsTypeRequest request) throws IOException, OpensearchException {
@@ -573,9 +507,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsTypeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-types-exists.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final BooleanResponse existsType(Function<ExistsTypeRequest.Builder, ObjectBuilder<ExistsTypeRequest>> fn)
@@ -588,9 +520,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Performs the flush operation on one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-flush.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public FlushResponse flush(FlushRequest request) throws IOException, OpensearchException {
@@ -603,9 +533,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link FlushRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-flush.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final FlushResponse flush(Function<FlushRequest.Builder, ObjectBuilder<FlushRequest>> fn)
@@ -616,9 +544,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Performs the flush operation on one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-flush.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public FlushResponse flush() throws IOException, OpensearchException {
@@ -631,9 +557,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Performs the force merge operation on one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public ForcemergeResponse forcemerge(ForcemergeRequest request) throws IOException, OpensearchException {
@@ -646,9 +570,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ForcemergeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final ForcemergeResponse forcemerge(Function<ForcemergeRequest.Builder, ObjectBuilder<ForcemergeRequest>> fn)
@@ -659,9 +581,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Performs the force merge operation on one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public ForcemergeResponse forcemerge() throws IOException, OpensearchException {
@@ -674,9 +594,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns information about one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetIndexResponse get(GetIndexRequest request) throws IOException, OpensearchException {
@@ -689,9 +607,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final GetIndexResponse get(Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn)
@@ -704,9 +620,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns an alias.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetAliasResponse getAlias(GetAliasRequest request) throws IOException, OpensearchException {
@@ -719,9 +633,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAliasRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final GetAliasResponse getAlias(Function<GetAliasRequest.Builder, ObjectBuilder<GetAliasRequest>> fn)
@@ -732,9 +644,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns an alias.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetAliasResponse getAlias() throws IOException, OpensearchException {
@@ -747,9 +657,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns mapping for one or more fields.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-field-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetFieldMappingResponse getFieldMapping(GetFieldMappingRequest request)
@@ -763,9 +671,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetFieldMappingRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-field-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final GetFieldMappingResponse getFieldMapping(
@@ -779,9 +685,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetIndexTemplateResponse getIndexTemplate(GetIndexTemplateRequest request)
@@ -795,9 +699,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIndexTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final GetIndexTemplateResponse getIndexTemplate(
@@ -809,9 +711,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetIndexTemplateResponse getIndexTemplate() throws IOException, OpensearchException {
@@ -824,9 +724,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns mappings for one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetMappingResponse getMapping(GetMappingRequest request) throws IOException, OpensearchException {
@@ -839,9 +737,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetMappingRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final GetMappingResponse getMapping(Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn)
@@ -852,9 +748,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns mappings for one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetMappingResponse getMapping() throws IOException, OpensearchException {
@@ -867,9 +761,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns settings for one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetSettingsResponse getSettings(GetSettingsRequest request) throws IOException, OpensearchException {
@@ -882,9 +774,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSettingsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final GetSettingsResponse getSettings(
@@ -896,9 +786,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns settings for one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetSettingsResponse getSettings() throws IOException, OpensearchException {
@@ -911,9 +799,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetTemplateResponse getTemplate(GetTemplateRequest request) throws IOException, OpensearchException {
@@ -926,9 +812,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final GetTemplateResponse getTemplate(
@@ -940,9 +824,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public GetTemplateResponse getTemplate() throws IOException, OpensearchException {
@@ -955,9 +837,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Opens an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public OpenResponse open(OpenRequest request) throws IOException, OpensearchException {
@@ -970,9 +850,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link OpenRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final OpenResponse open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn)
@@ -985,9 +863,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Creates or updates an alias.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public PutAliasResponse putAlias(PutAliasRequest request) throws IOException, OpensearchException {
@@ -1000,9 +876,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAliasRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final PutAliasResponse putAlias(Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn)
@@ -1015,9 +889,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Creates or updates an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public PutIndexTemplateResponse putIndexTemplate(PutIndexTemplateRequest request)
@@ -1031,9 +903,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutIndexTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final PutIndexTemplateResponse putIndexTemplate(
@@ -1047,9 +917,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Updates the index mappings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public PutMappingResponse putMapping(PutMappingRequest request) throws IOException, OpensearchException {
@@ -1062,9 +930,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutMappingRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final PutMappingResponse putMapping(Function<PutMappingRequest.Builder, ObjectBuilder<PutMappingRequest>> fn)
@@ -1077,9 +943,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Updates the index settings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public PutSettingsResponse putSettings(PutSettingsRequest request) throws IOException, OpensearchException {
@@ -1092,9 +956,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutSettingsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final PutSettingsResponse putSettings(
@@ -1106,9 +968,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Updates the index settings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public PutSettingsResponse putSettings() throws IOException, OpensearchException {
@@ -1121,9 +981,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Creates or updates an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public PutTemplateResponse putTemplate(PutTemplateRequest request) throws IOException, OpensearchException {
@@ -1136,9 +994,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final PutTemplateResponse putTemplate(
@@ -1152,9 +1008,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns information about ongoing index shard recoveries.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public RecoveryResponse recovery(RecoveryRequest request) throws IOException, OpensearchException {
@@ -1167,9 +1021,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RecoveryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final RecoveryResponse recovery(Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
@@ -1180,9 +1032,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns information about ongoing index shard recoveries.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public RecoveryResponse recovery() throws IOException, OpensearchException {
@@ -1195,9 +1045,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Performs the refresh operation in one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public RefreshResponse refresh(RefreshRequest request) throws IOException, OpensearchException {
@@ -1210,9 +1058,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RefreshRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final RefreshResponse refresh(Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn)
@@ -1223,9 +1069,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Performs the refresh operation in one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public RefreshResponse refresh() throws IOException, OpensearchException {
@@ -1238,9 +1082,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Returns information about any matching indices, aliases, and data streams
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-index-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public ResolveIndexResponse resolveIndex(ResolveIndexRequest request) throws IOException, OpensearchException {
@@ -1253,9 +1095,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ResolveIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-index-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final ResolveIndexResponse resolveIndex(
@@ -1270,9 +1110,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * Updates an alias to point to a new index when the existing index is
 	 * considered to be too large or too old.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-rollover-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public RolloverResponse rollover(RolloverRequest request) throws IOException, OpensearchException {
@@ -1286,9 +1124,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RolloverRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-rollover-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final RolloverResponse rollover(Function<RolloverRequest.Builder, ObjectBuilder<RolloverRequest>> fn)
@@ -1301,9 +1137,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Provides low-level information about segments in a Lucene index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public SegmentsResponse segments(SegmentsRequest request) throws IOException, OpensearchException {
@@ -1316,9 +1150,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SegmentsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final SegmentsResponse segments(Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
@@ -1329,9 +1161,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Provides low-level information about segments in a Lucene index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public SegmentsResponse segments() throws IOException, OpensearchException {
@@ -1344,9 +1174,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Provides store information for shard copies of indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public ShardStoresResponse shardStores(ShardStoresRequest request) throws IOException, OpensearchException {
@@ -1359,9 +1187,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ShardStoresRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final ShardStoresResponse shardStores(
@@ -1373,9 +1199,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Provides store information for shard copies of indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public ShardStoresResponse shardStores() throws IOException, OpensearchException {
@@ -1388,9 +1212,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Allow to shrink an existing index into a new index with fewer primary shards.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shrink-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public ShrinkResponse shrink(ShrinkRequest request) throws IOException, OpensearchException {
@@ -1403,9 +1225,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ShrinkRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shrink-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final ShrinkResponse shrink(Function<ShrinkRequest.Builder, ObjectBuilder<ShrinkRequest>> fn)
@@ -1419,9 +1239,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * Simulate matching the given index name against the index templates in the
 	 * system
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public SimulateIndexTemplateResponse simulateIndexTemplate(SimulateIndexTemplateRequest request)
@@ -1436,9 +1254,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateIndexTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final SimulateIndexTemplateResponse simulateIndexTemplate(
@@ -1452,9 +1268,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Simulate resolving the given template name or body
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public SimulateTemplateResponse simulateTemplate(SimulateTemplateRequest request)
@@ -1468,9 +1282,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final SimulateTemplateResponse simulateTemplate(
@@ -1482,9 +1294,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Simulate resolving the given template name or body
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public SimulateTemplateResponse simulateTemplate() throws IOException, OpensearchException {
@@ -1498,9 +1308,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * Allows you to split an existing index into a new index with more primary
 	 * shards.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-split-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public SplitResponse split(SplitRequest request) throws IOException, OpensearchException {
@@ -1514,9 +1322,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SplitRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-split-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final SplitResponse split(Function<SplitRequest.Builder, ObjectBuilder<SplitRequest>> fn)
@@ -1529,9 +1335,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Provides statistics on operations happening in an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public IndicesStatsResponse stats(IndicesStatsRequest request) throws IOException, OpensearchException {
@@ -1544,9 +1348,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link IndicesStatsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final IndicesStatsResponse stats(
@@ -1558,9 +1360,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Provides statistics on operations happening in an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public IndicesStatsResponse stats() throws IOException, OpensearchException {
@@ -1573,9 +1373,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Updates index aliases.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public UpdateAliasesResponse updateAliases(UpdateAliasesRequest request)
@@ -1589,9 +1387,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateAliasesRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final UpdateAliasesResponse updateAliases(
@@ -1603,9 +1399,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Updates index aliases.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public UpdateAliasesResponse updateAliases() throws IOException, OpensearchException {
@@ -1618,9 +1412,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Allows a user to validate a potentially expensive query without executing it.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public ValidateQueryResponse validateQuery(ValidateQueryRequest request)
@@ -1634,9 +1426,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ValidateQueryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final ValidateQueryResponse validateQuery(
@@ -1648,9 +1438,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchIndicesClient> 
 	/**
 	 * Allows a user to validate a potentially expensive query without executing it.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public ValidateQueryResponse validateQuery() throws IOException, OpensearchException {

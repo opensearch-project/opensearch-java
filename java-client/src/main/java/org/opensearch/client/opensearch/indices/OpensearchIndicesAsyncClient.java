@@ -70,9 +70,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Adds a block to an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<AddBlockResponse> addBlock(AddBlockRequest request)
@@ -86,9 +84,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AddBlockRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/index-modules-blocks.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<AddBlockResponse> addBlock(
@@ -103,9 +99,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * Performs the analysis process on a text and return the tokens breakdown of
 	 * the text.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-analyze.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<AnalyzeResponse> analyze(AnalyzeRequest request)
@@ -120,9 +114,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AnalyzeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-analyze.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<AnalyzeResponse> analyze(
@@ -135,9 +127,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * Performs the analysis process on a text and return the tokens breakdown of
 	 * the text.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-analyze.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<AnalyzeResponse> analyze() throws IOException, OpensearchException {
@@ -150,9 +140,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Clears all or specific caches for one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<ClearCacheResponse> clearCache(ClearCacheRequest request)
@@ -166,9 +154,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCacheRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<ClearCacheResponse> clearCache(
@@ -180,9 +166,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Clears all or specific caches for one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clearcache.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<ClearCacheResponse> clearCache() throws IOException, OpensearchException {
@@ -195,9 +179,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Clones an index
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clone-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<CloneIndexResponse> clone(CloneIndexRequest request)
@@ -211,9 +193,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CloneIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-clone-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<CloneIndexResponse> clone(
@@ -227,9 +207,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Closes an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<CloseIndexResponse> close(CloseIndexRequest request)
@@ -243,9 +221,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CloseIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<CloseIndexResponse> close(
@@ -259,9 +235,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Creates an index with optional settings and mappings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-create-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<CreateIndexResponse> create(CreateIndexRequest request)
@@ -275,9 +249,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-create-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<CreateIndexResponse> create(
@@ -291,9 +263,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Deletes an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<DeleteIndexResponse> delete(DeleteIndexRequest request)
@@ -307,9 +277,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-delete-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<DeleteIndexResponse> delete(
@@ -323,9 +291,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Deletes an alias.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<DeleteAliasResponse> deleteAlias(DeleteAliasRequest request)
@@ -339,9 +305,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAliasRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<DeleteAliasResponse> deleteAlias(
@@ -354,10 +318,6 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 
 	/**
 	 * Deletes an index template.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteIndexTemplateResponse> deleteIndexTemplate(DeleteIndexTemplateRequest request)
@@ -371,9 +331,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteIndexTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<DeleteIndexTemplateResponse> deleteIndexTemplate(
@@ -387,9 +345,6 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Deletes an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteTemplateResponse> deleteTemplate(DeleteTemplateRequest request)
@@ -403,9 +358,6 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteTemplateResponse> deleteTemplate(
@@ -419,9 +371,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Analyzes the disk usage of each field of an index or data stream
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-disk-usage.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<DiskUsageResponse> diskUsage(DiskUsageRequest request)
@@ -435,9 +385,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DiskUsageRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-disk-usage.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<DiskUsageResponse> diskUsage(
@@ -451,9 +399,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns information about whether a particular index exists.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<BooleanResponse> exists(ExistsRequest request) throws IOException, OpensearchException {
@@ -466,9 +412,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-exists.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<BooleanResponse> exists(
@@ -482,9 +426,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns information about whether a particular alias exists.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<BooleanResponse> existsAlias(ExistsAliasRequest request)
@@ -498,9 +440,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsAliasRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<BooleanResponse> existsAlias(
@@ -514,9 +454,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns information about whether a particular index template exists.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<BooleanResponse> existsIndexTemplate(ExistsIndexTemplateRequest request)
@@ -530,9 +468,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsIndexTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<BooleanResponse> existsIndexTemplate(
@@ -546,9 +482,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns information about whether a particular index template exists.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<BooleanResponse> existsTemplate(ExistsTemplateRequest request)
@@ -562,9 +496,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<BooleanResponse> existsTemplate(
@@ -579,9 +511,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * Returns information about whether a particular document type exists.
 	 * (DEPRECATED)
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-types-exists.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<BooleanResponse> existsType(ExistsTypeRequest request)
@@ -596,9 +526,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsTypeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-types-exists.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<BooleanResponse> existsType(
@@ -612,9 +540,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Performs the flush operation on one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-flush.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<FlushResponse> flush(FlushRequest request) throws IOException, OpensearchException {
@@ -627,9 +553,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link FlushRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-flush.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<FlushResponse> flush(Function<FlushRequest.Builder, ObjectBuilder<FlushRequest>> fn)
@@ -640,9 +564,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Performs the flush operation on one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-flush.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<FlushResponse> flush() throws IOException, OpensearchException {
@@ -655,9 +577,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Performs the force merge operation on one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<ForcemergeResponse> forcemerge(ForcemergeRequest request)
@@ -671,9 +591,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ForcemergeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<ForcemergeResponse> forcemerge(
@@ -685,9 +603,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Performs the force merge operation on one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-forcemerge.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<ForcemergeResponse> forcemerge() throws IOException, OpensearchException {
@@ -700,9 +616,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns information about one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetIndexResponse> get(GetIndexRequest request) throws IOException, OpensearchException {
@@ -715,9 +629,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<GetIndexResponse> get(
@@ -731,9 +643,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns an alias.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetAliasResponse> getAlias(GetAliasRequest request)
@@ -747,9 +657,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAliasRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<GetAliasResponse> getAlias(
@@ -761,9 +669,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns an alias.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetAliasResponse> getAlias() throws IOException, OpensearchException {
@@ -776,9 +682,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns mapping for one or more fields.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-field-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetFieldMappingResponse> getFieldMapping(GetFieldMappingRequest request)
@@ -792,9 +696,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetFieldMappingRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-field-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<GetFieldMappingResponse> getFieldMapping(
@@ -808,9 +710,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate(GetIndexTemplateRequest request)
@@ -824,9 +724,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIndexTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<GetIndexTemplateResponse> getIndexTemplate(
@@ -838,9 +736,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate() throws IOException, OpensearchException {
@@ -853,9 +749,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns mappings for one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetMappingResponse> getMapping(GetMappingRequest request)
@@ -869,9 +763,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetMappingRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<GetMappingResponse> getMapping(
@@ -883,9 +775,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns mappings for one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetMappingResponse> getMapping() throws IOException, OpensearchException {
@@ -898,9 +788,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns settings for one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetSettingsResponse> getSettings(GetSettingsRequest request)
@@ -914,9 +802,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSettingsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<GetSettingsResponse> getSettings(
@@ -928,9 +814,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns settings for one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-get-settings.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetSettingsResponse> getSettings() throws IOException, OpensearchException {
@@ -943,9 +827,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetTemplateResponse> getTemplate(GetTemplateRequest request)
@@ -959,9 +841,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<GetTemplateResponse> getTemplate(
@@ -973,9 +853,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetTemplateResponse> getTemplate() throws IOException, OpensearchException {
@@ -988,9 +866,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Opens an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<OpenResponse> open(OpenRequest request) throws IOException, OpensearchException {
@@ -1003,9 +879,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link OpenRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-open-close.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<OpenResponse> open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn)
@@ -1018,9 +892,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Creates or updates an alias.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<PutAliasResponse> putAlias(PutAliasRequest request)
@@ -1034,9 +906,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAliasRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<PutAliasResponse> putAlias(
@@ -1050,9 +920,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Creates or updates an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<PutIndexTemplateResponse> putIndexTemplate(PutIndexTemplateRequest request)
@@ -1066,9 +934,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutIndexTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<PutIndexTemplateResponse> putIndexTemplate(
@@ -1082,9 +948,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Updates the index mappings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<PutMappingResponse> putMapping(PutMappingRequest request)
@@ -1098,9 +962,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutMappingRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-put-mapping.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<PutMappingResponse> putMapping(
@@ -1114,9 +976,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Updates the index settings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<PutSettingsResponse> putSettings(PutSettingsRequest request)
@@ -1130,9 +990,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutSettingsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<PutSettingsResponse> putSettings(
@@ -1144,9 +1002,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Updates the index settings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-update-settings.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<PutSettingsResponse> putSettings() throws IOException, OpensearchException {
@@ -1159,9 +1015,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Creates or updates an index template.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<PutTemplateResponse> putTemplate(PutTemplateRequest request)
@@ -1175,9 +1029,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<PutTemplateResponse> putTemplate(
@@ -1191,9 +1043,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns information about ongoing index shard recoveries.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<RecoveryResponse> recovery(RecoveryRequest request)
@@ -1207,9 +1057,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RecoveryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<RecoveryResponse> recovery(
@@ -1221,9 +1069,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns information about ongoing index shard recoveries.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<RecoveryResponse> recovery() throws IOException, OpensearchException {
@@ -1236,9 +1082,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Performs the refresh operation in one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<RefreshResponse> refresh(RefreshRequest request)
@@ -1252,9 +1096,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RefreshRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<RefreshResponse> refresh(
@@ -1266,9 +1108,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Performs the refresh operation in one or more indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-refresh.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<RefreshResponse> refresh() throws IOException, OpensearchException {
@@ -1281,9 +1121,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Returns information about any matching indices, aliases, and data streams
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-index-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<ResolveIndexResponse> resolveIndex(ResolveIndexRequest request)
@@ -1297,9 +1135,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ResolveIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-resolve-index-api.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<ResolveIndexResponse> resolveIndex(
@@ -1314,9 +1150,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * Updates an alias to point to a new index when the existing index is
 	 * considered to be too large or too old.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-rollover-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<RolloverResponse> rollover(RolloverRequest request)
@@ -1331,9 +1165,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RolloverRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-rollover-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<RolloverResponse> rollover(
@@ -1347,9 +1179,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Provides low-level information about segments in a Lucene index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<SegmentsResponse> segments(SegmentsRequest request)
@@ -1363,9 +1193,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SegmentsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<SegmentsResponse> segments(
@@ -1377,9 +1205,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Provides low-level information about segments in a Lucene index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-segments.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<SegmentsResponse> segments() throws IOException, OpensearchException {
@@ -1392,9 +1218,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Provides store information for shard copies of indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<ShardStoresResponse> shardStores(ShardStoresRequest request)
@@ -1408,9 +1232,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ShardStoresRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<ShardStoresResponse> shardStores(
@@ -1422,9 +1244,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Provides store information for shard copies of indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shards-stores.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<ShardStoresResponse> shardStores() throws IOException, OpensearchException {
@@ -1437,9 +1257,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Allow to shrink an existing index into a new index with fewer primary shards.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shrink-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<ShrinkResponse> shrink(ShrinkRequest request) throws IOException, OpensearchException {
@@ -1452,9 +1270,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ShrinkRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-shrink-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<ShrinkResponse> shrink(
@@ -1469,9 +1285,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * Simulate matching the given index name against the index templates in the
 	 * system
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<SimulateIndexTemplateResponse> simulateIndexTemplate(SimulateIndexTemplateRequest request)
@@ -1487,9 +1301,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateIndexTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<SimulateIndexTemplateResponse> simulateIndexTemplate(
@@ -1503,9 +1315,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Simulate resolving the given template name or body
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<SimulateTemplateResponse> simulateTemplate(SimulateTemplateRequest request)
@@ -1519,9 +1329,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<SimulateTemplateResponse> simulateTemplate(
@@ -1533,9 +1341,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Simulate resolving the given template name or body
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-templates.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<SimulateTemplateResponse> simulateTemplate() throws IOException, OpensearchException {
@@ -1549,9 +1355,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * Allows you to split an existing index into a new index with more primary
 	 * shards.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-split-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<SplitResponse> split(SplitRequest request) throws IOException, OpensearchException {
@@ -1565,9 +1369,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SplitRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-split-index.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<SplitResponse> split(Function<SplitRequest.Builder, ObjectBuilder<SplitRequest>> fn)
@@ -1580,9 +1382,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Provides statistics on operations happening in an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<IndicesStatsResponse> stats(IndicesStatsRequest request)
@@ -1596,9 +1396,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link IndicesStatsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<IndicesStatsResponse> stats(
@@ -1610,9 +1408,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Provides statistics on operations happening in an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-stats.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<IndicesStatsResponse> stats() throws IOException, OpensearchException {
@@ -1625,9 +1421,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Updates index aliases.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<UpdateAliasesResponse> updateAliases(UpdateAliasesRequest request)
@@ -1641,9 +1435,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateAliasesRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<UpdateAliasesResponse> updateAliases(
@@ -1655,9 +1447,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Updates index aliases.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-aliases.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<UpdateAliasesResponse> updateAliases() throws IOException, OpensearchException {
@@ -1670,9 +1460,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Allows a user to validate a potentially expensive query without executing it.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<ValidateQueryResponse> validateQuery(ValidateQueryRequest request)
@@ -1686,9 +1474,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ValidateQueryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<ValidateQueryResponse> validateQuery(
@@ -1700,9 +1486,7 @@ public class OpensearchIndicesAsyncClient extends ApiClient<OpensearchIndicesAsy
 	/**
 	 * Allows a user to validate a potentially expensive query without executing it.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-validate.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<ValidateQueryResponse> validateQuery() throws IOException, OpensearchException {

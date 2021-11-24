@@ -70,9 +70,7 @@ public class OpensearchShutdownAsyncClient extends ApiClient<OpensearchShutdownA
 	 * Removes a node from the shutdown list. Designed for indirect use by ECE/ESS
 	 * and ECK. Direct use is not supported.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<DeleteNodeResponse> deleteNode(DeleteNodeRequest request)
@@ -87,9 +85,7 @@ public class OpensearchShutdownAsyncClient extends ApiClient<OpensearchShutdownA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteNodeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<DeleteNodeResponse> deleteNode(
@@ -105,9 +101,7 @@ public class OpensearchShutdownAsyncClient extends ApiClient<OpensearchShutdownA
 	 * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
 	 * supported.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetNodeResponse> getNode(GetNodeRequest request)
@@ -123,9 +117,7 @@ public class OpensearchShutdownAsyncClient extends ApiClient<OpensearchShutdownA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetNodeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<GetNodeResponse> getNode(
@@ -139,9 +131,7 @@ public class OpensearchShutdownAsyncClient extends ApiClient<OpensearchShutdownA
 	 * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
 	 * supported.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<GetNodeResponse> getNode() throws IOException, OpensearchException {
@@ -155,9 +145,7 @@ public class OpensearchShutdownAsyncClient extends ApiClient<OpensearchShutdownA
 	 * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
 	 * Direct use is not supported.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public CompletableFuture<PutNodeResponse> putNode(PutNodeRequest request)
@@ -172,9 +160,7 @@ public class OpensearchShutdownAsyncClient extends ApiClient<OpensearchShutdownA
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutNodeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final CompletableFuture<PutNodeResponse> putNode(

@@ -68,9 +68,7 @@ public class OpensearchDanglingIndicesClient extends ApiClient<OpensearchDanglin
 	/**
 	 * Deletes the specified dangling index
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public DeleteDanglingIndexResponse deleteDanglingIndex(DeleteDanglingIndexRequest request)
@@ -84,9 +82,7 @@ public class OpensearchDanglingIndicesClient extends ApiClient<OpensearchDanglin
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDanglingIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final DeleteDanglingIndexResponse deleteDanglingIndex(
@@ -100,9 +96,7 @@ public class OpensearchDanglingIndicesClient extends ApiClient<OpensearchDanglin
 	/**
 	 * Imports the specified dangling index
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public ImportDanglingIndexResponse importDanglingIndex(ImportDanglingIndexRequest request)
@@ -116,9 +110,7 @@ public class OpensearchDanglingIndicesClient extends ApiClient<OpensearchDanglin
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ImportDanglingIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 
 	public final ImportDanglingIndexResponse importDanglingIndex(
@@ -132,9 +124,7 @@ public class OpensearchDanglingIndicesClient extends ApiClient<OpensearchDanglin
 	/**
 	 * Returns all dangling indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
-	 *      on elastic.co</a>
+	 * 
 	 */
 	public ListDanglingIndicesResponse listDanglingIndices() throws IOException, OpensearchException {
 		return this.transport.performRequest(ListDanglingIndicesRequest._INSTANCE, ListDanglingIndicesRequest.ENDPOINT,

@@ -201,9 +201,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * Allows to perform multiple index/update/delete operations in a single
      * request.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<BulkResponse> bulk(BulkRequest request) throws IOException, OpensearchException {
@@ -216,9 +214,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link BulkRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<BulkResponse> bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn)
@@ -230,9 +226,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * Allows to perform multiple index/update/delete operations in a single
      * request.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<BulkResponse> bulk() throws IOException, OpensearchException {
@@ -245,9 +239,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Explicitly clears the search context for a scroll.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<ClearScrollResponse> clearScroll(ClearScrollRequest request)
@@ -260,9 +252,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link ClearScrollRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<ClearScrollResponse> clearScroll(
@@ -274,9 +264,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Explicitly clears the search context for a scroll.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<ClearScrollResponse> clearScroll() throws IOException, OpensearchException {
@@ -289,9 +277,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Close a point in time
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<ClosePointInTimeResponse> closePointInTime(ClosePointInTimeRequest request)
@@ -304,9 +290,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link ClosePointInTimeRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<ClosePointInTimeResponse> closePointInTime(
@@ -320,9 +304,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns number of documents matching a query.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<CountResponse> count(CountRequest request) throws IOException, OpensearchException {
@@ -334,9 +316,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link CountRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<CountResponse> count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
@@ -347,9 +327,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns number of documents matching a query.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<CountResponse> count() throws IOException, OpensearchException {
@@ -365,9 +343,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * Returns a 409 response when a document with a same ID already exists in the
      * index.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TDocument> CompletableFuture<CreateResponse> create(CreateRequest<TDocument> request)
@@ -383,9 +359,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link CreateRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TDocument> CompletableFuture<CreateResponse> create(
@@ -399,9 +373,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Removes a document from the index.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<DeleteResponse> delete(DeleteRequest request) throws IOException, OpensearchException {
@@ -413,9 +385,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link DeleteRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<DeleteResponse> delete(
@@ -429,9 +399,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Deletes documents matching the provided query.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<DeleteByQueryResponse> deleteByQuery(DeleteByQueryRequest request)
@@ -444,9 +412,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link DeleteByQueryRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<DeleteByQueryResponse> deleteByQuery(
@@ -461,9 +427,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * Changes the number of requests per second for a particular Delete By Query
      * operation.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<DeleteByQueryRethrottleResponse> deleteByQueryRethrottle(
@@ -478,9 +442,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link DeleteByQueryRethrottleRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<DeleteByQueryRethrottleResponse> deleteByQueryRethrottle(
@@ -494,9 +456,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Deletes a script.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<DeleteScriptResponse> deleteScript(DeleteScriptRequest request)
@@ -509,9 +469,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link DeleteScriptRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<DeleteScriptResponse> deleteScript(
@@ -525,9 +483,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns information about whether a document exists in an index.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<BooleanResponse> exists(ExistsRequest request) throws IOException, OpensearchException {
@@ -539,9 +495,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link ExistsRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<BooleanResponse> exists(
@@ -555,9 +509,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns information about whether a document source exists in an index.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<BooleanResponse> existsSource(ExistsSourceRequest request)
@@ -570,9 +522,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link ExistsSourceRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<BooleanResponse> existsSource(
@@ -586,9 +536,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns information about why a specific matches (or doesn't match) a query.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(ExplainRequest request,
@@ -602,9 +550,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link ExplainRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(
@@ -619,9 +565,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * Returns the information about the capabilities of fields among multiple
      * indices.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<FieldCapsResponse> fieldCaps(FieldCapsRequest request)
@@ -635,9 +579,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link FieldCapsRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<FieldCapsResponse> fieldCaps(
@@ -650,9 +592,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * Returns the information about the capabilities of fields among multiple
      * indices.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<FieldCapsResponse> fieldCaps() throws IOException, OpensearchException {
@@ -665,9 +605,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns a document.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TDocument> CompletableFuture<GetResponse<TDocument>> get(GetRequest request,
@@ -681,9 +619,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link GetRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TDocument> CompletableFuture<GetResponse<TDocument>> get(
@@ -697,9 +633,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns a script.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<GetScriptResponse> getScript(GetScriptRequest request)
@@ -712,9 +646,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link GetScriptRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<GetScriptResponse> getScript(
@@ -728,9 +660,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns all script contexts.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
-     * on elastic.co</a>
+     * 
      */
     public CompletableFuture<GetScriptContextResponse> getScriptContext() throws IOException, OpensearchException {
         return this.transport.performRequestAsync(GetScriptContextRequest._INSTANCE, GetScriptContextRequest.ENDPOINT,
@@ -742,9 +672,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns available script types, languages and contexts
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-     * on elastic.co</a>
+     * 
      */
     public CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages()
             throws IOException, OpensearchException {
@@ -757,9 +685,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns the source of a document.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(GetSourceRequest request,
@@ -773,9 +699,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link GetSourceRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(
@@ -789,9 +713,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Creates or updates a document in an index.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TDocument> CompletableFuture<IndexResponse> index(IndexRequest<TDocument> request)
@@ -804,9 +726,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link IndexRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TDocument> CompletableFuture<IndexResponse> index(
@@ -820,9 +740,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns basic information about the cluster.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
-     * on elastic.co</a>
+     * 
      */
     public CompletableFuture<InfoResponse> info() throws IOException, OpensearchException {
         return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest.ENDPOINT, this.transportOptions);
@@ -833,9 +751,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Performs a kNN search.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TDocument> CompletableFuture<KnnSearchResponse<TDocument>> knnSearch(KnnSearchRequest request,
@@ -849,9 +765,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link KnnSearchRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TDocument> CompletableFuture<KnnSearchResponse<TDocument>> knnSearch(
@@ -865,9 +779,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Allows to get multiple documents in one request.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TDocument> CompletableFuture<MgetResponse<TDocument>> mget(MgetRequest request,
@@ -881,9 +793,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link MgetRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TDocument> CompletableFuture<MgetResponse<TDocument>> mget(
@@ -897,9 +807,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Allows to execute several search operations in one request.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TDocument> CompletableFuture<MsearchResponse<TDocument>> msearch(MsearchRequest request,
@@ -913,9 +821,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link MsearchRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TDocument> CompletableFuture<MsearchResponse<TDocument>> msearch(
@@ -929,9 +835,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Allows to execute several search template operations in one request.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TDocument> CompletableFuture<MsearchTemplateResponse<TDocument>> msearchTemplate(
@@ -947,9 +851,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link MsearchTemplateRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TDocument> CompletableFuture<MsearchTemplateResponse<TDocument>> msearchTemplate(
@@ -963,9 +865,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns multiple termvectors in one request.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<MtermvectorsResponse> mtermvectors(MtermvectorsRequest request)
@@ -978,9 +878,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link MtermvectorsRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<MtermvectorsResponse> mtermvectors(
@@ -992,9 +890,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns multiple termvectors in one request.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<MtermvectorsResponse> mtermvectors() throws IOException, OpensearchException {
@@ -1007,9 +903,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Open a point in time that can be used in subsequent searches
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<OpenPointInTimeResponse> openPointInTime(OpenPointInTimeRequest request)
@@ -1022,9 +916,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link OpenPointInTimeRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<OpenPointInTimeResponse> openPointInTime(
@@ -1038,9 +930,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns whether the cluster is running.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
-     * on elastic.co</a>
+     * 
      */
     public CompletableFuture<BooleanResponse> ping() throws IOException, OpensearchException {
         return this.transport.performRequestAsync(PingRequest._INSTANCE, PingRequest.ENDPOINT, this.transportOptions);
@@ -1051,9 +941,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Creates or updates a script.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<PutScriptResponse> putScript(PutScriptRequest request)
@@ -1066,9 +954,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link PutScriptRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<PutScriptResponse> putScript(
@@ -1083,9 +969,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * Allows to evaluate the quality of ranked search results over a set of typical
      * search queries
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<RankEvalResponse> rankEval(RankEvalRequest request)
@@ -1099,9 +983,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link RankEvalRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<RankEvalResponse> rankEval(
@@ -1117,9 +999,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * source documents by a query, changing the destination index settings, or
      * fetching the documents from a remote cluster.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<ReindexResponse> reindex(ReindexRequest request)
@@ -1134,9 +1014,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link ReindexRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<ReindexResponse> reindex(
@@ -1150,9 +1028,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * source documents by a query, changing the destination index settings, or
      * fetching the documents from a remote cluster.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<ReindexResponse> reindex() throws IOException, OpensearchException {
@@ -1165,9 +1041,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Changes the number of requests per second for a particular Reindex operation.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<ReindexRethrottleResponse> reindexRethrottle(ReindexRethrottleRequest request)
@@ -1180,9 +1054,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link ReindexRethrottleRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<ReindexRethrottleResponse> reindexRethrottle(
@@ -1196,9 +1068,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Allows an arbitrary script to be executed and a result to be returned
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TResult> CompletableFuture<ScriptsPainlessExecuteResponse<TResult>> scriptsPainlessExecute(
@@ -1214,9 +1084,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link ScriptsPainlessExecuteRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TResult> CompletableFuture<ScriptsPainlessExecuteResponse<TResult>> scriptsPainlessExecute(
@@ -1230,9 +1098,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Returns results matching a query.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TDocument> CompletableFuture<SearchResponse<TDocument>> search(SearchRequest request,
@@ -1246,9 +1112,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link SearchRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TDocument> CompletableFuture<SearchResponse<TDocument>> search(
@@ -1263,9 +1127,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * Searches a vector tile for geospatial values. Returns results as a binary
      * Mapbox vector tile.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<SearchMvtResponse> searchMvt(SearchMvtRequest request)
@@ -1279,9 +1141,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link SearchMvtRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<SearchMvtResponse> searchMvt(
@@ -1296,9 +1156,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * Returns information about the indices and shards that a search request would
      * be executed against.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<SearchShardsResponse> searchShards(SearchShardsRequest request)
@@ -1312,9 +1170,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link SearchShardsRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<SearchShardsResponse> searchShards(
@@ -1327,9 +1183,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * Returns information about the indices and shards that a search request would
      * be executed against.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<SearchShardsResponse> searchShards() throws IOException, OpensearchException {
@@ -1342,9 +1196,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Allows to use the Mustache language to pre-render a search definition.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TDocument> CompletableFuture<SearchTemplateResponse<TDocument>> searchTemplate(
@@ -1359,9 +1211,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link SearchTemplateRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TDocument> CompletableFuture<SearchTemplateResponse<TDocument>> searchTemplate(
@@ -1377,9 +1227,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * the provided string. It is designed for low-latency look-ups used in
      * auto-complete scenarios.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<TermsEnumResponse> termsEnum(TermsEnumRequest request)
@@ -1394,9 +1242,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link TermsEnumRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<TermsEnumResponse> termsEnum(
@@ -1411,9 +1257,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * Returns information and statistics about terms in the fields of a particular
      * document.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TDocument> CompletableFuture<TermvectorsResponse> termvectors(TermvectorsRequest<TDocument> request)
@@ -1427,9 +1271,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link TermvectorsRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TDocument> CompletableFuture<TermvectorsResponse> termvectors(
@@ -1443,9 +1285,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
     /**
      * Updates a document with a script or partial document.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public <TDocument, TPartialDocument> CompletableFuture<UpdateResponse<TDocument>> update(
@@ -1460,9 +1300,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link UpdateRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final <TDocument, TPartialDocument> CompletableFuture<UpdateResponse<TDocument>> update(
@@ -1477,9 +1315,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * Performs an update on every document in the index without changing the
      * source, for example to pick up a mapping change.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<UpdateByQueryResponse> updateByQuery(UpdateByQueryRequest request)
@@ -1493,9 +1329,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link UpdateByQueryRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<UpdateByQueryResponse> updateByQuery(
@@ -1510,9 +1344,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      * Changes the number of requests per second for a particular Update By Query
      * operation.
      *
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public CompletableFuture<UpdateByQueryRethrottleResponse> updateByQueryRethrottle(
@@ -1527,9 +1359,7 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchAsyncClient> {
      *
      * @param fn a function that initializes a builder to create the
      *           {@link UpdateByQueryRethrottleRequest}
-     * @see <a href=
-     * "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
-     * on elastic.co</a>
+     * 
      */
 
     public final CompletableFuture<UpdateByQueryRethrottleResponse> updateByQueryRethrottle(
