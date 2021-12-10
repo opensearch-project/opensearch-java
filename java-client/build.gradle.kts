@@ -96,7 +96,7 @@ tasks.test {
 
 val unitTest = task<Test>("unitTest") {
     filter {
-        excludeTestsMatching("org.opensearch.clients.opensearch.integTest.*")
+        excludeTestsMatching("org.opensearch.client.opensearch.integTest.*")
     }
 }
 
