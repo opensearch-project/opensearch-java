@@ -96,13 +96,13 @@ tasks.test {
 
 val unitTest = task<Test>("unitTest") {
     filter {
-        excludeTestsMatching("org.opensearch.clients.opensearch.integTest.*")
+        excludeTestsMatching("org.opensearch.client.opensearch.integTest.*")
     }
 }
 
 val integrationTest = task<Test>("integrationTest") {
     filter {
-        includeTestsMatching("org.opensearch.clients.opensearch.integTest.*")
+        includeTestsMatching("org.opensearch.client.opensearch.integTest.*")
     }
     systemProperty("tests.security.manager", "false")
     // Basic auth settings for integration test

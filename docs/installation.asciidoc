@@ -12,7 +12,7 @@ Requirements:
 
 
 Releases are hosted on 
-https://search.maven.org/search?q=g:org.opensearch.clients[Maven Central]. If you 
+https://search.maven.org/search?q=g:org.opensearch.client[Maven Central]. If you
 are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is 
 available at https://snapshots.elastic.co/maven/.
 
@@ -24,7 +24,7 @@ available at https://snapshots.elastic.co/maven/.
 ["source","groovy",subs="attributes+"]
 --------------------------------------------------
 dependencies {
-    implementation 'org.opensearch.clients:elasticsearch-java:{version}'
+    implementation 'org.opensearch.client:elasticsearch-java:{version}'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
 }
 --------------------------------------------------
@@ -42,7 +42,7 @@ dependencies:
 
   <dependencies>
     <dependency>
-      <groupId>org.opensearch.clients</groupId>
+      <groupId>org.opensearch.client</groupId>
       <artifactId>elasticsearch-java</artifactId>
       <version>{version}</version>
     </dependency>
