@@ -13,7 +13,7 @@ the {ref}/rest-apis.html[{es} API documentation].
 
 The {java-client} follows this structure: feature groups are called “namespaces”,
 and each namespace is located in a subpackage of 
-`org.opensearch.clients.elasticsearch`.
+`opensearch`.
 
 Each of the namespace clients can be accessed from the top level {es} client. The
 only exceptions are the “search” and “document” APIs which are located in the `core`
