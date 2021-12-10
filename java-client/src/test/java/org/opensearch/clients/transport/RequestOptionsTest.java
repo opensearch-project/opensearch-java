@@ -19,7 +19,7 @@
 
 package org.opensearch.clients.transport;
 
-import org.opensearch.clients.elasticsearch.ElasticsearchClient;
+import org.opensearch.clients.opensearch.ElasticsearchClient;
 import org.opensearch.clients.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.clients.transport.rest_client.RestClientTransport;
 import com.sun.net.httpserver.HttpServer;

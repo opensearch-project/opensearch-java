@@ -19,9 +19,9 @@
 
 package org.opensearch.clients.documentation;
 
-import org.opensearch.clients.elasticsearch.ElasticsearchClient;
-import org.opensearch.clients.elasticsearch.core.SearchResponse;
-import org.opensearch.clients.elasticsearch.core.search.Hit;
+import org.opensearch.clients.opensearch.ElasticsearchClient;
+import org.opensearch.clients.opensearch.core.SearchResponse;
+import org.opensearch.clients.opensearch.core.search.Hit;
 import org.opensearch.clients.json.jackson.JacksonJsonpMapper;
 import org.opensearch.clients.transport.ElasticsearchTransport;
 import org.opensearch.clients.transport.rest_client.RestClientTransport;
