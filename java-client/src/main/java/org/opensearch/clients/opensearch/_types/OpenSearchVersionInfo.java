@@ -60,6 +60,8 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 
 	private final String buildType;
 
+	private final String distribution;
+
 	private final String luceneVersion;
 
 	private final String minimumIndexCompatibilityVersion;
@@ -76,6 +78,7 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 		this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
 		this.buildSnapshot = ApiTypeHelper.requireNonNull(builder.buildSnapshot, this, "buildSnapshot");
 		this.buildType = ApiTypeHelper.requireNonNull(builder.buildType, this, "buildType");
+		this.distribution = ApiTypeHelper.requireNonNull(builder.distribution, this, "distribution");
 		this.luceneVersion = ApiTypeHelper.requireNonNull(builder.luceneVersion, this, "luceneVersion");
 		this.minimumIndexCompatibilityVersion = ApiTypeHelper.requireNonNull(builder.minimumIndexCompatibilityVersion,
 				this, "minimumIndexCompatibilityVersion");
@@ -115,6 +118,13 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 	 */
 	public final String buildType() {
 		return this.buildType;
+	}
+
+	/**
+	 * API name: {@code distribution}
+	 */
+	public String distribution() {
+		return this.distribution;
 	}
 
 	/**
@@ -167,6 +177,9 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 
 		generator.writeKey("build_type");
 		generator.write(this.buildType);
+
+		generator.writeKey("distribution");
+		generator.write(this.distribution);
 
 		generator.writeKey("lucene_version");
 		generator.write(this.luceneVersion);
