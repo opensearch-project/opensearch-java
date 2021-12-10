@@ -19,17 +19,17 @@
 
 package org.opensearch.clients.documentation;
 
-import org.opensearch.clients.elasticsearch.ElasticsearchAsyncClient;
-import org.opensearch.clients.elasticsearch.ElasticsearchClient;
-import org.opensearch.clients.elasticsearch._types.NodeStatistics;
-import org.opensearch.clients.elasticsearch._types.SortOrder;
-import org.opensearch.clients.elasticsearch._types.aggregations.Aggregation;
-import org.opensearch.clients.elasticsearch._types.query_dsl.Query;
-import org.opensearch.clients.elasticsearch.core.SearchRequest;
-import org.opensearch.clients.elasticsearch.core.SearchResponse;
-import org.opensearch.clients.elasticsearch.indices.Alias;
-import org.opensearch.clients.elasticsearch.indices.CreateIndexRequest;
-import org.opensearch.clients.elasticsearch.indices.CreateIndexResponse;
+import org.opensearch.clients.opensearch.ElasticsearchAsyncClient;
+import org.opensearch.clients.opensearch.ElasticsearchClient;
+import org.opensearch.clients.opensearch._types.NodeStatistics;
+import org.opensearch.clients.opensearch._types.SortOrder;
+import org.opensearch.clients.opensearch._types.aggregations.Aggregation;
+import org.opensearch.clients.opensearch._types.query_dsl.Query;
+import org.opensearch.clients.opensearch.core.SearchRequest;
+import org.opensearch.clients.opensearch.core.SearchResponse;
+import org.opensearch.clients.opensearch.indices.Alias;
+import org.opensearch.clients.opensearch.indices.CreateIndexRequest;
+import org.opensearch.clients.opensearch.indices.CreateIndexResponse;
 import org.opensearch.clients.transport.ElasticsearchTransport;
 import org.opensearch.clients.transport.TransportException;
 import org.opensearch.clients.util.ApiTypeHelper;
