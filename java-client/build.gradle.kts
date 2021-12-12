@@ -85,6 +85,10 @@ tasks.withType<Jar> {
 
 tasks.test {
     systemProperty("tests.security.manager", "false")
+    // Basic auth settings for integration test
+    systemProperty("https", System.getProperty("https", "true"))
+    systemProperty("user", System.getProperty("user", "admin"))
+    systemProperty("password", System.getProperty("password", "admin"))
 }
 
 val unitTest = task<Test>("unitTest") {
@@ -105,7 +109,7 @@ val integrationTest = task<Test>("integrationTest") {
 }
 
 dependencies {
-    val opensearchVersion = "1.0.0"
+    val opensearchVersion = "1.2.1"
     val jacksonVersion = "2.12.5"
 
     // Apache 2.0
