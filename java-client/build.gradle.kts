@@ -136,8 +136,6 @@ dependencies {
     // https://eclipse-ee4j.github.io/yasson/
     implementation("org.eclipse", "yasson", "2.0.2")
 
-    implementation("org.apache.logging.log4j", "log4j-core", "2.15.0")
-
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.12") {
         exclude(group = "org.hamcrest")
