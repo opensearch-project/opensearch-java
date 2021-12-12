@@ -38,7 +38,6 @@ buildscript {
     repositories {
         mavenCentral()
         mavenLocal()
-        maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots/")
         maven(url = "https://plugins.gradle.org/m2/")
         jcenter()
     }
@@ -86,10 +85,6 @@ tasks.withType<Jar> {
 
 tasks.test {
     systemProperty("tests.security.manager", "false")
-    // Basic auth settings for integration test
-    systemProperty("https", System.getProperty("https", "true"))
-    systemProperty("user", System.getProperty("user", "admin"))
-    systemProperty("password", System.getProperty("password", "admin"))
 }
 
 val unitTest = task<Test>("unitTest") {
@@ -110,7 +105,7 @@ val integrationTest = task<Test>("integrationTest") {
 }
 
 dependencies {
-    val opensearchVersion = "1.2.1"
+    val opensearchVersion = "1.0.0"
     val jacksonVersion = "2.12.5"
 
     // Apache 2.0
