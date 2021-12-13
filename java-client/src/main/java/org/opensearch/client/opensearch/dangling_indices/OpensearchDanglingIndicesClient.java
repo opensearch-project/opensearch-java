@@ -37,9 +37,9 @@
 package org.opensearch.client.opensearch.dangling_indices;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.ElasticsearchTransport;
+import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -50,22 +50,22 @@ import javax.annotation.Nullable;
 /**
  * Client for the dangling_indices namespace.
  */
-public class ElasticsearchDanglingIndicesClient
+public class OpensearchDanglingIndicesClient
 		extends
-			ApiClient<ElasticsearchTransport, ElasticsearchDanglingIndicesClient> {
+			ApiClient<OpensearchTransport, OpensearchDanglingIndicesClient> {
 
-	public ElasticsearchDanglingIndicesClient(ElasticsearchTransport transport) {
+	public OpensearchDanglingIndicesClient(OpensearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchDanglingIndicesClient(ElasticsearchTransport transport,
-			@Nullable TransportOptions transportOptions) {
+	public OpensearchDanglingIndicesClient(OpensearchTransport transport,
+                                           @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchDanglingIndicesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchDanglingIndicesClient(this.transport, transportOptions);
+	public OpensearchDanglingIndicesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchDanglingIndicesClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: dangling_indices.delete_dangling_index
@@ -79,7 +79,7 @@ public class ElasticsearchDanglingIndicesClient
 	 */
 
 	public DeleteDanglingIndexResponse deleteDanglingIndex(DeleteDanglingIndexRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse>)
@@ -101,7 +101,7 @@ public class ElasticsearchDanglingIndicesClient
 
 	public final DeleteDanglingIndexResponse deleteDanglingIndex(
 			Function<DeleteDanglingIndexRequest.Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deleteDanglingIndex(fn.apply(new DeleteDanglingIndexRequest.Builder()).build());
 	}
 
@@ -116,7 +116,7 @@ public class ElasticsearchDanglingIndicesClient
 	 */
 
 	public ImportDanglingIndexResponse importDanglingIndex(ImportDanglingIndexRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse>)
@@ -138,7 +138,7 @@ public class ElasticsearchDanglingIndicesClient
 
 	public final ImportDanglingIndexResponse importDanglingIndex(
 			Function<ImportDanglingIndexRequest.Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return importDanglingIndex(fn.apply(new ImportDanglingIndexRequest.Builder()).build());
 	}
 
@@ -151,7 +151,7 @@ public class ElasticsearchDanglingIndicesClient
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public ListDanglingIndicesResponse listDanglingIndices() throws IOException, ElasticsearchException {
+	public ListDanglingIndicesResponse listDanglingIndices() throws IOException, OpensearchException {
 		return this.transport.performRequest(ListDanglingIndicesRequest._INSTANCE, ListDanglingIndicesRequest._ENDPOINT,
 				this.transportOptions);
 	}

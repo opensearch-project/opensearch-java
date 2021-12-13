@@ -37,9 +37,9 @@
 package org.opensearch.client.opensearch.shutdown;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.ElasticsearchTransport;
+import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -51,22 +51,22 @@ import javax.annotation.Nullable;
 /**
  * Client for the shutdown namespace.
  */
-public class ElasticsearchShutdownAsyncClient
+public class OpensearchShutdownAsyncClient
 		extends
-			ApiClient<ElasticsearchTransport, ElasticsearchShutdownAsyncClient> {
+			ApiClient<OpensearchTransport, OpensearchShutdownAsyncClient> {
 
-	public ElasticsearchShutdownAsyncClient(ElasticsearchTransport transport) {
+	public OpensearchShutdownAsyncClient(OpensearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchShutdownAsyncClient(ElasticsearchTransport transport,
-			@Nullable TransportOptions transportOptions) {
+	public OpensearchShutdownAsyncClient(OpensearchTransport transport,
+                                         @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchShutdownAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchShutdownAsyncClient(this.transport, transportOptions);
+	public OpensearchShutdownAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchShutdownAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: shutdown.delete_node
@@ -81,7 +81,7 @@ public class ElasticsearchShutdownAsyncClient
 	 */
 
 	public CompletableFuture<DeleteNodeResponse> deleteNode(DeleteNodeRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse>) DeleteNodeRequest._ENDPOINT;
@@ -103,7 +103,7 @@ public class ElasticsearchShutdownAsyncClient
 
 	public final CompletableFuture<DeleteNodeResponse> deleteNode(
 			Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deleteNode(fn.apply(new DeleteNodeRequest.Builder()).build());
 	}
 
@@ -120,7 +120,7 @@ public class ElasticsearchShutdownAsyncClient
 	 */
 
 	public CompletableFuture<GetNodeResponse> getNode(GetNodeRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetNodeRequest, GetNodeResponse, ErrorResponse>) GetNodeRequest._ENDPOINT;
@@ -143,7 +143,7 @@ public class ElasticsearchShutdownAsyncClient
 
 	public final CompletableFuture<GetNodeResponse> getNode(
 			Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getNode(fn.apply(new GetNodeRequest.Builder()).build());
 	}
 
@@ -157,7 +157,7 @@ public class ElasticsearchShutdownAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetNodeResponse> getNode() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetNodeResponse> getNode() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new GetNodeRequest.Builder().build(), GetNodeRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -174,7 +174,7 @@ public class ElasticsearchShutdownAsyncClient
 	 */
 
 	public CompletableFuture<PutNodeResponse> putNode(PutNodeRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutNodeRequest, PutNodeResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<PutNodeRequest, PutNodeResponse, ErrorResponse>) PutNodeRequest._ENDPOINT;
@@ -196,7 +196,7 @@ public class ElasticsearchShutdownAsyncClient
 
 	public final CompletableFuture<PutNodeResponse> putNode(
 			Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return putNode(fn.apply(new PutNodeRequest.Builder()).build());
 	}
 

@@ -37,58 +37,56 @@
 package org.opensearch.client.opensearch.tasks;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.ElasticsearchTransport;
+import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 /**
  * Client for the tasks namespace.
  */
-public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchTasksAsyncClient> {
+public class OpensearchTasksClient extends ApiClient<OpensearchTransport, OpensearchTasksClient> {
 
-	public ElasticsearchTasksAsyncClient(ElasticsearchTransport transport) {
+	public OpensearchTasksClient(OpensearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchTasksAsyncClient(ElasticsearchTransport transport,
-			@Nullable TransportOptions transportOptions) {
+	public OpensearchTasksClient(OpensearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchTasksAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchTasksAsyncClient(this.transport, transportOptions);
+	public OpensearchTasksClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchTasksClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: tasks.cancel
 
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
-	 *
+	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CancelResponse> cancel(CancelRequest request) throws IOException, ElasticsearchException {
+	public CancelResponse cancel(CancelRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<CancelRequest, CancelResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<CancelRequest, CancelResponse, ErrorResponse>) CancelRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
-	 *
+	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CancelRequest}
@@ -97,22 +95,21 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<CancelResponse> cancel(
-			Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CancelResponse cancel(Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn)
+			throws IOException, OpensearchException {
 		return cancel(fn.apply(new CancelRequest.Builder()).build());
 	}
 
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
-	 *
+	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CancelResponse> cancel() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new CancelRequest.Builder().build(), CancelRequest._ENDPOINT,
+	public CancelResponse cancel() throws IOException, OpensearchException {
+		return this.transport.performRequest(new CancelRequest.Builder().build(), CancelRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -120,23 +117,23 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 
 	/**
 	 * Returns information about a task.
-	 *
+	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTasksResponse> get(GetTasksRequest request) throws IOException, ElasticsearchException {
+	public GetTasksResponse get(GetTasksRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetTasksRequest, GetTasksResponse, ErrorResponse>) GetTasksRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about a task.
-	 *
+	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTasksRequest}
@@ -145,9 +142,8 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<GetTasksResponse> get(
-			Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final GetTasksResponse get(Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn)
+			throws IOException, OpensearchException {
 		return get(fn.apply(new GetTasksRequest.Builder()).build());
 	}
 
@@ -155,23 +151,23 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 
 	/**
 	 * Returns a list of tasks.
-	 *
+	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ListResponse> list(ListRequest request) throws IOException, ElasticsearchException {
+	public ListResponse list(ListRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ListRequest, ListResponse, ErrorResponse> endpoint =
-                (JsonEndpoint<ListRequest, ListResponse, ErrorResponse>) ListRequest._ENDPOINT;
+				(JsonEndpoint<ListRequest, ListResponse, ErrorResponse>) ListRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns a list of tasks.
-	 *
+	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ListRequest}
@@ -180,21 +176,21 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<ListResponse> list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final ListResponse list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn)
+			throws IOException, OpensearchException {
 		return list(fn.apply(new ListRequest.Builder()).build());
 	}
 
 	/**
 	 * Returns a list of tasks.
-	 *
+	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ListResponse> list() throws IOException, ElasticsearchException {
-		return this.transport.performRequestAsync(new ListRequest.Builder().build(), ListRequest._ENDPOINT,
+	public ListResponse list() throws IOException, OpensearchException {
+		return this.transport.performRequest(new ListRequest.Builder().build(), ListRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

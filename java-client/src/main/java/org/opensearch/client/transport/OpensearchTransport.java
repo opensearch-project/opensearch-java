@@ -37,6 +37,6 @@ package org.opensearch.client.transport;
  *
  * Currently an empty placeholder for future extension.
  */
-public interface ElasticsearchTransport extends Transport {
+public interface OpensearchTransport extends Transport {
 
 }

@@ -37,9 +37,9 @@
 package org.opensearch.client.opensearch.dangling_indices;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.ElasticsearchTransport;
+import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -51,22 +51,22 @@ import javax.annotation.Nullable;
 /**
  * Client for the dangling_indices namespace.
  */
-public class ElasticsearchDanglingIndicesAsyncClient
+public class OpensearchDanglingIndicesAsyncClient
 		extends
-			ApiClient<ElasticsearchTransport, ElasticsearchDanglingIndicesAsyncClient> {
+			ApiClient<OpensearchTransport, OpensearchDanglingIndicesAsyncClient> {
 
-	public ElasticsearchDanglingIndicesAsyncClient(ElasticsearchTransport transport) {
+	public OpensearchDanglingIndicesAsyncClient(OpensearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchDanglingIndicesAsyncClient(ElasticsearchTransport transport,
-			@Nullable TransportOptions transportOptions) {
+	public OpensearchDanglingIndicesAsyncClient(OpensearchTransport transport,
+                                                @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchDanglingIndicesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchDanglingIndicesAsyncClient(this.transport, transportOptions);
+	public OpensearchDanglingIndicesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchDanglingIndicesAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: dangling_indices.delete_dangling_index
@@ -80,7 +80,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 */
 
 	public CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(DeleteDanglingIndexRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse>)
@@ -102,7 +102,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 
 	public final CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(
 			Function<DeleteDanglingIndexRequest.Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deleteDanglingIndex(fn.apply(new DeleteDanglingIndexRequest.Builder()).build());
 	}
 
@@ -117,7 +117,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 */
 
 	public CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(ImportDanglingIndexRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse>)
@@ -139,7 +139,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 
 	public final CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(
 			Function<ImportDanglingIndexRequest.Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return importDanglingIndex(fn.apply(new ImportDanglingIndexRequest.Builder()).build());
 	}
 
@@ -153,7 +153,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices()
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(ListDanglingIndicesRequest._INSTANCE,
 				ListDanglingIndicesRequest._ENDPOINT, this.transportOptions);
 	}
