@@ -233,7 +233,7 @@ Client methods can throw two kinds of exceptions:
 
 * Requests that were received by the {es} server but that were rejected 
 (validation error, server internal timeout exceeded, etc) will produce an 
-`ElasticsearchException`. This exception contains details about the error,
+`OpensearchException`. This exception contains details about the error,
 provided by {es}.
 
 * Requests that failed to reach the server (network error, server unavailable,

@@ -21,7 +21,7 @@ package org.opensearch.client.documentation;
 
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
-import org.opensearch.client.transport.ElasticsearchTransport;
+import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
@@ -52,7 +52,7 @@ public class MigrateHlrcTest {
         RestHighLevelClient hlrc = new RestHighLevelClient(httpClientBuilder);
 
         // Create the new Java Client with the same low level client
-        ElasticsearchTransport transport = new RestClientTransport(
+        OpensearchTransport transport = new RestClientTransport(
             hlrc.getLowLevelClient(),
             new JacksonJsonpMapper()
         );

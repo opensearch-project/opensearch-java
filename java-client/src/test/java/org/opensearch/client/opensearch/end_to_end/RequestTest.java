@@ -21,7 +21,7 @@ package org.opensearch.client.opensearch.end_to_end;
 
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.aggregations.HistogramAggregate;
 import org.opensearch.client.opensearch._types.mapping.Property;
@@ -44,7 +44,7 @@ import org.opensearch.client.opensearch.indices.IndexState;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
-import org.opensearch.client.transport.ElasticsearchTransport;
+import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
@@ -71,7 +71,7 @@ public class RequestTest extends Assert {
     private static ElasticsearchContainer container;
     private static final JsonpMapper mapper = new JsonbJsonpMapper();
     private static RestClient restClient;
-    private static ElasticsearchTransport transport;
+    private static OpensearchTransport transport;
     private static OpenSearchClient client;
 
     @BeforeClass
@@ -274,7 +274,7 @@ public class RequestTest extends Assert {
         BooleanResponse exists = client.exists(_0 -> _0.index("doesnotexist").id("reallynot"));
         assertFalse(exists.value());
 
-        ElasticsearchException ex = assertThrows(ElasticsearchException.class, () -> {
+        OpensearchException ex = assertThrows(OpensearchException.class, () -> {
             GetResponse<String> response = client.get(
                 _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             );
@@ -293,7 +293,7 @@ public class RequestTest extends Assert {
             ).get();
         });
 
-        ex = ((ElasticsearchException) ee.getCause());
+        ex = ((OpensearchException) ee.getCause());
         assertEquals("es/get", ex.endpointId());
         assertEquals(404, ex.status());
         assertEquals("index_not_found_exception", ex.error().type());

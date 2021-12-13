@@ -24,9 +24,9 @@
 package org.opensearch.client.opensearch.nodes;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.ElasticsearchTransport;
+import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -39,20 +39,20 @@ import javax.annotation.Nullable;
 /**
  * Client for the nodes namespace.
  */
-public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchNodesAsyncClient> {
+public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, OpensearchNodesAsyncClient> {
 
-	public ElasticsearchNodesAsyncClient(ElasticsearchTransport transport) {
+	public OpensearchNodesAsyncClient(OpensearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchNodesAsyncClient(ElasticsearchTransport transport,
-			@Nullable TransportOptions transportOptions) {
+	public OpensearchNodesAsyncClient(OpensearchTransport transport,
+                                      @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchNodesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchNodesAsyncClient(this.transport, transportOptions);
+	public OpensearchNodesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchNodesAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: nodes.hot_threads
@@ -66,7 +66,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 */
 
 	public CompletableFuture<HotThreadsResponse> hotThreads(HotThreadsRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> endpoint = (JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
 
@@ -86,7 +86,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 
 	public final CompletableFuture<HotThreadsResponse> hotThreads(
 			Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
 	}
 
@@ -98,7 +98,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<HotThreadsResponse> hotThreads() throws IOException, ElasticsearchException {
+	public CompletableFuture<HotThreadsResponse> hotThreads() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -114,7 +114,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 */
 
 	public CompletableFuture<NodesInfoResponse> info(NodesInfoRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse>) NodesInfoRequest._ENDPOINT;
 
@@ -134,7 +134,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 
 	public final CompletableFuture<NodesInfoResponse> info(
 			Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return info(fn.apply(new NodesInfoRequest.Builder()).build());
 	}
 
@@ -146,7 +146,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<NodesInfoResponse> info() throws IOException, ElasticsearchException {
+	public CompletableFuture<NodesInfoResponse> info() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new NodesInfoRequest.Builder().build(), NodesInfoRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -162,7 +162,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 */
 
 	public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings(ReloadSecureSettingsRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse>) ReloadSecureSettingsRequest._ENDPOINT;
 
@@ -182,7 +182,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 
 	public final CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings(
 			Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
 	}
 
@@ -195,7 +195,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 */
 
 	public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings()
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new ReloadSecureSettingsRequest.Builder().build(),
 				ReloadSecureSettingsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -211,7 +211,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 */
 
 	public CompletableFuture<NodesStatsResponse> stats(NodesStatsRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse>) NodesStatsRequest._ENDPOINT;
 
@@ -231,7 +231,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 
 	public final CompletableFuture<NodesStatsResponse> stats(
 			Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
 	}
 
@@ -243,7 +243,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<NodesStatsResponse> stats() throws IOException, ElasticsearchException {
+	public CompletableFuture<NodesStatsResponse> stats() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new NodesStatsRequest.Builder().build(), NodesStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -259,7 +259,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 */
 
 	public CompletableFuture<NodesUsageResponse> usage(NodesUsageRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse>) NodesUsageRequest._ENDPOINT;
 
@@ -279,7 +279,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 
 	public final CompletableFuture<NodesUsageResponse> usage(
 			Function<NodesUsageRequest.Builder, ObjectBuilder<NodesUsageRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return usage(fn.apply(new NodesUsageRequest.Builder()).build());
 	}
 
@@ -291,7 +291,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<NodesUsageResponse> usage() throws IOException, ElasticsearchException {
+	public CompletableFuture<NodesUsageResponse> usage() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(new NodesUsageRequest.Builder().build(), NodesUsageRequest._ENDPOINT,
 				this.transportOptions);
 	}

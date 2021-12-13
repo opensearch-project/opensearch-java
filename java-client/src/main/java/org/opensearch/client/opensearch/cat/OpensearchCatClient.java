@@ -24,9 +24,9 @@
 package org.opensearch.client.opensearch.cat;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.ElasticsearchTransport;
+import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -38,19 +38,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the cat namespace.
  */
-public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, ElasticsearchCatClient> {
+public class OpensearchCatClient extends ApiClient<OpensearchTransport, OpensearchCatClient> {
 
-	public ElasticsearchCatClient(ElasticsearchTransport transport) {
+	public OpensearchCatClient(OpensearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchCatClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+	public OpensearchCatClient(OpensearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchCatClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchCatClient(this.transport, transportOptions);
+	public OpensearchCatClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchCatClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: cat.aliases
@@ -64,7 +64,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public AliasesResponse aliases(AliasesRequest request) throws IOException, ElasticsearchException {
+	public AliasesResponse aliases(AliasesRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<AliasesRequest, AliasesResponse, ErrorResponse> endpoint = (JsonEndpoint<AliasesRequest, AliasesResponse, ErrorResponse>) AliasesRequest._ENDPOINT;
 
@@ -84,7 +84,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final AliasesResponse aliases(Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return aliases(fn.apply(new AliasesRequest.Builder()).build());
 	}
 
@@ -97,7 +97,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public AliasesResponse aliases() throws IOException, ElasticsearchException {
+	public AliasesResponse aliases() throws IOException, OpensearchException {
 		return this.transport.performRequest(new AliasesRequest.Builder().build(), AliasesRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -113,7 +113,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public AllocationResponse allocation(AllocationRequest request) throws IOException, ElasticsearchException {
+	public AllocationResponse allocation(AllocationRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<AllocationRequest, AllocationResponse, ErrorResponse> endpoint = (JsonEndpoint<AllocationRequest, AllocationResponse, ErrorResponse>) AllocationRequest._ENDPOINT;
 
@@ -133,7 +133,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final AllocationResponse allocation(Function<AllocationRequest.Builder, ObjectBuilder<AllocationRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return allocation(fn.apply(new AllocationRequest.Builder()).build());
 	}
 
@@ -146,7 +146,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public AllocationResponse allocation() throws IOException, ElasticsearchException {
+	public AllocationResponse allocation() throws IOException, OpensearchException {
 		return this.transport.performRequest(new AllocationRequest.Builder().build(), AllocationRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -162,7 +162,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public CountResponse count(CountRequest request) throws IOException, ElasticsearchException {
+	public CountResponse count(CountRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<CountRequest, CountResponse, ErrorResponse> endpoint = (JsonEndpoint<CountRequest, CountResponse, ErrorResponse>) CountRequest._ENDPOINT;
 
@@ -182,7 +182,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final CountResponse count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return count(fn.apply(new CountRequest.Builder()).build());
 	}
 
@@ -195,7 +195,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public CountResponse count() throws IOException, ElasticsearchException {
+	public CountResponse count() throws IOException, OpensearchException {
 		return this.transport.performRequest(new CountRequest.Builder().build(), CountRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -211,7 +211,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public FielddataResponse fielddata(FielddataRequest request) throws IOException, ElasticsearchException {
+	public FielddataResponse fielddata(FielddataRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<FielddataRequest, FielddataResponse, ErrorResponse> endpoint = (JsonEndpoint<FielddataRequest, FielddataResponse, ErrorResponse>) FielddataRequest._ENDPOINT;
 
@@ -231,7 +231,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final FielddataResponse fielddata(Function<FielddataRequest.Builder, ObjectBuilder<FielddataRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return fielddata(fn.apply(new FielddataRequest.Builder()).build());
 	}
 
@@ -244,7 +244,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public FielddataResponse fielddata() throws IOException, ElasticsearchException {
+	public FielddataResponse fielddata() throws IOException, OpensearchException {
 		return this.transport.performRequest(new FielddataRequest.Builder().build(), FielddataRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -259,7 +259,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public HealthResponse health(HealthRequest request) throws IOException, ElasticsearchException {
+	public HealthResponse health(HealthRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse> endpoint = (JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse>) HealthRequest._ENDPOINT;
 
@@ -278,7 +278,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return health(fn.apply(new HealthRequest.Builder()).build());
 	}
 
@@ -290,7 +290,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public HealthResponse health() throws IOException, ElasticsearchException {
+	public HealthResponse health() throws IOException, OpensearchException {
 		return this.transport.performRequest(new HealthRequest.Builder().build(), HealthRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -304,7 +304,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public HelpResponse help() throws IOException, ElasticsearchException {
+	public HelpResponse help() throws IOException, OpensearchException {
 		return this.transport.performRequest(HelpRequest._INSTANCE, HelpRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -319,7 +319,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public IndicesResponse indices(IndicesRequest request) throws IOException, ElasticsearchException {
+	public IndicesResponse indices(IndicesRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<IndicesRequest, IndicesResponse, ErrorResponse> endpoint = (JsonEndpoint<IndicesRequest, IndicesResponse, ErrorResponse>) IndicesRequest._ENDPOINT;
 
@@ -339,7 +339,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final IndicesResponse indices(Function<IndicesRequest.Builder, ObjectBuilder<IndicesRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return indices(fn.apply(new IndicesRequest.Builder()).build());
 	}
 
@@ -352,7 +352,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public IndicesResponse indices() throws IOException, ElasticsearchException {
+	public IndicesResponse indices() throws IOException, OpensearchException {
 		return this.transport.performRequest(new IndicesRequest.Builder().build(), IndicesRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -366,7 +366,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-master.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public MasterResponse master() throws IOException, ElasticsearchException {
+	public MasterResponse master() throws IOException, OpensearchException {
 		return this.transport.performRequest(MasterRequest._INSTANCE, MasterRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -379,7 +379,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodeattrs.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public NodeattrsResponse nodeattrs() throws IOException, ElasticsearchException {
+	public NodeattrsResponse nodeattrs() throws IOException, OpensearchException {
 		return this.transport.performRequest(NodeattrsRequest._INSTANCE, NodeattrsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -394,7 +394,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public NodesResponse nodes(NodesRequest request) throws IOException, ElasticsearchException {
+	public NodesResponse nodes(NodesRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<NodesRequest, NodesResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesRequest, NodesResponse, ErrorResponse>) NodesRequest._ENDPOINT;
 
@@ -413,7 +413,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final NodesResponse nodes(Function<NodesRequest.Builder, ObjectBuilder<NodesRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return nodes(fn.apply(new NodesRequest.Builder()).build());
 	}
 
@@ -425,7 +425,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public NodesResponse nodes() throws IOException, ElasticsearchException {
+	public NodesResponse nodes() throws IOException, OpensearchException {
 		return this.transport.performRequest(new NodesRequest.Builder().build(), NodesRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -439,7 +439,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-pending-tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public PendingTasksResponse pendingTasks() throws IOException, ElasticsearchException {
+	public PendingTasksResponse pendingTasks() throws IOException, OpensearchException {
 		return this.transport.performRequest(PendingTasksRequest._INSTANCE, PendingTasksRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -453,7 +453,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-plugins.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public PluginsResponse plugins() throws IOException, ElasticsearchException {
+	public PluginsResponse plugins() throws IOException, OpensearchException {
 		return this.transport.performRequest(PluginsRequest._INSTANCE, PluginsRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -467,7 +467,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public RecoveryResponse recovery(RecoveryRequest request) throws IOException, ElasticsearchException {
+	public RecoveryResponse recovery(RecoveryRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RecoveryRequest, RecoveryResponse, ErrorResponse> endpoint = (JsonEndpoint<RecoveryRequest, RecoveryResponse, ErrorResponse>) RecoveryRequest._ENDPOINT;
 
@@ -486,7 +486,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final RecoveryResponse recovery(Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return recovery(fn.apply(new RecoveryRequest.Builder()).build());
 	}
 
@@ -498,7 +498,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public RecoveryResponse recovery() throws IOException, ElasticsearchException {
+	public RecoveryResponse recovery() throws IOException, OpensearchException {
 		return this.transport.performRequest(new RecoveryRequest.Builder().build(), RecoveryRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -512,7 +512,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-repositories.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public RepositoriesResponse repositories() throws IOException, ElasticsearchException {
+	public RepositoriesResponse repositories() throws IOException, OpensearchException {
 		return this.transport.performRequest(RepositoriesRequest._INSTANCE, RepositoriesRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -527,7 +527,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public SegmentsResponse segments(SegmentsRequest request) throws IOException, ElasticsearchException {
+	public SegmentsResponse segments(SegmentsRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> endpoint = (JsonEndpoint<SegmentsRequest, SegmentsResponse, ErrorResponse>) SegmentsRequest._ENDPOINT;
 
@@ -546,7 +546,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final SegmentsResponse segments(Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return segments(fn.apply(new SegmentsRequest.Builder()).build());
 	}
 
@@ -558,7 +558,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public SegmentsResponse segments() throws IOException, ElasticsearchException {
+	public SegmentsResponse segments() throws IOException, OpensearchException {
 		return this.transport.performRequest(new SegmentsRequest.Builder().build(), SegmentsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -573,7 +573,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public ShardsResponse shards(ShardsRequest request) throws IOException, ElasticsearchException {
+	public ShardsResponse shards(ShardsRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ShardsRequest, ShardsResponse, ErrorResponse> endpoint = (JsonEndpoint<ShardsRequest, ShardsResponse, ErrorResponse>) ShardsRequest._ENDPOINT;
 
@@ -592,7 +592,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final ShardsResponse shards(Function<ShardsRequest.Builder, ObjectBuilder<ShardsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return shards(fn.apply(new ShardsRequest.Builder()).build());
 	}
 
@@ -604,7 +604,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public ShardsResponse shards() throws IOException, ElasticsearchException {
+	public ShardsResponse shards() throws IOException, OpensearchException {
 		return this.transport.performRequest(new ShardsRequest.Builder().build(), ShardsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -619,7 +619,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public SnapshotsResponse snapshots(SnapshotsRequest request) throws IOException, ElasticsearchException {
+	public SnapshotsResponse snapshots(SnapshotsRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SnapshotsRequest, SnapshotsResponse, ErrorResponse> endpoint = (JsonEndpoint<SnapshotsRequest, SnapshotsResponse, ErrorResponse>) SnapshotsRequest._ENDPOINT;
 
@@ -638,7 +638,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final SnapshotsResponse snapshots(Function<SnapshotsRequest.Builder, ObjectBuilder<SnapshotsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return snapshots(fn.apply(new SnapshotsRequest.Builder()).build());
 	}
 
@@ -650,7 +650,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public SnapshotsResponse snapshots() throws IOException, ElasticsearchException {
+	public SnapshotsResponse snapshots() throws IOException, OpensearchException {
 		return this.transport.performRequest(new SnapshotsRequest.Builder().build(), SnapshotsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -666,7 +666,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public TasksResponse tasks(TasksRequest request) throws IOException, ElasticsearchException {
+	public TasksResponse tasks(TasksRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<TasksRequest, TasksResponse, ErrorResponse> endpoint = (JsonEndpoint<TasksRequest, TasksResponse, ErrorResponse>) TasksRequest._ENDPOINT;
 
@@ -686,7 +686,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final TasksResponse tasks(Function<TasksRequest.Builder, ObjectBuilder<TasksRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return tasks(fn.apply(new TasksRequest.Builder()).build());
 	}
 
@@ -699,7 +699,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public TasksResponse tasks() throws IOException, ElasticsearchException {
+	public TasksResponse tasks() throws IOException, OpensearchException {
 		return this.transport.performRequest(new TasksRequest.Builder().build(), TasksRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -714,7 +714,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public TemplatesResponse templates(TemplatesRequest request) throws IOException, ElasticsearchException {
+	public TemplatesResponse templates(TemplatesRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<TemplatesRequest, TemplatesResponse, ErrorResponse> endpoint = (JsonEndpoint<TemplatesRequest, TemplatesResponse, ErrorResponse>) TemplatesRequest._ENDPOINT;
 
@@ -733,7 +733,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final TemplatesResponse templates(Function<TemplatesRequest.Builder, ObjectBuilder<TemplatesRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return templates(fn.apply(new TemplatesRequest.Builder()).build());
 	}
 
@@ -745,7 +745,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public TemplatesResponse templates() throws IOException, ElasticsearchException {
+	public TemplatesResponse templates() throws IOException, OpensearchException {
 		return this.transport.performRequest(new TemplatesRequest.Builder().build(), TemplatesRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -761,7 +761,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public ThreadPoolResponse threadPool(ThreadPoolRequest request) throws IOException, ElasticsearchException {
+	public ThreadPoolResponse threadPool(ThreadPoolRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ThreadPoolRequest, ThreadPoolResponse, ErrorResponse> endpoint = (JsonEndpoint<ThreadPoolRequest, ThreadPoolResponse, ErrorResponse>) ThreadPoolRequest._ENDPOINT;
 
@@ -781,7 +781,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 */
 
 	public final ThreadPoolResponse threadPool(Function<ThreadPoolRequest.Builder, ObjectBuilder<ThreadPoolRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return threadPool(fn.apply(new ThreadPoolRequest.Builder()).build());
 	}
 
@@ -794,7 +794,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *      on elastic.co</a>
 	 */
 
-	public ThreadPoolResponse threadPool() throws IOException, ElasticsearchException {
+	public ThreadPoolResponse threadPool() throws IOException, OpensearchException {
 		return this.transport.performRequest(new ThreadPoolRequest.Builder().build(), ThreadPoolRequest._ENDPOINT,
 				this.transportOptions);
 	}

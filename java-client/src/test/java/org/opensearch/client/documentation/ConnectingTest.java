@@ -23,7 +23,7 @@ import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.search.Hit;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
-import org.opensearch.client.transport.ElasticsearchTransport;
+import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
@@ -43,7 +43,7 @@ public class ConnectingTest {
             new HttpHost("localhost", 9200)).build();
 
         // Create the transport with a Jackson mapper
-        ElasticsearchTransport transport = new RestClientTransport(
+        OpensearchTransport transport = new RestClientTransport(
             restClient, new JacksonJsonpMapper());
 
         // And create the API client

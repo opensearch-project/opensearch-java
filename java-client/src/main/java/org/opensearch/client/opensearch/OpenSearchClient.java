@@ -37,10 +37,10 @@
 package org.opensearch.client.opensearch;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch.cat.ElasticsearchCatClient;
-import org.opensearch.client.opensearch.cluster.ElasticsearchClusterClient;
+import org.opensearch.client.opensearch.cat.OpensearchCatClient;
+import org.opensearch.client.opensearch.cluster.OpensearchClusterClient;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.ClearScrollRequest;
@@ -120,15 +120,15 @@ import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.core.UpdateRequest;
 import org.opensearch.client.opensearch.core.UpdateResponse;
-import org.opensearch.client.opensearch.dangling_indices.ElasticsearchDanglingIndicesClient;
-import org.opensearch.client.opensearch.features.ElasticsearchFeaturesClient;
-import org.opensearch.client.opensearch.indices.ElasticsearchIndicesClient;
-import org.opensearch.client.opensearch.ingest.ElasticsearchIngestClient;
-import org.opensearch.client.opensearch.nodes.ElasticsearchNodesClient;
-import org.opensearch.client.opensearch.shutdown.ElasticsearchShutdownClient;
-import org.opensearch.client.opensearch.snapshot.ElasticsearchSnapshotClient;
-import org.opensearch.client.opensearch.tasks.ElasticsearchTasksClient;
-import org.opensearch.client.transport.ElasticsearchTransport;
+import org.opensearch.client.opensearch.dangling_indices.OpensearchDanglingIndicesClient;
+import org.opensearch.client.opensearch.features.OpensearchFeaturesClient;
+import org.opensearch.client.opensearch.indices.OpensearchIndicesClient;
+import org.opensearch.client.opensearch.ingest.OpensearchIngestClient;
+import org.opensearch.client.opensearch.nodes.OpensearchNodesClient;
+import org.opensearch.client.opensearch.shutdown.OpensearchShutdownClient;
+import org.opensearch.client.opensearch.snapshot.OpensearchSnapshotClient;
+import org.opensearch.client.opensearch.tasks.OpensearchTasksClient;
+import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
@@ -141,13 +141,13 @@ import javax.annotation.Nullable;
 /**
  * Client for the namespace.
  */
-public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSearchClient> {
+public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchClient> {
 
-	public OpenSearchClient(ElasticsearchTransport transport) {
+	public OpenSearchClient(OpensearchTransport transport) {
 		super(transport, null);
 	}
 
-	public OpenSearchClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+	public OpenSearchClient(OpensearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
@@ -158,44 +158,44 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	// ----- Child clients
 
-	public ElasticsearchCatClient cat() {
-		return new ElasticsearchCatClient(this.transport, this.transportOptions);
+	public OpensearchCatClient cat() {
+		return new OpensearchCatClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchClusterClient cluster() {
-		return new ElasticsearchClusterClient(this.transport, this.transportOptions);
+	public OpensearchClusterClient cluster() {
+		return new OpensearchClusterClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchDanglingIndicesClient danglingIndices() {
-		return new ElasticsearchDanglingIndicesClient(this.transport, this.transportOptions);
+	public OpensearchDanglingIndicesClient danglingIndices() {
+		return new OpensearchDanglingIndicesClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchFeaturesClient features() {
-		return new ElasticsearchFeaturesClient(this.transport, this.transportOptions);
+	public OpensearchFeaturesClient features() {
+		return new OpensearchFeaturesClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchIndicesClient indices() {
-		return new ElasticsearchIndicesClient(this.transport, this.transportOptions);
+	public OpensearchIndicesClient indices() {
+		return new OpensearchIndicesClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchIngestClient ingest() {
-		return new ElasticsearchIngestClient(this.transport, this.transportOptions);
+	public OpensearchIngestClient ingest() {
+		return new OpensearchIngestClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchNodesClient nodes() {
-		return new ElasticsearchNodesClient(this.transport, this.transportOptions);
+	public OpensearchNodesClient nodes() {
+		return new OpensearchNodesClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchShutdownClient shutdown() {
-		return new ElasticsearchShutdownClient(this.transport, this.transportOptions);
+	public OpensearchShutdownClient shutdown() {
+		return new OpensearchShutdownClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchSnapshotClient snapshot() {
-		return new ElasticsearchSnapshotClient(this.transport, this.transportOptions);
+	public OpensearchSnapshotClient snapshot() {
+		return new OpensearchSnapshotClient(this.transport, this.transportOptions);
 	}
 
-	public ElasticsearchTasksClient tasks() {
-		return new ElasticsearchTasksClient(this.transport, this.transportOptions);
+	public OpensearchTasksClient tasks() {
+		return new OpensearchTasksClient(this.transport, this.transportOptions);
 	}
 
 	// ----- Endpoint: bulk
@@ -209,7 +209,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public BulkResponse bulk(BulkRequest request) throws IOException, ElasticsearchException {
+	public BulkResponse bulk(BulkRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<BulkRequest, BulkResponse, ErrorResponse> endpoint = (JsonEndpoint<BulkRequest, BulkResponse, ErrorResponse>) BulkRequest._ENDPOINT;
 
@@ -229,7 +229,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public final BulkResponse bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return bulk(fn.apply(new BulkRequest.Builder()).build());
 	}
 
@@ -242,7 +242,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public BulkResponse bulk() throws IOException, ElasticsearchException {
+	public BulkResponse bulk() throws IOException, OpensearchException {
 		return this.transport.performRequest(new BulkRequest.Builder().build(), BulkRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -257,7 +257,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public ClearScrollResponse clearScroll(ClearScrollRequest request) throws IOException, ElasticsearchException {
+	public ClearScrollResponse clearScroll(ClearScrollRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ClearScrollRequest, ClearScrollResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearScrollRequest, ClearScrollResponse, ErrorResponse>) ClearScrollRequest._ENDPOINT;
 
@@ -277,7 +277,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final ClearScrollResponse clearScroll(
 			Function<ClearScrollRequest.Builder, ObjectBuilder<ClearScrollRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return clearScroll(fn.apply(new ClearScrollRequest.Builder()).build());
 	}
 
@@ -289,7 +289,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public ClearScrollResponse clearScroll() throws IOException, ElasticsearchException {
+	public ClearScrollResponse clearScroll() throws IOException, OpensearchException {
 		return this.transport.performRequest(new ClearScrollRequest.Builder().build(), ClearScrollRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -305,7 +305,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public ClosePointInTimeResponse closePointInTime(ClosePointInTimeRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse> endpoint = (JsonEndpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse>) ClosePointInTimeRequest._ENDPOINT;
 
@@ -325,7 +325,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final ClosePointInTimeResponse closePointInTime(
 			Function<ClosePointInTimeRequest.Builder, ObjectBuilder<ClosePointInTimeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return closePointInTime(fn.apply(new ClosePointInTimeRequest.Builder()).build());
 	}
 
@@ -339,7 +339,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public CountResponse count(CountRequest request) throws IOException, ElasticsearchException {
+	public CountResponse count(CountRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<CountRequest, CountResponse, ErrorResponse> endpoint = (JsonEndpoint<CountRequest, CountResponse, ErrorResponse>) CountRequest._ENDPOINT;
 
@@ -358,7 +358,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public final CountResponse count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return count(fn.apply(new CountRequest.Builder()).build());
 	}
 
@@ -370,7 +370,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public CountResponse count() throws IOException, ElasticsearchException {
+	public CountResponse count() throws IOException, OpensearchException {
 		return this.transport.performRequest(new CountRequest.Builder().build(), CountRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -389,7 +389,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public <TDocument> CreateResponse create(CreateRequest<TDocument> request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<CreateRequest<?>, CreateResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateRequest<?>, CreateResponse, ErrorResponse>) CreateRequest._ENDPOINT;
 
@@ -412,7 +412,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final <TDocument> CreateResponse create(
 			Function<CreateRequest.Builder<TDocument>, ObjectBuilder<CreateRequest<TDocument>>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
 	}
 
@@ -426,7 +426,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteResponse delete(DeleteRequest request) throws IOException, ElasticsearchException {
+	public DeleteResponse delete(DeleteRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteRequest, DeleteResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteRequest, DeleteResponse, ErrorResponse>) DeleteRequest._ENDPOINT;
 
@@ -445,7 +445,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public final DeleteResponse delete(Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return delete(fn.apply(new DeleteRequest.Builder()).build());
 	}
 
@@ -460,7 +460,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public DeleteByQueryResponse deleteByQuery(DeleteByQueryRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteByQueryRequest, DeleteByQueryResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteByQueryRequest, DeleteByQueryResponse, ErrorResponse>) DeleteByQueryRequest._ENDPOINT;
 
@@ -480,7 +480,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final DeleteByQueryResponse deleteByQuery(
 			Function<DeleteByQueryRequest.Builder, ObjectBuilder<DeleteByQueryRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deleteByQuery(fn.apply(new DeleteByQueryRequest.Builder()).build());
 	}
 
@@ -496,7 +496,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public DeleteByQueryRethrottleResponse deleteByQueryRethrottle(DeleteByQueryRethrottleRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ErrorResponse>) DeleteByQueryRethrottleRequest._ENDPOINT;
 
@@ -517,7 +517,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final DeleteByQueryRethrottleResponse deleteByQueryRethrottle(
 			Function<DeleteByQueryRethrottleRequest.Builder, ObjectBuilder<DeleteByQueryRethrottleRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deleteByQueryRethrottle(fn.apply(new DeleteByQueryRethrottleRequest.Builder()).build());
 	}
 
@@ -531,7 +531,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteScriptResponse deleteScript(DeleteScriptRequest request) throws IOException, ElasticsearchException {
+	public DeleteScriptResponse deleteScript(DeleteScriptRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteScriptRequest, DeleteScriptResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteScriptRequest, DeleteScriptResponse, ErrorResponse>) DeleteScriptRequest._ENDPOINT;
 
@@ -551,7 +551,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final DeleteScriptResponse deleteScript(
 			Function<DeleteScriptRequest.Builder, ObjectBuilder<DeleteScriptRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deleteScript(fn.apply(new DeleteScriptRequest.Builder()).build());
 	}
 
@@ -565,7 +565,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse exists(ExistsRequest request) throws IOException, ElasticsearchException {
+	public BooleanResponse exists(ExistsRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse>) ExistsRequest._ENDPOINT;
 
@@ -584,7 +584,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return exists(fn.apply(new ExistsRequest.Builder()).build());
 	}
 
@@ -598,7 +598,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException, ElasticsearchException {
+	public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse>) ExistsSourceRequest._ENDPOINT;
 
@@ -618,7 +618,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final BooleanResponse existsSource(
 			Function<ExistsSourceRequest.Builder, ObjectBuilder<ExistsSourceRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return existsSource(fn.apply(new ExistsSourceRequest.Builder()).build());
 	}
 
@@ -633,7 +633,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public <TDocument> ExplainResponse<TDocument> explain(ExplainRequest request, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse>) ExplainRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -655,7 +655,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final <TDocument> ExplainResponse<TDocument> explain(
 			Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -670,7 +670,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public FieldCapsResponse fieldCaps(FieldCapsRequest request) throws IOException, ElasticsearchException {
+	public FieldCapsResponse fieldCaps(FieldCapsRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse> endpoint = (JsonEndpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse>) FieldCapsRequest._ENDPOINT;
 
@@ -690,7 +690,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public final FieldCapsResponse fieldCaps(Function<FieldCapsRequest.Builder, ObjectBuilder<FieldCapsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return fieldCaps(fn.apply(new FieldCapsRequest.Builder()).build());
 	}
 
@@ -703,7 +703,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public FieldCapsResponse fieldCaps() throws IOException, ElasticsearchException {
+	public FieldCapsResponse fieldCaps() throws IOException, OpensearchException {
 		return this.transport.performRequest(new FieldCapsRequest.Builder().build(), FieldCapsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -719,7 +719,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public <TDocument> GetResponse<TDocument> get(GetRequest request, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse>) GetRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -740,7 +740,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public final <TDocument> GetResponse<TDocument> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
 		return get(fn.apply(new GetRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -754,7 +754,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public GetScriptResponse getScript(GetScriptRequest request) throws IOException, ElasticsearchException {
+	public GetScriptResponse getScript(GetScriptRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetScriptRequest, GetScriptResponse, ErrorResponse> endpoint = (JsonEndpoint<GetScriptRequest, GetScriptResponse, ErrorResponse>) GetScriptRequest._ENDPOINT;
 
@@ -773,7 +773,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public final GetScriptResponse getScript(Function<GetScriptRequest.Builder, ObjectBuilder<GetScriptRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getScript(fn.apply(new GetScriptRequest.Builder()).build());
 	}
 
@@ -786,7 +786,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetScriptContextResponse getScriptContext() throws IOException, ElasticsearchException {
+	public GetScriptContextResponse getScriptContext() throws IOException, OpensearchException {
 		return this.transport.performRequest(GetScriptContextRequest._INSTANCE, GetScriptContextRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -800,7 +800,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetScriptLanguagesResponse getScriptLanguages() throws IOException, ElasticsearchException {
+	public GetScriptLanguagesResponse getScriptLanguages() throws IOException, OpensearchException {
 		return this.transport.performRequest(GetScriptLanguagesRequest._INSTANCE, GetScriptLanguagesRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -816,7 +816,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public <TDocument> GetSourceResponse<TDocument> getSource(GetSourceRequest request, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse>) GetSourceRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -838,7 +838,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final <TDocument> GetSourceResponse<TDocument> getSource(
 			Function<GetSourceRequest.Builder, ObjectBuilder<GetSourceRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getSource(fn.apply(new GetSourceRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -852,7 +852,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public <TDocument> IndexResponse index(IndexRequest<TDocument> request) throws IOException, ElasticsearchException {
+	public <TDocument> IndexResponse index(IndexRequest<TDocument> request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<IndexRequest<?>, IndexResponse, ErrorResponse> endpoint = (JsonEndpoint<IndexRequest<?>, IndexResponse, ErrorResponse>) IndexRequest._ENDPOINT;
 
@@ -872,7 +872,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final <TDocument> IndexResponse index(
 			Function<IndexRequest.Builder<TDocument>, ObjectBuilder<IndexRequest<TDocument>>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return index(fn.apply(new IndexRequest.Builder<TDocument>()).build());
 	}
 
@@ -885,7 +885,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public InfoResponse info() throws IOException, ElasticsearchException {
+	public InfoResponse info() throws IOException, OpensearchException {
 		return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -900,7 +900,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public <TDocument> MgetResponse<TDocument> mget(MgetRequest request, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse>) MgetRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -921,7 +921,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public final <TDocument> MgetResponse<TDocument> mget(Function<MgetRequest.Builder, ObjectBuilder<MgetRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
 		return mget(fn.apply(new MgetRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -936,7 +936,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public <TDocument> MsearchResponse<TDocument> msearch(MsearchRequest request, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse>) MsearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -958,7 +958,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final <TDocument> MsearchResponse<TDocument> msearch(
 			Function<MsearchRequest.Builder, ObjectBuilder<MsearchRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return msearch(fn.apply(new MsearchRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -973,7 +973,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(MsearchTemplateRequest request,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse>) MsearchTemplateRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -995,7 +995,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(
 			Function<MsearchTemplateRequest.Builder, ObjectBuilder<MsearchTemplateRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
 		return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -1009,7 +1009,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public MtermvectorsResponse mtermvectors(MtermvectorsRequest request) throws IOException, ElasticsearchException {
+	public MtermvectorsResponse mtermvectors(MtermvectorsRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<MtermvectorsRequest, MtermvectorsResponse, ErrorResponse> endpoint = (JsonEndpoint<MtermvectorsRequest, MtermvectorsResponse, ErrorResponse>) MtermvectorsRequest._ENDPOINT;
 
@@ -1029,7 +1029,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final MtermvectorsResponse mtermvectors(
 			Function<MtermvectorsRequest.Builder, ObjectBuilder<MtermvectorsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return mtermvectors(fn.apply(new MtermvectorsRequest.Builder()).build());
 	}
 
@@ -1041,7 +1041,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public MtermvectorsResponse mtermvectors() throws IOException, ElasticsearchException {
+	public MtermvectorsResponse mtermvectors() throws IOException, OpensearchException {
 		return this.transport.performRequest(new MtermvectorsRequest.Builder().build(), MtermvectorsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1057,7 +1057,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public OpenPointInTimeResponse openPointInTime(OpenPointInTimeRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse> endpoint = (JsonEndpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse>) OpenPointInTimeRequest._ENDPOINT;
 
@@ -1077,7 +1077,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final OpenPointInTimeResponse openPointInTime(
 			Function<OpenPointInTimeRequest.Builder, ObjectBuilder<OpenPointInTimeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return openPointInTime(fn.apply(new OpenPointInTimeRequest.Builder()).build());
 	}
 
@@ -1090,7 +1090,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public BooleanResponse ping() throws IOException, ElasticsearchException {
+	public BooleanResponse ping() throws IOException, OpensearchException {
 		return this.transport.performRequest(PingRequest._INSTANCE, PingRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -1104,7 +1104,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public PutScriptResponse putScript(PutScriptRequest request) throws IOException, ElasticsearchException {
+	public PutScriptResponse putScript(PutScriptRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutScriptRequest, PutScriptResponse, ErrorResponse> endpoint = (JsonEndpoint<PutScriptRequest, PutScriptResponse, ErrorResponse>) PutScriptRequest._ENDPOINT;
 
@@ -1123,7 +1123,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public final PutScriptResponse putScript(Function<PutScriptRequest.Builder, ObjectBuilder<PutScriptRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return putScript(fn.apply(new PutScriptRequest.Builder()).build());
 	}
 
@@ -1138,7 +1138,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public RankEvalResponse rankEval(RankEvalRequest request) throws IOException, ElasticsearchException {
+	public RankEvalResponse rankEval(RankEvalRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RankEvalRequest, RankEvalResponse, ErrorResponse> endpoint = (JsonEndpoint<RankEvalRequest, RankEvalResponse, ErrorResponse>) RankEvalRequest._ENDPOINT;
 
@@ -1158,7 +1158,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public final RankEvalResponse rankEval(Function<RankEvalRequest.Builder, ObjectBuilder<RankEvalRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return rankEval(fn.apply(new RankEvalRequest.Builder()).build());
 	}
 
@@ -1174,7 +1174,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public ReindexResponse reindex(ReindexRequest request) throws IOException, ElasticsearchException {
+	public ReindexResponse reindex(ReindexRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ReindexRequest, ReindexResponse, ErrorResponse> endpoint = (JsonEndpoint<ReindexRequest, ReindexResponse, ErrorResponse>) ReindexRequest._ENDPOINT;
 
@@ -1195,7 +1195,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public final ReindexResponse reindex(Function<ReindexRequest.Builder, ObjectBuilder<ReindexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return reindex(fn.apply(new ReindexRequest.Builder()).build());
 	}
 
@@ -1209,7 +1209,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public ReindexResponse reindex() throws IOException, ElasticsearchException {
+	public ReindexResponse reindex() throws IOException, OpensearchException {
 		return this.transport.performRequest(new ReindexRequest.Builder().build(), ReindexRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1225,7 +1225,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public ReindexRethrottleResponse reindexRethrottle(ReindexRethrottleRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ReindexRethrottleRequest, ReindexRethrottleResponse, ErrorResponse> endpoint = (JsonEndpoint<ReindexRethrottleRequest, ReindexRethrottleResponse, ErrorResponse>) ReindexRethrottleRequest._ENDPOINT;
 
@@ -1245,7 +1245,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final ReindexRethrottleResponse reindexRethrottle(
 			Function<ReindexRethrottleRequest.Builder, ObjectBuilder<ReindexRethrottleRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return reindexRethrottle(fn.apply(new ReindexRethrottleRequest.Builder()).build());
 	}
 
@@ -1260,7 +1260,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public RenderSearchTemplateResponse renderSearchTemplate(RenderSearchTemplateRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RenderSearchTemplateRequest, RenderSearchTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<RenderSearchTemplateRequest, RenderSearchTemplateResponse, ErrorResponse>) RenderSearchTemplateRequest._ENDPOINT;
 
@@ -1280,7 +1280,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final RenderSearchTemplateResponse renderSearchTemplate(
 			Function<RenderSearchTemplateRequest.Builder, ObjectBuilder<RenderSearchTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return renderSearchTemplate(fn.apply(new RenderSearchTemplateRequest.Builder()).build());
 	}
 
@@ -1292,7 +1292,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public RenderSearchTemplateResponse renderSearchTemplate() throws IOException, ElasticsearchException {
+	public RenderSearchTemplateResponse renderSearchTemplate() throws IOException, OpensearchException {
 		return this.transport.performRequest(new RenderSearchTemplateRequest.Builder().build(),
 				RenderSearchTemplateRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1309,7 +1309,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
 			ScriptsPainlessExecuteRequest request, Class<TResult> tResultClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> endpoint = (JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -1332,7 +1332,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
 			Function<ScriptsPainlessExecuteRequest.Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn,
-			Class<TResult> tResultClass) throws IOException, ElasticsearchException {
+			Class<TResult> tResultClass) throws IOException, OpensearchException {
 		return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), tResultClass);
 	}
 
@@ -1347,7 +1347,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public <TDocument> ScrollResponse<TDocument> scroll(ScrollRequest request, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse>) ScrollRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -1369,7 +1369,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final <TDocument> ScrollResponse<TDocument> scroll(
 			Function<ScrollRequest.Builder, ObjectBuilder<ScrollRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return scroll(fn.apply(new ScrollRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -1384,7 +1384,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public <TDocument> SearchResponse<TDocument> search(SearchRequest request, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse>) SearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -1406,7 +1406,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final <TDocument> SearchResponse<TDocument> search(
 			Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -1421,7 +1421,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public SearchShardsResponse searchShards(SearchShardsRequest request) throws IOException, ElasticsearchException {
+	public SearchShardsResponse searchShards(SearchShardsRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SearchShardsRequest, SearchShardsResponse, ErrorResponse> endpoint = (JsonEndpoint<SearchShardsRequest, SearchShardsResponse, ErrorResponse>) SearchShardsRequest._ENDPOINT;
 
@@ -1442,7 +1442,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final SearchShardsResponse searchShards(
 			Function<SearchShardsRequest.Builder, ObjectBuilder<SearchShardsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return searchShards(fn.apply(new SearchShardsRequest.Builder()).build());
 	}
 
@@ -1455,7 +1455,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public SearchShardsResponse searchShards() throws IOException, ElasticsearchException {
+	public SearchShardsResponse searchShards() throws IOException, OpensearchException {
 		return this.transport.performRequest(new SearchShardsRequest.Builder().build(), SearchShardsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1471,7 +1471,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public <TDocument> SearchTemplateResponse<TDocument> searchTemplate(SearchTemplateRequest request,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse>) SearchTemplateRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -1493,7 +1493,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final <TDocument> SearchTemplateResponse<TDocument> searchTemplate(
 			Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
 		return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -1509,7 +1509,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 *      on elastic.co</a>
 	 */
 
-	public TermsEnumResponse termsEnum(TermsEnumRequest request) throws IOException, ElasticsearchException {
+	public TermsEnumResponse termsEnum(TermsEnumRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<TermsEnumRequest, TermsEnumResponse, ErrorResponse> endpoint = (JsonEndpoint<TermsEnumRequest, TermsEnumResponse, ErrorResponse>) TermsEnumRequest._ENDPOINT;
 
@@ -1530,7 +1530,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public final TermsEnumResponse termsEnum(Function<TermsEnumRequest.Builder, ObjectBuilder<TermsEnumRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return termsEnum(fn.apply(new TermsEnumRequest.Builder()).build());
 	}
 
@@ -1546,7 +1546,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public <TDocument> TermvectorsResponse termvectors(TermvectorsRequest<TDocument> request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<TermvectorsRequest<?>, TermvectorsResponse, ErrorResponse> endpoint = (JsonEndpoint<TermvectorsRequest<?>, TermvectorsResponse, ErrorResponse>) TermvectorsRequest._ENDPOINT;
 
@@ -1567,7 +1567,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final <TDocument> TermvectorsResponse termvectors(
 			Function<TermvectorsRequest.Builder<TDocument>, ObjectBuilder<TermvectorsRequest<TDocument>>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return termvectors(fn.apply(new TermvectorsRequest.Builder<TDocument>()).build());
 	}
 
@@ -1583,7 +1583,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
 			UpdateRequest<TDocument, TPartialDocument> request, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse>) UpdateRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -1605,7 +1605,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
 			Function<UpdateRequest.Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>>> fn,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) throws IOException, OpensearchException {
 		return update(fn.apply(new UpdateRequest.Builder<TDocument, TPartialDocument>()).build(), tDocumentClass);
 	}
 
@@ -1621,7 +1621,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public UpdateByQueryResponse updateByQuery(UpdateByQueryRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpdateByQueryRequest, UpdateByQueryResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateByQueryRequest, UpdateByQueryResponse, ErrorResponse>) UpdateByQueryRequest._ENDPOINT;
 
@@ -1642,7 +1642,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final UpdateByQueryResponse updateByQuery(
 			Function<UpdateByQueryRequest.Builder, ObjectBuilder<UpdateByQueryRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return updateByQuery(fn.apply(new UpdateByQueryRequest.Builder()).build());
 	}
 
@@ -1658,7 +1658,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 	 */
 
 	public UpdateByQueryRethrottleResponse updateByQueryRethrottle(UpdateByQueryRethrottleRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ErrorResponse>) UpdateByQueryRethrottleRequest._ENDPOINT;
 
@@ -1679,7 +1679,7 @@ public class OpenSearchClient extends ApiClient<ElasticsearchTransport, OpenSear
 
 	public final UpdateByQueryRethrottleResponse updateByQueryRethrottle(
 			Function<UpdateByQueryRethrottleRequest.Builder, ObjectBuilder<UpdateByQueryRethrottleRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return updateByQueryRethrottle(fn.apply(new UpdateByQueryRethrottleRequest.Builder()).build());
 	}
 

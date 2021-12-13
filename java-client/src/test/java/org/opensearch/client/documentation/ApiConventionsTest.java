@@ -30,7 +30,7 @@ import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.indices.Alias;
 import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
-import org.opensearch.client.transport.ElasticsearchTransport;
+import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.junit.Assert;
@@ -47,7 +47,7 @@ public class ApiConventionsTest extends Assert {
 
     private static class SomeApplicationData {}
 
-    private ElasticsearchTransport transport = new FailingTransport();
+    private OpensearchTransport transport = new FailingTransport();
     Logger logger = LogManager.getLogManager().getLogger(ApiConventionsTest.class.getName());
 
     @Test(expected = TransportException.class)

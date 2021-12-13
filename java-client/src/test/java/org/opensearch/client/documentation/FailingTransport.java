@@ -21,7 +21,7 @@ package org.opensearch.client.documentation;
 
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
-import org.opensearch.client.transport.ElasticsearchTransport;
+import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.TransportOptions;
@@ -38,7 +38,7 @@ import java.util.function.Function;
 /**
  * A transport implementation that always fails. Used for simple doc sections where we just want to check compilation.
  */
-public class FailingTransport implements ElasticsearchTransport {
+public class FailingTransport implements OpensearchTransport {
 
     private JsonpMapper mapper = new JsonbJsonpMapper();
 

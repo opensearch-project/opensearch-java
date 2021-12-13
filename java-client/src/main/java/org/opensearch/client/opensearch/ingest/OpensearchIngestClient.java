@@ -24,9 +24,9 @@
 package org.opensearch.client.opensearch.ingest;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ElasticsearchException;
+import org.opensearch.client.opensearch._types.OpensearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.ElasticsearchTransport;
+import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -37,19 +37,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the ingest namespace.
  */
-public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport, ElasticsearchIngestClient> {
+public class OpensearchIngestClient extends ApiClient<OpensearchTransport, OpensearchIngestClient> {
 
-	public ElasticsearchIngestClient(ElasticsearchTransport transport) {
+	public OpensearchIngestClient(OpensearchTransport transport) {
 		super(transport, null);
 	}
 
-	public ElasticsearchIngestClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+	public OpensearchIngestClient(OpensearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public ElasticsearchIngestClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new ElasticsearchIngestClient(this.transport, transportOptions);
+	public OpensearchIngestClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpensearchIngestClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: ingest.delete_pipeline
@@ -63,7 +63,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 */
 
 	public DeletePipelineResponse deletePipeline(DeletePipelineRequest request)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse> endpoint = (JsonEndpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse>) DeletePipelineRequest._ENDPOINT;
 
@@ -83,7 +83,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 
 	public final DeletePipelineResponse deletePipeline(
 			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
 	}
 
@@ -96,7 +96,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/geoip-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GeoIpStatsResponse geoIpStats() throws IOException, ElasticsearchException {
+	public GeoIpStatsResponse geoIpStats() throws IOException, OpensearchException {
 		return this.transport.performRequest(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -111,7 +111,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *      on elastic.co</a>
 	 */
 
-	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, ElasticsearchException {
+	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> endpoint = (JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse>) GetPipelineRequest._ENDPOINT;
 
@@ -131,7 +131,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 
 	public final GetPipelineResponse getPipeline(
 			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
 	}
 
@@ -143,7 +143,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *      on elastic.co</a>
 	 */
 
-	public GetPipelineResponse getPipeline() throws IOException, ElasticsearchException {
+	public GetPipelineResponse getPipeline() throws IOException, OpensearchException {
 		return this.transport.performRequest(new GetPipelineRequest.Builder().build(), GetPipelineRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -157,7 +157,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/grok-processor.html#grok-processor-rest-get">Documentation
 	 *      on elastic.co</a>
 	 */
-	public ProcessorGrokResponse processorGrok() throws IOException, ElasticsearchException {
+	public ProcessorGrokResponse processorGrok() throws IOException, OpensearchException {
 		return this.transport.performRequest(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -172,7 +172,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *      on elastic.co</a>
 	 */
 
-	public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException, ElasticsearchException {
+	public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse> endpoint = (JsonEndpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse>) PutPipelineRequest._ENDPOINT;
 
@@ -192,7 +192,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 
 	public final PutPipelineResponse putPipeline(
 			Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
 	}
 
@@ -206,7 +206,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *      on elastic.co</a>
 	 */
 
-	public SimulateResponse simulate(SimulateRequest request) throws IOException, ElasticsearchException {
+	public SimulateResponse simulate(SimulateRequest request) throws IOException, OpensearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SimulateRequest, SimulateResponse, ErrorResponse> endpoint = (JsonEndpoint<SimulateRequest, SimulateResponse, ErrorResponse>) SimulateRequest._ENDPOINT;
 
@@ -225,7 +225,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 */
 
 	public final SimulateResponse simulate(Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			throws IOException, OpensearchException {
 		return simulate(fn.apply(new SimulateRequest.Builder()).build());
 	}
 
@@ -237,7 +237,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *      on elastic.co</a>
 	 */
 
-	public SimulateResponse simulate() throws IOException, ElasticsearchException {
+	public SimulateResponse simulate() throws IOException, OpensearchException {
 		return this.transport.performRequest(new SimulateRequest.Builder().build(), SimulateRequest._ENDPOINT,
 				this.transportOptions);
 	}
