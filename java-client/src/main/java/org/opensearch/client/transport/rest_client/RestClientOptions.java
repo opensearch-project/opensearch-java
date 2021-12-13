@@ -21,8 +21,8 @@ package org.opensearch.client.transport.rest_client;
 
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.Version;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.WarningsHandler;
+import org.opensearch.client.RequestOptions;
+import org.opensearch.client.WarningsHandler;
 
 import java.util.AbstractMap;
 import java.util.Collection;
@@ -69,7 +69,9 @@ public class RestClientOptions implements TransportOptions {
 
     @Override
     public Map<String, String> queryParameters() {
-        return options.getParameters();
+//        TODO - param not available
+//        return options.getParameters();
+        return null;
     }
 
     /**
@@ -111,7 +113,7 @@ public class RestClientOptions implements TransportOptions {
                 // We must filter out our own user-agent from the options or they'll end up as multiple values for the header
                 RequestOptions options = builder.build();
                 builder = RequestOptions.DEFAULT.toBuilder();
-                options.getParameters().forEach((k, v) -> builder.addParameter(k, v));
+//                options.getParameters().forEach((k, v) -> builder.addParameter(k, v));
                 options.getHeaders().forEach(h -> {
                     if (!h.getName().equalsIgnoreCase(USER_AGENT)) {
                         builder.addHeader(h.getName(), h.getValue());
@@ -128,7 +130,8 @@ public class RestClientOptions implements TransportOptions {
 
         @Override
         public TransportOptions.Builder setParameter(String name, String value) {
-            builder.addParameter(name, value);
+            //TODO - param not available
+//            builder.addParameter(name, value);
             return this;
         }
 
