@@ -19,6 +19,8 @@
 
 package org.opensearch.client.transport;
 
+import org.opensearch.client.ResponseException;
+import org.opensearch.client.RestClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.transport.rest_client.RestClientTransport;
@@ -26,8 +28,6 @@ import com.sun.net.httpserver.HttpServer;
 import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
-import org.elasticsearch.client.ResponseException;
-import org.elasticsearch.client.RestClient;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
