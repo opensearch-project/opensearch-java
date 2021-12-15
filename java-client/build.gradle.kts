@@ -145,6 +145,10 @@ dependencies {
     testImplementation("junit", "junit" , "4.12") {
         exclude(group = "org.hamcrest")
     }
+
+    // MIT
+    // https://github.com/classgraph/classgraph
+    testImplementation("io.github.classgraph:classgraph:4.8.116")
 }
 
 licenseReport {

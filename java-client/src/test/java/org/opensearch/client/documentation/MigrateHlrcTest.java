@@ -32,13 +32,13 @@
 
 package org.opensearch.client.documentation;
 
+import org.opensearch.client.RestClient;
+import org.opensearch.client.RestClientBuilder;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.transport.OpensearchTransport;
 import org.opensearch.client.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
-import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestClientBuilder;
 import org.junit.Test;
 
 public class MigrateHlrcTest {
