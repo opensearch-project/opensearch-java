@@ -40,7 +40,6 @@ buildscript {
         mavenLocal()
         maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots/")
         maven(url = "https://plugins.gradle.org/m2/")
-        jcenter()
     }
 }
 

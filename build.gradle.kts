@@ -41,7 +41,6 @@ allprojects {
         mavenLocal()
         maven(url = "https://plugins.gradle.org/m2/")
         maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots/")
-        jcenter()
     }
 
     apply(plugin = "checkstyle")
