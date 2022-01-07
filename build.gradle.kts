@@ -40,7 +40,6 @@ allprojects {
         mavenCentral()
         mavenLocal()
         maven(url = "https://plugins.gradle.org/m2/")
-        jcenter()
     }
 
     apply(plugin = "checkstyle")
