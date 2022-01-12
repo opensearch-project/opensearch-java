@@ -38,6 +38,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpMapperBase;
 import org.opensearch.client.json.JsonpSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import jakarta.json.spi.JsonProvider;
@@ -53,10 +54,12 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
     private final ObjectMapper objectMapper;
 
     public JacksonJsonpMapper(ObjectMapper objectMapper) {
-        this.provider = new JacksonJsonProvider();
-        this.objectMapper = objectMapper
-            .configure(SerializationFeature.INDENT_OUTPUT, false)
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        this(objectMapper, new JsonFactory());
+    }
+
+    public JacksonJsonpMapper(ObjectMapper objectMapper, JsonFactory jsonFactory) {
+        this.provider = new JacksonJsonProvider(jsonFactory);
+        this.objectMapper = objectMapper;
     }
 
     public JacksonJsonpMapper() {
