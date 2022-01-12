@@ -64,10 +64,10 @@ import java.util.Map;
  */
 public class JacksonJsonProvider extends JsonProvider {
 
-    private JsonFactory jsonFactory = new JsonFactory();
+    private final JsonFactory jsonFactory;
 
     public JacksonJsonProvider(JsonFactory jsonFactory) {
-        this.jsonFactory = new JsonFactory();
+        this.jsonFactory = jsonFactory;
     }
 
     public JacksonJsonProvider() {

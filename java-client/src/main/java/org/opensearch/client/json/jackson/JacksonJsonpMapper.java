@@ -32,6 +32,7 @@
 
 package org.opensearch.client.json.jackson;
 
+import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
@@ -48,7 +49,11 @@ public class JacksonJsonpMapper implements JsonpMapper {
     private final ObjectMapper objectMapper;
 
     public JacksonJsonpMapper(ObjectMapper objectMapper) {
-        this.provider = new JacksonJsonProvider();
+        this(objectMapper, new JsonFactory());
+    }
+
+    public JacksonJsonpMapper(ObjectMapper objectMapper, JsonFactory jsonFactory) {
+        this.provider = new JacksonJsonProvider(jsonFactory);
         this.objectMapper = objectMapper;
     }
 
