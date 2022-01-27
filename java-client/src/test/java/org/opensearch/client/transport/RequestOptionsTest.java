@@ -128,13 +128,4 @@ public class RequestOptionsTest extends Assert {
         assertEquals("Bar", props.getProperty("header-x-foo"));
         assertEquals("MegaClient/1.2.3", props.getProperty("header-user-agent"));
     }
-
-    @Test
-    public void testMissingProductHeader() {
-        final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
-        final OpenSearchClient client = new OpenSearchClient(trsp);
-
-        final TransportException ex = assertThrows(TransportException.class, client::ping);
-        assertTrue(ex.getMessage().contains("Missing [X-Elastic-Product] header"));
-    }
 }

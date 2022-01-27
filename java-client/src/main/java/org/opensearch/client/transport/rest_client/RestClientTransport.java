@@ -39,7 +39,6 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.NdJsonpSerializable;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportException;
-import org.opensearch.client.transport.Version;
 import org.opensearch.client.transport.endpoints.BooleanEndpoint;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.OpensearchTransport;
@@ -53,7 +52,6 @@ import org.apache.http.HttpEntity;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.opensearch.client.Cancellable;
 import org.opensearch.client.RequestOptions;
@@ -72,19 +70,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class RestClientTransport implements OpensearchTransport {
 
-    static final ContentType JsonContentType;
-
-    static {
-
-        if (Version.VERSION == null) {
-            JsonContentType = ContentType.APPLICATION_JSON;
-        } else {
-            JsonContentType = ContentType.create(
-                "application/vnd.elasticsearch+json",
-                new BasicNameValuePair("compatible-with", String.valueOf(Version.VERSION.major()))
-            );
-        }
-    }
+    static final ContentType JsonContentType = ContentType.APPLICATION_JSON;
 
     /**
      * The {@code Future} implementation returned by async requests.
@@ -259,10 +245,6 @@ public class RestClientTransport implements OpensearchTransport {
         try {
             int statusCode = clientResp.getStatusLine().getStatusCode();
 
-            if (statusCode == 200) {
-                checkProductHeader(clientResp, endpoint);
-            }
-
             if (endpoint.isError(statusCode)) {
                 JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
                 if (errorDeserializer == null) {
@@ -344,22 +326,4 @@ public class RestClientTransport implements OpensearchTransport {
         }
     }
 
-    private void checkProductHeader(Response clientResp, Endpoint<?, ?, ?> endpoint) throws IOException {
-        String header = clientResp.getHeader("X-Elastic-Product");
-        if (header == null) {
-            throw new TransportException(
-                "Missing [X-Elastic-Product] header. Please check that you are connecting to an Elasticsearch "
-                    + "instance, and that any networking filters are preserving that header.",
-                endpoint.id(),
-                new ResponseException(clientResp)
-            );
-        }
-
-        if (!"Elasticsearch".equals(header)) {
-            throw new TransportException("Invalid value '" + header + "' for 'X-Elastic-Product' header.",
-                endpoint.id(),
-                new ResponseException(clientResp)
-            );
-        }
-    }
 }
