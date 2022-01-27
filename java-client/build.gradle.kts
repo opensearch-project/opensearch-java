@@ -92,6 +92,10 @@ tasks.withType<Jar> {
 
 tasks.test {
     systemProperty("tests.security.manager", "false")
+    // Basic auth settings for integration test
+    systemProperty("https", System.getProperty("https", "true"))
+    systemProperty("user", System.getProperty("user", "admin"))
+    systemProperty("password", System.getProperty("password", "admin"))
 }
 
 val unitTest = task<Test>("unitTest") {
@@ -100,16 +104,16 @@ val unitTest = task<Test>("unitTest") {
     }
 }
 
-val integrationTest = task<Test>("integrationTest") {
-    filter {
-        includeTestsMatching("org.opensearch.client.opensearch.integTest.*")
-    }
-    systemProperty("tests.security.manager", "false")
-    // Basic auth settings for integration test
-    systemProperty("https", System.getProperty("https", "true"))
-    systemProperty("user", System.getProperty("user", "admin"))
-    systemProperty("password", System.getProperty("password", "admin"))
-}
+//val integrationTest = task<Test>("integrationTest") {
+//    filter {
+//        includeTestsMatching("org.opensearch.client.opensearch.integTest.*")
+//    }
+//    systemProperty("tests.security.manager", "false")
+//    // Basic auth settings for integration test
+//    systemProperty("https", System.getProperty("https", "true"))
+//    systemProperty("user", System.getProperty("user", "admin"))
+//    systemProperty("password", System.getProperty("password", "admin"))
+//}
 
 dependencies {
     val opensearchVersion = "1.2.3"
@@ -123,11 +127,14 @@ dependencies {
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
     api("com.google.code.findbugs:jsr305:3.0.2")
 
-    // Needed even if using Jackson to have an implementation of the Jsonp object model
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/jsonp
-    api("org.glassfish", "jakarta.json", "2.0.1")
+    api("jakarta.json:jakarta.json-api:2.0.1")
 
+    // Needed even if using Jackson to have an implementation of the Jsonp object model
+    // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+    // https://github.com/eclipse-ee4j/parsson
+    api("org.eclipse.parsson:parsson:1.0.0")
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // http://json-b.net/
     implementation("jakarta.json.bind", "jakarta.json.bind-api", "2.0.0")
