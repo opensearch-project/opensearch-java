@@ -179,7 +179,7 @@ public class RestClientOptions implements TransportOptions {
     static RestClientOptions initialOptions() {
         String ua = String.format(
             Locale.ROOT,
-            "elastic-java/%s (Java/%s)",
+            "opensearch-java/%s (Java/%s)",
             Version.VERSION == null ? "Unknown" : Version.VERSION.toString(),
             System.getProperty("java.version")
         );
