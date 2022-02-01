@@ -196,7 +196,7 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 	 * provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<MgetResponse<Object>> _DESERIALIZER = createMgetResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.mget.TDocument"));
+			new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.mget.TDocument"));
 
 	protected static <TDocument> void setupMgetResponseDeserializer(
 			ObjectDeserializer<MgetResponse.Builder<TDocument>> op,

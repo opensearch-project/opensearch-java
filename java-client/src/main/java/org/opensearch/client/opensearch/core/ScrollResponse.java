@@ -111,7 +111,7 @@ public class ScrollResponse<TDocument> extends SearchResponse<TDocument> {
 	 * provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<ScrollResponse<Object>> _DESERIALIZER = createScrollResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.scroll.TDocument"));
+			new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.scroll.TDocument"));
 
 	protected static <TDocument> void setupScrollResponseDeserializer(
 			ObjectDeserializer<ScrollResponse.Builder<TDocument>> op,

@@ -112,7 +112,7 @@ public class GetResponse<TDocument> extends GetResult<TDocument> {
 	 * provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<GetResponse<Object>> _DESERIALIZER = createGetResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.get.TDocument"));
+			new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.get.TDocument"));
 
 	protected static <TDocument> void setupGetResponseDeserializer(
 			ObjectDeserializer<GetResponse.Builder<TDocument>> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {

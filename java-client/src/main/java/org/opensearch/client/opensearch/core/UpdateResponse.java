@@ -176,7 +176,7 @@ public class UpdateResponse<TDocument> extends WriteResponseBase {
 	 * provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<UpdateResponse<Object>> _DESERIALIZER = createUpdateResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.update.TDocument"));
+			new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.update.TDocument"));
 
 	protected static <TDocument> void setupUpdateResponseDeserializer(
 			ObjectDeserializer<UpdateResponse.Builder<TDocument>> op,

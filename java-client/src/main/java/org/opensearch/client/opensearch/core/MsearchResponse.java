@@ -106,7 +106,7 @@ public class MsearchResponse<TDocument> extends MultiSearchResult<TDocument> {
 	 * provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<MsearchResponse<Object>> _DESERIALIZER = createMsearchResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.msearch.TDocument"));
+			new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.msearch.TDocument"));
 
 	protected static <TDocument> void setupMsearchResponseDeserializer(
 			ObjectDeserializer<MsearchResponse.Builder<TDocument>> op,

@@ -162,7 +162,7 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 	 */
 	public static final JsonpDeserializer<ScriptsPainlessExecuteResponse<Object>> _DESERIALIZER =
 			createScriptsPainlessExecuteResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.scripts_painless_execute.TResult"));
+			new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.scripts_painless_execute.TResult"));
 
 	protected static <TResult> void setupScriptsPainlessExecuteResponseDeserializer(
 			ObjectDeserializer<ScriptsPainlessExecuteResponse.Builder<TResult>> op,
