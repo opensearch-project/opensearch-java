@@ -314,7 +314,7 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 	 * provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<ExplainResponse<Object>> _DESERIALIZER = createExplainResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.explain.TDocument"));
+			new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.explain.TDocument"));
 
 	protected static <TDocument> void setupExplainResponseDeserializer(
 			ObjectDeserializer<ExplainResponse.Builder<TDocument>> op,

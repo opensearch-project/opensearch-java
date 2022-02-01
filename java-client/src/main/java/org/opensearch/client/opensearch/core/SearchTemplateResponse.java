@@ -245,7 +245,7 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
 	public static final JsonpDeserializer<SearchTemplateResponse<Object>> _DESERIALIZER = createSearchTemplateResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search_template.TDocument"));
+			new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.search_template.TDocument"));
 
 	protected static <TDocument> void setupSearchTemplateResponseDeserializer(
 			ObjectDeserializer<SearchTemplateResponse.Builder<TDocument>> op,
