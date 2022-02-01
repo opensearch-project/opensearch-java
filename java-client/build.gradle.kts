@@ -110,7 +110,7 @@ val integrationTest = task<Test>("integrationTest") {
 
 dependencies {
     val opensearchVersion = "1.2.3"
-    val jacksonVersion = "2.12.5"
+    val jacksonVersion = "2.12.6"
 
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
