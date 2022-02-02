@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest.simulate;
 
-import co.elastic.clients.elasticsearch.watcher.ActionStatusOptions;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,6 +38,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import co.elastic.clients.util.ActionStatusOptions;
 
 // typedef: ingest.simulate.PipelineSimulation
 

@@ -78,7 +78,7 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 
 	/**
 	 * Required - Downloaded database files, including related license files.
-	 * Elasticsearch stores these files in the node’s temporary directory:
+	 * Elasticsearch stores these files in the node's temporary directory:
 	 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
 	 * <p>
 	 * API name: {@code files_in_temp}
@@ -170,7 +170,7 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 
 		/**
 		 * Required - Downloaded database files, including related license files.
-		 * Elasticsearch stores these files in the node’s temporary directory:
+		 * Elasticsearch stores these files in the node's temporary directory:
 		 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
 		 * <p>
 		 * API name: {@code files_in_temp}
@@ -184,7 +184,7 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 
 		/**
 		 * Required - Downloaded database files, including related license files.
-		 * Elasticsearch stores these files in the node’s temporary directory:
+		 * Elasticsearch stores these files in the node's temporary directory:
 		 * $ES_TMPDIR/geoip-databases/&lt;node_id&gt;.
 		 * <p>
 		 * API name: {@code files_in_temp}

@@ -79,8 +79,8 @@ public class DocumentRating implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The document’s index. For data streams, this should be the
-	 * document’s backing index.
+	 * Required - The document's index. For data streams, this should be the
+	 * document's backing index.
 	 * <p>
 	 * API name: {@code _index}
 	 */
@@ -89,7 +89,7 @@ public class DocumentRating implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The document’s relevance with regard to this search request.
+	 * Required - The document's relevance with regard to this search request.
 	 * <p>
 	 * API name: {@code rating}
 	 */
@@ -143,8 +143,8 @@ public class DocumentRating implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The document’s index. For data streams, this should be the
-		 * document’s backing index.
+		 * Required - The document's index. For data streams, this should be the
+		 * document's backing index.
 		 * <p>
 		 * API name: {@code _index}
 		 */
@@ -154,7 +154,7 @@ public class DocumentRating implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The document’s relevance with regard to this search request.
+		 * Required - The document's relevance with regard to this search request.
 		 * <p>
 		 * API name: {@code rating}
 		 */
