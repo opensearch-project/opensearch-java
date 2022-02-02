@@ -26,7 +26,7 @@ import org.opensearch.clients.json.jackson.JacksonJsonpMapper;
 import org.opensearch.clients.transport.ElasticsearchTransport;
 import org.opensearch.clients.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
-import org.elasticsearch.client.RestClient;
+import org.opensearch.client.RestClient;
 import org.junit.Ignore;
 import org.junit.Test;
 
