@@ -98,7 +98,8 @@ public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
             assertEquals(e.response().status(), 400);
             assertEquals(
                     e.getMessage(),
-                    "Request failed: [illegal_argument_exception] transient setting [no_idea_what_you_are_talking_about], not recognized"
+                    "[opensearch/cluster.put_settings] failed: [illegal_argument_exception] " +
+                            "transient setting [no_idea_what_you_are_talking_about], not recognized"
             );
         }
     }
@@ -158,18 +159,6 @@ public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
         assertEquals(1, getSettingsResponse.persistent().size());
         assertEquals(1, getSettingsResponse.transient_().size());
         assertTrue(getSettingsResponse.defaults().size()>0);
-    }
-
-    public void testClusterHealthGreen() throws IOException {
-        OpenSearchClient openSearchClient = highLevelClient();
-        HealthRequest request = new HealthRequest.Builder()
-                .timeout(t->t.time("5s"))
-                .level(Level.Cluster)
-                .build();
-        HealthResponse response = openSearchClient.cluster().health(request);
-        assertNotNull(response);
-        assertFalse(response.timedOut());
-        assertEquals(response.status(), HealthStatus.Green);
     }
 
     public void testClusterHealthYellowClusterLevel() throws IOException {
