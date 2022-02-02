@@ -27,12 +27,6 @@ import org.opensearch.clients.json.JsonpDeserializer;
 
 // typedef: cluster.delete_voting_config_exclusions.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/delete_voting_config_exclusions/ClusterDeleteVotingConfigExclusionsResponse.ts#L22-L24">API
- *      specification</a>
- */
 
 public class DeleteVotingConfigExclusionsResponse {
 	public DeleteVotingConfigExclusionsResponse() {

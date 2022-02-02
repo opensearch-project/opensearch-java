@@ -30,7 +30,6 @@ import org.opensearch.clients.transport.endpoints.SimpleEndpoint;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.String;
 import java.util.Collections;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -40,9 +39,6 @@ import javax.annotation.Nullable;
 /**
  * DEPRECATED Returns a progress status of current upgrade.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_upgrade/IndicesGetUpgradeRequest.ts#L23-L32">API
- *      specification</a>
  */
 
 public class GetUpgradeRequest extends RequestBase {

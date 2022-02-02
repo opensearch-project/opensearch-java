@@ -31,17 +31,10 @@ import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.transport.endpoints.DictionaryResponse;
 import org.opensearch.clients.util.ObjectBuilder;
 
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: indices.recovery.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/IndicesRecoveryResponse.ts#L24-L27">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus> {
 	// ---------------------------------------------------------------------------------------------

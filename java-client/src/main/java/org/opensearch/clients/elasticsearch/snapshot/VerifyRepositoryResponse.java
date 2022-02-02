@@ -34,18 +34,11 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Map;
 import java.util.function.Function;
 
 // typedef: snapshot.verify_repository.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/verify_repository/SnapshotVerifyRepositoryResponse.ts#L23-L25">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class VerifyRepositoryResponse implements JsonpSerializable {
 	private final Map<String, CompactNodeInfo> nodes;

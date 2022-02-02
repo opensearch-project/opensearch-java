@@ -237,7 +237,8 @@ public class RankEvalMetric implements JsonpSerializable {
 		 * API name: {@code dcg}
 		 */
 		public final Builder dcg(
-				Function<RankEvalMetricDiscountedCumulativeGain.Builder, ObjectBuilder<RankEvalMetricDiscountedCumulativeGain>> fn) {
+				Function<RankEvalMetricDiscountedCumulativeGain.Builder,
+						ObjectBuilder<RankEvalMetricDiscountedCumulativeGain>> fn) {
 			return this.dcg(fn.apply(new RankEvalMetricDiscountedCumulativeGain.Builder()).build());
 		}
 
@@ -253,7 +254,8 @@ public class RankEvalMetric implements JsonpSerializable {
 		 * API name: {@code expected_reciprocal_rank}
 		 */
 		public final Builder expectedReciprocalRank(
-				Function<RankEvalMetricExpectedReciprocalRank.Builder, ObjectBuilder<RankEvalMetricExpectedReciprocalRank>> fn) {
+				Function<RankEvalMetricExpectedReciprocalRank.Builder,
+						ObjectBuilder<RankEvalMetricExpectedReciprocalRank>> fn) {
 			return this.expectedReciprocalRank(fn.apply(new RankEvalMetricExpectedReciprocalRank.Builder()).build());
 		}
 

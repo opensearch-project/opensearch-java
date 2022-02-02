@@ -28,8 +28,6 @@ import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ApiTypeHelper;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.List;
 import javax.annotation.Nullable;
 

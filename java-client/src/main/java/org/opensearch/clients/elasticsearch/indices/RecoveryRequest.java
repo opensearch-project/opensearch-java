@@ -31,8 +31,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,9 +43,6 @@ import javax.annotation.Nullable;
 /**
  * Returns information about ongoing index shard recoveries.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/IndicesRecoveryRequest.ts#L23-L36">API
- *      specification</a>
  */
 
 public class RecoveryRequest extends RequestBase {

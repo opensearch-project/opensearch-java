@@ -34,8 +34,6 @@ import org.opensearch.clients.util.ObjectBuilderBase;
 import org.opensearch.clients.util.TaggedUnion;
 import org.opensearch.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.Object;
 import java.util.function.Function;
 
 // typedef: _global.search._types.SourceConfig
@@ -44,9 +42,6 @@ import java.util.function.Function;
  * Defines how to fetch a source. Fetching can be disabled entirely, or the
  * source can be filtered.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/SourceFilter.ts#L33-L37">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class SourceConfig implements TaggedUnion<SourceConfig.Kind, Object>, JsonpSerializable {

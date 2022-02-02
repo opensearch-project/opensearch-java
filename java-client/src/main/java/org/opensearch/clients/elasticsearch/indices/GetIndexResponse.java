@@ -30,7 +30,6 @@ import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.transport.endpoints.DictionaryResponse;
 import org.opensearch.clients.util.ObjectBuilder;
 
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: indices.get.Response

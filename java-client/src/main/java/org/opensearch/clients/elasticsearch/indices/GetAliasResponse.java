@@ -31,17 +31,10 @@ import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.transport.endpoints.DictionaryResponse;
 import org.opensearch.clients.util.ObjectBuilder;
 
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: indices.get_alias.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_alias/IndicesGetAliasResponse.ts#L25-L25">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
 	// ---------------------------------------------------------------------------------------------

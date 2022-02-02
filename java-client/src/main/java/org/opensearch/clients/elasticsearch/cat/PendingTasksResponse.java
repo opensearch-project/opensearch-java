@@ -38,12 +38,6 @@ import java.util.function.Function;
 
 // typedef: cat.pending_tasks.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/pending_tasks/CatPendingTasksResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class PendingTasksResponse implements JsonpSerializable {
 	private final List<PendingTasksRecord> valueBody;

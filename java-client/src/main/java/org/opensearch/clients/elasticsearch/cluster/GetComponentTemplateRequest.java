@@ -31,8 +31,6 @@ import org.opensearch.clients.transport.endpoints.SimpleEndpoint;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -43,9 +41,6 @@ import javax.annotation.Nullable;
 /**
  * Returns one or more component templates
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/get_component_template/ClusterGetComponentTemplateRequest.ts#L24-L41">API
- *      specification</a>
  */
 
 public class GetComponentTemplateRequest extends RequestBase {
@@ -200,7 +195,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.get_component_template}".
 	 */
-	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse> _ENDPOINT =
+			new SimpleEndpoint<>(
 			"es/cluster.get_component_template",
 
 			// Request method

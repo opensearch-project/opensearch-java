@@ -40,9 +40,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Long;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,9 +52,6 @@ import javax.annotation.Nullable;
 /**
  * Returns multiple termvectors in one request.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mtermvectors/MultiTermVectorsRequest.ts#L32-L60">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class MtermvectorsRequest extends RequestBase implements JsonpSerializable {

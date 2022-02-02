@@ -37,19 +37,12 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
 // typedef: _global.search_shards.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search_shards/SearchShardsResponse.ts#L25-L31">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class SearchShardsResponse implements JsonpSerializable {
 	private final Map<String, NodeAttributes> nodes;

@@ -32,8 +32,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,9 +44,6 @@ import javax.annotation.Nullable;
 /**
  * Returns an index template.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_template/IndicesGetTemplateRequest.ts#L24-L39">API
- *      specification</a>
  */
 
 public class GetTemplateRequest extends RequestBase {

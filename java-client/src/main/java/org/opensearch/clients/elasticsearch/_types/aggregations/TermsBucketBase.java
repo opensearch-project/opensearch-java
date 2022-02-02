@@ -27,7 +27,6 @@ import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
 import org.opensearch.clients.json.ObjectDeserializer;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsBucketBase

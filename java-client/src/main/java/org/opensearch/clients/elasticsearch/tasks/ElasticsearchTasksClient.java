@@ -65,7 +65,8 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 
 	public CancelResponse cancel(CancelRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<CancelRequest, CancelResponse, ErrorResponse> endpoint = (JsonEndpoint<CancelRequest, CancelResponse, ErrorResponse>) CancelRequest._ENDPOINT;
+		JsonEndpoint<CancelRequest, CancelResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<CancelRequest, CancelResponse, ErrorResponse>) CancelRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -111,7 +112,8 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 
 	public GetTasksResponse get(GetTasksRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTasksRequest, GetTasksResponse, ErrorResponse>) GetTasksRequest._ENDPOINT;
+		JsonEndpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<GetTasksRequest, GetTasksResponse, ErrorResponse>) GetTasksRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -144,7 +146,8 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 
 	public ListResponse list(ListRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<ListRequest, ListResponse, ErrorResponse> endpoint = (JsonEndpoint<ListRequest, ListResponse, ErrorResponse>) ListRequest._ENDPOINT;
+		JsonEndpoint<ListRequest, ListResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<ListRequest, ListResponse, ErrorResponse>) ListRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

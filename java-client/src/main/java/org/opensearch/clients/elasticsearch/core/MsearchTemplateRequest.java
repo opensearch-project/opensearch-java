@@ -38,9 +38,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Long;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -54,9 +51,6 @@ import javax.annotation.Nullable;
 /**
  * Allows to execute several search template operations in one request.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch_template/MultiSearchTemplateRequest.ts#L25-L45">API
- *      specification</a>
  */
 
 public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
@@ -394,7 +388,8 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	/**
 	 * Create an "{@code msearch_template}" endpoint.
 	 */
-	public static <TDocument> Endpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse> createMsearchTemplateEndpoint(
+	public static <TDocument> Endpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse>
+	createMsearchTemplateEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return _ENDPOINT.withResponseDeserializer(
 				MsearchTemplateResponse.createMsearchTemplateResponseDeserializer(tDocumentDeserializer));

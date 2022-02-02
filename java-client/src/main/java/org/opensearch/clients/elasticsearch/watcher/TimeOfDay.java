@@ -23,6 +23,7 @@
 
 package org.opensearch.clients.elasticsearch.watcher;
 
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.clients.json.JsonpDeserializable;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.JsonpMapper;
@@ -33,9 +34,7 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import org.opensearch.clients.util.TaggedUnion;
 import org.opensearch.clients.util.TaggedUnionUtils;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
-import java.lang.String;
+
 import java.util.function.Function;
 
 // typedef: watcher._types.TimeOfDay

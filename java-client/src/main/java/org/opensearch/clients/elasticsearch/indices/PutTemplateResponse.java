@@ -34,12 +34,6 @@ import java.util.function.Function;
 
 // typedef: indices.put_template.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/put_template/IndicesPutTemplateResponse.ts#L22-L22">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class PutTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------

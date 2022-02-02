@@ -33,18 +33,11 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Map;
 import java.util.function.Function;
 
 // typedef: ingest.processor_grok.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/processor_grok/GrokProcessorPatternsResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ProcessorGrokResponse implements JsonpSerializable {
 	private final Map<String, String> patterns;

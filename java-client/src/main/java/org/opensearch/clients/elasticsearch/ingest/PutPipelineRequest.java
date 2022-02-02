@@ -39,8 +39,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,9 +50,6 @@ import javax.annotation.Nullable;
 /**
  * Creates or updates a pipeline.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/put_pipeline/PutPipelineRequest.ts#L25-L56">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class PutPipelineRequest extends RequestBase implements JsonpSerializable {

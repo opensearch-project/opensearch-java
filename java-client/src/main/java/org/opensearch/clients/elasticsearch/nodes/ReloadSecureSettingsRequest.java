@@ -39,7 +39,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,10 +50,6 @@ import javax.annotation.Nullable;
 
 /**
  * Reloads secure settings.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/reload_secure_settings/ReloadSecureSettingsRequest.ts#L24-L39">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSerializable {
@@ -229,7 +224,8 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code nodes.reload_secure_settings}".
 	 */
-	public static final Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> _ENDPOINT =
+			new SimpleEndpoint<>(
 			"es/nodes.reload_secure_settings",
 
 			// Request method

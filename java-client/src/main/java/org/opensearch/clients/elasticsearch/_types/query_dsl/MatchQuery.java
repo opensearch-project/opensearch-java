@@ -32,10 +32,6 @@ import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.Double;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 

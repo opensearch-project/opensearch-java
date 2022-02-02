@@ -65,7 +65,8 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 
 	public DeleteNodeResponse deleteNode(DeleteNodeRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse>) DeleteNodeRequest._ENDPOINT;
+		JsonEndpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse>) DeleteNodeRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -101,7 +102,8 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 
 	public GetNodeResponse getNode(GetNodeRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> endpoint = (JsonEndpoint<GetNodeRequest, GetNodeResponse, ErrorResponse>) GetNodeRequest._ENDPOINT;
+		JsonEndpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<GetNodeRequest, GetNodeResponse, ErrorResponse>) GetNodeRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -152,7 +154,8 @@ public class ElasticsearchShutdownClient extends ApiClient<ElasticsearchTranspor
 
 	public PutNodeResponse putNode(PutNodeRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutNodeRequest, PutNodeResponse, ErrorResponse> endpoint = (JsonEndpoint<PutNodeRequest, PutNodeResponse, ErrorResponse>) PutNodeRequest._ENDPOINT;
+		JsonEndpoint<PutNodeRequest, PutNodeResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<PutNodeRequest, PutNodeResponse, ErrorResponse>) PutNodeRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

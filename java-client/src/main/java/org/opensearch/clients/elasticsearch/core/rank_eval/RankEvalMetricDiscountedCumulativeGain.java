@@ -30,7 +30,6 @@ import org.opensearch.clients.json.ObjectBuilderDeserializer;
 import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -39,12 +38,6 @@ import javax.annotation.Nullable;
 /**
  * Discounted cumulative gain (DCG)
  * 
- * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#_discounted_cumulative_gain_dcg">Documentation
- *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/rank_eval/types.ts#L66-L77">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {

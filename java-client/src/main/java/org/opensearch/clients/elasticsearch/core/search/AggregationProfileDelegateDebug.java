@@ -33,7 +33,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.util.List;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -227,7 +226,8 @@ public class AggregationProfileDelegateDebug implements JsonpSerializable {
 		 * Adds a value to <code>filters</code> using a builder lambda.
 		 */
 		public final Builder filters(
-				Function<AggregationProfileDelegateDebugFilter.Builder, ObjectBuilder<AggregationProfileDelegateDebugFilter>> fn) {
+				Function<AggregationProfileDelegateDebugFilter.Builder,
+						ObjectBuilder<AggregationProfileDelegateDebugFilter>> fn) {
 			return filters(fn.apply(new AggregationProfileDelegateDebugFilter.Builder()).build());
 		}
 

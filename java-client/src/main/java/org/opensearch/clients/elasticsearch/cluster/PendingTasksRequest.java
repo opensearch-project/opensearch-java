@@ -31,7 +31,6 @@ import org.opensearch.clients.transport.endpoints.SimpleEndpoint;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -43,9 +42,6 @@ import javax.annotation.Nullable;
  * Returns a list of any cluster-level changes (e.g. create index, update
  * mapping, allocate or fail shard) which have not yet been executed.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/pending_tasks/ClusterPendingTasksRequest.ts#L23-L34">API
- *      specification</a>
  */
 
 public class PendingTasksRequest extends RequestBase {

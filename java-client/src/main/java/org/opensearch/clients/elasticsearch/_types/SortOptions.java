@@ -36,7 +36,6 @@ import org.opensearch.clients.util.TaggedUnion;
 import org.opensearch.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-import java.lang.Object;
 import java.util.EnumSet;
 import java.util.function.Function;
 
@@ -318,7 +317,8 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 						break;
 					default :
 						// Consumes END_OBJECT
-						return b.field(FieldSort._DESERIALIZER.deserialize(parser, mapper, JsonParser.Event.KEY_NAME))
+						return b.field(FieldSort._DESERIALIZER
+								.deserialize(parser, mapper, JsonParser.Event.KEY_NAME))
 								.build();
 				}
 

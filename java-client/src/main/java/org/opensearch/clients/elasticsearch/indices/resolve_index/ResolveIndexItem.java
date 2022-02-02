@@ -33,19 +33,12 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.List;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexItem
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/resolve_index/ResolveIndexResponse.ts#L30-L35">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ResolveIndexItem implements JsonpSerializable {
 	private final String name;

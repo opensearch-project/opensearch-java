@@ -39,7 +39,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.Collections;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,9 +48,6 @@ import javax.annotation.Nullable;
 /**
  * Allows an arbitrary script to be executed and a result to be returned
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/scripts_painless_execute/ExecutePainlessScriptRequest.ts#L24-L35">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpSerializable {
@@ -245,7 +241,8 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 	/**
 	 * Create an "{@code scripts_painless_execute}" endpoint.
 	 */
-	public static <TResult> Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> createScriptsPainlessExecuteEndpoint(
+	public static <TResult> Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>,
+			ErrorResponse> createScriptsPainlessExecuteEndpoint(
 			JsonpDeserializer<TResult> tResultDeserializer) {
 		return _ENDPOINT.withResponseDeserializer(
 				ScriptsPainlessExecuteResponse.createScriptsPainlessExecuteResponseDeserializer(tResultDeserializer));

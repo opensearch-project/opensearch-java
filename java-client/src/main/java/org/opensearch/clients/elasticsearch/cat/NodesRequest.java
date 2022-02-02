@@ -30,7 +30,6 @@ import org.opensearch.clients.transport.endpoints.SimpleEndpoint;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;

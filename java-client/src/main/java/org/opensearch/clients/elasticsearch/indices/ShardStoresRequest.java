@@ -33,8 +33,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,9 +45,6 @@ import javax.annotation.Nullable;
 /**
  * Provides store information for shard copies of indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/shard_stores/IndicesShardStoresRequest.ts#L24-L59">API
- *      specification</a>
  */
 
 public class ShardStoresRequest extends RequestBase {
@@ -309,7 +304,8 @@ public class ShardStoresRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream()
+									.map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

@@ -40,12 +40,6 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_upgrade.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_upgrade/IndicesGetUpgradeResponse.ts#L23-L30">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GetUpgradeResponse implements JsonpSerializable {
 	private final List<OverlappingIndexTemplate> overlapping;

@@ -38,12 +38,6 @@ import java.util.function.Function;
 
 // typedef: cat.nodeattrs.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/nodeattrs/CatNodeAttributesResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeattrsResponse implements JsonpSerializable {
 	private final List<NodeAttributesRecord> valueBody;

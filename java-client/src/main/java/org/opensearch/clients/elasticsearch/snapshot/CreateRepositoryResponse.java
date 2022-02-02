@@ -34,12 +34,6 @@ import java.util.function.Function;
 
 // typedef: snapshot.create_repository.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/create_repository/SnapshotCreateRepositoryResponse.ts#L22-L22">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class CreateRepositoryResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------

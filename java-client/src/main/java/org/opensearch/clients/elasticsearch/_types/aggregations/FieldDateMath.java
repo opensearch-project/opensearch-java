@@ -34,9 +34,6 @@ import org.opensearch.clients.util.ObjectBuilderBase;
 import org.opensearch.clients.util.TaggedUnion;
 import org.opensearch.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Double;
-import java.lang.Object;
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.FieldDateMath

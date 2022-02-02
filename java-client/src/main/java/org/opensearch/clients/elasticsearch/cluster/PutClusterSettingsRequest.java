@@ -39,8 +39,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -51,9 +49,6 @@ import javax.annotation.Nullable;
 /**
  * Updates the cluster settings.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/put_settings/ClusterPutSettingsRequest.ts#L25-L42">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class PutClusterSettingsRequest extends RequestBase implements JsonpSerializable {

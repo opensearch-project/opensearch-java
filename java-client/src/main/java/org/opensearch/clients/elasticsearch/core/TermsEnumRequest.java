@@ -40,9 +40,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.Collections;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -54,9 +51,6 @@ import javax.annotation.Nullable;
  * the provided string. It is designed for low-latency look-ups used in
  * auto-complete scenarios.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/terms_enum/TermsEnumRequest.ts#L26-L65">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class TermsEnumRequest extends RequestBase implements JsonpSerializable {

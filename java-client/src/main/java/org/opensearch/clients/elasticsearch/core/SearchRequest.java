@@ -56,11 +56,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Double;
-import java.lang.Integer;
-import java.lang.Long;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -2308,7 +2303,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream()
+									.map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);

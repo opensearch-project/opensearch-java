@@ -39,7 +39,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
@@ -50,9 +49,6 @@ import javax.annotation.Nullable;
 /**
  * Allows to use the Mustache language to pre-render a search definition.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/render_search_template/RenderSearchTemplateRequest.ts#L25-L39">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class RenderSearchTemplateRequest extends RequestBase implements JsonpSerializable {
@@ -250,7 +246,8 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code render_search_template}".
 	 */
-	public static final Endpoint<RenderSearchTemplateRequest, RenderSearchTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RenderSearchTemplateRequest, RenderSearchTemplateResponse, ErrorResponse> _ENDPOINT =
+			new SimpleEndpoint<>(
 			"es/render_search_template",
 
 			// Request method

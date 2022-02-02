@@ -35,11 +35,6 @@ import org.opensearch.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
-import java.lang.Boolean;
-import java.lang.Double;
-import java.lang.Long;
-import java.lang.Object;
-import java.lang.String;
 import java.util.EnumSet;
 import java.util.function.Consumer;
 
@@ -257,7 +252,8 @@ public class FieldValue implements TaggedUnion<FieldValue.Kind, Object>, JsonpSe
 	public static final JsonpDeserializer<FieldValue> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> JsonpDeserializer.of(
 					EnumSet.of(JsonParser.Event.VALUE_STRING, JsonParser.Event.VALUE_NUMBER,
-							JsonParser.Event.VALUE_NULL, JsonParser.Event.VALUE_TRUE, JsonParser.Event.VALUE_FALSE),
+							JsonParser.Event.VALUE_NULL,
+							JsonParser.Event.VALUE_TRUE, JsonParser.Event.VALUE_FALSE),
 					(parser, mapper, event) -> {
 						switch (event) {
 							case VALUE_NULL :

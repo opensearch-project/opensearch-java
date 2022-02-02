@@ -34,12 +34,6 @@ import java.util.function.Function;
 
 // typedef: ingest.put_pipeline.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/put_pipeline/PutPipelineResponse.ts#L22-L22">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class PutPipelineResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------

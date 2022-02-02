@@ -38,8 +38,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;

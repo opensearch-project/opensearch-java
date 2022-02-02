@@ -35,18 +35,11 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.Map;
 import java.util.function.Function;
 
 // typedef: indices.shard_stores.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/shard_stores/IndicesShardStoresResponse.ts#L24-L26">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ShardStoresResponse implements JsonpSerializable {
 	private final Map<String, IndicesShardStores> indices;

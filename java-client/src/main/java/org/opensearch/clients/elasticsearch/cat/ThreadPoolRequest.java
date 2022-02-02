@@ -31,7 +31,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,9 +44,6 @@ import javax.annotation.Nullable;
  * Returns cluster-wide thread pool statistics per node. By default the active,
  * queue and rejected statistics are returned for all thread pools.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/thread_pool/CatThreadPoolRequest.ts#L24-L36">API
- *      specification</a>
  */
 
 public class ThreadPoolRequest extends CatRequestBase {
@@ -186,7 +182,8 @@ public class ThreadPoolRequest extends CatRequestBase {
 					buf.append("/thread_pool");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(
-							request.threadPoolPatterns.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+							request.threadPoolPatterns.stream()
+									.map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

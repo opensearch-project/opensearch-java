@@ -48,9 +48,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Long;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,9 +61,6 @@ import javax.annotation.Nullable;
  * Performs an update on every document in the index without changing the
  * source, for example to pick up a mapping change.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/update_by_query/UpdateByQueryRequest.ts#L39-L91">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class UpdateByQueryRequest extends RequestBase implements JsonpSerializable {
@@ -1485,7 +1479,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream()
+									.map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.versionType != null) {
 					params.put("version_type", String.valueOf(request.versionType));

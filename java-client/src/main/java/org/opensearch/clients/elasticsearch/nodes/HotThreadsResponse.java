@@ -40,12 +40,6 @@ import java.util.function.Function;
 
 // typedef: nodes.hot_threads.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/hot_threads/NodesHotThreadsResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class HotThreadsResponse implements JsonpSerializable {
 	private final List<HotThread> hotThreads;

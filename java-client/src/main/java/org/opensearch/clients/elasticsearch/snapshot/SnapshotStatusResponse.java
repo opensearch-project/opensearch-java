@@ -38,12 +38,6 @@ import java.util.function.Function;
 
 // typedef: snapshot.status.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/status/SnapshotStatusResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class SnapshotStatusResponse implements JsonpSerializable {
 	private final List<Status> snapshots;

@@ -35,18 +35,11 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Map;
 import java.util.function.Function;
 
 // typedef: ingest.geo_ip_stats.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/geo_ip_stats/IngestGeoIpStatsResponse.ts#L24-L31">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GeoIpStatsResponse implements JsonpSerializable {
 	private final GeoIpDownloadStatistics stats;

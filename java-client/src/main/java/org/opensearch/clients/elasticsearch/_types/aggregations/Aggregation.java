@@ -38,20 +38,12 @@ import org.opensearch.clients.util.ObjectBuilderBase;
 import org.opensearch.clients.util.TaggedUnion;
 import org.opensearch.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
-import java.lang.String;
 import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AggregationContainer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/AggregationContainer.ts#L99-L185">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, JsonpSerializable {
 
@@ -1934,7 +1926,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 		}
 
 		public ContainerBuilder medianAbsoluteDeviation(
-				Function<MedianAbsoluteDeviationAggregation.Builder, ObjectBuilder<MedianAbsoluteDeviationAggregation>> fn) {
+				Function<MedianAbsoluteDeviationAggregation.Builder,
+						ObjectBuilder<MedianAbsoluteDeviationAggregation>> fn) {
 			return this.medianAbsoluteDeviation(fn.apply(new MedianAbsoluteDeviationAggregation.Builder()).build());
 		}
 

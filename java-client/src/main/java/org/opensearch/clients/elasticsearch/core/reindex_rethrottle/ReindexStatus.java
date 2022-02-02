@@ -34,8 +34,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Float;
-import java.lang.Long;
 import java.util.function.Function;
 
 // typedef: _global.reindex_rethrottle.ReindexStatus

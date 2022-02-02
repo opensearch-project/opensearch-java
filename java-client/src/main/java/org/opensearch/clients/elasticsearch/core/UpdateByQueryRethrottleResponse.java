@@ -35,18 +35,11 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.Map;
 import java.util.function.Function;
 
 // typedef: _global.update_by_query_rethrottle.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/update_by_query_rethrottle/UpdateByQueryRethrottleResponse.ts#L23-L25">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class UpdateByQueryRethrottleResponse implements JsonpSerializable {
 	private final Map<String, UpdateByQueryRethrottleNode> nodes;

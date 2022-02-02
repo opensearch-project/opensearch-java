@@ -31,10 +31,10 @@ import org.opensearch.clients.transport.JsonEndpoint;
 import org.opensearch.clients.transport.TransportOptions;
 import org.opensearch.clients.util.ObjectBuilder;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 /**
  * Client for the tasks namespace.
@@ -59,7 +59,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
-	 * 
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>
@@ -67,14 +67,15 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 
 	public CompletableFuture<CancelResponse> cancel(CancelRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<CancelRequest, CancelResponse, ErrorResponse> endpoint = (JsonEndpoint<CancelRequest, CancelResponse, ErrorResponse>) CancelRequest._ENDPOINT;
+		JsonEndpoint<CancelRequest, CancelResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<CancelRequest, CancelResponse, ErrorResponse>) CancelRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
-	 * 
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CancelRequest}
@@ -91,7 +92,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
-	 * 
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>
@@ -106,7 +107,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 
 	/**
 	 * Returns information about a task.
-	 * 
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>
@@ -114,14 +115,15 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 
 	public CompletableFuture<GetTasksResponse> get(GetTasksRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTasksRequest, GetTasksResponse, ErrorResponse>) GetTasksRequest._ENDPOINT;
+		JsonEndpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<GetTasksRequest, GetTasksResponse, ErrorResponse>) GetTasksRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about a task.
-	 * 
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTasksRequest}
@@ -140,7 +142,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 
 	/**
 	 * Returns a list of tasks.
-	 * 
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>
@@ -148,14 +150,15 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 
 	public CompletableFuture<ListResponse> list(ListRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<ListRequest, ListResponse, ErrorResponse> endpoint = (JsonEndpoint<ListRequest, ListResponse, ErrorResponse>) ListRequest._ENDPOINT;
+		JsonEndpoint<ListRequest, ListResponse, ErrorResponse> endpoint =
+                (JsonEndpoint<ListRequest, ListResponse, ErrorResponse>) ListRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns a list of tasks.
-	 * 
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ListRequest}
@@ -171,7 +174,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 
 	/**
 	 * Returns a list of tasks.
-	 * 
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>

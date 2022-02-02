@@ -38,7 +38,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -49,10 +48,6 @@ import javax.annotation.Nullable;
 /**
  * Clones indices from one snapshot into another snapshot in the same
  * repository.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/clone/SnapshotCloneRequest.ts#L24-L42">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class CloneSnapshotRequest extends RequestBase implements JsonpSerializable {

@@ -193,7 +193,8 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 		 * API name: {@code initial_recovery}
 		 */
 		public final Builder initialRecovery(
-				Function<IndexRoutingAllocationInitialRecovery.Builder, ObjectBuilder<IndexRoutingAllocationInitialRecovery>> fn) {
+				Function<IndexRoutingAllocationInitialRecovery.Builder
+						, ObjectBuilder<IndexRoutingAllocationInitialRecovery>> fn) {
 			return this.initialRecovery(fn.apply(new IndexRoutingAllocationInitialRecovery.Builder()).build());
 		}
 

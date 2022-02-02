@@ -33,18 +33,10 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Double;
-import java.lang.Integer;
 import java.util.function.Function;
 
 // typedef: indices._types.FielddataFrequencyFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/FielddataFrequencyFilter.ts#L22-L26">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class FielddataFrequencyFilter implements JsonpSerializable {
 	private final double max;

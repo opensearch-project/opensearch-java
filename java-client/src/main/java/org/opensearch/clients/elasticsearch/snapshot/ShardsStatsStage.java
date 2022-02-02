@@ -26,12 +26,6 @@ package org.opensearch.clients.elasticsearch.snapshot;
 import org.opensearch.clients.json.JsonEnum;
 import org.opensearch.clients.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/_types/SnapshotShardsStatsStage.ts#L20-L34">API
- *      specification</a>
- */
 @JsonpDeserializable
 public enum ShardsStatsStage implements JsonEnum {
 	/**

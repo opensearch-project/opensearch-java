@@ -39,9 +39,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Long;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -55,9 +52,6 @@ import javax.annotation.Nullable;
 /**
  * Allows to execute several search operations in one request.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch/MultiSearchRequest.ts#L25-L92">API
- *      specification</a>
  */
 
 public class MsearchRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
@@ -583,7 +577,8 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream()
+									.map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

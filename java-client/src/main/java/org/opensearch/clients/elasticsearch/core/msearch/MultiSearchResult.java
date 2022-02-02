@@ -32,7 +32,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
 import java.util.List;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -150,7 +149,8 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 		 * Adds a value to <code>responses</code> using a builder lambda.
 		 */
 		public final BuilderT responses(
-				Function<MultiSearchResponseItem.Builder<TDocument>, ObjectBuilder<MultiSearchResponseItem<TDocument>>> fn) {
+				Function<MultiSearchResponseItem.Builder<TDocument>,
+						ObjectBuilder<MultiSearchResponseItem<TDocument>>> fn) {
 			return responses(fn.apply(new MultiSearchResponseItem.Builder<TDocument>()).build());
 		}
 

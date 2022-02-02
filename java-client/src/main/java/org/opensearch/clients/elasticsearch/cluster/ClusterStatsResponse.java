@@ -36,18 +36,10 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Long;
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: cluster.stats.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/ClusterStatsResponse.ts#L25-L55">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ClusterStatsResponse extends NodesResponseBase {
 	private final String clusterName;

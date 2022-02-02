@@ -34,18 +34,11 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.List;
 import java.util.function.Function;
 
 // typedef: snapshot.restore.SnapshotRestore
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/restore/SnapshotRestoreResponse.ts#L27-L31">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class SnapshotRestore implements JsonpSerializable {
 	private final List<String> indices;

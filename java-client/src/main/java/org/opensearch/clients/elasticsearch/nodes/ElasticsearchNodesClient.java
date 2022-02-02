@@ -65,7 +65,8 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 
 	public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> endpoint = (JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
+		JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -111,7 +112,8 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 
 	public NodesInfoResponse info(NodesInfoRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse>) NodesInfoRequest._ENDPOINT;
+		JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse>) NodesInfoRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -149,16 +151,14 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 
 	/**
 	 * Reloads secure settings.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse>) ReloadSecureSettingsRequest._ENDPOINT;
+		JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse>)
+						ReloadSecureSettingsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -169,9 +169,6 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ReloadSecureSettingsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public final ReloadSecureSettingsResponse reloadSecureSettings(
@@ -182,10 +179,6 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 
 	/**
 	 * Reloads secure settings.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException, ElasticsearchException {
@@ -205,7 +198,8 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 
 	public NodesStatsResponse stats(NodesStatsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse>) NodesStatsRequest._ENDPOINT;
+		JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse>) NodesStatsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -251,7 +245,8 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 
 	public NodesUsageResponse usage(NodesUsageRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse>) NodesUsageRequest._ENDPOINT;
+		JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse>) NodesUsageRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

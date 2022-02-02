@@ -38,12 +38,6 @@ import java.util.function.Function;
 
 // typedef: cat.templates.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/templates/CatTemplatesResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class TemplatesResponse implements JsonpSerializable {
 	private final List<TemplatesRecord> valueBody;

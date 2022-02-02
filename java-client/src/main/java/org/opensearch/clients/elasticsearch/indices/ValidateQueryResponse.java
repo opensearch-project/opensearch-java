@@ -36,20 +36,12 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.List;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.validate_query.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/validate_query/IndicesValidateQueryResponse.ts#L23-L30">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ValidateQueryResponse implements JsonpSerializable {
 	private final List<IndicesValidationExplanation> explanations;

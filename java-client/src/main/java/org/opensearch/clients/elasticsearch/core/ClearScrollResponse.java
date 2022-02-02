@@ -33,18 +33,10 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.Integer;
 import java.util.function.Function;
 
 // typedef: _global.clear_scroll.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/clear_scroll/ClearScrollResponse.ts#L22-L27">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ClearScrollResponse implements JsonpSerializable {
 	private final boolean succeeded;

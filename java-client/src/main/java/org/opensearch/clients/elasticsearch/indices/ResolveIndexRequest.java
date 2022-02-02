@@ -32,7 +32,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,9 +44,6 @@ import javax.annotation.Nullable;
 /**
  * Returns information about any matching indices, aliases, and data streams
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/resolve_index/ResolveIndexRequest.ts#L23-L35">API
- *      specification</a>
  */
 
 public class ResolveIndexRequest extends RequestBase {
@@ -201,7 +197,8 @@ public class ResolveIndexRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream()
+									.map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				return params;
 

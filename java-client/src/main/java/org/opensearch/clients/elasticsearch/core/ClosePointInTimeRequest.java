@@ -38,7 +38,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.Collections;
 import java.util.function.Function;
 
@@ -47,9 +46,6 @@ import java.util.function.Function;
 /**
  * Close a point in time
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/close_point_in_time/ClosePointInTimeRequest.ts#L23-L32">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class ClosePointInTimeRequest extends RequestBase implements JsonpSerializable {

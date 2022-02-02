@@ -34,12 +34,6 @@ import java.util.function.Function;
 
 // typedef: indices.refresh.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/refresh/IndicesRefreshResponse.ts#L22-L22">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class RefreshResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------

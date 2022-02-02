@@ -39,12 +39,6 @@ import java.util.function.Function;
 
 // typedef: ingest.simulate.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/simulate/SimulatePipelineResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class SimulateResponse implements JsonpSerializable {
 	private final List<PipelineSimulation> docs;

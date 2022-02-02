@@ -33,19 +33,11 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.RepositorySettings
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/_types/SnapshotRepository.ts#L29-L38">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class RepositorySettings implements JsonpSerializable {
 	@Nullable

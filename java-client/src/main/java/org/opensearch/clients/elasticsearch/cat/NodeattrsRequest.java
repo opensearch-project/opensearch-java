@@ -35,9 +35,6 @@ import java.util.Map;
 /**
  * Returns information about custom node attributes.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/nodeattrs/CatNodeAttributesRequest.ts#L22-L27">API
- *      specification</a>
  */
 
 public class NodeattrsRequest extends CatRequestBase {

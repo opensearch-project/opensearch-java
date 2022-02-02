@@ -34,12 +34,6 @@ import java.util.function.Function;
 
 // typedef: snapshot.delete.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/delete/SnapshotDeleteResponse.ts#L22-L22">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class DeleteSnapshotResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------

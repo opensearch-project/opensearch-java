@@ -1148,7 +1148,8 @@ public class TokenFilterDefinition
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> hyphenationDecompounder(
-				Function<HyphenationDecompounderTokenFilter.Builder, ObjectBuilder<HyphenationDecompounderTokenFilter>> fn) {
+				Function<HyphenationDecompounderTokenFilter.Builder,
+						ObjectBuilder<HyphenationDecompounderTokenFilter>> fn) {
 			return this.hyphenationDecompounder(fn.apply(new HyphenationDecompounderTokenFilter.Builder()).build());
 		}
 

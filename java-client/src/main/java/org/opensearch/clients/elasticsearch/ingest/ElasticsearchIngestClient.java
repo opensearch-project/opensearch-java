@@ -65,7 +65,9 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	public DeletePipelineResponse deletePipeline(DeletePipelineRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse> endpoint = (JsonEndpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse>) DeletePipelineRequest._ENDPOINT;
+		JsonEndpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse>)
+						DeletePipelineRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -113,7 +115,8 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 
 	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> endpoint = (JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse>) GetPipelineRequest._ENDPOINT;
+		JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse>) GetPipelineRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -174,7 +177,8 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 
 	public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse> endpoint = (JsonEndpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse>) PutPipelineRequest._ENDPOINT;
+		JsonEndpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse>) PutPipelineRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -208,7 +212,8 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 
 	public SimulateResponse simulate(SimulateRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<SimulateRequest, SimulateResponse, ErrorResponse> endpoint = (JsonEndpoint<SimulateRequest, SimulateResponse, ErrorResponse>) SimulateRequest._ENDPOINT;
+		JsonEndpoint<SimulateRequest, SimulateResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<SimulateRequest, SimulateResponse, ErrorResponse>) SimulateRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

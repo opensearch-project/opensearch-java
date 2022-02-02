@@ -39,12 +39,6 @@ import java.util.function.Function;
 
 // typedef: indices.simulate_template.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/simulate_template/IndicesSimulateTemplateResponse.ts#L26-L30">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class SimulateTemplateResponse implements JsonpSerializable {
 	private final Template template;

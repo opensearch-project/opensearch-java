@@ -33,17 +33,10 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
 import java.util.function.Function;
 
 // typedef: snapshot.cleanup_repository.CleanupRepositoryResults
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/cleanup_repository/SnapshotCleanupRepositoryResponse.ts#L26-L29">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class CleanupRepositoryResults implements JsonpSerializable {
 	private final long deletedBlobs;

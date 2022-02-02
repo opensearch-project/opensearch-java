@@ -38,12 +38,6 @@ import java.util.function.Function;
 
 // typedef: cat.repositories.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/repositories/CatRepositoriesResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class RepositoriesResponse implements JsonpSerializable {
 	private final List<RepositoriesRecord> valueBody;

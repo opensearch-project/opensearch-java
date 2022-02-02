@@ -34,8 +34,6 @@ import org.opensearch.clients.util.ObjectBuilderBase;
 import org.opensearch.clients.util.TaggedUnion;
 import org.opensearch.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
-import java.lang.String;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;

@@ -33,17 +33,10 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: snapshot._types.SnapshotShardFailure
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/_types/SnapshotShardFailure.ts#L22-L28">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class SnapshotShardFailure implements JsonpSerializable {
 	private final String index;

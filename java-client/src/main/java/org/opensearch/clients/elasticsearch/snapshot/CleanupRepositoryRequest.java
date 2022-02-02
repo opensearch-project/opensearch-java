@@ -32,7 +32,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -43,9 +42,6 @@ import javax.annotation.Nullable;
 /**
  * Removes stale data from repository.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/cleanup_repository/SnapshotCleanupRepositoryRequest.ts#L24-L38">API
- *      specification</a>
  */
 
 public class CleanupRepositoryRequest extends RequestBase {

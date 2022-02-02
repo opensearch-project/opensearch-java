@@ -33,17 +33,10 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
 import java.util.function.Function;
 
 // typedef: snapshot._types.ShardsStatsSummaryItem
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/_types/SnapshotShardsStatus.ts#L35-L38">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ShardsStatsSummaryItem implements JsonpSerializable {
 	private final long fileCount;

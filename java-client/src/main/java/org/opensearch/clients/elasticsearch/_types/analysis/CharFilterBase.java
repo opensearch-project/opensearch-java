@@ -29,7 +29,6 @@ import org.opensearch.clients.json.JsonpSerializable;
 import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharFilterBase

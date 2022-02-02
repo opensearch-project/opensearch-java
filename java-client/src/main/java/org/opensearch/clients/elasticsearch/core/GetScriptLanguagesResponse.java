@@ -35,18 +35,11 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.List;
 import java.util.function.Function;
 
 // typedef: _global.get_script_languages.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get_script_languages/GetScriptLanguagesResponse.ts#L22-L27">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GetScriptLanguagesResponse implements JsonpSerializable {
 	private final List<LanguageContext> languageContexts;

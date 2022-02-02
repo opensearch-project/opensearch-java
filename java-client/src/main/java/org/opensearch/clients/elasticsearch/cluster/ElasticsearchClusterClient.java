@@ -66,7 +66,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	public AllocationExplainResponse allocationExplain(AllocationExplainRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse> endpoint = (JsonEndpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse>) AllocationExplainRequest._ENDPOINT;
+		JsonEndpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse>)
+						AllocationExplainRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -114,7 +116,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	public DeleteComponentTemplateResponse deleteComponentTemplate(DeleteComponentTemplateRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ErrorResponse>) DeleteComponentTemplateRequest._ENDPOINT;
+		JsonEndpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ErrorResponse>)
+						DeleteComponentTemplateRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -149,7 +153,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	public BooleanResponse deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse>) DeleteVotingConfigExclusionsRequest._ENDPOINT;
+		JsonEndpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse>)
+						DeleteVotingConfigExclusionsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -197,7 +203,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	public BooleanResponse existsComponentTemplate(ExistsComponentTemplateRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<ExistsComponentTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsComponentTemplateRequest, BooleanResponse, ErrorResponse>) ExistsComponentTemplateRequest._ENDPOINT;
+		JsonEndpoint<ExistsComponentTemplateRequest, BooleanResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<ExistsComponentTemplateRequest, BooleanResponse, ErrorResponse>)
+						ExistsComponentTemplateRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -232,7 +240,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	public GetComponentTemplateResponse getComponentTemplate(GetComponentTemplateRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse>) GetComponentTemplateRequest._ENDPOINT;
+		JsonEndpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse>)
+						GetComponentTemplateRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -280,7 +290,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	public GetClusterSettingsResponse getSettings(GetClusterSettingsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse>) GetClusterSettingsRequest._ENDPOINT;
+		JsonEndpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse>)
+						GetClusterSettingsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -327,7 +339,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 
 	public HealthResponse health(HealthRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse> endpoint = (JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse>) HealthRequest._ENDPOINT;
+		JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse>) HealthRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -374,7 +387,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 
 	public PendingTasksResponse pendingTasks(PendingTasksRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> endpoint = (JsonEndpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse>) PendingTasksRequest._ENDPOINT;
+		JsonEndpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse>) PendingTasksRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -424,7 +438,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	public BooleanResponse postVotingConfigExclusions(PostVotingConfigExclusionsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse>) PostVotingConfigExclusionsRequest._ENDPOINT;
+		JsonEndpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse>)
+						PostVotingConfigExclusionsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -472,7 +488,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	public PutComponentTemplateResponse putComponentTemplate(PutComponentTemplateRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ErrorResponse>) PutComponentTemplateRequest._ENDPOINT;
+		JsonEndpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ErrorResponse>)
+						PutComponentTemplateRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -507,7 +525,9 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	public PutClusterSettingsResponse putSettings(PutClusterSettingsRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutClusterSettingsRequest, PutClusterSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<PutClusterSettingsRequest, PutClusterSettingsResponse, ErrorResponse>) PutClusterSettingsRequest._ENDPOINT;
+		JsonEndpoint<PutClusterSettingsRequest, PutClusterSettingsResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<PutClusterSettingsRequest, PutClusterSettingsResponse, ErrorResponse>)
+						PutClusterSettingsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -568,7 +588,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 
 	public RerouteResponse reroute(RerouteRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<RerouteRequest, RerouteResponse, ErrorResponse> endpoint = (JsonEndpoint<RerouteRequest, RerouteResponse, ErrorResponse>) RerouteRequest._ENDPOINT;
+		JsonEndpoint<RerouteRequest, RerouteResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<RerouteRequest, RerouteResponse, ErrorResponse>) RerouteRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -614,7 +635,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 
 	public StateResponse state(StateRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<StateRequest, StateResponse, ErrorResponse> endpoint = (JsonEndpoint<StateRequest, StateResponse, ErrorResponse>) StateRequest._ENDPOINT;
+		JsonEndpoint<StateRequest, StateResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<StateRequest, StateResponse, ErrorResponse>) StateRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -660,7 +682,8 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 
 	public ClusterStatsResponse stats(ClusterStatsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<ClusterStatsRequest, ClusterStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<ClusterStatsRequest, ClusterStatsResponse, ErrorResponse>) ClusterStatsRequest._ENDPOINT;
+		JsonEndpoint<ClusterStatsRequest, ClusterStatsResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<ClusterStatsRequest, ClusterStatsResponse, ErrorResponse>) ClusterStatsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

@@ -31,7 +31,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.String;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
@@ -45,9 +44,6 @@ import javax.annotation.Nullable;
  * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
  * supported.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/shutdown/get_node/ShutdownGetNodeRequest.ts#L23-L32">API
- *      specification</a>
  */
 
 public class GetNodeRequest extends RequestBase {

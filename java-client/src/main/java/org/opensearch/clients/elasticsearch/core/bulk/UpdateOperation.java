@@ -29,8 +29,6 @@ import org.opensearch.clients.json.NdJsonpSerializable;
 import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.Integer;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.function.Function;

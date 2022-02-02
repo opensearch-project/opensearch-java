@@ -34,8 +34,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,9 +46,6 @@ import javax.annotation.Nullable;
 /**
  * Returns information about whether a particular component template exist
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/exists_component_template/ClusterComponentTemplateExistsRequest.ts#L24-L52">API
- *      specification</a>
  */
 
 public class ExistsComponentTemplateRequest extends RequestBase {

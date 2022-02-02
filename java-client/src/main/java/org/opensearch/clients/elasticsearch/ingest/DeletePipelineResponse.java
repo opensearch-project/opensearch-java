@@ -24,7 +24,6 @@
 package org.opensearch.clients.elasticsearch.ingest;
 
 import org.opensearch.clients.elasticsearch._types.AcknowledgedResponseBase;
-import org.opensearch.clients.json.JsonpDeserializable;
 import org.opensearch.clients.json.JsonpDeserializer;
 import org.opensearch.clients.json.ObjectBuilderDeserializer;
 import org.opensearch.clients.json.ObjectDeserializer;
@@ -34,13 +33,6 @@ import java.util.function.Function;
 
 // typedef: ingest.delete_pipeline.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/delete_pipeline/DeletePipelineResponse.ts#L22-L22">API
- *      specification</a>
- */
-@JsonpDeserializable
 public class DeletePipelineResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 

@@ -35,17 +35,10 @@ import org.opensearch.clients.util.ObjectBuilderBase;
 import org.opensearch.clients.util.TaggedUnion;
 import org.opensearch.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
 import java.util.function.Function;
 
 // typedef: nodes.reload_secure_settings.NodeReloadResult
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/reload_secure_settings/types.ts#L29-L30">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Object>, JsonpSerializable {
 

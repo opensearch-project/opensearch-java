@@ -44,10 +44,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Integer;
-import java.lang.Long;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -760,7 +756,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	/**
 	 * Create a JSON deserializer for UpdateRequest
 	 */
-	public static <TDocument, TPartialDocument> JsonpDeserializer<UpdateRequest<TDocument, TPartialDocument>> createUpdateRequestDeserializer(
+	public static <TDocument, TPartialDocument>
+	JsonpDeserializer<UpdateRequest<TDocument, TPartialDocument>> createUpdateRequestDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer,
 			JsonpDeserializer<TPartialDocument> tPartialDocumentDeserializer) {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument, TPartialDocument>>) Builder::new,

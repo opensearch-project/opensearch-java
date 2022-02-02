@@ -31,17 +31,10 @@ import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.transport.endpoints.DictionaryResponse;
 import org.opensearch.clients.util.ObjectBuilder;
 
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: indices.get_field_mapping.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_field_mapping/IndicesGetFieldMappingResponse.ts#L24-L27">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GetFieldMappingResponse extends DictionaryResponse<String, TypeFieldMappings> {
 	// ---------------------------------------------------------------------------------------------

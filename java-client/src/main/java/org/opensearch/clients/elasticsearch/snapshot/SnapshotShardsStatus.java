@@ -38,12 +38,6 @@ import java.util.function.Function;
 
 // typedef: snapshot._types.SnapshotShardsStatus
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/_types/SnapshotShardsStatus.ts#L23-L26">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class SnapshotShardsStatus implements JsonpSerializable {
 	private final ShardsStatsStage stage;

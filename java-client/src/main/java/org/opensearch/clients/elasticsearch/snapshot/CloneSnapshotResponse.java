@@ -34,12 +34,6 @@ import java.util.function.Function;
 
 // typedef: snapshot.clone.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/clone/SnapshotCloneResponse.ts#L22-L22">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class CloneSnapshotResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------

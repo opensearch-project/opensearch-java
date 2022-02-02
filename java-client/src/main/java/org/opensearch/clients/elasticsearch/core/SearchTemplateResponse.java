@@ -38,20 +38,12 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Integer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_template.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search_template/SearchTemplateResponse.ts#L24-L31">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	private final ShardStatistics shards;

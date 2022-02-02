@@ -32,7 +32,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -43,9 +42,6 @@ import javax.annotation.Nullable;
 /**
  * Returns a script.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get_script/GetScriptRequest.ts#L24-L37">API
- *      specification</a>
  */
 
 public class GetScriptRequest extends RequestBase {

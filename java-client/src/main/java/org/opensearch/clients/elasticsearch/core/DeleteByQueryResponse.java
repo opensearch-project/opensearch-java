@@ -36,23 +36,12 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Float;
-import java.lang.Integer;
-import java.lang.Long;
-import java.lang.String;
 import java.util.List;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.delete_by_query.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/delete_by_query/DeleteByQueryResponse.ts#L25-L42">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class DeleteByQueryResponse implements JsonpSerializable {
 	@Nullable

@@ -40,12 +40,6 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_mapping.IndexMappingRecord
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_mapping/IndicesGetMappingResponse.ts#L29-L32">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class IndexMappingRecord implements JsonpSerializable {
 	@Nullable

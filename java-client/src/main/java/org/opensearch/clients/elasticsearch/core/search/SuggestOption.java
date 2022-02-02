@@ -34,7 +34,6 @@ import org.opensearch.clients.util.ObjectBuilderBase;
 import org.opensearch.clients.util.TaggedUnion;
 import org.opensearch.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
 import java.util.function.Function;
 
 // typedef: _global.search._types.SuggestOption
@@ -157,7 +156,8 @@ public class SuggestOption<TDocument> implements TaggedUnion<SuggestOption.Kind,
 		}
 
 		public ObjectBuilder<SuggestOption<TDocument>> completion(
-				Function<CompletionSuggestOption.Builder<TDocument>, ObjectBuilder<CompletionSuggestOption<TDocument>>> fn) {
+				Function<CompletionSuggestOption.Builder<TDocument>,
+						ObjectBuilder<CompletionSuggestOption<TDocument>>> fn) {
 			return this.completion(fn.apply(new CompletionSuggestOption.Builder<TDocument>()).build());
 		}
 

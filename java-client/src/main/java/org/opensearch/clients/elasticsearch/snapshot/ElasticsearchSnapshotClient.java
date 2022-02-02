@@ -65,7 +65,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	public CleanupRepositoryResponse cleanupRepository(CleanupRepositoryRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse>) CleanupRepositoryRequest._ENDPOINT;
+		JsonEndpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse>)
+						CleanupRepositoryRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -100,7 +102,8 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 
 	public CloneSnapshotResponse clone(CloneSnapshotRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse>) CloneSnapshotRequest._ENDPOINT;
+		JsonEndpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse>) CloneSnapshotRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -135,7 +138,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 
 	public CreateSnapshotResponse create(CreateSnapshotRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<CreateSnapshotRequest, CreateSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateSnapshotRequest, CreateSnapshotResponse, ErrorResponse>) CreateSnapshotRequest._ENDPOINT;
+		JsonEndpoint<CreateSnapshotRequest, CreateSnapshotResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<CreateSnapshotRequest, CreateSnapshotResponse, ErrorResponse>)
+						CreateSnapshotRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -170,7 +175,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	public CreateRepositoryResponse createRepository(CreateRepositoryRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse>) CreateRepositoryRequest._ENDPOINT;
+		JsonEndpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse>)
+						CreateRepositoryRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -204,7 +211,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 
 	public DeleteSnapshotResponse delete(DeleteSnapshotRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ErrorResponse>) DeleteSnapshotRequest._ENDPOINT;
+		JsonEndpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ErrorResponse>)
+						DeleteSnapshotRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -239,7 +248,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	public DeleteRepositoryResponse deleteRepository(DeleteRepositoryRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse>) DeleteRepositoryRequest._ENDPOINT;
+		JsonEndpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse>)
+						DeleteRepositoryRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -273,7 +284,8 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 
 	public GetSnapshotResponse get(GetSnapshotRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetSnapshotRequest, GetSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<GetSnapshotRequest, GetSnapshotResponse, ErrorResponse>) GetSnapshotRequest._ENDPOINT;
+		JsonEndpoint<GetSnapshotRequest, GetSnapshotResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<GetSnapshotRequest, GetSnapshotResponse, ErrorResponse>) GetSnapshotRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -307,7 +319,8 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	public GetRepositoryResponse getRepository(GetRepositoryRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse>) GetRepositoryRequest._ENDPOINT;
+		JsonEndpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse>) GetRepositoryRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -354,7 +367,8 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 
 	public RestoreResponse restore(RestoreRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<RestoreRequest, RestoreResponse, ErrorResponse> endpoint = (JsonEndpoint<RestoreRequest, RestoreResponse, ErrorResponse>) RestoreRequest._ENDPOINT;
+		JsonEndpoint<RestoreRequest, RestoreResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<RestoreRequest, RestoreResponse, ErrorResponse>) RestoreRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -387,7 +401,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 
 	public SnapshotStatusResponse status(SnapshotStatusRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<SnapshotStatusRequest, SnapshotStatusResponse, ErrorResponse> endpoint = (JsonEndpoint<SnapshotStatusRequest, SnapshotStatusResponse, ErrorResponse>) SnapshotStatusRequest._ENDPOINT;
+		JsonEndpoint<SnapshotStatusRequest, SnapshotStatusResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<SnapshotStatusRequest, SnapshotStatusResponse, ErrorResponse>)
+						SnapshotStatusRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -435,7 +451,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	public VerifyRepositoryResponse verifyRepository(VerifyRepositoryRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse>) VerifyRepositoryRequest._ENDPOINT;
+		JsonEndpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse>)
+						VerifyRepositoryRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

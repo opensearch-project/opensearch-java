@@ -48,8 +48,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,9 +60,6 @@ import javax.annotation.Nullable;
 /**
  * Updates the index mappings.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/put_mapping/IndicesPutMappingRequest.ts#L37-L113">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class PutMappingRequest extends RequestBase implements JsonpSerializable {
@@ -1073,7 +1068,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream()
+									.map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

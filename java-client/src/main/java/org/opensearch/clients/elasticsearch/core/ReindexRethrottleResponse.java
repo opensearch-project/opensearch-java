@@ -35,18 +35,11 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.Map;
 import java.util.function.Function;
 
 // typedef: _global.reindex_rethrottle.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/reindex_rethrottle/ReindexRethrottleResponse.ts#L23-L25">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ReindexRethrottleResponse implements JsonpSerializable {
 	private final Map<String, ReindexNode> nodes;

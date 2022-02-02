@@ -33,17 +33,10 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: _global.open_point_in_time.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/open_point_in_time/OpenPointInTimeResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class OpenPointInTimeResponse implements JsonpSerializable {
 	private final String id;
