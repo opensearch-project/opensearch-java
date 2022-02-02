@@ -159,7 +159,7 @@ analyzers, and so on. Finding the correct class name in such large collections
 can be challenging.
 
 The {java-client} builders make this easy: the builders for variant types, such as
-`Query`, have methods for each of the available implementations. We’ve seen this
+`Query`, have methods for each of the available implementations. We've seen this
 in action above with `intervals` (a kind of query) and `allOf`, `match` and 
 `anyOf` (various kinds of intervals).
 
@@ -172,7 +172,7 @@ features guide you to build and navigate complex nested structures:
 
 Variant builders have setter methods for every available implementation. They
 use the same conventions as regular properties and accept both a builder lambda
-expression and a ready-made object of the actual type of the variant. Here’s an
+expression and a ready-made object of the actual type of the variant. Here's an
 example to build a term query:
 
 ["source","java"]
@@ -249,7 +249,7 @@ There are five kinds of objects in the {java-client} with different life cycles:
 
 **Object mapper**::
 Stateless and thread-safe, but can be costly to create. 
-It’s usually a singleton that is created at application startup and used to 
+It's usually a singleton that is created at application startup and used to
 create the transport.
 
 **Transport**:: 

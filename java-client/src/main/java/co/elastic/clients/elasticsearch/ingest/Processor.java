@@ -295,23 +295,6 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 	}
 
 	/**
-	 * Is this variant instance of kind {@code enrich}?
-	 */
-	public boolean isEnrich() {
-		return _kind == Kind.Enrich;
-	}
-
-	/**
-	 * Get the {@code enrich} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code enrich} kind.
-	 */
-	public EnrichProcessor enrich() {
-		return TaggedUnionUtils.get(this, Kind.Enrich);
-	}
-
-	/**
 	 * Is this variant instance of kind {@code fail}?
 	 */
 	public boolean isFail() {
@@ -847,16 +830,6 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this.dotExpander(fn.apply(new DotExpanderProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> enrich(EnrichProcessor v) {
-			this._kind = Kind.Enrich;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<Processor> enrich(Function<EnrichProcessor.Builder, ObjectBuilder<EnrichProcessor>> fn) {
-			return this.enrich(fn.apply(new EnrichProcessor.Builder()).build());
-		}
-
 		public ObjectBuilder<Processor> fail(FailProcessor v) {
 			this._kind = Kind.Fail;
 			this._value = v;
@@ -1142,7 +1115,6 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 		op.add(Builder::date, DateProcessor._DESERIALIZER, "date");
 		op.add(Builder::dateIndexName, DateIndexNameProcessor._DESERIALIZER, "date_index_name");
 		op.add(Builder::dotExpander, DotExpanderProcessor._DESERIALIZER, "dot_expander");
-		op.add(Builder::enrich, EnrichProcessor._DESERIALIZER, "enrich");
 		op.add(Builder::fail, FailProcessor._DESERIALIZER, "fail");
 		op.add(Builder::foreach, ForeachProcessor._DESERIALIZER, "foreach");
 		op.add(Builder::json, JsonProcessor._DESERIALIZER, "json");

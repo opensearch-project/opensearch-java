@@ -21,37 +21,39 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.util;
+
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
 
 /**
- * Builders for {@link Transform} variants.
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Action.ts#L74-L79">API
+ *      specification</a>
  */
-public class TransformBuilders {
-	private TransformBuilders() {
-	}
+@JsonpDeserializable
+public enum ActionStatusOptions implements JsonEnum {
+    Success("success"),
 
-	/**
-	 * Creates a builder for the {@link ChainTransform chain} {@code Transform}
-	 * variant.
-	 */
-	public static ChainTransform.Builder chain() {
-		return new ChainTransform.Builder();
-	}
+    Failure("failure"),
 
-	/**
-	 * Creates a builder for the {@link ScriptTransform script} {@code Transform}
-	 * variant.
-	 */
-	public static ScriptTransform.Builder script() {
-		return new ScriptTransform.Builder();
-	}
+    Simulated("simulated"),
 
-	/**
-	 * Creates a builder for the {@link SearchTransform search} {@code Transform}
-	 * variant.
-	 */
-	public static SearchTransform.Builder search() {
-		return new SearchTransform.Builder();
-	}
+    Throttled("throttled"),
 
+    ;
+
+    private final String jsonValue;
+
+    ActionStatusOptions(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
+
+    public String jsonValue() {
+        return this.jsonValue;
+    }
+
+    public static final JsonEnum.Deserializer<ActionStatusOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
+            ActionStatusOptions.values());
 }

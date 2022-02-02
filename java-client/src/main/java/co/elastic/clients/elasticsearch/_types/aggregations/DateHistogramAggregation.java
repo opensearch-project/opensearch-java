@@ -25,8 +25,6 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch._types.Time;
-import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
-import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -53,7 +51,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DateHistogramAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
+public class DateHistogramAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final CalendarInterval calendarInterval;
 
@@ -131,14 +129,6 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	@Override
 	public Aggregation.Kind _aggregationKind() {
 		return Aggregation.Kind.DateHistogram;
-	}
-
-	/**
-	 * PivotGroupBy variant kind.
-	 */
-	@Override
-	public PivotGroupBy.Kind _pivotGroupByKind() {
-		return PivotGroupBy.Kind.DateHistogram;
 	}
 
 	/**
