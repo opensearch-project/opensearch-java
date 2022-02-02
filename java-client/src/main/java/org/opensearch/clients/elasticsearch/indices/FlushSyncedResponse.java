@@ -34,17 +34,10 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: indices.flush_synced.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/flush_synced/IndicesFlushSyncedResponse.ts#L24-L31">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class FlushSyncedResponse extends DictionaryResponse<String, ShardStatistics> {
 	private final ShardStatistics shards;

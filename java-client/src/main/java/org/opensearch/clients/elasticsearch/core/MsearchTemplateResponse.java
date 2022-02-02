@@ -36,12 +36,6 @@ import java.util.function.Supplier;
 
 // typedef: _global.msearch_template.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch_template/MultiSearchTemplateResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class MsearchTemplateResponse<TDocument> extends MultiSearchResult<TDocument> {
 	// ---------------------------------------------------------------------------------------------

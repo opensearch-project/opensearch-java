@@ -40,7 +40,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -51,9 +50,6 @@ import javax.annotation.Nullable;
 /**
  * Creates or updates a script.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/put_script/PutScriptRequest.ts#L25-L42">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class PutScriptRequest extends RequestBase implements JsonpSerializable {

@@ -40,12 +40,6 @@ import java.util.function.Function;
 
 // typedef: shutdown.get_node.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/shutdown/get_node/ShutdownGetNodeResponse.ts#L23-L27">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GetNodeResponse implements JsonpSerializable {
 	private final List<NodeShutdownStatus> nodes;

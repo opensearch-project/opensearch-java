@@ -29,7 +29,6 @@ import org.opensearch.clients.json.ObjectBuilderDeserializer;
 import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilder;
 
-import java.lang.Void;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.UnmappedSignificantTermsAggregate

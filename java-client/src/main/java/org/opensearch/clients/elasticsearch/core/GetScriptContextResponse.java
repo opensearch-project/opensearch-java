@@ -40,12 +40,6 @@ import java.util.function.Function;
 
 // typedef: _global.get_script_context.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get_script_context/GetScriptContextResponse.ts#L22-L26">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GetScriptContextResponse implements JsonpSerializable {
 	private final List<Context> contexts;

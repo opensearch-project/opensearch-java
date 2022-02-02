@@ -38,7 +38,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
@@ -49,9 +48,6 @@ import javax.annotation.Nullable;
 /**
  * Explicitly clears the search context for a scroll.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/clear_scroll/ClearScrollRequest.ts#L23-L35">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class ClearScrollRequest extends RequestBase implements JsonpSerializable {

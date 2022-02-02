@@ -30,8 +30,6 @@ import org.opensearch.clients.json.JsonpSerializable;
 import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
-import java.lang.String;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.OperationBase

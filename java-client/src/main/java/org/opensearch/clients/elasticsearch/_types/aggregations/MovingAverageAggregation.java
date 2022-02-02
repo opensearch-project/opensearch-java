@@ -241,7 +241,8 @@ public class MovingAverageAggregation
 		}
 
 		public ObjectBuilder<MovingAverageAggregation> holtWinters(
-				Function<HoltWintersMovingAverageAggregation.Builder, ObjectBuilder<HoltWintersMovingAverageAggregation>> fn) {
+				Function<HoltWintersMovingAverageAggregation.Builder,
+						ObjectBuilder<HoltWintersMovingAverageAggregation>> fn) {
 			return this.holtWinters(fn.apply(new HoltWintersMovingAverageAggregation.Builder()).build());
 		}
 

@@ -35,17 +35,10 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: _global.scripts_painless_execute.PainlessContextSetup
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/scripts_painless_execute/types.ts#L25-L29">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class PainlessContextSetup implements JsonpSerializable {
 	private final JsonData document;

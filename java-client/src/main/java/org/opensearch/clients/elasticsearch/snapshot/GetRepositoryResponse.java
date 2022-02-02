@@ -30,17 +30,10 @@ import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.transport.endpoints.DictionaryResponse;
 import org.opensearch.clients.util.ObjectBuilder;
 
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: snapshot.get_repository.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/get_repository/SnapshotGetRepositoryResponse.ts#L23-L23">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GetRepositoryResponse extends DictionaryResponse<String, Repository> {
 	// ---------------------------------------------------------------------------------------------

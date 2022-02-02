@@ -42,8 +42,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,9 +54,6 @@ import javax.annotation.Nullable;
 /**
  * Allows to use the Mustache language to pre-render a search definition.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search_template/SearchTemplateRequest.ts#L33-L98">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class SearchTemplateRequest extends RequestBase implements JsonpSerializable {
@@ -720,7 +715,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 				params.put("typed_keys", "true");
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream()
+									.map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
@@ -753,7 +749,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Create an "{@code search_template}" endpoint.
 	 */
-	public static <TDocument> Endpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> createSearchTemplateEndpoint(
+	public static <TDocument> Endpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse>
+	createSearchTemplateEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		return _ENDPOINT.withResponseDeserializer(
 				SearchTemplateResponse.createSearchTemplateResponseDeserializer(tDocumentDeserializer));

@@ -26,12 +26,6 @@ package org.opensearch.clients.elasticsearch.cluster.allocation_explain;
 import org.opensearch.clients.json.JsonEnum;
 import org.opensearch.clients.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/allocation_explain/types.ts#L127-L146">API
- *      specification</a>
- */
 @JsonpDeserializable
 public enum UnassignedInformationReason implements JsonEnum {
 	IndexCreated("INDEX_CREATED"),

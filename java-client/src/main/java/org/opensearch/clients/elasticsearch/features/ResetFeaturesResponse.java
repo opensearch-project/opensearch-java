@@ -38,12 +38,6 @@ import java.util.function.Function;
 
 // typedef: features.reset_features.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/features/reset_features/ResetFeaturesResponse.ts#L22-L26">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ResetFeaturesResponse implements JsonpSerializable {
 	private final List<Feature> features;

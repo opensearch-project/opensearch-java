@@ -41,8 +41,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
@@ -54,9 +52,6 @@ import javax.annotation.Nullable;
  * Performs the analysis process on a text and return the tokens breakdown of
  * the text.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/analyze/IndicesAnalyzeRequest.ts#L27-L47">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class AnalyzeRequest extends RequestBase implements JsonpSerializable {

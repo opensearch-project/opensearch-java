@@ -40,12 +40,6 @@ import java.util.function.Function;
 
 // typedef: _global.mtermvectors.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mtermvectors/MultiTermVectorsResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class MtermvectorsResponse implements JsonpSerializable {
 	private final List<MultiTermVectorsResult> docs;

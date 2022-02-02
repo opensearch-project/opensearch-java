@@ -31,7 +31,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.String;
 import java.util.Collections;
 import java.util.function.Function;
 
@@ -41,9 +40,6 @@ import java.util.function.Function;
  * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
  * Direct use is not supported.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/shutdown/put_node/ShutdownPutNodeRequest.ts#L23-L32">API
- *      specification</a>
  */
 
 public class PutNodeRequest extends RequestBase {

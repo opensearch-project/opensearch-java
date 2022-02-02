@@ -39,12 +39,6 @@ import java.util.function.Function;
 
 // typedef: snapshot.restore.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/restore/SnapshotRestoreResponse.ts#L23-L25">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class RestoreResponse implements JsonpSerializable {
 	private final SnapshotRestore snapshot;

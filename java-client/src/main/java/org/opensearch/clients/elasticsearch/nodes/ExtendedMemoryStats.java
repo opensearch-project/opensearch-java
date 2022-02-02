@@ -31,17 +31,10 @@ import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.util.function.Function;
 
 // typedef: nodes._types.ExtendedMemoryStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L128-L131">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ExtendedMemoryStats extends MemoryStats {
 	private final int freePercent;

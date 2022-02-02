@@ -27,12 +27,6 @@ import org.opensearch.clients.json.JsonpDeserializer;
 
 // typedef: indices.simulate_index_template.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/simulate_index_template/IndicesSimulateIndexTemplateResponse.ts#L20-L22">API
- *      specification</a>
- */
 
 public class SimulateIndexTemplateResponse {
 	public SimulateIndexTemplateResponse() {

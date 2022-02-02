@@ -43,8 +43,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Long;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;

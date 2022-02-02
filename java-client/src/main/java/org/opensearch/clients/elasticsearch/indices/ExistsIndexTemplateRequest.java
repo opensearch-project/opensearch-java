@@ -34,7 +34,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -45,9 +44,6 @@ import javax.annotation.Nullable;
 /**
  * Returns information about whether a particular index template exists.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/exists_index_template/IndicesExistsIndexTemplateRequest.ts#L24-L41">API
- *      specification</a>
  */
 
 public class ExistsIndexTemplateRequest extends RequestBase {

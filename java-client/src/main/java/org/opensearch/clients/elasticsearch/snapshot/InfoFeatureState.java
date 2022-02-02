@@ -33,18 +33,11 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.List;
 import java.util.function.Function;
 
 // typedef: snapshot._types.InfoFeatureState
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/_types/SnapshotInfoFeatureState.ts#L22-L25">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class InfoFeatureState implements JsonpSerializable {
 	private final String featureName;

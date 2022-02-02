@@ -38,12 +38,6 @@ import java.util.function.Function;
 
 // typedef: shutdown.get_node.PersistentTaskStatus
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/shutdown/get_node/ShutdownGetNodeResponse.ts#L56-L58">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class PersistentTaskStatus implements JsonpSerializable {
 	private final ShutdownStatus status;

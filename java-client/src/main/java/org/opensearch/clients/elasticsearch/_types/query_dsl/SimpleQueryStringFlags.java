@@ -34,8 +34,6 @@ import org.opensearch.clients.util.ObjectBuilderBase;
 import org.opensearch.clients.util.TaggedUnion;
 import org.opensearch.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: _types.query_dsl.SimpleQueryStringFlags
@@ -43,13 +41,6 @@ import java.util.function.Function;
 /**
  * Query flags can be either a single flag or a combination of flags, e.g.
  * <code>OR|AND|PREFIX</code>
- * 
- * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/7.15/query-dsl-simple-query-string-query.html#supported-flags">Documentation
- *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L271-L276">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class SimpleQueryStringFlags implements TaggedUnion<SimpleQueryStringFlags.Kind, Object>, JsonpSerializable {

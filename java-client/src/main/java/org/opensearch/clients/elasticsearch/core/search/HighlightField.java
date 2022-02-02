@@ -35,21 +35,12 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.List;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.HighlightField
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/highlighting.ts#L84-L107">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class HighlightField implements JsonpSerializable {
 	@Nullable

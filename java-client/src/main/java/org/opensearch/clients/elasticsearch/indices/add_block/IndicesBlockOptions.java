@@ -26,12 +26,6 @@ package org.opensearch.clients.elasticsearch.indices.add_block;
 import org.opensearch.clients.json.JsonEnum;
 import org.opensearch.clients.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/add_block/IndicesAddBlockRequest.ts#L43-L48">API
- *      specification</a>
- */
 @JsonpDeserializable
 public enum IndicesBlockOptions implements JsonEnum {
 	Metadata("metadata"),

@@ -32,7 +32,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,9 +44,6 @@ import javax.annotation.Nullable;
 /**
  * Deletes a repository.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/delete_repository/SnapshotDeleteRepositoryRequest.ts#L24-L38">API
- *      specification</a>
  */
 
 public class DeleteRepositoryRequest extends RequestBase {

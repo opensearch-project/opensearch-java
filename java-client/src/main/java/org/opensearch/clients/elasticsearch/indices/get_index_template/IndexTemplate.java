@@ -34,9 +34,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.Long;
-import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -44,12 +41,6 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.IndexTemplate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_index_template/IndicesGetIndexTemplateResponse.ts#L38-L48">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class IndexTemplate implements JsonpSerializable {
 	private final List<String> indexPatterns;

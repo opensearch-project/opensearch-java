@@ -31,8 +31,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.Long;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -43,9 +41,6 @@ import javax.annotation.Nullable;
 /**
  * Changes the number of requests per second for a particular Reindex operation.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/reindex_rethrottle/ReindexRethrottleRequest.ts#L24-L36">API
- *      specification</a>
  */
 
 public class ReindexRethrottleRequest extends RequestBase {

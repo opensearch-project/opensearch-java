@@ -36,18 +36,11 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.Map;
 import java.util.function.Function;
 
 // typedef: indices.segments.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/segments/IndicesSegmentsResponse.ts#L24-L29">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class SegmentsResponse implements JsonpSerializable {
 	private final Map<String, IndexSegment> indices;

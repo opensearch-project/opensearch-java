@@ -26,12 +26,6 @@ package org.opensearch.clients.elasticsearch._types.aggregations;
 import org.opensearch.clients.json.JsonEnum;
 import org.opensearch.clients.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/AggregationContainer.ts#L188-L192">API
- *      specification</a>
- */
 @JsonpDeserializable
 public enum MissingOrder implements JsonEnum {
 	First("first"),

@@ -27,12 +27,6 @@ import org.opensearch.clients.json.JsonpDeserializer;
 
 // typedef: cluster.post_voting_config_exclusions.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/post_voting_config_exclusions/ClusterPostVotingConfigExclusionsResponse.ts#L22-L24">API
- *      specification</a>
- */
 
 public class PostVotingConfigExclusionsResponse {
 	public PostVotingConfigExclusionsResponse() {

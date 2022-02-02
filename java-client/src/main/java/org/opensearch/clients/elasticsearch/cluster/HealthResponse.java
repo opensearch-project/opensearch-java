@@ -36,21 +36,12 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.health.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/health/ClusterHealthResponse.ts#L26-L60">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class HealthResponse implements JsonpSerializable {
 	private final int activePrimaryShards;

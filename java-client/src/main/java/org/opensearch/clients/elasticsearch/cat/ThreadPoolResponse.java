@@ -38,12 +38,6 @@ import java.util.function.Function;
 
 // typedef: cat.thread_pool.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/thread_pool/CatThreadPoolResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ThreadPoolResponse implements JsonpSerializable {
 	private final List<ThreadPoolRecord> valueBody;

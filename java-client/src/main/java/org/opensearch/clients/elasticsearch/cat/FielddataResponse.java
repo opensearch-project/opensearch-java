@@ -38,12 +38,6 @@ import java.util.function.Function;
 
 // typedef: cat.fielddata.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/fielddata/CatFielddataResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class FielddataResponse implements JsonpSerializable {
 	private final List<FielddataRecord> valueBody;

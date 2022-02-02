@@ -36,19 +36,11 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Double;
-import java.lang.String;
 import java.util.Map;
 import java.util.function.Function;
 
 // typedef: _global.rank_eval.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/rank_eval/RankEvalResponse.ts#L26-L34">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class RankEvalResponse implements JsonpSerializable {
 	private final double metricScore;

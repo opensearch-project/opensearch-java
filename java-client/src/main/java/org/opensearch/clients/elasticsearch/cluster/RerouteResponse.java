@@ -42,12 +42,6 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/ClusterRerouteResponse.ts#L23-L33">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class RerouteResponse implements JsonpSerializable {
 	private final List<RerouteExplanation> explanations;

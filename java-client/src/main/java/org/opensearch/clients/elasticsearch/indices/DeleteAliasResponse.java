@@ -34,12 +34,6 @@ import java.util.function.Function;
 
 // typedef: indices.delete_alias.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/delete_alias/IndicesDeleteAliasResponse.ts#L22-L22">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class DeleteAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------

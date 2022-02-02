@@ -40,12 +40,6 @@ import java.util.function.Function;
 
 // typedef: dangling_indices.list_dangling_indices.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/dangling_indices/list_dangling_indices/ListDanglingIndicesResponse.ts#L23-L27">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ListDanglingIndicesResponse implements JsonpSerializable {
 	private final List<DanglingIndex> danglingIndices;

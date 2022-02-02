@@ -33,7 +33,6 @@ import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

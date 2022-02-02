@@ -41,10 +41,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Integer;
-import java.lang.Long;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,9 +53,6 @@ import javax.annotation.Nullable;
  * Simulate matching the given index name against the index templates in the
  * system
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/simulate_index_template/IndicesSimulateIndexTemplateRequest.ts#L33-L71">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSerializable {
@@ -519,7 +512,8 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	/**
 	 * Endpoint "{@code indices.simulate_index_template}".
 	 */
-	public static final Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse> _ENDPOINT =
+			new SimpleEndpoint<>(
 			"es/indices.simulate_index_template",
 
 			// Request method

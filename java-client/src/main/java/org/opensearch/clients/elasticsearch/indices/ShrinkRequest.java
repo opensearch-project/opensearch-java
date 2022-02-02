@@ -40,7 +40,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -51,9 +50,6 @@ import javax.annotation.Nullable;
 /**
  * Allow to shrink an existing index into a new index with fewer primary shards.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/shrink/IndicesShrinkRequest.ts#L27-L46">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class ShrinkRequest extends RequestBase implements JsonpSerializable {

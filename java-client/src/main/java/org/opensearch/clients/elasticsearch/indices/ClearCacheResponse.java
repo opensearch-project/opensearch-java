@@ -34,12 +34,6 @@ import java.util.function.Function;
 
 // typedef: indices.clear_cache.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/clear_cache/IndicesClearCacheResponse.ts#L22-L22">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ClearCacheResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------

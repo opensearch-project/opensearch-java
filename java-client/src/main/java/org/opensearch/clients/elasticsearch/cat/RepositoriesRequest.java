@@ -35,9 +35,6 @@ import java.util.Map;
 /**
  * Returns information about snapshot repositories registered in the cluster.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/repositories/CatRepositoriesRequest.ts#L22-L27">API
- *      specification</a>
  */
 
 public class RepositoriesRequest extends CatRequestBase {

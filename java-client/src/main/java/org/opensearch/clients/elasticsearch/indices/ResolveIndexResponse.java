@@ -41,12 +41,6 @@ import java.util.function.Function;
 
 // typedef: indices.resolve_index.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/resolve_index/ResolveIndexResponse.ts#L22-L28">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ResolveIndexResponse implements JsonpSerializable {
 	private final List<ResolveIndexItem> indices;

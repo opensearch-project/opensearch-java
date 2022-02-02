@@ -32,18 +32,10 @@ import org.opensearch.clients.json.ObjectDeserializer;
 import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: indices.split.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/split/IndicesSplitResponse.ts#L23-L28">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class SplitResponse extends AcknowledgedResponseBase {
 	private final boolean shardsAcknowledged;

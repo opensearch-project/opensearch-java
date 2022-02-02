@@ -34,18 +34,11 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Map;
 import java.util.function.Function;
 
 // typedef: indices.get_alias.IndexAliases
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_alias/IndicesGetAliasResponse.ts#L27-L29">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class IndexAliases implements JsonpSerializable {
 	private final Map<String, AliasDefinition> aliases;

@@ -26,12 +26,6 @@ package org.opensearch.clients.elasticsearch.core.search;
 import org.opensearch.clients.json.JsonEnum;
 import org.opensearch.clients.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/highlighting.ts#L77-L82">API
- *      specification</a>
- */
 @JsonpDeserializable
 public enum BuiltinHighlighterType implements JsonEnum {
 	Plain("plain"),

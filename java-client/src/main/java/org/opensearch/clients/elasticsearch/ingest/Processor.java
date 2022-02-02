@@ -37,17 +37,10 @@ import org.opensearch.clients.util.ObjectBuilderBase;
 import org.opensearch.clients.util.TaggedUnion;
 import org.opensearch.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
 import java.util.function.Function;
 
 // typedef: ingest._types.ProcessorContainer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L28-L66">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSerializable {
 

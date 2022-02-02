@@ -33,18 +33,10 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
-import java.lang.Long;
 import java.util.function.Function;
 
 // typedef: snapshot._types.FileCountSnapshotStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/_types/FileCountSnapshotStats.ts#L22-L25">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class FileCountSnapshotStats implements JsonpSerializable {
 	private final int fileCount;

@@ -31,7 +31,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.String;
 import java.util.Collections;
 import java.util.function.Function;
 
@@ -40,9 +39,6 @@ import java.util.function.Function;
 /**
  * Deletes an index template.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/delete_index_template/IndicesDeleteIndexTemplateRequest.ts#L23-L32">API
- *      specification</a>
  */
 
 public class DeleteIndexTemplateRequest extends RequestBase {
@@ -106,7 +102,8 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.delete_index_template}".
 	 */
-	public static final Endpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse> _ENDPOINT =
+			new SimpleEndpoint<>(
 			"es/indices.delete_index_template",
 
 			// Request method

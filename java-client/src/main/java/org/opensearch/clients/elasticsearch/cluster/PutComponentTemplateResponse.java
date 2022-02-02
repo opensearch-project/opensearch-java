@@ -34,12 +34,6 @@ import java.util.function.Function;
 
 // typedef: cluster.put_component_template.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/put_component_template/ClusterPutComponentTemplateResponse.ts#L22-L22">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class PutComponentTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------

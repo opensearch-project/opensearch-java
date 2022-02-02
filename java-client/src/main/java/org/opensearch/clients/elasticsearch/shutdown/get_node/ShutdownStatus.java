@@ -26,12 +26,6 @@ package org.opensearch.clients.elasticsearch.shutdown.get_node;
 import org.opensearch.clients.json.JsonEnum;
 import org.opensearch.clients.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/shutdown/get_node/ShutdownGetNodeResponse.ts#L45-L50">API
- *      specification</a>
- */
 @JsonpDeserializable
 public enum ShutdownStatus implements JsonEnum {
 	NotStarted("not_started"),

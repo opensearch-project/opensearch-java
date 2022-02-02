@@ -34,12 +34,6 @@ import java.util.function.Function;
 
 // typedef: dangling_indices.import_dangling_index.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/dangling_indices/import_dangling_index/ImportDanglingIndexResponse.ts#L22-L22">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------

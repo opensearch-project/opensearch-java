@@ -34,18 +34,10 @@ import org.opensearch.clients.util.ObjectBuilderBase;
 import org.opensearch.clients.util.TaggedUnion;
 import org.opensearch.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Object;
-import java.lang.String;
 import java.util.function.Function;
 
 // typedef: _global.search._types.HighlighterType
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/highlighting.ts#L74-L75">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class HighlighterType implements TaggedUnion<HighlighterType.Kind, Object>, JsonpSerializable {
 

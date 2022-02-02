@@ -43,8 +43,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -56,9 +54,6 @@ import javax.annotation.Nullable;
  * Updates an alias to point to a new index when the existing index is
  * considered to be too large or too old.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/rollover/IndicesRolloverRequest.ts#L29-L53">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class RolloverRequest extends RequestBase implements JsonpSerializable {

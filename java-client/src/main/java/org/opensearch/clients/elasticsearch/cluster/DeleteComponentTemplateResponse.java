@@ -34,12 +34,6 @@ import java.util.function.Function;
 
 // typedef: cluster.delete_component_template.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/delete_component_template/ClusterDeleteComponentTemplateResponse.ts#L22-L22">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class DeleteComponentTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------

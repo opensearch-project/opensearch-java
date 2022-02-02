@@ -32,7 +32,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -43,9 +42,6 @@ import javax.annotation.Nullable;
 /**
  * Deletes a component template
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/delete_component_template/ClusterDeleteComponentTemplateRequest.ts#L24-L39">API
- *      specification</a>
  */
 
 public class DeleteComponentTemplateRequest extends RequestBase {
@@ -182,7 +178,8 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.delete_component_template}".
 	 */
-	public static final Endpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ErrorResponse>
+			_ENDPOINT = new SimpleEndpoint<>(
 			"es/cluster.delete_component_template",
 
 			// Request method

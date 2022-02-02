@@ -33,18 +33,10 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.Integer;
 import java.util.function.Function;
 
 // typedef: _global.close_point_in_time.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/close_point_in_time/ClosePointInTimeResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ClosePointInTimeResponse implements JsonpSerializable {
 	private final boolean succeeded;

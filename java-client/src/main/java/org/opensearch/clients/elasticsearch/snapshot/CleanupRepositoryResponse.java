@@ -39,12 +39,6 @@ import java.util.function.Function;
 
 // typedef: snapshot.cleanup_repository.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/cleanup_repository/SnapshotCleanupRepositoryResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class CleanupRepositoryResponse implements JsonpSerializable {
 	private final CleanupRepositoryResults results;

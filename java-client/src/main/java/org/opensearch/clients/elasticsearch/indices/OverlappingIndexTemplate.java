@@ -34,19 +34,12 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.String;
 import java.util.List;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.OverlappingIndexTemplate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/OverlappingIndexTemplate.ts#L22-L25">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class OverlappingIndexTemplate implements JsonpSerializable {
 	private final String name;

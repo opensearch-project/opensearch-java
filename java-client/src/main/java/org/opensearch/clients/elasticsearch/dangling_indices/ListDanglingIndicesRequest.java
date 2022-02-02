@@ -35,9 +35,6 @@ import java.util.Collections;
 /**
  * Returns all dangling indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/dangling_indices/list_dangling_indices/ListDanglingIndicesRequest.ts#L22-L27">API
- *      specification</a>
  */
 
 public class ListDanglingIndicesRequest extends RequestBase {
@@ -54,7 +51,8 @@ public class ListDanglingIndicesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code dangling_indices.list_dangling_indices}".
 	 */
-	public static final Endpoint<ListDanglingIndicesRequest, ListDanglingIndicesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ListDanglingIndicesRequest, ListDanglingIndicesResponse, ErrorResponse> _ENDPOINT =
+			new SimpleEndpoint<>(
 			"es/dangling_indices.list_dangling_indices",
 
 			// Request method

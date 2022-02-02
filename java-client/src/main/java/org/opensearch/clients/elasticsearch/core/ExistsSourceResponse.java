@@ -29,9 +29,6 @@ import org.opensearch.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/exists_source/SourceExistsResponse.ts#L22-L24">API
- *      specification</a>
  */
 
 public class ExistsSourceResponse {

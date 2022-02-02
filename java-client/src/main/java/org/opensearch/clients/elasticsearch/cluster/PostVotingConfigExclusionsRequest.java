@@ -34,7 +34,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,9 +46,6 @@ import javax.annotation.Nullable;
 /**
  * Updates the cluster voting config exclusions by node ids or node names.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/post_voting_config_exclusions/ClusterPostVotingConfigExclusionsRequest.ts#L24-L50">API
- *      specification</a>
  */
 
 public class PostVotingConfigExclusionsRequest extends RequestBase {

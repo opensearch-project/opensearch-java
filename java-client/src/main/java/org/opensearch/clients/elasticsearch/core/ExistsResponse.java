@@ -27,12 +27,6 @@ import org.opensearch.clients.json.JsonpDeserializer;
 
 // typedef: _global.exists.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/exists/DocumentExistsResponse.ts#L22-L24">API
- *      specification</a>
- */
 
 public class ExistsResponse {
 	public ExistsResponse() {

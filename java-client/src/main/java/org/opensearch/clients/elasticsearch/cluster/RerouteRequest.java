@@ -40,8 +40,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,9 +52,6 @@ import javax.annotation.Nullable;
 /**
  * Allows to manually change the allocation of individual shards in the cluster.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/ClusterRerouteRequest.ts#L25-L69">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class RerouteRequest extends RequestBase implements JsonpSerializable {

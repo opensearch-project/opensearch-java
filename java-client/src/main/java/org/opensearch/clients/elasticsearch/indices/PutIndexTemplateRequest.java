@@ -40,9 +40,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Integer;
-import java.lang.Long;
-import java.lang.String;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -54,9 +51,6 @@ import javax.annotation.Nullable;
 /**
  * Creates or updates an index template.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/put_index_template/IndicesPutIndexTemplateRequest.ts#L35-L55">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class PutIndexTemplateRequest extends RequestBase implements JsonpSerializable {

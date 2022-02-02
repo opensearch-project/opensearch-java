@@ -36,19 +36,12 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
 // typedef: indices.simulate_template.Template
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/simulate_template/IndicesSimulateTemplateResponse.ts#L32-L37">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class Template implements JsonpSerializable {
 	private final Map<String, Alias> aliases;

@@ -39,7 +39,6 @@ import org.opensearch.clients.util.TaggedUnion;
 import org.opensearch.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Object;
 import java.util.function.Function;
 
 // typedef: _types.query_dsl.QueryContainer

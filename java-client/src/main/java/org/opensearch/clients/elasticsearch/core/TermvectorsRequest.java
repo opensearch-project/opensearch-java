@@ -41,9 +41,6 @@ import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.lang.Boolean;
-import java.lang.Long;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,9 +55,6 @@ import javax.annotation.Nullable;
  * Returns information and statistics about terms in the fields of a particular
  * document.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/termvectors/TermVectorsRequest.ts#L34-L63">API
- *      specification</a>
  */
 
 public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpSerializable {

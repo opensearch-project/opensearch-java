@@ -40,12 +40,6 @@ import java.util.function.Function;
 
 // typedef: indices.get_index_template.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_index_template/IndicesGetIndexTemplateResponse.ts#L27-L31">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GetIndexTemplateResponse implements JsonpSerializable {
 	private final List<IndexTemplateItem> indexTemplates;

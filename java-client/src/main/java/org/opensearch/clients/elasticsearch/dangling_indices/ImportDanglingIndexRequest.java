@@ -32,8 +32,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -44,9 +42,6 @@ import javax.annotation.Nullable;
 /**
  * Imports the specified dangling index
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/dangling_indices/import_dangling_index/ImportDanglingIndexRequest.ts#L24-L38">API
- *      specification</a>
  */
 
 public class ImportDanglingIndexRequest extends RequestBase {
@@ -206,7 +201,8 @@ public class ImportDanglingIndexRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code dangling_indices.import_dangling_index}".
 	 */
-	public static final Endpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> _ENDPOINT =
+			new SimpleEndpoint<>(
 			"es/dangling_indices.import_dangling_index",
 
 			// Request method

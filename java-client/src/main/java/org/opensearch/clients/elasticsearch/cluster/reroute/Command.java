@@ -38,15 +38,6 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Command
 
-/**
- *
- * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-reroute.html#cluster-reroute-api-request-body">Documentation
- *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/types.ts#L23-L45">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class Command implements JsonpSerializable {
 	@Nullable

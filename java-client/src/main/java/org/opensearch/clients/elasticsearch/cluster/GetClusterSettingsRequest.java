@@ -31,7 +31,6 @@ import org.opensearch.clients.transport.endpoints.SimpleEndpoint;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 
-import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -42,9 +41,6 @@ import javax.annotation.Nullable;
 /**
  * Returns cluster settings.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/get_settings/ClusterGetSettingsRequest.ts#L23-L35">API
- *      specification</a>
  */
 
 public class GetClusterSettingsRequest extends RequestBase {

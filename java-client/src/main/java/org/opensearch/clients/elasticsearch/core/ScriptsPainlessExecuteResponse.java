@@ -43,12 +43,6 @@ import javax.annotation.Nullable;
 
 // typedef: _global.scripts_painless_execute.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/scripts_painless_execute/ExecutePainlessScriptResponse.ts#L20-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializable {
 	private final TResult result;
@@ -153,7 +147,8 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 	 * Json deserializer for {@link ScriptsPainlessExecuteResponse} based on named
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<ScriptsPainlessExecuteResponse<Object>> _DESERIALIZER = createScriptsPainlessExecuteResponseDeserializer(
+	public static final JsonpDeserializer<ScriptsPainlessExecuteResponse<Object>> _DESERIALIZER =
+			createScriptsPainlessExecuteResponseDeserializer(
 			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.scripts_painless_execute.TResult"));
 
 	protected static <TResult> void setupScriptsPainlessExecuteResponseDeserializer(

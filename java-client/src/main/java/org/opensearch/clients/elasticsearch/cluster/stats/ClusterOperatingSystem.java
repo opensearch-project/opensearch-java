@@ -33,7 +33,6 @@ import org.opensearch.clients.util.ApiTypeHelper;
 import org.opensearch.clients.util.ObjectBuilder;
 import org.opensearch.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.util.List;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -314,7 +313,8 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		 * Adds a value to <code>architectures</code> using a builder lambda.
 		 */
 		public final Builder architectures(
-				Function<ClusterOperatingSystemArchitecture.Builder, ObjectBuilder<ClusterOperatingSystemArchitecture>> fn) {
+				Function<ClusterOperatingSystemArchitecture.Builder,
+						ObjectBuilder<ClusterOperatingSystemArchitecture>> fn) {
 			return architectures(fn.apply(new ClusterOperatingSystemArchitecture.Builder()).build());
 		}
 

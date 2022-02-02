@@ -34,9 +34,6 @@ import org.opensearch.clients.util.ObjectBuilderBase;
 import org.opensearch.clients.util.TaggedUnion;
 import org.opensearch.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.Object;
-import java.lang.String;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -48,9 +45,6 @@ import java.util.stream.Collectors;
  * source can be filtered. Used as a query parameter along with the
  * <code>_source_includes</code> and <code>_source_excludes</code> parameters.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/SourceFilter.ts#L39-L45">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class SourceConfigParam implements TaggedUnion<SourceConfigParam.Kind, Object>, JsonpSerializable {
