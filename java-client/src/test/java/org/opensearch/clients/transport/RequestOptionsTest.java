@@ -26,8 +26,8 @@ import com.sun.net.httpserver.HttpServer;
 import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
-import org.elasticsearch.client.ResponseException;
-import org.elasticsearch.client.RestClient;
+import org.opensearch.client.ResponseException;
+import org.opensearch.client.RestClient;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -102,21 +102,6 @@ public class RequestOptionsTest extends Assert {
     }
 
     @Test
-    public void testDefaultHeaders() throws IOException {
-        final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
-        final OpenSearchClient client = new OpenSearchClient(trsp);
-
-        Properties props = getProps(client);
-
-        assertTrue(props.getProperty("header-user-agent").startsWith("elastic-java/" + Version.VERSION.toString()));
-        assertTrue(props.getProperty("header-x-elastic-client-meta").contains("es="));
-        assertEquals(
-            "application/vnd.elasticsearch+json; compatible-with=" + String.valueOf(Version.VERSION.major()),
-            props.getProperty("header-accept")
-        );
-    }
-
-    @Test
     public void testClientHeader() throws IOException {
         final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
         final OpenSearchClient client = new OpenSearchClient(trsp)
@@ -129,19 +114,6 @@ public class RequestOptionsTest extends Assert {
         Properties props = getProps(client);
         assertEquals("Bar", props.getProperty("header-x-foo"));
         assertEquals("MegaClient/1.2.3", props.getProperty("header-user-agent"));
-    }
-
-    @Test
-    public void testQueryParameter() throws IOException {
-        final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
-        final OpenSearchClient client = new OpenSearchClient(trsp)
-            .withTransportOptions(trsp.options().with(
-                    b -> b.setParameter("format", "pretty")
-                )
-            );
-
-        Properties props = getProps(client);
-        assertEquals("pretty", props.getProperty("param-format"));
     }
 
     @Test

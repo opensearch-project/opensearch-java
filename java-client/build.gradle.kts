@@ -116,7 +116,7 @@ publishing {
 
 dependencies {
 
-    val opensearchVersion = "1.0.0-SNAPSHOT"
+    val opensearchVersion = "1.2.3"
     val jacksonVersion = "2.12.0"
 
     // Apache 2.0
