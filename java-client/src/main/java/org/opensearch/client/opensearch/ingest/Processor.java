@@ -79,8 +79,6 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 
 		DotExpander("dot_expander"),
 
-		Enrich("enrich"),
-
 		Fail("fail"),
 
 		Foreach("foreach"),
