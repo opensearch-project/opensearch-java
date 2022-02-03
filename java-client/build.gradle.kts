@@ -30,8 +30,8 @@ plugins {
 }
 
 java {
-    targetCompatibility = JavaVersion.VERSION_1_10
-    sourceCompatibility = JavaVersion.VERSION_1_10
+    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_1_8
 
     withJavadocJar()
     withSourcesJar()
@@ -116,8 +116,8 @@ publishing {
 
 dependencies {
 
-    val opensearchVersion = "1.2.3"
-    val jacksonVersion = "2.12.0"
+    val opensearchVersion = "1.2.4"
+    val jacksonVersion = "2.12.5"
 
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
