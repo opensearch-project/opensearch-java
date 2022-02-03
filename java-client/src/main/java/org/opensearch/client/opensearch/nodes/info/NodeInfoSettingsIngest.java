@@ -81,9 +81,6 @@ public class NodeInfoSettingsIngest implements JsonpSerializable {
 	private final NodeInfoIngestInfo dotExpander;
 
 	@Nullable
-	private final NodeInfoIngestInfo enrich;
-
-	@Nullable
 	private final NodeInfoIngestInfo fail;
 
 	@Nullable
@@ -172,7 +169,6 @@ public class NodeInfoSettingsIngest implements JsonpSerializable {
 		this.date = builder.date;
 		this.dateIndexName = builder.dateIndexName;
 		this.dotExpander = builder.dotExpander;
-		this.enrich = builder.enrich;
 		this.fail = builder.fail;
 		this.foreach = builder.foreach;
 		this.json = builder.json;
@@ -260,14 +256,6 @@ public class NodeInfoSettingsIngest implements JsonpSerializable {
 	@Nullable
 	public final NodeInfoIngestInfo dotExpander() {
 		return this.dotExpander;
-	}
-
-	/**
-	 * API name: {@code enrich}
-	 */
-	@Nullable
-	public final NodeInfoIngestInfo enrich() {
-		return this.enrich;
 	}
 
 	/**
@@ -524,11 +512,6 @@ public class NodeInfoSettingsIngest implements JsonpSerializable {
 			this.dotExpander.serialize(generator, mapper);
 
 		}
-		if (this.enrich != null) {
-			generator.writeKey("enrich");
-			this.enrich.serialize(generator, mapper);
-
-		}
 		if (this.fail != null) {
 			generator.writeKey("fail");
 			this.fail.serialize(generator, mapper);
@@ -689,9 +672,6 @@ public class NodeInfoSettingsIngest implements JsonpSerializable {
 
 		@Nullable
 		private NodeInfoIngestInfo dotExpander;
-
-		@Nullable
-		private NodeInfoIngestInfo enrich;
 
 		@Nullable
 		private NodeInfoIngestInfo fail;
@@ -874,21 +854,6 @@ public class NodeInfoSettingsIngest implements JsonpSerializable {
 		 */
 		public final Builder dotExpander(Function<NodeInfoIngestInfo.Builder, ObjectBuilder<NodeInfoIngestInfo>> fn) {
 			return this.dotExpander(fn.apply(new NodeInfoIngestInfo.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code enrich}
-		 */
-		public final Builder enrich(@Nullable NodeInfoIngestInfo value) {
-			this.enrich = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code enrich}
-		 */
-		public final Builder enrich(Function<NodeInfoIngestInfo.Builder, ObjectBuilder<NodeInfoIngestInfo>> fn) {
-			return this.enrich(fn.apply(new NodeInfoIngestInfo.Builder()).build());
 		}
 
 		/**
@@ -1313,7 +1278,6 @@ public class NodeInfoSettingsIngest implements JsonpSerializable {
 		op.add(Builder::date, NodeInfoIngestInfo._DESERIALIZER, "date");
 		op.add(Builder::dateIndexName, NodeInfoIngestInfo._DESERIALIZER, "date_index_name");
 		op.add(Builder::dotExpander, NodeInfoIngestInfo._DESERIALIZER, "dot_expander");
-		op.add(Builder::enrich, NodeInfoIngestInfo._DESERIALIZER, "enrich");
 		op.add(Builder::fail, NodeInfoIngestInfo._DESERIALIZER, "fail");
 		op.add(Builder::foreach, NodeInfoIngestInfo._DESERIALIZER, "foreach");
 		op.add(Builder::json, NodeInfoIngestInfo._DESERIALIZER, "json");
