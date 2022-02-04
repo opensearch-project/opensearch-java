@@ -545,7 +545,7 @@ public class IndicesStatsRequest extends RequestBase {
 	 * Endpoint "{@code indices.stats}".
 	 */
 	public static final Endpoint<IndicesStatsRequest, IndicesStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.stats",
+			"opensearch/indices.stats",
 
 			// Request method
 			request -> {

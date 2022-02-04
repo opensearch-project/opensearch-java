@@ -421,7 +421,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	 * Endpoint "{@code indices.put_index_template}".
 	 */
 	public static final Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.put_index_template",
+			"opensearch/indices.put_index_template",
 
 			// Request method
 			request -> {

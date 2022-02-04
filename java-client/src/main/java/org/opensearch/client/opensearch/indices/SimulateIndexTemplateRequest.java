@@ -527,7 +527,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	 */
 	public static final Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse> _ENDPOINT =
 			new SimpleEndpoint<>(
-			"es/indices.simulate_index_template",
+			"opensearch/indices.simulate_index_template",
 
 			// Request method
 			request -> {

@@ -200,7 +200,7 @@ public class GetRepositoryRequest extends RequestBase {
 	 * Endpoint "{@code snapshot.get_repository}".
 	 */
 	public static final Endpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/snapshot.get_repository",
+			"opensearch/snapshot.get_repository",
 
 			// Request method
 			request -> {

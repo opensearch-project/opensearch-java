@@ -163,7 +163,7 @@ public class AllocationRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.allocation}".
 	 */
 	public static final Endpoint<AllocationRequest, AllocationResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/cat.allocation",
+			"opensearch/cat.allocation",
 
 			// Request method
 			request -> {

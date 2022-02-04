@@ -165,7 +165,7 @@ public class SegmentsRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.segments}".
 	 */
 	public static final Endpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/cat.segments",
+			"opensearch/cat.segments",
 
 			// Request method
 			request -> {

@@ -543,7 +543,7 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 	 * Endpoint "{@code snapshot.create}".
 	 */
 	public static final Endpoint<CreateSnapshotRequest, CreateSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/snapshot.create",
+			"opensearch/snapshot.create",
 
 			// Request method
 			request -> {

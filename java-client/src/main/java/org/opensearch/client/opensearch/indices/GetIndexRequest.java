@@ -392,7 +392,7 @@ public class GetIndexRequest extends RequestBase {
 	 * Endpoint "{@code indices.get}".
 	 */
 	public static final Endpoint<GetIndexRequest, GetIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.get",
+			"opensearch/indices.get",
 
 			// Request method
 			request -> {

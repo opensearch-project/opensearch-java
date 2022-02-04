@@ -456,7 +456,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	 */
 	public static final Endpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ErrorResponse> _ENDPOINT =
 			new SimpleEndpoint<>(
-			"es/cluster.put_component_template",
+			"opensearch/cluster.put_component_template",
 
 			// Request method
 			request -> {

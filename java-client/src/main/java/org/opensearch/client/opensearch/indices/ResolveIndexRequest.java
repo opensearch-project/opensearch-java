@@ -177,7 +177,7 @@ public class ResolveIndexRequest extends RequestBase {
 	 * Endpoint "{@code indices.resolve_index}".
 	 */
 	public static final Endpoint<ResolveIndexRequest, ResolveIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.resolve_index",
+			"opensearch/indices.resolve_index",
 
 			// Request method
 			request -> {

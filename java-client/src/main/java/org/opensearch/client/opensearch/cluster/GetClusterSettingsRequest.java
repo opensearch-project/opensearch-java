@@ -220,7 +220,7 @@ public class GetClusterSettingsRequest extends RequestBase {
 	 * Endpoint "{@code cluster.get_settings}".
 	 */
 	public static final Endpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/cluster.get_settings",
+			"opensearch/cluster.get_settings",
 
 			// Request method
 			request -> {

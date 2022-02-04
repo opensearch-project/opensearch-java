@@ -456,7 +456,7 @@ public class ExistsSourceRequest extends RequestBase {
 	 * Endpoint "{@code exists_source}".
 	 */
 	public static final Endpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
-			"es/exists_source",
+			"opensearch/exists_source",
 
 			// Request method
 			request -> {

@@ -586,7 +586,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	 * Endpoint "{@code indices.put_template}".
 	 */
 	public static final Endpoint<PutTemplateRequest, PutTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.put_template",
+			"opensearch/indices.put_template",
 
 			// Request method
 			request -> {

@@ -138,7 +138,7 @@ public class CountRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.count}".
 	 */
 	public static final Endpoint<CountRequest, CountResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/cat.count",
+			"opensearch/cat.count",
 
 			// Request method
 			request -> {

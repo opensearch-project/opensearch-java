@@ -210,7 +210,7 @@ public class DeleteRepositoryRequest extends RequestBase {
 	 * Endpoint "{@code snapshot.delete_repository}".
 	 */
 	public static final Endpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/snapshot.delete_repository",
+			"opensearch/snapshot.delete_repository",
 
 			// Request method
 			request -> {

@@ -471,7 +471,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	 * Endpoint "{@code create}".
 	 */
 	public static final Endpoint<CreateRequest<?>, CreateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/create",
+			"opensearch/create",
 
 			// Request method
 			request -> {

@@ -2232,7 +2232,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code search}".
 	 */
-	public static final SimpleEndpoint<SearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/search",
+	public static final SimpleEndpoint<SearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>("opensearch/search",
 
 			// Request method
 			request -> {

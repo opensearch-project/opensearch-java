@@ -497,7 +497,7 @@ public class ExistsRequest extends RequestBase {
 	 * Endpoint "{@code exists}".
 	 */
 	public static final Endpoint<ExistsRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
-			"es/exists",
+			"opensearch/exists",
 
 			// Request method
 			request -> {

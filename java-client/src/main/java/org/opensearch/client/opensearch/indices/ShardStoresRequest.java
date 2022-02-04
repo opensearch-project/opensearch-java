@@ -279,7 +279,7 @@ public class ShardStoresRequest extends RequestBase {
 	 * Endpoint "{@code indices.shard_stores}".
 	 */
 	public static final Endpoint<ShardStoresRequest, ShardStoresResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.shard_stores",
+			"opensearch/indices.shard_stores",
 
 			// Request method
 			request -> {

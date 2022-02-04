@@ -451,7 +451,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	 * Endpoint "{@code ingest.put_pipeline}".
 	 */
 	public static final Endpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/ingest.put_pipeline",
+			"opensearch/ingest.put_pipeline",
 
 			// Request method
 			request -> {

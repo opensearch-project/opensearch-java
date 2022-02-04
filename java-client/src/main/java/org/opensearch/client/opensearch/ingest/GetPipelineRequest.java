@@ -184,7 +184,7 @@ public class GetPipelineRequest extends RequestBase {
 	 * Endpoint "{@code ingest.get_pipeline}".
 	 */
 	public static final Endpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/ingest.get_pipeline",
+			"opensearch/ingest.get_pipeline",
 
 			// Request method
 			request -> {

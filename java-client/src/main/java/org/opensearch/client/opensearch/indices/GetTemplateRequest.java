@@ -255,7 +255,7 @@ public class GetTemplateRequest extends RequestBase {
 	 * Endpoint "{@code indices.get_template}".
 	 */
 	public static final Endpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.get_template",
+			"opensearch/indices.get_template",
 
 			// Request method
 			request -> {

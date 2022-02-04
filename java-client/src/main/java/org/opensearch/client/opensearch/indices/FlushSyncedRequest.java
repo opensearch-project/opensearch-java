@@ -242,7 +242,7 @@ public class FlushSyncedRequest extends RequestBase {
 	 * Endpoint "{@code indices.flush_synced}".
 	 */
 	public static final Endpoint<FlushSyncedRequest, FlushSyncedResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.flush_synced",
+			"opensearch/indices.flush_synced",
 
 			// Request method
 			request -> {

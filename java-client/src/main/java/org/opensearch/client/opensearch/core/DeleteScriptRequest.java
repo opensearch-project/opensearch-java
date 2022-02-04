@@ -191,7 +191,7 @@ public class DeleteScriptRequest extends RequestBase {
 	 * Endpoint "{@code delete_script}".
 	 */
 	public static final Endpoint<DeleteScriptRequest, DeleteScriptResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/delete_script",
+			"opensearch/delete_script",
 
 			// Request method
 			request -> {

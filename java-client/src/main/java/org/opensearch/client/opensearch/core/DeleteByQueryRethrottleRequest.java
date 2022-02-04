@@ -150,7 +150,7 @@ public class DeleteByQueryRethrottleRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ErrorResponse>
 			_ENDPOINT = new SimpleEndpoint<>(
-			"es/delete_by_query_rethrottle",
+			"opensearch/delete_by_query_rethrottle",
 
 			// Request method
 			request -> {
