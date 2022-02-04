@@ -92,12 +92,29 @@ tasks.withType<Jar> {
 
 tasks.test {
     systemProperty("tests.security.manager", "false")
+
+    systemProperty("tests.security.manager", "false")
+    // Basic auth settings for integration test
+    systemProperty("https", System.getProperty("https", "true"))
+    systemProperty("user", System.getProperty("user", "admin"))
+    systemProperty("password", System.getProperty("password", "admin"))
 }
 
 val unitTest = task<Test>("unitTest") {
     filter {
         excludeTestsMatching("org.opensearch.client.opensearch.integTest.*")
     }
+}
+
+val integrationTest = task<Test>("integrationTest") {
+    filter {
+        includeTestsMatching("org.opensearch.client.opensearch.integTest.*")
+    }
+    systemProperty("tests.security.manager", "false")
+    // Basic auth settings for integration test
+    systemProperty("https", System.getProperty("https", "true"))
+    systemProperty("user", System.getProperty("user", "admin"))
+    systemProperty("password", System.getProperty("password", "admin"))
 }
 
 dependencies {
