@@ -57,12 +57,6 @@ import java.util.function.Function;
  * Text or location that we want similar documents for or a lookup to a
  * document's field for the text.
  * 
- * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-mlt-query.html#_document_input_parameters">Documentation
- *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L116-L122">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializable {

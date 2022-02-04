@@ -70,9 +70,7 @@ public class OpensearchIngestClient extends ApiClient<OpensearchTransport, Opens
 	/**
 	 * Deletes a pipeline.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public DeletePipelineResponse deletePipeline(DeletePipelineRequest request)
@@ -91,9 +89,7 @@ public class OpensearchIngestClient extends ApiClient<OpensearchTransport, Opens
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeletePipelineRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final DeletePipelineResponse deletePipeline(
@@ -107,9 +103,7 @@ public class OpensearchIngestClient extends ApiClient<OpensearchTransport, Opens
 	/**
 	 * Returns statistical information about geoip databases
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/geoip-stats-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public GeoIpStatsResponse geoIpStats() throws IOException, OpensearchException {
 		return this.transport.performRequest(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest._ENDPOINT,
@@ -121,9 +115,7 @@ public class OpensearchIngestClient extends ApiClient<OpensearchTransport, Opens
 	/**
 	 * Returns a pipeline.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, OpensearchException {
@@ -140,9 +132,7 @@ public class OpensearchIngestClient extends ApiClient<OpensearchTransport, Opens
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetPipelineRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final GetPipelineResponse getPipeline(
@@ -154,9 +144,7 @@ public class OpensearchIngestClient extends ApiClient<OpensearchTransport, Opens
 	/**
 	 * Returns a pipeline.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public GetPipelineResponse getPipeline() throws IOException, OpensearchException {
@@ -169,9 +157,7 @@ public class OpensearchIngestClient extends ApiClient<OpensearchTransport, Opens
 	/**
 	 * Returns a list of the built-in patterns.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/grok-processor.html#grok-processor-rest-get">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public ProcessorGrokResponse processorGrok() throws IOException, OpensearchException {
 		return this.transport.performRequest(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest._ENDPOINT,
@@ -183,9 +169,7 @@ public class OpensearchIngestClient extends ApiClient<OpensearchTransport, Opens
 	/**
 	 * Creates or updates a pipeline.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException, OpensearchException {
@@ -202,9 +186,7 @@ public class OpensearchIngestClient extends ApiClient<OpensearchTransport, Opens
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutPipelineRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/put-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final PutPipelineResponse putPipeline(
@@ -218,9 +200,7 @@ public class OpensearchIngestClient extends ApiClient<OpensearchTransport, Opens
 	/**
 	 * Allows to simulate a pipeline with example documents.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public SimulateResponse simulate(SimulateRequest request) throws IOException, OpensearchException {
@@ -237,9 +217,7 @@ public class OpensearchIngestClient extends ApiClient<OpensearchTransport, Opens
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final SimulateResponse simulate(Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn)
@@ -250,9 +228,7 @@ public class OpensearchIngestClient extends ApiClient<OpensearchTransport, Opens
 	/**
 	 * Allows to simulate a pipeline with example documents.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/simulate-pipeline-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public SimulateResponse simulate() throws IOException, OpensearchException {

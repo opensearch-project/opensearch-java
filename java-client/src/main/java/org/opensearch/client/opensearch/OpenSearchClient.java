@@ -200,9 +200,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * Allows to perform multiple index/update/delete operations in a single
 	 * request.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public BulkResponse bulk(BulkRequest request) throws IOException, OpensearchException {
@@ -220,9 +218,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final BulkResponse bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn)
@@ -234,9 +230,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * Allows to perform multiple index/update/delete operations in a single
 	 * request.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public BulkResponse bulk() throws IOException, OpensearchException {
@@ -249,9 +243,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Explicitly clears the search context for a scroll.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public ClearScrollResponse clearScroll(ClearScrollRequest request) throws IOException, OpensearchException {
@@ -268,9 +260,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearScrollRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final ClearScrollResponse clearScroll(
@@ -282,9 +272,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Explicitly clears the search context for a scroll.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public ClearScrollResponse clearScroll() throws IOException, OpensearchException {
@@ -297,9 +285,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns number of documents matching a query.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CountResponse count(CountRequest request) throws IOException, OpensearchException {
@@ -316,9 +302,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CountRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CountResponse count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
@@ -329,9 +313,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns number of documents matching a query.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CountResponse count() throws IOException, OpensearchException {
@@ -347,9 +329,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * Returns a 409 response when a document with a same ID already exists in the
 	 * index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public <TDocument> CreateResponse create(CreateRequest<TDocument> request)
@@ -370,9 +350,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final <TDocument> CreateResponse create(
@@ -386,9 +364,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Removes a document from the index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public DeleteResponse delete(DeleteRequest request) throws IOException, OpensearchException {
@@ -405,9 +381,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final DeleteResponse delete(Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
@@ -420,9 +394,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Deletes documents matching the provided query.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public DeleteByQueryResponse deleteByQuery(DeleteByQueryRequest request)
@@ -440,9 +412,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteByQueryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final DeleteByQueryResponse deleteByQuery(
@@ -457,9 +427,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * Changes the number of requests per second for a particular Delete By Query
 	 * operation.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public DeleteByQueryRethrottleResponse deleteByQueryRethrottle(DeleteByQueryRethrottleRequest request)
@@ -479,9 +447,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteByQueryRethrottleRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final DeleteByQueryRethrottleResponse deleteByQueryRethrottle(
@@ -495,9 +461,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Deletes a script.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public DeleteScriptResponse deleteScript(DeleteScriptRequest request) throws IOException, OpensearchException {
@@ -514,9 +478,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteScriptRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final DeleteScriptResponse deleteScript(
@@ -530,9 +492,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns information about whether a document exists in an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public BooleanResponse exists(ExistsRequest request) throws IOException, OpensearchException {
@@ -549,9 +509,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn)
@@ -564,9 +522,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns information about whether a document source exists in an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException, OpensearchException {
@@ -583,9 +539,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsSourceRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final BooleanResponse existsSource(
@@ -599,9 +553,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns information about why a specific matches (or doesn't match) a query.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public <TDocument> ExplainResponse<TDocument> explain(ExplainRequest request, Class<TDocument> tDocumentClass)
@@ -621,9 +573,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExplainRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final <TDocument> ExplainResponse<TDocument> explain(
@@ -638,9 +588,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * Returns the information about the capabilities of fields among multiple
 	 * indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public FieldCapsResponse fieldCaps(FieldCapsRequest request) throws IOException, OpensearchException {
@@ -658,9 +606,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link FieldCapsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final FieldCapsResponse fieldCaps(Function<FieldCapsRequest.Builder, ObjectBuilder<FieldCapsRequest>> fn)
@@ -672,9 +618,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * Returns the information about the capabilities of fields among multiple
 	 * indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public FieldCapsResponse fieldCaps() throws IOException, OpensearchException {
@@ -687,9 +631,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns a document.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public <TDocument> GetResponse<TDocument> get(GetRequest request, Class<TDocument> tDocumentClass)
@@ -709,9 +651,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final <TDocument> GetResponse<TDocument> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn,
@@ -724,9 +664,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns a script.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public GetScriptResponse getScript(GetScriptRequest request) throws IOException, OpensearchException {
@@ -743,9 +681,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetScriptRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final GetScriptResponse getScript(Function<GetScriptRequest.Builder, ObjectBuilder<GetScriptRequest>> fn)
@@ -758,9 +694,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns all script contexts.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public GetScriptContextResponse getScriptContext() throws IOException, OpensearchException {
 		return this.transport.performRequest(GetScriptContextRequest._INSTANCE, GetScriptContextRequest._ENDPOINT,
@@ -772,9 +706,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns available script types, languages and contexts
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public GetScriptLanguagesResponse getScriptLanguages() throws IOException, OpensearchException {
 		return this.transport.performRequest(GetScriptLanguagesRequest._INSTANCE, GetScriptLanguagesRequest._ENDPOINT,
@@ -786,9 +718,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns the source of a document.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public <TDocument> GetSourceResponse<TDocument> getSource(GetSourceRequest request, Class<TDocument> tDocumentClass)
@@ -809,9 +739,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSourceRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final <TDocument> GetSourceResponse<TDocument> getSource(
@@ -825,9 +753,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Creates or updates a document in an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public <TDocument> IndexResponse index(IndexRequest<TDocument> request) throws IOException, OpensearchException {
@@ -844,9 +770,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link IndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final <TDocument> IndexResponse index(
@@ -860,9 +784,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns basic information about the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public InfoResponse info() throws IOException, OpensearchException {
 		return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
@@ -873,9 +795,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Allows to get multiple documents in one request.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public <TDocument> MgetResponse<TDocument> mget(MgetRequest request, Class<TDocument> tDocumentClass)
@@ -895,9 +815,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link MgetRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final <TDocument> MgetResponse<TDocument> mget(Function<MgetRequest.Builder, ObjectBuilder<MgetRequest>> fn,
@@ -910,9 +828,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Allows to execute several search operations in one request.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public <TDocument> MsearchResponse<TDocument> msearch(MsearchRequest request, Class<TDocument> tDocumentClass)
@@ -932,9 +848,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link MsearchRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final <TDocument> MsearchResponse<TDocument> msearch(
@@ -948,9 +862,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Allows to execute several search template operations in one request.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(MsearchTemplateRequest request,
@@ -971,9 +883,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link MsearchTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(
@@ -987,9 +897,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns multiple termvectors in one request.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public MtermvectorsResponse mtermvectors(MtermvectorsRequest request) throws IOException, OpensearchException {
@@ -1006,9 +914,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link MtermvectorsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final MtermvectorsResponse mtermvectors(
@@ -1020,9 +926,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns multiple termvectors in one request.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public MtermvectorsResponse mtermvectors() throws IOException, OpensearchException {
@@ -1035,9 +939,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns whether the cluster is running.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public BooleanResponse ping() throws IOException, OpensearchException {
 		return this.transport.performRequest(PingRequest._INSTANCE, PingRequest._ENDPOINT, this.transportOptions);
@@ -1048,9 +950,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Creates or updates a script.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public PutScriptResponse putScript(PutScriptRequest request) throws IOException, OpensearchException {
@@ -1067,9 +967,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutScriptRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final PutScriptResponse putScript(Function<PutScriptRequest.Builder, ObjectBuilder<PutScriptRequest>> fn)
@@ -1083,9 +981,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * Allows to evaluate the quality of ranked search results over a set of typical
 	 * search queries
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public RankEvalResponse rankEval(RankEvalRequest request) throws IOException, OpensearchException {
@@ -1103,9 +999,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RankEvalRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final RankEvalResponse rankEval(Function<RankEvalRequest.Builder, ObjectBuilder<RankEvalRequest>> fn)
@@ -1120,9 +1014,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * source documents by a query, changing the destination index settings, or
 	 * fetching the documents from a remote cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public ReindexResponse reindex(ReindexRequest request) throws IOException, OpensearchException {
@@ -1141,9 +1033,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ReindexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final ReindexResponse reindex(Function<ReindexRequest.Builder, ObjectBuilder<ReindexRequest>> fn)
@@ -1156,9 +1046,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * source documents by a query, changing the destination index settings, or
 	 * fetching the documents from a remote cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public ReindexResponse reindex() throws IOException, OpensearchException {
@@ -1171,9 +1059,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Changes the number of requests per second for a particular Reindex operation.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public ReindexRethrottleResponse reindexRethrottle(ReindexRethrottleRequest request)
@@ -1192,9 +1078,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ReindexRethrottleRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final ReindexRethrottleResponse reindexRethrottle(
@@ -1208,9 +1092,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Allows to use the Mustache language to pre-render a search definition.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/render-search-template-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public RenderSearchTemplateResponse renderSearchTemplate(RenderSearchTemplateRequest request)
@@ -1229,9 +1111,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RenderSearchTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/render-search-template-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final RenderSearchTemplateResponse renderSearchTemplate(
@@ -1243,9 +1123,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Allows to use the Mustache language to pre-render a search definition.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/render-search-template-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public RenderSearchTemplateResponse renderSearchTemplate() throws IOException, OpensearchException {
@@ -1258,9 +1136,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Allows an arbitrary script to be executed and a result to be returned
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
@@ -1283,9 +1159,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ScriptsPainlessExecuteRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
@@ -1331,9 +1205,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Returns results matching a query.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public <TDocument> SearchResponse<TDocument> search(SearchRequest request, Class<TDocument> tDocumentClass)
@@ -1353,9 +1225,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final <TDocument> SearchResponse<TDocument> search(
@@ -1370,9 +1240,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * Returns information about the indices and shards that a search request would
 	 * be executed against.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public SearchShardsResponse searchShards(SearchShardsRequest request) throws IOException, OpensearchException {
@@ -1390,9 +1258,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchShardsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final SearchShardsResponse searchShards(
@@ -1405,9 +1271,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * Returns information about the indices and shards that a search request would
 	 * be executed against.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public SearchShardsResponse searchShards() throws IOException, OpensearchException {
@@ -1420,9 +1284,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Allows to use the Mustache language to pre-render a search definition.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public <TDocument> SearchTemplateResponse<TDocument> searchTemplate(SearchTemplateRequest request,
@@ -1443,9 +1305,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final <TDocument> SearchTemplateResponse<TDocument> searchTemplate(
@@ -1461,9 +1321,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * the provided string. It is designed for low-latency look-ups used in
 	 * auto-complete scenarios.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public TermsEnumResponse termsEnum(TermsEnumRequest request) throws IOException, OpensearchException {
@@ -1482,9 +1340,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link TermsEnumRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final TermsEnumResponse termsEnum(Function<TermsEnumRequest.Builder, ObjectBuilder<TermsEnumRequest>> fn)
@@ -1498,9 +1354,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * Returns information and statistics about terms in the fields of a particular
 	 * document.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public <TDocument> TermvectorsResponse termvectors(TermvectorsRequest<TDocument> request)
@@ -1519,9 +1373,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link TermvectorsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final <TDocument> TermvectorsResponse termvectors(
@@ -1535,9 +1387,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	/**
 	 * Updates a document with a script or partial document.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
@@ -1558,9 +1408,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
@@ -1577,9 +1425,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * Performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public UpdateByQueryResponse updateByQuery(UpdateByQueryRequest request)
@@ -1599,9 +1445,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateByQueryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final UpdateByQueryResponse updateByQuery(
@@ -1616,9 +1460,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * Changes the number of requests per second for a particular Update By Query
 	 * operation.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public UpdateByQueryRethrottleResponse updateByQueryRethrottle(UpdateByQueryRethrottleRequest request)
@@ -1638,9 +1480,7 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateByQueryRethrottleRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final UpdateByQueryRethrottleResponse updateByQueryRethrottle(

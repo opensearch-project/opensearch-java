@@ -73,9 +73,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Shows information about currently configured aliases to indices including
 	 * filter and routing infos.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<AliasesResponse> aliases(AliasesRequest request)
@@ -94,9 +92,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AliasesRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<AliasesResponse> aliases(
@@ -109,9 +105,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Shows information about currently configured aliases to indices including
 	 * filter and routing infos.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<AliasesResponse> aliases() throws IOException, OpensearchException {
@@ -125,9 +119,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Provides a snapshot of how many shards are allocated to each data node and
 	 * how much disk space they are using.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<AllocationResponse> allocation(AllocationRequest request)
@@ -146,9 +138,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AllocationRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<AllocationResponse> allocation(
@@ -161,9 +151,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Provides a snapshot of how many shards are allocated to each data node and
 	 * how much disk space they are using.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<AllocationResponse> allocation() throws IOException, OpensearchException {
@@ -177,9 +165,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Provides quick access to the document count of the entire cluster, or
 	 * individual indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<CountResponse> count(CountRequest request) throws IOException, OpensearchException {
@@ -197,9 +183,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CountRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<CountResponse> count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
@@ -211,9 +195,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Provides quick access to the document count of the entire cluster, or
 	 * individual indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<CountResponse> count() throws IOException, OpensearchException {
@@ -227,9 +209,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Shows how much heap memory is currently being used by fielddata on every data
 	 * node in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<FielddataResponse> fielddata(FielddataRequest request)
@@ -248,9 +228,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link FielddataRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<FielddataResponse> fielddata(
@@ -263,9 +241,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Shows how much heap memory is currently being used by fielddata on every data
 	 * node in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<FielddataResponse> fielddata() throws IOException, OpensearchException {
@@ -278,9 +254,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns a concise representation of the cluster health.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<HealthResponse> health(HealthRequest request) throws IOException, OpensearchException {
@@ -297,9 +271,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link HealthRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<HealthResponse> health(
@@ -311,9 +283,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns a concise representation of the cluster health.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<HealthResponse> health() throws IOException, OpensearchException {
@@ -326,9 +296,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns help for the Cat APIs.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public CompletableFuture<HelpResponse> help() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(HelpRequest._INSTANCE, HelpRequest._ENDPOINT, this.transportOptions);
@@ -340,9 +308,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Returns information about indices: number of primaries and replicas, document
 	 * counts, disk size, ...
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<IndicesResponse> indices(IndicesRequest request)
@@ -361,9 +327,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link IndicesRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<IndicesResponse> indices(
@@ -376,9 +340,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Returns information about indices: number of primaries and replicas, document
 	 * counts, disk size, ...
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<IndicesResponse> indices() throws IOException, OpensearchException {
@@ -391,9 +353,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns information about the master node.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-master.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public CompletableFuture<MasterResponse> master() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(MasterRequest._INSTANCE, MasterRequest._ENDPOINT,
@@ -405,9 +365,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns information about custom node attributes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodeattrs.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public CompletableFuture<NodeattrsResponse> nodeattrs() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(NodeattrsRequest._INSTANCE, NodeattrsRequest._ENDPOINT,
@@ -419,9 +377,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns basic statistics about performance of cluster nodes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<NodesResponse> nodes(NodesRequest request) throws IOException, OpensearchException {
@@ -438,9 +394,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link NodesRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<NodesResponse> nodes(Function<NodesRequest.Builder, ObjectBuilder<NodesRequest>> fn)
@@ -451,9 +405,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns basic statistics about performance of cluster nodes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<NodesResponse> nodes() throws IOException, OpensearchException {
@@ -466,9 +418,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns a concise representation of the cluster pending tasks.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-pending-tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public CompletableFuture<PendingTasksResponse> pendingTasks() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(PendingTasksRequest._INSTANCE, PendingTasksRequest._ENDPOINT,
@@ -480,9 +430,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns information about installed plugins across nodes node.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-plugins.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public CompletableFuture<PluginsResponse> plugins() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(PluginsRequest._INSTANCE, PluginsRequest._ENDPOINT,
@@ -494,9 +442,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns information about index shard recoveries, both on-going completed.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<RecoveryResponse> recovery(RecoveryRequest request)
@@ -514,9 +460,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RecoveryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<RecoveryResponse> recovery(
@@ -528,9 +472,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns information about index shard recoveries, both on-going completed.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<RecoveryResponse> recovery() throws IOException, OpensearchException {
@@ -543,9 +485,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns information about snapshot repositories registered in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-repositories.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public CompletableFuture<RepositoriesResponse> repositories() throws IOException, OpensearchException {
 		return this.transport.performRequestAsync(RepositoriesRequest._INSTANCE, RepositoriesRequest._ENDPOINT,
@@ -557,9 +497,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Provides low-level information about the segments in the shards of an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<SegmentsResponse> segments(SegmentsRequest request)
@@ -577,9 +515,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SegmentsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<SegmentsResponse> segments(
@@ -591,9 +527,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Provides low-level information about the segments in the shards of an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<SegmentsResponse> segments() throws IOException, OpensearchException {
@@ -606,9 +540,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Provides a detailed view of shard allocation on nodes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<ShardsResponse> shards(ShardsRequest request) throws IOException, OpensearchException {
@@ -625,9 +557,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ShardsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<ShardsResponse> shards(
@@ -639,9 +569,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Provides a detailed view of shard allocation on nodes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<ShardsResponse> shards() throws IOException, OpensearchException {
@@ -654,9 +582,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns all snapshots in a specific repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<SnapshotsResponse> snapshots(SnapshotsRequest request)
@@ -674,9 +600,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SnapshotsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<SnapshotsResponse> snapshots(
@@ -688,9 +612,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns all snapshots in a specific repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<SnapshotsResponse> snapshots() throws IOException, OpensearchException {
@@ -704,9 +626,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Returns information about the tasks currently executing on one or more nodes
 	 * in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<TasksResponse> tasks(TasksRequest request) throws IOException, OpensearchException {
@@ -724,9 +644,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link TasksRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<TasksResponse> tasks(Function<TasksRequest.Builder, ObjectBuilder<TasksRequest>> fn)
@@ -738,9 +656,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Returns information about the tasks currently executing on one or more nodes
 	 * in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<TasksResponse> tasks() throws IOException, OpensearchException {
@@ -753,9 +669,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns information about existing templates.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<TemplatesResponse> templates(TemplatesRequest request)
@@ -773,9 +687,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link TemplatesRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<TemplatesResponse> templates(
@@ -787,9 +699,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns information about existing templates.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<TemplatesResponse> templates() throws IOException, OpensearchException {
@@ -803,9 +713,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Returns cluster-wide thread pool statistics per node. By default the active,
 	 * queue and rejected statistics are returned for all thread pools.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<ThreadPoolResponse> threadPool(ThreadPoolRequest request)
@@ -824,9 +732,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ThreadPoolRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<ThreadPoolResponse> threadPool(
@@ -839,9 +745,7 @@ public class OpensearchCatAsyncClient extends ApiClient<OpensearchTransport, Ope
 	 * Returns cluster-wide thread pool statistics per node. By default the active,
 	 * queue and rejected statistics are returned for all thread pools.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<ThreadPoolResponse> threadPool() throws IOException, OpensearchException {

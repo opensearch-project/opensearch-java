@@ -73,9 +73,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	/**
 	 * Returns information about hot threads on each node in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<HotThreadsResponse> hotThreads(HotThreadsRequest request)
@@ -93,9 +91,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link HotThreadsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<HotThreadsResponse> hotThreads(
@@ -107,9 +103,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	/**
 	 * Returns information about hot threads on each node in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<HotThreadsResponse> hotThreads() throws IOException, OpensearchException {
@@ -122,9 +116,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	/**
 	 * Returns information about nodes in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<NodesInfoResponse> info(NodesInfoRequest request)
@@ -142,9 +134,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link NodesInfoRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<NodesInfoResponse> info(
@@ -156,9 +146,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	/**
 	 * Returns information about nodes in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<NodesInfoResponse> info() throws IOException, OpensearchException {
@@ -211,9 +199,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	/**
 	 * Returns statistical information about nodes in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<NodesStatsResponse> stats(NodesStatsRequest request)
@@ -242,9 +228,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	/**
 	 * Returns statistical information about nodes in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<NodesStatsResponse> stats() throws IOException, OpensearchException {
@@ -257,9 +241,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	/**
 	 * Returns low-level information about REST actions usage on nodes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<NodesUsageResponse> usage(NodesUsageRequest request)
@@ -277,9 +259,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link NodesUsageRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<NodesUsageResponse> usage(
@@ -291,9 +271,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	/**
 	 * Returns low-level information about REST actions usage on nodes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<NodesUsageResponse> usage() throws IOException, OpensearchException {

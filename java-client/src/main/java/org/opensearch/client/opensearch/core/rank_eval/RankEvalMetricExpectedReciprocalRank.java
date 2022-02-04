@@ -50,13 +50,7 @@ import java.util.function.Function;
 
 /**
  * Expected Reciprocal Rank (ERR)
- * 
- * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#_expected_reciprocal_rank_err">Documentation
- *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/rank_eval/types.ts#L79-L88">API
- *      specification</a>
+ *
  */
 @JsonpDeserializable
 public class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {

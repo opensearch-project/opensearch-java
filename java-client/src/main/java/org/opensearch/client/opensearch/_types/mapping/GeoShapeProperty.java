@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
  * The <code>geo_shape</code> data type facilitates the indexing of and
  * searching with arbitrary geo shapes such as rectangles and polygons.
  * 
- * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-shape.html">Documentation
- *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/geo.ts#L37-L50">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyVariant {

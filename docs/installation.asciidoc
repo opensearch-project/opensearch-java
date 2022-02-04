@@ -12,9 +12,7 @@ Requirements:
 
 
 Releases are hosted on 
-https://search.maven.org/search?q=g:org.opensearch.client[Maven Central]. If you
-are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is 
-available at https://snapshots.elastic.co/maven/.
+https://search.maven.org/search?q=g:org.opensearch.client[Maven Central].
 
 
 [discrete]

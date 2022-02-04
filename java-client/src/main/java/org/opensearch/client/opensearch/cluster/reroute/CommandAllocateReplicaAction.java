@@ -50,15 +50,6 @@ import java.util.function.Function;
 
 // typedef: cluster.reroute.CommandAllocateReplicaAction
 
-/**
- *
- * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-cluster.html">Documentation
- *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/types.ts#L71-L78">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class CommandAllocateReplicaAction implements JsonpSerializable {
 	private final String index;

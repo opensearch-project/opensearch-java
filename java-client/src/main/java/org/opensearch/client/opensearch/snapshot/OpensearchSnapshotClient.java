@@ -70,9 +70,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Removes stale data from repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CleanupRepositoryResponse cleanupRepository(CleanupRepositoryRequest request)
@@ -91,9 +89,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CleanupRepositoryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CleanupRepositoryResponse cleanupRepository(
@@ -108,9 +104,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	 * Clones indices from one snapshot into another snapshot in the same
 	 * repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CloneSnapshotResponse clone(CloneSnapshotRequest request) throws IOException, OpensearchException {
@@ -128,9 +122,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CloneSnapshotRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CloneSnapshotResponse clone(
@@ -144,9 +136,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Creates a snapshot in a repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CreateSnapshotResponse create(CreateSnapshotRequest request) throws IOException, OpensearchException {
@@ -164,9 +154,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateSnapshotRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CreateSnapshotResponse create(
@@ -180,9 +168,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Creates a repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CreateRepositoryResponse createRepository(CreateRepositoryRequest request)
@@ -201,9 +187,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateRepositoryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CreateRepositoryResponse createRepository(
@@ -217,9 +201,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Deletes a snapshot.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public DeleteSnapshotResponse delete(DeleteSnapshotRequest request) throws IOException, OpensearchException {
@@ -237,9 +219,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSnapshotRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final DeleteSnapshotResponse delete(
@@ -253,9 +233,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Deletes a repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public DeleteRepositoryResponse deleteRepository(DeleteRepositoryRequest request)
@@ -274,9 +252,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRepositoryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final DeleteRepositoryResponse deleteRepository(
@@ -290,9 +266,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns information about a snapshot.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public GetSnapshotResponse get(GetSnapshotRequest request) throws IOException, OpensearchException {
@@ -309,9 +283,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSnapshotRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final GetSnapshotResponse get(Function<GetSnapshotRequest.Builder, ObjectBuilder<GetSnapshotRequest>> fn)
@@ -324,9 +296,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns information about a repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public GetRepositoryResponse getRepository(GetRepositoryRequest request)
@@ -344,9 +314,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRepositoryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final GetRepositoryResponse getRepository(
@@ -358,9 +326,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns information about a repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public GetRepositoryResponse getRepository() throws IOException, OpensearchException {
@@ -373,9 +339,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Restores a snapshot.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public RestoreResponse restore(RestoreRequest request) throws IOException, OpensearchException {
@@ -392,9 +356,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RestoreRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final RestoreResponse restore(Function<RestoreRequest.Builder, ObjectBuilder<RestoreRequest>> fn)
@@ -407,9 +369,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns information about the status of a snapshot.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public SnapshotStatusResponse status(SnapshotStatusRequest request) throws IOException, OpensearchException {
@@ -427,9 +387,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SnapshotStatusRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final SnapshotStatusResponse status(
@@ -441,9 +399,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Returns information about the status of a snapshot.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public SnapshotStatusResponse status() throws IOException, OpensearchException {
@@ -456,9 +412,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Verifies a repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public VerifyRepositoryResponse verifyRepository(VerifyRepositoryRequest request)
@@ -477,9 +431,7 @@ public class OpensearchSnapshotClient extends ApiClient<OpensearchTransport, Ope
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link VerifyRepositoryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final VerifyRepositoryResponse verifyRepository(

@@ -71,9 +71,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Provides explanations for shard allocations in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-allocation-explain.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public AllocationExplainResponse allocationExplain(AllocationExplainRequest request)
@@ -92,9 +90,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AllocationExplainRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-allocation-explain.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final AllocationExplainResponse allocationExplain(
@@ -106,9 +102,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Provides explanations for shard allocations in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-allocation-explain.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public AllocationExplainResponse allocationExplain() throws IOException, OpensearchException {
@@ -121,9 +115,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Deletes a component template
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public DeleteComponentTemplateResponse deleteComponentTemplate(DeleteComponentTemplateRequest request)
@@ -142,9 +134,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteComponentTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final DeleteComponentTemplateResponse deleteComponentTemplate(
@@ -158,9 +148,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Clears cluster voting config exclusions.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public BooleanResponse deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request)
@@ -179,9 +167,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteVotingConfigExclusionsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final BooleanResponse deleteVotingConfigExclusions(
@@ -193,9 +179,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Clears cluster voting config exclusions.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public BooleanResponse deleteVotingConfigExclusions() throws IOException, OpensearchException {
@@ -208,9 +192,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Returns information about whether a particular component template exist
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public BooleanResponse existsComponentTemplate(ExistsComponentTemplateRequest request)
@@ -229,9 +211,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsComponentTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final BooleanResponse existsComponentTemplate(
@@ -245,9 +225,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Returns one or more component templates
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public GetComponentTemplateResponse getComponentTemplate(GetComponentTemplateRequest request)
@@ -266,9 +244,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetComponentTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final GetComponentTemplateResponse getComponentTemplate(
@@ -280,9 +256,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Returns one or more component templates
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public GetComponentTemplateResponse getComponentTemplate() throws IOException, OpensearchException {
@@ -295,9 +269,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Returns cluster settings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-get-settings.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public GetClusterSettingsResponse getSettings(GetClusterSettingsRequest request)
@@ -316,9 +288,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetClusterSettingsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-get-settings.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final GetClusterSettingsResponse getSettings(
@@ -330,9 +300,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Returns cluster settings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-get-settings.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public GetClusterSettingsResponse getSettings() throws IOException, OpensearchException {
@@ -345,9 +313,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Returns basic information about the health of the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-health.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public HealthResponse health(HealthRequest request) throws IOException, OpensearchException {
@@ -364,9 +330,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link HealthRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-health.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
@@ -377,9 +341,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Returns basic information about the health of the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-health.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public HealthResponse health() throws IOException, OpensearchException {
@@ -393,9 +355,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * Returns a list of any cluster-level changes (e.g. create index, update
 	 * mapping, allocate or fail shard) which have not yet been executed.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-pending.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public PendingTasksResponse pendingTasks(PendingTasksRequest request) throws IOException, OpensearchException {
@@ -413,9 +373,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PendingTasksRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-pending.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final PendingTasksResponse pendingTasks(
@@ -428,9 +386,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * Returns a list of any cluster-level changes (e.g. create index, update
 	 * mapping, allocate or fail shard) which have not yet been executed.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-pending.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public PendingTasksResponse pendingTasks() throws IOException, OpensearchException {
@@ -443,9 +399,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Updates the cluster voting config exclusions by node ids or node names.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public BooleanResponse postVotingConfigExclusions(PostVotingConfigExclusionsRequest request)
@@ -464,9 +418,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PostVotingConfigExclusionsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final BooleanResponse postVotingConfigExclusions(
@@ -478,9 +430,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Updates the cluster voting config exclusions by node ids or node names.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public BooleanResponse postVotingConfigExclusions() throws IOException, OpensearchException {
@@ -493,9 +443,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Creates or updates a component template
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public PutComponentTemplateResponse putComponentTemplate(PutComponentTemplateRequest request)
@@ -514,9 +462,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutComponentTemplateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-component-template.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final PutComponentTemplateResponse putComponentTemplate(
@@ -530,9 +476,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Updates the cluster settings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public PutClusterSettingsResponse putSettings(PutClusterSettingsRequest request)
@@ -551,9 +495,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutClusterSettingsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final PutClusterSettingsResponse putSettings(
@@ -565,9 +507,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Updates the cluster settings.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-update-settings.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public PutClusterSettingsResponse putSettings() throws IOException, OpensearchException {
@@ -580,9 +520,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Returns the information about configured remote clusters.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-remote-info.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public RemoteInfoResponse remoteInfo() throws IOException, OpensearchException {
 		return this.transport.performRequest(RemoteInfoRequest._INSTANCE, RemoteInfoRequest._ENDPOINT,
@@ -594,9 +532,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Allows to manually change the allocation of individual shards in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-reroute.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public RerouteResponse reroute(RerouteRequest request) throws IOException, OpensearchException {
@@ -613,9 +549,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RerouteRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-reroute.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final RerouteResponse reroute(Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn)
@@ -626,9 +560,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Allows to manually change the allocation of individual shards in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-reroute.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public RerouteResponse reroute() throws IOException, OpensearchException {
@@ -641,9 +573,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Returns a comprehensive information about the state of the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-state.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public StateResponse state(StateRequest request) throws IOException, OpensearchException {
@@ -660,9 +590,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link StateRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-state.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final StateResponse state(Function<StateRequest.Builder, ObjectBuilder<StateRequest>> fn)
@@ -673,9 +601,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Returns a comprehensive information about the state of the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-state.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public StateResponse state() throws IOException, OpensearchException {
@@ -688,9 +614,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Returns high-level overview of cluster statistics.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-stats.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public ClusterStatsResponse stats(ClusterStatsRequest request) throws IOException, OpensearchException {
@@ -707,9 +631,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ClusterStatsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-stats.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final ClusterStatsResponse stats(
@@ -721,9 +643,7 @@ public class OpensearchClusterClient extends ApiClient<OpensearchTransport, Open
 	/**
 	 * Returns high-level overview of cluster statistics.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-stats.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public ClusterStatsResponse stats() throws IOException, OpensearchException {

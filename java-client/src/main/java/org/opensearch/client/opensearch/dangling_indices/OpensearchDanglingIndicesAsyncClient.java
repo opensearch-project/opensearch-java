@@ -74,9 +74,6 @@ public class OpensearchDanglingIndicesAsyncClient
 	/**
 	 * Deletes the specified dangling index
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
-	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(DeleteDanglingIndexRequest request)
@@ -95,9 +92,7 @@ public class OpensearchDanglingIndicesAsyncClient
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDanglingIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(
@@ -111,9 +106,7 @@ public class OpensearchDanglingIndicesAsyncClient
 	/**
 	 * Imports the specified dangling index
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(ImportDanglingIndexRequest request)
@@ -132,9 +125,7 @@ public class OpensearchDanglingIndicesAsyncClient
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ImportDanglingIndexRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(
@@ -148,9 +139,7 @@ public class OpensearchDanglingIndicesAsyncClient
 	/**
 	 * Returns all dangling indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices()
 			throws IOException, OpensearchException {

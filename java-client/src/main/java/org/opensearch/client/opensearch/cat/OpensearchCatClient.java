@@ -72,9 +72,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Shows information about currently configured aliases to indices including
 	 * filter and routing infos.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public AliasesResponse aliases(AliasesRequest request) throws IOException, OpensearchException {
@@ -92,9 +90,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AliasesRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final AliasesResponse aliases(Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn)
@@ -106,9 +102,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Shows information about currently configured aliases to indices including
 	 * filter and routing infos.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public AliasesResponse aliases() throws IOException, OpensearchException {
@@ -122,9 +116,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Provides a snapshot of how many shards are allocated to each data node and
 	 * how much disk space they are using.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public AllocationResponse allocation(AllocationRequest request) throws IOException, OpensearchException {
@@ -142,9 +134,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link AllocationRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final AllocationResponse allocation(Function<AllocationRequest.Builder, ObjectBuilder<AllocationRequest>> fn)
@@ -156,9 +146,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Provides a snapshot of how many shards are allocated to each data node and
 	 * how much disk space they are using.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public AllocationResponse allocation() throws IOException, OpensearchException {
@@ -172,9 +160,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Provides quick access to the document count of the entire cluster, or
 	 * individual indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CountResponse count(CountRequest request) throws IOException, OpensearchException {
@@ -192,9 +178,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CountRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CountResponse count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
@@ -206,9 +190,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Provides quick access to the document count of the entire cluster, or
 	 * individual indices.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CountResponse count() throws IOException, OpensearchException {
@@ -222,9 +204,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Shows how much heap memory is currently being used by fielddata on every data
 	 * node in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public FielddataResponse fielddata(FielddataRequest request) throws IOException, OpensearchException {
@@ -242,9 +222,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link FielddataRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final FielddataResponse fielddata(Function<FielddataRequest.Builder, ObjectBuilder<FielddataRequest>> fn)
@@ -256,9 +234,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Shows how much heap memory is currently being used by fielddata on every data
 	 * node in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public FielddataResponse fielddata() throws IOException, OpensearchException {
@@ -271,9 +247,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns a concise representation of the cluster health.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public HealthResponse health(HealthRequest request) throws IOException, OpensearchException {
@@ -290,9 +264,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link HealthRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
@@ -303,9 +275,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns a concise representation of the cluster health.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public HealthResponse health() throws IOException, OpensearchException {
@@ -318,9 +288,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns help for the Cat APIs.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public HelpResponse help() throws IOException, OpensearchException {
 		return this.transport.performRequest(HelpRequest._INSTANCE, HelpRequest._ENDPOINT, this.transportOptions);
@@ -332,9 +300,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Returns information about indices: number of primaries and replicas, document
 	 * counts, disk size, ...
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public IndicesResponse indices(IndicesRequest request) throws IOException, OpensearchException {
@@ -352,9 +318,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link IndicesRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final IndicesResponse indices(Function<IndicesRequest.Builder, ObjectBuilder<IndicesRequest>> fn)
@@ -366,9 +330,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Returns information about indices: number of primaries and replicas, document
 	 * counts, disk size, ...
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public IndicesResponse indices() throws IOException, OpensearchException {
@@ -381,9 +343,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns information about the master node.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-master.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public MasterResponse master() throws IOException, OpensearchException {
 		return this.transport.performRequest(MasterRequest._INSTANCE, MasterRequest._ENDPOINT, this.transportOptions);
@@ -394,9 +354,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns information about custom node attributes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodeattrs.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public NodeattrsResponse nodeattrs() throws IOException, OpensearchException {
 		return this.transport.performRequest(NodeattrsRequest._INSTANCE, NodeattrsRequest._ENDPOINT,
@@ -408,9 +366,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns basic statistics about performance of cluster nodes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public NodesResponse nodes(NodesRequest request) throws IOException, OpensearchException {
@@ -427,9 +383,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link NodesRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final NodesResponse nodes(Function<NodesRequest.Builder, ObjectBuilder<NodesRequest>> fn)
@@ -440,9 +394,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns basic statistics about performance of cluster nodes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public NodesResponse nodes() throws IOException, OpensearchException {
@@ -455,9 +407,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns a concise representation of the cluster pending tasks.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-pending-tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public PendingTasksResponse pendingTasks() throws IOException, OpensearchException {
 		return this.transport.performRequest(PendingTasksRequest._INSTANCE, PendingTasksRequest._ENDPOINT,
@@ -469,9 +419,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns information about installed plugins across nodes node.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-plugins.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public PluginsResponse plugins() throws IOException, OpensearchException {
 		return this.transport.performRequest(PluginsRequest._INSTANCE, PluginsRequest._ENDPOINT, this.transportOptions);
@@ -482,9 +430,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns information about index shard recoveries, both on-going completed.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public RecoveryResponse recovery(RecoveryRequest request) throws IOException, OpensearchException {
@@ -501,9 +447,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link RecoveryRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final RecoveryResponse recovery(Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
@@ -514,9 +458,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns information about index shard recoveries, both on-going completed.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public RecoveryResponse recovery() throws IOException, OpensearchException {
@@ -529,9 +471,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns information about snapshot repositories registered in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-repositories.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public RepositoriesResponse repositories() throws IOException, OpensearchException {
 		return this.transport.performRequest(RepositoriesRequest._INSTANCE, RepositoriesRequest._ENDPOINT,
@@ -543,9 +483,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Provides low-level information about the segments in the shards of an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public SegmentsResponse segments(SegmentsRequest request) throws IOException, OpensearchException {
@@ -562,9 +500,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SegmentsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final SegmentsResponse segments(Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
@@ -575,9 +511,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Provides low-level information about the segments in the shards of an index.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public SegmentsResponse segments() throws IOException, OpensearchException {
@@ -590,9 +524,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Provides a detailed view of shard allocation on nodes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public ShardsResponse shards(ShardsRequest request) throws IOException, OpensearchException {
@@ -609,9 +541,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ShardsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final ShardsResponse shards(Function<ShardsRequest.Builder, ObjectBuilder<ShardsRequest>> fn)
@@ -622,9 +552,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Provides a detailed view of shard allocation on nodes.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public ShardsResponse shards() throws IOException, OpensearchException {
@@ -637,9 +565,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns all snapshots in a specific repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public SnapshotsResponse snapshots(SnapshotsRequest request) throws IOException, OpensearchException {
@@ -656,9 +582,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link SnapshotsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final SnapshotsResponse snapshots(Function<SnapshotsRequest.Builder, ObjectBuilder<SnapshotsRequest>> fn)
@@ -669,9 +593,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns all snapshots in a specific repository.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public SnapshotsResponse snapshots() throws IOException, OpensearchException {
@@ -685,9 +607,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Returns information about the tasks currently executing on one or more nodes
 	 * in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public TasksResponse tasks(TasksRequest request) throws IOException, OpensearchException {
@@ -705,9 +625,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link TasksRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final TasksResponse tasks(Function<TasksRequest.Builder, ObjectBuilder<TasksRequest>> fn)
@@ -719,9 +637,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Returns information about the tasks currently executing on one or more nodes
 	 * in the cluster.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public TasksResponse tasks() throws IOException, OpensearchException {
@@ -734,9 +650,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns information about existing templates.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public TemplatesResponse templates(TemplatesRequest request) throws IOException, OpensearchException {
@@ -753,9 +667,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link TemplatesRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final TemplatesResponse templates(Function<TemplatesRequest.Builder, ObjectBuilder<TemplatesRequest>> fn)
@@ -766,9 +678,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	/**
 	 * Returns information about existing templates.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public TemplatesResponse templates() throws IOException, OpensearchException {
@@ -782,9 +692,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Returns cluster-wide thread pool statistics per node. By default the active,
 	 * queue and rejected statistics are returned for all thread pools.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public ThreadPoolResponse threadPool(ThreadPoolRequest request) throws IOException, OpensearchException {
@@ -802,9 +710,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ThreadPoolRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final ThreadPoolResponse threadPool(Function<ThreadPoolRequest.Builder, ObjectBuilder<ThreadPoolRequest>> fn)
@@ -816,9 +722,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * Returns cluster-wide thread pool statistics per node. By default the active,
 	 * queue and rejected statistics are returned for all thread pools.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public ThreadPoolResponse threadPool() throws IOException, OpensearchException {
