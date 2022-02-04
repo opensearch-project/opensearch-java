@@ -331,9 +331,9 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 	 * Json deserializer for OpenSearchVersionInfo
 	 */
 	public static final JsonpDeserializer<OpenSearchVersionInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, OpenSearchVersionInfo::setupElasticsearchVersionInfoDeserializer);
+			.lazy(Builder::new, OpenSearchVersionInfo::setupOpenSearchVersionInfoDeserializer);
 
-	protected static void setupElasticsearchVersionInfoDeserializer(
+	protected static void setupOpenSearchVersionInfoDeserializer(
 			ObjectDeserializer<OpenSearchVersionInfo.Builder> op) {
 
 		op.add(Builder::buildDate, JsonpDeserializer.stringDeserializer(), "build_date");

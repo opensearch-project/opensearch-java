@@ -51,7 +51,6 @@ import org.opensearch.client.opensearch._types.query_dsl.Operator;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch.core.search.FieldCollapse;
 import org.opensearch.client.opensearch.core.search.Highlight;
-import org.opensearch.client.opensearch.core.search.PointInTimeReference;
 import org.opensearch.client.opensearch.core.search.Rescore;
 import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.opensearch.core.search.Suggester;
@@ -157,9 +156,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	private final Double minScore;
 
 	@Nullable
-	private final PointInTimeReference pit;
-
-	@Nullable
 	private final Query postFilter;
 
 	@Nullable
@@ -261,7 +257,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.minCompatibleShardNode = builder.minCompatibleShardNode;
 		this.minScore = builder.minScore;
-		this.pit = builder.pit;
 		this.postFilter = builder.postFilter;
 		this.preFilterShardSize = builder.preFilterShardSize;
 		this.preference = builder.preference;
@@ -556,17 +551,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Double minScore() {
 		return this.minScore;
-	}
-
-	/**
-	 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
-	 * specify an &lt;index&gt; in the request path.
-	 * <p>
-	 * API name: {@code pit}
-	 */
-	@Nullable
-	public final PointInTimeReference pit() {
-		return this.pit;
 	}
 
 	/**
@@ -934,11 +918,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.minScore);
 
 		}
-		if (this.pit != null) {
-			generator.writeKey("pit");
-			this.pit.serialize(generator, mapper);
-
-		}
 		if (this.postFilter != null) {
 			generator.writeKey("post_filter");
 			this.postFilter.serialize(generator, mapper);
@@ -1155,9 +1134,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Double minScore;
-
-		@Nullable
-		private PointInTimeReference pit;
 
 		@Nullable
 		private Query postFilter;
@@ -1649,27 +1625,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		public final Builder minScore(@Nullable Double value) {
 			this.minScore = value;
 			return this;
-		}
-
-		/**
-		 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
-		 * specify an &lt;index&gt; in the request path.
-		 * <p>
-		 * API name: {@code pit}
-		 */
-		public final Builder pit(@Nullable PointInTimeReference value) {
-			this.pit = value;
-			return this;
-		}
-
-		/**
-		 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
-		 * specify an &lt;index&gt; in the request path.
-		 * <p>
-		 * API name: {@code pit}
-		 */
-		public final Builder pit(Function<PointInTimeReference.Builder, ObjectBuilder<PointInTimeReference>> fn) {
-			return this.pit(fn.apply(new PointInTimeReference.Builder()).build());
 		}
 
 		/**
@@ -2200,7 +2155,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
 				"indices_boost");
 		op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
-		op.add(Builder::pit, PointInTimeReference._DESERIALIZER, "pit");
 		op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
