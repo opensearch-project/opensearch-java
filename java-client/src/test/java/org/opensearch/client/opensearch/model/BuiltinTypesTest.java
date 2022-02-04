@@ -80,7 +80,6 @@ public class BuiltinTypesTest extends ModelTestCase {
     @Test
     public void testSortOptions() {
         // Has a custom deserializer
-        // Examples: see https://www.elastic.co/guide/en/elasticsearch/reference/current/sort-search-results.html
 
         String json;
         SortOptions sort;

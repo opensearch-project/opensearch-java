@@ -71,9 +71,7 @@ public class OpensearchTasksClient extends ApiClient<OpensearchTransport, Opense
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CancelResponse cancel(CancelRequest request) throws IOException, OpensearchException {
@@ -90,9 +88,7 @@ public class OpensearchTasksClient extends ApiClient<OpensearchTransport, Opense
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CancelRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final CancelResponse cancel(Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn)
@@ -103,9 +99,7 @@ public class OpensearchTasksClient extends ApiClient<OpensearchTransport, Opense
 	/**
 	 * Cancels a task, if it can be cancelled through an API.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public CancelResponse cancel() throws IOException, OpensearchException {
@@ -118,9 +112,7 @@ public class OpensearchTasksClient extends ApiClient<OpensearchTransport, Opense
 	/**
 	 * Returns information about a task.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public GetTasksResponse get(GetTasksRequest request) throws IOException, OpensearchException {
@@ -137,9 +129,7 @@ public class OpensearchTasksClient extends ApiClient<OpensearchTransport, Opense
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTasksRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final GetTasksResponse get(Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn)
@@ -152,9 +142,7 @@ public class OpensearchTasksClient extends ApiClient<OpensearchTransport, Opense
 	/**
 	 * Returns a list of tasks.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public ListResponse list(ListRequest request) throws IOException, OpensearchException {
@@ -171,9 +159,7 @@ public class OpensearchTasksClient extends ApiClient<OpensearchTransport, Opense
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ListRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public final ListResponse list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn)
@@ -184,9 +170,7 @@ public class OpensearchTasksClient extends ApiClient<OpensearchTransport, Opense
 	/**
 	 * Returns a list of tasks.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 
 	public ListResponse list() throws IOException, OpensearchException {

@@ -49,12 +49,6 @@ import java.util.function.Function;
 /**
  * Recall at K (R@k)
  * 
- * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#k-recall">Documentation
- *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/rank_eval/types.ts#L54-L58">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {

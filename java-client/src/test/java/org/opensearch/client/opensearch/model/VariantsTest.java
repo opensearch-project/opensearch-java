@@ -129,7 +129,6 @@ public class VariantsTest extends ModelTestCase {
         // Object fields don't really exist in ES and are based on a naming convention where field names
         // are dot-separated paths. The hierarchy is rebuilt from these names and ES doesn't send back
         // "type": "object" for object properties.
-        // See https://www.elastic.co/guide/en/elasticsearch/reference/current/object.html
         //
         // Mappings are therefore a hierarchy of internally-tagged unions based on the "type" property
         // with a default "object" tag value if the "type" property is missing.

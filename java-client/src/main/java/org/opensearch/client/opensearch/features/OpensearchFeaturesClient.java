@@ -68,9 +68,7 @@ public class OpensearchFeaturesClient extends ApiClient<OpensearchTransport, Ope
 	 * Gets a list of features which can be included in snapshots using the
 	 * feature_states field when creating a snapshot
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public GetFeaturesResponse getFeatures() throws IOException, OpensearchException {
 		return this.transport.performRequest(GetFeaturesRequest._INSTANCE, GetFeaturesRequest._ENDPOINT,
@@ -82,9 +80,7 @@ public class OpensearchFeaturesClient extends ApiClient<OpensearchTransport, Ope
 	/**
 	 * Resets the internal state of features, usually by deleting system indices
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
-	 *      on elastic.co</a>
+	 *
 	 */
 	public ResetFeaturesResponse resetFeatures() throws IOException, OpensearchException {
 		return this.transport.performRequest(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest._ENDPOINT,

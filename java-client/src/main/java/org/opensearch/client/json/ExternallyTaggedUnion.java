@@ -49,8 +49,6 @@ import static jakarta.json.stream.JsonParser.Event;
  * an inner property. This is used for Elasticsearch aggregation results and suggesters, using the {@code typed_keys} parameter that
  * encodes a name+type in a single JSON property.
  *
- * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html#return-agg-type">
- *      Documentation of the <code>typed_keys</code> parameter.</a>
  */
 public interface ExternallyTaggedUnion {
 

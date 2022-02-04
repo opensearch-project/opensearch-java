@@ -53,12 +53,6 @@ import javax.annotation.Nullable;
  * with arbitrary <code>x, y</code> cartesian shapes such as rectangles and
  * polygons.
  * 
- * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/shape.html">Documentation
- *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/geo.ts#L69-L81">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class ShapeProperty extends DocValuesPropertyBase implements PropertyVariant {

@@ -55,12 +55,6 @@ import java.util.function.Function;
  * Whenever durations need to be specified, e.g. for a timeout parameter, the
  * duration must specify the unit, like 2d for 2 days.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch/blob/master/libs/core/src/main/java/org/elasticsearch/core/TimeValue.java">Documentation
- *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Time.ts#L62-L68">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class Time implements TaggedUnion<Time.Kind, Object>, JsonpSerializable {
