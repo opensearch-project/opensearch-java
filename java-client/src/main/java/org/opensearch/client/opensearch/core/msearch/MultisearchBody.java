@@ -38,7 +38,6 @@ package org.opensearch.client.opensearch.core.msearch;
 
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
-import org.opensearch.client.opensearch.core.search.PointInTimeReference;
 import org.opensearch.client.opensearch.core.search.Suggester;
 import org.opensearch.client.opensearch.core.search.TrackHits;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -78,9 +77,6 @@ public class MultisearchBody implements JsonpSerializable {
 	private final Integer size;
 
 	@Nullable
-	private final PointInTimeReference pit;
-
-	@Nullable
 	private final TrackHits trackTotalHits;
 
 	@Nullable
@@ -94,7 +90,6 @@ public class MultisearchBody implements JsonpSerializable {
 		this.query = builder.query;
 		this.from = builder.from;
 		this.size = builder.size;
-		this.pit = builder.pit;
 		this.trackTotalHits = builder.trackTotalHits;
 		this.suggest = builder.suggest;
 
@@ -133,14 +128,6 @@ public class MultisearchBody implements JsonpSerializable {
 	@Nullable
 	public final Integer size() {
 		return this.size;
-	}
-
-	/**
-	 * API name: {@code pit}
-	 */
-	@Nullable
-	public final PointInTimeReference pit() {
-		return this.pit;
 	}
 
 	/**
@@ -196,11 +183,6 @@ public class MultisearchBody implements JsonpSerializable {
 			generator.write(this.size);
 
 		}
-		if (this.pit != null) {
-			generator.writeKey("pit");
-			this.pit.serialize(generator, mapper);
-
-		}
 		if (this.trackTotalHits != null) {
 			generator.writeKey("track_total_hits");
 			this.trackTotalHits.serialize(generator, mapper);
@@ -232,9 +214,6 @@ public class MultisearchBody implements JsonpSerializable {
 
 		@Nullable
 		private Integer size;
-
-		@Nullable
-		private PointInTimeReference pit;
 
 		@Nullable
 		private TrackHits trackTotalHits;
@@ -303,21 +282,6 @@ public class MultisearchBody implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pit}
-		 */
-		public final Builder pit(@Nullable PointInTimeReference value) {
-			this.pit = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code pit}
-		 */
-		public final Builder pit(Function<PointInTimeReference.Builder, ObjectBuilder<PointInTimeReference>> fn) {
-			return this.pit(fn.apply(new PointInTimeReference.Builder()).build());
-		}
-
-		/**
 		 * API name: {@code track_total_hits}
 		 */
 		public final Builder trackTotalHits(@Nullable TrackHits value) {
@@ -375,7 +339,6 @@ public class MultisearchBody implements JsonpSerializable {
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-		op.add(Builder::pit, PointInTimeReference._DESERIALIZER, "pit");
 		op.add(Builder::trackTotalHits, TrackHits._DESERIALIZER, "track_total_hits");
 		op.add(Builder::suggest, Suggester._DESERIALIZER, "suggest");
 

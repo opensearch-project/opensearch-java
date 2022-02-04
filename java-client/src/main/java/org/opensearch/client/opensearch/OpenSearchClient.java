@@ -45,8 +45,6 @@ import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.ClearScrollRequest;
 import org.opensearch.client.opensearch.core.ClearScrollResponse;
-import org.opensearch.client.opensearch.core.ClosePointInTimeRequest;
-import org.opensearch.client.opensearch.core.ClosePointInTimeResponse;
 import org.opensearch.client.opensearch.core.CountRequest;
 import org.opensearch.client.opensearch.core.CountResponse;
 import org.opensearch.client.opensearch.core.CreateRequest;
@@ -87,8 +85,6 @@ import org.opensearch.client.opensearch.core.MsearchTemplateRequest;
 import org.opensearch.client.opensearch.core.MsearchTemplateResponse;
 import org.opensearch.client.opensearch.core.MtermvectorsRequest;
 import org.opensearch.client.opensearch.core.MtermvectorsResponse;
-import org.opensearch.client.opensearch.core.OpenPointInTimeRequest;
-import org.opensearch.client.opensearch.core.OpenPointInTimeResponse;
 import org.opensearch.client.opensearch.core.PingRequest;
 import org.opensearch.client.opensearch.core.PutScriptRequest;
 import org.opensearch.client.opensearch.core.PutScriptResponse;
@@ -294,43 +290,6 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	public ClearScrollResponse clearScroll() throws IOException, OpensearchException {
 		return this.transport.performRequest(new ClearScrollRequest.Builder().build(), ClearScrollRequest._ENDPOINT,
 				this.transportOptions);
-	}
-
-	// ----- Endpoint: close_point_in_time
-
-	/**
-	 * Close a point in time
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public ClosePointInTimeResponse closePointInTime(ClosePointInTimeRequest request)
-			throws IOException, OpensearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse>)
-						ClosePointInTimeRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Close a point in time
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link ClosePointInTimeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final ClosePointInTimeResponse closePointInTime(
-			Function<ClosePointInTimeRequest.Builder, ObjectBuilder<ClosePointInTimeRequest>> fn)
-			throws IOException, OpensearchException {
-		return closePointInTime(fn.apply(new ClosePointInTimeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: count
@@ -1069,43 +1028,6 @@ public class OpenSearchClient extends ApiClient<OpensearchTransport, OpenSearchC
 	public MtermvectorsResponse mtermvectors() throws IOException, OpensearchException {
 		return this.transport.performRequest(new MtermvectorsRequest.Builder().build(), MtermvectorsRequest._ENDPOINT,
 				this.transportOptions);
-	}
-
-	// ----- Endpoint: open_point_in_time
-
-	/**
-	 * Open a point in time that can be used in subsequent searches
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public OpenPointInTimeResponse openPointInTime(OpenPointInTimeRequest request)
-			throws IOException, OpensearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse>)
-						OpenPointInTimeRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Open a point in time that can be used in subsequent searches
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link OpenPointInTimeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final OpenPointInTimeResponse openPointInTime(
-			Function<OpenPointInTimeRequest.Builder, ObjectBuilder<OpenPointInTimeRequest>> fn)
-			throws IOException, OpensearchException {
-		return openPointInTime(fn.apply(new OpenPointInTimeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ping
