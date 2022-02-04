@@ -307,7 +307,7 @@ public class ExistsAliasRequest extends RequestBase {
 	 * Endpoint "{@code indices.exists_alias}".
 	 */
 	public static final Endpoint<ExistsAliasRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
-			"es/indices.exists_alias",
+			"opensearch/indices.exists_alias",
 
 			// Request method
 			request -> {

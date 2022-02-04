@@ -214,7 +214,7 @@ public class ClusterStatsRequest extends RequestBase {
 	 * Endpoint "{@code cluster.stats}".
 	 */
 	public static final Endpoint<ClusterStatsRequest, ClusterStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/cluster.stats",
+			"opensearch/cluster.stats",
 
 			// Request method
 			request -> {

@@ -67,7 +67,7 @@ public class InfoRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code info}".
 	 */
-	public static final Endpoint<InfoRequest, InfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>("es/info",
+	public static final Endpoint<InfoRequest, InfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>("opensearch/info",
 
 			// Request method
 			request -> {

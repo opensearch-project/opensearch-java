@@ -437,7 +437,7 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	 * Endpoint "{@code indices.create}".
 	 */
 	public static final Endpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.create",
+			"opensearch/indices.create",
 
 			// Request method
 			request -> {

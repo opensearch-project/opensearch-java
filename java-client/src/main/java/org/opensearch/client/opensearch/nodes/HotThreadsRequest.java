@@ -361,7 +361,7 @@ public class HotThreadsRequest extends RequestBase {
 	 * Endpoint "{@code nodes.hot_threads}".
 	 */
 	public static final Endpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/nodes.hot_threads",
+			"opensearch/nodes.hot_threads",
 
 			// Request method
 			request -> {

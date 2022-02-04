@@ -122,7 +122,7 @@ public class TemplatesRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.templates}".
 	 */
 	public static final Endpoint<TemplatesRequest, TemplatesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/cat.templates",
+			"opensearch/cat.templates",
 
 			// Request method
 			request -> {

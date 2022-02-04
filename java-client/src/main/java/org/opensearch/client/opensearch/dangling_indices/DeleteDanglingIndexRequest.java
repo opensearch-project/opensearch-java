@@ -216,7 +216,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse> _ENDPOINT =
 			new SimpleEndpoint<>(
-			"es/dangling_indices.delete_dangling_index",
+			"opensearch/dangling_indices.delete_dangling_index",
 
 			// Request method
 			request -> {

@@ -542,7 +542,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code snapshot.restore}".
 	 */
 	public static final Endpoint<RestoreRequest, RestoreResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/snapshot.restore",
+			"opensearch/snapshot.restore",
 
 			// Request method
 			request -> {

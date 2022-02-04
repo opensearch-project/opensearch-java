@@ -436,7 +436,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code field_caps}".
 	 */
 	public static final Endpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/field_caps",
+			"opensearch/field_caps",
 
 			// Request method
 			request -> {

@@ -624,7 +624,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	 * Endpoint "{@code mtermvectors}".
 	 */
 	public static final Endpoint<MtermvectorsRequest, MtermvectorsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/mtermvectors",
+			"opensearch/mtermvectors",
 
 			// Request method
 			request -> {

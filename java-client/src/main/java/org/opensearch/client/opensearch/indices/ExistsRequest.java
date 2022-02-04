@@ -318,7 +318,7 @@ public class ExistsRequest extends RequestBase {
 	 * Endpoint "{@code indices.exists}".
 	 */
 	public static final Endpoint<ExistsRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
-			"es/indices.exists",
+			"opensearch/indices.exists",
 
 			// Request method
 			request -> {

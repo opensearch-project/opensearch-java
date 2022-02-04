@@ -68,7 +68,7 @@ public class HelpRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.help}".
 	 */
 	public static final Endpoint<HelpRequest, HelpResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/cat.help",
+			"opensearch/cat.help",
 
 			// Request method
 			request -> {

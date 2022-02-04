@@ -518,7 +518,7 @@ public class HealthRequest extends RequestBase {
 	 * Endpoint "{@code cluster.health}".
 	 */
 	public static final Endpoint<HealthRequest, HealthResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/cluster.health",
+			"opensearch/cluster.health",
 
 			// Request method
 			request -> {

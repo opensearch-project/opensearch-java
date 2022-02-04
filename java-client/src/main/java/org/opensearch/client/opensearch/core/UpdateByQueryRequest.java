@@ -1409,7 +1409,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * Endpoint "{@code update_by_query}".
 	 */
 	public static final Endpoint<UpdateByQueryRequest, UpdateByQueryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/update_by_query",
+			"opensearch/update_by_query",
 
 			// Request method
 			request -> {

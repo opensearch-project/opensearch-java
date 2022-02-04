@@ -65,7 +65,7 @@ public class RepositoriesRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.repositories}".
 	 */
 	public static final Endpoint<RepositoriesRequest, RepositoriesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/cat.repositories",
+			"opensearch/cat.repositories",
 
 			// Request method
 			request -> {

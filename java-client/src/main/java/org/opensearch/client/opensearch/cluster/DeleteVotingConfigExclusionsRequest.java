@@ -135,7 +135,7 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	 * Endpoint "{@code cluster.delete_voting_config_exclusions}".
 	 */
 	public static final Endpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
-			"es/cluster.delete_voting_config_exclusions",
+			"opensearch/cluster.delete_voting_config_exclusions",
 
 			// Request method
 			request -> {

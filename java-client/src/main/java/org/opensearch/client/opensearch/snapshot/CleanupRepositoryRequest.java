@@ -191,7 +191,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 	 * Endpoint "{@code snapshot.cleanup_repository}".
 	 */
 	public static final Endpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/snapshot.cleanup_repository",
+			"opensearch/snapshot.cleanup_repository",
 
 			// Request method
 			request -> {
