@@ -66,7 +66,6 @@ public class ListDanglingIndicesRequest extends RequestBase {
 	 */
 	public static final Endpoint<ListDanglingIndicesRequest, ListDanglingIndicesResponse, ErrorResponse> _ENDPOINT =
 			new SimpleEndpoint<>(
-			"opensearch/dangling_indices.list_dangling_indices",
 
 			// Request method
 			request -> {

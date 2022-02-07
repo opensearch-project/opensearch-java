@@ -191,7 +191,6 @@ public class DeletePipelineRequest extends RequestBase {
 	 * Endpoint "{@code ingest.delete_pipeline}".
 	 */
 	public static final Endpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/ingest.delete_pipeline",
 
 			// Request method
 			request -> {

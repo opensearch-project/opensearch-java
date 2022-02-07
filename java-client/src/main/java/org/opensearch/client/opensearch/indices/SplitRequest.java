@@ -393,7 +393,6 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code indices.split}".
 	 */
 	public static final Endpoint<SplitRequest, SplitResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/indices.split",
 
 			// Request method
 			request -> {

@@ -47,11 +47,6 @@ public class DelegatingJsonEndpoint<Req, Res, Err> implements JsonEndpoint<Req, 
     }
 
     @Override
-    public String id() {
-        return endpoint.id();
-    }
-
-    @Override
     public String method(Req request) {
         return endpoint.method(request);
     }

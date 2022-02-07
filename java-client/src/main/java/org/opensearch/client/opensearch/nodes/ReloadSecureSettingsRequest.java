@@ -239,7 +239,6 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 	 */
 	public static final Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> _ENDPOINT =
 			new SimpleEndpoint<>(
-			"opensearch/nodes.reload_secure_settings",
 
 			// Request method
 			request -> {

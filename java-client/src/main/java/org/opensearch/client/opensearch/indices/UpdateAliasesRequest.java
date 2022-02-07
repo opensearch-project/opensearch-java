@@ -256,7 +256,6 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 	 * Endpoint "{@code indices.update_aliases}".
 	 */
 	public static final Endpoint<UpdateAliasesRequest, UpdateAliasesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/indices.update_aliases",
 
 			// Request method
 			request -> {

@@ -122,7 +122,6 @@ public class HealthRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.health}".
 	 */
 	public static final Endpoint<HealthRequest, HealthResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/cat.health",
 
 			// Request method
 			request -> {

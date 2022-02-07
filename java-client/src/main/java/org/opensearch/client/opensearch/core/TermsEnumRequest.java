@@ -411,7 +411,6 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code terms_enum}".
 	 */
 	public static final Endpoint<TermsEnumRequest, TermsEnumResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/terms_enum",
 
 			// Request method
 			request -> {

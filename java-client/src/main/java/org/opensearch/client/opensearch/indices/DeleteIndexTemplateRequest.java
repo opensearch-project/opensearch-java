@@ -117,7 +117,6 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse> _ENDPOINT =
 			new SimpleEndpoint<>(
-			"opensearch/indices.delete_index_template",
 
 			// Request method
 			request -> {

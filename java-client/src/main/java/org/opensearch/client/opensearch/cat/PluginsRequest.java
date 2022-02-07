@@ -68,7 +68,6 @@ public class PluginsRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.plugins}".
 	 */
 	public static final Endpoint<PluginsRequest, PluginsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/cat.plugins",
 
 			// Request method
 			request -> {

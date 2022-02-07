@@ -286,7 +286,6 @@ public class NodesInfoRequest extends RequestBase {
 	 * Endpoint "{@code nodes.info}".
 	 */
 	public static final Endpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/nodes.info",
 
 			// Request method
 			request -> {

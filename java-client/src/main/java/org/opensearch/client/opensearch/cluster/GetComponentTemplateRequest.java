@@ -210,7 +210,6 @@ public class GetComponentTemplateRequest extends RequestBase {
 	 */
 	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse> _ENDPOINT =
 			new SimpleEndpoint<>(
-			"opensearch/cluster.get_component_template",
 
 			// Request method
 			request -> {

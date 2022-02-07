@@ -310,7 +310,6 @@ public class FlushRequest extends RequestBase {
 	 * Endpoint "{@code indices.flush}".
 	 */
 	public static final Endpoint<FlushRequest, FlushResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/indices.flush",
 
 			// Request method
 			request -> {

@@ -663,7 +663,6 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code count}".
 	 */
 	public static final Endpoint<CountRequest, CountResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/count",
 
 			// Request method
 			request -> {

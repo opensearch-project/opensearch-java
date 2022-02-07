@@ -68,7 +68,6 @@ public class MasterRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.master}".
 	 */
 	public static final Endpoint<MasterRequest, MasterResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/cat.master",
 
 			// Request method
 			request -> {

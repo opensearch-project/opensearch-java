@@ -289,7 +289,6 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	 * Endpoint "{@code snapshot.clone}".
 	 */
 	public static final Endpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/snapshot.clone",
 
 			// Request method
 			request -> {

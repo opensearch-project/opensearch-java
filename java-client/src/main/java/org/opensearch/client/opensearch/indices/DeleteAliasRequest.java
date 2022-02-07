@@ -251,7 +251,6 @@ public class DeleteAliasRequest extends RequestBase {
 	 * Endpoint "{@code indices.delete_alias}".
 	 */
 	public static final Endpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/indices.delete_alias",
 
 			// Request method
 			request -> {

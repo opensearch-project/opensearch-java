@@ -55,11 +55,6 @@ import java.util.Map;
 public interface Endpoint<RequestT, ResponseT, ErrorT> {
 
   /**
-   * The endpoint's identifier.
-   */
-  String id();
-
-  /**
    * Get the endpoint's HTTP method for a request.
    */
   String method(RequestT request);

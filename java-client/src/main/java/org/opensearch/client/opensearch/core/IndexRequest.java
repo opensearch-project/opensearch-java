@@ -586,7 +586,6 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	 * Endpoint "{@code index}".
 	 */
 	public static final Endpoint<IndexRequest<?>, IndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/index",
 
 			// Request method
 			request -> {

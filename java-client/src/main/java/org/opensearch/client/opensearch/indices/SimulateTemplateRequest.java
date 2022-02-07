@@ -254,7 +254,6 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	 * Endpoint "{@code indices.simulate_template}".
 	 */
 	public static final Endpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/indices.simulate_template",
 
 			// Request method
 			request -> {

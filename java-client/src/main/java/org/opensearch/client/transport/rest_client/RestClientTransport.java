@@ -250,7 +250,7 @@ public class RestClientTransport implements OpenSearchTransport {
                 if (errorDeserializer == null) {
                     throw new TransportException(
                         "Request failed with status code '" + statusCode + "'",
-                        endpoint.id(), new ResponseException(clientResp)
+                        new ResponseException(clientResp)
                     );
                 }
 
@@ -258,7 +258,7 @@ public class RestClientTransport implements OpenSearchTransport {
                 if (entity == null) {
                     throw new TransportException(
                         "Expecting a response body, but none was sent",
-                        endpoint.id(), new ResponseException(clientResp)
+                        new ResponseException(clientResp)
                     );
                 }
 
@@ -270,7 +270,7 @@ public class RestClientTransport implements OpenSearchTransport {
                     try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                         ErrorT error = errorDeserializer.deserialize(parser, mapper);
                         // TODO: have the endpoint provide the exception constructor
-                        throw new OpenSearchException(endpoint.id(), (ErrorResponse) error);
+                        throw new OpenSearchException((ErrorResponse) error);
                     }
                 } catch(MissingRequiredPropertyException errorEx) {
                     // Could not decode exception, try the response type
@@ -279,7 +279,7 @@ public class RestClientTransport implements OpenSearchTransport {
                         return response;
                     } catch(Exception respEx) {
                         // No better luck: throw the original error decoding exception
-                        throw new TransportException("Failed to decode error response", endpoint.id(), new ResponseException(clientResp));
+                        throw new TransportException("Failed to decode error response", new ResponseException(clientResp));
                     }
                 }
             } else {
@@ -312,7 +312,7 @@ public class RestClientTransport implements OpenSearchTransport {
                 if (entity == null) {
                     throw new TransportException(
                         "Expecting a response body, but none was sent",
-                        endpoint.id(), new ResponseException(clientResp)
+                        new ResponseException(clientResp)
                     );
                 }
                 InputStream content = entity.getContent();
@@ -322,7 +322,7 @@ public class RestClientTransport implements OpenSearchTransport {
             }
             return response;
         } else {
-            throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'", endpoint.id());
+            throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'");
         }
     }
 

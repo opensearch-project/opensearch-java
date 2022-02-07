@@ -146,7 +146,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     () -> highLevelClient().get(new GetRequest.Builder().index("index").id("id").build(), String.class)
             );
             assertEquals(404, exception.status());
-            assertEquals("[opensearch/get] failed: [index_not_found_exception] no such index [index]",
+            assertEquals("Request failed: [index_not_found_exception] no such index [index]",
                     exception.getMessage());
         }
 
@@ -268,7 +268,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                 highLevelClient().update(updateRequest, AppData.class);
             } catch (OpenSearchException e) {
                 assertEquals(
-                        "[opensearch/update] failed: [document_missing_exception] " +
+                        "Request failed: [document_missing_exception] " +
                                 "[_doc][does_not_exist]: document missing",
                         e.getMessage()
                 );

@@ -333,7 +333,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	 * Endpoint "{@code msearch_template}".
 	 */
 	public static final SimpleEndpoint<MsearchTemplateRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/msearch_template",
 
 			// Request method
 			request -> {

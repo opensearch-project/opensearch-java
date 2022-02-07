@@ -220,7 +220,6 @@ public class NodesUsageRequest extends RequestBase {
 	 * Endpoint "{@code nodes.usage}".
 	 */
 	public static final Endpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/nodes.usage",
 
 			// Request method
 			request -> {

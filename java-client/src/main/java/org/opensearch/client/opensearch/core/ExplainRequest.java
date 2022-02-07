@@ -624,7 +624,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code explain}".
 	 */
-	public static final SimpleEndpoint<ExplainRequest, ?> _ENDPOINT = new SimpleEndpoint<>("opensearch/explain",
+	public static final SimpleEndpoint<ExplainRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {

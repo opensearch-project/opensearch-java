@@ -83,14 +83,14 @@ public class FailingTransport implements OpenSearchTransport {
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
         @Nullable TransportOptions options
     ) throws IOException {
-        throw new TransportException("Not implemented", endpoint.id());
+        throw new TransportException("Not implemented");
     }
 
     @Override
     public <RequestT, ResponseT, ErrorT> CompletableFuture<ResponseT> performRequestAsync(RequestT request, Endpoint<RequestT, ResponseT,
         ErrorT> endpoint, @Nullable TransportOptions options) {
         CompletableFuture<ResponseT> future = new CompletableFuture<>();
-        future.completeExceptionally(new TransportException("Not implemented", endpoint.id()));
+        future.completeExceptionally(new TransportException("Not implemented"));
         return future;
     }
 

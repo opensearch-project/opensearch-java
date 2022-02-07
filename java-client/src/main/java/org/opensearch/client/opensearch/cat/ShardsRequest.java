@@ -165,7 +165,6 @@ public class ShardsRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.shards}".
 	 */
 	public static final Endpoint<ShardsRequest, ShardsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/cat.shards",
 
 			// Request method
 			request -> {

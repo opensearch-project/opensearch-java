@@ -179,7 +179,6 @@ public class DeleteSnapshotRequest extends RequestBase {
 	 * Endpoint "{@code snapshot.delete}".
 	 */
 	public static final Endpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/snapshot.delete",
 
 			// Request method
 			request -> {

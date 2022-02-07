@@ -333,7 +333,6 @@ public class ListRequest extends RequestBase {
 	 * Endpoint "{@code tasks.list}".
 	 */
 	public static final Endpoint<ListRequest, ListResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/tasks.list",
 
 			// Request method
 			request -> {

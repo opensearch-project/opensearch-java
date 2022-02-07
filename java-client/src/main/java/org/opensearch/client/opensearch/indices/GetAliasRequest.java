@@ -306,7 +306,6 @@ public class GetAliasRequest extends RequestBase {
 	 * Endpoint "{@code indices.get_alias}".
 	 */
 	public static final Endpoint<GetAliasRequest, GetAliasResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/indices.get_alias",
 
 			// Request method
 			request -> {
