@@ -37,9 +37,9 @@
 package org.opensearch.client.opensearch.nodes;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.OpensearchTransport;
+import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -51,19 +51,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the nodes namespace.
  */
-public class OpensearchNodesClient extends ApiClient<OpensearchTransport, OpensearchNodesClient> {
+public class OpenSearchNodesClient extends ApiClient<OpenSearchTransport, OpenSearchNodesClient> {
 
-	public OpensearchNodesClient(OpensearchTransport transport) {
+	public OpenSearchNodesClient(OpenSearchTransport transport) {
 		super(transport, null);
 	}
 
-	public OpensearchNodesClient(OpensearchTransport transport, @Nullable TransportOptions transportOptions) {
+	public OpenSearchNodesClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public OpensearchNodesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpensearchNodesClient(this.transport, transportOptions);
+	public OpenSearchNodesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpenSearchNodesClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: nodes.hot_threads
@@ -74,7 +74,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 *
 	 */
 
-	public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException, OpensearchException {
+	public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
@@ -92,7 +92,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 */
 
 	public final HotThreadsResponse hotThreads(Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
 	}
 
@@ -102,7 +102,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 *
 	 */
 
-	public HotThreadsResponse hotThreads() throws IOException, OpensearchException {
+	public HotThreadsResponse hotThreads() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -115,7 +115,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 *
 	 */
 
-	public NodesInfoResponse info(NodesInfoRequest request) throws IOException, OpensearchException {
+	public NodesInfoResponse info(NodesInfoRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse>) NodesInfoRequest._ENDPOINT;
@@ -133,7 +133,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 */
 
 	public final NodesInfoResponse info(Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return info(fn.apply(new NodesInfoRequest.Builder()).build());
 	}
 
@@ -143,7 +143,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 *
 	 */
 
-	public NodesInfoResponse info() throws IOException, OpensearchException {
+	public NodesInfoResponse info() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new NodesInfoRequest.Builder().build(), NodesInfoRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -155,7 +155,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 */
 
 	public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse>)
@@ -174,7 +174,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 
 	public final ReloadSecureSettingsResponse reloadSecureSettings(
 			Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
 	}
 
@@ -182,7 +182,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 * Reloads secure settings.
 	 */
 
-	public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException, OpensearchException {
+	public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new ReloadSecureSettingsRequest.Builder().build(),
 				ReloadSecureSettingsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -195,7 +195,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 *
 	 */
 
-	public NodesStatsResponse stats(NodesStatsRequest request) throws IOException, OpensearchException {
+	public NodesStatsResponse stats(NodesStatsRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse>) NodesStatsRequest._ENDPOINT;
@@ -213,7 +213,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 */
 
 	public final NodesStatsResponse stats(Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
 	}
 
@@ -223,7 +223,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 *
 	 */
 
-	public NodesStatsResponse stats() throws IOException, OpensearchException {
+	public NodesStatsResponse stats() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new NodesStatsRequest.Builder().build(), NodesStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -236,7 +236,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 *
 	 */
 
-	public NodesUsageResponse usage(NodesUsageRequest request) throws IOException, OpensearchException {
+	public NodesUsageResponse usage(NodesUsageRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse>) NodesUsageRequest._ENDPOINT;
@@ -254,7 +254,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 */
 
 	public final NodesUsageResponse usage(Function<NodesUsageRequest.Builder, ObjectBuilder<NodesUsageRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return usage(fn.apply(new NodesUsageRequest.Builder()).build());
 	}
 
@@ -264,7 +264,7 @@ public class OpensearchNodesClient extends ApiClient<OpensearchTransport, Opense
 	 *
 	 */
 
-	public NodesUsageResponse usage() throws IOException, OpensearchException {
+	public NodesUsageResponse usage() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new NodesUsageRequest.Builder().build(), NodesUsageRequest._ENDPOINT,
 				this.transportOptions);
 	}

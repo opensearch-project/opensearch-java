@@ -11,7 +11,7 @@ package org.opensearch.client.opensearch.integTest;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
-import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.Result;
 import org.opensearch.client.opensearch.core.BulkRequest;
@@ -141,8 +141,8 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
     public void testGet() throws IOException {
 
         {
-            OpensearchException exception = expectThrows(
-                    OpensearchException.class,
+            OpenSearchException exception = expectThrows(
+                    OpenSearchException.class,
                     () -> highLevelClient().get(new GetRequest.Builder().index("index").id("id").build(), String.class)
             );
             assertEquals(404, exception.status());
@@ -266,7 +266,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     .build();
             try {
                 highLevelClient().update(updateRequest, AppData.class);
-            } catch (OpensearchException e) {
+            } catch (OpenSearchException e) {
                 assertEquals(
                         "[opensearch/update] failed: [document_missing_exception] " +
                                 "[_doc][does_not_exist]: document missing",

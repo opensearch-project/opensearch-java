@@ -37,29 +37,33 @@
 package org.opensearch.client.opensearch.features;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpensearchException;
-import org.opensearch.client.transport.OpensearchTransport;
+import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 import javax.annotation.Nullable;
 
 /**
  * Client for the features namespace.
  */
-public class OpensearchFeaturesClient extends ApiClient<OpensearchTransport, OpensearchFeaturesClient> {
+public class OpenSearchFeaturesAsyncClient
+		extends
+			ApiClient<OpenSearchTransport, OpenSearchFeaturesAsyncClient> {
 
-	public OpensearchFeaturesClient(OpensearchTransport transport) {
+	public OpenSearchFeaturesAsyncClient(OpenSearchTransport transport) {
 		super(transport, null);
 	}
 
-	public OpensearchFeaturesClient(OpensearchTransport transport, @Nullable TransportOptions transportOptions) {
+	public OpenSearchFeaturesAsyncClient(OpenSearchTransport transport,
+                                         @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public OpensearchFeaturesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpensearchFeaturesClient(this.transport, transportOptions);
+	public OpenSearchFeaturesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpenSearchFeaturesAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: features.get_features
@@ -70,8 +74,8 @@ public class OpensearchFeaturesClient extends ApiClient<OpensearchTransport, Ope
 	 * 
 	 *
 	 */
-	public GetFeaturesResponse getFeatures() throws IOException, OpensearchException {
-		return this.transport.performRequest(GetFeaturesRequest._INSTANCE, GetFeaturesRequest._ENDPOINT,
+	public CompletableFuture<GetFeaturesResponse> getFeatures() throws IOException, OpenSearchException {
+		return this.transport.performRequestAsync(GetFeaturesRequest._INSTANCE, GetFeaturesRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -82,8 +86,8 @@ public class OpensearchFeaturesClient extends ApiClient<OpensearchTransport, Ope
 	 * 
 	 *
 	 */
-	public ResetFeaturesResponse resetFeatures() throws IOException, OpensearchException {
-		return this.transport.performRequest(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest._ENDPOINT,
+	public CompletableFuture<ResetFeaturesResponse> resetFeatures() throws IOException, OpenSearchException {
+		return this.transport.performRequestAsync(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

@@ -37,34 +37,32 @@
 package org.opensearch.client.opensearch.ingest;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.OpensearchTransport;
+import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
  * Client for the ingest namespace.
  */
-public class OpensearchIngestAsyncClient extends ApiClient<OpensearchTransport, OpensearchIngestAsyncClient> {
+public class OpenSearchIngestClient extends ApiClient<OpenSearchTransport, OpenSearchIngestClient> {
 
-	public OpensearchIngestAsyncClient(OpensearchTransport transport) {
+	public OpenSearchIngestClient(OpenSearchTransport transport) {
 		super(transport, null);
 	}
 
-	public OpensearchIngestAsyncClient(OpensearchTransport transport,
-                                       @Nullable TransportOptions transportOptions) {
+	public OpenSearchIngestClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public OpensearchIngestAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpensearchIngestAsyncClient(this.transport, transportOptions);
+	public OpenSearchIngestClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpenSearchIngestClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: ingest.delete_pipeline
@@ -75,14 +73,14 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchTransport, 
 	 *
 	 */
 
-	public CompletableFuture<DeletePipelineResponse> deletePipeline(DeletePipelineRequest request)
-			throws IOException, OpensearchException {
+	public DeletePipelineResponse deletePipeline(DeletePipelineRequest request)
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse>)
 						DeletePipelineRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -94,9 +92,9 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchTransport, 
 	 *
 	 */
 
-	public final CompletableFuture<DeletePipelineResponse> deletePipeline(
+	public final DeletePipelineResponse deletePipeline(
 			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
 	}
 
@@ -107,8 +105,8 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchTransport, 
 	 * 
 	 *
 	 */
-	public CompletableFuture<GeoIpStatsResponse> geoIpStats() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest._ENDPOINT,
+	public GeoIpStatsResponse geoIpStats() throws IOException, OpenSearchException {
+		return this.transport.performRequest(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -120,13 +118,12 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchTransport, 
 	 *
 	 */
 
-	public CompletableFuture<GetPipelineResponse> getPipeline(GetPipelineRequest request)
-			throws IOException, OpensearchException {
+	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse>) GetPipelineRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -138,9 +135,9 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchTransport, 
 	 *
 	 */
 
-	public final CompletableFuture<GetPipelineResponse> getPipeline(
+	public final GetPipelineResponse getPipeline(
 			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
 	}
 
@@ -150,9 +147,9 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchTransport, 
 	 *
 	 */
 
-	public CompletableFuture<GetPipelineResponse> getPipeline() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new GetPipelineRequest.Builder().build(),
-				GetPipelineRequest._ENDPOINT, this.transportOptions);
+	public GetPipelineResponse getPipeline() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new GetPipelineRequest.Builder().build(), GetPipelineRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ingest.processor_grok
@@ -162,8 +159,8 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchTransport, 
 	 * 
 	 *
 	 */
-	public CompletableFuture<ProcessorGrokResponse> processorGrok() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest._ENDPOINT,
+	public ProcessorGrokResponse processorGrok() throws IOException, OpenSearchException {
+		return this.transport.performRequest(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -175,13 +172,12 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchTransport, 
 	 *
 	 */
 
-	public CompletableFuture<PutPipelineResponse> putPipeline(PutPipelineRequest request)
-			throws IOException, OpensearchException {
+	public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse>) PutPipelineRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -193,9 +189,9 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchTransport, 
 	 *
 	 */
 
-	public final CompletableFuture<PutPipelineResponse> putPipeline(
+	public final PutPipelineResponse putPipeline(
 			Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
 	}
 
@@ -207,13 +203,12 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchTransport, 
 	 *
 	 */
 
-	public CompletableFuture<SimulateResponse> simulate(SimulateRequest request)
-			throws IOException, OpensearchException {
+	public SimulateResponse simulate(SimulateRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SimulateRequest, SimulateResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<SimulateRequest, SimulateResponse, ErrorResponse>) SimulateRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -225,9 +220,8 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchTransport, 
 	 *
 	 */
 
-	public final CompletableFuture<SimulateResponse> simulate(
-			Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn)
-			throws IOException, OpensearchException {
+	public final SimulateResponse simulate(Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn)
+			throws IOException, OpenSearchException {
 		return simulate(fn.apply(new SimulateRequest.Builder()).build());
 	}
 
@@ -237,8 +231,8 @@ public class OpensearchIngestAsyncClient extends ApiClient<OpensearchTransport, 
 	 *
 	 */
 
-	public CompletableFuture<SimulateResponse> simulate() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new SimulateRequest.Builder().build(), SimulateRequest._ENDPOINT,
+	public SimulateResponse simulate() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new SimulateRequest.Builder().build(), SimulateRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

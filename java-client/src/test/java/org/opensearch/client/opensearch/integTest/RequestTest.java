@@ -35,7 +35,7 @@ package org.opensearch.client.opensearch.integTest;
 
 import org.junit.Test;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
-import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.aggregations.HistogramAggregate;
 import org.opensearch.client.opensearch._types.mapping.Property;
@@ -250,7 +250,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         BooleanResponse exists = highLevelClient().exists(_0 -> _0.index("doesnotexist").id("reallynot"));
         assertFalse(exists.value());
 
-        OpensearchException ex = assertThrows(OpensearchException.class, () -> {
+        OpenSearchException ex = assertThrows(OpenSearchException.class, () -> {
             GetResponse<String> response = highLevelClient().get(
                     _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             );
@@ -268,7 +268,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
             ).get();
         });
 
-        ex = ((OpensearchException) ee.getCause());
+        ex = ((OpenSearchException) ee.getCause());
         assertEquals(404, ex.status());
         assertEquals("index_not_found_exception", ex.error().type());
     }

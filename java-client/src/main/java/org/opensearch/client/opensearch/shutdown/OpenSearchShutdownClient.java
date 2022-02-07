@@ -37,36 +37,32 @@
 package org.opensearch.client.opensearch.shutdown;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.OpensearchTransport;
+import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
  * Client for the shutdown namespace.
  */
-public class OpensearchShutdownAsyncClient
-		extends
-			ApiClient<OpensearchTransport, OpensearchShutdownAsyncClient> {
+public class OpenSearchShutdownClient extends ApiClient<OpenSearchTransport, OpenSearchShutdownClient> {
 
-	public OpensearchShutdownAsyncClient(OpensearchTransport transport) {
+	public OpenSearchShutdownClient(OpenSearchTransport transport) {
 		super(transport, null);
 	}
 
-	public OpensearchShutdownAsyncClient(OpensearchTransport transport,
-                                         @Nullable TransportOptions transportOptions) {
+	public OpenSearchShutdownClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public OpensearchShutdownAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpensearchShutdownAsyncClient(this.transport, transportOptions);
+	public OpenSearchShutdownClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpenSearchShutdownClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: shutdown.delete_node
@@ -78,13 +74,12 @@ public class OpensearchShutdownAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<DeleteNodeResponse> deleteNode(DeleteNodeRequest request)
-			throws IOException, OpensearchException {
+	public DeleteNodeResponse deleteNode(DeleteNodeRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse>) DeleteNodeRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -97,9 +92,8 @@ public class OpensearchShutdownAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<DeleteNodeResponse> deleteNode(
-			Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn)
-			throws IOException, OpensearchException {
+	public final DeleteNodeResponse deleteNode(Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn)
+			throws IOException, OpenSearchException {
 		return deleteNode(fn.apply(new DeleteNodeRequest.Builder()).build());
 	}
 
@@ -113,13 +107,12 @@ public class OpensearchShutdownAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<GetNodeResponse> getNode(GetNodeRequest request)
-			throws IOException, OpensearchException {
+	public GetNodeResponse getNode(GetNodeRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetNodeRequest, GetNodeResponse, ErrorResponse>) GetNodeRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -133,9 +126,8 @@ public class OpensearchShutdownAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<GetNodeResponse> getNode(
-			Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn)
-			throws IOException, OpensearchException {
+	public final GetNodeResponse getNode(Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn)
+			throws IOException, OpenSearchException {
 		return getNode(fn.apply(new GetNodeRequest.Builder()).build());
 	}
 
@@ -147,8 +139,8 @@ public class OpensearchShutdownAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<GetNodeResponse> getNode() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new GetNodeRequest.Builder().build(), GetNodeRequest._ENDPOINT,
+	public GetNodeResponse getNode() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new GetNodeRequest.Builder().build(), GetNodeRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -161,13 +153,12 @@ public class OpensearchShutdownAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<PutNodeResponse> putNode(PutNodeRequest request)
-			throws IOException, OpensearchException {
+	public PutNodeResponse putNode(PutNodeRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutNodeRequest, PutNodeResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<PutNodeRequest, PutNodeResponse, ErrorResponse>) PutNodeRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -180,9 +171,8 @@ public class OpensearchShutdownAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<PutNodeResponse> putNode(
-			Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn)
-			throws IOException, OpensearchException {
+	public final PutNodeResponse putNode(Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn)
+			throws IOException, OpenSearchException {
 		return putNode(fn.apply(new PutNodeRequest.Builder()).build());
 	}
 

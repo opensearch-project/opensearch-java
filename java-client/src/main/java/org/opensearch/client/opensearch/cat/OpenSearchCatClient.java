@@ -37,9 +37,9 @@
 package org.opensearch.client.opensearch.cat;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.OpensearchTransport;
+import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -51,19 +51,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the cat namespace.
  */
-public class OpensearchCatClient extends ApiClient<OpensearchTransport, OpensearchCatClient> {
+public class OpenSearchCatClient extends ApiClient<OpenSearchTransport, OpenSearchCatClient> {
 
-	public OpensearchCatClient(OpensearchTransport transport) {
+	public OpenSearchCatClient(OpenSearchTransport transport) {
 		super(transport, null);
 	}
 
-	public OpensearchCatClient(OpensearchTransport transport, @Nullable TransportOptions transportOptions) {
+	public OpenSearchCatClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public OpensearchCatClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpensearchCatClient(this.transport, transportOptions);
+	public OpenSearchCatClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpenSearchCatClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: cat.aliases
@@ -75,7 +75,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public AliasesResponse aliases(AliasesRequest request) throws IOException, OpensearchException {
+	public AliasesResponse aliases(AliasesRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<AliasesRequest, AliasesResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<AliasesRequest, AliasesResponse, ErrorResponse>) AliasesRequest._ENDPOINT;
@@ -94,7 +94,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final AliasesResponse aliases(Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return aliases(fn.apply(new AliasesRequest.Builder()).build());
 	}
 
@@ -105,7 +105,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public AliasesResponse aliases() throws IOException, OpensearchException {
+	public AliasesResponse aliases() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new AliasesRequest.Builder().build(), AliasesRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -119,7 +119,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public AllocationResponse allocation(AllocationRequest request) throws IOException, OpensearchException {
+	public AllocationResponse allocation(AllocationRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<AllocationRequest, AllocationResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<AllocationRequest, AllocationResponse, ErrorResponse>) AllocationRequest._ENDPOINT;
@@ -138,7 +138,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final AllocationResponse allocation(Function<AllocationRequest.Builder, ObjectBuilder<AllocationRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return allocation(fn.apply(new AllocationRequest.Builder()).build());
 	}
 
@@ -149,7 +149,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public AllocationResponse allocation() throws IOException, OpensearchException {
+	public AllocationResponse allocation() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new AllocationRequest.Builder().build(), AllocationRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -163,7 +163,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public CountResponse count(CountRequest request) throws IOException, OpensearchException {
+	public CountResponse count(CountRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<CountRequest, CountResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<CountRequest, CountResponse, ErrorResponse>) CountRequest._ENDPOINT;
@@ -182,7 +182,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final CountResponse count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return count(fn.apply(new CountRequest.Builder()).build());
 	}
 
@@ -193,7 +193,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public CountResponse count() throws IOException, OpensearchException {
+	public CountResponse count() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new CountRequest.Builder().build(), CountRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -207,7 +207,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public FielddataResponse fielddata(FielddataRequest request) throws IOException, OpensearchException {
+	public FielddataResponse fielddata(FielddataRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<FielddataRequest, FielddataResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<FielddataRequest, FielddataResponse, ErrorResponse>) FielddataRequest._ENDPOINT;
@@ -226,7 +226,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final FielddataResponse fielddata(Function<FielddataRequest.Builder, ObjectBuilder<FielddataRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return fielddata(fn.apply(new FielddataRequest.Builder()).build());
 	}
 
@@ -237,7 +237,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public FielddataResponse fielddata() throws IOException, OpensearchException {
+	public FielddataResponse fielddata() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new FielddataRequest.Builder().build(), FielddataRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -250,7 +250,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public HealthResponse health(HealthRequest request) throws IOException, OpensearchException {
+	public HealthResponse health(HealthRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse>) HealthRequest._ENDPOINT;
@@ -268,7 +268,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return health(fn.apply(new HealthRequest.Builder()).build());
 	}
 
@@ -278,7 +278,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public HealthResponse health() throws IOException, OpensearchException {
+	public HealthResponse health() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new HealthRequest.Builder().build(), HealthRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -290,7 +290,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * 
 	 *
 	 */
-	public HelpResponse help() throws IOException, OpensearchException {
+	public HelpResponse help() throws IOException, OpenSearchException {
 		return this.transport.performRequest(HelpRequest._INSTANCE, HelpRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -303,7 +303,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public IndicesResponse indices(IndicesRequest request) throws IOException, OpensearchException {
+	public IndicesResponse indices(IndicesRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<IndicesRequest, IndicesResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<IndicesRequest, IndicesResponse, ErrorResponse>) IndicesRequest._ENDPOINT;
@@ -322,7 +322,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final IndicesResponse indices(Function<IndicesRequest.Builder, ObjectBuilder<IndicesRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return indices(fn.apply(new IndicesRequest.Builder()).build());
 	}
 
@@ -333,7 +333,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public IndicesResponse indices() throws IOException, OpensearchException {
+	public IndicesResponse indices() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new IndicesRequest.Builder().build(), IndicesRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -345,7 +345,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * 
 	 *
 	 */
-	public MasterResponse master() throws IOException, OpensearchException {
+	public MasterResponse master() throws IOException, OpenSearchException {
 		return this.transport.performRequest(MasterRequest._INSTANCE, MasterRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -356,7 +356,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * 
 	 *
 	 */
-	public NodeattrsResponse nodeattrs() throws IOException, OpensearchException {
+	public NodeattrsResponse nodeattrs() throws IOException, OpenSearchException {
 		return this.transport.performRequest(NodeattrsRequest._INSTANCE, NodeattrsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -369,7 +369,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public NodesResponse nodes(NodesRequest request) throws IOException, OpensearchException {
+	public NodesResponse nodes(NodesRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<NodesRequest, NodesResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<NodesRequest, NodesResponse, ErrorResponse>) NodesRequest._ENDPOINT;
@@ -387,7 +387,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final NodesResponse nodes(Function<NodesRequest.Builder, ObjectBuilder<NodesRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return nodes(fn.apply(new NodesRequest.Builder()).build());
 	}
 
@@ -397,7 +397,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public NodesResponse nodes() throws IOException, OpensearchException {
+	public NodesResponse nodes() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new NodesRequest.Builder().build(), NodesRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -409,7 +409,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * 
 	 *
 	 */
-	public PendingTasksResponse pendingTasks() throws IOException, OpensearchException {
+	public PendingTasksResponse pendingTasks() throws IOException, OpenSearchException {
 		return this.transport.performRequest(PendingTasksRequest._INSTANCE, PendingTasksRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -421,7 +421,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * 
 	 *
 	 */
-	public PluginsResponse plugins() throws IOException, OpensearchException {
+	public PluginsResponse plugins() throws IOException, OpenSearchException {
 		return this.transport.performRequest(PluginsRequest._INSTANCE, PluginsRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -433,7 +433,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public RecoveryResponse recovery(RecoveryRequest request) throws IOException, OpensearchException {
+	public RecoveryResponse recovery(RecoveryRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RecoveryRequest, RecoveryResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<RecoveryRequest, RecoveryResponse, ErrorResponse>) RecoveryRequest._ENDPOINT;
@@ -451,7 +451,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final RecoveryResponse recovery(Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return recovery(fn.apply(new RecoveryRequest.Builder()).build());
 	}
 
@@ -461,7 +461,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public RecoveryResponse recovery() throws IOException, OpensearchException {
+	public RecoveryResponse recovery() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new RecoveryRequest.Builder().build(), RecoveryRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -473,7 +473,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 * 
 	 *
 	 */
-	public RepositoriesResponse repositories() throws IOException, OpensearchException {
+	public RepositoriesResponse repositories() throws IOException, OpenSearchException {
 		return this.transport.performRequest(RepositoriesRequest._INSTANCE, RepositoriesRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -486,7 +486,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public SegmentsResponse segments(SegmentsRequest request) throws IOException, OpensearchException {
+	public SegmentsResponse segments(SegmentsRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<SegmentsRequest, SegmentsResponse, ErrorResponse>) SegmentsRequest._ENDPOINT;
@@ -504,7 +504,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final SegmentsResponse segments(Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return segments(fn.apply(new SegmentsRequest.Builder()).build());
 	}
 
@@ -514,7 +514,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public SegmentsResponse segments() throws IOException, OpensearchException {
+	public SegmentsResponse segments() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new SegmentsRequest.Builder().build(), SegmentsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -527,7 +527,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public ShardsResponse shards(ShardsRequest request) throws IOException, OpensearchException {
+	public ShardsResponse shards(ShardsRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ShardsRequest, ShardsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ShardsRequest, ShardsResponse, ErrorResponse>) ShardsRequest._ENDPOINT;
@@ -545,7 +545,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final ShardsResponse shards(Function<ShardsRequest.Builder, ObjectBuilder<ShardsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return shards(fn.apply(new ShardsRequest.Builder()).build());
 	}
 
@@ -555,7 +555,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public ShardsResponse shards() throws IOException, OpensearchException {
+	public ShardsResponse shards() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new ShardsRequest.Builder().build(), ShardsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -568,7 +568,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public SnapshotsResponse snapshots(SnapshotsRequest request) throws IOException, OpensearchException {
+	public SnapshotsResponse snapshots(SnapshotsRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SnapshotsRequest, SnapshotsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<SnapshotsRequest, SnapshotsResponse, ErrorResponse>) SnapshotsRequest._ENDPOINT;
@@ -586,7 +586,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final SnapshotsResponse snapshots(Function<SnapshotsRequest.Builder, ObjectBuilder<SnapshotsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return snapshots(fn.apply(new SnapshotsRequest.Builder()).build());
 	}
 
@@ -596,7 +596,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public SnapshotsResponse snapshots() throws IOException, OpensearchException {
+	public SnapshotsResponse snapshots() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new SnapshotsRequest.Builder().build(), SnapshotsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -610,7 +610,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public TasksResponse tasks(TasksRequest request) throws IOException, OpensearchException {
+	public TasksResponse tasks(TasksRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<TasksRequest, TasksResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<TasksRequest, TasksResponse, ErrorResponse>) TasksRequest._ENDPOINT;
@@ -629,7 +629,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final TasksResponse tasks(Function<TasksRequest.Builder, ObjectBuilder<TasksRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return tasks(fn.apply(new TasksRequest.Builder()).build());
 	}
 
@@ -640,7 +640,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public TasksResponse tasks() throws IOException, OpensearchException {
+	public TasksResponse tasks() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new TasksRequest.Builder().build(), TasksRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -653,7 +653,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public TemplatesResponse templates(TemplatesRequest request) throws IOException, OpensearchException {
+	public TemplatesResponse templates(TemplatesRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<TemplatesRequest, TemplatesResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<TemplatesRequest, TemplatesResponse, ErrorResponse>) TemplatesRequest._ENDPOINT;
@@ -671,7 +671,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final TemplatesResponse templates(Function<TemplatesRequest.Builder, ObjectBuilder<TemplatesRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return templates(fn.apply(new TemplatesRequest.Builder()).build());
 	}
 
@@ -681,7 +681,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public TemplatesResponse templates() throws IOException, OpensearchException {
+	public TemplatesResponse templates() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new TemplatesRequest.Builder().build(), TemplatesRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -695,7 +695,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public ThreadPoolResponse threadPool(ThreadPoolRequest request) throws IOException, OpensearchException {
+	public ThreadPoolResponse threadPool(ThreadPoolRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ThreadPoolRequest, ThreadPoolResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ThreadPoolRequest, ThreadPoolResponse, ErrorResponse>) ThreadPoolRequest._ENDPOINT;
@@ -714,7 +714,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 */
 
 	public final ThreadPoolResponse threadPool(Function<ThreadPoolRequest.Builder, ObjectBuilder<ThreadPoolRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return threadPool(fn.apply(new ThreadPoolRequest.Builder()).build());
 	}
 
@@ -725,7 +725,7 @@ public class OpensearchCatClient extends ApiClient<OpensearchTransport, Opensear
 	 *
 	 */
 
-	public ThreadPoolResponse threadPool() throws IOException, OpensearchException {
+	public ThreadPoolResponse threadPool() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new ThreadPoolRequest.Builder().build(), ThreadPoolRequest._ENDPOINT,
 				this.transportOptions);
 	}

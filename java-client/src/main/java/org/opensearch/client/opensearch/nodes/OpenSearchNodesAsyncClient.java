@@ -37,9 +37,9 @@
 package org.opensearch.client.opensearch.nodes;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.OpensearchTransport;
+import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -52,20 +52,20 @@ import javax.annotation.Nullable;
 /**
  * Client for the nodes namespace.
  */
-public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, OpensearchNodesAsyncClient> {
+public class OpenSearchNodesAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchNodesAsyncClient> {
 
-	public OpensearchNodesAsyncClient(OpensearchTransport transport) {
+	public OpenSearchNodesAsyncClient(OpenSearchTransport transport) {
 		super(transport, null);
 	}
 
-	public OpensearchNodesAsyncClient(OpensearchTransport transport,
+	public OpenSearchNodesAsyncClient(OpenSearchTransport transport,
                                       @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public OpensearchNodesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpensearchNodesAsyncClient(this.transport, transportOptions);
+	public OpenSearchNodesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpenSearchNodesAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: nodes.hot_threads
@@ -77,7 +77,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	 */
 
 	public CompletableFuture<HotThreadsResponse> hotThreads(HotThreadsRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
@@ -96,7 +96,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 
 	public final CompletableFuture<HotThreadsResponse> hotThreads(
 			Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
 	}
 
@@ -106,7 +106,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	 *
 	 */
 
-	public CompletableFuture<HotThreadsResponse> hotThreads() throws IOException, OpensearchException {
+	public CompletableFuture<HotThreadsResponse> hotThreads() throws IOException, OpenSearchException {
 		return this.transport.performRequestAsync(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -120,7 +120,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	 */
 
 	public CompletableFuture<NodesInfoResponse> info(NodesInfoRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse>) NodesInfoRequest._ENDPOINT;
@@ -139,7 +139,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 
 	public final CompletableFuture<NodesInfoResponse> info(
 			Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return info(fn.apply(new NodesInfoRequest.Builder()).build());
 	}
 
@@ -149,7 +149,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	 *
 	 */
 
-	public CompletableFuture<NodesInfoResponse> info() throws IOException, OpensearchException {
+	public CompletableFuture<NodesInfoResponse> info() throws IOException, OpenSearchException {
 		return this.transport.performRequestAsync(new NodesInfoRequest.Builder().build(), NodesInfoRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -161,7 +161,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	 */
 
 	public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings(ReloadSecureSettingsRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse>)
@@ -180,7 +180,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 
 	public final CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings(
 			Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
 	}
 
@@ -189,7 +189,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	 */
 
 	public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings()
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return this.transport.performRequestAsync(new ReloadSecureSettingsRequest.Builder().build(),
 				ReloadSecureSettingsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -203,7 +203,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	 */
 
 	public CompletableFuture<NodesStatsResponse> stats(NodesStatsRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse>) NodesStatsRequest._ENDPOINT;
@@ -221,7 +221,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 
 	public final CompletableFuture<NodesStatsResponse> stats(
 			Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
 	}
 
@@ -231,7 +231,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	 *
 	 */
 
-	public CompletableFuture<NodesStatsResponse> stats() throws IOException, OpensearchException {
+	public CompletableFuture<NodesStatsResponse> stats() throws IOException, OpenSearchException {
 		return this.transport.performRequestAsync(new NodesStatsRequest.Builder().build(), NodesStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -245,7 +245,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	 */
 
 	public CompletableFuture<NodesUsageResponse> usage(NodesUsageRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse>) NodesUsageRequest._ENDPOINT;
@@ -264,7 +264,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 
 	public final CompletableFuture<NodesUsageResponse> usage(
 			Function<NodesUsageRequest.Builder, ObjectBuilder<NodesUsageRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return usage(fn.apply(new NodesUsageRequest.Builder()).build());
 	}
 
@@ -274,7 +274,7 @@ public class OpensearchNodesAsyncClient extends ApiClient<OpensearchTransport, O
 	 *
 	 */
 
-	public CompletableFuture<NodesUsageResponse> usage() throws IOException, OpensearchException {
+	public CompletableFuture<NodesUsageResponse> usage() throws IOException, OpenSearchException {
 		return this.transport.performRequestAsync(new NodesUsageRequest.Builder().build(), NodesUsageRequest._ENDPOINT,
 				this.transportOptions);
 	}

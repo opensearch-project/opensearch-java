@@ -37,37 +37,33 @@
 package org.opensearch.client.opensearch.cluster;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.OpensearchTransport;
+import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
  * Client for the cluster namespace.
  */
-public class OpensearchClusterAsyncClient
-		extends
-			ApiClient<OpensearchTransport, OpensearchClusterAsyncClient> {
+public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, OpenSearchClusterClient> {
 
-	public OpensearchClusterAsyncClient(OpensearchTransport transport) {
+	public OpenSearchClusterClient(OpenSearchTransport transport) {
 		super(transport, null);
 	}
 
-	public OpensearchClusterAsyncClient(OpensearchTransport transport,
-                                        @Nullable TransportOptions transportOptions) {
+	public OpenSearchClusterClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public OpensearchClusterAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpensearchClusterAsyncClient(this.transport, transportOptions);
+	public OpenSearchClusterClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpenSearchClusterClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: cluster.allocation_explain
@@ -78,14 +74,14 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<AllocationExplainResponse> allocationExplain(AllocationExplainRequest request)
-			throws IOException, OpensearchException {
+	public AllocationExplainResponse allocationExplain(AllocationExplainRequest request)
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse>)
 						AllocationExplainRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -97,9 +93,9 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<AllocationExplainResponse> allocationExplain(
+	public final AllocationExplainResponse allocationExplain(
 			Function<AllocationExplainRequest.Builder, ObjectBuilder<AllocationExplainRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return allocationExplain(fn.apply(new AllocationExplainRequest.Builder()).build());
 	}
 
@@ -109,8 +105,8 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<AllocationExplainResponse> allocationExplain() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new AllocationExplainRequest.Builder().build(),
+	public AllocationExplainResponse allocationExplain() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new AllocationExplainRequest.Builder().build(),
 				AllocationExplainRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -122,14 +118,14 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<DeleteComponentTemplateResponse> deleteComponentTemplate(
-			DeleteComponentTemplateRequest request) throws IOException, OpensearchException {
+	public DeleteComponentTemplateResponse deleteComponentTemplate(DeleteComponentTemplateRequest request)
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ErrorResponse>)
 						DeleteComponentTemplateRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -141,9 +137,9 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<DeleteComponentTemplateResponse> deleteComponentTemplate(
+	public final DeleteComponentTemplateResponse deleteComponentTemplate(
 			Function<DeleteComponentTemplateRequest.Builder, ObjectBuilder<DeleteComponentTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return deleteComponentTemplate(fn.apply(new DeleteComponentTemplateRequest.Builder()).build());
 	}
 
@@ -155,14 +151,14 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<BooleanResponse> deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request)
-			throws IOException, OpensearchException {
+	public BooleanResponse deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request)
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse>)
 						DeleteVotingConfigExclusionsRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -174,9 +170,9 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<BooleanResponse> deleteVotingConfigExclusions(
+	public final BooleanResponse deleteVotingConfigExclusions(
 			Function<DeleteVotingConfigExclusionsRequest.Builder, ObjectBuilder<DeleteVotingConfigExclusionsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return deleteVotingConfigExclusions(fn.apply(new DeleteVotingConfigExclusionsRequest.Builder()).build());
 	}
 
@@ -186,9 +182,8 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<BooleanResponse> deleteVotingConfigExclusions()
-			throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new DeleteVotingConfigExclusionsRequest.Builder().build(),
+	public BooleanResponse deleteVotingConfigExclusions() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new DeleteVotingConfigExclusionsRequest.Builder().build(),
 				DeleteVotingConfigExclusionsRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -200,14 +195,14 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<BooleanResponse> existsComponentTemplate(ExistsComponentTemplateRequest request)
-			throws IOException, OpensearchException {
+	public BooleanResponse existsComponentTemplate(ExistsComponentTemplateRequest request)
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExistsComponentTemplateRequest, BooleanResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ExistsComponentTemplateRequest, BooleanResponse, ErrorResponse>)
 						ExistsComponentTemplateRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -219,9 +214,9 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<BooleanResponse> existsComponentTemplate(
+	public final BooleanResponse existsComponentTemplate(
 			Function<ExistsComponentTemplateRequest.Builder, ObjectBuilder<ExistsComponentTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return existsComponentTemplate(fn.apply(new ExistsComponentTemplateRequest.Builder()).build());
 	}
 
@@ -233,14 +228,14 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<GetComponentTemplateResponse> getComponentTemplate(GetComponentTemplateRequest request)
-			throws IOException, OpensearchException {
+	public GetComponentTemplateResponse getComponentTemplate(GetComponentTemplateRequest request)
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse>)
 						GetComponentTemplateRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -252,9 +247,9 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<GetComponentTemplateResponse> getComponentTemplate(
+	public final GetComponentTemplateResponse getComponentTemplate(
 			Function<GetComponentTemplateRequest.Builder, ObjectBuilder<GetComponentTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return getComponentTemplate(fn.apply(new GetComponentTemplateRequest.Builder()).build());
 	}
 
@@ -264,9 +259,8 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<GetComponentTemplateResponse> getComponentTemplate()
-			throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new GetComponentTemplateRequest.Builder().build(),
+	public GetComponentTemplateResponse getComponentTemplate() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new GetComponentTemplateRequest.Builder().build(),
 				GetComponentTemplateRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -278,14 +272,14 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<GetClusterSettingsResponse> getSettings(GetClusterSettingsRequest request)
-			throws IOException, OpensearchException {
+	public GetClusterSettingsResponse getSettings(GetClusterSettingsRequest request)
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse>)
 						GetClusterSettingsRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -297,9 +291,9 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<GetClusterSettingsResponse> getSettings(
+	public final GetClusterSettingsResponse getSettings(
 			Function<GetClusterSettingsRequest.Builder, ObjectBuilder<GetClusterSettingsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return getSettings(fn.apply(new GetClusterSettingsRequest.Builder()).build());
 	}
 
@@ -309,8 +303,8 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<GetClusterSettingsResponse> getSettings() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new GetClusterSettingsRequest.Builder().build(),
+	public GetClusterSettingsResponse getSettings() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new GetClusterSettingsRequest.Builder().build(),
 				GetClusterSettingsRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -322,12 +316,12 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<HealthResponse> health(HealthRequest request) throws IOException, OpensearchException {
+	public HealthResponse health(HealthRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse>) HealthRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -339,9 +333,8 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<HealthResponse> health(
-			Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
-			throws IOException, OpensearchException {
+	public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
+			throws IOException, OpenSearchException {
 		return health(fn.apply(new HealthRequest.Builder()).build());
 	}
 
@@ -351,8 +344,8 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<HealthResponse> health() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new HealthRequest.Builder().build(), HealthRequest._ENDPOINT,
+	public HealthResponse health() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new HealthRequest.Builder().build(), HealthRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -365,13 +358,12 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<PendingTasksResponse> pendingTasks(PendingTasksRequest request)
-			throws IOException, OpensearchException {
+	public PendingTasksResponse pendingTasks(PendingTasksRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse>) PendingTasksRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -384,9 +376,9 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<PendingTasksResponse> pendingTasks(
+	public final PendingTasksResponse pendingTasks(
 			Function<PendingTasksRequest.Builder, ObjectBuilder<PendingTasksRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return pendingTasks(fn.apply(new PendingTasksRequest.Builder()).build());
 	}
 
@@ -397,9 +389,9 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<PendingTasksResponse> pendingTasks() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new PendingTasksRequest.Builder().build(),
-				PendingTasksRequest._ENDPOINT, this.transportOptions);
+	public PendingTasksResponse pendingTasks() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new PendingTasksRequest.Builder().build(), PendingTasksRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cluster.post_voting_config_exclusions
@@ -410,14 +402,14 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<BooleanResponse> postVotingConfigExclusions(PostVotingConfigExclusionsRequest request)
-			throws IOException, OpensearchException {
+	public BooleanResponse postVotingConfigExclusions(PostVotingConfigExclusionsRequest request)
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse>)
 						PostVotingConfigExclusionsRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -429,9 +421,9 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<BooleanResponse> postVotingConfigExclusions(
+	public final BooleanResponse postVotingConfigExclusions(
 			Function<PostVotingConfigExclusionsRequest.Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return postVotingConfigExclusions(fn.apply(new PostVotingConfigExclusionsRequest.Builder()).build());
 	}
 
@@ -441,8 +433,8 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<BooleanResponse> postVotingConfigExclusions() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new PostVotingConfigExclusionsRequest.Builder().build(),
+	public BooleanResponse postVotingConfigExclusions() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new PostVotingConfigExclusionsRequest.Builder().build(),
 				PostVotingConfigExclusionsRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -454,14 +446,14 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(PutComponentTemplateRequest request)
-			throws IOException, OpensearchException {
+	public PutComponentTemplateResponse putComponentTemplate(PutComponentTemplateRequest request)
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ErrorResponse>)
 						PutComponentTemplateRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -473,9 +465,9 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(
+	public final PutComponentTemplateResponse putComponentTemplate(
 			Function<PutComponentTemplateRequest.Builder, ObjectBuilder<PutComponentTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return putComponentTemplate(fn.apply(new PutComponentTemplateRequest.Builder()).build());
 	}
 
@@ -487,14 +479,14 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<PutClusterSettingsResponse> putSettings(PutClusterSettingsRequest request)
-			throws IOException, OpensearchException {
+	public PutClusterSettingsResponse putSettings(PutClusterSettingsRequest request)
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutClusterSettingsRequest, PutClusterSettingsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<PutClusterSettingsRequest, PutClusterSettingsResponse, ErrorResponse>)
 						PutClusterSettingsRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -506,9 +498,9 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<PutClusterSettingsResponse> putSettings(
+	public final PutClusterSettingsResponse putSettings(
 			Function<PutClusterSettingsRequest.Builder, ObjectBuilder<PutClusterSettingsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return putSettings(fn.apply(new PutClusterSettingsRequest.Builder()).build());
 	}
 
@@ -518,8 +510,8 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<PutClusterSettingsResponse> putSettings() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new PutClusterSettingsRequest.Builder().build(),
+	public PutClusterSettingsResponse putSettings() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new PutClusterSettingsRequest.Builder().build(),
 				PutClusterSettingsRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -530,8 +522,8 @@ public class OpensearchClusterAsyncClient
 	 * 
 	 *
 	 */
-	public CompletableFuture<RemoteInfoResponse> remoteInfo() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(RemoteInfoRequest._INSTANCE, RemoteInfoRequest._ENDPOINT,
+	public RemoteInfoResponse remoteInfo() throws IOException, OpenSearchException {
+		return this.transport.performRequest(RemoteInfoRequest._INSTANCE, RemoteInfoRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -543,13 +535,12 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<RerouteResponse> reroute(RerouteRequest request)
-			throws IOException, OpensearchException {
+	public RerouteResponse reroute(RerouteRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RerouteRequest, RerouteResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<RerouteRequest, RerouteResponse, ErrorResponse>) RerouteRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -561,9 +552,8 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<RerouteResponse> reroute(
-			Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn)
-			throws IOException, OpensearchException {
+	public final RerouteResponse reroute(Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn)
+			throws IOException, OpenSearchException {
 		return reroute(fn.apply(new RerouteRequest.Builder()).build());
 	}
 
@@ -573,8 +563,8 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<RerouteResponse> reroute() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new RerouteRequest.Builder().build(), RerouteRequest._ENDPOINT,
+	public RerouteResponse reroute() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new RerouteRequest.Builder().build(), RerouteRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -586,12 +576,12 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<StateResponse> state(StateRequest request) throws IOException, OpensearchException {
+	public StateResponse state(StateRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<StateRequest, StateResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<StateRequest, StateResponse, ErrorResponse>) StateRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -603,8 +593,8 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<StateResponse> state(Function<StateRequest.Builder, ObjectBuilder<StateRequest>> fn)
-			throws IOException, OpensearchException {
+	public final StateResponse state(Function<StateRequest.Builder, ObjectBuilder<StateRequest>> fn)
+			throws IOException, OpenSearchException {
 		return state(fn.apply(new StateRequest.Builder()).build());
 	}
 
@@ -614,8 +604,8 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<StateResponse> state() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new StateRequest.Builder().build(), StateRequest._ENDPOINT,
+	public StateResponse state() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new StateRequest.Builder().build(), StateRequest._ENDPOINT,
 				this.transportOptions);
 	}
 
@@ -627,13 +617,12 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<ClusterStatsResponse> stats(ClusterStatsRequest request)
-			throws IOException, OpensearchException {
+	public ClusterStatsResponse stats(ClusterStatsRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ClusterStatsRequest, ClusterStatsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ClusterStatsRequest, ClusterStatsResponse, ErrorResponse>) ClusterStatsRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -645,9 +634,9 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<ClusterStatsResponse> stats(
+	public final ClusterStatsResponse stats(
 			Function<ClusterStatsRequest.Builder, ObjectBuilder<ClusterStatsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return stats(fn.apply(new ClusterStatsRequest.Builder()).build());
 	}
 
@@ -657,9 +646,9 @@ public class OpensearchClusterAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<ClusterStatsResponse> stats() throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(new ClusterStatsRequest.Builder().build(),
-				ClusterStatsRequest._ENDPOINT, this.transportOptions);
+	public ClusterStatsResponse stats() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new ClusterStatsRequest.Builder().build(), ClusterStatsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 }

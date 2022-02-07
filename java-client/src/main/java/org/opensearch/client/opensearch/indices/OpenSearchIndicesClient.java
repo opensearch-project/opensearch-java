@@ -37,9 +37,9 @@
 package org.opensearch.client.opensearch.indices;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.OpensearchTransport;
+import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
@@ -51,19 +51,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the indices namespace.
  */
-public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, OpensearchIndicesClient> {
+public class OpenSearchIndicesClient extends ApiClient<OpenSearchTransport, OpenSearchIndicesClient> {
 
-	public OpensearchIndicesClient(OpensearchTransport transport) {
+	public OpenSearchIndicesClient(OpenSearchTransport transport) {
 		super(transport, null);
 	}
 
-	public OpensearchIndicesClient(OpensearchTransport transport, @Nullable TransportOptions transportOptions) {
+	public OpenSearchIndicesClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public OpensearchIndicesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpensearchIndicesClient(this.transport, transportOptions);
+	public OpenSearchIndicesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpenSearchIndicesClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: indices.add_block
@@ -73,7 +73,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 * 
 	 */
 
-	public AddBlockResponse addBlock(AddBlockRequest request) throws IOException, OpensearchException {
+	public AddBlockResponse addBlock(AddBlockRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<AddBlockRequest, AddBlockResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<AddBlockRequest, AddBlockResponse, ErrorResponse>) AddBlockRequest._ENDPOINT;
@@ -90,7 +90,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final AddBlockResponse addBlock(Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return addBlock(fn.apply(new AddBlockRequest.Builder()).build());
 	}
 
@@ -102,7 +102,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 * 
 	 */
 
-	public AnalyzeResponse analyze(AnalyzeRequest request) throws IOException, OpensearchException {
+	public AnalyzeResponse analyze(AnalyzeRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse>) AnalyzeRequest._ENDPOINT;
@@ -120,7 +120,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final AnalyzeResponse analyze(Function<AnalyzeRequest.Builder, ObjectBuilder<AnalyzeRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return analyze(fn.apply(new AnalyzeRequest.Builder()).build());
 	}
 
@@ -130,7 +130,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 * 
 	 */
 
-	public AnalyzeResponse analyze() throws IOException, OpensearchException {
+	public AnalyzeResponse analyze() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new AnalyzeRequest.Builder().build(), AnalyzeRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -142,7 +142,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 * 
 	 */
 
-	public ClearCacheResponse clearCache(ClearCacheRequest request) throws IOException, OpensearchException {
+	public ClearCacheResponse clearCache(ClearCacheRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ClearCacheRequest, ClearCacheResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ClearCacheRequest, ClearCacheResponse, ErrorResponse>) ClearCacheRequest._ENDPOINT;
@@ -159,7 +159,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final ClearCacheResponse clearCache(Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
 	}
 
@@ -168,7 +168,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 * 
 	 */
 
-	public ClearCacheResponse clearCache() throws IOException, OpensearchException {
+	public ClearCacheResponse clearCache() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new ClearCacheRequest.Builder().build(), ClearCacheRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -180,7 +180,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public CloneIndexResponse clone(CloneIndexRequest request) throws IOException, OpensearchException {
+	public CloneIndexResponse clone(CloneIndexRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<CloneIndexRequest, CloneIndexResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<CloneIndexRequest, CloneIndexResponse, ErrorResponse>) CloneIndexRequest._ENDPOINT;
@@ -198,7 +198,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final CloneIndexResponse clone(Function<CloneIndexRequest.Builder, ObjectBuilder<CloneIndexRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return clone(fn.apply(new CloneIndexRequest.Builder()).build());
 	}
 
@@ -210,7 +210,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public CloseIndexResponse close(CloseIndexRequest request) throws IOException, OpensearchException {
+	public CloseIndexResponse close(CloseIndexRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<CloseIndexRequest, CloseIndexResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<CloseIndexRequest, CloseIndexResponse, ErrorResponse>) CloseIndexRequest._ENDPOINT;
@@ -228,7 +228,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final CloseIndexResponse close(Function<CloseIndexRequest.Builder, ObjectBuilder<CloseIndexRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return close(fn.apply(new CloseIndexRequest.Builder()).build());
 	}
 
@@ -240,7 +240,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public CreateIndexResponse create(CreateIndexRequest request) throws IOException, OpensearchException {
+	public CreateIndexResponse create(CreateIndexRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse>) CreateIndexRequest._ENDPOINT;
@@ -258,7 +258,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final CreateIndexResponse create(Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return create(fn.apply(new CreateIndexRequest.Builder()).build());
 	}
 
@@ -270,7 +270,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public DeleteIndexResponse delete(DeleteIndexRequest request) throws IOException, OpensearchException {
+	public DeleteIndexResponse delete(DeleteIndexRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteIndexRequest, DeleteIndexResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<DeleteIndexRequest, DeleteIndexResponse, ErrorResponse>) DeleteIndexRequest._ENDPOINT;
@@ -288,7 +288,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final DeleteIndexResponse delete(Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
 	}
 
@@ -300,7 +300,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public DeleteAliasResponse deleteAlias(DeleteAliasRequest request) throws IOException, OpensearchException {
+	public DeleteAliasResponse deleteAlias(DeleteAliasRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse>) DeleteAliasRequest._ENDPOINT;
@@ -319,7 +319,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final DeleteAliasResponse deleteAlias(
 			Function<DeleteAliasRequest.Builder, ObjectBuilder<DeleteAliasRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
 	}
 
@@ -332,7 +332,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public DeleteIndexTemplateResponse deleteIndexTemplate(DeleteIndexTemplateRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse>)
@@ -352,7 +352,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final DeleteIndexTemplateResponse deleteIndexTemplate(
 			Function<DeleteIndexTemplateRequest.Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
 	}
 
@@ -365,7 +365,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public DeleteTemplateResponse deleteTemplate(DeleteTemplateRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse>)
@@ -385,7 +385,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final DeleteTemplateResponse deleteTemplate(
 			Function<DeleteTemplateRequest.Builder, ObjectBuilder<DeleteTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return deleteTemplate(fn.apply(new DeleteTemplateRequest.Builder()).build());
 	}
 
@@ -397,7 +397,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public DiskUsageResponse diskUsage(DiskUsageRequest request) throws IOException, OpensearchException {
+	public DiskUsageResponse diskUsage(DiskUsageRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse>) DiskUsageRequest._ENDPOINT;
@@ -415,7 +415,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final DiskUsageResponse diskUsage(Function<DiskUsageRequest.Builder, ObjectBuilder<DiskUsageRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
 	}
 
@@ -427,7 +427,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public BooleanResponse exists(ExistsRequest request) throws IOException, OpensearchException {
+	public BooleanResponse exists(ExistsRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse>) ExistsRequest._ENDPOINT;
@@ -445,7 +445,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return exists(fn.apply(new ExistsRequest.Builder()).build());
 	}
 
@@ -457,7 +457,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public BooleanResponse existsAlias(ExistsAliasRequest request) throws IOException, OpensearchException {
+	public BooleanResponse existsAlias(ExistsAliasRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExistsAliasRequest, BooleanResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ExistsAliasRequest, BooleanResponse, ErrorResponse>) ExistsAliasRequest._ENDPOINT;
@@ -475,7 +475,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final BooleanResponse existsAlias(Function<ExistsAliasRequest.Builder, ObjectBuilder<ExistsAliasRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return existsAlias(fn.apply(new ExistsAliasRequest.Builder()).build());
 	}
 
@@ -488,7 +488,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public BooleanResponse existsIndexTemplate(ExistsIndexTemplateRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExistsIndexTemplateRequest, BooleanResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ExistsIndexTemplateRequest, BooleanResponse, ErrorResponse>)
@@ -508,7 +508,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final BooleanResponse existsIndexTemplate(
 			Function<ExistsIndexTemplateRequest.Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return existsIndexTemplate(fn.apply(new ExistsIndexTemplateRequest.Builder()).build());
 	}
 
@@ -520,7 +520,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public BooleanResponse existsTemplate(ExistsTemplateRequest request) throws IOException, OpensearchException {
+	public BooleanResponse existsTemplate(ExistsTemplateRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse>) ExistsTemplateRequest._ENDPOINT;
@@ -539,7 +539,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final BooleanResponse existsTemplate(
 			Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
 	}
 
@@ -552,7 +552,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public BooleanResponse existsType(ExistsTypeRequest request) throws IOException, OpensearchException {
+	public BooleanResponse existsType(ExistsTypeRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExistsTypeRequest, BooleanResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ExistsTypeRequest, BooleanResponse, ErrorResponse>) ExistsTypeRequest._ENDPOINT;
@@ -571,7 +571,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final BooleanResponse existsType(Function<ExistsTypeRequest.Builder, ObjectBuilder<ExistsTypeRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return existsType(fn.apply(new ExistsTypeRequest.Builder()).build());
 	}
 
@@ -583,7 +583,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public FlushResponse flush(FlushRequest request) throws IOException, OpensearchException {
+	public FlushResponse flush(FlushRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<FlushRequest, FlushResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<FlushRequest, FlushResponse, ErrorResponse>) FlushRequest._ENDPOINT;
@@ -601,7 +601,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final FlushResponse flush(Function<FlushRequest.Builder, ObjectBuilder<FlushRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return flush(fn.apply(new FlushRequest.Builder()).build());
 	}
 
@@ -611,7 +611,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public FlushResponse flush() throws IOException, OpensearchException {
+	public FlushResponse flush() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new FlushRequest.Builder().build(), FlushRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -625,7 +625,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public FlushSyncedResponse flushSynced(FlushSyncedRequest request) throws IOException, OpensearchException {
+	public FlushSyncedResponse flushSynced(FlushSyncedRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<FlushSyncedRequest, FlushSyncedResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<FlushSyncedRequest, FlushSyncedResponse, ErrorResponse>) FlushSyncedRequest._ENDPOINT;
@@ -645,7 +645,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final FlushSyncedResponse flushSynced(
 			Function<FlushSyncedRequest.Builder, ObjectBuilder<FlushSyncedRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return flushSynced(fn.apply(new FlushSyncedRequest.Builder()).build());
 	}
 
@@ -656,7 +656,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public FlushSyncedResponse flushSynced() throws IOException, OpensearchException {
+	public FlushSyncedResponse flushSynced() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new FlushSyncedRequest.Builder().build(), FlushSyncedRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -669,7 +669,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public ForcemergeResponse forcemerge(ForcemergeRequest request) throws IOException, OpensearchException {
+	public ForcemergeResponse forcemerge(ForcemergeRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ForcemergeRequest, ForcemergeResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ForcemergeRequest, ForcemergeResponse, ErrorResponse>) ForcemergeRequest._ENDPOINT;
@@ -687,7 +687,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final ForcemergeResponse forcemerge(Function<ForcemergeRequest.Builder, ObjectBuilder<ForcemergeRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return forcemerge(fn.apply(new ForcemergeRequest.Builder()).build());
 	}
 
@@ -697,7 +697,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public ForcemergeResponse forcemerge() throws IOException, OpensearchException {
+	public ForcemergeResponse forcemerge() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new ForcemergeRequest.Builder().build(), ForcemergeRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -710,7 +710,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public GetIndexResponse get(GetIndexRequest request) throws IOException, OpensearchException {
+	public GetIndexResponse get(GetIndexRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetIndexRequest, GetIndexResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetIndexRequest, GetIndexResponse, ErrorResponse>) GetIndexRequest._ENDPOINT;
@@ -728,7 +728,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final GetIndexResponse get(Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return get(fn.apply(new GetIndexRequest.Builder()).build());
 	}
 
@@ -740,7 +740,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public GetAliasResponse getAlias(GetAliasRequest request) throws IOException, OpensearchException {
+	public GetAliasResponse getAlias(GetAliasRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetAliasRequest, GetAliasResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetAliasRequest, GetAliasResponse, ErrorResponse>) GetAliasRequest._ENDPOINT;
@@ -758,7 +758,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final GetAliasResponse getAlias(Function<GetAliasRequest.Builder, ObjectBuilder<GetAliasRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return getAlias(fn.apply(new GetAliasRequest.Builder()).build());
 	}
 
@@ -768,7 +768,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public GetAliasResponse getAlias() throws IOException, OpensearchException {
+	public GetAliasResponse getAlias() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new GetAliasRequest.Builder().build(), GetAliasRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -782,7 +782,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public GetFieldMappingResponse getFieldMapping(GetFieldMappingRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetFieldMappingRequest, GetFieldMappingResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetFieldMappingRequest, GetFieldMappingResponse, ErrorResponse>)
@@ -802,7 +802,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final GetFieldMappingResponse getFieldMapping(
 			Function<GetFieldMappingRequest.Builder, ObjectBuilder<GetFieldMappingRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
 	}
 
@@ -815,7 +815,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public GetIndexTemplateResponse getIndexTemplate(GetIndexTemplateRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ErrorResponse>)
@@ -835,7 +835,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final GetIndexTemplateResponse getIndexTemplate(
 			Function<GetIndexTemplateRequest.Builder, ObjectBuilder<GetIndexTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return getIndexTemplate(fn.apply(new GetIndexTemplateRequest.Builder()).build());
 	}
 
@@ -845,7 +845,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public GetIndexTemplateResponse getIndexTemplate() throws IOException, OpensearchException {
+	public GetIndexTemplateResponse getIndexTemplate() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new GetIndexTemplateRequest.Builder().build(),
 				GetIndexTemplateRequest._ENDPOINT, this.transportOptions);
 	}
@@ -858,7 +858,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public GetMappingResponse getMapping(GetMappingRequest request) throws IOException, OpensearchException {
+	public GetMappingResponse getMapping(GetMappingRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetMappingRequest, GetMappingResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetMappingRequest, GetMappingResponse, ErrorResponse>) GetMappingRequest._ENDPOINT;
@@ -876,7 +876,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final GetMappingResponse getMapping(Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return getMapping(fn.apply(new GetMappingRequest.Builder()).build());
 	}
 
@@ -886,7 +886,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public GetMappingResponse getMapping() throws IOException, OpensearchException {
+	public GetMappingResponse getMapping() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new GetMappingRequest.Builder().build(), GetMappingRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -900,7 +900,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public GetIndicesSettingsResponse getSettings(GetIndicesSettingsRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetIndicesSettingsRequest, GetIndicesSettingsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetIndicesSettingsRequest, GetIndicesSettingsResponse, ErrorResponse>)
@@ -920,7 +920,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final GetIndicesSettingsResponse getSettings(
 			Function<GetIndicesSettingsRequest.Builder, ObjectBuilder<GetIndicesSettingsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return getSettings(fn.apply(new GetIndicesSettingsRequest.Builder()).build());
 	}
 
@@ -930,7 +930,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public GetIndicesSettingsResponse getSettings() throws IOException, OpensearchException {
+	public GetIndicesSettingsResponse getSettings() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new GetIndicesSettingsRequest.Builder().build(),
 				GetIndicesSettingsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -943,7 +943,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public GetTemplateResponse getTemplate(GetTemplateRequest request) throws IOException, OpensearchException {
+	public GetTemplateResponse getTemplate(GetTemplateRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse>) GetTemplateRequest._ENDPOINT;
@@ -962,7 +962,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final GetTemplateResponse getTemplate(
 			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
 	}
 
@@ -972,7 +972,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public GetTemplateResponse getTemplate() throws IOException, OpensearchException {
+	public GetTemplateResponse getTemplate() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new GetTemplateRequest.Builder().build(), GetTemplateRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -985,7 +985,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public GetUpgradeResponse getUpgrade(GetUpgradeRequest request) throws IOException, OpensearchException {
+	public GetUpgradeResponse getUpgrade(GetUpgradeRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetUpgradeRequest, GetUpgradeResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<GetUpgradeRequest, GetUpgradeResponse, ErrorResponse>) GetUpgradeRequest._ENDPOINT;
@@ -1003,7 +1003,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final GetUpgradeResponse getUpgrade(Function<GetUpgradeRequest.Builder, ObjectBuilder<GetUpgradeRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return getUpgrade(fn.apply(new GetUpgradeRequest.Builder()).build());
 	}
 
@@ -1013,7 +1013,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public GetUpgradeResponse getUpgrade() throws IOException, OpensearchException {
+	public GetUpgradeResponse getUpgrade() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new GetUpgradeRequest.Builder().build(), GetUpgradeRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1026,7 +1026,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public OpenResponse open(OpenRequest request) throws IOException, OpensearchException {
+	public OpenResponse open(OpenRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<OpenRequest, OpenResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<OpenRequest, OpenResponse, ErrorResponse>) OpenRequest._ENDPOINT;
@@ -1044,7 +1044,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final OpenResponse open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return open(fn.apply(new OpenRequest.Builder()).build());
 	}
 
@@ -1057,7 +1057,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public PutAliasResponse putAlias(PutAliasRequest request) throws IOException, OpensearchException {
+	public PutAliasResponse putAlias(PutAliasRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutAliasRequest, PutAliasResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<PutAliasRequest, PutAliasResponse, ErrorResponse>) PutAliasRequest._ENDPOINT;
@@ -1075,7 +1075,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final PutAliasResponse putAlias(Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return putAlias(fn.apply(new PutAliasRequest.Builder()).build());
 	}
 
@@ -1088,7 +1088,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public PutIndexTemplateResponse putIndexTemplate(PutIndexTemplateRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse>)
@@ -1108,7 +1108,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final PutIndexTemplateResponse putIndexTemplate(
 			Function<PutIndexTemplateRequest.Builder, ObjectBuilder<PutIndexTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return putIndexTemplate(fn.apply(new PutIndexTemplateRequest.Builder()).build());
 	}
 
@@ -1120,7 +1120,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public PutMappingResponse putMapping(PutMappingRequest request) throws IOException, OpensearchException {
+	public PutMappingResponse putMapping(PutMappingRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutMappingRequest, PutMappingResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<PutMappingRequest, PutMappingResponse, ErrorResponse>) PutMappingRequest._ENDPOINT;
@@ -1138,7 +1138,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final PutMappingResponse putMapping(Function<PutMappingRequest.Builder, ObjectBuilder<PutMappingRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return putMapping(fn.apply(new PutMappingRequest.Builder()).build());
 	}
 
@@ -1151,7 +1151,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public PutIndicesSettingsResponse putSettings(PutIndicesSettingsRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutIndicesSettingsRequest, PutIndicesSettingsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<PutIndicesSettingsRequest, PutIndicesSettingsResponse, ErrorResponse>)
@@ -1171,7 +1171,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final PutIndicesSettingsResponse putSettings(
 			Function<PutIndicesSettingsRequest.Builder, ObjectBuilder<PutIndicesSettingsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return putSettings(fn.apply(new PutIndicesSettingsRequest.Builder()).build());
 	}
 
@@ -1181,7 +1181,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public PutIndicesSettingsResponse putSettings() throws IOException, OpensearchException {
+	public PutIndicesSettingsResponse putSettings() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new PutIndicesSettingsRequest.Builder().build(),
 				PutIndicesSettingsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1194,7 +1194,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public PutTemplateResponse putTemplate(PutTemplateRequest request) throws IOException, OpensearchException {
+	public PutTemplateResponse putTemplate(PutTemplateRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutTemplateRequest, PutTemplateResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<PutTemplateRequest, PutTemplateResponse, ErrorResponse>) PutTemplateRequest._ENDPOINT;
@@ -1213,7 +1213,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final PutTemplateResponse putTemplate(
 			Function<PutTemplateRequest.Builder, ObjectBuilder<PutTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return putTemplate(fn.apply(new PutTemplateRequest.Builder()).build());
 	}
 
@@ -1225,7 +1225,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public RecoveryResponse recovery(RecoveryRequest request) throws IOException, OpensearchException {
+	public RecoveryResponse recovery(RecoveryRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RecoveryRequest, RecoveryResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<RecoveryRequest, RecoveryResponse, ErrorResponse>) RecoveryRequest._ENDPOINT;
@@ -1243,7 +1243,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final RecoveryResponse recovery(Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return recovery(fn.apply(new RecoveryRequest.Builder()).build());
 	}
 
@@ -1253,7 +1253,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public RecoveryResponse recovery() throws IOException, OpensearchException {
+	public RecoveryResponse recovery() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new RecoveryRequest.Builder().build(), RecoveryRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1266,7 +1266,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public RefreshResponse refresh(RefreshRequest request) throws IOException, OpensearchException {
+	public RefreshResponse refresh(RefreshRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RefreshRequest, RefreshResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<RefreshRequest, RefreshResponse, ErrorResponse>) RefreshRequest._ENDPOINT;
@@ -1284,7 +1284,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final RefreshResponse refresh(Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return refresh(fn.apply(new RefreshRequest.Builder()).build());
 	}
 
@@ -1294,7 +1294,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public RefreshResponse refresh() throws IOException, OpensearchException {
+	public RefreshResponse refresh() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new RefreshRequest.Builder().build(), RefreshRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1307,7 +1307,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public ResolveIndexResponse resolveIndex(ResolveIndexRequest request) throws IOException, OpensearchException {
+	public ResolveIndexResponse resolveIndex(ResolveIndexRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ResolveIndexRequest, ResolveIndexResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ResolveIndexRequest, ResolveIndexResponse, ErrorResponse>) ResolveIndexRequest._ENDPOINT;
@@ -1326,7 +1326,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final ResolveIndexResponse resolveIndex(
 			Function<ResolveIndexRequest.Builder, ObjectBuilder<ResolveIndexRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return resolveIndex(fn.apply(new ResolveIndexRequest.Builder()).build());
 	}
 
@@ -1339,7 +1339,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public RolloverResponse rollover(RolloverRequest request) throws IOException, OpensearchException {
+	public RolloverResponse rollover(RolloverRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RolloverRequest, RolloverResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<RolloverRequest, RolloverResponse, ErrorResponse>) RolloverRequest._ENDPOINT;
@@ -1358,7 +1358,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final RolloverResponse rollover(Function<RolloverRequest.Builder, ObjectBuilder<RolloverRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return rollover(fn.apply(new RolloverRequest.Builder()).build());
 	}
 
@@ -1370,7 +1370,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public SegmentsResponse segments(SegmentsRequest request) throws IOException, OpensearchException {
+	public SegmentsResponse segments(SegmentsRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<SegmentsRequest, SegmentsResponse, ErrorResponse>) SegmentsRequest._ENDPOINT;
@@ -1388,7 +1388,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final SegmentsResponse segments(Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return segments(fn.apply(new SegmentsRequest.Builder()).build());
 	}
 
@@ -1398,7 +1398,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public SegmentsResponse segments() throws IOException, OpensearchException {
+	public SegmentsResponse segments() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new SegmentsRequest.Builder().build(), SegmentsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1411,7 +1411,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public ShardStoresResponse shardStores(ShardStoresRequest request) throws IOException, OpensearchException {
+	public ShardStoresResponse shardStores(ShardStoresRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ShardStoresRequest, ShardStoresResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ShardStoresRequest, ShardStoresResponse, ErrorResponse>) ShardStoresRequest._ENDPOINT;
@@ -1430,7 +1430,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final ShardStoresResponse shardStores(
 			Function<ShardStoresRequest.Builder, ObjectBuilder<ShardStoresRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return shardStores(fn.apply(new ShardStoresRequest.Builder()).build());
 	}
 
@@ -1440,7 +1440,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public ShardStoresResponse shardStores() throws IOException, OpensearchException {
+	public ShardStoresResponse shardStores() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new ShardStoresRequest.Builder().build(), ShardStoresRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1453,7 +1453,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public ShrinkResponse shrink(ShrinkRequest request) throws IOException, OpensearchException {
+	public ShrinkResponse shrink(ShrinkRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ShrinkRequest, ShrinkResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ShrinkRequest, ShrinkResponse, ErrorResponse>) ShrinkRequest._ENDPOINT;
@@ -1471,7 +1471,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final ShrinkResponse shrink(Function<ShrinkRequest.Builder, ObjectBuilder<ShrinkRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return shrink(fn.apply(new ShrinkRequest.Builder()).build());
 	}
 
@@ -1485,7 +1485,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public SimulateIndexTemplateResponse simulateIndexTemplate(SimulateIndexTemplateRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse>)
@@ -1506,7 +1506,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final SimulateIndexTemplateResponse simulateIndexTemplate(
 			Function<SimulateIndexTemplateRequest.Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return simulateIndexTemplate(fn.apply(new SimulateIndexTemplateRequest.Builder()).build());
 	}
 
@@ -1519,7 +1519,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public SimulateTemplateResponse simulateTemplate(SimulateTemplateRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse>)
@@ -1539,7 +1539,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final SimulateTemplateResponse simulateTemplate(
 			Function<SimulateTemplateRequest.Builder, ObjectBuilder<SimulateTemplateRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return simulateTemplate(fn.apply(new SimulateTemplateRequest.Builder()).build());
 	}
 
@@ -1549,7 +1549,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public SimulateTemplateResponse simulateTemplate() throws IOException, OpensearchException {
+	public SimulateTemplateResponse simulateTemplate() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new SimulateTemplateRequest.Builder().build(),
 				SimulateTemplateRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1563,7 +1563,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public SplitResponse split(SplitRequest request) throws IOException, OpensearchException {
+	public SplitResponse split(SplitRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SplitRequest, SplitResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<SplitRequest, SplitResponse, ErrorResponse>) SplitRequest._ENDPOINT;
@@ -1582,7 +1582,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final SplitResponse split(Function<SplitRequest.Builder, ObjectBuilder<SplitRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return split(fn.apply(new SplitRequest.Builder()).build());
 	}
 
@@ -1594,7 +1594,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public IndicesStatsResponse stats(IndicesStatsRequest request) throws IOException, OpensearchException {
+	public IndicesStatsResponse stats(IndicesStatsRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<IndicesStatsRequest, IndicesStatsResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<IndicesStatsRequest, IndicesStatsResponse, ErrorResponse>) IndicesStatsRequest._ENDPOINT;
@@ -1613,7 +1613,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final IndicesStatsResponse stats(
 			Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return stats(fn.apply(new IndicesStatsRequest.Builder()).build());
 	}
 
@@ -1623,7 +1623,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public IndicesStatsResponse stats() throws IOException, OpensearchException {
+	public IndicesStatsResponse stats() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new IndicesStatsRequest.Builder().build(), IndicesStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1637,7 +1637,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public UpdateAliasesResponse updateAliases(UpdateAliasesRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpdateAliasesRequest, UpdateAliasesResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<UpdateAliasesRequest, UpdateAliasesResponse, ErrorResponse>) UpdateAliasesRequest._ENDPOINT;
@@ -1656,7 +1656,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final UpdateAliasesResponse updateAliases(
 			Function<UpdateAliasesRequest.Builder, ObjectBuilder<UpdateAliasesRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return updateAliases(fn.apply(new UpdateAliasesRequest.Builder()).build());
 	}
 
@@ -1666,7 +1666,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public UpdateAliasesResponse updateAliases() throws IOException, OpensearchException {
+	public UpdateAliasesResponse updateAliases() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new UpdateAliasesRequest.Builder().build(), UpdateAliasesRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1679,7 +1679,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public UpgradeResponse upgrade(UpgradeRequest request) throws IOException, OpensearchException {
+	public UpgradeResponse upgrade(UpgradeRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpgradeRequest, UpgradeResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<UpgradeRequest, UpgradeResponse, ErrorResponse>) UpgradeRequest._ENDPOINT;
@@ -1697,7 +1697,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public final UpgradeResponse upgrade(Function<UpgradeRequest.Builder, ObjectBuilder<UpgradeRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return upgrade(fn.apply(new UpgradeRequest.Builder()).build());
 	}
 
@@ -1707,7 +1707,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public UpgradeResponse upgrade() throws IOException, OpensearchException {
+	public UpgradeResponse upgrade() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new UpgradeRequest.Builder().build(), UpgradeRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1721,7 +1721,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 */
 
 	public ValidateQueryResponse validateQuery(ValidateQueryRequest request)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ValidateQueryRequest, ValidateQueryResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ValidateQueryRequest, ValidateQueryResponse, ErrorResponse>) ValidateQueryRequest._ENDPOINT;
@@ -1740,7 +1740,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 
 	public final ValidateQueryResponse validateQuery(
 			Function<ValidateQueryRequest.Builder, ObjectBuilder<ValidateQueryRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return validateQuery(fn.apply(new ValidateQueryRequest.Builder()).build());
 	}
 
@@ -1750,7 +1750,7 @@ public class OpensearchIndicesClient extends ApiClient<OpensearchTransport, Open
 	 *
 	 */
 
-	public ValidateQueryResponse validateQuery() throws IOException, OpensearchException {
+	public ValidateQueryResponse validateQuery() throws IOException, OpenSearchException {
 		return this.transport.performRequest(new ValidateQueryRequest.Builder().build(), ValidateQueryRequest._ENDPOINT,
 				this.transportOptions);
 	}

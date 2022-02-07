@@ -9,7 +9,7 @@
 package org.opensearch.client.opensearch.integTest;
 
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
-import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 import org.opensearch.client.opensearch.indices.GetIndexRequest;
 import org.opensearch.client.opensearch.indices.GetIndexResponse;
@@ -47,7 +47,7 @@ public class IndicesClientIT extends OpenSearchRestHighLevelClientTestCase {
             try {
                 highLevelClient().indices().get(request);
                 fail(); // should never execute
-            } catch (OpensearchException ex) {
+            } catch (OpenSearchException ex) {
                 assertNotNull(ex);
                 assertEquals(ex.status(), 404);
                 assertEquals(ex.getMessage(),
@@ -68,7 +68,7 @@ public class IndicesClientIT extends OpenSearchRestHighLevelClientTestCase {
             try {
                 highLevelClient().indices().get(request);
                 fail(); // should never execute
-            } catch (OpensearchException ex) {
+            } catch (OpenSearchException ex) {
                 assertNotNull(ex);
             }
         }
@@ -100,7 +100,7 @@ public class IndicesClientIT extends OpenSearchRestHighLevelClientTestCase {
         try {
             highLevelClient().indices().getSettings(getIndicesSettingsRequest);
             fail();
-        } catch (OpensearchException ex) {
+        } catch (OpenSearchException ex) {
             assertNotNull(ex);
             assertEquals(ex.status(), 404);
             assertEquals(ex.getMessage(),
