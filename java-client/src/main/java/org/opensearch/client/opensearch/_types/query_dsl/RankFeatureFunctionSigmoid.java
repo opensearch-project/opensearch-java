@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSigmoid
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L151-L154">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements JsonpSerializable {
 	private final float pivot;

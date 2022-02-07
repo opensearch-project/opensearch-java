@@ -49,12 +49,7 @@ import java.util.function.Function;
 
 // typedef: ingest._types.SortProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L321-L325">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;

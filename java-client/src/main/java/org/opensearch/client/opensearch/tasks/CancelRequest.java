@@ -55,10 +55,7 @@ import javax.annotation.Nullable;
 
 /**
  * Cancels a task, if it can be cancelled through an API.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/cancel/CancelTasksRequest.ts#L23-L38">API
- *      specification</a>
+ *
  */
 
 public class CancelRequest extends RequestBase {

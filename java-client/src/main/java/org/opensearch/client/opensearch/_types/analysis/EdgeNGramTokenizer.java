@@ -50,12 +50,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.EdgeNGramTokenizer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/tokenizers.ts#L30-L36">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable

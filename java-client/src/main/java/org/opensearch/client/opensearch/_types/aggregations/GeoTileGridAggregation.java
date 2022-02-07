@@ -49,12 +49,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoTileGridAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L187-L193">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GeoTileGridAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable

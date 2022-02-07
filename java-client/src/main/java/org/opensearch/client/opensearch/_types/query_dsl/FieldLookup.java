@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FieldLookup
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/abstractions.ts#L161-L166">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FieldLookup implements JsonpSerializable {
 	private final String id;

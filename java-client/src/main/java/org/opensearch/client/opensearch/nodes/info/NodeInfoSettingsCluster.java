@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsCluster
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L130-L135">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoSettingsCluster implements JsonpSerializable {
 	private final String name;

@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriAnalyzer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/analyzers.ts#L66-L72">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable

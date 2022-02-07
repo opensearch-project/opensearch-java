@@ -55,10 +55,7 @@ import javax.annotation.Nullable;
 /**
  * Returns information about the tasks currently executing on one or more nodes
  * in the cluster.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/tasks/CatTasksRequest.ts#L23-L35">API
- *      specification</a>
+ *
  */
 
 public class TasksRequest extends CatRequestBase {

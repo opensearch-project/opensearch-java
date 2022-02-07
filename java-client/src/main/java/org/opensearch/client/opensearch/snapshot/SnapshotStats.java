@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: snapshot._types.SnapshotStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/_types/SnapshotStats.ts#L23-L28">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SnapshotStats implements JsonpSerializable {
 	private final FileCountSnapshotStats incremental;

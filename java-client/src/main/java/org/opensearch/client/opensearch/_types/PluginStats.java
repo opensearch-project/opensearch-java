@@ -51,12 +51,6 @@ import java.util.function.Function;
 
 // typedef: _types.PluginStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L136-L147">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class PluginStats implements JsonpSerializable {
 	private final String classname;
@@ -86,7 +80,7 @@ public class PluginStats implements JsonpSerializable {
 		this.classname = ApiTypeHelper.requireNonNull(builder.classname, this, "classname");
 		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
 		this.opensearchVersion = ApiTypeHelper.requireNonNull(builder.opensearchVersion, this,
-				"elasticsearchVersion");
+				"opensearchVersion");
 		this.extendedPlugins = ApiTypeHelper.unmodifiableRequired(builder.extendedPlugins, this, "extendedPlugins");
 		this.hasNativeController = ApiTypeHelper.requireNonNull(builder.hasNativeController, this,
 				"hasNativeController");
@@ -266,7 +260,7 @@ public class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code elasticsearch_version}
+		 * Required - API name: {@code opensearch_version}
 		 */
 		public final Builder opensearchVersion(String value) {
 			this.opensearchVersion = value;

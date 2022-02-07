@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.tasks.TasksRecord
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/tasks/types.ts#L22-L101">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TasksRecord implements JsonpSerializable {
 	@Nullable

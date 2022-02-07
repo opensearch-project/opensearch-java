@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsLookup
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/term.ts#L132-L137">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TermsLookup implements JsonpSerializable {
 	private final String index;

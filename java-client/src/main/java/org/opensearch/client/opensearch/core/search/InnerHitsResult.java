@@ -52,12 +52,7 @@ import java.util.function.Function;
 
 // typedef: _global.search._types.InnerHitsResult
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/hits.ts#L84-L86">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class InnerHitsResult implements JsonpSerializable {
 	private final HitsMetadata<JsonData> hits;

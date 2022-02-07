@@ -46,12 +46,7 @@ import java.util.function.Function;
 
 // typedef: ingest._types.DropProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L198-L198">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class DropProcessor extends ProcessorBase implements ProcessorVariant {
 	// ---------------------------------------------------------------------------------------------

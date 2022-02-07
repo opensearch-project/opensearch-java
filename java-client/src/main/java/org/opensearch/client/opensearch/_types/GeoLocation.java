@@ -63,9 +63,6 @@ import java.util.function.Function;
  * point formats</li>
  * </ul>
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L91-L105">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class GeoLocation implements TaggedUnion<GeoLocation.Kind, Object>, JsonpSerializable {

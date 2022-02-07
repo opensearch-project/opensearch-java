@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.allocation.AllocationRecord
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/allocation/types.ts#L24-L69">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class AllocationRecord implements JsonpSerializable {
 	@Nullable

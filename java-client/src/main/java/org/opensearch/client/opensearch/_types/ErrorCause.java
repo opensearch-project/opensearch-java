@@ -59,10 +59,6 @@ import javax.annotation.Nullable;
  * Cause and details about a request failure. This class defines the properties
  * common to all error types. Additional details are also provided, that depend
  * on the error type.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Errors.ts#L25-L48">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class ErrorCause implements JsonpSerializable {

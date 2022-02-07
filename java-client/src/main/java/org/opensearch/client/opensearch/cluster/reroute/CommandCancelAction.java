@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandCancelAction
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/types.ts#L47-L52">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class CommandCancelAction implements JsonpSerializable {
 	private final String index;

@@ -51,12 +51,6 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.TermSuggestOption
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L90-L94">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class TermSuggestOption implements JsonpSerializable {
 	private final String text;

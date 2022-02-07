@@ -39,12 +39,7 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/term.ts#L96-L100">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public enum RangeRelation implements JsonEnum {
 	Within("within"),

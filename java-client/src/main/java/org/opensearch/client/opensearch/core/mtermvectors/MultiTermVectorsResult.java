@@ -52,12 +52,7 @@ import java.util.function.Function;
 
 // typedef: _global.mtermvectors.TermVectorsResult
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mtermvectors/types.ts#L50-L57">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class MultiTermVectorsResult implements JsonpSerializable {
 	private final boolean found;

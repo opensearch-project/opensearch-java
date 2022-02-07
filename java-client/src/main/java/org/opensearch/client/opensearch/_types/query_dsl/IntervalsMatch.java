@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsMatch
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L99-L108">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	@Nullable

@@ -50,12 +50,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharGroupTokenizer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/tokenizers.ts#L55-L59">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final List<String> tokenizeOnChars;

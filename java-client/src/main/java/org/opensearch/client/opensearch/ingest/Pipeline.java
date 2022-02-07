@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.Pipeline
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Pipeline.ts#L23-L28">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Pipeline implements JsonpSerializable {
 	@Nullable

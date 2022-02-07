@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DenseVectorProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/complex.ts#L50-L56">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class DenseVectorProperty extends PropertyBase implements PropertyVariant {
 	private final int dims;

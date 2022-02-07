@@ -48,12 +48,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingPercentilesAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L183-L187">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class MovingPercentilesAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable

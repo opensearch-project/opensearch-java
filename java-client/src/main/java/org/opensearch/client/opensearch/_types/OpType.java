@@ -39,12 +39,6 @@ package org.opensearch.client.opensearch._types;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/common.ts#L231-L234">API
- *      specification</a>
- */
 @JsonpDeserializable
 public enum OpType implements JsonEnum {
 	Index("index"),

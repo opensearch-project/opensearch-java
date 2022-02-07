@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.LinearMovingAverageAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L129-L132">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class LinearMovingAverageAggregation extends MovingAverageAggregationBase
 		implements

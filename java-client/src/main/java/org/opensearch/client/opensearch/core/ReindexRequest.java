@@ -67,10 +67,7 @@ import javax.annotation.Nullable;
  * Allows to copy documents from one index to another, optionally filtering the
  * source documents by a query, changing the destination index settings, or
  * fetching the documents from a remote cluster.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/reindex/ReindexRequest.ts#L27-L51">API
- *      specification</a>
+ *
  */
 @JsonpDeserializable
 public class ReindexRequest extends RequestBase implements JsonpSerializable {

@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.RankFeatureFunctionLogarithm
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L143-L145">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements JsonpSerializable {
 	private final float scalingFactor;

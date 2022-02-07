@@ -57,12 +57,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.explain.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/explain/ExplainResponse.ts#L23-L32">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ExplainResponse<TDocument> implements JsonpSerializable {
 	private final String index;

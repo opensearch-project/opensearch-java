@@ -51,9 +51,6 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/geo.ts#L63-L71">API
- *      specification</a>
  * @deprecated 7.12.0 Use geo-shape instead.
  */
 @Deprecated

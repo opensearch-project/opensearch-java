@@ -52,12 +52,6 @@ import java.util.function.Function;
 
 // typedef: _global.count.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/count/CountResponse.ts#L23-L25">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class CountResponse implements JsonpSerializable {
 	private final long count;

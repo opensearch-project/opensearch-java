@@ -49,10 +49,7 @@ import java.util.function.Function;
 /**
  * Result of the <code>significant_terms</code> aggregation on an unmapped
  * field. <code>buckets</code> is always empty.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L566-L572">API
- *      specification</a>
+ *
  */
 @JsonpDeserializable
 public class UnmappedSignificantTermsAggregate extends MultiBucketAggregateBase<Void> implements AggregateVariant {

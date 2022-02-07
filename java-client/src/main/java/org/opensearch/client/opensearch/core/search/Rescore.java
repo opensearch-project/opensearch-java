@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Rescore
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/rescoring.ts#L23-L26">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Rescore implements JsonpSerializable {
 	private final RescoreQuery query;

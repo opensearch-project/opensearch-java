@@ -54,12 +54,7 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.Property
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/Property.ts#L52-L64">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, JsonpSerializable {
 

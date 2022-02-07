@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.RemoveDuplicatesTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L298-L300">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RemoveDuplicatesTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------

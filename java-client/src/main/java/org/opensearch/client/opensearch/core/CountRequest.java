@@ -65,10 +65,7 @@ import javax.annotation.Nullable;
 
 /**
  * Returns number of documents matching a query.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/count/CountRequest.ts#L26-L55">API
- *      specification</a>
+ *
  */
 @JsonpDeserializable
 public class CountRequest extends RequestBase implements JsonpSerializable {

@@ -56,12 +56,7 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotInfo
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/_types/SnapshotInfo.ts#L35-L59">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SnapshotInfo implements JsonpSerializable {
 	private final List<String> dataStreams;

@@ -48,12 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ByteNumberProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L187-L190">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ByteNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable

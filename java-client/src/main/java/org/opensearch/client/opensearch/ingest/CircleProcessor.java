@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: ingest._types.CircleProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L127-L133">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 	private final double errorDistance;

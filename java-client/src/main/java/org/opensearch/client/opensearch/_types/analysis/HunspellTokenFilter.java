@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.HunspellTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L198-L204">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean dedup;

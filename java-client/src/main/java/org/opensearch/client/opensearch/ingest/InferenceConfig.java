@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceConfig
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L243-L245">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class InferenceConfig implements JsonpSerializable {
 	@Nullable

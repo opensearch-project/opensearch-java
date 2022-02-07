@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.FielddataStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L68-L73">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class FielddataStats implements JsonpSerializable {
 	@Nullable

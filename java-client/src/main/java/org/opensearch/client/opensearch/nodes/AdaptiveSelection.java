@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: nodes._types.AdaptiveSelection
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L67-L75">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class AdaptiveSelection implements JsonpSerializable {
 	private final long avgQueueSize;

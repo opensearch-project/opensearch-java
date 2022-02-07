@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsWildcard
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L127-L131">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	@Nullable

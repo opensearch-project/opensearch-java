@@ -50,12 +50,6 @@ import javax.annotation.Nullable;
 
 // typedef: cat.pending_tasks.PendingTasksRecord
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/pending_tasks/types.ts#L20-L41">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class PendingTasksRecord implements JsonpSerializable {
 	@Nullable

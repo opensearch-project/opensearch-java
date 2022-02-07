@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.NodePackagingType
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L272-L276">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodePackagingType implements JsonpSerializable {
 	private final int count;

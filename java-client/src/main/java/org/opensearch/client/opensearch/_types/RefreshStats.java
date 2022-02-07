@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.RefreshStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L167-L174">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RefreshStats implements JsonpSerializable {
 	private final long externalTotal;

@@ -48,12 +48,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WhitespaceTokenizer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/tokenizers.ts#L114-L117">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class WhitespaceTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable

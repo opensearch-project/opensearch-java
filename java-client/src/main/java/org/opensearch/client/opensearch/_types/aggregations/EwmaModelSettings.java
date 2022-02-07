@@ -50,12 +50,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.EwmaModelSettings
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L154-L156">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class EwmaModelSettings implements JsonpSerializable {
 	@Nullable

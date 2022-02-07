@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: cluster.pending_tasks.PendingTask
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/pending_tasks/types.ts#L22-L29">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class PendingTask implements JsonpSerializable {
 	private final boolean executing;

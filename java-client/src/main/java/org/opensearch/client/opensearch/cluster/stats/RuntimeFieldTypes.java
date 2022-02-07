@@ -51,12 +51,6 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.RuntimeFieldTypes
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L108-L123">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class RuntimeFieldTypes implements JsonpSerializable {
 	private final String name;

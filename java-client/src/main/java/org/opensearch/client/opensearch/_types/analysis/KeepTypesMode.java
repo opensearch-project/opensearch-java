@@ -39,12 +39,6 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L211-L214">API
- *      specification</a>
- */
 @JsonpDeserializable
 public enum KeepTypesMode implements JsonEnum {
 	Include("include"),

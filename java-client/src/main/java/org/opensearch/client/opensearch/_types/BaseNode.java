@@ -49,12 +49,6 @@ import javax.annotation.Nullable;
 
 // typedef: _spec_utils.BaseNode
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_spec_utils/BaseNode.ts#L25-L32">API
- *      specification</a>
- */
 
 public abstract class BaseNode implements JsonpSerializable {
 	private final Map<String, String> attributes;

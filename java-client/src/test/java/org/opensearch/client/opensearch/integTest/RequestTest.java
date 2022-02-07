@@ -275,8 +275,6 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
 
     @Test
     public void testErrorStatusCodeWithValidResponse() throws IOException {
-        // https://github.com/elastic/elasticsearch-java/issues/36
-
         // Some endpoints return a faulty status code 404 with a valid response.
         // Transports should first try to decode an error, and if they fail because of missing properties for
         // the error type, then try to decode the regular request.
@@ -323,7 +321,6 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
     @Test
     public void testGetMapping() throws Exception {
         // See also VariantsTest.testNestedTaggedUnionWithDefaultTag()
-        // and https://github.com/elastic/elasticsearch-java/issues/45
         String index = "testindex";
 
         Map<String, Property> fields = Collections.singletonMap("keyword", Property.of(p -> p.keyword(k -> k.ignoreAbove(256))));

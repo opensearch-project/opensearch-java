@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.ExistsQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/term.ts#L36-L38">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ExistsQuery extends QueryBase implements QueryVariant {
 	private final String field;

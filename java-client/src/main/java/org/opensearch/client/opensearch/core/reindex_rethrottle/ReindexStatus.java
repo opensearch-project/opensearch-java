@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: _global.reindex_rethrottle.ReindexStatus
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/reindex_rethrottle/types.ts#L30-L42">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ReindexStatus implements JsonpSerializable {
 	private final long batches;

@@ -55,12 +55,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.get.GetResult
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get/types.ts#L31-L43">API
- *      specification</a>
- */
+
 
 public class GetResult<TDocument> implements JsonpSerializable {
 	private final String index;

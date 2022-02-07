@@ -50,12 +50,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MultiTermsBucket
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L449-L453">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class MultiTermsBucket extends MultiBucketBase {
 	private final List<String> key;

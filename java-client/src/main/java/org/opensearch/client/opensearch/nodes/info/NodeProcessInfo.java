@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: nodes.info.NodeProcessInfo
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L376-L383">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeProcessInfo implements JsonpSerializable {
 	private final long id;

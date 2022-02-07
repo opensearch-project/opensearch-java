@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.FieldNamesField
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/meta-fields.ts#L42-L44">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FieldNamesField implements JsonpSerializable {
 	private final boolean enabled;

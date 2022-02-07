@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HistogramBucket
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L327-L330">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class HistogramBucket extends MultiBucketBase {
 	@Nullable

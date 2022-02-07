@@ -48,12 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ParentIdQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/joining.ts#L73-L78">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ParentIdQuery extends QueryBase implements QueryVariant {
 	@Nullable

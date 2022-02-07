@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SnowballAnalyzer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/analyzers.ts#L88-L93">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SnowballAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable

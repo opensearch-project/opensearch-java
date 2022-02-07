@@ -57,10 +57,7 @@ import javax.annotation.Nullable;
 
 /**
  * Provides statistics on operations happening in an index.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/IndicesStatsRequest.ts#L30-L52">API
- *      specification</a>
+ *
  */
 
 public class IndicesStatsRequest extends RequestBase {

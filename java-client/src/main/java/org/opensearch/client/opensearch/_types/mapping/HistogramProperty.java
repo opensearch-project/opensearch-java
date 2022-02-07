@@ -48,12 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.HistogramProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/specialized.ts#L70-L73">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class HistogramProperty extends PropertyBase implements PropertyVariant {
 	@Nullable

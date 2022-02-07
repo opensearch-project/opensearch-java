@@ -48,12 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RankFeatureProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L219-L222">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RankFeatureProperty extends PropertyBase implements PropertyVariant {
 	@Nullable

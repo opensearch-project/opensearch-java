@@ -53,12 +53,7 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterNodes
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L193-L218">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ClusterNodes implements JsonpSerializable {
 	private final ClusterNodeCount count;

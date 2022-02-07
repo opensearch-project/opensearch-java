@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterOperatingSystemName
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L234-L237">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ClusterOperatingSystemName implements JsonpSerializable {
 	private final int count;

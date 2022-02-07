@@ -59,9 +59,6 @@ import java.util.function.Function;
  * aggregation has keys configured for the different buckets, the result is a
  * dictionary.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L300-L309">API
- *      specification</a>
  */
 
 public class Buckets<TBucket> implements TaggedUnion<Buckets.Kind, Object>, JsonpSerializable {

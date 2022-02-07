@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.ForeachProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L214-L218">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ForeachProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;

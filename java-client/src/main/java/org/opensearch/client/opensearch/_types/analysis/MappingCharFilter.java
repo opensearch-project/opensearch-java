@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MappingCharFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/char_filters.ts#L44-L48">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class MappingCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	private final List<String> mappings;

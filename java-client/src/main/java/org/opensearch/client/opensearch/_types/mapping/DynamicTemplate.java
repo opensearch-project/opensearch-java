@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DynamicTemplate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/dynamic-template.ts#L22-L30">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class DynamicTemplate implements JsonpSerializable {
 	@Nullable

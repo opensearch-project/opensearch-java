@@ -49,12 +49,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MissingAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L232-L235">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class MissingAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable

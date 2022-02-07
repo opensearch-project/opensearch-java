@@ -53,12 +53,7 @@ import java.util.function.Function;
 
 // typedef: _global.rank_eval.RankEvalMetricDetail
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/rank_eval/types.ts#L125-L134">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RankEvalMetricDetail implements JsonpSerializable {
 	private final double metricScore;

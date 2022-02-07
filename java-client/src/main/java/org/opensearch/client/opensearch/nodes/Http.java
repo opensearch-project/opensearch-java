@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: nodes._types.Http
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L133-L136">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Http implements JsonpSerializable {
 	private final int currentOpen;

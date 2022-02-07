@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsAllOf
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L49-L56">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	private final List<Intervals> intervals;

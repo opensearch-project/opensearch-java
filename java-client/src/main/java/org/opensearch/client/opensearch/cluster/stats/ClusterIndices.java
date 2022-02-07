@@ -58,12 +58,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndices
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L62-L93">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ClusterIndices implements JsonpSerializable {
 	private final CompletionStats completion;

@@ -49,10 +49,7 @@ import java.util.function.Function;
 /**
  * Sum aggregation result. <code>value</code> is always present and is zero if
  * there were no values to process.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L189-L193">API
- *      specification</a>
+ *
  */
 @JsonpDeserializable
 public class SumAggregate extends SingleMetricAggregateBase implements AggregateVariant {

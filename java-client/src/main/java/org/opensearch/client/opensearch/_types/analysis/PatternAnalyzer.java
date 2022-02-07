@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternAnalyzer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/analyzers.ts#L74-L81">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable

@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: cat.shards.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/shards/CatShardsResponse.ts#L22-L24">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardsResponse implements JsonpSerializable {
 	private final List<ShardsRecord> valueBody;

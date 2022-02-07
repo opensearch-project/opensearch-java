@@ -52,12 +52,7 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.ScriptedHeuristic
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L301-L303">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ScriptedHeuristic implements JsonpSerializable {
 	private final Script script;

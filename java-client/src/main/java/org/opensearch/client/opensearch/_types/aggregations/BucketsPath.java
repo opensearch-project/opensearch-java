@@ -58,9 +58,6 @@ import java.util.function.Function;
  * accept some or all of these forms depending on its type. Please refer to each
  * aggregation's documentation to know what buckets path forms they accept.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L33-L39">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, JsonpSerializable {

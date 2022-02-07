@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StringStatsAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L630-L641">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class StringStatsAggregate extends AggregateBase implements AggregateVariant {
 	private final long count;

@@ -63,9 +63,6 @@ import javax.annotation.Nullable;
 /**
  * Clones an index
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/clone/IndicesCloneRequest.ts#L27-L46">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class CloneIndexRequest extends RequestBase implements JsonpSerializable {

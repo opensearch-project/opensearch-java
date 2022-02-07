@@ -56,10 +56,7 @@ import javax.annotation.Nullable;
 
 /**
  * Returns a list of tasks.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/list/ListTasksRequest.ts#L25-L40">API
- *      specification</a>
+ *
  */
 
 public class ListRequest extends RequestBase {

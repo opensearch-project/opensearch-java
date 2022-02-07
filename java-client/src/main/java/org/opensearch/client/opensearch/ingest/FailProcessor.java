@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: ingest._types.FailProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L210-L212">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FailProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String message;

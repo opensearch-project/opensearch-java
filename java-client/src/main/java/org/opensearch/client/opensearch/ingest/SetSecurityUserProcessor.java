@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.SetSecurityUserProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L311-L314">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SetSecurityUserProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;

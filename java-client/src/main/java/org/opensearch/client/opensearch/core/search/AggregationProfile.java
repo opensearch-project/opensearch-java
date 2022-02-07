@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationProfile
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/profile.ts#L76-L83">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class AggregationProfile implements JsonpSerializable {
 	private final AggregationBreakdown breakdown;

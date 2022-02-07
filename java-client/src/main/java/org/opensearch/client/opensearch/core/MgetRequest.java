@@ -64,10 +64,7 @@ import javax.annotation.Nullable;
 
 /**
  * Allows to get multiple documents in one request.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mget/MultiGetRequest.ts#L25-L50">API
- *      specification</a>
+ *
  */
 @JsonpDeserializable
 public class MgetRequest extends RequestBase implements JsonpSerializable {

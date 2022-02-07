@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.ChiSquareHeuristic
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L285-L288">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ChiSquareHeuristic implements JsonpSerializable {
 	private final boolean backgroundIsSuperset;

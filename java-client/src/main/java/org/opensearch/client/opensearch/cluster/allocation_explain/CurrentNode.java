@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: cluster.allocation_explain.CurrentNode
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/allocation_explain/types.ts#L78-L84">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class CurrentNode implements JsonpSerializable {
 	private final String id;

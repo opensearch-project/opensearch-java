@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: tasks._types.TaskExecutingNode
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/_types/TaskExecutingNode.ts#L25-L27">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TaskExecutingNode extends BaseNode {
 	private final Map<String, State> tasks;

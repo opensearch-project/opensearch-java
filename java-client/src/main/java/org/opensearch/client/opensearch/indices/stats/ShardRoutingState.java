@@ -39,12 +39,7 @@ package org.opensearch.client.opensearch.indices.stats;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L145-L150">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public enum ShardRoutingState implements JsonEnum {
 	Unassigned("UNASSIGNED"),

@@ -46,12 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.CorePropertyBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L53-L57">API
- *      specification</a>
- */
+
 
 public abstract class CorePropertyBase extends PropertyBase {
 	private final List<String> copyTo;

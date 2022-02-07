@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: indices.analyze.AnalyzerDetail
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/analyze/types.ts#L30-L33">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class AnalyzerDetail implements JsonpSerializable {
 	private final String name;

@@ -48,12 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.FieldAliasProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/specialized.ts#L50-L53">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FieldAliasProperty extends PropertyBase implements PropertyVariant {
 	@Nullable

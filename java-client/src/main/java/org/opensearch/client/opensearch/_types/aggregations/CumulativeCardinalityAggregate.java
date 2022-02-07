@@ -52,9 +52,6 @@ import javax.annotation.Nullable;
 /**
  * Result of the <code>cumulative_cardinality</code> aggregation
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L686-L694">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class CumulativeCardinalityAggregate extends AggregateBase implements AggregateVariant {

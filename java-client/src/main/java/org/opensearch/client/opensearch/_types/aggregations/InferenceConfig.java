@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceConfigContainer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L78-L83">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class InferenceConfig implements JsonpSerializable {
 	@Nullable

@@ -48,12 +48,6 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.StemmerTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L317-L320">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final String language;

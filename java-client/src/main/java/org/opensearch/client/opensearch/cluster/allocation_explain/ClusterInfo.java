@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.ClusterInfo
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/allocation_explain/types.ts#L48-L54">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ClusterInfo implements JsonpSerializable {
 	private final Map<String, NodeDiskUsage> nodes;

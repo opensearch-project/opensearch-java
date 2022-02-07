@@ -50,12 +50,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketScriptAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L48-L50">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class BucketScriptAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable

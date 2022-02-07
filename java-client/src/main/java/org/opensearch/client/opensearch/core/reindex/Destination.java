@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Destination
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/reindex/types.ts#L38-L46">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class Destination implements JsonpSerializable {
 	@Nullable

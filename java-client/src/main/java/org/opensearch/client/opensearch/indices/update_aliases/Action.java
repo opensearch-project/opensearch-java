@@ -53,12 +53,7 @@ import java.util.function.Function;
 
 // typedef: indices.update_aliases.Action
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/update_aliases/types.ts#L23-L28">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializable {
 

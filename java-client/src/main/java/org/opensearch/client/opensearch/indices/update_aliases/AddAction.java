@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.AddAction
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/update_aliases/types.ts#L30-L42">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class AddAction implements ActionVariant, JsonpSerializable {
 	@Nullable

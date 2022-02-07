@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: indices._types.IndexRoutingRebalance
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/IndexRouting.ts#L34-L36">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IndexRoutingRebalance implements JsonpSerializable {
 	private final IndexRoutingRebalanceOptions enable;

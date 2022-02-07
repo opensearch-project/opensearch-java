@@ -48,12 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.WeightedAverageAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L202-L207">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class WeightedAverageAggregation extends AggregationBase implements AggregationVariant {
 	@Nullable

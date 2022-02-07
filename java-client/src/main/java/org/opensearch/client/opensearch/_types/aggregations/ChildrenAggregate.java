@@ -46,12 +46,6 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.ChildrenAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L715-L716">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ChildrenAggregate extends MultiBucketAggregateBase<ChildrenAggregateBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------

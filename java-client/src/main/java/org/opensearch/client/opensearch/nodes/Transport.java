@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: nodes._types.Transport
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L221-L229">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Transport implements JsonpSerializable {
 	private final long rxCount;

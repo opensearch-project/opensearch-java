@@ -46,12 +46,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CompoundWordTokenFilterBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L43-L51">API
- *      specification</a>
- */
 
 public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	@Nullable

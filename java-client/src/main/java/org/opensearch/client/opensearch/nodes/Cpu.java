@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: nodes._types.Cpu
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L86-L95">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class Cpu implements JsonpSerializable {
 	private final int percent;

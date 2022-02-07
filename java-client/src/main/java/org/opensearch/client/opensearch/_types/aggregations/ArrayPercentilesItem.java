@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ArrayPercentilesItem
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L146-L150">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ArrayPercentilesItem implements JsonpSerializable {
 	private final String key;

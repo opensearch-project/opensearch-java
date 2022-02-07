@@ -49,12 +49,7 @@ import java.util.function.Function;
 
 // typedef: ingest._types.GeoIpProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L104-L111">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String databaseFile;

@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.FieldCapability
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/field_caps/types.ts#L23-L32">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FieldCapability implements JsonpSerializable {
 	private final boolean aggregatable;

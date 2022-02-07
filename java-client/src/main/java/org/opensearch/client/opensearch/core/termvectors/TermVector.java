@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: _global.termvectors.TermVector
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/termvectors/types.ts#L23-L26">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TermVector implements JsonpSerializable {
 	private final FieldStatistics fieldStatistics;

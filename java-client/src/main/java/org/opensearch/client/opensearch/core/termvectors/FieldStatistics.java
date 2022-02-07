@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _global.termvectors.FieldStatistics
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/termvectors/types.ts#L28-L32">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FieldStatistics implements JsonpSerializable {
 	private final int docCount;

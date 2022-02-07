@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SignificantTermsAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L305-L320">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SignificantTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable

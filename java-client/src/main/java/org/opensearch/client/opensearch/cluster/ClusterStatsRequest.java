@@ -56,10 +56,7 @@ import javax.annotation.Nullable;
 
 /**
  * Returns high-level overview of cluster statistics.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/ClusterStatsRequest.ts#L24-L39">API
- *      specification</a>
+ *
  */
 
 public class ClusterStatsRequest extends RequestBase {

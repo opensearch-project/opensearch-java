@@ -45,12 +45,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsAggregateBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L361-L366">API
- *      specification</a>
- */
+
 
 public abstract class TermsAggregateBase<TBucket> extends MultiBucketAggregateBase<TBucket> {
 	@Nullable

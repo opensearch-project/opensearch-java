@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoMemory
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L308-L311">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoMemory implements JsonpSerializable {
 	private final String total;

@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IdsQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/term.ts#L53-L55">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IdsQuery extends QueryBase implements QueryVariant {
 	private final List<String> values;

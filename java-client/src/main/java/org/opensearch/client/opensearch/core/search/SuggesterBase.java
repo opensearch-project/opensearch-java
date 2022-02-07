@@ -47,12 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SuggesterBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L59-L63">API
- *      specification</a>
- */
+
 
 public abstract class SuggesterBase implements JsonpSerializable {
 	private final String field;

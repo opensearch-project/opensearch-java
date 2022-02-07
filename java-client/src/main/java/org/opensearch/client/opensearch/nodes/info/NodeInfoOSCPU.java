@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoOSCPU
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L324-L333">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoOSCPU implements JsonpSerializable {
 	private final String cacheSize;

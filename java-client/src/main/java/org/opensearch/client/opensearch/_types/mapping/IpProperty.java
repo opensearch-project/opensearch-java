@@ -48,12 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.IpProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/specialized.ts#L75-L81">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IpProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable

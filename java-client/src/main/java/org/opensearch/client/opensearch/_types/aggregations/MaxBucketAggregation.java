@@ -46,12 +46,7 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.MaxBucketAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L111-L111">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class MaxBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------

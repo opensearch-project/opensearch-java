@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L73-L76">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class InferenceAggregation extends PipelineAggregationBase implements AggregationVariant {
 	private final String modelId;

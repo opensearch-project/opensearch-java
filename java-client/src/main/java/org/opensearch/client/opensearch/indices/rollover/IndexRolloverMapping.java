@@ -53,12 +53,7 @@ import java.util.function.Function;
 
 // typedef: indices.rollover.IndexRolloverMapping
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/rollover/types.ts#L33-L36">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IndexRolloverMapping implements TaggedUnion<IndexRolloverMapping.Kind, Object>, JsonpSerializable {
 

@@ -52,12 +52,6 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.TermsInclude
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L375-L376">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class TermsInclude implements TaggedUnion<TermsInclude.Kind, Object>, JsonpSerializable {
 

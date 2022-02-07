@@ -48,10 +48,7 @@ import java.util.function.Function;
 
 /**
  * Value count aggregation result. <code>value</code> is always present.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L204-L208">API
- *      specification</a>
+ *
  */
 @JsonpDeserializable
 public class ValueCountAggregate extends SingleMetricAggregateBase implements AggregateVariant {

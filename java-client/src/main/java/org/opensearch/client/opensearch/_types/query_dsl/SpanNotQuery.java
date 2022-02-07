@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanNotQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/span.ts#L55-L63">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	@Nullable

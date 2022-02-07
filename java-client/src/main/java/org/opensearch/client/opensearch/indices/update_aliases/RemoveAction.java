@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.RemoveAction
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/update_aliases/types.ts#L44-L51">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RemoveAction implements ActionVariant, JsonpSerializable {
 	@Nullable

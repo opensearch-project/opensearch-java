@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L259-L264">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ClusterProcessor implements JsonpSerializable {
 	private final long count;

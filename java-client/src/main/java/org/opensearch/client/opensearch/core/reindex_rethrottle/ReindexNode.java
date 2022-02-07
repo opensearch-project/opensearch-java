@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _global.reindex_rethrottle.ReindexNode
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/reindex_rethrottle/types.ts#L26-L28">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ReindexNode extends BaseNode {
 	private final Map<String, ReindexTask> tasks;

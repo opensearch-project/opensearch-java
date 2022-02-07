@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.PathHierarchyTokenizer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/tokenizers.ts#L88-L95">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final int bufferSize;

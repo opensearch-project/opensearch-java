@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.BoolQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L28-L34">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class BoolQuery extends QueryBase implements QueryVariant {
 	private final List<Query> filter;

@@ -46,12 +46,6 @@ import jakarta.json.stream.JsonGenerator;
 
 // typedef: _types.AcknowledgedResponseBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Base.ts#L49-L52">API
- *      specification</a>
- */
 
 public abstract class AcknowledgedResponseBase implements JsonpSerializable {
 	private final boolean acknowledged;

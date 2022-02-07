@@ -51,12 +51,6 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsTransport
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L190-L194">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoSettingsTransport implements JsonpSerializable {
 	private final NodeInfoSettingsTransportType type;

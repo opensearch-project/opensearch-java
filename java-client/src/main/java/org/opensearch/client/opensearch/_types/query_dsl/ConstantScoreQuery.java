@@ -49,12 +49,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.ConstantScoreQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L42-L44">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 	private final Query filter;

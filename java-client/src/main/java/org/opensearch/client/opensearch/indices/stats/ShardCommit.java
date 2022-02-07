@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: indices.stats.ShardCommit
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L88-L93">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardCommit implements JsonpSerializable {
 	private final int generation;

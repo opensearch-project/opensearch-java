@@ -46,12 +46,6 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.StatsAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L136-L136">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class StatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------

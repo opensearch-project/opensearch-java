@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterFileSystem
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L33-L37">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ClusterFileSystem implements JsonpSerializable {
 	private final long availableInBytes;

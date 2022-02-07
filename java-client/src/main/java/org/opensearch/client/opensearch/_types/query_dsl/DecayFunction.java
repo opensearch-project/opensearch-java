@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.DecayFunction
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L107-L112">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class DecayFunction extends DecayFunctionBase implements FunctionScoreVariant {
 	private final String field;

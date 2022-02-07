@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.NodeStatistics
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Node.ts#L28-L36">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeStatistics implements JsonpSerializable {
 	private final List<ErrorCause> failures;

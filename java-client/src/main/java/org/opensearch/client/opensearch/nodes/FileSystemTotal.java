@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: nodes._types.FileSystemTotal
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L144-L151">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FileSystemTotal implements JsonpSerializable {
 	private final String available;

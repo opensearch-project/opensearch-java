@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: indices.segments.ShardSegmentRouting
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/segments/types.ts#L41-L45">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardSegmentRouting implements JsonpSerializable {
 	private final String node;

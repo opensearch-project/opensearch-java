@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiIterationMarkCharFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/kuromoji-plugin.ts#L31-L35">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class KuromojiIterationMarkCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	private final boolean normalizeKana;

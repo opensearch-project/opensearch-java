@@ -46,12 +46,6 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.PercentilesBucketAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L164-L165">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class PercentilesBucketAggregate extends PercentilesAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------

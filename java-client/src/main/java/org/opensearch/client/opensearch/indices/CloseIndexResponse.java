@@ -52,12 +52,7 @@ import java.util.function.Function;
 
 // typedef: indices.close.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/close/CloseIndexResponse.ts#L25-L30">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class CloseIndexResponse extends AcknowledgedResponseBase {
 	private final Map<String, CloseIndexResult> indices;

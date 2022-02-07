@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StemmerOverrideTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L311-L315">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class StemmerOverrideTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> rules;

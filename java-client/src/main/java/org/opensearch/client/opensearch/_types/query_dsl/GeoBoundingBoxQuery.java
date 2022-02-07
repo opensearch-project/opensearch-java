@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoBoundingBoxQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/geo.ts#L32-L41">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 	private final String field;

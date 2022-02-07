@@ -49,12 +49,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DoubleTermsBucket
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L402-L405">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class DoubleTermsBucket extends TermsBucketBase {
 	private final double key;

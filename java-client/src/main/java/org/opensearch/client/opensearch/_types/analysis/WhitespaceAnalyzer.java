@@ -50,12 +50,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WhitespaceAnalyzer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/analyzers.ts#L108-L111">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable

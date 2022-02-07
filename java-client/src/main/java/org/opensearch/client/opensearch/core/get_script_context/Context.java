@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: _global.get_script_context.Context
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get_script_context/types.ts#L22-L25">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Context implements JsonpSerializable {
 	private final List<ContextMethod> methods;

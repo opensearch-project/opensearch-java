@@ -51,12 +51,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.WarmerStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L247-L252">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class WarmerStats implements JsonpSerializable {
 	private final long current;

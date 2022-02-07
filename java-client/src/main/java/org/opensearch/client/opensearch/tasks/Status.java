@@ -55,12 +55,7 @@ import javax.annotation.Nullable;
 
 // typedef: tasks._types.Status
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/_types/TaskStatus.ts#L24-L42">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Status implements JsonpSerializable {
 	private final long batches;

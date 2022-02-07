@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.ScriptScoreFunction
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L68-L70">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
 	private final Script script;

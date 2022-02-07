@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.WildcardQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/term.ts#L149-L162">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class WildcardQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary

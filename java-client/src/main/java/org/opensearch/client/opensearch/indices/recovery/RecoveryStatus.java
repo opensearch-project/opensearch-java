@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: indices.recovery.RecoveryStatus
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/types.ts#L91-L93">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RecoveryStatus implements JsonpSerializable {
 	private final List<ShardRecovery> shards;

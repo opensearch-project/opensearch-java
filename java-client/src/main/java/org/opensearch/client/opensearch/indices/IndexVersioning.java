@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: indices._types.IndexVersioning
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/IndexSettings.ts#L289-L291">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IndexVersioning implements JsonpSerializable {
 	private final String created;

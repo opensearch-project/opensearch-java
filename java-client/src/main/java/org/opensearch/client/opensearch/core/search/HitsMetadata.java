@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.HitsMetadata
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/hits.ts#L66-L71">API
- *      specification</a>
- */
+
 
 public class HitsMetadata<T> implements JsonpSerializable {
 	private final TotalHits total;

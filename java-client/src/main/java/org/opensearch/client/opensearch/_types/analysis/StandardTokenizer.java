@@ -48,12 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StandardTokenizer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/tokenizers.ts#L104-L107">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class StandardTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable

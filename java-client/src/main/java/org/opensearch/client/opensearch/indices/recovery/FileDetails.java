@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: indices.recovery.FileDetails
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/types.ts#L45-L49">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FileDetails implements JsonpSerializable {
 	private final long length;

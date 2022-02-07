@@ -39,12 +39,7 @@ package org.opensearch.client.util;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Action.ts#L74-L79">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public enum ActionStatusOptions implements JsonEnum {
     Success("success"),

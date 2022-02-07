@@ -52,12 +52,6 @@ import java.util.function.Function;
 
 // typedef: nodes.usage.NodeUsage
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/usage/types.ts#L25-L30">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeUsage implements JsonpSerializable {
 	private final Map<String, Integer> restActions;

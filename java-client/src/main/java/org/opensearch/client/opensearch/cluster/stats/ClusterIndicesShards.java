@@ -52,10 +52,7 @@ import javax.annotation.Nullable;
 
 /**
  * Contains statistics about shards assigned to selected nodes.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L48-L60">API
- *      specification</a>
+*
  */
 @JsonpDeserializable
 public class ClusterIndicesShards implements JsonpSerializable {

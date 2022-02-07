@@ -48,12 +48,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ParentAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L249-L251">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ParentAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable

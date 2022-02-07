@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryIndexStatus
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/types.ts#L59-L69">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RecoveryIndexStatus implements JsonpSerializable {
 	@Nullable

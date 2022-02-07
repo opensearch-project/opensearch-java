@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.msearch.MultiSearchResult
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch/types.ts#L61-L64">API
- *      specification</a>
- */
+
 
 public abstract class MultiSearchResult<TDocument> implements JsonpSerializable {
 	private final long took;

@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiTokenizer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/kuromoji-plugin.ts#L58-L67">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	@Nullable

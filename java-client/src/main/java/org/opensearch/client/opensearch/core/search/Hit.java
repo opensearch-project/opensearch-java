@@ -58,12 +58,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Hit
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/hits.ts#L41-L64">API
- *      specification</a>
- */
+
 
 public class Hit<TDocument> implements JsonpSerializable {
 	private final String index;

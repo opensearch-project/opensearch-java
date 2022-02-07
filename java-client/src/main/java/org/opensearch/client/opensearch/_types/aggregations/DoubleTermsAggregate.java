@@ -50,9 +50,6 @@ import java.util.function.Function;
  * Result of a <code>terms</code> aggregation when the field is some kind of
  * decimal number like a float, double, or distance.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L395-L400">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class DoubleTermsAggregate extends TermsAggregateBase<DoubleTermsBucket> implements AggregateVariant {

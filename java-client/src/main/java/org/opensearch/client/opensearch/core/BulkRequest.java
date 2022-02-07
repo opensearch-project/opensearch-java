@@ -66,10 +66,7 @@ import javax.annotation.Nullable;
 /**
  * Allows to perform multiple index/update/delete operations in a single
  * request.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/bulk/BulkRequest.ts#L33-L58">API
- *      specification</a>
+ *
  */
 
 public class BulkRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {

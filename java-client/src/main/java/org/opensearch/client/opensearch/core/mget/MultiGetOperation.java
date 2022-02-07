@@ -55,12 +55,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.mget.Operation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mget/types.ts#L33-L42">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class MultiGetOperation implements JsonpSerializable {
 	private final String id;

@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.JoinProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L124-L127">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class JoinProperty extends PropertyBase implements PropertyVariant {
 	private final Map<String, List<String>> relations;

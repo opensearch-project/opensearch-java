@@ -49,12 +49,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.SpanWithinQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/span.ts#L74-L77">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final SpanQuery big;

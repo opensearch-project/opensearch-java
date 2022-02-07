@@ -124,7 +124,6 @@ public class VariantsTest extends ModelTestCase {
 
     @Test
     public void testNestedTaggedUnionWithDefaultTag() {
-        // https://github.com/elastic/elasticsearch-java/issues/45
 
         // Object fields don't really exist in ES and are based on a naming convention where field names
         // are dot-separated paths. The hierarchy is rebuilt from these names and ES doesn't send back

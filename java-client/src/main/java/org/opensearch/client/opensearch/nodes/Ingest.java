@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: nodes._types.Ingest
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L49-L52">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Ingest implements JsonpSerializable {
 	private final Map<String, IngestTotal> pipelines;

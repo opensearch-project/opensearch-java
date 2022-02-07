@@ -48,12 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RandomScoreFunction
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L72-L75">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RandomScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
 	@Nullable

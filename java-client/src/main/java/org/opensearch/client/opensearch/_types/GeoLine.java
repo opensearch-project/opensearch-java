@@ -54,9 +54,6 @@ import java.util.function.Function;
 /**
  * A GeoJson GeoLine.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L59-L65">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class GeoLine implements JsonpSerializable {

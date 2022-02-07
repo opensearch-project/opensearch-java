@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryFiles
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/types.ts#L51-L57">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class RecoveryFiles implements JsonpSerializable {
 	private final List<FileDetails> details;

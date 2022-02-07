@@ -54,12 +54,7 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.get.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/get/SnapshotGetResponse.ts#L25-L40">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class GetSnapshotResponse implements JsonpSerializable {
 	private final List<SnapshotResponseItem> responses;

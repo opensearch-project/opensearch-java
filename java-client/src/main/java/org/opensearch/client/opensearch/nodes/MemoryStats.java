@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: nodes._types.MemoryStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L116-L126">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class MemoryStats implements JsonpSerializable {
 	@Nullable

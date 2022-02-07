@@ -56,10 +56,7 @@ import javax.annotation.Nullable;
 /**
  * Shows how much heap memory is currently being used by fielddata on every data
  * node in the cluster.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/fielddata/CatFielddataRequest.ts#L23-L35">API
- *      specification</a>
+ *
  */
 
 public class FielddataRequest extends CatRequestBase {

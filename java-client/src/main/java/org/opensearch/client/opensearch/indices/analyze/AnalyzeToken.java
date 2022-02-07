@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.analyze.AnalyzeToken
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/analyze/types.ts#L35-L42">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class AnalyzeToken implements JsonpSerializable {
 	private final long endOffset;

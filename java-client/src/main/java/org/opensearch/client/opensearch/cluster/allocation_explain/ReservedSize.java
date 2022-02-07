@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: cluster.allocation_explain.ReservedSize
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/allocation_explain/types.ts#L71-L76">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ReservedSize implements JsonpSerializable {
 	private final String nodeId;

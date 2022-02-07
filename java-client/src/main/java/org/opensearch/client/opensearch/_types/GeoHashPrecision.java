@@ -55,9 +55,6 @@ import java.util.function.Function;
  * A precision that can be expressed as a geohash length between 1 and 12, or a
  * distance measure like &quot;1km&quot;, &quot;10m&quot;.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L76-L80">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class GeoHashPrecision implements TaggedUnion<GeoHashPrecision.Kind, Object>, JsonpSerializable {

@@ -46,12 +46,7 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.GlobalAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L470-L471">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class GlobalAggregate extends SingleBucketAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------

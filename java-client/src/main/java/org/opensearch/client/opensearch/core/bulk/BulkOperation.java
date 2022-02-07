@@ -52,12 +52,7 @@ import java.util.function.Function;
 
 // typedef: _global.bulk.OperationContainer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/bulk/types.ts#L85-L91">API
- *      specification</a>
- */
+
 
 public class BulkOperation implements TaggedUnion<BulkOperation.Kind, Object>, NdJsonpSerializable, JsonpSerializable {
 

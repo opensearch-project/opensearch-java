@@ -39,12 +39,7 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L164-L169">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public enum MultiValueMode implements JsonEnum {
 	Min("min"),

@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: nodes._types.DataPathStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L97-L114">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class DataPathStats implements JsonpSerializable {
 	private final String available;

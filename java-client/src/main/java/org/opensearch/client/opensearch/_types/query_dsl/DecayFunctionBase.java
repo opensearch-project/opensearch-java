@@ -44,12 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DecayFunctionBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L91-L93">API
- *      specification</a>
- */
+
 
 public abstract class DecayFunctionBase extends ScoreFunctionBase {
 	@Nullable

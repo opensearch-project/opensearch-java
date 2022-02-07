@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MoreLikeThisQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L63-L90">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	@Nullable

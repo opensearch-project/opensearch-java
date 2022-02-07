@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: nodes._types.Breaker
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L77-L84">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class Breaker implements JsonpSerializable {
 	private final String estimatedSize;

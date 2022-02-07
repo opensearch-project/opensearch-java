@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoSettingsClusterElection
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L137-L139">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoSettingsClusterElection implements JsonpSerializable {
 	private final String strategy;

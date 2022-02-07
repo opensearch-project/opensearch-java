@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.LongRareTermsBucket
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L422-L425">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class LongRareTermsBucket extends MultiBucketBase {
 	private final long key;

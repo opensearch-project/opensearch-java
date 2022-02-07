@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Collector
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/profile.ts#L85-L90">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Collector implements JsonpSerializable {
 	private final String name;

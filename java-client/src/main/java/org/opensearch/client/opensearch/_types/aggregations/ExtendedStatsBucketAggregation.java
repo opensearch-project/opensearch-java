@@ -48,12 +48,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsBucketAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L69-L71">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ExtendedStatsBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable

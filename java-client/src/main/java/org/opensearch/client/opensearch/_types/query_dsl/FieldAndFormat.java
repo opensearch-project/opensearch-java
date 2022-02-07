@@ -54,10 +54,7 @@ import javax.annotation.Nullable;
 /**
  * A reference to a field with formatting instructions on how to return the
  * value
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/abstractions.ts#L204-L218">API
- *      specification</a>
+ *
  */
 @JsonpDeserializable
 public class FieldAndFormat implements JsonpSerializable {

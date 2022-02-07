@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: cluster.reroute.CommandAllocatePrimaryAction
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/types.ts#L80-L86">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class CommandAllocatePrimaryAction implements JsonpSerializable {
 	private final String index;

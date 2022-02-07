@@ -53,12 +53,7 @@ import java.util.function.Function;
 
 // typedef: _global.search._types.SmoothingModelContainer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L193-L200">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>, JsonpSerializable {
 

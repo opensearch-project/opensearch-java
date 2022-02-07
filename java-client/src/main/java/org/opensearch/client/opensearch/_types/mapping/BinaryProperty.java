@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.BinaryProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L90-L92">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class BinaryProperty extends DocValuesPropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------

@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.LowercaseNormalizer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/normalizers.ts#L26-L28">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------

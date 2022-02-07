@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.CompositeBucket
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L580-L582">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class CompositeBucket extends MultiBucketBase {
 	private final Map<String, JsonData> key;

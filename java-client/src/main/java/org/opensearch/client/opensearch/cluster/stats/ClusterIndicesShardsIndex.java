@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterIndicesShardsIndex
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L39-L46">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ClusterIndicesShardsIndex implements JsonpSerializable {
 	private final ClusterShardMetrics primaries;

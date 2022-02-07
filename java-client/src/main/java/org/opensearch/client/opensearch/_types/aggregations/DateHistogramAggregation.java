@@ -53,12 +53,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateHistogramAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L89-L105">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class DateHistogramAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable

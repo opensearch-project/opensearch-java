@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: nodes._types.Process
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L200-L205">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Process implements JsonpSerializable {
 	private final Cpu cpu;

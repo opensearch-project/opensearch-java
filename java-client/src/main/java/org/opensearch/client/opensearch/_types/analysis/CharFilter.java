@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.CharFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/char_filters.ts#L28-L30">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class CharFilter implements TaggedUnion<CharFilter.Kind, Object>, JsonpSerializable {
 

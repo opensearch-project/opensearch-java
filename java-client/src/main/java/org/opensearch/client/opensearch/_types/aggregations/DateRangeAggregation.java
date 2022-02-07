@@ -51,12 +51,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateRangeAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L126-L133">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class DateRangeAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable

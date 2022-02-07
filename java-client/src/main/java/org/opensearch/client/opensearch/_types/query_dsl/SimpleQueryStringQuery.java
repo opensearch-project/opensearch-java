@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SimpleQueryStringQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L294-L312">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	@Nullable

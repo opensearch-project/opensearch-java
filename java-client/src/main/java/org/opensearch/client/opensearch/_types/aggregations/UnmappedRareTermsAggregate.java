@@ -49,10 +49,7 @@ import java.util.function.Function;
 /**
  * Result of a <code>rare_terms</code> aggregation when the field is unmapped.
  * <code>buckets</code> is always empty.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L437-L443">API
- *      specification</a>
+ *
  */
 @JsonpDeserializable
 public class UnmappedRareTermsAggregate extends MultiBucketAggregateBase<Void> implements AggregateVariant {

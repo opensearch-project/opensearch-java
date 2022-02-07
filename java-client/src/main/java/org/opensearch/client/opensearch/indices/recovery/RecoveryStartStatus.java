@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: indices.recovery.RecoveryStartStatus
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/types.ts#L86-L89">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RecoveryStartStatus implements JsonpSerializable {
 	private final long checkIndexTime;

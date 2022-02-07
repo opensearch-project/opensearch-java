@@ -43,12 +43,7 @@ import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L141-L141">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RankFeatureFunctionLinear extends RankFeatureFunction implements JsonpSerializable {
 

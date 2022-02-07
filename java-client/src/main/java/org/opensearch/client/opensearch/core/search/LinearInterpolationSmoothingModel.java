@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _global.search._types.LinearInterpolationSmoothingModel
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L185-L189">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class LinearInterpolationSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
 	private final double bigramLambda;

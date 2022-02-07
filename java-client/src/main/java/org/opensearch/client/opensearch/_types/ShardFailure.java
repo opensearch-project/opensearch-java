@@ -51,12 +51,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.ShardFailure
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Errors.ts#L50-L56">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ShardFailure implements JsonpSerializable {
 	@Nullable

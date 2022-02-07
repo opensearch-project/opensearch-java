@@ -49,12 +49,7 @@ import java.util.function.Function;
 
 // typedef: ingest._types.DateIndexNameProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L163-L176">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<String> dateFormats;

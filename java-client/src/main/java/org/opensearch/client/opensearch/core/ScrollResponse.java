@@ -48,12 +48,7 @@ import java.util.function.Supplier;
 
 // typedef: _global.scroll.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/scroll/ScrollResponse.ts#L22-L22">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ScrollResponse<TDocument> extends SearchResponse<TDocument> {
 	// ---------------------------------------------------------------------------------------------

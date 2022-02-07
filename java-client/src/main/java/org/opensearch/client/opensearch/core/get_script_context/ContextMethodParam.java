@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _global.get_script_context.ContextMethodParam
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get_script_context/types.ts#L33-L36">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ContextMethodParam implements JsonpSerializable {
 	private final String name;

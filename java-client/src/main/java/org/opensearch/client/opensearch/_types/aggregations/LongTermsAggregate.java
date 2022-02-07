@@ -49,10 +49,7 @@ import java.util.function.Function;
 /**
  * Result of a <code>terms</code> aggregation when the field is some kind of
  * whole number like a integer, long, or a date.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L383-L388">API
- *      specification</a>
+ *
  */
 @JsonpDeserializable
 public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket> implements AggregateVariant {

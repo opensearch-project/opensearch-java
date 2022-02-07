@@ -47,12 +47,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/matrix.ts#L26-L29">API
- *      specification</a>
- */
+
 
 public abstract class MatrixAggregation extends AggregationBase {
 	private final List<String> fields;

@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.rollover.RolloverConditions
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/rollover/types.ts#L26-L31">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RolloverConditions implements JsonpSerializable {
 	@Nullable

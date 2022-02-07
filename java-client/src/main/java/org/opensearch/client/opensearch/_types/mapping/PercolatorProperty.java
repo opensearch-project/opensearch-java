@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.PercolatorProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L215-L217">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class PercolatorProperty extends PropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------

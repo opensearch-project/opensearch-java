@@ -53,12 +53,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoDistanceAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L171-L177">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GeoDistanceAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable

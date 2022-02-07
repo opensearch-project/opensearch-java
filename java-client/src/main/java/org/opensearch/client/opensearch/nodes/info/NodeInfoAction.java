@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoAction
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L166-L168">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoAction implements JsonpSerializable {
 	private final String destructiveRequiresName;

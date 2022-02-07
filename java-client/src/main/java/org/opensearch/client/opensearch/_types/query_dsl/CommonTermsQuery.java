@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.CommonTermsQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L33-L43">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class CommonTermsQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary

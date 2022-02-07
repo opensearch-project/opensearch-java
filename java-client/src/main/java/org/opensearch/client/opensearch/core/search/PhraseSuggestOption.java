@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _global.search._types.PhraseSuggestOption
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L84-L88">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class PhraseSuggestOption implements JsonpSerializable {
 	private final String text;

@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: cat.nodes.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/nodes/CatNodesResponse.ts#L22-L24">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class NodesResponse implements JsonpSerializable {
 	private final List<NodesRecord> valueBody;

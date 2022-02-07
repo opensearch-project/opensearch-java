@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _global.search._types.QueryBreakdown
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/profile.ts#L96-L115">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class QueryBreakdown implements JsonpSerializable {
 	private final long advance;

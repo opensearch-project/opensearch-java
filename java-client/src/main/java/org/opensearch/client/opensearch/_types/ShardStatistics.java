@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.ShardStatistics
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L32-L38">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ShardStatistics implements JsonpSerializable {
 	private final Number failed;

@@ -51,12 +51,6 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoJvmMemory
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L295-L306">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoJvmMemory implements JsonpSerializable {
 	@Nullable

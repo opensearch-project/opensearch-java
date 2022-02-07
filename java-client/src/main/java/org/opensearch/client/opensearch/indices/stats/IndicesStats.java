@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.stats.IndicesStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L81-L86">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IndicesStats implements JsonpSerializable {
 	private final IndexStats primaries;

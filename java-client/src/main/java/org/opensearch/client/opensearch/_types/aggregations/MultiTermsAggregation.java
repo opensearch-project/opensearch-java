@@ -49,12 +49,6 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.MultiTermsAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L237-L239">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class MultiTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	private final List<MultiTermLookup> terms;

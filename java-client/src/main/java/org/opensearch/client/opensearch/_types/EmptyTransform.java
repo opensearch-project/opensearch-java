@@ -43,12 +43,6 @@ import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Transform.ts#L25-L25">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class EmptyTransform implements JsonpSerializable {
 

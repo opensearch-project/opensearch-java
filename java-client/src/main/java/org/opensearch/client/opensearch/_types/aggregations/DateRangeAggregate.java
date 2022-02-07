@@ -52,9 +52,6 @@ import java.util.function.Function;
  * <code>buckets</code> are milliseconds since the Epoch, represented as a
  * floating point number.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L509-L514">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class DateRangeAggregate extends RangeAggregate implements AggregateVariant {

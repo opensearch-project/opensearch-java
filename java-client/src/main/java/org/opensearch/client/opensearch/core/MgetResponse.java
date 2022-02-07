@@ -57,12 +57,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.mget.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mget/MultiGetResponse.ts#L22-L26">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class MgetResponse<TDocument> implements JsonpSerializable {
 	private final List<MultiGetResponseItem<TDocument>> docs;

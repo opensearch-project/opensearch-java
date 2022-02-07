@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchBoolPrefixQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L160-L171">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary

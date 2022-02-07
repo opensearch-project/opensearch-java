@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.NodeAllocationExplanation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/allocation_explain/types.ts#L97-L106">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class NodeAllocationExplanation implements JsonpSerializable {
 	private final List<AllocationDecision> deciders;

@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: tasks._types.Info
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/_types/TaskInfo.ts#L24-L37">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Info implements JsonpSerializable {
 	private final String action;

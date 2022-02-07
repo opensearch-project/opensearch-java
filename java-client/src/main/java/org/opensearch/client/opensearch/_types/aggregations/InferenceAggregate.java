@@ -54,12 +54,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L596-L607">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class InferenceAggregate extends AggregateBase implements AggregateVariant {
 	private final Map<String, JsonData> data;

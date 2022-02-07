@@ -52,12 +52,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.GeoPolygonPoints
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/geo.ts#L59-L61">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class GeoPolygonPoints implements JsonpSerializable {
 	private final List<GeoLocation> points;
