@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.PatternReplaceTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L282-L287">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final String flags;

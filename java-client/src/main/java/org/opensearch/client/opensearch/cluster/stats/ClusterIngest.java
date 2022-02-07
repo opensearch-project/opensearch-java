@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterIngest
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L143-L146">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ClusterIngest implements JsonpSerializable {
 	private final int numberOfPipelines;

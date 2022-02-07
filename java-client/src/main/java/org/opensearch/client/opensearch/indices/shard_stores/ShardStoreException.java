@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: indices.shard_stores.ShardStoreException
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/shard_stores/types.ts#L46-L49">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardStoreException implements JsonpSerializable {
 	private final String reason;

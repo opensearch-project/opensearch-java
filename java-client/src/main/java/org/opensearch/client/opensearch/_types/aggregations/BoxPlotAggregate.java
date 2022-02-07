@@ -49,12 +49,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BoxPlotAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L643-L659">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class BoxPlotAggregate extends AggregateBase implements AggregateVariant {
 	private final double min;

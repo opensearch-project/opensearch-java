@@ -39,12 +39,7 @@ package org.opensearch.client.opensearch.cat.thread_pool;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/thread_pool/types.ts#L125-L131">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public enum ThreadPoolSize implements JsonEnum {
 	K("k"),

@@ -54,10 +54,7 @@ import javax.annotation.Nullable;
 
 /**
  * Returns all snapshots in a specific repository.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/snapshots/CatSnapshotsRequest.ts#L23-L35">API
- *      specification</a>
+ *
  */
 
 public class SnapshotsRequest extends CatRequestBase {

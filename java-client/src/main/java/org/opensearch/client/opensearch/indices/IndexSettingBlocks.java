@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettingBlocks
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/IndexSettings.ts#L275-L281">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IndexSettingBlocks implements JsonpSerializable {
 	@Nullable

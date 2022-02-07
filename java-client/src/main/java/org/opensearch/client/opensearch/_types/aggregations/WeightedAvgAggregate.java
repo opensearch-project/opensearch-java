@@ -49,10 +49,7 @@ import java.util.function.Function;
 /**
  * Weighted average aggregation result. <code>value</code> is missing if the
  * weight was set to zero.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L198-L202">API
- *      specification</a>
+ *
  */
 @JsonpDeserializable
 public class WeightedAvgAggregate extends SingleMetricAggregateBase implements AggregateVariant {

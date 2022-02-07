@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.repositories.RepositoriesRecord
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/repositories/types.ts#L20-L31">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RepositoriesRecord implements JsonpSerializable {
 	@Nullable

@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.nodeattrs.NodeAttributesRecord
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/nodeattrs/types.ts#L20-L55">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class NodeAttributesRecord implements JsonpSerializable {
 	@Nullable

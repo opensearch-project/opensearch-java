@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsPrefix
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L110-L114">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	@Nullable

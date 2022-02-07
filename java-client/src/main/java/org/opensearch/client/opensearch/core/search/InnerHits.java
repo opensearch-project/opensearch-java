@@ -57,12 +57,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.InnerHits
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/hits.ts#L106-L124">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class InnerHits implements JsonpSerializable {
 	@Nullable

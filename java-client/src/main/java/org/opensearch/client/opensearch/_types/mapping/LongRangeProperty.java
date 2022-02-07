@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.LongRangeProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/range.ts#L58-L60">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class LongRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------

@@ -54,9 +54,6 @@ import java.util.function.Function;
  * The response returned by Elasticsearch when request execution did not
  * succeed.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Base.ts#L70-L79">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class ErrorResponse implements JsonpSerializable {

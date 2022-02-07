@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.PropertyBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/Property.ts#L42-L50">API
- *      specification</a>
- */
+
 
 public abstract class PropertyBase implements JsonpSerializable {
 	private final Map<String, JsonData> localMetadata;

@@ -46,12 +46,7 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.TopMetricsAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L661-L662">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TopMetricsAggregate extends MultiBucketAggregateBase<TopMetricsBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------

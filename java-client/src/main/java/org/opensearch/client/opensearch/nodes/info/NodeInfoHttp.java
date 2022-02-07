@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoHttp
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L288-L293">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoHttp implements JsonpSerializable {
 	private final List<String> boundAddress;

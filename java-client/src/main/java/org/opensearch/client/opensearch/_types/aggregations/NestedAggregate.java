@@ -46,12 +46,6 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.NestedAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L464-L465">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NestedAggregate extends SingleBucketAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------

@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RuntimeField
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/RuntimeFields.ts#L26-L30">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RuntimeField implements JsonpSerializable {
 	@Nullable

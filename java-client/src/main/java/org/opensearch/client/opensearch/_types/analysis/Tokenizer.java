@@ -51,12 +51,6 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.Tokenizer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/tokenizers.ts#L119-L121">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSerializable {
 

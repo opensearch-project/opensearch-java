@@ -39,12 +39,7 @@ package org.opensearch.client.opensearch.indices;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/IndexRouting.ts#L45-L50">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public enum IndexRoutingRebalanceOptions implements JsonEnum {
 	All("all"),

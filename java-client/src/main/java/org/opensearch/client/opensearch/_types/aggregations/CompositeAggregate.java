@@ -51,12 +51,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L574-L578">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket> implements AggregateVariant {
 	private final Map<String, JsonData> afterKey;

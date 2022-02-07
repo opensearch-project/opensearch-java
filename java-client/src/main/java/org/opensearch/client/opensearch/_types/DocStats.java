@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: _types.DocStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L63-L66">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class DocStats implements JsonpSerializable {
 	private final long count;

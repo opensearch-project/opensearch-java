@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: cluster.reroute.RerouteDecision
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/types.ts#L88-L92">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RerouteDecision implements JsonpSerializable {
 	private final String decider;

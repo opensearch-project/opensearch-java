@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.analyze.AnalyzeDetail
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/analyze/types.ts#L22-L28">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class AnalyzeDetail implements JsonpSerializable {
 	@Nullable

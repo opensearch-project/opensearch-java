@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.RemoveProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L287-L290">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<String> field;

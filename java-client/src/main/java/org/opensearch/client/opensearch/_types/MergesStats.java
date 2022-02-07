@@ -51,12 +51,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.MergesStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L117-L134">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class MergesStats implements JsonpSerializable {
 	private final long current;

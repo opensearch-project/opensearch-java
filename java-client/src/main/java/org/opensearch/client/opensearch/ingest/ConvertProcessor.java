@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.ConvertProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L145-L150">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ConvertProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;

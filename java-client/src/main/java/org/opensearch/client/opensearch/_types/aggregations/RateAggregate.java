@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RateAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L680-L684">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RateAggregate extends AggregateBase implements AggregateVariant {
 	private final double value;

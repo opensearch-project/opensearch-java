@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.GeoDistanceSort
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/sort.ts#L57-L65">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 	private final String field;

@@ -51,12 +51,6 @@ import java.util.function.Function;
 
 // typedef: _types.Script
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Scripting.ts#L58-L59">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializable {
 

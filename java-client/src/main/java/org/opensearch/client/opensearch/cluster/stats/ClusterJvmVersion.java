@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterJvmVersion
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L160-L168">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ClusterJvmVersion implements JsonpSerializable {
 	private final boolean bundledJdk;

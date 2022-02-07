@@ -48,12 +48,6 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiReadingFormTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/kuromoji-plugin.ts#L42-L45">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean useRomaji;

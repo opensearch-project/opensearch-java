@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: cat.count.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/count/CatCountResponse.ts#L22-L24">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class CountResponse implements JsonpSerializable {
 	private final List<CountRecord> valueBody;

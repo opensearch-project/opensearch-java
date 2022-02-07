@@ -53,12 +53,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.PinnedQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L124-L132">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class PinnedQuery extends QueryBase
 		implements

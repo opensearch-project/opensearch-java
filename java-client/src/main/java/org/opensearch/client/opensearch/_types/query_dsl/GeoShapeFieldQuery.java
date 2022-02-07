@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoShapeFieldQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/geo.ts#L78-L82">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class GeoShapeFieldQuery implements JsonpSerializable {
 	@Nullable

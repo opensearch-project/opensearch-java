@@ -44,12 +44,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RangeQueryBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/term.ts#L68-L70">API
- *      specification</a>
- */
+
 
 public abstract class RangeQueryBase extends QueryBase {
 	@Nullable

@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationInitialRecovery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/IndexRouting.ts#L57-L59">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IndexRoutingAllocationInitialRecovery implements JsonpSerializable {
 	@Nullable

@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Suggester
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L42-L45">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Suggester implements JsonpSerializable {
 	private final Map<String, FieldSuggester> suggesters;

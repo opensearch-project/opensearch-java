@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.FieldMapping
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/meta-fields.ts#L24-L27">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FieldMapping implements JsonpSerializable {
 	// Single key dictionary

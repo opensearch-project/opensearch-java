@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.recovery.TranslogStatus
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/types.ts#L95-L102">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TranslogStatus implements JsonpSerializable {
 	private final String percent;

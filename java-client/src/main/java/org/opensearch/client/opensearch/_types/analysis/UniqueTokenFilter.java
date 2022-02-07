@@ -48,12 +48,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.UniqueTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L331-L334">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable

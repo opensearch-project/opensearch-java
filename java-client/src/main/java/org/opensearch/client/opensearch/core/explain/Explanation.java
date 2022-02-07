@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: _global.explain.Explanation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/explain/types.ts#L22-L26">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Explanation implements JsonpSerializable {
 	private final String description;

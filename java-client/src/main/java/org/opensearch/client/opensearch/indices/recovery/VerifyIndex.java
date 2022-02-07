@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.recovery.VerifyIndex
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/types.ts#L104-L109">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class VerifyIndex implements JsonpSerializable {
 	@Nullable

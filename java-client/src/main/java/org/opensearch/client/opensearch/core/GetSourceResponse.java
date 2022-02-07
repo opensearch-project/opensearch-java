@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.get_source.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get_source/SourceResponse.ts#L20-L22">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class GetSourceResponse<TDocument> implements JsonpSerializable {
 	private final TDocument valueBody;

@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RareTermsAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L267-L275">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RareTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable

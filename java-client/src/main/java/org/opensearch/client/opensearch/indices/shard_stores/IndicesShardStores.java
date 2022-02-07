@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: indices.shard_stores.IndicesShardStores
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/shard_stores/types.ts#L25-L27">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IndicesShardStores implements JsonpSerializable {
 	private final Map<String, ShardStoreWrapper> shards;

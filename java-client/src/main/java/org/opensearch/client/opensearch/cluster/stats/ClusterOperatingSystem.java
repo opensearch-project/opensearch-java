@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterOperatingSystem
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L225-L232">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ClusterOperatingSystem implements JsonpSerializable {
 	private final int allocatedProcessors;

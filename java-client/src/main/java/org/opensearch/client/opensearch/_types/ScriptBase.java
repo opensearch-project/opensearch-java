@@ -49,12 +49,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.ScriptBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Scripting.ts#L43-L45">API
- *      specification</a>
- */
 
 public abstract class ScriptBase implements JsonpSerializable {
 	private final Map<String, JsonData> params;

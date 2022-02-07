@@ -60,9 +60,6 @@ import java.util.function.Function;
  * <li>as a WKT bounding box</li>
  * </ul>
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L116-L129">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class GeoBounds implements TaggedUnion<GeoBounds.Kind, Object>, JsonpSerializable {

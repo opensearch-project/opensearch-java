@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.recovery.ShardRecovery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/types.ts#L111-L128">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardRecovery implements JsonpSerializable {
 	private final long id;

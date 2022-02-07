@@ -47,10 +47,7 @@ import java.util.Collections;
 
 /**
  * Returns basic information about the cluster.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/info/RootNodeInfoRequest.ts#L22-L27">API
- *      specification</a>
+ *
  */
 
 public class InfoRequest extends RequestBase {

@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FieldValueFactorScoreFunction
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L77-L82">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
 	private final String field;

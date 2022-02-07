@@ -39,12 +39,7 @@ package org.opensearch.client.opensearch.ingest;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L316-L319">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public enum ShapeType implements JsonEnum {
 	GeoShape("geo_shape"),

@@ -46,12 +46,7 @@ import java.util.function.Function;
 
 // typedef: _global.bulk.DeleteOperation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/bulk/types.ts#L78-L78">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class DeleteOperation extends BulkOperationBase implements BulkOperationVariant {
 	// ---------------------------------------------------------------------------------------------

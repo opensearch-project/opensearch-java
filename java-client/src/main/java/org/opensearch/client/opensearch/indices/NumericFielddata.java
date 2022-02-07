@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: indices._types.NumericFielddata
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/NumericFielddata.ts#L22-L24">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class NumericFielddata implements JsonpSerializable {
 	private final NumericFielddataFormat format;

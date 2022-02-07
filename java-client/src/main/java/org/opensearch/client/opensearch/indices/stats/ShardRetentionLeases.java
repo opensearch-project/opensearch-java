@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: indices.stats.ShardRetentionLeases
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L132-L136">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardRetentionLeases implements JsonpSerializable {
 	private final long primaryTerm;

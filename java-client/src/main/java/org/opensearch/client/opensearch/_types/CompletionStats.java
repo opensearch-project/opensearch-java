@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.CompletionStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L52-L56">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class CompletionStats implements JsonpSerializable {
 	private final long sizeInBytes;

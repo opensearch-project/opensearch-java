@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: nodes.info.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/NodesInfoResponse.ts#L25-L30">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class NodesInfoResponse extends NodesResponseBase {
 	private final String clusterName;

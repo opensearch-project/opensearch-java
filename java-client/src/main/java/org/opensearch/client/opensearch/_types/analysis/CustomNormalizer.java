@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CustomNormalizer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/normalizers.ts#L30-L34">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 	private final List<String> charFilter;

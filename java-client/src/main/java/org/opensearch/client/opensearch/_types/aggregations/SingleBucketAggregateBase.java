@@ -44,12 +44,7 @@ import jakarta.json.stream.JsonGenerator;
 
 // typedef: _types.aggregations.SingleBucketAggregateBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L457-L459">API
- *      specification</a>
- */
+
 
 public abstract class SingleBucketAggregateBase extends AggregateBase {
 	private final long docCount;

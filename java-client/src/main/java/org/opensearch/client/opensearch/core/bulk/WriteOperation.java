@@ -46,12 +46,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.bulk.WriteOperation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/bulk/types.ts#L68-L72">API
- *      specification</a>
- */
+
 
 public abstract class WriteOperation extends BulkOperationBase {
 	private final Map<String, String> dynamicTemplates;

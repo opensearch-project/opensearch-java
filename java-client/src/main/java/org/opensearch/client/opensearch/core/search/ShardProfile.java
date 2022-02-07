@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.ShardProfile
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/profile.ts#L131-L136">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardProfile implements JsonpSerializable {
 	private final List<AggregationProfile> aggregations;

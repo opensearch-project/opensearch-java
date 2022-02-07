@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HistogramOrder
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L216-L219">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class HistogramOrder implements JsonpSerializable {
 	@Nullable

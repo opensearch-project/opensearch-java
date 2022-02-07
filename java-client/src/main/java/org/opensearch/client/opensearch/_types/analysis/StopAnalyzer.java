@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StopAnalyzer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/analyzers.ts#L101-L106">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable

@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.explain.ExplanationDetail
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/explain/types.ts#L28-L32">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ExplanationDetail implements JsonpSerializable {
 	private final String description;

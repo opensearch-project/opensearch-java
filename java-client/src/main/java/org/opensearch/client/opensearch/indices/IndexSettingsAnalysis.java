@@ -58,12 +58,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettingsAnalysis
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/IndexSettings.ts#L297-L303">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IndexSettingsAnalysis implements JsonpSerializable {
 	private final Map<String, Analyzer> analyzer;

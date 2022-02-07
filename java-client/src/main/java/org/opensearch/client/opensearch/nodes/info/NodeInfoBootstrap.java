@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoBootstrap
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L186-L188">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoBootstrap implements JsonpSerializable {
 	private final String memoryLock;

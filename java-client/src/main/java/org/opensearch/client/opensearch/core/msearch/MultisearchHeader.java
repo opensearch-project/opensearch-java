@@ -57,10 +57,7 @@ import javax.annotation.Nullable;
 /**
  * Contains parameters used to limit or change the subsequent search body
  * request.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch/types.ts#L36-L48">API
- *      specification</a>
+ *
  */
 @JsonpDeserializable
 public class MultisearchHeader implements JsonpSerializable {

@@ -39,12 +39,6 @@ package org.opensearch.client.opensearch._types;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Node.ts#L63-L81">API
- *      specification</a>
- */
 @JsonpDeserializable
 public enum NodeRole implements JsonEnum {
 	Master("master"),

@@ -48,12 +48,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.HalfFloatNumberProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L162-L165">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class HalfFloatNumberProperty extends StandardNumberProperty implements PropertyVariant {
 	@Nullable

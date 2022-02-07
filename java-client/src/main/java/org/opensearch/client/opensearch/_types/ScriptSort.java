@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.ScriptSort
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/sort.ts#L67-L73">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ScriptSort implements SortOptionsVariant, JsonpSerializable {
 	@Nullable

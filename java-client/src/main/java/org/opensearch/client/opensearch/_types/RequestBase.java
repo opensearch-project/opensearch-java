@@ -40,12 +40,6 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.RequestBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Base.ts#L35-L35">API
- *      specification</a>
- */
 
 public abstract class RequestBase {
 	public RequestBase() {

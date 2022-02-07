@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: indices.stats.ShardPath
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L116-L120">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardPath implements JsonpSerializable {
 	private final String dataPath;

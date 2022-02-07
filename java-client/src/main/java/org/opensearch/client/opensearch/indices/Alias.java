@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.Alias
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/Alias.ts#L23-L30">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Alias implements JsonpSerializable {
 	@Nullable

@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.SpanTermQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/span.ts#L69-L72">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	// Single key dictionary

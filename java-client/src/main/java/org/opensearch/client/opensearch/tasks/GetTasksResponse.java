@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: tasks.get.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/get/GetTaskResponse.ts#L24-L31">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class GetTasksResponse implements JsonpSerializable {
 	private final boolean completed;

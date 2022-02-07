@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L133-L158">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class MatchQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary

@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.StoreStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L228-L235">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class StoreStats implements JsonpSerializable {
 	@Nullable

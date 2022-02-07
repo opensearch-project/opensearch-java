@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.RankFeaturesProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L224-L226">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RankFeaturesProperty extends PropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------

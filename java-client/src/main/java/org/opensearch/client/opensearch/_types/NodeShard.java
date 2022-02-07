@@ -55,12 +55,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.NodeShard
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Node.ts#L52-L61">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeShard implements JsonpSerializable {
 	private final ShardRoutingState state;

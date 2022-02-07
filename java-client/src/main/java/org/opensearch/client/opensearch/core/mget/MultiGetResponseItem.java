@@ -52,12 +52,7 @@ import java.util.function.Function;
 
 // typedef: _global.mget.ResponseItem
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mget/types.ts#L44-L47">API
- *      specification</a>
- */
+
 
 public class MultiGetResponseItem<TDocument>
 		implements

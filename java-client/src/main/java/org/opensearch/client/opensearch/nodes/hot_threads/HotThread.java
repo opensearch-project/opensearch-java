@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: nodes.hot_threads.HotThread
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/hot_threads/types.ts#L23-L28">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class HotThread implements JsonpSerializable {
 	private final List<String> hosts;

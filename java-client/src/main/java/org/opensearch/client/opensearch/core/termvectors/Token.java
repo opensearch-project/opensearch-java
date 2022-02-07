@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Token
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/termvectors/types.ts#L42-L47">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Token implements JsonpSerializable {
 	@Nullable

@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.MatrixStatsFields
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L702-L711">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class MatrixStatsFields implements JsonpSerializable {
 	private final String name;

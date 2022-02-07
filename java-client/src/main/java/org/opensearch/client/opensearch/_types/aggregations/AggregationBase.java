@@ -49,12 +49,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.Aggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregation.ts#L23-L26">API
- *      specification</a>
- */
 
 public abstract class AggregationBase implements JsonpSerializable {
 	private final Map<String, JsonData> meta;

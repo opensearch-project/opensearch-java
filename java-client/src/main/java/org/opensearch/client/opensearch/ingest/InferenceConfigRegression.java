@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: ingest._types.InferenceConfigRegression
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L247-L249">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class InferenceConfigRegression implements JsonpSerializable {
 	private final String resultsField;

@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: cluster.reroute.RerouteExplanation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/types.ts#L94-L98">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RerouteExplanation implements JsonpSerializable {
 	private final String command;

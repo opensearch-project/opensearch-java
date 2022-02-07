@@ -48,12 +48,6 @@ import java.util.function.Function;
 
 // typedef: _types.ShardsOperationResponseBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Base.ts#L85-L87">API
- *      specification</a>
- */
 
 public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 	private final ShardStatistics shards;

@@ -48,12 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DateRangeProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/range.ts#L37-L40">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class DateRangeProperty extends RangePropertyBase implements PropertyVariant {
 	@Nullable

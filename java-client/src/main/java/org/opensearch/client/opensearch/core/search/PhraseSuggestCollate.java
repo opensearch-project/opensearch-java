@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggestCollate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L149-L153">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class PhraseSuggestCollate implements JsonpSerializable {
 	private final Map<String, JsonData> params;

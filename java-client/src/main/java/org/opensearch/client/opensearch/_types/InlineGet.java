@@ -57,12 +57,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.InlineGet
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/common.ts#L277-L286">API
- *      specification</a>
- */
 
 public class InlineGet<TDocument> implements JsonpSerializable {
 	private final Map<String, JsonData> metadata;

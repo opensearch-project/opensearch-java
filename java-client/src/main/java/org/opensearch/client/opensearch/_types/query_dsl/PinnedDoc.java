@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.PinnedDoc
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L134-L137">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class PinnedDoc implements JsonpSerializable {
 	private final String id;

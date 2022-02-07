@@ -68,12 +68,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L162-L187">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardStats implements JsonpSerializable {
 	private final ShardCommit commit;

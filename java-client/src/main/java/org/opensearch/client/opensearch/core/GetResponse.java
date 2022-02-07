@@ -49,12 +49,7 @@ import java.util.function.Supplier;
 
 // typedef: _global.get.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get/GetResponse.ts#L22-L24">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class GetResponse<TDocument> extends GetResult<TDocument> {
 	// ---------------------------------------------------------------------------------------------

@@ -46,12 +46,7 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.IpRangeAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L522-L524">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket> implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------

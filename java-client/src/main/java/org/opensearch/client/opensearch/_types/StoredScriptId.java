@@ -48,12 +48,6 @@ import java.util.function.Function;
 
 // typedef: _types.StoredScriptId
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Scripting.ts#L54-L56">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class StoredScriptId extends ScriptBase {
 	private final String id;

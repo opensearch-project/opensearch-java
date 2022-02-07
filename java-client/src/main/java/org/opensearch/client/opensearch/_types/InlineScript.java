@@ -50,12 +50,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.InlineScript
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Scripting.ts#L47-L52">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class InlineScript extends ScriptBase {
 	@Nullable

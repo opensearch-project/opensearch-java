@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: cluster.reroute.CommandMoveAction
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/types.ts#L62-L69">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class CommandMoveAction implements JsonpSerializable {
 	private final String index;

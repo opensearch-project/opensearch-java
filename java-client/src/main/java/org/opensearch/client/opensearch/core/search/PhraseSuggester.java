@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggester
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L160-L174">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVariant {
 	@Nullable

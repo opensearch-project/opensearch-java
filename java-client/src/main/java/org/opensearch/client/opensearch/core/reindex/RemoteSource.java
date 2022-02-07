@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: _global.reindex.RemoteSource
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/reindex/types.ts#L60-L66">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RemoteSource implements JsonpSerializable {
 	private final Time connectTimeout;

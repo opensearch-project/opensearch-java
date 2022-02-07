@@ -53,12 +53,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.NodeAttributes
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Node.ts#L38-L50">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeAttributes implements JsonpSerializable {
 	private final Map<String, String> attributes;

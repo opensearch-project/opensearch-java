@@ -49,12 +49,6 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.BucketMetricValueAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L219-L222">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class BucketMetricValueAggregate extends SingleMetricAggregateBase implements AggregateVariant {
 	private final List<String> keys;

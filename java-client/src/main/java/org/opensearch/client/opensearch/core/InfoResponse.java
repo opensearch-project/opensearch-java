@@ -52,12 +52,7 @@ import java.util.function.Function;
 
 // typedef: _global.info.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/info/RootNodeInfoResponse.ts#L23-L31">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class InfoResponse implements JsonpSerializable {
 	private final String clusterName;

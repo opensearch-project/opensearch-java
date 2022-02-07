@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: features._types.Feature
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/features/_types/Feature.ts#L20-L23">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Feature implements JsonpSerializable {
 	private final String name;

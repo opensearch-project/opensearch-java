@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcessOpenFileDescriptors
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L253-L257">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 	private final long avg;

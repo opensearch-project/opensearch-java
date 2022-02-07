@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: cluster.allocation_explain.DiskUsage
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/allocation_explain/types.ts#L62-L69">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class DiskUsage implements JsonpSerializable {
 	private final String path;

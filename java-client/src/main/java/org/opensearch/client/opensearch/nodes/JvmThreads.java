@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: nodes._types.JvmThreads
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L172-L175">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class JvmThreads implements JsonpSerializable {
 	private final long count;

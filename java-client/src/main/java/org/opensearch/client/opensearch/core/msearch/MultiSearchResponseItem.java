@@ -52,12 +52,7 @@ import java.util.function.Function;
 
 // typedef: _global.msearch.ResponseItem
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch/types.ts#L66-L69">API
- *      specification</a>
- */
+
 
 public class MultiSearchResponseItem<TDocument>
 		implements

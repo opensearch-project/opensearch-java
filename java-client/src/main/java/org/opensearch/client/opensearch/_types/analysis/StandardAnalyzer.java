@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StandardAnalyzer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/analyzers.ts#L95-L99">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable

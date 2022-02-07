@@ -52,12 +52,6 @@ import java.util.function.Function;
 
 // typedef: indices.close.CloseShardResult
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/close/CloseIndexResponse.ts#L37-L39">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class CloseShardResult implements JsonpSerializable {
 	private final List<ShardFailure> failures;

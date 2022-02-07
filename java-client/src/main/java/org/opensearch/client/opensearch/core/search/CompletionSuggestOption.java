@@ -56,12 +56,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.CompletionSuggestOption
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L71-L82">API
- *      specification</a>
- */
+
 
 public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	@Nullable

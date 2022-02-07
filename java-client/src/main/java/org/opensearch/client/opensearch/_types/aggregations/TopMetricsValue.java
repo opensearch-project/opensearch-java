@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.TopMetricsValue
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L183-L185">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TopMetricsValue implements JsonpSerializable {
 	private final String field;

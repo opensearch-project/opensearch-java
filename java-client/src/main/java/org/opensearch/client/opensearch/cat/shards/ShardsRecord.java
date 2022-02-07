@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.shards.ShardsRecord
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/shards/types.ts#L20-L396">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardsRecord implements JsonpSerializable {
 	@Nullable

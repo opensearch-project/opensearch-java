@@ -51,12 +51,6 @@ import java.util.function.Function;
 
 // typedef: _types.WaitForActiveShards
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/common.ts#L118-L119">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class WaitForActiveShards implements TaggedUnion<WaitForActiveShards.Kind, Object>, JsonpSerializable {
 

@@ -49,12 +49,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.WriteResponseBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Base.ts#L37-L47">API
- *      specification</a>
- */
 
 public abstract class WriteResponseBase implements JsonpSerializable {
 	private final String id;

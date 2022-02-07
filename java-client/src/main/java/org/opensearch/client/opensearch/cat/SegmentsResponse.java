@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: cat.segments.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/segments/CatSegmentsResponse.ts#L22-L24">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SegmentsResponse implements JsonpSerializable {
 	private final List<SegmentsRecord> valueBody;

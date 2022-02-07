@@ -55,12 +55,7 @@ import javax.annotation.Nullable;
 
 // typedef: tasks.list.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/list/ListTasksResponse.ts#L25-L31">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ListResponse implements JsonpSerializable {
 	private final List<ErrorCause> nodeFailures;

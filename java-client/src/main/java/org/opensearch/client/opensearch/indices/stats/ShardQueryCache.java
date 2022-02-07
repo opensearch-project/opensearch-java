@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: indices.stats.ShardQueryCache
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L122-L130">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ShardQueryCache implements JsonpSerializable {
 	private final long cacheCount;

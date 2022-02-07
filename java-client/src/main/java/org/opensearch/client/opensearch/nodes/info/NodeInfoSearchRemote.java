@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoSearchRemote
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L275-L277">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoSearchRemote implements JsonpSerializable {
 	private final String connect;

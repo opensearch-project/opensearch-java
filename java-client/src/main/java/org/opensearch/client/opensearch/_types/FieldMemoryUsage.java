@@ -51,12 +51,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.FieldMemoryUsage
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Stats.ts#L75-L78">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class FieldMemoryUsage implements JsonpSerializable {
 	@Nullable

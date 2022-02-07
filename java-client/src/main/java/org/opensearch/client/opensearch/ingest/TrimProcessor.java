@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.TrimProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L335-L339">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TrimProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;

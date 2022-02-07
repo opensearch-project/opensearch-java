@@ -48,12 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.bulk.CreateOperation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/bulk/types.ts#L74-L74">API
- *      specification</a>
- */
+
 
 public class CreateOperation<TDocument> extends WriteOperation implements NdJsonpSerializable, BulkOperationVariant {
 	private final TDocument document;

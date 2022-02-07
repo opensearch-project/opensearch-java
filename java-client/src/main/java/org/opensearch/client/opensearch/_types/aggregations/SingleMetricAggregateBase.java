@@ -46,12 +46,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SingleMetricAggregateBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L169-L178">API
- *      specification</a>
- */
 
 public abstract class SingleMetricAggregateBase extends AggregateBase {
 	private final double value;

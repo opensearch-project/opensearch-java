@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: nodes._types.Scripting
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L207-L210">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Scripting implements JsonpSerializable {
 	private final long cacheEvictions;

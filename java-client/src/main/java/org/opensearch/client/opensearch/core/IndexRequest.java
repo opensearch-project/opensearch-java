@@ -64,10 +64,7 @@ import javax.annotation.Nullable;
 
 /**
  * Creates or updates a document in an index.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/index/IndexRequest.ts#L36-L62">API
- *      specification</a>
+ *
  */
 
 public class IndexRequest<TDocument> extends RequestBase implements JsonpSerializable {

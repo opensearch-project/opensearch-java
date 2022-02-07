@@ -49,12 +49,7 @@ import java.util.function.Function;
 
 // typedef: nodes._types.NodesResponseBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/NodesResponseBase.ts#L22-L29">API
- *      specification</a>
- */
+
 
 public abstract class NodesResponseBase implements JsonpSerializable {
 	private final NodeStatistics nodeStats;

@@ -54,10 +54,7 @@ import javax.annotation.Nullable;
 
 /**
  * Returns information about a task.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/get/GetTaskRequest.ts#L24-L37">API
- *      specification</a>
+ *
  */
 
 public class GetTasksRequest extends RequestBase {

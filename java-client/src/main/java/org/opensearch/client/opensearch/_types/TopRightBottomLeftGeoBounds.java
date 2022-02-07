@@ -51,12 +51,6 @@ import java.util.function.Function;
 
 // typedef: _types.TopRightBottomLeftGeoBounds
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L147-L150">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class TopRightBottomLeftGeoBounds implements JsonpSerializable {
 	private final GeoLocation topRight;

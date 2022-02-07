@@ -56,12 +56,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.TemplateMapping
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/TemplateMapping.ts#L27-L34">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TemplateMapping implements JsonpSerializable {
 	private final Map<String, Alias> aliases;

@@ -55,12 +55,7 @@ import javax.annotation.Nullable;
 
 // typedef: tasks.cancel.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/cancel/CancelTasksResponse.ts#L24-L29">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class CancelResponse implements JsonpSerializable {
 	private final List<ErrorCause> nodeFailures;

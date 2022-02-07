@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.FloatRangeProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/range.ts#L46-L48">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FloatRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------

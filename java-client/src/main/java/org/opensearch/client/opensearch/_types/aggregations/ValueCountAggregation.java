@@ -46,12 +46,7 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.ValueCountAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L187-L187">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ValueCountAggregation extends FormattableMetricAggregation implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------

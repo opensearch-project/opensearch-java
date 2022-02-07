@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.FieldTypesMappings
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L95-L98">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FieldTypesMappings implements JsonpSerializable {
 	private final List<FieldTypes> fieldTypes;

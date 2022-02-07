@@ -48,12 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ObjectProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/complex.ts#L45-L48">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ObjectProperty extends CorePropertyBase implements PropertyVariant {
 	@Nullable

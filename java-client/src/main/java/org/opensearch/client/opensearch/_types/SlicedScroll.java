@@ -51,12 +51,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.SlicedScroll
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/SlicedScroll.ts#L23-L27">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class SlicedScroll implements JsonpSerializable {
 	@Nullable

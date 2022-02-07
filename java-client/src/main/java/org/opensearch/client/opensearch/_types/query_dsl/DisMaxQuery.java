@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DisMaxQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L46-L50">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class DisMaxQuery extends QueryBase implements QueryVariant {
 	private final List<Query> queries;

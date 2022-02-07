@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.QueryProfile
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/profile.ts#L117-L123">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class QueryProfile implements JsonpSerializable {
 	private final QueryBreakdown breakdown;

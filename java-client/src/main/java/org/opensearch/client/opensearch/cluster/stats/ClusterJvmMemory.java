@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterJvmMemory
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L155-L158">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ClusterJvmMemory implements JsonpSerializable {
 	private final long heapMaxInBytes;

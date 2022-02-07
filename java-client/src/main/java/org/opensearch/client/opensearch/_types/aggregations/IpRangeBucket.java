@@ -48,12 +48,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.IpRangeBucket
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L526-L529">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IpRangeBucket extends MultiBucketBase {
 	@Nullable

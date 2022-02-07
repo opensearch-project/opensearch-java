@@ -48,12 +48,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NGramTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L264-L269">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable

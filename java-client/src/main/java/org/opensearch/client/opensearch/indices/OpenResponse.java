@@ -49,12 +49,7 @@ import java.util.function.Function;
 
 // typedef: indices.open.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/open/IndicesOpenResponse.ts#L22-L26">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class OpenResponse extends AcknowledgedResponseBase {
 	private final boolean shardsAcknowledged;

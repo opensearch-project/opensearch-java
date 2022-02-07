@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.IndicesVersions
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L136-L141">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IndicesVersions implements JsonpSerializable {
 	private final int indexCount;

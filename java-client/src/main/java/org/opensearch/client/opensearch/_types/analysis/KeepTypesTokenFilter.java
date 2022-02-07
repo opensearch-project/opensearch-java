@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeepTypesTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L216-L220">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable

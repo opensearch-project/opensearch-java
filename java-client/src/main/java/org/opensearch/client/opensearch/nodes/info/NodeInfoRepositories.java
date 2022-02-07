@@ -51,12 +51,6 @@ import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoRepositories
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L154-L156">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoRepositories implements JsonpSerializable {
 	private final NodeInfoRepositoriesUrl url;

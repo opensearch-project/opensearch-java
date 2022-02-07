@@ -47,10 +47,7 @@ import java.util.Map;
 
 /**
  * Returns information about installed plugins across nodes node.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/plugins/CatPluginsRequest.ts#L22-L27">API
- *      specification</a>
+ *
  */
 
 public class PluginsRequest extends CatRequestBase {

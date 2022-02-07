@@ -66,10 +66,7 @@ import javax.annotation.Nullable;
  * <p>
  * Returns a 409 response when a document with a same ID already exists in the
  * index.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/create/CreateRequest.ts#L33-L56">API
- *      specification</a>
+ *
  */
 
 public class CreateRequest<TDocument> extends RequestBase implements JsonpSerializable {

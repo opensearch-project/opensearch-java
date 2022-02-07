@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoPath
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L147-L152">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoPath implements JsonpSerializable {
 	private final String logs;

@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: cluster.health.ShardHealthStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/health/types.ts#L36-L43">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardHealthStats implements JsonpSerializable {
 	private final int activeShards;

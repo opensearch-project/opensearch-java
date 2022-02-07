@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.IcuTokenizer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/icu-plugin.ts#L30-L33">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVariant, TokenFilterDefinitionVariant {
 	private final String ruleFiles;

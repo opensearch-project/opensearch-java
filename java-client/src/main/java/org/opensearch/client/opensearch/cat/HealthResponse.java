@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: cat.health.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/health/CatHealthResponse.ts#L22-L24">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class HealthResponse implements JsonpSerializable {
 	private final List<HealthRecord> valueBody;

@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryBytes
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/recovery/types.ts#L33-L43">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RecoveryBytes implements JsonpSerializable {
 	private final String percent;

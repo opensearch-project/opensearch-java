@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetricsAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L177-L181">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TopMetricsAggregation extends MetricAggregationBase implements AggregationVariant {
 	private final List<TopMetricsValue> metrics;

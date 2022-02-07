@@ -52,12 +52,7 @@ import java.util.function.Function;
 
 // typedef: indices.get_field_mapping.TypeFieldMappings
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_field_mapping/types.ts#L24-L26">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TypeFieldMappings implements JsonpSerializable {
 	private final FieldMapping mappings;

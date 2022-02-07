@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SourceField
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/meta-fields.ts#L58-L64">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SourceField implements JsonpSerializable {
 	@Nullable

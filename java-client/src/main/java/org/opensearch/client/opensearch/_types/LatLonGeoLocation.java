@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: _types.LatLonGeoLocation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L107-L110">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class LatLonGeoLocation implements JsonpSerializable {
 	private final double lat;

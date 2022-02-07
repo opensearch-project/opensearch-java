@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoSettingsNetwork
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L205-L207">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoSettingsNetwork implements JsonpSerializable {
 	private final String host;

@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.bulk.UpdateOperation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/bulk/types.ts#L80-L83">API
- *      specification</a>
- */
+
 
 public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJsonpSerializable, BulkOperationVariant {
 	private final TDocument document;

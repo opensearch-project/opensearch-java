@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanNearQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/span.ts#L49-L53">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final List<SpanQuery> clauses;

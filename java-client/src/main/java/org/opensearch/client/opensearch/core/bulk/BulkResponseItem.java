@@ -56,12 +56,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.bulk.ResponseItem
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/bulk/types.ts#L35-L49">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class BulkResponseItem implements JsonpSerializable {
 	// Single key dictionary

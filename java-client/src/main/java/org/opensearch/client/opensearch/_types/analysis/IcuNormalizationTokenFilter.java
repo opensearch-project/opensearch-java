@@ -49,12 +49,6 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.IcuNormalizationTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/icu-plugin.ts#L35-L38">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class IcuNormalizationTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final IcuNormalizationType name;

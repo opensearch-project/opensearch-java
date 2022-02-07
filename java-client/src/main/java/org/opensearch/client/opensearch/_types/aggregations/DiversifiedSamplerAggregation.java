@@ -49,12 +49,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DiversifiedSamplerAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L150-L156">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class DiversifiedSamplerAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable

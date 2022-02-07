@@ -46,12 +46,7 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.SamplerAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L476-L477">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SamplerAggregate extends SingleBucketAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------

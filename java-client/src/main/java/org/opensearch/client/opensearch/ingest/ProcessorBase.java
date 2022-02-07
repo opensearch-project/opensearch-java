@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.ProcessorBase
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L68-L73">API
- *      specification</a>
- */
+
 
 public abstract class ProcessorBase implements JsonpSerializable {
 	@Nullable

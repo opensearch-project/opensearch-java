@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.FingerprintAnalyzer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/analyzers.ts#L37-L45">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	@Nullable

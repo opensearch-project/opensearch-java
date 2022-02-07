@@ -51,12 +51,6 @@ import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Ingest
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/simulate/types.ts#L26-L29">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class Ingest implements JsonpSerializable {
 	private final String timestamp;

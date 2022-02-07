@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.CombinedFieldsQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/abstractions.ts#L178-L192">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	private final List<String> fields;

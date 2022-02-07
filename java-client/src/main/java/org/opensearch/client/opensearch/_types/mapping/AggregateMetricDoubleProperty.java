@@ -49,12 +49,7 @@ import java.util.function.Function;
 
 // typedef: _types.mapping.AggregateMetricDoubleProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/complex.ts#L58-L62">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class AggregateMetricDoubleProperty extends PropertyBase implements PropertyVariant {
 	private final String defaultMetric;

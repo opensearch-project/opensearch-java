@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SignificantLongTermsBucket
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L553-L556">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SignificantLongTermsBucket extends SignificantTermsBucketBase {
 	private final long key;

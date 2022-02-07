@@ -57,10 +57,7 @@ import javax.annotation.Nullable;
 
 /**
  * Removes a document from the index.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/delete/DeleteRequest.ts#L35-L56">API
- *      specification</a>
+ *
  */
 
 public class DeleteRequest extends RequestBase {

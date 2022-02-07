@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: watcher._types.HourAndMinute
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Schedule.ts#L106-L109">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class HourAndMinute implements JsonpSerializable {
 	private final List<Integer> hour;

@@ -50,12 +50,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoCentroidAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L292-L296">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GeoCentroidAggregate extends AggregateBase implements AggregateVariant {
 	private final long count;

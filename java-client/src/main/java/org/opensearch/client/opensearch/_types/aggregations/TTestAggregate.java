@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TTestAggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L674-L678">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TTestAggregate extends AggregateBase implements AggregateVariant {
 	private final double value;

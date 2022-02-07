@@ -53,12 +53,7 @@ import java.util.stream.Collectors;
 
 // typedef: _types.aggregations.TermsExclude
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L378-L379">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TermsExclude implements TaggedUnion<TermsExclude.Kind, Object>, JsonpSerializable {
 

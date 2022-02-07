@@ -53,12 +53,6 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.Aggregate
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L30-L109">API
- *      specification</a>
- */
 
 public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>, JsonpSerializable {
 

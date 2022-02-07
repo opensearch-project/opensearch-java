@@ -40,12 +40,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.query_dsl.RankFeatureFunction
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L139-L139">API
- *      specification</a>
- */
+
 
 public abstract class RankFeatureFunction {
 	public RankFeatureFunction() {

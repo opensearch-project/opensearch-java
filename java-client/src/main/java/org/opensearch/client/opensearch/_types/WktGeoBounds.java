@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: _types.WktGeoBounds
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L131-L133">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class WktGeoBounds implements JsonpSerializable {
 	private final String wkt;

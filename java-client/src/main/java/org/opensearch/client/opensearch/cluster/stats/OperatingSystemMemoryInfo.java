@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.OperatingSystemMemoryInfo
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L278-L284">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	private final long freeInBytes;

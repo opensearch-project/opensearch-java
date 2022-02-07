@@ -58,12 +58,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Source
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/reindex/types.ts#L48-L58">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class Source implements JsonpSerializable {
 	private final List<String> index;

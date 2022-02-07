@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.health.IndexHealthStats
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/health/types.ts#L24-L34">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IndexHealthStats implements JsonpSerializable {
 	private final int activePrimaryShards;

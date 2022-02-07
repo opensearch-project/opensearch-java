@@ -39,12 +39,7 @@ package org.opensearch.client.opensearch._types.aggregations;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L189-L200">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public enum ValueType implements JsonEnum {
 	String("string"),

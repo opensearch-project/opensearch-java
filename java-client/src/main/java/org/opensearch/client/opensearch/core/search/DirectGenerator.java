@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.DirectGenerator
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L135-L147">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class DirectGenerator implements JsonpSerializable {
 	private final String field;

@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: ingest._types.RenameProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/_types/Processors.ts#L292-L296">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;

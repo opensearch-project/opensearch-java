@@ -39,12 +39,6 @@ package org.opensearch.client.opensearch._types;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/common.ts#L237-L241">API
- *      specification</a>
- */
 @JsonpDeserializable
 public enum Refresh implements JsonEnum {
 	True("true"),

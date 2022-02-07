@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PercolateQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L112-L122">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class PercolateQuery extends QueryBase implements QueryVariant {
 	@Nullable

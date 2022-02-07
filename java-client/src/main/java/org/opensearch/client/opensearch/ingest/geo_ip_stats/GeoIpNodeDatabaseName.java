@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: ingest.geo_ip_stats.GeoIpNodeDatabaseName
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/geo_ip_stats/types.ts#L44-L47">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class GeoIpNodeDatabaseName implements JsonpSerializable {
 	private final String name;

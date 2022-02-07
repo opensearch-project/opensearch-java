@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.InferenceTopClassEntry
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L609-L613">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class InferenceTopClassEntry implements JsonpSerializable {
 	private final FieldValue className;

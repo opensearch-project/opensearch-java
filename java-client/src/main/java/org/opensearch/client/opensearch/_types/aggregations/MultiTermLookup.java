@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.MultiTermLookup
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L241-L243">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class MultiTermLookup implements JsonpSerializable {
 	private final String field;

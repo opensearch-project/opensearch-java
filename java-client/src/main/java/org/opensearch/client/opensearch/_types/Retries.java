@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: _types.Retries
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Retries.ts#L22-L25">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class Retries implements JsonpSerializable {
 	private final long bulk;

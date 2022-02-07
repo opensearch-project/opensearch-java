@@ -48,12 +48,6 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.PatternReplaceCharFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/char_filters.ts#L50-L55">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class PatternReplaceCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	private final String flags;

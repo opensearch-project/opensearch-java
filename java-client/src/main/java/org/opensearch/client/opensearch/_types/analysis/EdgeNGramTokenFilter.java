@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.EdgeNGramTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L78-L84">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int maxGram;

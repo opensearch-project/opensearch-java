@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Suggest
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L35-L40">API
- *      specification</a>
- */
+
 
 public class Suggestion<T> implements JsonpSerializable {
 	private final int length;

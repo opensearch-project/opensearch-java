@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoScript
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L266-L269">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoScript implements JsonpSerializable {
 	private final String allowedTypes;

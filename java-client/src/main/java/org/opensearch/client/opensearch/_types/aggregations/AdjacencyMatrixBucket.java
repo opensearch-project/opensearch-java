@@ -46,12 +46,6 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.AdjacencyMatrixBucket
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L542-L542">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class AdjacencyMatrixBucket extends MultiBucketBase {
 	// ---------------------------------------------------------------------------------------------

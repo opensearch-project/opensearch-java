@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: cat.help.HelpRecord
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/help/types.ts#L20-L22">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class HelpRecord implements JsonpSerializable {
 	private final String endpoint;

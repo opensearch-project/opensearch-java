@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.DutchAnalyzer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/analyzers.ts#L61-L64">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private final List<String> stopwords;

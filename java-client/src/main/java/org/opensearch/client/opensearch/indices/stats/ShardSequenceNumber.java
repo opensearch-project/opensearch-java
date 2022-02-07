@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: indices.stats.ShardSequenceNumber
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L152-L156">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardSequenceNumber implements JsonpSerializable {
 	private final long globalCheckpoint;

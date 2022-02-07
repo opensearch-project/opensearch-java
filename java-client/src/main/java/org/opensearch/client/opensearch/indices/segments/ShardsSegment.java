@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: indices.segments.ShardsSegment
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/segments/types.ts#L47-L52">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardsSegment implements JsonpSerializable {
 	private final int numCommittedSegments;

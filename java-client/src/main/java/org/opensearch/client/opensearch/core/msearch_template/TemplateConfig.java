@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.msearch_template.TemplateConfig
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch_template/types.ts#L28-L45">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TemplateConfig implements JsonpSerializable {
 	@Nullable

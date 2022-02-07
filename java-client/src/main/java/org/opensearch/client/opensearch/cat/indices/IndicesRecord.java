@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.indices.IndicesRecord
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/indices/types.ts#L20-L801">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IndicesRecord implements JsonpSerializable {
 	@Nullable

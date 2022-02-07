@@ -39,12 +39,7 @@ package org.opensearch.client.opensearch.tasks;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/_types/GroupBy.ts#L20-L24">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public enum GroupBy implements JsonEnum {
 	Nodes("nodes"),

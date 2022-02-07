@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardFileSizeInfo
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L100-L107">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardFileSizeInfo implements JsonpSerializable {
 	private final String description;

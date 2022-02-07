@@ -49,12 +49,7 @@ import java.util.function.Supplier;
 
 // typedef: _global.msearch.MultiSearchItem
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch/types.ts#L71-L73">API
- *      specification</a>
- */
+
 
 public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
 	private final int status;

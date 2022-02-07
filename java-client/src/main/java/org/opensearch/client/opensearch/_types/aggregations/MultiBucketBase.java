@@ -56,9 +56,6 @@ import javax.annotation.Nullable;
  * Base type for multi-bucket aggregation results that can hold sub-aggregations
  * results.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L315-L322">API
- *      specification</a>
  */
 
 public abstract class MultiBucketBase implements JsonpSerializable {

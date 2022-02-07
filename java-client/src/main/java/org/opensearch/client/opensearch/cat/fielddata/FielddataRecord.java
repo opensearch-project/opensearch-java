@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.FielddataRecord
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/fielddata/types.ts#L20-L48">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FielddataRecord implements JsonpSerializable {
 	@Nullable

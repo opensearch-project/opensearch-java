@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RegexpQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/term.ts#L102-L114">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RegexpQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary

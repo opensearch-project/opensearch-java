@@ -51,12 +51,6 @@ import java.util.function.Function;
 
 // typedef: cat.recovery.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/recovery/CatRecoveryResponse.ts#L22-L24">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class RecoveryResponse implements JsonpSerializable {
 	private final List<RecoveryRecord> valueBody;

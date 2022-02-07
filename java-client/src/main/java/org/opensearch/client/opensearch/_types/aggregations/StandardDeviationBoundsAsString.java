@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.StandardDeviationBoundsAsString
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L255-L262">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class StandardDeviationBoundsAsString implements JsonpSerializable {
 	private final String upper;

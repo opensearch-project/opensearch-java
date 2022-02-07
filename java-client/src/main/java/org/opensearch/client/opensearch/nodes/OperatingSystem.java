@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: nodes._types.OperatingSystem
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L193-L198">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class OperatingSystem implements JsonpSerializable {
 	private final Cpu cpu;

@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoDistanceQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/geo.ts#L48-L57">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	private final String field;

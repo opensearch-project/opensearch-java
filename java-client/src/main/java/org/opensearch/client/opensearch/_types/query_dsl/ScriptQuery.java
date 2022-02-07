@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.ScriptQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L166-L168">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ScriptQuery extends QueryBase implements QueryVariant {
 	private final Script script;

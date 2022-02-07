@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalHitItem
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/rank_eval/types.ts#L136-L139">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class RankEvalHitItem implements JsonpSerializable {
 	private final RankEvalHit hit;

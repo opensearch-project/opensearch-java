@@ -34,7 +34,4 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-/**
- * Generated from https://github.com/elastic/elasticsearch-specification/tree/98036c3
- */
 package org.opensearch.client.opensearch;

@@ -49,12 +49,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.mapping.BooleanProperty
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L94-L100">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class BooleanProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable

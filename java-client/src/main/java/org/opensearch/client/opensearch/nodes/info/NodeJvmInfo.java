@@ -52,12 +52,6 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeJvmInfo
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L341-L355">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeJvmInfo implements JsonpSerializable {
 	private final List<String> gcCollectors;

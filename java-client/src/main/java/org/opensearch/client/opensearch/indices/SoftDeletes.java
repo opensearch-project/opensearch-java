@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: indices._types.SoftDeletes
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/IndexSettings.ts#L32-L34">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SoftDeletes implements JsonpSerializable {
 	private final boolean enabled;

@@ -54,10 +54,7 @@ import javax.annotation.Nullable;
  * Statistics aggregation result. <code>min</code>, <code>max</code> and
  * <code>avg</code> are missing if there were no values to process
  * (<code>count</code> is zero).
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L226-L241">API
- *      specification</a>
+ *
  */
 @JsonpDeserializable
 public class StatsAggregate extends AggregateBase implements AggregateVariant {

@@ -48,12 +48,6 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.FingerprintTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L192-L196">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int maxOutputSize;

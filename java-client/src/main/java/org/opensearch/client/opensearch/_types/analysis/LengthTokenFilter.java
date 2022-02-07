@@ -48,12 +48,6 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.LengthTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L241-L245">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int max;

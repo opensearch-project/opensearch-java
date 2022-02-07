@@ -54,12 +54,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.IntervalsFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L74-L86">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object>, JsonpSerializable {
 

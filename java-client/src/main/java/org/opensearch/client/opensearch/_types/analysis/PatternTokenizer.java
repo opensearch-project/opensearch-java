@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.PatternTokenizer
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/tokenizers.ts#L97-L102">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class PatternTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final String flags;

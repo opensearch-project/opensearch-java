@@ -57,12 +57,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.msearch.MultisearchBody
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch/types.ts#L50-L59">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class MultisearchBody implements JsonpSerializable {
 	private final Map<String, Aggregation> aggregations;

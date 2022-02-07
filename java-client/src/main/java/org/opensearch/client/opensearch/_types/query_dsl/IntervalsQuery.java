@@ -52,12 +52,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.IntervalsQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L116-L125">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IntervalsQuery extends QueryBase
 		implements

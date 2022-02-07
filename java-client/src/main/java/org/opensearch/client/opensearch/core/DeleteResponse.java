@@ -47,12 +47,7 @@ import java.util.function.Function;
 
 // typedef: _global.delete.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/delete/DeleteResponse.ts#L22-L22">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class DeleteResponse extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------

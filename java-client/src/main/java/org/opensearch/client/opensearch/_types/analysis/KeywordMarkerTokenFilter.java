@@ -50,12 +50,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeywordMarkerTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L229-L235">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable

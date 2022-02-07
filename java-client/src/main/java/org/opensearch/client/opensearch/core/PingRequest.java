@@ -49,10 +49,7 @@ import java.util.Collections;
 
 /**
  * Returns whether the cluster is running.
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/ping/PingRequest.ts#L22-L27">API
- *      specification</a>
+ *
  */
 
 public class PingRequest extends RequestBase {

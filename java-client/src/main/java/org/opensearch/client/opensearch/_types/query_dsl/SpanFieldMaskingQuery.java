@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.query_dsl.SpanFieldMaskingQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/span.ts#L30-L33">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final String field;

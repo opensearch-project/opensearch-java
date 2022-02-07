@@ -52,12 +52,6 @@ import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoTransport
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L335-L339">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class NodeInfoTransport implements JsonpSerializable {
 	private final List<String> boundAddress;

@@ -55,9 +55,6 @@ import java.util.function.Function;
  * A date range limit, represented either as a DateMath expression or a number
  * expressed according to the target field's precision.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L135-L142">API
- *      specification</a>
  */
 @JsonpDeserializable
 public class FieldDateMath implements TaggedUnion<FieldDateMath.Kind, Object>, JsonpSerializable {

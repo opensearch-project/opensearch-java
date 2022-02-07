@@ -48,12 +48,6 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiStemmerTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/kuromoji-plugin.ts#L47-L50">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class KuromojiStemmerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int minimumLength;

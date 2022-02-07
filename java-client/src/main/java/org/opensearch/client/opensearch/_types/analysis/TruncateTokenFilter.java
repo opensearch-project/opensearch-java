@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.TruncateTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L326-L329">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int length;

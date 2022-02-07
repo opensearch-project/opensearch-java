@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixStatsAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/matrix.ts#L31-L33">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class MatrixStatsAggregation extends MatrixAggregation implements AggregationVariant {
 	@Nullable

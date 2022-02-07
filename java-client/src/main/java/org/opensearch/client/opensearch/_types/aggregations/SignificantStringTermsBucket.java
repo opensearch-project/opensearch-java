@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.SignificantStringTermsBucket
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L562-L564">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class SignificantStringTermsBucket extends SignificantTermsBucketBase {
 	private final String key;

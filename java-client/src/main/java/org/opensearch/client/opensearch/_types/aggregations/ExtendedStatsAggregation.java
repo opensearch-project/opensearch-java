@@ -48,12 +48,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L59-L61">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ExtendedStatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable

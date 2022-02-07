@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices._types.DataStream
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/DataStream.ts#L20-L22">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class DataStream implements JsonpSerializable {
 	@Nullable

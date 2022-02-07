@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: nodes._types.FileSystem
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L138-L142">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FileSystem implements JsonpSerializable {
 	private final List<DataPathStats> data;

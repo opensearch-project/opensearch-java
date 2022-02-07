@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: nodes._types.KeyedProcessor
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L62-L65">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class KeyedProcessor implements JsonpSerializable {
 	private final Process statistics;

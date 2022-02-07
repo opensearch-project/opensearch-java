@@ -53,12 +53,7 @@ import java.util.function.Function;
 
 // typedef: watcher._types.TimeOfDay
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Schedule.ts#L103-L104">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class TimeOfDay implements TaggedUnion<TimeOfDay.Kind, Object>, JsonpSerializable {
 

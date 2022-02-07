@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardRouting
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L138-L143">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ShardRouting implements JsonpSerializable {
 	private final String node;

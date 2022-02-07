@@ -48,12 +48,7 @@ import java.util.function.Function;
 
 // typedef: _types.analysis.ReverseTokenFilter
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L302-L304">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------

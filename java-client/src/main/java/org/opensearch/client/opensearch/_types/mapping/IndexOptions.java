@@ -39,12 +39,7 @@ package org.opensearch.client.opensearch._types.mapping;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L240-L245">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public enum IndexOptions implements JsonEnum {
 	Docs("docs"),

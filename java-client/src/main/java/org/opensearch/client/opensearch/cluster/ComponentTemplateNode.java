@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: cluster._types.ComponentTemplateNode
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/_types/ComponentTemplate.ts#L31-L36">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ComponentTemplateNode implements JsonpSerializable {
 	private final ComponentTemplateSummary template;

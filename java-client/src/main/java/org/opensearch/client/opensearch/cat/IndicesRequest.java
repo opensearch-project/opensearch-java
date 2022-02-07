@@ -58,10 +58,7 @@ import javax.annotation.Nullable;
 /**
  * Returns information about indices: number of primaries and replicas, document
  * counts, disk size, ...
- * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/indices/CatIndicesRequest.ts#L23-L39">API
- *      specification</a>
+ *
  */
 
 public class IndicesRequest extends CatRequestBase {

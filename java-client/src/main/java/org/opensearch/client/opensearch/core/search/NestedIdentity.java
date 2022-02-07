@@ -51,12 +51,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.NestedIdentity
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/hits.ts#L88-L92">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class NestedIdentity implements JsonpSerializable {
 	private final String field;

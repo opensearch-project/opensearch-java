@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: cat.indices.Response
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/indices/CatIndicesResponse.ts#L22-L24">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IndicesResponse implements JsonpSerializable {
 	private final List<IndicesRecord> valueBody;

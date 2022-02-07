@@ -52,12 +52,7 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FetchProfileDebug
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/profile.ts#L156-L159">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FetchProfileDebug implements JsonpSerializable {
 	private final List<String> storedFields;

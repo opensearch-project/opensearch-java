@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.IpRangeAggregation
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L221-L224">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class IpRangeAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable

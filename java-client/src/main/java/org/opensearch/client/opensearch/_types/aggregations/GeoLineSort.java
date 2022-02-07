@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: _types.aggregations.GeoLineSort
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L80-L82">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class GeoLineSort implements JsonpSerializable {
 	private final String field;

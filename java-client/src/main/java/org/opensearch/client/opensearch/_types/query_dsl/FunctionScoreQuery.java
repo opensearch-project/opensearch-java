@@ -50,12 +50,7 @@ import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FunctionScoreQuery
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L52-L59">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 	@Nullable

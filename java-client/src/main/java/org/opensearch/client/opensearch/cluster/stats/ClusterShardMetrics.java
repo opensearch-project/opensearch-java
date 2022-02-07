@@ -50,12 +50,7 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterShardMetrics
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L266-L270">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class ClusterShardMetrics implements JsonpSerializable {
 	private final double avg;

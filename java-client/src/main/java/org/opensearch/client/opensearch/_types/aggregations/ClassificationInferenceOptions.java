@@ -50,12 +50,6 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ClassificationInferenceOptions
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L95-L109">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ClassificationInferenceOptions implements JsonpSerializable {
 	@Nullable

@@ -51,12 +51,6 @@ import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcess
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L244-L247">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class ClusterProcess implements JsonpSerializable {
 	private final ClusterProcessCpu cpu;

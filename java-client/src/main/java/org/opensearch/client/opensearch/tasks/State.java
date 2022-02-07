@@ -53,12 +53,7 @@ import javax.annotation.Nullable;
 
 // typedef: tasks._types.State
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/_types/TaskState.ts#L24-L36">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class State implements JsonpSerializable {
 	private final String action;

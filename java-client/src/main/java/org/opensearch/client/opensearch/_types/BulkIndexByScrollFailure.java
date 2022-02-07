@@ -50,12 +50,6 @@ import java.util.function.Function;
 
 // typedef: _types.BulkIndexByScrollFailure
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Errors.ts#L58-L64">API
- *      specification</a>
- */
 @JsonpDeserializable
 public class BulkIndexByScrollFailure implements JsonpSerializable {
 	private final ErrorCause cause;

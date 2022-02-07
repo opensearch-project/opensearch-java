@@ -51,12 +51,7 @@ import java.util.function.Function;
 
 // typedef: indices.analyze.CharFilterDetail
 
-/**
- *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/analyze/types.ts#L44-L47">API
- *      specification</a>
- */
+
 @JsonpDeserializable
 public class CharFilterDetail implements JsonpSerializable {
 	private final List<String> filteredText;
