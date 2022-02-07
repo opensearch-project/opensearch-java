@@ -32,7 +32,7 @@
 
 package org.opensearch.client.transport.rest_client;
 
-import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,7 +41,7 @@ import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.endpoints.BooleanEndpoint;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
-import org.opensearch.client.transport.OpensearchTransport;
+import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -68,7 +68,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-public class RestClientTransport implements OpensearchTransport {
+public class RestClientTransport implements OpenSearchTransport {
 
     static final ContentType JsonContentType = ContentType.APPLICATION_JSON;
 
@@ -270,7 +270,7 @@ public class RestClientTransport implements OpensearchTransport {
                     try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                         ErrorT error = errorDeserializer.deserialize(parser, mapper);
                         // TODO: have the endpoint provide the exception constructor
-                        throw new OpensearchException(endpoint.id(), (ErrorResponse) error);
+                        throw new OpenSearchException(endpoint.id(), (ErrorResponse) error);
                     }
                 } catch(MissingRequiredPropertyException errorEx) {
                     // Could not decode exception, try the response type

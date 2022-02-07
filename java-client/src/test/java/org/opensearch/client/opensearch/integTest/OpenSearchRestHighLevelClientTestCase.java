@@ -25,7 +25,7 @@ import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.junit.AfterClass;
 import org.junit.Before;
-import org.opensearch.client.transport.OpensearchTransport;
+import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.rest_client.RestClientTransport;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.common.xcontent.DeprecationHandler;
@@ -54,7 +54,7 @@ public abstract class OpenSearchRestHighLevelClientTestCase extends OpenSearchRe
             // Create the low-level client
             restClient = client();
             // Create the transport that provides JSON and http services to API clients
-            OpensearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+            OpenSearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
             // Create API client
             restHighLevelClient = new OpenSearchClient(transport);
         }

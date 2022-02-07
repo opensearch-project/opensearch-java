@@ -37,36 +37,35 @@
 package org.opensearch.client.opensearch.dangling_indices;
 
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.OpensearchTransport;
+import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
  * Client for the dangling_indices namespace.
  */
-public class OpensearchDanglingIndicesAsyncClient
+public class OpenSearchDanglingIndicesClient
 		extends
-			ApiClient<OpensearchTransport, OpensearchDanglingIndicesAsyncClient> {
+			ApiClient<OpenSearchTransport, OpenSearchDanglingIndicesClient> {
 
-	public OpensearchDanglingIndicesAsyncClient(OpensearchTransport transport) {
+	public OpenSearchDanglingIndicesClient(OpenSearchTransport transport) {
 		super(transport, null);
 	}
 
-	public OpensearchDanglingIndicesAsyncClient(OpensearchTransport transport,
-                                                @Nullable TransportOptions transportOptions) {
+	public OpenSearchDanglingIndicesClient(OpenSearchTransport transport,
+                                           @Nullable TransportOptions transportOptions) {
 		super(transport, transportOptions);
 	}
 
 	@Override
-	public OpensearchDanglingIndicesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpensearchDanglingIndicesAsyncClient(this.transport, transportOptions);
+	public OpenSearchDanglingIndicesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new OpenSearchDanglingIndicesClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: dangling_indices.delete_dangling_index
@@ -74,16 +73,17 @@ public class OpensearchDanglingIndicesAsyncClient
 	/**
 	 * Deletes the specified dangling index
 	 * 
+	 *
 	 */
 
-	public CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(DeleteDanglingIndexRequest request)
-			throws IOException, OpensearchException {
+	public DeleteDanglingIndexResponse deleteDanglingIndex(DeleteDanglingIndexRequest request)
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse>)
 						DeleteDanglingIndexRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -95,9 +95,9 @@ public class OpensearchDanglingIndicesAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(
+	public final DeleteDanglingIndexResponse deleteDanglingIndex(
 			Function<DeleteDanglingIndexRequest.Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return deleteDanglingIndex(fn.apply(new DeleteDanglingIndexRequest.Builder()).build());
 	}
 
@@ -109,14 +109,14 @@ public class OpensearchDanglingIndicesAsyncClient
 	 *
 	 */
 
-	public CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(ImportDanglingIndexRequest request)
-			throws IOException, OpensearchException {
+	public ImportDanglingIndexResponse importDanglingIndex(ImportDanglingIndexRequest request)
+			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse>)
 						ImportDanglingIndexRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -128,9 +128,9 @@ public class OpensearchDanglingIndicesAsyncClient
 	 *
 	 */
 
-	public final CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(
+	public final ImportDanglingIndexResponse importDanglingIndex(
 			Function<ImportDanglingIndexRequest.Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn)
-			throws IOException, OpensearchException {
+			throws IOException, OpenSearchException {
 		return importDanglingIndex(fn.apply(new ImportDanglingIndexRequest.Builder()).build());
 	}
 
@@ -141,10 +141,9 @@ public class OpensearchDanglingIndicesAsyncClient
 	 * 
 	 *
 	 */
-	public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices()
-			throws IOException, OpensearchException {
-		return this.transport.performRequestAsync(ListDanglingIndicesRequest._INSTANCE,
-				ListDanglingIndicesRequest._ENDPOINT, this.transportOptions);
+	public ListDanglingIndicesResponse listDanglingIndices() throws IOException, OpenSearchException {
+		return this.transport.performRequest(ListDanglingIndicesRequest._INSTANCE, ListDanglingIndicesRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 }

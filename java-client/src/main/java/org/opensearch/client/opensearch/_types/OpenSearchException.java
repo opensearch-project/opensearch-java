@@ -40,12 +40,12 @@ package org.opensearch.client.opensearch._types;
  * additional details that depend on the error type and the API endpoint that
  * was called.
  */
-public class OpensearchException extends RuntimeException {
+public class OpenSearchException extends RuntimeException {
 
 	private final ErrorResponse response;
 	private final String endpointId;
 
-	public OpensearchException(String endpointId, ErrorResponse response) {
+	public OpenSearchException(String endpointId, ErrorResponse response) {
 		super("[" + endpointId + "] failed: [" + response.error().type() + "] " + response.error().reason());
 		this.response = response;
 		this.endpointId = endpointId;

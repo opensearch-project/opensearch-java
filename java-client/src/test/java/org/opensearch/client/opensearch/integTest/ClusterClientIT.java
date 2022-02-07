@@ -13,7 +13,7 @@ import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.HealthStatus;
 import org.opensearch.client.opensearch._types.Level;
-import org.opensearch.client.opensearch._types.OpensearchException;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.cluster.GetClusterSettingsRequest;
 import org.opensearch.client.opensearch.cluster.GetClusterSettingsResponse;
 import org.opensearch.client.opensearch.cluster.HealthRequest;
@@ -93,7 +93,7 @@ public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
         try {
             openSearchClient.cluster().putSettings(request);
             fail();
-        } catch (OpensearchException e) {
+        } catch (OpenSearchException e) {
             assertNotNull(e);
             assertEquals(e.response().status(), 400);
             assertEquals(
