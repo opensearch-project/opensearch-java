@@ -228,7 +228,6 @@ public class SnapshotStatusRequest extends RequestBase {
 	 * Endpoint "{@code snapshot.status}".
 	 */
 	public static final Endpoint<SnapshotStatusRequest, SnapshotStatusResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/snapshot.status",
 
 			// Request method
 			request -> {

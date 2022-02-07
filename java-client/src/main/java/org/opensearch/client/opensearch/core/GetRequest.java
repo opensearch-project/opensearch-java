@@ -502,7 +502,7 @@ public class GetRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code get}".
 	 */
-	public static final SimpleEndpoint<GetRequest, ?> _ENDPOINT = new SimpleEndpoint<>("opensearch/get",
+	public static final SimpleEndpoint<GetRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {

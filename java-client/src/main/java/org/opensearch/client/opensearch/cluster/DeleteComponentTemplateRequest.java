@@ -193,7 +193,6 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 	 */
 	public static final Endpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ErrorResponse>
 			_ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/cluster.delete_component_template",
 
 			// Request method
 			request -> {

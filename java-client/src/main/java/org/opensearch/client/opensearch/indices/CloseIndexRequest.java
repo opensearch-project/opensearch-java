@@ -360,7 +360,6 @@ public class CloseIndexRequest extends RequestBase {
 	 * Endpoint "{@code indices.close}".
 	 */
 	public static final Endpoint<CloseIndexRequest, CloseIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/indices.close",
 
 			// Request method
 			request -> {

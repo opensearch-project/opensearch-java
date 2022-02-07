@@ -351,7 +351,6 @@ public class OpenRequest extends RequestBase {
 	 * Endpoint "{@code indices.open}".
 	 */
 	public static final Endpoint<OpenRequest, OpenResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/indices.open",
 
 			// Request method
 			request -> {

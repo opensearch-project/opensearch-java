@@ -1339,7 +1339,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	 * Endpoint "{@code delete_by_query}".
 	 */
 	public static final Endpoint<DeleteByQueryRequest, DeleteByQueryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/delete_by_query",
 
 			// Request method
 			request -> {

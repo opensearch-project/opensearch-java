@@ -65,7 +65,6 @@ public class GetScriptLanguagesRequest extends RequestBase {
 	 * Endpoint "{@code get_script_languages}".
 	 */
 	public static final Endpoint<GetScriptLanguagesRequest, GetScriptLanguagesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/get_script_languages",
 
 			// Request method
 			request -> {

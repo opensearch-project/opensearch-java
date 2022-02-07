@@ -421,7 +421,6 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code rank_eval}".
 	 */
 	public static final Endpoint<RankEvalRequest, RankEvalResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/rank_eval",
 
 			// Request method
 			request -> {

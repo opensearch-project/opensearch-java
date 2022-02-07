@@ -261,7 +261,6 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 	 */
 	public static final Endpoint<RenderSearchTemplateRequest, RenderSearchTemplateResponse, ErrorResponse> _ENDPOINT =
 			new SimpleEndpoint<>(
-			"opensearch/render_search_template",
 
 			// Request method
 			request -> {

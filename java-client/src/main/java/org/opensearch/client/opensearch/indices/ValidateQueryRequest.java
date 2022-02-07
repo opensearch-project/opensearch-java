@@ -605,7 +605,6 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	 * Endpoint "{@code indices.validate_query}".
 	 */
 	public static final Endpoint<ValidateQueryRequest, ValidateQueryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/indices.validate_query",
 
 			// Request method
 			request -> {

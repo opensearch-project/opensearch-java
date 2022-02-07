@@ -423,7 +423,6 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code indices.put_alias}".
 	 */
 	public static final Endpoint<PutAliasRequest, PutAliasResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/indices.put_alias",
 
 			// Request method
 			request -> {

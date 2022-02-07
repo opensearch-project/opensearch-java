@@ -663,7 +663,6 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	 * Endpoint "{@code termvectors}".
 	 */
 	public static final Endpoint<TermvectorsRequest<?>, TermvectorsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/termvectors",
 
 			// Request method
 			request -> {

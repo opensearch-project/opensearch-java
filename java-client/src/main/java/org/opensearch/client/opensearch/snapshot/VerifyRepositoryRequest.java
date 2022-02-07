@@ -190,7 +190,6 @@ public class VerifyRepositoryRequest extends RequestBase {
 	 * Endpoint "{@code snapshot.verify_repository}".
 	 */
 	public static final Endpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/snapshot.verify_repository",
 
 			// Request method
 			request -> {

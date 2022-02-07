@@ -150,7 +150,6 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
 	 */
 	public static final Endpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ErrorResponse>
 			_ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/update_by_query_rethrottle",
 
 			// Request method
 			request -> {

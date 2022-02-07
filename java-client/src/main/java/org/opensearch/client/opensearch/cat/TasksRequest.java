@@ -224,7 +224,6 @@ public class TasksRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.tasks}".
 	 */
 	public static final Endpoint<TasksRequest, TasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/cat.tasks",
 
 			// Request method
 			request -> {

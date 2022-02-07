@@ -65,7 +65,6 @@ public class GeoIpStatsRequest extends RequestBase {
 	 * Endpoint "{@code ingest.geo_ip_stats}".
 	 */
 	public static final Endpoint<GeoIpStatsRequest, GeoIpStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/ingest.geo_ip_stats",
 
 			// Request method
 			request -> {

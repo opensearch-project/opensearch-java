@@ -315,7 +315,6 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 	 * Endpoint "{@code cluster.allocation_explain}".
 	 */
 	public static final Endpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/cluster.allocation_explain",
 
 			// Request method
 			request -> {

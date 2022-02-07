@@ -506,7 +506,6 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	 * Endpoint "{@code indices.analyze}".
 	 */
 	public static final Endpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/indices.analyze",
 
 			// Request method
 			request -> {

@@ -295,7 +295,6 @@ public class IndicesRequest extends CatRequestBase {
 	 * Endpoint "{@code cat.indices}".
 	 */
 	public static final Endpoint<IndicesRequest, IndicesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/cat.indices",
 
 			// Request method
 			request -> {

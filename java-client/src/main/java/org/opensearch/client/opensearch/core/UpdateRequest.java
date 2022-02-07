@@ -798,7 +798,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	/**
 	 * Endpoint "{@code update}".
 	 */
-	public static final SimpleEndpoint<UpdateRequest<?, ?>, ?> _ENDPOINT = new SimpleEndpoint<>("opensearch/update",
+	public static final SimpleEndpoint<UpdateRequest<?, ?>, ?> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {

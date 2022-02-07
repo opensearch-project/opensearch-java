@@ -54,7 +54,6 @@ public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<Request
         return (Function<T, Map<String, String>>) EMPTY_MAP;
     }
 
-    private final String id;
     private final Function<RequestT, String> method;
     private final Function<RequestT, String> requestUrl;
     private final Function<RequestT, Map<String, String>> queryParameters;
@@ -63,7 +62,6 @@ public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<Request
     private final JsonpDeserializer<ResponseT> responseParser;
 
     public SimpleEndpoint(
-        String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
         Function<RequestT, Map<String, String>> queryParameters,
@@ -71,18 +69,12 @@ public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<Request
         boolean hasRequestBody,
         JsonpDeserializer<ResponseT> responseParser
     ) {
-        this.id = id;
         this.method = method;
         this.requestUrl = requestUrl;
         this.queryParameters = queryParameters;
         this.headers = headers;
         this.hasRequestBody = hasRequestBody;
         this.responseParser = responseParser;
-    }
-
-    @Override
-    public String id() {
-        return this.id;
     }
 
     @Override
@@ -130,7 +122,6 @@ public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<Request
         JsonpDeserializer<NewResponseT> newResponseParser
     ) {
         return new SimpleEndpoint<>(
-            id,
             method,
             requestUrl,
             queryParameters,

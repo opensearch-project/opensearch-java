@@ -136,7 +136,6 @@ public class GetNodeRequest extends RequestBase {
 	 * Endpoint "{@code shutdown.get_node}".
 	 */
 	public static final Endpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/shutdown.get_node",
 
 			// Request method
 			request -> {

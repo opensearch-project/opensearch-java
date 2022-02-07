@@ -98,7 +98,7 @@ public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
             assertEquals(e.response().status(), 400);
             assertEquals(
                     e.getMessage(),
-                    "[opensearch/cluster.put_settings] failed: [illegal_argument_exception] " +
+                    "Request failed: [illegal_argument_exception] " +
                             "transient setting [no_idea_what_you_are_talking_about], not recognized"
             );
         }

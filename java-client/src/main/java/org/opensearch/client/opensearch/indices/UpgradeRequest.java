@@ -286,7 +286,6 @@ public class UpgradeRequest extends RequestBase {
 	 * Endpoint "{@code indices.upgrade}".
 	 */
 	public static final Endpoint<UpgradeRequest, UpgradeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/indices.upgrade",
 
 			// Request method
 			request -> {

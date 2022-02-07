@@ -43,19 +43,10 @@ package org.opensearch.client.opensearch._types;
 public class OpenSearchException extends RuntimeException {
 
 	private final ErrorResponse response;
-	private final String endpointId;
 
-	public OpenSearchException(String endpointId, ErrorResponse response) {
-		super("[" + endpointId + "] failed: [" + response.error().type() + "] " + response.error().reason());
+	public OpenSearchException(ErrorResponse response) {
+		super("Request failed: [" + response.error().type() + "] " + response.error().reason());
 		this.response = response;
-		this.endpointId = endpointId;
-	}
-
-	/**
-	 * Identifier of the API endpoint that failed to be called.
-	 */
-	public String endpointId() {
-		return this.endpointId;
 	}
 
 	/**

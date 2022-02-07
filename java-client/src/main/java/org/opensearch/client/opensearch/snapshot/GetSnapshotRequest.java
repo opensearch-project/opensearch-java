@@ -369,7 +369,6 @@ public class GetSnapshotRequest extends RequestBase {
 	 * Endpoint "{@code snapshot.get}".
 	 */
 	public static final Endpoint<GetSnapshotRequest, GetSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"opensearch/snapshot.get",
 
 			// Request method
 			request -> {

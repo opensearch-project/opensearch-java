@@ -51,7 +51,7 @@ public class IndicesClientIT extends OpenSearchRestHighLevelClientTestCase {
                 assertNotNull(ex);
                 assertEquals(ex.status(), 404);
                 assertEquals(ex.getMessage(),
-                        "[opensearch/indices.get] failed: [index_not_found_exception] " +
+                        "Request failed: [index_not_found_exception] " +
                                 "no such index [non_existent_index]");
             }
         }
@@ -104,7 +104,7 @@ public class IndicesClientIT extends OpenSearchRestHighLevelClientTestCase {
             assertNotNull(ex);
             assertEquals(ex.status(), 404);
             assertEquals(ex.getMessage(),
-                    "[opensearch/indices.get_settings] failed: [index_not_found_exception] " +
+                    "Request failed: [index_not_found_exception] " +
                             "no such index [index_that_doesnt_exist]");
         }
     }
