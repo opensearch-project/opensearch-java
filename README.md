@@ -20,11 +20,10 @@ For more information, see [opensearch.org](https://opensearch.org/).
 This client is meant to replace the existing [OpenSearch Java High Level REST Client](https://opensearch.org/docs/latest/clients/java-rest-high-level/).
 
 
-**Note: This project is in beta stage and is for testing and feedback purposes only.**
 ## Project Resources
 
 * [Project Website](https://opensearch.org/)
-* [Downloads](https://opensearch.org/downloads.html).
+* [Downloads](https://opensearch.org/downloads.html)
 * [Documentation](https://opensearch.org/docs/)
 * Need help? Try [Forums](https://discuss.opendistrocommunity.dev/)
 * [Project Principles](https://opensearch.org/#principles)
@@ -52,29 +51,29 @@ try (RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200))
         String index = "test-index";
 
         // Create Client
-        Transport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
+        OpenSearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
         OpenSearchClient client = new OpenSearchClient(transport);
 
         // Create Index
-        CreateRequest createIndexRequest = new CreateRequest.Builder().index(index).build();
-        CreateResponse createIndexResponse = client.indices().create(createIndexRequest);
-        assert createIndexResponse.acknowledged();
+        CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(index).build();
+        CreateIndexResponse createIndexResponse = client.indices().create(createIndexRequest);
+        assert createIndexResponse.shardsAcknowledged();
 
         // Index Document
-        IndexData indexData = new IndexData("foo", "bar");
-        IndexRequest<IndexData> indexRequest = new IndexRequest.Builder<IndexData>().index(index).id("1").value(indexData).build();
+        AppData appData = new AppData(1337, "foo");
+
+        IndexRequest<AppData> indexRequest = new IndexRequest.Builder<AppData>().index("index").id("1").document(appData).build();
         IndexResponse indexResponse = client.index(indexRequest);
-        assert Objects.equals(indexResponse.id(), "1");
+        assertEquals(Result.Created, indexResponse.result());
 
         // Search Documents
-        SearchResponse<IndexData> searchResponse = client.search(s -> s.index(index), IndexData.class);
-        assert !searchResponse.hits().hits().isEmpty();
-        searchResponse.hits().hits().stream().map(Hit::source).forEach(System.out::println);
+        SearchResponse<AppData> search = client.search(b -> b.index(index), AppData.class);
+        assertEquals(1, search.hits().total().value());
 
         // Delete Index
-        DeleteRequest deleteRequest = new DeleteRequest.Builder().index(index).build();
-        DeleteResponse deleteResponse = client.indices().delete(deleteRequest);
-        assert deleteResponse.acknowledged();
+        DeleteIndexRequest deleteRequest = new DeleteIndexRequest.Builder().index(index).build();
+        DeleteIndexResponse deleteResponse = client.indices().delete(deleteRequest);
+        assert deleteResponse.shardsAcknowledged();
         }
 ```
 

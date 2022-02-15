@@ -1,6 +1,13 @@
 #!/usr/bin/env sh
 
 #
+# SPDX-License-Identifier: Apache-2.0
+#
+# The OpenSearch Contributors require contributions made to
+# this file be licensed under the Apache-2.0 license or a
+# compatible open source license.
+#
+#
 # Licensed to Elasticsearch B.V. under one or more contributor
 # license agreements. See the NOTICE file distributed with
 # this work for additional information regarding copyright
@@ -34,6 +41,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+# Modifications Copyright OpenSearch Contributors. See
+# GitHub history for details.
+
 
 ##############################################################################
 ##

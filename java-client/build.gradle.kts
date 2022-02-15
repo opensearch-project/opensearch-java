@@ -236,7 +236,7 @@ publishing {
                 name.set("OpenSearch Java Client")
                 packaging = "jar"
                 artifactId = "opensearch-java"
-                description.set("High level OpenSearch Java Client. This is a pre-release of 1.0.0 and is for testing and feedback purposes only.")
+                description.set("High level OpenSearch Java Client.")
                 url.set("https://github.com/opensearch-project/opensearch-java/")
                 scm {
                     connection.set("scm:git@github.com:opensearch-project/opensearch-java.git")
