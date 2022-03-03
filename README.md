@@ -10,6 +10,7 @@ OpenSearch Java Client
 - [Welcome!](#welcome)
 - [Project Resources](#project-resources)
 - [Code of Conduct](#code-of-conduct)
+- [Security](#security)
 - [License](#license)
 - [Copyright](#copyright)
 
@@ -33,53 +34,13 @@ This client is meant to replace the existing [OpenSearch Java High Level REST Cl
 * [Admin Responsibilities](ADMINS.md)
 * [Security](SECURITY.md)
 
-## Setup
-
-1. Set `JAVA_HOME` to point to a JDK >= 11
-2. Checkout and build the [opensearch-java](https://github.com/opensearch-project/opensearch-java) project.
-```shell
-git clone https://github.com/opensearch-project/opensearch-java.git
-cd opensearch-java
-./gradlew build
-```
-3. Launch Intellij IDEA, choose Import Project, and select the `settings.gradle.kts` file in the root of this project.
-
-## Example
-
-```java
-try (RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build()) {
-        String index = "test-index";
-
-        // Create Client
-        OpenSearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
-        OpenSearchClient client = new OpenSearchClient(transport);
-
-        // Create Index
-        CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(index).build();
-        CreateIndexResponse createIndexResponse = client.indices().create(createIndexRequest);
-        assert createIndexResponse.shardsAcknowledged();
-
-        // Index Document
-        AppData appData = new AppData(1337, "foo");
-
-        IndexRequest<AppData> indexRequest = new IndexRequest.Builder<AppData>().index("index").id("1").document(appData).build();
-        IndexResponse indexResponse = client.index(indexRequest);
-        assertEquals(Result.Created, indexResponse.result());
-
-        // Search Documents
-        SearchResponse<AppData> search = client.search(b -> b.index(index), AppData.class);
-        assertEquals(1, search.hits().total().value());
-
-        // Delete Index
-        DeleteIndexRequest deleteRequest = new DeleteIndexRequest.Builder().index(index).build();
-        DeleteIndexResponse deleteResponse = client.indices().delete(deleteRequest);
-        assert deleteResponse.shardsAcknowledged();
-        }
-```
-
 ## Code of Conduct
 
 This project has adopted the [Amazon Open Source Code of Conduct](CODE_OF_CONDUCT.md). For more information see the [Code of Conduct FAQ](https://aws.github.io/code-of-conduct-faq), or contact [opensource-codeofconduct@amazon.com](mailto:opensource-codeofconduct@amazon.com) with any additional questions or comments.
+
+## Security
+
+If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](http://aws.amazon.com/security/vulnerability-reporting/) or directly via email to aws-security@amazon.com. Please do **not** create a public GitHub issue.
 
 ## License
 
