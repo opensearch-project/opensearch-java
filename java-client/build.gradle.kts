@@ -51,6 +51,10 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "1.17"
 }
 
+checkstyle {
+    toolVersion = "10.0"
+}
+
 java {
     targetCompatibility = JavaVersion.VERSION_1_8
     sourceCompatibility = JavaVersion.VERSION_1_8
