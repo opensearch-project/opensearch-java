@@ -59,7 +59,9 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
 
     public JacksonJsonpMapper(ObjectMapper objectMapper, JsonFactory jsonFactory) {
         this.provider = new JacksonJsonProvider(jsonFactory);
-        this.objectMapper = objectMapper;
+        this.objectMapper = objectMapper
+            .configure(SerializationFeature.INDENT_OUTPUT, false)
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
     public JacksonJsonpMapper() {

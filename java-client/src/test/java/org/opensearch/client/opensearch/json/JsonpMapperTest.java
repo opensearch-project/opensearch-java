@@ -71,8 +71,8 @@ public class JsonpMapperTest extends Assert {
     @Test
     public void testJackson() {
         JacksonJsonpMapper mapper = new JacksonJsonpMapper();
-        testSerialize(new JacksonJsonpMapper(), json);
-        testDeserialize(new JacksonJsonpMapper(), json);
+        testSerialize(mapper, json);
+        testDeserialize(mapper, json);
     }
 
     @Test
@@ -108,7 +108,7 @@ public class JsonpMapperTest extends Assert {
             .build();
 
         final Writer writer = new StringWriter();
-        try (JsonGenerator generator = mapper.jsonpProvider().createGenerator(writer)){
+        try (JsonGenerator generator = mapper.jsonProvider().createGenerator(writer)){
             generator.write(json);
         }
 
