@@ -36,15 +36,23 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.databind.MappingJsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.datatype.jsonp.JSONPModule;
+
+import jakarta.json.Json;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.junit.Assert;
 import org.junit.Test;
+import org.opensearch.core.internal.io.IOUtils;
 
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Collections;
 import java.util.List;
 
@@ -63,8 +71,8 @@ public class JsonpMapperTest extends Assert {
     @Test
     public void testJackson() {
         JacksonJsonpMapper mapper = new JacksonJsonpMapper();
-        testSerialize(new JacksonJsonpMapper(), json);
-        testDeserialize(new JacksonJsonpMapper(), json);
+        testSerialize(mapper, json);
+        testDeserialize(mapper, json);
     }
 
     @Test
@@ -80,6 +88,32 @@ public class JsonpMapperTest extends Assert {
 
         testSerialize(mapper, json);
         testDeserialize(mapper, json);
+    }
+
+    @Test
+    public void testJacksonCustomJsonFactory() {
+        final ObjectMapper jkMapper = new ObjectMapper().registerModule(new JSONPModule());
+        final JsonFactory jsonFactory = new MappingJsonFactory(jkMapper);
+        final JacksonJsonpMapper mapper = new JacksonJsonpMapper(jkMapper, jsonFactory);
+
+        final JsonValue json = Json.createObjectBuilder()
+            .add("children", Json
+                .createArrayBuilder()
+                .add(Json.createObjectBuilder()
+                    .add("doubleValue", 3.2)
+                    .add("intValue", 2)))
+            .add("doubleValue", "2.1")
+            .add("intValue", 1)
+            .add("stringValue", "foo")
+            .build();
+
+        final Writer writer = new StringWriter();
+        try (JsonGenerator generator = mapper.jsonProvider().createGenerator(writer)){
+            generator.write(json);
+        }
+
+        testDeserialize(mapper, writer.toString());
+        IOUtils.closeWhileHandlingException(writer);
     }
 
     private void testSerialize(JsonpMapper mapper, String expected) {
