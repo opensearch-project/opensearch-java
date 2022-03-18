@@ -1,4 +1,4 @@
-name: Build
+name: Unit
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - "*"
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 14
@@ -20,5 +20,5 @@ jobs:
       - name: Checkout Branch
         uses: actions/checkout@v2
 
-      - name: Build with Gradle
-        run: ./gradlew clean build -x test
+      - name: Run Unit Test
+        run: ./gradlew clean unitTest

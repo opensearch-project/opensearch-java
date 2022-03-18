@@ -17,4 +17,7 @@ gradle-app.setting
 .idea
 *.iml
 
+# vscode
+.vscode/
+
 .ci/output

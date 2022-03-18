@@ -1,4 +1,5 @@
-FROM opensearchproject/opensearch:latest
+ARG OPENSEARCH_VERSION
+FROM opensearchproject/opensearch:$OPENSEARCH_VERSION
 
 ARG opensearch_path=/usr/share/opensearch
 ARG opensearch_yml=$opensearch_path/config/opensearch.yml

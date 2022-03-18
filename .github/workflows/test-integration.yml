@@ -1,0 +1,47 @@
+name: Integration
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        opensearch_version:
+          - 1.0.0
+          - 1.0.1
+          - 1.1.0
+          - 1.2.0
+          - 1.2.1
+          - 1.2.2
+          - 1.2.3
+          - 1.2.4
+          - 1.3.0
+    steps:
+      - name: Set up JDK 14
+        uses: actions/setup-java@v2
+        with:
+          java-version: '14'
+          distribution: 'adopt'
+
+      - name: Checkout Branch
+        uses: actions/checkout@v2
+
+      - name: Run Docker
+        run: |
+          docker-compose --project-directory .ci/opensearch build --build-arg OPENSEARCH_VERSION=${{ matrix.opensearch_version }}
+          docker-compose --project-directory .ci/opensearch up -d
+          sleep 60
+
+      - name: Run Integration Test
+        run: ./gradlew clean integrationTest
+
+      - name: Stop Docker
+        run: |
+          docker-compose --project-directory .ci/opensearch down
