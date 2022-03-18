@@ -2,7 +2,7 @@ name: Code style and license headers
 
 on: [pull_request]
 jobs:
-  build:
+  checkstyle:
     runs-on: ubuntu-latest
     strategy:
       matrix:

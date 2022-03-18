@@ -10,6 +10,7 @@ OpenSearch Java Client
 - [Welcome!](#welcome)
 - [Project Resources](#project-resources)
 - [Code of Conduct](#code-of-conduct)
+- [Compatibility with OpenSearch](#compatibility-with-opensearch)
 - [Security](#security)
 - [License](#license)
 - [Copyright](#copyright)
@@ -38,6 +39,9 @@ This client is meant to replace the existing [OpenSearch Java High Level REST Cl
 
 This project has adopted the [Amazon Open Source Code of Conduct](CODE_OF_CONDUCT.md). For more information see the [Code of Conduct FAQ](https://aws.github.io/code-of-conduct-faq), or contact [opensource-codeofconduct@amazon.com](mailto:opensource-codeofconduct@amazon.com) with any additional questions or comments.
 
+## Compatibility with OpenSearch
+
+See [Compatibility](COMPATIBILITY.md).
 ## Security
 
 If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](http://aws.amazon.com/security/vulnerability-reporting/) or directly via email to aws-security@amazon.com. Please do **not** create a public GitHub issue.
