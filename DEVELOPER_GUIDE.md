@@ -34,13 +34,6 @@ Download and install [Docker](https://docs.docker.com/install/), required for ru
 
 ### Build
 
-To build the java-client, start an OpenSearch cluster using docker:
-
-```
-docker build -t opensearch-search:test -f .ci/opensearch/Dockerfile --build-arg "SECURE_INTEGRATION=true" .
-docker run -p 9200:9200 -p 9600:9600 -d -e "discovery.type=single-node" opensearch-search:test
-```
-
 To build the java-client:
 
 ```
@@ -59,11 +52,11 @@ To run unit tests for the java-client:
 
 #### Integration Tests
 
-To run integration tests for the java-client, start an OpenSearch cluster using docker:
+To run integration tests for the java-client, start an OpenSearch cluster using docker and pass the OpenSearch version:
 
 ```
-docker build -t opensearch-search:test -f .ci/opensearch/Dockerfile --build-arg "SECURE_INTEGRATION=true" .
-docker run -p 9200:9200 -p 9600:9600 -d -e "discovery.type=single-node" opensearch-search:test
+docker-compose --project-directory .ci/opensearch build --build-arg OPENSEARCH_VERSION=1.3.0
+docker-compose --project-directory .ci/opensearch up -d
 ```
 
 Run integration tests after starting OpenSearch cluster:
