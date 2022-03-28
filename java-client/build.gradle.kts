@@ -149,7 +149,7 @@ dependencies {
     // Apache 2.0
 
     implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
-    implementation("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
+    implementation("com.fasterxml.jackson.core", "jackson-databind", "2.12.6.1")
     testImplementation("com.fasterxml.jackson.datatype", "jackson-datatype-jakarta-jsonp", jacksonVersion)
 
     // EPL-2.0 OR BSD-3-Clause
