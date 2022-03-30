@@ -124,6 +124,7 @@ dependencies {
 
     val opensearchVersion = "1.2.4"
     val jacksonVersion = "2.12.6"
+    val jacksonDatabindVersion = "2.12.6.1"
 
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
@@ -149,7 +150,7 @@ dependencies {
     // Apache 2.0
 
     implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
-    implementation("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
+    implementation("com.fasterxml.jackson.core", "jackson-databind", jacksonDatabindVersion)
     testImplementation("com.fasterxml.jackson.datatype", "jackson-datatype-jakarta-jsonp", jacksonVersion)
 
     // EPL-2.0 OR BSD-3-Clause
