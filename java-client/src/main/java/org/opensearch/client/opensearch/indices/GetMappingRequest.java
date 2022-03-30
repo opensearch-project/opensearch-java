@@ -80,8 +80,6 @@ public class GetMappingRequest extends RequestBase {
 	@Nullable
 	private final Time masterTimeout;
 
-	private final List<String> type;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private GetMappingRequest(Builder builder) {
@@ -93,7 +91,6 @@ public class GetMappingRequest extends RequestBase {
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
-		this.type = ApiTypeHelper.unmodifiable(builder.type);
 
 	}
 
@@ -174,15 +171,6 @@ public class GetMappingRequest extends RequestBase {
 		return this.masterTimeout;
 	}
 
-	/**
-	 * A comma-separated list of document types
-	 * <p>
-	 * API name: {@code type}
-	 */
-	public final List<String> type() {
-		return this.type;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -210,9 +198,6 @@ public class GetMappingRequest extends RequestBase {
 
 		@Nullable
 		private Time masterTimeout;
-
-		@Nullable
-		private List<String> type;
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -328,30 +313,6 @@ public class GetMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of document types
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>type</code>.
-		 */
-		public final Builder type(List<String> list) {
-			this.type = _listAddAll(this.type, list);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds one or more values to <code>type</code>.
-		 */
-		public final Builder type(String value, String... values) {
-			this.type = _listAdd(this.type, value, values);
-			return this;
-		}
-
-		/**
 		 * Builds a {@link GetMappingRequest}.
 		 *
 		 * @throws NullPointerException
@@ -380,14 +341,11 @@ public class GetMappingRequest extends RequestBase {
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
-				if (ApiTypeHelper.isDefined(request.type()))
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -399,22 +357,6 @@ public class GetMappingRequest extends RequestBase {
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_mapping");
-					return buf.toString();
-				}
-				if (propsSet == (_type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_mapping");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_mapping");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

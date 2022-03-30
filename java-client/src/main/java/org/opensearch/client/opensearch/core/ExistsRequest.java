@@ -89,9 +89,6 @@ public class ExistsRequest extends RequestBase {
 	private final List<String> storedFields;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final Long version;
 
 	@Nullable
@@ -111,7 +108,6 @@ public class ExistsRequest extends RequestBase {
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
-		this.type = builder.type;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
@@ -219,17 +215,6 @@ public class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * The type of the document (use <code>_all</code> to fetch the first document
-	 * matching the ID across all types)
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * Explicit version number for concurrency control
 	 * <p>
 	 * API name: {@code version}
@@ -283,9 +268,6 @@ public class ExistsRequest extends RequestBase {
 
 		@Nullable
 		private List<String> storedFields;
-
-		@Nullable
-		private String type;
 
 		@Nullable
 		private Long version;
@@ -448,17 +430,6 @@ public class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * The type of the document (use <code>_all</code> to fetch the first document
-		 * matching the ID across all types)
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * Explicit version number for concurrency control
 		 * <p>
 		 * API name: {@code version}
@@ -509,30 +480,17 @@ public class ExistsRequest extends RequestBase {
 			request -> {
 				final int _index = 1 << 0;
 				final int _id = 1 << 1;
-				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
 				propsSet |= _id;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_doc");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.id, buf);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type | _id)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();

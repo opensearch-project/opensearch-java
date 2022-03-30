@@ -124,9 +124,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	private final Time timeout;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final Boolean writeIndexOnly;
 
 	// ---------------------------------------------------------------------------------------------
@@ -151,7 +148,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
 		this.runtime = ApiTypeHelper.unmodifiable(builder.runtime);
 		this.timeout = builder.timeout;
-		this.type = builder.type;
 		this.writeIndexOnly = builder.writeIndexOnly;
 
 	}
@@ -349,16 +345,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * The name of the document type
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * When true, applies mappings only to the write index of an alias or data
 	 * stream
 	 * <p>
@@ -532,9 +518,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 		@Nullable
 		private Time timeout;
-
-		@Nullable
-		private String type;
 
 		@Nullable
 		private Boolean writeIndexOnly;
@@ -918,16 +901,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * The name of the document type
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * When true, applies mappings only to the write index of an alias or data
 		 * stream
 		 * <p>
@@ -993,13 +966,10 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
@@ -1008,61 +978,11 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 					buf.append("/_mapping");
 					return buf.toString();
 				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
-					buf.append("/_mapping");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_mapping");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
-					buf.append("/_mappings");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_mappings");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
-					return buf.toString();
-				}
-				if (propsSet == (_type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_mappings");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
-					return buf.toString();
-				}
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_mappings");
-					return buf.toString();
-				}
-				if (propsSet == (_type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_mapping");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

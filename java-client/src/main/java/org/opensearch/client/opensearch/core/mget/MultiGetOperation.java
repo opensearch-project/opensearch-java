@@ -72,9 +72,6 @@ public class MultiGetOperation implements JsonpSerializable {
 	private final List<String> storedFields;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final Long version;
 
 	@Nullable
@@ -89,7 +86,6 @@ public class MultiGetOperation implements JsonpSerializable {
 		this.routing = builder.routing;
 		this.source = builder.source;
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
-		this.type = builder.type;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
@@ -135,14 +131,6 @@ public class MultiGetOperation implements JsonpSerializable {
 	 */
 	public final List<String> storedFields() {
 		return this.storedFields;
-	}
-
-	/**
-	 * API name: {@code _type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
 	}
 
 	/**
@@ -200,11 +188,6 @@ public class MultiGetOperation implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.type != null) {
-			generator.writeKey("_type");
-			generator.write(this.type);
-
-		}
 		if (this.version != null) {
 			generator.writeKey("version");
 			generator.write(this.version);
@@ -237,9 +220,6 @@ public class MultiGetOperation implements JsonpSerializable {
 
 		@Nullable
 		private List<String> storedFields;
-
-		@Nullable
-		private String type;
 
 		@Nullable
 		private Long version;
@@ -307,14 +287,6 @@ public class MultiGetOperation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code version}
 		 */
 		public final Builder version(@Nullable Long value) {
@@ -359,7 +331,6 @@ public class MultiGetOperation implements JsonpSerializable {
 		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 

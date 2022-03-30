@@ -87,9 +87,6 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	private final Time timeout;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final Long version;
 
 	@Nullable
@@ -113,7 +110,6 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
-		this.type = builder.type;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 		this.waitForActiveShards = builder.waitForActiveShards;
@@ -186,16 +182,6 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	@Nullable
 	public final Time timeout() {
 		return this.timeout;
-	}
-
-	/**
-	 * The type of the document
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
 	}
 
 	/**
@@ -273,9 +259,6 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 
 		@Nullable
 		private Time timeout;
-
-		@Nullable
-		private String type;
 
 		@Nullable
 		private Long version;
@@ -361,16 +344,6 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		 */
 		public final Builder<TDocument> timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.timeout(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
-		 * The type of the document
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public final Builder<TDocument> type(@Nullable String value) {
-			this.type = value;
-			return this;
 		}
 
 		/**
@@ -479,14 +452,11 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 			request -> {
 				final int _index = 1 << 0;
 				final int _id = 1 << 1;
-				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
 				propsSet |= _id;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -495,17 +465,6 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 					buf.append("/_create");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.id, buf);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type | _id)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.id, buf);
-					buf.append("/_create");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

@@ -616,51 +616,6 @@ public class OpenSearchIndicesClient extends ApiClient<OpenSearchTransport, Open
 				this.transportOptions);
 	}
 
-	// ----- Endpoint: indices.flush_synced
-
-	/**
-	 * Performs a synced flush operation on one or more indices. Synced flush is
-	 * deprecated and will be removed in 8.0. Use flush instead
-	 * 
-	 *
-	 */
-
-	public FlushSyncedResponse flushSynced(FlushSyncedRequest request) throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<FlushSyncedRequest, FlushSyncedResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<FlushSyncedRequest, FlushSyncedResponse, ErrorResponse>) FlushSyncedRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Performs a synced flush operation on one or more indices. Synced flush is
-	 * deprecated and will be removed in 8.0. Use flush instead
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link FlushSyncedRequest}
-	 *
-	 */
-
-	public final FlushSyncedResponse flushSynced(
-			Function<FlushSyncedRequest.Builder, ObjectBuilder<FlushSyncedRequest>> fn)
-			throws IOException, OpenSearchException {
-		return flushSynced(fn.apply(new FlushSyncedRequest.Builder()).build());
-	}
-
-	/**
-	 * Performs a synced flush operation on one or more indices. Synced flush is
-	 * deprecated and will be removed in 8.0. Use flush instead
-	 * 
-	 *
-	 */
-
-	public FlushSyncedResponse flushSynced() throws IOException, OpenSearchException {
-		return this.transport.performRequest(new FlushSyncedRequest.Builder().build(), FlushSyncedRequest._ENDPOINT,
-				this.transportOptions);
-	}
-
 	// ----- Endpoint: indices.forcemerge
 
 	/**

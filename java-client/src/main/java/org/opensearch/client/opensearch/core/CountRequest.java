@@ -115,8 +115,6 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Long terminateAfter;
 
-	private final List<String> type;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private CountRequest(Builder builder) {
@@ -137,7 +135,6 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		this.query = builder.query;
 		this.routing = builder.routing;
 		this.terminateAfter = builder.terminateAfter;
-		this.type = ApiTypeHelper.unmodifiable(builder.type);
 
 	}
 
@@ -313,15 +310,6 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A comma-separated list of types to restrict the results
-	 * <p>
-	 * API name: {@code type}
-	 */
-	public final List<String> type() {
-		return this.type;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -394,9 +382,6 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Long terminateAfter;
-
-		@Nullable
-		private List<String> type;
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -604,30 +589,6 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of types to restrict the results
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>type</code>.
-		 */
-		public final Builder type(List<String> list) {
-			this.type = _listAddAll(this.type, list);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of types to restrict the results
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds one or more values to <code>type</code>.
-		 */
-		public final Builder type(String value, String... values) {
-			this.type = _listAdd(this.type, value, values);
-			return this;
-		}
-
-		/**
 		 * Builds a {@link CountRequest}.
 		 *
 		 * @throws NullPointerException
@@ -670,14 +631,11 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
-				if (ApiTypeHelper.isDefined(request.type()))
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -688,15 +646,6 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_count");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_count");
 					return buf.toString();
 				}

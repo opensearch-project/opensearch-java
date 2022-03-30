@@ -69,9 +69,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 	private final Double score;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final Explanation explanation;
 
 	private final Map<String, JsonData> fields;
@@ -120,7 +117,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.score = builder.score;
-		this.type = builder.type;
 		this.explanation = builder.explanation;
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.highlight = ApiTypeHelper.unmodifiable(builder.highlight);
@@ -164,14 +160,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 	@Nullable
 	public final Double score() {
 		return this.score;
-	}
-
-	/**
-	 * API name: {@code _type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
 	}
 
 	/**
@@ -310,11 +298,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 			generator.write(this.score);
 
 		}
-		if (this.type != null) {
-			generator.writeKey("_type");
-			generator.write(this.type);
-
-		}
 		if (this.explanation != null) {
 			generator.writeKey("_explanation");
 			this.explanation.serialize(generator, mapper);
@@ -448,9 +431,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 		private Double score;
 
 		@Nullable
-		private String type;
-
-		@Nullable
 		private Explanation explanation;
 
 		@Nullable
@@ -519,14 +499,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 		 */
 		public final Builder<TDocument> score(@Nullable Double value) {
 			this.score = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code _type}
-		 */
-		public final Builder<TDocument> type(@Nullable String value) {
-			this.type = value;
 			return this;
 		}
 
@@ -785,7 +757,6 @@ public class Hit<TDocument> implements JsonpSerializable {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "_score");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(Builder::explanation, Explanation._DESERIALIZER, "_explanation");
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "fields");
 		op.add(Builder::highlight, JsonpDeserializer.stringMapDeserializer(

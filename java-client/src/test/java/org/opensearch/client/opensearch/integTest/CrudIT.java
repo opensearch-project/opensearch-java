@@ -66,14 +66,12 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
             DeleteResponse deleteResponse = highLevelClient().delete(d -> d.id(docId).index(index));
             assertEquals(deleteResponse.index(), index);
             assertEquals(deleteResponse.id(), docId);
-            assertEquals(deleteResponse.type(), "_doc");
             assertEquals(deleteResponse.result(), Result.Deleted);
 
             String docIdTemp = "does_not_exist";
             DeleteResponse deleteResponseDocNotExist = highLevelClient().delete(d -> d.id(docIdTemp).index(index));
             assertEquals(deleteResponseDocNotExist.index(), index);
             assertEquals(deleteResponseDocNotExist.id(), docIdTemp);
-            assertEquals(deleteResponseDocNotExist.type(), "_doc");
             assertEquals(deleteResponseDocNotExist.result(), Result.NotFound);
 
         }
@@ -164,7 +162,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     , AppData.class
             );
             assertEquals("index", getResponse.index());
-            assertEquals("_doc", getResponse.type());
             assertEquals("id", getResponse.id());
             assertTrue(getResponse.found());
             assertEquals(java.util.Optional.of(1L), java.util.Optional.of(getResponse.version()));
@@ -178,7 +175,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     , AppData.class
             );
             assertEquals("index", getResponse.index());
-            assertEquals("_doc", getResponse.type());
             assertEquals("does_not_exist", getResponse.id());
             assertFalse(getResponse.found());
             assertNull(getResponse.version());
@@ -193,7 +189,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
 
         highLevelClient().index(b -> b
                 .index("index")
-                .type("type")
                 .id("id")
                 .document(appData)
                 .refresh(Refresh.True));
@@ -201,12 +196,10 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
         GetResponse<AppData> getResponse = highLevelClient().get(b -> b
                         .index("index")
                         .id("id")
-                        .type("type")
                 , AppData.class
         );
 
         assertEquals("index", getResponse.index());
-        assertEquals("type", getResponse.type());
         assertEquals("id", getResponse.id());
 
         assertTrue(getResponse.found());
@@ -232,7 +225,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
 
             assertTrue(response.docs().get(0).isFailure());
             assertEquals("id1", response.docs().get(0).failure().id());
-            assertNull(response.docs().get(0).failure().type());
             assertEquals("index", response.docs().get(0).failure().index());
             assertEquals(
                     "no such index [index]",
@@ -240,7 +232,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
             );
             assertTrue(response.docs().get(1).isFailure());
             assertEquals("id2", response.docs().get(1).failure().id());
-            assertNull(response.docs().get(1).failure().type());
             assertEquals("index", response.docs().get(1).failure().index());
             assertEquals(
                     "no such index [index]",
@@ -269,7 +260,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
             } catch (OpenSearchException e) {
                 assertEquals(
                         "Request failed: [document_missing_exception] " +
-                                "[_doc][does_not_exist]: document missing",
+                                "[does_not_exist]: document missing",
                         e.getMessage()
                 );
                 assertEquals(404, e.status());
@@ -317,7 +308,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
         IndexRequest<AppData> indexRequest = new IndexRequest.Builder<AppData>()
                 .index("index")
                 .id("id")
-                .type("type")
                 .document(appData)
                 .build();
         IndexResponse indexResponse = highLevelClient().index(indexRequest);
@@ -325,7 +315,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
         UpdateRequest<AppData, AppData> updateRequest = new UpdateRequest.Builder<AppData, AppData>()
                 .index("index")
                 .id("id")
-                .type("type")
                 .doc(updatedAppData)
                 .build();
         UpdateResponse<AppData> updateResponse = highLevelClient().update(updateRequest, AppData.class);
@@ -413,7 +402,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
             BulkResponseItem bulkResponseItem = bulkResponse.items().get(i);
 
             assertEquals("index", bulkResponseItem.index());
-            assertEquals("_doc", bulkResponseItem.type());
             assertEquals(String.valueOf(i), bulkResponseItem.id());
 
             BulkOperation bulkOperation = bulkRequest.operations().get(i);
@@ -439,7 +427,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
         {
             IndexResponse response = highLevelClient().index(b -> b.index(indexPattern).id("id#1").document(appData));
             assertEquals(expectedIndex, response.index());
-            assertEquals("_doc", response.type());
             assertEquals("id#1", response.id());
         }
         {
@@ -447,7 +434,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     .index(indexPattern).id("id#1"), AppData.class);
             assertTrue(getResponse.found());
             assertEquals(expectedIndex, getResponse.index());
-            assertEquals("_doc", getResponse.type());
             assertEquals("id#1", getResponse.id());
         }
 
@@ -455,7 +441,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
         {
             IndexResponse indexResponse = highLevelClient().index(b -> b.index("index").id(docId).document(appData));
             assertEquals("index", indexResponse.index());
-            assertEquals("_doc", indexResponse.type());
             assertEquals(docId, indexResponse.id());
         }
         {
@@ -463,7 +448,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     .index("index").id(docId), AppData.class);
             assertTrue(getResponse.found());
             assertEquals("index", getResponse.index());
-            assertEquals("_doc", getResponse.type());
             assertEquals(docId, getResponse.id());
         }
 
@@ -479,7 +463,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
             appData.setMsg("foo");
             IndexResponse response = highLevelClient().index(b -> b.index("index").id(id).document(appData).routing(routing));
             assertEquals("index", response.index());
-            assertEquals("_doc", response.type());
             assertEquals(id, response.id());
         }
         {
@@ -487,7 +470,6 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     .index("index").id("id").routing(routing), AppData.class);
             assertTrue(getResponse.found());
             assertEquals("index", getResponse.index());
-            assertEquals("_doc", getResponse.type());
             assertEquals("id", getResponse.id());
             assertEquals(routing, getResponse.routing());
         }

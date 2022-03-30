@@ -96,9 +96,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<String> storedFields;
 
-	@Nullable
-	private final String type;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private MgetRequest(Builder builder) {
@@ -114,7 +111,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
-		this.type = builder.type;
 
 	}
 
@@ -226,16 +222,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The type of the document
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -308,9 +294,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private List<String> storedFields;
-
-		@Nullable
-		private String type;
 
 		/**
 		 * True or false to return the _source field or not, or a list of fields to
@@ -506,16 +489,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The type of the document
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * Builds a {@link MgetRequest}.
 		 *
 		 * @throws NullPointerException
@@ -559,14 +532,11 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -577,15 +547,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/_mget");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/_mget");
 					return buf.toString();
 				}

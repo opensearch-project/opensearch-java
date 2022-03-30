@@ -118,9 +118,6 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	private final Time timeout;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final TDocument upsert;
 
 	@Nullable
@@ -152,7 +149,6 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		this.script = builder.script;
 		this.scriptedUpsert = builder.scriptedUpsert;
 		this.timeout = builder.timeout;
-		this.type = builder.type;
 		this.upsert = builder.upsert;
 		this.waitForActiveShards = builder.waitForActiveShards;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
@@ -331,16 +327,6 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * The type of the document
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * If the document does not already exist, the contents of 'upsert' are inserted
 	 * as a new document. If the document exists, the 'script' is executed.
 	 * <p>
@@ -467,9 +453,6 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
 		@Nullable
 		private Time timeout;
-
-		@Nullable
-		private String type;
 
 		@Nullable
 		private TDocument upsert;
@@ -682,16 +665,6 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * The type of the document
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public final Builder<TDocument, TPartialDocument> type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * If the document does not already exist, the contents of 'upsert' are inserted
 		 * as a new document. If the document exists, the 'script' is executed.
 		 * <p>
@@ -807,14 +780,11 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 			request -> {
 				final int _index = 1 << 0;
 				final int _id = 1 << 1;
-				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
 				propsSet |= _id;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -823,17 +793,6 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 					buf.append("/_update");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.id, buf);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type | _id)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.id, buf);
-					buf.append("/_update");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
