@@ -55,8 +55,8 @@ checkstyle {
 }
 
 java {
-    targetCompatibility = JavaVersion.VERSION_1_8
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_11
 
     withJavadocJar()
     withSourcesJar()
@@ -122,7 +122,7 @@ val integrationTest = task<Test>("integrationTest") {
 
 dependencies {
 
-    val opensearchVersion = "1.2.4"
+    val opensearchVersion = "2.0.0-SNAPSHOT"
     val jacksonVersion = "2.12.6"
     val jacksonDatabindVersion = "2.12.6.1"
 
