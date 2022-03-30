@@ -1,4 +1,4 @@
-name: Integration
+name: Integration with Released OpenSearch
 
 on:
   push:
@@ -31,17 +31,20 @@ jobs:
           java-version: ${{ matrix.entry.java }}
 
       - name: Checkout Branch
+        if: ${{ matrix.opensearch_version != ''}}
         uses: actions/checkout@v2
 
       - name: Run Docker
+        if: ${{ matrix.opensearch_version != ''}}
         run: |
           docker-compose --project-directory .ci/opensearch build --build-arg OPENSEARCH_VERSION=${{ matrix.entry.opensearch_version }}
           docker-compose --project-directory .ci/opensearch up -d
           sleep 60
-
       - name: Run Integration Test
+        if: ${{ matrix.opensearch_version != ''}}
         run: ./gradlew clean integrationTest
 
       - name: Stop Docker
+        if: ${{ matrix.opensearch_version != ''}}
         run: |
           docker-compose --project-directory .ci/opensearch down

@@ -1,0 +1,55 @@
+name: Integration with Unreleased OpenSearch
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+
+env:
+  OPENSEARCH_VERSION: '2.0'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java: [11, 14]
+    steps:
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+
+      - name: Checkout OpenSearch
+        uses: actions/checkout@v2
+        with:
+          repository: opensearch-project/opensearch
+          ref: ${{ env.OPENSEARCH_VERSION }}
+          path: opensearch
+
+      - name: Assemble OpenSearch and Publish to Maven Local
+        run: |
+          cd opensearch
+          ./gradlew assemble
+          ./gradlew publishToMavenLocal
+
+        # This step runs the docker image generated during gradle assemble in OpenSearch. It is tagged as opensearch:test.
+        # Reference: https://github.com/opensearch-project/OpenSearch/blob/2.0/distribution/docker/build.gradle#L190
+      - name: Run Docker Image
+        run: |
+          docker run -p 9200:9200 -p 9600:9600 -d -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" opensearch:test
+          sleep 90
+
+      - name: Checkout Java Client
+        uses: actions/checkout@v2
+        with:
+          path: opensearch-java
+
+      - name: Run Integration Test
+        run: |
+          cd opensearch-java
+          ./gradlew clean integrationTest -Dhttps=false
