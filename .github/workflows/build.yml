@@ -20,7 +20,7 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
 
-      - name: Checkout Branch
+     - name: Checkout Branch
         uses: actions/checkout@v2
 
       - name: Build with Gradle

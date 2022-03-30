@@ -35,7 +35,6 @@ jobs:
         run: |
           cd opensearch
           ./gradlew assemble
-          ./gradlew publishToMavenLocal
 
         # This step runs the docker image generated during gradle assemble in OpenSearch. It is tagged as opensearch:test.
         # Reference: https://github.com/opensearch-project/OpenSearch/blob/2.0/distribution/docker/build.gradle#L190

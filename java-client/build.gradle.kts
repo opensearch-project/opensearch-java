@@ -36,8 +36,9 @@ import java.io.FileWriter
 
 buildscript {
     repositories {
-        mavenCentral()
         mavenLocal()
+        maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots")
+        mavenCentral()
         maven(url = "https://plugins.gradle.org/m2/")
     }
 }
@@ -122,7 +123,7 @@ val integrationTest = task<Test>("integrationTest") {
 
 dependencies {
 
-    val opensearchVersion = "2.0.0-SNAPSHOT"
+    val opensearchVersion = "2.0.0-alpha1-SNAPSHOT"
     val jacksonVersion = "2.12.6"
     val jacksonDatabindVersion = "2.12.6.1"
 

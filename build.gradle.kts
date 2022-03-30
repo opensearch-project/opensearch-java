@@ -37,8 +37,9 @@ allprojects {
         (File(project.rootDir, "config/version.txt").readText().trim() + "-SNAPSHOT")
 
     repositories {
-        mavenCentral()
         mavenLocal()
+        maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots")
+        mavenCentral()
         maven(url = "https://plugins.gradle.org/m2/")
     }
 
