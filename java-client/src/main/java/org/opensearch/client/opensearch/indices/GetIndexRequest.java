@@ -75,9 +75,6 @@ public class GetIndexRequest extends RequestBase {
 	@Nullable
 	private final Boolean includeDefaults;
 
-	@Nullable
-	private final Boolean includeTypeName;
-
 	private final List<String> index;
 
 	@Nullable
@@ -95,7 +92,6 @@ public class GetIndexRequest extends RequestBase {
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
-		this.includeTypeName = builder.includeTypeName;
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
@@ -159,16 +155,6 @@ public class GetIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * If true, a mapping type is expected in the body of mappings.
-	 * <p>
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public final Boolean includeTypeName() {
-		return this.includeTypeName;
-	}
-
-	/**
 	 * Required - Comma-separated list of data streams, indices, and index aliases
 	 * used to limit the request. Wildcard expressions (*) are supported.
 	 * <p>
@@ -221,9 +207,6 @@ public class GetIndexRequest extends RequestBase {
 
 		@Nullable
 		private Boolean includeDefaults;
-
-		@Nullable
-		private Boolean includeTypeName;
 
 		private List<String> index;
 
@@ -299,16 +282,6 @@ public class GetIndexRequest extends RequestBase {
 		 */
 		public final Builder includeDefaults(@Nullable Boolean value) {
 			this.includeDefaults = value;
-			return this;
-		}
-
-		/**
-		 * If true, a mapping type is expected in the body of mappings.
-		 * <p>
-		 * API name: {@code include_type_name}
-		 */
-		public final Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
 			return this;
 		}
 
@@ -419,9 +392,6 @@ public class GetIndexRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));

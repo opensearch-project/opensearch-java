@@ -64,9 +64,6 @@ public class GetTemplateRequest extends RequestBase {
 	private final Boolean flatSettings;
 
 	@Nullable
-	private final Boolean includeTypeName;
-
-	@Nullable
 	private final Boolean local;
 
 	@Nullable
@@ -79,7 +76,6 @@ public class GetTemplateRequest extends RequestBase {
 	private GetTemplateRequest(Builder builder) {
 
 		this.flatSettings = builder.flatSettings;
-		this.includeTypeName = builder.includeTypeName;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.unmodifiable(builder.name);
@@ -98,16 +94,6 @@ public class GetTemplateRequest extends RequestBase {
 	@Nullable
 	public final Boolean flatSettings() {
 		return this.flatSettings;
-	}
-
-	/**
-	 * Whether a type should be returned in the body of the mappings.
-	 * <p>
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public final Boolean includeTypeName() {
-		return this.includeTypeName;
 	}
 
 	/**
@@ -151,9 +137,6 @@ public class GetTemplateRequest extends RequestBase {
 		private Boolean flatSettings;
 
 		@Nullable
-		private Boolean includeTypeName;
-
-		@Nullable
 		private Boolean local;
 
 		@Nullable
@@ -169,16 +152,6 @@ public class GetTemplateRequest extends RequestBase {
 		 */
 		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
-			return this;
-		}
-
-		/**
-		 * Whether a type should be returned in the body of the mappings.
-		 * <p>
-		 * API name: {@code include_type_name}
-		 */
-		public final Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
 			return this;
 		}
 
@@ -292,9 +265,6 @@ public class GetTemplateRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
