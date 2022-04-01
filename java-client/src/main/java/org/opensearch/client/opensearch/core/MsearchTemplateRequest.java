@@ -78,8 +78,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	@Nullable
 	private final SearchType searchType;
 
-	private final List<String> type;
-
 	private final List<RequestItem> searchTemplates;
 
 	// ---------------------------------------------------------------------------------------------
@@ -90,7 +88,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.searchType = builder.searchType;
-		this.type = ApiTypeHelper.unmodifiable(builder.type);
 		this.searchTemplates = ApiTypeHelper.unmodifiableRequired(builder.searchTemplates, this, "searchTemplates");
 
 	}
@@ -145,15 +142,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	}
 
 	/**
-	 * A comma-separated list of document types to use as default
-	 * <p>
-	 * API name: {@code type}
-	 */
-	public final List<String> type() {
-		return this.type;
-	}
-
-	/**
 	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
@@ -193,9 +181,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 
 		@Nullable
 		private SearchType searchType;
-
-		@Nullable
-		private List<String> type;
 
 		private List<RequestItem> searchTemplates;
 
@@ -252,30 +237,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 */
 		public final Builder searchType(@Nullable SearchType value) {
 			this.searchType = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types to use as default
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>type</code>.
-		 */
-		public final Builder type(List<String> list) {
-			this.type = _listAddAll(this.type, list);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types to use as default
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds one or more values to <code>type</code>.
-		 */
-		public final Builder type(String value, String... values) {
-			this.type = _listAdd(this.type, value, values);
 			return this;
 		}
 
@@ -343,14 +304,11 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
-				if (ApiTypeHelper.isDefined(request.type()))
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -362,16 +320,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_msearch");
-					buf.append("/template");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_msearch");
 					buf.append("/template");
 					return buf.toString();

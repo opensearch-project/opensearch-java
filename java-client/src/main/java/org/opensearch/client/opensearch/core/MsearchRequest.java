@@ -96,8 +96,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	@Nullable
 	private final SearchType searchType;
 
-	private final List<String> type;
-
 	private final List<RequestItem> searches;
 
 	// ---------------------------------------------------------------------------------------------
@@ -114,7 +112,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preFilterShardSize = builder.preFilterShardSize;
 		this.searchType = builder.searchType;
-		this.type = ApiTypeHelper.unmodifiable(builder.type);
 		this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
 
 	}
@@ -240,15 +237,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	}
 
 	/**
-	 * A comma-separated list of document types to use as default
-	 * <p>
-	 * API name: {@code type}
-	 */
-	public final List<String> type() {
-		return this.type;
-	}
-
-	/**
 	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
@@ -306,9 +294,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
 		@Nullable
 		private SearchType searchType;
-
-		@Nullable
-		private List<String> type;
 
 		private List<RequestItem> searches;
 
@@ -457,30 +442,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		}
 
 		/**
-		 * A comma-separated list of document types to use as default
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>type</code>.
-		 */
-		public final Builder type(List<String> list) {
-			this.type = _listAddAll(this.type, list);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types to use as default
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds one or more values to <code>type</code>.
-		 */
-		public final Builder type(String value, String... values) {
-			this.type = _listAdd(this.type, value, values);
-			return this;
-		}
-
-		/**
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
@@ -544,14 +505,11 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
-				if (ApiTypeHelper.isDefined(request.type()))
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -562,15 +520,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_msearch");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_msearch");
 					return buf.toString();
 				}

@@ -173,8 +173,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final Time timeout;
 
-	private final List<String> type;
-
 	@Nullable
 	private final Boolean version;
 
@@ -225,7 +223,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		this.stats = ApiTypeHelper.unmodifiable(builder.stats);
 		this.terminateAfter = builder.terminateAfter;
 		this.timeout = builder.timeout;
-		this.type = ApiTypeHelper.unmodifiable(builder.type);
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 		this.waitForActiveShards = builder.waitForActiveShards;
@@ -578,16 +575,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * A comma-separated list of document types to search; leave empty to perform
-	 * the operation on all types
-	 * <p>
-	 * API name: {@code type}
-	 */
-	public final List<String> type() {
-		return this.type;
-	}
-
-	/**
 	 * Specify whether to return document version as part of a hit
 	 * <p>
 	 * API name: {@code version}
@@ -778,9 +765,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 		@Nullable
 		private Time timeout;
-
-		@Nullable
-		private List<String> type;
 
 		@Nullable
 		private Boolean version;
@@ -1287,32 +1271,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * A comma-separated list of document types to search; leave empty to perform
-		 * the operation on all types
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>type</code>.
-		 */
-		public final Builder type(List<String> list) {
-			this.type = _listAddAll(this.type, list);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types to search; leave empty to perform
-		 * the operation on all types
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds one or more values to <code>type</code>.
-		 */
-		public final Builder type(String value, String... values) {
-			this.type = _listAdd(this.type, value, values);
-			return this;
-		}
-
-		/**
 		 * Specify whether to return document version as part of a hit
 		 * <p>
 		 * API name: {@code version}
@@ -1419,27 +1377,15 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
-				if (ApiTypeHelper.isDefined(request.type()))
-					propsSet |= _type;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_update_by_query");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_update_by_query");
 					return buf.toString();
 				}

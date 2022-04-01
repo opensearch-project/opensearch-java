@@ -108,8 +108,6 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final Boolean rewrite;
 
-	private final List<String> type;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private ValidateQueryRequest(Builder builder) {
@@ -128,7 +126,6 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		this.q = builder.q;
 		this.query = builder.query;
 		this.rewrite = builder.rewrite;
-		this.type = ApiTypeHelper.unmodifiable(builder.type);
 
 	}
 
@@ -282,16 +279,6 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * A comma-separated list of document types to restrict the operation; leave
-	 * empty to perform the operation on all types
-	 * <p>
-	 * API name: {@code type}
-	 */
-	public final List<String> type() {
-		return this.type;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -358,9 +345,6 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 
 		@Nullable
 		private Boolean rewrite;
-
-		@Nullable
-		private List<String> type;
 
 		/**
 		 * Execute validation on all shards instead of one random shard per index
@@ -547,32 +531,6 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * A comma-separated list of document types to restrict the operation; leave
-		 * empty to perform the operation on all types
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>type</code>.
-		 */
-		public final Builder type(List<String> list) {
-			this.type = _listAddAll(this.type, list);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types to restrict the operation; leave
-		 * empty to perform the operation on all types
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds one or more values to <code>type</code>.
-		 */
-		public final Builder type(String value, String... values) {
-			this.type = _listAdd(this.type, value, values);
-			return this;
-		}
-
-		/**
 		 * Builds a {@link ValidateQueryRequest}.
 		 *
 		 * @throws NullPointerException
@@ -615,14 +573,11 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
-				if (ApiTypeHelper.isDefined(request.type()))
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -634,16 +589,6 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_validate");
-					buf.append("/query");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_validate");
 					buf.append("/query");
 					return buf.toString();

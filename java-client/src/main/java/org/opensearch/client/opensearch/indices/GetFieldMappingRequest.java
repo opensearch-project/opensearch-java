@@ -81,8 +81,6 @@ public class GetFieldMappingRequest extends RequestBase {
 	@Nullable
 	private final Boolean local;
 
-	private final List<String> type;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private GetFieldMappingRequest(Builder builder) {
@@ -95,7 +93,6 @@ public class GetFieldMappingRequest extends RequestBase {
 		this.includeTypeName = builder.includeTypeName;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
-		this.type = ApiTypeHelper.unmodifiable(builder.type);
 
 	}
 
@@ -185,15 +182,6 @@ public class GetFieldMappingRequest extends RequestBase {
 		return this.local;
 	}
 
-	/**
-	 * A comma-separated list of document types
-	 * <p>
-	 * API name: {@code type}
-	 */
-	public final List<String> type() {
-		return this.type;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -223,9 +211,6 @@ public class GetFieldMappingRequest extends RequestBase {
 
 		@Nullable
 		private Boolean local;
-
-		@Nullable
-		private List<String> type;
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -356,30 +341,6 @@ public class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of document types
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>type</code>.
-		 */
-		public final Builder type(List<String> list) {
-			this.type = _listAddAll(this.type, list);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types
-		 * <p>
-		 * API name: {@code type}
-		 * <p>
-		 * Adds one or more values to <code>type</code>.
-		 */
-		public final Builder type(String value, String... values) {
-			this.type = _listAdd(this.type, value, values);
-			return this;
-		}
-
-		/**
 		 * Builds a {@link GetFieldMappingRequest}.
 		 *
 		 * @throws NullPointerException
@@ -409,15 +370,12 @@ public class GetFieldMappingRequest extends RequestBase {
 			request -> {
 				final int _index = 1 << 0;
 				final int _fields = 1 << 1;
-				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
 				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 				propsSet |= _fields;
-				if (ApiTypeHelper.isDefined(request.type()))
-					propsSet |= _type;
 
 				if (propsSet == (_fields)) {
 					StringBuilder buf = new StringBuilder();
@@ -433,30 +391,6 @@ public class GetFieldMappingRequest extends RequestBase {
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_mapping");
-					buf.append("/field");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
-					return buf.toString();
-				}
-				if (propsSet == (_type | _fields)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_mapping");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/field");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type | _fields)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_mapping");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/field");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),

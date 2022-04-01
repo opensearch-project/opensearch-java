@@ -577,40 +577,6 @@ public class OpenSearchIndicesAsyncClient
 		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: indices.exists_type
-
-	/**
-	 * Returns information about whether a particular document type exists.
-	 * (DEPRECATED)
-	 * 
-	 *
-	 */
-
-	public CompletableFuture<BooleanResponse> existsType(ExistsTypeRequest request)
-			throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<ExistsTypeRequest, BooleanResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<ExistsTypeRequest, BooleanResponse, ErrorResponse>) ExistsTypeRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Returns information about whether a particular document type exists.
-	 * (DEPRECATED)
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link ExistsTypeRequest}
-	 *
-	 */
-
-	public final CompletableFuture<BooleanResponse> existsType(
-			Function<ExistsTypeRequest.Builder, ObjectBuilder<ExistsTypeRequest>> fn)
-			throws IOException, OpenSearchException {
-		return existsType(fn.apply(new ExistsTypeRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: indices.flush
 
 	/**
@@ -650,52 +616,6 @@ public class OpenSearchIndicesAsyncClient
 	public CompletableFuture<FlushResponse> flush() throws IOException, OpenSearchException {
 		return this.transport.performRequestAsync(new FlushRequest.Builder().build(), FlushRequest._ENDPOINT,
 				this.transportOptions);
-	}
-
-	// ----- Endpoint: indices.flush_synced
-
-	/**
-	 * Performs a synced flush operation on one or more indices. Synced flush is
-	 * deprecated and will be removed in 8.0. Use flush instead
-	 * 
-	 *
-	 */
-
-	public CompletableFuture<FlushSyncedResponse> flushSynced(FlushSyncedRequest request)
-			throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<FlushSyncedRequest, FlushSyncedResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<FlushSyncedRequest, FlushSyncedResponse, ErrorResponse>) FlushSyncedRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Performs a synced flush operation on one or more indices. Synced flush is
-	 * deprecated and will be removed in 8.0. Use flush instead
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link FlushSyncedRequest}
-	 *
-	 */
-
-	public final CompletableFuture<FlushSyncedResponse> flushSynced(
-			Function<FlushSyncedRequest.Builder, ObjectBuilder<FlushSyncedRequest>> fn)
-			throws IOException, OpenSearchException {
-		return flushSynced(fn.apply(new FlushSyncedRequest.Builder()).build());
-	}
-
-	/**
-	 * Performs a synced flush operation on one or more indices. Synced flush is
-	 * deprecated and will be removed in 8.0. Use flush instead
-	 * 
-	 *
-	 */
-
-	public CompletableFuture<FlushSyncedResponse> flushSynced() throws IOException, OpenSearchException {
-		return this.transport.performRequestAsync(new FlushSyncedRequest.Builder().build(),
-				FlushSyncedRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: indices.forcemerge

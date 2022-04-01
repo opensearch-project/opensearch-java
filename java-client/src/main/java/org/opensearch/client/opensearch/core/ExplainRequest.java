@@ -109,9 +109,6 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<String> storedFields;
 
-	@Nullable
-	private final String type;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private ExplainRequest(Builder builder) {
@@ -131,7 +128,6 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		this.query = builder.query;
 		this.routing = builder.routing;
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
-		this.type = builder.type;
 
 	}
 
@@ -287,16 +283,6 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The type of the document
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -364,9 +350,6 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private List<String> storedFields;
-
-		@Nullable
-		private String type;
 
 		/**
 		 * True or false to return the _source field or not, or a list of fields to
@@ -580,16 +563,6 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The type of the document
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * Builds a {@link ExplainRequest}.
 		 *
 		 * @throws NullPointerException
@@ -633,14 +606,11 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				final int _index = 1 << 0;
 				final int _id = 1 << 1;
-				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
 				propsSet |= _id;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -649,17 +619,6 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 					buf.append("/_explain");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.id, buf);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type | _id)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.id, buf);
-					buf.append("/_explain");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

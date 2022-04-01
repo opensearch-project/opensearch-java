@@ -1,4 +1,4 @@
-name: Integration
+name: Integration with Released OpenSearch
 
 on:
   push:
@@ -15,33 +15,29 @@ jobs:
       fail-fast: false
       matrix:
         entry:
-          - { opensearch_version: 1.0.0, java: 11 }
-          - { opensearch_version: 1.0.1, java: 11 }
-          - { opensearch_version: 1.1.0, java: 11 }
-          - { opensearch_version: 1.2.0, java: 11 }
-          - { opensearch_version: 1.2.1, java: 11 }
-          - { opensearch_version: 1.2.2, java: 11 }
-          - { opensearch_version: 1.2.3, java: 11 }
-          - { opensearch_version: 1.2.4, java: 11 }
-          - { opensearch_version: 1.3.0, java: 11 }
+          - { opensearch_version: "", java: 11 }
     steps:
-      - name: Set up JDK ${{ matrix.entry.java }}
+      - name: Set up JDK ${{ matrix.java }}
+        if: ${{ matrix.entry.opensearch_version != ''}}
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.entry.java }}
 
       - name: Checkout Branch
+        if: ${{ matrix.entry.opensearch_version != ''}}
         uses: actions/checkout@v2
 
       - name: Run Docker
+        if: ${{ matrix.entry.opensearch_version != ''}}
         run: |
           docker-compose --project-directory .ci/opensearch build --build-arg OPENSEARCH_VERSION=${{ matrix.entry.opensearch_version }}
           docker-compose --project-directory .ci/opensearch up -d
           sleep 60
-
       - name: Run Integration Test
+        if: ${{ matrix.entry.opensearch_version != ''}}
         run: ./gradlew clean integrationTest
 
       - name: Stop Docker
+        if: ${{ matrix.entry.opensearch_version != ''}}
         run: |
           docker-compose --project-directory .ci/opensearch down

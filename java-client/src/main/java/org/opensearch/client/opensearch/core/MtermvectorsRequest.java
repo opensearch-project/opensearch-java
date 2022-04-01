@@ -102,9 +102,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean termStatistics;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final Long version;
 
 	@Nullable
@@ -126,7 +123,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		this.realtime = builder.realtime;
 		this.routing = builder.routing;
 		this.termStatistics = builder.termStatistics;
-		this.type = builder.type;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
@@ -265,16 +261,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The type of the document.
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * Explicit version number for concurrency control
 	 * <p>
 	 * API name: {@code version}
@@ -370,9 +356,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 
 		@Nullable
 		private Boolean termStatistics;
-
-		@Nullable
-		private String type;
 
 		@Nullable
 		private Long version;
@@ -561,16 +544,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * The type of the document.
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * Explicit version number for concurrency control
 		 * <p>
 		 * API name: {@code version}
@@ -634,14 +607,11 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -652,15 +622,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/_mtermvectors");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/_mtermvectors");
 					return buf.toString();
 				}

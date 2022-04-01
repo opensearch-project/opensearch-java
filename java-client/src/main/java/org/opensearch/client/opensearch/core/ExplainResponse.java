@@ -62,9 +62,6 @@ import javax.annotation.Nullable;
 public class ExplainResponse<TDocument> implements JsonpSerializable {
 	private final String index;
 
-	@Nullable
-	private final String type;
-
 	private final String id;
 
 	private final boolean matched;
@@ -83,7 +80,6 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 	private ExplainResponse(Builder<TDocument> builder) {
 
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.type = builder.type;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.matched = ApiTypeHelper.requireNonNull(builder.matched, this, "matched");
 		this.explanation = builder.explanation;
@@ -102,14 +98,6 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 	 */
 	public final String index() {
 		return this.index;
-	}
-
-	/**
-	 * API name: {@code _type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
 	}
 
 	/**
@@ -156,11 +144,6 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 		generator.writeKey("_index");
 		generator.write(this.index);
 
-		if (this.type != null) {
-			generator.writeKey("_type");
-			generator.write(this.type);
-
-		}
 		generator.writeKey("_id");
 		generator.write(this.id);
 
@@ -212,14 +195,6 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 		 */
 		public final Builder<TDocument> index(String value) {
 			this.index = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code _type}
-		 */
-		public final Builder<TDocument> type(@Nullable String value) {
-			this.type = value;
 			return this;
 		}
 
@@ -316,7 +291,6 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::matched, JsonpDeserializer.booleanDeserializer(), "matched");
 		op.add(Builder::explanation, ExplanationDetail._DESERIALIZER, "explanation");
