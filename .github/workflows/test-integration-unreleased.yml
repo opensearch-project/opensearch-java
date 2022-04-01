@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: [11, 14]
+        java: [ 11 ]
     steps:
       - name: Set up JDK ${{ matrix.java }}
         uses: actions/setup-java@v1
@@ -31,7 +31,7 @@ jobs:
           ref: ${{ env.OPENSEARCH_VERSION }}
           path: opensearch
 
-      - name: Assemble OpenSearch and Publish to Maven Local
+      - name: Assemble OpenSearch
         run: |
           cd opensearch
           ./gradlew assemble

@@ -577,40 +577,6 @@ public class OpenSearchIndicesAsyncClient
 		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: indices.exists_type
-
-	/**
-	 * Returns information about whether a particular document type exists.
-	 * (DEPRECATED)
-	 * 
-	 *
-	 */
-
-	public CompletableFuture<BooleanResponse> existsType(ExistsTypeRequest request)
-			throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<ExistsTypeRequest, BooleanResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<ExistsTypeRequest, BooleanResponse, ErrorResponse>) ExistsTypeRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Returns information about whether a particular document type exists.
-	 * (DEPRECATED)
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link ExistsTypeRequest}
-	 *
-	 */
-
-	public final CompletableFuture<BooleanResponse> existsType(
-			Function<ExistsTypeRequest.Builder, ObjectBuilder<ExistsTypeRequest>> fn)
-			throws IOException, OpenSearchException {
-		return existsType(fn.apply(new ExistsTypeRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: indices.flush
 
 	/**
