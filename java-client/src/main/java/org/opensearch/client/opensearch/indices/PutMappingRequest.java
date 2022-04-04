@@ -105,9 +105,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	@Nullable
-	private final Boolean includeTypeName;
-
 	private final List<String> index;
 
 	@Nullable
@@ -141,7 +138,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		this.dynamicTemplates = ApiTypeHelper.unmodifiable(builder.dynamicTemplates);
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.includeTypeName = builder.includeTypeName;
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.numericDetection = builder.numericDetection;
@@ -268,16 +264,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	@Nullable
 	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
-	}
-
-	/**
-	 * Whether a type should be expected in the body of the mappings.
-	 * <p>
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public final Boolean includeTypeName() {
-		return this.includeTypeName;
 	}
 
 	/**
@@ -498,9 +484,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 		@Nullable
 		private Boolean ignoreUnavailable;
-
-		@Nullable
-		private Boolean includeTypeName;
 
 		private List<String> index;
 
@@ -726,16 +709,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 */
 		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
-			return this;
-		}
-
-		/**
-		 * Whether a type should be expected in the body of the mappings.
-		 * <p>
-		 * API name: {@code include_type_name}
-		 */
-		public final Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
 			return this;
 		}
 
@@ -994,9 +967,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",

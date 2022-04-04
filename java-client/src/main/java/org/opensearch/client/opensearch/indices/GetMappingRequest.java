@@ -69,9 +69,6 @@ public class GetMappingRequest extends RequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	@Nullable
-	private final Boolean includeTypeName;
-
 	private final List<String> index;
 
 	@Nullable
@@ -87,7 +84,6 @@ public class GetMappingRequest extends RequestBase {
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.includeTypeName = builder.includeTypeName;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
@@ -129,16 +125,6 @@ public class GetMappingRequest extends RequestBase {
 	@Nullable
 	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
-	}
-
-	/**
-	 * Whether to add the type name to the response (default: false)
-	 * <p>
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public final Boolean includeTypeName() {
-		return this.includeTypeName;
 	}
 
 	/**
@@ -186,9 +172,6 @@ public class GetMappingRequest extends RequestBase {
 
 		@Nullable
 		private Boolean ignoreUnavailable;
-
-		@Nullable
-		private Boolean includeTypeName;
 
 		@Nullable
 		private List<String> index;
@@ -245,16 +228,6 @@ public class GetMappingRequest extends RequestBase {
 		 */
 		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
-			return this;
-		}
-
-		/**
-		 * Whether to add the type name to the response (default: false)
-		 * <p>
-		 * API name: {@code include_type_name}
-		 */
-		public final Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
 			return this;
 		}
 
@@ -368,9 +341,6 @@ public class GetMappingRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",

@@ -81,9 +81,6 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean dryRun;
 
 	@Nullable
-	private final Boolean includeTypeName;
-
-	@Nullable
 	private final IndexRolloverMapping mappings;
 
 	@Nullable
@@ -108,7 +105,6 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.conditions = builder.conditions;
 		this.dryRun = builder.dryRun;
-		this.includeTypeName = builder.includeTypeName;
 		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
 		this.newIndex = builder.newIndex;
@@ -155,16 +151,6 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Boolean dryRun() {
 		return this.dryRun;
-	}
-
-	/**
-	 * Whether a type should be included in the body of the mappings.
-	 * <p>
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public final Boolean includeTypeName() {
-		return this.includeTypeName;
 	}
 
 	/**
@@ -288,9 +274,6 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		private Boolean dryRun;
 
 		@Nullable
-		private Boolean includeTypeName;
-
-		@Nullable
 		private IndexRolloverMapping mappings;
 
 		@Nullable
@@ -370,16 +353,6 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder dryRun(@Nullable Boolean value) {
 			this.dryRun = value;
-			return this;
-		}
-
-		/**
-		 * Whether a type should be included in the body of the mappings.
-		 * <p>
-		 * API name: {@code include_type_name}
-		 */
-		public final Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
 			return this;
 		}
 
@@ -567,9 +540,6 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());

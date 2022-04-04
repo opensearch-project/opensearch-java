@@ -68,9 +68,6 @@ import javax.annotation.Nullable;
 public class CreateIndexRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
 
-	@Nullable
-	private final Boolean includeTypeName;
-
 	private final String index;
 
 	@Nullable
@@ -93,7 +90,6 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	private CreateIndexRequest(Builder builder) {
 
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
-		this.includeTypeName = builder.includeTypeName;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
@@ -112,16 +108,6 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	 */
 	public final Map<String, Alias> aliases() {
 		return this.aliases;
-	}
-
-	/**
-	 * Whether a type should be expected in the body of the mappings.
-	 * <p>
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public final Boolean includeTypeName() {
-		return this.includeTypeName;
 	}
 
 	/**
@@ -231,9 +217,6 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private Map<String, Alias> aliases;
 
-		@Nullable
-		private Boolean includeTypeName;
-
 		private String index;
 
 		@Nullable
@@ -278,16 +261,6 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
 			return aliases(key, fn.apply(new Alias.Builder()).build());
-		}
-
-		/**
-		 * Whether a type should be expected in the body of the mappings.
-		 * <p>
-		 * API name: {@code include_type_name}
-		 */
-		public final Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
-			return this;
 		}
 
 		/**
@@ -467,9 +440,6 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());

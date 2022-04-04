@@ -73,9 +73,6 @@ public class GetFieldMappingRequest extends RequestBase {
 	@Nullable
 	private final Boolean includeDefaults;
 
-	@Nullable
-	private final Boolean includeTypeName;
-
 	private final List<String> index;
 
 	@Nullable
@@ -90,7 +87,6 @@ public class GetFieldMappingRequest extends RequestBase {
 		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
-		this.includeTypeName = builder.includeTypeName;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
 
@@ -153,16 +149,6 @@ public class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether a type should be returned in the body of the mappings.
-	 * <p>
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public final Boolean includeTypeName() {
-		return this.includeTypeName;
-	}
-
-	/**
 	 * A comma-separated list of index names
 	 * <p>
 	 * API name: {@code index}
@@ -202,9 +188,6 @@ public class GetFieldMappingRequest extends RequestBase {
 
 		@Nullable
 		private Boolean includeDefaults;
-
-		@Nullable
-		private Boolean includeTypeName;
 
 		@Nullable
 		private List<String> index;
@@ -292,16 +275,6 @@ public class GetFieldMappingRequest extends RequestBase {
 		 */
 		public final Builder includeDefaults(@Nullable Boolean value) {
 			this.includeDefaults = value;
-			return this;
-		}
-
-		/**
-		 * Whether a type should be returned in the body of the mappings.
-		 * <p>
-		 * API name: {@code include_type_name}
-		 */
-		public final Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
 			return this;
 		}
 
@@ -404,9 +377,6 @@ public class GetFieldMappingRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
-				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream()
