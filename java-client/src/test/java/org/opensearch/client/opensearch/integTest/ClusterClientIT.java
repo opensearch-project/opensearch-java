@@ -128,6 +128,13 @@ public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
         GetClusterSettingsResponse getSettingsResponse = openSearchClient.cluster()
                 .getSettings(new GetClusterSettingsRequest.Builder().build());
         assertTrue(getSettingsResponse.persistent().containsKey("cluster"));
+        assertEquals(
+                getSettingsResponse.persistent().get("cluster").toJson().asJsonObject()
+                        .getJsonObject("routing")
+                        .getJsonObject("allocation")
+                        .getString("enable"),
+                persistentSettingValue
+        );
         assertEquals(1, getSettingsResponse.transient_().size());
         assertEquals(0, getSettingsResponse.defaults().size());
     }
@@ -156,6 +163,13 @@ public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
         GetClusterSettingsResponse getSettingsResponse = openSearchClient.cluster().getSettings(new GetClusterSettingsRequest.Builder()
                 .includeDefaults(true).build());
         assertTrue(getSettingsResponse.persistent().containsKey("cluster"));
+        assertEquals(
+                getSettingsResponse.persistent().get("cluster").toJson().asJsonObject()
+                        .getJsonObject("routing")
+                        .getJsonObject("allocation")
+                        .getString("enable"),
+                persistentSettingValue
+        );
         assertEquals(1, getSettingsResponse.transient_().size());
         assertTrue(getSettingsResponse.defaults().size()>0);
     }
