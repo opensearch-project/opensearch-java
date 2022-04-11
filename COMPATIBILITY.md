@@ -15,3 +15,4 @@ The below matrix shows the compatibility of the [`opensearch-java-client`](https
 | 1.2.3 | 1.0.0 |
 | 1.2.4 | 1.0.0 |
 | 1.3.0 | 1.0.0 |
+| 1.3.1 | 1.0.0 |
