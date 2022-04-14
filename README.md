@@ -42,6 +42,7 @@ This project has adopted the [Amazon Open Source Code of Conduct](CODE_OF_CONDUC
 ## Compatibility with OpenSearch
 
 See [Compatibility](COMPATIBILITY.md).
+
 ## Security
 
 If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](http://aws.amazon.com/security/vulnerability-reporting/) or directly via email to aws-security@amazon.com. Please do **not** create a public GitHub issue.
@@ -52,4 +53,4 @@ This project is licensed under the [Apache v2.0 License](LICENSE.txt).
 
 ## Copyright
 
-Copyright 2020-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+Copyright OpenSearch Contributors. See [NOTICE](NOTICE.txt) for details.
