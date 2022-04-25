@@ -19,6 +19,7 @@ gradle-app.setting
 
 # vscode
 .vscode/
+java-client/
 
 .ci/output
 java-client/bin
