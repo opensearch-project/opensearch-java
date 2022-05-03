@@ -258,11 +258,10 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
             try {
                 highLevelClient().update(updateRequest, AppData.class);
             } catch (OpenSearchException e) {
-                assertEquals(
-                        "Request failed: [document_missing_exception] " +
-                                "[does_not_exist]: document missing",
-                        e.getMessage()
-                );
+                // 1.x: [document_missing_exception] [_doc][does_not_exist]: document missing
+                // 2.x: [document_missing_exception] [does_not_exist]: document missing
+                assertTrue(e.getMessage().contains("[document_missing_exception]"));
+                assertTrue(e.getMessage().contains("[does_not_exist]: document missing"));
                 assertEquals(404, e.status());
             }
         }
