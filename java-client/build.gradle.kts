@@ -56,8 +56,9 @@ checkstyle {
 }
 
 java {
-    targetCompatibility = JavaVersion.VERSION_11
-    sourceCompatibility = JavaVersion.VERSION_11
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
 
     withJavadocJar()
     withSourcesJar()
@@ -94,6 +95,28 @@ tasks.withType<Jar> {
     }
 }
 
+sourceSets {
+    create("integrationTest") {
+        compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+        runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+        java {
+            setSrcDirs(listOf("src/integrationTest/java"))
+        }
+    }
+}
+
+val integrationTestImplementation by configurations.getting {
+    extendsFrom(configurations.testImplementation.get())
+}
+
+configurations["integrationTestRuntimeOnly"].extendsFrom(configurations.runtimeOnly.get())
+
+tasks.named<JavaCompile>("compileIntegrationTestJava").configure {
+    javaCompiler.set(javaToolchains.compilerFor {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    })
+}
+
 tasks.test {
     systemProperty("tests.security.manager", "false")
 
@@ -105,15 +128,20 @@ tasks.test {
 }
 
 val unitTest = task<Test>("unitTest") {
-    filter {
-        excludeTestsMatching("org.opensearch.client.opensearch.integTest.*")
-    }
 }
 
 val integrationTest = task<Test>("integrationTest") {
-    filter {
-        includeTestsMatching("org.opensearch.client.opensearch.integTest.*")
-    }
+    description = "Runs integration tests."
+    group = "verification"
+
+    testClassesDirs = sourceSets["integrationTest"].output.classesDirs
+    classpath = sourceSets["integrationTest"].runtimeClasspath
+    shouldRunAfter("test")
+
+    javaLauncher.set(javaToolchains.launcherFor {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    })
+
     systemProperty("tests.security.manager", "false")
     // Basic auth settings for integration test
     systemProperty("https", System.getProperty("https", "true"))
@@ -128,8 +156,8 @@ dependencies {
     val jacksonDatabindVersion = "2.12.6.1"
 
     // Apache 2.0
-    implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
-    testImplementation("org.opensearch.test", "framework", opensearchVersion)
+    implementation("org.opensearch.client", "opensearch-rest-client", "1.3.2")
+    integrationTestImplementation("org.opensearch.test", "framework", opensearchVersion)
     implementation("org.apache.logging.log4j", "log4j-core", "2.17.2")
 
     // Apache 2.0
@@ -158,6 +186,7 @@ dependencies {
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
     implementation("org.eclipse", "yasson", "2.0.2")
+    testImplementation("org.hamcrest:hamcrest:2.1")
 
     // https://github.com/classgraph/classgraph
     testImplementation("io.github.classgraph:classgraph:4.8.116")

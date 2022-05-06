@@ -48,8 +48,9 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.junit.Assert;
 import org.junit.Test;
-import org.opensearch.core.internal.io.IOUtils;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -113,7 +114,7 @@ public class JsonpMapperTest extends Assert {
         }
 
         testDeserialize(mapper, writer.toString());
-        IOUtils.closeWhileHandlingException(writer);
+        closeWhileHandlingException(writer);
     }
 
     private void testSerialize(JsonpMapper mapper, String expected) {
@@ -195,5 +196,14 @@ public class JsonpMapperTest extends Assert {
         public void setChildren(List<SomeClass> children) {
             this.children = children;
         }
+    }
+
+    private static void closeWhileHandlingException(final Closeable closeable) {
+        // noinspection EmptyCatchBlock
+        try {
+            if (closeable != null) {
+                closeable.close();
+            }
+        } catch (final IOException | RuntimeException e) {}
     }
 }
