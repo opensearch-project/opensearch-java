@@ -123,7 +123,7 @@ val integrationTest = task<Test>("integrationTest") {
 
 dependencies {
 
-    val opensearchVersion = "2.0.0-alpha1-SNAPSHOT"
+    val opensearchVersion = "2.0.0"
     val jacksonVersion = "2.12.6"
     val jacksonDatabindVersion = "2.12.6.1"
 
