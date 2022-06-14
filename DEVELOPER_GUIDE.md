@@ -26,7 +26,9 @@ Fork [opensearch-project/opensearch-java](https://github.com/opensearch-project/
 
 ### Install Prerequisites
 
-To run the full suite of tests, download and install [JDK 14](https://jdk.java.net/archive/). Any JDK >= 11 works.
+To run the full suite of tests, download and install [JDK 11](https://jdk.java.net/archive/). Any JDK >= 11 works.
+
+The build will additionally use a JDK 8 to compile the library. You may install your own SDK, or Gradle will install one.
 
 #### Docker
 
