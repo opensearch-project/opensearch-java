@@ -69,8 +69,12 @@ import javax.annotation.Nullable;
 public class UpdateAliasesRequest extends RequestBase implements JsonpSerializable {
 	private final List<Action> actions;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	@Nullable
 	private final Time timeout;
@@ -81,6 +85,7 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 
 		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.timeout = builder.timeout;
 
 	}
@@ -101,9 +106,20 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
+	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Specify timeout for connection to cluster-manager
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -150,8 +166,12 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private List<Action> actions;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private Time clusterManagerTimeout;
 
 		@Nullable
 		private Time timeout;
@@ -190,6 +210,7 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -200,8 +221,28 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Specify timeout for connection to cluster-manager
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to cluster-manager
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -274,6 +315,9 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());

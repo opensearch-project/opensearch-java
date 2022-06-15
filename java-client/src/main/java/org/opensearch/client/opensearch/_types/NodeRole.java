@@ -41,7 +41,10 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum NodeRole implements JsonEnum {
+	@Deprecated
 	Master("master"),
+
+	ClusterManager("cluster_manager"),
 
 	Data("data"),
 

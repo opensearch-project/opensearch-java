@@ -68,8 +68,12 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	private final Boolean flatSettings;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	private final Map<String, JsonData> persistent;
 
@@ -84,6 +88,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 
 		this.flatSettings = builder.flatSettings;
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.persistent = ApiTypeHelper.unmodifiable(builder.persistent);
 		this.timeout = builder.timeout;
 		this.transient_ = ApiTypeHelper.unmodifiable(builder.transient_);
@@ -109,9 +114,20 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
+	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Explicit operation timeout for connection to cluster-manager node
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -184,8 +200,12 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		@Nullable
 		private Boolean flatSettings;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private Time clusterManagerTimeout;
 
 		@Nullable
 		private Map<String, JsonData> persistent;
@@ -223,6 +243,25 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		 */
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Explicit operation timeout for connection to cluster-manager node
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to cluster-manager node
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -337,6 +376,9 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));

@@ -34,7 +34,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.cat.master;
+package org.opensearch.client.opensearch.cat.cluster_manager;
 
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -48,11 +48,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: cat.master.MasterRecord
+// typedef: cat.cluster_manager.ClusterManagerRecord
 
 
 @JsonpDeserializable
-public class MasterRecord implements JsonpSerializable {
+public class ClusterManagerRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -67,7 +67,7 @@ public class MasterRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private MasterRecord(Builder builder) {
+	private ClusterManagerRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.host = builder.host;
@@ -76,7 +76,7 @@ public class MasterRecord implements JsonpSerializable {
 
 	}
 
-	public static MasterRecord of(Function<Builder, ObjectBuilder<MasterRecord>> fn) {
+	public static ClusterManagerRecord of(Function<Builder, ObjectBuilder<ClusterManagerRecord>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -157,10 +157,10 @@ public class MasterRecord implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link MasterRecord}.
+	 * Builder for {@link ClusterManagerRecord}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MasterRecord> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterManagerRecord> {
 		@Nullable
 		private String id;
 
@@ -214,27 +214,27 @@ public class MasterRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link MasterRecord}.
+		 * Builds a {@link ClusterManagerRecord}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public MasterRecord build() {
+		public ClusterManagerRecord build() {
 			_checkSingleUse();
 
-			return new MasterRecord(this);
+			return new ClusterManagerRecord(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link MasterRecord}
+	 * Json deserializer for {@link ClusterManagerRecord}
 	 */
-	public static final JsonpDeserializer<MasterRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MasterRecord::setupMasterRecordDeserializer);
+	public static final JsonpDeserializer<ClusterManagerRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterManagerRecord::setupClusterManagerRecordDeserializer);
 
-	protected static void setupMasterRecordDeserializer(ObjectDeserializer<MasterRecord.Builder> op) {
+	protected static void setupClusterManagerRecordDeserializer(ObjectDeserializer<ClusterManagerRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host", "h");

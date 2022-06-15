@@ -61,8 +61,12 @@ public class PendingTasksRequest extends RequestBase {
 	@Nullable
 	private final Boolean local;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -70,6 +74,7 @@ public class PendingTasksRequest extends RequestBase {
 
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 
 	}
 
@@ -78,7 +83,7 @@ public class PendingTasksRequest extends RequestBase {
 	}
 
 	/**
-	 * Return local information, do not retrieve the state from master node
+	 * Return local information, do not retrieve the state from cluster-manager node
 	 * (default: false)
 	 * <p>
 	 * API name: {@code local}
@@ -93,9 +98,20 @@ public class PendingTasksRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
+	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Specify timeout for connection to cluster-manager
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -108,11 +124,15 @@ public class PendingTasksRequest extends RequestBase {
 		@Nullable
 		private Boolean local;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
 
+		@Nullable
+		private Time clusterManagerTimeout;
+
 		/**
-		 * Return local information, do not retrieve the state from master node
+		 * Return local information, do not retrieve the state from cluster-manager node
 		 * (default: false)
 		 * <p>
 		 * API name: {@code local}
@@ -127,6 +147,7 @@ public class PendingTasksRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -137,8 +158,28 @@ public class PendingTasksRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Specify timeout for connection to cluster-manager
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to cluster-manager
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -178,6 +219,9 @@ public class PendingTasksRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
 				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
