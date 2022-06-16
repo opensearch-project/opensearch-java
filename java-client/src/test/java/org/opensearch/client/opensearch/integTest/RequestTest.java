@@ -199,6 +199,9 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
 
         InfoResponse info = highLevelClient().info();
         String version = info.version().number();
+        if (version.contains("SNAPSHOT")) {
+                version = version.split("-")[0];
+        }
         assertEquals(1, nodes.valueBody().size());
         if (Version.fromString(version).onOrAfter(Version.fromString("2.0.0"))) {
                 assertEquals("*", nodes.valueBody().get(0).clusterManager());
