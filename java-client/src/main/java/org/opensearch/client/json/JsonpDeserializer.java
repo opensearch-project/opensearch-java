@@ -204,6 +204,10 @@ public interface JsonpDeserializer<V> {
         return new JsonpDeserializerBase.IntOrNullDeserializer(defaultValue);
     }
 
+    static JsonpDeserializer<String> stringOrNullDeserializer() {
+        return new JsonpDeserializerBase.StringOrNullDeserializer();
+    }
+
     static JsonpDeserializer<Number> numberDeserializer() {
         return JsonpDeserializerBase.NUMBER;
     }
