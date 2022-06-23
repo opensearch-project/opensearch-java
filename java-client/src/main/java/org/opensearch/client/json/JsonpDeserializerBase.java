@@ -238,6 +238,30 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
         }
     }
 
+    static final class StringOrNullDeserializer extends JsonpDeserializerBase<String> {
+        static final EnumSet<Event> nativeEvents = EnumSet.of(Event.VALUE_STRING, Event.VALUE_NULL);
+        static final EnumSet<Event> acceptedEvents = EnumSet.of(Event.KEY_NAME, Event.VALUE_STRING,
+            Event.VALUE_NUMBER, Event.VALUE_FALSE, Event.VALUE_TRUE, Event.VALUE_NULL);
+
+        StringOrNullDeserializer() {
+            super(acceptedEvents, nativeEvents);
+        }
+
+        @Override
+        public String deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            if (event == Event.VALUE_NULL) {
+                return null;
+            }
+            if (event == Event.VALUE_TRUE) {
+                return "true";
+            }
+            if (event == Event.VALUE_FALSE) {
+                return "false";
+            }
+            return parser.getString();
+        }
+    }
+
     static final JsonpDeserializer<Double> DOUBLE_OR_NAN =
         new JsonpDeserializerBase<Double>(
             EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING, Event.VALUE_NULL),
