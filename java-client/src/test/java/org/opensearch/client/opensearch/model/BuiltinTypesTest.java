@@ -32,6 +32,7 @@
 
 package org.opensearch.client.opensearch.model;
 
+import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.SortOrder;
@@ -42,7 +43,11 @@ import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.junit.Test;
 
+import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.json.stream.JsonParser;
 
 public class BuiltinTypesTest extends ModelTestCase {
 
@@ -228,5 +233,22 @@ public class BuiltinTypesTest extends ModelTestCase {
         assertEquals(0, stats.minLength());
         assertEquals(0, stats.maxLength());
         assertEquals(0.0, stats.entropy(), 0.01);
+    }
+
+    @Test
+    public void testNullableStringInArray() {
+        // stringOrNullDeserializer allows to handle null events in string arrays
+        String json = "[\"lettuce\", null, \"tomato\"]";
+        JsonParser jsonParser = mapper.jsonProvider().createParser(new StringReader(json));
+        JsonpDeserializer<String> stringDeserializer = JsonpDeserializer.stringOrNullDeserializer();
+
+        List<String> result = JsonpDeserializer.arrayDeserializer(stringDeserializer).deserialize(jsonParser, mapper);
+
+        List<String> expected = new ArrayList<>();
+        expected.add("lettuce");
+        expected.add(null);
+        expected.add("tomato");
+
+        assertEquals(result, expected);
     }
 }

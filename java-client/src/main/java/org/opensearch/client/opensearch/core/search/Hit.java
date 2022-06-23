@@ -775,7 +775,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "sort");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringOrNullDeserializer()), "sort");
 
 	}
 
