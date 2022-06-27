@@ -140,8 +140,12 @@ public class NodesRecord implements JsonpSerializable {
 	@Nullable
 	private final String nodeRole;
 
+	@Deprecated
 	@Nullable
 	private final String master;
+
+	@Nullable
+	private final String clusterManager;
 
 	@Nullable
 	private final String name;
@@ -375,6 +379,7 @@ public class NodesRecord implements JsonpSerializable {
 		this.uptime = builder.uptime;
 		this.nodeRole = builder.nodeRole;
 		this.master = builder.master;
+		this.clusterManager = builder.clusterManager;
 		this.name = builder.name;
 		this.completionSize = builder.completionSize;
 		this.fielddataMemorySize = builder.fielddataMemorySize;
@@ -729,7 +734,7 @@ public class NodesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * m:master eligible node, d:data node, i:ingest node, -:coordinating node only
+	 * m:cluster-manager eligible node, d:data node, i:ingest node, -:coordinating node only
 	 * <p>
 	 * API name: {@code node.role}
 	 */
@@ -743,9 +748,20 @@ public class NodesRecord implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code master}
 	 */
+	@Deprecated
 	@Nullable
 	public final String master() {
 		return this.master;
+	}
+
+	/**
+	 * *:current cluster-manager
+	 * <p>
+	 * API name: {@code clusterManager}
+	 */
+	@Nullable
+	public final String clusterManager() {
+		return this.clusterManager;
 	}
 
 	/**
@@ -1570,6 +1586,11 @@ public class NodesRecord implements JsonpSerializable {
 			generator.write(this.master);
 
 		}
+		if (this.clusterManager != null) {
+			generator.writeKey("cluster_manager");
+			generator.write(this.clusterManager);
+
+		}
 		if (this.name != null) {
 			generator.writeKey("name");
 			generator.write(this.name);
@@ -1997,8 +2018,12 @@ public class NodesRecord implements JsonpSerializable {
 		@Nullable
 		private String nodeRole;
 
+		@Deprecated
 		@Nullable
 		private String master;
+
+		@Nullable
+		private String clusterManager;
 
 		@Nullable
 		private String name;
@@ -2479,7 +2504,7 @@ public class NodesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * m:master eligible node, d:data node, i:ingest node, -:coordinating node only
+		 * m:cluster-manager eligible node, d:data node, i:ingest node, -:coordinating node only
 		 * <p>
 		 * API name: {@code node.role}
 		 */
@@ -2493,8 +2518,19 @@ public class NodesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master}
 		 */
+		@Deprecated
 		public final Builder master(@Nullable String value) {
 			this.master = value;
+			return this;
+		}
+
+		/**
+		 * *:current cluster-manager
+		 * <p>
+		 * API name: {@code clusterManager}
+		 */
+		public final Builder clusterManager(@Nullable String value) {
+			this.clusterManager = value;
 			return this;
 		}
 
@@ -3217,6 +3253,7 @@ public class NodesRecord implements JsonpSerializable {
 		op.add(Builder::uptime, JsonpDeserializer.stringDeserializer(), "uptime", "u");
 		op.add(Builder::nodeRole, JsonpDeserializer.stringDeserializer(), "node.role", "r", "role", "nodeRole");
 		op.add(Builder::master, JsonpDeserializer.stringDeserializer(), "master", "m");
+		op.add(Builder::clusterManager, JsonpDeserializer.stringDeserializer(), "cluster_manager", "m");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name", "n");
 		op.add(Builder::completionSize, JsonpDeserializer.stringDeserializer(), "completion.size", "cs",
 				"completionSize");

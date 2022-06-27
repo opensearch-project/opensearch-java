@@ -74,8 +74,12 @@ public class DiskUsageRequest extends RequestBase {
 
 	private final String index;
 
+	@Deprecated
 	@Nullable
 	private final TimeUnit masterTimeout;
+
+	@Nullable
+	private final TimeUnit clusterManagerTimeout;
 
 	@Nullable
 	private final Boolean runExpensiveTasks;
@@ -96,6 +100,7 @@ public class DiskUsageRequest extends RequestBase {
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.runExpensiveTasks = builder.runExpensiveTasks;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
@@ -170,9 +175,21 @@ public class DiskUsageRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
+	@Deprecated
 	@Nullable
 	public final TimeUnit masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Period to wait for a connection to the cluster-manager node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final TimeUnit clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -230,8 +247,12 @@ public class DiskUsageRequest extends RequestBase {
 
 		private String index;
 
+		@Deprecated
 		@Nullable
 		private TimeUnit masterTimeout;
+
+		@Nullable
+		private TimeUnit clusterManagerTimeout;
 
 		@Nullable
 		private Boolean runExpensiveTasks;
@@ -324,8 +345,20 @@ public class DiskUsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable TimeUnit value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the cluster-manager node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable TimeUnit value) {
+			this.clusterManagerTimeout = value;
 			return this;
 		}
 
@@ -413,6 +446,9 @@ public class DiskUsageRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout.jsonValue());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout.jsonValue());
 				}
 				if (request.flush != null) {
 					params.put("flush", String.valueOf(request.flush));

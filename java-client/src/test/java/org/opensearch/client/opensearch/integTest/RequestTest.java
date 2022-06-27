@@ -34,6 +34,7 @@ package org.opensearch.client.opensearch.integTest;
 
 
 import org.junit.Test;
+import org.opensearch.Version;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
@@ -44,6 +45,7 @@ import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.ClearScrollResponse;
 import org.opensearch.client.opensearch.core.GetResponse;
 import org.opensearch.client.opensearch.core.IndexResponse;
+import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.MsearchResponse;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
@@ -195,10 +197,18 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         NodesResponse nodes = highLevelClient().cat().nodes(_0 -> _0);
         System.out.println(ModelTestCase.toJson(nodes, highLevelClient()._transport().jsonpMapper()));
 
+        InfoResponse info = highLevelClient().info();
+        String version = info.version().number();
+        if (version.contains("SNAPSHOT")) {
+                version = version.split("-")[0];
+        }
         assertEquals(1, nodes.valueBody().size());
-        // TODO: Removing this assert for now since the endpoint _cat/nodes now returns cluster_manager. 
-        // This will be done along with changes for inclusive naming.
-        // assertEquals("*", nodes.valueBody().get(0).master());
+        if (Version.fromString(version).onOrAfter(Version.fromString("2.0.0"))) {
+                assertEquals("*", nodes.valueBody().get(0).clusterManager());
+        } else {
+                assertEquals("*", nodes.valueBody().get(0).master());
+        }
+        
     }
 
     @Test

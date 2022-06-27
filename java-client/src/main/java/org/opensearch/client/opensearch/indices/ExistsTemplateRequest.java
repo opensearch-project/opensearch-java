@@ -68,8 +68,12 @@ public class ExistsTemplateRequest extends RequestBase {
 	@Nullable
 	private final Boolean local;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	private final List<String> name;
 
@@ -80,6 +84,7 @@ public class ExistsTemplateRequest extends RequestBase {
 		this.flatSettings = builder.flatSettings;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
@@ -99,7 +104,7 @@ public class ExistsTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Return local information, do not retrieve the state from master node
+	 * Return local information, do not retrieve the state from cluster-manager node
 	 * (default: false)
 	 * <p>
 	 * API name: {@code local}
@@ -114,9 +119,20 @@ public class ExistsTemplateRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
+	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Explicit operation timeout for connection to cluster-manager node
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -141,8 +157,12 @@ public class ExistsTemplateRequest extends RequestBase {
 		@Nullable
 		private Boolean local;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private Time clusterManagerTimeout;
 
 		private List<String> name;
 
@@ -157,7 +177,7 @@ public class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Return local information, do not retrieve the state from master node
+		 * Return local information, do not retrieve the state from cluster-manager node
 		 * (default: false)
 		 * <p>
 		 * API name: {@code local}
@@ -172,6 +192,7 @@ public class ExistsTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -182,8 +203,28 @@ public class ExistsTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Explicit operation timeout for connection to cluster-manager node
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to cluster-manager node
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -261,6 +302,9 @@ public class ExistsTemplateRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));

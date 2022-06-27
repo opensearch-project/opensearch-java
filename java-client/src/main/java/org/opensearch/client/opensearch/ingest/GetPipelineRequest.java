@@ -60,8 +60,12 @@ public class GetPipelineRequest extends RequestBase {
 	@Nullable
 	private final String id;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	@Nullable
 	private final Boolean summary;
@@ -72,6 +76,7 @@ public class GetPipelineRequest extends RequestBase {
 
 		this.id = builder.id;
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.summary = builder.summary;
 
 	}
@@ -95,9 +100,20 @@ public class GetPipelineRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
+	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Explicit operation timeout for connection to cluster-manager node
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -120,8 +136,12 @@ public class GetPipelineRequest extends RequestBase {
 		@Nullable
 		private String id;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private Time clusterManagerTimeout;
 
 		@Nullable
 		private Boolean summary;
@@ -141,6 +161,7 @@ public class GetPipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -151,8 +172,28 @@ public class GetPipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Explicit operation timeout for connection to cluster-manager node
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to cluster-manager node
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -223,6 +264,9 @@ public class GetPipelineRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
 				}
 				if (request.summary != null) {
 					params.put("summary", String.valueOf(request.summary));

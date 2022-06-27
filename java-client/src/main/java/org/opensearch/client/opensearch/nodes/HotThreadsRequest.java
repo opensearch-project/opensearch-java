@@ -67,8 +67,12 @@ public class HotThreadsRequest extends RequestBase {
 	@Nullable
 	private final Time interval;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	private final List<String> nodeId;
 
@@ -91,6 +95,7 @@ public class HotThreadsRequest extends RequestBase {
 		this.ignoreIdleThreads = builder.ignoreIdleThreads;
 		this.interval = builder.interval;
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.snapshots = builder.snapshots;
 		this.threads = builder.threads;
@@ -130,9 +135,21 @@ public class HotThreadsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
+	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Period to wait for a connection to the cluster-manager node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -198,8 +215,12 @@ public class HotThreadsRequest extends RequestBase {
 		@Nullable
 		private Time interval;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private Time clusterManagerTimeout;
 
 		@Nullable
 		private List<String> nodeId;
@@ -252,6 +273,7 @@ public class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -263,8 +285,30 @@ public class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Period to wait for a connection to the cluster-manager node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the cluster-manager node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -453,6 +497,9 @@ public class HotThreadsRequest extends RequestBase {
 				}
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
 				}
 				if (request.threads != null) {
 					params.put("threads", String.valueOf(request.threads));

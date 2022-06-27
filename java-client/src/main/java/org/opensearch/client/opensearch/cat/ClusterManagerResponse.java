@@ -36,11 +36,11 @@
 
 package org.opensearch.client.opensearch.cat;
 
-import org.opensearch.client.opensearch.cat.master.MasterRecord;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.opensearch.cat.cluster_manager.ClusterManagerRecord;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -49,21 +49,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
 
-// typedef: cat.master.Response
+// typedef: cat.cluster_manager.Response
 
 @JsonpDeserializable
-public class MasterResponse implements JsonpSerializable {
-	private final List<MasterRecord> valueBody;
+public class ClusterManagerResponse implements JsonpSerializable {
+	private final List<ClusterManagerRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private MasterResponse(Builder builder) {
+	private ClusterManagerResponse(Builder builder) {
 
 		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public static MasterResponse of(Function<Builder, ObjectBuilder<MasterResponse>> fn) {
+	public static ClusterManagerResponse of(Function<Builder, ObjectBuilder<ClusterManagerResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -72,7 +72,7 @@ public class MasterResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public final List<MasterRecord> valueBody() {
+	public final List<ClusterManagerRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -81,7 +81,7 @@ public class MasterResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (MasterRecord item0 : this.valueBody) {
+		for (ClusterManagerRecord item0 : this.valueBody) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -92,11 +92,11 @@ public class MasterResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link MasterResponse}.
+	 * Builder for {@link ClusterManagerResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MasterResponse> {
-		private List<MasterRecord> valueBody;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterManagerResponse> {
+		private List<ClusterManagerRecord> valueBody;
 
 		/**
 		 * Required - Response value.
@@ -105,7 +105,7 @@ public class MasterResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
 		 */
-		public final Builder valueBody(List<MasterRecord> list) {
+		public final Builder valueBody(List<ClusterManagerRecord> list) {
 			this.valueBody = _listAddAll(this.valueBody, list);
 			return this;
 		}
@@ -117,7 +117,7 @@ public class MasterResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>valueBody</code>.
 		 */
-		public final Builder valueBody(MasterRecord value, MasterRecord... values) {
+		public final Builder valueBody(ClusterManagerRecord value, ClusterManagerRecord... values) {
 			this.valueBody = _listAdd(this.valueBody, value, values);
 			return this;
 		}
@@ -129,28 +129,28 @@ public class MasterResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>valueBody</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<MasterRecord.Builder, ObjectBuilder<MasterRecord>> fn) {
-			return valueBody(fn.apply(new MasterRecord.Builder()).build());
+		public final Builder valueBody(Function<ClusterManagerRecord.Builder, ObjectBuilder<ClusterManagerRecord>> fn) {
+			return valueBody(fn.apply(new ClusterManagerRecord.Builder()).build());
 		}
 
 		/**
-		 * Builds a {@link MasterResponse}.
+		 * Builds a {@link ClusterManagerResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public MasterResponse build() {
+		public ClusterManagerResponse build() {
 			_checkSingleUse();
 
-			return new MasterResponse(this);
+			return new ClusterManagerResponse(this);
 		}
 	}
 
-	public static final JsonpDeserializer<MasterResponse> _DESERIALIZER = createMasterResponseDeserializer();
-	protected static JsonpDeserializer<MasterResponse> createMasterResponseDeserializer() {
+	public static final JsonpDeserializer<ClusterManagerResponse> _DESERIALIZER = createClusterManagerResponseDeserializer();
+	protected static JsonpDeserializer<ClusterManagerResponse> createClusterManagerResponseDeserializer() {
 
-		JsonpDeserializer<List<MasterRecord>> valueDeserializer = JsonpDeserializer
-				.arrayDeserializer(MasterRecord._DESERIALIZER);
+		JsonpDeserializer<List<ClusterManagerRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(ClusterManagerRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
 				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());

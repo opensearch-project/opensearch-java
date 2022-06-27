@@ -75,8 +75,12 @@ public class HealthRequest extends RequestBase {
 	@Nullable
 	private final Boolean local;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	@Nullable
 	private final Time timeout;
@@ -108,6 +112,7 @@ public class HealthRequest extends RequestBase {
 		this.level = builder.level;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 		this.waitForEvents = builder.waitForEvents;
@@ -156,7 +161,7 @@ public class HealthRequest extends RequestBase {
 
 	/**
 	 * If true, the request retrieves information from the local node only. Defaults
-	 * to false, which means information is retrieved from the master node.
+	 * to false, which means information is retrieved from the cluster-manager node.
 	 * <p>
 	 * API name: {@code local}
 	 */
@@ -171,9 +176,21 @@ public class HealthRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
+	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Period to wait for a connection to the cluster-manager node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -276,8 +293,12 @@ public class HealthRequest extends RequestBase {
 		@Nullable
 		private Boolean local;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private Time clusterManagerTimeout;
 
 		@Nullable
 		private Time timeout;
@@ -367,7 +388,7 @@ public class HealthRequest extends RequestBase {
 
 		/**
 		 * If true, the request retrieves information from the local node only. Defaults
-		 * to false, which means information is retrieved from the master node.
+		 * to false, which means information is retrieved from the cluster-manager node.
 		 * <p>
 		 * API name: {@code local}
 		 */
@@ -382,6 +403,7 @@ public class HealthRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -393,8 +415,30 @@ public class HealthRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Period to wait for a connection to the cluster-manager node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the cluster-manager node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -557,6 +601,9 @@ public class HealthRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",

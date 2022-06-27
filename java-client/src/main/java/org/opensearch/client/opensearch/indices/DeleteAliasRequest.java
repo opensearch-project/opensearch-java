@@ -62,8 +62,12 @@ import javax.annotation.Nullable;
 public class DeleteAliasRequest extends RequestBase {
 	private final List<String> index;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	private final List<String> name;
 
@@ -76,6 +80,7 @@ public class DeleteAliasRequest extends RequestBase {
 
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
@@ -100,9 +105,20 @@ public class DeleteAliasRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
+	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Specify timeout for connection to cluster-manager
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -134,8 +150,12 @@ public class DeleteAliasRequest extends RequestBase {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteAliasRequest> {
 		private List<String> index;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private Time clusterManagerTimeout;
 
 		private List<String> name;
 
@@ -173,6 +193,7 @@ public class DeleteAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -183,8 +204,28 @@ public class DeleteAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Specify timeout for connection to cluster-manager
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to cluster-manager
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -295,6 +336,9 @@ public class DeleteAliasRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());

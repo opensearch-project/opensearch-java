@@ -78,8 +78,12 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 
 	private final List<String> index;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	@Nullable
 	private final Boolean preserveExisting;
@@ -99,6 +103,7 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.preserveExisting = builder.preserveExisting;
 		this.timeout = builder.timeout;
 		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
@@ -167,9 +172,20 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
+	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Specify timeout for connection to cluster-manager
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -232,8 +248,12 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		@Nullable
 		private List<String> index;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private Time clusterManagerTimeout;
 
 		@Nullable
 		private Boolean preserveExisting;
@@ -333,6 +353,7 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -343,8 +364,28 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Specify timeout for connection to cluster-manager
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to cluster-manager
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -461,6 +502,9 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
