@@ -70,8 +70,12 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 
 	private final String index;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	private final Map<String, JsonData> settings;
 
@@ -90,6 +94,7 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
 		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
 		this.timeout = builder.timeout;
@@ -125,6 +130,16 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Specify timeout for connection to cluster-manager
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -212,8 +227,12 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 
 		private String index;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private Time clusterManagerTimeout;
 
 		@Nullable
 		private Map<String, JsonData> settings;
@@ -270,6 +289,7 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -280,8 +300,28 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Specify timeout for connection to cluster-manager
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to cluster-manager
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -424,6 +464,9 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());

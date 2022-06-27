@@ -82,8 +82,12 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<String> indices;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	@Nullable
 	private final Boolean partial;
@@ -112,6 +116,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		this.indexSettings = builder.indexSettings;
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.partial = builder.partial;
 		this.renamePattern = builder.renamePattern;
 		this.renameReplacement = builder.renameReplacement;
@@ -176,9 +181,20 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
+	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Explicit operation timeout for connection to cluster-manager node
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -327,8 +343,12 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private List<String> indices;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private Time clusterManagerTimeout;
 
 		@Nullable
 		private Boolean partial;
@@ -431,6 +451,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -441,8 +462,28 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Explicit operation timeout for connection to cluster-manager node
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to cluster-manager node
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -578,6 +619,9 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));

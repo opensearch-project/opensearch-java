@@ -66,8 +66,12 @@ import javax.annotation.Nullable;
 public class CloneSnapshotRequest extends RequestBase implements JsonpSerializable {
 	private final String indices;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	private final String repository;
 
@@ -84,6 +88,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 
 		this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
 		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 		this.targetSnapshot = ApiTypeHelper.requireNonNull(builder.targetSnapshot, this, "targetSnapshot");
@@ -110,6 +115,16 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Explicit operation timeout for connection to cluster-manager node
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -172,8 +187,12 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloneSnapshotRequest> {
 		private String indices;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private Time clusterManagerTimeout;
 
 		private String repository;
 
@@ -197,6 +216,7 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -207,8 +227,28 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Explicit operation timeout for connection to cluster-manager node
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to cluster-manager node
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -329,6 +369,9 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());

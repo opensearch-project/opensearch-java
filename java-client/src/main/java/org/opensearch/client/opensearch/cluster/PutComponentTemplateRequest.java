@@ -80,8 +80,12 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	@Nullable
 	private final TypeMapping mappings;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	private final String name;
 
@@ -102,6 +106,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		this.create = builder.create;
 		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.settings = builder.settings;
 		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
@@ -151,9 +156,20 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
+	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Specify timeout for connection to cluster-manager
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -261,8 +277,12 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		@Nullable
 		private TypeMapping mappings;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private Time clusterManagerTimeout;
 
 		private String name;
 
@@ -354,6 +374,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -364,8 +385,28 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Specify timeout for connection to cluster-manager
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to cluster-manager
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -487,6 +528,9 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager", request.clusterManagerTimeout._toJsonString());
 				}
 				if (request.create != null) {
 					params.put("create", String.valueOf(request.create));

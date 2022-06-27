@@ -345,8 +345,20 @@ public class OpenSearchCatClient extends ApiClient<OpenSearchTransport, OpenSear
 	 * 
 	 *
 	 */
-	public MasterResponse master() throws IOException, OpenSearchException {
-		return this.transport.performRequest(MasterRequest._INSTANCE, MasterRequest._ENDPOINT, this.transportOptions);
+	@Deprecated
+	public ClusterManagerResponse master() throws IOException, OpenSearchException {
+		return this.transport.performRequest(ClusterManagerRequest._INSTANCE, ClusterManagerRequest._DEPRECATED_ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: cat.cluster_manager
+
+	/**
+	 * Returns information about the cluster-manager node.
+	 * 
+	 *
+	 */
+	public ClusterManagerResponse clusterManager() throws IOException, OpenSearchException {
+		return this.transport.performRequest(ClusterManagerRequest._INSTANCE, ClusterManagerRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.nodeattrs

@@ -43,28 +43,28 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import java.util.HashMap;
 import java.util.Map;
 
-// typedef: cat.master.Request
+// typedef: cat.cluster_manager.Request
 
 /**
- * Returns information about the master node.
+ * Returns information about the cluster-manager node.
  *
  */
-
-public class MasterRequest extends CatRequestBase {
-	public MasterRequest() {
+public class ClusterManagerRequest extends CatRequestBase {
+	public ClusterManagerRequest() {
 	}
 
 	/**
-	 * Singleton instance for {@link MasterRequest}.
+	 * Singleton instance for {@link ClusterManagerRequest}.
 	 */
-	public static final MasterRequest _INSTANCE = new MasterRequest();
+	public static final ClusterManagerRequest _INSTANCE = new ClusterManagerRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code cat.master}".
 	 */
-	public static final Endpoint<MasterRequest, MasterResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+	@Deprecated
+	public static final Endpoint<ClusterManagerRequest, ClusterManagerResponse, ErrorResponse> _DEPRECATED_ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {
@@ -84,5 +84,30 @@ public class MasterRequest extends CatRequestBase {
 				params.put("format", "json");
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, MasterResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ClusterManagerResponse._DESERIALIZER);
+
+	/**
+	 * Endpoint "{@code cat.cluster_manager}".
+	 */
+	public static final Endpoint<ClusterManagerRequest, ClusterManagerResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+
+			// Request method
+			request -> {
+				return "GET";
+
+			},
+
+			// Request path
+			request -> {
+				return "/_cat/cluster_manager";
+
+			},
+
+			// Request parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
+				return params;
+
+			}, SimpleEndpoint.emptyMap(), false, ClusterManagerResponse._DESERIALIZER);
 }

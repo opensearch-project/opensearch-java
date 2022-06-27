@@ -76,8 +76,12 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 
 	private final List<String> indices;
 
+	@Deprecated
 	@Nullable
 	private final Time masterTimeout;
+
+	@Nullable
+	private final Time clusterManagerTimeout;
 
 	private final Map<String, JsonData> metadata;
 
@@ -100,6 +104,7 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		this.includeGlobalState = builder.includeGlobalState;
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.masterTimeout = builder.masterTimeout;
+		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.partial = builder.partial;
 		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
@@ -169,9 +174,21 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
+	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Period to wait for a connection to the cluster-manager node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code cluster_manager_timeout}
+	 */
+	@Nullable
+	public final Time clusterManagerTimeout() {
+		return this.clusterManagerTimeout;
 	}
 
 	/**
@@ -307,8 +324,12 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private List<String> indices;
 
+		@Deprecated
 		@Nullable
 		private Time masterTimeout;
+
+		@Nullable
+		private Time clusterManagerTimeout;
 
 		@Nullable
 		private Map<String, JsonData> metadata;
@@ -416,6 +437,7 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -427,8 +449,30 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Period to wait for a connection to the cluster-manager node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(@Nullable Time value) {
+			this.clusterManagerTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the cluster-manager node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code cluster_manager_timeout}
+		 */
+		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -578,6 +622,9 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.clusterManagerTimeout != null) {
+					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));

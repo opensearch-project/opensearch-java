@@ -142,7 +142,7 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * Return local information, do not retrieve the state from master node
+	 * Return local information, do not retrieve the state from cluster-manager node
 	 * (default: false)
 	 * <p>
 	 * API name: {@code local}
@@ -277,7 +277,7 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * Return local information, do not retrieve the state from master node
+		 * Return local information, do not retrieve the state from cluster-manager node
 		 * (default: false)
 		 * <p>
 		 * API name: {@code local}
