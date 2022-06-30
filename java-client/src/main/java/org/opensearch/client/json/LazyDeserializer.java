@@ -56,7 +56,8 @@ class LazyDeserializer<T> extends DelegatingDeserializer.SameType<T> {
         JsonpDeserializer<T> d = deserializer;
         if (d == null) {
             synchronized (this) {
-                if (deserializer == null) {
+                d = deserializer;
+                if (d == null) {
                     d = ctor.get();
                     deserializer = d;
                 }
