@@ -32,6 +32,7 @@
 
 package org.opensearch.client.opensearch.json;
 
+import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
@@ -55,6 +56,8 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class JsonpMapperTest extends Assert {
 
@@ -115,6 +118,60 @@ public class JsonpMapperTest extends Assert {
         testDeserialize(mapper, writer.toString());
         IOUtils.closeWhileHandlingException(writer);
     }
+
+    @Test
+    public void testConcurrentLazyResolve() throws Exception {
+        // Test fix for issue 172 - concurrency error in LazyDeserializer
+        // This latch holds off resolution of the LazyDeserializer until we're sure that
+        // two threads are attempting it simultaneously
+        CountDownLatch trigger = new CountDownLatch(1);
+        JsonpDeserializer<Integer> deserializer = JsonpDeserializer.lazy(() -> {
+            try {
+                trigger.await();
+            } catch (Exception e) {
+                throw new RuntimeException("Interrupted", e);
+            }
+            return JsonpDeserializer.integerDeserializer();
+        });
+
+        // Two threads will attempt to deserialize.  They should both be successful
+        final AtomicInteger successes = new AtomicInteger(0);
+        final JsonpMapper mapper = new JsonbJsonpMapper();
+        Runnable threadProc = () -> {
+            JsonParser parser = mapper.jsonProvider().createParser(new StringReader("0"));
+            try {
+                // Prior to fix, one of these would throw NPE because its
+                // LazyDeserializer resolution would return null
+                deserializer.deserialize(parser,mapper);
+                successes.incrementAndGet();
+            } catch (Throwable e) {
+                // We'll notice that we failed to increment successes
+            }
+        };
+        // Two identical threads
+        Thread thread1 = new Thread(threadProc);
+        thread1.setDaemon(true);
+        thread1.start();
+        Thread thread2 = new Thread(threadProc);
+        thread2.setDaemon(true);
+        thread2.start();
+
+        // Wait until both threads are blocked waiting LazyDeserializer resolution
+        do {
+            try {
+                Thread.sleep(5);
+            } catch (Exception e) {
+                break;
+            }
+        } while (thread1.getState() == Thread.State.RUNNABLE || thread2.getState() == Thread.State.RUNNABLE);
+
+        // Now allow resolution to proceed and wait for results
+        trigger.countDown();
+        thread1.join();
+        thread2.join();
+        assertEquals(2, successes.get());
+    }
+
 
     private void testSerialize(JsonpMapper mapper, String expected) {
 
