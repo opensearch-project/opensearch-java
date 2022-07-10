@@ -34,7 +34,10 @@ package org.opensearch.client.transport;
 
 import org.opensearch.client.util.ObjectBuilder;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -59,6 +62,10 @@ public interface TransportOptions {
         return builder.build();
     }
 
+    static Builder builder() {
+        return new BuilderImpl();
+    }
+
     interface Builder extends ObjectBuilder<TransportOptions> {
 
         Builder addHeader(String name, String value);
@@ -66,5 +73,95 @@ public interface TransportOptions {
         Builder setParameter(String name, String value);
 
         Builder onWarnings(Function<List<String>, Boolean> listener);
+    }
+
+    class BuilderImpl implements Builder {
+        protected List<Map.Entry<String, String>> headers = Collections.emptyList();
+        protected Map<String,String> queryParameters = Collections.emptyMap();
+        protected Function<List<String>, Boolean> onWarnings = null;
+
+        public BuilderImpl() {
+        }
+
+        public BuilderImpl(TransportOptions src) {
+            Collection<Map.Entry<String, String>> srcHeaders = src.headers();
+            if (srcHeaders != null && !srcHeaders.isEmpty()) {
+                headers = new ArrayList<>(srcHeaders);
+            }
+            Map<String,String> srcParams = src.queryParameters();
+            if (srcParams != null && !srcParams.isEmpty()) {
+                queryParameters = new HashMap<>(srcParams);
+            }
+            onWarnings = src.onWarnings();
+        }
+
+        @Override
+        public Builder addHeader(String name, String value) {
+            if (headers.isEmpty()) {
+                headers = new ArrayList<>();
+            }
+            headers.add(Map.entry(name, value));
+            return this;
+        }
+
+        @Override
+        public Builder setParameter(String name, String value) {
+            if (value == null) {
+                if (!queryParameters.isEmpty()) {
+                    queryParameters.remove(name);
+                }
+            } else {
+                if (queryParameters.isEmpty()) {
+                    queryParameters = new HashMap<>();
+                }
+                queryParameters.put(name, value);
+            }
+            return this;
+        }
+
+        @Override
+        public Builder onWarnings(Function<List<String>, Boolean> listener) {
+            onWarnings = listener;
+            return this;
+        }
+
+        @Override
+        public TransportOptions build() {
+            return new DefaultImpl(this);
+        }
+    }
+
+    class DefaultImpl implements TransportOptions {
+        private final List<Map.Entry<String, String>> headers;
+        private final Map<String, String> params;
+        private final Function<List<String>, Boolean> onWarnings;
+
+        protected DefaultImpl(BuilderImpl builder) {
+            this.headers = builder.headers.isEmpty() ? Collections.emptyList() : List.copyOf(builder.headers);
+            this.params = builder.queryParameters.isEmpty() ?
+                    Collections.emptyMap() :
+                    Map.copyOf(builder.queryParameters);
+            this.onWarnings = builder.onWarnings;
+        }
+
+        @Override
+        public Collection<Map.Entry<String, String>> headers() {
+            return headers;
+        }
+
+        @Override
+        public Map<String, String> queryParameters() {
+            return params;
+        }
+
+        @Override
+        public Function<List<String>, Boolean> onWarnings() {
+            return onWarnings;
+        }
+
+        @Override
+        public Builder toBuilder() {
+            return new BuilderImpl(this);
+        }
     }
 }

@@ -66,6 +66,10 @@ public class RestClientOptions implements TransportOptions {
         this.options = options;
     }
 
+    public static RestClientOptions.Builder builder() {
+        return new Builder(RequestOptions.DEFAULT.toBuilder());
+    }
+
     /**
      * Get the wrapped Rest Client request options
      */
