@@ -165,11 +165,11 @@ dependencies {
     // For AwsSdk2Transport
     "awsSdk2SupportImplementation"("software.amazon.awssdk","sdk-core","[2.15,3.0)")
     "awsSdk2SupportImplementation"("software.amazon.awssdk","auth","[2.15,3.0)")
-    testImplementation("software.amazon.awssdk","sdk-core","[2.15,2.17.230)")
-    testImplementation("software.amazon.awssdk","auth","[2.15,2.17.230)")
-    testImplementation("software.amazon.awssdk","aws-crt-client","[2.15,2.17.230)")
-    testImplementation("software.amazon.awssdk","apache-client","[2.15,2.17.230)")
-    testImplementation("software.amazon.awssdk","sts","[2.15,2.17.230)")
+    testImplementation("software.amazon.awssdk","sdk-core","[2.15,3.0)")
+    testImplementation("software.amazon.awssdk","auth","[2.15,3.0)")
+    testImplementation("software.amazon.awssdk","aws-crt-client","[2.15,3.0)")
+    testImplementation("software.amazon.awssdk","apache-client","[2.15,3.0)")
+    testImplementation("software.amazon.awssdk","sts","[2.15,3.0)")
 
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
