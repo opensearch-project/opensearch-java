@@ -41,5 +41,4 @@
     <suppress files="client[/\\]src[/\\]main[/\\]java[/\\]org[/\\]opensearch[/\\]client[/\\]opensearch[^.]*\.java" checks="UnusedImports" />
     <suppress files="client[/\\]src[/\\]main[/\\]java[/\\]org[/\\]opensearch[/\\]client[/\\]opensearch[/\\]OpenSearch[^.]*\.java" checks="LineLength" />
     <suppress files="client[/\\]src[/\\]main[/\\]java[/\\]org[/\\]opensearch[/\\]client[/\\]opensearch[/\\]OpenSearch[^.]*\.java" checks="UnusedImports" />
-    <suppress files="client[/\\]src[/\\]test[/\\]java[/\\]org[/\\]opensearch[/\\]client[/\\]opensearch[/\\]integTest[^.]*\.java" checks="Header" />
 </suppressions>
