@@ -61,6 +61,10 @@ java {
 
     withJavadocJar()
     withSourcesJar()
+
+    registerFeature("awsSdk2Support") {
+        usingSourceSet(sourceSets.get("main"))
+    }
 }
 
 tasks.withType<ProcessResources> {
@@ -119,6 +123,10 @@ val integrationTest = task<Test>("integrationTest") {
     systemProperty("https", System.getProperty("https", "true"))
     systemProperty("user", System.getProperty("user", "admin"))
     systemProperty("password", System.getProperty("password", "admin"))
+    systemProperty("tests.awsSdk2support.domainHost",
+            System.getProperty("tests.awsSdk2support.domainHost", null))
+    systemProperty("tests.awsSdk2support.domainRegion",
+            System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
 
 dependencies {
@@ -153,6 +161,15 @@ dependencies {
     implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
     implementation("com.fasterxml.jackson.core", "jackson-databind", jacksonDatabindVersion)
     testImplementation("com.fasterxml.jackson.datatype", "jackson-datatype-jakarta-jsonp", jacksonVersion)
+
+    // For AwsSdk2Transport
+    "awsSdk2SupportImplementation"("software.amazon.awssdk","sdk-core","[2.15,3.0)")
+    "awsSdk2SupportImplementation"("software.amazon.awssdk","auth","[2.15,3.0)")
+    testImplementation("software.amazon.awssdk","sdk-core","[2.15,3.0)")
+    testImplementation("software.amazon.awssdk","auth","[2.15,3.0)")
+    testImplementation("software.amazon.awssdk","aws-crt-client","[2.15,3.0)")
+    testImplementation("software.amazon.awssdk","apache-client","[2.15,3.0)")
+    testImplementation("software.amazon.awssdk","sts","[2.15,3.0)")
 
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
