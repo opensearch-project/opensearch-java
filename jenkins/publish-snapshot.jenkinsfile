@@ -12,10 +12,10 @@ pipeline {
             steps {
                 git url: 'https://github.com/opensearch-project/opensearch-java.git', branch: 'main'
                 withCredentials([usernamePassword(credentialsId: 'Sonatype', usernameVariable: 'ORG_GRADLE_PROJECT_snapshotsUsername', passwordVariable: 'ORG_GRADLE_PROJECT_snapshotsPassword')]) {
-                    sh './gradlew --no-daemon publishPublishMavenPublicationToSnapshotsRepository'
+                    sh './gradlew --no-daemon publishPublishMavenPublicationToSnapshotRepoRepository'
                 }
             }
-            post() {
+            post {
                 always {
                     cleanWs disableDeferredWipeout: true, deleteDirs: true
                 }

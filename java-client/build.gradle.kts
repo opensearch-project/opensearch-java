@@ -250,12 +250,12 @@ publishing {
     repositories{
         if (version.toString().endsWith("SNAPSHOT")) {
             maven("https://aws.oss.sonatype.org/content/repositories/snapshots/") {
-                name = "snapshots"
+                name = "snapshotRepo"
                 credentials(PasswordCredentials::class)
             }
         } else {
-            maven {
-                uri("${rootProject.buildDir}/repository")
+            maven("${rootProject.buildDir}/repository") {
+                name = "localRepo"
             }
         }
     }

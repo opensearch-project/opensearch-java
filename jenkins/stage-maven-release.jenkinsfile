@@ -1,0 +1,110 @@
+pipeline {
+    agent {
+        docker {
+            label 'Jenkins-Agent-AL2-X64-C54xlarge-Docker-Host'
+            image 'opensearchstaging/ci-runner:ci-runner-centos7-opensearch-build-v2'
+            args '-e JAVA_HOME=/opt/java/openjdk-11'
+            alwaysPull true
+        }
+    }
+    environment {
+        VERSION = "${params.VERSION}"
+        ARTIFACT_PATH = "$WORKSPACE/build/repository/org/opensearch/client/opensearch-java/${VERSION}"
+    }
+    stages {
+        stage('parameters') {
+            steps {
+                script {
+                    properties([
+                        parameters([
+                            string(
+                                name: 'REF',
+                                trim: true
+                            ),
+                            string(
+                                name: 'VERSION',
+                                trim: true
+                            )
+                        ])
+                    ])
+                    if (params.REF.isEmpty() || params.VERSION.isEmpty()) {
+                        currentBuild.result = 'ABORTED'
+                        error('Missing REF and/or VERSION.')
+                    }
+                }
+            }
+        }
+        stage('Publish to Maven Local') {
+            steps {
+                // checkout the commit
+                git url: 'https://github.com/opensearch-project/opensearch-java.git', branch: 'main'
+                sh('git checkout ${REF}')
+
+                // publish maven artifacts
+                sh('./gradlew --no-daemon publishPublishMavenPublicationToLocalRepoRepository')
+            }
+        }
+        stage('Sign') {
+            environment {
+                // these ENV variables are required by https://github.com/opensearch-project/opensearch-signer-client
+                // this client is invoked internally by the sign script
+                ROLE = "${SIGNER_CLIENT_ROLE}"
+                EXTERNAL_ID = "${SIGNER_CLIENT_EXTERNAL_ID}"
+                UNSIGNED_BUCKET = "${SIGNER_CLIENT_UNSIGNED_BUCKET}"
+                SIGNED_BUCKET = "${SIGNER_CLIENT_SIGNED_BUCKET}"
+            }
+            steps {
+                // fetch opensearch public key and add to keyring
+                sh('curl https://artifacts.opensearch.org/publickeys/opensearch.pgp -o $WORKSPACE/opensearch.pgp')
+                sh('gpg --import $WORKSPACE/opensearch.pgp')
+
+                // sign artifacts
+                git credentialsId: 'jenkins-staging-github-bot-token',
+                    url: 'https://github.com/opensearch-project/opensearch-signer-client.git',
+                    branch: 'main'
+
+                dir('src') {
+                    sh ('./bootstrap')
+                    sh('rm config.cfg')
+                    sh('ls -d ${ARTIFACT_PATH}/* | xargs -I {} sh -c \'./opensearch-signer-client  -i {} -o {}.sig -p pgp\'')
+
+                    // transform the binary signature to an ascii armored file
+                    sh("for i in `ls -d ${ARTIFACT_PATH}/*.sig`; do (cat \$i | gpg --enarmor | sed 's/ARMORED FILE/SIGNATURE/g') > \${i%%.sig}.asc; done")
+
+                    // verify they are ANSI with PGP SIGNATURE
+                    sh('ls -d ${ARTIFACT_PATH}/*.asc | xargs -I {} sh -c \'cat {} | grep PGP\'')
+
+                    // verify the signatures
+                    sh('ls -d ${ARTIFACT_PATH}/*.asc | xargs -I {} sh -c \'gpg --verify {} \'')
+
+                    // remove sig files
+                    sh('rm -f ${ARTIFACT_PATH}/*.sig')
+                }
+            }
+        }
+        stage('Stage Maven Artifacts') {
+            tools {
+                maven 'maven-3.8.2'
+            }
+            environment {
+                REPO_URL = 'https://aws.oss.sonatype.org/'
+                STAGING_PROFILE_ID = "${SONATYPE_STAGING_PROFILE_ID}"
+                BUILD_ID = "${BUILD_NUMBER}"
+            }
+            steps {
+                // checkout the build repo
+                git url: 'https://github.com/opensearch-project/opensearch-build.git', branch: 'main'
+
+                // stage artifacts for release with Sonatype
+                withCredentials([usernamePassword(credentialsId: 'Sonatype', usernameVariable: 'SONATYPE_USERNAME', passwordVariable: 'SONATYPE_PASSWORD')]) {
+                    sh('$WORKSPACE/publish/stage-maven-release.sh $ARTIFACT_PATH')
+                }
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs disableDeferredWipeout: true, deleteDirs: true
+        }
+    }
+}
