@@ -87,29 +87,6 @@ pipeline {
                     }
             }
         }
-        stage('Generate checksums') {
-            steps {
-                 dir("$OUTPUT_DIR/org"){
-                    // copy only required artifacts to other folder so that not everything from .m2 gets staged
-                    sh('cp -r /usr/share/opensearch/.m2/repository/org/opensearch $OUTPUT_DIR/org/')
-                    sh('bash -O extglob -c "rm -rf $OUTPUT_DIR/org/opensearch/!(client)"')
-                    sh '''
-                    for file in $(find \$OUTPUT_DIR/org/opensearch/client/opensearch-java/ -type f)
-                        do
-                        if [ \${file##*.} != "asc" ]
-                        then
-                            echo "Creating checksum for \$file"
-                            (md5sum \$file | cut -d \' \' -f 1) > \$file.md5
-                            (sha1sum \$file | cut -d \' \' -f 1) > \$file.sha1
-                            (sha256sum \$file | cut -d \' \' -f 1) > \$file.sha256
-                            (sha512sum \$file | cut -d \' \' -f 1) > \$file.sha512
-                        fi
-                        done
-                    '''
-                    }
-                    sh('ls -l \$OUTPUT_DIR/org/opensearch/client/opensearch-java/\${VERSION}')
-                }
-        }
         stage('Stage maven artifacts') {
             tools {
               maven "maven-3.8.2"
