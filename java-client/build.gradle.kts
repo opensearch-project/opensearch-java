@@ -248,8 +248,15 @@ tasks.withType<Jar> {
 
 publishing {
     repositories{
-        maven {
-            url = uri("${rootProject.buildDir}/repository")
+        if (version.toString().endsWith("SNAPSHOT")) {
+            maven("https://aws.oss.sonatype.org/content/repositories/snapshots/") {
+                name = "snapshots"
+                credentials(PasswordCredentials::class)
+            }
+        } else {
+            maven {
+                uri("${rootProject.buildDir}/repository")
+            }
         }
     }
     publications {
