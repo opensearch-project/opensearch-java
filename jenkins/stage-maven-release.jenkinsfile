@@ -12,38 +12,33 @@ pipeline {
             alwaysPull true
         }
     }
+    triggers {
+        GenericTrigger(
+            genericVariables: [
+                [key: 'ref', value: '$.ref'],
+                [key: 'version', value: '$.ref', regexpFilter: 'refs/tags/v' ],
+            ],
+            tokenCredentialId: 'jenkins-opensearch-java-generic-webhook-token',
+            causeString: 'A tag was cut on opensearch-project/opensearch-java repository causing this workflow to run',
+            printContributedVariables: false,
+            printPostContent: false,
+            regexpFilterText: '$ref',
+            regexpFilterExpression: '^refs/tags/.*'
+        )
+    }
     environment {
-        VERSION = "${params.VERSION}"
-        ARTIFACT_PATH = "$WORKSPACE/build/repository/org/opensearch/client/opensearch-java/${VERSION}"
+        ARTIFACT_PATH = "$WORKSPACE/build/repository/org/opensearch/client/opensearch-java/$version"
     }
     stages {
-        stage('parameters') {
-            steps {
-                script {
-                    properties([
-                        parameters([
-                            string(
-                                name: 'REF',
-                                trim: true
-                            ),
-                            string(
-                                name: 'VERSION',
-                                trim: true
-                            )
-                        ])
-                    ])
-                    if (params.REF.isEmpty() || params.VERSION.isEmpty()) {
-                        currentBuild.result = 'ABORTED'
-                        error('Missing REF and/or VERSION.')
-                    }
-                }
-            }
-        }
         stage('Publish to Maven Local') {
             steps {
+                echo "ref : $ref"
+                echo "version: $version"
                 // checkout the commit
-                git url: 'https://github.com/opensearch-project/opensearch-java.git', branch: 'main'
-                sh('git checkout ${REF}')
+                checkout([
+                    $class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/opensearch-project/opensearch-java.git']],
+                    branches: [[name: "$ref"]]
+                    ])
 
                 // publish maven artifacts
                 sh('./gradlew --no-daemon publishPublishMavenPublicationToLocalRepoRepository')
