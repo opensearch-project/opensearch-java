@@ -8,10 +8,10 @@ pipeline {
         }
     }
     stages {
-        stage('Publish to Maven Staging') {
+        stage('Publish to Sonatype Snapshots Repo') {
             steps {
                 git url: 'https://github.com/opensearch-project/opensearch-java.git', branch: 'main'
-                withCredentials([usernamePassword(credentialsId: 'Sonatype', usernameVariable: 'ORG_GRADLE_PROJECT_snapshotsUsername', passwordVariable: 'ORG_GRADLE_PROJECT_snapshotsPassword')]) {
+                withCredentials([usernamePassword(credentialsId: 'jenkins-sonatype-creds', usernameVariable: 'ORG_GRADLE_PROJECT_snapshotsUsername', passwordVariable: 'ORG_GRADLE_PROJECT_snapshotsPassword')]) {
                     sh './gradlew --no-daemon publishPublishMavenPublicationToSnapshotRepoRepository'
                 }
             }
