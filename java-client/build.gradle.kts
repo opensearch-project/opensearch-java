@@ -253,10 +253,9 @@ publishing {
                 name = "snapshotRepo"
                 credentials(PasswordCredentials::class)
             }
-        } else {
-            maven("${rootProject.buildDir}/repository") {
-                name = "localRepo"
-            }
+        }
+        maven("${rootProject.buildDir}/repository") {
+            name = "localRepo"
         }
     }
     publications {
