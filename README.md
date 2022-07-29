@@ -1,5 +1,6 @@
 [![Code style and license headers](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml)
 [![Build](https://github.com/opensearch-project/opensearch-java/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/build.yml)
+![Maven Central](https://img.shields.io/maven-central/v/org.opensearch.client/opensearch-java)
 [![Chat](https://img.shields.io/badge/chat-on%20forums-blue)](https://discuss.opendistrocommunity.dev/c/clients/)
 ![PRs welcome!](https://img.shields.io/badge/PRs-welcome!-success)
 
@@ -25,8 +26,9 @@ This client is meant to replace the existing [OpenSearch Java High Level REST Cl
 ## Project Resources
 
 * [Project Website](https://opensearch.org/)
-* [Downloads](https://opensearch.org/downloads.html)
-* [Documentation](https://opensearch.org/docs/)
+* [Documentation](https://opensearch.org/docs/latest/clients/java/)
+* [Maven Central](https://search.maven.org/artifact/org.opensearch.client/opensearch-java)
+* [Snapshot Builds](https://aws.oss.sonatype.org/content/repositories/snapshots/org/opensearch/client/opensearch-java/)
 * Need help? Try [Forums](https://discuss.opendistrocommunity.dev/)
 * [Project Principles](https://opensearch.org/#principles)
 * [Contributing to OpenSearch](CONTRIBUTING.md)
