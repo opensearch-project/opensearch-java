@@ -16,7 +16,7 @@ pipeline {
         GenericTrigger(
             genericVariables: [
                 [key: 'ref', value: '$.ref'],
-                [key: 'version', value: '$.ref', regexpFilter: 'refs/tags/v' ],
+                [key: 'VERSION', value: '$.ref', regexpFilter: 'refs/tags/v' ],
             ],
             tokenCredentialId: 'jenkins-opensearch-java-generic-webhook-token',
             causeString: 'A tag was cut on opensearch-project/opensearch-java repository causing this workflow to run',
@@ -27,7 +27,7 @@ pipeline {
         )
     }
     environment {
-        ARTIFACT_PATH = "$WORKSPACE/build/repository/org/opensearch/client/opensearch-java/$version"
+        ARTIFACT_PATH = "$WORKSPACE/build/repository/org/opensearch/client/opensearch-java/$VERSION"
     }
     stages {
         stage('Publish to Maven Local') {
