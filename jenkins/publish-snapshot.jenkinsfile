@@ -7,6 +7,19 @@ pipeline {
             alwaysPull true
         }
     }
+    triggers {
+        GenericTrigger(
+            genericVariables: [
+                [key: 'ref', value: '$.ref'],
+            ],
+            tokenCredentialId: 'jenkins-opensearch-java-generic-webhook-token',
+            causeString: 'A commit was pushed on opensearch-project/opensearch-java repository main branch causing this workflow to run',
+            printContributedVariables: false,
+            printPostContent: false,
+            regexpFilterText: '$ref',
+            regexpFilterExpression: '^(refs/heads/main)$'
+        )
+    }
     stages {
         stage('Publish to Sonatype Snapshots Repo') {
             steps {
