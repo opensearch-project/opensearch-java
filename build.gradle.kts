@@ -32,9 +32,9 @@
 
 allprojects {
     group = "org.opensearch.client"
+
     // Release manager provides a $VERSION. If not present, it's a local or CI snapshot build.
-    version = System.getenv("VERSION") ?:
-        (File(project.rootDir, "config/version.txt").readText().trim() + "-SNAPSHOT")
+    version = System.getenv("VERSION") ?: System.getProperty("version") + "-SNAPSHOT"
 
     repositories {
         mavenLocal()
