@@ -1,4 +1,4 @@
-[![Code style and license headers](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml)
+[![Checkstyle](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml)
 [![Build](https://github.com/opensearch-project/opensearch-java/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/build.yml)
 [![Chat](https://img.shields.io/badge/chat-on%20forums-blue)](https://discuss.opendistrocommunity.dev/c/clients/)
 ![PRs welcome!](https://img.shields.io/badge/PRs-welcome!-success)

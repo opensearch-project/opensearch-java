@@ -1,6 +1,7 @@
-name: Code style and license headers
+name: Checkstyle
 
-on: [pull_request]
+on: [push, pull_request]
+
 jobs:
   checkstyle:
     runs-on: ubuntu-latest
