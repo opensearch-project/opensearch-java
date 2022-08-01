@@ -65,7 +65,7 @@ pipeline {
 
                 // stage artifacts for release with Sonatype
                 withCredentials([usernamePassword(credentialsId: 'jenkins-sonatype-creds', usernameVariable: 'SONATYPE_USERNAME', passwordVariable: 'SONATYPE_PASSWORD')]) {
-                    sh('$WORKSPACE/publish/stage-maven-release.sh $ARTIFACT_PATH')
+                    sh('$WORKSPACE/publish/stage-maven-release.sh $WORKSPACE/build/repository/')
                 }
             }
         }
