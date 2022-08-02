@@ -1,5 +1,6 @@
 [![Checkstyle](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml)
 [![Build](https://github.com/opensearch-project/opensearch-java/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/build.yml)
+[![Integration Tests](https://github.com/opensearch-project/opensearch-java/actions/workflows/test-integration.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/test-integration.yml)
 ![Maven Central](https://img.shields.io/maven-central/v/org.opensearch.client/opensearch-java)
 [![Chat](https://img.shields.io/badge/chat-on%20forums-blue)](https://discuss.opendistrocommunity.dev/c/clients/)
 ![PRs welcome!](https://img.shields.io/badge/PRs-welcome!-success)
