@@ -32,3 +32,11 @@ Repositories create consistent release labels, such as `v1.0.0`, `v1.1.0` and `v
 ## Releasing
 
 The release process is standard across repositories in this org and is run by a release manager volunteering from amongst [MAINTAINERS](MAINTAINERS.md).
+
+1. Create a tag, e.g. `v2.1.0`, and push it to the GitHub repo.
+2. The [opensearch-java-maven-sign-and-release/](https://build.ci.opensearch.org/job/opensearch-java-maven-sign-and-release/) will be automatically kicked off.
+3. Login to [AWS OSS Sonatype](https://aws.oss.sonatype.org/#stagingRepositories), and locate the staged release.
+4. `Close` the staged repository, and ensure all checks pass.
+5. `Release` the staged respository.
+6. [Create a release on GitHub](https://github.com/opensearch-project/opensearch-java/releases/new) with release notes.
+7. Increment `systemProp.version` in [gradle.properties](gradle.properties) to the next patch release, e.g. `v2.1.1`, commit and push. 
