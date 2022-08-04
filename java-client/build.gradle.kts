@@ -179,7 +179,7 @@ dependencies {
     testImplementation("io.github.classgraph:classgraph:4.8.116")
 
     // Eclipse 1.0
-    testImplementation("junit", "junit" , "4.12") {
+    testImplementation("junit", "junit" , "4.13.2") {
         exclude(group = "org.hamcrest")
     }
 }
