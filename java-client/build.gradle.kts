@@ -48,7 +48,7 @@ plugins {
     `java-library`
     checkstyle
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "1.17"
+    id("com.github.jk1.dependency-license-report") version "1.19"
 }
 
 checkstyle {
