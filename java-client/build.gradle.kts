@@ -131,7 +131,7 @@ val integrationTest = task<Test>("integrationTest") {
 
 dependencies {
 
-    val opensearchVersion = "2.1.0"
+    val opensearchVersion = "2.3.0"
     val jacksonVersion = "2.13.4"
     val jacksonDatabindVersion = "2.13.4"
 
@@ -142,10 +142,6 @@ dependencies {
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
     api("com.google.code.findbugs:jsr305:3.0.2")
-
-    // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-    // https://github.com/eclipse-ee4j/jsonp
-    api("jakarta.json:jakarta.json-api:2.0.1")
 
     // Needed even if using Jackson to have an implementation of the Jsonp object model
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
