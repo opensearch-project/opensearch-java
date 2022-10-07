@@ -36,10 +36,15 @@ package org.opensearch.client.opensearch.integTest;
 import org.junit.Test;
 import org.opensearch.Version;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
+import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
+import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.HistogramAggregate;
+import org.opensearch.client.opensearch._types.aggregations.TermsAggregation;
 import org.opensearch.client.opensearch._types.mapping.Property;
+import org.opensearch.client.opensearch._types.query_dsl.BoolQuery;
+import org.opensearch.client.opensearch._types.query_dsl.TermsQuery;
 import org.opensearch.client.opensearch.cat.NodesResponse;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.ClearScrollResponse;
@@ -48,6 +53,7 @@ import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.MsearchResponse;
 import org.opensearch.client.opensearch.core.SearchResponse;
+import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
 import org.opensearch.client.opensearch.core.msearch.RequestItem;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
@@ -58,9 +64,9 @@ import org.opensearch.client.opensearch.indices.IndexState;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 
-
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -331,6 +337,44 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
     }
 
     @Test
+    public void testSubAggregation() throws IOException {
+
+        highLevelClient().create(_1 -> _1.index("products").id("A").document(new Product(5, "Blue")).refresh(Refresh.True));
+        highLevelClient().create(_1 -> _1.index("products").id("B").document(new Product(10, "Blue")).refresh(Refresh.True));
+        highLevelClient().create(_1 -> _1.index("products").id("C").document(new Product(15, "Black")).refresh(Refresh.True));
+
+        List<FieldValue> fieldValues = List.of(FieldValue.of("Blue"));
+
+        SearchRequest searchRequest = SearchRequest.of(_1 -> _1
+                .index("products")
+                .size(0)
+                .aggregations(
+                        "price", _3 -> _3
+                                .aggregations(Map.of("price", TermsAggregation.of(_4 -> _4
+                                                .field("price"))
+                                        ._toAggregation()))
+                                .filter(BoolQuery.of(_5 -> _5
+                                                .filter(List.of(TermsQuery.of(_6 -> _6
+                                                                .field("color.keyword")
+                                                                .terms(_7 -> _7
+                                                                        .value(fieldValues)))
+                                                        ._toQuery())))
+                                        ._toQuery()
+                                )
+                ));
+        SearchResponse<Product> searchResponse = highLevelClient().search(searchRequest, Product.class);
+
+        Aggregate prices = searchResponse.aggregations().get("price")._get()._toAggregate();
+        assertEquals(2, searchResponse.aggregations().get("price").filter().docCount());
+        assertEquals(1, prices.filter().aggregations().get("price").dterms().buckets().array().get(0).docCount());
+        assertEquals(1, prices.filter().aggregations().get("price").dterms().buckets().array().get(1).docCount());
+
+        // We've set "size" to zero
+        assertEquals(0, searchResponse.hits().hits().size());
+
+    }
+
+    @Test
     public void testGetMapping() throws Exception {
         // See also VariantsTest.testNestedTaggedUnionWithDefaultTag()
         String index = "testindex";
@@ -405,10 +449,16 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
 
     public static class Product {
         public double price;
+        public String color;
 
         public Product() {}
         public Product(double price) {
             this.price = price;
+        }
+
+        public Product(double price, String color) {
+            this.price = price;
+            this.color = color;
         }
 
         public double getPrice() {
