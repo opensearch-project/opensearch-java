@@ -30,10 +30,6 @@
  * GitHub history for details.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package org.opensearch.client.opensearch.core.search;
 
 /**
