@@ -74,6 +74,12 @@ tasks.withType<ProcessResources> {
     )
 }
 
+tasks.withType<Javadoc>().configureEach{
+    options {
+        encoding = "UTF-8"
+    }
+}
+
 tasks.withType<Jar> {
     doFirst {
         if (rootProject.extra.has("gitHashFull")) {
