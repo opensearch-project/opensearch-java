@@ -36,11 +36,11 @@ import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.transport.rest_client.RestClientTransport;
 import com.sun.net.httpserver.HttpServer;
-import org.apache.http.HttpHost;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.opensearch.client.ResponseException;
 import org.opensearch.client.RestClient;
+import org.apache.hc.core5.http.HttpHost;
+import org.apache.hc.core5.http.NameValuePair;
+import org.apache.hc.core5.net.URLEncodedUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -96,7 +96,7 @@ public class RequestOptionsTest extends Assert {
 
         httpServer.start();
         InetSocketAddress address = httpServer.getAddress();
-        restClient = RestClient.builder(new HttpHost(address.getHostString(), address.getPort(), "http"))
+        restClient = RestClient.builder(new HttpHost("http", address.getHostString(), address.getPort()))
             .build();
     }
 

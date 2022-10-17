@@ -51,10 +51,10 @@ public class EndpointTest extends Assert {
         assertEquals("/a/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
 
         req = RefreshRequest.of(b -> b.index("a", "b"));
-        assertEquals("/a,b/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
+        assertEquals("/a%2Cb/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
 
         req = RefreshRequest.of(b -> b.index("a", "b", "c"));
-        assertEquals("/a,b,c/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
+        assertEquals("/a%2Cb%2Cc/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class EndpointTest extends Assert {
         assertEquals("/a%2Fb/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
 
         req = RefreshRequest.of(b -> b.index("a/b", "c/d"));
-        assertEquals("/a%2Fb,c%2Fd/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
+        assertEquals("/a%2Fb%2Cc%2Fd/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
 
     }
 

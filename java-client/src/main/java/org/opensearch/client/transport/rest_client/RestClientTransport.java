@@ -48,11 +48,12 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.MissingRequiredPropertyException;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-import org.apache.http.HttpEntity;
-import org.apache.http.entity.BufferedHttpEntity;
-import org.apache.http.entity.ByteArrayEntity;
-import org.apache.http.entity.ContentType;
-import org.apache.http.util.EntityUtils;
+
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.io.entity.BufferedHttpEntity;
+import org.apache.hc.core5.http.io.entity.ByteArrayEntity;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.opensearch.client.Cancellable;
 import org.opensearch.client.RequestOptions;
 import org.opensearch.client.Response;

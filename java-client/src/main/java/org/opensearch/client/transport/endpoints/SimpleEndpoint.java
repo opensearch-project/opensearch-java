@@ -33,9 +33,9 @@
 package org.opensearch.client.transport.endpoints;
 
 import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.apache.hc.core5.net.URLEncodedUtils;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.transport.JsonEndpoint;
-import org.apache.http.client.utils.URLEncodedUtils;
 
 import java.util.Collections;
 import java.util.Map;
