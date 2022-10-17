@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Github workflow for changelog verification ([#239](https://github.com/opensearch-project/opensearch-java/pull/239))
 
 ### Changed
+- Update tests to use JUnit's Assert ([#244]https://github.com/opensearch-project/opensearch-java/pull/244)
 
 ### Deprecated
 
