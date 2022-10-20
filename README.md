@@ -23,6 +23,9 @@ OpenSearch Java Client
 For more information, see [opensearch.org](https://opensearch.org/).
 This client is meant to replace the existing [OpenSearch Java High Level REST Client](https://opensearch.org/docs/latest/clients/java-rest-high-level/).
 
+## Sample code
+
+Please see the [USER_GUIDE](USER_GUIDE.md) for code snippets.
 
 ## Project Resources
 
