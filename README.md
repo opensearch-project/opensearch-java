@@ -10,7 +10,7 @@
 OpenSearch Java Client
 
 - [Welcome!](#welcome)
-- [Sample code](#sample-code)
+- [Sample Code](#sample-code)
 - [Project Resources](#project-resources)
 - [Code of Conduct](#code-of-conduct)
 - [Compatibility with OpenSearch](#compatibility-with-opensearch)
@@ -24,7 +24,7 @@ OpenSearch Java Client
 For more information, see [opensearch.org](https://opensearch.org/).
 This client is meant to replace the existing [OpenSearch Java High Level REST Client](https://opensearch.org/docs/latest/clients/java-rest-high-level/).
 
-## Sample code
+## Sample Code
 
 Please see the [USER_GUIDE](USER_GUIDE.md) for code snippets.
 
