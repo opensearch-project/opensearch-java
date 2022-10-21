@@ -10,6 +10,7 @@
 OpenSearch Java Client
 
 - [Welcome!](#welcome)
+- [Sample code](#sample-code)
 - [Project Resources](#project-resources)
 - [Code of Conduct](#code-of-conduct)
 - [Compatibility with OpenSearch](#compatibility-with-opensearch)
