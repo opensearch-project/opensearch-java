@@ -9,7 +9,7 @@
 package org.opensearch.client.opensearch.integTest.aws;
 
 import org.junit.Test;
-import org.locationtech.jts.util.Assert;
+import org.junit.Assert;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
@@ -49,7 +49,7 @@ public class AwsSdk2BulkRequestIT extends AwsSdk2TransportTestCase {
                 .operations(ops)
                 .refresh(Refresh.WaitFor);
         BulkResponse bulkResponse = client.bulk(bulkReq.build());
-        Assert.equals(3, bulkResponse.items().size());
+        Assert.assertEquals(3, bulkResponse.items().size());
 
         Query query = Query.of(qb -> qb.match(mb -> mb.field("title").query(fv -> fv.stringValue("Document"))));
         final SearchRequest.Builder searchReq = new SearchRequest.Builder()
@@ -60,6 +60,6 @@ public class AwsSdk2BulkRequestIT extends AwsSdk2TransportTestCase {
                 .ignoreThrottled(false)
                 .query(query);
         SearchResponse<SimplePojo> searchResponse = client.search(searchReq.build(), SimplePojo.class);
-        Assert.equals(3, searchResponse.hits().hits().size());
+        Assert.assertEquals(3, searchResponse.hits().hits().size());
     }
 }

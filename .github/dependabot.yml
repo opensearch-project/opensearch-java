@@ -4,9 +4,15 @@ updates:
     package-ecosystem: gradle
     schedule:
       interval: weekly
+    labels:
+      - "dependabot"
+      - "dependencies"
   - directory: /java-client/
     open-pull-requests-limit: 1
     package-ecosystem: gradle
     schedule:
       interval: weekly
+    labels:
+      - "dependabot"
+      - "dependencies"
 version: 2

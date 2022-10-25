@@ -9,7 +9,7 @@
 package org.opensearch.client.opensearch.integTest.aws;
 
 import org.junit.Test;
-import org.locationtech.jts.util.Assert;
+import org.junit.Assert;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.OpType;
@@ -55,18 +55,18 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         addDoc(client, "id3", doc3, true);
 
         SearchResponse<SimplePojo> response = query(client, "NotPresent", null);
-        Assert.equals(0, response.hits().hits().size());
+        Assert.assertEquals(0, response.hits().hits().size());
 
         response = query(client, "Document", null);
-        Assert.equals(3, response.hits().hits().size());
+        Assert.assertEquals(3, response.hits().hits().size());
 
         response = query(client, "1", null);
-        Assert.equals(1, response.hits().hits().size());
-        Assert.equals(doc1, response.hits().hits().get(0).source());
+        Assert.assertEquals(1, response.hits().hits().size());
+        Assert.assertEquals(doc1, response.hits().hits().get(0).source());
 
         response = query(client, null, "wait");
-        Assert.equals(1, response.hits().hits().size());
-        Assert.equals(doc3, response.hits().hits().get(0).source());
+        Assert.assertEquals(1, response.hits().hits().size());
+        Assert.assertEquals(doc3, response.hits().hits().get(0).source());
     }
 
     void testClientAsync(boolean async) throws Exception {
@@ -93,14 +93,14 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         }).get();
 
         SearchResponse<SimplePojo> response = results.get(0);
-        Assert.equals(0, response.hits().hits().size());
+        Assert.assertEquals(0, response.hits().hits().size());
 
         response = results.get(1);
-        Assert.equals(3, response.hits().hits().size());
+        Assert.assertEquals(3, response.hits().hits().size());
 
         response = results.get(2);
-        Assert.equals(1, response.hits().hits().size());
-        Assert.equals(doc1, response.hits().hits().get(0).source());
+        Assert.assertEquals(1, response.hits().hits().size());
+        Assert.assertEquals(doc1, response.hits().hits().get(0).source());
     }
 
 
