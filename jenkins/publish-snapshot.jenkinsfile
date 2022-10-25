@@ -1,4 +1,16 @@
 pipeline {
+    options {
+        timeout(time: 30, unit: 'MINUTES')
+        throttleJobProperty(
+            categories: [],
+            limitOneJobWithMatchingParams: false,
+            maxConcurrentPerNode: 0,
+            maxConcurrentTotal: 1,
+            paramsToUseForLimit: '',
+            throttleEnabled: true,
+            throttleOption: 'project',
+        )
+    }
     agent {
         docker {
             label 'Jenkins-Agent-AL2-X64-C54xlarge-Docker-Host'
