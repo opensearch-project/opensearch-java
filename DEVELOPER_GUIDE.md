@@ -7,7 +7,6 @@
     - [Run Tests](#run-tests)
       - [Unit Tests](#unit-tests)
       - [Integration Tests](#integration-tests)
-    - [Using the Java Client](#using-the-java-client)
   - [Use an Editor](#use-an-editor)
     - [IntelliJ IDEA](#intellij-idea)
     - [Visual Studio Code](#visual-studio-code)
@@ -63,41 +62,6 @@ Run integration tests after starting OpenSearch cluster:
 
 ```
 ./gradlew clean integrationTest
-```
-
-### Using the Java Client
-
-An example for using the java client in an application:
-
-```java
-try (RestClient restClient = RestClient.builder(new HttpHost("localhost", 9200)).build()) {
-        String index = "test-index";
-
-        // Create Client
-        OpenSearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
-        OpenSearchClient client = new OpenSearchClient(transport);
-
-        // Create Index
-        CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(index).build();
-        CreateIndexResponse createIndexResponse = client.indices().create(createIndexRequest);
-        assert createIndexResponse.shardsAcknowledged();
-
-        // Index Document
-        AppData appData = new AppData(1337, "foo");
-
-        IndexRequest<AppData> indexRequest = new IndexRequest.Builder<AppData>().index("index").id("1").document(appData).build();
-        IndexResponse indexResponse = client.index(indexRequest);
-        assertEquals(Result.Created, indexResponse.result());
-
-        // Search Documents
-        SearchResponse<AppData> search = client.search(b -> b.index(index), AppData.class);
-        assertEquals(1, search.hits().total().value());
-
-        // Delete Index
-        DeleteIndexRequest deleteRequest = new DeleteIndexRequest.Builder().index(index).build();
-        DeleteIndexResponse deleteResponse = client.indices().delete(deleteRequest);
-        assert deleteResponse.shardsAcknowledged();
-        }
 ```
 
 ## Use an Editor
