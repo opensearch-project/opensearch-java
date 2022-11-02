@@ -9,13 +9,18 @@
 package org.opensearch.client.opensearch.integTest;
 
 
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.ssl.SSLContextBuilder;
+import org.apache.hc.client5.http.auth.AuthScope;
+import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
+import org.apache.hc.client5.http.impl.auth.BasicCredentialsProvider;
+import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManager;
+import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManagerBuilder;
+import org.apache.hc.client5.http.ssl.ClientTlsStrategyBuilder;
+import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
+import org.apache.hc.core5.function.Factory;
+import org.apache.hc.core5.http.HttpHost;
+import org.apache.hc.core5.http.nio.ssl.TlsStrategy;
+import org.apache.hc.core5.reactor.ssl.TlsDetails;
+import org.apache.hc.core5.ssl.SSLContextBuilder;
 import org.junit.After;
 import org.opensearch.client.Request;
 import org.opensearch.client.Response;
@@ -41,6 +46,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.net.ssl.SSLEngine;
 
 public abstract class OpenSearchRestHighLevelClientTestCase extends OpenSearchRestTestCase {
 
@@ -80,25 +86,43 @@ public abstract class OpenSearchRestHighLevelClientTestCase extends OpenSearchRe
         RestClientBuilder builder = RestClient.builder(hosts);
         builder.setStrictDeprecationMode(true);
         if (isHttps()) {
-            configureHttpsClient(builder);
+            configureHttpsClient(builder, hosts);
         }
         return builder.build();
     }
 
-    private void configureHttpsClient(RestClientBuilder builder) {
+    private void configureHttpsClient(RestClientBuilder builder, HttpHost[] hosts) {
         builder.setHttpClientConfigCallback(httpClientBuilder -> {
             String userName = Optional.ofNullable(System.getProperty("user")).orElse("admin");
             String password = Optional.ofNullable(System.getProperty("password")).orElse("admin");
 
-            final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-            credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(userName, password));
+            final BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+            for (final HttpHost host: hosts) {
+                credentialsProvider.setCredentials(new AuthScope(host), new UsernamePasswordCredentials(userName, password.toCharArray()));
+            }
 
             try {
+                final TlsStrategy tlsStrategy = ClientTlsStrategyBuilder
+                    .create()
+                    .setSslContext(SSLContextBuilder.create().loadTrustMaterial(null, (chains, authType) -> true).build())
+                    // disable the certificate since our testing cluster just uses the default security configuration
+                    .setHostnameVerifier(NoopHostnameVerifier.INSTANCE)
+                    // See please https://issues.apache.org/jira/browse/HTTPCLIENT-2219
+                    .setTlsDetailsFactory(new Factory<SSLEngine, TlsDetails>() {
+                        @Override
+                        public TlsDetails create(final SSLEngine sslEngine) {
+                            return new TlsDetails(sslEngine.getSession(), sslEngine.getApplicationProtocol());
+                        }
+                    })
+                    .build();
+
+                final PoolingAsyncClientConnectionManager connectionManager = PoolingAsyncClientConnectionManagerBuilder.create()
+                    .setTlsStrategy(tlsStrategy)
+                    .build();
+
                 return httpClientBuilder
-                        .setDefaultCredentialsProvider(credentialsProvider)
-                        // disable the certificate since our testing cluster just uses the default security configuration
-                        .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
-                        .setSSLContext(SSLContextBuilder.create().loadTrustMaterial(null, (chains, authType) -> true).build());
+                    .setDefaultCredentialsProvider(credentialsProvider)
+                    .setConnectionManager(connectionManager);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -128,7 +152,7 @@ public abstract class OpenSearchRestHighLevelClientTestCase extends OpenSearchRe
     @After
     protected void wipeAllOSIndices() throws IOException {
         Response response = adminClient().performRequest(new Request("GET", "/_cat/indices?format=json&expand_wildcards=all"));
-        XContentType xContentType = XContentType.fromMediaType(response.getEntity().getContentType().getValue());
+        XContentType xContentType = XContentType.fromMediaType(response.getEntity().getContentType());
         XContentParser parser = xContentType.xContent().createParser(
                 NamedXContentRegistry.EMPTY, DeprecationHandler.THROW_UNSUPPORTED_OPERATION,
                 response.getEntity().getContent());
