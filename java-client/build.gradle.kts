@@ -41,6 +41,9 @@ buildscript {
         mavenCentral()
         maven(url = "https://plugins.gradle.org/m2/")
     }
+    dependencies {
+        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.0.0-SNAPSHOT")
+    }
 }
 
 plugins {
@@ -50,6 +53,7 @@ plugins {
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "1.19"
 }
+apply(plugin = "opensearch.repositories")
 
 checkstyle {
     toolVersion = "10.0"
