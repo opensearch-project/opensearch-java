@@ -41,7 +41,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
@@ -62,8 +61,7 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
         this.provider = new JacksonJsonProvider(jsonFactory);
         this.objectMapper = objectMapper
             .configure(SerializationFeature.INDENT_OUTPUT, false)
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-            .registerModule(new JavaTimeModule());
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
     public JacksonJsonpMapper() {

@@ -54,7 +54,6 @@ import org.opensearch.core.internal.io.IOUtils;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -62,11 +61,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class JsonpMapperTest extends Assert {
 
+    String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
+        "\"stringValue\":\"foo\"}";
+
     @Test
     public void testJsonb() {
-        String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1," +
-                "\"instantValue\":\"1970-01-01T00:00:00Z\",\"intValue\":1,\"stringValue\":\"foo\"}";
-
         JsonpMapper mapper = new JsonbJsonpMapper();
         testSerialize(mapper, json);
         testDeserialize(mapper, json);
@@ -74,9 +73,6 @@ public class JsonpMapperTest extends Assert {
 
     @Test
     public void testJackson() {
-        String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
-                "\"stringValue\":\"foo\",\"instantValue\":0.0}";
-
         JacksonJsonpMapper mapper = new JacksonJsonpMapper();
         testSerialize(mapper, json);
         testDeserialize(mapper, json);
@@ -91,7 +87,7 @@ public class JsonpMapperTest extends Assert {
         JacksonJsonpMapper mapper = new JacksonJsonpMapper(jkMapper);
 
         String json = "{\"children\":[{\"double_value\":3.2,\"int_value\":2}],\"double_value\":2.1,\"int_value\":1," +
-            "\"string_value\":\"foo\",\"instant_value\":0.0}";
+            "\"string_value\":\"foo\"}";
 
         testSerialize(mapper, json);
         testDeserialize(mapper, json);
@@ -112,7 +108,6 @@ public class JsonpMapperTest extends Assert {
             .add("doubleValue", "2.1")
             .add("intValue", 1)
             .add("stringValue", "foo")
-            .add("instantValue", "1970-01-01T00:00:00Z")
             .build();
 
         final Writer writer = new StringWriter();
@@ -184,7 +179,6 @@ public class JsonpMapperTest extends Assert {
         something.setIntValue(1);
         something.setDoubleValue(2.1);
         something.setStringValue("foo");
-        something.setInstantValue(Instant.EPOCH);
 
         SomeClass other = new SomeClass();
         other.setIntValue(2);
@@ -209,7 +203,6 @@ public class JsonpMapperTest extends Assert {
         assertEquals(1, parsed.getIntValue());
         assertEquals(2.1, parsed.getDoubleValue(), 0.0);
         assertEquals("foo", parsed.getStringValue());
-        assertEquals(Instant.EPOCH, parsed.getInstantValue());
 
         List<SomeClass> children = parsed.getChildren();
         assertEquals(1, children.size());
@@ -227,7 +220,6 @@ public class JsonpMapperTest extends Assert {
         private double doubleValue;
         private int intValue;
         private String stringValue;
-        private Instant instantValue;
 
         public int getIntValue() {
             return intValue;
@@ -247,14 +239,6 @@ public class JsonpMapperTest extends Assert {
 
         public double getDoubleValue() {
             return doubleValue;
-        }
-
-        public void setInstantValue(Instant instantValue) {
-            this.instantValue = instantValue;
-        }
-
-        public Instant getInstantValue() {
-            return instantValue;
         }
 
         public void setDoubleValue(double doubleValue) {
