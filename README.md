@@ -33,6 +33,7 @@ Please see the [USER_GUIDE](USER_GUIDE.md) for code snippets.
 
 * [Project Website](https://opensearch.org/)
 * [Documentation](https://opensearch.org/docs/latest/clients/java/)
+* [JavaDoc](https://www.javadoc.io/doc/org.opensearch.client/opensearch-java/latest/index.html)
 * [Maven Central](https://search.maven.org/artifact/org.opensearch.client/opensearch-java)
 * [Snapshot Builds](https://aws.oss.sonatype.org/content/repositories/snapshots/org/opensearch/client/opensearch-java/)
 * Need help? Try [Forums](https://discuss.opendistrocommunity.dev/)
