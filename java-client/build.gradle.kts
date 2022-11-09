@@ -123,7 +123,7 @@ val integrationTest = task<Test>("integrationTest") {
 dependencies {
 
     val opensearchVersion = "1.2.4"
-    val jacksonVersion = "2.12.6"
+    val jacksonVersion = "2.14.0"
 
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
@@ -160,7 +160,7 @@ dependencies {
     testImplementation("io.github.classgraph:classgraph:4.8.116")
 
     // Eclipse 1.0
-    testImplementation("junit", "junit" , "4.12") {
+    testImplementation("junit", "junit" , "4.13.1") {
         exclude(group = "org.hamcrest")
     }
 }
