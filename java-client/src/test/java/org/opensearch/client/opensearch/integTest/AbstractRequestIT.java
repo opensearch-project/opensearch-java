@@ -32,7 +32,6 @@
 
 package org.opensearch.client.opensearch.integTest;
 
-
 import org.junit.Test;
 import org.opensearch.Version;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
@@ -72,9 +71,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-public class RequestTest extends OpenSearchJavaClientTestCase {
-
-
+public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
     @Test
     public void testCount() throws Exception {
 
