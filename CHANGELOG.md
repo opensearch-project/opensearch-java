@@ -10,6 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `grgit-gradle` from 4.0.1 to 5.0.0
 - Update Jackson to 2.14.0 ([#258](https://github.com/opensearch-project/opensearch-java/pull/258))
+- Update Jackson to 2.14.1 ([#279](https://github.com/opensearch-project/opensearch-java/pull/279))
 
 ### Changed
 - Update literature around changelog contributions in CONTRIBUTING.md ([#242](https://github.com/opensearch-project/opensearch-java/pull/242))
