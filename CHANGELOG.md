@@ -23,6 +23,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Update Gradle to 7.6 ([#311](https://github.com/opensearch-project/opensearch-java/pull/311))
 - Add support for OpenSearch Serverless ([#339](https://github.com/opensearch-project/opensearch-java/pull/339))
 - Fix issue where completion suggestions were failing, due to being parsed as term suggestions ([#107](https://github.com/opensearch-project/opensearch-java/issues/107))
+- Prevent SPI calls at runtime ([#293](https://github.com/opensearch-project/opensearch-java/pull/293))
 
 ### Deprecated
 
