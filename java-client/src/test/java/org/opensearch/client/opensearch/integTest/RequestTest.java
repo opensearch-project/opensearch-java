@@ -380,16 +380,15 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         String index = "test_child";
         String question = "question";
         String answer = "answer";
-        Map<String, List<String>> relations = Collections.singletonMap(question, Collections.singletonList(answer));
 
-        highLevelClient().indices().create(c -> c.index(index).mappings(m -> m.properties("join", p -> p.join(j -> j.relations(relations)))));
-
+        highLevelClient().indices().create(c -> c.index(index).mappings(m -> m.properties("join", p -> p
+                .join(j -> j.relations(Collections.singletonMap(question, Collections.singletonList(answer)))))));
         highLevelClient().index(i -> i.index(index).id("1").document(new Question("exists")).refresh(Refresh.True));
-
         highLevelClient().index(i -> i.index(index).id("2").routing("1").document(new Answer("true", "1")).refresh(Refresh.True));
         highLevelClient().index(i -> i.index(index).id("3").routing("1").document(new Answer("false", "1")).refresh(Refresh.True));
 
-        SearchRequest searchRequest = SearchRequest.of(r -> r.index(index).size(0).aggregations(answer, a -> a.children(c -> c.type(answer))));
+        SearchRequest searchRequest = SearchRequest.of(r -> r.index(index).size(0)
+                .aggregations(answer, a -> a.children(c -> c.type(answer))));
 
         SearchResponse<Void> searchResponse = highLevelClient().search(searchRequest, Void.class);
 
