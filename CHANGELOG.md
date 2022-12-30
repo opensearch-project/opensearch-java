@@ -23,6 +23,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
 - Document how to use Java 8 Time (JSR 310) objects ([#251](https://github.com/opensearch-project/opensearch-java/pull/251))
 - Fixing version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
+- Document how to ignore cert check when running docker container with self-signed cert ([#308](https://github.com/opensearch-project/opensearch-java/pull/308))
 
 ### Deprecated
 

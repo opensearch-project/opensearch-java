@@ -52,6 +52,8 @@ static class IndexData {
 ## Create a client
 
 ```java
+import org.opensearch.client.opensearch.OpenSearchClient;
+
 Transport transport = new RestClientTransport(restClient, new JacksonJsonpMapper()); 
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
@@ -64,12 +66,57 @@ Transport transport = new RestClientTransport(restClient,
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
 
+### Ignore certificate check when running OpenSearch as docker container with self-signed certificate
+
+When running OpenSearch via [docker](https://opensearch.org/docs/latest/opensearch/install/docker/), container uses
+a self-signed certificate can trigger `javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target`.
+If you don't want to import the generated cert, you can ignore the certificate validation in the client.
+
+```java
+public RestClient createLocalRestClient() {
+    String endpoint = "https://localhost:9200";
+    CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+    credentialsProvider.setCredentials(AuthScope.ANY,
+            new UsernamePasswordCredentials("admin", "admin"));
+    return RestClient.builder(HttpHost.create(endpoint))
+            .setHttpClientConfigCallback((c) -> {
+                // Disable cert verification
+                // https://stackoverflow.com/questions/2703161/how-to-ignore-ssl-certificate-errors-in-apache-httpclient-4-0
+                // because default uses a demo cert from https://github.com/opensearch-project/security/blob/207cfcc379ffd4127e32b9fdfdd75ea394b48d0e/tools/install_demo_configuration.sh#L201
+                try {
+                    c.setSSLContext(new SSLContextBuilder().loadTrustMaterial(null, TrustAllStrategy.INSTANCE).build())
+                            .setSSLHostnameVerifier(new NoopHostnameVerifier());
+                } catch (NoSuchAlgorithmException | KeyManagementException | KeyStoreException e) {
+                    throw new RuntimeException(e);
+                }
+                return c.setDefaultCredentialsProvider(credentialsProvider);
+            }).build();
+}
+```
+
 ## Create an index
 
 ```java
 String index = "sample-index";
 CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(index).build();
 client.indices().create(createIndexRequest);
+```
+
+### Create an index with mapping
+
+```java
+import org.opensearch.client.opensearch._types.mapping.Property;
+
+Property TYPE_TEXT = Property.of(p -> p.text(t -> t));
+
+client.indices().create(b -> {
+    Map<String, Property> properties = new HashMap<>();
+    properties.put("firstName", TYPE_TEXT);
+    properties.put("lastName", TYPE_TEXT);
+    b.index("sample-index")
+        .mappings(tb -> tb.properties(properties));
+    return b;
+});
 ```
 
 ## Index data
