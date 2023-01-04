@@ -45,6 +45,7 @@ import org.opensearch.client.opensearch.core.ClearScrollResponse;
 import org.opensearch.client.opensearch.core.GetResponse;
 import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.MsearchResponse;
+import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
 import org.opensearch.client.opensearch.core.msearch.RequestItem;
@@ -319,6 +320,27 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
     }
 
     @Test
+    public void testChildAggregation() throws IOException {
+
+        String index = "test_child";
+        String question = "question";
+        String answer = "answer";
+
+        highLevelClient().indices().create(c -> c.index(index).mappings(m -> m.properties("join", p -> p
+                .join(j -> j.relations(Collections.singletonMap(question, Collections.singletonList(answer)))))));
+        highLevelClient().index(i -> i.index(index).id("1").document(new Question("exists")).refresh(Refresh.True));
+        highLevelClient().index(i -> i.index(index).id("2").routing("1").document(new Answer("true", "1")).refresh(Refresh.True));
+        highLevelClient().index(i -> i.index(index).id("3").routing("1").document(new Answer("false", "1")).refresh(Refresh.True));
+
+        SearchRequest searchRequest = SearchRequest.of(r -> r.index(index).size(0)
+                .aggregations(answer, a -> a.children(c -> c.type(answer))));
+
+        SearchResponse<Void> searchResponse = highLevelClient().search(searchRequest, Void.class);
+
+        assertEquals(2, searchResponse.aggregations().get(answer).children().docCount());
+    }
+
+    @Test
     public void testGetMapping() throws Exception {
         // See also VariantsTest.testNestedTaggedUnionWithDefaultTag()
         String index = "testindex";
@@ -405,6 +427,50 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
 
         public void setPrice(double price) {
             this.price = price;
+        }
+    }
+
+    public static class Join {
+        public String name;
+        public String parent;
+
+        Join() {}
+
+        Join(String name) {
+            this.name = name;
+        }
+
+        Join(String name, String parent) {
+            this.name = name;
+            this.parent = parent;
+        }
+    }
+
+    public static class Question {
+        public String title;
+        public Join join;
+
+        Question() {}
+
+        Question(String title) {
+            this.title = title;
+            this.join = new Join("question");
+        }
+    }
+
+    public static class Answer {
+        public String body;
+        public Join join;
+
+        Answer() {}
+
+        Answer(String body) {
+            this.body = body;
+        }
+
+        Answer(String body, String parent) {
+            this.body = body;
+            this.join = new Join("answer", parent);
         }
     }
 }
