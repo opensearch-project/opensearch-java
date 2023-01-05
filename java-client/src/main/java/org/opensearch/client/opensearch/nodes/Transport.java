@@ -55,15 +55,11 @@ import java.util.function.Function;
 public class Transport implements JsonpSerializable {
 	private final long rxCount;
 
-	private final String rxSize;
-
 	private final long rxSizeInBytes;
 
 	private final int serverOpen;
 
 	private final long txCount;
-
-	private final String txSize;
 
 	private final long txSizeInBytes;
 
@@ -72,11 +68,9 @@ public class Transport implements JsonpSerializable {
 	private Transport(Builder builder) {
 
 		this.rxCount = ApiTypeHelper.requireNonNull(builder.rxCount, this, "rxCount");
-		this.rxSize = ApiTypeHelper.requireNonNull(builder.rxSize, this, "rxSize");
 		this.rxSizeInBytes = ApiTypeHelper.requireNonNull(builder.rxSizeInBytes, this, "rxSizeInBytes");
 		this.serverOpen = ApiTypeHelper.requireNonNull(builder.serverOpen, this, "serverOpen");
 		this.txCount = ApiTypeHelper.requireNonNull(builder.txCount, this, "txCount");
-		this.txSize = ApiTypeHelper.requireNonNull(builder.txSize, this, "txSize");
 		this.txSizeInBytes = ApiTypeHelper.requireNonNull(builder.txSizeInBytes, this, "txSizeInBytes");
 
 	}
@@ -90,13 +84,6 @@ public class Transport implements JsonpSerializable {
 	 */
 	public final long rxCount() {
 		return this.rxCount;
-	}
-
-	/**
-	 * Required - API name: {@code rx_size}
-	 */
-	public final String rxSize() {
-		return this.rxSize;
 	}
 
 	/**
@@ -121,13 +108,6 @@ public class Transport implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code tx_size}
-	 */
-	public final String txSize() {
-		return this.txSize;
-	}
-
-	/**
 	 * Required - API name: {@code tx_size_in_bytes}
 	 */
 	public final long txSizeInBytes() {
@@ -148,9 +128,6 @@ public class Transport implements JsonpSerializable {
 		generator.writeKey("rx_count");
 		generator.write(this.rxCount);
 
-		generator.writeKey("rx_size");
-		generator.write(this.rxSize);
-
 		generator.writeKey("rx_size_in_bytes");
 		generator.write(this.rxSizeInBytes);
 
@@ -159,9 +136,6 @@ public class Transport implements JsonpSerializable {
 
 		generator.writeKey("tx_count");
 		generator.write(this.txCount);
-
-		generator.writeKey("tx_size");
-		generator.write(this.txSize);
 
 		generator.writeKey("tx_size_in_bytes");
 		generator.write(this.txSizeInBytes);
@@ -177,15 +151,11 @@ public class Transport implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Transport> {
 		private Long rxCount;
 
-		private String rxSize;
-
 		private Long rxSizeInBytes;
 
 		private Integer serverOpen;
 
 		private Long txCount;
-
-		private String txSize;
 
 		private Long txSizeInBytes;
 
@@ -194,14 +164,6 @@ public class Transport implements JsonpSerializable {
 		 */
 		public final Builder rxCount(long value) {
 			this.rxCount = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code rx_size}
-		 */
-		public final Builder rxSize(String value) {
-			this.rxSize = value;
 			return this;
 		}
 
@@ -226,14 +188,6 @@ public class Transport implements JsonpSerializable {
 		 */
 		public final Builder txCount(long value) {
 			this.txCount = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code tx_size}
-		 */
-		public final Builder txSize(String value) {
-			this.txSize = value;
 			return this;
 		}
 
@@ -269,11 +223,9 @@ public class Transport implements JsonpSerializable {
 	protected static void setupTransportDeserializer(ObjectDeserializer<Transport.Builder> op) {
 
 		op.add(Builder::rxCount, JsonpDeserializer.longDeserializer(), "rx_count");
-		op.add(Builder::rxSize, JsonpDeserializer.stringDeserializer(), "rx_size");
 		op.add(Builder::rxSizeInBytes, JsonpDeserializer.longDeserializer(), "rx_size_in_bytes");
 		op.add(Builder::serverOpen, JsonpDeserializer.integerDeserializer(), "server_open");
 		op.add(Builder::txCount, JsonpDeserializer.longDeserializer(), "tx_count");
-		op.add(Builder::txSize, JsonpDeserializer.stringDeserializer(), "tx_size");
 		op.add(Builder::txSizeInBytes, JsonpDeserializer.longDeserializer(), "tx_size_in_bytes");
 
 	}

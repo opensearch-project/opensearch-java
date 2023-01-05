@@ -34,10 +34,10 @@ import static java.util.Collections.emptyMap;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 
-public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
+public class ClusterClientIT extends OpenSearchJavaClientTestCase {
 
     public void testClusterPutSettings() throws IOException {
-        OpenSearchClient openSearchClient = highLevelClient();
+        OpenSearchClient openSearchClient = javaClient();
 
         final String transientSettingKey = RecoverySettings.INDICES_RECOVERY_MAX_BYTES_PER_SEC_SETTING.getKey();
         String[] transientSettingKeySplit = transientSettingKey.split("\\.");
@@ -80,7 +80,7 @@ public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
     }
 
     public void testClusterUpdateSettingNonExistent() throws IOException {
-        OpenSearchClient openSearchClient = highLevelClient();
+        OpenSearchClient openSearchClient = javaClient();
         String setting = "no_idea_what_you_are_talking_about";
         int value = 10;
 
@@ -105,7 +105,7 @@ public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
     }
 
     public void testClusterGetSettings() throws IOException {
-        OpenSearchClient openSearchClient = highLevelClient();
+        OpenSearchClient openSearchClient = javaClient();
 
         final String transientSettingKey = RecoverySettings.INDICES_RECOVERY_MAX_BYTES_PER_SEC_SETTING.getKey();
         final String transientSettingValue = "10b";
@@ -140,7 +140,7 @@ public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
     }
 
     public void testClusterGetSettingsWithDefault() throws IOException {
-        OpenSearchClient openSearchClient = highLevelClient();
+        OpenSearchClient openSearchClient = javaClient();
 
         final String transientSettingKey = RecoverySettings.INDICES_RECOVERY_MAX_BYTES_PER_SEC_SETTING.getKey();
         final String transientSettingValue = "10b";
@@ -175,7 +175,7 @@ public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
     }
 
     public void testClusterHealthYellowClusterLevel() throws IOException {
-        OpenSearchClient openSearchClient = highLevelClient();
+        OpenSearchClient openSearchClient = javaClient();
         createIndex("index", Settings.EMPTY);
         createIndex("index2", Settings.EMPTY);
         HealthRequest request = new HealthRequest.Builder().timeout(t->t.time("5s")).build();
@@ -184,7 +184,7 @@ public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
     }
 
     public void testClusterHealthYellowIndicesLevel() throws IOException {
-        OpenSearchClient openSearchClient = highLevelClient();
+        OpenSearchClient openSearchClient = javaClient();
         String firstIndex = "index";
         String secondIndex = "index2";
         // including another index that we do not assert on, to ensure that we are not
@@ -222,7 +222,7 @@ public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
     }
 
     public void testClusterHealthYellowSpecificIndex() throws IOException {
-        OpenSearchClient openSearchClient = highLevelClient();
+        OpenSearchClient openSearchClient = javaClient();
         createIndex("index", Settings.EMPTY);
         createIndex("index2", Settings.EMPTY);
         HealthRequest request = new HealthRequest.Builder()
@@ -287,7 +287,7 @@ public class ClusterClientIT extends OpenSearchRestHighLevelClientTestCase {
     }
 
     public void testClusterHealthNotFoundIndex() throws IOException {
-        OpenSearchClient openSearchClient = highLevelClient();
+        OpenSearchClient openSearchClient = javaClient();
         createIndex("index", Settings.EMPTY);
         HealthRequest request = new HealthRequest.Builder()
                 .index("notexisted-index")

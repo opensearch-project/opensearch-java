@@ -69,10 +69,6 @@ public class PluginStats implements JsonpSerializable {
 
 	private final String version;
 
-	private final boolean licensed;
-
-	private final String type;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private PluginStats(Builder builder) {
@@ -87,8 +83,6 @@ public class PluginStats implements JsonpSerializable {
 		this.javaVersion = ApiTypeHelper.requireNonNull(builder.javaVersion, this, "javaVersion");
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
-		this.licensed = ApiTypeHelper.requireNonNull(builder.licensed, this, "licensed");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
@@ -153,20 +147,6 @@ public class PluginStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code licensed}
-	 */
-	public final boolean licensed() {
-		return this.licensed;
-	}
-
-	/**
-	 * Required - API name: {@code type}
-	 */
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -207,13 +187,6 @@ public class PluginStats implements JsonpSerializable {
 
 		generator.writeKey("version");
 		generator.write(this.version);
-
-		generator.writeKey("licensed");
-		generator.write(this.licensed);
-
-		generator.writeKey("type");
-		generator.write(this.type);
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -238,10 +211,6 @@ public class PluginStats implements JsonpSerializable {
 		private String name;
 
 		private String version;
-
-		private Boolean licensed;
-
-		private String type;
 
 		/**
 		 * Required - API name: {@code classname}
@@ -320,22 +289,6 @@ public class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code licensed}
-		 */
-		public final Builder licensed(boolean value) {
-			this.licensed = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public final Builder type(String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * Builds a {@link PluginStats}.
 		 *
 		 * @throws NullPointerException
@@ -367,8 +320,6 @@ public class PluginStats implements JsonpSerializable {
 		op.add(Builder::javaVersion, JsonpDeserializer.stringDeserializer(), "java_version");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
-		op.add(Builder::licensed, JsonpDeserializer.booleanDeserializer(), "licensed");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

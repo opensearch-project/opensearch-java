@@ -57,9 +57,8 @@ import javax.annotation.Nullable;
 
 @JsonpDeserializable
 public class NodeInfo implements JsonpSerializable {
-	private final Map<String, String> attributes;
-
-	private final String buildFlavor;
+    @Nullable
+    private final Map<String, String> attributes;
 
 	private final String buildHash;
 
@@ -119,8 +118,7 @@ public class NodeInfo implements JsonpSerializable {
 
 	private NodeInfo(Builder builder) {
 
-		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.buildFlavor = ApiTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
+		this.attributes = ApiTypeHelper.unmodifiable(builder.attributes);
 		this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
 		this.buildType = ApiTypeHelper.requireNonNull(builder.buildType, this, "buildType");
 		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
@@ -151,17 +149,11 @@ public class NodeInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code attributes}
+	 * API name: {@code attributes}
 	 */
+	@Nullable
 	public final Map<String, String> attributes() {
 		return this.attributes;
-	}
-
-	/**
-	 * Required - API name: {@code build_flavor}
-	 */
-	public final String buildFlavor() {
-		return this.buildFlavor;
 	}
 
 	/**
@@ -368,8 +360,6 @@ public class NodeInfo implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("build_flavor");
-		generator.write(this.buildFlavor);
 
 		generator.writeKey("build_hash");
 		generator.write(this.buildHash);
@@ -503,9 +493,8 @@ public class NodeInfo implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfo> {
+	    @Nullable
 		private Map<String, String> attributes;
-
-		private String buildFlavor;
 
 		private String buildHash;
 
@@ -566,7 +555,7 @@ public class NodeInfo implements JsonpSerializable {
 		private Map<String, NodeInfoAggregation> aggregations;
 
 		/**
-		 * Required - API name: {@code attributes}
+		 * API name: {@code attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
@@ -576,20 +565,12 @@ public class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code attributes}
+		 * API name: {@code attributes}
 		 * <p>
 		 * Adds an entry to <code>attributes</code>.
 		 */
 		public final Builder attributes(String key, String value) {
 			this.attributes = _mapPut(this.attributes, key, value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code build_flavor}
-		 */
-		public final Builder buildFlavor(String value) {
-			this.buildFlavor = value;
 			return this;
 		}
 
@@ -966,7 +947,6 @@ public class NodeInfo implements JsonpSerializable {
 
 		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"attributes");
-		op.add(Builder::buildFlavor, JsonpDeserializer.stringDeserializer(), "build_flavor");
 		op.add(Builder::buildHash, JsonpDeserializer.stringDeserializer(), "build_hash");
 		op.add(Builder::buildType, JsonpDeserializer.stringDeserializer(), "build_type");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
