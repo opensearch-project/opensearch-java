@@ -24,6 +24,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Document how to use Java 8 Time (JSR 310) objects ([#251](https://github.com/opensearch-project/opensearch-java/pull/251))
 - Fixing version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
 - Update Gradle to 7.6 ([#309](https://github.com/opensearch-project/opensearch-java/pull/309))
+- Prevent SPI calls at runtime ([#293](https://github.com/opensearch-project/opensearch-java/pull/293))
 
 ### Deprecated
 
