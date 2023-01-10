@@ -57,6 +57,7 @@ import javax.annotation.Nullable;
 public class NodeInfoSettingsNode implements JsonpSerializable {
 	private final String name;
 
+	@Nullable
 	private final Map<String, JsonData> attr;
 
 	@Nullable
@@ -67,7 +68,7 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 	private NodeInfoSettingsNode(Builder builder) {
 
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.attr = ApiTypeHelper.unmodifiableRequired(builder.attr, this, "attr");
+		this.attr = ApiTypeHelper.unmodifiable(builder.attr);
 		this.maxLocalStorageNodes = builder.maxLocalStorageNodes;
 
 	}
@@ -84,8 +85,9 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code attr}
+	 * API name: {@code attr}
 	 */
+	@Nullable
 	public final Map<String, JsonData> attr() {
 		return this.attr;
 	}
@@ -140,6 +142,7 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsNode> {
 		private String name;
 
+		@Nullable
 		private Map<String, JsonData> attr;
 
 		@Nullable
@@ -164,7 +167,7 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code attr}
+		 * API name: {@code attr}
 		 * <p>
 		 * Adds an entry to <code>attr</code>.
 		 */

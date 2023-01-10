@@ -42,7 +42,6 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -72,11 +71,14 @@ public class MemoryStats implements JsonpSerializable {
 	@Nullable
 	private final Long totalVirtualInBytes;
 
-	private final long totalInBytes;
+	@Nullable
+	private final Long totalInBytes;
 
-	private final long freeInBytes;
+	@Nullable
+	private final Long freeInBytes;
 
-	private final long usedInBytes;
+	@Nullable
+	private final Long usedInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -88,9 +90,9 @@ public class MemoryStats implements JsonpSerializable {
 		this.shareInBytes = builder.shareInBytes;
 		this.totalVirtual = builder.totalVirtual;
 		this.totalVirtualInBytes = builder.totalVirtualInBytes;
-		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
-		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
-		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
+		this.totalInBytes = builder.totalInBytes;
+		this.freeInBytes = builder.freeInBytes;
+		this.usedInBytes = builder.usedInBytes;
 
 	}
 
@@ -147,21 +149,21 @@ public class MemoryStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total_in_bytes}
+	 * API name: {@code total_in_bytes}
 	 */
 	public final long totalInBytes() {
 		return this.totalInBytes;
 	}
 
 	/**
-	 * Required - API name: {@code free_in_bytes}
+	 * API name: {@code free_in_bytes}
 	 */
 	public final long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
-	 * Required - API name: {@code used_in_bytes}
+	 * API name: {@code used_in_bytes}
 	 */
 	public final long usedInBytes() {
 		return this.usedInBytes;
@@ -208,15 +210,21 @@ public class MemoryStats implements JsonpSerializable {
 			generator.write(this.totalVirtualInBytes);
 
 		}
-		generator.writeKey("total_in_bytes");
-		generator.write(this.totalInBytes);
+		
+		if (this.totalInBytes != null) {
+		    generator.writeKey("total_in_bytes");
+		    generator.write(this.totalInBytes);
+		}
 
-		generator.writeKey("free_in_bytes");
-		generator.write(this.freeInBytes);
+	    if (this.freeInBytes != null) {
+	        generator.writeKey("free_in_bytes");
+	        generator.write(this.freeInBytes);
+	    }
 
-		generator.writeKey("used_in_bytes");
-		generator.write(this.usedInBytes);
-
+	    if (this.usedInBytes != null) {
+	        generator.writeKey("used_in_bytes");
+	        generator.write(this.usedInBytes);
+	    }
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -320,7 +328,7 @@ public class MemoryStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total_in_bytes}
+		 * API name: {@code total_in_bytes}
 		 */
 		public final BuilderT totalInBytes(long value) {
 			this.totalInBytes = value;
@@ -328,7 +336,7 @@ public class MemoryStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code free_in_bytes}
+		 * API name: {@code free_in_bytes}
 		 */
 		public final BuilderT freeInBytes(long value) {
 			this.freeInBytes = value;
@@ -336,7 +344,7 @@ public class MemoryStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code used_in_bytes}
+		 * API name: {@code used_in_bytes}
 		 */
 		public final BuilderT usedInBytes(long value) {
 			this.usedInBytes = value;

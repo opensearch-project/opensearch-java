@@ -72,25 +72,25 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
+public class RequestTest extends OpenSearchJavaClientTestCase {
 
 
     @Test
     public void testCount() throws Exception {
 
         // Tests that a no-parameter method exists for endpoints that only have optional properties
-        assertTrue(highLevelClient().count().count() >= 0);
+        assertTrue(javaClient().count().count() >= 0);
     }
 
     @Test
     public void testIndexCreation() throws Exception {
-        OpenSearchAsyncClient asyncClient = new OpenSearchAsyncClient(highLevelClient()._transport());
+        OpenSearchAsyncClient asyncClient = new OpenSearchAsyncClient(javaClient()._transport());
 
         // Ping the server
-        assertTrue(highLevelClient().ping().value());
+        assertTrue(javaClient().ping().value());
 
         // Create an index...
-        final CreateIndexResponse createResponse = highLevelClient().indices().create(b -> b.index("my-index"));
+        final CreateIndexResponse createResponse = javaClient().indices().create(b -> b.index("my-index"));
         assertTrue(createResponse.acknowledged());
         assertTrue(createResponse.shardsAcknowledged());
 
@@ -110,14 +110,14 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         String index = "ingest-test";
 
         // Create an index
-        CreateIndexResponse createIndexResponse = highLevelClient().indices().create(b -> b
+        CreateIndexResponse createIndexResponse = javaClient().indices().create(b -> b
                 .index(index)
         );
 
         assertEquals(index, createIndexResponse.index());
 
         // Check that it actually exists. Example of a boolean response
-        BooleanResponse existsResponse = highLevelClient().indices().exists(b -> b.index(index));
+        BooleanResponse existsResponse = javaClient().indices().exists(b -> b.index(index));
         assertTrue(existsResponse.value());
 
         // Ingest some data
@@ -125,7 +125,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         appData.setIntValue(1337);
         appData.setMsg("foo");
 
-        String docId = highLevelClient().index(b -> b
+        String docId = javaClient().index(b -> b
                 .index(index)
                 .id("my/Id") // test with url-unsafe string
                 .document(appData)
@@ -135,14 +135,14 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         assertEquals("my/Id", docId);
 
         // Check auto-created mapping
-        GetMappingResponse mapping = highLevelClient().indices().getMapping(b -> b.index(index));
+        GetMappingResponse mapping = javaClient().indices().getMapping(b -> b.index(index));
         assertEquals(
                 Property.Kind.Long,
                 mapping.get("ingest-test").mappings().properties().get("intValue")._kind()
         );
 
         // Query by id
-        AppData esData = highLevelClient().get(b -> b
+        AppData esData = javaClient().get(b -> b
                         .index(index)
                         .id(docId)
                 , AppData.class
@@ -152,7 +152,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         assertEquals("foo", esData.getMsg());
 
         // Query by id a non-existing document
-        final GetResponse<AppData> notExists = highLevelClient().get(b -> b
+        final GetResponse<AppData> notExists = javaClient().get(b -> b
                         .index(index)
                         .id("some-random-id")
                 , AppData.class
@@ -162,7 +162,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         assertNull(notExists.source());
 
         // Search
-        SearchResponse<AppData> search = highLevelClient().search(b -> b
+        SearchResponse<AppData> search = javaClient().search(b -> b
                         .index(index)
                 , AppData.class
         );
@@ -180,7 +180,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         );
 
         // MSearch: 1st search on an existing index, 2nd one on a non-existing index
-        final MsearchResponse<AppData> msearch = highLevelClient().msearch(_0 -> _0
+        final MsearchResponse<AppData> msearch = javaClient().msearch(_0 -> _0
                         .searches(_1 -> _1
                                 .header(_3 -> _3.index(index))
                                 .body(_3 -> _3.query(_4 -> _4.matchAll(_5 -> _5)))
@@ -200,10 +200,10 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
     @Test
     public void testCatRequest() throws IOException {
         // Cat requests should have the "format=json" added by the transport
-        NodesResponse nodes = highLevelClient().cat().nodes(_0 -> _0);
-        System.out.println(ModelTestCase.toJson(nodes, highLevelClient()._transport().jsonpMapper()));
+        NodesResponse nodes = javaClient().cat().nodes(_0 -> _0);
+        System.out.println(ModelTestCase.toJson(nodes, javaClient()._transport().jsonpMapper()));
 
-        InfoResponse info = highLevelClient().info();
+        InfoResponse info = javaClient().info();
         String version = info.version().number();
         if (version.contains("SNAPSHOT")) {
                 version = version.split("-")[0];
@@ -223,7 +223,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         appData.setIntValue(42);
         appData.setMsg("Some message");
 
-        BulkResponse bulk = highLevelClient().bulk(_0 -> _0
+        BulkResponse bulk = javaClient().bulk(_0 -> _0
                 .operations(_1 -> _1
                         .create(_2 -> _2
                                 .index("foo")
@@ -245,7 +245,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         assertEquals(1L, bulk.items().get(0).version().longValue());
         assertEquals("foo", bulk.items().get(1).index());
         assertEquals(1L, bulk.items().get(1).version().longValue());
-        assertEquals(42, highLevelClient().get(b -> b.index("foo").id("abc"), AppData.class).source().getIntValue());
+        assertEquals(42, javaClient().get(b -> b.index("foo").id("abc"), AppData.class).source().getIntValue());
     }
 
     @Test
@@ -254,7 +254,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         appData.setIntValue(42);
         appData.setMsg("Some message");
 
-        IndexResponse ir = highLevelClient().index(_0 -> _0
+        IndexResponse ir = javaClient().index(_0 -> _0
                 .index("test")
                 .id("1")
                 .document(appData)
@@ -265,11 +265,11 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
     }
 
     @Test public void errorResponse() throws Exception {
-        BooleanResponse exists = highLevelClient().exists(_0 -> _0.index("doesnotexist").id("reallynot"));
+        BooleanResponse exists = javaClient().exists(_0 -> _0.index("doesnotexist").id("reallynot"));
         assertFalse(exists.value());
 
         OpenSearchException ex = assertThrows(OpenSearchException.class, () -> {
-            GetResponse<String> response = highLevelClient().get(
+            GetResponse<String> response = javaClient().get(
                     _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             );
         });
@@ -280,7 +280,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
 
 
         ExecutionException ee = assertThrows(ExecutionException.class, () -> {
-            OpenSearchAsyncClient aClient = new OpenSearchAsyncClient(highLevelClient()._transport());
+            OpenSearchAsyncClient aClient = new OpenSearchAsyncClient(javaClient()._transport());
             GetResponse<String> response = aClient.get(
                     _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             ).get();
@@ -297,7 +297,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         // Transports should first try to decode an error, and if they fail because of missing properties for
         // the error type, then try to decode the regular request.
 
-        final ClearScrollResponse clearResponse = highLevelClient().clearScroll(b -> b.scrollId(
+        final ClearScrollResponse clearResponse = javaClient().clearScroll(b -> b.scrollId(
                 "DXF1ZXJ5QW5kRmV0Y2gBAAAAAAAAAD4WYm9laVYtZndUQlNsdDcwakFMNjU1QQ==")
         );
         assertEquals(0, clearResponse.numFreed());
@@ -306,11 +306,11 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
     @Test
     public void testSearchAggregation() throws IOException {
 
-        highLevelClient().create(_1 -> _1.index("products").id("A").document(new Product(5)).refresh(Refresh.True));
-        highLevelClient().create(_1 -> _1.index("products").id("B").document(new Product(15)).refresh(Refresh.True));
-        highLevelClient().create(_1 -> _1.index("products").id("C").document(new Product(25)).refresh(Refresh.True));
+        javaClient().create(_1 -> _1.index("products").id("A").document(new Product(5)).refresh(Refresh.True));
+        javaClient().create(_1 -> _1.index("products").id("B").document(new Product(15)).refresh(Refresh.True));
+        javaClient().create(_1 -> _1.index("products").id("C").document(new Product(25)).refresh(Refresh.True));
 
-        SearchResponse<Product> searchResponse = highLevelClient().search(_1 -> _1
+        SearchResponse<Product> searchResponse = javaClient().search(_1 -> _1
                         .index("products")
                         .size(0)
                         .aggregations(
@@ -339,9 +339,9 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
     @Test
     public void testSubAggregation() throws IOException {
 
-        highLevelClient().create(_1 -> _1.index("products").id("A").document(new Product(5, "Blue")).refresh(Refresh.True));
-        highLevelClient().create(_1 -> _1.index("products").id("B").document(new Product(10, "Blue")).refresh(Refresh.True));
-        highLevelClient().create(_1 -> _1.index("products").id("C").document(new Product(15, "Black")).refresh(Refresh.True));
+        javaClient().create(_1 -> _1.index("products").id("A").document(new Product(5, "Blue")).refresh(Refresh.True));
+        javaClient().create(_1 -> _1.index("products").id("B").document(new Product(10, "Blue")).refresh(Refresh.True));
+        javaClient().create(_1 -> _1.index("products").id("C").document(new Product(15, "Black")).refresh(Refresh.True));
 
         List<FieldValue> fieldValues = List.of(FieldValue.of("Blue"));
 
@@ -362,7 +362,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
                                         ._toQuery()
                                 )
                 ));
-        SearchResponse<Product> searchResponse = highLevelClient().search(searchRequest, Product.class);
+        SearchResponse<Product> searchResponse = javaClient().search(searchRequest, Product.class);
 
         Aggregate prices = searchResponse.aggregations().get("price")._get()._toAggregate();
         assertEquals(2, searchResponse.aggregations().get("price").filter().docCount());
@@ -381,16 +381,16 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         String question = "question";
         String answer = "answer";
 
-        highLevelClient().indices().create(c -> c.index(index).mappings(m -> m.properties("join", p -> p
+        javaClient().indices().create(c -> c.index(index).mappings(m -> m.properties("join", p -> p
                 .join(j -> j.relations(Collections.singletonMap(question, Collections.singletonList(answer)))))));
-        highLevelClient().index(i -> i.index(index).id("1").document(new Question("exists")).refresh(Refresh.True));
-        highLevelClient().index(i -> i.index(index).id("2").routing("1").document(new Answer("true", "1")).refresh(Refresh.True));
-        highLevelClient().index(i -> i.index(index).id("3").routing("1").document(new Answer("false", "1")).refresh(Refresh.True));
+        javaClient().index(i -> i.index(index).id("1").document(new Question("exists")).refresh(Refresh.True));
+        javaClient().index(i -> i.index(index).id("2").routing("1").document(new Answer("true", "1")).refresh(Refresh.True));
+        javaClient().index(i -> i.index(index).id("3").routing("1").document(new Answer("false", "1")).refresh(Refresh.True));
 
         SearchRequest searchRequest = SearchRequest.of(r -> r.index(index).size(0)
                 .aggregations(answer, a -> a.children(c -> c.type(answer))));
 
-        SearchResponse<Void> searchResponse = highLevelClient().search(searchRequest, Void.class);
+        SearchResponse<Void> searchResponse = javaClient().search(searchRequest, Void.class);
 
         assertEquals(2, searchResponse.aggregations().get(answer).children().docCount());
     }
@@ -403,7 +403,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
         Map<String, Property> fields = Collections.singletonMap("keyword", Property.of(p -> p.keyword(k -> k.ignoreAbove(256))));
         Property text = Property.of(p -> p.text(t -> t.fields(fields)));
 
-        highLevelClient().indices().create(c -> c
+        javaClient().indices().create(c -> c
                 .index(index)
                 .mappings(m -> m
                         .properties("id", text)
@@ -416,7 +416,7 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
                 )
         );
 
-        GetMappingResponse mr = highLevelClient().indices().getMapping(mrb -> mrb.index(index));
+        GetMappingResponse mr = javaClient().indices().getMapping(mrb -> mrb.index(index));
 
         assertNotNull(mr.result().get(index));
         assertNotNull(mr.result().get(index).mappings().properties().get("name").object());
@@ -426,13 +426,13 @@ public class RequestTest extends OpenSearchRestHighLevelClientTestCase {
     public void testDefaultIndexSettings() throws IOException {
 
         String index = "index-settings";
-        highLevelClient().index(_1 -> _1.index(index).document(new Product(5)).refresh(Refresh.True));
+        javaClient().index(_1 -> _1.index(index).document(new Product(5)).refresh(Refresh.True));
 
         GetIndicesSettingsResponse settings;
-        settings = highLevelClient().indices().getSettings(b -> b.index(index).includeDefaults(true));
+        settings = javaClient().indices().getSettings(b -> b.index(index).includeDefaults(true));
         assertNotNull(settings.get(index).defaults());
 
-        settings = highLevelClient().indices().getSettings(b -> b.index(index));
+        settings = javaClient().indices().getSettings(b -> b.index(index));
         assertNull(settings.get(index).defaults());
     }
 

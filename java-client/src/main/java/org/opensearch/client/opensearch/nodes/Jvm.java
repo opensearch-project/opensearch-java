@@ -66,8 +66,6 @@ public class Jvm implements JsonpSerializable {
 
 	private final long timestamp;
 
-	private final String uptime;
-
 	private final long uptimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
@@ -80,7 +78,6 @@ public class Jvm implements JsonpSerializable {
 		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
 		this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads");
 		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.uptime = ApiTypeHelper.requireNonNull(builder.uptime, this, "uptime");
 		this.uptimeInMillis = ApiTypeHelper.requireNonNull(builder.uptimeInMillis, this, "uptimeInMillis");
 
 	}
@@ -132,13 +129,6 @@ public class Jvm implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code uptime}
-	 */
-	public final String uptime() {
-		return this.uptime;
-	}
-
-	/**
 	 * Required - API name: {@code uptime_in_millis}
 	 */
 	public final long uptimeInMillis() {
@@ -182,9 +172,6 @@ public class Jvm implements JsonpSerializable {
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
 
-		generator.writeKey("uptime");
-		generator.write(this.uptime);
-
 		generator.writeKey("uptime_in_millis");
 		generator.write(this.uptimeInMillis);
 
@@ -208,8 +195,6 @@ public class Jvm implements JsonpSerializable {
 		private JvmThreads threads;
 
 		private Long timestamp;
-
-		private String uptime;
 
 		private Long uptimeInMillis;
 
@@ -312,14 +297,6 @@ public class Jvm implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code uptime}
-		 */
-		public final Builder uptime(String value) {
-			this.uptime = value;
-			return this;
-		}
-
-		/**
 		 * Required - API name: {@code uptime_in_millis}
 		 */
 		public final Builder uptimeInMillis(long value) {
@@ -357,7 +334,6 @@ public class Jvm implements JsonpSerializable {
 		op.add(Builder::mem, MemoryStats._DESERIALIZER, "mem");
 		op.add(Builder::threads, JvmThreads._DESERIALIZER, "threads");
 		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
-		op.add(Builder::uptime, JsonpDeserializer.stringDeserializer(), "uptime");
 		op.add(Builder::uptimeInMillis, JsonpDeserializer.longDeserializer(), "uptime_in_millis");
 
 	}

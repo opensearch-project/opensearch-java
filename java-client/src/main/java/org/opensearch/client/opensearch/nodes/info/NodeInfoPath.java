@@ -58,6 +58,7 @@ public class NodeInfoPath implements JsonpSerializable {
 
 	private final String home;
 
+	@Nullable
 	private final List<String> repo;
 
 	private final List<String> data;
@@ -68,7 +69,7 @@ public class NodeInfoPath implements JsonpSerializable {
 
 		this.logs = ApiTypeHelper.requireNonNull(builder.logs, this, "logs");
 		this.home = ApiTypeHelper.requireNonNull(builder.home, this, "home");
-		this.repo = ApiTypeHelper.unmodifiableRequired(builder.repo, this, "repo");
+		this.repo = ApiTypeHelper.unmodifiable(builder.repo);
 		this.data = ApiTypeHelper.unmodifiable(builder.data);
 
 	}
@@ -92,7 +93,7 @@ public class NodeInfoPath implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code repo}
+	 * API name: {@code repo}
 	 */
 	public final List<String> repo() {
 		return this.repo;
@@ -178,7 +179,7 @@ public class NodeInfoPath implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code repo}
+		 * API name: {@code repo}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>repo</code>.
 		 */

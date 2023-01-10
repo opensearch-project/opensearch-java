@@ -137,9 +137,9 @@ val integrationTest = task<Test>("integrationTest") {
 
 dependencies {
 
-    val opensearchVersion = "2.3.0"
-    val jacksonVersion = "2.14.0"
-    val jacksonDatabindVersion = "2.14.0"
+    val opensearchVersion = "2.4.1"
+    val jacksonVersion = "2.14.1"
+    val jacksonDatabindVersion = "2.14.1"
 
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
@@ -172,7 +172,9 @@ dependencies {
     testImplementation("software.amazon.awssdk","aws-crt-client","[2.15,3.0)")
     testImplementation("software.amazon.awssdk","apache-client","[2.15,3.0)")
     testImplementation("software.amazon.awssdk","sts","[2.15,3.0)")
-
+    testImplementation("org.apache.logging.log4j", "log4j-api","[2.17.1,3.0)")
+    testImplementation("org.apache.logging.log4j", "log4j-core","[2.17.1,3.0)")
+    
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
     implementation("org.eclipse", "yasson", "2.0.2")
