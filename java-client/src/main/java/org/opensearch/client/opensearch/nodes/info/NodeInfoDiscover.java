@@ -42,23 +42,28 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Function;
+
+import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoDiscover
 
 @JsonpDeserializable
 public class NodeInfoDiscover implements JsonpSerializable {
-	private final String seedHosts;
+    @Nullable
+    private final List<String> seedHosts;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeInfoDiscover(Builder builder) {
 
-		this.seedHosts = ApiTypeHelper.requireNonNull(builder.seedHosts, this, "seedHosts");
+		this.seedHosts = builder.seedHosts;
 
 	}
 
@@ -69,8 +74,8 @@ public class NodeInfoDiscover implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code seed_hosts}
 	 */
-	public final String seedHosts() {
-		return this.seedHosts;
+	public final List<String> seedHosts() {
+		return Collections.unmodifiableList(this.seedHosts);
 	}
 
 	/**
@@ -83,10 +88,11 @@ public class NodeInfoDiscover implements JsonpSerializable {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("seed_hosts");
-		generator.write(this.seedHosts);
-
+	    if (this.seedHosts != null) {
+    	    generator.writeStartArray("seed_hosts");
+    	    this.seedHosts.forEach(generator::write);
+    	    generator.writeEnd();
+	    }
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -96,13 +102,14 @@ public class NodeInfoDiscover implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoDiscover> {
-		private String seedHosts;
+	    @Nullable
+	    private List<String> seedHosts;
 
 		/**
-		 * Required - API name: {@code seed_hosts}
+		 * API name: {@code seed_hosts}
 		 */
-		public final Builder seedHosts(String value) {
-			this.seedHosts = value;
+		public final Builder seedHosts(List<String> values) {
+			this.seedHosts = values;
 			return this;
 		}
 
@@ -129,7 +136,7 @@ public class NodeInfoDiscover implements JsonpSerializable {
 
 	protected static void setupNodeInfoDiscoverDeserializer(ObjectDeserializer<NodeInfoDiscover.Builder> op) {
 
-		op.add(Builder::seedHosts, JsonpDeserializer.stringDeserializer(), "seed_hosts");
+		op.add(Builder::seedHosts, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "seed_hosts");
 
 	}
 

@@ -36,17 +36,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
+public class CrudIT extends OpenSearchJavaClientTestCase {
 
     public void testDelete() throws IOException {
         {
             // Testing index deletion
             String index1 = "my-index";
-            CreateIndexResponse createIndexResponse = highLevelClient().indices().create(b -> b.index(index1));
+            CreateIndexResponse createIndexResponse = javaClient().indices().create(b -> b.index(index1));
             assertEquals(index1, createIndexResponse.index());
             assertTrue(createIndexResponse.acknowledged());
             assertTrue(createIndexResponse.shardsAcknowledged());
-            DeleteIndexResponse deleteIndexResponse = highLevelClient().indices().delete(b -> b.index(index1));
+            DeleteIndexResponse deleteIndexResponse = javaClient().indices().delete(b -> b.index(index1));
             assertTrue(deleteIndexResponse.acknowledged());
         }
 
@@ -54,22 +54,22 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
             // Testing doc deletion after data ingestion
             String docId = "id";
             String index = "my-index1";
-            highLevelClient().indices().create(b -> b.index(index));
+            javaClient().indices().create(b -> b.index(index));
 
-            String id = highLevelClient().index(b -> b
+            String id = javaClient().index(b -> b
                     .index(index)
                     .id(docId)
                     .document(Collections.singletonMap("foo", "bar")))
                     .id();
             assertEquals(id, docId);
 
-            DeleteResponse deleteResponse = highLevelClient().delete(d -> d.id(docId).index(index));
+            DeleteResponse deleteResponse = javaClient().delete(d -> d.id(docId).index(index));
             assertEquals(deleteResponse.index(), index);
             assertEquals(deleteResponse.id(), docId);
             assertEquals(deleteResponse.result(), Result.Deleted);
 
             String docIdTemp = "does_not_exist";
-            DeleteResponse deleteResponseDocNotExist = highLevelClient().delete(d -> d.id(docIdTemp).index(index));
+            DeleteResponse deleteResponseDocNotExist = javaClient().delete(d -> d.id(docIdTemp).index(index));
             assertEquals(deleteResponseDocNotExist.index(), index);
             assertEquals(deleteResponseDocNotExist.id(), docIdTemp);
             assertEquals(deleteResponseDocNotExist.result(), Result.NotFound);
@@ -78,26 +78,26 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
     }
 
     public void testExists() throws IOException {
-        assertFalse(highLevelClient().indices().exists(b -> b.index("index")).value());
+        assertFalse(javaClient().indices().exists(b -> b.index("index")).value());
         String index = "ingest-test";
         // Create an index
-        CreateIndexResponse createIndexResponse = highLevelClient().indices().create(b -> b
+        CreateIndexResponse createIndexResponse = javaClient().indices().create(b -> b
                 .index(index)
         );
         assertEquals(index, createIndexResponse.index());
 
         // Check that it actually exists. Example of a boolean response
-        assertTrue(highLevelClient().indices().exists(b -> b.index(index)).value());
+        assertTrue(javaClient().indices().exists(b -> b.index(index)).value());
 
-        highLevelClient().index(b -> b
+        javaClient().index(b -> b
                 .index(index)
                 .id("id")
                 .document(Collections.singletonMap("foo", "bar"))
                 .refresh(Refresh.True));
 
-        assertTrue(highLevelClient().exists(b -> b.index(index).id("id")).value());
-        assertFalse(highLevelClient().exists(b -> b.index(index).id("random_id")).value());
-        assertFalse(highLevelClient().exists(b -> b.index(index).id("random_id").version(1L)).value());
+        assertTrue(javaClient().exists(b -> b.index(index).id("id")).value());
+        assertFalse(javaClient().exists(b -> b.index(index).id("random_id")).value());
+        assertFalse(javaClient().exists(b -> b.index(index).id("random_id").version(1L)).value());
     }
 
     public void testSourceExists() throws IOException {
@@ -110,10 +110,10 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     .index("index")
                     .id("id")
                     .build();
-            BooleanResponse response = highLevelClient().existsSource(request);
+            BooleanResponse response = javaClient().existsSource(request);
             assertFalse(response.value());
         }
-        highLevelClient().index(b -> b
+        javaClient().index(b -> b
                 .index("index")
                 .id("id")
                 .refresh(Refresh.True)
@@ -123,7 +123,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     .index("index")
                     .id("id")
                     .build();
-            BooleanResponse response = highLevelClient().existsSource(request);
+            BooleanResponse response = javaClient().existsSource(request);
             assertTrue(response.value());
         }
         {
@@ -131,7 +131,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     .index("index")
                     .id("does_not_exist")
                     .build();
-            BooleanResponse response = highLevelClient().existsSource(request);
+            BooleanResponse response = javaClient().existsSource(request);
             assertFalse(response.value());
         }
     }
@@ -141,7 +141,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
         {
             OpenSearchException exception = expectThrows(
                     OpenSearchException.class,
-                    () -> highLevelClient().get(new GetRequest.Builder().index("index").id("id").build(), String.class)
+                    () -> javaClient().get(new GetRequest.Builder().index("index").id("id").build(), String.class)
             );
             assertEquals(404, exception.status());
             assertEquals("Request failed: [index_not_found_exception] no such index [index]",
@@ -152,10 +152,10 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
         appData.setIntValue(1337);
         appData.setMsg("foo");
 
-        highLevelClient().index(b -> b.index("index").id("id").document(appData).refresh(Refresh.True));
+        javaClient().index(b -> b.index("index").id("id").document(appData).refresh(Refresh.True));
 
         {
-            GetResponse<AppData> getResponse = highLevelClient().get(b -> b
+            GetResponse<AppData> getResponse = javaClient().get(b -> b
                             .index("index")
                             .id("id")
                             .version(1L)
@@ -169,7 +169,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
             assertEquals(appData.getMsg(), getResponse.source().getMsg());
         }
         {
-            GetResponse<AppData> getResponse = highLevelClient().get(b -> b
+            GetResponse<AppData> getResponse = javaClient().get(b -> b
                             .index("index")
                             .id("does_not_exist")
                     , AppData.class
@@ -187,13 +187,13 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
         appData.setIntValue(1337);
         appData.setMsg("foo");
 
-        highLevelClient().index(b -> b
+        javaClient().index(b -> b
                 .index("index")
                 .id("id")
                 .document(appData)
                 .refresh(Refresh.True));
 
-        GetResponse<AppData> getResponse = highLevelClient().get(b -> b
+        GetResponse<AppData> getResponse = javaClient().get(b -> b
                         .index("index")
                         .id("id")
                 , AppData.class
@@ -216,7 +216,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
             List<String> ids = new ArrayList<>();
             ids.add("id1");
             ids.add("id2");
-            MgetResponse<AppData> response = highLevelClient().mget(b -> b
+            MgetResponse<AppData> response = javaClient().mget(b -> b
                             .index("index")
                             .ids(ids)
                     , AppData.class
@@ -256,7 +256,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     .doc(appData)
                     .build();
             try {
-                highLevelClient().update(updateRequest, AppData.class);
+                javaClient().update(updateRequest, AppData.class);
             } catch (OpenSearchException e) {
                 // 1.x: [document_missing_exception] [_doc][does_not_exist]: document missing
                 // 2.x: [document_missing_exception] [does_not_exist]: document missing
@@ -271,7 +271,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     .id("id")
                     .document(appData)
                     .build();
-            IndexResponse indexResponse = highLevelClient().index(indexRequest);
+            IndexResponse indexResponse = javaClient().index(indexRequest);
             assertEquals(Result.Created, indexResponse.result());
 
             long lastUpdateSeqNo;
@@ -282,7 +282,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                         .id("id")
                         .doc(updatedAppData)
                         .build();
-                UpdateResponse<AppData> updateResponse = highLevelClient().update(updateRequest, AppData.class);
+                UpdateResponse<AppData> updateResponse = javaClient().update(updateRequest, AppData.class);
                 assertEquals(Result.Updated, updateResponse.result());
                 assertEquals(indexResponse.version() + 1, updateResponse.version());
                 lastUpdateSeqNo = updateResponse.seqNo();
@@ -309,14 +309,14 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                 .id("id")
                 .document(appData)
                 .build();
-        IndexResponse indexResponse = highLevelClient().index(indexRequest);
+        IndexResponse indexResponse = javaClient().index(indexRequest);
 
         UpdateRequest<AppData, AppData> updateRequest = new UpdateRequest.Builder<AppData, AppData>()
                 .index("index")
                 .id("id")
                 .doc(updatedAppData)
                 .build();
-        UpdateResponse<AppData> updateResponse = highLevelClient().update(updateRequest, AppData.class);
+        UpdateResponse<AppData> updateResponse = javaClient().update(updateRequest, AppData.class);
 
         assertEquals(Result.Updated, updateResponse.result());
         assertEquals(indexResponse.version() + 1, updateResponse.version());
@@ -341,7 +341,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                 if (!erroneous) {
                     assertEquals(
                             Result.Created,
-                            highLevelClient().index(b -> b.index("index").id(id).document(appData)).result()
+                            javaClient().index(b -> b.index("index").id(id).document(appData)).result()
                     );
                 }
                 BulkOperation op = new BulkOperation.Builder().delete(d -> d.index("index").id(id)).build();
@@ -367,7 +367,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     opsList.add(op);
 
                     if (erroneous) {
-                        assertEquals(Result.Created, highLevelClient().index(b -> b.
+                        assertEquals(Result.Created, javaClient().index(b -> b.
                                 index("index").id(id).document(appData)).result());
                     }
 
@@ -381,7 +381,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
                     if (!erroneous) {
                         assertEquals(
                                 Result.Created,
-                                highLevelClient().index(b -> b.index("index").id(id).document(appData)).result()
+                                javaClient().index(b -> b.index("index").id(id).document(appData)).result()
                         );
                     }
                 }
@@ -389,7 +389,7 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
         }
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(opsList).build();
 
-        BulkResponse bulkResponse = highLevelClient().bulk(bulkRequest);
+        BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
         assertTrue(bulkResponse.took() > 0);
         assertEquals(nbItems, bulkResponse.items().size());
 
@@ -424,12 +424,12 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
         appData.setIntValue(1337);
         appData.setMsg("foo");
         {
-            IndexResponse response = highLevelClient().index(b -> b.index(indexPattern).id("id#1").document(appData));
+            IndexResponse response = javaClient().index(b -> b.index(indexPattern).id("id#1").document(appData));
             assertEquals(expectedIndex, response.index());
             assertEquals("id#1", response.id());
         }
         {
-            GetResponse<AppData> getResponse = highLevelClient().get(b -> b
+            GetResponse<AppData> getResponse = javaClient().get(b -> b
                     .index(indexPattern).id("id#1"), AppData.class);
             assertTrue(getResponse.found());
             assertEquals(expectedIndex, getResponse.index());
@@ -438,19 +438,19 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
 
         String docId = "this/is/the/id";
         {
-            IndexResponse indexResponse = highLevelClient().index(b -> b.index("index").id(docId).document(appData));
+            IndexResponse indexResponse = javaClient().index(b -> b.index("index").id(docId).document(appData));
             assertEquals("index", indexResponse.index());
             assertEquals(docId, indexResponse.id());
         }
         {
-            GetResponse<AppData> getResponse = highLevelClient().get(b -> b
+            GetResponse<AppData> getResponse = javaClient().get(b -> b
                     .index("index").id(docId), AppData.class);
             assertTrue(getResponse.found());
             assertEquals("index", getResponse.index());
             assertEquals(docId, getResponse.id());
         }
 
-        assertTrue(highLevelClient().indices().exists(b -> b.index(indexPattern, "index")).value());
+        assertTrue(javaClient().indices().exists(b -> b.index(indexPattern, "index")).value());
     }
 
     public void testParamsEncode() throws IOException {
@@ -460,12 +460,12 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
             AppData appData = new AppData();
             appData.setIntValue(1337);
             appData.setMsg("foo");
-            IndexResponse response = highLevelClient().index(b -> b.index("index").id(id).document(appData).routing(routing));
+            IndexResponse response = javaClient().index(b -> b.index("index").id(id).document(appData).routing(routing));
             assertEquals("index", response.index());
             assertEquals(id, response.id());
         }
         {
-            GetResponse<AppData> getResponse = highLevelClient().get(b -> b
+            GetResponse<AppData> getResponse = javaClient().get(b -> b
                     .index("index").id("id").routing(routing), AppData.class);
             assertTrue(getResponse.found());
             assertEquals("index", getResponse.index());
@@ -481,13 +481,13 @@ public class CrudIT extends OpenSearchRestHighLevelClientTestCase {
         appData.setMsg("foo");
 
         {
-            IndexResponse indexResponse = highLevelClient().index(b -> b
+            IndexResponse indexResponse = javaClient().index(b -> b
                     .index("index").id(id).document(appData));
             assertEquals("index", indexResponse.index());
             assertEquals(id, indexResponse.id());
         }
         {
-            GetResponse<AppData> getResponse = highLevelClient().get(b -> b
+            GetResponse<AppData> getResponse = javaClient().get(b -> b
                     .index("index").id(id), AppData.class);
             assertTrue(getResponse.found());
             assertEquals("index", getResponse.index());

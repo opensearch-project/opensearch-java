@@ -53,6 +53,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import javax.annotation.Nullable;
+
 // typedef: nodes._types.Stats
 
 @JsonpDeserializable
@@ -93,6 +95,7 @@ public class Stats implements JsonpSerializable {
 
 	private final String transportAddress;
 
+	@Nullable
 	private final Map<String, String> attributes;
 
 	// ---------------------------------------------------------------------------------------------
@@ -118,7 +121,7 @@ public class Stats implements JsonpSerializable {
 		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 		this.transport = ApiTypeHelper.requireNonNull(builder.transport, this, "transport");
 		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
-		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.attributes = builder.attributes;
 
 	}
 
@@ -253,7 +256,7 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code attributes}
+	 * API name: {@code attributes}
 	 */
 	public final Map<String, String> attributes() {
 		return this.attributes;
@@ -418,6 +421,7 @@ public class Stats implements JsonpSerializable {
 
 		private String transportAddress;
 
+		@Nullable
 		private Map<String, String> attributes;
 
 		/**
@@ -716,7 +720,7 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code attributes}
+		 * API name: {@code attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
@@ -726,7 +730,7 @@ public class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code attributes}
+		 * API name: {@code attributes}
 		 * <p>
 		 * Adds an entry to <code>attributes</code>.
 		 */

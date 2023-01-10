@@ -17,16 +17,15 @@ import org.opensearch.client.transport.endpoints.BooleanResponse;
 import java.io.IOException;
 import java.util.Map;
 
-public class PingAndInfoIT extends OpenSearchRestHighLevelClientTestCase {
+public class PingAndInfoIT extends OpenSearchJavaClientTestCase {
 
     public void testPing() throws IOException {
-        OpenSearchClient openSearchClient = highLevelClient();
-        BooleanResponse ping = openSearchClient.ping();
+        BooleanResponse ping = javaClient().ping();
         assertTrue(ping.value());
     }
 
     public void testInfo() throws IOException {
-        OpenSearchClient openSearchClient = highLevelClient();
+        OpenSearchClient openSearchClient = javaClient();
         InfoResponse info = openSearchClient.info();
 
         // compare with what the low level client outputs
