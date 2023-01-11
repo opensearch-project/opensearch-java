@@ -2,10 +2,13 @@
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
+
 ### Added
 - Github workflow for changelog verification ([#239](https://github.com/opensearch-project/opensearch-java/pull/239))
 - Github workflow for dependabot PRs ([#247](https://github.com/opensearch-project/opensearch-java/pull/247))
 - Add javadoc link for the client ([#255](https://github.com/opensearch-project/opensearch-java/pull/255))
+- Add support for signing service name in AwsSdk2Transport ([#324](https://github.com/opensearch-project/opensearch-java/pull/324))
+
 ### Dependencies
 - Bumps `classgraph` from 4.8.149 to 4.8.154
 
@@ -36,6 +39,5 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix /_nodes/stats, /_nodes/info throwing serialization error ([#315](https://github.com/opensearch-project/opensearch-java/pull/315))
 
 ### Security
-
 
 [Unreleased]: https://github.com/opensearch-project/opensearch-java/compare/2.0...HEAD

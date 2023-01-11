@@ -7,6 +7,7 @@
     - [Run Tests](#run-tests)
       - [Unit Tests](#unit-tests)
       - [Integration Tests](#integration-tests)
+      - [AWS Transport Integration Tests](#aws-transport-integration-tests)
   - [Use an Editor](#use-an-editor)
     - [IntelliJ IDEA](#intellij-idea)
     - [Visual Studio Code](#visual-studio-code)
@@ -62,6 +63,20 @@ Run integration tests after starting OpenSearch cluster:
 
 ```
 ./gradlew clean integrationTest
+```
+
+#### AWS Transport Integration Tests
+
+To run integration tests for the AWS transport client, ensure working AWS credentials and specify your OpenSearch domain and region as follows:
+
+```
+./gradlew integrationTest --tests "*AwsSdk2*" -Dtests.awsSdk2support.domainHost=search-...us-west-2.es.amazonaws.com -Dtests.awsSdk2support.domainRegion=us-west-2
+```
+
+For OpenSearch Serverless, change the signing service name.
+
+```
+./gradlew integrationTest --tests "*AwsSdk2*" -Dtests.awsSdk2support.domainHost=....us-west-2.aoss.amazonaws.com -Dtests.awsSdk2support.domainRegion=us-west-2 -Dtests.awsSdk2support.serviceName=aoss
 ```
 
 ## Use an Editor
