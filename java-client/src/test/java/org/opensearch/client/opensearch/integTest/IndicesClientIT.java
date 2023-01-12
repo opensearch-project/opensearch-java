@@ -17,23 +17,22 @@ import org.opensearch.client.opensearch.indices.GetIndicesSettingsRequest;
 import org.opensearch.client.opensearch.indices.IndexState;
 import org.opensearch.common.settings.Settings;
 
-
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
-public class IndicesClientIT extends OpenSearchRestHighLevelClientTestCase {
+public class IndicesClientIT extends OpenSearchJavaClientTestCase {
 
     public void testIndicesExists() throws IOException {
 
         // Index present
         {
             String indexName = "test_index_exists_index_present";
-            highLevelClient().indices().create(_1 -> _1.index(indexName));
+            javaClient().indices().create(_1 -> _1.index(indexName));
 
             GetIndexRequest request = new GetIndexRequest.Builder().index(indexName).build();
-            GetIndexResponse response = highLevelClient().indices().get(request);
+            GetIndexResponse response = javaClient().indices().get(request);
 
             assertNotNull(response.result());
             assertEquals(response.result().size(), 1);
@@ -45,7 +44,7 @@ public class IndicesClientIT extends OpenSearchRestHighLevelClientTestCase {
             GetIndexRequest request = new GetIndexRequest.Builder().index(indexName).build();
 
             try {
-                highLevelClient().indices().get(request);
+                javaClient().indices().get(request);
                 fail(); // should never execute
             } catch (OpenSearchException ex) {
                 assertNotNull(ex);
@@ -66,7 +65,7 @@ public class IndicesClientIT extends OpenSearchRestHighLevelClientTestCase {
             GetIndexRequest request = new GetIndexRequest.Builder().index(existingIndex, nonExistentIndex).build();
 
             try {
-                highLevelClient().indices().get(request);
+                javaClient().indices().get(request);
                 fail(); // should never execute
             } catch (OpenSearchException ex) {
                 assertNotNull(ex);
@@ -75,8 +74,8 @@ public class IndicesClientIT extends OpenSearchRestHighLevelClientTestCase {
     }
 
     public void testCreateIndex() throws Exception {
-        OpenSearchAsyncClient asyncClient = new OpenSearchAsyncClient(highLevelClient()._transport());
-        CreateIndexResponse createResponse = highLevelClient().indices().create(b -> b.index("my-index"));
+        OpenSearchAsyncClient asyncClient = new OpenSearchAsyncClient(javaClient()._transport());
+        CreateIndexResponse createResponse = javaClient().indices().create(b -> b.index("my-index"));
         assertTrue(createResponse.acknowledged());
         assertTrue(createResponse.shardsAcknowledged());
 
@@ -98,7 +97,7 @@ public class IndicesClientIT extends OpenSearchRestHighLevelClientTestCase {
                 .index(nonExistentIndex).build();
 
         try {
-            highLevelClient().indices().getSettings(getIndicesSettingsRequest);
+            javaClient().indices().getSettings(getIndicesSettingsRequest);
             fail();
         } catch (OpenSearchException ex) {
             assertNotNull(ex);

@@ -55,8 +55,6 @@ import java.util.function.Function;
 public class GarbageCollectorTotal implements JsonpSerializable {
 	private final long collectionCount;
 
-	private final String collectionTime;
-
 	private final long collectionTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
@@ -64,7 +62,6 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 	private GarbageCollectorTotal(Builder builder) {
 
 		this.collectionCount = ApiTypeHelper.requireNonNull(builder.collectionCount, this, "collectionCount");
-		this.collectionTime = ApiTypeHelper.requireNonNull(builder.collectionTime, this, "collectionTime");
 		this.collectionTimeInMillis = ApiTypeHelper.requireNonNull(builder.collectionTimeInMillis, this,
 				"collectionTimeInMillis");
 
@@ -79,13 +76,6 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 	 */
 	public final long collectionCount() {
 		return this.collectionCount;
-	}
-
-	/**
-	 * Required - API name: {@code collection_time}
-	 */
-	public final String collectionTime() {
-		return this.collectionTime;
 	}
 
 	/**
@@ -109,9 +99,6 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 		generator.writeKey("collection_count");
 		generator.write(this.collectionCount);
 
-		generator.writeKey("collection_time");
-		generator.write(this.collectionTime);
-
 		generator.writeKey("collection_time_in_millis");
 		generator.write(this.collectionTimeInMillis);
 
@@ -126,8 +113,6 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GarbageCollectorTotal> {
 		private Long collectionCount;
 
-		private String collectionTime;
-
 		private Long collectionTimeInMillis;
 
 		/**
@@ -135,14 +120,6 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 		 */
 		public final Builder collectionCount(long value) {
 			this.collectionCount = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code collection_time}
-		 */
-		public final Builder collectionTime(String value) {
-			this.collectionTime = value;
 			return this;
 		}
 
@@ -178,7 +155,6 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 	protected static void setupGarbageCollectorTotalDeserializer(ObjectDeserializer<GarbageCollectorTotal.Builder> op) {
 
 		op.add(Builder::collectionCount, JsonpDeserializer.longDeserializer(), "collection_count");
-		op.add(Builder::collectionTime, JsonpDeserializer.stringDeserializer(), "collection_time");
 		op.add(Builder::collectionTimeInMillis, JsonpDeserializer.longDeserializer(), "collection_time_in_millis");
 
 	}

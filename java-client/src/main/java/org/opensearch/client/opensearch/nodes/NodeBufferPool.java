@@ -55,11 +55,7 @@ import java.util.function.Function;
 public class NodeBufferPool implements JsonpSerializable {
 	private final long count;
 
-	private final String totalCapacity;
-
 	private final long totalCapacityInBytes;
-
-	private final String used;
 
 	private final long usedInBytes;
 
@@ -68,10 +64,8 @@ public class NodeBufferPool implements JsonpSerializable {
 	private NodeBufferPool(Builder builder) {
 
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.totalCapacity = ApiTypeHelper.requireNonNull(builder.totalCapacity, this, "totalCapacity");
 		this.totalCapacityInBytes = ApiTypeHelper.requireNonNull(builder.totalCapacityInBytes, this,
 				"totalCapacityInBytes");
-		this.used = ApiTypeHelper.requireNonNull(builder.used, this, "used");
 		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
 
 	}
@@ -88,24 +82,10 @@ public class NodeBufferPool implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total_capacity}
-	 */
-	public final String totalCapacity() {
-		return this.totalCapacity;
-	}
-
-	/**
 	 * Required - API name: {@code total_capacity_in_bytes}
 	 */
 	public final long totalCapacityInBytes() {
 		return this.totalCapacityInBytes;
-	}
-
-	/**
-	 * Required - API name: {@code used}
-	 */
-	public final String used() {
-		return this.used;
 	}
 
 	/**
@@ -129,14 +109,8 @@ public class NodeBufferPool implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("total_capacity");
-		generator.write(this.totalCapacity);
-
 		generator.writeKey("total_capacity_in_bytes");
 		generator.write(this.totalCapacityInBytes);
-
-		generator.writeKey("used");
-		generator.write(this.used);
 
 		generator.writeKey("used_in_bytes");
 		generator.write(this.usedInBytes);
@@ -152,11 +126,7 @@ public class NodeBufferPool implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeBufferPool> {
 		private Long count;
 
-		private String totalCapacity;
-
 		private Long totalCapacityInBytes;
-
-		private String used;
 
 		private Long usedInBytes;
 
@@ -169,26 +139,10 @@ public class NodeBufferPool implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total_capacity}
-		 */
-		public final Builder totalCapacity(String value) {
-			this.totalCapacity = value;
-			return this;
-		}
-
-		/**
 		 * Required - API name: {@code total_capacity_in_bytes}
 		 */
 		public final Builder totalCapacityInBytes(long value) {
 			this.totalCapacityInBytes = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code used}
-		 */
-		public final Builder used(String value) {
-			this.used = value;
 			return this;
 		}
 
@@ -224,9 +178,7 @@ public class NodeBufferPool implements JsonpSerializable {
 	protected static void setupNodeBufferPoolDeserializer(ObjectDeserializer<NodeBufferPool.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(Builder::totalCapacity, JsonpDeserializer.stringDeserializer(), "total_capacity");
 		op.add(Builder::totalCapacityInBytes, JsonpDeserializer.longDeserializer(), "total_capacity_in_bytes");
-		op.add(Builder::used, JsonpDeserializer.stringDeserializer(), "used");
 		op.add(Builder::usedInBytes, JsonpDeserializer.longDeserializer(), "used_in_bytes");
 
 	}

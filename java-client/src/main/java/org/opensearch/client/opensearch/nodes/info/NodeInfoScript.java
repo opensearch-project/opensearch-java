@@ -48,10 +48,13 @@ import org.opensearch.client.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 
+import javax.annotation.Nullable;
+
 // typedef: nodes.info.NodeInfoScript
 
 @JsonpDeserializable
 public class NodeInfoScript implements JsonpSerializable {
+    @Nullable
 	private final String allowedTypes;
 
 	private final String disableMaxCompilationsRate;
@@ -60,7 +63,7 @@ public class NodeInfoScript implements JsonpSerializable {
 
 	private NodeInfoScript(Builder builder) {
 
-		this.allowedTypes = ApiTypeHelper.requireNonNull(builder.allowedTypes, this, "allowedTypes");
+		this.allowedTypes = builder.allowedTypes;
 		this.disableMaxCompilationsRate = ApiTypeHelper.requireNonNull(builder.disableMaxCompilationsRate, this,
 				"disableMaxCompilationsRate");
 
@@ -71,8 +74,9 @@ public class NodeInfoScript implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code allowed_types}
+	 * API name: {@code allowed_types}
 	 */
+	@Nullable
 	public final String allowedTypes() {
 		return this.allowedTypes;
 	}
@@ -94,9 +98,10 @@ public class NodeInfoScript implements JsonpSerializable {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("allowed_types");
-		generator.write(this.allowedTypes);
+	    if (this.allowedTypes != null) {
+    		generator.writeKey("allowed_types");
+    		generator.write(this.allowedTypes);
+		}
 
 		generator.writeKey("disable_max_compilations_rate");
 		generator.write(this.disableMaxCompilationsRate);
@@ -110,12 +115,13 @@ public class NodeInfoScript implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoScript> {
-		private String allowedTypes;
+	    @Nullable
+	    private String allowedTypes;
 
 		private String disableMaxCompilationsRate;
 
 		/**
-		 * Required - API name: {@code allowed_types}
+		 * API name: {@code allowed_types}
 		 */
 		public final Builder allowedTypes(String value) {
 			this.allowedTypes = value;

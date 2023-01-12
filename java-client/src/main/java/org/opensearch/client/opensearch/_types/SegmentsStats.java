@@ -78,7 +78,7 @@ public class SegmentsStats implements JsonpSerializable {
 
 	private final int indexWriterMemoryInBytes;
 
-	private final int maxUnsafeAutoIdTimestamp;
+	private final long maxUnsafeAutoIdTimestamp;
 
 	@Nullable
 	private final String memory;
@@ -228,7 +228,7 @@ public class SegmentsStats implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code max_unsafe_auto_id_timestamp}
 	 */
-	public final int maxUnsafeAutoIdTimestamp() {
+	public final long maxUnsafeAutoIdTimestamp() {
 		return this.maxUnsafeAutoIdTimestamp;
 	}
 
@@ -481,7 +481,7 @@ public class SegmentsStats implements JsonpSerializable {
 
 		private Integer indexWriterMemoryInBytes;
 
-		private Integer maxUnsafeAutoIdTimestamp;
+		private Long maxUnsafeAutoIdTimestamp;
 
 		@Nullable
 		private String memory;
@@ -615,7 +615,7 @@ public class SegmentsStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_unsafe_auto_id_timestamp}
 		 */
-		public final Builder maxUnsafeAutoIdTimestamp(int value) {
+		public final Builder maxUnsafeAutoIdTimestamp(long value) {
 			this.maxUnsafeAutoIdTimestamp = value;
 			return this;
 		}
@@ -768,7 +768,7 @@ public class SegmentsStats implements JsonpSerializable {
 				"index_writer_max_memory_in_bytes");
 		op.add(Builder::indexWriterMemoryInBytes, JsonpDeserializer.integerDeserializer(),
 				"index_writer_memory_in_bytes");
-		op.add(Builder::maxUnsafeAutoIdTimestamp, JsonpDeserializer.integerDeserializer(),
+		op.add(Builder::maxUnsafeAutoIdTimestamp, JsonpDeserializer.longDeserializer(),
 				"max_unsafe_auto_id_timestamp");
 		op.add(Builder::memory, JsonpDeserializer.stringDeserializer(), "memory");
 		op.add(Builder::memoryInBytes, JsonpDeserializer.integerDeserializer(), "memory_in_bytes");

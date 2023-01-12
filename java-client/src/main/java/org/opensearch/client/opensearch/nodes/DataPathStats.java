@@ -53,33 +53,13 @@ import java.util.function.Function;
 
 @JsonpDeserializable
 public class DataPathStats implements JsonpSerializable {
-	private final String available;
-
 	private final long availableInBytes;
-
-	private final String diskQueue;
-
-	private final long diskReads;
-
-	private final String diskReadSize;
-
-	private final long diskReadSizeInBytes;
-
-	private final long diskWrites;
-
-	private final String diskWriteSize;
-
-	private final long diskWriteSizeInBytes;
-
-	private final String free;
 
 	private final long freeInBytes;
 
 	private final String mount;
 
 	private final String path;
-
-	private final String total;
 
 	private final long totalInBytes;
 
@@ -89,22 +69,10 @@ public class DataPathStats implements JsonpSerializable {
 
 	private DataPathStats(Builder builder) {
 
-		this.available = ApiTypeHelper.requireNonNull(builder.available, this, "available");
 		this.availableInBytes = ApiTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
-		this.diskQueue = ApiTypeHelper.requireNonNull(builder.diskQueue, this, "diskQueue");
-		this.diskReads = ApiTypeHelper.requireNonNull(builder.diskReads, this, "diskReads");
-		this.diskReadSize = ApiTypeHelper.requireNonNull(builder.diskReadSize, this, "diskReadSize");
-		this.diskReadSizeInBytes = ApiTypeHelper.requireNonNull(builder.diskReadSizeInBytes, this,
-				"diskReadSizeInBytes");
-		this.diskWrites = ApiTypeHelper.requireNonNull(builder.diskWrites, this, "diskWrites");
-		this.diskWriteSize = ApiTypeHelper.requireNonNull(builder.diskWriteSize, this, "diskWriteSize");
-		this.diskWriteSizeInBytes = ApiTypeHelper.requireNonNull(builder.diskWriteSizeInBytes, this,
-				"diskWriteSizeInBytes");
-		this.free = ApiTypeHelper.requireNonNull(builder.free, this, "free");
 		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
 		this.mount = ApiTypeHelper.requireNonNull(builder.mount, this, "mount");
 		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
@@ -115,73 +83,10 @@ public class DataPathStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code available}
-	 */
-	public final String available() {
-		return this.available;
-	}
-
-	/**
 	 * Required - API name: {@code available_in_bytes}
 	 */
 	public final long availableInBytes() {
 		return this.availableInBytes;
-	}
-
-	/**
-	 * Required - API name: {@code disk_queue}
-	 */
-	public final String diskQueue() {
-		return this.diskQueue;
-	}
-
-	/**
-	 * Required - API name: {@code disk_reads}
-	 */
-	public final long diskReads() {
-		return this.diskReads;
-	}
-
-	/**
-	 * Required - API name: {@code disk_read_size}
-	 */
-	public final String diskReadSize() {
-		return this.diskReadSize;
-	}
-
-	/**
-	 * Required - API name: {@code disk_read_size_in_bytes}
-	 */
-	public final long diskReadSizeInBytes() {
-		return this.diskReadSizeInBytes;
-	}
-
-	/**
-	 * Required - API name: {@code disk_writes}
-	 */
-	public final long diskWrites() {
-		return this.diskWrites;
-	}
-
-	/**
-	 * Required - API name: {@code disk_write_size}
-	 */
-	public final String diskWriteSize() {
-		return this.diskWriteSize;
-	}
-
-	/**
-	 * Required - API name: {@code disk_write_size_in_bytes}
-	 */
-	public final long diskWriteSizeInBytes() {
-		return this.diskWriteSizeInBytes;
-	}
-
-	/**
-	 * Required - API name: {@code free}
-	 */
-	public final String free() {
-		return this.free;
 	}
 
 	/**
@@ -203,13 +108,6 @@ public class DataPathStats implements JsonpSerializable {
 	 */
 	public final String path() {
 		return this.path;
-	}
-
-	/**
-	 * Required - API name: {@code total}
-	 */
-	public final String total() {
-		return this.total;
 	}
 
 	/**
@@ -237,35 +135,8 @@ public class DataPathStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("available");
-		generator.write(this.available);
-
 		generator.writeKey("available_in_bytes");
 		generator.write(this.availableInBytes);
-
-		generator.writeKey("disk_queue");
-		generator.write(this.diskQueue);
-
-		generator.writeKey("disk_reads");
-		generator.write(this.diskReads);
-
-		generator.writeKey("disk_read_size");
-		generator.write(this.diskReadSize);
-
-		generator.writeKey("disk_read_size_in_bytes");
-		generator.write(this.diskReadSizeInBytes);
-
-		generator.writeKey("disk_writes");
-		generator.write(this.diskWrites);
-
-		generator.writeKey("disk_write_size");
-		generator.write(this.diskWriteSize);
-
-		generator.writeKey("disk_write_size_in_bytes");
-		generator.write(this.diskWriteSizeInBytes);
-
-		generator.writeKey("free");
-		generator.write(this.free);
 
 		generator.writeKey("free_in_bytes");
 		generator.write(this.freeInBytes);
@@ -275,9 +146,6 @@ public class DataPathStats implements JsonpSerializable {
 
 		generator.writeKey("path");
 		generator.write(this.path);
-
-		generator.writeKey("total");
-		generator.write(this.total);
 
 		generator.writeKey("total_in_bytes");
 		generator.write(this.totalInBytes);
@@ -294,25 +162,8 @@ public class DataPathStats implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataPathStats> {
-		private String available;
 
 		private Long availableInBytes;
-
-		private String diskQueue;
-
-		private Long diskReads;
-
-		private String diskReadSize;
-
-		private Long diskReadSizeInBytes;
-
-		private Long diskWrites;
-
-		private String diskWriteSize;
-
-		private Long diskWriteSizeInBytes;
-
-		private String free;
 
 		private Long freeInBytes;
 
@@ -320,89 +171,15 @@ public class DataPathStats implements JsonpSerializable {
 
 		private String path;
 
-		private String total;
-
 		private Long totalInBytes;
 
 		private String type;
-
-		/**
-		 * Required - API name: {@code available}
-		 */
-		public final Builder available(String value) {
-			this.available = value;
-			return this;
-		}
 
 		/**
 		 * Required - API name: {@code available_in_bytes}
 		 */
 		public final Builder availableInBytes(long value) {
 			this.availableInBytes = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code disk_queue}
-		 */
-		public final Builder diskQueue(String value) {
-			this.diskQueue = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code disk_reads}
-		 */
-		public final Builder diskReads(long value) {
-			this.diskReads = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code disk_read_size}
-		 */
-		public final Builder diskReadSize(String value) {
-			this.diskReadSize = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code disk_read_size_in_bytes}
-		 */
-		public final Builder diskReadSizeInBytes(long value) {
-			this.diskReadSizeInBytes = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code disk_writes}
-		 */
-		public final Builder diskWrites(long value) {
-			this.diskWrites = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code disk_write_size}
-		 */
-		public final Builder diskWriteSize(String value) {
-			this.diskWriteSize = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code disk_write_size_in_bytes}
-		 */
-		public final Builder diskWriteSizeInBytes(long value) {
-			this.diskWriteSizeInBytes = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code free}
-		 */
-		public final Builder free(String value) {
-			this.free = value;
 			return this;
 		}
 
@@ -427,14 +204,6 @@ public class DataPathStats implements JsonpSerializable {
 		 */
 		public final Builder path(String value) {
 			this.path = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code total}
-		 */
-		public final Builder total(String value) {
-			this.total = value;
 			return this;
 		}
 
@@ -477,20 +246,10 @@ public class DataPathStats implements JsonpSerializable {
 
 	protected static void setupDataPathStatsDeserializer(ObjectDeserializer<DataPathStats.Builder> op) {
 
-		op.add(Builder::available, JsonpDeserializer.stringDeserializer(), "available");
 		op.add(Builder::availableInBytes, JsonpDeserializer.longDeserializer(), "available_in_bytes");
-		op.add(Builder::diskQueue, JsonpDeserializer.stringDeserializer(), "disk_queue");
-		op.add(Builder::diskReads, JsonpDeserializer.longDeserializer(), "disk_reads");
-		op.add(Builder::diskReadSize, JsonpDeserializer.stringDeserializer(), "disk_read_size");
-		op.add(Builder::diskReadSizeInBytes, JsonpDeserializer.longDeserializer(), "disk_read_size_in_bytes");
-		op.add(Builder::diskWrites, JsonpDeserializer.longDeserializer(), "disk_writes");
-		op.add(Builder::diskWriteSize, JsonpDeserializer.stringDeserializer(), "disk_write_size");
-		op.add(Builder::diskWriteSizeInBytes, JsonpDeserializer.longDeserializer(), "disk_write_size_in_bytes");
-		op.add(Builder::free, JsonpDeserializer.stringDeserializer(), "free");
 		op.add(Builder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");
 		op.add(Builder::mount, JsonpDeserializer.stringDeserializer(), "mount");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
-		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
 		op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
