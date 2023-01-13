@@ -4,10 +4,11 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 
 ### Added
-- Github workflow for changelog verification ([#239](https://github.com/opensearch-project/opensearch-java/pull/239))
-- Github workflow for dependabot PRs ([#247](https://github.com/opensearch-project/opensearch-java/pull/247))
+- Add GitHub workflow for changelog verification ([#239](https://github.com/opensearch-project/opensearch-java/pull/239))
+- Add GitHub workflow for dependabot PRs ([#247](https://github.com/opensearch-project/opensearch-java/pull/247))
 - Add javadoc link for the client ([#255](https://github.com/opensearch-project/opensearch-java/pull/255))
 - Add support for signing service name in AwsSdk2Transport ([#324](https://github.com/opensearch-project/opensearch-java/pull/324))
+- Add 1-click release workflows ([#321](https://github.com/opensearch-project/opensearch-java/pull/321))
 
 ### Dependencies
 - Bumps `classgraph` from 4.8.149 to 4.8.154
@@ -22,17 +23,17 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Update tests to use JUnit's Assert ([#244](https://github.com/opensearch-project/opensearch-java/pull/244))
 - Add support to parse sub-aggregations from filter/nested aggregations ([#234](https://github.com/opensearch-project/opensearch-java/pull/234))
 - Add timeout and throttle to the jenkins workflows ([#231](https://github.com/opensearch-project/opensearch-java/pull/231)) 
-- Updating maintainers, admins and documentation ([#248](https://github.com/opensearch-project/opensearch-java/pull/248))
+- Update maintainers, admins and documentation ([#248](https://github.com/opensearch-project/opensearch-java/pull/248))
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
 - Document how to use Java 8 Time (JSR 310) objects ([#251](https://github.com/opensearch-project/opensearch-java/pull/251))
-- Fixing version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
+- Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
 - Update Gradle to 7.6 ([#309](https://github.com/opensearch-project/opensearch-java/pull/309))
 - Prevent SPI calls at runtime ([#293](https://github.com/opensearch-project/opensearch-java/pull/293))
 
 ### Deprecated
 
 ### Removed
-- Removed support for unsupported dynamic_templates in bulk ([#276](https://github.com/opensearch-project/opensearch-java/pull/276))
+- Remove support for unsupported dynamic_templates in bulk ([#276](https://github.com/opensearch-project/opensearch-java/pull/276))
 
 ### Fixed
 - Make ChildrenAggregate as a SingleBucketAggregate ([#306](https://github.com/opensearch-project/opensearch-java/pull/306))
