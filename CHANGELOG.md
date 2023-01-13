@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Github workflow for changelog verification ([#239](https://github.com/opensearch-project/opensearch-java/pull/239))
 - Github workflow for dependabot PRs ([#247](https://github.com/opensearch-project/opensearch-java/pull/247))
 - Add javadoc link for the client ([#255](https://github.com/opensearch-project/opensearch-java/pull/255))
+- Add 1-click release workflows ([#321](https://github.com/opensearch-project/opensearch-java/pull/321))
 ### Dependencies
 - Bumps `classgraph` from 4.8.149 to 4.8.154
 
