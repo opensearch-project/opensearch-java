@@ -45,6 +45,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static org.opensearch.client.transport.TransportHeaders.ACCEPT;
+import static org.opensearch.client.transport.TransportHeaders.USER_AGENT;
+
 public class RestClientOptions implements TransportOptions {
 
     private final RequestOptions options;
@@ -178,8 +181,6 @@ public class RestClientOptions implements TransportOptions {
         }
     }
 
-    private static final String USER_AGENT = "User-Agent";
-
     static RestClientOptions initialOptions() {
         String ua = String.format(
             Locale.ROOT,
@@ -191,7 +192,7 @@ public class RestClientOptions implements TransportOptions {
         return new RestClientOptions(
             RequestOptions.DEFAULT.toBuilder()
                 .addHeader(USER_AGENT, ua)
-                .addHeader("Accept", RestClientTransport.JsonContentType.toString())
+                .addHeader(ACCEPT, RestClientTransport.JsonContentType.toString())
                 .build()
         );
     }

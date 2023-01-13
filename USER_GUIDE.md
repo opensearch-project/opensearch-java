@@ -53,6 +53,10 @@ static class IndexData {
 
 ## Create a client
 
+There are multiple low level transports which `OpenSearchClient` could be configured with.
+
+### Create a client using `RestClientTransport`
+
 ```java
 Transport transport = new RestClientTransport(restClient, new JacksonJsonpMapper()); 
 OpenSearchClient client = new OpenSearchClient(transport);
@@ -63,6 +67,16 @@ The `JacksonJsonpMapper` class (2.x versions) only supports Java 7 objects by de
 ```java
 Transport transport = new RestClientTransport(restClient,
     new JacksonJsonpMapper(new ObjectMapper().registerModule(new JavaTimeModule()))); 
+OpenSearchClient client = new OpenSearchClient(transport);
+```
+
+### Create a client using `ApacheHttpClient5Transport`
+
+```java
+final Transport transport = ApacheHttpClient5TransportBuilder
+    .builder(hosts)
+    .mapper(new JacksonJsonpMapper())
+    .build();
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
 

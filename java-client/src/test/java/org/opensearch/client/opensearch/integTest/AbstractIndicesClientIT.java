@@ -22,8 +22,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
-public class IndicesClientIT extends OpenSearchJavaClientTestCase {
-
+public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCase {
     public void testIndicesExists() throws IOException {
 
         // Index present
