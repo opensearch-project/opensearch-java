@@ -164,6 +164,10 @@ dependencies {
     implementation("com.fasterxml.jackson.core", "jackson-databind", jacksonDatabindVersion)
     testImplementation("com.fasterxml.jackson.datatype", "jackson-datatype-jakarta-jsonp", jacksonVersion)
 
+    // ApacheHttpClient5Transport dependencies (optional)
+    implementation("org.apache.httpcomponents.client5", "httpclient5", "5.1.4")
+    implementation("org.apache.httpcomponents.core5", "httpcore5", "5.1.5")
+
     // For AwsSdk2Transport
     "awsSdk2SupportImplementation"("software.amazon.awssdk","sdk-core","[2.15,3.0)")
     "awsSdk2SupportImplementation"("software.amazon.awssdk","auth","[2.15,3.0)")
