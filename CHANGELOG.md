@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add Github workflow for dependabot PRs ([#247](https://github.com/opensearch-project/opensearch-java/pull/247))
 - Add support for signing service name in AwsSdk2Transport ([#324](https://github.com/opensearch-project/opensearch-java/pull/324))
 - Add new OpenSearchTransport based on Apache HttpClient 5 ([#328](https://github.com/opensearch-project/opensearch-java/pull/328))
+- Add 1-click release workflows ([#321](https://github.com/opensearch-project/opensearch-java/pull/321))
 
 ### Dependencies
 - Bumps `grgit-gradle` from 4.0.1 to 5.0.0
