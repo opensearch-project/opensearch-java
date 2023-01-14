@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add javadoc link for the client ([#255](https://github.com/opensearch-project/opensearch-java/pull/255))
 - Add 1-click release workflows ([#321](https://github.com/opensearch-project/opensearch-java/pull/321))
 - Introduce new OpenSearchTransport based on Apache HttpClient 5 ([#281](https://github.com/opensearch-project/opensearch-java/pull/281))
+- Add workflow to publish snapshots via GHA ([#325](https://github.com/opensearch-project/opensearch-java/pull/325))
 
 ### Dependencies
 - Bumps `classgraph` from 4.8.149 to 4.8.154
