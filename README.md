@@ -35,7 +35,7 @@ Please see the [USER_GUIDE](USER_GUIDE.md) for code snippets.
 * [Documentation](https://opensearch.org/docs/latest/clients/java/)
 * [JavaDoc](https://www.javadoc.io/doc/org.opensearch.client/opensearch-java/latest/index.html)
 * [Maven Central](https://search.maven.org/artifact/org.opensearch.client/opensearch-java)
-* [Snapshot Builds](https://aws.oss.sonatype.org/content/repositories/snapshots/org/opensearch/client/opensearch-java/)
+* [Snapshot Builds](#snapshot-builds)
 * Need help? Try [Forums](https://discuss.opendistrocommunity.dev/)
 * [Project Principles](https://opensearch.org/#principles)
 * [Contributing to OpenSearch](CONTRIBUTING.md)
@@ -51,6 +51,9 @@ This project has adopted the [Amazon Open Source Code of Conduct](CODE_OF_CONDUC
 ## User Guide
 
 See [User Guide](USER_GUIDE.md).
+
+## Snapshot Builds
+The [snapshots builds](https://aws.oss.sonatype.org/content/repositories/snapshots/org/opensearch/client/opensearch-java/) are published to sonatype using [publish-snapshots.yml](./.github/workflows/publish-snapshots.yml) workflow. Each `push` event to the main branch triggers this workflow.
 
 ## Compatibility with OpenSearch
 
