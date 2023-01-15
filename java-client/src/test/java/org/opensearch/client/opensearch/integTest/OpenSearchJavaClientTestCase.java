@@ -23,7 +23,6 @@ import org.apache.hc.core5.ssl.SSLContextBuilder;
 import org.opensearch.Version;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestClientBuilder;
-import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch.cat.IndicesResponse;
@@ -34,7 +33,6 @@ import org.opensearch.client.opensearch.nodes.info.NodeInfo;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
-import org.opensearch.client.transport.rest_client.RestClientTransport;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.core.internal.io.IOUtils;
 import org.opensearch.test.rest.OpenSearchRestTestCase;
@@ -48,7 +46,7 @@ import java.util.TreeSet;
 
 import javax.net.ssl.SSLEngine;
 
-public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCase {
+public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCase implements OpenSearchTransportSupport {
     private static OpenSearchClient javaClient;
     private static OpenSearchClient adminJavaClient;
 
@@ -84,19 +82,9 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
         }
     }
 
-    private boolean isHttps() {
-        return Optional.ofNullable(System.getProperty("https"))
-                .map("true"::equalsIgnoreCase)
-                .orElse(false);
-    }
-
     @Override
     protected String getProtocol() {
         return isHttps() ? "https" : "http";
-    }
-
-    protected OpenSearchClient buildJavaClient(Settings settings, HttpHost[] hosts) throws IOException {
-        return new OpenSearchClient(new RestClientTransport(buildClient(settings, hosts), new JacksonJsonpMapper()));
     }
 
     @Override

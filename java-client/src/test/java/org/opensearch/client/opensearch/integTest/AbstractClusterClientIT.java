@@ -34,8 +34,7 @@ import static java.util.Collections.emptyMap;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 
-public class ClusterClientIT extends OpenSearchJavaClientTestCase {
-
+public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCase {
     public void testClusterPutSettings() throws IOException {
         OpenSearchClient openSearchClient = javaClient();
 

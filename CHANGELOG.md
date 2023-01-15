@@ -6,6 +6,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Github workflow for changelog verification ([#239](https://github.com/opensearch-project/opensearch-java/pull/239))
 - Github workflow for dependabot PRs ([#247](https://github.com/opensearch-project/opensearch-java/pull/247))
 - Add javadoc link for the client ([#255](https://github.com/opensearch-project/opensearch-java/pull/255))
+- Add 1-click release workflows ([#321](https://github.com/opensearch-project/opensearch-java/pull/321))
+- Introduce new OpenSearchTransport based on Apache HttpClient 5 ([#281](https://github.com/opensearch-project/opensearch-java/pull/281))
+- Add workflow to publish snapshots via GHA ([#325](https://github.com/opensearch-project/opensearch-java/pull/325))
+
 ### Dependencies
 - Bumps `classgraph` from 4.8.149 to 4.8.154
 
@@ -35,6 +39,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Make ChildrenAggregate as a SingleBucketAggregate ([#306](https://github.com/opensearch-project/opensearch-java/pull/306))
 - Fix /_nodes/stats, /_nodes/info throwing serialization error ([#315](https://github.com/opensearch-project/opensearch-java/pull/315))
 - Do not double-wrap OpenSearchException on error ([#323](https://github.com/opensearch-project/opensearch-java/pull/323))
+- Fix AwsSdk2TransportOptions.responseCompression ([#322](https://github.com/opensearch-project/opensearch-java/pull/322))
 
 ### Security
 

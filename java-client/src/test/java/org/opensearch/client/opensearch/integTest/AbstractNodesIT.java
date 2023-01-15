@@ -16,10 +16,10 @@ import java.io.IOException;
 
 import org.opensearch.client.opensearch.nodes.NodesStatsResponse;
 
-public class NodesIT extends OpenSearchJavaClientTestCase {
+public abstract class AbstractNodesIT extends OpenSearchJavaClientTestCase {
     public void testNodesStats() throws IOException {
         final NodesStatsResponse response = javaClient().nodes().stats();
         assertThat(response.clusterName(), not(nullValue()));
         assertThat(response.nodes(), not(anEmptyMap()));
     }
-} 
+}

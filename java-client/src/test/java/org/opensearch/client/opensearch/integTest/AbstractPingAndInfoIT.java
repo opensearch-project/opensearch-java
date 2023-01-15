@@ -17,8 +17,7 @@ import org.opensearch.client.transport.endpoints.BooleanResponse;
 import java.io.IOException;
 import java.util.Map;
 
-public class PingAndInfoIT extends OpenSearchJavaClientTestCase {
-
+public abstract class AbstractPingAndInfoIT extends OpenSearchJavaClientTestCase {
     public void testPing() throws IOException {
         BooleanResponse ping = javaClient().ping();
         assertTrue(ping.value());
