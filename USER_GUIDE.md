@@ -68,6 +68,8 @@ Transport transport = new RestClientTransport(restClient,
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
 
+Upcoming OpenSearch `3.0.0` release brings HTTP/2 support and as such, the `RestClientTransport` would switch to HTTP/2 if available (for both HTTPS and/or HTTP protocols). The desired protocol could be forced using `RestClientBuilder.HttpClientConfigCallback`.
+
 ### Create a client using `ApacheHttpClient5Transport`
 
 ```java
@@ -77,6 +79,8 @@ final Transport transport = ApacheHttpClient5TransportBuilder
     .build();
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
+
+Upcoming OpenSearch `3.0.0` release brings HTTP/2 support and as such, the `ApacheHttpClient5Transport` would switch to HTTP/2 if available (for both HTTPS and/or HTTP protocols). The desired protocol could be forced using `ApacheHttpClient5TransportBuilder.HttpClientConfigCallback`.
 
 ## Create an index
 
