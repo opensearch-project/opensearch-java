@@ -73,7 +73,7 @@ OpenSearchClient client = new OpenSearchClient(transport);
 ```java
 final Transport transport = ApacheHttpClient5TransportBuilder
     .builder(hosts)
-    .mapper(new JacksonJsonpMapper())
+    .setMapper(new JacksonJsonpMapper())
     .build();
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
