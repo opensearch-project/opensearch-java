@@ -173,6 +173,7 @@ public interface AwsSdk2TransportOptions extends TransportOptions {
             super(builder);
             credentials = builder.credentials;
             requestCompressionSize = builder.requestCompressionSize;
+            responseCompression = builder.responseCompression;
             mapper = builder.mapper;
         }
 
