@@ -34,7 +34,7 @@ package org.opensearch.client.transport.httpclient5;
 
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
-import org.opensearch.client.nio.HeapBufferedAsyncResponseConsumer;
+import org.opensearch.client.transport.httpclient5.internal.HeapBufferedAsyncResponseConsumer;
 
 /**
  * Factory used to create instances of {@link AsyncResponseConsumer}. Each request retry needs its own instance of the
