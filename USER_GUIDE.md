@@ -56,14 +56,14 @@ There are multiple low level transports which `OpenSearchClient` could be config
 ### Create a client using `RestClientTransport`
 
 ```java
-Transport transport = new RestClientTransport(restClient, new JacksonJsonpMapper()); 
+OpenSearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper()); 
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
 
 The `JacksonJsonpMapper` class (2.x versions) only supports Java 7 objects by default. [Java 8 modules](https://github.com/FasterXML/jackson-modules-java8) to support JDK8 classes such as the Date and Time API (JSR-310), `Optional`, and more can be used by including [the additional datatype dependency](https://github.com/FasterXML/jackson-modules-java8#usage) and adding the module.  For example, to include JSR-310 classes:
 
 ```java
-Transport transport = new RestClientTransport(restClient,
+OpenSearchTransport transport = new RestClientTransport(restClient,
     new JacksonJsonpMapper(new ObjectMapper().registerModule(new JavaTimeModule()))); 
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
@@ -73,14 +73,28 @@ Upcoming OpenSearch `3.0.0` release brings HTTP/2 support and as such, the `Rest
 ### Create a client using `ApacheHttpClient5Transport`
 
 ```java
-final Transport transport = ApacheHttpClient5TransportBuilder
+final OpenSearchTransport transport = ApacheHttpClient5TransportBuilder
     .builder(hosts)
     .mapper(new JacksonJsonpMapper())
     .build();
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
 
-Upcoming OpenSearch `3.0.0` release brings HTTP/2 support and as such, the `ApacheHttpClient5Transport` would switch to HTTP/2 if available (for both HTTPS and/or HTTP protocols). The desired protocol could be forced using `ApacheHttpClient5TransportBuilder.HttpClientConfigCallback`.
+Upcoming OpenSearch `3.0.0` release brings HTTP/2 support and as such, the `ApacheHttpClient5Transport` would switch to HTTP/2 if available (for both HTTPS and/or HTTP protocols). The desired protocol could be forced using `ApacheHttpClient5TransportBuilder.HttpClientConfigCallback`, for example:
+
+```java
+final OpenSearchTransport transport = ApacheHttpClient5TransportBuilder
+    .builder(httpHost)
+    .setMapper(new JacksonJsonpMapper())
+    .setHttpClientConfigCallback(new ApacheHttpClient5TransportBuilder.HttpClientConfigCallback() {
+        @Override
+        public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpClientBuilder) {
+            return httpClientBuilder.setVersionPolicy(HttpVersionPolicy.FORCE_HTTP_2);
+        }
+    })
+    .build();
+OpenSearchClient client = new OpenSearchClient(transport);
+```
 
 ## Create an index
 
