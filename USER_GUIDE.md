@@ -2,6 +2,7 @@
 
 - [User Guide](#user-guide)
   - [Sample data](#sample-data)
+  - [Create a client](#create-a-client)
   - [Create an index](#create-an-index)
   - [Index data](#index-data)
   - [Search for the document](#search-for-the-document)
@@ -46,6 +47,42 @@ static class IndexData {
     return String.format("IndexData{first name='%s', last name='%s'}", firstName, lastName);
   }
 }
+```
+
+## Create a client
+
+There are multiple low level transports which `OpenSearchClient` could be configured with.
+
+### Create a client using `RestClientTransport`
+
+```java
+Transport transport = new RestClientTransport(restClient, new JacksonJsonpMapper()); 
+OpenSearchClient client = new OpenSearchClient(transport);
+```
+
+The `JacksonJsonpMapper` class (2.x versions) only supports Java 7 objects by default. [Java 8 modules](https://github.com/FasterXML/jackson-modules-java8) to support JDK8 classes such as the Date and Time API (JSR-310), `Optional`, and more can be used by including [the additional datatype dependency](https://github.com/FasterXML/jackson-modules-java8#usage) and adding the module.  For example, to include JSR-310 classes:
+
+```java
+Transport transport = new RestClientTransport(restClient,
+    new JacksonJsonpMapper(new ObjectMapper().registerModule(new JavaTimeModule()))); 
+OpenSearchClient client = new OpenSearchClient(transport);
+```
+
+### Create a client using `ApacheHttpClient5Transport`
+
+```java
+final Transport transport = ApacheHttpClient5TransportBuilder
+    .builder(hosts)
+    .setMapper(new JacksonJsonpMapper())
+    .build();
+OpenSearchClient client = new OpenSearchClient(transport);
+```
+
+The Apache HttpClient 5 based transport has dependences on Apache HttpClient 5 and Apache HttpCore 5 which has to be added to the project explicitly.
+
+```gradle
+    implementation("org.apache.httpcomponents.client5", "httpclient5", "5.1.4")
+    implementation("org.apache.httpcomponents.core5", "httpcore5", "5.1.5")
 ```
 
 ## Create an index

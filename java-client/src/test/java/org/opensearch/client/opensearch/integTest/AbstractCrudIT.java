@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CrudIT extends OpenSearchJavaClientTestCase {
+public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
 
     public void testDelete() throws IOException {
         {
