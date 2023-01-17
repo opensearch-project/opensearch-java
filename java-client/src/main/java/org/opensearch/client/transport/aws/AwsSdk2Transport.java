@@ -526,6 +526,8 @@ public class AwsSdk2Transport implements OpenSearchTransport {
                     ErrorT error = errorDeserializer.deserialize(parser, mapper);
                     throw new OpenSearchException((ErrorResponse) error);
                 }
+            } catch (OpenSearchException e) {
+                throw e;
             } catch (Exception e) {
                 // can't parse the error - use a general exception
                 ErrorCause.Builder cause = new ErrorCause.Builder();
