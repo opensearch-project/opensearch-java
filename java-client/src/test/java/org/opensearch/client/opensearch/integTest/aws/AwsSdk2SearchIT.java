@@ -13,10 +13,13 @@ import org.junit.Assert;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.OpType;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch.core.IndexRequest;
 import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.SearchResponse;
+import org.opensearch.client.opensearch.indices.CreateIndexRequest;
+import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -132,5 +135,19 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         } catch (Exception e) {
             return CompletableFuture.failedFuture(e);
         }
+    }
+
+    @Test
+    public void testDoubleWrappedException() throws Exception {
+        // ensure the test index exists
+        resetTestIndex(false);
+        // attempt to create the same index a second time
+        OpenSearchIndicesClient client = getIndexesClient(false, null, null);
+        var req = new CreateIndexRequest.Builder().index(TEST_INDEX);
+        Exception exception = Assert.assertThrows(OpenSearchException.class, () -> {
+            client.create(req.build());
+        });
+        // error message contains the actual error, not a generic [http_exception]
+        Assert.assertTrue(exception.getMessage().contains("[resource_already_exists_exception]"));
     }
 }
