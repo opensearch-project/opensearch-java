@@ -60,12 +60,12 @@ import java.util.zip.GZIPInputStream;
 
 /**
  * Implementation of the OpenSearchTransport interface that sends signed requests using
- * the AWS v2 SDK HTTP clients, to connect to an AWS OpenSearch service using IAM authentication
+ * the AWS v2 SDK HTTP clients, to connect to an AWS OpenSearch service using IAM authentication.
  */
 public class AwsSdk2Transport implements OpenSearchTransport {
     /**
      * By default, requests that exceed this size will be automatically compressed.
-     * {@link AwsSdk2TransportOptions} can be used to override this setting or disable compresson.
+     * {@link AwsSdk2TransportOptions} can be used to override this setting or disable compression.
      */
     public static final Integer DEFAULT_REQUEST_COMPRESSION_SIZE = 8192;
 
@@ -73,21 +73,21 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     private final SdkHttpClient httpClient;
     private final SdkAsyncHttpClient asyncHttpClient;
     private final String host;
+    private final String signingServiceName;
     private final Region signingRegion;
     private final JsonpMapper defaultMapper;
     private final AwsSdk2TransportOptions transportOptions;
 
     /**
-     * Create an {@link OpenSearchTransport} with a SYNCHRONOUS AWS Http client
+     * Create an {@link OpenSearchTransport} with a synchronous AWS HTTP client.
      * <p>
      * Note that asynchronous OpenSearch requests sent through this transport will be dispatched
      * *synchronously* on the calling thread.
      *
-     * @param httpClient  HTTP client to use for OpenSearch requests
-     * @param host        The fully qualified domain name to connect to
-     * @param signingRegion The AWS region for which requests will be signed.  This should typically match
-     *                      the region in `host`.
-     * @param options Options that apply to all requests.  Can be null.  Create with
+     * @param httpClient HTTP client to use for OpenSearch requests.
+     * @param host The fully qualified domain name to connect to.
+     * @param signingRegion The AWS region for which requests will be signed. This should typically match the region in `host`.
+     * @param options Options that apply to all requests. Can be null. Create with
      *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
      *                compression options, etc.
      */
@@ -96,20 +96,42 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             @Nonnull String host,
             @Nonnull Region signingRegion,
             @CheckForNull AwsSdk2TransportOptions options) {
-        this(httpClient, null, host, signingRegion, options);
+        this(httpClient, null, host, "es", signingRegion, options);
     }
 
     /**
-     * Create an {@link OpenSearchTransport} with an ASYNCHRONOUS AWS Http client
+     * Create an {@link OpenSearchTransport} with a synchronous AWS HTTP client.
+     * <p>
+     * Note that asynchronous OpenSearch requests sent through this transport will be dispatched
+     * *synchronously* on the calling thread.
+     *
+     * @param httpClient HTTP client to use for OpenSearch requests.
+     * @param host The fully qualified domain name to connect to.
+     * @param signingServiceName The AWS signing service name, one of `es` (Amazon OpenSearch) or `aoss` (Amazon OpenSearch Serverless).
+     * @param signingRegion The AWS region for which requests will be signed. This should typically match the region in `host`.
+     * @param options Options that apply to all requests. Can be null. Create with
+     *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
+     *                compression options, etc.
+     */
+    public AwsSdk2Transport(
+            @Nonnull SdkHttpClient httpClient,
+            @Nonnull String host,
+            @Nonnull String signingServiceName,
+            @Nonnull Region signingRegion,
+            @CheckForNull AwsSdk2TransportOptions options) {
+        this(httpClient, null, host, signingServiceName, signingRegion, options);
+    }
+
+    /**
+     * Create an {@link OpenSearchTransport} with an asynchronous AWS HTTP client
      * <p>
      * Note that synchronous OpenSearch requests sent through this transport will be dispatched
      * using the asynchronous client, but the calling thread will block until they are complete.
      *
-     * @param asyncHttpClient HTTP client to use for OpenSearch requests
-     * @param host            The target host
-     * @param signingRegion The AWS region for which requests will be signed.  This should typically match
-     *                      the region in `host`.
-     * @param options Options that apply to all requests.  Can be null.  Create with
+     * @param asyncHttpClient HTTP client to use for OpenSearch requests.
+     * @param host The target host.
+     * @param signingRegion The AWS region for which requests will be signed. This should typically match region in `host`.
+     * @param options Options that apply to all requests. Can be null. Create with
      *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
      *                compression options, etc.
      */
@@ -118,7 +140,30 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             @Nonnull String host,
             @Nonnull Region signingRegion,
             @CheckForNull AwsSdk2TransportOptions options) {
-        this(null, asyncHttpClient, host, signingRegion, options);
+        this(null, asyncHttpClient, host, "es", signingRegion, options);
+    }
+
+    /**
+     * Create an {@link OpenSearchTransport} with an asynchronous AWS HTTP client.
+     * <p>
+     * Note that synchronous OpenSearch requests sent through this transport will be dispatched
+     * using the asynchronous client, but the calling thread will block until they are complete.
+     *
+     * @param asyncHttpClient HTTP client to use for OpenSearch requests.
+     * @param host The target host.
+     * @param signingServiceName The AWS signing service name, one of `es` (Amazon OpenSearch) or `aoss` (Amazon OpenSearch Serverless).
+     * @param signingRegion The AWS region for which requests will be signed. This should typically match the region in `host`.
+     * @param options Options that apply to all requests. Can be null. Create with
+     *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
+     *                compression options, etc.
+     */
+    public AwsSdk2Transport(
+            @Nonnull SdkAsyncHttpClient asyncHttpClient,
+            @Nonnull String host,
+            @Nonnull String signingServiceName,
+            @Nonnull Region signingRegion,
+            @CheckForNull AwsSdk2TransportOptions options) {
+        this(null, asyncHttpClient, host, signingServiceName, signingRegion, options);
     }
 
     /**
@@ -127,12 +172,11 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      * The synchronous client will be used for synchronous OpenSearch requests, and the asynchronous client
      * will be used for asynchronous HTTP requests.
      *
-     * @param httpClient  HTTP client to use for OpenSearch requests
-     * @param asyncHttpClient HTTP client to use for synchronous OpenSearch requests
-     * @param host        The fully qualified domain name to connect to
-     * @param signingRegion The AWS region for which requests will be signed.  This should typically match
-     *                      the region in `host`.
-     * @param options Options that apply to all requests.  Can be null.  Create with
+     * @param httpClient HTTP client to use for OpenSearch requests.
+     * @param asyncHttpClient HTTP client to use for synchronous OpenSearch requests.
+     * @param host The fully qualified domain name to connect to.
+     * @param signingRegion The AWS region for which requests will be signed. This should typically match the region in `host`.
+     * @param options Options that apply to all requests. Can be null. Create with
      *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
      *                compression options, etc.
      */
@@ -140,6 +184,31 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             @CheckForNull SdkHttpClient httpClient,
             @CheckForNull SdkAsyncHttpClient asyncHttpClient,
             @Nonnull String host,
+            @Nonnull Region signingRegion,
+            @CheckForNull AwsSdk2TransportOptions options) {
+        this(httpClient, asyncHttpClient, host, "es", signingRegion, options);
+    }
+
+    /**
+     * Create an {@link OpenSearchTransport} with both synchronous and asynchronous AWS HTTP clients.
+     * <p>
+     * The synchronous client will be used for synchronous OpenSearch requests, and the asynchronous client
+     * will be used for asynchronous HTTP requests.
+     *
+     * @param httpClient HTTP client to use for OpenSearch requests.
+     * @param asyncHttpClient HTTP client to use for synchronous OpenSearch requests.
+     * @param host The fully qualified domain name to connect to.
+     * @param signingRegion The AWS region for which requests will be signed. This should typically match the region in `host`.
+     * @param signingServiceName The AWS signing service name, one of `es` (Amazon OpenSearch) or `aoss` (Amazon OpenSearch Serverless).
+     * @param options Options that apply to all requests. Can be null. Create with
+     *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
+     *                compression options, etc.
+     */
+    public AwsSdk2Transport(
+            @CheckForNull SdkHttpClient httpClient,
+            @CheckForNull SdkAsyncHttpClient asyncHttpClient,
+            @Nonnull String host,
+            @Nonnull String signingServiceName,
             @Nonnull Region signingRegion,
             @CheckForNull AwsSdk2TransportOptions options) {
         if (httpClient == null && asyncHttpClient == null)
@@ -150,6 +219,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         this.httpClient = httpClient;
         this.asyncHttpClient = asyncHttpClient;
         this.host = host;
+        this.signingServiceName = signingServiceName;
         this.signingRegion = signingRegion;
         this.transportOptions = options != null ? options : AwsSdk2TransportOptions.builder().build();
         this.defaultMapper = Optional.ofNullable(options)
@@ -314,7 +384,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
         Aws4SignerParams signerParams = Aws4SignerParams.builder()
                 .awsCredentials(credentials.resolveCredentials())
-                .signingName("es")
+                .signingName(this.signingServiceName)
                 .signingRegion(signingRegion)
                 .build();
         return Aws4Signer.create().sign(req.build(), signerParams);

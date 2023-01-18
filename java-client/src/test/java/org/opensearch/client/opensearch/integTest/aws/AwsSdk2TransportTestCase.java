@@ -83,6 +83,7 @@ public abstract class AwsSdk2TransportTestCase {
             transport = new AwsSdk2Transport(
                     getAsyncHttpClient(),
                     getTestClusterHost(),
+                    getTestClusterServiceName(),
                     getTestClusterRegion(),
                     getTransportOptions().build()
             );
@@ -90,6 +91,7 @@ public abstract class AwsSdk2TransportTestCase {
             transport = new AwsSdk2Transport(
                     getHttpClient(),
                     getTestClusterHost(),
+                    getTestClusterServiceName(),
                     getTestClusterRegion(),
                     getTransportOptions().build()
             );
@@ -107,6 +109,7 @@ public abstract class AwsSdk2TransportTestCase {
             transport = new AwsSdk2Transport(
                     getAsyncHttpClient(),
                     getTestClusterHost(),
+                    getTestClusterServiceName(),
                     getTestClusterRegion(),
                     getTransportOptions().build()
             );
@@ -114,6 +117,7 @@ public abstract class AwsSdk2TransportTestCase {
             transport = new AwsSdk2Transport(
                     getHttpClient(),
                     getTestClusterHost(),
+                    getTestClusterServiceName(),
                     getTestClusterRegion(),
                     getTransportOptions().build()
             );
@@ -131,6 +135,7 @@ public abstract class AwsSdk2TransportTestCase {
             transport = new AwsSdk2Transport(
                     getAsyncHttpClient(),
                     getTestClusterHost(),
+                    getTestClusterServiceName(),
                     getTestClusterRegion(),
                     getTransportOptions().build()
             );
@@ -138,6 +143,7 @@ public abstract class AwsSdk2TransportTestCase {
             transport = new AwsSdk2Transport(
                     getHttpClient(),
                     getTestClusterHost(),
+                    getTestClusterServiceName(),
                     getTestClusterRegion(),
                     getTransportOptions().build()
             );
@@ -147,6 +153,11 @@ public abstract class AwsSdk2TransportTestCase {
 
     protected String getTestClusterHost() {
         String cluster = System.getProperty("tests.awsSdk2support.domainHost");
+        return cluster;
+    }
+
+    protected String getTestClusterServiceName() {
+        String cluster = System.getProperty("tests.awsSdk2support.serviceName");
         return cluster;
     }
 
