@@ -131,6 +131,8 @@ val integrationTest = task<Test>("integrationTest") {
     systemProperty("password", System.getProperty("password", "admin"))
     systemProperty("tests.awsSdk2support.domainHost",
             System.getProperty("tests.awsSdk2support.domainHost", null))
+    systemProperty("tests.awsSdk2support.serviceName",
+            System.getProperty("tests.awsSdk2support.serviceName", "es"))
     systemProperty("tests.awsSdk2support.domainRegion",
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
