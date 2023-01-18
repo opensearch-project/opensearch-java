@@ -171,6 +171,7 @@ public abstract class AwsSdk2TransportTestCase {
         if (httpClient != null) {
             try {
                 httpClient.close();
+                httpClient = null;
             } catch (Throwable e) {
                 // Not our problem
             }
@@ -178,6 +179,7 @@ public abstract class AwsSdk2TransportTestCase {
         if (asyncHttpClient != null) {
             try {
                 asyncHttpClient.close();
+                asyncHttpClient = null;
             } catch (Throwable e) {
                 // Not our problem
             }
@@ -204,7 +206,6 @@ public abstract class AwsSdk2TransportTestCase {
             IndexState indexInfo = client.get(b -> b.index(TEST_INDEX)).get(TEST_INDEX);
             if (indexInfo != null) {
                 indexExists = true;
-
             }
         } catch (
                 OpenSearchException e) {
