@@ -38,6 +38,7 @@ import software.amazon.awssdk.http.SdkHttpResponse;
 import software.amazon.awssdk.http.async.AsyncExecuteRequest;
 import software.amazon.awssdk.http.async.SdkAsyncHttpClient;
 import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.utils.SdkAutoCloseable;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
@@ -70,8 +71,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     public static final Integer DEFAULT_REQUEST_COMPRESSION_SIZE = 8192;
 
     private static final byte[] NO_BYTES = new byte[0];
-    private final SdkHttpClient httpClient;
-    private final SdkAsyncHttpClient asyncHttpClient;
+    private final SdkAutoCloseable httpClient;
     private final String host;
     private final String signingServiceName;
     private final Region signingRegion;
@@ -92,78 +92,11 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      *                compression options, etc.
      */
     public AwsSdk2Transport(
-            @Nonnull SdkHttpClient httpClient,
+            @Nonnull SdkAutoCloseable httpClient,
             @Nonnull String host,
             @Nonnull Region signingRegion,
             @CheckForNull AwsSdk2TransportOptions options) {
-        this(httpClient, null, host, "es", signingRegion, options);
-    }
-
-    /**
-     * Create an {@link OpenSearchTransport} with a synchronous AWS HTTP client.
-     * <p>
-     * Note that asynchronous OpenSearch requests sent through this transport will be dispatched
-     * *synchronously* on the calling thread.
-     *
-     * @param httpClient HTTP client to use for OpenSearch requests.
-     * @param host The fully qualified domain name to connect to.
-     * @param signingServiceName The AWS signing service name, one of `es` (Amazon OpenSearch) or `aoss` (Amazon OpenSearch Serverless).
-     * @param signingRegion The AWS region for which requests will be signed. This should typically match the region in `host`.
-     * @param options Options that apply to all requests. Can be null. Create with
-     *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
-     *                compression options, etc.
-     */
-    public AwsSdk2Transport(
-            @Nonnull SdkHttpClient httpClient,
-            @Nonnull String host,
-            @Nonnull String signingServiceName,
-            @Nonnull Region signingRegion,
-            @CheckForNull AwsSdk2TransportOptions options) {
-        this(httpClient, null, host, signingServiceName, signingRegion, options);
-    }
-
-    /**
-     * Create an {@link OpenSearchTransport} with an asynchronous AWS HTTP client
-     * <p>
-     * Note that synchronous OpenSearch requests sent through this transport will be dispatched
-     * using the asynchronous client, but the calling thread will block until they are complete.
-     *
-     * @param asyncHttpClient HTTP client to use for OpenSearch requests.
-     * @param host The target host.
-     * @param signingRegion The AWS region for which requests will be signed. This should typically match region in `host`.
-     * @param options Options that apply to all requests. Can be null. Create with
-     *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
-     *                compression options, etc.
-     */
-    public AwsSdk2Transport(
-            @Nonnull SdkAsyncHttpClient asyncHttpClient,
-            @Nonnull String host,
-            @Nonnull Region signingRegion,
-            @CheckForNull AwsSdk2TransportOptions options) {
-        this(null, asyncHttpClient, host, "es", signingRegion, options);
-    }
-
-    /**
-     * Create an {@link OpenSearchTransport} with an asynchronous AWS HTTP client.
-     * <p>
-     * Note that synchronous OpenSearch requests sent through this transport will be dispatched
-     * using the asynchronous client, but the calling thread will block until they are complete.
-     *
-     * @param asyncHttpClient HTTP client to use for OpenSearch requests.
-     * @param host The target host.
-     * @param signingServiceName The AWS signing service name, one of `es` (Amazon OpenSearch) or `aoss` (Amazon OpenSearch Serverless).
-     * @param signingRegion The AWS region for which requests will be signed. This should typically match the region in `host`.
-     * @param options Options that apply to all requests. Can be null. Create with
-     *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
-     *                compression options, etc.
-     */
-    public AwsSdk2Transport(
-            @Nonnull SdkAsyncHttpClient asyncHttpClient,
-            @Nonnull String host,
-            @Nonnull String signingServiceName,
-            @Nonnull Region signingRegion,
-            @CheckForNull AwsSdk2TransportOptions options) {
-        this(null, asyncHttpClient, host, signingServiceName, signingRegion, options);
+        this(httpClient, host, "es", signingRegion, options);
     }
 
     /**
@@ -173,30 +106,6 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      * will be used for asynchronous HTTP requests.
      *
      * @param httpClient HTTP client to use for OpenSearch requests.
-     * @param asyncHttpClient HTTP client to use for synchronous OpenSearch requests.
-     * @param host The fully qualified domain name to connect to.
-     * @param signingRegion The AWS region for which requests will be signed. This should typically match the region in `host`.
-     * @param options Options that apply to all requests. Can be null. Create with
-     *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
-     *                compression options, etc.
-     */
-    public AwsSdk2Transport(
-            @CheckForNull SdkHttpClient httpClient,
-            @CheckForNull SdkAsyncHttpClient asyncHttpClient,
-            @Nonnull String host,
-            @Nonnull Region signingRegion,
-            @CheckForNull AwsSdk2TransportOptions options) {
-        this(httpClient, asyncHttpClient, host, "es", signingRegion, options);
-    }
-
-    /**
-     * Create an {@link OpenSearchTransport} with both synchronous and asynchronous AWS HTTP clients.
-     * <p>
-     * The synchronous client will be used for synchronous OpenSearch requests, and the asynchronous client
-     * will be used for asynchronous HTTP requests.
-     *
-     * @param httpClient HTTP client to use for OpenSearch requests.
-     * @param asyncHttpClient HTTP client to use for synchronous OpenSearch requests.
      * @param host The fully qualified domain name to connect to.
      * @param signingRegion The AWS region for which requests will be signed. This should typically match the region in `host`.
      * @param signingServiceName The AWS signing service name, one of `es` (Amazon OpenSearch) or `aoss` (Amazon OpenSearch Serverless).
@@ -205,19 +114,13 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      *                compression options, etc.
      */
     public AwsSdk2Transport(
-            @CheckForNull SdkHttpClient httpClient,
-            @CheckForNull SdkAsyncHttpClient asyncHttpClient,
+            @CheckForNull SdkAutoCloseable httpClient,
             @Nonnull String host,
             @Nonnull String signingServiceName,
             @Nonnull Region signingRegion,
             @CheckForNull AwsSdk2TransportOptions options) {
-        if (httpClient == null && asyncHttpClient == null)
-        {
-            throw new IllegalArgumentException("At least one SdkHttpClient or SdkAsyncHttpClient must be provided");
-        }
         Objects.requireNonNull(host, "Target OpenSearch service host must not be null");
         this.httpClient = httpClient;
-        this.asyncHttpClient = asyncHttpClient;
         this.host = host;
         this.signingServiceName = signingServiceName;
         this.signingRegion = signingRegion;
@@ -237,11 +140,11 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         OpenSearchRequestBodyBuffer requestBody = prepareRequestBody(request, endpoint, options);
         SdkHttpFullRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
 
-        if (httpClient != null) {
-            return executeSync(clientReq, endpoint, options);
-        } else {
+        if (httpClient instanceof SdkHttpClient) {
+            return executeSync((SdkHttpClient) httpClient, clientReq, endpoint, options);
+        } else if (httpClient instanceof SdkAsyncHttpClient) {
             try {
-                return executeAsync(clientReq, requestBody, endpoint, options).get();
+                return executeAsync((SdkAsyncHttpClient) httpClient, clientReq, requestBody, endpoint, options).get();
             } catch (ExecutionException e) {
                 Throwable cause = e.getCause();
                 if (cause != null) {
@@ -257,6 +160,8 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             } catch (InterruptedException e) {
                 throw new IOException("HttpRequest was interrupted", e);
             }
+        } else {
+            throw new IOException("invalid httpClient: " + httpClient);
         }
     }
 
@@ -269,11 +174,13 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         try {
             OpenSearchRequestBodyBuffer requestBody = prepareRequestBody(request, endpoint, options);
             SdkHttpFullRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
-            if (asyncHttpClient != null) {
-                return executeAsync(clientReq, requestBody, endpoint, options);
-            } else {
-                ResponseT result = executeSync(clientReq, endpoint, options);
+            if (httpClient instanceof SdkAsyncHttpClient) {
+                return executeAsync((SdkAsyncHttpClient) httpClient, clientReq, requestBody, endpoint, options);
+            } else if (httpClient instanceof SdkHttpClient) {
+                ResponseT result = executeSync((SdkHttpClient) httpClient, clientReq, endpoint, options);
                 return CompletableFuture.completedFuture(result);
+            } else {
+                throw new IOException("invalid httpClient: " + httpClient);
             }
         } catch (Throwable e) {
             CompletableFuture<ResponseT> cf = new CompletableFuture<>();
@@ -418,6 +325,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     }
 
     private <ResponseT> ResponseT executeSync(
+            SdkHttpClient syncHttpClient,
             SdkHttpFullRequest httpRequest,
             Endpoint<?, ResponseT, ?> endpoint,
             TransportOptions options
@@ -427,7 +335,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         if (httpRequest.contentStreamProvider().isPresent()) {
             executeRequest.contentStreamProvider(httpRequest.contentStreamProvider().get());
         }
-        HttpExecuteResponse executeResponse = httpClient.prepareRequest(executeRequest.build()).call();
+        HttpExecuteResponse executeResponse = syncHttpClient.prepareRequest(executeRequest.build()).call();
         AbortableInputStream bodyStream = null;
         try {
             bodyStream = executeResponse.responseBody().orElse(null);
@@ -441,6 +349,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     }
 
     private <ResponseT> CompletableFuture<ResponseT> executeAsync(
+            SdkAsyncHttpClient asyncHttpClient,
             SdkHttpFullRequest httpRequest,
             @CheckForNull OpenSearchRequestBodyBuffer requestBody,
             Endpoint<?, ResponseT, ?> endpoint,
@@ -543,7 +452,6 @@ public class AwsSdk2Transport implements OpenSearchTransport {
                 ResponseT response = (ResponseT) new BooleanResponse(bep.getResult(statusCode));
                 return response;
             } else if (endpoint instanceof JsonEndpoint) {
-                @SuppressWarnings("unchecked")
                 JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>) endpoint;
                 // Successful response
                 ResponseT response = null;
