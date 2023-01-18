@@ -8,7 +8,6 @@
 
 package org.opensearch.client.opensearch.integTest.aws;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -41,7 +40,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
-
 
 public abstract class AwsSdk2TransportTestCase {
     public static final String TEST_INDEX = "opensearch-java-integtest";
@@ -85,16 +83,14 @@ public abstract class AwsSdk2TransportTestCase {
                     getTestClusterHost(),
                     getTestClusterServiceName(),
                     getTestClusterRegion(),
-                    getTransportOptions().build()
-            );
+                    getTransportOptions().build());
         } else {
             transport = new AwsSdk2Transport(
                     getHttpClient(),
                     getTestClusterHost(),
                     getTestClusterServiceName(),
                     getTestClusterRegion(),
-                    getTransportOptions().build()
-            );
+                    getTransportOptions().build());
         }
         return new OpenSearchClient(transport);
     }
@@ -111,16 +107,14 @@ public abstract class AwsSdk2TransportTestCase {
                     getTestClusterHost(),
                     getTestClusterServiceName(),
                     getTestClusterRegion(),
-                    getTransportOptions().build()
-            );
+                    getTransportOptions().build());
         } else {
             transport = new AwsSdk2Transport(
                     getHttpClient(),
                     getTestClusterHost(),
                     getTestClusterServiceName(),
                     getTestClusterRegion(),
-                    getTransportOptions().build()
-            );
+                    getTransportOptions().build());
         }
         return new OpenSearchAsyncClient(transport);
     }
@@ -137,16 +131,14 @@ public abstract class AwsSdk2TransportTestCase {
                     getTestClusterHost(),
                     getTestClusterServiceName(),
                     getTestClusterRegion(),
-                    getTransportOptions().build()
-            );
+                    getTransportOptions().build());
         } else {
             transport = new AwsSdk2Transport(
                     getHttpClient(),
                     getTestClusterHost(),
                     getTestClusterServiceName(),
                     getTestClusterRegion(),
-                    getTransportOptions().build()
-            );
+                    getTransportOptions().build());
         }
         return new OpenSearchIndicesClient(transport);
     }
@@ -207,8 +199,7 @@ public abstract class AwsSdk2TransportTestCase {
             if (indexInfo != null) {
                 indexExists = true;
             }
-        } catch (
-                OpenSearchException e) {
+        } catch (OpenSearchException e) {
             if (e.status() != 404) {
                 throw e;
             }
@@ -238,17 +229,14 @@ public abstract class AwsSdk2TransportTestCase {
                 .ignoreThrottled(false)
                 .sort(
                         new SortOptions.Builder().score(o -> o.order(SortOrder.Desc)).build(),
-                        new SortOptions.Builder().doc(o -> o.order(SortOrder.Desc)).build()
-                )
+                        new SortOptions.Builder().doc(o -> o.order(SortOrder.Desc)).build())
                 .query(query);
-
 
         return client.search(req.build(), SimplePojo.class);
     }
 
     protected CompletableFuture<SearchResponse<SimplePojo>> query(
-            OpenSearchAsyncClient client, String title, String text
-    ) {
+            OpenSearchAsyncClient client, String title, String text) {
         var query = Query.of(qb -> {
             if (title != null) {
                 qb.match(mb -> mb.field("title").query(vb -> vb.stringValue(title)));
@@ -265,8 +253,7 @@ public abstract class AwsSdk2TransportTestCase {
                 .ignoreThrottled(false)
                 .sort(
                         new SortOptions.Builder().score(o -> o.order(SortOrder.Desc)).build(),
-                        new SortOptions.Builder().doc(o -> o.order(SortOrder.Desc)).build()
-                )
+                        new SortOptions.Builder().doc(o -> o.order(SortOrder.Desc)).build())
                 .query(query);
 
         try {
