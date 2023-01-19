@@ -1,0 +1,21 @@
+
+package {{package}};
+
+{{#models}}
+{{#model}}
+
+{{#isEnum}}
+{{>model-enum}}
+{{/isEnum}}
+
+{{^isEnum}}
+{{#vendorExtensions.x-request-for}}
+{{>model-request}}
+{{/vendorExtensions.x-request-for}}
+{{^vendorExtensions.x-request-for}}
+{{>model-response}}
+{{/vendorExtensions.x-request-for}}
+{{/isEnum}}
+
+{{/model}}
+{{/models}}

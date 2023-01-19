@@ -1,0 +1,26 @@
+plugins {
+  id 'java'
+  id 'org.openapi.generator' version "6.3.0"
+}
+
+openApiGenerate {
+  generatorName = "java"
+  library = "native"
+  inputSpec = "$projectDir/specs/opensearch-openapi-20190104230353-snippet.json"
+  templateDir = "$projectDir/src/main/resources/templates"
+  outputDir = "$buildDir/generated"
+  modelPackage = "org.opensearch.client"
+  apiPackage = "org.opensearch.client"
+  generateModelTests = false
+  generateModelDocumentation = false
+  generateApiTests = false
+  generateApiDocumentation = false
+  globalProperties = [
+    apis: "",
+    invokers: "false",
+    models: ""
+  ]
+  configOptions = [
+      dateLibrary: "java8"
+  ]
+}

@@ -1,0 +1,39 @@
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
+
+{{>generatedAnnotation}}
+@JsonpDeserializable
+{{>additionalEnumTypeAnnotations}}public enum {{{datatypeWithEnum}}}{{^datatypeWithEnum}}{{{classname}}}{{/datatypeWithEnum}} implements JsonEnum {
+  {{#allowableValues}}{{#enumVars}}
+    {{#enumDescription}}
+  /**
+   * {{.}}
+   */
+     {{/enumDescription}}
+  {{#lambda.titlecase}}{{#lambda.lowercase}}{{{name}}}{{/lambda.lowercase}}{{/lambda.titlecase}}({{#lambda.lowercase}}{{{value}}}{{/lambda.lowercase}}, {{{value}}}){{^-last}},
+  {{/-last}}{{#-last}};{{/-last}}{{/enumVars}}{{/allowableValues}}
+
+  private {{{dataType}}} value;
+  private final {{{dataType}}}[] aliases;
+
+  {{{datatypeWithEnum}}}{{^datatypeWithEnum}}{{{classname}}}{{/datatypeWithEnum}}({{{dataType}}} value, {{{dataType}}} ... aliases) {
+    this.value = value;
+    this.aliases = aliases;
+  }
+
+  public {{{dataType}}} getValue() {
+    return value;
+  }
+
+  public String[] aliases() {
+      return this.aliases;
+  }
+
+  @Override
+  public String toString() {
+    return String.valueOf(value);
+  }
+  
+  public static final JsonEnum.Deserializer<{{{classname}}}> _DESERIALIZER = new JsonEnum.Deserializer<>(
+      {{{classname}}}.values());
+}

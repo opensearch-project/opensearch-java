@@ -1,0 +1,47 @@
+{{>licenseInfo}}
+package {{package}};
+
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+
+import java.util.Map;
+import java.util.HashMap;
+
+{{>generatedAnnotation}}
+{{#operations}}
+{{#operation}}
+class {{classname}} {
+    static class {{#lambda.titlecase}}{{operationId}}{{/lambda.titlecase}} {
+        public static final Endpoint<{{#lambda.titlecase}}{{operationId}}{{/lambda.titlecase}}Request, {{#lambda.titlecase}}{{operationId}}{{/lambda.titlecase}}Response, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+            // Request method
+            request -> {
+                return "{{httpMethod}}";
+            },
+
+            // Request path
+            request -> {
+                return "{{{path}}}";
+            },
+
+            // Request query parameters 
+            {{#lambda.titlecase}}{{operationId}}{{/lambda.titlecase}}Request._QUERY,
+    
+            // Request headers
+            request -> {
+                final Map<String, String> headers = new HashMap<>();
+    {{#headerParams}}
+                if (request.{{paramName}}() != null)
+                    headers.put("{{baseName}}", request.{{paramName}}());
+                }
+    {{/headerParams}}
+                return headers;
+            }, 
+
+            {{#bodyParam}}true{{/bodyParam}}{{^bodyParam}}false{{/bodyParam}},
+            {{#lambda.titlecase}}{{operationId}}{{/lambda.titlecase}}Response._DESERIALIZER
+        );
+    }
+    {{/operation}}
+}
+{{/operations}}
