@@ -2,15 +2,19 @@
 
 - [User Guide](#user-guide)
   - [Sample data](#sample-data)
+    - [IndexData class](#indexdata-class)
   - [Create a client](#create-a-client)
+    - [Create a client using `RestClientTransport`](#create-a-client-using-restclienttransport)
+    - [Create a client using `ApacheHttpClient5Transport`](#create-a-client-using-apachehttpclient5transport)
   - [Create an index](#create-an-index)
   - [Index data](#index-data)
-  - [Search for the document](#search-for-the-document)
+  - [Search for the documents](#search-for-the-documents)
   - [Search documents using a match query](#search-documents-using-a-match-query)
   - [Aggregations](#aggregations)
   - [Delete the document](#delete-the-document)
   - [Delete the index](#delete-the-index)
-  - [Aggregations](#aggregations)
+- [Using different transport options](#using-different-transport-options)
+  - [Amazon Managed OpenSearch](#amazon-managed-opensearch)
 
 ## Sample data
 
@@ -156,4 +160,29 @@ client.delete(d -> d.index(index).id("1"));
 ```java
 DeleteIndexRequest deleteIndexRequest = new DeleteRequest.Builder().index(index).build();
 DeleteIndexResponse deleteIndexResponse = client.indices().delete(deleteIndexRequest);
+```
+
+# Using different transport options
+
+## Amazon Managed OpenSearch
+
+Use `AwsSdk2Transport` to make requests to Amazon Managed OpenSearch.
+
+```java
+SdkHttpClient httpClient = ApacheHttpClient.builder().build();
+
+OpenSearchClient client = new OpenSearchClient(
+    new AwsSdk2Transport(
+        httpClient,
+        "search-...us-west-2.es.amazonaws.com", // OpenSearch endpoint, without https://
+        "es" // signing service name
+        Region.US_WEST_2, // signing service region
+        AwsSdk2TransportOptions.builder().build()
+    )
+);
+
+InfoResponse info = client.info();
+System.out.println(info.version().distribution() + ": " + info.version().number());
+
+httpClient.close();
 ```
