@@ -363,6 +363,8 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             }
             req.putHeader("Content-Length", String.valueOf(body.getContentLength()));
             req.contentStreamProvider(body::getInputStream);
+            // To add the "X-Amz-Content-Sha256" header, it needs to set as required.
+            // It is a required header for Amazon OpenSearch Serverless.
             req.putHeader("x-amz-content-sha256", "required");
         }
 
