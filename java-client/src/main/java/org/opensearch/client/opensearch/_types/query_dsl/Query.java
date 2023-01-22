@@ -171,6 +171,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
 		Wildcard("wildcard"),
 
+		Wrapper("wrapper"),
+
 		Type("type"),
 
 		;
