@@ -23,7 +23,6 @@ import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
 import org.opensearch.client.transport.JsonEndpoint;
-import org.opensearch.client.transport.aws.AwsSdk2Transport;
 import org.opensearch.client.util.OpenSearchRequestBodyBuffer;
 import software.amazon.awssdk.http.SdkHttpFullRequest;
 
@@ -162,7 +161,7 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         CreateIndexRequest request = new CreateIndexRequest.Builder().index(TEST_INDEX).build();
         JsonEndpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse> endpoint =
 				(JsonEndpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse>) CreateIndexRequest._ENDPOINT;
-        AwsSdk2Transport transport = new AwsSdk2Transport(
+        AwsSdk2TransportMock transport = new AwsSdk2TransportMock(
                     getHttpClient(),
                     getTestClusterHost(),
                     getTestClusterServiceName(),

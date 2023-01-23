@@ -297,7 +297,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     }
 
     @CheckForNull
-    public <RequestT> OpenSearchRequestBodyBuffer prepareRequestBody(
+    protected <RequestT> OpenSearchRequestBodyBuffer prepareRequestBody(
             RequestT request,
             Endpoint<RequestT, ?, ?> endpoint,
             TransportOptions options
@@ -321,7 +321,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         return null;
     }
 
-    public <RequestT> SdkHttpFullRequest prepareRequest(
+    protected <RequestT> SdkHttpFullRequest prepareRequest(
             RequestT request,
             Endpoint<RequestT, ?, ?> endpoint,
             @CheckForNull TransportOptions options,
