@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.Assert;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpType;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
@@ -19,7 +20,12 @@ import org.opensearch.client.opensearch.core.IndexRequest;
 import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexRequest;
+import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
+import org.opensearch.client.transport.JsonEndpoint;
+import org.opensearch.client.transport.aws.AwsSdk2Transport;
+import org.opensearch.client.util.OpenSearchRequestBodyBuffer;
+import software.amazon.awssdk.http.SdkHttpFullRequest;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -149,5 +155,23 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         });
         // error message contains the actual error, not a generic [http_exception]
         Assert.assertTrue(exception.getMessage().contains("[resource_already_exists_exception]"));
+    }
+
+    @Test
+    public void testContentShaHeader() throws Exception {
+        CreateIndexRequest request = new CreateIndexRequest.Builder().index(TEST_INDEX).build();
+        JsonEndpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse> endpoint =
+				(JsonEndpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse>) CreateIndexRequest._ENDPOINT;
+        AwsSdk2Transport transport = new AwsSdk2Transport(
+                    getHttpClient(),
+                    getTestClusterHost(),
+                    getTestClusterServiceName(),
+                    getTestClusterRegion(),
+                    getTransportOptions().build()
+            );
+        OpenSearchRequestBodyBuffer requestBody = transport.prepareRequestBody(request, endpoint, transport.options());
+        SdkHttpFullRequest clientReq = transport.prepareRequest(request, endpoint, transport.options(), requestBody);
+        // Headers of the signed request contains "x-amz-content-sha256" since it is set to required
+        Assert.assertTrue(clientReq.headers().containsKey("x-amz-content-sha256"));
     }
 }
