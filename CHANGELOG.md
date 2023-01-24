@@ -20,6 +20,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add timeout and throttle to the jenkins workflows ([#231](https://github.com/opensearch-project/opensearch-java/pull/231)) 
 - Update maintainers, admins and documentation ([#248](https://github.com/opensearch-project/opensearch-java/pull/248))
 - Update Gradle to 7.6 ([#311](https://github.com/opensearch-project/opensearch-java/pull/311))
+- Add support for OpenSearch Serverless ([#339](https://github.com/opensearch-project/opensearch-java/pull/339))
 
 ### Deprecated
 
