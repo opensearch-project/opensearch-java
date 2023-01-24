@@ -18,6 +18,8 @@ jobs:
           java-version: 11
       - name: Build with Gradle
         run: |
+          export VERSION=`cat gradle.properties | grep "systemProp.version" | tr -d " " | cut -d '=' -f2`
+          echo Building the version: $VERSION
           ./gradlew --no-daemon publishPublishMavenPublicationToLocalRepoRepository && tar -C build -cvf artifacts.tar.gz repository
       - name: Draft a release
         uses: softprops/action-gh-release@v1
