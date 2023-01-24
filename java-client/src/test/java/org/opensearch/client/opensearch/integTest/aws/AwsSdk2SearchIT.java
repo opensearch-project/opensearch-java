@@ -12,9 +12,7 @@ import org.junit.Test;
 import org.junit.Assert;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
-import org.opensearch.client.opensearch._types.OpType;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch.core.IndexRequest;
 import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.SearchResponse;
@@ -56,7 +54,8 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         addDoc(client, "id2", doc2);
         SimplePojo doc3 = getLongDoc("Long Document 3", 1000000);
         addDoc(client, "id3", doc3);
-
+        
+        // wait for the document to index
         Thread.sleep(1000);
 
         SearchResponse<SimplePojo> response = query(client, "NotPresent", null);
@@ -86,8 +85,9 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         CompletableFuture<IndexResponse> add3 = CompletableFuture.allOf(add1, add2).thenCompose(
                 unused -> addDoc(client, "id3", doc3));
 
+        // wait for the document to index
         Thread.sleep(1000);
-        
+
         List<SearchResponse<SimplePojo>> results = add3.thenCompose(unused -> {
             CompletableFuture<SearchResponse<SimplePojo>> r1 = query(client, "NotPresent", null);
             CompletableFuture<SearchResponse<SimplePojo>> r2 = query(client, "Document", null);
