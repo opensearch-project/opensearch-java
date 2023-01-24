@@ -166,7 +166,7 @@ DeleteIndexResponse deleteIndexResponse = client.indices().delete(deleteIndexReq
 
 ## Amazon Managed OpenSearch
 
-Use `AwsSdk2Transport` to make requests to Amazon Managed OpenSearch.
+Use `AwsSdk2Transport` to make requests to Amazon Managed OpenSearch and OpenSearch Serverless.
 
 ```java
 SdkHttpClient httpClient = ApacheHttpClient.builder().build();
@@ -175,7 +175,7 @@ OpenSearchClient client = new OpenSearchClient(
     new AwsSdk2Transport(
         httpClient,
         "search-...us-west-2.es.amazonaws.com", // OpenSearch endpoint, without https://
-        "es" // signing service name
+        "es" // signing service name, use "aoss" for OpenSearch Serverless
         Region.US_WEST_2, // signing service region
         AwsSdk2TransportOptions.builder().build()
     )
