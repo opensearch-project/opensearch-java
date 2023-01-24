@@ -51,11 +51,13 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         final OpenSearchClient client = getClient(async, null, null);
 
         SimplePojo doc1 = new SimplePojo("Document 1", "The text of document 1");
-        addDoc(client, "id1", doc1, false);
+        addDoc(client, "id1", doc1);
         SimplePojo doc2 = new SimplePojo("Document 2", "The text of document 2");
-        addDoc(client, "id2", doc2, false);
+        addDoc(client, "id2", doc2);
         SimplePojo doc3 = getLongDoc("Long Document 3", 1000000);
-        addDoc(client, "id3", doc3, true);
+        addDoc(client, "id3", doc3);
+
+        Thread.sleep(1000);
 
         SearchResponse<SimplePojo> response = query(client, "NotPresent", null);
         Assert.assertEquals(0, response.hits().hits().size());
@@ -77,13 +79,15 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         final OpenSearchAsyncClient client = getAsyncClient(async, null, null);
 
         SimplePojo doc1 = new SimplePojo("Document 1", "The text of document 1");
-        CompletableFuture<IndexResponse> add1 = addDoc(client, "id1", doc1, false);
+        CompletableFuture<IndexResponse> add1 = addDoc(client, "id1", doc1);
         SimplePojo doc2 = new SimplePojo("Document 2", "The text of document 2");
-        CompletableFuture<IndexResponse> add2 = addDoc(client, "id2", doc2, false);
+        CompletableFuture<IndexResponse> add2 = addDoc(client, "id2", doc2);
         SimplePojo doc3 = getLongDoc("Long Document 3", 1000000);
         CompletableFuture<IndexResponse> add3 = CompletableFuture.allOf(add1, add2).thenCompose(
-                unused -> addDoc(client, "id3", doc3, true));
+                unused -> addDoc(client, "id3", doc3));
 
+        Thread.sleep(1000);
+        
         List<SearchResponse<SimplePojo>> results = add3.thenCompose(unused -> {
             CompletableFuture<SearchResponse<SimplePojo>> r1 = query(client, "NotPresent", null);
             CompletableFuture<SearchResponse<SimplePojo>> r2 = query(client, "Document", null);
@@ -107,29 +111,21 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
     }
 
 
-    private void addDoc(OpenSearchClient client, String id, SimplePojo doc, boolean wait) throws Exception {
+    private void addDoc(OpenSearchClient client, String id, SimplePojo doc) throws Exception {
         IndexRequest.Builder<SimplePojo> req = new IndexRequest.Builder<SimplePojo>()
                 .index(TEST_INDEX)
                 .document(doc)
-                .id(id)
-                .opType(OpType.Index);
-        if (wait) {
-            req.refresh(Refresh.WaitFor);
-        }
+                .id(id);
         client.index(req.build());
     }
 
     private CompletableFuture<IndexResponse> addDoc(
-            OpenSearchAsyncClient client, String id, SimplePojo doc, boolean wait
+            OpenSearchAsyncClient client, String id, SimplePojo doc
     ) {
         IndexRequest.Builder<SimplePojo> req = new IndexRequest.Builder<SimplePojo>()
                 .index(TEST_INDEX)
                 .document(doc)
-                .id(id)
-                .opType(OpType.Index);
-        if (wait) {
-            req.refresh(Refresh.WaitFor);
-        }
+                .id(id);
         try {
             return client.index(req.build());
         } catch (Exception e) {
