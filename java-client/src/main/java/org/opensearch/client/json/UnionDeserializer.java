@@ -171,13 +171,6 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
             JsonpDeserializer<?> unwrapped = DelegatingDeserializer.unwrap(deserializer);
             if (unwrapped instanceof ObjectDeserializer) {
                 ObjectDeserializer<?> od = (ObjectDeserializer<?>) unwrapped;
-//                Set<String> allFields = od.fieldNames();
-//                Set<String> fields = new HashSet<>(allFields); // copy to update
-//                for (UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member: objectMembers) {
-//                    // Remove respective fields on both sides to keep specific ones
-//                    fields.removeAll(member.fields);
-//                    member.fields.removeAll(allFields);
-//                }
                 UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member =
                         new SingleMemberHandler<>(tag, deserializer, new HashSet<>(od.fieldNames()));
                 objectMembers.add(member);
