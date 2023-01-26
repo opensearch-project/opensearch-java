@@ -14,7 +14,7 @@
   - [Delete the document](#delete-the-document)
   - [Delete the index](#delete-the-index)
 - [Using different transport options](#using-different-transport-options)
-  - [Amazon Managed OpenSearch](#amazon-managed-opensearch)
+  - [Amazon OpenSearch Service](#amazon-opensearch-service)
 
 ## Sample data
 
@@ -175,9 +175,9 @@ DeleteIndexResponse deleteIndexResponse = client.indices().delete(deleteIndexReq
 
 # Using different transport options
 
-## Amazon Managed OpenSearch
+## Amazon OpenSearch Service
 
-Use `AwsSdk2Transport` to make requests to Amazon Managed OpenSearch and OpenSearch Serverless.
+Requests to [OpenSearch Service and OpenSearch Serverless](https://docs.aws.amazon.com/opensearch-service/index.html) must be signed using the AWS signing protocol. Use `AwsSdk2Transport` to send signed requests.
 
 ```java
 SdkHttpClient httpClient = ApacheHttpClient.builder().build();
