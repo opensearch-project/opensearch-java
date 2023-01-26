@@ -55,6 +55,10 @@ import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
 import org.opensearch.client.opensearch.core.msearch.RequestItem;
+import org.opensearch.client.opensearch.core.search.CompletionSuggester;
+import org.opensearch.client.opensearch.core.search.FieldSuggester;
+import org.opensearch.client.opensearch.core.search.FieldSuggesterBuilders;
+import org.opensearch.client.opensearch.core.search.Suggester;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 import org.opensearch.client.opensearch.indices.GetIndexResponse;
 import org.opensearch.client.opensearch.indices.GetIndicesSettingsResponse;
@@ -431,6 +435,62 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
         settings = javaClient().indices().getSettings(b -> b.index(index));
         assertNull(settings.get(index).defaults());
+    }
+
+    @Test
+    public void testCompletionSuggester() throws IOException {
+
+        String index = "test-completion-suggester";
+
+        Property intValueProp = new Property.Builder()
+                .long_(v -> v)
+                .build();
+        Property msgCompletionProp = new Property.Builder()
+                .completion(c -> c)
+                .build();
+        javaClient().indices().create(c -> c
+                .index(index)
+                .mappings(m -> m
+                        .properties("intValue", intValueProp)
+                        .properties("msg", msgCompletionProp)));
+
+        AppData appData = new AppData();
+        appData.setIntValue(1337);
+        appData.setMsg("foo");
+
+        javaClient().index(b -> b
+                .index(index)
+                .id("1")
+                .document(appData)
+                .refresh(Refresh.True));
+
+        appData.setIntValue(1338);
+        appData.setMsg("bar");
+
+        javaClient().index(b -> b
+                .index(index)
+                .id("2")
+                .document(appData)
+                .refresh(Refresh.True));
+
+        CompletionSuggester completionSuggester = FieldSuggesterBuilders.completion()
+                .field("msg")
+                .size(1)
+                .build();
+        FieldSuggester fieldSuggester = new FieldSuggester.Builder()
+                .completion(completionSuggester)
+                .build();
+        Suggester suggester = new Suggester.Builder()
+                .suggesters(Collections.singletonMap("msgSuggester", fieldSuggester))
+                .text("foo")
+                .build();
+        SearchRequest searchRequest = new SearchRequest.Builder()
+                .index(index)
+                .suggest(suggester)
+                .build();
+
+        SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
+        assertTrue(response.suggest().size() > 0);
     }
 
 //    @Test

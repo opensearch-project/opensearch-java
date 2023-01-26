@@ -48,6 +48,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer<Union> {
 
@@ -169,14 +171,8 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
             JsonpDeserializer<?> unwrapped = DelegatingDeserializer.unwrap(deserializer);
             if (unwrapped instanceof ObjectDeserializer) {
                 ObjectDeserializer<?> od = (ObjectDeserializer<?>) unwrapped;
-                Set<String> allFields = od.fieldNames();
-                Set<String> fields = new HashSet<>(allFields); // copy to update
-                for (UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member: objectMembers) {
-                    // Remove respective fields on both sides to keep specific ones
-                    fields.removeAll(member.fields);
-                    member.fields.removeAll(allFields);
-                }
-                UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member = new SingleMemberHandler<>(tag, deserializer, fields);
+                UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member =
+                        new SingleMemberHandler<>(tag, deserializer, new HashSet<>(od.fieldNames()));
                 objectMembers.add(member);
                 if (od.shortcutProperty() != null) {
                     // also add it as a string
@@ -194,6 +190,16 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
 
         @Override
         public JsonpDeserializer<Union> build() {
+            Map<String, Long> fieldFrequencies = objectMembers.stream().flatMap(m -> m.fields.stream())
+                    .collect( Collectors.groupingBy(Function.identity(), Collectors.counting()));
+            Set<String> duplicateFields = fieldFrequencies.entrySet().stream()
+                    .filter(entry -> entry.getValue() > 1)
+                    .map(Map.Entry::getKey)
+                    .collect(Collectors.toSet());
+            for (UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member: objectMembers) {
+                member.fields.removeAll(duplicateFields);
+            }
+
             // Check that no object member had all its fields removed
             for (UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member: objectMembers) {
                 if (member.fields.isEmpty()) {
