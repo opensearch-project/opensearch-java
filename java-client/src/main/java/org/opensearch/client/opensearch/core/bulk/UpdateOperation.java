@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch.core.bulk;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.NdJsonpSerializable;
+import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -52,7 +53,7 @@ import javax.annotation.Nullable;
 
 
 public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJsonpSerializable, BulkOperationVariant {
-	private final TDocument document;
+	private final UpdateOperationData<TDocument> data;
 
 	@Nullable
 	private final Boolean requireAlias;
@@ -67,8 +68,7 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 
 	private UpdateOperation(Builder<TDocument> builder) {
 		super(builder);
-		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
-
+		this.data = ApiTypeHelper.requireNonNull(builder.data, this, "data");
 		this.requireAlias = builder.requireAlias;
 		this.retryOnConflict = builder.retryOnConflict;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
@@ -88,16 +88,9 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 		return BulkOperation.Kind.Update;
 	}
 
-	/**
-	 * Required - API name: {@code document}
-	 */
-	public final TDocument document() {
-		return this.document;
-	}
-
 	@Override
 	public Iterator<?> _serializables() {
-		return Arrays.asList(this, this.document).iterator();
+		return Arrays.asList(this, this.data).iterator();
 	}
 
 	/**
@@ -129,7 +122,6 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 			generator.write(this.retryOnConflict);
 
 		}
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -141,15 +133,11 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 	public static class Builder<TDocument> extends BulkOperationBase.AbstractBuilder<Builder<TDocument>>
 			implements
 				ObjectBuilder<UpdateOperation<TDocument>> {
-		private TDocument document;
 
-		/**
-		 * Required - API name: {@code document}
-		 */
-		public final Builder<TDocument> document(TDocument value) {
-			this.document = value;
-			return this;
-		}
+        private UpdateOperationData<TDocument> data;
+
+        @Nullable
+		private TDocument document;
 
 		@Nullable
 		private Boolean requireAlias;
@@ -159,6 +147,47 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
+
+		@Nullable
+		private Boolean docAsUpsert;
+
+		@Nullable
+		private TDocument upsert;
+		
+		@Nullable
+		private Script script;
+
+        /**
+         * API name: {@code document}
+         */
+        public final Builder<TDocument> document(TDocument value) {
+            this.document = value;
+            return this;
+        }
+
+		/**
+		 * API name: {@code docAsUpsert}
+		 */
+		public final Builder<TDocument> docAsUpsert(@Nullable Boolean value) {
+		    this.docAsUpsert = value;
+		    return this;
+		}
+
+		/**
+		 * API name: {@code upsert}
+		 */
+		public final Builder<TDocument> upsert(@Nullable TDocument value) {
+		    this.upsert = value;
+		    return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder<TDocument> script(@Nullable Script value) {
+		    this.script = value;
+		    return this;
+		}
 
 		/**
 		 * API name: {@code require_alias}
@@ -198,6 +227,14 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 		 */
 		public UpdateOperation<TDocument> build() {
 			_checkSingleUse();
+
+            data = new UpdateOperationData.Builder<TDocument>()
+                    .document(document)
+                    .docAsUpsert(docAsUpsert)
+                    .script(script)
+                    .upsert(upsert)
+                    .tDocumentSerializer(tDocumentSerializer)
+                    .build();
 
 			return new UpdateOperation<TDocument>(this);
 		}

@@ -11,9 +11,12 @@ package org.opensearch.client.opensearch.integTest;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
+import org.opensearch.client.json.JsonData;
+import org.opensearch.client.opensearch._types.InlineScript;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.Result;
+import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.DeleteResponse;
@@ -336,7 +339,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
             boolean erroneous = randomBoolean();
             errors[i] = erroneous;
             BulkOperation.Kind opType = randomFrom(BulkOperation.Kind.Delete, BulkOperation.Kind.Index,
-                    BulkOperation.Kind.Create/*, BulkOperation.Kind.Update*/);
+                    BulkOperation.Kind.Create, BulkOperation.Kind.Update);
             if (opType.equals(BulkOperation.Kind.Delete)) {
                 if (!erroneous) {
                     assertEquals(
@@ -396,6 +399,93 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         validateBulkResponses(nbItems, errors, bulkResponse, bulkRequest);
     }
 
+    public void testBulkUpdateScript() throws IOException {
+        final String id = "100";
+
+        final AppData appData = new AppData();
+        appData.setIntValue(1337);
+        appData.setMsg("foo");
+
+        assertEquals(
+            Result.Created,
+            javaClient().index(b -> b.index("index").id(id).document(appData)).result()
+        );
+
+        final BulkOperation op = new BulkOperation.Builder().update(o -> o
+                .index("index")
+                .id(id)
+                .script(Script.of(s -> s.inline(new InlineScript.Builder()
+                    .lang("painless")
+                    .source("ctx._source.intValue += params.inc")
+                    .params("inc", JsonData.of(1))
+                    .build())))
+            ).build();
+
+        BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
+        BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
+
+        assertTrue(bulkResponse.took() > 0);
+        assertEquals(1, bulkResponse.items().size());
+
+        final GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id(id), AppData.class);
+        assertTrue(getResponse.found());
+        assertEquals(1338, getResponse.source().getIntValue());
+    }
+
+    public void testBulkUpdateScriptUpsert() throws IOException {
+        final String id = "100";
+
+        final AppData appData = new AppData();
+        appData.setIntValue(1337);
+        appData.setMsg("foo");
+
+        final BulkOperation op = new BulkOperation.Builder().update(o -> o
+                .index("index")
+                .id(id)
+                .upsert(appData)
+                .script(Script.of(s -> s.inline(new InlineScript.Builder()
+                    .lang("painless")
+                    .source("ctx._source.intValue += params.inc")
+                    .params("inc", JsonData.of(1))
+                    .build())))
+            ).build();
+
+        BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
+        BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
+
+        assertTrue(bulkResponse.took() > 0);
+        assertEquals(1, bulkResponse.items().size());
+
+        final GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id(id), AppData.class);
+        assertTrue(getResponse.found());
+        assertEquals(1337, getResponse.source().getIntValue());
+    }
+
+    public void testBulkUpdateUpsert() throws IOException {
+        final String id = "100";
+
+        final AppData appData = new AppData();
+        appData.setIntValue(1337);
+        appData.setMsg("foo");
+
+        final BulkOperation op = new BulkOperation.Builder().update(o -> o
+                .index("index")
+                .id(id)
+                .document(new AppData())
+                .upsert(appData)
+            ).build();
+
+        BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
+        BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
+
+        assertTrue(bulkResponse.took() > 0);
+        assertEquals(1, bulkResponse.items().size());
+
+        final GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id(id), AppData.class);
+        assertTrue(getResponse.found());
+        assertEquals(1337, getResponse.source().getIntValue());
+    }
+
     private void validateBulkResponses(int nbItems, boolean[] errors, BulkResponse bulkResponse, BulkRequest bulkRequest) {
         for (int i = 0; i < nbItems; i++) {
             BulkResponseItem bulkResponseItem = bulkResponse.items().get(i);
@@ -407,8 +497,8 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
             if (bulkOperation.isIndex() || bulkOperation.isCreate()) {
                 assertEquals(errors[i] ? 409 : 201, bulkResponseItem.status());
             } else if (bulkOperation.isUpdate()) {
-                assertEquals(errors[i] ? Result.NotFound.jsonValue() : Result.Updated.jsonValue(), bulkResponseItem.result());
                 assertEquals(errors[i] ? 404 : 200, bulkResponseItem.status());
+                assertEquals(errors[i] ? null /* no result from server */ : Result.Updated.jsonValue(), bulkResponseItem.result());
             } else if (bulkOperation.isDelete()) {
                 assertEquals(errors[i] ? Result.NotFound.jsonValue() : Result.Deleted.jsonValue(), bulkResponseItem.result());
                 assertEquals(errors[i] ? 404 : 200, bulkResponseItem.status());
