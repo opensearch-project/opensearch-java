@@ -79,6 +79,7 @@ public class ApacheHttpClient5TransportBuilder {
     private Optional<Boolean> chunkedEnabled;
     private JsonpMapper mapper;
     private TransportOptions options;
+    private TlsStrategy tlsStrategy;
 
     /**
      * Creates a new builder instance and sets the hosts that the client will send requests to.
@@ -264,6 +265,16 @@ public class ApacheHttpClient5TransportBuilder {
     }
 
     /**
+     * Optional custom tls strategy to replace the default
+     *
+     * @param tlsStrategy custom tlsStrategy
+     */
+    public ApacheHttpClient5TransportBuilder setTlsStrategy(TlsStrategy tlsStrategy) {
+        this.tlsStrategy = tlsStrategy;
+        return this;
+    }
+
+    /**
      * Creates a new {@link RestClient} based on the provided configuration.
      */
     public ApacheHttpClient5Transport build() {
@@ -338,7 +349,7 @@ public class ApacheHttpClient5TransportBuilder {
         }
 
         try {
-            final TlsStrategy tlsStrategy = ClientTlsStrategyBuilder.create()
+            final TlsStrategy tlsStrategy = this.tlsStrategy != null ? this.tlsStrategy : ClientTlsStrategyBuilder.create()
                 .setSslContext(SSLContext.getDefault())
                 // See https://issues.apache.org/jira/browse/HTTPCLIENT-2219
                 .setTlsDetailsFactory(new Factory<SSLEngine, TlsDetails>() {
