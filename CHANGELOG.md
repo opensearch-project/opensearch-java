@@ -15,6 +15,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bumps `classgraph` from 4.8.149 to 4.8.154
+- Bumps `Jackson` from 2.14.1 to 2.14.2 ([#357](https://github.com/opensearch-project/opensearch-java/pull/357))
 
 ### Dependencies
 - Bumps `grgit-gradle` from 4.0.1 to 5.0.0
