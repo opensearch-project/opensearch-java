@@ -15,7 +15,7 @@
  * not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *	 http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -134,9 +134,9 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 			implements
 				ObjectBuilder<UpdateOperation<TDocument>> {
 
-        private UpdateOperationData<TDocument> data;
+		private UpdateOperationData<TDocument> data;
 
-        @Nullable
+		@Nullable
 		private TDocument document;
 
 		@Nullable
@@ -157,36 +157,36 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 		@Nullable
 		private Script script;
 
-        /**
-         * API name: {@code document}
-         */
-        public final Builder<TDocument> document(TDocument value) {
-            this.document = value;
-            return this;
-        }
+		/**
+		 * API name: {@code document}
+		 */
+		public final Builder<TDocument> document(TDocument value) {
+			this.document = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code docAsUpsert}
 		 */
 		public final Builder<TDocument> docAsUpsert(@Nullable Boolean value) {
-		    this.docAsUpsert = value;
-		    return this;
+			this.docAsUpsert = value;
+			return this;
 		}
 
 		/**
 		 * API name: {@code upsert}
 		 */
 		public final Builder<TDocument> upsert(@Nullable TDocument value) {
-		    this.upsert = value;
-		    return this;
+			this.upsert = value;
+			return this;
 		}
 
 		/**
 		 * API name: {@code script}
 		 */
 		public final Builder<TDocument> script(@Nullable Script value) {
-		    this.script = value;
-		    return this;
+			this.script = value;
+			return this;
 		}
 
 		/**
@@ -223,18 +223,18 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 		 * Builds a {@link UpdateOperation}.
 		 *
 		 * @throws NullPointerException
-		 *             if some of the required fields are null.
+		 *			 if some of the required fields are null.
 		 */
 		public UpdateOperation<TDocument> build() {
 			_checkSingleUse();
 
-            data = new UpdateOperationData.Builder<TDocument>()
-                    .document(document)
-                    .docAsUpsert(docAsUpsert)
-                    .script(script)
-                    .upsert(upsert)
-                    .tDocumentSerializer(tDocumentSerializer)
-                    .build();
+			data = new UpdateOperationData.Builder<TDocument>()
+					.document(document)
+					.docAsUpsert(docAsUpsert)
+					.script(script)
+					.upsert(upsert)
+					.tDocumentSerializer(tDocumentSerializer)
+					.build();
 
 			return new UpdateOperation<TDocument>(this);
 		}
