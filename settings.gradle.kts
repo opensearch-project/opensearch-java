@@ -36,4 +36,5 @@ plugins {
 
 rootProject.name = "opensearch-java"
 include("java-client")
+include("java-codegen")
 include("samples")
