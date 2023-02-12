@@ -1,0 +1,160 @@
+package org.opensearch.client;
+
+import org.opensearch.client.opensearch._types.*;
+{{#hasRequestBody}}import org.opensearch.client.json.*;{{/hasRequestBody}}
+import org.opensearch.client.transport.*;
+import org.opensearch.client.transport.endpoints.*;
+import org.opensearch.client.util.*;
+{{#hasRequestBody}}import jakarta.json.stream.JsonGenerator;{{/hasRequestBody}}
+import java.util.*;
+import java.util.function.Function;
+import javax.annotation.*;
+
+/**
+ * {{description}}
+ */
+{{#hasRequestBody}}@JsonpDeserializable{{/hasRequestBody}}
+public class {{className}} extends RequestBase{{#hasRequestBody}} implements JsonpSerializable{{/hasRequestBody}} {
+    {{#fields}}
+    private final {{{type}}} {{name}};
+    {{/fields}}
+
+    public {{className}}(Builder builder) {
+        {{#fields}}
+        {{#type.isListOrMap}}
+        this.{{name}} = ApiTypeHelper.unmodifiable(builder.{{name}});
+        {{/type.isListOrMap}}
+        {{^type.isListOrMap}}
+        this.{{name}} = builder.{{name}};
+        {{/type.isListOrMap}}
+        {{/fields}}
+    }
+
+    public static {{className}} of(Function<Builder, ObjectBuilder<{{className}}>> fn) {
+        return fn.apply(new Builder()).build();
+    }
+
+    {{#fields}}
+    public final {{{type}}} {{name}}() {
+        return this.{{name}};
+    }
+
+    {{/fields}}
+    {{#hasRequestBody}}
+    public void serialize(JsonGenerator generator, JsonMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonMapper mapper) {
+        {{#bodyFields}}
+        if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
+            generator.writeKey({{#dq}}{{wireName}}{{/dq}});
+            {{#type.serializer}}this.{{name}}{{/type.serializer}}
+        }
+
+        {{/bodyFields}}
+    }
+    {{/hasRequestBody}}
+
+    /**
+     * Builder for {@link {{className}}}.
+     */
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<{{className}}> {
+        {{#fields}}
+        private {{{type}}} {{name}};
+        {{/fields}}
+
+        {{#fields}}
+        {{#type.isMap}}
+        public final Builder {{name}}({{{type}}} map) {
+            this.{{name}} = _mapPutAll(this.{{name}}, map);
+            return this;
+        }
+
+        public final Builder {{name}}({{{type.mapKeyType}}} key, {{{type.mapValueType}}} value) {
+            this.{{name}} = _mapPut(this.{{name}}, key, value);
+            return this;
+        }
+        {{/type.isMap}}
+        {{#type.isList}}
+        public final Builder {{name}}({{{type}}} list) {
+            this.{{name}} = _listAddAll(this.{{name}}, list);
+            return this;
+        }
+
+        public final Builder {{name}}({{{type.listValueType}}} value, {{{type.listValueType}}}... values) {
+            this.{{name}} = _listAdd(this.{{name}}, value, values);
+            return this;
+        }
+        {{^type.listValueType.isBuiltIn}}
+
+        public final Builder {{name}}({{{type.listValueType.builderFuncType}}} fn) {
+            return {{name}}(fn.apply(new {{{type.listValueType.builderType}}}()).build());
+        }
+        {{/type.listValueType.isBuiltIn}}
+        {{/type.isList}}
+        {{^type.isListOrMap}}
+        public final Builder {{name}}({{{type}}} value) {
+            this.{{name}} = value;
+            return this;
+        }
+        {{^type.isPrimitive}}
+
+        public final Builder {{name}}({{{type.builderFuncType}}} fn) {
+            return {{name}}(fn.apply(new {{{type.builderType}}}()).build());
+        }
+        {{/type.isPrimitive}}
+        {{/type.isListOrMap}}
+
+        {{/fields}}
+        /**
+         * Builds a {@link {{className}}}.
+         *
+         * @throws NullPointerException
+         *              if some of the required fields are null.
+         */
+        public {{className}} build() {
+            _checkSingleUse();
+
+            return new {{className}}(this);
+        }
+    }
+
+    {{#hasRequestBody}}
+    public static final JsonpDeserializer<{{className}}> _DESERIALIZER = ObjectBuilderDeserializer
+            .lazy(Builder::new, {{className}}::setup{{className}}Deserializer);
+
+    protected static void setup{{className}}Deserializer(
+            ObjectDeserializer<{{className}}.Builder> op) {
+        {{#bodyFields}}
+        op.add(Builder::{{name}}, {{{type.deserializer}}}, {{#dq}}{{wireName}}{{/dq}});
+        {{/bodyFields}}
+    }
+    {{/hasRequestBody}}
+
+    public static final Endpoint<{{className}}, {{responseType}}, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+            // Request method
+            request -> {
+                return {{#dq}}{{httpMethod}}{{/dq}};
+            },
+            // Request path
+            request -> {
+                return {{#dq}}{{httpPath}}{{/dq}};
+            },
+            // Request parameters
+            request -> {
+                Map<String, String> params = new HashMap<>();
+                {{#queryParams}}
+                if ({{#type.isDefined}}request.{{name}}{{/type.isDefined}}) {
+                    params.put({{#dq}}{{wireName}}{{/dq}}, {{#type.queryParamify}}request.{{name}}{{/type.queryParamify}});
+                }
+                {{/queryParams}}
+                return params;
+            },
+            SimpleEndpoint.emptyMap(),
+            {{hasRequestBody}},
+            {{responseType}}._DESERIALIZER
+    );
+}
