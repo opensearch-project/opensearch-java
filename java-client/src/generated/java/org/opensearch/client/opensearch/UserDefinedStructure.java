@@ -9,16 +9,27 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class UserDefinedStructure implements JsonpSerializable {
+
     @Nullable private final String alias;
+
     @Nullable private final List<String> aliases;
+
     @Nullable private final JsonData filter;
+
     @Nullable private final String index;
+
     @Nullable private final String indexRouting;
+
     @Nullable private final List<String> indices;
+
     @Nullable private final Boolean isHidden;
+
     @Nullable private final Boolean isWriteIndex;
+
     @Nullable private final String mustExist;
+
     @Nullable private final String routing;
+
     @Nullable private final String searchRouting;
 
     public UserDefinedStructure(Builder builder) {

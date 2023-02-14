@@ -9,7 +9,9 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class Total implements JsonpSerializable {
+
     @Nullable private final Relation relation;
+
     @Nullable private final Integer value;
 
     public Total(Builder builder) {

@@ -1,11 +1,9 @@
 package org.opensearch.client.opensearch;
 
 import org.opensearch.client.opensearch._types.*;
-
 import org.opensearch.client.transport.*;
 import org.opensearch.client.transport.endpoints.*;
 import org.opensearch.client.util.*;
-
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.*;
@@ -13,15 +11,25 @@ import javax.annotation.*;
 
 /** Returns a document */
 public class GetDocumentDocRequest extends RequestBase {
+
     @Nullable private final String source;
+
     @Nullable private final String sourceExcludes;
+
     @Nullable private final String sourceIncludes;
+
     @Nullable private final String preference;
+
     @Nullable private final Boolean realtime;
+
     @Nullable private final Boolean refresh;
+
     @Nullable private final String routing;
+
     @Nullable private final Boolean storedFields;
+
     @Nullable private final Integer version;
+
     @Nullable private final VersionType versionType;
 
     public GetDocumentDocRequest(Builder builder) {

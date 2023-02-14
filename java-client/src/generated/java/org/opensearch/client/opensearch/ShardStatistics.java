@@ -9,9 +9,13 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class ShardStatistics implements JsonpSerializable {
+
     @Nullable private final Integer failed;
+
     @Nullable private final Integer skipped;
+
     @Nullable private final Integer successful;
+
     @Nullable private final Integer total;
 
     public ShardStatistics(Builder builder) {

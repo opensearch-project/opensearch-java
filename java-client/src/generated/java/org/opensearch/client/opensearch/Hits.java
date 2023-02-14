@@ -9,11 +9,17 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class Hits implements JsonpSerializable {
+
     @Nullable private final String id;
+
     @Nullable private final String index;
+
     @Nullable private final Float score;
+
     @Nullable private final JsonData source;
+
     @Nullable private final String type;
+
     @Nullable private final JsonData fields;
 
     public Hits(Builder builder) {

@@ -1,0 +1,19 @@
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+{{#bodyFields}}
+    {{^required}}
+        if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
+    {{/required}}
+            generator.writeKey({{#dq}}{{wireName}}{{/dq}});
+            {{#type.serializer}}this.{{name}}{{/type.serializer}}
+    {{^required}}
+        }
+    {{/required}}
+
+{{/bodyFields}}
+    }

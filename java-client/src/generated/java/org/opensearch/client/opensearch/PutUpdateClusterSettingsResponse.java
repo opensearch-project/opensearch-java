@@ -9,8 +9,11 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class PutUpdateClusterSettingsResponse implements JsonpSerializable {
+
     @Nullable private final Boolean acknowledged;
+
     @Nullable private final Map<String, JsonData> persistent;
+
     @Nullable private final Map<String, JsonData> transient_;
 
     public PutUpdateClusterSettingsResponse(Builder builder) {

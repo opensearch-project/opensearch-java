@@ -1,11 +1,9 @@
 package org.opensearch.client.opensearch;
 
 import org.opensearch.client.opensearch._types.*;
-
 import org.opensearch.client.transport.*;
 import org.opensearch.client.transport.endpoints.*;
 import org.opensearch.client.util.*;
-
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.*;
@@ -16,14 +14,23 @@ import javax.annotation.*;
  * etc.
  */
 public class GetCatIndicesRequest extends RequestBase {
+
     @Nullable private final Integer bytes;
+
     @Nullable private final String clusterManagerTimeout;
+
     @Nullable private final ExpandWildcards expandWildcards;
+
     @Nullable private final String format;
+
     @Nullable private final HealthStatus health;
+
     @Nullable private final Boolean includeUnloadedSegments;
+
     @Nullable private final String masterTimeout;
+
     @Nullable private final Boolean pri;
+
     @Nullable private final String time;
 
     public GetCatIndicesRequest(Builder builder) {

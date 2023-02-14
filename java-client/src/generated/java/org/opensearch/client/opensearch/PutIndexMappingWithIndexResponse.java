@@ -9,6 +9,7 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class PutIndexMappingWithIndexResponse implements JsonpSerializable {
+
     @Nullable private final Boolean acknowledged;
 
     public PutIndexMappingWithIndexResponse(Builder builder) {

@@ -9,6 +9,7 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class DeleteIndexResponse implements JsonpSerializable {
+
     @Nullable private final Boolean acknowledged;
 
     public DeleteIndexResponse(Builder builder) {

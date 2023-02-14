@@ -4,7 +4,6 @@ import org.openapi4j.core.exception.DecodeException;
 import org.openapi4j.core.exception.ResolutionException;
 import org.openapi4j.core.model.OAIContext;
 import org.openapi4j.core.model.reference.Reference;
-import org.openapi4j.core.model.v3.OAI3SchemaKeywords;
 import org.openapi4j.core.validation.ValidationException;
 import org.openapi4j.parser.OpenApi3Parser;
 import org.openapi4j.parser.model.AbsRefOpenApiSchema;
@@ -23,7 +22,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ApiSpecification {
-    private final OpenApi3 api;
     private final OAIContext context;
     private final Set<String> visitedReferencedSchemas;
     private final List<OperationRequest> operationRequests;
@@ -32,14 +30,13 @@ public class ApiSpecification {
     private final TypeMapper typeMapper;
 
     private ApiSpecification(OpenApi3 api) throws ApiSpecificationParseException {
-        this.api = api;
         context = api.getContext();
         visitedReferencedSchemas = new HashSet<>();
         operationRequests = new ArrayList<>();
         objectShapes = new ArrayList<>();
         enumShapes = new ArrayList<>();
-        typeMapper = new TypeMapper(this.api, this::visitReferencedSchema);
-        visit(this.api);
+        typeMapper = new TypeMapper(context, this::visitReferencedSchema);
+        visit(api);
     }
 
     public static ApiSpecification parse(File schemaFile) throws ApiSpecificationParseException {
@@ -65,27 +62,23 @@ public class ApiSpecification {
 
     private void visit(OpenApi3 api) throws ApiSpecificationParseException {
         for (Map.Entry<String, Path> entry : api.getPaths().entrySet()) {
-            String httpPath = entry.getKey();
-            Path path = entry.getValue();
-
-            visit(httpPath, path);
+            visit(entry.getKey(), entry.getValue());
         }
     }
 
     private void visit(String httpPath, Path path) throws ApiSpecificationParseException {
         for (Map.Entry<String, Operation> entry : path.getOperations().entrySet()) {
-            String httpMethod = entry.getKey();
-            Operation operation = entry.getValue();
-            visit(httpPath, path, httpMethod, operation);
+            visit(httpPath, path, entry.getKey(), entry.getValue());
         }
     }
 
     private void visit(String httpPath, Path path, String httpMethod, Operation operation) throws ApiSpecificationParseException {
-        OperationRequest operationRequest = new OperationRequest();
-        operationRequest.operationId = operation.getOperationId();
-        operationRequest.description = operation.getDescription();
-        operationRequest.httpMethod = httpMethod;
-        operationRequest.httpPath = httpPath;
+        OperationRequest operationRequest = new OperationRequest(
+                operation.getOperationId(),
+                operation.getDescription(),
+                httpMethod,
+                httpPath
+        );
 
         RequestBody requestBody = resolve(operation.getRequestBody());
 
@@ -100,7 +93,6 @@ public class ApiSpecification {
                 .forEach(operationRequest::addQueryParam);
 
         operationRequests.add(operationRequest);
-
 
         MediaType responseMediaType = operation.getResponse("200").getContentMediaType("application/json");
         Schema responseSchema = responseMediaType != null ? resolve(responseMediaType.getSchema()) : new Schema();
@@ -121,12 +113,8 @@ public class ApiSpecification {
     }
 
     private void visitObjectShape(String name, Schema schema) {
-        ObjectShape shape = new ObjectShape();
-
-        shape.name = name;
-
-        visitFields(schema, shape::addField);
-
+        ObjectShape shape = new ObjectShape(name);
+        visitFields(schema, shape::addBodyField);
         objectShapes.add(shape);
     }
 

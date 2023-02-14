@@ -9,10 +9,15 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class PostSearchResponse implements JsonpSerializable {
+
     @Nullable private final String scrollId;
+
     @Nullable private final ShardStatistics shards;
+
     @Nullable private final HitsMetadata hits;
+
     @Nullable private final Boolean timedOut;
+
     @Nullable private final Long took;
 
     public PostSearchResponse(Builder builder) {

@@ -9,8 +9,11 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class HitsMetadata implements JsonpSerializable {
+
     @Nullable private final List<Hits> hits;
+
     @Nullable private final Double maxScore;
+
     @Nullable private final Total total;
 
     public HitsMetadata(Builder builder) {

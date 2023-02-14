@@ -9,14 +9,23 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class Version implements JsonpSerializable {
+
     @Nullable private final String buildDate;
+
     @Nullable private final String buildHash;
+
     @Nullable private final Boolean buildSnapshot;
+
     @Nullable private final String buildType;
+
     @Nullable private final String distribution;
+
     @Nullable private final String luceneVersion;
+
     @Nullable private final String minimumIndexCompatibilityVersion;
+
     @Nullable private final String minimumWireCompatibilityVersion;
+
     @Nullable private final String number;
 
     public Version(Builder builder) {

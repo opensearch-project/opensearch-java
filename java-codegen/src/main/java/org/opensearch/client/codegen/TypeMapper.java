@@ -1,7 +1,7 @@
 package org.opensearch.client.codegen;
 
+import org.openapi4j.core.model.OAIContext;
 import org.openapi4j.core.model.v3.OAI3SchemaKeywords;
-import org.openapi4j.parser.model.v3.OpenApi3;
 import org.openapi4j.parser.model.v3.Schema;
 import org.opensearch.client.codegen.model.Type;
 import org.opensearch.client.codegen.utils.Schemas;
@@ -11,12 +11,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiConsumer;
 
 public class TypeMapper {
-    private final OpenApi3 api;
+    private final OAIContext context;
     private final Map<Schema, Type> cache = new ConcurrentHashMap<>();
     private final BiConsumer<String, Schema> referencedSchemaVisitor;
 
-    public TypeMapper(OpenApi3 api, BiConsumer<String, Schema> referencedSchemaVisitor) {
-        this.api = api;
+    public TypeMapper(OAIContext context, BiConsumer<String, Schema> referencedSchemaVisitor) {
+        this.context = context;
         this.referencedSchemaVisitor = referencedSchemaVisitor;
     }
 
@@ -35,7 +35,7 @@ public class TypeMapper {
 
     private Type mapTypeInner(Schema schema) {
         if (schema.isRef()) {
-            Schema target = schema.getFlatSchema(api.getContext());
+            Schema target = schema.getFlatSchema(context);
 
             if (!shouldKeepRef(target)) {
                 return mapType(target);

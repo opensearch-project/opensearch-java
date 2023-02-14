@@ -14,13 +14,21 @@ import javax.annotation.*;
 /** Creates index mappings. */
 @JsonpDeserializable
 public class PutCreateIndexRequest extends RequestBase implements JsonpSerializable {
+
     @Nullable private final Map<String, JsonData> aliases;
+
     @Nullable private final String clusterManagerTimeout;
+
     @Nullable private final Boolean includeTypeName;
+
     @Nullable private final Map<String, JsonData> mapping;
+
     @Nullable private final String masterTimeout;
+
     @Nullable private final Map<String, JsonData> settings;
+
     @Nullable private final String timeout;
+
     @Nullable private final String waitForActiveShards;
 
     public PutCreateIndexRequest(Builder builder) {

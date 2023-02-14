@@ -1,11 +1,15 @@
 package org.opensearch.client.opensearch;
 
 import org.opensearch.client.opensearch._types.*;
-{{#hasRequestBody}}import org.opensearch.client.json.*;{{/hasRequestBody}}
+{{#hasRequestBody}}
+import org.opensearch.client.json.*;
+{{/hasRequestBody}}
 import org.opensearch.client.transport.*;
 import org.opensearch.client.transport.endpoints.*;
 import org.opensearch.client.util.*;
-{{#hasRequestBody}}import jakarta.json.stream.JsonGenerator;{{/hasRequestBody}}
+{{#hasRequestBody}}
+import jakarta.json.stream.JsonGenerator;
+{{/hasRequestBody}}
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.*;
@@ -14,69 +18,22 @@ import javax.annotation.*;
 /**
  * {{description}}
  */
-{{#hasRequestBody}}@JsonpDeserializable{{/hasRequestBody}}
+{{#hasRequestBody}}
+@JsonpDeserializable
+{{/hasRequestBody}}
 public class {{className}} extends RequestBase{{#hasRequestBody}} implements JsonpSerializable{{/hasRequestBody}} {
-    {{#fields}}
-    {{^required}}@Nullable{{/required}}
-    private final {{{type}}} {{name}};
-    {{/fields}}
+    {{>ObjectShape/Fields}}
+    {{>ObjectShape/Constructor}}
+    {{>ObjectShape/Getters}}
 
-    public {{className}}(Builder builder) {
-        {{#fields}}
-        {{#type.isListOrMap}}
-        this.{{name}} = ApiTypeHelper.unmodifiable(builder.{{name}});
-        {{/type.isListOrMap}}
-        {{^type.isListOrMap}}
-        {{#required}}
-        this.{{name}} = ApiTypeHelper.requireNonNull(builder.{{name}}, this, {{#dq}}{{name}}{{/dq}});
-        {{/required}}
-        {{^required}}
-        this.{{name}} = builder.{{name}};
-        {{/required}}
-        {{/type.isListOrMap}}
-        {{/fields}}
-    }
-
-    public static {{className}} of(Function<Builder, ObjectBuilder<{{className}}>> fn) {
-        return fn.apply(new Builder()).build();
-    }
-
-    {{#fields}}
-    public final {{{type}}} {{name}}() {
-        return this.{{name}};
-    }
-
-    {{/fields}}
     {{#hasRequestBody}}
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
-
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        {{#bodyFields}}
-        if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
-            generator.writeKey({{#dq}}{{wireName}}{{/dq}});
-            {{#type.serializer}}this.{{name}}{{/type.serializer}}
-        }
-
-        {{/bodyFields}}
-    }
+    {{>ObjectShape/Serialize}}
     {{/hasRequestBody}}
 
-    {{>ObjectBuilder}}
+    {{>ObjectShape/Builder}}
 
     {{#hasRequestBody}}
-    public static final JsonpDeserializer<{{className}}> _DESERIALIZER = ObjectBuilderDeserializer
-            .lazy(Builder::new, {{className}}::setup{{className}}Deserializer);
-
-    protected static void setup{{className}}Deserializer(
-            ObjectDeserializer<{{className}}.Builder> op) {
-        {{#bodyFields}}
-        op.add(Builder::{{name}}, {{{type.deserializer}}}, {{#dq}}{{wireName}}{{/dq}});
-        {{/bodyFields}}
-    }
+    {{>ObjectShape/Deserialize}}
     {{/hasRequestBody}}
 
     public static final Endpoint<{{className}}, {{responseType}}, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
