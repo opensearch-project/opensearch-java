@@ -13,12 +13,12 @@ import javax.annotation.*;
 /** Updates the cluster settings. */
 @JsonpDeserializable
 public class PutUpdateClusterSettingsRequest extends RequestBase implements JsonpSerializable {
-    private final String clusterManagerTimeout;
-    private final boolean flatSettings;
-    private final String masterTimeout;
-    private final Map<String, JsonData> persistent;
-    private final String timeout;
-    private final Map<String, JsonData> transient_;
+    @Nullable private final String clusterManagerTimeout;
+    @Nullable private final Boolean flatSettings;
+    @Nullable private final String masterTimeout;
+    @Nullable private final Map<String, JsonData> persistent;
+    @Nullable private final String timeout;
+    @Nullable private final Map<String, JsonData> transient_;
 
     public PutUpdateClusterSettingsRequest(Builder builder) {
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
@@ -38,7 +38,7 @@ public class PutUpdateClusterSettingsRequest extends RequestBase implements Json
         return this.clusterManagerTimeout;
     }
 
-    public final boolean flatSettings() {
+    public final Boolean flatSettings() {
         return this.flatSettings;
     }
 
@@ -90,7 +90,7 @@ public class PutUpdateClusterSettingsRequest extends RequestBase implements Json
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<PutUpdateClusterSettingsRequest> {
         private String clusterManagerTimeout;
-        private boolean flatSettings;
+        private Boolean flatSettings;
         private String masterTimeout;
         private Map<String, JsonData> persistent;
         private String timeout;
@@ -101,7 +101,7 @@ public class PutUpdateClusterSettingsRequest extends RequestBase implements Json
             return this;
         }
 
-        public final Builder flatSettings(boolean value) {
+        public final Builder flatSettings(Boolean value) {
             this.flatSettings = value;
             return this;
         }

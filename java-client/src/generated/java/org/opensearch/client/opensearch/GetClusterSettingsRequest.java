@@ -12,10 +12,10 @@ import javax.annotation.*;
 
 /** Returns cluster settings. */
 public class GetClusterSettingsRequest extends RequestBase {
-    private final String clusterManagerTimeout;
-    private final boolean flatSettings;
-    private final boolean includeDefaults;
-    private final String masterTimeout;
+    @Nullable private final String clusterManagerTimeout;
+    @Nullable private final Boolean flatSettings;
+    @Nullable private final Boolean includeDefaults;
+    @Nullable private final String masterTimeout;
 
     public GetClusterSettingsRequest(Builder builder) {
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
@@ -33,11 +33,11 @@ public class GetClusterSettingsRequest extends RequestBase {
         return this.clusterManagerTimeout;
     }
 
-    public final boolean flatSettings() {
+    public final Boolean flatSettings() {
         return this.flatSettings;
     }
 
-    public final boolean includeDefaults() {
+    public final Boolean includeDefaults() {
         return this.includeDefaults;
     }
 
@@ -49,8 +49,8 @@ public class GetClusterSettingsRequest extends RequestBase {
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<GetClusterSettingsRequest> {
         private String clusterManagerTimeout;
-        private boolean flatSettings;
-        private boolean includeDefaults;
+        private Boolean flatSettings;
+        private Boolean includeDefaults;
         private String masterTimeout;
 
         public final Builder clusterManagerTimeout(String value) {
@@ -58,12 +58,12 @@ public class GetClusterSettingsRequest extends RequestBase {
             return this;
         }
 
-        public final Builder flatSettings(boolean value) {
+        public final Builder flatSettings(Boolean value) {
             this.flatSettings = value;
             return this;
         }
 
-        public final Builder includeDefaults(boolean value) {
+        public final Builder includeDefaults(Boolean value) {
             this.includeDefaults = value;
             return this;
         }

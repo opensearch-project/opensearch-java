@@ -13,9 +13,10 @@ import javax.annotation.*;
 /** Restore one or more indices from a remote backup. */
 @JsonpDeserializable
 public class PostRemoteStoreRestoreRequest extends RequestBase implements JsonpSerializable {
-    private final String clusterManagerTimeout;
+    @Nullable private final String clusterManagerTimeout;
+
     private final List<String> indices;
-    private final boolean waitForCompletion;
+    @Nullable private final Boolean waitForCompletion;
 
     public PostRemoteStoreRestoreRequest(Builder builder) {
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
@@ -36,7 +37,7 @@ public class PostRemoteStoreRestoreRequest extends RequestBase implements JsonpS
         return this.indices;
     }
 
-    public final boolean waitForCompletion() {
+    public final Boolean waitForCompletion() {
         return this.waitForCompletion;
     }
 
@@ -62,7 +63,7 @@ public class PostRemoteStoreRestoreRequest extends RequestBase implements JsonpS
             implements ObjectBuilder<PostRemoteStoreRestoreRequest> {
         private String clusterManagerTimeout;
         private List<String> indices;
-        private boolean waitForCompletion;
+        private Boolean waitForCompletion;
 
         public final Builder clusterManagerTimeout(String value) {
             this.clusterManagerTimeout = value;
@@ -79,7 +80,7 @@ public class PostRemoteStoreRestoreRequest extends RequestBase implements JsonpS
             return this;
         }
 
-        public final Builder waitForCompletion(boolean value) {
+        public final Builder waitForCompletion(Boolean value) {
             this.waitForCompletion = value;
             return this;
         }

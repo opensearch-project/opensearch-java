@@ -12,9 +12,9 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class ActionObjectStructure implements JsonpSerializable {
-    private final UserDefinedStructure add;
-    private final UserDefinedStructure remove;
-    private final UserDefinedStructure removeIndex;
+    @Nullable private final UserDefinedStructure add;
+    @Nullable private final UserDefinedStructure remove;
+    @Nullable private final UserDefinedStructure removeIndex;
 
     public ActionObjectStructure(Builder builder) {
         this.add = builder.add;

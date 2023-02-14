@@ -16,6 +16,7 @@ import javax.annotation.*;
 {{#hasRequestBody}}@JsonpDeserializable{{/hasRequestBody}}
 public class {{className}} extends RequestBase{{#hasRequestBody}} implements JsonpSerializable{{/hasRequestBody}} {
     {{#fields}}
+    {{^required}}@Nullable{{/required}}
     private final {{{type}}} {{name}};
     {{/fields}}
 

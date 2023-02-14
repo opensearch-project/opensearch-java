@@ -2,6 +2,7 @@ package org.opensearch.client.codegen;
 
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.exceptions.RenderException;
+import org.opensearch.client.codegen.model.EnumShape;
 import org.opensearch.client.codegen.model.ObjectShape;
 import org.opensearch.client.codegen.model.OperationRequest;
 
@@ -44,6 +45,11 @@ public class Generator {
         for (ObjectShape objectShape : apiSpecification.getObjectShapes()) {
             File file = new File(packageDir, objectShape.className() + ".java");
             renderer.render(objectShape, file);
+        }
+
+        for (EnumShape enumShape : apiSpecification.getEnumShapes()) {
+            File file = new File(packageDir, enumShape.className() + ".java");
+            renderer.render(enumShape, file);
         }
     }
 }

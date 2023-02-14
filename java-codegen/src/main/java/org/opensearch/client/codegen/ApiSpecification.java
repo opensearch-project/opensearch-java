@@ -10,12 +10,15 @@ import org.openapi4j.parser.OpenApi3Parser;
 import org.openapi4j.parser.model.AbsRefOpenApiSchema;
 import org.openapi4j.parser.model.v3.*;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
+import org.opensearch.client.codegen.model.EnumShape;
 import org.opensearch.client.codegen.model.Field;
 import org.opensearch.client.codegen.model.ObjectShape;
 import org.opensearch.client.codegen.model.OperationRequest;
 
 import java.io.File;
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ApiSpecification {
@@ -24,6 +27,7 @@ public class ApiSpecification {
     private final Set<String> visitedReferencedSchemas;
     private final List<OperationRequest> operationRequests;
     private final List<ObjectShape> objectShapes;
+    private final List<EnumShape> enumShapes;
     private final TypeMapper typeMapper;
 
     private ApiSpecification(OpenApi3 api) throws ApiSpecificationParseException {
@@ -32,6 +36,7 @@ public class ApiSpecification {
         visitedReferencedSchemas = new HashSet<>();
         operationRequests = new ArrayList<>();
         objectShapes = new ArrayList<>();
+        enumShapes = new ArrayList<>();
         typeMapper = new TypeMapper(this.api, this::visitReferencedSchema);
         visit(this.api);
     }
@@ -49,7 +54,13 @@ public class ApiSpecification {
         return Collections.unmodifiableList(operationRequests);
     }
 
-    public List<ObjectShape> getObjectShapes() { return Collections.unmodifiableList(objectShapes); }
+    public List<ObjectShape> getObjectShapes() {
+        return Collections.unmodifiableList(objectShapes);
+    }
+
+    public List<EnumShape> getEnumShapes() {
+        return Collections.unmodifiableList(enumShapes);
+    }
 
     private void visit(OpenApi3 api) throws ApiSpecificationParseException {
         for (Map.Entry<String, Path> entry : api.getPaths().entrySet()) {
@@ -78,17 +89,21 @@ public class ApiSpecification {
         RequestBody requestBody = resolve(operation.getRequestBody());
 
         if (requestBody != null) {
-            resolve(requestBody.getContentMediaType("application/json").getSchema())
-                    .getProperties()
-                    .forEach((name, schema) -> operationRequest.addBodyField(new Field(name, typeMapper.mapType(schema))));
+            Schema requestBodySchema = resolve(requestBody.getContentMediaType("application/json").getSchema());
+            visitFields(requestBodySchema, operationRequest::addBodyField);
         }
 
         Stream.of(path.getParametersIn(context, "query"), operation.getParametersIn(context, "query"))
                 .flatMap(List::stream)
-                .map(p -> new Field(p.getName(), typeMapper.mapType(p.getSchema())))
+                .map(p -> new Field(p.getName(), typeMapper.mapType(p.getSchema()), p.isRequired()))
                 .forEach(operationRequest::addQueryParam);
 
         operationRequests.add(operationRequest);
+
+
+        MediaType responseMediaType = operation.getResponse("200").getContentMediaType("application/json");
+        Schema responseSchema = responseMediaType != null ? resolve(responseMediaType.getSchema()) : new Schema();
+        visitObjectShape(operation.getOperationId() + "Response", responseSchema);
     }
 
     private void visitReferencedSchema(String ref, Schema schema) {
@@ -98,16 +113,34 @@ public class ApiSpecification {
         String name = refParts[refParts.length - 1];
 
         if (OAI3SchemaKeywords.TYPE_OBJECT.equals(schema.getType())) {
-            ObjectShape shape = new ObjectShape();
-
-            shape.name = name;
-
-            for (Map.Entry<String, Schema> entry : schema.getProperties().entrySet()) {
-                shape.addField(new Field(entry.getKey(), typeMapper.mapType(entry.getValue())));
-            }
-
-            objectShapes.add(shape);
+            visitObjectShape(name, schema);
+        } else if (OAI3SchemaKeywords.TYPE_STRING.equals(schema.getType()) && schema.hasEnums()) {
+            enumShapes.add(new EnumShape(name, schema.getEnums().stream().map(Object::toString).collect(Collectors.toList())));
         }
+    }
+
+    private void visitObjectShape(String name, Schema schema) {
+        ObjectShape shape = new ObjectShape();
+
+        shape.name = name;
+
+        visitFields(schema, shape::addField);
+
+        objectShapes.add(shape);
+    }
+
+    private void visitFields(Schema schema, Consumer<Field> fieldVisitor) {
+        Map<String, Schema> properties = schema.getProperties();
+
+        if (properties == null) return;
+
+        Set<String> requiredFields = new HashSet<>(schema.hasRequiredFields() ? schema.getRequiredFields() : new ArrayList<>(0));
+
+        properties.forEach((name, propertySchema) -> fieldVisitor.accept(new Field(
+                name,
+                typeMapper.mapType(propertySchema),
+                requiredFields.contains(name)
+        )));
     }
 
     private RequestBody resolve(RequestBody body) throws ApiSpecificationParseException {

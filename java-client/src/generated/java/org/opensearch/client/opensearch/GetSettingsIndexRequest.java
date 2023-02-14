@@ -12,14 +12,14 @@ import javax.annotation.*;
 
 /** The get settings API operation returns all the settings in your index. */
 public class GetSettingsIndexRequest extends RequestBase {
-    private final boolean allowNoIndices;
-    private final String clusterManagerTimeout;
-    private final ExpandWildcards expandWildcards;
-    private final boolean flatSettings;
-    private final boolean ignoreUnavailable;
-    private final String includeDefaults;
-    private final boolean local;
-    private final String masterTimeout;
+    @Nullable private final Boolean allowNoIndices;
+    @Nullable private final String clusterManagerTimeout;
+    @Nullable private final ExpandWildcards expandWildcards;
+    @Nullable private final Boolean flatSettings;
+    @Nullable private final Boolean ignoreUnavailable;
+    @Nullable private final String includeDefaults;
+    @Nullable private final Boolean local;
+    @Nullable private final String masterTimeout;
 
     public GetSettingsIndexRequest(Builder builder) {
         this.allowNoIndices = builder.allowNoIndices;
@@ -37,7 +37,7 @@ public class GetSettingsIndexRequest extends RequestBase {
         return fn.apply(new Builder()).build();
     }
 
-    public final boolean allowNoIndices() {
+    public final Boolean allowNoIndices() {
         return this.allowNoIndices;
     }
 
@@ -49,11 +49,11 @@ public class GetSettingsIndexRequest extends RequestBase {
         return this.expandWildcards;
     }
 
-    public final boolean flatSettings() {
+    public final Boolean flatSettings() {
         return this.flatSettings;
     }
 
-    public final boolean ignoreUnavailable() {
+    public final Boolean ignoreUnavailable() {
         return this.ignoreUnavailable;
     }
 
@@ -61,7 +61,7 @@ public class GetSettingsIndexRequest extends RequestBase {
         return this.includeDefaults;
     }
 
-    public final boolean local() {
+    public final Boolean local() {
         return this.local;
     }
 
@@ -72,16 +72,16 @@ public class GetSettingsIndexRequest extends RequestBase {
     /** Builder for {@link GetSettingsIndexRequest}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<GetSettingsIndexRequest> {
-        private boolean allowNoIndices;
+        private Boolean allowNoIndices;
         private String clusterManagerTimeout;
         private ExpandWildcards expandWildcards;
-        private boolean flatSettings;
-        private boolean ignoreUnavailable;
+        private Boolean flatSettings;
+        private Boolean ignoreUnavailable;
         private String includeDefaults;
-        private boolean local;
+        private Boolean local;
         private String masterTimeout;
 
-        public final Builder allowNoIndices(boolean value) {
+        public final Builder allowNoIndices(Boolean value) {
             this.allowNoIndices = value;
             return this;
         }
@@ -101,12 +101,12 @@ public class GetSettingsIndexRequest extends RequestBase {
             return expandWildcards(fn.apply(new ExpandWildcards.Builder()).build());
         }
 
-        public final Builder flatSettings(boolean value) {
+        public final Builder flatSettings(Boolean value) {
             this.flatSettings = value;
             return this;
         }
 
-        public final Builder ignoreUnavailable(boolean value) {
+        public final Builder ignoreUnavailable(Boolean value) {
             this.ignoreUnavailable = value;
             return this;
         }
@@ -116,7 +116,7 @@ public class GetSettingsIndexRequest extends RequestBase {
             return this;
         }
 
-        public final Builder local(boolean value) {
+        public final Builder local(Boolean value) {
             this.local = value;
             return this;
         }

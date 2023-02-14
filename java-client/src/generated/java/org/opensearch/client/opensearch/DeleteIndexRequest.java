@@ -12,12 +12,12 @@ import javax.annotation.*;
 
 /** Removes a document from the index. */
 public class DeleteIndexRequest extends RequestBase {
-    private final boolean allowNoIndices;
-    private final String clusterManagerTimeout;
-    private final ExpandWildcards expandWildcards;
-    private final boolean ignoreUnavailable;
-    private final String masterTimeout;
-    private final String timeout;
+    @Nullable private final Boolean allowNoIndices;
+    @Nullable private final String clusterManagerTimeout;
+    @Nullable private final ExpandWildcards expandWildcards;
+    @Nullable private final Boolean ignoreUnavailable;
+    @Nullable private final String masterTimeout;
+    @Nullable private final String timeout;
 
     public DeleteIndexRequest(Builder builder) {
         this.allowNoIndices = builder.allowNoIndices;
@@ -32,7 +32,7 @@ public class DeleteIndexRequest extends RequestBase {
         return fn.apply(new Builder()).build();
     }
 
-    public final boolean allowNoIndices() {
+    public final Boolean allowNoIndices() {
         return this.allowNoIndices;
     }
 
@@ -44,7 +44,7 @@ public class DeleteIndexRequest extends RequestBase {
         return this.expandWildcards;
     }
 
-    public final boolean ignoreUnavailable() {
+    public final Boolean ignoreUnavailable() {
         return this.ignoreUnavailable;
     }
 
@@ -59,14 +59,14 @@ public class DeleteIndexRequest extends RequestBase {
     /** Builder for {@link DeleteIndexRequest}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<DeleteIndexRequest> {
-        private boolean allowNoIndices;
+        private Boolean allowNoIndices;
         private String clusterManagerTimeout;
         private ExpandWildcards expandWildcards;
-        private boolean ignoreUnavailable;
+        private Boolean ignoreUnavailable;
         private String masterTimeout;
         private String timeout;
 
-        public final Builder allowNoIndices(boolean value) {
+        public final Builder allowNoIndices(Boolean value) {
             this.allowNoIndices = value;
             return this;
         }
@@ -86,7 +86,7 @@ public class DeleteIndexRequest extends RequestBase {
             return expandWildcards(fn.apply(new ExpandWildcards.Builder()).build());
         }
 
-        public final Builder ignoreUnavailable(boolean value) {
+        public final Builder ignoreUnavailable(Boolean value) {
             this.ignoreUnavailable = value;
             return this;
         }

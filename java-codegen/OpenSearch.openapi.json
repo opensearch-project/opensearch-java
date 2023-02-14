@@ -2612,8 +2612,8 @@
             "SearchType": {
                 "type": "string",
                 "enum": [
-                    "0",
-                    "1"
+                    "query_then_fetch",
+                    "dfs_query_then_fetch"
                 ]
             },
             "ShardStatistics": {
@@ -2640,9 +2640,9 @@
             "SuggestMode": {
                 "type": "string",
                 "enum": [
-                    "0",
-                    "1",
-                    "2"
+                    "missing",
+                    "popular",
+                    "always"
                 ]
             },
             "Total": {

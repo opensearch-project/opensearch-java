@@ -12,16 +12,16 @@ import javax.annotation.*;
 
 /** Returns a document. */
 public class GetDocumentSourceRequest extends RequestBase {
-    private final String source;
-    private final String sourceExcludes;
-    private final String sourceIncludes;
-    private final String preference;
-    private final boolean realtime;
-    private final boolean refresh;
-    private final String routing;
-    private final boolean storedFields;
-    private final int version;
-    private final VersionType versionType;
+    @Nullable private final String source;
+    @Nullable private final String sourceExcludes;
+    @Nullable private final String sourceIncludes;
+    @Nullable private final String preference;
+    @Nullable private final Boolean realtime;
+    @Nullable private final Boolean refresh;
+    @Nullable private final String routing;
+    @Nullable private final Boolean storedFields;
+    @Nullable private final Integer version;
+    @Nullable private final VersionType versionType;
 
     public GetDocumentSourceRequest(Builder builder) {
         this.source = builder.source;
@@ -57,11 +57,11 @@ public class GetDocumentSourceRequest extends RequestBase {
         return this.preference;
     }
 
-    public final boolean realtime() {
+    public final Boolean realtime() {
         return this.realtime;
     }
 
-    public final boolean refresh() {
+    public final Boolean refresh() {
         return this.refresh;
     }
 
@@ -69,11 +69,11 @@ public class GetDocumentSourceRequest extends RequestBase {
         return this.routing;
     }
 
-    public final boolean storedFields() {
+    public final Boolean storedFields() {
         return this.storedFields;
     }
 
-    public final int version() {
+    public final Integer version() {
         return this.version;
     }
 
@@ -88,11 +88,11 @@ public class GetDocumentSourceRequest extends RequestBase {
         private String sourceExcludes;
         private String sourceIncludes;
         private String preference;
-        private boolean realtime;
-        private boolean refresh;
+        private Boolean realtime;
+        private Boolean refresh;
         private String routing;
-        private boolean storedFields;
-        private int version;
+        private Boolean storedFields;
+        private Integer version;
         private VersionType versionType;
 
         public final Builder source(String value) {
@@ -115,12 +115,12 @@ public class GetDocumentSourceRequest extends RequestBase {
             return this;
         }
 
-        public final Builder realtime(boolean value) {
+        public final Builder realtime(Boolean value) {
             this.realtime = value;
             return this;
         }
 
-        public final Builder refresh(boolean value) {
+        public final Builder refresh(Boolean value) {
             this.refresh = value;
             return this;
         }
@@ -130,12 +130,12 @@ public class GetDocumentSourceRequest extends RequestBase {
             return this;
         }
 
-        public final Builder storedFields(boolean value) {
+        public final Builder storedFields(Boolean value) {
             this.storedFields = value;
             return this;
         }
 
-        public final Builder version(int value) {
+        public final Builder version(Integer value) {
             this.version = value;
             return this;
         }

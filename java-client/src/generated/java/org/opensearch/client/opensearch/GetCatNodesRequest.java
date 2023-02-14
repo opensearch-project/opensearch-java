@@ -12,14 +12,14 @@ import javax.annotation.*;
 
 /** Returns basic statistics about performance of cluster nodes. */
 public class GetCatNodesRequest extends RequestBase {
-    private final int bytes;
-    private final String clusterManagerTimeout;
-    private final String format;
-    private final boolean fullId;
-    private final boolean includeUnloadedSegments;
-    private final boolean local;
-    private final String masterTimeout;
-    private final String time;
+    @Nullable private final Integer bytes;
+    @Nullable private final String clusterManagerTimeout;
+    @Nullable private final String format;
+    @Nullable private final Boolean fullId;
+    @Nullable private final Boolean includeUnloadedSegments;
+    @Nullable private final Boolean local;
+    @Nullable private final String masterTimeout;
+    @Nullable private final String time;
 
     public GetCatNodesRequest(Builder builder) {
         this.bytes = builder.bytes;
@@ -36,7 +36,7 @@ public class GetCatNodesRequest extends RequestBase {
         return fn.apply(new Builder()).build();
     }
 
-    public final int bytes() {
+    public final Integer bytes() {
         return this.bytes;
     }
 
@@ -48,15 +48,15 @@ public class GetCatNodesRequest extends RequestBase {
         return this.format;
     }
 
-    public final boolean fullId() {
+    public final Boolean fullId() {
         return this.fullId;
     }
 
-    public final boolean includeUnloadedSegments() {
+    public final Boolean includeUnloadedSegments() {
         return this.includeUnloadedSegments;
     }
 
-    public final boolean local() {
+    public final Boolean local() {
         return this.local;
     }
 
@@ -71,16 +71,16 @@ public class GetCatNodesRequest extends RequestBase {
     /** Builder for {@link GetCatNodesRequest}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<GetCatNodesRequest> {
-        private int bytes;
+        private Integer bytes;
         private String clusterManagerTimeout;
         private String format;
-        private boolean fullId;
-        private boolean includeUnloadedSegments;
-        private boolean local;
+        private Boolean fullId;
+        private Boolean includeUnloadedSegments;
+        private Boolean local;
         private String masterTimeout;
         private String time;
 
-        public final Builder bytes(int value) {
+        public final Builder bytes(Integer value) {
             this.bytes = value;
             return this;
         }
@@ -95,17 +95,17 @@ public class GetCatNodesRequest extends RequestBase {
             return this;
         }
 
-        public final Builder fullId(boolean value) {
+        public final Builder fullId(Boolean value) {
             this.fullId = value;
             return this;
         }
 
-        public final Builder includeUnloadedSegments(boolean value) {
+        public final Builder includeUnloadedSegments(Boolean value) {
             this.includeUnloadedSegments = value;
             return this;
         }
 
-        public final Builder local(boolean value) {
+        public final Builder local(Boolean value) {
             this.local = value;
             return this;
         }

@@ -13,6 +13,7 @@ import javax.annotation.*;
 @JsonpDeserializable
 public class {{className}} implements JsonpSerializable {
     {{#fields}}
+    {{^required}}@Nullable{{/required}}
     private final {{{type}}} {{name}};
     {{/fields}}
 

@@ -12,17 +12,17 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class UserDefinedStructure implements JsonpSerializable {
-    private final String alias;
-    private final List<String> aliases;
-    private final JsonData filter;
-    private final String index;
-    private final String indexRouting;
-    private final List<String> indices;
-    private final boolean isHidden;
-    private final boolean isWriteIndex;
-    private final String mustExist;
-    private final String routing;
-    private final String searchRouting;
+    @Nullable private final String alias;
+    @Nullable private final List<String> aliases;
+    @Nullable private final JsonData filter;
+    @Nullable private final String index;
+    @Nullable private final String indexRouting;
+    @Nullable private final List<String> indices;
+    @Nullable private final Boolean isHidden;
+    @Nullable private final Boolean isWriteIndex;
+    @Nullable private final String mustExist;
+    @Nullable private final String routing;
+    @Nullable private final String searchRouting;
 
     public UserDefinedStructure(Builder builder) {
         this.alias = builder.alias;
@@ -67,11 +67,11 @@ public class UserDefinedStructure implements JsonpSerializable {
         return this.indices;
     }
 
-    public final boolean isHidden() {
+    public final Boolean isHidden() {
         return this.isHidden;
     }
 
-    public final boolean isWriteIndex() {
+    public final Boolean isWriteIndex() {
         return this.isWriteIndex;
     }
 
@@ -167,8 +167,8 @@ public class UserDefinedStructure implements JsonpSerializable {
         private String index;
         private String indexRouting;
         private List<String> indices;
-        private boolean isHidden;
-        private boolean isWriteIndex;
+        private Boolean isHidden;
+        private Boolean isWriteIndex;
         private String mustExist;
         private String routing;
         private String searchRouting;
@@ -213,12 +213,12 @@ public class UserDefinedStructure implements JsonpSerializable {
             return this;
         }
 
-        public final Builder isHidden(boolean value) {
+        public final Builder isHidden(Boolean value) {
             this.isHidden = value;
             return this;
         }
 
-        public final Builder isWriteIndex(boolean value) {
+        public final Builder isWriteIndex(Boolean value) {
             this.isWriteIndex = value;
             return this;
         }
