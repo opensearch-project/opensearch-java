@@ -27,7 +27,12 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
         this.{{name}} = ApiTypeHelper.unmodifiable(builder.{{name}});
         {{/type.isListOrMap}}
         {{^type.isListOrMap}}
+        {{#required}}
+        this.{{name}} = ApiTypeHelper.requireNonNull(builder.{{name}}, this, {{#dq}}{{name}}{{/dq}});
+        {{/required}}
+        {{^required}}
         this.{{name}} = builder.{{name}};
+        {{/required}}
         {{/type.isListOrMap}}
         {{/fields}}
     }

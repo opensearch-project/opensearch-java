@@ -1,9 +1,6 @@
 package org.opensearch.client.opensearch;
 
-import org.opensearch.client.opensearch._types.*;
 import org.opensearch.client.json.*;
-import org.opensearch.client.transport.*;
-import org.opensearch.client.transport.endpoints.*;
 import org.opensearch.client.util.*;
 import jakarta.json.stream.JsonGenerator;
 import java.util.*;
@@ -28,12 +25,12 @@ public class GetDocumentDocResponse implements JsonpSerializable {
 
     public GetDocumentDocResponse(Builder builder) {
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
-        this.id = builder.id;
-        this.index = builder.index;
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.routing = builder.routing;
         this.source = ApiTypeHelper.unmodifiable(builder.source);
         this.type = builder.type;
-        this.found = builder.found;
+        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
         this.primaryTerm = builder.primaryTerm;
         this.seqNo = builder.seqNo;
         this.version = builder.version;
@@ -101,15 +98,11 @@ public class GetDocumentDocResponse implements JsonpSerializable {
             generator.writeEnd();
         }
 
-        if (this.id != null) {
-            generator.writeKey("_id");
-            generator.write(this.id);
-        }
+        generator.writeKey("_id");
+        generator.write(this.id);
 
-        if (this.index != null) {
-            generator.writeKey("_index");
-            generator.write(this.index);
-        }
+        generator.writeKey("_index");
+        generator.write(this.index);
 
         if (this.routing != null) {
             generator.writeKey("_routing");
@@ -131,10 +124,8 @@ public class GetDocumentDocResponse implements JsonpSerializable {
             generator.write(this.type);
         }
 
-        if (this.found != null) {
-            generator.writeKey("found");
-            generator.write(this.found);
-        }
+        generator.writeKey("found");
+        generator.write(this.found);
 
         if (this.primaryTerm != null) {
             generator.writeKey("primary_term");
@@ -161,7 +152,7 @@ public class GetDocumentDocResponse implements JsonpSerializable {
         private String routing;
         private Map<String, JsonData> source;
         private String type;
-        private boolean found;
+        private Boolean found;
         private Long primaryTerm;
         private Long seqNo;
         private Integer version;
