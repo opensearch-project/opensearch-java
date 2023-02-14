@@ -1,11 +1,9 @@
 package org.opensearch.client.opensearch;
 
 import org.opensearch.client.opensearch._types.*;
-
 import org.opensearch.client.transport.*;
 import org.opensearch.client.transport.endpoints.*;
 import org.opensearch.client.util.*;
-
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.*;
@@ -13,9 +11,13 @@ import javax.annotation.*;
 
 /** Returns cluster settings. */
 public class GetClusterSettingsRequest extends RequestBase {
+
     @Nullable private final String clusterManagerTimeout;
+
     @Nullable private final Boolean flatSettings;
+
     @Nullable private final Boolean includeDefaults;
+
     @Nullable private final String masterTimeout;
 
     public GetClusterSettingsRequest(Builder builder) {

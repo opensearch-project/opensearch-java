@@ -14,14 +14,16 @@ import javax.annotation.*;
 /** Restore one or more indices from a remote backup. */
 @JsonpDeserializable
 public class PostRemoteStoreRestoreRequest extends RequestBase implements JsonpSerializable {
+
     @Nullable private final String clusterManagerTimeout;
 
     private final List<String> indices;
+
     @Nullable private final Boolean waitForCompletion;
 
     public PostRemoteStoreRestoreRequest(Builder builder) {
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
-        this.indices = ApiTypeHelper.unmodifiable(builder.indices);
+        this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
         this.waitForCompletion = builder.waitForCompletion;
     }
 
@@ -49,14 +51,12 @@ public class PostRemoteStoreRestoreRequest extends RequestBase implements JsonpS
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (ApiTypeHelper.isDefined(this.indices)) {
-            generator.writeKey("indices");
-            generator.writeStartArray();
-            for (String item0 : this.indices) {
-                generator.write(item0);
-            }
-            generator.writeEnd();
+        generator.writeKey("indices");
+        generator.writeStartArray();
+        for (String item0 : this.indices) {
+            generator.write(item0);
         }
+        generator.writeEnd();
     }
 
     /** Builder for {@link PostRemoteStoreRestoreRequest}. */

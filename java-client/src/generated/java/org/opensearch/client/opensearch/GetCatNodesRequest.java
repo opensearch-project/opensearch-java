@@ -1,11 +1,9 @@
 package org.opensearch.client.opensearch;
 
 import org.opensearch.client.opensearch._types.*;
-
 import org.opensearch.client.transport.*;
 import org.opensearch.client.transport.endpoints.*;
 import org.opensearch.client.util.*;
-
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.*;
@@ -13,13 +11,21 @@ import javax.annotation.*;
 
 /** Returns basic statistics about performance of cluster nodes. */
 public class GetCatNodesRequest extends RequestBase {
+
     @Nullable private final Integer bytes;
+
     @Nullable private final String clusterManagerTimeout;
+
     @Nullable private final String format;
+
     @Nullable private final Boolean fullId;
+
     @Nullable private final Boolean includeUnloadedSegments;
+
     @Nullable private final Boolean local;
+
     @Nullable private final String masterTimeout;
+
     @Nullable private final String time;
 
     public GetCatNodesRequest(Builder builder) {

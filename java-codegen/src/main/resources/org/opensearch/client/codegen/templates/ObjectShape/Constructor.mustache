@@ -1,0 +1,24 @@
+    public {{className}}(Builder builder) {
+{{#fields}}
+{{#type.isListOrMap}}
+    {{#required}}
+        this.{{name}} = ApiTypeHelper.unmodifiableRequired(builder.{{name}}, this, {{#dq}}{{name}}{{/dq}});
+    {{/required}}
+    {{^required}}
+        this.{{name}} = ApiTypeHelper.unmodifiable(builder.{{name}});
+    {{/required}}
+{{/type.isListOrMap}}
+{{^type.isListOrMap}}
+    {{#required}}
+        this.{{name}} = ApiTypeHelper.requireNonNull(builder.{{name}}, this, {{#dq}}{{name}}{{/dq}});
+    {{/required}}
+    {{^required}}
+        this.{{name}} = builder.{{name}};
+    {{/required}}
+{{/type.isListOrMap}}
+{{/fields}}
+    }
+
+    public static {{className}} of(Function<Builder, ObjectBuilder<{{className}}>> fn) {
+        return fn.apply(new Builder()).build();
+    }

@@ -14,14 +14,23 @@ import javax.annotation.*;
 /** The put mapping API operation lets you add new mappings and fields to an index. */
 @JsonpDeserializable
 public class PutIndexMappingWithIndexRequest extends RequestBase implements JsonpSerializable {
+
     @Nullable private final Boolean allowNoIndices;
+
     @Nullable private final String clusterManagerTimeout;
+
     @Nullable private final ExpandWildcards expandWildcards;
+
     @Nullable private final Boolean ignoreUnavailable;
+
     @Nullable private final Boolean includeTypeName;
+
     @Nullable private final String masterTimeout;
+
     @Nullable private final JsonData properties;
+
     @Nullable private final String timeout;
+
     @Nullable private final Boolean writeIndexOnly;
 
     public PutIndexMappingWithIndexRequest(Builder builder) {

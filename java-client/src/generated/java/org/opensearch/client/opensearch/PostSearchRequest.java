@@ -14,51 +14,97 @@ import javax.annotation.*;
 /** Returns results matching a query. */
 @JsonpDeserializable
 public class PostSearchRequest extends RequestBase implements JsonpSerializable {
+
     @Nullable private final Boolean allowNoIndices;
+
     @Nullable private final Boolean allowPartialSearchResults;
+
     @Nullable private final Boolean analyzeWildcard;
+
     @Nullable private final String analyzer;
+
     @Nullable private final Integer batchedReduceSize;
+
     @Nullable private final Boolean ccsMinimizeRoundtrips;
+
     @Nullable private final DefaultOperator defaultOperator;
+
     @Nullable private final String df;
+
     @Nullable private final String docvalueFields;
+
     @Nullable private final ExpandWildcards expandWildcards;
+
     @Nullable private final Boolean explain;
+
     @Nullable private final List<String> fields;
+
     @Nullable private final Integer from;
+
     @Nullable private final Boolean ignoreThrottled;
+
     @Nullable private final Boolean ignoreUnavailable;
+
     @Nullable private final List<JsonData> indicesBoost;
+
     @Nullable private final Boolean lenient;
+
     @Nullable private final Long maxConcurrentShardRequests;
+
     @Nullable private final Integer minScore;
+
     @Nullable private final Long preFilterShardSize;
+
     @Nullable private final String preference;
+
     @Nullable private final String q;
+
     @Nullable private final UserDefinedObjectStructure query;
+
     @Nullable private final Boolean requestCache;
+
     @Nullable private final Boolean restTotalHitsAsInt;
+
     @Nullable private final String routing;
+
     @Nullable private final String scroll;
+
     @Nullable private final SearchType searchType;
+
     @Nullable private final Boolean seqNoPrimaryTerm;
+
     @Nullable private final Integer size;
+
     @Nullable private final List<String> sort;
+
     @Nullable private final String source;
+
     @Nullable private final List<String> sourceExcludes;
+
     @Nullable private final List<String> sourceIncludes;
+
     @Nullable private final String stats;
+
     @Nullable private final Boolean storedFields;
+
     @Nullable private final String suggestField;
+
     @Nullable private final SuggestMode suggestMode;
+
     @Nullable private final Long suggestSize;
+
     @Nullable private final String suggestText;
+
     @Nullable private final Integer terminateAfter;
+
     @Nullable private final String timeout;
+
     @Nullable private final Boolean trackScores;
+
     @Nullable private final Integer trackTotalHits;
+
     @Nullable private final Boolean typedKeys;
+
     @Nullable private final Boolean version;
 
     public PostSearchRequest(Builder builder) {

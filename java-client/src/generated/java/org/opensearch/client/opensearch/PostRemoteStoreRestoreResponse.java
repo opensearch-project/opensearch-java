@@ -9,7 +9,9 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class PostRemoteStoreRestoreResponse implements JsonpSerializable {
+
     @Nullable private final Boolean accepted;
+
     @Nullable private final RemoteStoreRestoreInfo remoteStore;
 
     public PostRemoteStoreRestoreResponse(Builder builder) {

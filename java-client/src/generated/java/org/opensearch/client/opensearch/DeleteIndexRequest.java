@@ -1,11 +1,9 @@
 package org.opensearch.client.opensearch;
 
 import org.opensearch.client.opensearch._types.*;
-
 import org.opensearch.client.transport.*;
 import org.opensearch.client.transport.endpoints.*;
 import org.opensearch.client.util.*;
-
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.*;
@@ -13,11 +11,17 @@ import javax.annotation.*;
 
 /** Removes a document from the index. */
 public class DeleteIndexRequest extends RequestBase {
+
     @Nullable private final Boolean allowNoIndices;
+
     @Nullable private final String clusterManagerTimeout;
+
     @Nullable private final ExpandWildcards expandWildcards;
+
     @Nullable private final Boolean ignoreUnavailable;
+
     @Nullable private final String masterTimeout;
+
     @Nullable private final String timeout;
 
     public DeleteIndexRequest(Builder builder) {

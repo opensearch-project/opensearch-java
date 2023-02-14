@@ -1,11 +1,9 @@
 package org.opensearch.client.opensearch;
 
 import org.opensearch.client.opensearch._types.*;
-
 import org.opensearch.client.transport.*;
 import org.opensearch.client.transport.endpoints.*;
 import org.opensearch.client.util.*;
-
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.*;
@@ -13,13 +11,21 @@ import javax.annotation.*;
 
 /** The get settings API operation returns all the settings in your index. */
 public class GetSettingsIndexSettingRequest extends RequestBase {
+
     @Nullable private final Boolean allowNoIndices;
+
     @Nullable private final String clusterManagerTimeout;
+
     @Nullable private final ExpandWildcards expandWildcards;
+
     @Nullable private final Boolean flatSettings;
+
     @Nullable private final Boolean ignoreUnavailable;
+
     @Nullable private final String includeDefaults;
+
     @Nullable private final Boolean local;
+
     @Nullable private final String masterTimeout;
 
     public GetSettingsIndexSettingRequest(Builder builder) {

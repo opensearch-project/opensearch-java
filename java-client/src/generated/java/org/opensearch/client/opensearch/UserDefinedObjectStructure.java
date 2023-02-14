@@ -9,58 +9,111 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class UserDefinedObjectStructure implements JsonpSerializable {
+
     @Nullable private final JsonData bool;
+
     @Nullable private final JsonData boosting;
+
     @Nullable private final JsonData combinedFields;
+
     @Nullable private final JsonData constantScore;
+
     @Nullable private final JsonData disMax;
+
     @Nullable private final JsonData distanceFeature;
+
     @Nullable private final JsonData exists;
+
     @Nullable private final JsonData fieldMaskingSpan;
+
     @Nullable private final JsonData functionScore;
+
     @Nullable private final Map<String, JsonData> fuzzy;
+
     @Nullable private final JsonData geoBoundingBox;
+
     @Nullable private final JsonData geoDistance;
+
     @Nullable private final JsonData geoPolygon;
+
     @Nullable private final JsonData geoShape;
+
     @Nullable private final JsonData hasChild;
+
     @Nullable private final JsonData hasParent;
+
     @Nullable private final JsonData ids;
+
     @Nullable private final Map<String, JsonData> intervals;
+
     @Nullable private final JsonData knn;
+
     @Nullable private final Map<String, JsonData> match;
+
     @Nullable private final JsonData matchAll;
+
     @Nullable private final Map<String, JsonData> matchBoolPrefix;
+
     @Nullable private final JsonData matchNone;
+
     @Nullable private final Map<String, JsonData> matchPhrase;
+
     @Nullable private final Map<String, JsonData> matchPhrasePrefix;
+
     @Nullable private final JsonData moreLikeThis;
+
     @Nullable private final JsonData multiMatch;
+
     @Nullable private final JsonData nested;
+
     @Nullable private final JsonData parentId;
+
     @Nullable private final JsonData percolate;
+
     @Nullable private final JsonData pinned;
+
     @Nullable private final Map<String, JsonData> prefix;
+
     @Nullable private final JsonData queryString;
+
     @Nullable private final Map<String, JsonData> range;
+
     @Nullable private final JsonData rankFeature;
+
     @Nullable private final Map<String, JsonData> regexp;
+
     @Nullable private final JsonData script;
+
     @Nullable private final JsonData scriptScore;
+
     @Nullable private final JsonData shape;
+
     @Nullable private final JsonData simpleQueryString;
+
     @Nullable private final JsonData spanContaining;
+
     @Nullable private final JsonData spanFirst;
+
     @Nullable private final JsonData spanMulti;
+
     @Nullable private final JsonData spanNear;
+
     @Nullable private final JsonData spanNot;
+
     @Nullable private final JsonData spanOr;
+
     @Nullable private final Map<String, JsonData> spanTerm;
+
     @Nullable private final JsonData spanWithin;
+
     @Nullable private final Map<String, JsonData> term;
+
     @Nullable private final JsonData terms;
+
     @Nullable private final Map<String, JsonData> termsSet;
+
     @Nullable private final Map<String, JsonData> wildcard;
+
     @Nullable private final JsonData wrapper;
 
     public UserDefinedObjectStructure(Builder builder) {

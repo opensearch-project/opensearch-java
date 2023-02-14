@@ -14,9 +14,13 @@ import javax.annotation.*;
 /** Adds or removes index aliases. */
 @JsonpDeserializable
 public class PostAliasesRequest extends RequestBase implements JsonpSerializable {
+
     @Nullable private final ActionObjectStructure actions;
+
     @Nullable private final String clusterManagerTimeout;
+
     @Nullable private final String masterTimeout;
+
     @Nullable private final String timeout;
 
     public PostAliasesRequest(Builder builder) {

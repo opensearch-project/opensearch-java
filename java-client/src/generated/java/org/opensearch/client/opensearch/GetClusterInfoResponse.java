@@ -9,10 +9,15 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class GetClusterInfoResponse implements JsonpSerializable {
+
     @Nullable private final String clusterName;
+
     @Nullable private final String clusterUuid;
+
     @Nullable private final String name;
+
     @Nullable private final String tagline;
+
     @Nullable private final Version version;
 
     public GetClusterInfoResponse(Builder builder) {

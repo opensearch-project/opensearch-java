@@ -9,62 +9,13 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class {{className}} implements JsonpSerializable {
-    {{#fields}}
-    {{^required}}@Nullable{{/required}}
-    private final {{{type}}} {{name}};
-    {{/fields}}
+    {{>ObjectShape/Fields}}
+    {{>ObjectShape/Constructor}}
+    {{>ObjectShape/Getters}}
 
-    public {{className}}(Builder builder) {
-        {{#fields}}
-        {{#type.isListOrMap}}
-        this.{{name}} = ApiTypeHelper.unmodifiable(builder.{{name}});
-        {{/type.isListOrMap}}
-        {{^type.isListOrMap}}
-        {{#required}}
-        this.{{name}} = ApiTypeHelper.requireNonNull(builder.{{name}}, this, {{#dq}}{{name}}{{/dq}});
-        {{/required}}
-        {{^required}}
-        this.{{name}} = builder.{{name}};
-        {{/required}}
-        {{/type.isListOrMap}}
-        {{/fields}}
-    }
+    {{>ObjectShape/Serialize}}
 
-    public static {{className}} of(Function<Builder, ObjectBuilder<{{className}}>> fn) {
-        return fn.apply(new Builder()).build();
-    }
+    {{>ObjectShape/Builder}}
 
-    {{#fields}}
-    public final {{{type}}} {{name}}() {
-        return this.{{name}};
-    }
-
-    {{/fields}}
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
-
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        {{#fields}}
-        {{^required}}if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) { {{/required}}
-            generator.writeKey({{#dq}}{{wireName}}{{/dq}});
-            {{#type.serializer}}this.{{name}}{{/type.serializer}}
-        {{^required}} } {{/required}}
-
-        {{/fields}}
-    }
-
-    {{>ObjectBuilder}}
-
-    public static final JsonpDeserializer<{{className}}> _DESERIALIZER = ObjectBuilderDeserializer
-            .lazy(Builder::new, {{className}}::setup{{className}}Deserializer);
-
-    protected static void setup{{className}}Deserializer(
-            ObjectDeserializer<{{className}}.Builder> op) {
-        {{#fields}}
-        op.add(Builder::{{name}}, {{{type.deserializer}}}, {{#dq}}{{wireName}}{{/dq}});
-        {{/fields}}
-    }
+    {{>ObjectShape/Deserialize}}
 }

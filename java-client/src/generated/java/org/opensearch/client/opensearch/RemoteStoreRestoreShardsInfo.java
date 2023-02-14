@@ -9,8 +9,11 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class RemoteStoreRestoreShardsInfo implements JsonpSerializable {
+
     @Nullable private final Integer failed;
+
     @Nullable private final Integer successful;
+
     @Nullable private final Integer total;
 
     public RemoteStoreRestoreShardsInfo(Builder builder) {

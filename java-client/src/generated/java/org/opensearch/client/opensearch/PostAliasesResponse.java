@@ -32,7 +32,6 @@ public class PostAliasesResponse implements JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("acknowledged");
         generator.write(this.acknowledged);
     }

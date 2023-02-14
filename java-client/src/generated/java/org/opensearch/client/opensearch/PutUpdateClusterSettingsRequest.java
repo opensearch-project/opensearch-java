@@ -14,11 +14,17 @@ import javax.annotation.*;
 /** Updates the cluster settings. */
 @JsonpDeserializable
 public class PutUpdateClusterSettingsRequest extends RequestBase implements JsonpSerializable {
+
     @Nullable private final String clusterManagerTimeout;
+
     @Nullable private final Boolean flatSettings;
+
     @Nullable private final String masterTimeout;
+
     @Nullable private final Map<String, JsonData> persistent;
+
     @Nullable private final String timeout;
+
     @Nullable private final Map<String, JsonData> transient_;
 
     public PutUpdateClusterSettingsRequest(Builder builder) {

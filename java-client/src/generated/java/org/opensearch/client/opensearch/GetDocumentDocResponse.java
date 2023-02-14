@@ -9,18 +9,25 @@ import javax.annotation.*;
 
 @JsonpDeserializable
 public class GetDocumentDocResponse implements JsonpSerializable {
+
     @Nullable private final Map<String, JsonData> fields;
 
     private final String id;
 
     private final String index;
+
     @Nullable private final String routing;
+
     @Nullable private final Map<String, JsonData> source;
+
     @Nullable private final String type;
 
     private final boolean found;
+
     @Nullable private final Long primaryTerm;
+
     @Nullable private final Long seqNo;
+
     @Nullable private final Integer version;
 
     public GetDocumentDocResponse(Builder builder) {

@@ -5,18 +5,24 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class ObjectShape {
-    public String name;
-    private final Map<String, Field> fields = new TreeMap<>();
+    private final String className;
+    private final Map<String, Field> bodyFields = new TreeMap<>();
 
-    public void addField(Field field) {
-        fields.put(field.wireName, field);
+    public ObjectShape(String className) {
+        this.className = className;
+    }
+
+    public void addBodyField(Field field) {
+        bodyFields.put(field.wireName, field);
     }
 
     public String className() {
-        return name;
+        return className;
     }
 
+    public Collection<Field> bodyFields() { return bodyFields.values(); }
+
     public Collection<Field> fields() {
-        return fields.values();
+        return bodyFields();
     }
 }
