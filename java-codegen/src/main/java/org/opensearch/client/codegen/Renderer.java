@@ -45,10 +45,15 @@ public class Renderer {
             template.execute(object, lambdas, writer);
 
             String output = writer.toString();
-            output = formatter.formatSource(output);
+
+            try {
+                output = formatter.formatSource(output);
+            } catch (FormatterException e) {
+                output = "// FAILED FORMATTING: " + e + "\n\n" + output;
+            }
 
             return output;
-        } catch (MustacheException | FormatterException e) {
+        } catch (MustacheException e) {
             throw new RenderException("Failed to render: " + object, e);
         }
     }

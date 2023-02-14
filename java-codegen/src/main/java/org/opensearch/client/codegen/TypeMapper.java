@@ -59,6 +59,8 @@ public class TypeMapper {
             return new Type(schema, "JsonData");
         }
 
+        String format = schema.getFormat();
+
         switch (type) {
             case OAI3SchemaKeywords.TYPE_ARRAY:
                 return new Type(schema, "List", mapType(schema.getItemsSchema(), true));
@@ -67,7 +69,6 @@ public class TypeMapper {
             case OAI3SchemaKeywords.TYPE_BOOLEAN:
                 return new Type(schema, "boolean");
             case OAI3SchemaKeywords.TYPE_INTEGER:
-                String format = schema.getFormat();
                 if (format == null) format = OAI3SchemaKeywords.FORMAT_INT32;
                 switch (format) {
                     case OAI3SchemaKeywords.FORMAT_INT32:
@@ -76,6 +77,15 @@ public class TypeMapper {
                         return new Type(schema, "long");
                     default:
                         throw new UnsupportedOperationException("Can not get type name for integer with format: " + format);
+                }
+            case OAI3SchemaKeywords.TYPE_NUMBER:
+                switch (format) {
+                    case OAI3SchemaKeywords.FORMAT_FLOAT:
+                        return new Type(schema, "float");
+                    case OAI3SchemaKeywords.FORMAT_DOUBLE:
+                        return new Type(schema, "double");
+                    default:
+                        throw new UnsupportedOperationException("Can not get type name for number with format: " + format);
                 }
         }
 

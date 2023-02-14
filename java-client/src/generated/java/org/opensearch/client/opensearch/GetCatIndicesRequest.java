@@ -15,15 +15,15 @@ import javax.annotation.*;
  * etc.
  */
 public class GetCatIndicesRequest extends RequestBase {
-    private final int bytes;
-    private final String clusterManagerTimeout;
-    private final ExpandWildcards expandWildcards;
-    private final String format;
-    private final HealthStatus health;
-    private final boolean includeUnloadedSegments;
-    private final String masterTimeout;
-    private final boolean pri;
-    private final String time;
+    @Nullable private final Integer bytes;
+    @Nullable private final String clusterManagerTimeout;
+    @Nullable private final ExpandWildcards expandWildcards;
+    @Nullable private final String format;
+    @Nullable private final HealthStatus health;
+    @Nullable private final Boolean includeUnloadedSegments;
+    @Nullable private final String masterTimeout;
+    @Nullable private final Boolean pri;
+    @Nullable private final String time;
 
     public GetCatIndicesRequest(Builder builder) {
         this.bytes = builder.bytes;
@@ -42,7 +42,7 @@ public class GetCatIndicesRequest extends RequestBase {
         return fn.apply(new Builder()).build();
     }
 
-    public final int bytes() {
+    public final Integer bytes() {
         return this.bytes;
     }
 
@@ -62,7 +62,7 @@ public class GetCatIndicesRequest extends RequestBase {
         return this.health;
     }
 
-    public final boolean includeUnloadedSegments() {
+    public final Boolean includeUnloadedSegments() {
         return this.includeUnloadedSegments;
     }
 
@@ -70,7 +70,7 @@ public class GetCatIndicesRequest extends RequestBase {
         return this.masterTimeout;
     }
 
-    public final boolean pri() {
+    public final Boolean pri() {
         return this.pri;
     }
 
@@ -81,17 +81,17 @@ public class GetCatIndicesRequest extends RequestBase {
     /** Builder for {@link GetCatIndicesRequest}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<GetCatIndicesRequest> {
-        private int bytes;
+        private Integer bytes;
         private String clusterManagerTimeout;
         private ExpandWildcards expandWildcards;
         private String format;
         private HealthStatus health;
-        private boolean includeUnloadedSegments;
+        private Boolean includeUnloadedSegments;
         private String masterTimeout;
-        private boolean pri;
+        private Boolean pri;
         private String time;
 
-        public final Builder bytes(int value) {
+        public final Builder bytes(Integer value) {
             this.bytes = value;
             return this;
         }
@@ -126,7 +126,7 @@ public class GetCatIndicesRequest extends RequestBase {
             return health(fn.apply(new HealthStatus.Builder()).build());
         }
 
-        public final Builder includeUnloadedSegments(boolean value) {
+        public final Builder includeUnloadedSegments(Boolean value) {
             this.includeUnloadedSegments = value;
             return this;
         }
@@ -136,7 +136,7 @@ public class GetCatIndicesRequest extends RequestBase {
             return this;
         }
 
-        public final Builder pri(boolean value) {
+        public final Builder pri(Boolean value) {
             this.pri = value;
             return this;
         }

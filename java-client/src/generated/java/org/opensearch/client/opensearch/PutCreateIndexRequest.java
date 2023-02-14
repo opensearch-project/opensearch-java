@@ -13,14 +13,14 @@ import javax.annotation.*;
 /** Creates index mappings. */
 @JsonpDeserializable
 public class PutCreateIndexRequest extends RequestBase implements JsonpSerializable {
-    private final Map<String, JsonData> aliases;
-    private final String clusterManagerTimeout;
-    private final boolean includeTypeName;
-    private final Map<String, JsonData> mapping;
-    private final String masterTimeout;
-    private final Map<String, JsonData> settings;
-    private final String timeout;
-    private final String waitForActiveShards;
+    @Nullable private final Map<String, JsonData> aliases;
+    @Nullable private final String clusterManagerTimeout;
+    @Nullable private final Boolean includeTypeName;
+    @Nullable private final Map<String, JsonData> mapping;
+    @Nullable private final String masterTimeout;
+    @Nullable private final Map<String, JsonData> settings;
+    @Nullable private final String timeout;
+    @Nullable private final String waitForActiveShards;
 
     public PutCreateIndexRequest(Builder builder) {
         this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
@@ -46,7 +46,7 @@ public class PutCreateIndexRequest extends RequestBase implements JsonpSerializa
         return this.clusterManagerTimeout;
     }
 
-    public final boolean includeTypeName() {
+    public final Boolean includeTypeName() {
         return this.includeTypeName;
     }
 
@@ -113,7 +113,7 @@ public class PutCreateIndexRequest extends RequestBase implements JsonpSerializa
             implements ObjectBuilder<PutCreateIndexRequest> {
         private Map<String, JsonData> aliases;
         private String clusterManagerTimeout;
-        private boolean includeTypeName;
+        private Boolean includeTypeName;
         private Map<String, JsonData> mapping;
         private String masterTimeout;
         private Map<String, JsonData> settings;
@@ -135,7 +135,7 @@ public class PutCreateIndexRequest extends RequestBase implements JsonpSerializa
             return this;
         }
 
-        public final Builder includeTypeName(boolean value) {
+        public final Builder includeTypeName(Boolean value) {
             this.includeTypeName = value;
             return this;
         }

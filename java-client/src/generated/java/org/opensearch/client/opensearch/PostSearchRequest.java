@@ -13,52 +13,52 @@ import javax.annotation.*;
 /** Returns results matching a query. */
 @JsonpDeserializable
 public class PostSearchRequest extends RequestBase implements JsonpSerializable {
-    private final boolean allowNoIndices;
-    private final boolean allowPartialSearchResults;
-    private final boolean analyzeWildcard;
-    private final String analyzer;
-    private final int batchedReduceSize;
-    private final boolean ccsMinimizeRoundtrips;
-    private final DefaultOperator defaultOperator;
-    private final String df;
-    private final String docvalueFields;
-    private final ExpandWildcards expandWildcards;
-    private final boolean explain;
-    private final List<String> fields;
-    private final int from;
-    private final boolean ignoreThrottled;
-    private final boolean ignoreUnavailable;
-    private final List<JsonData> indicesBoost;
-    private final boolean lenient;
-    private final long maxConcurrentShardRequests;
-    private final int minScore;
-    private final long preFilterShardSize;
-    private final String preference;
-    private final String q;
-    private final UserDefinedObjectStructure query;
-    private final boolean requestCache;
-    private final boolean restTotalHitsAsInt;
-    private final String routing;
-    private final String scroll;
-    private final SearchType searchType;
-    private final boolean seqNoPrimaryTerm;
-    private final int size;
-    private final List<String> sort;
-    private final String source;
-    private final List<String> sourceExcludes;
-    private final List<String> sourceIncludes;
-    private final String stats;
-    private final boolean storedFields;
-    private final String suggestField;
-    private final SuggestMode suggestMode;
-    private final long suggestSize;
-    private final String suggestText;
-    private final int terminateAfter;
-    private final String timeout;
-    private final boolean trackScores;
-    private final int trackTotalHits;
-    private final boolean typedKeys;
-    private final boolean version;
+    @Nullable private final Boolean allowNoIndices;
+    @Nullable private final Boolean allowPartialSearchResults;
+    @Nullable private final Boolean analyzeWildcard;
+    @Nullable private final String analyzer;
+    @Nullable private final Integer batchedReduceSize;
+    @Nullable private final Boolean ccsMinimizeRoundtrips;
+    @Nullable private final DefaultOperator defaultOperator;
+    @Nullable private final String df;
+    @Nullable private final String docvalueFields;
+    @Nullable private final ExpandWildcards expandWildcards;
+    @Nullable private final Boolean explain;
+    @Nullable private final List<String> fields;
+    @Nullable private final Integer from;
+    @Nullable private final Boolean ignoreThrottled;
+    @Nullable private final Boolean ignoreUnavailable;
+    @Nullable private final List<JsonData> indicesBoost;
+    @Nullable private final Boolean lenient;
+    @Nullable private final Long maxConcurrentShardRequests;
+    @Nullable private final Integer minScore;
+    @Nullable private final Long preFilterShardSize;
+    @Nullable private final String preference;
+    @Nullable private final String q;
+    @Nullable private final UserDefinedObjectStructure query;
+    @Nullable private final Boolean requestCache;
+    @Nullable private final Boolean restTotalHitsAsInt;
+    @Nullable private final String routing;
+    @Nullable private final String scroll;
+    @Nullable private final SearchType searchType;
+    @Nullable private final Boolean seqNoPrimaryTerm;
+    @Nullable private final Integer size;
+    @Nullable private final List<String> sort;
+    @Nullable private final String source;
+    @Nullable private final List<String> sourceExcludes;
+    @Nullable private final List<String> sourceIncludes;
+    @Nullable private final String stats;
+    @Nullable private final Boolean storedFields;
+    @Nullable private final String suggestField;
+    @Nullable private final SuggestMode suggestMode;
+    @Nullable private final Long suggestSize;
+    @Nullable private final String suggestText;
+    @Nullable private final Integer terminateAfter;
+    @Nullable private final String timeout;
+    @Nullable private final Boolean trackScores;
+    @Nullable private final Integer trackTotalHits;
+    @Nullable private final Boolean typedKeys;
+    @Nullable private final Boolean version;
 
     public PostSearchRequest(Builder builder) {
         this.allowNoIndices = builder.allowNoIndices;
@@ -113,15 +113,15 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
         return fn.apply(new Builder()).build();
     }
 
-    public final boolean allowNoIndices() {
+    public final Boolean allowNoIndices() {
         return this.allowNoIndices;
     }
 
-    public final boolean allowPartialSearchResults() {
+    public final Boolean allowPartialSearchResults() {
         return this.allowPartialSearchResults;
     }
 
-    public final boolean analyzeWildcard() {
+    public final Boolean analyzeWildcard() {
         return this.analyzeWildcard;
     }
 
@@ -129,11 +129,11 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
         return this.analyzer;
     }
 
-    public final int batchedReduceSize() {
+    public final Integer batchedReduceSize() {
         return this.batchedReduceSize;
     }
 
-    public final boolean ccsMinimizeRoundtrips() {
+    public final Boolean ccsMinimizeRoundtrips() {
         return this.ccsMinimizeRoundtrips;
     }
 
@@ -153,7 +153,7 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
         return this.expandWildcards;
     }
 
-    public final boolean explain() {
+    public final Boolean explain() {
         return this.explain;
     }
 
@@ -161,15 +161,15 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
         return this.fields;
     }
 
-    public final int from() {
+    public final Integer from() {
         return this.from;
     }
 
-    public final boolean ignoreThrottled() {
+    public final Boolean ignoreThrottled() {
         return this.ignoreThrottled;
     }
 
-    public final boolean ignoreUnavailable() {
+    public final Boolean ignoreUnavailable() {
         return this.ignoreUnavailable;
     }
 
@@ -177,19 +177,19 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
         return this.indicesBoost;
     }
 
-    public final boolean lenient() {
+    public final Boolean lenient() {
         return this.lenient;
     }
 
-    public final long maxConcurrentShardRequests() {
+    public final Long maxConcurrentShardRequests() {
         return this.maxConcurrentShardRequests;
     }
 
-    public final int minScore() {
+    public final Integer minScore() {
         return this.minScore;
     }
 
-    public final long preFilterShardSize() {
+    public final Long preFilterShardSize() {
         return this.preFilterShardSize;
     }
 
@@ -205,11 +205,11 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
         return this.query;
     }
 
-    public final boolean requestCache() {
+    public final Boolean requestCache() {
         return this.requestCache;
     }
 
-    public final boolean restTotalHitsAsInt() {
+    public final Boolean restTotalHitsAsInt() {
         return this.restTotalHitsAsInt;
     }
 
@@ -225,11 +225,11 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
         return this.searchType;
     }
 
-    public final boolean seqNoPrimaryTerm() {
+    public final Boolean seqNoPrimaryTerm() {
         return this.seqNoPrimaryTerm;
     }
 
-    public final int size() {
+    public final Integer size() {
         return this.size;
     }
 
@@ -253,7 +253,7 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
         return this.stats;
     }
 
-    public final boolean storedFields() {
+    public final Boolean storedFields() {
         return this.storedFields;
     }
 
@@ -265,7 +265,7 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
         return this.suggestMode;
     }
 
-    public final long suggestSize() {
+    public final Long suggestSize() {
         return this.suggestSize;
     }
 
@@ -273,7 +273,7 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
         return this.suggestText;
     }
 
-    public final int terminateAfter() {
+    public final Integer terminateAfter() {
         return this.terminateAfter;
     }
 
@@ -281,19 +281,19 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
         return this.timeout;
     }
 
-    public final boolean trackScores() {
+    public final Boolean trackScores() {
         return this.trackScores;
     }
 
-    public final int trackTotalHits() {
+    public final Integer trackTotalHits() {
         return this.trackTotalHits;
     }
 
-    public final boolean typedKeys() {
+    public final Boolean typedKeys() {
         return this.typedKeys;
     }
 
-    public final boolean version() {
+    public final Boolean version() {
         return this.version;
     }
 
@@ -386,64 +386,64 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
     /** Builder for {@link PostSearchRequest}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<PostSearchRequest> {
-        private boolean allowNoIndices;
-        private boolean allowPartialSearchResults;
-        private boolean analyzeWildcard;
+        private Boolean allowNoIndices;
+        private Boolean allowPartialSearchResults;
+        private Boolean analyzeWildcard;
         private String analyzer;
-        private int batchedReduceSize;
-        private boolean ccsMinimizeRoundtrips;
+        private Integer batchedReduceSize;
+        private Boolean ccsMinimizeRoundtrips;
         private DefaultOperator defaultOperator;
         private String df;
         private String docvalueFields;
         private ExpandWildcards expandWildcards;
-        private boolean explain;
+        private Boolean explain;
         private List<String> fields;
-        private int from;
-        private boolean ignoreThrottled;
-        private boolean ignoreUnavailable;
+        private Integer from;
+        private Boolean ignoreThrottled;
+        private Boolean ignoreUnavailable;
         private List<JsonData> indicesBoost;
-        private boolean lenient;
-        private long maxConcurrentShardRequests;
-        private int minScore;
-        private long preFilterShardSize;
+        private Boolean lenient;
+        private Long maxConcurrentShardRequests;
+        private Integer minScore;
+        private Long preFilterShardSize;
         private String preference;
         private String q;
         private UserDefinedObjectStructure query;
-        private boolean requestCache;
-        private boolean restTotalHitsAsInt;
+        private Boolean requestCache;
+        private Boolean restTotalHitsAsInt;
         private String routing;
         private String scroll;
         private SearchType searchType;
-        private boolean seqNoPrimaryTerm;
-        private int size;
+        private Boolean seqNoPrimaryTerm;
+        private Integer size;
         private List<String> sort;
         private String source;
         private List<String> sourceExcludes;
         private List<String> sourceIncludes;
         private String stats;
-        private boolean storedFields;
+        private Boolean storedFields;
         private String suggestField;
         private SuggestMode suggestMode;
-        private long suggestSize;
+        private Long suggestSize;
         private String suggestText;
-        private int terminateAfter;
+        private Integer terminateAfter;
         private String timeout;
-        private boolean trackScores;
-        private int trackTotalHits;
-        private boolean typedKeys;
-        private boolean version;
+        private Boolean trackScores;
+        private Integer trackTotalHits;
+        private Boolean typedKeys;
+        private Boolean version;
 
-        public final Builder allowNoIndices(boolean value) {
+        public final Builder allowNoIndices(Boolean value) {
             this.allowNoIndices = value;
             return this;
         }
 
-        public final Builder allowPartialSearchResults(boolean value) {
+        public final Builder allowPartialSearchResults(Boolean value) {
             this.allowPartialSearchResults = value;
             return this;
         }
 
-        public final Builder analyzeWildcard(boolean value) {
+        public final Builder analyzeWildcard(Boolean value) {
             this.analyzeWildcard = value;
             return this;
         }
@@ -453,12 +453,12 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
             return this;
         }
 
-        public final Builder batchedReduceSize(int value) {
+        public final Builder batchedReduceSize(Integer value) {
             this.batchedReduceSize = value;
             return this;
         }
 
-        public final Builder ccsMinimizeRoundtrips(boolean value) {
+        public final Builder ccsMinimizeRoundtrips(Boolean value) {
             this.ccsMinimizeRoundtrips = value;
             return this;
         }
@@ -493,7 +493,7 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
             return expandWildcards(fn.apply(new ExpandWildcards.Builder()).build());
         }
 
-        public final Builder explain(boolean value) {
+        public final Builder explain(Boolean value) {
             this.explain = value;
             return this;
         }
@@ -508,17 +508,17 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
             return this;
         }
 
-        public final Builder from(int value) {
+        public final Builder from(Integer value) {
             this.from = value;
             return this;
         }
 
-        public final Builder ignoreThrottled(boolean value) {
+        public final Builder ignoreThrottled(Boolean value) {
             this.ignoreThrottled = value;
             return this;
         }
 
-        public final Builder ignoreUnavailable(boolean value) {
+        public final Builder ignoreUnavailable(Boolean value) {
             this.ignoreUnavailable = value;
             return this;
         }
@@ -533,22 +533,22 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
             return this;
         }
 
-        public final Builder lenient(boolean value) {
+        public final Builder lenient(Boolean value) {
             this.lenient = value;
             return this;
         }
 
-        public final Builder maxConcurrentShardRequests(long value) {
+        public final Builder maxConcurrentShardRequests(Long value) {
             this.maxConcurrentShardRequests = value;
             return this;
         }
 
-        public final Builder minScore(int value) {
+        public final Builder minScore(Integer value) {
             this.minScore = value;
             return this;
         }
 
-        public final Builder preFilterShardSize(long value) {
+        public final Builder preFilterShardSize(Long value) {
             this.preFilterShardSize = value;
             return this;
         }
@@ -576,12 +576,12 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
             return query(fn.apply(new UserDefinedObjectStructure.Builder()).build());
         }
 
-        public final Builder requestCache(boolean value) {
+        public final Builder requestCache(Boolean value) {
             this.requestCache = value;
             return this;
         }
 
-        public final Builder restTotalHitsAsInt(boolean value) {
+        public final Builder restTotalHitsAsInt(Boolean value) {
             this.restTotalHitsAsInt = value;
             return this;
         }
@@ -606,12 +606,12 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
             return searchType(fn.apply(new SearchType.Builder()).build());
         }
 
-        public final Builder seqNoPrimaryTerm(boolean value) {
+        public final Builder seqNoPrimaryTerm(Boolean value) {
             this.seqNoPrimaryTerm = value;
             return this;
         }
 
-        public final Builder size(int value) {
+        public final Builder size(Integer value) {
             this.size = value;
             return this;
         }
@@ -656,7 +656,7 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
             return this;
         }
 
-        public final Builder storedFields(boolean value) {
+        public final Builder storedFields(Boolean value) {
             this.storedFields = value;
             return this;
         }
@@ -676,7 +676,7 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
             return suggestMode(fn.apply(new SuggestMode.Builder()).build());
         }
 
-        public final Builder suggestSize(long value) {
+        public final Builder suggestSize(Long value) {
             this.suggestSize = value;
             return this;
         }
@@ -686,7 +686,7 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
             return this;
         }
 
-        public final Builder terminateAfter(int value) {
+        public final Builder terminateAfter(Integer value) {
             this.terminateAfter = value;
             return this;
         }
@@ -696,22 +696,22 @@ public class PostSearchRequest extends RequestBase implements JsonpSerializable 
             return this;
         }
 
-        public final Builder trackScores(boolean value) {
+        public final Builder trackScores(Boolean value) {
             this.trackScores = value;
             return this;
         }
 
-        public final Builder trackTotalHits(int value) {
+        public final Builder trackTotalHits(Integer value) {
             this.trackTotalHits = value;
             return this;
         }
 
-        public final Builder typedKeys(boolean value) {
+        public final Builder typedKeys(Boolean value) {
             this.typedKeys = value;
             return this;
         }
 
-        public final Builder version(boolean value) {
+        public final Builder version(Boolean value) {
             this.version = value;
             return this;
         }

@@ -13,15 +13,15 @@ import javax.annotation.*;
 /** The put mapping API operation lets you add new mappings and fields to an index. */
 @JsonpDeserializable
 public class PutIndexMappingWithIndexRequest extends RequestBase implements JsonpSerializable {
-    private final boolean allowNoIndices;
-    private final String clusterManagerTimeout;
-    private final ExpandWildcards expandWildcards;
-    private final boolean ignoreUnavailable;
-    private final boolean includeTypeName;
-    private final String masterTimeout;
-    private final JsonData properties;
-    private final String timeout;
-    private final boolean writeIndexOnly;
+    @Nullable private final Boolean allowNoIndices;
+    @Nullable private final String clusterManagerTimeout;
+    @Nullable private final ExpandWildcards expandWildcards;
+    @Nullable private final Boolean ignoreUnavailable;
+    @Nullable private final Boolean includeTypeName;
+    @Nullable private final String masterTimeout;
+    @Nullable private final JsonData properties;
+    @Nullable private final String timeout;
+    @Nullable private final Boolean writeIndexOnly;
 
     public PutIndexMappingWithIndexRequest(Builder builder) {
         this.allowNoIndices = builder.allowNoIndices;
@@ -40,7 +40,7 @@ public class PutIndexMappingWithIndexRequest extends RequestBase implements Json
         return fn.apply(new Builder()).build();
     }
 
-    public final boolean allowNoIndices() {
+    public final Boolean allowNoIndices() {
         return this.allowNoIndices;
     }
 
@@ -52,11 +52,11 @@ public class PutIndexMappingWithIndexRequest extends RequestBase implements Json
         return this.expandWildcards;
     }
 
-    public final boolean ignoreUnavailable() {
+    public final Boolean ignoreUnavailable() {
         return this.ignoreUnavailable;
     }
 
-    public final boolean includeTypeName() {
+    public final Boolean includeTypeName() {
         return this.includeTypeName;
     }
 
@@ -72,7 +72,7 @@ public class PutIndexMappingWithIndexRequest extends RequestBase implements Json
         return this.timeout;
     }
 
-    public final boolean writeIndexOnly() {
+    public final Boolean writeIndexOnly() {
         return this.writeIndexOnly;
     }
 
@@ -92,17 +92,17 @@ public class PutIndexMappingWithIndexRequest extends RequestBase implements Json
     /** Builder for {@link PutIndexMappingWithIndexRequest}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<PutIndexMappingWithIndexRequest> {
-        private boolean allowNoIndices;
+        private Boolean allowNoIndices;
         private String clusterManagerTimeout;
         private ExpandWildcards expandWildcards;
-        private boolean ignoreUnavailable;
-        private boolean includeTypeName;
+        private Boolean ignoreUnavailable;
+        private Boolean includeTypeName;
         private String masterTimeout;
         private JsonData properties;
         private String timeout;
-        private boolean writeIndexOnly;
+        private Boolean writeIndexOnly;
 
-        public final Builder allowNoIndices(boolean value) {
+        public final Builder allowNoIndices(Boolean value) {
             this.allowNoIndices = value;
             return this;
         }
@@ -122,12 +122,12 @@ public class PutIndexMappingWithIndexRequest extends RequestBase implements Json
             return expandWildcards(fn.apply(new ExpandWildcards.Builder()).build());
         }
 
-        public final Builder ignoreUnavailable(boolean value) {
+        public final Builder ignoreUnavailable(Boolean value) {
             this.ignoreUnavailable = value;
             return this;
         }
 
-        public final Builder includeTypeName(boolean value) {
+        public final Builder includeTypeName(Boolean value) {
             this.includeTypeName = value;
             return this;
         }
@@ -147,7 +147,7 @@ public class PutIndexMappingWithIndexRequest extends RequestBase implements Json
             return this;
         }
 
-        public final Builder writeIndexOnly(boolean value) {
+        public final Builder writeIndexOnly(Boolean value) {
             this.writeIndexOnly = value;
             return this;
         }
