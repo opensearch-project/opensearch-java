@@ -8,6 +8,7 @@ import org.opensearch.client.util.*;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.*;
 import javax.annotation.*;
 
 /** Returns basic statistics about performance of cluster nodes. */

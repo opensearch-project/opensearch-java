@@ -8,6 +8,7 @@ import org.opensearch.client.util.*;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.*;
 import javax.annotation.*;
 
 /** The get settings API operation returns all the settings in your index. */
@@ -94,11 +95,6 @@ public class GetSettingsIndexRequest extends RequestBase {
         public final Builder expandWildcards(ExpandWildcards value) {
             this.expandWildcards = value;
             return this;
-        }
-
-        public final Builder expandWildcards(
-                Function<ExpandWildcards.Builder, ObjectBuilder<ExpandWildcards>> fn) {
-            return expandWildcards(fn.apply(new ExpandWildcards.Builder()).build());
         }
 
         public final Builder flatSettings(Boolean value) {

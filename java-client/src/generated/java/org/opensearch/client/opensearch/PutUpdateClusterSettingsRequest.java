@@ -8,6 +8,7 @@ import org.opensearch.client.util.*;
 import jakarta.json.stream.JsonGenerator;
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.*;
 import javax.annotation.*;
 
 /** Updates the cluster settings. */

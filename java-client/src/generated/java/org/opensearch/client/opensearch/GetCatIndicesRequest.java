@@ -8,6 +8,7 @@ import org.opensearch.client.util.*;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.*;
 import javax.annotation.*;
 
 /**
@@ -106,11 +107,6 @@ public class GetCatIndicesRequest extends RequestBase {
             return this;
         }
 
-        public final Builder expandWildcards(
-                Function<ExpandWildcards.Builder, ObjectBuilder<ExpandWildcards>> fn) {
-            return expandWildcards(fn.apply(new ExpandWildcards.Builder()).build());
-        }
-
         public final Builder format(String value) {
             this.format = value;
             return this;
@@ -119,11 +115,6 @@ public class GetCatIndicesRequest extends RequestBase {
         public final Builder health(HealthStatus value) {
             this.health = value;
             return this;
-        }
-
-        public final Builder health(
-                Function<HealthStatus.Builder, ObjectBuilder<HealthStatus>> fn) {
-            return health(fn.apply(new HealthStatus.Builder()).build());
         }
 
         public final Builder includeUnloadedSegments(Boolean value) {

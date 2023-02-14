@@ -8,6 +8,7 @@ import org.opensearch.client.util.*;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.*;
 import javax.annotation.*;
 
 /** Returns a document */
@@ -143,11 +144,6 @@ public class GetDocumentDocRequest extends RequestBase {
         public final Builder versionType(VersionType value) {
             this.versionType = value;
             return this;
-        }
-
-        public final Builder versionType(
-                Function<VersionType.Builder, ObjectBuilder<VersionType>> fn) {
-            return versionType(fn.apply(new VersionType.Builder()).build());
         }
 
         /**

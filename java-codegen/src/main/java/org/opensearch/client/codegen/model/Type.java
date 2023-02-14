@@ -1,6 +1,7 @@
 package org.opensearch.client.codegen.model;
 
 import com.samskivert.mustache.Mustache;
+import org.openapi4j.core.model.v3.OAI3SchemaKeywords;
 import org.openapi4j.parser.model.v3.Schema;
 import org.opensearch.client.codegen.utils.Schemas;
 
@@ -108,14 +109,18 @@ public class Type {
 
     public boolean isBuiltIn() { return isListOrMap() || isPrimitive() || "JsonData".equals(name); }
 
+    public boolean hasBuilder() {
+        return !isBuiltIn() && !Schemas.hasEnums(schema);
+    }
+
     public Type builderType() {
-        if (isBuiltIn()) return null;
+        if (!hasBuilder()) return null;
 
         return new Type(name + ".Builder");
     }
 
     public Type builderFuncType() {
-        if (isBuiltIn()) return null;
+        if (!hasBuilder()) return null;
 
         return new Type(null, "Function", builderType(), new Type(null, "ObjectBuilder", this));
     }

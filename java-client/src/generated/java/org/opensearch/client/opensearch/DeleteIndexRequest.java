@@ -8,6 +8,7 @@ import org.opensearch.client.util.*;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.*;
 import javax.annotation.*;
 
 /** Removes a document from the index. */
@@ -79,11 +80,6 @@ public class DeleteIndexRequest extends RequestBase {
         public final Builder expandWildcards(ExpandWildcards value) {
             this.expandWildcards = value;
             return this;
-        }
-
-        public final Builder expandWildcards(
-                Function<ExpandWildcards.Builder, ObjectBuilder<ExpandWildcards>> fn) {
-            return expandWildcards(fn.apply(new ExpandWildcards.Builder()).build());
         }
 
         public final Builder ignoreUnavailable(Boolean value) {

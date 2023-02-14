@@ -8,6 +8,7 @@ import org.opensearch.client.util.*;
 import jakarta.json.stream.JsonGenerator;
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.*;
 import javax.annotation.*;
 
 /** Returns results matching a query. */
@@ -469,11 +470,6 @@ public class PostSearchWithIndexRequest extends RequestBase implements JsonpSeri
             return this;
         }
 
-        public final Builder defaultOperator(
-                Function<DefaultOperator.Builder, ObjectBuilder<DefaultOperator>> fn) {
-            return defaultOperator(fn.apply(new DefaultOperator.Builder()).build());
-        }
-
         public final Builder df(String value) {
             this.df = value;
             return this;
@@ -487,11 +483,6 @@ public class PostSearchWithIndexRequest extends RequestBase implements JsonpSeri
         public final Builder expandWildcards(ExpandWildcards value) {
             this.expandWildcards = value;
             return this;
-        }
-
-        public final Builder expandWildcards(
-                Function<ExpandWildcards.Builder, ObjectBuilder<ExpandWildcards>> fn) {
-            return expandWildcards(fn.apply(new ExpandWildcards.Builder()).build());
         }
 
         public final Builder explain(Boolean value) {
@@ -602,11 +593,6 @@ public class PostSearchWithIndexRequest extends RequestBase implements JsonpSeri
             return this;
         }
 
-        public final Builder searchType(
-                Function<SearchType.Builder, ObjectBuilder<SearchType>> fn) {
-            return searchType(fn.apply(new SearchType.Builder()).build());
-        }
-
         public final Builder seqNoPrimaryTerm(Boolean value) {
             this.seqNoPrimaryTerm = value;
             return this;
@@ -670,11 +656,6 @@ public class PostSearchWithIndexRequest extends RequestBase implements JsonpSeri
         public final Builder suggestMode(SuggestMode value) {
             this.suggestMode = value;
             return this;
-        }
-
-        public final Builder suggestMode(
-                Function<SuggestMode.Builder, ObjectBuilder<SuggestMode>> fn) {
-            return suggestMode(fn.apply(new SuggestMode.Builder()).build());
         }
 
         public final Builder suggestSize(Long value) {
