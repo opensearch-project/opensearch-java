@@ -9,10 +9,7 @@ import com.samskivert.mustache.Template;
 import org.apache.commons.text.StringEscapeUtils;
 import org.opensearch.client.codegen.exceptions.RenderException;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringWriter;
-import java.io.Writer;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.MissingResourceException;
@@ -40,7 +37,7 @@ public class Renderer {
                 .build());
     }
 
-    public <T> void render(T object) throws RenderException {
+    public <T> String render(T object) throws RenderException {
         try {
             Template template = compiler.loadTemplate(object.getClass().getSimpleName());
             Writer writer = new StringWriter();
@@ -48,11 +45,20 @@ public class Renderer {
             template.execute(object, lambdas, writer);
 
             String output = writer.toString();
-            output = true ? formatter.formatSource(output) : output;
+            output = formatter.formatSource(output);
 
-            System.out.println(output);
+            return output;
         } catch (MustacheException | FormatterException e) {
             throw new RenderException("Failed to render: " + object, e);
+        }
+    }
+
+    public <T> void render(T object, File outputFile) throws RenderException {
+        String output = render(object);
+        try (Writer writer = new FileWriter(outputFile)) {
+            writer.write(output);
+        } catch (IOException e) {
+            throw new RenderException("Unable to write rendered output to: " + outputFile, e);
         }
     }
 }

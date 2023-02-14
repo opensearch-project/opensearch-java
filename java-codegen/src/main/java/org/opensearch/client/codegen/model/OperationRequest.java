@@ -1,17 +1,15 @@
 package org.opensearch.client.codegen.model;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class OperationRequest {
     public String operationId;
     public String description;
     public String httpMethod;
     public String httpPath;
-    private Map<String, Field> bodyFields = new TreeMap<>();
-    private Map<String, Field> queryParams = new TreeMap<>();
-    private Map<String, Field> fields = new TreeMap<>();
+    private final Map<String, Field> bodyFields = new TreeMap<>();
+    private final Map<String, Field> queryParams = new TreeMap<>();
+    private final Map<String, Field> fields = new TreeMap<>();
 
     public String className() {
         return operationId + "Request";
