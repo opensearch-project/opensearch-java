@@ -1,9 +1,6 @@
 package org.opensearch.client.opensearch;
 
-import org.opensearch.client.opensearch._types.*;
 import org.opensearch.client.json.*;
-import org.opensearch.client.transport.*;
-import org.opensearch.client.transport.endpoints.*;
 import org.opensearch.client.util.*;
 import jakarta.json.stream.JsonGenerator;
 import java.util.*;
@@ -20,9 +17,12 @@ public class PutCreateIndexResponse implements JsonpSerializable {
     private final boolean shardsAcknowledged;
 
     public PutCreateIndexResponse(Builder builder) {
-        this.acknowledged = builder.acknowledged;
-        this.index = builder.index;
-        this.shardsAcknowledged = builder.shardsAcknowledged;
+        this.acknowledged =
+                ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.shardsAcknowledged =
+                ApiTypeHelper.requireNonNull(
+                        builder.shardsAcknowledged, this, "shardsAcknowledged");
     }
 
     public static PutCreateIndexResponse of(
@@ -49,28 +49,23 @@ public class PutCreateIndexResponse implements JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.acknowledged != null) {
-            generator.writeKey("acknowledged");
-            generator.write(this.acknowledged);
-        }
 
-        if (this.index != null) {
-            generator.writeKey("index");
-            generator.write(this.index);
-        }
+        generator.writeKey("acknowledged");
+        generator.write(this.acknowledged);
 
-        if (this.shardsAcknowledged != null) {
-            generator.writeKey("shards_acknowledged");
-            generator.write(this.shardsAcknowledged);
-        }
+        generator.writeKey("index");
+        generator.write(this.index);
+
+        generator.writeKey("shards_acknowledged");
+        generator.write(this.shardsAcknowledged);
     }
 
     /** Builder for {@link PutCreateIndexResponse}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<PutCreateIndexResponse> {
-        private boolean acknowledged;
+        private Boolean acknowledged;
         private String index;
-        private boolean shardsAcknowledged;
+        private Boolean shardsAcknowledged;
 
         public final Builder acknowledged(boolean value) {
             this.acknowledged = value;

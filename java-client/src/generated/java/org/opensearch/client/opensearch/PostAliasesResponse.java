@@ -1,9 +1,6 @@
 package org.opensearch.client.opensearch;
 
-import org.opensearch.client.opensearch._types.*;
 import org.opensearch.client.json.*;
-import org.opensearch.client.transport.*;
-import org.opensearch.client.transport.endpoints.*;
 import org.opensearch.client.util.*;
 import jakarta.json.stream.JsonGenerator;
 import java.util.*;
@@ -16,7 +13,8 @@ public class PostAliasesResponse implements JsonpSerializable {
     private final boolean acknowledged;
 
     public PostAliasesResponse(Builder builder) {
-        this.acknowledged = builder.acknowledged;
+        this.acknowledged =
+                ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
     }
 
     public static PostAliasesResponse of(Function<Builder, ObjectBuilder<PostAliasesResponse>> fn) {
@@ -34,16 +32,15 @@ public class PostAliasesResponse implements JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.acknowledged != null) {
-            generator.writeKey("acknowledged");
-            generator.write(this.acknowledged);
-        }
+
+        generator.writeKey("acknowledged");
+        generator.write(this.acknowledged);
     }
 
     /** Builder for {@link PostAliasesResponse}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<PostAliasesResponse> {
-        private boolean acknowledged;
+        private Boolean acknowledged;
 
         public final Builder acknowledged(boolean value) {
             this.acknowledged = value;

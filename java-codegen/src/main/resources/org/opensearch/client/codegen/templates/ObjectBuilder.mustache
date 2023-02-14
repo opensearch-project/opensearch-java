@@ -3,7 +3,7 @@
      */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<{{className}}> {
         {{#fields}}
-        private {{{type}}} {{name}};
+        private {{{type.boxed}}} {{name}};
         {{/fields}}
 
         {{#fields}}

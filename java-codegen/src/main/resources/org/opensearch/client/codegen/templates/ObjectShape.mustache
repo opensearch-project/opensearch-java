@@ -1,9 +1,6 @@
 package org.opensearch.client.opensearch;
 
-import org.opensearch.client.opensearch._types.*;
 import org.opensearch.client.json.*;
-import org.opensearch.client.transport.*;
-import org.opensearch.client.transport.endpoints.*;
 import org.opensearch.client.util.*;
 import jakarta.json.stream.JsonGenerator;
 import java.util.*;
@@ -23,7 +20,12 @@ public class {{className}} implements JsonpSerializable {
         this.{{name}} = ApiTypeHelper.unmodifiable(builder.{{name}});
         {{/type.isListOrMap}}
         {{^type.isListOrMap}}
+        {{#required}}
+        this.{{name}} = ApiTypeHelper.requireNonNull(builder.{{name}}, this, {{#dq}}{{name}}{{/dq}});
+        {{/required}}
+        {{^required}}
         this.{{name}} = builder.{{name}};
+        {{/required}}
         {{/type.isListOrMap}}
         {{/fields}}
     }
@@ -46,10 +48,10 @@ public class {{className}} implements JsonpSerializable {
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         {{#fields}}
-        if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
+        {{^required}}if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) { {{/required}}
             generator.writeKey({{#dq}}{{wireName}}{{/dq}});
             {{#type.serializer}}this.{{name}}{{/type.serializer}}
-        }
+        {{^required}} } {{/required}}
 
         {{/fields}}
     }
