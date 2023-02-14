@@ -14,6 +14,7 @@ import org.opensearch.client.codegen.model.EnumShape;
 import org.opensearch.client.codegen.model.Field;
 import org.opensearch.client.codegen.model.ObjectShape;
 import org.opensearch.client.codegen.model.OperationRequest;
+import org.opensearch.client.codegen.utils.Schemas;
 
 import java.io.File;
 import java.util.*;
@@ -112,9 +113,9 @@ public class ApiSpecification {
         String[] refParts = ref.split("/");
         String name = refParts[refParts.length - 1];
 
-        if (OAI3SchemaKeywords.TYPE_OBJECT.equals(schema.getType())) {
+        if (Schemas.isObject(schema)) {
             visitObjectShape(name, schema);
-        } else if (OAI3SchemaKeywords.TYPE_STRING.equals(schema.getType()) && schema.hasEnums()) {
+        } else if (Schemas.isString(schema) && schema.hasEnums()) {
             enumShapes.add(new EnumShape(name, schema.getEnums().stream().map(Object::toString).collect(Collectors.toList())));
         }
     }

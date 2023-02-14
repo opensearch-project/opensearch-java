@@ -60,10 +60,6 @@ public class Total implements JsonpSerializable {
             return this;
         }
 
-        public final Builder relation(Function<Relation.Builder, ObjectBuilder<Relation>> fn) {
-            return relation(fn.apply(new Relation.Builder()).build());
-        }
-
         public final Builder value(Integer value) {
             this.value = value;
             return this;

@@ -8,6 +8,7 @@ import org.opensearch.client.util.*;
 import jakarta.json.stream.JsonGenerator;
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.*;
 import javax.annotation.*;
 
 /** The put mapping API operation lets you add new mappings and fields to an index. */
@@ -115,11 +116,6 @@ public class PutIndexMappingWithIndexRequest extends RequestBase implements Json
         public final Builder expandWildcards(ExpandWildcards value) {
             this.expandWildcards = value;
             return this;
-        }
-
-        public final Builder expandWildcards(
-                Function<ExpandWildcards.Builder, ObjectBuilder<ExpandWildcards>> fn) {
-            return expandWildcards(fn.apply(new ExpandWildcards.Builder()).build());
         }
 
         public final Builder ignoreUnavailable(Boolean value) {

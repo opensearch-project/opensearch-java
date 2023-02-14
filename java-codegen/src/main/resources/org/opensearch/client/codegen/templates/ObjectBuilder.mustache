@@ -1,0 +1,63 @@
+    /**
+     * Builder for {@link {{className}}}.
+     */
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<{{className}}> {
+        {{#fields}}
+        private {{{type}}} {{name}};
+        {{/fields}}
+
+        {{#fields}}
+        {{#type.isMap}}
+        public final Builder {{name}}({{{type}}} map) {
+            this.{{name}} = _mapPutAll(this.{{name}}, map);
+            return this;
+        }
+
+        public final Builder {{name}}({{{type.mapKeyType}}} key, {{{type.mapValueType}}} value) {
+            this.{{name}} = _mapPut(this.{{name}}, key, value);
+            return this;
+        }
+        {{/type.isMap}}
+        {{#type.isList}}
+        public final Builder {{name}}({{{type}}} list) {
+            this.{{name}} = _listAddAll(this.{{name}}, list);
+            return this;
+        }
+
+        public final Builder {{name}}({{{type.listValueType}}} value, {{{type.listValueType}}}... values) {
+            this.{{name}} = _listAdd(this.{{name}}, value, values);
+            return this;
+        }
+        {{#type.listValueType.hasBuilder}}
+
+        public final Builder {{name}}({{{type.listValueType.builderFuncType}}} fn) {
+            return {{name}}(fn.apply(new {{{type.listValueType.builderType}}}()).build());
+        }
+        {{/type.listValueType.hasBuilder}}
+        {{/type.isList}}
+        {{^type.isListOrMap}}
+        public final Builder {{name}}({{{type}}} value) {
+            this.{{name}} = value;
+            return this;
+        }
+        {{#type.hasBuilder}}
+
+        public final Builder {{name}}({{{type.builderFuncType}}} fn) {
+            return {{name}}(fn.apply(new {{{type.builderType}}}()).build());
+        }
+        {{/type.hasBuilder}}
+        {{/type.isListOrMap}}
+
+        {{/fields}}
+        /**
+         * Builds a {@link {{className}}}.
+         *
+         * @throws NullPointerException
+         *              if some of the required fields are null.
+         */
+        public {{className}} build() {
+            _checkSingleUse();
+
+            return new {{className}}(this);
+        }
+    }
