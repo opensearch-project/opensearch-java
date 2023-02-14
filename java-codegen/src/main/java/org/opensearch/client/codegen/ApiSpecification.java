@@ -4,32 +4,35 @@ import org.openapi4j.core.exception.DecodeException;
 import org.openapi4j.core.exception.ResolutionException;
 import org.openapi4j.core.model.OAIContext;
 import org.openapi4j.core.model.reference.Reference;
+import org.openapi4j.core.model.v3.OAI3SchemaKeywords;
 import org.openapi4j.core.validation.ValidationException;
 import org.openapi4j.parser.OpenApi3Parser;
 import org.openapi4j.parser.model.AbsRefOpenApiSchema;
 import org.openapi4j.parser.model.v3.*;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.model.Field;
+import org.opensearch.client.codegen.model.ObjectShape;
 import org.opensearch.client.codegen.model.OperationRequest;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class ApiSpecification {
     private final OpenApi3 api;
     private final OAIContext context;
+    private final Set<String> visitedReferencedSchemas;
     private final List<OperationRequest> operationRequests;
+    private final List<ObjectShape> objectShapes;
     private final TypeMapper typeMapper;
 
     private ApiSpecification(OpenApi3 api) throws ApiSpecificationParseException {
         this.api = api;
         context = api.getContext();
+        visitedReferencedSchemas = new HashSet<>();
         operationRequests = new ArrayList<>();
-        typeMapper = new TypeMapper(this.api);
+        objectShapes = new ArrayList<>();
+        typeMapper = new TypeMapper(this.api, this::visitReferencedSchema);
         visit(this.api);
     }
 
@@ -45,6 +48,8 @@ public class ApiSpecification {
     public List<OperationRequest> getOperationRequests() {
         return Collections.unmodifiableList(operationRequests);
     }
+
+    public List<ObjectShape> getObjectShapes() { return Collections.unmodifiableList(objectShapes); }
 
     private void visit(OpenApi3 api) throws ApiSpecificationParseException {
         for (Map.Entry<String, Path> entry : api.getPaths().entrySet()) {
@@ -86,6 +91,25 @@ public class ApiSpecification {
         operationRequests.add(operationRequest);
     }
 
+    private void visitReferencedSchema(String ref, Schema schema) {
+        if (!visitedReferencedSchemas.add(ref)) return;
+
+        String[] refParts = ref.split("/");
+        String name = refParts[refParts.length - 1];
+
+        if (OAI3SchemaKeywords.TYPE_OBJECT.equals(schema.getType())) {
+            ObjectShape shape = new ObjectShape();
+
+            shape.name = name;
+
+            for (Map.Entry<String, Schema> entry : schema.getProperties().entrySet()) {
+                shape.addField(new Field(entry.getKey(), typeMapper.mapType(entry.getValue())));
+            }
+
+            objectShapes.add(shape);
+        }
+    }
+
     private RequestBody resolve(RequestBody body) throws ApiSpecificationParseException {
         return resolve(body, RequestBody.class);
     }
@@ -96,11 +120,11 @@ public class ApiSpecification {
 
     private <S extends AbsRefOpenApiSchema<S>> S resolve(S schema, Class<S> clazz) throws ApiSpecificationParseException {
         while (schema != null && schema.isRef()) {
-            Reference ref = schema.getReference(api.getContext());
+            Reference ref = schema.getReference(context);
             try {
                 schema = ref.getMappedContent(clazz);
             } catch (DecodeException e) {
-                throw new ApiSpecificationParseException("Failed to decode reference as " + schema.getClass() + ": " + ref, e);
+                throw new ApiSpecificationParseException("Failed to decode reference as " + clazz + ": " + ref, e);
             }
         }
         return schema;

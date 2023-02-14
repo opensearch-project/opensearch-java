@@ -106,7 +106,7 @@ public class Type {
 
     public boolean isPrimitive() { return PRIMITIVES.contains(name); }
 
-    public boolean isBuiltIn() { return isListOrMap() || isPrimitive(); }
+    public boolean isBuiltIn() { return isListOrMap() || isPrimitive() || "JsonData".equals(name); }
 
     public Type builderType() {
         if (isBuiltIn()) return null;

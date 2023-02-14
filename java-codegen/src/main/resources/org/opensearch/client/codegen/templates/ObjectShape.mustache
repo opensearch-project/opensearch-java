@@ -1,20 +1,17 @@
 package org.opensearch.client.opensearch;
 
 import org.opensearch.client.opensearch._types.*;
-{{#hasRequestBody}}import org.opensearch.client.json.*;{{/hasRequestBody}}
+import org.opensearch.client.json.*;
 import org.opensearch.client.transport.*;
 import org.opensearch.client.transport.endpoints.*;
 import org.opensearch.client.util.*;
-{{#hasRequestBody}}import jakarta.json.stream.JsonGenerator;{{/hasRequestBody}}
+import jakarta.json.stream.JsonGenerator;
 import java.util.*;
 import java.util.function.Function;
 import javax.annotation.*;
 
-/**
- * {{description}}
- */
-{{#hasRequestBody}}@JsonpDeserializable{{/hasRequestBody}}
-public class {{className}} extends RequestBase{{#hasRequestBody}} implements JsonpSerializable{{/hasRequestBody}} {
+@JsonpDeserializable
+public class {{className}} implements JsonpSerializable {
     {{#fields}}
     private final {{{type}}} {{name}};
     {{/fields}}
@@ -40,7 +37,6 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
     }
 
     {{/fields}}
-    {{#hasRequestBody}}
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -48,15 +44,14 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        {{#bodyFields}}
+        {{#fields}}
         if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
             generator.writeKey({{#dq}}{{wireName}}{{/dq}});
             {{#type.serializer}}this.{{name}}{{/type.serializer}}
         }
 
-        {{/bodyFields}}
+        {{/fields}}
     }
-    {{/hasRequestBody}}
 
     /**
      * Builder for {@link {{className}}}.
@@ -122,39 +117,13 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
         }
     }
 
-    {{#hasRequestBody}}
     public static final JsonpDeserializer<{{className}}> _DESERIALIZER = ObjectBuilderDeserializer
             .lazy(Builder::new, {{className}}::setup{{className}}Deserializer);
 
     protected static void setup{{className}}Deserializer(
             ObjectDeserializer<{{className}}.Builder> op) {
-        {{#bodyFields}}
+        {{#fields}}
         op.add(Builder::{{name}}, {{{type.deserializer}}}, {{#dq}}{{wireName}}{{/dq}});
-        {{/bodyFields}}
+        {{/fields}}
     }
-    {{/hasRequestBody}}
-
-    public static final Endpoint<{{className}}, {{responseType}}, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-            // Request method
-            request -> {
-                return {{#dq}}{{httpMethod}}{{/dq}};
-            },
-            // Request path
-            request -> {
-                return {{#dq}}{{httpPath}}{{/dq}};
-            },
-            // Request parameters
-            request -> {
-                Map<String, String> params = new HashMap<>();
-                {{#queryParams}}
-                if ({{#type.isDefined}}request.{{name}}{{/type.isDefined}}) {
-                    params.put({{#dq}}{{wireName}}{{/dq}}, {{#type.queryParamify}}request.{{name}}{{/type.queryParamify}});
-                }
-                {{/queryParams}}
-                return params;
-            },
-            SimpleEndpoint.emptyMap(),
-            {{hasRequestBody}},
-            {{responseType}}._DESERIALIZER
-    );
 }

@@ -8,13 +8,16 @@ import org.opensearch.client.codegen.utils.Schemas;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.BiConsumer;
 
 public class TypeMapper {
     private final OpenApi3 api;
     private final Map<Schema, Type> cache = new ConcurrentHashMap<>();
+    private final BiConsumer<String, Schema> referencedSchemaVisitor;
 
-    public TypeMapper(OpenApi3 api) {
+    public TypeMapper(OpenApi3 api, BiConsumer<String, Schema> referencedSchemaVisitor) {
         this.api = api;
+        this.referencedSchemaVisitor = referencedSchemaVisitor;
     }
 
     public Type mapType(Schema schema) {
@@ -22,7 +25,11 @@ public class TypeMapper {
     }
 
     public Type mapType(Schema schema, boolean boxed) {
-        Type type = cache.computeIfAbsent(schema, this::mapTypeInner);
+        Type type = cache.get(schema);
+        if (type == null) {
+            type = mapTypeInner(schema);
+            cache.put(schema, type);
+        }
         return boxed ? type.boxed() : type;
     }
 
@@ -38,7 +45,11 @@ public class TypeMapper {
                 return new Type(target, "Map", "String", "JsonData");
             }
 
-            String[] refParts = schema.getRef().split("/");
+            String ref = schema.getRef();
+
+            referencedSchemaVisitor.accept(ref, target);
+
+            String[] refParts = ref.split("/");
             return new Type(target, refParts[refParts.length - 1]);
         }
 

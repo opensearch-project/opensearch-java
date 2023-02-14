@@ -28,8 +28,7 @@ buildscript {
 }
 
 plugins {
-    java
-    `java-library`
+    application
     checkstyle
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "1.19"
@@ -46,6 +45,24 @@ java {
 
     withJavadocJar()
     withSourcesJar()
+}
+
+application {
+    mainClass.set("org.opensearch.client.codegen.Main")
+    applicationDefaultJvmArgs = listOf(
+        "--add-exports", "jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
+        "--add-exports", "jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED",
+        "--add-exports", "jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED",
+        "--add-exports", "jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
+        "--add-exports", "jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
+    )
+}
+
+tasks.named<JavaExec>("run") {
+    args = listOf(
+        "${projectDir}/OpenSearch.openapi.json",
+        "${project(":java-client").projectDir}/src/generated/java/"
+    )
 }
 
 tasks.withType<ProcessResources> {
@@ -104,7 +121,7 @@ dependencies {
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
-    api("com.google.code.findbugs:jsr305:3.0.2")
+    implementation("com.google.code.findbugs:jsr305:3.0.2")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {
