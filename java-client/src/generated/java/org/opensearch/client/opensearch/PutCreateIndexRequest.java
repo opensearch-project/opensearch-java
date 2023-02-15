@@ -21,6 +21,8 @@ public class PutCreateIndexRequest extends RequestBase implements JsonpSerializa
 
     @Nullable private final Boolean includeTypeName;
 
+    private final String index;
+
     @Nullable private final Map<String, JsonData> mapping;
 
     @Nullable private final String masterTimeout;
@@ -35,6 +37,7 @@ public class PutCreateIndexRequest extends RequestBase implements JsonpSerializa
         this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.includeTypeName = builder.includeTypeName;
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.mapping = ApiTypeHelper.unmodifiable(builder.mapping);
         this.masterTimeout = builder.masterTimeout;
         this.settings = ApiTypeHelper.unmodifiable(builder.settings);
@@ -57,6 +60,10 @@ public class PutCreateIndexRequest extends RequestBase implements JsonpSerializa
 
     public final Boolean includeTypeName() {
         return this.includeTypeName;
+    }
+
+    public final String index() {
+        return this.index;
     }
 
     public final Map<String, JsonData> mapping() {
@@ -123,6 +130,7 @@ public class PutCreateIndexRequest extends RequestBase implements JsonpSerializa
         private Map<String, JsonData> aliases;
         private String clusterManagerTimeout;
         private Boolean includeTypeName;
+        private String index;
         private Map<String, JsonData> mapping;
         private String masterTimeout;
         private Map<String, JsonData> settings;
@@ -146,6 +154,11 @@ public class PutCreateIndexRequest extends RequestBase implements JsonpSerializa
 
         public final Builder includeTypeName(Boolean value) {
             this.includeTypeName = value;
+            return this;
+        }
+
+        public final Builder index(String value) {
+            this.index = value;
             return this;
         }
 
@@ -225,7 +238,7 @@ public class PutCreateIndexRequest extends RequestBase implements JsonpSerializa
                             },
                             // Request path
                             request -> {
-                                return "/{index}";
+                                return "/" + request.index + "";
                             },
                             // Request parameters
                             request -> {

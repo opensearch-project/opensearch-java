@@ -8,6 +8,7 @@ public class OperationRequest extends ObjectShape {
     private final String httpMethod;
     private final String httpPath;
     private final Map<String, Field> queryParams = new TreeMap<>();
+    private final Map<String, Field> pathParams = new TreeMap<>();
     private final Map<String, Field> fields = new TreeMap<>();
 
     public OperationRequest(String id, String description, String httpMethod, String httpPath) {
@@ -22,7 +23,7 @@ public class OperationRequest extends ObjectShape {
 
     public String httpMethod() { return httpMethod; }
 
-    public String httpPath() { return httpPath; }
+    public String httpPath() { return '"' + httpPath.replace("{", "\" + request.").replace("}", " + \"") + '"'; }
 
     public String responseType() { return id + "Response"; }
 
@@ -30,17 +31,24 @@ public class OperationRequest extends ObjectShape {
 
     public Collection<Field> queryParams() { return queryParams.values(); }
 
+    public Collection<Field> pathParams() { return pathParams.values(); }
+
     @Override
     public Collection<Field> fields() { return fields.values(); }
 
     @Override
     public void addBodyField(Field field) {
         super.addBodyField(field);
-        fields.put(field.wireName, field);
+        fields.put(field.name(), field);
     }
 
     public void addQueryParam(Field field) {
-        queryParams.put(field.wireName, field);
-        fields.put(field.wireName, field);
+        queryParams.put(field.name(), field);
+        fields.put(field.name(), field);
+    }
+
+    public void addPathParam(Field field) {
+        pathParams.put(field.name(), field);
+        fields.put(field.name(), field);
     }
 }

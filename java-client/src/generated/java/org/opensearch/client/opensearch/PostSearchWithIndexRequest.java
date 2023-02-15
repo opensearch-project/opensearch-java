@@ -45,6 +45,8 @@ public class PostSearchWithIndexRequest extends RequestBase implements JsonpSeri
 
     @Nullable private final Boolean ignoreUnavailable;
 
+    private final String index;
+
     @Nullable private final List<JsonData> indicesBoost;
 
     @Nullable private final Boolean lenient;
@@ -123,6 +125,7 @@ public class PostSearchWithIndexRequest extends RequestBase implements JsonpSeri
         this.from = builder.from;
         this.ignoreThrottled = builder.ignoreThrottled;
         this.ignoreUnavailable = builder.ignoreUnavailable;
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
         this.lenient = builder.lenient;
         this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
@@ -219,6 +222,10 @@ public class PostSearchWithIndexRequest extends RequestBase implements JsonpSeri
 
     public final Boolean ignoreUnavailable() {
         return this.ignoreUnavailable;
+    }
+
+    public final String index() {
+        return this.index;
     }
 
     public final List<JsonData> indicesBoost() {
@@ -449,6 +456,7 @@ public class PostSearchWithIndexRequest extends RequestBase implements JsonpSeri
         private Integer from;
         private Boolean ignoreThrottled;
         private Boolean ignoreUnavailable;
+        private String index;
         private List<JsonData> indicesBoost;
         private Boolean lenient;
         private Long maxConcurrentShardRequests;
@@ -558,6 +566,11 @@ public class PostSearchWithIndexRequest extends RequestBase implements JsonpSeri
 
         public final Builder ignoreUnavailable(Boolean value) {
             this.ignoreUnavailable = value;
+            return this;
+        }
+
+        public final Builder index(String value) {
+            this.index = value;
             return this;
         }
 
@@ -798,7 +811,7 @@ public class PostSearchWithIndexRequest extends RequestBase implements JsonpSeri
                             },
                             // Request path
                             request -> {
-                                return "/{index}/_search";
+                                return "/" + request.index + "/_search";
                             },
                             // Request parameters
                             request -> {

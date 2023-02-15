@@ -25,6 +25,8 @@ public class PutIndexMappingWithIndexRequest extends RequestBase implements Json
 
     @Nullable private final Boolean includeTypeName;
 
+    private final String index;
+
     @Nullable private final String masterTimeout;
 
     @Nullable private final JsonData properties;
@@ -39,6 +41,7 @@ public class PutIndexMappingWithIndexRequest extends RequestBase implements Json
         this.expandWildcards = builder.expandWildcards;
         this.ignoreUnavailable = builder.ignoreUnavailable;
         this.includeTypeName = builder.includeTypeName;
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.masterTimeout = builder.masterTimeout;
         this.properties = builder.properties;
         this.timeout = builder.timeout;
@@ -68,6 +71,10 @@ public class PutIndexMappingWithIndexRequest extends RequestBase implements Json
 
     public final Boolean includeTypeName() {
         return this.includeTypeName;
+    }
+
+    public final String index() {
+        return this.index;
     }
 
     public final String masterTimeout() {
@@ -107,6 +114,7 @@ public class PutIndexMappingWithIndexRequest extends RequestBase implements Json
         private ExpandWildcards expandWildcards;
         private Boolean ignoreUnavailable;
         private Boolean includeTypeName;
+        private String index;
         private String masterTimeout;
         private JsonData properties;
         private String timeout;
@@ -134,6 +142,11 @@ public class PutIndexMappingWithIndexRequest extends RequestBase implements Json
 
         public final Builder includeTypeName(Boolean value) {
             this.includeTypeName = value;
+            return this;
+        }
+
+        public final Builder index(String value) {
+            this.index = value;
             return this;
         }
 
@@ -192,7 +205,7 @@ public class PutIndexMappingWithIndexRequest extends RequestBase implements Json
                             },
                             // Request path
                             request -> {
-                                return "/{index}/_mapping";
+                                return "/" + request.index + "/_mapping";
                             },
                             // Request parameters
                             request -> {

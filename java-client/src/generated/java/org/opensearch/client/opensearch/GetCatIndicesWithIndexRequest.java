@@ -27,6 +27,8 @@ public class GetCatIndicesWithIndexRequest extends RequestBase {
 
     @Nullable private final Boolean includeUnloadedSegments;
 
+    private final String index;
+
     @Nullable private final String masterTimeout;
 
     @Nullable private final Boolean pri;
@@ -40,6 +42,7 @@ public class GetCatIndicesWithIndexRequest extends RequestBase {
         this.format = builder.format;
         this.health = builder.health;
         this.includeUnloadedSegments = builder.includeUnloadedSegments;
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.masterTimeout = builder.masterTimeout;
         this.pri = builder.pri;
         this.time = builder.time;
@@ -74,6 +77,10 @@ public class GetCatIndicesWithIndexRequest extends RequestBase {
         return this.includeUnloadedSegments;
     }
 
+    public final String index() {
+        return this.index;
+    }
+
     public final String masterTimeout() {
         return this.masterTimeout;
     }
@@ -95,6 +102,7 @@ public class GetCatIndicesWithIndexRequest extends RequestBase {
         private String format;
         private HealthStatus health;
         private Boolean includeUnloadedSegments;
+        private String index;
         private String masterTimeout;
         private Boolean pri;
         private String time;
@@ -126,6 +134,11 @@ public class GetCatIndicesWithIndexRequest extends RequestBase {
 
         public final Builder includeUnloadedSegments(Boolean value) {
             this.includeUnloadedSegments = value;
+            return this;
+        }
+
+        public final Builder index(String value) {
+            this.index = value;
             return this;
         }
 
@@ -166,7 +179,7 @@ public class GetCatIndicesWithIndexRequest extends RequestBase {
                             },
                             // Request path
                             request -> {
-                                return "/_cat/indices/{index}";
+                                return "/_cat/indices/" + request.index + "";
                             },
                             // Request parameters
                             request -> {

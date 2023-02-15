@@ -10,20 +10,20 @@ import javax.annotation.*;
 @JsonpDeserializable
 public class PostSearchWithIndexResponse implements JsonpSerializable {
 
+    @Nullable private final HitsMetadata hits;
+
     @Nullable private final String scrollId;
 
     @Nullable private final ShardStatistics shards;
-
-    @Nullable private final HitsMetadata hits;
 
     @Nullable private final Boolean timedOut;
 
     @Nullable private final Long took;
 
     public PostSearchWithIndexResponse(Builder builder) {
+        this.hits = builder.hits;
         this.scrollId = builder.scrollId;
         this.shards = builder.shards;
-        this.hits = builder.hits;
         this.timedOut = builder.timedOut;
         this.took = builder.took;
     }
@@ -33,16 +33,16 @@ public class PostSearchWithIndexResponse implements JsonpSerializable {
         return fn.apply(new Builder()).build();
     }
 
+    public final HitsMetadata hits() {
+        return this.hits;
+    }
+
     public final String scrollId() {
         return this.scrollId;
     }
 
     public final ShardStatistics shards() {
         return this.shards;
-    }
-
-    public final HitsMetadata hits() {
-        return this.hits;
     }
 
     public final Boolean timedOut() {
@@ -60,6 +60,11 @@ public class PostSearchWithIndexResponse implements JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.hits != null) {
+            generator.writeKey("hits");
+            this.hits.serialize(generator, mapper);
+        }
+
         if (this.scrollId != null) {
             generator.writeKey("_scroll_id");
             generator.write(this.scrollId);
@@ -68,11 +73,6 @@ public class PostSearchWithIndexResponse implements JsonpSerializable {
         if (this.shards != null) {
             generator.writeKey("_shards");
             this.shards.serialize(generator, mapper);
-        }
-
-        if (this.hits != null) {
-            generator.writeKey("hits");
-            this.hits.serialize(generator, mapper);
         }
 
         if (this.timedOut != null) {
@@ -89,11 +89,20 @@ public class PostSearchWithIndexResponse implements JsonpSerializable {
     /** Builder for {@link PostSearchWithIndexResponse}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<PostSearchWithIndexResponse> {
+        private HitsMetadata hits;
         private String scrollId;
         private ShardStatistics shards;
-        private HitsMetadata hits;
         private Boolean timedOut;
         private Long took;
+
+        public final Builder hits(HitsMetadata value) {
+            this.hits = value;
+            return this;
+        }
+
+        public final Builder hits(Function<HitsMetadata.Builder, ObjectBuilder<HitsMetadata>> fn) {
+            return hits(fn.apply(new HitsMetadata.Builder()).build());
+        }
 
         public final Builder scrollId(String value) {
             this.scrollId = value;
@@ -108,15 +117,6 @@ public class PostSearchWithIndexResponse implements JsonpSerializable {
         public final Builder shards(
                 Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
             return shards(fn.apply(new ShardStatistics.Builder()).build());
-        }
-
-        public final Builder hits(HitsMetadata value) {
-            this.hits = value;
-            return this;
-        }
-
-        public final Builder hits(Function<HitsMetadata.Builder, ObjectBuilder<HitsMetadata>> fn) {
-            return hits(fn.apply(new HitsMetadata.Builder()).build());
         }
 
         public final Builder timedOut(Boolean value) {
@@ -148,9 +148,9 @@ public class PostSearchWithIndexResponse implements JsonpSerializable {
 
     protected static void setupPostSearchWithIndexResponseDeserializer(
             ObjectDeserializer<PostSearchWithIndexResponse.Builder> op) {
+        op.add(Builder::hits, HitsMetadata._DESERIALIZER, "hits");
         op.add(Builder::scrollId, JsonpDeserializer.stringDeserializer(), "_scroll_id");
         op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
-        op.add(Builder::hits, HitsMetadata._DESERIALIZER, "hits");
         op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
         op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
     }

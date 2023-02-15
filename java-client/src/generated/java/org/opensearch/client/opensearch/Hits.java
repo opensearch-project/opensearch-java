@@ -10,6 +10,8 @@ import javax.annotation.*;
 @JsonpDeserializable
 public class Hits implements JsonpSerializable {
 
+    @Nullable private final JsonData fields;
+
     @Nullable private final String id;
 
     @Nullable private final String index;
@@ -20,19 +22,21 @@ public class Hits implements JsonpSerializable {
 
     @Nullable private final String type;
 
-    @Nullable private final JsonData fields;
-
     public Hits(Builder builder) {
+        this.fields = builder.fields;
         this.id = builder.id;
         this.index = builder.index;
         this.score = builder.score;
         this.source = builder.source;
         this.type = builder.type;
-        this.fields = builder.fields;
     }
 
     public static Hits of(Function<Builder, ObjectBuilder<Hits>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    public final JsonData fields() {
+        return this.fields;
     }
 
     public final String id() {
@@ -55,10 +59,6 @@ public class Hits implements JsonpSerializable {
         return this.type;
     }
 
-    public final JsonData fields() {
-        return this.fields;
-    }
-
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -66,6 +66,11 @@ public class Hits implements JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.fields != null) {
+            generator.writeKey("fields");
+            this.fields.serialize(generator, mapper);
+        }
+
         if (this.id != null) {
             generator.writeKey("_id");
             generator.write(this.id);
@@ -90,21 +95,21 @@ public class Hits implements JsonpSerializable {
             generator.writeKey("_type");
             generator.write(this.type);
         }
-
-        if (this.fields != null) {
-            generator.writeKey("fields");
-            this.fields.serialize(generator, mapper);
-        }
     }
 
     /** Builder for {@link Hits}. */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Hits> {
+        private JsonData fields;
         private String id;
         private String index;
         private Float score;
         private JsonData source;
         private String type;
-        private JsonData fields;
+
+        public final Builder fields(JsonData value) {
+            this.fields = value;
+            return this;
+        }
 
         public final Builder id(String value) {
             this.id = value;
@@ -131,11 +136,6 @@ public class Hits implements JsonpSerializable {
             return this;
         }
 
-        public final Builder fields(JsonData value) {
-            this.fields = value;
-            return this;
-        }
-
         /**
          * Builds a {@link Hits}.
          *
@@ -152,11 +152,11 @@ public class Hits implements JsonpSerializable {
             ObjectBuilderDeserializer.lazy(Builder::new, Hits::setupHitsDeserializer);
 
     protected static void setupHitsDeserializer(ObjectDeserializer<Hits.Builder> op) {
+        op.add(Builder::fields, JsonData._DESERIALIZER, "fields");
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
         op.add(Builder::score, JsonpDeserializer.floatDeserializer(), "_score");
         op.add(Builder::source, JsonData._DESERIALIZER, "_source");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
-        op.add(Builder::fields, JsonData._DESERIALIZER, "fields");
     }
 }

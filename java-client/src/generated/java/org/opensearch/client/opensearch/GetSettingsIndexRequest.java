@@ -24,6 +24,8 @@ public class GetSettingsIndexRequest extends RequestBase {
 
     @Nullable private final String includeDefaults;
 
+    private final String index;
+
     @Nullable private final Boolean local;
 
     @Nullable private final String masterTimeout;
@@ -35,6 +37,7 @@ public class GetSettingsIndexRequest extends RequestBase {
         this.flatSettings = builder.flatSettings;
         this.ignoreUnavailable = builder.ignoreUnavailable;
         this.includeDefaults = builder.includeDefaults;
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.local = builder.local;
         this.masterTimeout = builder.masterTimeout;
     }
@@ -68,6 +71,10 @@ public class GetSettingsIndexRequest extends RequestBase {
         return this.includeDefaults;
     }
 
+    public final String index() {
+        return this.index;
+    }
+
     public final Boolean local() {
         return this.local;
     }
@@ -85,6 +92,7 @@ public class GetSettingsIndexRequest extends RequestBase {
         private Boolean flatSettings;
         private Boolean ignoreUnavailable;
         private String includeDefaults;
+        private String index;
         private Boolean local;
         private String masterTimeout;
 
@@ -115,6 +123,11 @@ public class GetSettingsIndexRequest extends RequestBase {
 
         public final Builder includeDefaults(String value) {
             this.includeDefaults = value;
+            return this;
+        }
+
+        public final Builder index(String value) {
+            this.index = value;
             return this;
         }
 
@@ -149,7 +162,7 @@ public class GetSettingsIndexRequest extends RequestBase {
                             },
                             // Request path
                             request -> {
-                                return "/{index}/_settings";
+                                return "/" + request.index + "/_settings";
                             },
                             // Request parameters
                             request -> {

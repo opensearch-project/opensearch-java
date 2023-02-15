@@ -43,7 +43,7 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
             },
             // Request path
             request -> {
-                return {{#dq}}{{httpPath}}{{/dq}};
+                return {{{httpPath}}};
             },
             // Request parameters
             request -> {
