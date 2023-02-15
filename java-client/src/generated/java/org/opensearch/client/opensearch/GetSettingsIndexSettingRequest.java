@@ -24,9 +24,13 @@ public class GetSettingsIndexSettingRequest extends RequestBase {
 
     @Nullable private final String includeDefaults;
 
+    private final String index;
+
     @Nullable private final Boolean local;
 
     @Nullable private final String masterTimeout;
+
+    private final String setting;
 
     public GetSettingsIndexSettingRequest(Builder builder) {
         this.allowNoIndices = builder.allowNoIndices;
@@ -35,8 +39,10 @@ public class GetSettingsIndexSettingRequest extends RequestBase {
         this.flatSettings = builder.flatSettings;
         this.ignoreUnavailable = builder.ignoreUnavailable;
         this.includeDefaults = builder.includeDefaults;
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.local = builder.local;
         this.masterTimeout = builder.masterTimeout;
+        this.setting = ApiTypeHelper.requireNonNull(builder.setting, this, "setting");
     }
 
     public static GetSettingsIndexSettingRequest of(
@@ -68,12 +74,20 @@ public class GetSettingsIndexSettingRequest extends RequestBase {
         return this.includeDefaults;
     }
 
+    public final String index() {
+        return this.index;
+    }
+
     public final Boolean local() {
         return this.local;
     }
 
     public final String masterTimeout() {
         return this.masterTimeout;
+    }
+
+    public final String setting() {
+        return this.setting;
     }
 
     /** Builder for {@link GetSettingsIndexSettingRequest}. */
@@ -85,8 +99,10 @@ public class GetSettingsIndexSettingRequest extends RequestBase {
         private Boolean flatSettings;
         private Boolean ignoreUnavailable;
         private String includeDefaults;
+        private String index;
         private Boolean local;
         private String masterTimeout;
+        private String setting;
 
         public final Builder allowNoIndices(Boolean value) {
             this.allowNoIndices = value;
@@ -118,6 +134,11 @@ public class GetSettingsIndexSettingRequest extends RequestBase {
             return this;
         }
 
+        public final Builder index(String value) {
+            this.index = value;
+            return this;
+        }
+
         public final Builder local(Boolean value) {
             this.local = value;
             return this;
@@ -125,6 +146,11 @@ public class GetSettingsIndexSettingRequest extends RequestBase {
 
         public final Builder masterTimeout(String value) {
             this.masterTimeout = value;
+            return this;
+        }
+
+        public final Builder setting(String value) {
+            this.setting = value;
             return this;
         }
 
@@ -150,7 +176,7 @@ public class GetSettingsIndexSettingRequest extends RequestBase {
                             },
                             // Request path
                             request -> {
-                                return "/{index}/_settings/{setting}";
+                                return "/" + request.index + "/_settings/" + request.setting + "";
                             },
                             // Request parameters
                             request -> {

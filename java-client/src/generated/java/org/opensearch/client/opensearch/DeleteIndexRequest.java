@@ -20,6 +20,8 @@ public class DeleteIndexRequest extends RequestBase {
 
     @Nullable private final Boolean ignoreUnavailable;
 
+    private final String index;
+
     @Nullable private final String masterTimeout;
 
     @Nullable private final String timeout;
@@ -29,6 +31,7 @@ public class DeleteIndexRequest extends RequestBase {
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.expandWildcards = builder.expandWildcards;
         this.ignoreUnavailable = builder.ignoreUnavailable;
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.masterTimeout = builder.masterTimeout;
         this.timeout = builder.timeout;
     }
@@ -53,6 +56,10 @@ public class DeleteIndexRequest extends RequestBase {
         return this.ignoreUnavailable;
     }
 
+    public final String index() {
+        return this.index;
+    }
+
     public final String masterTimeout() {
         return this.masterTimeout;
     }
@@ -68,6 +75,7 @@ public class DeleteIndexRequest extends RequestBase {
         private String clusterManagerTimeout;
         private ExpandWildcards expandWildcards;
         private Boolean ignoreUnavailable;
+        private String index;
         private String masterTimeout;
         private String timeout;
 
@@ -88,6 +96,11 @@ public class DeleteIndexRequest extends RequestBase {
 
         public final Builder ignoreUnavailable(Boolean value) {
             this.ignoreUnavailable = value;
+            return this;
+        }
+
+        public final Builder index(String value) {
+            this.index = value;
             return this;
         }
 
@@ -121,7 +134,7 @@ public class DeleteIndexRequest extends RequestBase {
                     },
                     // Request path
                     request -> {
-                        return "/{index}";
+                        return "/" + request.index + "";
                     },
                     // Request parameters
                     request -> {

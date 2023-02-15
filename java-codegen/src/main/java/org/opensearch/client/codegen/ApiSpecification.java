@@ -92,6 +92,11 @@ public class ApiSpecification {
                 .map(p -> new Field(p.getName(), typeMapper.mapType(p.getSchema()), p.isRequired()))
                 .forEach(operationRequest::addQueryParam);
 
+        Stream.of(path.getParametersIn(context, "path"), operation.getParametersIn(context, "path"))
+                .flatMap(List::stream)
+                .map(p -> new Field(p.getName(), typeMapper.mapType(p.getSchema()), p.isRequired()))
+                .forEach(operationRequest::addPathParam);
+
         operationRequests.add(operationRequest);
 
         MediaType responseMediaType = operation.getResponse("200").getContentMediaType("application/json");

@@ -12,34 +12,34 @@ public class GetDocumentDocResponse implements JsonpSerializable {
 
     @Nullable private final Map<String, JsonData> fields;
 
+    private final boolean found;
+
     private final String id;
 
     private final String index;
 
+    @Nullable private final Long primaryTerm;
+
     @Nullable private final String routing;
+
+    @Nullable private final Long seqNo;
 
     @Nullable private final Map<String, JsonData> source;
 
     @Nullable private final String type;
 
-    private final boolean found;
-
-    @Nullable private final Long primaryTerm;
-
-    @Nullable private final Long seqNo;
-
     @Nullable private final Integer version;
 
     public GetDocumentDocResponse(Builder builder) {
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.primaryTerm = builder.primaryTerm;
         this.routing = builder.routing;
+        this.seqNo = builder.seqNo;
         this.source = ApiTypeHelper.unmodifiable(builder.source);
         this.type = builder.type;
-        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
-        this.primaryTerm = builder.primaryTerm;
-        this.seqNo = builder.seqNo;
         this.version = builder.version;
     }
 
@@ -52,6 +52,10 @@ public class GetDocumentDocResponse implements JsonpSerializable {
         return this.fields;
     }
 
+    public final boolean found() {
+        return this.found;
+    }
+
     public final String id() {
         return this.id;
     }
@@ -60,8 +64,16 @@ public class GetDocumentDocResponse implements JsonpSerializable {
         return this.index;
     }
 
+    public final Long primaryTerm() {
+        return this.primaryTerm;
+    }
+
     public final String routing() {
         return this.routing;
+    }
+
+    public final Long seqNo() {
+        return this.seqNo;
     }
 
     public final Map<String, JsonData> source() {
@@ -70,18 +82,6 @@ public class GetDocumentDocResponse implements JsonpSerializable {
 
     public final String type() {
         return this.type;
-    }
-
-    public final boolean found() {
-        return this.found;
-    }
-
-    public final Long primaryTerm() {
-        return this.primaryTerm;
-    }
-
-    public final Long seqNo() {
-        return this.seqNo;
     }
 
     public final Integer version() {
@@ -105,15 +105,28 @@ public class GetDocumentDocResponse implements JsonpSerializable {
             generator.writeEnd();
         }
 
+        generator.writeKey("found");
+        generator.write(this.found);
+
         generator.writeKey("_id");
         generator.write(this.id);
 
         generator.writeKey("_index");
         generator.write(this.index);
 
+        if (this.primaryTerm != null) {
+            generator.writeKey("primary_term");
+            generator.write(this.primaryTerm);
+        }
+
         if (this.routing != null) {
             generator.writeKey("_routing");
             generator.write(this.routing);
+        }
+
+        if (this.seqNo != null) {
+            generator.writeKey("seq_no");
+            generator.write(this.seqNo);
         }
 
         if (ApiTypeHelper.isDefined(this.source)) {
@@ -131,19 +144,6 @@ public class GetDocumentDocResponse implements JsonpSerializable {
             generator.write(this.type);
         }
 
-        generator.writeKey("found");
-        generator.write(this.found);
-
-        if (this.primaryTerm != null) {
-            generator.writeKey("primary_term");
-            generator.write(this.primaryTerm);
-        }
-
-        if (this.seqNo != null) {
-            generator.writeKey("seq_no");
-            generator.write(this.seqNo);
-        }
-
         if (this.version != null) {
             generator.writeKey("version");
             generator.write(this.version);
@@ -154,14 +154,14 @@ public class GetDocumentDocResponse implements JsonpSerializable {
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<GetDocumentDocResponse> {
         private Map<String, JsonData> fields;
+        private Boolean found;
         private String id;
         private String index;
+        private Long primaryTerm;
         private String routing;
+        private Long seqNo;
         private Map<String, JsonData> source;
         private String type;
-        private Boolean found;
-        private Long primaryTerm;
-        private Long seqNo;
         private Integer version;
 
         public final Builder fields(Map<String, JsonData> map) {
@@ -171,6 +171,11 @@ public class GetDocumentDocResponse implements JsonpSerializable {
 
         public final Builder fields(String key, JsonData value) {
             this.fields = _mapPut(this.fields, key, value);
+            return this;
+        }
+
+        public final Builder found(boolean value) {
+            this.found = value;
             return this;
         }
 
@@ -184,8 +189,18 @@ public class GetDocumentDocResponse implements JsonpSerializable {
             return this;
         }
 
+        public final Builder primaryTerm(Long value) {
+            this.primaryTerm = value;
+            return this;
+        }
+
         public final Builder routing(String value) {
             this.routing = value;
+            return this;
+        }
+
+        public final Builder seqNo(Long value) {
+            this.seqNo = value;
             return this;
         }
 
@@ -201,21 +216,6 @@ public class GetDocumentDocResponse implements JsonpSerializable {
 
         public final Builder type(String value) {
             this.type = value;
-            return this;
-        }
-
-        public final Builder found(boolean value) {
-            this.found = value;
-            return this;
-        }
-
-        public final Builder primaryTerm(Long value) {
-            this.primaryTerm = value;
-            return this;
-        }
-
-        public final Builder seqNo(Long value) {
-            this.seqNo = value;
             return this;
         }
 
@@ -246,17 +246,17 @@ public class GetDocumentDocResponse implements JsonpSerializable {
                 Builder::fields,
                 JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
                 "_fields");
+        op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+        op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "primary_term");
         op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
+        op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "seq_no");
         op.add(
                 Builder::source,
                 JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
                 "_source");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
-        op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
-        op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "primary_term");
-        op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "seq_no");
         op.add(Builder::version, JsonpDeserializer.integerDeserializer(), "version");
     }
 }

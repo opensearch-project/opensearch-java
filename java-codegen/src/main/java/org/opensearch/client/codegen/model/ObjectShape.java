@@ -13,7 +13,7 @@ public class ObjectShape {
     }
 
     public void addBodyField(Field field) {
-        bodyFields.put(field.wireName, field);
+        bodyFields.put(field.name(), field);
     }
 
     public String className() {

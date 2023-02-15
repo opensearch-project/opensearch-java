@@ -12,11 +12,9 @@ import javax.annotation.*;
 /** Returns a document */
 public class GetDocumentDocRequest extends RequestBase {
 
-    @Nullable private final String source;
+    private final String id;
 
-    @Nullable private final String sourceExcludes;
-
-    @Nullable private final String sourceIncludes;
+    private final String index;
 
     @Nullable private final String preference;
 
@@ -26,6 +24,12 @@ public class GetDocumentDocRequest extends RequestBase {
 
     @Nullable private final String routing;
 
+    @Nullable private final String source;
+
+    @Nullable private final String sourceExcludes;
+
+    @Nullable private final String sourceIncludes;
+
     @Nullable private final Boolean storedFields;
 
     @Nullable private final Integer version;
@@ -33,13 +37,15 @@ public class GetDocumentDocRequest extends RequestBase {
     @Nullable private final VersionType versionType;
 
     public GetDocumentDocRequest(Builder builder) {
-        this.source = builder.source;
-        this.sourceExcludes = builder.sourceExcludes;
-        this.sourceIncludes = builder.sourceIncludes;
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.preference = builder.preference;
         this.realtime = builder.realtime;
         this.refresh = builder.refresh;
         this.routing = builder.routing;
+        this.source = builder.source;
+        this.sourceExcludes = builder.sourceExcludes;
+        this.sourceIncludes = builder.sourceIncludes;
         this.storedFields = builder.storedFields;
         this.version = builder.version;
         this.versionType = builder.versionType;
@@ -50,16 +56,12 @@ public class GetDocumentDocRequest extends RequestBase {
         return fn.apply(new Builder()).build();
     }
 
-    public final String source() {
-        return this.source;
+    public final String id() {
+        return this.id;
     }
 
-    public final String sourceExcludes() {
-        return this.sourceExcludes;
-    }
-
-    public final String sourceIncludes() {
-        return this.sourceIncludes;
+    public final String index() {
+        return this.index;
     }
 
     public final String preference() {
@@ -78,6 +80,18 @@ public class GetDocumentDocRequest extends RequestBase {
         return this.routing;
     }
 
+    public final String source() {
+        return this.source;
+    }
+
+    public final String sourceExcludes() {
+        return this.sourceExcludes;
+    }
+
+    public final String sourceIncludes() {
+        return this.sourceIncludes;
+    }
+
     public final Boolean storedFields() {
         return this.storedFields;
     }
@@ -93,29 +107,26 @@ public class GetDocumentDocRequest extends RequestBase {
     /** Builder for {@link GetDocumentDocRequest}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<GetDocumentDocRequest> {
-        private String source;
-        private String sourceExcludes;
-        private String sourceIncludes;
+        private String id;
+        private String index;
         private String preference;
         private Boolean realtime;
         private Boolean refresh;
         private String routing;
+        private String source;
+        private String sourceExcludes;
+        private String sourceIncludes;
         private Boolean storedFields;
         private Integer version;
         private VersionType versionType;
 
-        public final Builder source(String value) {
-            this.source = value;
+        public final Builder id(String value) {
+            this.id = value;
             return this;
         }
 
-        public final Builder sourceExcludes(String value) {
-            this.sourceExcludes = value;
-            return this;
-        }
-
-        public final Builder sourceIncludes(String value) {
-            this.sourceIncludes = value;
+        public final Builder index(String value) {
+            this.index = value;
             return this;
         }
 
@@ -136,6 +147,21 @@ public class GetDocumentDocRequest extends RequestBase {
 
         public final Builder routing(String value) {
             this.routing = value;
+            return this;
+        }
+
+        public final Builder source(String value) {
+            this.source = value;
+            return this;
+        }
+
+        public final Builder sourceExcludes(String value) {
+            this.sourceExcludes = value;
+            return this;
+        }
+
+        public final Builder sourceIncludes(String value) {
+            this.sourceIncludes = value;
             return this;
         }
 
@@ -175,20 +201,11 @@ public class GetDocumentDocRequest extends RequestBase {
                             },
                             // Request path
                             request -> {
-                                return "/{index}/_doc/{id}";
+                                return "/" + request.index + "/_doc/" + request.id + "";
                             },
                             // Request parameters
                             request -> {
                                 Map<String, String> params = new HashMap<>();
-                                if (request.source != null) {
-                                    params.put("_source", request.source);
-                                }
-                                if (request.sourceExcludes != null) {
-                                    params.put("_source_excludes", request.sourceExcludes);
-                                }
-                                if (request.sourceIncludes != null) {
-                                    params.put("_source_includes", request.sourceIncludes);
-                                }
                                 if (request.preference != null) {
                                     params.put("preference", request.preference);
                                 }
@@ -200,6 +217,15 @@ public class GetDocumentDocRequest extends RequestBase {
                                 }
                                 if (request.routing != null) {
                                     params.put("routing", request.routing);
+                                }
+                                if (request.source != null) {
+                                    params.put("_source", request.source);
+                                }
+                                if (request.sourceExcludes != null) {
+                                    params.put("_source_excludes", request.sourceExcludes);
+                                }
+                                if (request.sourceIncludes != null) {
+                                    params.put("_source_includes", request.sourceIncludes);
                                 }
                                 if (request.storedFields != null) {
                                     params.put(
