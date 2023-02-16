@@ -2,9 +2,10 @@ package org.opensearch.client.codegen;
 
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.exceptions.RenderException;
+import org.opensearch.client.codegen.model.Client;
 import org.opensearch.client.codegen.model.EnumShape;
 import org.opensearch.client.codegen.model.ObjectShape;
-import org.opensearch.client.codegen.model.OperationRequest;
+import org.opensearch.client.codegen.model.RequestShape;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,9 +38,13 @@ public class Generator {
 
         packageDir.mkdirs();
 
-        for (OperationRequest operationRequest : apiSpecification.getOperationRequests()) {
-            File file = new File(packageDir, operationRequest.className() + ".java");
-            renderer.render(operationRequest, file);
+        Client client = new Client("");
+
+        for (RequestShape requestShape : apiSpecification.getRequestShapes()) {
+            File file = new File(packageDir, requestShape.className() + ".java");
+            renderer.render(requestShape, file);
+
+            client.addOperation(requestShape.id());
         }
 
         for (ObjectShape objectShape : apiSpecification.getObjectShapes()) {
@@ -51,5 +56,13 @@ public class Generator {
             File file = new File(packageDir, enumShape.className() + ".java");
             renderer.render(enumShape, file);
         }
+
+        File clientFile = new File(packageDir, client.className() + ".java");
+        renderer.render(client, clientFile);
+
+        client.async(true);
+
+        File asyncClientFile = new File(packageDir, client.className() + ".java");
+        renderer.render(client, asyncClientFile);
     }
 }

@@ -1,6 +1,6 @@
 package org.opensearch.client.codegen.model;
 
-import org.apache.commons.text.CaseUtils;
+import org.opensearch.client.codegen.utils.Strings;
 
 import java.util.Collection;
 import java.util.List;
@@ -25,7 +25,7 @@ public class EnumShape {
         }
 
         public String name() {
-            return CaseUtils.toCamelCase(wireName, true, '_');
+            return Strings.toPascalCase(wireName);
         }
     }
 }
