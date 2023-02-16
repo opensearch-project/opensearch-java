@@ -21,8 +21,8 @@ public class RequestShape extends ObjectShape {
     private final Map<String, Field> pathParams = new TreeMap<>();
     private final Map<String, Field> fields = new TreeMap<>();
 
-    public RequestShape(String id, String description, String httpMethod, String httpPath) {
-        super(id + "Request");
+    public RequestShape(String namespace, String id, String description, String httpMethod, String httpPath) {
+        super(namespace, id + "Request");
         this.id = id;
         this.description = description;
         this.httpMethod = httpMethod;

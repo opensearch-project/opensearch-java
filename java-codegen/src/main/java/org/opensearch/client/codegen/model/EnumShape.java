@@ -14,16 +14,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EnumShape {
-    public final String name;
+public class EnumShape extends Shape {
     public final List<Variant> variants;
 
-    public EnumShape(String name, Collection<String> variants) {
-        this.name = name;
+    public EnumShape(String namespace, String className, Collection<String> variants) {
+        super(namespace, className);
         this.variants = variants.stream().map(Variant::new).collect(Collectors.toList());
     }
-
-    public String className() { return name; }
 
     public static class Variant {
         public final String wireName;
