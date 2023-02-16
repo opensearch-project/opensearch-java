@@ -1,3 +1,11 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
 package org.opensearch.client.codegen;
 
 import org.openapi4j.core.exception.DecodeException;
@@ -7,7 +15,12 @@ import org.openapi4j.core.model.reference.Reference;
 import org.openapi4j.core.validation.ValidationException;
 import org.openapi4j.parser.OpenApi3Parser;
 import org.openapi4j.parser.model.AbsRefOpenApiSchema;
-import org.openapi4j.parser.model.v3.*;
+import org.openapi4j.parser.model.v3.MediaType;
+import org.openapi4j.parser.model.v3.OpenApi3;
+import org.openapi4j.parser.model.v3.Operation;
+import org.openapi4j.parser.model.v3.Path;
+import org.openapi4j.parser.model.v3.RequestBody;
+import org.openapi4j.parser.model.v3.Schema;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.model.EnumShape;
 import org.opensearch.client.codegen.model.Field;
@@ -16,7 +29,12 @@ import org.opensearch.client.codegen.model.RequestShape;
 import org.opensearch.client.codegen.utils.Schemas;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

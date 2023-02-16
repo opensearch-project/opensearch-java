@@ -1,7 +1,14 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
 package org.opensearch.client.codegen.model;
 
 import com.samskivert.mustache.Mustache;
-import org.openapi4j.core.model.v3.OAI3SchemaKeywords;
 import org.openapi4j.parser.model.v3.Schema;
 import org.opensearch.client.codegen.utils.Schemas;
 
