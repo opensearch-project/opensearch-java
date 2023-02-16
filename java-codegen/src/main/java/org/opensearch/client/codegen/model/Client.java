@@ -14,25 +14,21 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Client {
-    private final String namespace;
-    private boolean async;
+public class Client extends Shape {
+    private final boolean async;
     private final Map<String, ClientOperation> operations = new TreeMap<>();
 
     public Client(String namespace) {
-        this.namespace = namespace;
+        this(namespace, false);
+    }
+
+    private Client(String namespace, boolean async) {
+        super(namespace, "OpenSearch" + Strings.toPascalCase(namespace) + (async ? "Async" : "") + "Client");
+        this.async = async;
     }
 
     public void addOperation(String id) {
         operations.put(id, new ClientOperation(id));
-    }
-
-    public String className() {
-        return "OpenSearch" + Strings.toPascalCase(namespace) + (async ? "Async" : "") + "Client";
-    }
-
-    public String namespace() {
-        return namespace;
     }
 
     public Collection<ClientOperation> operations() {
@@ -43,7 +39,10 @@ public class Client {
         return async;
     }
 
-    public void async(boolean async) {
-        this.async = async;
+    public Client async(boolean async) {
+        if (async == this.async) return this;
+        Client client = new Client(namespace, async);
+        operations.keySet().forEach(client::addOperation);
+        return client;
     }
 }

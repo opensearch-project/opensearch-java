@@ -14,25 +14,26 @@ import org.opensearch.client.codegen.model.Client;
 import org.opensearch.client.codegen.model.EnumShape;
 import org.opensearch.client.codegen.model.ObjectShape;
 import org.opensearch.client.codegen.model.RequestShape;
+import org.opensearch.client.codegen.model.Shape;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class Generator {
     private final ApiSpecification apiSpecification;
     private final Renderer renderer;
     private final File outputDir;
-    private final File packageDir;
 
     public Generator(File schemaFile, File outputDir) throws ApiSpecificationParseException {
         apiSpecification = ApiSpecification.parse(schemaFile);
         renderer = new Renderer();
         this.outputDir = outputDir;
-        packageDir = new File(outputDir, "org/opensearch/client/opensearch/");
     }
 
     public void generate() throws RenderException {
@@ -44,33 +45,33 @@ public class Generator {
             throw new RenderException("Unable to cleanup output directory: " + outputDir, e);
         }
 
-        packageDir.mkdirs();
-
-        Client client = new Client("");
+        Map<String, Client> namespaceClients = new HashMap<>();
 
         for (RequestShape requestShape : apiSpecification.getRequestShapes()) {
-            File file = new File(packageDir, requestShape.className() + ".java");
-            renderer.render(requestShape, file);
+            renderShape(requestShape);
 
-            client.addOperation(requestShape.id());
+            namespaceClients.computeIfAbsent(requestShape.namespace(), Client::new)
+                    .addOperation(requestShape.id());
         }
 
         for (ObjectShape objectShape : apiSpecification.getObjectShapes()) {
-            File file = new File(packageDir, objectShape.className() + ".java");
-            renderer.render(objectShape, file);
+            renderShape(objectShape);
         }
 
         for (EnumShape enumShape : apiSpecification.getEnumShapes()) {
-            File file = new File(packageDir, enumShape.className() + ".java");
-            renderer.render(enumShape, file);
+            renderShape(enumShape);
         }
 
-        File clientFile = new File(packageDir, client.className() + ".java");
-        renderer.render(client, clientFile);
+        for (Client client : namespaceClients.values()) {
+            renderShape(client);
+            renderShape(client.async(true));
+        }
+    }
 
-        client.async(true);
-
-        File asyncClientFile = new File(packageDir, client.className() + ".java");
-        renderer.render(client, asyncClientFile);
+    private <S extends Shape> void renderShape(S shape) throws RenderException {
+        File packageDir = new File(outputDir, shape.packageName().replace('.', '/'));
+        packageDir.mkdirs();
+        File outputFile = new File(packageDir, shape.className() + ".java");
+        renderer.render(shape, outputFile);
     }
 }

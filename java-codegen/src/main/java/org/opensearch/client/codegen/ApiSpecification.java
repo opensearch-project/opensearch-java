@@ -92,6 +92,7 @@ public class ApiSpecification {
 
     private void visit(String httpPath, Path path, String httpMethod, Operation operation) throws ApiSpecificationParseException {
         RequestShape requestShape = new RequestShape(
+                Schemas.getNamespaceExtension(operation),
                 operation.getOperationId(),
                 operation.getDescription(),
                 httpMethod,
@@ -131,12 +132,16 @@ public class ApiSpecification {
         if (Schemas.isObject(schema)) {
             visitObjectShape(name, schema);
         } else if (Schemas.isString(schema) && schema.hasEnums()) {
-            enumShapes.add(new EnumShape(name, schema.getEnums().stream().map(Object::toString).collect(Collectors.toList())));
+            enumShapes.add(new EnumShape(
+                    Schemas.getNamespaceExtension(schema),
+                    name,
+                    schema.getEnums().stream().map(Object::toString).collect(Collectors.toList())
+            ));
         }
     }
 
     private void visitObjectShape(String name, Schema schema) {
-        ObjectShape shape = new ObjectShape(name);
+        ObjectShape shape = new ObjectShape(Schemas.getNamespaceExtension(schema), name);
         visitFields(schema, shape::addBodyField);
         objectShapes.add(shape);
     }
