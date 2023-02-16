@@ -1,3 +1,11 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
 package org.opensearch.client.codegen;
 
 import com.google.googlejavaformat.java.Formatter;
@@ -9,7 +17,13 @@ import com.samskivert.mustache.Template;
 import org.apache.commons.text.StringEscapeUtils;
 import org.opensearch.client.codegen.exceptions.RenderException;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.MissingResourceException;
