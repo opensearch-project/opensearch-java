@@ -12,7 +12,7 @@ import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.model.EnumShape;
 import org.opensearch.client.codegen.model.Field;
 import org.opensearch.client.codegen.model.ObjectShape;
-import org.opensearch.client.codegen.model.OperationRequest;
+import org.opensearch.client.codegen.model.RequestShape;
 import org.opensearch.client.codegen.utils.Schemas;
 
 import java.io.File;
@@ -24,7 +24,7 @@ import java.util.stream.Stream;
 public class ApiSpecification {
     private final OAIContext context;
     private final Set<String> visitedReferencedSchemas;
-    private final List<OperationRequest> operationRequests;
+    private final List<RequestShape> requestShapes;
     private final List<ObjectShape> objectShapes;
     private final List<EnumShape> enumShapes;
     private final TypeMapper typeMapper;
@@ -32,7 +32,7 @@ public class ApiSpecification {
     private ApiSpecification(OpenApi3 api) throws ApiSpecificationParseException {
         context = api.getContext();
         visitedReferencedSchemas = new HashSet<>();
-        operationRequests = new ArrayList<>();
+        requestShapes = new ArrayList<>();
         objectShapes = new ArrayList<>();
         enumShapes = new ArrayList<>();
         typeMapper = new TypeMapper(context, this::visitReferencedSchema);
@@ -48,8 +48,8 @@ public class ApiSpecification {
         }
     }
 
-    public List<OperationRequest> getOperationRequests() {
-        return Collections.unmodifiableList(operationRequests);
+    public List<RequestShape> getRequestShapes() {
+        return Collections.unmodifiableList(requestShapes);
     }
 
     public List<ObjectShape> getObjectShapes() {
@@ -73,7 +73,7 @@ public class ApiSpecification {
     }
 
     private void visit(String httpPath, Path path, String httpMethod, Operation operation) throws ApiSpecificationParseException {
-        OperationRequest operationRequest = new OperationRequest(
+        RequestShape requestShape = new RequestShape(
                 operation.getOperationId(),
                 operation.getDescription(),
                 httpMethod,
@@ -84,20 +84,20 @@ public class ApiSpecification {
 
         if (requestBody != null) {
             Schema requestBodySchema = resolve(requestBody.getContentMediaType("application/json").getSchema());
-            visitFields(requestBodySchema, operationRequest::addBodyField);
+            visitFields(requestBodySchema, requestShape::addBodyField);
         }
 
         Stream.of(path.getParametersIn(context, "query"), operation.getParametersIn(context, "query"))
                 .flatMap(List::stream)
                 .map(p -> new Field(p.getName(), typeMapper.mapType(p.getSchema()), p.isRequired()))
-                .forEach(operationRequest::addQueryParam);
+                .forEach(requestShape::addQueryParam);
 
         Stream.of(path.getParametersIn(context, "path"), operation.getParametersIn(context, "path"))
                 .flatMap(List::stream)
                 .map(p -> new Field(p.getName(), typeMapper.mapType(p.getSchema()), p.isRequired()))
-                .forEach(operationRequest::addPathParam);
+                .forEach(requestShape::addPathParam);
 
-        operationRequests.add(operationRequest);
+        requestShapes.add(requestShape);
 
         MediaType responseMediaType = operation.getResponse("200").getContentMediaType("application/json");
         Schema responseSchema = responseMediaType != null ? resolve(responseMediaType.getSchema()) : new Schema();

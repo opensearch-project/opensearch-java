@@ -1,6 +1,6 @@
 package org.opensearch.client.codegen;
 
-import org.apache.commons.text.CaseUtils;
+import org.opensearch.client.codegen.utils.Strings;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +11,7 @@ public class NameSanitizer {
     }};
 
     public static String wireNameToField(String wireName) {
-        String name = CaseUtils.toCamelCase(wireName, false, '_');
+        String name = Strings.toCamelCase(wireName);
         if (reservedWords.contains(name)) {
             name += "_";
         }
