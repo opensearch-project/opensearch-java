@@ -6,10 +6,10 @@
 The below matrix shows the compatibility of the [`opensearch-java-client`](https://search.maven.org/artifact/org.opensearch.client/opensearch-java) with versions of [`OpenSearch`](https://opensearch.org/downloads.html#opensearch).
 
 | Client Version | OpenSearch Version |
-| --- | --- |
-| 1.0.0 | 1.0.0-1.3.3 |
-| 2.0.0 | 1.3.3-2.0.1 |
-| 2.1.0 | 1.3.3-2.3.0 |
+| --- |--------------------|
+| 1.0.0 | 1.0.0-1.3.3        |
+| 2.0.0 | 1.3.3-2.0.1        |
+| 2.1.0 | 1.3.3-2.5.0        |
 
 ## Upgrading
 
