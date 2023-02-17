@@ -1,15 +1,33 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
 package org.opensearch.client.opensearch.remotestore;
 
-import org.opensearch.client.opensearch._types.*;
-import org.opensearch.client.json.*;
-import org.opensearch.client.transport.*;
-import org.opensearch.client.transport.endpoints.*;
-import org.opensearch.client.util.*;
+import org.opensearch.client.json.JsonpDeserializable;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.ObjectBuilderDeserializer;
+import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.*;
-import javax.annotation.*;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 
 /** Restore one or more indices from a remote backup. */
 @JsonpDeserializable
@@ -121,7 +139,9 @@ public class PostRemoteStoreRestoreRequest extends RequestBase implements JsonpS
                             },
                             // Request path
                             request -> {
-                                return "/_remotestore/_restore";
+                                StringBuilder buf = new StringBuilder();
+                                buf.append("/_remotestore/_restore");
+                                return buf.toString();
                             },
                             // Request parameters
                             request -> {

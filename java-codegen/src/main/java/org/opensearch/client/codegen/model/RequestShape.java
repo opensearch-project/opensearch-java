@@ -8,7 +8,9 @@
 
 package org.opensearch.client.codegen.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -41,8 +43,32 @@ public class RequestShape extends ObjectShape {
         return httpMethod;
     }
 
-    public String httpPath() {
-        return '"' + httpPath.replace("{", "\" + request.").replace("}", " + \"") + '"';
+    public Collection<HttpPathPart> httpPathParts() {
+        List<HttpPathPart> parts = new ArrayList<>();
+        boolean isParameter = false;
+        StringBuilder content = new StringBuilder();
+        for (char c : httpPath.toCharArray()) {
+            if (c == '{') {
+                if (content.length() > 0) {
+                    parts.add(new HttpPathPart(isParameter, content.toString()));
+                }
+                content = new StringBuilder();
+                isParameter = true;
+            } else if (c == '}') {
+                if (content.length() > 0) {
+                    parts.add(new HttpPathPart(isParameter, content.toString()));
+                }
+                content = new StringBuilder();
+                isParameter = false;
+            } else {
+                content.append(c);
+            }
+        }
+        if (content.length() > 0) {
+            parts.add(new HttpPathPart(isParameter, content.toString()));
+        }
+
+        return parts;
     }
 
     public String responseType() {
@@ -80,5 +106,19 @@ public class RequestShape extends ObjectShape {
     public void addPathParam(Field field) {
         pathParams.put(field.name(), field);
         fields.put(field.name(), field);
+    }
+
+    public class HttpPathPart {
+        public final boolean isParameter;
+        public final String content;
+
+        public HttpPathPart(boolean isParameter, String content) {
+            this.isParameter = isParameter;
+            this.content = content;
+        }
+
+        public Field parameter() {
+            return isParameter ? pathParams.get(content) : null;
+        }
     }
 }

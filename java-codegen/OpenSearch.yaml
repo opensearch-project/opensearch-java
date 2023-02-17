@@ -54,7 +54,7 @@ components:
           $ref: "#/components/schemas/RemoteStoreRestoreInfo"
     RemoteStoreRestoreInfo:
       x-namespace: remote_store
-      type: string
+      type: object
       properties:
         snapshot:
           type: string

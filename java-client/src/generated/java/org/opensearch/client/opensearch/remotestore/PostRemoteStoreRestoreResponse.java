@@ -1,18 +1,34 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
 package org.opensearch.client.opensearch.remotestore;
 
-import org.opensearch.client.json.*;
-import org.opensearch.client.util.*;
+import org.opensearch.client.json.JsonpDeserializable;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.ObjectBuilderDeserializer;
+import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
-import javax.annotation.*;
+import javax.annotation.Nullable;
 
 @JsonpDeserializable
 public class PostRemoteStoreRestoreResponse implements JsonpSerializable {
 
     @Nullable private final Boolean accepted;
 
-    @Nullable private final String remoteStore;
+    @Nullable private final RemoteStoreRestoreInfo remoteStore;
 
     public PostRemoteStoreRestoreResponse(Builder builder) {
         this.accepted = builder.accepted;
@@ -28,7 +44,7 @@ public class PostRemoteStoreRestoreResponse implements JsonpSerializable {
         return this.accepted;
     }
 
-    public final String remoteStore() {
+    public final RemoteStoreRestoreInfo remoteStore() {
         return this.remoteStore;
     }
 
@@ -46,7 +62,7 @@ public class PostRemoteStoreRestoreResponse implements JsonpSerializable {
 
         if (this.remoteStore != null) {
             generator.writeKey("remote_store");
-            generator.write(this.remoteStore);
+            this.remoteStore.serialize(generator, mapper);
         }
     }
 
@@ -54,16 +70,22 @@ public class PostRemoteStoreRestoreResponse implements JsonpSerializable {
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<PostRemoteStoreRestoreResponse> {
         private Boolean accepted;
-        private String remoteStore;
+        private RemoteStoreRestoreInfo remoteStore;
 
         public final Builder accepted(Boolean value) {
             this.accepted = value;
             return this;
         }
 
-        public final Builder remoteStore(String value) {
+        public final Builder remoteStore(RemoteStoreRestoreInfo value) {
             this.remoteStore = value;
             return this;
+        }
+
+        public final Builder remoteStore(
+                Function<RemoteStoreRestoreInfo.Builder, ObjectBuilder<RemoteStoreRestoreInfo>>
+                        fn) {
+            return remoteStore(fn.apply(new RemoteStoreRestoreInfo.Builder()).build());
         }
 
         /**
@@ -87,6 +109,6 @@ public class PostRemoteStoreRestoreResponse implements JsonpSerializable {
     protected static void setupPostRemoteStoreRestoreResponseDeserializer(
             ObjectDeserializer<PostRemoteStoreRestoreResponse.Builder> op) {
         op.add(Builder::accepted, JsonpDeserializer.booleanDeserializer(), "accepted");
-        op.add(Builder::remoteStore, JsonpDeserializer.stringDeserializer(), "remote_store");
+        op.add(Builder::remoteStore, RemoteStoreRestoreInfo._DESERIALIZER, "remote_store");
     }
 }
