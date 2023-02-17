@@ -1,19 +1,31 @@
+{{>Partials/LicenseHeader}}
+
 package {{packageName}};
 
-import org.opensearch.client.opensearch._types.*;
 {{#hasRequestBody}}
-import org.opensearch.client.json.*;
+import org.opensearch.client.json.JsonpDeserializable;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.ObjectBuilderDeserializer;
+import org.opensearch.client.json.ObjectDeserializer;
 {{/hasRequestBody}}
-import org.opensearch.client.transport.*;
-import org.opensearch.client.transport.endpoints.*;
-import org.opensearch.client.util.*;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 {{#hasRequestBody}}
 import jakarta.json.stream.JsonGenerator;
 {{/hasRequestBody}}
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.*;
-import javax.annotation.*;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 
 /**
  * {{description}}
@@ -43,7 +55,16 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
             },
             // Request path
             request -> {
-                return {{{httpPath}}};
+                StringBuilder buf = new StringBuilder();
+                {{#httpPathParts}}
+                {{#isParameter}}
+                SimpleEndpoint.pathEncode({{#parameter.type.queryParamify}}request.{{parameter.name}}{{/parameter.type.queryParamify}}, buf);
+                {{/isParameter}}
+                {{^isParameter}}
+                buf.append({{#dq}}{{content}}{{/dq}});
+                {{/isParameter}}
+                {{/httpPathParts}}
+                return buf.toString();
             },
             // Request parameters
             request -> {
