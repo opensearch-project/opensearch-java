@@ -24,7 +24,7 @@ public final class Strings {
     }
 
     private static String toCamelCase(String str, boolean capitalizeFirstLetter) {
-        return CaseUtils.toCamelCase(toSnakeCase(str), capitalizeFirstLetter, '_');
+        return CaseUtils.toCamelCase(toSnakeCase(str), capitalizeFirstLetter, '_', '.');
     }
 
     public static String toSnakeCase(String str) {

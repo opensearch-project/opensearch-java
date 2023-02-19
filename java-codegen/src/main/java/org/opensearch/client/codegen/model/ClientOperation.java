@@ -22,10 +22,10 @@ public class ClientOperation {
     }
 
     public String requestType() {
-        return Strings.toPascalCase(id) + "Request";
+        return RequestShape.requestClassName(id);
     }
 
     public String responseType() {
-        return Strings.toPascalCase(id) + "Response";
+        return RequestShape.responseClassName(id);
     }
 }

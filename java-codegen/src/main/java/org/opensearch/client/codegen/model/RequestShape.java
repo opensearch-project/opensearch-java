@@ -8,6 +8,8 @@
 
 package org.opensearch.client.codegen.model;
 
+import org.opensearch.client.codegen.utils.Strings;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -15,6 +17,14 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class RequestShape extends ObjectShape {
+    public static String requestClassName(String id) {
+        return Strings.toPascalCase(id) + "Request";
+    }
+
+    public static String responseClassName(String id) {
+        return Strings.toPascalCase(id) + "Response";
+    }
+
     private final String id;
     private final String description;
     private final String httpMethod;
@@ -24,7 +34,7 @@ public class RequestShape extends ObjectShape {
     private final Map<String, Field> fields = new TreeMap<>();
 
     public RequestShape(String namespace, String id, String description, String httpMethod, String httpPath) {
-        super(namespace, id + "Request");
+        super(namespace, requestClassName(id));
         this.id = id;
         this.description = description;
         this.httpMethod = httpMethod;
@@ -72,7 +82,7 @@ public class RequestShape extends ObjectShape {
     }
 
     public String responseType() {
-        return id + "Response";
+        return responseClassName(id);
     }
 
     public boolean hasRequestBody() {
