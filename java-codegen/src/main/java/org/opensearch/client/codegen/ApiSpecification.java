@@ -120,7 +120,7 @@ public class ApiSpecification {
 
         MediaType responseMediaType = operation.getResponse("200").getContentMediaType("application/json");
         Schema responseSchema = responseMediaType != null ? resolve(responseMediaType.getSchema()) : new Schema();
-        visitObjectShape(operation.getOperationId() + "Response", responseSchema);
+        visitObjectShape(requestShape.responseType(), responseSchema);
     }
 
     private void visitReferencedSchema(String ref, Schema schema) {
