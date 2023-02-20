@@ -46,6 +46,7 @@ import javax.annotation.Nullable;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
@@ -294,9 +295,13 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         Map<String, String> params = endpoint.queryParameters(request);
         if (params != null && !params.isEmpty()) {
             char sep = '?';
-            for (var ent : params.entrySet()) {
+            for (Map.Entry<String, String> ent : params.entrySet()) {
                 url.append(sep).append(ent.getKey()).append('=');
-                url.append(URLEncoder.encode(ent.getValue(), StandardCharsets.UTF_8));
+                try {
+                    url.append(URLEncoder.encode(ent.getValue(), StandardCharsets.UTF_8.name()));
+                } catch (UnsupportedEncodingException e) {
+                    throw new AssertionError("UTF-8 is unknown");
+                }
                 sep = '&';
             }
         }

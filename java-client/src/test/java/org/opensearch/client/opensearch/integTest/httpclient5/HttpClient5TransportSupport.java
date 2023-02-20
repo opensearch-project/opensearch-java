@@ -51,7 +51,7 @@ interface HttpClient5TransportSupport extends OpenSearchTransportSupport {
         return builder.setStrictDeprecationMode(true).build();
     }
 
-    private void configure(ApacheHttpClient5TransportBuilder builder, Settings settings, HttpHost[] hosts) throws IOException {
+    default void configure(ApacheHttpClient5TransportBuilder builder, Settings settings, HttpHost[] hosts) throws IOException {
         if (isHttps()) {
             try {
                 final SSLContext sslcontext = SSLContextBuilder

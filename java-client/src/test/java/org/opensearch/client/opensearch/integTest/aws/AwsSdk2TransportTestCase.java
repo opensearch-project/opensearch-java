@@ -26,6 +26,7 @@ import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.IndexState;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
+import org.opensearch.client.opensearch.indices.CreateIndexRequest.Builder;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.aws.AwsSdk2Transport;
 import org.opensearch.client.transport.aws.AwsSdk2TransportOptions;
@@ -207,13 +208,13 @@ public abstract class AwsSdk2TransportTestCase {
         if (indexExists) {
             client.delete(b -> b.index(List.of(TEST_INDEX)));
         }
-        var req = new CreateIndexRequest.Builder()
+        Builder req = new CreateIndexRequest.Builder()
                 .index(TEST_INDEX);
         client.create(req.build());
     }
 
     protected SearchResponse<SimplePojo> query(OpenSearchClient client, String title, String text) throws Exception {
-        var query = Query.of(qb -> {
+        Query query = Query.of(qb -> {
             if (title != null) {
                 qb.match(mb -> mb.field("title").query(vb -> vb.stringValue(title)));
             }
@@ -237,7 +238,7 @@ public abstract class AwsSdk2TransportTestCase {
 
     protected CompletableFuture<SearchResponse<SimplePojo>> query(
             OpenSearchAsyncClient client, String title, String text) {
-        var query = Query.of(qb -> {
+        Query query = Query.of(qb -> {
             if (title != null) {
                 qb.match(mb -> mb.field("title").query(vb -> vb.stringValue(title)));
             }

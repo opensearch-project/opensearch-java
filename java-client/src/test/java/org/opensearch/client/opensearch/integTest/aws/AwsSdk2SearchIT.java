@@ -18,6 +18,7 @@ import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
+import org.opensearch.client.opensearch.indices.CreateIndexRequest.Builder;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -139,7 +140,7 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         resetTestIndex(false);
         // attempt to create the same index a second time
         OpenSearchIndicesClient client = getIndexesClient(false, null, null);
-        var req = new CreateIndexRequest.Builder().index(TEST_INDEX);
+        Builder req = new CreateIndexRequest.Builder().index(TEST_INDEX);
         Exception exception = Assert.assertThrows(OpenSearchException.class, () -> {
             client.create(req.build());
         });
