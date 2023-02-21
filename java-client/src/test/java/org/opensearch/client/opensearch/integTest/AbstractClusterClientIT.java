@@ -8,6 +8,7 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import org.opensearch.Version;
 import org.opensearch.client.ResponseException;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchClient;
@@ -22,6 +23,7 @@ import org.opensearch.client.opensearch.cluster.PutClusterSettingsRequest;
 import org.opensearch.client.opensearch.cluster.PutClusterSettingsResponse;
 import org.opensearch.client.opensearch.cluster.health.IndexHealthStats;
 import org.opensearch.client.opensearch.cluster.health.ShardHealthStats;
+import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.cluster.routing.allocation.decider.EnableAllocationDecider;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.indices.recovery.RecoverySettings;
@@ -83,6 +85,12 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         String setting = "no_idea_what_you_are_talking_about";
         int value = 10;
 
+        InfoResponse info = javaClient().info();
+        String version = info.version().number();
+        if (version.contains("SNAPSHOT")) {
+            version = version.split("-")[0];
+        }
+
         Map<String, JsonData> transientSettingsMap = new HashMap<>();
         transientSettingsMap.put(setting, JsonData.of(value));
 
@@ -95,11 +103,19 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         } catch (OpenSearchException e) {
             assertNotNull(e);
             assertEquals(e.response().status(), 400);
-            assertEquals(
+            if (Version.fromString(version).onOrAfter(Version.fromString("3.0.0"))) {
+                assertEquals(
+                    e.getMessage(),
+                    "Request failed: [settings_exception] " +
+                            "transient setting [no_idea_what_you_are_talking_about], not recognized"
+                );
+            } else {
+                assertEquals(
                     e.getMessage(),
                     "Request failed: [illegal_argument_exception] " +
                             "transient setting [no_idea_what_you_are_talking_about], not recognized"
-            );
+                );
+            }
         }
     }
 
