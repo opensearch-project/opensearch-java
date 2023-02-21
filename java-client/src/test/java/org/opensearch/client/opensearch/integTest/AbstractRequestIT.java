@@ -58,6 +58,7 @@ import org.opensearch.client.opensearch.core.msearch.RequestItem;
 import org.opensearch.client.opensearch.core.search.CompletionSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggesterBuilders;
+import org.opensearch.client.opensearch.core.search.Hit;
 import org.opensearch.client.opensearch.core.search.Suggester;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 import org.opensearch.client.opensearch.indices.GetIndexResponse;
@@ -247,6 +248,37 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         assertEquals("foo", bulk.items().get(1).index());
         assertEquals(1L, bulk.items().get(1).version().longValue());
         assertEquals(42, javaClient().get(b -> b.index("foo").id("abc"), AppData.class).source().getIntValue());
+    }
+
+    @Test
+    public void testTrackTotalHitsFalse() throws Exception {
+        // https://github.com/opensearch-project/opensearch-java/issues/354
+        String index = "ingest-test";
+
+        javaClient().indices().create(b -> b.index(index));
+
+        AppData appData = new AppData();
+        appData.setIntValue(1337);
+        appData.setMsg("foo");
+
+        javaClient().index(b -> b
+                .index(index)
+                .id("myId")
+                .document(appData)
+                .refresh(Refresh.True) // Make it visible for search
+        ).id();
+
+        // Search
+        SearchResponse<AppData> search = javaClient().search(b -> b
+                        .index(index)
+                        .trackTotalHits(t -> t.enabled(false))
+                , AppData.class
+        );
+
+        List<Hit<AppData>> hits = search.hits().hits();
+        AppData appDataResult = search.hits().hits().get(0).source();
+        assertEquals(1337, appDataResult.getIntValue());
+        assertEquals("foo", appDataResult.getMsg());
     }
 
     @Test
