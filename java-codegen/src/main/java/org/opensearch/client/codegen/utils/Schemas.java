@@ -31,6 +31,14 @@ public final class Schemas {
         return (String) getExtension(schema, "x-namespace");
     }
 
+    public static String getOperationNameExtension(AbsExtendedOpenApiSchema<?> schema) {
+        return (String) getExtension(schema, "x-operation-name");
+    }
+
+    public static String getOperationNameExtension(AbsExtendedRefOpenApiSchema<?> schema) {
+        return (String) getExtension(schema, "x-operation-name");
+    }
+
     public static Object getExtension(AbsExtendedOpenApiSchema<?> schema, String key) {
         return schema.getExtensions().get(key);
     }

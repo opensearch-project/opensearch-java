@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
 
 /** Restore one or more indices from a remote backup. */
 @JsonpDeserializable
-public class PostRemoteStoreRestoreRequest extends RequestBase implements JsonpSerializable {
+public class RestoreRequest extends RequestBase implements JsonpSerializable {
 
     @Nullable private final String clusterManagerTimeout;
 
@@ -39,14 +39,13 @@ public class PostRemoteStoreRestoreRequest extends RequestBase implements JsonpS
 
     @Nullable private final Boolean waitForCompletion;
 
-    public PostRemoteStoreRestoreRequest(Builder builder) {
+    public RestoreRequest(Builder builder) {
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
         this.waitForCompletion = builder.waitForCompletion;
     }
 
-    public static PostRemoteStoreRestoreRequest of(
-            Function<Builder, ObjectBuilder<PostRemoteStoreRestoreRequest>> fn) {
+    public static RestoreRequest of(Function<Builder, ObjectBuilder<RestoreRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -77,9 +76,8 @@ public class PostRemoteStoreRestoreRequest extends RequestBase implements JsonpS
         generator.writeEnd();
     }
 
-    /** Builder for {@link PostRemoteStoreRestoreRequest}. */
-    public static class Builder extends ObjectBuilderBase
-            implements ObjectBuilder<PostRemoteStoreRestoreRequest> {
+    /** Builder for {@link RestoreRequest}. */
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RestoreRequest> {
         private String clusterManagerTimeout;
         private List<String> indices;
         private Boolean waitForCompletion;
@@ -105,60 +103,55 @@ public class PostRemoteStoreRestoreRequest extends RequestBase implements JsonpS
         }
 
         /**
-         * Builds a {@link PostRemoteStoreRestoreRequest}.
+         * Builds a {@link RestoreRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
-        public PostRemoteStoreRestoreRequest build() {
+        public RestoreRequest build() {
             _checkSingleUse();
 
-            return new PostRemoteStoreRestoreRequest(this);
+            return new RestoreRequest(this);
         }
     }
 
-    public static final JsonpDeserializer<PostRemoteStoreRestoreRequest> _DESERIALIZER =
+    public static final JsonpDeserializer<RestoreRequest> _DESERIALIZER =
             ObjectBuilderDeserializer.lazy(
-                    Builder::new,
-                    PostRemoteStoreRestoreRequest::setupPostRemoteStoreRestoreRequestDeserializer);
+                    Builder::new, RestoreRequest::setupRestoreRequestDeserializer);
 
-    protected static void setupPostRemoteStoreRestoreRequestDeserializer(
-            ObjectDeserializer<PostRemoteStoreRestoreRequest.Builder> op) {
+    protected static void setupRestoreRequestDeserializer(
+            ObjectDeserializer<RestoreRequest.Builder> op) {
         op.add(
                 Builder::indices,
                 JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
                 "indices");
     }
 
-    public static final Endpoint<
-                    PostRemoteStoreRestoreRequest, PostRemoteStoreRestoreResponse, ErrorResponse>
-            _ENDPOINT =
-                    new SimpleEndpoint<>(
-                            // Request method
-                            request -> {
-                                return "post";
-                            },
-                            // Request path
-                            request -> {
-                                StringBuilder buf = new StringBuilder();
-                                buf.append("/_remotestore/_restore");
-                                return buf.toString();
-                            },
-                            // Request parameters
-                            request -> {
-                                Map<String, String> params = new HashMap<>();
-                                if (request.clusterManagerTimeout != null) {
-                                    params.put(
-                                            "cluster_manager_timeout",
-                                            request.clusterManagerTimeout);
-                                }
-                                if (request.waitForCompletion != null) {
-                                    params.put(
-                                            "wait_for_completion",
-                                            String.valueOf(request.waitForCompletion));
-                                }
-                                return params;
-                            },
-                            SimpleEndpoint.emptyMap(),
-                            true,
-                            PostRemoteStoreRestoreResponse._DESERIALIZER);
+    public static final Endpoint<RestoreRequest, RestoreResponse, ErrorResponse> _ENDPOINT =
+            new SimpleEndpoint<>(
+                    // Request method
+                    request -> {
+                        return "post";
+                    },
+                    // Request path
+                    request -> {
+                        StringBuilder buf = new StringBuilder();
+                        buf.append("/_remotestore/_restore");
+                        return buf.toString();
+                    },
+                    // Request parameters
+                    request -> {
+                        Map<String, String> params = new HashMap<>();
+                        if (request.clusterManagerTimeout != null) {
+                            params.put("cluster_manager_timeout", request.clusterManagerTimeout);
+                        }
+                        if (request.waitForCompletion != null) {
+                            params.put(
+                                    "wait_for_completion",
+                                    String.valueOf(request.waitForCompletion));
+                        }
+                        return params;
+                    },
+                    SimpleEndpoint.emptyMap(),
+                    true,
+                    RestoreResponse._DESERIALIZER);
 }

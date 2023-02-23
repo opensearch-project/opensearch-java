@@ -93,7 +93,7 @@ public class ApiSpecification {
     private void visit(String httpPath, Path path, String httpMethod, Operation operation) throws ApiSpecificationParseException {
         RequestShape requestShape = new RequestShape(
                 Schemas.getNamespaceExtension(operation),
-                operation.getOperationId(),
+                Schemas.getOperationNameExtension(operation),
                 operation.getDescription(),
                 httpMethod,
                 httpPath
@@ -120,7 +120,7 @@ public class ApiSpecification {
 
         MediaType responseMediaType = operation.getResponse("200").getContentMediaType("application/json");
         Schema responseSchema = responseMediaType != null ? resolve(responseMediaType.getSchema()) : new Schema();
-        visitObjectShape(requestShape.responseType(), responseSchema);
+        visitObjectShape(requestShape.namespace(), requestShape.responseType(), responseSchema);
     }
 
     private void visitReferencedSchema(String ref, Schema schema) {
@@ -130,7 +130,7 @@ public class ApiSpecification {
         String name = refParts[refParts.length - 1];
 
         if (Schemas.isObject(schema)) {
-            visitObjectShape(name, schema);
+            visitObjectShape(Schemas.getNamespaceExtension(schema), name, schema);
         } else if (Schemas.isString(schema) && schema.hasEnums()) {
             enumShapes.add(new EnumShape(
                     Schemas.getNamespaceExtension(schema),
@@ -140,8 +140,8 @@ public class ApiSpecification {
         }
     }
 
-    private void visitObjectShape(String name, Schema schema) {
-        ObjectShape shape = new ObjectShape(Schemas.getNamespaceExtension(schema), name);
+    private void visitObjectShape(String namespace, String name, Schema schema) {
+        ObjectShape shape = new ObjectShape(namespace, name);
         visitFields(schema, shape::addBodyField);
         objectShapes.add(shape);
     }
