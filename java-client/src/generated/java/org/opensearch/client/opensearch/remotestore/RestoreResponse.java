@@ -24,19 +24,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 @JsonpDeserializable
-public class PostRemoteStoreRestoreResponse implements JsonpSerializable {
+public class RestoreResponse implements JsonpSerializable {
 
     @Nullable private final Boolean accepted;
 
     @Nullable private final RemoteStoreRestoreInfo remoteStore;
 
-    public PostRemoteStoreRestoreResponse(Builder builder) {
+    public RestoreResponse(Builder builder) {
         this.accepted = builder.accepted;
         this.remoteStore = builder.remoteStore;
     }
 
-    public static PostRemoteStoreRestoreResponse of(
-            Function<Builder, ObjectBuilder<PostRemoteStoreRestoreResponse>> fn) {
+    public static RestoreResponse of(Function<Builder, ObjectBuilder<RestoreResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -66,9 +65,9 @@ public class PostRemoteStoreRestoreResponse implements JsonpSerializable {
         }
     }
 
-    /** Builder for {@link PostRemoteStoreRestoreResponse}. */
+    /** Builder for {@link RestoreResponse}. */
     public static class Builder extends ObjectBuilderBase
-            implements ObjectBuilder<PostRemoteStoreRestoreResponse> {
+            implements ObjectBuilder<RestoreResponse> {
         private Boolean accepted;
         private RemoteStoreRestoreInfo remoteStore;
 
@@ -89,25 +88,23 @@ public class PostRemoteStoreRestoreResponse implements JsonpSerializable {
         }
 
         /**
-         * Builds a {@link PostRemoteStoreRestoreResponse}.
+         * Builds a {@link RestoreResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
-        public PostRemoteStoreRestoreResponse build() {
+        public RestoreResponse build() {
             _checkSingleUse();
 
-            return new PostRemoteStoreRestoreResponse(this);
+            return new RestoreResponse(this);
         }
     }
 
-    public static final JsonpDeserializer<PostRemoteStoreRestoreResponse> _DESERIALIZER =
+    public static final JsonpDeserializer<RestoreResponse> _DESERIALIZER =
             ObjectBuilderDeserializer.lazy(
-                    Builder::new,
-                    PostRemoteStoreRestoreResponse
-                            ::setupPostRemoteStoreRestoreResponseDeserializer);
+                    Builder::new, RestoreResponse::setupRestoreResponseDeserializer);
 
-    protected static void setupPostRemoteStoreRestoreResponseDeserializer(
-            ObjectDeserializer<PostRemoteStoreRestoreResponse.Builder> op) {
+    protected static void setupRestoreResponseDeserializer(
+            ObjectDeserializer<RestoreResponse.Builder> op) {
         op.add(Builder::accepted, JsonpDeserializer.booleanDeserializer(), "accepted");
         op.add(Builder::remoteStore, RemoteStoreRestoreInfo._DESERIALIZER, "remote_store");
     }

@@ -36,26 +36,17 @@ public class OpenSearchRemoteStoreClient
         return new OpenSearchRemoteStoreClient(this.transport, transportOptions);
     }
 
-    public PostRemoteStoreRestoreResponse postRemoteStoreRestore(
-            PostRemoteStoreRestoreRequest request) throws IOException, OpenSearchException {
-        JsonEndpoint<PostRemoteStoreRestoreRequest, PostRemoteStoreRestoreResponse, ErrorResponse>
-                endpoint =
-                        (JsonEndpoint<
-                                        PostRemoteStoreRestoreRequest,
-                                        PostRemoteStoreRestoreResponse,
-                                        ErrorResponse>)
-                                PostRemoteStoreRestoreRequest._ENDPOINT;
+    public RestoreResponse restore(RestoreRequest request) throws IOException, OpenSearchException {
+        JsonEndpoint<RestoreRequest, RestoreResponse, ErrorResponse> endpoint =
+                (JsonEndpoint<RestoreRequest, RestoreResponse, ErrorResponse>)
+                        RestoreRequest._ENDPOINT;
 
         return this.transport.performRequest(request, endpoint, this.transportOptions);
     }
 
-    public final PostRemoteStoreRestoreResponse postRemoteStoreRestore(
-            Function<
-                            PostRemoteStoreRestoreRequest.Builder,
-                            ObjectBuilder<PostRemoteStoreRestoreRequest>>
-                    fn)
+    public final RestoreResponse restore(
+            Function<RestoreRequest.Builder, ObjectBuilder<RestoreRequest>> fn)
             throws IOException, OpenSearchException {
-        return postRemoteStoreRestore(
-                fn.apply(new PostRemoteStoreRestoreRequest.Builder()).build());
+        return restore(fn.apply(new RestoreRequest.Builder()).build());
     }
 }

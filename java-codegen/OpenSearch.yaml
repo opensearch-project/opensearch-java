@@ -8,6 +8,7 @@ paths:
       description: Restore one or more indices from a remote backup.
       operationId: PostRemoteStoreRestore
       x-namespace: remote_store
+      x-operation-name: restore
       requestBody:
         content:
           application/json:
