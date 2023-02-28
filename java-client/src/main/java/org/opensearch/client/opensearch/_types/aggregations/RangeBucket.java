@@ -51,6 +51,9 @@ import javax.annotation.Nullable;
 
 @JsonpDeserializable
 public class RangeBucket extends MultiBucketBase {
+
+	@Nullable
+	private final String key;
 	@Nullable
 	private final Double from;
 
@@ -68,6 +71,7 @@ public class RangeBucket extends MultiBucketBase {
 	private RangeBucket(Builder builder) {
 		super(builder);
 
+		this.key = builder.key;
 		this.from = builder.from;
 		this.to = builder.to;
 		this.fromAsString = builder.fromAsString;
@@ -77,6 +81,14 @@ public class RangeBucket extends MultiBucketBase {
 
 	public static RangeBucket of(Function<Builder, ObjectBuilder<RangeBucket>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code key}
+	 */
+	@Nullable
+	public final String key() {
+		return this.key;
 	}
 
 	/**
@@ -114,6 +126,11 @@ public class RangeBucket extends MultiBucketBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (this.key != null) {
+			generator.writeKey("key");
+			generator.write(this.key);
+
+		}
 		if (this.from != null) {
 			generator.writeKey("from");
 			generator.write(this.from);
@@ -144,6 +161,9 @@ public class RangeBucket extends MultiBucketBase {
 	 */
 
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder> implements ObjectBuilder<RangeBucket> {
+
+		@Nullable
+		private String key;
 		@Nullable
 		private Double from;
 
@@ -155,6 +175,14 @@ public class RangeBucket extends MultiBucketBase {
 
 		@Nullable
 		private String toAsString;
+
+		/**
+		 * API name: {@code key}
+		 */
+		public final Builder key(String value) {
+			this.key = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code from}
@@ -216,6 +244,7 @@ public class RangeBucket extends MultiBucketBase {
 
 	protected static void setupRangeBucketDeserializer(ObjectDeserializer<RangeBucket.Builder> op) {
 		setupMultiBucketBaseDeserializer(op);
+		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
 		op.add(Builder::from, JsonpDeserializer.doubleDeserializer(), "from");
 		op.add(Builder::to, JsonpDeserializer.doubleDeserializer(), "to");
 		op.add(Builder::fromAsString, JsonpDeserializer.stringDeserializer(), "from_as_string");
