@@ -33,6 +33,7 @@ import java.util.Map;
 import static java.util.Collections.emptyMap;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertTrue;
 
 public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCase {
     public void testClusterPutSettings() throws IOException {
@@ -95,11 +96,7 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         } catch (OpenSearchException e) {
             assertNotNull(e);
             assertEquals(e.response().status(), 400);
-            assertEquals(
-                    e.getMessage(),
-                    "Request failed: [illegal_argument_exception] " +
-                            "transient setting [no_idea_what_you_are_talking_about], not recognized"
-            );
+            assertTrue(e.getMessage().contains("transient setting [no_idea_what_you_are_talking_about], not recognized"));
         }
     }
 

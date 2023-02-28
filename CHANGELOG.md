@@ -34,8 +34,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Update Gradle to 7.6 ([#309](https://github.com/opensearch-project/opensearch-java/pull/309))
 - Prevent SPI calls at runtime ([#293](https://github.com/opensearch-project/opensearch-java/pull/293))
 - Add support for OpenSearch Serverless ([#339](https://github.com/opensearch-project/opensearch-java/pull/339))
-- Fix issue where completion suggestions were failing, due to being parsed as term suggestions ([#347](https://github.com/opensearch-project/opensearch-java/pull/347))
-- Fix issue when trackTotalHits is disabled ([#372](https://github.com/opensearch-project/opensearch-java/pull/372))
+- Fix completion suggestions failure with missing required property TermSuggestOption.score ([#347](https://github.com/opensearch-project/opensearch-java/pull/347))
+- Fix search failure with missing required property HitsMetadata.total when trackTotalHits is disabled ([#372](https://github.com/opensearch-project/opensearch-java/pull/372))
 
 ### Deprecated
 
@@ -48,6 +48,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Do not double-wrap OpenSearchException on error ([#323](https://github.com/opensearch-project/opensearch-java/pull/323))
 - Fix AwsSdk2TransportOptions.responseCompression ([#322](https://github.com/opensearch-project/opensearch-java/pull/322))
 - Bulk UpdateOperation misses upsert options ([#353](https://github.com/opensearch-project/opensearch-java/pull/353))
+- Fix missing key property in the RangeBucket ([#370](https://github.com/opensearch-project/opensearch-java/pull/370))
 
 ### Security
 
