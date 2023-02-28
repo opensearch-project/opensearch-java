@@ -6,6 +6,10 @@
  * compatible open source license.
  */
 
+// ----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+// ----------------------------------------------------
+
 package org.opensearch.client.opensearch.remotestore;
 
 import org.opensearch.client.json.JsonpDeserializable;
