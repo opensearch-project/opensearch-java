@@ -9,7 +9,7 @@
 package org.opensearch.client.opensearch.integTest.restclient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.apache.hc.core5.http.HttpHost;
+import org.apache.http.HttpHost;
 import org.junit.Test;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch._types.Refresh;
