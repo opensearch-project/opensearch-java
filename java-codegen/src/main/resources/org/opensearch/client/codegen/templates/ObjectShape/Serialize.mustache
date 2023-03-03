@@ -9,7 +9,7 @@
     {{^required}}
         if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
     {{/required}}
-            generator.writeKey({{#dq}}{{wireName}}{{/dq}});
+            generator.writeKey({{#quoted}}{{wireName}}{{/quoted}});
             {{#type.serializer}}this.{{name}}{{/type.serializer}}
     {{^required}}
         }

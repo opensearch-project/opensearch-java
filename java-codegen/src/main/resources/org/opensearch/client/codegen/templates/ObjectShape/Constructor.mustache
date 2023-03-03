@@ -2,7 +2,7 @@
 {{#fields}}
 {{#type.isListOrMap}}
     {{#required}}
-        this.{{name}} = ApiTypeHelper.unmodifiableRequired(builder.{{name}}, this, {{#dq}}{{name}}{{/dq}});
+        this.{{name}} = ApiTypeHelper.unmodifiableRequired(builder.{{name}}, this, {{#quoted}}{{name}}{{/quoted}});
     {{/required}}
     {{^required}}
         this.{{name}} = ApiTypeHelper.unmodifiable(builder.{{name}});
@@ -10,7 +10,7 @@
 {{/type.isListOrMap}}
 {{^type.isListOrMap}}
     {{#required}}
-        this.{{name}} = ApiTypeHelper.requireNonNull(builder.{{name}}, this, {{#dq}}{{name}}{{/dq}});
+        this.{{name}} = ApiTypeHelper.requireNonNull(builder.{{name}}, this, {{#quoted}}{{name}}{{/quoted}});
     {{/required}}
     {{^required}}
         this.{{name}} = builder.{{name}};

@@ -8,7 +8,7 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 public enum {{className}} implements JsonEnum {
     {{#variants}}
-    {{name}}({{#dq}}{{wireName}}{{/dq}}),
+    {{name}}({{#quoted}}{{wireName}}{{/quoted}}),
     {{/variants}}
     ;
 

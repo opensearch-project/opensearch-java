@@ -8,24 +8,32 @@
 
 package org.opensearch.client.codegen.model;
 
+import java.io.File;
+import org.opensearch.client.codegen.Renderer;
+import org.opensearch.client.codegen.exceptions.RenderException;
+
 public abstract class Shape {
-    protected final String namespace;
+    protected final Namespace parent;
     private final String className;
 
-    public Shape(String namespace, String className) {
-        this.namespace = namespace;
+    public Shape(Namespace parent, String className) {
+        this.parent = parent;
         this.className = className;
     }
 
-    public String namespace() {
-        return this.namespace;
+    public Namespace parent() {
+        return this.parent;
     }
 
     public String packageName() {
-        return "org.opensearch.client.opensearch." + this.namespace.replace("_", "").toLowerCase();
+        return parent.packageName();
     }
 
     public String className() {
         return this.className;
+    }
+
+    public void render(Renderer renderer, File outputDir) throws RenderException {
+        renderer.render(this, new File(outputDir, this.className + ".java"));
     }
 }

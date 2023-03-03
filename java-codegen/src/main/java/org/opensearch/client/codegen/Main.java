@@ -9,6 +9,18 @@
 package org.opensearch.client.codegen;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.stream.Stream;
+import org.openapi4j.core.exception.ResolutionException;
+import org.openapi4j.core.validation.ValidationException;
+import org.openapi4j.parser.OpenApi3Parser;
+import org.openapi4j.parser.model.v3.OpenApi3;
+import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
+import org.opensearch.client.codegen.exceptions.RenderException;
+import org.opensearch.client.codegen.model.Namespace;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,10 +35,36 @@ public class Main {
             File outputDir = new File(args[1]);
             System.out.println("Spec File: " + specFile);
             System.out.println("Output Dir: " + outputDir);
-            Generator generator = new Generator(specFile, outputDir);
-            generator.generate();
+
+            Namespace root = parseSpec(specFile);
+
+            cleanDirectory(outputDir);
+
+            outputDir = new File(outputDir, root.packageName().replace('.', '/'));
+
+            root.render(new Renderer(), outputDir);
         } catch (Throwable e) {
             e.printStackTrace(System.err);
+            System.exit(1);
+        }
+    }
+
+    private static Namespace parseSpec(File spec) throws ApiSpecificationParseException {
+        try {
+            OpenApi3 api = new OpenApi3Parser().parse(spec, true);
+            return Namespace.from(api);
+        } catch (ResolutionException | ValidationException e) {
+            throw new ApiSpecificationParseException("Failed to parse schema: " + spec, e);
+        }
+    }
+
+    private static void cleanDirectory(File dir) throws RenderException {
+        try (Stream<Path> walker = Files.walk(dir.toPath())) {
+            walker.sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+        } catch (IOException e) {
+            throw new RenderException("Unable to cleanup output directory: " + dir, e);
         }
     }
 }

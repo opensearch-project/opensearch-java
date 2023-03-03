@@ -8,37 +8,65 @@
 
 package org.opensearch.client.codegen.model;
 
-import org.opensearch.client.codegen.utils.Strings;
-
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import org.openapi4j.parser.model.v3.Operation;
+import org.openapi4j.parser.model.v3.Path;
+import org.opensearch.client.codegen.utils.Schemas;
+import org.opensearch.client.codegen.utils.Strings;
 
 public class RequestShape extends ObjectShape {
-    public static String requestClassName(String id) {
-        return Strings.toPascalCase(id) + "Request";
-    }
+    public static RequestShape from(Context ctx, String httpPath, Path path, String method, Operation operation) {
+        List<Field> bodyFields = Schemas.resolveRequestBodySchema(ctx.openApiCtx, operation)
+                .map(schema -> Field.allFrom(ctx, schema))
+                .orElseGet(ArrayList::new);
 
-    public static String responseClassName(String id) {
-        return Strings.toPascalCase(id) + "Response";
+        List<Field> queryParams = Field.allFrom(ctx, path, operation, "query");
+        List<Field> pathParams = Field.allFrom(ctx, path, operation, "path");
+
+        return new RequestShape(
+                ctx.namespace,
+                Schemas.getOperationNameExtension(operation),
+                operation.getDescription(),
+                method,
+                httpPath,
+                bodyFields,
+                queryParams,
+                pathParams
+        );
     }
 
     private final String id;
     private final String description;
     private final String httpMethod;
-    private final String httpPath;
     private final Map<String, Field> queryParams = new TreeMap<>();
     private final Map<String, Field> pathParams = new TreeMap<>();
     private final Map<String, Field> fields = new TreeMap<>();
+    private final Collection<HttpPathPart> httpPathParts;
 
-    public RequestShape(String namespace, String id, String description, String httpMethod, String httpPath) {
-        super(namespace, requestClassName(id));
+    private RequestShape(
+            Namespace parent,
+            String id,
+            String description,
+            String httpMethod,
+            String httpPath,
+            Collection<Field> bodyFields,
+            Collection<Field> queryParams,
+            Collection<Field> pathParams) {
+        super(parent, requestClassName(id), bodyFields);
         this.id = id;
         this.description = description;
         this.httpMethod = httpMethod;
-        this.httpPath = httpPath;
+        queryParams.forEach(f -> this.queryParams.put(f.name(), f));
+        pathParams.forEach(f -> this.pathParams.put(f.name(), f));
+        this.fields.putAll(this.bodyFields);
+        this.fields.putAll(this.queryParams);
+        this.fields.putAll(this.pathParams);
+        this.httpPathParts = HttpPathPart.partsFrom(httpPath, this.pathParams);
     }
 
     public String id() {
@@ -54,31 +82,7 @@ public class RequestShape extends ObjectShape {
     }
 
     public Collection<HttpPathPart> httpPathParts() {
-        List<HttpPathPart> parts = new ArrayList<>();
-        boolean isParameter = false;
-        StringBuilder content = new StringBuilder();
-        for (char c : httpPath.toCharArray()) {
-            if (c == '{') {
-                if (content.length() > 0) {
-                    parts.add(new HttpPathPart(isParameter, content.toString()));
-                }
-                content = new StringBuilder();
-                isParameter = true;
-            } else if (c == '}') {
-                if (content.length() > 0) {
-                    parts.add(new HttpPathPart(isParameter, content.toString()));
-                }
-                content = new StringBuilder();
-                isParameter = false;
-            } else {
-                content.append(c);
-            }
-        }
-        if (content.length() > 0) {
-            parts.add(new HttpPathPart(isParameter, content.toString()));
-        }
-
-        return parts;
+        return Collections.unmodifiableCollection(httpPathParts);
     }
 
     public String responseType() {
@@ -102,33 +106,11 @@ public class RequestShape extends ObjectShape {
         return fields.values();
     }
 
-    @Override
-    public void addBodyField(Field field) {
-        super.addBodyField(field);
-        fields.put(field.name(), field);
+    public static String requestClassName(String id) {
+        return Strings.toPascalCase(id) + "Request";
     }
 
-    public void addQueryParam(Field field) {
-        queryParams.put(field.name(), field);
-        fields.put(field.name(), field);
-    }
-
-    public void addPathParam(Field field) {
-        pathParams.put(field.name(), field);
-        fields.put(field.name(), field);
-    }
-
-    public class HttpPathPart {
-        public final boolean isParameter;
-        public final String content;
-
-        public HttpPathPart(boolean isParameter, String content) {
-            this.isParameter = isParameter;
-            this.content = content;
-        }
-
-        public Field parameter() {
-            return isParameter ? pathParams.get(content) : null;
-        }
+    public static String responseClassName(String id) {
+        return Strings.toPascalCase(id) + "Response";
     }
 }

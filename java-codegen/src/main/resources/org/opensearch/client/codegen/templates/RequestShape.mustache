@@ -51,7 +51,7 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
     public static final Endpoint<{{className}}, {{responseType}}, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
             // Request method
             request -> {
-                return {{#dq}}{{httpMethod}}{{/dq}};
+                return {{#quoted}}{{httpMethod}}{{/quoted}};
             },
             // Request path
             request -> {
@@ -61,7 +61,7 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
                 SimpleEndpoint.pathEncode({{#parameter.type.queryParamify}}request.{{parameter.name}}{{/parameter.type.queryParamify}}, buf);
                 {{/isParameter}}
                 {{^isParameter}}
-                buf.append({{#dq}}{{content}}{{/dq}});
+                buf.append({{#quoted}}{{content}}{{/quoted}});
                 {{/isParameter}}
                 {{/httpPathParts}}
                 return buf.toString();
@@ -71,7 +71,7 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
                 Map<String, String> params = new HashMap<>();
                 {{#queryParams}}
                 if ({{#type.isDefined}}request.{{name}}{{/type.isDefined}}) {
-                    params.put({{#dq}}{{wireName}}{{/dq}}, {{#type.queryParamify}}request.{{name}}{{/type.queryParamify}});
+                    params.put({{#quoted}}{{wireName}}{{/quoted}}, {{#type.queryParamify}}request.{{name}}{{/type.queryParamify}});
                 }
                 {{/queryParams}}
                 return params;
