@@ -1,0 +1,21 @@
+{{#type.isString}}
+    {{value}}
+{{/type.isString}}
+{{^type.isString}}
+    {{#type.isEnum}}
+        {{value}}.jsonValue()
+    {{/type.isEnum}}
+    {{^type.isEnum}}
+        {{#type.isPrimitive}}
+            String.valueOf({{value}})
+        {{/type.isPrimitive}}
+        {{^type.isPrimitive}}
+            {{#type.isList}}
+                {{value}}.stream().map(v -> {{#type.listValueType.queryParamify}}v{{/type.listValueType.queryParamify}}).collect(Collectors.joining(","))
+            {{/type.isList}}
+            {{^type.isList}}
+                ERROR: Unsupported queryParamify of {{type}}
+            {{/type.isList}}
+        {{/type.isPrimitive}}
+    {{/type.isEnum}}
+{{/type.isString}}

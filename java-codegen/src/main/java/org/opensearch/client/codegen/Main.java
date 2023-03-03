@@ -42,7 +42,7 @@ public class Main {
 
             outputDir = new File(outputDir, root.packageName().replace('.', '/'));
 
-            root.render(new Renderer(), outputDir);
+            root.render(Renderer.INSTANCE, outputDir);
         } catch (Throwable e) {
             e.printStackTrace(System.err);
             System.exit(1);

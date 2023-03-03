@@ -70,7 +70,12 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
             request -> {
                 Map<String, String> params = new HashMap<>();
                 {{#queryParams}}
-                if ({{#type.isDefined}}request.{{name}}{{/type.isDefined}}) {
+                {{#type.isListOrMap}}
+                if (ApiTypeHelper.isDefined(request.{{name}})) {
+                {{/type.isListOrMap}}
+                {{^type.isListOrMap}}
+                if (request.{{name}} != null) {
+                {{/type.isListOrMap}}
                     params.put({{#quoted}}{{wireName}}{{/quoted}}, {{#type.queryParamify}}request.{{name}}{{/type.queryParamify}});
                 }
                 {{/queryParams}}
