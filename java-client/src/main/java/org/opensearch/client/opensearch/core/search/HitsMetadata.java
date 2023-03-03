@@ -56,6 +56,7 @@ import javax.annotation.Nullable;
 
 
 public class HitsMetadata<T> implements JsonpSerializable {
+	@Nullable
 	private final TotalHits total;
 
 	private final List<Hit<T>> hits;
@@ -70,7 +71,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 
 	private HitsMetadata(Builder<T> builder) {
 
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.total = builder.total;
 		this.hits = ApiTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
 		this.maxScore = builder.maxScore;
 		this.tSerializer = builder.tSerializer;
@@ -82,7 +83,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * API name: {@code total}
 	 */
 	public final TotalHits total() {
 		return this.total;
@@ -114,8 +115,10 @@ public class HitsMetadata<T> implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("total");
-		this.total.serialize(generator, mapper);
+		if (this.total != null) {
+			generator.writeKey("total");
+			this.total.serialize(generator, mapper);
+		}
 
 		if (ApiTypeHelper.isDefined(this.hits)) {
 			generator.writeKey("hits");
@@ -142,6 +145,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 	 */
 
 	public static class Builder<T> extends ObjectBuilderBase implements ObjectBuilder<HitsMetadata<T>> {
+		@Nullable
 		private TotalHits total;
 
 		private List<Hit<T>> hits;
@@ -153,7 +157,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		private JsonpSerializer<T> tSerializer;
 
 		/**
-		 * Required - API name: {@code total}
+		 * API name: {@code total}
 		 */
 		public final Builder<T> total(TotalHits value) {
 			this.total = value;
@@ -161,7 +165,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * API name: {@code total}
 		 */
 		public final Builder<T> total(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {
 			return this.total(fn.apply(new TotalHits.Builder()).build());
