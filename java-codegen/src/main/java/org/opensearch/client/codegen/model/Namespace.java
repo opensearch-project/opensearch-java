@@ -1,3 +1,11 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
 package org.opensearch.client.codegen.model;
 
 import java.io.File;
@@ -129,7 +137,7 @@ public class Namespace extends Shape {
     private static class Client extends Shape {
         private final boolean async;
 
-        public Client(Namespace parent, boolean async) {
+        private Client(Namespace parent, boolean async) {
             super(parent, "OpenSearch" + Strings.toPascalCase(parent.name) + (async ? "Async" : "") + "Client");
             this.async = async;
         }

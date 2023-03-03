@@ -7,7 +7,12 @@
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 {{#bodyFields}}
     {{^required}}
-        if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
+        {{#type.isListOrMap}}
+        if (ApiTypeHelper.isDefined(this.{{name}})) {
+        {{/type.isListOrMap}}
+        {{^type.isListOrMap}}
+        if (this.{{name}} != null) {
+        {{/type.isListOrMap}}
     {{/required}}
             generator.writeKey({{#quoted}}{{wireName}}{{/quoted}});
             {{#type.serializer}}this.{{name}}{{/type.serializer}}

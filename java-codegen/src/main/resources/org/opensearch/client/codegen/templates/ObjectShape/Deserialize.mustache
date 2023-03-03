@@ -2,6 +2,6 @@
 
     protected static void setup{{className}}Deserializer(ObjectDeserializer<{{className}}.Builder> op) {
     {{#bodyFields}}
-        op.add(Builder::{{name}}, {{{type.deserializer}}}, {{#quoted}}{{wireName}}{{/quoted}});
+        op.add(Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{wireName}}{{/quoted}});
     {{/bodyFields}}
     }

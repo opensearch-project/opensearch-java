@@ -34,6 +34,6 @@ public abstract class Shape {
     }
 
     public void render(Renderer renderer, File outputDir) throws RenderException {
-        renderer.render(this, new File(outputDir, this.className + ".java"));
+        renderer.renderJava(this, new File(outputDir, this.className + ".java"));
     }
 }

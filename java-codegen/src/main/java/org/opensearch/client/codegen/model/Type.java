@@ -10,13 +10,14 @@ package org.opensearch.client.codegen.model;
 
 import com.samskivert.mustache.Mustache;
 import org.openapi4j.parser.model.v3.Schema;
+import org.opensearch.client.codegen.Renderer;
 import org.opensearch.client.codegen.utils.Schemas;
 
-import java.io.IOException;
-import java.io.Writer;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static org.opensearch.client.codegen.Renderer.templateLambda;
 
 public class Type {
     private static final Set<String> PRIMITIVES = Set.of(
@@ -112,6 +113,10 @@ public class Type {
 
     public boolean isListOrMap() { return isList() || isMap(); }
 
+    public boolean isString() {
+        return "String".equals(name);
+    }
+
     public boolean isPrimitive() { return PRIMITIVES.contains(name); }
 
     public boolean isBuiltIn() { return isListOrMap() || isPrimitive() || "JsonData".equals(name); }
@@ -132,93 +137,38 @@ public class Type {
         return new Type(null, "Function", builderType(), new Type(null, "ObjectBuilder", this));
     }
 
-    public Mustache.Lambda isDefined() {
-        return (frag, out) -> {
-            String value = frag.execute();
-            if (isListOrMap()) {
-                out.write("ApiTypeHelper.isDefined(" + value + ")");
-            } else {
-                out.write(value + " != null");
-            }
-        };
-    }
-
     public Mustache.Lambda serializer() {
-        return (frag, out) -> serializer(frag.execute(), out, 0);
+        return Renderer.templateLambda(
+                "Type/serializer",
+                frag -> new SerializerLambdaContext(
+                        Type.this,
+                        frag.execute(),
+                        frag.context() instanceof SerializerLambdaContext
+                                ? ((SerializerLambdaContext) frag.context()).depth + 1
+                                : 0
+                )
+        );
     }
 
-    private void serializer(String value, Writer out, int depth) throws IOException {
-        if (isMap()) {
-            String item = "item" + depth;
-            out.write("generator.writeStartObject();\n");
-            out.write("for (" + mapEntryType() + " " + item + " : " + value + ".entrySet()) {\n");
-            out.write("    generator.writeKey(" + item + ".getKey());\n");
-            mapValueType().serializer(item + ".getValue()", out, depth + 1);
-            out.write("\n}\n");
-            out.write("generator.writeEnd();");
-        } else if (isList()) {
-            String item = "item" + depth;
-            out.write("generator.writeStartArray();\n");
-            out.write("for (" + listValueType() + " " + item + " : " + value + ") {\n");
-            listValueType().serializer(item, out, depth + 1);
-            out.write("\n}\n");
-            out.write("generator.writeEnd();");
-        } else if (isPrimitive()) {
-            out.write("generator.write(" + value + ");");
-        } else {
-            out.write(value + ".serialize(generator, mapper);");
-        }
-    }
+    private static class SerializerLambdaContext {
+        public final Type type;
+        public final String value;
+        public final int depth;
 
-    public String deserializer() {
-        switch (name) {
-            case "String":
-                return "JsonpDeserializer.stringDeserializer()";
-
-            case "boolean":
-            case "Boolean":
-                return "JsonpDeserializer.booleanDeserializer()";
-
-            case "int":
-            case "Integer":
-                return "JsonpDeserializer.integerDeserializer()";
-
-            case "long":
-            case "Long":
-                return "JsonpDeserializer.longDeserializer()";
-
-            case "float":
-            case "Float":
-                return "JsonpDeserializer.floatDeserializer()";
-
-            case "double":
-            case "Double":
-                return "JsonpDeserializer.doubleDeserializer()";
-
-            case "List":
-                return "JsonpDeserializer.arrayDeserializer(" + listValueType().deserializer() + ")";
-
-            case "Map":
-                return "JsonpDeserializer.stringMapDeserializer(" + mapValueType().deserializer() + ")";
-
-            default:
-                return name + "._DESERIALIZER";
+        private SerializerLambdaContext(Type type, String value, int depth) {
+            this.type = type;
+            this.value = value;
+            this.depth = depth;
         }
     }
 
     public Mustache.Lambda queryParamify() {
-        return (frag, out) -> out.write(queryParamify(frag.execute()));
-    }
-
-    public String queryParamify(String value) {
-        if (Schemas.isString(schema) || "String".equals(name)) {
-            return Schemas.hasEnums(schema) ? value + ".jsonValue()" : value;
-        } else if (isPrimitive()) {
-            return "String.valueOf(" + value + ")";
-        } else if (isList()) {
-            return value + ".stream().map(v -> " + listValueType().queryParamify("v") + ").collect(Collectors.joining(\",\"))";
-        }
-
-        throw new UnsupportedOperationException("Don't know how to queryParamify " + value + " with type: " + this);
+        return templateLambda(
+                "Type/queryParamify",
+                frag -> new Object() {
+                    final Type type = Type.this;
+                    final String value = frag.execute();
+                }
+        );
     }
 }
