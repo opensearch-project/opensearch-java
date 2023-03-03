@@ -10,6 +10,7 @@
   - [Index data](#index-data)
   - [Search for the documents](#search-for-the-documents)
   - [Search documents using a match query](#search-documents-using-a-match-query)
+  - [Bulk requests](#bulk-requests)
   - [Aggregations](#aggregations)
   - [Delete the document](#delete-the-document)
   - [Delete the index](#delete-the-index)
@@ -129,6 +130,30 @@ SearchResponse<IndexData> searchResponse = client.search(searchRequest, IndexDat
 for (int i = 0; i < searchResponse.hits().hits().size(); i++) {
   System.out.println(searchResponse.hits().hits().get(i).source());
 }
+```
+
+## Bulk requests
+
+```java
+ArrayList<BulkOperation> ops = new ArrayList<>();
+SimplePojo doc1 = new SimplePojo("Document 1", "The text of document 1");
+ops.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(TEST_INDEX).id("id1").document(doc1))
+).build());
+SimplePojo doc2 = new SimplePojo("Document 2", "The text of document 2");
+ops.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(TEST_INDEX).id("id2").document(doc2))
+).build());
+SimplePojo doc3 = getLongDoc("Long Document 3", 100000);
+ops.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(TEST_INDEX).id("id3").document(doc3))
+).build());
+
+BulkRequest.Builder bulkReq = new BulkRequest.Builder()
+        .index(index)
+        .operations(ops)
+        .refresh(Refresh.WaitFor);
+BulkResponse bulkResponse = client.bulk(bulkReq.build());
 ```
 
 ## Aggregations
