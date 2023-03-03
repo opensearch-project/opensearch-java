@@ -11,16 +11,18 @@ package org.opensearch.client.codegen.model;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
+import org.openapi4j.parser.model.v3.Schema;
 
 public class ObjectShape extends Shape {
-    private final Map<String, Field> bodyFields = new TreeMap<>();
-
-    public ObjectShape(String namespace, String className) {
-        super(namespace, className);
+    public static ObjectShape from(Context ctx, String name, Schema schema) {
+        return new ObjectShape(ctx.namespace, name, Field.allFrom(ctx, schema));
     }
 
-    public void addBodyField(Field field) {
-        bodyFields.put(field.name(), field);
+    protected final Map<String, Field> bodyFields = new TreeMap<>();
+
+    protected ObjectShape(Namespace parent, String className, Collection<Field> bodyFields) {
+        super(parent, className);
+        bodyFields.forEach(f -> this.bodyFields.put(f.name(), f));
     }
 
     public Collection<Field> bodyFields() { return bodyFields.values(); }

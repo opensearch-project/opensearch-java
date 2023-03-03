@@ -5,6 +5,9 @@ package {{packageName}};
 import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
+{{#children}}
+import {{packageName}}.{{className}};
+{{/children}}
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
@@ -29,17 +32,23 @@ public class {{className}} extends ApiClient<OpenSearchTransport, {{className}}>
     public {{className}} withTransportOptions(@Nullable TransportOptions transportOptions) {
         return new {{className}}(this.transport, transportOptions);
     }
+{{#children}}
+
+    public {{className}} {{#camelCase}}{{name}}{{/camelCase}}() {
+        return new {{className}}(this.transport, this.transportOptions);
+    }
+{{/children}}
 {{#operations}}
 
-    public {{#async}}CompletableFuture<{{/async}}{{responseType}}{{#async}}>{{/async}} {{name}}({{requestType}} request) throws IOException, OpenSearchException {
-        JsonEndpoint<{{requestType}}, {{responseType}}, ErrorResponse> endpoint = (JsonEndpoint<{{requestType}}, {{responseType}}, ErrorResponse>) {{requestType}}._ENDPOINT;
+    public {{#async}}CompletableFuture<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{className}} request) throws IOException, OpenSearchException {
+        JsonEndpoint<{{className}}, {{responseType}}, ErrorResponse> endpoint = (JsonEndpoint<{{className}}, {{responseType}}, ErrorResponse>) {{className}}._ENDPOINT;
 
         return this.transport.performRequest{{#async}}Async{{/async}}(request, endpoint, this.transportOptions);
     }
 
-    public final {{#async}}CompletableFuture<{{/async}}{{responseType}}{{#async}}>{{/async}} {{name}}(Function<{{requestType}}.Builder, ObjectBuilder<{{requestType}}>> fn)
+    public final {{#async}}CompletableFuture<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}(Function<{{className}}.Builder, ObjectBuilder<{{className}}>> fn)
             throws IOException, OpenSearchException {
-        return {{name}}(fn.apply(new {{requestType}}.Builder()).build());
+        return {{#camelCase}}{{id}}{{/camelCase}}(fn.apply(new {{className}}.Builder()).build());
     }
 {{/operations}}
 }

@@ -14,6 +14,7 @@ import com.google.googlejavaformat.java.JavaFormatterOptions;
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.MustacheException;
 import com.samskivert.mustache.Template;
+import java.util.function.Function;
 import org.apache.commons.text.StringEscapeUtils;
 import org.opensearch.client.codegen.exceptions.RenderException;
 
@@ -27,10 +28,16 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.MissingResourceException;
+import org.opensearch.client.codegen.utils.Strings;
 
 public class Renderer {
+    private static Mustache.Lambda transformer(Function<String, String> transform) {
+        return ((frag, out) -> out.write(transform.apply(frag.execute())));
+    }
+
     private static final Map<String, Mustache.Lambda> lambdas = new HashMap<>() {{
-        put("dq", (frag, out) -> out.write('\"' + StringEscapeUtils.escapeJava(frag.execute()) + '\"'));
+        put("quoted", transformer(s -> '\"' + StringEscapeUtils.escapeJava(s) + '\"'));
+        put("camelCase", transformer(Strings::toCamelCase));
     }};
 
     private final Mustache.Compiler compiler;
@@ -51,9 +58,9 @@ public class Renderer {
                 .build());
     }
 
-    public <T> String render(T object) throws RenderException {
+    public String render(Object object, String templateName) throws RenderException {
         try {
-            Template template = compiler.loadTemplate(object.getClass().getSimpleName());
+            Template template = compiler.loadTemplate(templateName);
             Writer writer = new StringWriter();
 
             template.execute(object, lambdas, writer);
@@ -72,8 +79,12 @@ public class Renderer {
         }
     }
 
-    public <T> void render(T object, File outputFile) throws RenderException {
-        String output = render(object);
+    public void render(Object object, File outputFile) throws RenderException {
+        render(object, object.getClass().getSimpleName(), outputFile);
+    }
+
+    public void render(Object object, String templateName, File outputFile) throws RenderException {
+        String output = render(object, templateName);
         try (Writer writer = new FileWriter(outputFile)) {
             writer.write(output);
         } catch (IOException e) {

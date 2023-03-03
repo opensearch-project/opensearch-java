@@ -8,25 +8,46 @@
 
 package org.opensearch.client.codegen.model;
 
-import org.opensearch.client.codegen.utils.Strings;
-
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.openapi4j.parser.model.v3.Schema;
+import org.opensearch.client.codegen.utils.Strings;
 
 public class EnumShape extends Shape {
-    public final List<Variant> variants;
+    public static EnumShape from(Context ctx, String name, Schema schema) {
+        return new EnumShape(
+                ctx.namespace,
+                name,
+                schema.getEnums()
+                        .stream()
+                        .map(Object::toString)
+                        .map(Variant::new)
+                        .collect(Collectors.toList())
+        );
+    }
 
-    public EnumShape(String namespace, String className, Collection<String> variants) {
-        super(namespace, className);
-        this.variants = variants.stream().map(Variant::new).collect(Collectors.toList());
+    private final List<Variant> variants;
+
+    private EnumShape(Namespace parent, String className, List<Variant> variants) {
+        super(parent, className);
+        this.variants = variants;
+    }
+
+    public Collection<Variant> variants() {
+        return Collections.unmodifiableCollection(variants);
     }
 
     public static class Variant {
-        public final String wireName;
+        private final String wireName;
 
-        public Variant(String wireName) {
+        private Variant(String wireName) {
             this.wireName = wireName;
+        }
+
+        public String wireName() {
+            return wireName;
         }
 
         public String name() {
