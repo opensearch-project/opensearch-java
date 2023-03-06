@@ -78,6 +78,10 @@ public class IndicesRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean pri;
 
+	@Nullable
+	private final String columnNames;
+
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndicesRequest(Builder builder) {
@@ -88,6 +92,7 @@ public class IndicesRequest extends CatRequestBase {
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.pri = builder.pri;
+		this.columnNames = builder.columnNames;
 
 	}
 
@@ -156,6 +161,15 @@ public class IndicesRequest extends CatRequestBase {
 		return this.pri;
 	}
 
+	/**
+	 * A comma-separated list of column names to limit the returned information
+	 * <p>
+	 * API name: {@code columnNames}
+	 */
+	public final String columnNames() {
+		return this.columnNames;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -181,6 +195,8 @@ public class IndicesRequest extends CatRequestBase {
 		@Nullable
 		private Boolean pri;
 
+		@Nullable
+		private String columnNames;
 		/**
 		 * The unit in which to display byte values
 		 * <p>
@@ -273,6 +289,11 @@ public class IndicesRequest extends CatRequestBase {
 			return this;
 		}
 
+		public final Builder columnNames(String columns) {
+			this.columnNames = columns;
+			return this;
+		}
+
 		/**
 		 * Builds a {@link IndicesRequest}.
 		 *
@@ -346,6 +367,9 @@ public class IndicesRequest extends CatRequestBase {
 				}
 				if (request.includeUnloadedSegments != null) {
 					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
+				}
+				if(request.columnNames != null && !request.columnNames.isEmpty()) {
+					params.put("h", request.columnNames);
 				}
 				return params;
 
