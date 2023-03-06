@@ -14,6 +14,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add new `OpenSearchTransport` based on Apache HttpClient 5 ([#281](https://github.com/opensearch-project/opensearch-java/pull/281))
 - Add workflow to publish snapshots via GHA ([#325](https://github.com/opensearch-project/opensearch-java/pull/325))
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
+- Require two maintainers to approve release ([#383](https://github.com/opensearch-project/opensearch-java/pull/383))
 
 ### Dependencies
 - Bumps `classgraph` from 4.8.149 to 4.8.154
