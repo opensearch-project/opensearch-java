@@ -12,6 +12,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add new `OpenSearchTransport` based on Apache HttpClient 5 ([#281](https://github.com/opensearch-project/opensearch-java/pull/281))
 - Add workflow to publish snapshots via GHA ([#325](https://github.com/opensearch-project/opensearch-java/pull/325))
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
+- Add support for columnNames parameter in IndicesRequest ([#388](https://github.com/opensearch-project/opensearch-java/issues/388))
 
 ### Dependencies
 - Bumps `classgraph` from 4.8.149 to 4.8.154
