@@ -9,6 +9,7 @@
   - [Create an index](#create-an-index)
   - [Index data](#index-data)
   - [Search for the documents](#search-for-the-documents)
+    - [Get raw JSON results](#get-raw-json-results)
   - [Search documents using a match query](#search-documents-using-a-match-query)
   - [Bulk requests](#bulk-requests)
   - [Aggregations](#aggregations)
@@ -114,6 +115,17 @@ client.index(indexRequest);
 
 ```java
 SearchResponse<IndexData> searchResponse = client.search(s -> s.index(index), IndexData.class);
+for (int i = 0; i < searchResponse.hits().hits().size(); i++) {
+  System.out.println(searchResponse.hits().hits().get(i).source());
+}
+```
+
+### Get raw JSON results
+
+When the target class is not defined or if the response result is a semi-structured data not tied to an object definition, use a raw JSON data representation as the target class. For example, the below snippet uses `ObjectNode` from jackson.
+
+```java
+SearchResponse<ObjectNode> searchResponse = client.search(b -> b.index(index), ObjectNode.class);
 for (int i = 0; i < searchResponse.hits().hits().size(); i++) {
   System.out.println(searchResponse.hits().hits().get(i).source());
 }
