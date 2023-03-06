@@ -185,7 +185,7 @@ dependencies {
     implementation("org.eclipse", "yasson", "2.0.2")
 
     // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.154")
+    testImplementation("io.github.classgraph:classgraph:4.8.156")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {
