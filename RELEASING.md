@@ -34,5 +34,7 @@ Repositories create consistent release labels, such as `v1.0.0`, `v1.1.0` and `v
 The release process is standard across repositories in this org and is run by a release manager volunteering from amongst [MAINTAINERS](MAINTAINERS.md).
 
 1. Create a tag, e.g. `v2.1.0`, and push it to the GitHub repo.
-2. This creates a draft release which triggers the [opensearch-java-maven-sign-and-release/](https://build.ci.opensearch.org/job/opensearch-java-maven-sign-and-release/) jenkins workflow. The artifacts will be automcatically signed and published to maven.
-3. Increment `systemProp.version` in [gradle.properties](gradle.properties) to the next patch release, e.g. `v2.1.1`, commit and push. 
+1. The [release-drafter.yml](.github/workflows/release-drafter.yml) will be automatically kicked off and is responsible for drafting a new release on GitHub containing release artifacts.
+1. Before creating a draft release, this workflow creates a GitHub issue asking for approval from the [maintainers](MAINTAINERS.md). See sample [issue](https://github.com/gaiksaya/opensearch-java/issues/1). The maintainers need to approve in order to continue the workflow run.
+1. Once a release is drafted [opensearch-java-maven-sign-and-release/](https://build.ci.opensearch.org/job/opensearch-java-maven-sign-and-release/) jenkins workflow is triggered. The artifacts will be automcatically signed and published to maven.
+1. Increment `systemProp.version` in [gradle.properties](gradle.properties) to the next patch release, e.g. `v2.1.1`, commit and push. 
