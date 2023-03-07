@@ -273,5 +273,5 @@ public class GetPipelineRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetPipelineResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetPipelineResponse._DESERIALIZER);
 }

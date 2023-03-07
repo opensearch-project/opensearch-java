@@ -523,5 +523,5 @@ public class GetIndicesSettingsRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetIndicesSettingsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetIndicesSettingsResponse._DESERIALIZER);
 }

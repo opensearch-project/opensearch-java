@@ -423,5 +423,5 @@ public class ClearCacheRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ClearCacheResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ClearCacheResponse._DESERIALIZER);
 }

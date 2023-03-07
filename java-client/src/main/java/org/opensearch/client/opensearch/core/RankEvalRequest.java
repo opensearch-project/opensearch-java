@@ -468,5 +468,5 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, RankEvalResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, RankEvalResponse._DESERIALIZER);
 }

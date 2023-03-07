@@ -316,5 +316,5 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, SimulateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SimulateResponse._DESERIALIZER);
 }

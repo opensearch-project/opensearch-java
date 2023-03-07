@@ -562,7 +562,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, MsearchResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, MsearchResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code msearch}" endpoint.

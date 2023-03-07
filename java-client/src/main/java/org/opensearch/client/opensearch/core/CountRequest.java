@@ -702,5 +702,5 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, CountResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CountResponse._DESERIALIZER);
 }

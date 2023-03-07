@@ -477,5 +477,5 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, ShrinkResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ShrinkResponse._DESERIALIZER);
 }

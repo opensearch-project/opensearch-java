@@ -270,5 +270,5 @@ public class RecoveryRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, RecoveryResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, RecoveryResponse._DESERIALIZER);
 }

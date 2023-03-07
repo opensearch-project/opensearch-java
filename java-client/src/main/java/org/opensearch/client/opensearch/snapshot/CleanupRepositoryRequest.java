@@ -273,5 +273,5 @@ public class CleanupRepositoryRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, CleanupRepositoryResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, CleanupRepositoryResponse._DESERIALIZER);
 }

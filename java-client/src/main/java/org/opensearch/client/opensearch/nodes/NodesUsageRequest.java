@@ -284,5 +284,5 @@ public class NodesUsageRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, NodesUsageResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, NodesUsageResponse._DESERIALIZER);
 }

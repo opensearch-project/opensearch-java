@@ -34,6 +34,7 @@ package org.opensearch.client.transport.endpoints;
 
 import org.apache.hc.core5.net.URLEncodedUtils;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.JsonEndpoint;
 
 import java.util.Collections;
@@ -77,6 +78,23 @@ public class SimpleEndpoint<RequestT, ResponseT, ErrorResponseT> implements Json
         this.hasRequestBody = hasRequestBody;
         this.responseParser = responseParser;
         this.errorDeserializer = errorDeserializer;
+    }
+
+    public SimpleEndpoint(
+            Function<RequestT, String> method,
+            Function<RequestT, String> requestUrl,
+            Function<RequestT, Map<String, String>> queryParameters,
+            Function<RequestT, Map<String, String>> headers,
+            boolean hasRequestBody,
+            JsonpDeserializer<ResponseT> responseParser
+    ) {
+        this.method = method;
+        this.requestUrl = requestUrl;
+        this.queryParameters = queryParameters;
+        this.headers = headers;
+        this.hasRequestBody = hasRequestBody;
+        this.responseParser = responseParser;
+        this.errorDeserializer = (JsonpDeserializer<ErrorResponseT>) ErrorResponse._DESERIALIZER;
     }
 
     @Override

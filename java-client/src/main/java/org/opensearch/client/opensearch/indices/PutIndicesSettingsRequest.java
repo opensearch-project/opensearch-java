@@ -528,5 +528,5 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, PutIndicesSettingsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutIndicesSettingsResponse._DESERIALIZER);
 }

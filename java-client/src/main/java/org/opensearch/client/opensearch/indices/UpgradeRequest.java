@@ -340,5 +340,5 @@ public class UpgradeRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, UpgradeResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, UpgradeResponse._DESERIALIZER);
 }

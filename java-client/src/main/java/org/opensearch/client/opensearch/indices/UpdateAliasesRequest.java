@@ -324,5 +324,5 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, UpdateAliasesResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateAliasesResponse._DESERIALIZER);
 }

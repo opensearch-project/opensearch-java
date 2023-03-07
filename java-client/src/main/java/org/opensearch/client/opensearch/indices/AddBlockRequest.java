@@ -417,5 +417,5 @@ public class AddBlockRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, AddBlockResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, AddBlockResponse._DESERIALIZER);
 }

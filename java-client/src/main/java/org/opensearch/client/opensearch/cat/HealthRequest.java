@@ -141,5 +141,5 @@ public class HealthRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, HealthResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, HealthResponse._DESERIALIZER);
 }

@@ -532,7 +532,7 @@ public class GetSourceRequest {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetSourceResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetSourceResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code get_source}" endpoint.

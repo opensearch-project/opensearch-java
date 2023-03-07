@@ -630,5 +630,5 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, ReindexResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ReindexResponse._DESERIALIZER);
 }

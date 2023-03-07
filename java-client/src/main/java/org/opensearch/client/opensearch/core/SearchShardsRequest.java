@@ -384,5 +384,5 @@ public class SearchShardsRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, SearchShardsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, SearchShardsResponse._DESERIALIZER);
 }

@@ -451,5 +451,5 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, PutIndexTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutIndexTemplateResponse._DESERIALIZER);
 }

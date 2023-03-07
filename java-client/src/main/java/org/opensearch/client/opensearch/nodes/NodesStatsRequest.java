@@ -748,5 +748,5 @@ public class NodesStatsRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, NodesStatsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, NodesStatsResponse._DESERIALIZER);
 }

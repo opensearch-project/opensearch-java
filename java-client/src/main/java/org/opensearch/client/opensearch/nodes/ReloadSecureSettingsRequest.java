@@ -282,5 +282,5 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, ReloadSecureSettingsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ReloadSecureSettingsResponse._DESERIALIZER);
 }

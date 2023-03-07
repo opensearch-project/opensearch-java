@@ -127,8 +127,7 @@ public class GenericClass<GenParam> implements JsonpSerializable {
             SimpleEndpoint.emptyMap(),
             SimpleEndpoint.emptyMap(),
             true,
-            GenericClass.parser(genParamDeserializer),
-            ErrorResponse._DESERIALIZER
+            GenericClass.parser(genParamDeserializer)
         );
     }
 

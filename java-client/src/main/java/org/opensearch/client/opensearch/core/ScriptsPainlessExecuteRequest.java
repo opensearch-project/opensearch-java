@@ -248,7 +248,7 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, ScriptsPainlessExecuteResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ScriptsPainlessExecuteResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code scripts_painless_execute}" endpoint.

@@ -207,5 +207,5 @@ public class AllocationRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, AllocationResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, AllocationResponse._DESERIALIZER);
 }

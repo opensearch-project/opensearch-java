@@ -84,5 +84,5 @@ public class HelpRequest extends CatRequestBase {
 				params.put("format", "json");
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, HelpResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, HelpResponse._DESERIALIZER);
 }

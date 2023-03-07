@@ -84,7 +84,7 @@ public class ClusterManagerRequest extends CatRequestBase {
 				params.put("format", "json");
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ClusterManagerResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ClusterManagerResponse._DESERIALIZER);
 
 	/**
 	 * Endpoint "{@code cat.cluster_manager}".
@@ -109,5 +109,5 @@ public class ClusterManagerRequest extends CatRequestBase {
 				params.put("format", "json");
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ClusterManagerResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ClusterManagerResponse._DESERIALIZER);
 }

@@ -452,5 +452,5 @@ public class CloseIndexRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, CloseIndexResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, CloseIndexResponse._DESERIALIZER);
 }

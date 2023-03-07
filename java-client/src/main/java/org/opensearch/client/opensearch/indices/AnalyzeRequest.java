@@ -542,5 +542,5 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, AnalyzeResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, AnalyzeResponse._DESERIALIZER);
 }

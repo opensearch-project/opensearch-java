@@ -50,7 +50,7 @@ public class BooleanEndpoint<RequestT> extends SimpleEndpoint<RequestT, BooleanR
         boolean hasRequestBody, // always false
         JsonpDeserializer<?> responseParser // always null
     ) {
-        super(method, requestUrl, queryParameters, headers, false, null, ErrorResponse._DESERIALIZER);
+        super(method, requestUrl, queryParameters, headers, false, null);
     }
 
     @Override

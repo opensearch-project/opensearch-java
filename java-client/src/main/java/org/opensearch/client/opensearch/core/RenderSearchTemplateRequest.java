@@ -299,5 +299,5 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, RenderSearchTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, RenderSearchTemplateResponse._DESERIALIZER);
 }

@@ -83,5 +83,5 @@ public class ListDanglingIndicesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, ListDanglingIndicesResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ListDanglingIndicesResponse._DESERIALIZER);
 }

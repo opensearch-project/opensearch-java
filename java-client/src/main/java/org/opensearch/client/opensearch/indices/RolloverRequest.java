@@ -596,5 +596,5 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, RolloverResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, RolloverResponse._DESERIALIZER);
 }

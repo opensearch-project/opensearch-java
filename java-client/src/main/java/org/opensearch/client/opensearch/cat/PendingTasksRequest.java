@@ -84,5 +84,5 @@ public class PendingTasksRequest extends CatRequestBase {
 				params.put("format", "json");
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, PendingTasksResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, PendingTasksResponse._DESERIALIZER);
 }

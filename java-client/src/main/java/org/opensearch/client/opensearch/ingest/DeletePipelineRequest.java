@@ -273,5 +273,5 @@ public class DeletePipelineRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeletePipelineResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeletePipelineResponse._DESERIALIZER);
 }

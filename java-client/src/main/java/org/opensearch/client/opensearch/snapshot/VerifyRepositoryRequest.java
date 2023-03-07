@@ -272,5 +272,5 @@ public class VerifyRepositoryRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, VerifyRepositoryResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, VerifyRepositoryResponse._DESERIALIZER);
 }

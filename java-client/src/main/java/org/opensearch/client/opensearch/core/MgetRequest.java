@@ -586,7 +586,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, MgetResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, MgetResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code mget}" endpoint.

@@ -493,5 +493,5 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, CreateIndexResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CreateIndexResponse._DESERIALIZER);
 }

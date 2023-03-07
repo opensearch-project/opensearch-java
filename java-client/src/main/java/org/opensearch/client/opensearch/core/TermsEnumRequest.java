@@ -441,5 +441,5 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, TermsEnumResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, TermsEnumResponse._DESERIALIZER);
 }

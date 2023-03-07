@@ -148,5 +148,5 @@ public class DeleteNodeRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteNodeResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteNodeResponse._DESERIALIZER);
 }

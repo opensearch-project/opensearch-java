@@ -205,5 +205,5 @@ public class ShardsRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ShardsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ShardsResponse._DESERIALIZER);
 }

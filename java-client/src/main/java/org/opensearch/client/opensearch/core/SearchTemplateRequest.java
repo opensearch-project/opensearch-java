@@ -702,7 +702,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, SearchTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SearchTemplateResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code search_template}" endpoint.

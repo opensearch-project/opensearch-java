@@ -172,5 +172,5 @@ public class NodesRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, NodesResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, NodesResponse._DESERIALIZER);
 }

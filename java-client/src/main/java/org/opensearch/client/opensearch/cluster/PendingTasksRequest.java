@@ -228,5 +228,5 @@ public class PendingTasksRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, PendingTasksResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, PendingTasksResponse._DESERIALIZER);
 }

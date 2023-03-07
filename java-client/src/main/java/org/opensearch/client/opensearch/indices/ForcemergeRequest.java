@@ -381,5 +381,5 @@ public class ForcemergeRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ForcemergeResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ForcemergeResponse._DESERIALIZER);
 }

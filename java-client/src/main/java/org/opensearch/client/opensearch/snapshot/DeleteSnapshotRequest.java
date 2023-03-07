@@ -258,5 +258,5 @@ public class DeleteSnapshotRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteSnapshotResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteSnapshotResponse._DESERIALIZER);
 }

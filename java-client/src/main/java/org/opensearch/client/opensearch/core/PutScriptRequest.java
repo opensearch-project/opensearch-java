@@ -376,5 +376,5 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, PutScriptResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutScriptResponse._DESERIALIZER);
 }

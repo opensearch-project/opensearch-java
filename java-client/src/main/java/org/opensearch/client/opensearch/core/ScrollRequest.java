@@ -214,7 +214,7 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, ScrollResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ScrollResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code scroll}" endpoint.

@@ -539,7 +539,7 @@ public class GetRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code get}" endpoint.

@@ -331,5 +331,5 @@ public class SnapshotStatusRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, SnapshotStatusResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, SnapshotStatusResponse._DESERIALIZER);
 }

@@ -318,5 +318,5 @@ public class GetTemplateRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetTemplateResponse._DESERIALIZER);
 }

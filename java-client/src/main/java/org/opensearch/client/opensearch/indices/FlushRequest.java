@@ -361,5 +361,5 @@ public class FlushRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, FlushResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, FlushResponse._DESERIALIZER);
 }

@@ -190,5 +190,5 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, ClearScrollResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ClearScrollResponse._DESERIALIZER);
 }

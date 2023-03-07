@@ -588,5 +588,5 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, BulkResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, BulkResponse._DESERIALIZER);
 }

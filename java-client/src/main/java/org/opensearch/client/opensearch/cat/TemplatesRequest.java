@@ -159,5 +159,5 @@ public class TemplatesRequest extends CatRequestBase {
 				params.put("format", "json");
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, TemplatesResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, TemplatesResponse._DESERIALIZER);
 }

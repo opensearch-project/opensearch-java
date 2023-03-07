@@ -639,5 +639,5 @@ public class HealthRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, HealthResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, HealthResponse._DESERIALIZER);
 }

@@ -82,5 +82,5 @@ public class ProcessorGrokRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, ProcessorGrokResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ProcessorGrokResponse._DESERIALIZER);
 }

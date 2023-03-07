@@ -537,5 +537,5 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, PutComponentTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutComponentTemplateResponse._DESERIALIZER);
 }

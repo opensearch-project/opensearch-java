@@ -343,7 +343,7 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, MsearchTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, MsearchTemplateResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code msearch_template}" endpoint.

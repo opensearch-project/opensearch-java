@@ -536,5 +536,5 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, PutPipelineResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutPipelineResponse._DESERIALIZER);
 }

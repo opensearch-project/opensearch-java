@@ -175,5 +175,5 @@ public class CountRequest extends CatRequestBase {
 				params.put("format", "json");
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, CountResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, CountResponse._DESERIALIZER);
 }

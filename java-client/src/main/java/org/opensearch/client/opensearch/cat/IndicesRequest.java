@@ -349,5 +349,5 @@ public class IndicesRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, IndicesResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, IndicesResponse._DESERIALIZER);
 }

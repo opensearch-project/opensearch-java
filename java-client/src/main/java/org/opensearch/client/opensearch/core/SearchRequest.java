@@ -2245,7 +2245,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, SearchResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SearchResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code search}" endpoint.

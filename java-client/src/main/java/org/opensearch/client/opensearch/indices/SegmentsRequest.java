@@ -319,5 +319,5 @@ public class SegmentsRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, SegmentsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, SegmentsResponse._DESERIALIZER);
 }

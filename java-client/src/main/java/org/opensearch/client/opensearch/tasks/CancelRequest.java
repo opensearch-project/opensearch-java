@@ -319,5 +319,5 @@ public class CancelRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, CancelResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, CancelResponse._DESERIALIZER);
 }

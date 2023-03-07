@@ -211,5 +211,5 @@ public class ThreadPoolRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ThreadPoolResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ThreadPoolResponse._DESERIALIZER);
 }

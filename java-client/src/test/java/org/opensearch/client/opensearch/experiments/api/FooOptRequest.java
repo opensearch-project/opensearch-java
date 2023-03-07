@@ -277,8 +277,7 @@ public class FooOptRequest implements JsonpSerializable {
       SimpleEndpoint.emptyMap(),
       SimpleEndpoint.emptyMap(),
       true,
-      FooResponse.PARSER,
-      ErrorResponse._DESERIALIZER
+      FooResponse.PARSER
     ) {
   };
 

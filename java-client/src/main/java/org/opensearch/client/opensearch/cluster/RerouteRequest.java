@@ -480,5 +480,5 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, RerouteResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, RerouteResponse._DESERIALIZER);
 }

@@ -157,5 +157,5 @@ public class GetUpgradeRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetUpgradeResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetUpgradeResponse._DESERIALIZER);
 }

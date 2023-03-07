@@ -84,5 +84,5 @@ public class RepositoriesRequest extends CatRequestBase {
 				params.put("format", "json");
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, RepositoriesResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, RepositoriesResponse._DESERIALIZER);
 }

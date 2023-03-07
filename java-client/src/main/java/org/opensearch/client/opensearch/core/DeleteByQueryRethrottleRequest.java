@@ -185,5 +185,5 @@ public class DeleteByQueryRethrottleRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteByQueryRethrottleResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteByQueryRethrottleResponse._DESERIALIZER);
 }

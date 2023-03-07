@@ -667,5 +667,5 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, MtermvectorsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, MtermvectorsResponse._DESERIALIZER);
 }

@@ -831,7 +831,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, UpdateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code update}" endpoint.

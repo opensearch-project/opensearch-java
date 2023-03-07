@@ -346,5 +346,5 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, SimulateTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SimulateTemplateResponse._DESERIALIZER);
 }

@@ -311,5 +311,5 @@ public class GetIndexTemplateRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetIndexTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetIndexTemplateResponse._DESERIALIZER);
 }
