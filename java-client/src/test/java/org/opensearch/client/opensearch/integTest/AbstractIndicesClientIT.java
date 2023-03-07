@@ -11,6 +11,8 @@ package org.opensearch.client.opensearch.integTest;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
+import org.opensearch.client.opensearch.indices.GetAliasRequest;
+import org.opensearch.client.opensearch.indices.GetAliasResponse;
 import org.opensearch.client.opensearch.indices.GetIndexRequest;
 import org.opensearch.client.opensearch.indices.GetIndexResponse;
 import org.opensearch.client.opensearch.indices.GetIndicesSettingsRequest;
@@ -104,6 +106,21 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
             assertEquals(ex.getMessage(),
                     "Request failed: [index_not_found_exception] " +
                             "no such index [index_that_doesnt_exist]");
+        }
+    }
+
+    public void testGetNotExistingIndexAlias() throws Exception {
+        String notExistingIndexAlias = "alias_not_exists";
+        GetAliasRequest aliasRequest = new GetAliasRequest.Builder().name(notExistingIndexAlias).build();
+        try {
+            GetAliasResponse response = javaClient().indices().getAlias(aliasRequest);
+            fail();
+        } catch (OpenSearchException ex) {
+            assertNotNull(ex);
+            assertEquals(ex.status(), 404);
+            assertEquals(ex.getMessage(),
+                    "Request failed: [string_error] " +
+                            "alias [alias_not_exists] missing");
         }
     }
 }
