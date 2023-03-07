@@ -478,5 +478,5 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, SplitResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SplitResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

@@ -84,5 +84,5 @@ public class NodeattrsRequest extends CatRequestBase {
 				params.put("format", "json");
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, NodeattrsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, NodeattrsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

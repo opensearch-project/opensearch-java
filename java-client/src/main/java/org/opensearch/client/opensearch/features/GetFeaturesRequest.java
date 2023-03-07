@@ -83,5 +83,5 @@ public class GetFeaturesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetFeaturesResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetFeaturesResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

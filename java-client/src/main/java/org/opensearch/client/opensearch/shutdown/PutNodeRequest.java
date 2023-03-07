@@ -148,5 +148,5 @@ public class PutNodeRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, PutNodeResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, PutNodeResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

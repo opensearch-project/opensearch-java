@@ -1031,5 +1031,5 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, PutMappingResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutMappingResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

@@ -517,5 +517,5 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, PutAliasResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutAliasResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

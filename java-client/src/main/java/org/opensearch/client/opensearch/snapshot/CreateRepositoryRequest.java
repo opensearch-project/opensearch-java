@@ -426,5 +426,5 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, CreateRepositoryResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CreateRepositoryResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

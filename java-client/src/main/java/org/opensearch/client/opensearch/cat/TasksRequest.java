@@ -252,5 +252,5 @@ public class TasksRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, TasksResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, TasksResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

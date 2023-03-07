@@ -518,5 +518,5 @@ public class HotThreadsRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, HotThreadsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, HotThreadsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

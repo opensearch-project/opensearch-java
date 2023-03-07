@@ -219,5 +219,5 @@ public class GetTasksRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetTasksResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetTasksResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

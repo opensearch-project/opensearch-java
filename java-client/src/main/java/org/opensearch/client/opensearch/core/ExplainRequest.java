@@ -594,7 +594,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code explain}".
 	 */
-	public static final SimpleEndpoint<ExplainRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<ExplainRequest, ?, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {
@@ -669,7 +669,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, ExplainResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ExplainResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code explain}" endpoint.

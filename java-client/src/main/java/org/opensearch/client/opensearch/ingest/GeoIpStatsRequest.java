@@ -82,5 +82,5 @@ public class GeoIpStatsRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GeoIpStatsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GeoIpStatsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

@@ -1498,5 +1498,5 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, UpdateByQueryResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateByQueryResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

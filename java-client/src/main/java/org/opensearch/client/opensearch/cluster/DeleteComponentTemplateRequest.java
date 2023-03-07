@@ -274,5 +274,5 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteComponentTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteComponentTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

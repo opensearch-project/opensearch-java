@@ -290,5 +290,5 @@ public class DeleteRepositoryRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteRepositoryResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteRepositoryResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

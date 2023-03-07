@@ -378,5 +378,5 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, CloneSnapshotResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CloneSnapshotResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

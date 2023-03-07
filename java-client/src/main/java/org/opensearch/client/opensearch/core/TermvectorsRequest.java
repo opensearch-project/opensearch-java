@@ -712,5 +712,5 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, TermvectorsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, TermvectorsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

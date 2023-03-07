@@ -396,5 +396,5 @@ public class GetFieldMappingRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetFieldMappingResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetFieldMappingResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

@@ -32,7 +32,6 @@
 
 package org.opensearch.client.transport.endpoints;
 
-import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.apache.hc.core5.net.URLEncodedUtils;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.transport.JsonEndpoint;
@@ -41,7 +40,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
 
-public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<RequestT, ResponseT, ErrorResponse> {
+public class SimpleEndpoint<RequestT, ResponseT, ErrorResponseT> implements JsonEndpoint<RequestT, ResponseT, ErrorResponseT> {
 
     private static final Function<?, Map<String, String>> EMPTY_MAP = x -> Collections.emptyMap();
 
@@ -60,14 +59,16 @@ public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<Request
     private final Function<RequestT, Map<String, String>> headers;
     private final boolean hasRequestBody;
     private final JsonpDeserializer<ResponseT> responseParser;
+    private final JsonpDeserializer<ErrorResponseT> errorDeserializer;
 
     public SimpleEndpoint(
-        Function<RequestT, String> method,
-        Function<RequestT, String> requestUrl,
-        Function<RequestT, Map<String, String>> queryParameters,
-        Function<RequestT, Map<String, String>> headers,
-        boolean hasRequestBody,
-        JsonpDeserializer<ResponseT> responseParser
+            Function<RequestT, String> method,
+            Function<RequestT, String> requestUrl,
+            Function<RequestT, Map<String, String>> queryParameters,
+            Function<RequestT, Map<String, String>> headers,
+            boolean hasRequestBody,
+            JsonpDeserializer<ResponseT> responseParser,
+            JsonpDeserializer<ErrorResponseT> errorDeserializer
     ) {
         this.method = method;
         this.requestUrl = requestUrl;
@@ -75,6 +76,7 @@ public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<Request
         this.headers = headers;
         this.hasRequestBody = hasRequestBody;
         this.responseParser = responseParser;
+        this.errorDeserializer = errorDeserializer;
     }
 
     @Override
@@ -114,11 +116,11 @@ public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<Request
     }
 
     @Override
-    public JsonpDeserializer<ErrorResponse> errorDeserializer(int statusCode) {
-        return ErrorResponse._DESERIALIZER;
+    public JsonpDeserializer<ErrorResponseT> errorDeserializer(int statusCode) {
+        return errorDeserializer;
     }
 
-    public <NewResponseT> SimpleEndpoint<RequestT, NewResponseT> withResponseDeserializer(
+    public <NewResponseT> SimpleEndpoint<RequestT, NewResponseT, ErrorResponseT> withResponseDeserializer(
         JsonpDeserializer<NewResponseT> newResponseParser
     ) {
         return new SimpleEndpoint<>(
@@ -127,7 +129,8 @@ public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<Request
             queryParameters,
             headers,
             hasRequestBody,
-            newResponseParser
+            newResponseParser,
+            errorDeserializer
         );
     }
 

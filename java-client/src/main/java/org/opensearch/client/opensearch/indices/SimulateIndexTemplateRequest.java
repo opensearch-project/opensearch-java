@@ -612,5 +612,5 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, SimulateIndexTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SimulateIndexTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

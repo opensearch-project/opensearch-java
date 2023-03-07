@@ -462,5 +462,5 @@ public class DeleteRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

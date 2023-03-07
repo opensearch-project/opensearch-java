@@ -297,5 +297,5 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteDanglingIndexResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteDanglingIndexResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

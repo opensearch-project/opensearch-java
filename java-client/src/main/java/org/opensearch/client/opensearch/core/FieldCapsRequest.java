@@ -490,5 +490,5 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, FieldCapsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, FieldCapsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

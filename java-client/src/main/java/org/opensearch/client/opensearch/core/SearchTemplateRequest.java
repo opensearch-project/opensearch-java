@@ -632,7 +632,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code search_template}".
 	 */
-	public static final SimpleEndpoint<SearchTemplateRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<SearchTemplateRequest, ?, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {
@@ -702,7 +702,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, SearchTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SearchTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code search_template}" endpoint.

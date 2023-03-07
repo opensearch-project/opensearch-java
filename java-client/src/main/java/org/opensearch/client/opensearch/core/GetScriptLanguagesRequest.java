@@ -82,5 +82,5 @@ public class GetScriptLanguagesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetScriptLanguagesResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetScriptLanguagesResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

@@ -207,5 +207,5 @@ public class FielddataRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, FielddataResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, FielddataResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

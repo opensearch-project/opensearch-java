@@ -402,5 +402,5 @@ public class GetMappingRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetMappingResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetMappingResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

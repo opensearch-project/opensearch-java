@@ -476,5 +476,5 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, CloneIndexResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CloneIndexResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

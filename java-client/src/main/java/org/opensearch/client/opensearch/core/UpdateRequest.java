@@ -768,7 +768,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	/**
 	 * Endpoint "{@code update}".
 	 */
-	public static final SimpleEndpoint<UpdateRequest<?, ?>, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<UpdateRequest<?, ?>, ?, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {
@@ -831,7 +831,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, UpdateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code update}" endpoint.

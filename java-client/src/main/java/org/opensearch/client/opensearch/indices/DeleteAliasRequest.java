@@ -345,5 +345,5 @@ public class DeleteAliasRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteAliasResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteAliasResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

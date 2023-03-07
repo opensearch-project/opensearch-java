@@ -339,5 +339,5 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, AllocationExplainResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, AllocationExplainResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

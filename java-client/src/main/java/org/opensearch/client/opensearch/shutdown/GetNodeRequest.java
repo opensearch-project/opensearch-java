@@ -175,5 +175,5 @@ public class GetNodeRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetNodeResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetNodeResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

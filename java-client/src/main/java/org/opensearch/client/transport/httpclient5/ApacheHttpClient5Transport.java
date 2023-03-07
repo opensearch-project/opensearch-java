@@ -73,8 +73,7 @@ import org.apache.hc.core5.util.Args;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.NdJsonpSerializable;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch._types.OpenSearchExceptionFactory;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
@@ -474,8 +473,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                     InputStream content = entity.getContent();
                     try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                         ErrorT error = errorDeserializer.deserialize(parser, mapper);
-                        // TODO: have the endpoint provide the exception constructor
-                        throw new OpenSearchException((ErrorResponse) error);
+                        throw OpenSearchExceptionFactory.createException(error);
                     }
                 } catch(MissingRequiredPropertyException errorEx) {
                     // Could not decode exception, try the response type

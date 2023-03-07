@@ -287,5 +287,5 @@ public class GetRepositoryRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetRepositoryResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetRepositoryResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

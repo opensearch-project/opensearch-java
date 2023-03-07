@@ -331,5 +331,5 @@ public class ShardStoresRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ShardStoresResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ShardStoresResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

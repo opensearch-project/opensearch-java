@@ -32,11 +32,10 @@
 
 package org.opensearch.client.transport.rest_client;
 
-import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.NdJsonpSerializable;
+import org.opensearch.client.opensearch._types.OpenSearchExceptionFactory;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.endpoints.BooleanEndpoint;
@@ -270,8 +269,7 @@ public class RestClientTransport implements OpenSearchTransport {
                     InputStream content = entity.getContent();
                     try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                         ErrorT error = errorDeserializer.deserialize(parser, mapper);
-                        // TODO: have the endpoint provide the exception constructor
-                        throw new OpenSearchException((ErrorResponse) error);
+                        throw OpenSearchExceptionFactory.createException(error);
                     }
                 } catch(MissingRequiredPropertyException errorEx) {
                     // Could not decode exception, try the response type

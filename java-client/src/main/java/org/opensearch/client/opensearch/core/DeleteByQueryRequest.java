@@ -1428,5 +1428,5 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, DeleteByQueryResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, DeleteByQueryResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

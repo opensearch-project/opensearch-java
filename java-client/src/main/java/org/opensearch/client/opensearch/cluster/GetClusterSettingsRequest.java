@@ -294,5 +294,5 @@ public class GetClusterSettingsRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetClusterSettingsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetClusterSettingsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

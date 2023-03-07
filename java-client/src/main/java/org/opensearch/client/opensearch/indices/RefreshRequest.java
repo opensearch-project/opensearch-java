@@ -289,5 +289,5 @@ public class RefreshRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, RefreshResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, RefreshResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

@@ -521,7 +521,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code mget}".
 	 */
-	public static final SimpleEndpoint<MgetRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<MgetRequest, ?, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {
@@ -586,7 +586,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, MgetResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, MgetResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code mget}" endpoint.

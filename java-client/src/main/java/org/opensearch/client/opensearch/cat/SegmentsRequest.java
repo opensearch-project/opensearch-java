@@ -205,5 +205,5 @@ public class SegmentsRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, SegmentsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, SegmentsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

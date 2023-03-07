@@ -293,7 +293,7 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	/**
 	 * Endpoint "{@code msearch_template}".
 	 */
-	public static final SimpleEndpoint<MsearchTemplateRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<MsearchTemplateRequest, ?, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {
@@ -343,7 +343,7 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, MsearchTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, MsearchTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code msearch_template}" endpoint.

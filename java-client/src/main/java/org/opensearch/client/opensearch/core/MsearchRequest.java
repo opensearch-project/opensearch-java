@@ -494,7 +494,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	/**
 	 * Endpoint "{@code msearch}".
 	 */
-	public static final SimpleEndpoint<MsearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<MsearchRequest, ?, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {
@@ -562,7 +562,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, MsearchResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, MsearchResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code msearch}" endpoint.

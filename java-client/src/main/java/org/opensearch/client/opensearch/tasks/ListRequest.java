@@ -369,5 +369,5 @@ public class ListRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ListResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ListResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

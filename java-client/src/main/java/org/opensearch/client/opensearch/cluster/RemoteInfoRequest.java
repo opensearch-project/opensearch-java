@@ -84,5 +84,5 @@ public class RemoteInfoRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, RemoteInfoResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, RemoteInfoResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

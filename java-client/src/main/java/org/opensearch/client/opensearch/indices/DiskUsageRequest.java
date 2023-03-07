@@ -475,5 +475,5 @@ public class DiskUsageRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DiskUsageResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DiskUsageResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

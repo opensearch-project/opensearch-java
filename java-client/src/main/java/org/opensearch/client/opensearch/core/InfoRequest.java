@@ -82,5 +82,5 @@ public class InfoRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, InfoResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, InfoResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

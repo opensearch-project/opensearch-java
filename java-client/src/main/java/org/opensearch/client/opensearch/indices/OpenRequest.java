@@ -443,5 +443,5 @@ public class OpenRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, OpenResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, OpenResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

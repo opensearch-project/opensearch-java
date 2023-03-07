@@ -645,5 +645,5 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, IndexResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, IndexResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

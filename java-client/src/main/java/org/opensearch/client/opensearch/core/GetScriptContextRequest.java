@@ -82,5 +82,5 @@ public class GetScriptContextRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetScriptContextResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetScriptContextResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

@@ -196,7 +196,7 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code scroll}".
 	 */
-	public static final SimpleEndpoint<ScrollRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<ScrollRequest, ?, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {
@@ -214,7 +214,7 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, ScrollResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ScrollResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code scroll}" endpoint.

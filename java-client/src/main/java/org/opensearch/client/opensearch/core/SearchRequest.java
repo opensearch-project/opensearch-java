@@ -2141,7 +2141,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Endpoint "{@code search}".
 	 */
-	public static final SimpleEndpoint<SearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<SearchRequest, ?, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {
@@ -2245,7 +2245,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, SearchResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SearchResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code search}" endpoint.

@@ -84,5 +84,5 @@ public class PluginsRequest extends CatRequestBase {
 				params.put("format", "json");
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, PluginsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, PluginsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch.indices;
 
 import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorStringResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.OpenSearchTransport;
@@ -665,8 +666,8 @@ public class OpenSearchIndicesClient extends ApiClient<OpenSearchTransport, Open
 
 	public GetAliasResponse getAlias(GetAliasRequest request) throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetAliasRequest, GetAliasResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<GetAliasRequest, GetAliasResponse, ErrorResponse>) GetAliasRequest._ENDPOINT;
+		JsonEndpoint<GetAliasRequest, GetAliasResponse, ErrorStringResponse> endpoint =
+				(JsonEndpoint<GetAliasRequest, GetAliasResponse, ErrorStringResponse>) GetAliasRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}

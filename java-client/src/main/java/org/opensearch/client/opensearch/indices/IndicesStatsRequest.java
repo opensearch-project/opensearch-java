@@ -634,5 +634,5 @@ public class IndicesStatsRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, IndicesStatsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, IndicesStatsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

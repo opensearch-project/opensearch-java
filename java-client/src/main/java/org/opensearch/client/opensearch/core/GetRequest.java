@@ -470,7 +470,7 @@ public class GetRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code get}".
 	 */
-	public static final SimpleEndpoint<GetRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<GetRequest, ?, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {
@@ -539,7 +539,7 @@ public class GetRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code get}" endpoint.

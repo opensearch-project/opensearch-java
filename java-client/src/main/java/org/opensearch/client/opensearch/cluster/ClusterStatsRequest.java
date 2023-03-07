@@ -258,5 +258,5 @@ public class ClusterStatsRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ClusterStatsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ClusterStatsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

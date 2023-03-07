@@ -205,5 +205,5 @@ public class SnapshotsRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, SnapshotsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, SnapshotsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

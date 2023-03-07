@@ -182,5 +182,5 @@ public class ReindexRethrottleRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ReindexRethrottleResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ReindexRethrottleResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

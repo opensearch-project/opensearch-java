@@ -298,5 +298,5 @@ public class ImportDanglingIndexRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ImportDanglingIndexResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ImportDanglingIndexResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

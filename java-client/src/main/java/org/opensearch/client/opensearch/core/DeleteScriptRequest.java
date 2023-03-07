@@ -271,5 +271,5 @@ public class DeleteScriptRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteScriptResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteScriptResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

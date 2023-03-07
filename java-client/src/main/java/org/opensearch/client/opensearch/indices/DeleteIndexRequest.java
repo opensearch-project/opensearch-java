@@ -400,5 +400,5 @@ public class DeleteIndexRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteIndexResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteIndexResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

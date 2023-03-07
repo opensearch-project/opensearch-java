@@ -223,5 +223,5 @@ public class AliasesRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, AliasesResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, AliasesResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

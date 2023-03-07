@@ -462,5 +462,5 @@ public class GetIndexRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetIndexResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetIndexResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

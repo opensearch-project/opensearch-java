@@ -631,5 +631,5 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, CreateSnapshotResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CreateSnapshotResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

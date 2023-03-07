@@ -272,5 +272,5 @@ public class DeleteTemplateRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

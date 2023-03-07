@@ -233,5 +233,5 @@ public class GetScriptRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetScriptResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetScriptResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

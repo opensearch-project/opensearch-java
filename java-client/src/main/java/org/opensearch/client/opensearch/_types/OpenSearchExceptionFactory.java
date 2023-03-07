@@ -30,35 +30,30 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.transport.endpoints;
+package org.opensearch.client.opensearch._types;
 
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.opensearch._types.ErrorResponse;
+public class OpenSearchExceptionFactory {
 
-import java.util.Map;
-import java.util.function.Function;
-
-public class BooleanEndpoint<RequestT> extends SimpleEndpoint<RequestT, BooleanResponse, ErrorResponse> {
-
-    public BooleanEndpoint(
-        String id,
-        Function<RequestT, String> method,
-        Function<RequestT, String> requestUrl,
-        Function<RequestT,
-            Map<String, String>> queryParameters,
-        Function<RequestT, Map<String, String>> headers,
-        boolean hasRequestBody, // always false
-        JsonpDeserializer<?> responseParser // always null
-    ) {
-        super(method, requestUrl, queryParameters, headers, false, null, ErrorResponse._DESERIALIZER);
+    private OpenSearchExceptionFactory() {
+        //should be empty
     }
 
-    @Override
-    public boolean isError(int statusCode) {
-        return statusCode >= 500;
+    public static <ErrorT> OpenSearchException createException(ErrorT error) {
+        if (error instanceof ErrorResponse) {
+            return new OpenSearchException((ErrorResponse) error);
+        } else if (error instanceof ErrorStringResponse) {
+            ErrorStringResponse errorStringResponse = (ErrorStringResponse) error;
+            return new OpenSearchException(getErrorResponse(errorStringResponse.status(), "string_error", errorStringResponse.error()));
+        } else {
+            throw new OpenSearchException(getErrorResponse(500, "error_type", "Unknown error type: " + error.getClass()));
+        }
     }
 
-    public boolean getResult(int statusCode) {
-        return statusCode < 400;
+    private static ErrorResponse getErrorResponse(int status, String type, String reason) {
+        return ErrorResponse.of(
+                builder -> builder.status(status).error(
+                        builder1 -> builder1.type(type).reason(reason)
+                )
+        );
     }
 }

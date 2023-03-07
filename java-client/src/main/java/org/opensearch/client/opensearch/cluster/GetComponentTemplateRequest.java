@@ -300,5 +300,5 @@ public class GetComponentTemplateRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetComponentTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetComponentTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

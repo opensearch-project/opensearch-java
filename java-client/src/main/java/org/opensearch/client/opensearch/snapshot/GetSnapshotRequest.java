@@ -467,5 +467,5 @@ public class GetSnapshotRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetSnapshotResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetSnapshotResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

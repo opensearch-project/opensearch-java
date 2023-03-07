@@ -82,5 +82,5 @@ public class ResetFeaturesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, ResetFeaturesResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ResetFeaturesResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

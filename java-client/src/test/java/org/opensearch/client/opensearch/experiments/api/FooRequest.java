@@ -317,7 +317,8 @@ public class FooRequest implements JsonpSerializable {
       SimpleEndpoint.emptyMap(),
       SimpleEndpoint.emptyMap(),
       true,
-      FooResponse.PARSER
+      FooResponse.PARSER,
+      ErrorResponse._DESERIALIZER
     );
 
   public static void requireTrue(boolean v, String message) {

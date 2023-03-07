@@ -214,5 +214,5 @@ public class ResolveIndexRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ResolveIndexResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ResolveIndexResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

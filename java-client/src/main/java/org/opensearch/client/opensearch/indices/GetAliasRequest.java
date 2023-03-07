@@ -36,7 +36,7 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.ErrorStringResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -305,7 +305,7 @@ public class GetAliasRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.get_alias}".
 	 */
-	public static final Endpoint<GetAliasRequest, GetAliasResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetAliasRequest, GetAliasResponse, ErrorStringResponse> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {
@@ -376,5 +376,5 @@ public class GetAliasRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetAliasResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetAliasResponse._DESERIALIZER, ErrorStringResponse._DESERIALIZER);
 }

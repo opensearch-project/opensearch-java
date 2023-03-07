@@ -628,5 +628,5 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, RestoreResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, RestoreResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

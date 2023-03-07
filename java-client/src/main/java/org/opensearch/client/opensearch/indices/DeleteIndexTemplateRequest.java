@@ -147,5 +147,5 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteIndexTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteIndexTemplateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

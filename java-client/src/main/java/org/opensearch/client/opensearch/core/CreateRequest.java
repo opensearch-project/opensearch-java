@@ -497,5 +497,5 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, CreateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CreateResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

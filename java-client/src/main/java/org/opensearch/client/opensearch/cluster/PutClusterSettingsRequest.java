@@ -388,5 +388,5 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, PutClusterSettingsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutClusterSettingsResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 }

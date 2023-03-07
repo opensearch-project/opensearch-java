@@ -463,7 +463,7 @@ public class GetSourceRequest {
 	/**
 	 * Endpoint "{@code get_source}".
 	 */
-	public static final SimpleEndpoint<GetSourceRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<GetSourceRequest, ?, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
 			// Request method
 			request -> {
@@ -532,7 +532,7 @@ public class GetSourceRequest {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetSourceResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetSourceResponse._DESERIALIZER, ErrorResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code get_source}" endpoint.
