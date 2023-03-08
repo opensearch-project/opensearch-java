@@ -154,7 +154,7 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
     protected void wipeAllOSIndices() throws IOException {
         final IndicesResponse response = adminJavaClient()
             .cat()
-            .indices(r -> r.expandWildcards(ExpandWildcard.All));
+            .indices(r -> r.columnNames("index,creation.date").expandWildcards(ExpandWildcard.All));
 
         for (IndicesRecord index : response.valueBody()) {
             if (index.index() != null && !".opendistro_security".equals(index.index())) {

@@ -37,21 +37,60 @@
 package org.opensearch.client.opensearch.cat;
 
 import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 // typedef: cat._types.CatRequestBase
 
 
-
 public abstract class CatRequestBase extends RequestBase {
-	public CatRequestBase() {
-	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ObjectBuilderBase {
-		protected abstract BuilderT self();
+    @Nullable
+    private final String columnNames;
 
-	}
+    @Deprecated
+    public CatRequestBase() {
+        this.columnNames = null;
+    }
+
+    public CatRequestBase(CatRequestBaseBuilder<?> builder) {
+        this.columnNames = builder.columnNames;
+    }
+
+    protected final Map<String, String> queryParameters() {
+        Map<String, String> params = new HashMap<>();
+        if (columnNames != null && !columnNames.isBlank()) {
+            params.put("h", columnNames);
+        }
+        return params;
+    }
+
+
+    /**
+     * A comma-separated list of column names to limit the returned information
+     * <p>
+     * API name: {@code h}
+     */
+    public final String columnNames() {
+        return this.columnNames;
+    }
+
+    protected abstract static class CatRequestBaseBuilder<BuilderT extends CatRequestBaseBuilder> extends ObjectBuilderBase implements ObjectBuilder {
+
+        @Nullable
+        protected String columnNames;
+
+        protected abstract BuilderT self();
+
+        public final BuilderT columnNames(String columns) {
+            this.columnNames = columns;
+            return self();
+        }
+
+    }
 
 }
