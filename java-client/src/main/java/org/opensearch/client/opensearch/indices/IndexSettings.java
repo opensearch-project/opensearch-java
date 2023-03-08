@@ -219,6 +219,9 @@ public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	private final IndexSettings settings;
 
+	@Nullable
+	private final IndexSettingsMapping mapping;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexSettings(Builder builder) {
@@ -278,6 +281,7 @@ public class IndexSettings implements JsonpSerializable {
 		this.topMetricsMaxSize = builder.topMetricsMaxSize;
 		this.analysis = builder.analysis;
 		this.settings = builder.settings;
+		this.mapping = builder.mapping;
 
 	}
 
@@ -725,6 +729,14 @@ public class IndexSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code mapping}
+	 */
+	@Nullable
+	public final IndexSettingsMapping mapping() {
+		return this.mapping;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -1015,6 +1027,11 @@ public class IndexSettings implements JsonpSerializable {
 			this.settings.serialize(generator, mapper);
 
 		}
+		if (this.mapping != null) {
+			generator.writeKey("mapping");
+			this.mapping.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -1189,6 +1206,9 @@ public class IndexSettings implements JsonpSerializable {
 
 		@Nullable
 		private IndexSettings settings;
+
+		@Nullable
+		private IndexSettingsMapping mapping;
 
 		/**
 		 * API name: {@code index}
@@ -1728,6 +1748,21 @@ public class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code mapping}
+		 */
+		public final Builder mapping(@Nullable IndexSettingsMapping value) {
+			this.mapping = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code mapping}
+		 */
+		public final Builder mapping(Function<IndexSettingsMapping.Builder, ObjectBuilder<IndexSettingsMapping>> fn) {
+			return this.mapping(fn.apply(new IndexSettingsMapping.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link IndexSettings}.
 		 *
 		 * @throws NullPointerException
@@ -1838,6 +1873,7 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::topMetricsMaxSize, JsonpDeserializer.integerDeserializer(), "top_metrics_max_size");
 		op.add(Builder::analysis, IndexSettingsAnalysis._DESERIALIZER, "analysis", "index.analysis");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
+		op.add(Builder::mapping, IndexSettingsMapping._DESERIALIZER, "mapping");
 
 	}
 

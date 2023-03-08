@@ -51,8 +51,8 @@ import org.opensearch.client.opensearch.core.GetResponse;
 import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.MsearchResponse;
-import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.SearchRequest;
+import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
 import org.opensearch.client.opensearch.core.msearch.RequestItem;
 import org.opensearch.client.opensearch.core.search.CompletionSuggester;
@@ -76,6 +76,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
+
     @Test
     public void testCount() throws Exception {
 
@@ -103,6 +104,70 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
         assertEquals(1, indices.size());
         assertNotNull(indices.get("my-index"));
+    }
+
+    @Test
+    public void testIndexSettingsMapping() throws Exception {
+        var createResponse = javaClient().indices()
+                .create(r -> r.index("test-settings")
+                        .settings(s -> s
+                                .mapping(m -> m
+                                        .fieldNameLength(f -> f.limit(300L))
+                                        .totalFields(f -> f.limit(30L))
+                                        .nestedFields(f -> f.limit(10L))
+                                        .depth(f -> f.limit(3L))
+                                        .nestedObjects(f -> f.limit(9L)))));
+        assertTrue(createResponse.acknowledged());
+        assertTrue(createResponse.shardsAcknowledged());
+
+        var createdSettings = javaClient().indices().getSettings(r -> r.index("test-settings"));
+
+        var createdIndexSettings = createdSettings.get("test-settings");
+        assertNotNull(createdIndexSettings);
+        assertNotNull(createdIndexSettings.settings());
+        assertNotNull(createdIndexSettings.settings().index());
+        var createdMappingSettings = createdIndexSettings.settings().index().mapping();
+        assertNotNull(createdMappingSettings);
+        assertNotNull(createdMappingSettings.fieldNameLength());
+        assertEquals(300L, (Object) createdMappingSettings.fieldNameLength().limit());
+        assertNotNull(createdMappingSettings.totalFields());
+        assertEquals(30L, (Object) createdMappingSettings.totalFields().limit());
+        assertNotNull(createdMappingSettings.nestedFields());
+        assertEquals(10L, (Object) createdMappingSettings.nestedFields().limit());
+        assertNotNull(createdMappingSettings.depth());
+        assertEquals(3L, (Object) createdMappingSettings.depth().limit());
+        assertNotNull(createdMappingSettings.nestedObjects());
+        assertEquals(9L, (Object) createdMappingSettings.nestedObjects().limit());
+
+        var putSettingsResponse = javaClient().indices().putSettings(r -> r
+                .index("test-settings")
+                .settings(s -> s
+                        .mapping(m -> m
+                                .fieldNameLength(f -> f.limit(400L))
+                                .totalFields(f -> f.limit(130L))
+                                .nestedFields(f -> f.limit(110L))
+                                .depth(f -> f.limit(13L))
+                                .nestedObjects(f -> f.limit(19L)))));
+        assertTrue(putSettingsResponse.acknowledged());
+
+        var updatedSettings = javaClient().indices().getSettings(r -> r.index("test-settings"));
+
+        var updatedIndexSettings = updatedSettings.get("test-settings");
+        assertNotNull(updatedIndexSettings);
+        assertNotNull(updatedIndexSettings.settings());
+        assertNotNull(updatedIndexSettings.settings().index());
+        var updatedMappingSettings = updatedIndexSettings.settings().index().mapping();
+        assertNotNull(updatedMappingSettings);
+        assertNotNull(updatedMappingSettings.fieldNameLength());
+        assertEquals(400L, (Object) updatedMappingSettings.fieldNameLength().limit());
+        assertNotNull(updatedMappingSettings.totalFields());
+        assertEquals(130L, (Object) updatedMappingSettings.totalFields().limit());
+        assertNotNull(updatedMappingSettings.nestedFields());
+        assertEquals(110L, (Object) updatedMappingSettings.nestedFields().limit());
+        assertNotNull(updatedMappingSettings.depth());
+        assertEquals(13L, (Object) updatedMappingSettings.depth().limit());
+        assertNotNull(updatedMappingSettings.nestedObjects());
+        assertEquals(19L, (Object) updatedMappingSettings.nestedObjects().limit());
     }
 
     @Test
@@ -207,15 +272,15 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         InfoResponse info = javaClient().info();
         String version = info.version().number();
         if (version.contains("SNAPSHOT")) {
-                version = version.split("-")[0];
+            version = version.split("-")[0];
         }
         assertEquals(1, nodes.valueBody().size());
         if (Version.fromString(version).onOrAfter(Version.fromString("2.0.0"))) {
-                assertEquals("*", nodes.valueBody().get(0).clusterManager());
+            assertEquals("*", nodes.valueBody().get(0).clusterManager());
         } else {
-                assertEquals("*", nodes.valueBody().get(0).master());
+            assertEquals("*", nodes.valueBody().get(0).master());
         }
-        
+
     }
 
     @Test
@@ -265,7 +330,8 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         assertEquals("1", ir.id());
     }
 
-    @Test public void errorResponse() throws Exception {
+    @Test
+    public void errorResponse() throws Exception {
         BooleanResponse exists = javaClient().exists(_0 -> _0.index("doesnotexist").id("reallynot"));
         assertFalse(exists.value());
 
@@ -505,6 +571,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 //    }
 
     public static class AppData {
+
         private int intValue;
         private String msg;
 
@@ -526,10 +593,13 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
     }
 
     public static class Product {
+
         public double price;
         public String color;
 
-        public Product() {}
+        public Product() {
+        }
+
         public Product(double price) {
             this.price = price;
         }
@@ -549,10 +619,12 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
     }
 
     public static class Join {
+
         public String name;
         public String parent;
 
-        Join() {}
+        Join() {
+        }
 
         Join(String name) {
             this.name = name;
@@ -565,10 +637,12 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
     }
 
     public static class Question {
+
         public String title;
         public Join join;
 
-        Question() {}
+        Question() {
+        }
 
         Question(String title) {
             this.title = title;
@@ -577,10 +651,12 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
     }
 
     public static class Answer {
+
         public String body;
         public Join join;
 
-        Answer() {}
+        Answer() {
+        }
 
         Answer(String body) {
             this.body = body;
