@@ -88,13 +88,15 @@ public class SimpleEndpoint<RequestT, ResponseT, ErrorResponseT> implements Json
             boolean hasRequestBody,
             JsonpDeserializer<ResponseT> responseParser
     ) {
-        this.method = method;
-        this.requestUrl = requestUrl;
-        this.queryParameters = queryParameters;
-        this.headers = headers;
-        this.hasRequestBody = hasRequestBody;
-        this.responseParser = responseParser;
-        this.errorDeserializer = (JsonpDeserializer<ErrorResponseT>) ErrorResponse._DESERIALIZER;
+        this(
+                method,
+                requestUrl,
+                queryParameters,
+                headers,
+                hasRequestBody,
+                responseParser,
+                (JsonpDeserializer<ErrorResponseT>) ErrorResponse._DESERIALIZER
+        );
     }
 
     @Override
