@@ -3,7 +3,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Dependencies
-- Bumps `io.github.classgraph:classgraph` from 4.8.154 to 4.8.156
+- Bumps `io.github.classgraph:classgraph` from 4.8.154 to 4.8.157
 
 ### Added
 - Add GitHub workflow for changelog verification ([#239](https://github.com/opensearch-project/opensearch-java/pull/239))
