@@ -37,6 +37,7 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
@@ -135,20 +136,46 @@ public class JsonpUtils {
     public static Map.Entry<String, JsonParser> lookAheadFieldValue(
         String name, String defaultValue, JsonParser parser, JsonpMapper mapper
     ) {
-        // FIXME: need a buffering parser wrapper so that we don't roundtrip through a JsonObject and a String
-        // FIXME: resulting parser should return locations that are offset with the original parser's location
-        JsonObject object = parser.getObject();
-        String result = object.getString(name, null);
+        JsonLocation location = parser.getLocation();
 
-        if (result == null) {
-            result = defaultValue;
+        if (parser instanceof LookAheadJsonParser) {
+            // Fast buffered path
+            Map.Entry<String, JsonParser> result = ((LookAheadJsonParser) parser).lookAheadFieldValue(name, defaultValue);
+            if (result.getKey() == null) {
+                throw new JsonParsingException("Property '" + name + "' not found", location);
+            }
+            return result;
+
+        } else {
+            // Unbuffered path: parse the object into a JsonObject, then extract the value and parse it again
+            JsonObject object = parser.getObject();
+            String result = object.getString(name, null);
+
+            if (result == null) {
+                result = defaultValue;
+            }
+
+            if (result == null) {
+                throw new JsonParsingException("Property '" + name + "' not found", location);
+            }
+
+            JsonParser newParser = objectParser(object, mapper);
+
+            // Pin location to the start of the look ahead, as the new parser will return locations in its own buffer
+            newParser = new DelegatingJsonParser(newParser) {
+                @Override
+                public JsonLocation getLocation() {
+                    return new JsonLocationImpl(location.getLineNumber(), location.getColumnNumber(), location.getStreamOffset()) {
+                        @Override
+                        public String toString() {
+                            return "(in object at " + super.toString().substring(1);
+                        }
+                    };
+                }
+            };
+
+            return new AbstractMap.SimpleImmutableEntry<>(result, newParser);
         }
-
-        if (result == null) {
-            throw new JsonParsingException("Property '" + name + "' not found", parser.getLocation());
-        }
-
-        return new AbstractMap.SimpleImmutableEntry<>(result, objectParser(object, mapper));
     }
 
     /**
