@@ -11,6 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add 1-click release workflows ([#321](https://github.com/opensearch-project/opensearch-java/pull/321))
 - Require two maintainers to approve release ([#383](https://github.com/opensearch-project/opensearch-java/pull/383))
 - Add support for mapping limit settings ([#382](https://github.com/opensearch-project/opensearch-java/pull/382))
+- Add buffered lookahead for Jackson ([#338](https://github.com/opensearch-project/opensearch-java/pull/338))
 
 ### Dependencies
 - Bumps `grgit-gradle` from 4.0.1 to 5.0.0
