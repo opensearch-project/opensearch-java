@@ -43,6 +43,7 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -163,8 +164,7 @@ public class NodesRequest extends CatRequestBase {
 
             // Request parameters
             request -> {
-                Map<String, String> params = request.queryParameters();
-                params.put("format", "json");
+                Map<String, String> params = new HashMap<>(request.queryParameters());
                 if (request.bytes != null) {
                     params.put("bytes", request.bytes.jsonValue());
                 }

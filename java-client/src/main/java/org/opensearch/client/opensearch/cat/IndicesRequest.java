@@ -46,6 +46,7 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -330,8 +331,7 @@ public class IndicesRequest extends CatRequestBase {
 
             // Request parameters
             request -> {
-                Map<String, String> params = request.queryParameters();
-                params.put("format", "json");
+                Map<String, String> params =  new HashMap<>(request.queryParameters());
                 if (ApiTypeHelper.isDefined(request.expandWildcards)) {
                     params.put("expand_wildcards",
                             request.expandWildcards.stream()

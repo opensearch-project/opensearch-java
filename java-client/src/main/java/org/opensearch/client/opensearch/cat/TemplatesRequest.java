@@ -40,12 +40,10 @@ import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
 import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.function.Function;
 
 // typedef: cat.templates.Request
 
@@ -61,7 +59,7 @@ public class TemplatesRequest extends CatRequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private TemplatesRequest(Builder builder) {
-
+		super(builder);
 		this.name = builder.name;
 
 	}
@@ -86,7 +84,7 @@ public class TemplatesRequest extends CatRequestBase {
 	 * Builder for {@link TemplatesRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TemplatesRequest> {
+	public static class Builder extends CatRequestBaseBuilder<TemplatesRequest.Builder> {
 		@Nullable
 		private String name;
 
@@ -110,6 +108,11 @@ public class TemplatesRequest extends CatRequestBase {
 			_checkSingleUse();
 
 			return new TemplatesRequest(this);
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 	}
 
@@ -154,10 +157,5 @@ public class TemplatesRequest extends CatRequestBase {
 			},
 
 			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
-				return params;
-
-			}, SimpleEndpoint.emptyMap(), false, TemplatesResponse._DESERIALIZER);
+			request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, TemplatesResponse._DESERIALIZER);
 }

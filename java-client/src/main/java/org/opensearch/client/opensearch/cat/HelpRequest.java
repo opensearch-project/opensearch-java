@@ -41,48 +41,41 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
 import java.util.HashMap;
-import java.util.Map;
 
 // typedef: cat.help.Request
 
 /**
  * Returns help for the Cat APIs.
- *
  */
 
 public class HelpRequest extends CatRequestBase {
-	public HelpRequest() {
-	}
+    public HelpRequest() {
+    }
 
-	/**
-	 * Singleton instance for {@link HelpRequest}.
-	 */
-	public static final HelpRequest _INSTANCE = new HelpRequest();
+    /**
+     * Singleton instance for {@link HelpRequest}.
+     */
+    public static final HelpRequest _INSTANCE = new HelpRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.help}".
-	 */
-	public static final Endpoint<HelpRequest, HelpResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.help}".
+     */
+    public static final Endpoint<HelpRequest, HelpResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+            // Request method
+            request -> {
+                return "GET";
 
-			},
+            },
 
-			// Request path
-			request -> {
-				return "/_cat";
+            // Request path
+            request -> {
+                return "/_cat";
 
-			},
+            },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
-				return params;
-
-			}, SimpleEndpoint.emptyMap(), false, HelpResponse._DESERIALIZER);
+            // Request parameters
+            request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, HelpResponse._DESERIALIZER);
 }

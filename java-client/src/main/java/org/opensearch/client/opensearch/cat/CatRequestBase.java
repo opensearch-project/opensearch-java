@@ -50,44 +50,83 @@ import java.util.Map;
 public abstract class CatRequestBase extends RequestBase {
 
     @Nullable
-    private final String columnNames;
+    private final String headers;
 
-    @Deprecated
+    @Nullable
+    private final String sort;
+
     public CatRequestBase() {
-        this.columnNames = null;
+        this.headers = null;
+        this.sort = null;
     }
 
     public CatRequestBase(CatRequestBaseBuilder<?> builder) {
-        this.columnNames = builder.columnNames;
+        this.headers = builder.headers;
+        this.sort = builder.sort;
     }
 
     protected final Map<String, String> queryParameters() {
         Map<String, String> params = new HashMap<>();
-        if (columnNames != null && !columnNames.isBlank()) {
-            params.put("h", columnNames);
+        if (headers != null && !headers.isBlank()) {
+            params.put("h", headers);
         }
+        if(sort != null && !sort.isBlank()) {
+            params.put("s", sort);
+        }
+        params.put("format", "json");
         return params;
     }
 
 
     /**
-     * A comma-separated list of column names to limit the returned information
+     * A comma-separated list of headers to limit the returned information
      * <p>
      * API name: {@code h}
      */
-    public final String columnNames() {
-        return this.columnNames;
+    public final String headers() {
+        return this.headers;
     }
+
+    /**
+     * A comma-separated list of headers to sort the returned information
+     * <p>
+     * API name: {@code s}
+     * <p>
+     */
+    public final String sort() {
+        return this.sort;
+    }
+
 
     protected abstract static class CatRequestBaseBuilder<BuilderT extends CatRequestBaseBuilder> extends ObjectBuilderBase implements ObjectBuilder {
 
         @Nullable
-        protected String columnNames;
+        protected String headers;
+
+        @Nullable
+        protected String sort;
 
         protected abstract BuilderT self();
 
-        public final BuilderT columnNames(String columns) {
-            this.columnNames = columns;
+        /**
+         * A comma-separated list of specific headers to limits the output
+         * <p>
+         * API name: {@code h}
+         * <p>
+         */
+        public final BuilderT headers(@Nullable String headers) {
+            this.headers = headers;
+            return self();
+        }
+
+        /**
+         * A comma-separated list of headers to sort the returned information
+         * <p>
+         * API name: {@code s}
+         * <p>
+         */
+        public final BuilderT sort(@Nullable String sort) {
+            this.sort = sort;
             return self();
         }
 
