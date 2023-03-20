@@ -14,6 +14,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add new `OpenSearchTransport` based on Apache HttpClient 5 ([#281](https://github.com/opensearch-project/opensearch-java/pull/281))
 - Add workflow to publish snapshots via GHA ([#325](https://github.com/opensearch-project/opensearch-java/pull/325))
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
+- Require two maintainers to approve release ([#383](https://github.com/opensearch-project/opensearch-java/pull/383))
+- Add support for mapping limit settings ([#382](https://github.com/opensearch-project/opensearch-java/pull/382))
+- Add buffered lookahead for Jackson ([#338](https://github.com/opensearch-project/opensearch-java/pull/338))
 - Add support for headers and sort parameters in cat requests ([#388](https://github.com/opensearch-project/opensearch-java/issues/388))
 
 ### Dependencies
