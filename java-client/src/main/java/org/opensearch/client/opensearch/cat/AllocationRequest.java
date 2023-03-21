@@ -42,14 +42,13 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import javax.annotation.Nullable;
 
 // typedef: cat.allocation.Request
 
@@ -68,7 +67,7 @@ public class AllocationRequest extends CatRequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private AllocationRequest(Builder builder) {
-
+		super(builder);
 		this.bytes = builder.bytes;
 		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 
@@ -103,7 +102,7 @@ public class AllocationRequest extends CatRequestBase {
 	 * Builder for {@link AllocationRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationRequest> {
+	public static class Builder extends CatRequestBaseBuilder<AllocationRequest.Builder> {
 		@Nullable
 		private Bytes bytes;
 
@@ -155,6 +154,11 @@ public class AllocationRequest extends CatRequestBase {
 
 			return new AllocationRequest(this);
 		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -200,8 +204,7 @@ public class AllocationRequest extends CatRequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
+				Map<String, String> params = new HashMap<>(request.queryParameters());
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
 				}

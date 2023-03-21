@@ -41,7 +41,6 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
 import java.util.HashMap;
-import java.util.Map;
 
 // typedef: cat.plugins.Request
 
@@ -79,10 +78,5 @@ public class PluginsRequest extends CatRequestBase {
 			},
 
 			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
-				return params;
-
-			}, SimpleEndpoint.emptyMap(), false, PluginsResponse._DESERIALIZER);
+			request ->  new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, PluginsResponse._DESERIALIZER);
 }

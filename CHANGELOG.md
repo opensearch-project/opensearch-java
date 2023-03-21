@@ -17,6 +17,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Require two maintainers to approve release ([#383](https://github.com/opensearch-project/opensearch-java/pull/383))
 - Add support for mapping limit settings ([#382](https://github.com/opensearch-project/opensearch-java/pull/382))
 - Add buffered lookahead for Jackson ([#338](https://github.com/opensearch-project/opensearch-java/pull/338))
+- Add support for headers and sort parameters in cat requests ([#388](https://github.com/opensearch-project/opensearch-java/issues/388))
 
 ### Dependencies
 - Bumps `classgraph` from 4.8.149 to 4.8.154

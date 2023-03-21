@@ -41,14 +41,13 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import javax.annotation.Nullable;
 
 // typedef: cat.tasks.Request
 
@@ -72,7 +71,7 @@ public class TasksRequest extends CatRequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private TasksRequest(Builder builder) {
-
+		super(builder);
 		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
 		this.detailed = builder.detailed;
 		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
@@ -125,7 +124,7 @@ public class TasksRequest extends CatRequestBase {
 	 * Builder for {@link TasksRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TasksRequest> {
+	public static class Builder extends CatRequestBaseBuilder<TasksRequest.Builder> {
 		@Nullable
 		private List<String> actions;
 
@@ -213,6 +212,11 @@ public class TasksRequest extends CatRequestBase {
 
 			return new TasksRequest(this);
 		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -236,8 +240,7 @@ public class TasksRequest extends CatRequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
+				Map<String, String> params = new HashMap<>(request.queryParameters());
 				if (request.detailed != null) {
 					params.put("detailed", String.valueOf(request.detailed));
 				}

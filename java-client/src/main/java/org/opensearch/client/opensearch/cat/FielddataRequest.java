@@ -42,14 +42,13 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.Request
 
@@ -68,7 +67,7 @@ public class FielddataRequest extends CatRequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private FielddataRequest(Builder builder) {
-
+		super(builder);
 		this.bytes = builder.bytes;
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 
@@ -103,7 +102,7 @@ public class FielddataRequest extends CatRequestBase {
 	 * Builder for {@link FielddataRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataRequest> {
+	public static class Builder extends CatRequestBaseBuilder<FielddataRequest.Builder> {
 		@Nullable
 		private Bytes bytes;
 
@@ -155,6 +154,11 @@ public class FielddataRequest extends CatRequestBase {
 
 			return new FielddataRequest(this);
 		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -200,8 +204,7 @@ public class FielddataRequest extends CatRequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
+				Map<String, String> params = new HashMap<>(request.queryParameters());
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
 				}
