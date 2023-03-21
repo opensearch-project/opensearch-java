@@ -41,7 +41,6 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
 import java.util.HashMap;
-import java.util.Map;
 
 // typedef: cat.cluster_manager.Request
 
@@ -79,12 +78,7 @@ public class ClusterManagerRequest extends CatRequestBase {
 			},
 
 			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
-				return params;
-
-			}, SimpleEndpoint.emptyMap(), false, ClusterManagerResponse._DESERIALIZER);
+			request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, ClusterManagerResponse._DESERIALIZER);
 
 	/**
 	 * Endpoint "{@code cat.cluster_manager}".
@@ -104,10 +98,5 @@ public class ClusterManagerRequest extends CatRequestBase {
 			},
 
 			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
-				return params;
-
-			}, SimpleEndpoint.emptyMap(), false, ClusterManagerResponse._DESERIALIZER);
+			request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, ClusterManagerResponse._DESERIALIZER);
 }

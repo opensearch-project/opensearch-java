@@ -41,14 +41,12 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import javax.annotation.Nullable;
 
 // typedef: cat.count.Request
 
@@ -64,7 +62,7 @@ public class CountRequest extends CatRequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private CountRequest(Builder builder) {
-
+		super(builder);
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 
 	}
@@ -88,7 +86,7 @@ public class CountRequest extends CatRequestBase {
 	 * Builder for {@link CountRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountRequest> {
+	public static class Builder extends CatRequestBaseBuilder<CountRequest.Builder> {
 		@Nullable
 		private List<String> index;
 
@@ -126,6 +124,11 @@ public class CountRequest extends CatRequestBase {
 			_checkSingleUse();
 
 			return new CountRequest(this);
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 	}
 
@@ -170,10 +173,5 @@ public class CountRequest extends CatRequestBase {
 			},
 
 			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
-				return params;
-
-			}, SimpleEndpoint.emptyMap(), false, CountResponse._DESERIALIZER);
+			request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, CountResponse._DESERIALIZER);
 }

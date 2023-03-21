@@ -15,6 +15,10 @@
   - [Aggregations](#aggregations)
   - [Delete the document](#delete-the-document)
   - [Delete the index](#delete-the-index)
+  - [Cat API](#cat-api)
+    - [Cat Indices](#cat-indices)
+    - [Cat Aliases](#cat-aliases)
+    - [Cat Nodes](#cat-nodes)
 - [Using different transport options](#using-different-transport-options)
   - [Amazon Managed OpenSearch](#amazon-managed-opensearch)
 
@@ -197,6 +201,31 @@ client.delete(d -> d.index(index).id("1"));
 ```java
 DeleteIndexRequest deleteIndexRequest = new DeleteRequest.Builder().index(index).build();
 DeleteIndexResponse deleteIndexResponse = client.indices().delete(deleteIndexRequest);
+```
+
+## Cat API
+
+### Cat Indices
+The following sample code cat indices with required headers and sorted by creation date
+
+```java
+IndicesRequest indicesRequest = new IndicesRequest.Builder()
+        .headers("index,health,status,pri,rep,doc.count,creation.date,creation.date.string").sort("creation.date").build();
+IndicesResponse indicesResponse = javaClient().cat().indices(indicesRequest);
+```
+
+
+### Cat aliases
+The following sample code cat aliases with name "test-alias" and sorted by index
+```java
+AliasesRequest aliasesRequest = new AliasesRequest.Builder().name("test-alias").sort("index").build();
+AliasesResponse aliasesResponse = javaClient().cat().aliases(aliasesRequest);
+```
+
+### Cat nodes
+The following sample code cat nodes sorted by cpu
+```java
+NodesResponse nodesResponse = javaClient().cat().nodes(r -> r.sort("cpu"));
 ```
 
 # Using different transport options

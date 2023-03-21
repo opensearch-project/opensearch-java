@@ -42,14 +42,13 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.Request
 
@@ -68,7 +67,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private ThreadPoolRequest(Builder builder) {
-
+		super(builder);
 		this.size = builder.size;
 		this.threadPoolPatterns = ApiTypeHelper.unmodifiable(builder.threadPoolPatterns);
 
@@ -104,7 +103,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 	 * Builder for {@link ThreadPoolRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadPoolRequest> {
+	public static class Builder extends CatRequestBaseBuilder<ThreadPoolRequest.Builder> {
 		@Nullable
 		private ThreadPoolSize size;
 
@@ -158,6 +157,11 @@ public class ThreadPoolRequest extends CatRequestBase {
 
 			return new ThreadPoolRequest(this);
 		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -204,8 +208,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
+				Map<String, String> params = new HashMap<>(request.queryParameters());
 				if (request.size != null) {
 					params.put("size", request.size.jsonValue());
 				}

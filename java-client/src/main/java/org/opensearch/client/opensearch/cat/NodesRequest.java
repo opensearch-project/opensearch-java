@@ -41,136 +41,137 @@ import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: cat.nodes.Request
 
 /**
  * Returns basic statistics about performance of cluster nodes.
- *
  */
 
 public class NodesRequest extends CatRequestBase {
-	@Nullable
-	private final Bytes bytes;
+    @Nullable
+    private final Bytes bytes;
 
-	@Nullable
-	private final Boolean fullId;
+    @Nullable
+    private final Boolean fullId;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodesRequest(Builder builder) {
+    private NodesRequest(Builder builder) {
+        super(builder);
+        this.bytes = builder.bytes;
+        this.fullId = builder.fullId;
 
-		this.bytes = builder.bytes;
-		this.fullId = builder.fullId;
+    }
 
-	}
+    public static NodesRequest of(Function<Builder, ObjectBuilder<NodesRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	public static NodesRequest of(Function<Builder, ObjectBuilder<NodesRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    /**
+     * The unit in which to display byte values
+     * <p>
+     * API name: {@code bytes}
+     */
+    @Nullable
+    public final Bytes bytes() {
+        return this.bytes;
+    }
 
-	/**
-	 * The unit in which to display byte values
-	 * <p>
-	 * API name: {@code bytes}
-	 */
-	@Nullable
-	public final Bytes bytes() {
-		return this.bytes;
-	}
+    /**
+     * Return the full node ID instead of the shortened version (default: false)
+     * <p>
+     * API name: {@code full_id}
+     */
+    @Nullable
+    public final Boolean fullId() {
+        return this.fullId;
+    }
 
-	/**
-	 * Return the full node ID instead of the shortened version (default: false)
-	 * <p>
-	 * API name: {@code full_id}
-	 */
-	@Nullable
-	public final Boolean fullId() {
-		return this.fullId;
-	}
+    // ---------------------------------------------------------------------------------------------
 
-	// ---------------------------------------------------------------------------------------------
+    /**
+     * Builder for {@link NodesRequest}.
+     */
 
-	/**
-	 * Builder for {@link NodesRequest}.
-	 */
+    public static class Builder extends CatRequestBaseBuilder<NodesRequest.Builder> {
+        @Nullable
+        private Bytes bytes;
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesRequest> {
-		@Nullable
-		private Bytes bytes;
+        @Nullable
+        private Boolean fullId;
 
-		@Nullable
-		private Boolean fullId;
+        /**
+         * The unit in which to display byte values
+         * <p>
+         * API name: {@code bytes}
+         */
+        public final Builder bytes(@Nullable Bytes value) {
+            this.bytes = value;
+            return this;
+        }
 
-		/**
-		 * The unit in which to display byte values
-		 * <p>
-		 * API name: {@code bytes}
-		 */
-		public final Builder bytes(@Nullable Bytes value) {
-			this.bytes = value;
-			return this;
-		}
+        /**
+         * Return the full node ID instead of the shortened version (default: false)
+         * <p>
+         * API name: {@code full_id}
+         */
+        public final Builder fullId(@Nullable Boolean value) {
+            this.fullId = value;
+            return this;
+        }
 
-		/**
-		 * Return the full node ID instead of the shortened version (default: false)
-		 * <p>
-		 * API name: {@code full_id}
-		 */
-		public final Builder fullId(@Nullable Boolean value) {
-			this.fullId = value;
-			return this;
-		}
+        /**
+         * Builds a {@link NodesRequest}.
+         *
+         * @throws NullPointerException if some of the required fields are null.
+         */
+        public NodesRequest build() {
+            _checkSingleUse();
 
-		/**
-		 * Builds a {@link NodesRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodesRequest build() {
-			_checkSingleUse();
+            return new NodesRequest(this);
+        }
 
-			return new NodesRequest(this);
-		}
-	}
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.nodes}".
-	 */
-	public static final Endpoint<NodesRequest, NodesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.nodes}".
+     */
+    public static final Endpoint<NodesRequest, NodesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+            // Request method
+            request -> {
+                return "GET";
 
-			},
+            },
 
-			// Request path
-			request -> {
-				return "/_cat/nodes";
+            // Request path
+            request -> {
+                return "/_cat/nodes";
 
-			},
+            },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
-				if (request.bytes != null) {
-					params.put("bytes", request.bytes.jsonValue());
-				}
-				if (request.fullId != null) {
-					params.put("full_id", String.valueOf(request.fullId));
-				}
-				return params;
+            // Request parameters
+            request -> {
+                Map<String, String> params = new HashMap<>(request.queryParameters());
+                if (request.bytes != null) {
+                    params.put("bytes", request.bytes.jsonValue());
+                }
+                if (request.fullId != null) {
+                    params.put("full_id", String.valueOf(request.fullId));
+                }
+                return params;
 
-			}, SimpleEndpoint.emptyMap(), false, NodesResponse._DESERIALIZER);
+            }, SimpleEndpoint.emptyMap(), false, NodesResponse._DESERIALIZER);
 }
