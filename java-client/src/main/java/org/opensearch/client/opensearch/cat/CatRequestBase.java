@@ -37,21 +37,99 @@
 package org.opensearch.client.opensearch.cat;
 
 import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 // typedef: cat._types.CatRequestBase
 
 
-
 public abstract class CatRequestBase extends RequestBase {
-	public CatRequestBase() {
-	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ObjectBuilderBase {
-		protected abstract BuilderT self();
+    @Nullable
+    private final String headers;
 
-	}
+    @Nullable
+    private final String sort;
+
+    public CatRequestBase() {
+        this.headers = null;
+        this.sort = null;
+    }
+
+    public CatRequestBase(CatRequestBaseBuilder<?> builder) {
+        this.headers = builder.headers;
+        this.sort = builder.sort;
+    }
+
+    protected final Map<String, String> queryParameters() {
+        Map<String, String> params = new HashMap<>();
+        if (headers != null && !headers.isBlank()) {
+            params.put("h", headers);
+        }
+        if(sort != null && !sort.isBlank()) {
+            params.put("s", sort);
+        }
+        params.put("format", "json");
+        return params;
+    }
+
+
+    /**
+     * A comma-separated list of headers to limit the returned information
+     * <p>
+     * API name: {@code h}
+     */
+    public final String headers() {
+        return this.headers;
+    }
+
+    /**
+     * A comma-separated list of headers to sort the returned information
+     * <p>
+     * API name: {@code s}
+     * <p>
+     */
+    public final String sort() {
+        return this.sort;
+    }
+
+
+    protected abstract static class CatRequestBaseBuilder<BuilderT extends CatRequestBaseBuilder> extends ObjectBuilderBase implements ObjectBuilder {
+
+        @Nullable
+        protected String headers;
+
+        @Nullable
+        protected String sort;
+
+        protected abstract BuilderT self();
+
+        /**
+         * A comma-separated list of specific headers to limits the output
+         * <p>
+         * API name: {@code h}
+         * <p>
+         */
+        public final BuilderT headers(@Nullable String headers) {
+            this.headers = headers;
+            return self();
+        }
+
+        /**
+         * A comma-separated list of headers to sort the returned information
+         * <p>
+         * API name: {@code s}
+         * <p>
+         */
+        public final BuilderT sort(@Nullable String sort) {
+            this.sort = sort;
+            return self();
+        }
+
+    }
 
 }
