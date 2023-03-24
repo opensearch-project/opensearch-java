@@ -56,11 +56,15 @@ public class DataStream implements JsonpSerializable {
 	@Nullable
 	private final Boolean hidden;
 
+	@Nullable
+	private final DataStreamTimestampField timestampField;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DataStream(Builder builder) {
 
 		this.hidden = builder.hidden;
+		this.timestampField = builder.timestampField;
 
 	}
 
@@ -77,6 +81,14 @@ public class DataStream implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code timestamp_field}
+	 */
+	@Nullable
+	public final DataStreamTimestampField timestampField() {
+		return this.timestampField;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -90,7 +102,11 @@ public class DataStream implements JsonpSerializable {
 		if (this.hidden != null) {
 			generator.writeKey("hidden");
 			generator.write(this.hidden);
+		}
 
+		if (this.timestampField != null) {
+			generator.writeKey("timestamp_field");
+			this.timestampField.serialize(generator, mapper);
 		}
 
 	}
@@ -105,6 +121,9 @@ public class DataStream implements JsonpSerializable {
 		@Nullable
 		private Boolean hidden;
 
+		@Nullable
+		private DataStreamTimestampField timestampField;
+
 		/**
 		 * API name: {@code hidden}
 		 */
@@ -112,6 +131,21 @@ public class DataStream implements JsonpSerializable {
 			this.hidden = value;
 			return this;
 		}
+
+		/**
+         * API name: {@code timestamp_field}
+         */
+        public final Builder timestampField(@Nullable DataStreamTimestampField value) {
+            this.timestampField = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code timestamp_field}
+         */
+        public final Builder timestampField(Function<DataStreamTimestampField.Builder, ObjectBuilder<DataStreamTimestampField>> fn) {
+            return this.timestampField(fn.apply(new DataStreamTimestampField.Builder()).build());
+        }
 
 		/**
 		 * Builds a {@link DataStream}.
@@ -137,6 +171,7 @@ public class DataStream implements JsonpSerializable {
 	protected static void setupDataStreamDeserializer(ObjectDeserializer<DataStream.Builder> op) {
 
 		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
+		op.add(Builder::timestampField, DataStreamTimestampField._DESERIALIZER, "timestamp_field");
 
 	}
 
