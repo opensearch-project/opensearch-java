@@ -128,6 +128,10 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
 
     @After
     protected void wipeAllOSIndices() throws IOException {
+        // wipe all data streams first, otherwise deleting backing indices will encounter exception
+        adminJavaClient().indices().deleteDataStream(b -> b.name("*"));
+
+        // wipe all indices
         final IndicesResponse response = adminJavaClient()
             .cat()
             .indices(r -> r.headers("index,creation.date").expandWildcards(ExpandWildcard.All));
