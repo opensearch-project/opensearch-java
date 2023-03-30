@@ -37,6 +37,7 @@ jobs:
         run: ./gradlew clean integrationTest
 
       - name: Upload Reports
+        if: failure()
         uses: actions/upload-artifact@v3
         with:
           path: java-client/build/reports/
