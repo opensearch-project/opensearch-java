@@ -41,48 +41,41 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
 import java.util.HashMap;
-import java.util.Map;
 
 // typedef: cat.nodeattrs.Request
 
 /**
  * Returns information about custom node attributes.
- * 
  */
 
 public class NodeattrsRequest extends CatRequestBase {
-	public NodeattrsRequest() {
-	}
+    public NodeattrsRequest() {
+    }
 
-	/**
-	 * Singleton instance for {@link NodeattrsRequest}.
-	 */
-	public static final NodeattrsRequest _INSTANCE = new NodeattrsRequest();
+    /**
+     * Singleton instance for {@link NodeattrsRequest}.
+     */
+    public static final NodeattrsRequest _INSTANCE = new NodeattrsRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.nodeattrs}".
-	 */
-	public static final Endpoint<NodeattrsRequest, NodeattrsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.nodeattrs}".
+     */
+    public static final Endpoint<NodeattrsRequest, NodeattrsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+            // Request method
+            request -> {
+                return "GET";
 
-			},
+            },
 
-			// Request path
-			request -> {
-				return "/_cat/nodeattrs";
+            // Request path
+            request -> {
+                return "/_cat/nodeattrs";
 
-			},
+            },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
-				return params;
-
-			}, SimpleEndpoint.emptyMap(), false, NodeattrsResponse._DESERIALIZER);
+            // Request parameters
+            request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, NodeattrsResponse._DESERIALIZER);
 }

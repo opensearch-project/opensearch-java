@@ -34,6 +34,7 @@ package org.opensearch.client.json;
 
 import org.opensearch.client.util.ObjectBuilder;
 import jakarta.json.JsonObject;
+import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
@@ -223,12 +224,12 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
     private final BiFunction<Kind, Member, Union> buildFn;
     private final EnumSet<Event> nativeEvents;
     private final Map<String, EventHandler<Union, Kind, Member>> objectMembers;
-    private final Map<Event, EventHandler<Union, Kind, Member>> otherMembers;
+    private final Map<Event, EventHandler<Union, Kind, Member>> nonObjectMembers;
     private final EventHandler<Union, Kind, Member> fallbackObjectMember;
 
     public UnionDeserializer(
         List<SingleMemberHandler<Union, Kind, Member>> objectMembers,
-        Map<Event, EventHandler<Union, Kind, Member>> otherMembers,
+        Map<Event, EventHandler<Union, Kind, Member>> nonObjectMembers,
         BiFunction<Kind, Member, Union> buildFn
     ) {
         this.buildFn = buildFn;
@@ -245,17 +246,17 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
             }
         }
 
-        this.otherMembers = otherMembers;
+        this.nonObjectMembers = nonObjectMembers;
 
         this.nativeEvents = EnumSet.noneOf(Event.class);
-        for (EventHandler<Union, Kind, Member> member: otherMembers.values()) {
+        for (EventHandler<Union, Kind, Member> member: nonObjectMembers.values()) {
             this.nativeEvents.addAll(member.nativeEvents());
         }
 
         if (objectMembers.isEmpty()) {
             fallbackObjectMember = null;
         } else {
-            fallbackObjectMember = this.otherMembers.remove(Event.START_OBJECT);
+            fallbackObjectMember = this.nonObjectMembers.remove(Event.START_OBJECT);
             this.nativeEvents.add(Event.START_OBJECT);
         }
     }
@@ -280,17 +281,31 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
 
     @Override
     public Union deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-        EventHandler<Union, Kind, Member> member = otherMembers.get(event);
+        EventHandler<Union, Kind, Member> member = nonObjectMembers.get(event);
+        JsonLocation location = parser.getLocation();
 
         if (member == null && event == Event.START_OBJECT && !objectMembers.isEmpty()) {
-            // Parse as an object to find matching field names
-            JsonObject object = parser.getObject();
+            if (parser instanceof LookAheadJsonParser) {
+                Map.Entry<EventHandler<Union, Kind, Member>, JsonParser> memberAndParser =
+                        ((LookAheadJsonParser) parser).findVariant(objectMembers);
 
-            for (String field: object.keySet()) {
-                member = objectMembers.get(field);
-                if (member != null) {
-                    break;
+                member = memberAndParser.getKey();
+                // Parse the buffered parser
+                parser = memberAndParser.getValue();
+
+            } else {
+                // Parse as an object to find matching field names
+                JsonObject object = parser.getObject();
+
+                for (String field: object.keySet()) {
+                    member = objectMembers.get(field);
+                    if (member != null) {
+                        break;
+                    }
                 }
+
+                // Traverse the object we have inspected
+                parser = JsonpUtils.objectParser(object, mapper);
             }
 
             if (member == null) {
@@ -298,14 +313,12 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
             }
 
             if (member != null) {
-                // Traverse the object we have inspected
-                parser = JsonpUtils.objectParser(object, mapper);
                 event = parser.next();
             }
         }
 
         if (member == null) {
-            throw new JsonParsingException("Cannot determine what union member to deserialize", parser.getLocation());
+            throw new JsonParsingException("Cannot determine what union member to deserialize", location);
         }
 
         return member.deserialize(parser, mapper, event, buildFn);

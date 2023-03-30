@@ -15,6 +15,15 @@
   - [Aggregations](#aggregations)
   - [Delete the document](#delete-the-document)
   - [Delete the index](#delete-the-index)
+  - [Data Stream API](#data-stream-api)
+    - [Create a data stream](#create-a-data-stream)
+    - [Get data stream](#get-data-stream)
+    - [Data stream stats](#data-stream-stats)
+    - [Delete data stream](#delete-data-stream-and-backing-indices)
+  - [Cat API](#cat-api)
+    - [Cat Indices](#cat-indices)
+    - [Cat Aliases](#cat-aliases)
+    - [Cat Nodes](#cat-nodes)
 - [Using different transport options](#using-different-transport-options)
   - [Amazon OpenSearch Service](#amazon-opensearch-service)
 
@@ -208,6 +217,78 @@ client.delete(d -> d.index(index).id("1"));
 ```java
 DeleteIndexRequest deleteIndexRequest = new DeleteRequest.Builder().index(index).build();
 DeleteIndexResponse deleteIndexResponse = client.indices().delete(deleteIndexRequest);
+```
+
+## Data Stream API
+
+### Create a data stream 
+Before creating a data stream, you need to create an index template which configures a set of indices as a data stream.
+A data stream must have a timestamp field. If not specified, OpenSearch uses `@timestamp` as the default timestamp field name. 
+
+The following sample code creates an index template for data stream with a custom timestamp field, and creates a data stream 
+which matches the name pattern specified in the index template. 
+```java
+String dataStreamIndexTemplateName = "sample-data-stream-template";
+String timestampFieldName = "my_timestamp_field";
+String namePattern = "sample-data-stream-*";
+String dataStreamName = "sample-data-stream-1";
+
+// Create an index template which configures data stream
+PutIndexTemplateRequest putIndexTemplateRequest = new PutIndexTemplateRequest.Builder()
+        .name(dataStreamIndexTemplateName)
+        .indexPatterns(namePattern)
+        .dataStream(new DataStream.Builder()
+                .timestampField(t -> t.name(timestampFieldName))
+                .build())
+        .build();
+PutIndexTemplateResponse putIndexTemplateResponse = javaClient().indices().putIndexTemplate(putIndexTemplateRequest);
+
+// Create a data stream
+CreateDataStreamRequest createDataStreamRequest = new CreateDataStreamRequest.Builder().name(dataStreamName).build();
+CreateDataStreamResponse createDataStreamResponse = javaClient().indices().createDataStream(createDataStreamRequest);
+```
+
+### Get data stream
+```java
+GetDataStreamRequest getDataStreamRequest = new GetDataStreamRequest.Builder().name(dataStreamName).build();
+GetDataStreamResponse getDataStreamResponse = javaClient().indices().getDataStream(getDataStreamRequest);
+```
+
+### Data stream stats
+```java
+DataStreamsStatsRequest dataStreamsStatsRequest = new DataStreamsStatsRequest.Builder().name(dataStreamName).build();
+DataStreamsStatsResponse dataStreamsStatsResponse = javaClient().indices().dataStreamsStats(dataStreamsStatsRequest);
+```
+
+### Delete data stream and backing indices
+```java
+DeleteDataStreamRequest deleteDataStreamRequest = new DeleteDataStreamRequest.Builder().name(dataStreamName).build();
+DeleteDataStreamResponse deleteDataStreamResponse = javaClient().indices().deleteDataStream(deleteDataStreamRequest);
+```
+
+## Cat API
+
+### Cat Indices
+The following sample code cat indices with required headers and sorted by creation date
+
+```java
+IndicesRequest indicesRequest = new IndicesRequest.Builder()
+        .headers("index,health,status,pri,rep,doc.count,creation.date,creation.date.string").sort("creation.date").build();
+IndicesResponse indicesResponse = javaClient().cat().indices(indicesRequest);
+```
+
+
+### Cat aliases
+The following sample code cat aliases with name "test-alias" and sorted by index
+```java
+AliasesRequest aliasesRequest = new AliasesRequest.Builder().name("test-alias").sort("index").build();
+AliasesResponse aliasesResponse = javaClient().cat().aliases(aliasesRequest);
+```
+
+### Cat nodes
+The following sample code cat nodes sorted by cpu
+```java
+NodesResponse nodesResponse = javaClient().cat().nodes(r -> r.sort("cpu"));
 ```
 
 # Using different transport options

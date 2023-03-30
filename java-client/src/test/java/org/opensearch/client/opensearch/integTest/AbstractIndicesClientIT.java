@@ -10,13 +10,19 @@ package org.opensearch.client.opensearch.integTest;
 
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch.indices.CreateDataStreamResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
+import org.opensearch.client.opensearch.indices.DataStream;
+import org.opensearch.client.opensearch.indices.DataStreamsStatsResponse;
+import org.opensearch.client.opensearch.indices.DeleteDataStreamResponse;
 import org.opensearch.client.opensearch.indices.GetAliasRequest;
 import org.opensearch.client.opensearch.indices.GetAliasResponse;
+import org.opensearch.client.opensearch.indices.GetDataStreamResponse;
 import org.opensearch.client.opensearch.indices.GetIndexRequest;
 import org.opensearch.client.opensearch.indices.GetIndexResponse;
 import org.opensearch.client.opensearch.indices.GetIndicesSettingsRequest;
 import org.opensearch.client.opensearch.indices.IndexState;
+import org.opensearch.client.opensearch.indices.PutIndexTemplateResponse;
 import org.opensearch.common.settings.Settings;
 
 import java.io.IOException;
@@ -106,6 +112,82 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
             assertEquals(ex.getMessage(),
                     "Request failed: [index_not_found_exception] " +
                             "no such index [index_that_doesnt_exist]");
+        }
+    }
+
+    public void testDataStream() throws IOException {
+        String dataStreamIndexTemplateName = "test-data-stream-template";
+        String timestampFieldName = "my_timestamp_field";
+        String namePattern = "test_data_stream-*";
+        String dataStreamName = "test_data_stream-1";
+
+        // create an index template before creating data streams
+        PutIndexTemplateResponse putIndexTemplateResponse = javaClient().indices()
+                .putIndexTemplate(b -> b.name(dataStreamIndexTemplateName)
+                                        .dataStream(new DataStream.Builder()
+                                                .timestampField(bd -> bd.name(timestampFieldName))
+                                                .build())
+                                        .indexPatterns(namePattern));
+        assertTrue(putIndexTemplateResponse.acknowledged());
+
+        // create data streams follow the index pattern
+        CreateDataStreamResponse createDataStreamResponse1 = javaClient().indices()
+                .createDataStream(b -> b.name(dataStreamName));
+        assertTrue(createDataStreamResponse1.acknowledged());
+
+        // get data stream
+        GetDataStreamResponse getDataStreamResponse = javaClient().indices()
+                .getDataStream(b -> b.name(dataStreamName));
+        assertEquals(1, getDataStreamResponse.dataStreams().size());
+        assertEquals(dataStreamName, getDataStreamResponse.dataStreams().get(0).name());
+        assertEquals(timestampFieldName, getDataStreamResponse.dataStreams().get(0).timestampField().name());
+        assertEquals(dataStreamIndexTemplateName, getDataStreamResponse.dataStreams().get(0).template());
+        assertNotNull(getDataStreamResponse.dataStreams().get(0).status());
+
+        // get all data streams
+        GetDataStreamResponse getAllDataStreamsResponse = javaClient().indices().getDataStream();
+        assertEquals(1, getAllDataStreamsResponse.dataStreams().size());
+
+        // get one data stream stats
+        DataStreamsStatsResponse dataStreamStatsResponse = javaClient().indices()
+                .dataStreamsStats(b -> b.name(dataStreamName).human(true));
+        assertNotNull(dataStreamStatsResponse.shards());
+        assertEquals(1, dataStreamStatsResponse.dataStreamCount());
+        assertEquals(1, dataStreamStatsResponse.backingIndices());
+        assertTrue(dataStreamStatsResponse.totalStoreSizeBytes() > 0L);
+        assertNotNull(dataStreamStatsResponse.totalStoreSize());
+        assertEquals(1, dataStreamStatsResponse.dataStreams().size());
+        assertEquals(dataStreamName, dataStreamStatsResponse.dataStreams().get(0).dataStream());
+        assertEquals(1, dataStreamStatsResponse.dataStreams().get(0).backingIndices());
+        assertTrue(dataStreamStatsResponse.dataStreams().get(0).storeSizeBytes() > 0);
+        assertNotNull(dataStreamStatsResponse.dataStreams().get(0).storeSize());
+
+        // get all data streams stats
+        DataStreamsStatsResponse allDataStreamsStatsResponse = javaClient().indices()
+                .dataStreamsStats(b -> b.human(true));
+        assertNotNull(allDataStreamsStatsResponse.shards());
+        assertEquals(1, allDataStreamsStatsResponse.dataStreamCount());
+        assertEquals(1, allDataStreamsStatsResponse.backingIndices());
+        assertTrue(allDataStreamsStatsResponse.totalStoreSizeBytes() > 0L);
+        assertNotNull(allDataStreamsStatsResponse.totalStoreSize());
+        assertEquals(1, allDataStreamsStatsResponse.dataStreams().size());
+        assertEquals(dataStreamName, allDataStreamsStatsResponse.dataStreams().get(0).dataStream());
+        assertEquals(1, allDataStreamsStatsResponse.dataStreams().get(0).backingIndices());
+        assertTrue(allDataStreamsStatsResponse.dataStreams().get(0).storeSizeBytes() > 0);
+        assertNotNull(allDataStreamsStatsResponse.dataStreams().get(0).storeSize());
+
+        // delete data stream
+        DeleteDataStreamResponse deleteDataStreamResponse = javaClient().indices()
+                .deleteDataStream(b -> b.name(namePattern));
+        assertTrue(deleteDataStreamResponse.acknowledged());
+
+        // verify data stream is deleted
+        try {
+            javaClient().indices().getDataStream(b -> b.name(dataStreamName));
+            fail();
+        } catch (OpenSearchException ex) {
+            assertNotNull(ex);
+            assertEquals(ex.status(), 404);
         }
     }
 

@@ -42,14 +42,13 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import javax.annotation.Nullable;
 
 // typedef: cat.aliases.Request
 
@@ -67,7 +66,7 @@ public class AliasesRequest extends CatRequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private AliasesRequest(Builder builder) {
-
+		super(builder);
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
@@ -102,7 +101,7 @@ public class AliasesRequest extends CatRequestBase {
 	 * Builder for {@link AliasesRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AliasesRequest> {
+	public static class Builder extends CatRequestBaseBuilder<AliasesRequest.Builder> {
 		@Nullable
 		private List<ExpandWildcard> expandWildcards;
 
@@ -170,6 +169,11 @@ public class AliasesRequest extends CatRequestBase {
 
 			return new AliasesRequest(this);
 		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -214,8 +218,7 @@ public class AliasesRequest extends CatRequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
+				Map<String, String> params = new HashMap<>(request.queryParameters());
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream()
