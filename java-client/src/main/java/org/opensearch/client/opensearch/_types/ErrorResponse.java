@@ -163,10 +163,8 @@ public class ErrorResponse implements JsonpSerializable {
 			ErrorResponse::setupErrorResponseDeserializer);
 
 	protected static void setupErrorResponseDeserializer(ObjectDeserializer<ErrorResponse.Builder> op) {
-
 		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
-
 	}
 
 }

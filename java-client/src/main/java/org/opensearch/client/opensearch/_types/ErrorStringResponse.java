@@ -6,11 +6,6 @@
  * compatible open source license.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
@@ -26,123 +21,119 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 import java.util.function.Function;
 
-// typedef: _types.ErrorSimpleResponseBase
-
 /**
  * The response returned by OpenSearch when request execution did not
  * succeed.
  */
 @JsonpDeserializable
 public class ErrorStringResponse implements JsonpSerializable {
-    private final String error;
+	private final String error;
 
-    private final int status;
+	private final int status;
 
-    // ---------------------------------------------------------------------------------------------
+	// ---------------------------------------------------------------------------------------------
 
-    private ErrorStringResponse(Builder builder) {
+	private ErrorStringResponse(Builder builder) {
 
-        this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
-        this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
-    }
+	}
 
-    public static ErrorStringResponse of(Function<Builder, ObjectBuilder<ErrorStringResponse>> fn) {
-        return fn.apply(new Builder()).build();
-    }
+	public static ErrorStringResponse of(Function<Builder, ObjectBuilder<ErrorStringResponse>> fn) {
+		return fn.apply(new Builder()).build();
+	}
 
-    /**
-     * Required - API name: {@code error}
-     */
-    public final String error() {
-        return this.error;
-    }
+	/**
+	 * Required - API name: {@code error}
+	 */
+	public final String error() {
+		return this.error;
+	}
 
-    /**
-     * Required - API name: {@code status}
-     */
-    public final int status() {
-        return this.status;
-    }
+	/**
+	 * Required - API name: {@code status}
+	 */
+	public final int status() {
+		return this.status;
+	}
 
-    /**
-     * Serialize this object to JSON.
-     */
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
 
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-        generator.writeKey("error");
-        generator.write(this.error);
+		generator.writeKey("error");
+		generator.write(this.error);
 
-        generator.writeKey("status");
-        generator.write(this.status);
+		generator.writeKey("status");
+		generator.write(this.status);
 
-    }
+	}
 
-    // ---------------------------------------------------------------------------------------------
+	// ---------------------------------------------------------------------------------------------
 
-    /**
-     * Builder for {@link ErrorStringResponse}.
-     */
+	/**
+	 * Builder for {@link ErrorStringResponse}.
+	 */
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorStringResponse> {
-        private String error;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorStringResponse> {
+		private String error;
 
-        private Integer status;
+		private Integer status;
 
-        /**
-         * Required - API name: {@code error}
-         */
-        public final Builder error(String value) {
-            this.error = value;
-            return this;
-        }
+		/**
+		 * Required - API name: {@code error}
+		 */
+		public final Builder error(String value) {
+			this.error = value;
+			return this;
+		}
 
-        /**
-         * Required - API name: {@code error}
-         */
-        public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<String>> fn) {
-            return this.error(fn.apply(new ErrorCause.Builder()).build());
-        }
+		/**
+		 * Required - API name: {@code error}
+		 */
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<String>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
+		}
 
-        /**
-         * Required - API name: {@code status}
-         */
-        public final Builder status(int value) {
-            this.status = value;
-            return this;
-        }
+		/**
+		 * Required - API name: {@code status}
+		 */
+		public final Builder status(int value) {
+			this.status = value;
+			return this;
+		}
 
-        /**
-         * Builds a {@link ErrorStringResponse}.
-         *
-         * @throws NullPointerException if some of the required fields are null.
-         */
-        public ErrorStringResponse build() {
-            _checkSingleUse();
+		/**
+		 * Builds a {@link ErrorStringResponse}.
+		 *
+		 * @throws NullPointerException if some of the required fields are null.
+		 */
+		public ErrorStringResponse build() {
+			_checkSingleUse();
 
-            return new ErrorStringResponse(this);
-        }
-    }
+			return new ErrorStringResponse(this);
+		}
+	}
 
-    // ---------------------------------------------------------------------------------------------
+	// ---------------------------------------------------------------------------------------------
 
-    /**
-     * Json deserializer for {@link ErrorStringResponse}
-     */
-    public static final JsonpDeserializer<ErrorStringResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-            ErrorStringResponse::setupErrorResponseDeserializer);
+	/**
+	 * Json deserializer for {@link ErrorStringResponse}
+	 */
+	public static final JsonpDeserializer<ErrorStringResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ErrorStringResponse::setupErrorResponseDeserializer);
 
-    protected static void setupErrorResponseDeserializer(ObjectDeserializer<ErrorStringResponse.Builder> op) {
-
-        op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
-        op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
-
-    }
+	protected static void setupErrorResponseDeserializer(ObjectDeserializer<ErrorStringResponse.Builder> op) {
+		op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
+		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
+	}
 
 }
