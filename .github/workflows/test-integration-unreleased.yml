@@ -55,3 +55,7 @@ jobs:
         run: |
           cd opensearch-java
           ./gradlew clean integrationTest -Dhttps=false
+
+      - name: Upload Reports
+        uses: actions/upload-artifact@v3
+        path: opensearch-java/java-client/build/reports/

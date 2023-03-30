@@ -36,6 +36,10 @@ jobs:
       - name: Run Integration Test
         run: ./gradlew clean integrationTest
 
+      - name: Upload Reports
+        uses: actions/upload-artifact@v3
+        path: java-client/build/reports/
+
       - name: Stop Docker
         run: |
           docker-compose --project-directory .ci/opensearch down
