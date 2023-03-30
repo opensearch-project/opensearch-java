@@ -38,7 +38,8 @@ jobs:
 
       - name: Upload Reports
         uses: actions/upload-artifact@v3
-        path: java-client/build/reports/
+        with:
+          path: java-client/build/reports/
 
       - name: Stop Docker
         run: |

@@ -58,4 +58,5 @@ jobs:
 
       - name: Upload Reports
         uses: actions/upload-artifact@v3
-        path: opensearch-java/java-client/build/reports/
+        with:
+          path: opensearch-java/java-client/build/reports/
