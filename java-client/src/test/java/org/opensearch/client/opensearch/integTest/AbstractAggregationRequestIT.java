@@ -19,6 +19,7 @@ import org.opensearch.client.opensearch._types.aggregations.DateRangeAggregation
 import org.opensearch.client.opensearch._types.aggregations.DateRangeExpression;
 import org.opensearch.client.opensearch._types.aggregations.FieldDateMath;
 import org.opensearch.client.opensearch._types.aggregations.RangeAggregation;
+import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch.core.SearchResponse;
 
 import java.io.IOException;
@@ -129,12 +130,31 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 	}
 
 	private void createDateRangeDocuments(String index) throws IOException {
+		createIndex(index);
 		javaClient().create(_1 -> _1.index(index).id("1").document(createProduct("egg", 2, 1)).refresh(Refresh.True));
 		javaClient().create(_1 -> _1.index(index).id("2").document(createProduct("meat", 15, 2)).refresh(Refresh.True));
 		javaClient().create(_1 -> _1.index(index).id("3").document(createProduct("ham", 30, 3)).refresh(Refresh.True));
 		javaClient().create(_1 -> _1.index(index).id("4").document(createProduct("cheese", 25, 4)).refresh(Refresh.True));
 		javaClient().create(_1 -> _1.index(index).id("5").document(createProduct("pasta", 8, 5)).refresh(Refresh.True));
 		javaClient().create(_1 -> _1.index(index).id("6").document(createProduct("oil", 50, 6)).refresh(Refresh.True));
+	}
+
+	private void createIndex(String index) throws IOException {
+		Property nameValueProp = new Property.Builder()
+				.text(v -> v)
+				.build();
+		Property costValueProp = new Property.Builder()
+				.integer(v -> v)
+				.build();
+		Property expDateKeywordProp = new Property.Builder()
+				.date(v -> v)
+				.build();
+		javaClient().indices().create(c -> c.index(index)
+				.mappings(m -> m.properties("name", nameValueProp)
+						.properties("cost", costValueProp)
+						.properties("expDate", expDateKeywordProp)
+				)
+		);
 	}
 
 	private ProductDetails createProduct(String name, int cost, int plusDays) {
