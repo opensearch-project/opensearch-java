@@ -10,6 +10,7 @@ package org.opensearch.client.opensearch.integTest;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.junit.Test;
+import org.opensearch.client.opensearch._types.ErrorCause;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
@@ -145,14 +146,25 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 	}
 
 	private String getExceptionDetails(String index, OpenSearchException ex) {
-		StringBuilder errorBuilder = new StringBuilder();
-		errorBuilder.append(ex.getMessage());
-		errorBuilder.append(" status: ").append(ex.status());
-		if (ex.error() != null) {
-			errorBuilder.append(" reason: ").append(ex.error().reason());
-			errorBuilder.append(" type: ").append(ex.error().type());
+		return "index: " + index + "\n" +
+				" ErrorMsg: " + ex.getMessage() + "\n" +
+				" status: " + ex.status() + "\n" +
+				" error: " + getErrorCauseDetails(ex.error()) + "\n";
+	}
+
+	private String getErrorCauseDetails(ErrorCause errorCause) {
+		if (errorCause == null) {
+			return "";
 		}
-		return "index: " + index + " ErrorMsg: " + errorBuilder;
+		return "reason: " + errorCause.reason() + "\n" +
+				"type: " + errorCause.type() + "\n" +
+				"meta: " + getErrorMetadata(errorCause) + "\n" +
+				"=> " + "\n" +
+				getErrorCauseDetails(errorCause.causedBy());
+	}
+
+	private String getErrorMetadata(ErrorCause errorCause) {
+		return errorCause.metadata() != null ? errorCause.metadata().toString() : "";
 	}
 
 	public static class ProductDetails {
