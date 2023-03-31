@@ -150,7 +150,7 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 	}
 
 	private ProductDetails createProduct(String name, int cost, int plusDays) {
-		return new ProductDetails(name, cost, getDatePlusDays(plusDays).toString());
+		return new ProductDetails(name, cost, getDatePlusDays(plusDays).toEpochMilli());
 	}
 
 	private Instant getDatePlusDays(int plusDays) {
@@ -160,12 +160,12 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 	public static class ProductDetails {
 		private String name;
 		private int cost;
-		private String expDate;
+		private Long expDate;
 
 		public ProductDetails() {
 		}
 
-		public ProductDetails(String name, int cost, String expDate) {
+		public ProductDetails(String name, int cost, Long expDate) {
 			this.name = name;
 			this.cost = cost;
 			this.expDate = expDate;
@@ -179,7 +179,7 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 			return cost;
 		}
 
-		public String getExpDate() {
+		public Long getExpDate() {
 			return expDate;
 		}
 	}
