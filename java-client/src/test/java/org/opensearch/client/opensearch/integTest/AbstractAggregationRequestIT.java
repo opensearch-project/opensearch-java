@@ -175,9 +175,9 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 		if (errorCause == null) {
 			return "";
 		}
-		return "reason: " + errorCause.reason() + "\n" +
-				"type: " + errorCause.type() + "\n" +
-				"meta: " + getErrorMetadata(errorCause) + "\n" +
+		return "Reason: " + errorCause.reason() + "\n" +
+				"Type: " + errorCause.type() + "\n" +
+				"Meta: " + getErrorMetadata(errorCause) + "\n" +
 				"=> " + "\n" +
 				getErrorCauseDetails(errorCause.causedBy());
 	}
