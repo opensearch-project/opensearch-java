@@ -42,7 +42,7 @@ jobs:
         with:
           name: test-reports
           path: java-client/build/reports/
-          retention-days: 30
+          retention-days: 7
 
       - name: Stop Docker
         run: |
