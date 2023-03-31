@@ -9,8 +9,6 @@
 package org.opensearch.client.opensearch.integTest;
 
 import org.junit.Test;
-import org.opensearch.client.opensearch._types.ErrorCause;
-import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
 import org.opensearch.client.opensearch._types.aggregations.AggregationRange;
@@ -82,16 +80,11 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 	}
 
 	private SearchResponse<Void> sendAggregateRequest(String index, String key, Aggregation value) throws IOException {
-		try {
-			return javaClient().search(
-					request -> request.index(index)
-							.size(0)
-							.aggregations(key, value),
-					Void.class);
-		} catch (OpenSearchException ex) {
-			fail("Exception while searching: " + getExceptionDetails(index, ex));
-			throw ex;
-		}
+		return javaClient().search(
+				request -> request.index(index)
+						.size(0)
+						.aggregations(key, value),
+				Void.class);
 	}
 
 	private List<DateRangeExpression> getDateAggregationRanges() {
@@ -162,28 +155,6 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 
 	private Instant getDatePlusDays(int plusDays) {
 		return LocalDateTime.of(2023, 2, 20, 0, 0, 0, 0).plusDays(plusDays).toInstant(ZoneOffset.UTC);
-	}
-
-	private String getExceptionDetails(String index, OpenSearchException ex) {
-		return "index: " + index + "\n" +
-				" ErrorMsg: " + ex.getMessage() + "\n" +
-				" status: " + ex.status() + "\n" +
-				" error: " + getErrorCauseDetails(ex.error()) + "\n";
-	}
-
-	private String getErrorCauseDetails(ErrorCause errorCause) {
-		if (errorCause == null) {
-			return "";
-		}
-		return "Reason: " + errorCause.reason() + "\n" +
-				"Type: " + errorCause.type() + "\n" +
-				"Meta: " + getErrorMetadata(errorCause) + "\n" +
-				"=> " + "\n" +
-				getErrorCauseDetails(errorCause.causedBy());
-	}
-
-	private String getErrorMetadata(ErrorCause errorCause) {
-		return errorCause.metadata() != null ? errorCause.metadata().toString() : "";
 	}
 
 	public static class ProductDetails {
