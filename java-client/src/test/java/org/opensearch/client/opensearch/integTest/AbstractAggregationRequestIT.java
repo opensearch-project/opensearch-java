@@ -8,7 +8,6 @@
 
 package org.opensearch.client.opensearch.integTest;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.junit.Test;
 import org.opensearch.client.opensearch._types.ErrorCause;
 import org.opensearch.client.opensearch._types.OpenSearchException;
@@ -23,9 +22,9 @@ import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch.core.SearchResponse;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.Date;
 import java.util.List;
 
 public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientTestCase {
@@ -98,23 +97,23 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 	private List<DateRangeExpression> getDateAggregationRanges() {
 		return List.of(
 				new DateRangeExpression.Builder()
-						.from(builder -> builder.value((double) getDatePlusDays(1).getTime()))
+						.from(builder -> builder.value((double) getDatePlusDays(1).toEpochMilli()))
 						.to(FieldDateMath.of(
-								builder -> builder.value((double) getDatePlusDays(3).getTime() - 1000))
+								builder -> builder.value((double) getDatePlusDays(3).toEpochMilli() - 1000))
 						)
 						.key("from-1-to-2-days")
 						.build(),
 				new DateRangeExpression.Builder()
-						.from(builder -> builder.value((double) getDatePlusDays(3).getTime()))
+						.from(builder -> builder.value((double) getDatePlusDays(3).toEpochMilli()))
 						.to(FieldDateMath.of(
-								builder -> builder.value((double) getDatePlusDays(5).getTime() - 1000))
+								builder -> builder.value((double) getDatePlusDays(5).toEpochMilli() - 1000))
 						)
 						.key("from-3-to-4-days")
 						.build(),
 				new DateRangeExpression.Builder()
-						.from(builder -> builder.value((double) getDatePlusDays(5).getTime()))
+						.from(builder -> builder.value((double) getDatePlusDays(5).toEpochMilli()))
 						.to(FieldDateMath.of(
-								builder -> builder.value((double) getDatePlusDays(7).getTime() - 1000))
+								builder -> builder.value((double) getDatePlusDays(7).toEpochMilli() - 1000))
 						)
 						.key("from-5-to-6-days")
 						.build()
@@ -158,11 +157,11 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 	}
 
 	private ProductDetails createProduct(String name, int cost, int plusDays) {
-		return new ProductDetails(name, cost, getDatePlusDays(plusDays));
+		return new ProductDetails(name, cost, getDatePlusDays(plusDays).toString());
 	}
 
-	private Date getDatePlusDays(int plusDays) {
-		return java.sql.Date.from(LocalDateTime.of(2023, 2, 20, 0, 0, 0).plusDays(plusDays).toInstant(ZoneOffset.UTC));
+	private Instant getDatePlusDays(int plusDays) {
+		return LocalDateTime.of(2023, 2, 20, 0, 0, 0, 0).plusDays(plusDays).toInstant(ZoneOffset.UTC);
 	}
 
 	private String getExceptionDetails(String index, OpenSearchException ex) {
@@ -190,13 +189,12 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 	public static class ProductDetails {
 		private String name;
 		private int cost;
-		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
-		private Date expDate;
+		private String expDate;
 
 		public ProductDetails() {
 		}
 
-		public ProductDetails(String name, int cost, Date expDate) {
+		public ProductDetails(String name, int cost, String expDate) {
 			this.name = name;
 			this.cost = cost;
 			this.expDate = expDate;
@@ -210,7 +208,7 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 			return cost;
 		}
 
-		public Date getExpDate() {
+		public String getExpDate() {
 			return expDate;
 		}
 	}
