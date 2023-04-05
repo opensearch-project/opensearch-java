@@ -40,12 +40,11 @@ import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: cat.health.Request
 
@@ -61,7 +60,7 @@ public class HealthRequest extends CatRequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private HealthRequest(Builder builder) {
-
+		super(builder);
 		this.ts = builder.ts;
 
 	}
@@ -86,7 +85,7 @@ public class HealthRequest extends CatRequestBase {
 	 * Builder for {@link HealthRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HealthRequest> {
+	public static class Builder extends CatRequestBaseBuilder<HealthRequest.Builder> {
 		@Nullable
 		private Boolean ts;
 
@@ -111,6 +110,11 @@ public class HealthRequest extends CatRequestBase {
 
 			return new HealthRequest(this);
 		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -134,8 +138,7 @@ public class HealthRequest extends CatRequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("format", "json");
+				Map<String, String> params = new HashMap<>(request.queryParameters());
 				if (request.ts != null) {
 					params.put("ts", String.valueOf(request.ts));
 				}

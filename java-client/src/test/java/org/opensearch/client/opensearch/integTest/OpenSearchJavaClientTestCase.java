@@ -11,6 +11,7 @@ package org.opensearch.client.opensearch.integTest;
 import org.opensearch.Version;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestClientBuilder;
+import org.opensearch.client.opensearch.IOUtils;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch.cat.IndicesResponse;
@@ -28,7 +29,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.opensearch.common.settings.Settings;
-import org.opensearch.core.internal.io.IOUtils;
 import org.opensearch.test.rest.OpenSearchRestTestCase;
 
 import java.io.IOException;
@@ -128,9 +128,13 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
 
     @After
     protected void wipeAllOSIndices() throws IOException {
+        // wipe all data streams first, otherwise deleting backing indices will encounter exception
+        adminJavaClient().indices().deleteDataStream(b -> b.name("*"));
+
+        // wipe all indices
         final IndicesResponse response = adminJavaClient()
             .cat()
-            .indices(r -> r.expandWildcards(ExpandWildcard.All));
+            .indices(r -> r.headers("index,creation.date").expandWildcards(ExpandWildcard.All));
 
         for (IndicesRecord index : response.valueBody()) {
             if (index.index() != null && !".opendistro_security".equals(index.index())) {
@@ -143,11 +147,11 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
     public static void cleanupJavaClient() throws IOException {
         try {
             if (javaClient != null) {
-                IOUtils.close(javaClient._transport());
+                IOUtils.closeQueitly(javaClient._transport());
             }
             
             if (adminJavaClient != null) {
-                IOUtils.close(adminJavaClient._transport());
+                IOUtils.closeQueitly(adminJavaClient._transport());
             }
         } finally {
             clusterHosts = null;

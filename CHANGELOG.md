@@ -9,11 +9,18 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add support for signing service name in AwsSdk2Transport ([#324](https://github.com/opensearch-project/opensearch-java/pull/324))
 - Add new OpenSearchTransport based on Apache HttpClient 5 ([#328](https://github.com/opensearch-project/opensearch-java/pull/328))
 - Add 1-click release workflows ([#321](https://github.com/opensearch-project/opensearch-java/pull/321))
+- Require two maintainers to approve release ([#383](https://github.com/opensearch-project/opensearch-java/pull/383))
+- Add support for mapping limit settings ([#382](https://github.com/opensearch-project/opensearch-java/pull/382))
+- Add buffered lookahead for Jackson ([#338](https://github.com/opensearch-project/opensearch-java/pull/338))
+- Add support for headers and sort parameters in cat requests ([#388](https://github.com/opensearch-project/opensearch-java/issues/388))
+- Add support for data stream operations ([#416](https://github.com/opensearch-project/opensearch-java/pull/416))
 
 ### Dependencies
 - Bumps `grgit-gradle` from 4.0.1 to 5.0.0
 - Update Jackson to 2.14.0 ([#259](https://github.com/opensearch-project/opensearch-java/pull/259))
 - Bumps `Jackson` from 2.14.1 to 2.14.2 ([#357](https://github.com/opensearch-project/opensearch-java/pull/357))
+- Bumps `classgraph` from 4.8.149 to 4.8.156 ([#395](https://github.com/opensearch-project/opensearch-java/pull/395))
+- Bumps `io.github.classgraph:classgraph` from 4.8.156 to 4.8.157 ([#408](https://github.com/opensearch-project/opensearch-java/pull/408))
 
 ### Changed
 - Update literature around changelog contributions in CONTRIBUTING.md ([#242](https://github.com/opensearch-project/opensearch-java/pull/242))
@@ -37,6 +44,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Do not double-wrap OpenSearchException on error ([#323](https://github.com/opensearch-project/opensearch-java/pull/323))
 - Fix AwsSdk2TransportOptions.responseCompression ([#322](https://github.com/opensearch-project/opensearch-java/pull/322))
 - Bulk UpdateOperation misses upsert options ([#353](https://github.com/opensearch-project/opensearch-java/pull/353))
+- Fix missing key property in the RangeBucket ([#370](https://github.com/opensearch-project/opensearch-java/pull/370))
 
 ### Security
 

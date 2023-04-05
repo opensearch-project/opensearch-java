@@ -9,10 +9,21 @@
   - [Create an index](#create-an-index)
   - [Index data](#index-data)
   - [Search for the documents](#search-for-the-documents)
+    - [Get raw JSON results](#get-raw-json-results)
   - [Search documents using a match query](#search-documents-using-a-match-query)
+  - [Bulk requests](#bulk-requests)
   - [Aggregations](#aggregations)
   - [Delete the document](#delete-the-document)
   - [Delete the index](#delete-the-index)
+  - [Data Stream API](#data-stream-api)
+    - [Create a data stream](#create-a-data-stream)
+    - [Get data stream](#get-data-stream)
+    - [Data stream stats](#data-stream-stats)
+    - [Delete data stream](#delete-data-stream-and-backing-indices)
+  - [Cat API](#cat-api)
+    - [Cat Indices](#cat-indices)
+    - [Cat Aliases](#cat-aliases)
+    - [Cat Nodes](#cat-nodes)
 - [Using different transport options](#using-different-transport-options)
   - [Amazon Managed OpenSearch](#amazon-managed-opensearch)
 
@@ -118,6 +129,17 @@ for (int i = 0; i < searchResponse.hits().hits().size(); i++) {
 }
 ```
 
+### Get raw JSON results
+
+When the target class is not defined or if the response result is a semi-structured data not tied to an object definition, use a raw JSON data representation as the target class. For example, the below snippet uses `ObjectNode` from jackson.
+
+```java
+SearchResponse<ObjectNode> searchResponse = client.search(b -> b.index(index), ObjectNode.class);
+for (int i = 0; i < searchResponse.hits().hits().size(); i++) {
+  System.out.println(searchResponse.hits().hits().get(i).source());
+}
+```
+
 ## Search documents using a match query
 
 ```java
@@ -129,6 +151,30 @@ SearchResponse<IndexData> searchResponse = client.search(searchRequest, IndexDat
 for (int i = 0; i < searchResponse.hits().hits().size(); i++) {
   System.out.println(searchResponse.hits().hits().get(i).source());
 }
+```
+
+## Bulk requests
+
+```java
+ArrayList<BulkOperation> ops = new ArrayList<>();
+SimplePojo doc1 = new SimplePojo("Document 1", "The text of document 1");
+ops.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(TEST_INDEX).id("id1").document(doc1))
+).build());
+SimplePojo doc2 = new SimplePojo("Document 2", "The text of document 2");
+ops.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(TEST_INDEX).id("id2").document(doc2))
+).build());
+SimplePojo doc3 = getLongDoc("Long Document 3", 100000);
+ops.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(TEST_INDEX).id("id3").document(doc3))
+).build());
+
+BulkRequest.Builder bulkReq = new BulkRequest.Builder()
+        .index(index)
+        .operations(ops)
+        .refresh(Refresh.WaitFor);
+BulkResponse bulkResponse = client.bulk(bulkReq.build());
 ```
 
 ## Aggregations
@@ -160,6 +206,78 @@ client.delete(d -> d.index(index).id("1"));
 ```java
 DeleteIndexRequest deleteIndexRequest = new DeleteRequest.Builder().index(index).build();
 DeleteIndexResponse deleteIndexResponse = client.indices().delete(deleteIndexRequest);
+```
+
+## Data Stream API
+
+### Create a data stream 
+Before creating a data stream, you need to create an index template which configures a set of indices as a data stream.
+A data stream must have a timestamp field. If not specified, OpenSearch uses `@timestamp` as the default timestamp field name. 
+
+The following sample code creates an index template for data stream with a custom timestamp field, and creates a data stream 
+which matches the name pattern specified in the index template. 
+```java
+String dataStreamIndexTemplateName = "sample-data-stream-template";
+String timestampFieldName = "my_timestamp_field";
+String namePattern = "sample-data-stream-*";
+String dataStreamName = "sample-data-stream-1";
+
+// Create an index template which configures data stream
+PutIndexTemplateRequest putIndexTemplateRequest = new PutIndexTemplateRequest.Builder()
+        .name(dataStreamIndexTemplateName)
+        .indexPatterns(namePattern)
+        .dataStream(new DataStream.Builder()
+                .timestampField(t -> t.name(timestampFieldName))
+                .build())
+        .build();
+PutIndexTemplateResponse putIndexTemplateResponse = javaClient().indices().putIndexTemplate(putIndexTemplateRequest);
+
+// Create a data stream
+CreateDataStreamRequest createDataStreamRequest = new CreateDataStreamRequest.Builder().name(dataStreamName).build();
+CreateDataStreamResponse createDataStreamResponse = javaClient().indices().createDataStream(createDataStreamRequest);
+```
+
+### Get data stream
+```java
+GetDataStreamRequest getDataStreamRequest = new GetDataStreamRequest.Builder().name(dataStreamName).build();
+GetDataStreamResponse getDataStreamResponse = javaClient().indices().getDataStream(getDataStreamRequest);
+```
+
+### Data stream stats
+```java
+DataStreamsStatsRequest dataStreamsStatsRequest = new DataStreamsStatsRequest.Builder().name(dataStreamName).build();
+DataStreamsStatsResponse dataStreamsStatsResponse = javaClient().indices().dataStreamsStats(dataStreamsStatsRequest);
+```
+
+### Delete data stream and backing indices
+```java
+DeleteDataStreamRequest deleteDataStreamRequest = new DeleteDataStreamRequest.Builder().name(dataStreamName).build();
+DeleteDataStreamResponse deleteDataStreamResponse = javaClient().indices().deleteDataStream(deleteDataStreamRequest);
+```
+
+## Cat API
+
+### Cat Indices
+The following sample code cat indices with required headers and sorted by creation date
+
+```java
+IndicesRequest indicesRequest = new IndicesRequest.Builder()
+        .headers("index,health,status,pri,rep,doc.count,creation.date,creation.date.string").sort("creation.date").build();
+IndicesResponse indicesResponse = javaClient().cat().indices(indicesRequest);
+```
+
+
+### Cat aliases
+The following sample code cat aliases with name "test-alias" and sorted by index
+```java
+AliasesRequest aliasesRequest = new AliasesRequest.Builder().name("test-alias").sort("index").build();
+AliasesResponse aliasesResponse = javaClient().cat().aliases(aliasesRequest);
+```
+
+### Cat nodes
+The following sample code cat nodes sorted by cpu
+```java
+NodesResponse nodesResponse = javaClient().cat().nodes(r -> r.sort("cpu"));
 ```
 
 # Using different transport options

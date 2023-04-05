@@ -54,18 +54,20 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
     private final ObjectMapper objectMapper;
 
     public JacksonJsonpMapper(ObjectMapper objectMapper) {
-        this(objectMapper, new JsonFactory());
+        // Creating the json factory from the mapper ensures it will be returned by JsonParser.getCodec()
+        this(objectMapper, objectMapper.getFactory());
     }
 
     public JacksonJsonpMapper(ObjectMapper objectMapper, JsonFactory jsonFactory) {
         this.provider = new JacksonJsonProvider(jsonFactory);
-        this.objectMapper = objectMapper
-            .configure(SerializationFeature.INDENT_OUTPUT, false)
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        this.objectMapper = objectMapper;
     }
 
     public JacksonJsonpMapper() {
-        this(new ObjectMapper());
+        this(new ObjectMapper()
+            .configure(SerializationFeature.INDENT_OUTPUT, false)
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+        );
     }
 
     /**
