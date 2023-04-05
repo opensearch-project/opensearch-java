@@ -8,7 +8,7 @@
 
 package org.opensearch.client.opensearch.integTest.restclient;
 
-import org.apache.hc.core5.http.HttpHost;
+import org.apache.http.HttpHost;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.integTest.AbstractAggregationRequestIT;
 import org.opensearch.client.transport.OpenSearchTransport;
