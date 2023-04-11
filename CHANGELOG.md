@@ -43,6 +43,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add support for OpenSearch Serverless ([#339](https://github.com/opensearch-project/opensearch-java/pull/339))
 - Fix completion suggestions failure with missing required property TermSuggestOption.score ([#347](https://github.com/opensearch-project/opensearch-java/pull/347))
 - Fix search failure with missing required property HitsMetadata.total when trackTotalHits is disabled ([#372](https://github.com/opensearch-project/opensearch-java/pull/372))
+- Improve time taken by Github actions by using cache ([#439](https://github.com/opensearch-project/opensearch-java/pull/439))
 
 ### Deprecated
 

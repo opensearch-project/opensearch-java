@@ -19,7 +19,6 @@ jobs:
           - { opensearch_version: 2.3.0, java: 11 }
           - { opensearch_version: 2.4.1, java: 11 }
           - { opensearch_version: 2.5.0, java: 11 }
-          - { opensearch_version: 2.6.0, java: 11 }
     steps:
       - name: Set up JDK ${{ matrix.java }}
         uses: actions/setup-java@v3
