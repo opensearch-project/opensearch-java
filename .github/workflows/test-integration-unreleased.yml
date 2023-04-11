@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.entry.java }}
-          distribution: adopt
+          distribution: 'temurin'
 
       - name: Checkout OpenSearch
         uses: actions/checkout@v3

@@ -10,14 +10,15 @@ jobs:
         java: [ 11 ]
         os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
+      - name: Checkout Java Client
+        uses: actions/checkout@v3
+
       - name: Set up JDK ${{ matrix.java }}
         uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java }}
-          distribution: adopt
-
-      - name: Checkout Branch
-        uses: actions/checkout@v3
+          distribution: 'temurin'
+          cache: 'gradle'
 
       - name: Build with Gradle
         run: ./gradlew clean build -x test
