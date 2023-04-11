@@ -312,16 +312,15 @@ public class RestClientTransport implements OpenSearchTransport {
                 // Expecting a body
                 if (entity == null) {
                     throw new TransportException(
-                        "Expecting a response body, but none was sent",
+                            "Expecting a response body, but none was sent",
                         new ResponseException(clientResp)
                     );
                 }
                 InputStream content = entity.getContent();
                 try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                     response = responseParser.deserialize(parser, mapper);
-                };
-            }
-            return response;
+                }
+            return (ResponseT) clientResp;
         } else {
             throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'");
         }
