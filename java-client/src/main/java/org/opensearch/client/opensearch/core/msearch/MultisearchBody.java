@@ -38,6 +38,8 @@ package org.opensearch.client.opensearch.core.msearch;
 
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
+import org.opensearch.client.opensearch.core.search.Highlight;
+import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.opensearch.core.search.Suggester;
 import org.opensearch.client.opensearch.core.search.TrackHits;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -77,6 +79,12 @@ public class MultisearchBody implements JsonpSerializable {
 	@Nullable
 	private final Suggester suggest;
 
+	@Nullable
+	private Highlight highlight;
+
+	@Nullable
+	private SourceConfig source;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private MultisearchBody(Builder builder) {
@@ -87,6 +95,8 @@ public class MultisearchBody implements JsonpSerializable {
 		this.size = builder.size;
 		this.trackTotalHits = builder.trackTotalHits;
 		this.suggest = builder.suggest;
+		this.highlight = builder.highlight;
+		this.source = builder.source;
 
 	}
 
@@ -142,6 +152,22 @@ public class MultisearchBody implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code highlight}
+	 */
+	@Nullable
+	public final Highlight highlight() {
+		return this.highlight;
+	}
+
+	/**
+	 * API name: {@code _source}
+	 */
+	@Nullable
+	public final SourceConfig source() {
+		return this.source;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -189,6 +215,18 @@ public class MultisearchBody implements JsonpSerializable {
 
 		}
 
+		if (this.highlight != null) {
+			generator.writeKey("highlight");
+			this.highlight.serialize(generator, mapper);
+
+		}
+
+		if (this.source != null) {
+			generator.writeKey("_source");
+			this.source.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -215,6 +253,13 @@ public class MultisearchBody implements JsonpSerializable {
 
 		@Nullable
 		private Suggester suggest;
+
+		@Nullable
+		private Highlight highlight;
+
+		@Nullable
+		private SourceConfig source;
+
 
 		/**
 		 * API name: {@code aggregations}
@@ -307,6 +352,36 @@ public class MultisearchBody implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code highlight}
+		 */
+		public final Builder highlight(@Nullable Highlight value) {
+			this.highlight = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code highlight}
+		 */
+		public final Builder highlight(Function<Highlight.Builder, ObjectBuilder<Highlight>> fn) {
+			return this.highlight(fn.apply(new Highlight.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code _source}
+		 */
+		public final Builder source(@Nullable SourceConfig value) {
+			this.source = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link MultisearchBody}.
 		 *
 		 * @throws NullPointerException
@@ -336,6 +411,8 @@ public class MultisearchBody implements JsonpSerializable {
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::trackTotalHits, TrackHits._DESERIALIZER, "track_total_hits");
 		op.add(Builder::suggest, Suggester._DESERIALIZER, "suggest");
+		op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
+		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 
 	}
 
