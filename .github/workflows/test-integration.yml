@@ -20,13 +20,15 @@ jobs:
           - { opensearch_version: 2.4.1, java: 11 }
           - { opensearch_version: 2.5.0, java: 11 }
     steps:
+      - name: Checkout Java Client
+        uses: actions/checkout@v3
+      
       - name: Set up JDK ${{ matrix.java }}
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.entry.java }}
-
-      - name: Checkout Branch
-        uses: actions/checkout@v2
+          distribution: 'temurin'
+          cache: 'gradle'
 
       - name: Run Docker
         run: |

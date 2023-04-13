@@ -18,36 +18,55 @@ jobs:
           - { opensearch_ref: '1.x', java: 11 }
           - { opensearch_ref: '2.x', java: 11 }
           - { opensearch_ref: '2.x', java: 17 }
-          - { opensearch_ref: '2.0', java: 11 }
           - { opensearch_ref: 'main', java: 11 }
           - { opensearch_ref: 'main', java: 17 }
     steps:
       - name: Set up JDK ${{ matrix.entry.java }}
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.entry.java }}
+          distribution: 'temurin'
 
       - name: Checkout OpenSearch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: opensearch-project/OpenSearch
           ref: ${{ matrix.entry.opensearch_ref }}
           path: opensearch
 
-      - name: Assemble OpenSearch
-        run: |
-          cd opensearch
-          ./gradlew assemble
+      - name: Get OpenSearch branch top
+        id: get-key
+        working-directory: opensearch
+        run: echo key=`git log -1 --format='%H'` >> $GITHUB_OUTPUT
 
-        # This step runs the docker image generated during gradle assemble in OpenSearch. It is tagged as opensearch:test.
-        # Reference: https://github.com/opensearch-project/OpenSearch/blob/2.0/distribution/docker/build.gradle#L190
-      - name: Run Docker Image
+      - name: Restore cached build
+        id: cache-restore
+        uses: actions/cache/restore@v3
+        with:
+          path: opensearch/distribution/archives/linux-tar/build/distributions
+          key: ${{ steps.get-key.outputs.key }}
+
+      - name: Assemble OpenSearch
+        if: steps.cache-restore.outputs.cache-hit != 'true'
+        working-directory: opensearch
+        run: ./gradlew :distribution:archives:linux-tar:assemble
+
+      - name: Save cached build
+        if: steps.cache-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v3
+        with:
+          path: opensearch/distribution/archives/linux-tar/build/distributions
+          key: ${{ steps.get-key.outputs.key }}
+
+      - name: Run OpenSearch
+        working-directory: opensearch/distribution/archives/linux-tar/build/distributions
         run: |
-          docker run -p 9200:9200 -p 9600:9600 -d -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" opensearch:test
-          sleep 90
+          tar xf opensearch-min-*
+          ./opensearch-*/bin/opensearch &
+          for attempt in {1..20}; do sleep 5; if curl -s localhost:9200; then echo '=====> ready'; break; fi; echo '=====> waiting...'; done
 
       - name: Checkout Java Client
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: opensearch-java
 
