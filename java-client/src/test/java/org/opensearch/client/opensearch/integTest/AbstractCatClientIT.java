@@ -8,9 +8,16 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.junit.Test;
 import org.opensearch.client.opensearch._types.Bytes;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.Result;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch.cat.AliasesResponse;
 import org.opensearch.client.opensearch.cat.AllocationResponse;
 import org.opensearch.client.opensearch.cat.IndicesResponse;
@@ -27,11 +34,8 @@ import org.opensearch.client.opensearch.cat.recovery.RecoveryRecord;
 import org.opensearch.client.opensearch.cat.segments.SegmentsRecord;
 import org.opensearch.client.opensearch.cat.shards.ShardsRecord;
 import org.opensearch.client.opensearch.core.IndexResponse;
+import org.opensearch.client.opensearch.core.point_in_time.CreatePointInTimeResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
-
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
 
@@ -188,10 +192,10 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
         createIndex("cat-segments-test-index");
 
         final IndexResponse index = javaClient().index(b -> b
-            .index("test-cat-segments-index")
-            .id("id")
-            .refresh(Refresh.True)
-            .document(Map.of("test-cat-segments-key", "test-cat-segments-value")));
+                .index("test-cat-segments-index")
+                .id("id")
+                .refresh(Refresh.True)
+                .document(Map.of("test-cat-segments-key", "test-cat-segments-value")));
 
         assertTrue(index.result() == Result.Created);
 
@@ -209,11 +213,40 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
         assertNull(segmentsRecord.ip());
         assertNull(segmentsRecord.prirep());
     }
+    
+    @Test
+    public void testCatPointInTimeSegments() throws Exception {
+        createIndex("cat-pit-segments-test-index");
+
+        final IndexResponse index = javaClient().index(b -> b
+                .index("test-cat-pit-segments-index")
+                .id("id")
+                .refresh(Refresh.True)
+                .document(Map.of("test-cat-pit-segments-key", "test-cat-pit-segments-value")));
+
+        assertTrue(index.result() == Result.Created);
+        
+        createPIT("cat-pit-segments-test-index");
+
+        SegmentsResponse pointInTimeSegmentsResponse = javaClient().cat()
+                .pointInTimeSegments(r -> r.headers("index,shard,id,segment,size"));
+        
+        assertNotNull("pointInTimeSegmentsResponse.segments() is null", pointInTimeSegmentsResponse.valueBody());
+        assertTrue("pointInTimeSegmentsResponse.segments().size() == 0", pointInTimeSegmentsResponse.valueBody().size() > 0);
+    }
 
     private void createIndex(String indexName) throws Exception {
         CreateIndexResponse createResponse = javaClient().indices().create(b -> b.index(indexName));
         assertTrue(createResponse.acknowledged());
         assertTrue(createResponse.shardsAcknowledged());
+    }
+
+    private void createPIT(String indexName) throws Exception {
+        CreatePointInTimeResponse createPointInTimeResponse = javaClient()
+                .createPointInTime(r -> r.targetIndexes(Collections.singletonList(indexName))
+                        .keepAlive(new Time.Builder().time("100m").build()));
+        assertNotNull(createPointInTimeResponse);
+        assertNotNull(createPointInTimeResponse.pitId());
     }
 
 }

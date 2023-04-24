@@ -38,6 +38,7 @@ import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.HistogramAggregate;
 import org.opensearch.client.opensearch._types.aggregations.TermsAggregation;
@@ -55,6 +56,11 @@ import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
 import org.opensearch.client.opensearch.core.msearch.RequestItem;
+import org.opensearch.client.opensearch.core.point_in_time.CreatePointInTimeRequest;
+import org.opensearch.client.opensearch.core.point_in_time.CreatePointInTimeResponse;
+import org.opensearch.client.opensearch.core.point_in_time.DeletePointInTimeRequest;
+import org.opensearch.client.opensearch.core.point_in_time.DeletePointInTimeResponse;
+import org.opensearch.client.opensearch.core.point_in_time.ListAllPointInTimeResponse;
 import org.opensearch.client.opensearch.core.search.CompletionSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggesterBuilders;
@@ -589,6 +595,54 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
         SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
         assertTrue(response.suggest().size() > 0);
+    }
+
+    @Test
+    public void testPointInTime() throws IOException {
+
+            String index = "test-point-in-time";
+
+            javaClient().indices().create(c -> c
+                            .index(index));
+
+            AppData appData = new AppData();
+            appData.setIntValue(1337);
+            appData.setMsg("foo");
+
+            javaClient().index(b -> b
+                            .index(index)
+                            .id("1")
+                            .document(appData)
+                            .refresh(Refresh.True));
+
+            CreatePointInTimeRequest createPointInTimeRequest = new CreatePointInTimeRequest.Builder()
+                            .targetIndexes(Collections.singletonList(index))
+                            .keepAlive(new Time.Builder().time("100m").build()).build();
+
+            CreatePointInTimeResponse createPointInTimeResponse = javaClient()
+                            .createPointInTime(createPointInTimeRequest);
+
+            assertNotNull(createPointInTimeResponse);
+            assertNotNull(createPointInTimeResponse.pitId());
+            assertEquals(createPointInTimeResponse.shards().total(), createPointInTimeResponse.shards().successful());
+
+            ListAllPointInTimeResponse listAllPointInTimeResponse = javaClient().listAllPointInTime();
+
+            assertNotNull(listAllPointInTimeResponse);
+            assertNotNull(listAllPointInTimeResponse.pits());
+            assertEquals(listAllPointInTimeResponse.pits().get(0).pitId(), createPointInTimeResponse.pitId());
+            assertEquals(listAllPointInTimeResponse.pits().get(0).keepAlive(), Long.valueOf(6000000L));
+
+            DeletePointInTimeRequest deletePointInTimeRequest = new DeletePointInTimeRequest.Builder()
+                            .pitId(Collections.singletonList(createPointInTimeResponse.pitId())).build();
+
+            DeletePointInTimeResponse deletePointInTimeResponse = javaClient()
+                            .deletePointInTime(deletePointInTimeRequest);
+
+            assertNotNull(deletePointInTimeResponse);
+            assertNotNull(deletePointInTimeResponse.pits());
+            assertEquals(deletePointInTimeResponse.pits().get(0).pitId(), createPointInTimeResponse.pitId());
+            assertTrue(deletePointInTimeResponse.pits().get(0).successful());
     }
 
 //    @Test

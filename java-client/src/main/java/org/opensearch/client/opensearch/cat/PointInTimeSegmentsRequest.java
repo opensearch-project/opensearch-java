@@ -1,0 +1,109 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
+package org.opensearch.client.opensearch.cat;
+
+import java.util.List;
+import java.util.function.Function;
+
+import javax.annotation.Nullable;
+
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import org.opensearch.client.util.ObjectBuilder;
+
+// typedef: cat.point_in_time_segments.Request
+
+/**
+ * Provides low-level information about the disk utilization of a PIT by
+ * describing its Lucene segments
+ * 
+ */
+public class PointInTimeSegmentsRequest extends CatRequestBase {
+    
+    @Nullable
+    private List<String> pitId;
+
+    public PointInTimeSegmentsRequest(Builder builder) {
+        this.pitId = builder.pitId;
+    }
+
+    public static PointInTimeSegmentsRequest of(Function<Builder, ObjectBuilder<PointInTimeSegmentsRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * A list of Pit IDs to get segments
+     * <p>
+     * API name - {@code pit_id}
+     */
+    @Nullable
+    public final List<String> pitId() {
+        return this.pitId;
+    }
+
+    /**
+     * Builder for {@link PointInTimeSegmentsRequest}
+     */
+    public static class Builder extends CatRequestBaseBuilder<PointInTimeSegmentsRequest.Builder> {
+        private List<String> pitId;
+
+        /**
+         * A list of Pit IDs to get segments
+         * <p>
+         * API name - {@code pit_id}
+         */
+        public final Builder pitId(@Nullable List<String> pitId) {
+            this.pitId = pitId;
+            return this;
+        }
+
+        /**
+         * Builds a {@link PointInTimeSegmentsRequest}.
+         * 
+         * @throws NullPointerException if some of the required fields are null.
+         */
+        public PointInTimeSegmentsRequest build() {
+            _checkSingleUse();
+            return new PointInTimeSegmentsRequest(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
+
+    /**
+     * Endpoint "{@code point_in_time_segments}"
+     */
+    public static final Endpoint<PointInTimeSegmentsRequest, SegmentsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+            // Request Method
+            request -> {
+                return "GET";
+            },
+
+            // Request Path
+            request -> {
+                final int _all = 1 << 0;
+
+                int propsSet = 0;
+
+                if (request.pitId() == null) {
+                    propsSet |= _all;
+                }
+                if (propsSet == 0) {
+                    return "/_cat/pit_segments";
+                } else {
+                    return "/_cat/pit_segments/_all";
+                }
+            },
+            SimpleEndpoint.emptyMap(), SimpleEndpoint.emptyMap(), false, SegmentsResponse._DESERIALIZER);
+
+}

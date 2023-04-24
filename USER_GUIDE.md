@@ -266,6 +266,42 @@ DeleteDataStreamRequest deleteDataStreamRequest = new DeleteDataStreamRequest.Bu
 DeleteDataStreamResponse deleteDataStreamResponse = javaClient().indices().deleteDataStream(deleteDataStreamRequest);
 ```
 
+## Point-In-Time API
+
+### Creating a point in time
+
+Creates a PIT. The keep_alive query parameter is required; it specifies how long to keep a PIT.
+
+```java
+CreatePointInTimeRequest createPointInTimeRequest = new CreatePointInTimeRequest.Builder()
+                .targetIndexes(Collections.singletonList(index))
+                .keepAlive(new Time.Builder().time("100m").build()).build();
+
+CreatePointInTimeResponse createPointInTimeResponse = javaClient()
+                .createPointInTime(createPointInTimeRequest);                
+```
+
+### List all point in time
+
+Returns all PITs in the OpenSearch cluster.
+
+```java
+ListAllPointInTimeResponse listAllPointInTimeResponse = javaClient().listAllPointInTime();
+```
+
+### Delete point in time
+
+Deletes one, several, or all PITs. PITs are automatically deleted when the keep_alive time period elapses. However, to deallocate resources, you can delete a PIT using the Delete PIT API. The Delete PIT API supports deleting a list of PITs by ID or deleting all PITs at once.
+
+```java
+DeletePointInTimeRequest deletePointInTimeRequest = new DeletePointInTimeRequest.Builder()
+                .pitId(Collections.singletonList("pit_id")).build();
+
+DeletePointInTimeResponse deletePointInTimeResponse = javaClient()
+                .deletePointInTime(deletePointInTimeRequest);
+```
+
+
 ## Cat API
 
 ### Cat Indices
@@ -289,6 +325,13 @@ AliasesResponse aliasesResponse = javaClient().cat().aliases(aliasesRequest);
 The following sample code cat nodes sorted by cpu
 ```java
 NodesResponse nodesResponse = javaClient().cat().nodes(r -> r.sort("cpu"));
+```
+
+### Cat point in time segments
+Similarly to the CAT Segments API, the PIT Segments API provides low-level information about the disk utilization of a PIT by describing its Lucene segments. 
+```java
+SegmentsResponse pointInTimeSegmentsResponse = javaClient().cat()
+                .pointInTimeSegments(r -> r.headers("index,shard,id,segment,size"));
 ```
 
 # Using different transport options

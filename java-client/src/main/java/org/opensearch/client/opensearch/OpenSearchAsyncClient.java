@@ -116,6 +116,12 @@ import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.core.UpdateRequest;
 import org.opensearch.client.opensearch.core.UpdateResponse;
+import org.opensearch.client.opensearch.core.point_in_time.CreatePointInTimeRequest;
+import org.opensearch.client.opensearch.core.point_in_time.CreatePointInTimeResponse;
+import org.opensearch.client.opensearch.core.point_in_time.DeletePointInTimeRequest;
+import org.opensearch.client.opensearch.core.point_in_time.DeletePointInTimeResponse;
+import org.opensearch.client.opensearch.core.point_in_time.ListAllPointInTimeRequest;
+import org.opensearch.client.opensearch.core.point_in_time.ListAllPointInTimeResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesAsyncClient;
 import org.opensearch.client.opensearch.features.OpenSearchFeaturesAsyncClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesAsyncClient;
@@ -362,6 +368,39 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchTransport, OpenSe
 		return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
 	}
 
+	// ----- Endpoint: create_point_in_time
+
+	/**
+	 * Provides low-level information about the disk utilization of a PIT by
+	 * describing its Lucene segments.
+	 * 
+	 *
+	 */
+
+	public CompletableFuture<CreatePointInTimeResponse> createPointInTime(CreatePointInTimeRequest request)
+			throws IOException, OpenSearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreatePointInTimeRequest, CreatePointInTimeResponse, ErrorResponse> endpoint = (JsonEndpoint<CreatePointInTimeRequest, CreatePointInTimeResponse, ErrorResponse>) CreatePointInTimeRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Provides low-level information about the disk utilization of a PIT by
+	 * describing its Lucene segments.
+	 * 
+	 * @param fn
+	 *           a function that initializes a builder to create the
+	 *           {@link CreatePointInTimeRequest}
+	 *
+	 */
+
+	public final CompletableFuture<CreatePointInTimeResponse> createPointInTime(
+			Function<CreatePointInTimeRequest.Builder, ObjectBuilder<CreatePointInTimeRequest>> fn)
+			throws IOException, OpenSearchException {
+		return createPointInTime(fn.apply(new CreatePointInTimeRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: delete
 
 	/**
@@ -391,6 +430,37 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchTransport, OpenSe
 			Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
 			throws IOException, OpenSearchException {
 		return delete(fn.apply(new DeleteRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: delete_point_in_time
+
+	/**
+	 * Delete Point In Time
+	 * 
+	 *
+	 */
+
+	public CompletableFuture<DeletePointInTimeResponse> DeletePointInTime(DeletePointInTimeRequest request)
+			throws IOException, OpenSearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeletePointInTimeRequest, DeletePointInTimeResponse, ErrorResponse> endpoint = (JsonEndpoint<DeletePointInTimeRequest, DeletePointInTimeResponse, ErrorResponse>) DeletePointInTimeRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delete Point In Time
+	 * 
+	 * @param fn
+	 *           a function that initializes a builder to create the
+	 *           {@link DeletePointInTimeRequest}
+	 *
+	 */
+
+	public final CompletableFuture<DeletePointInTimeResponse> DeletePointInTime(
+			Function<DeletePointInTimeRequest.Builder, ObjectBuilder<DeletePointInTimeRequest>> fn)
+			throws IOException, OpenSearchException {
+		return DeletePointInTime(fn.apply(new DeletePointInTimeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: delete_by_query
@@ -799,6 +869,20 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchTransport, OpenSe
 	 */
 	public CompletableFuture<InfoResponse> info() throws IOException, OpenSearchException {
 		return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: list_point_in_time
+
+	/**
+	 * List all Point In Time
+	 * 
+	 *
+	 */
+
+	public CompletableFuture<ListAllPointInTimeResponse> listAllPointInTime()
+			throws IOException, OpenSearchException {
+		return this.transport.performRequestAsync(ListAllPointInTimeRequest._INSTANCE, ListAllPointInTimeRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: mget

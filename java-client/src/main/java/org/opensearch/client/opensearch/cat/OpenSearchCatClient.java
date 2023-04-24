@@ -414,6 +414,47 @@ public class OpenSearchCatClient extends ApiClient<OpenSearchTransport, OpenSear
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: cat.point_in_time_segments
+
+	/**
+	 * Provides low-level information about the disk utilization of a PIT by
+	 * describing its Lucene segments.
+	 * 
+	 *
+	 */
+	public SegmentsResponse pointInTimeSegments(PointInTimeSegmentsRequest request)
+			throws IOException, OpenSearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PointInTimeSegmentsRequest, SegmentsResponse, ErrorResponse> endpoint = (JsonEndpoint<PointInTimeSegmentsRequest, SegmentsResponse, ErrorResponse>) PointInTimeSegmentsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+	
+	/**
+	 * Provides low-level information about the disk utilization of a PIT by
+	 * describing its Lucene segments.
+	 * 
+	 * * @param fn
+	 * a function that initializes a builder to create the
+	 * {@link PointInTimeSegmentsRequest}
+	 */
+
+	public final SegmentsResponse pointInTimeSegments(Function<PointInTimeSegmentsRequest.Builder, ObjectBuilder<PointInTimeSegmentsRequest>> fn)
+			throws IOException, OpenSearchException {
+		return pointInTimeSegments(fn.apply(new PointInTimeSegmentsRequest.Builder()).build());
+	}
+
+	/**
+	 * Provides low-level information about the disk utilization of a PIT by
+	 * describing its Lucene segments.
+	 * 
+	 */
+	public SegmentsResponse pointInTimeSegments() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new PointInTimeSegmentsRequest.Builder().build(), 
+				PointInTimeSegmentsRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: cat.pending_tasks
 
 	/**
