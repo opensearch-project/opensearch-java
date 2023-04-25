@@ -37,7 +37,11 @@
 package org.opensearch.client.opensearch.core;
 
 import org.opensearch.client.opensearch._types.ShardStatistics;
+import org.opensearch.client.opensearch._types.aggregations.Aggregate;
+import org.opensearch.client.opensearch.core.SearchResponse.AbstractBuilder;
 import org.opensearch.client.opensearch.core.search.HitsMetadata;
+import org.opensearch.client.opensearch.core.search.Suggestion;
+import org.opensearch.client.json.ExternallyTaggedUnion;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -51,6 +55,8 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
@@ -66,6 +72,10 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	private final int took;
 
 	private final HitsMetadata<TDocument> hits;
+	
+	private final Map<String, Aggregate> aggregations;
+
+	private final Map<String, List<Suggestion<TDocument>>> suggest;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -78,6 +88,8 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
 		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
 		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
+		this.suggest = ApiTypeHelper.unmodifiable(builder.suggest);
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -114,6 +126,20 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	public final HitsMetadata<TDocument> hits() {
 		return this.hits;
 	}
+	
+	/**
+	 * API name: {@code aggregations}
+	 */
+	public final Map<String, Aggregate> aggregations() {
+		return this.aggregations;
+	}
+	
+	/**
+	 * API name: {@code suggest}
+	 */
+	public final Map<String, List<Suggestion<TDocument>>> suggest() {
+		return this.suggest;
+	}
 
 	/**
 	 * Serialize this object to JSON.
@@ -138,6 +164,28 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 		generator.writeKey("hits");
 		this.hits.serialize(generator, mapper);
 
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
+			generator.writeKey("aggregations");
+			ExternallyTaggedUnion.serializeTypedKeys(this.aggregations, generator, mapper);
+		}
+		
+		if (ApiTypeHelper.isDefined(this.suggest)) {
+			generator.writeKey("suggest");
+			generator.writeStartObject();
+			for (Map.Entry<String, List<Suggestion<TDocument>>> item0 : this.suggest.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (Suggestion<TDocument> item1 : item0.getValue()) {
+						item1.serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -156,6 +204,12 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 		private Integer took;
 
 		private HitsMetadata<TDocument> hits;
+		
+		@Nullable
+		private Map<String, Aggregate> aggregations;
+		
+		@Nullable
+		private Map<String, List<Suggestion<TDocument>>> suggest;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -206,6 +260,55 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 				Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {
 			return this.hits(fn.apply(new HitsMetadata.Builder<TDocument>()).build());
 		}
+		
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
+		 */
+		public final Builder<TDocument> aggregations(Map<String, Aggregate> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder<TDocument> aggregations(String key, Aggregate value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final Builder<TDocument> aggregations(String key, Function<Aggregate.Builder, ObjectBuilder<Aggregate>> fn) {
+			return aggregations(key, fn.apply(new Aggregate.Builder()).build());
+		}
+		
+		/**
+		 * API name: {@code suggest}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>suggest</code>.
+		 */
+		public final Builder<TDocument> suggest(Map<String, List<Suggestion<TDocument>>> map) {
+			this.suggest = _mapPutAll(this.suggest, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code suggest}
+		 * <p>
+		 * Adds an entry to <code>suggest</code>.
+		 */
+		public final Builder<TDocument> suggest(String key, List<Suggestion<TDocument>> value) {
+			this.suggest = _mapPut(this.suggest, key, value);
+			return this;
+		}
 
 		/**
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
@@ -255,6 +358,10 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
 		op.add(Builder::took, JsonpDeserializer.integerDeserializer(), "took");
 		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
+		op.add(Builder::aggregations, Aggregate._TYPED_KEYS_DESERIALIZER, "aggregations");
+		op.add(Builder::suggest, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(Suggestion.createSuggestionDeserializer(tDocumentDeserializer))),
+				"suggest");
 
 	}
 
