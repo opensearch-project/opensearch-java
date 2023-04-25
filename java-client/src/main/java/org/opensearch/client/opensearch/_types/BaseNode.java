@@ -67,38 +67,38 @@ public abstract class BaseNode implements JsonpSerializable {
 
 	protected BaseNode(AbstractBuilder<?> builder) {
 
-		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
-		this.ip = ApiTypeHelper.requireNonNull(builder.ip, this, "ip");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.attributes = ApiTypeHelper.unmodifiable(builder.attributes);
+		this.host = builder.host;
+		this.ip = builder.ip;
+		this.name = builder.name;
 		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
-		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.transportAddress = builder.transportAddress;
 
 	}
 
 	/**
-	 * Required - API name: {@code attributes}
+	 * API name: {@code attributes}
 	 */
 	public final Map<String, String> attributes() {
 		return this.attributes;
 	}
 
 	/**
-	 * Required - API name: {@code host}
+	 * API name: {@code host}
 	 */
 	public final String host() {
 		return this.host;
 	}
 
 	/**
-	 * Required - API name: {@code ip}
+	 * API name: {@code ip}
 	 */
 	public final String ip() {
 		return this.ip;
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * API name: {@code name}
 	 */
 	public final String name() {
 		return this.name;
@@ -112,7 +112,7 @@ public abstract class BaseNode implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code transport_address}
+	 * API name: {@code transport_address}
 	 */
 	public final String transportAddress() {
 		return this.transportAddress;
@@ -180,7 +180,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		private String transportAddress;
 
 		/**
-		 * Required - API name: {@code attributes}
+		 * API name: {@code attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
@@ -190,7 +190,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code attributes}
+		 * API name: {@code attributes}
 		 * <p>
 		 * Adds an entry to <code>attributes</code>.
 		 */
@@ -200,7 +200,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code host}
+		 * API name: {@code host}
 		 */
 		public final BuilderT host(String value) {
 			this.host = value;
@@ -208,7 +208,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code ip}
+		 * API name: {@code ip}
 		 */
 		public final BuilderT ip(String value) {
 			this.ip = value;
@@ -216,7 +216,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code name}
+		 * API name: {@code name}
 		 */
 		public final BuilderT name(String value) {
 			this.name = value;
@@ -244,7 +244,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code transport_address}
+		 * API name: {@code transport_address}
 		 */
 		public final BuilderT transportAddress(String value) {
 			this.transportAddress = value;
