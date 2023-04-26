@@ -23,12 +23,12 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 2.x]
 
 ### Added
-- Add aggregations and suggest in SearchTemplateResponse ([#456](https://github.com/opensearch-project/opensearch-java/issues/456))
 
 ### Dependencies
 
 ### Changed
 - Improve time taken by Github actions by using cache ([#439](https://github.com/opensearch-project/opensearch-java/pull/439))
+- SearchTemplateResponse now extends SearchResponse, making all expected response fields accessible ([#462](https://github.com/opensearch-project/opensearch-java/pull/462))
 
 ### Deprecated
 
