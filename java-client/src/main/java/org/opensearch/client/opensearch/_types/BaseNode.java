@@ -166,17 +166,22 @@ public abstract class BaseNode implements JsonpSerializable {
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				ObjectBuilderBase {
+		@Nullable			
 		private Map<String, String> attributes;
 
+		@Nullable
 		private String host;
 
+		@Nullable
 		private String ip;
 
+		@Nullable
 		private String name;
 
 		@Nullable
 		private List<NodeRole> roles;
 
+		@Nullable
 		private String transportAddress;
 
 		/**
