@@ -1,5 +1,12 @@
 name: Dependabot PR actions
-on: pull_request
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - labeled
+      - unlabeled
 
 jobs:
   dependabot:
@@ -22,10 +29,14 @@ jobs:
         with:
           token: ${{ steps.github_app_token.outputs.token }}
 
+      - id: version
+        run: |
+          echo "::set-output name=version::$(cat gradle.properties | grep systemProp.version | cut -d' ' -f3 | cut -d\. -f1,2)"
+
       - name: Update the changelog
-        uses: dangoslen/dependabot-changelog-helper@v1
+        uses: dangoslen/dependabot-changelog-helper@v2
         with:
-          version: 'Unreleased'
+          version: "Unreleased ${{ steps.version.outputs.version }}"
 
       - name: Commit the changes
         uses: stefanzweifel/git-auto-commit-action@v4
