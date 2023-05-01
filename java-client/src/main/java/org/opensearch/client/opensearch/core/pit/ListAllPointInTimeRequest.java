@@ -6,13 +6,12 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.opensearch.core.point_in_time;
+package org.opensearch.client.opensearch.core.pit;
 
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
-// typedef: _global.list_all_point_in_time.Request
 
 /**
  * Lists all PITs on the OpenSearch cluster

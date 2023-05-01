@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.opensearch.core.point_in_time;
+package org.opensearch.client.opensearch.core.pit;
 
 import java.util.function.Function;
 
@@ -23,7 +23,6 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 import jakarta.json.stream.JsonGenerator;
 
-// typedef: _global.create_point_in_time.Response
 
 @JsonpDeserializable
 public class CreatePointInTimeResponse implements JsonpSerializable {

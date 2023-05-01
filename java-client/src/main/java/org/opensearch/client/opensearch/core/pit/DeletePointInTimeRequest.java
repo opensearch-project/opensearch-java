@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.opensearch.core.point_in_time;
+package org.opensearch.client.opensearch.core.pit;
 
 import java.util.List;
 import java.util.function.Function;
@@ -25,7 +25,6 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 import jakarta.json.stream.JsonGenerator;
 
-// typedef: _global.delete_point_in_time.Request
 
 /**
  * Deletes PITs on the OpenSearch cluster

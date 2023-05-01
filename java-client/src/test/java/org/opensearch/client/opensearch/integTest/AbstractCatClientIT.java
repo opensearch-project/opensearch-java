@@ -36,7 +36,7 @@ import org.opensearch.client.opensearch.cat.segments.SegmentsRecord;
 import org.opensearch.client.opensearch.cat.shards.ShardsRecord;
 import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.InfoResponse;
-import org.opensearch.client.opensearch.core.point_in_time.CreatePointInTimeResponse;
+import org.opensearch.client.opensearch.core.pit.CreatePointInTimeResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 
 public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
