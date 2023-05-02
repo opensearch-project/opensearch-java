@@ -604,52 +604,52 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
             if (version.contains("SNAPSHOT")) {
                     version = version.split("-")[0];
             }
-            if (Version.fromString(version).onOrAfter(Version.fromString("2.4.0"))) {
-                    String index = "test-point-in-time";
+            assumeTrue("The PIT is supported in OpenSearch 2.4.0 and later",
+                    Version.fromString(version).onOrAfter(Version.fromString("2.4.0")));
+            String index = "test-point-in-time";
 
-                    javaClient().indices().create(c -> c
-                                    .index(index));
+            javaClient().indices().create(c -> c
+                            .index(index));
 
-                    AppData appData = new AppData();
-                    appData.setIntValue(1337);
-                    appData.setMsg("foo");
+            AppData appData = new AppData();
+            appData.setIntValue(1337);
+            appData.setMsg("foo");
 
-                    javaClient().index(b -> b
-                                    .index(index)
-                                    .id("1")
-                                    .document(appData)
-                                    .refresh(Refresh.True));
+            javaClient().index(b -> b
+                            .index(index)
+                            .id("1")
+                            .document(appData)
+                            .refresh(Refresh.True));
 
-                    CreatePitRequest createPitRequest = new CreatePitRequest.Builder()
-                                    .targetIndexes(Collections.singletonList(index))
-                                    .keepAlive(new Time.Builder().time("100m").build()).build();
+            CreatePitRequest createPitRequest = new CreatePitRequest.Builder()
+                            .targetIndexes(Collections.singletonList(index))
+                            .keepAlive(new Time.Builder().time("100m").build()).build();
 
-                    CreatePitResponse createPitResponse = javaClient()
-                                    .createPit(createPitRequest);
+            CreatePitResponse createPitResponse = javaClient()
+                            .createPit(createPitRequest);
 
-                    assertNotNull(createPitResponse);
-                    assertNotNull(createPitResponse.pitId());
-                    assertEquals(createPitResponse.shards().total(),
-                                    createPitResponse.shards().successful());
+            assertNotNull(createPitResponse);
+            assertNotNull(createPitResponse.pitId());
+            assertEquals(createPitResponse.shards().total(),
+                            createPitResponse.shards().successful());
 
-                    ListAllPitResponse listAllPitResponse = javaClient().listAllPit();
+            ListAllPitResponse listAllPitResponse = javaClient().listAllPit();
 
-                    assertNotNull(listAllPitResponse);
-                    assertNotNull(listAllPitResponse.pits());
-                    assertEquals(listAllPitResponse.pits().get(0).pitId(), createPitResponse.pitId());
-                    assertEquals(listAllPitResponse.pits().get(0).keepAlive(), Long.valueOf(6000000L));
+            assertNotNull(listAllPitResponse);
+            assertNotNull(listAllPitResponse.pits());
+            assertEquals(listAllPitResponse.pits().get(0).pitId(), createPitResponse.pitId());
+            assertEquals(listAllPitResponse.pits().get(0).keepAlive(), Long.valueOf(6000000L));
 
-                    DeletePitRequest deletePitRequest = new DeletePitRequest.Builder()
-                                    .pitId(Collections.singletonList(createPitResponse.pitId())).build();
+            DeletePitRequest deletePitRequest = new DeletePitRequest.Builder()
+                            .pitId(Collections.singletonList(createPitResponse.pitId())).build();
 
-                    DeletePitResponse deletePitResponse = javaClient()
-                                    .deletePit(deletePitRequest);
+            DeletePitResponse deletePitResponse = javaClient()
+                            .deletePit(deletePitRequest);
 
-                    assertNotNull(deletePitResponse);
-                    assertNotNull(deletePitResponse.pits());
-                    assertEquals(deletePitResponse.pits().get(0).pitId(), createPitResponse.pitId());
-                    assertTrue(deletePitResponse.pits().get(0).successful());
-            }
+            assertNotNull(deletePitResponse);
+            assertNotNull(deletePitResponse.pits());
+            assertEquals(deletePitResponse.pits().get(0).pitId(), createPitResponse.pitId());
+            assertTrue(deletePitResponse.pits().get(0).successful());
     }
 
 //    @Test

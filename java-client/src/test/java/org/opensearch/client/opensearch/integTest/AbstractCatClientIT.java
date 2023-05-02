@@ -223,27 +223,27 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
         if (version.contains("SNAPSHOT")) {
                 version = version.split("-")[0];
         }
-        if (Version.fromString(version).onOrAfter(Version.fromString("2.4.0"))) {
-            createIndex("cat-pit-segments-test-index");
+        assumeTrue("The PIT is supported in OpenSearch 2.4.0 and later",
+                Version.fromString(version).onOrAfter(Version.fromString("2.4.0")));
+        createIndex("cat-pit-segments-test-index");
 
-            final IndexResponse index = javaClient().index(b -> b
-                    .index("test-cat-pit-segments-index")
-                    .id("id")
-                    .refresh(Refresh.True)
-                    .document(Map.of("test-cat-pit-segments-key", "test-cat-pit-segments-value")));
+        final IndexResponse index = javaClient().index(b -> b
+                .index("test-cat-pit-segments-index")
+                .id("id")
+                .refresh(Refresh.True)
+                .document(Map.of("test-cat-pit-segments-key", "test-cat-pit-segments-value")));
 
-            assertTrue(index.result() == Result.Created);
+        assertTrue(index.result() == Result.Created);
 
-            createPit("cat-pit-segments-test-index");
+        createPit("cat-pit-segments-test-index");
 
-            SegmentsResponse PitSegmentsResponse = javaClient().cat()
-                    .pitSegments(r -> r.headers("index,shard,id,segment,size"));
+        SegmentsResponse PitSegmentsResponse = javaClient().cat()
+                .pitSegments(r -> r.headers("index,shard,id,segment,size"));
 
-            assertNotNull("PitSegmentsResponse.segments() is null", PitSegmentsResponse.valueBody());
-            assertTrue("PitSegmentsResponse.segments().size() == 0",
-                    PitSegmentsResponse.valueBody().size() > 0);
+        assertNotNull("PitSegmentsResponse.segments() is null", PitSegmentsResponse.valueBody());
+        assertTrue("PitSegmentsResponse.segments().size() == 0",
+                PitSegmentsResponse.valueBody().size() > 0);
         }
-    }
 
     private void createIndex(String indexName) throws Exception {
         CreateIndexResponse createResponse = javaClient().indices().create(b -> b.index(indexName));
