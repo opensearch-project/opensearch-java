@@ -278,12 +278,12 @@ DeleteDataStreamResponse deleteDataStreamResponse = javaClient().indices().delet
 Creates a PIT. The keep_alive query parameter is required; it specifies how long to keep a PIT.
 
 ```java
-CreatePointInTimeRequest createPointInTimeRequest = new CreatePointInTimeRequest.Builder()
+CreatePitRequest createPitRequest = new CreatePitRequest.Builder()
                 .targetIndexes(Collections.singletonList(index))
                 .keepAlive(new Time.Builder().time("100m").build()).build();
 
-CreatePointInTimeResponse createPointInTimeResponse = javaClient()
-                .createPointInTime(createPointInTimeRequest);                
+CreatePitResponse createPitResponse = javaClient()
+                .createPit(createPitRequest);                
 ```
 
 ### List all point in time
@@ -291,7 +291,7 @@ CreatePointInTimeResponse createPointInTimeResponse = javaClient()
 Returns all PITs in the OpenSearch cluster.
 
 ```java
-ListAllPointInTimeResponse listAllPointInTimeResponse = javaClient().listAllPointInTime();
+ListAllPitResponse listAllPitResponse = javaClient().listAllPit();
 ```
 
 ### Delete point in time
@@ -299,11 +299,11 @@ ListAllPointInTimeResponse listAllPointInTimeResponse = javaClient().listAllPoin
 Deletes one, several, or all PITs. PITs are automatically deleted when the keep_alive time period elapses. However, to deallocate resources, you can delete a PIT using the Delete PIT API. The Delete PIT API supports deleting a list of PITs by ID or deleting all PITs at once.
 
 ```java
-DeletePointInTimeRequest deletePointInTimeRequest = new DeletePointInTimeRequest.Builder()
+DeletePitRequest deletePitRequest = new DeletePitRequest.Builder()
                 .pitId(Collections.singletonList("pit_id")).build();
 
-DeletePointInTimeResponse deletePointInTimeResponse = javaClient()
-                .deletePointInTime(deletePointInTimeRequest);
+DeletePitResponse deletePitResponse = javaClient()
+                .deletePit(deletePitRequest);
 ```
 
 
@@ -335,8 +335,8 @@ NodesResponse nodesResponse = javaClient().cat().nodes(r -> r.sort("cpu"));
 ### Cat point in time segments
 Similarly to the CAT Segments API, the PIT Segments API provides low-level information about the disk utilization of a PIT by describing its Lucene segments. 
 ```java
-SegmentsResponse pointInTimeSegmentsResponse = javaClient().cat()
-                .pointInTimeSegments(r -> r.headers("index,shard,id,segment,size"));
+SegmentsResponse PitSegmentsResponse = javaClient().cat()
+                .PitSegments(r -> r.headers("index,shard,id,segment,size"));
 ```
 
 # Using different transport options

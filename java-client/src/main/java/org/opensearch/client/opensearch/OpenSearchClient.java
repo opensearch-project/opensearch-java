@@ -116,12 +116,12 @@ import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.core.UpdateRequest;
 import org.opensearch.client.opensearch.core.UpdateResponse;
-import org.opensearch.client.opensearch.core.pit.CreatePointInTimeRequest;
-import org.opensearch.client.opensearch.core.pit.CreatePointInTimeResponse;
-import org.opensearch.client.opensearch.core.pit.DeletePointInTimeRequest;
-import org.opensearch.client.opensearch.core.pit.DeletePointInTimeResponse;
-import org.opensearch.client.opensearch.core.pit.ListAllPointInTimeRequest;
-import org.opensearch.client.opensearch.core.pit.ListAllPointInTimeResponse;
+import org.opensearch.client.opensearch.core.pit.CreatePitRequest;
+import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
+import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
+import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
+import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
+import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesClient;
 import org.opensearch.client.opensearch.features.OpenSearchFeaturesClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
@@ -374,10 +374,10 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
 	 *
 	 */
 
-	public CreatePointInTimeResponse createPointInTime(CreatePointInTimeRequest request)
+	public CreatePitResponse createPit(CreatePitRequest request)
 			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<CreatePointInTimeRequest, CreatePointInTimeResponse, ErrorResponse> endpoint = (JsonEndpoint<CreatePointInTimeRequest, CreatePointInTimeResponse, ErrorResponse>) CreatePointInTimeRequest._ENDPOINT;
+		JsonEndpoint<CreatePitRequest, CreatePitResponse, ErrorResponse> endpoint = (JsonEndpoint<CreatePitRequest, CreatePitResponse, ErrorResponse>) CreatePitRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -388,14 +388,14 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
 	 * 
 	 * @param fn
 	 *           a function that initializes a builder to create the
-	 *           {@link CreatePointInTimeRequest}
+	 *           {@link CreatePitRequest}
 	 *
 	 */
 
-	public final CreatePointInTimeResponse createPointInTime(
-			Function<CreatePointInTimeRequest.Builder, ObjectBuilder<CreatePointInTimeRequest>> fn)
+	public final CreatePitResponse createPit(
+			Function<CreatePitRequest.Builder, ObjectBuilder<CreatePitRequest>> fn)
 			throws IOException, OpenSearchException {
-		return createPointInTime(fn.apply(new CreatePointInTimeRequest.Builder()).build());
+		return createPit(fn.apply(new CreatePitRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: delete
@@ -436,10 +436,10 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
 	 *
 	 */
 
-	public DeletePointInTimeResponse deletePointInTime(DeletePointInTimeRequest request)
+	public DeletePitResponse deletePit(DeletePitRequest request)
 			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeletePointInTimeRequest, DeletePointInTimeResponse, ErrorResponse> endpoint = (JsonEndpoint<DeletePointInTimeRequest, DeletePointInTimeResponse, ErrorResponse>) DeletePointInTimeRequest._ENDPOINT;
+		JsonEndpoint<DeletePitRequest, DeletePitResponse, ErrorResponse> endpoint = (JsonEndpoint<DeletePitRequest, DeletePitResponse, ErrorResponse>) DeletePitRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -449,14 +449,14 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
 	 * 
 	 * @param fn
 	 *           a function that initializes a builder to create the
-	 *           {@link DeletePointInTimeRequest}
+	 *           {@link DeletePitRequest}
 	 *
 	 */
 
-	public final DeletePointInTimeResponse deletePointInTime(
-			Function<DeletePointInTimeRequest.Builder, ObjectBuilder<DeletePointInTimeRequest>> fn)
+	public final DeletePitResponse deletePit(
+			Function<DeletePitRequest.Builder, ObjectBuilder<DeletePitRequest>> fn)
 			throws IOException, OpenSearchException {
-		return deletePointInTime(fn.apply(new DeletePointInTimeRequest.Builder()).build());
+		return deletePit(fn.apply(new DeletePitRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: delete_by_query
@@ -868,9 +868,9 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
 	 *
 	 */
 
-	public ListAllPointInTimeResponse listAllPointInTime()
+	public ListAllPitResponse listAllPit()
 			throws IOException, OpenSearchException {
-			return this.transport.performRequest(ListAllPointInTimeRequest._INSTANCE, ListAllPointInTimeRequest._ENDPOINT, this.transportOptions);
+			return this.transport.performRequest(ListAllPitRequest._INSTANCE, ListAllPitRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: mget

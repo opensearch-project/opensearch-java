@@ -51,7 +51,7 @@ import org.opensearch.client.opensearch._types.query_dsl.Operator;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch.core.search.FieldCollapse;
 import org.opensearch.client.opensearch.core.search.Highlight;
-import org.opensearch.client.opensearch.core.search.PointInTime;
+import org.opensearch.client.opensearch.core.search.Pit;
 import org.opensearch.client.opensearch.core.search.Rescore;
 import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.opensearch.core.search.Suggester;
@@ -154,7 +154,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	private final Double minScore;
 
 	@Nullable
-	private final PointInTime pit;
+	private final Pit pit;
 
 	@Nullable
 	private final Query postFilter;
@@ -556,7 +556,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code pit}
 	 */
 	@Nullable
-	public final PointInTime pit() {
+	public final Pit pit() {
 		return this.pit;
 	}
 
@@ -1139,7 +1139,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private Double minScore;
 
 		@Nullable
-		private PointInTime pit;
+		private Pit pit;
 
 		@Nullable
 		private Query postFilter;
@@ -1633,7 +1633,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code pit}
 		 */
-		public final Builder pit(@Nullable PointInTime pit) {
+		public final Builder pit(@Nullable Pit pit) {
 			this.pit = pit;
 			return this;
 		}
@@ -2140,7 +2140,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
 				"indices_boost");
 		op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
-		op.add(Builder::pit, PointInTime._DESERIALIZER, "pit");
+		op.add(Builder::pit, Pit._DESERIALIZER, "pit");
 		op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::query, Query._DESERIALIZER, "query");

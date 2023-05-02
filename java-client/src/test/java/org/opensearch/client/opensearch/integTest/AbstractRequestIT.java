@@ -56,11 +56,11 @@ import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
 import org.opensearch.client.opensearch.core.msearch.RequestItem;
-import org.opensearch.client.opensearch.core.pit.CreatePointInTimeRequest;
-import org.opensearch.client.opensearch.core.pit.CreatePointInTimeResponse;
-import org.opensearch.client.opensearch.core.pit.DeletePointInTimeRequest;
-import org.opensearch.client.opensearch.core.pit.DeletePointInTimeResponse;
-import org.opensearch.client.opensearch.core.pit.ListAllPointInTimeResponse;
+import org.opensearch.client.opensearch.core.pit.CreatePitRequest;
+import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
+import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
+import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
+import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.core.search.CompletionSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggesterBuilders;
@@ -598,7 +598,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
     }
 
     @Test
-    public void testPointInTime() throws IOException {
+    public void testPit() throws IOException {
             InfoResponse info = javaClient().info();
             String version = info.version().number();
             if (version.contains("SNAPSHOT")) {
@@ -620,35 +620,35 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                                     .document(appData)
                                     .refresh(Refresh.True));
 
-                    CreatePointInTimeRequest createPointInTimeRequest = new CreatePointInTimeRequest.Builder()
+                    CreatePitRequest createPitRequest = new CreatePitRequest.Builder()
                                     .targetIndexes(Collections.singletonList(index))
                                     .keepAlive(new Time.Builder().time("100m").build()).build();
 
-                    CreatePointInTimeResponse createPointInTimeResponse = javaClient()
-                                    .createPointInTime(createPointInTimeRequest);
+                    CreatePitResponse createPitResponse = javaClient()
+                                    .createPit(createPitRequest);
 
-                    assertNotNull(createPointInTimeResponse);
-                    assertNotNull(createPointInTimeResponse.pitId());
-                    assertEquals(createPointInTimeResponse.shards().total(),
-                                    createPointInTimeResponse.shards().successful());
+                    assertNotNull(createPitResponse);
+                    assertNotNull(createPitResponse.pitId());
+                    assertEquals(createPitResponse.shards().total(),
+                                    createPitResponse.shards().successful());
 
-                    ListAllPointInTimeResponse listAllPointInTimeResponse = javaClient().listAllPointInTime();
+                    ListAllPitResponse listAllPitResponse = javaClient().listAllPit();
 
-                    assertNotNull(listAllPointInTimeResponse);
-                    assertNotNull(listAllPointInTimeResponse.pits());
-                    assertEquals(listAllPointInTimeResponse.pits().get(0).pitId(), createPointInTimeResponse.pitId());
-                    assertEquals(listAllPointInTimeResponse.pits().get(0).keepAlive(), Long.valueOf(6000000L));
+                    assertNotNull(listAllPitResponse);
+                    assertNotNull(listAllPitResponse.pits());
+                    assertEquals(listAllPitResponse.pits().get(0).pitId(), createPitResponse.pitId());
+                    assertEquals(listAllPitResponse.pits().get(0).keepAlive(), Long.valueOf(6000000L));
 
-                    DeletePointInTimeRequest deletePointInTimeRequest = new DeletePointInTimeRequest.Builder()
-                                    .pitId(Collections.singletonList(createPointInTimeResponse.pitId())).build();
+                    DeletePitRequest deletePitRequest = new DeletePitRequest.Builder()
+                                    .pitId(Collections.singletonList(createPitResponse.pitId())).build();
 
-                    DeletePointInTimeResponse deletePointInTimeResponse = javaClient()
-                                    .deletePointInTime(deletePointInTimeRequest);
+                    DeletePitResponse deletePitResponse = javaClient()
+                                    .deletePit(deletePitRequest);
 
-                    assertNotNull(deletePointInTimeResponse);
-                    assertNotNull(deletePointInTimeResponse.pits());
-                    assertEquals(deletePointInTimeResponse.pits().get(0).pitId(), createPointInTimeResponse.pitId());
-                    assertTrue(deletePointInTimeResponse.pits().get(0).successful());
+                    assertNotNull(deletePitResponse);
+                    assertNotNull(deletePitResponse.pits());
+                    assertEquals(deletePitResponse.pits().get(0).pitId(), createPitResponse.pitId());
+                    assertTrue(deletePitResponse.pits().get(0).successful());
             }
     }
 

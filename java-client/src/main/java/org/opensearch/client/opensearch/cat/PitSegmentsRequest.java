@@ -18,23 +18,21 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: cat.point_in_time_segments.Request
-
 /**
  * Provides low-level information about the disk utilization of a PIT by
  * describing its Lucene segments
  * 
  */
-public class PointInTimeSegmentsRequest extends CatRequestBase {
+public class PitSegmentsRequest extends CatRequestBase {
     
     @Nullable
     private List<String> pitId;
 
-    public PointInTimeSegmentsRequest(Builder builder) {
+    public PitSegmentsRequest(Builder builder) {
         this.pitId = builder.pitId;
     }
 
-    public static PointInTimeSegmentsRequest of(Function<Builder, ObjectBuilder<PointInTimeSegmentsRequest>> fn) {
+    public static PitSegmentsRequest of(Function<Builder, ObjectBuilder<PitSegmentsRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -49,9 +47,9 @@ public class PointInTimeSegmentsRequest extends CatRequestBase {
     }
 
     /**
-     * Builder for {@link PointInTimeSegmentsRequest}
+     * Builder for {@link PitSegmentsRequest}
      */
-    public static class Builder extends CatRequestBaseBuilder<PointInTimeSegmentsRequest.Builder> {
+    public static class Builder extends CatRequestBaseBuilder<PitSegmentsRequest.Builder> {
         private List<String> pitId;
 
         /**
@@ -65,13 +63,13 @@ public class PointInTimeSegmentsRequest extends CatRequestBase {
         }
 
         /**
-         * Builds a {@link PointInTimeSegmentsRequest}.
+         * Builds a {@link PitSegmentsRequest}.
          * 
          * @throws NullPointerException if some of the required fields are null.
          */
-        public PointInTimeSegmentsRequest build() {
+        public PitSegmentsRequest build() {
             _checkSingleUse();
-            return new PointInTimeSegmentsRequest(this);
+            return new PitSegmentsRequest(this);
         }
 
         @Override
@@ -83,7 +81,7 @@ public class PointInTimeSegmentsRequest extends CatRequestBase {
     /**
      * Endpoint "{@code point_in_time_segments}"
      */
-    public static final Endpoint<PointInTimeSegmentsRequest, SegmentsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final Endpoint<PitSegmentsRequest, SegmentsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
             // Request Method
             request -> {
                 return "GET";

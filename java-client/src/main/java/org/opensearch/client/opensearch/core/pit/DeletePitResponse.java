@@ -24,14 +24,14 @@ import org.opensearch.client.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
 @JsonpDeserializable
-public class DeletePointInTimeResponse implements JsonpSerializable {
-    private final List<DeletePointInTimeRecord> pits;
+public class DeletePitResponse implements JsonpSerializable {
+    private final List<DeletePitRecord> pits;
 
-    private DeletePointInTimeResponse(Builder builder) {
+    private DeletePitResponse(Builder builder) {
         this.pits = ApiTypeHelper.unmodifiableRequired(builder.pits, this, "pits");
     }
     
-    public static DeletePointInTimeResponse of(Function<Builder, ObjectBuilder<DeletePointInTimeResponse>> fn) {
+    public static DeletePitResponse of(Function<Builder, ObjectBuilder<DeletePitResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -40,7 +40,7 @@ public class DeletePointInTimeResponse implements JsonpSerializable {
      * <p>
      * API name: {@code pits}
      */
-    public final List<DeletePointInTimeRecord> pits() {
+    public final List<DeletePitRecord> pits() {
         return this.pits;
     }
 
@@ -49,7 +49,7 @@ public class DeletePointInTimeResponse implements JsonpSerializable {
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartArray();
-        for (DeletePointInTimeRecord item0 : this.pits) {
+        for (DeletePitRecord item0 : this.pits) {
             item0.serialize(generator, mapper);
 
         }
@@ -58,11 +58,11 @@ public class DeletePointInTimeResponse implements JsonpSerializable {
     }
 
     /**
-     * Builder for {@link DeletePointInTimeResponse}.
+     * Builder for {@link DeletePitResponse}.
      */
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeletePointInTimeResponse> {
-        private List<DeletePointInTimeRecord> pits;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeletePitResponse> {
+        private List<DeletePitRecord> pits;
 
         /**
          * Required - Response value.
@@ -71,7 +71,7 @@ public class DeletePointInTimeResponse implements JsonpSerializable {
          * <p>
          * Adds all elements of <code>list</code> to <code>pits</code>.
          */
-        public final Builder pits(List<DeletePointInTimeRecord> list) {
+        public final Builder pits(List<DeletePitRecord> list) {
             this.pits = _listAddAll(this.pits, list);
             return this;
         }
@@ -83,7 +83,7 @@ public class DeletePointInTimeResponse implements JsonpSerializable {
          * <p>
          * Adds one or more values to <code>pits</code>.
          */
-        public final Builder pits(DeletePointInTimeRecord value, DeletePointInTimeRecord... values) {
+        public final Builder pits(DeletePitRecord value, DeletePitRecord... values) {
             this.pits = _listAdd(this.pits, value, values);
             return this;
         }
@@ -95,30 +95,30 @@ public class DeletePointInTimeResponse implements JsonpSerializable {
          * <p>
          * Adds a value to <code>pits</code> using a builder lambda.
          */
-        public final Builder pits(Function<DeletePointInTimeRecord.Builder, ObjectBuilder<DeletePointInTimeRecord>> fn) {
-            return pits(fn.apply(new DeletePointInTimeRecord.Builder()).build());
+        public final Builder pits(Function<DeletePitRecord.Builder, ObjectBuilder<DeletePitRecord>> fn) {
+            return pits(fn.apply(new DeletePitRecord.Builder()).build());
         }
 
         /**
-         * Builds a {@link DeletePointInTimeResponse}.
+         * Builds a {@link DeletePitResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
-        public DeletePointInTimeResponse build() {
+        public DeletePitResponse build() {
             _checkSingleUse();
 
-            return new DeletePointInTimeResponse(this);
+            return new DeletePitResponse(this);
         }
     }
 
-    public static final JsonpDeserializer<DeletePointInTimeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-            .lazy(Builder::new, DeletePointInTimeResponse::createDeletePointInTimeResponseDeserializer);
+    public static final JsonpDeserializer<DeletePitResponse> _DESERIALIZER = ObjectBuilderDeserializer
+            .lazy(Builder::new, DeletePitResponse::createDeletePitResponseDeserializer);
 
-    protected static void createDeletePointInTimeResponseDeserializer(
-            ObjectDeserializer<DeletePointInTimeResponse.Builder> op) {
+    protected static void createDeletePitResponseDeserializer(
+            ObjectDeserializer<DeletePitResponse.Builder> op) {
 
-        JsonpDeserializer<List<DeletePointInTimeRecord>> valueDeserializer = JsonpDeserializer
-                .arrayDeserializer(DeletePointInTimeRecord._DESERIALIZER);
+        JsonpDeserializer<List<DeletePitRecord>> valueDeserializer = JsonpDeserializer
+                .arrayDeserializer(DeletePitRecord._DESERIALIZER);
 
         op.add(Builder::pits, valueDeserializer, "pits");
     }

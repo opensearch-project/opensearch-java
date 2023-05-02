@@ -434,9 +434,9 @@ public class OpenSearchCatAsyncClient extends ApiClient<OpenSearchTransport, Ope
 	 * 
 	 *
 	 */
-	public CompletableFuture<SegmentsResponse> pointInTimeSegments() throws IOException, OpenSearchException {
-		return this.transport.performRequestAsync(new PointInTimeSegmentsRequest.Builder().build(),
-				PointInTimeSegmentsRequest._ENDPOINT,
+	public CompletableFuture<SegmentsResponse> pitSegments() throws IOException, OpenSearchException {
+		return this.transport.performRequestAsync(new PitSegmentsRequest.Builder().build(),
+				PitSegmentsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

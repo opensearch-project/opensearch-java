@@ -30,16 +30,16 @@ import jakarta.json.stream.JsonGenerator;
  * Deletes PITs on the OpenSearch cluster
  * 
  */
-public class DeletePointInTimeRequest extends RequestBase implements JsonpSerializable {
+public class DeletePitRequest extends RequestBase implements JsonpSerializable {
 
     @Nullable
     private List<String> pitId;
 
-    public DeletePointInTimeRequest(Builder builder) {
+    public DeletePitRequest(Builder builder) {
         this.pitId = builder.pitId;
     }
 
-    public static DeletePointInTimeRequest of(Function<Builder, ObjectBuilder<DeletePointInTimeRequest>> fn) {
+    public static DeletePitRequest of(Function<Builder, ObjectBuilder<DeletePitRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -77,9 +77,9 @@ public class DeletePointInTimeRequest extends RequestBase implements JsonpSerial
     }
 
     /**
-     * Builder for {@link DeletePointInTimeRequest}
+     * Builder for {@link DeletePitRequest}
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeletePointInTimeRequest> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeletePitRequest> {
         private List<String> pitId;
 
         /**
@@ -93,20 +93,17 @@ public class DeletePointInTimeRequest extends RequestBase implements JsonpSerial
         }
 
         /**
-         * Builds a {@link DeletePointInTimeRequest}.
+         * Builds a {@link DeletePitRequest}.
          * 
          * @throws NullPointerException if some of the required fields are null.
          */
-        public DeletePointInTimeRequest build() {
+        public DeletePitRequest build() {
             _checkSingleUse();
-            return new DeletePointInTimeRequest(this);
+            return new DeletePitRequest(this);
         }
     }
 
-    /**
-     * Endpoint "{@code delete_point_in_time}"
-     */
-    public static final Endpoint<DeletePointInTimeRequest, DeletePointInTimeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final Endpoint<DeletePitRequest, DeletePitResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
             // Request Method
             request -> {
                 return "DELETE";
@@ -127,6 +124,6 @@ public class DeletePointInTimeRequest extends RequestBase implements JsonpSerial
                     return "/_search/point_in_time/_all";
                 }
             },
-            SimpleEndpoint.emptyMap(), SimpleEndpoint.emptyMap(), true, DeletePointInTimeResponse._DESERIALIZER);
+            SimpleEndpoint.emptyMap(), SimpleEndpoint.emptyMap(), true, DeletePitResponse._DESERIALIZER);
 
 }

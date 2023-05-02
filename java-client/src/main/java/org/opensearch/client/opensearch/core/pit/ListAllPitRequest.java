@@ -17,20 +17,17 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
  * Lists all PITs on the OpenSearch cluster
  * 
  */
-public class ListAllPointInTimeRequest {
-    public ListAllPointInTimeRequest() {
+public class ListAllPitRequest {
+    public ListAllPitRequest() {
 
     }
 
     /**
-     * Singleton instance for {@link ListAllPointInTimeRequest}.
+     * Singleton instance for {@link ListAllPitRequest}.
      */
-    public static final ListAllPointInTimeRequest _INSTANCE = new ListAllPointInTimeRequest();
+    public static final ListAllPitRequest _INSTANCE = new ListAllPitRequest();
 
-    /**
-     * Endpoint "{@code list_all_point_in_time}"
-     */
-    public static final Endpoint<ListAllPointInTimeRequest, ListAllPointInTimeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final Endpoint<ListAllPitRequest, ListAllPitResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
             // Request method
             request -> {
                 return "GET";
@@ -39,5 +36,5 @@ public class ListAllPointInTimeRequest {
             // Request Path
             request -> {
                 return "/_search/point_in_time/_all";
-            }, SimpleEndpoint.emptyMap(), SimpleEndpoint.emptyMap(), false, ListAllPointInTimeResponse._DESERIALIZER);
+            }, SimpleEndpoint.emptyMap(), SimpleEndpoint.emptyMap(), false, ListAllPitResponse._DESERIALIZER);
 }

@@ -25,18 +25,18 @@ import org.opensearch.client.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
 @JsonpDeserializable
-public class PointInTime implements JsonpSerializable {
+public class Pit implements JsonpSerializable {
     private final String id;
 
     @Nullable
     private final String keepAlive;
 
-    private PointInTime(Builder builder) {
+    private Pit(Builder builder) {
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.keepAlive = builder.keepAlive;
     }
 
-    public static PointInTime of(Function<Builder, ObjectBuilder<PointInTime>> fn) {
+    public static Pit of(Function<Builder, ObjectBuilder<Pit>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -75,9 +75,9 @@ public class PointInTime implements JsonpSerializable {
     }
 
     /**
-     * Builder for {@link PointInTime}.
+     * Builder for {@link Pit}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PointInTime> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Pit> {
 
         private String id;
 
@@ -101,24 +101,24 @@ public class PointInTime implements JsonpSerializable {
         }
 
         /**
-         * Builds a {@link PointInTime}.
+         * Builds a {@link Pit}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
-        public PointInTime build() {
+        public Pit build() {
             _checkSingleUse();
 
-            return new PointInTime(this);
+            return new Pit(this);
         }
     }
 
     /**
-     * Json deserializer for {@link PointInTime}
+     * Json deserializer for {@link Pit}
      */
-    public static final JsonpDeserializer<PointInTime> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-            PointInTime::setupPointInTimeDeserializer);
+    public static final JsonpDeserializer<Pit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+            Pit::setupPitDeserializer);
 
-    protected static void setupPointInTimeDeserializer(ObjectDeserializer<PointInTime.Builder> op) {
+    protected static void setupPitDeserializer(ObjectDeserializer<Pit.Builder> op) {
 
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
         op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");

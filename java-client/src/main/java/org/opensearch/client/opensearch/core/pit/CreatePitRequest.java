@@ -31,7 +31,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Creates a Point In Time attribute on Search
  * 
  */
-public class CreatePointInTimeRequest extends RequestBase {
+public class CreatePitRequest extends RequestBase {
 
     private List<String> targetIndexes;
 
@@ -49,7 +49,7 @@ public class CreatePointInTimeRequest extends RequestBase {
     @Nullable
     private Boolean allowPartialPitCreation;
 
-    private CreatePointInTimeRequest(Builder builder) {
+    private CreatePitRequest(Builder builder) {
         this.targetIndexes = ApiTypeHelper.unmodifiableRequired(builder.targetIndexes, this, "targetIndexes");
         this.keepAlive = ApiTypeHelper.requireNonNull(builder.keepAlive, this, "keepAlive");
         this.preference = builder.preference;
@@ -58,7 +58,7 @@ public class CreatePointInTimeRequest extends RequestBase {
         this.allowPartialPitCreation = builder.allowPartialPitCreation;
     }
 
-    public static CreatePointInTimeRequest of(Function<Builder, ObjectBuilder<CreatePointInTimeRequest>> fn) {
+    public static CreatePitRequest of(Function<Builder, ObjectBuilder<CreatePitRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -136,9 +136,9 @@ public class CreatePointInTimeRequest extends RequestBase {
     }
 
     /**
-     * Builder for {@link CreatePointInTimeRequest}
+     * Builder for {@link CreatePitRequest}
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreatePointInTimeRequest> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreatePitRequest> {
         private List<String> targetIndexes;
 
         private Time keepAlive;
@@ -280,20 +280,17 @@ public class CreatePointInTimeRequest extends RequestBase {
         }
 
         /**
-         * Builds a {@link CreatePointInTimeRequest}.
+         * Builds a {@link CreatePitRequest}.
          * 
          * @throws NullPointerException if some of the required fields are null.
          */
-        public CreatePointInTimeRequest build() {
+        public CreatePitRequest build() {
             _checkSingleUse();
-            return new CreatePointInTimeRequest(this);
+            return new CreatePitRequest(this);
         }
     }
 
-    /**
-     * Endpoint "{@code create_point_in_time}"
-     */
-    public static final Endpoint<CreatePointInTimeRequest, CreatePointInTimeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final Endpoint<CreatePitRequest, CreatePitResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
             // Request method
             request -> {
                 return "POST";
@@ -336,5 +333,5 @@ public class CreatePointInTimeRequest extends RequestBase {
                     params.put("allow_partial_pit_creation", String.valueOf(request.allowPartialPitCreation));
                 }
                 return params;
-            }, SimpleEndpoint.emptyMap(), false, CreatePointInTimeResponse._DESERIALIZER);
+            }, SimpleEndpoint.emptyMap(), false, CreatePitResponse._DESERIALIZER);
 }

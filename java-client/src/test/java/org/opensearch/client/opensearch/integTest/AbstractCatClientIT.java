@@ -36,7 +36,7 @@ import org.opensearch.client.opensearch.cat.segments.SegmentsRecord;
 import org.opensearch.client.opensearch.cat.shards.ShardsRecord;
 import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.InfoResponse;
-import org.opensearch.client.opensearch.core.pit.CreatePointInTimeResponse;
+import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 
 public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
@@ -217,7 +217,7 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
     }
     
     @Test
-    public void testCatPointInTimeSegments() throws Exception {
+    public void testCatPitSegments() throws Exception {
         InfoResponse info = javaClient().info();
         String version = info.version().number();
         if (version.contains("SNAPSHOT")) {
@@ -234,14 +234,14 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
 
             assertTrue(index.result() == Result.Created);
 
-            createPIT("cat-pit-segments-test-index");
+            createPit("cat-pit-segments-test-index");
 
-            SegmentsResponse pointInTimeSegmentsResponse = javaClient().cat()
-                    .pointInTimeSegments(r -> r.headers("index,shard,id,segment,size"));
+            SegmentsResponse PitSegmentsResponse = javaClient().cat()
+                    .pitSegments(r -> r.headers("index,shard,id,segment,size"));
 
-            assertNotNull("pointInTimeSegmentsResponse.segments() is null", pointInTimeSegmentsResponse.valueBody());
-            assertTrue("pointInTimeSegmentsResponse.segments().size() == 0",
-                    pointInTimeSegmentsResponse.valueBody().size() > 0);
+            assertNotNull("PitSegmentsResponse.segments() is null", PitSegmentsResponse.valueBody());
+            assertTrue("PitSegmentsResponse.segments().size() == 0",
+                    PitSegmentsResponse.valueBody().size() > 0);
         }
     }
 
@@ -251,12 +251,12 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
         assertTrue(createResponse.shardsAcknowledged());
     }
 
-    private void createPIT(String indexName) throws Exception {
-        CreatePointInTimeResponse createPointInTimeResponse = javaClient()
-                .createPointInTime(r -> r.targetIndexes(Collections.singletonList(indexName))
+    private void createPit(String indexName) throws Exception {
+        CreatePitResponse createPitResponse = javaClient()
+                .createPit(r -> r.targetIndexes(Collections.singletonList(indexName))
                         .keepAlive(new Time.Builder().time("100m").build()));
-        assertNotNull(createPointInTimeResponse);
-        assertNotNull(createPointInTimeResponse.pitId());
+        assertNotNull(createPitResponse);
+        assertNotNull(createPitResponse.pitId());
     }
 
 }

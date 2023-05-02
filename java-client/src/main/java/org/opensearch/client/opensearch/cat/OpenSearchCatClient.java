@@ -422,10 +422,10 @@ public class OpenSearchCatClient extends ApiClient<OpenSearchTransport, OpenSear
 	 * 
 	 *
 	 */
-	public SegmentsResponse pointInTimeSegments(PointInTimeSegmentsRequest request)
+	public SegmentsResponse pitSegments(PitSegmentsRequest request)
 			throws IOException, OpenSearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<PointInTimeSegmentsRequest, SegmentsResponse, ErrorResponse> endpoint = (JsonEndpoint<PointInTimeSegmentsRequest, SegmentsResponse, ErrorResponse>) PointInTimeSegmentsRequest._ENDPOINT;
+		JsonEndpoint<PitSegmentsRequest, SegmentsResponse, ErrorResponse> endpoint = (JsonEndpoint<PitSegmentsRequest, SegmentsResponse, ErrorResponse>) PitSegmentsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -436,12 +436,12 @@ public class OpenSearchCatClient extends ApiClient<OpenSearchTransport, OpenSear
 	 * 
 	 * * @param fn
 	 * a function that initializes a builder to create the
-	 * {@link PointInTimeSegmentsRequest}
+	 * {@link PitSegmentsRequest}
 	 */
 
-	public final SegmentsResponse pointInTimeSegments(Function<PointInTimeSegmentsRequest.Builder, ObjectBuilder<PointInTimeSegmentsRequest>> fn)
+	public final SegmentsResponse pitSegments(Function<PitSegmentsRequest.Builder, ObjectBuilder<PitSegmentsRequest>> fn)
 			throws IOException, OpenSearchException {
-		return pointInTimeSegments(fn.apply(new PointInTimeSegmentsRequest.Builder()).build());
+		return pitSegments(fn.apply(new PitSegmentsRequest.Builder()).build());
 	}
 
 	/**
@@ -449,9 +449,9 @@ public class OpenSearchCatClient extends ApiClient<OpenSearchTransport, OpenSear
 	 * describing its Lucene segments.
 	 * 
 	 */
-	public SegmentsResponse pointInTimeSegments() throws IOException, OpenSearchException {
-		return this.transport.performRequest(new PointInTimeSegmentsRequest.Builder().build(), 
-				PointInTimeSegmentsRequest._ENDPOINT,
+	public SegmentsResponse pitSegments() throws IOException, OpenSearchException {
+		return this.transport.performRequest(new PitSegmentsRequest.Builder().build(), 
+				PitSegmentsRequest._ENDPOINT,
 				this.transportOptions);
 	}
 

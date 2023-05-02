@@ -24,14 +24,14 @@ import org.opensearch.client.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
 @JsonpDeserializable
-public class ListAllPointInTimeResponse implements JsonpSerializable {
-    private final List<PointInTimeRecord> pits;
+public class ListAllPitResponse implements JsonpSerializable {
+    private final List<PitRecord> pits;
 
-    private ListAllPointInTimeResponse(Builder builder) {
+    private ListAllPitResponse(Builder builder) {
         this.pits = ApiTypeHelper.unmodifiableRequired(builder.pits, this, "pits");
     }
     
-    public static ListAllPointInTimeResponse of(Function<Builder, ObjectBuilder<ListAllPointInTimeResponse>> fn) {
+    public static ListAllPitResponse of(Function<Builder, ObjectBuilder<ListAllPitResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -40,7 +40,7 @@ public class ListAllPointInTimeResponse implements JsonpSerializable {
      * <p>
      * API name: {@code _value_body}
      */
-    public final List<PointInTimeRecord> pits() {
+    public final List<PitRecord> pits() {
         return this.pits;
     }
 
@@ -49,7 +49,7 @@ public class ListAllPointInTimeResponse implements JsonpSerializable {
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartArray();
-        for (PointInTimeRecord item0 : this.pits) {
+        for (PitRecord item0 : this.pits) {
             item0.serialize(generator, mapper);
 
         }
@@ -58,11 +58,11 @@ public class ListAllPointInTimeResponse implements JsonpSerializable {
     }
 
     /**
-     * Builder for {@link ListAllPointInTimeResponse}.
+     * Builder for {@link ListAllPitResponse}.
      */
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ListAllPointInTimeResponse> {
-        private List<PointInTimeRecord> pits;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ListAllPitResponse> {
+        private List<PitRecord> pits;
 
         /**
          * Required - Response value.
@@ -71,7 +71,7 @@ public class ListAllPointInTimeResponse implements JsonpSerializable {
          * <p>
          * Adds all elements of <code>list</code> to <code>pits</code>.
          */
-        public final Builder pits(List<PointInTimeRecord> list) {
+        public final Builder pits(List<PitRecord> list) {
             this.pits = _listAddAll(this.pits, list);
             return this;
         }
@@ -83,7 +83,7 @@ public class ListAllPointInTimeResponse implements JsonpSerializable {
          * <p>
          * Adds one or more values to <code>pits</code>.
          */
-        public final Builder pits(PointInTimeRecord value, PointInTimeRecord... values) {
+        public final Builder pits(PitRecord value, PitRecord... values) {
             this.pits = _listAdd(this.pits, value, values);
             return this;
         }
@@ -95,30 +95,30 @@ public class ListAllPointInTimeResponse implements JsonpSerializable {
          * <p>
          * Adds a value to <code>pits</code> using a builder lambda.
          */
-        public final Builder pits(Function<PointInTimeRecord.Builder, ObjectBuilder<PointInTimeRecord>> fn) {
-            return pits(fn.apply(new PointInTimeRecord.Builder()).build());
+        public final Builder pits(Function<PitRecord.Builder, ObjectBuilder<PitRecord>> fn) {
+            return pits(fn.apply(new PitRecord.Builder()).build());
         }
 
         /**
-         * Builds a {@link ListAllPointInTimeResponse}.
+         * Builds a {@link ListAllPitResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
-        public ListAllPointInTimeResponse build() {
+        public ListAllPitResponse build() {
             _checkSingleUse();
 
-            return new ListAllPointInTimeResponse(this);
+            return new ListAllPitResponse(this);
         }
     }
 
-    public static final JsonpDeserializer<ListAllPointInTimeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-            .lazy(Builder::new, ListAllPointInTimeResponse::createListAllPointInTimeResponseDeserializer);
+    public static final JsonpDeserializer<ListAllPitResponse> _DESERIALIZER = ObjectBuilderDeserializer
+            .lazy(Builder::new, ListAllPitResponse::createListAllPitResponseDeserializer);
 
-    protected static  void createListAllPointInTimeResponseDeserializer(
-            ObjectDeserializer<ListAllPointInTimeResponse.Builder> op) {
+    protected static  void createListAllPitResponseDeserializer(
+            ObjectDeserializer<ListAllPitResponse.Builder> op) {
 
-        JsonpDeserializer<List<PointInTimeRecord>> valueDeserializer = JsonpDeserializer
-                .arrayDeserializer(PointInTimeRecord._DESERIALIZER);
+        JsonpDeserializer<List<PitRecord>> valueDeserializer = JsonpDeserializer
+                .arrayDeserializer(PitRecord._DESERIALIZER);
                 
         op.add(Builder::pits, valueDeserializer, "pits");
     }

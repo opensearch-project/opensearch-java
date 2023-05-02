@@ -25,7 +25,7 @@ import jakarta.json.stream.JsonGenerator;
 
 
 @JsonpDeserializable
-public class CreatePointInTimeResponse implements JsonpSerializable {
+public class CreatePitResponse implements JsonpSerializable {
 
     private final String pitId;
 
@@ -33,13 +33,13 @@ public class CreatePointInTimeResponse implements JsonpSerializable {
 
     private final Long creationTime;
 
-    private CreatePointInTimeResponse(Builder builder) {
+    private CreatePitResponse(Builder builder) {
         this.pitId = ApiTypeHelper.requireNonNull(builder.pitId, this, "pitId");
         this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
         this.creationTime = ApiTypeHelper.requireNonNull(builder.creationTime, this, "creationTime");
     }
 
-    public static CreatePointInTimeResponse of(Function<Builder, ObjectBuilder<CreatePointInTimeResponse>> fn) {
+    public static CreatePitResponse of(Function<Builder, ObjectBuilder<CreatePitResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -87,9 +87,9 @@ public class CreatePointInTimeResponse implements JsonpSerializable {
     }
 
     /**
-     * builder for {@link CreatePointInTimeResponse}
+     * builder for {@link CreatePitResponse}
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreatePointInTimeResponse> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreatePitResponse> {
         private String pitId;
 
         private ShardStatistics shards;
@@ -128,24 +128,24 @@ public class CreatePointInTimeResponse implements JsonpSerializable {
         }
 
         /**
-         * Builds a {@link CreatePointInTimeResponse}.
+         * Builds a {@link CreatePitResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
-        public CreatePointInTimeResponse build() {
+        public CreatePitResponse build() {
             _checkSingleUse();
 
-            return new CreatePointInTimeResponse(this);
+            return new CreatePitResponse(this);
         }
     }
 
     /**
-     * Json deserializer for {@link CreatePointInTimeResponse}
+     * Json deserializer for {@link CreatePitResponse}
      */
-    public static final JsonpDeserializer<CreatePointInTimeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-            .lazy(Builder::new, CreatePointInTimeResponse::setupCreatePointInTimeResponseDeserializer);
+    public static final JsonpDeserializer<CreatePitResponse> _DESERIALIZER = ObjectBuilderDeserializer
+            .lazy(Builder::new, CreatePitResponse::setupCreatePitResponseDeserializer);
 
-    protected static void setupCreatePointInTimeResponseDeserializer(ObjectDeserializer<CreatePointInTimeResponse.Builder> op) {
+    protected static void setupCreatePitResponseDeserializer(ObjectDeserializer<CreatePitResponse.Builder> op) {
 
         op.add(Builder::pitId, JsonpDeserializer.stringDeserializer(), "pit_id");
         op.add(Builder::shards,
