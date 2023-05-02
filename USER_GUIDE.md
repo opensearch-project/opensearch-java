@@ -335,7 +335,7 @@ NodesResponse nodesResponse = javaClient().cat().nodes(r -> r.sort("cpu"));
 ### Cat point in time segments
 Similarly to the CAT Segments API, the PIT Segments API provides low-level information about the disk utilization of a PIT by describing its Lucene segments. 
 ```java
-SegmentsResponse PitSegmentsResponse = javaClient().cat()
+SegmentsResponse pitSegmentsResponse = javaClient().cat()
                 .pitSegments(r -> r.headers("index,shard,id,segment,size"));
 ```
 
