@@ -41,6 +41,7 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.NamedDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.core.search.SearchResult;
 import org.opensearch.client.util.ObjectBuilder;
 
 import java.util.function.Function;
@@ -49,7 +50,7 @@ import java.util.function.Supplier;
 // typedef: _global.search_template.Response
 
 @JsonpDeserializable
-public class SearchTemplateResponse<TDocument> extends SearchResponse<TDocument> {
+public class SearchTemplateResponse<TDocument> extends SearchResult<TDocument> {
 	// ---------------------------------------------------------------------------------------------
 
 	private SearchTemplateResponse(Builder<TDocument> builder) {
@@ -67,8 +68,7 @@ public class SearchTemplateResponse<TDocument> extends SearchResponse<TDocument>
 	/**
 	 * Builder for {@link SearchTemplateResponse}.
 	 */
-
-	public static class Builder<TDocument> extends SearchResponse.AbstractBuilder<TDocument, Builder<TDocument>>
+	public static class Builder<TDocument> extends SearchResult.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<SearchTemplateResponse<TDocument>> {
 		@Override
@@ -110,7 +110,7 @@ public class SearchTemplateResponse<TDocument> extends SearchResponse<TDocument>
 	protected static <TDocument> void setupSearchTemplateResponseDeserializer(
 			ObjectDeserializer<SearchTemplateResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		SearchResponse.setupSearchResponseDeserializer(op, tDocumentDeserializer);
+	    SearchResult.setupSearchResultDeserializer(op, tDocumentDeserializer);
 
 	}
 
