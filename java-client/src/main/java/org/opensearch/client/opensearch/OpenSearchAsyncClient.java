@@ -116,6 +116,12 @@ import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.core.UpdateRequest;
 import org.opensearch.client.opensearch.core.UpdateResponse;
+import org.opensearch.client.opensearch.core.pit.CreatePitRequest;
+import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
+import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
+import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
+import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
+import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesAsyncClient;
 import org.opensearch.client.opensearch.features.OpenSearchFeaturesAsyncClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesAsyncClient;
@@ -362,6 +368,39 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchTransport, OpenSe
 		return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
 	}
 
+	// ----- Endpoint: create_point_in_time
+
+	/**
+	 * Provides low-level information about the disk utilization of a PIT by
+	 * describing its Lucene segments.
+	 * 
+	 *
+	 */
+
+	public CompletableFuture<CreatePitResponse> createPit(CreatePitRequest request)
+			throws IOException, OpenSearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreatePitRequest, CreatePitResponse, ErrorResponse> endpoint = (JsonEndpoint<CreatePitRequest, CreatePitResponse, ErrorResponse>) CreatePitRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Provides low-level information about the disk utilization of a PIT by
+	 * describing its Lucene segments.
+	 * 
+	 * @param fn
+	 *           a function that initializes a builder to create the
+	 *           {@link CreatePitRequest}
+	 *
+	 */
+
+	public final CompletableFuture<CreatePitResponse> createPit(
+			Function<CreatePitRequest.Builder, ObjectBuilder<CreatePitRequest>> fn)
+			throws IOException, OpenSearchException {
+		return createPit(fn.apply(new CreatePitRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: delete
 
 	/**
@@ -391,6 +430,37 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchTransport, OpenSe
 			Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
 			throws IOException, OpenSearchException {
 		return delete(fn.apply(new DeleteRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: delete_point_in_time
+
+	/**
+	 * Delete Point In Time
+	 * 
+	 *
+	 */
+
+	public CompletableFuture<DeletePitResponse> deletePit(DeletePitRequest request)
+			throws IOException, OpenSearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeletePitRequest, DeletePitResponse, ErrorResponse> endpoint = (JsonEndpoint<DeletePitRequest, DeletePitResponse, ErrorResponse>) DeletePitRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delete Point In Time
+	 * 
+	 * @param fn
+	 *           a function that initializes a builder to create the
+	 *           {@link DeletePitRequest}
+	 *
+	 */
+
+	public final CompletableFuture<DeletePitResponse> deletePit(
+			Function<DeletePitRequest.Builder, ObjectBuilder<DeletePitRequest>> fn)
+			throws IOException, OpenSearchException {
+		return deletePit(fn.apply(new DeletePitRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: delete_by_query
@@ -799,6 +869,20 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchTransport, OpenSe
 	 */
 	public CompletableFuture<InfoResponse> info() throws IOException, OpenSearchException {
 		return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: list_point_in_time
+
+	/**
+	 * List all Point In Time
+	 * 
+	 *
+	 */
+
+	public CompletableFuture<ListAllPitResponse> listAllPit()
+			throws IOException, OpenSearchException {
+		return this.transport.performRequestAsync(ListAllPitRequest._INSTANCE, ListAllPitRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: mget

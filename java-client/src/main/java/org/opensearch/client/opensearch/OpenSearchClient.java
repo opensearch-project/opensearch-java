@@ -116,6 +116,12 @@ import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.core.UpdateRequest;
 import org.opensearch.client.opensearch.core.UpdateResponse;
+import org.opensearch.client.opensearch.core.pit.CreatePitRequest;
+import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
+import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
+import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
+import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
+import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesClient;
 import org.opensearch.client.opensearch.features.OpenSearchFeaturesClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
@@ -359,6 +365,39 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
 		return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
 	}
 
+	// ----- Endpoint: create_point_in_time
+
+	/**
+	 * Provides low-level information about the disk utilization of a PIT by
+	 * describing its Lucene segments.
+	 * 
+	 *
+	 */
+
+	public CreatePitResponse createPit(CreatePitRequest request)
+			throws IOException, OpenSearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreatePitRequest, CreatePitResponse, ErrorResponse> endpoint = (JsonEndpoint<CreatePitRequest, CreatePitResponse, ErrorResponse>) CreatePitRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Provides low-level information about the disk utilization of a PIT by
+	 * describing its Lucene segments.
+	 * 
+	 * @param fn
+	 *           a function that initializes a builder to create the
+	 *           {@link CreatePitRequest}
+	 *
+	 */
+
+	public final CreatePitResponse createPit(
+			Function<CreatePitRequest.Builder, ObjectBuilder<CreatePitRequest>> fn)
+			throws IOException, OpenSearchException {
+		return createPit(fn.apply(new CreatePitRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: delete
 
 	/**
@@ -387,6 +426,37 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
 	public final DeleteResponse delete(Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
 			throws IOException, OpenSearchException {
 		return delete(fn.apply(new DeleteRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: delete_point_in_time
+
+	/**
+	 * Delete Point In Time
+	 * 
+	 *
+	 */
+
+	public DeletePitResponse deletePit(DeletePitRequest request)
+			throws IOException, OpenSearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeletePitRequest, DeletePitResponse, ErrorResponse> endpoint = (JsonEndpoint<DeletePitRequest, DeletePitResponse, ErrorResponse>) DeletePitRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delete Point In Time
+	 * 
+	 * @param fn
+	 *           a function that initializes a builder to create the
+	 *           {@link DeletePitRequest}
+	 *
+	 */
+
+	public final DeletePitResponse deletePit(
+			Function<DeletePitRequest.Builder, ObjectBuilder<DeletePitRequest>> fn)
+			throws IOException, OpenSearchException {
+		return deletePit(fn.apply(new DeletePitRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: delete_by_query
@@ -788,6 +858,19 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
 	 */
 	public InfoResponse info() throws IOException, OpenSearchException {
 		return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: list_point_in_time
+
+	/**
+	 * List all Point In Time
+	 * 
+	 *
+	 */
+
+	public ListAllPitResponse listAllPit()
+			throws IOException, OpenSearchException {
+			return this.transport.performRequest(ListAllPitRequest._INSTANCE, ListAllPitRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: mget

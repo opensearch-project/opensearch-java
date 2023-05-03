@@ -426,6 +426,20 @@ public class OpenSearchCatAsyncClient extends ApiClient<OpenSearchTransport, Ope
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: cat.point_in_time_segments
+
+	/**
+	 * Provides low-level information about the disk utilization of a PIT by
+	 * describing its Lucene segments.
+	 * 
+	 *
+	 */
+	public CompletableFuture<SegmentsResponse> pitSegments() throws IOException, OpenSearchException {
+		return this.transport.performRequestAsync(new PitSegmentsRequest.Builder().build(),
+				PitSegmentsRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: cat.pending_tasks
 
 	/**
