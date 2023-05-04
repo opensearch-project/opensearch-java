@@ -36,49 +36,25 @@
 
 package org.opensearch.client.opensearch.core;
 
-import org.opensearch.client.opensearch._types.ShardStatistics;
-import org.opensearch.client.opensearch.core.search.HitsMetadata;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
-import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.NamedDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.opensearch.core.search.SearchResult;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
-import javax.annotation.Nullable;
 
 // typedef: _global.search_template.Response
 
 @JsonpDeserializable
-public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
-	private final ShardStatistics shards;
-
-	private final boolean timedOut;
-
-	private final int took;
-
-	private final HitsMetadata<TDocument> hits;
-
-	@Nullable
-	private final JsonpSerializer<TDocument> tDocumentSerializer;
-
+public class SearchTemplateResponse<TDocument> extends SearchResult<TDocument> {
 	// ---------------------------------------------------------------------------------------------
 
 	private SearchTemplateResponse(Builder<TDocument> builder) {
-
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
-		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
-		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
-		this.tDocumentSerializer = builder.tDocumentSerializer;
+		super(builder);
 
 	}
 
@@ -87,132 +63,16 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 		return fn.apply(new Builder<>()).build();
 	}
 
-	/**
-	 * Required - API name: {@code _shards}
-	 */
-	public final ShardStatistics shards() {
-		return this.shards;
-	}
-
-	/**
-	 * Required - API name: {@code timed_out}
-	 */
-	public final boolean timedOut() {
-		return this.timedOut;
-	}
-
-	/**
-	 * Required - API name: {@code took}
-	 */
-	public final int took() {
-		return this.took;
-	}
-
-	/**
-	 * Required - API name: {@code hits}
-	 */
-	public final HitsMetadata<TDocument> hits() {
-		return this.hits;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("_shards");
-		this.shards.serialize(generator, mapper);
-
-		generator.writeKey("timed_out");
-		generator.write(this.timedOut);
-
-		generator.writeKey("took");
-		generator.write(this.took);
-
-		generator.writeKey("hits");
-		this.hits.serialize(generator, mapper);
-
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link SearchTemplateResponse}.
 	 */
-
-	public static class Builder<TDocument> extends ObjectBuilderBase
+	public static class Builder<TDocument> extends SearchResult.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<SearchTemplateResponse<TDocument>> {
-		private ShardStatistics shards;
-
-		private Boolean timedOut;
-
-		private Integer took;
-
-		private HitsMetadata<TDocument> hits;
-
-		@Nullable
-		private JsonpSerializer<TDocument> tDocumentSerializer;
-
-		/**
-		 * Required - API name: {@code _shards}
-		 */
-		public final Builder<TDocument> shards(ShardStatistics value) {
-			this.shards = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code _shards}
-		 */
-		public final Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code timed_out}
-		 */
-		public final Builder<TDocument> timedOut(boolean value) {
-			this.timedOut = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code took}
-		 */
-		public final Builder<TDocument> took(int value) {
-			this.took = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code hits}
-		 */
-		public final Builder<TDocument> hits(HitsMetadata<TDocument> value) {
-			this.hits = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code hits}
-		 */
-		public final Builder<TDocument> hits(
-				Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {
-			return this.hits(fn.apply(new HitsMetadata.Builder<TDocument>()).build());
-		}
-
-		/**
-		 * Serializer for TDocument. If not set, an attempt will be made to find a
-		 * serializer from the JSON context.
-		 */
-		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
-			this.tDocumentSerializer = value;
+		@Override
+		protected Builder<TDocument> self() {
 			return this;
 		}
 
@@ -250,11 +110,7 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	protected static <TDocument> void setupSearchTemplateResponseDeserializer(
 			ObjectDeserializer<SearchTemplateResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-
-		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
-		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
-		op.add(Builder::took, JsonpDeserializer.integerDeserializer(), "took");
-		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
+	    SearchResult.setupSearchResultDeserializer(op, tDocumentDeserializer);
 
 	}
 
