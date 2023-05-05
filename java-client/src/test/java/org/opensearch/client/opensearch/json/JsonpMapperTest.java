@@ -36,6 +36,8 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.client.opensearch.IOUtils;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.MappingJsonFactory;
@@ -49,7 +51,6 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.junit.Assert;
 import org.junit.Test;
-import org.opensearch.core.internal.io.IOUtils;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -116,7 +117,7 @@ public class JsonpMapperTest extends Assert {
         }
 
         testDeserialize(mapper, writer.toString());
-        IOUtils.closeWhileHandlingException(writer);
+        IOUtils.closeQueitly(writer);
     }
 
     @Test
