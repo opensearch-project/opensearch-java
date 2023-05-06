@@ -7,6 +7,8 @@ on:
   pull_request:
     branches:
       - "main"
+  schedule:
+    - cron: '0 8 * * *'
 
 jobs:
   test:
@@ -21,6 +23,14 @@ jobs:
           - { opensearch_ref: 'main', java: 11 }
           - { opensearch_ref: 'main', java: 17 }
     steps:
+    - name: GitHub App token
+        id: github_app_token
+        uses: tibdex/github-app-token@v1.5.0
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+          installation_id: 22958780
+
       - name: Set up JDK ${{ matrix.entry.java }}
         uses: actions/setup-java@v3
         with:
@@ -82,3 +92,12 @@ jobs:
           name: test-reports
           path: opensearch-java/java-client/build/reports/
           retention-days: 7
+
+      - name: Create issue about failure
+        if: failure() && github.event_name == 'schedule'
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ steps.github_app_token.outputs.token }}
+        with:
+          filename: .github/test-failure-issue-template.md
+          update_existing: true
