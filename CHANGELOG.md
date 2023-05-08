@@ -12,6 +12,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added Point-In-Time APIs ([#461](https://github.com/opensearch-project/opensearch-java/pull/461))
 
 ### Dependencies
+- Bumps `io.github.classgraph:classgraph` from 4.8.157 to 4.8.158
 
 ### Changed
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
