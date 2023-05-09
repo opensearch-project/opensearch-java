@@ -38,6 +38,7 @@ import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.HistogramAggregate;
 import org.opensearch.client.opensearch._types.aggregations.TermsAggregation;
@@ -55,6 +56,11 @@ import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
 import org.opensearch.client.opensearch.core.msearch.RequestItem;
+import org.opensearch.client.opensearch.core.pit.CreatePitRequest;
+import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
+import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
+import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
+import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.core.search.CompletionSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggesterBuilders;
@@ -589,6 +595,61 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
         SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
         assertTrue(response.suggest().size() > 0);
+    }
+
+    @Test
+    public void testPit() throws IOException {
+            InfoResponse info = javaClient().info();
+            String version = info.version().number();
+            if (version.contains("SNAPSHOT")) {
+                    version = version.split("-")[0];
+            }
+            assumeTrue("The PIT is supported in OpenSearch 2.4.0 and later",
+                    Version.fromString(version).onOrAfter(Version.fromString("2.4.0")));
+            String index = "test-point-in-time";
+
+            javaClient().indices().create(c -> c
+                            .index(index));
+
+            AppData appData = new AppData();
+            appData.setIntValue(1337);
+            appData.setMsg("foo");
+
+            javaClient().index(b -> b
+                            .index(index)
+                            .id("1")
+                            .document(appData)
+                            .refresh(Refresh.True));
+
+            CreatePitRequest createPitRequest = new CreatePitRequest.Builder()
+                            .targetIndexes(Collections.singletonList(index))
+                            .keepAlive(new Time.Builder().time("100m").build()).build();
+
+            CreatePitResponse createPitResponse = javaClient()
+                            .createPit(createPitRequest);
+
+            assertNotNull(createPitResponse);
+            assertNotNull(createPitResponse.pitId());
+            assertEquals(createPitResponse.shards().total(),
+                            createPitResponse.shards().successful());
+
+            ListAllPitResponse listAllPitResponse = javaClient().listAllPit();
+
+            assertNotNull(listAllPitResponse);
+            assertNotNull(listAllPitResponse.pits());
+            assertEquals(listAllPitResponse.pits().get(0).pitId(), createPitResponse.pitId());
+            assertEquals(listAllPitResponse.pits().get(0).keepAlive(), Long.valueOf(6000000L));
+
+            DeletePitRequest deletePitRequest = new DeletePitRequest.Builder()
+                            .pitId(Collections.singletonList(createPitResponse.pitId())).build();
+
+            DeletePitResponse deletePitResponse = javaClient()
+                            .deletePit(deletePitRequest);
+
+            assertNotNull(deletePitResponse);
+            assertNotNull(deletePitResponse.pits());
+            assertEquals(deletePitResponse.pits().get(0).pitId(), createPitResponse.pitId());
+            assertTrue(deletePitResponse.pits().get(0).successful());
     }
 
 //    @Test
