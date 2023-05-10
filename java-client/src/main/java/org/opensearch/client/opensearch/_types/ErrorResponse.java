@@ -42,10 +42,12 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+
 import java.util.function.Function;
 
 // typedef: _types.ErrorResponseBase
@@ -57,6 +59,11 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class ErrorResponse implements JsonpSerializable {
+
+	private enum Kind {
+		OBJECT,
+		STRING
+	}
 	private final ErrorCause error;
 
 	private final int status;
@@ -164,9 +171,22 @@ public class ErrorResponse implements JsonpSerializable {
 
 	protected static void setupErrorResponseDeserializer(ObjectDeserializer<ErrorResponse.Builder> op) {
 
-		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
+		op.add(Builder::error, buildErrorCauseDeserializers(), "error");
 		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
 
+	}
+
+	protected static JsonpDeserializer<ErrorCause> buildErrorCauseDeserializers() {
+		return new UnionDeserializer.Builder<>(ErrorResponse::getErrorCause, false)
+				.addMember(Kind.OBJECT, ErrorCause._DESERIALIZER)
+				.addMember(Kind.STRING, JsonpDeserializer.stringDeserializer())
+				.build();
+	}
+
+	private static ErrorCause getErrorCause(Kind kind, Object errorCause) {
+		return Kind.STRING.equals(kind) ?
+				ErrorCause.of(builder -> builder.type("string_error").reason((String) errorCause)) :
+				(ErrorCause) errorCause;
 	}
 
 }
