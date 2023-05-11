@@ -48,6 +48,8 @@ import org.opensearch.client.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 
+import javax.annotation.Nullable;
+
 // typedef: _global.search._types.PhraseSuggestOption
 
 
@@ -55,6 +57,7 @@ import java.util.function.Function;
 public class PhraseSuggestOption implements JsonpSerializable {
 	private final String text;
 
+	@Nullable
 	private final String highlighted;
 
 	private final double score;
@@ -64,7 +67,7 @@ public class PhraseSuggestOption implements JsonpSerializable {
 	private PhraseSuggestOption(Builder builder) {
 
 		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
-		this.highlighted = ApiTypeHelper.requireNonNull(builder.highlighted, this, "highlighted");
+		this.highlighted = builder.highlighted;
 		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
 
 	}
@@ -83,6 +86,7 @@ public class PhraseSuggestOption implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code highlighted}
 	 */
+	@Nullable
 	public final String highlighted() {
 		return this.highlighted;
 	}
@@ -108,8 +112,10 @@ public class PhraseSuggestOption implements JsonpSerializable {
 		generator.writeKey("text");
 		generator.write(this.text);
 
-		generator.writeKey("highlighted");
-		generator.write(this.highlighted);
+		if (this.highlighted != null) {
+			generator.writeKey("highlighted");
+			generator.write(this.highlighted);			
+		}
 
 		generator.writeKey("score");
 		generator.write(this.score);
@@ -125,6 +131,7 @@ public class PhraseSuggestOption implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestOption> {
 		private String text;
 
+		@Nullable
 		private String highlighted;
 
 		private Double score;
@@ -140,7 +147,7 @@ public class PhraseSuggestOption implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code highlighted}
 		 */
-		public final Builder highlighted(String value) {
+		public final Builder highlighted(@Nullable String value) {
 			this.highlighted = value;
 			return this;
 		}

@@ -34,6 +34,9 @@ package org.opensearch.client.opensearch.integTest;
 
 import org.junit.Test;
 import org.opensearch.Version;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.jackson.JacksonJsonpMapper;
+import org.opensearch.client.json.jackson.JacksonJsonpParser;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.OpenSearchException;
@@ -43,6 +46,7 @@ import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.HistogramAggregate;
 import org.opensearch.client.opensearch._types.aggregations.TermsAggregation;
 import org.opensearch.client.opensearch._types.mapping.Property;
+import org.opensearch.client.opensearch._types.mapping.TypeMapping;
 import org.opensearch.client.opensearch._types.query_dsl.BoolQuery;
 import org.opensearch.client.opensearch._types.query_dsl.TermsQuery;
 import org.opensearch.client.opensearch.cat.NodesResponse;
@@ -65,14 +69,22 @@ import org.opensearch.client.opensearch.core.search.CompletionSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggesterBuilders;
 import org.opensearch.client.opensearch.core.search.Hit;
+import org.opensearch.client.opensearch.core.search.PhraseSuggester;
 import org.opensearch.client.opensearch.core.search.Suggester;
+import org.opensearch.client.opensearch.core.search.TermSuggester;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 import org.opensearch.client.opensearch.indices.GetIndexResponse;
 import org.opensearch.client.opensearch.indices.GetIndicesSettingsResponse;
 import org.opensearch.client.opensearch.indices.GetMappingResponse;
+import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.IndexState;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+
+import jakarta.json.stream.JsonParser;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -542,9 +554,10 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
     }
 
     @Test
-    public void testCompletionSuggester() throws IOException {
+    public void testCompletionSuggesterFailure() throws IOException {
 
-        String index = "test-completion-suggester";
+        String index = "test-completion-suggester-failure";
+        
 
         Property intValueProp = new Property.Builder()
                 .long_(v -> v)
@@ -569,7 +582,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                 .refresh(Refresh.True));
 
         appData.setIntValue(1338);
-        appData.setMsg("bar");
+        appData.setMsg("foobar");
 
         javaClient().index(b -> b
                 .index(index)
@@ -577,16 +590,17 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                 .document(appData)
                 .refresh(Refresh.True));
 
+        String suggesterName = "msgSuggester";
+
         CompletionSuggester completionSuggester = FieldSuggesterBuilders.completion()
                 .field("msg")
                 .size(1)
                 .build();
-        FieldSuggester fieldSuggester = new FieldSuggester.Builder()
+        FieldSuggester fieldSuggester = new FieldSuggester.Builder().prefix("xyz")
                 .completion(completionSuggester)
                 .build();
         Suggester suggester = new Suggester.Builder()
-                .suggesters(Collections.singletonMap("msgSuggester", fieldSuggester))
-                .text("foo")
+                .suggesters(Collections.singletonMap(suggesterName, fieldSuggester))
                 .build();
         SearchRequest searchRequest = new SearchRequest.Builder()
                 .index(index)
@@ -595,6 +609,9 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
         SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
         assertTrue(response.suggest().size() > 0);
+        assertTrue(response.suggest().keySet().contains(suggesterName));
+        assertNotNull(response.suggest().get(suggesterName));
+        assertEquals(response.suggest().get(suggesterName).get(0).completion().options().size(), 0);
     }
 
     @Test
@@ -605,7 +622,8 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                     version = version.split("-")[0];
             }
             assumeTrue("The PIT is supported in OpenSearch 2.4.0 and later",
-                    Version.fromString(version).onOrAfter(Version.fromString("2.4.0")));
+                            Version.fromString(version).onOrAfter(Version.fromString("2.4.0")));
+                    
             String index = "test-point-in-time";
 
             javaClient().indices().create(c -> c
@@ -620,7 +638,6 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                             .id("1")
                             .document(appData)
                             .refresh(Refresh.True));
-
             CreatePitRequest createPitRequest = new CreatePitRequest.Builder()
                             .targetIndexes(Collections.singletonList(index))
                             .keepAlive(new Time.Builder().time("100m").build()).build();
@@ -650,6 +667,230 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
             assertNotNull(deletePitResponse.pits());
             assertEquals(deletePitResponse.pits().get(0).pitId(), createPitResponse.pitId());
             assertTrue(deletePitResponse.pits().get(0).successful());
+    }
+
+    public void testCompletionSuggester() throws IOException {
+
+            String index = "test-completion-suggester";
+
+            Property intValueProp = new Property.Builder()
+                            .long_(v -> v)
+                            .build();
+            Property msgCompletionProp = new Property.Builder()
+                            .completion(c -> c)
+                            .build();
+            javaClient().indices().create(c -> c
+                            .index(index)
+                            .mappings(m -> m
+                                            .properties("intValue", intValueProp)
+                                            .properties("msg", msgCompletionProp)));
+
+            AppData appData = new AppData();
+            appData.setIntValue(1337);
+            appData.setMsg("foo");
+
+            javaClient().index(b -> b
+                            .index(index)
+                            .id("1")
+                            .document(appData)
+                            .refresh(Refresh.True));
+
+            appData.setIntValue(1338);
+            appData.setMsg("foobar");
+
+            javaClient().index(b -> b
+                            .index(index)
+                            .id("2")
+                            .document(appData)
+                            .refresh(Refresh.True));
+
+            String suggesterName = "msgSuggester";
+
+            CompletionSuggester completionSuggester = FieldSuggesterBuilders.completion()
+                            .field("msg")
+                            .size(1)
+                            .build();
+            FieldSuggester fieldSuggester = new FieldSuggester.Builder().prefix("foo")
+                            .completion(completionSuggester)
+                            .build();
+            Suggester suggester = new Suggester.Builder()
+                            .suggesters(Collections.singletonMap(suggesterName, fieldSuggester))
+                            .build();
+            SearchRequest searchRequest = new SearchRequest.Builder()
+                            .index(index)
+                            .suggest(suggester)
+                            .build();
+
+            SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
+            assertTrue(response.suggest().size() > 0);
+            assertTrue(response.suggest().keySet().contains(suggesterName));
+            assertNotNull(response.suggest().get(suggesterName));
+            assertNotNull(response.suggest().get(suggesterName).get(0).completion().options());
+            assertTrue(response.suggest().get(suggesterName).get(0).isCompletion());
+            assertNotNull(response.suggest().get(suggesterName).get(0).completion().options());
+            assertEquals(response.suggest().get(suggesterName).get(0).completion().options().get(0)
+                            .text(), "foo");
+    }
+
+    @Test
+    public void testTermSuggester() throws IOException {
+
+            String index = "test-term-suggester";
+        
+            // term suggester does not require a special mapping
+            javaClient().indices().create(c -> c
+                            .index(index));
+
+            AppData appData = new AppData();
+            appData.setIntValue(1337);
+            appData.setMsg("foo");
+
+            javaClient().index(b -> b
+                            .index(index)
+                            .id("1")
+                            .document(appData)
+                            .refresh(Refresh.True));
+
+            appData.setIntValue(1338);
+            appData.setMsg("foobar");
+
+            javaClient().index(b -> b
+                            .index(index)
+                            .id("2")
+                            .document(appData)
+                            .refresh(Refresh.True));
+
+            String suggesterName = "msgSuggester";
+
+            TermSuggester termSuggester = FieldSuggesterBuilders.term()
+                            .field("msg")
+                            .size(1)
+                            .build();
+            FieldSuggester fieldSuggester = new FieldSuggester.Builder().text("fool")
+                            .term(termSuggester)
+                            .build();
+            Suggester suggester = new Suggester.Builder()
+                            .suggesters(Collections.singletonMap(suggesterName, fieldSuggester))
+                            .build();
+            SearchRequest searchRequest = new SearchRequest.Builder()
+                            .index(index)
+                            .suggest(suggester)
+                            .build();
+
+            SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
+            assertTrue(response.suggest().size() > 0);
+            assertTrue(response.suggest().keySet().contains(suggesterName));
+            assertNotNull(response.suggest().get(suggesterName));
+            assertTrue(response.suggest().get(suggesterName).get(0).isTerm());
+            assertNotNull(response.suggest().get(suggesterName).get(0).term().options());
+            assertEquals(response.suggest().get(suggesterName).get(0).term().options().get(0)
+                            .text(), "foo");
+    }
+
+    @Test
+    public void testPhraseSuggester() throws IOException {
+
+            String index = "test-phrase-suggester";
+
+            String settingsJson = "{\n" +
+                            "\"index\": {\n" +
+                            "\"analysis\": {\n" +
+                            "\"analyzer\": {\n" +
+                            "\"trigram\": {\n" +
+                            "\"type\": \"custom\",\n" +
+                            "\"tokenizer\": \"standard\",\n" +
+                            "\"filter\": [\n" +
+                            "\"lowercase\",\n" +
+                            "\"shingle\"\n" +
+                            "]\n" +
+                            "}\n" +
+                            "},\n" +
+                            "\"filter\": {\n" +
+                            "\"shingle\": {\n" +
+                            "\"type\": \"shingle\",\n" +
+                            "\"min_shingle_size\": 2,\n" +
+                            "\"max_shingle_size\": 3\n" +
+                            "}\n" +
+                            "}\n" +
+                            "}\n" +
+                            "}\n" +
+                            "}";
+
+            String mappingJson = "{\n" +
+                            "\"properties\": {\n" +
+                            "\"msg\": {\n" +
+                            "\"type\": \"text\",\n" +
+                            "\"fields\": {\n" +
+                            "\"trigram\": {\n" +
+                            "\"type\": \"text\",\n" +
+                            "\"analyzer\": \"trigram\"\n" +
+                            "}\n" +
+                            "}\n" +
+                            "}\n" +
+                            "}\n" +
+                            "}";
+
+                ObjectMapper mapper = new JsonMapper();
+            JsonpMapper jsonpMapper = new JacksonJsonpMapper(mapper);
+        IndexSettings settings;
+        try (JsonParser settingsParser = new JacksonJsonpParser(mapper.createParser(settingsJson))) {
+            settings = IndexSettings._DESERIALIZER.deserialize(settingsParser, jsonpMapper);
+        }
+
+        TypeMapping mapping;
+        try (JsonParser mappingParser = new JacksonJsonpParser(mapper.createParser(mappingJson))) {
+            mapping = TypeMapping._DESERIALIZER.deserialize(mappingParser, jsonpMapper);
+        }
+
+            javaClient().indices().create(c -> c
+                            .index(index)
+                            .settings(settings)
+                            .mappings(mapping));
+
+            AppData appData = new AppData();
+            appData.setIntValue(1337);
+            appData.setMsg("Design Patterns");
+
+            javaClient().index(b -> b
+                            .index(index)
+                            .id("1")
+                            .document(appData)
+                            .refresh(Refresh.True));
+
+            appData.setIntValue(1338);
+            appData.setMsg("Software Architecture Patterns Explained");
+
+            javaClient().index(b -> b
+                            .index(index)
+                            .id("2")
+                            .document(appData)
+                            .refresh(Refresh.True));
+
+            String suggesterName = "msgSuggester";
+
+            PhraseSuggester phraseSuggester = FieldSuggesterBuilders.phrase()
+                            .field("msg.trigram")
+                            .build();
+            FieldSuggester fieldSuggester = new FieldSuggester.Builder().text("design paterns")
+                            .phrase(phraseSuggester)
+                            .build();
+            Suggester suggester = new Suggester.Builder()
+                            .suggesters(Collections.singletonMap(suggesterName, fieldSuggester))
+                            .build();
+            SearchRequest searchRequest = new SearchRequest.Builder()
+                            .index(index)
+                            .suggest(suggester)
+                            .build();
+
+            SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
+            assertTrue(response.suggest().size() > 0);
+            assertTrue(response.suggest().keySet().contains(suggesterName));
+            assertNotNull(response.suggest().get(suggesterName));
+            assertNotNull(response.suggest().get(suggesterName).get(0));
+            assertTrue(response.suggest().get(suggesterName).get(0).isPhrase());
+            assertNotNull(response.suggest().get(suggesterName).get(0).phrase().options());
+            assertEquals(response.suggest().get(suggesterName).get(0).phrase().options().get(0)
+                            .text(), "design patterns");
     }
 
 //    @Test

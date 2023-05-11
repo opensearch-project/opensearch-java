@@ -17,7 +17,7 @@ import org.opensearch.client.opensearch._types.ShardStatistics;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch.core.search.HitsMetadata;
 import org.opensearch.client.opensearch.core.search.Profile;
-import org.opensearch.client.opensearch.core.search.Suggestion;
+import org.opensearch.client.opensearch.core.search.Suggest;
 import org.opensearch.client.json.ExternallyTaggedUnion;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -76,7 +76,7 @@ public abstract class SearchResult<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final String scrollId;
 
-	private final Map<String, List<Suggestion<TDocument>>> suggest;
+	private final Map<String, List<Suggest<TDocument>>> suggest;
 
 	@Nullable
 	private final Boolean terminatedEarly;
@@ -207,7 +207,7 @@ public abstract class SearchResult<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code suggest}
 	 */
-	public final Map<String, List<Suggestion<TDocument>>> suggest() {
+	public final Map<String, List<Suggest<TDocument>>> suggest() {
 		return this.suggest;
 	}
 
@@ -301,11 +301,11 @@ public abstract class SearchResult<TDocument> implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.suggest)) {
 			generator.writeKey("suggest");
 			generator.writeStartObject();
-			for (Map.Entry<String, List<Suggestion<TDocument>>> item0 : this.suggest.entrySet()) {
+			for (Map.Entry<String, List<Suggest<TDocument>>> item0 : this.suggest.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.writeStartArray();
 				if (item0.getValue() != null) {
-					for (Suggestion<TDocument> item1 : item0.getValue()) {
+					for (Suggest<TDocument> item1 : item0.getValue()) {
 						item1.serialize(generator, mapper);
 
 					}
@@ -365,7 +365,7 @@ public abstract class SearchResult<TDocument> implements JsonpSerializable {
 		private String scrollId;
 
 		@Nullable
-		private Map<String, List<Suggestion<TDocument>>> suggest;
+		private Map<String, List<Suggest<TDocument>>> suggest;
 
 		@Nullable
 		private Boolean terminatedEarly;
@@ -556,7 +556,7 @@ public abstract class SearchResult<TDocument> implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>suggest</code>.
 		 */
-		public final BuilderT suggest(Map<String, List<Suggestion<TDocument>>> map) {
+		public final BuilderT suggest(Map<String, List<Suggest<TDocument>>> map) {
 			this.suggest = _mapPutAll(this.suggest, map);
 			return self();
 		}
@@ -566,7 +566,7 @@ public abstract class SearchResult<TDocument> implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>suggest</code>.
 		 */
-		public final BuilderT suggest(String key, List<Suggestion<TDocument>> value) {
+		public final BuilderT suggest(String key, List<Suggest<TDocument>> value) {
 			this.suggest = _mapPut(this.suggest, key, value);
 			return self();
 		}
@@ -610,9 +610,9 @@ public abstract class SearchResult<TDocument> implements JsonpSerializable {
 		op.add(AbstractBuilder::profile, Profile._DESERIALIZER, "profile");
 		op.add(AbstractBuilder::pitId, JsonpDeserializer.stringDeserializer(), "pit_id");
 		op.add(AbstractBuilder::scrollId, JsonpDeserializer.stringDeserializer(), "_scroll_id");
-		op.add(AbstractBuilder::suggest, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.arrayDeserializer(Suggestion.createSuggestionDeserializer(tDocumentDeserializer))),
-				"suggest");
+		op.add(AbstractBuilder::suggest, ExternallyTaggedUnion.<Suggest<TDocument>>arrayDeserializer(
+				Suggest.createSuggestDeserializer(tDocumentDeserializer)), "suggest");
+		;
 		op.add(AbstractBuilder::terminatedEarly, JsonpDeserializer.booleanDeserializer(), "terminated_early");
 
 	}
