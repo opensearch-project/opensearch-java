@@ -4,14 +4,15 @@ This document contains a list of maintainers in this repo. See [opensearch-proje
 
 ## Current Maintainers
 
-| Maintainer         | GitHub ID                                               | Affiliation    |
-| ------------------ | ------------------------------------------------------- | -------------- |
-| Andriy Redko       | [reta](https://github.com/reta)                         | Aiven          |
-| Bukhtawar Khan     | [Bukhtawar](https://github.com/Bukhtawar)               | Amazon         |
-| Daniel Doubrovkine | [dblock](https://github.com/dblock)                     | Amazon         |
-| Madhusudhan Konda  | [madhusudhankonda](https://github.com/madhusudhankonda) | Chocolateminds |
-| Sarat Vemulapalli  | [saratvemulapalli](https://github.com/saratvemulapalli) | Amazon         |
-| Vacha Shah         | [VachaShah](https://github.com/VachaShah)               | Amazon         |
+| Maintainer           | GitHub ID                                               | Affiliation    |
+| -------------------- | ------------------------------------------------------- | -------------- |
+| Andriy Redko         | [reta](https://github.com/reta)                         | Aiven          |
+| Bukhtawar Khan       | [Bukhtawar](https://github.com/Bukhtawar)               | Amazon         |
+| Daniel Doubrovkine   | [dblock](https://github.com/dblock)                     | Amazon         |
+| Dominik Szczepańczyk | [szczepanczykd](https://github.com/szczepanczykd)       | Exadel         |
+| Madhusudhan Konda    | [madhusudhankonda](https://github.com/madhusudhankonda) | Chocolateminds |
+| Sarat Vemulapalli    | [saratvemulapalli](https://github.com/saratvemulapalli) | Amazon         |
+| Vacha Shah           | [VachaShah](https://github.com/VachaShah)               | Amazon         |
 
 ## Emeritus
 
