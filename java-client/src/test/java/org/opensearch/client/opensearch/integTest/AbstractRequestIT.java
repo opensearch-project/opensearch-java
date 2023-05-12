@@ -81,12 +81,15 @@ import org.opensearch.client.opensearch.indices.IndexState;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import jakarta.json.stream.JsonParser;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -787,111 +790,91 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                             .text(), "foo");
     }
 
-    @Test
-    public void testPhraseSuggester() throws IOException {
+		@Test
+		public void testPhraseSuggester() throws IOException {
 
-            String index = "test-phrase-suggester";
+			String index = "test-phrase-suggester";
+			String settingsJson;
+			String mappingJson;
+			try (InputStream in = Thread.currentThread().getContextClassLoader()
+					.getResourceAsStream("phraseIndexSettings.json")) {
+				ObjectMapper mapper = new ObjectMapper();
+				JsonNode jsonNode = mapper.readValue(in, JsonNode.class);
+				settingsJson = mapper.writeValueAsString(jsonNode);
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+			try (InputStream in = Thread.currentThread().getContextClassLoader()
+					.getResourceAsStream("phraseIndexMappings.json")) {
+				ObjectMapper mapper = new ObjectMapper();
+				JsonNode jsonNode = mapper.readValue(in, JsonNode.class);
+				mappingJson = mapper.writeValueAsString(jsonNode);
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
 
-            String settingsJson = "{\n" +
-                            "\"index\": {\n" +
-                            "\"analysis\": {\n" +
-                            "\"analyzer\": {\n" +
-                            "\"trigram\": {\n" +
-                            "\"type\": \"custom\",\n" +
-                            "\"tokenizer\": \"standard\",\n" +
-                            "\"filter\": [\n" +
-                            "\"lowercase\",\n" +
-                            "\"shingle\"\n" +
-                            "]\n" +
-                            "}\n" +
-                            "},\n" +
-                            "\"filter\": {\n" +
-                            "\"shingle\": {\n" +
-                            "\"type\": \"shingle\",\n" +
-                            "\"min_shingle_size\": 2,\n" +
-                            "\"max_shingle_size\": 3\n" +
-                            "}\n" +
-                            "}\n" +
-                            "}\n" +
-                            "}\n" +
-                            "}";
+			ObjectMapper mapper = new JsonMapper();
+			JsonpMapper jsonpMapper = new JacksonJsonpMapper(mapper);
+			IndexSettings settings;
+			try (JsonParser settingsParser = new JacksonJsonpParser(mapper.createParser(settingsJson))) {
+				settings = IndexSettings._DESERIALIZER.deserialize(settingsParser, jsonpMapper);
+			}
 
-            String mappingJson = "{\n" +
-                            "\"properties\": {\n" +
-                            "\"msg\": {\n" +
-                            "\"type\": \"text\",\n" +
-                            "\"fields\": {\n" +
-                            "\"trigram\": {\n" +
-                            "\"type\": \"text\",\n" +
-                            "\"analyzer\": \"trigram\"\n" +
-                            "}\n" +
-                            "}\n" +
-                            "}\n" +
-                            "}\n" +
-                            "}";
+			TypeMapping mapping;
+			try (JsonParser mappingParser = new JacksonJsonpParser(mapper.createParser(mappingJson))) {
+				mapping = TypeMapping._DESERIALIZER.deserialize(mappingParser, jsonpMapper);
+			}
 
-                ObjectMapper mapper = new JsonMapper();
-            JsonpMapper jsonpMapper = new JacksonJsonpMapper(mapper);
-        IndexSettings settings;
-        try (JsonParser settingsParser = new JacksonJsonpParser(mapper.createParser(settingsJson))) {
-            settings = IndexSettings._DESERIALIZER.deserialize(settingsParser, jsonpMapper);
-        }
+			javaClient().indices().create(c -> c
+					.index(index)
+					.settings(settings)
+					.mappings(mapping));
 
-        TypeMapping mapping;
-        try (JsonParser mappingParser = new JacksonJsonpParser(mapper.createParser(mappingJson))) {
-            mapping = TypeMapping._DESERIALIZER.deserialize(mappingParser, jsonpMapper);
-        }
+			AppData appData = new AppData();
+			appData.setIntValue(1337);
+			appData.setMsg("Design Patterns");
 
-            javaClient().indices().create(c -> c
-                            .index(index)
-                            .settings(settings)
-                            .mappings(mapping));
+			javaClient().index(b -> b
+					.index(index)
+					.id("1")
+					.document(appData)
+					.refresh(Refresh.True));
 
-            AppData appData = new AppData();
-            appData.setIntValue(1337);
-            appData.setMsg("Design Patterns");
+			appData.setIntValue(1338);
+			appData.setMsg("Software Architecture Patterns Explained");
 
-            javaClient().index(b -> b
-                            .index(index)
-                            .id("1")
-                            .document(appData)
-                            .refresh(Refresh.True));
+			javaClient().index(b -> b
+					.index(index)
+					.id("2")
+					.document(appData)
+					.refresh(Refresh.True));
 
-            appData.setIntValue(1338);
-            appData.setMsg("Software Architecture Patterns Explained");
+			String suggesterName = "msgSuggester";
 
-            javaClient().index(b -> b
-                            .index(index)
-                            .id("2")
-                            .document(appData)
-                            .refresh(Refresh.True));
+			PhraseSuggester phraseSuggester = FieldSuggesterBuilders.phrase()
+					.field("msg.trigram")
+					.build();
+			FieldSuggester fieldSuggester = new FieldSuggester.Builder().text("design paterns")
+					.phrase(phraseSuggester)
+					.build();
+			Suggester suggester = new Suggester.Builder()
+					.suggesters(Collections.singletonMap(suggesterName, fieldSuggester))
+					.build();
+			SearchRequest searchRequest = new SearchRequest.Builder()
+					.index(index)
+					.suggest(suggester)
+					.build();
 
-            String suggesterName = "msgSuggester";
-
-            PhraseSuggester phraseSuggester = FieldSuggesterBuilders.phrase()
-                            .field("msg.trigram")
-                            .build();
-            FieldSuggester fieldSuggester = new FieldSuggester.Builder().text("design paterns")
-                            .phrase(phraseSuggester)
-                            .build();
-            Suggester suggester = new Suggester.Builder()
-                            .suggesters(Collections.singletonMap(suggesterName, fieldSuggester))
-                            .build();
-            SearchRequest searchRequest = new SearchRequest.Builder()
-                            .index(index)
-                            .suggest(suggester)
-                            .build();
-
-            SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
-            assertTrue(response.suggest().size() > 0);
-            assertTrue(response.suggest().keySet().contains(suggesterName));
-            assertNotNull(response.suggest().get(suggesterName));
-            assertNotNull(response.suggest().get(suggesterName).get(0));
-            assertTrue(response.suggest().get(suggesterName).get(0).isPhrase());
-            assertNotNull(response.suggest().get(suggesterName).get(0).phrase().options());
-            assertEquals(response.suggest().get(suggesterName).get(0).phrase().options().get(0)
-                            .text(), "design patterns");
-    }
+			SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
+			assertTrue(response.suggest().size() > 0);
+			assertTrue(response.suggest().keySet().contains(suggesterName));
+			assertNotNull(response.suggest().get(suggesterName));
+			assertNotNull(response.suggest().get(suggesterName).get(0));
+			assertTrue(response.suggest().get(suggesterName).get(0).isPhrase());
+			assertNotNull(response.suggest().get(suggesterName).get(0).phrase().options());
+			assertEquals(response.suggest().get(suggesterName).get(0).phrase().options().get(0)
+					.text(), "design patterns");
+		}
 
 //    @Test
 //    public void testValueBodyResponse() throws Exception {

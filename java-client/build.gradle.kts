@@ -71,6 +71,10 @@ java {
     }
 }
 
+java.sourceSets["test"].java {
+    srcDir("src/test/resources")
+}
+
 tasks.withType<ProcessResources> {
     expand(
         "version" to version,

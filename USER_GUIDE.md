@@ -311,43 +311,50 @@ SearchResponse<AppData> response = client.search(searchRequest, AppData.class);
 ```java
 String index = "phrase-suggester";
 
-String settingsJson = "{\n" +
-                "\"index\": {\n" +
-                "\"analysis\": {\n" +
-                "\"analyzer\": {\n" +
-                "\"trigram\": {\n" +
-                "\"type\": \"custom\",\n" +
-                "\"tokenizer\": \"standard\",\n" +
-                "\"filter\": [\n" +
-                "\"lowercase\",\n" +
-                "\"shingle\"\n" +
-                "]\n" +
-                "}\n" +
-                "},\n" +
-                "\"filter\": {\n" +
-                "\"shingle\": {\n" +
-                "\"type\": \"shingle\",\n" +
-                "\"min_shingle_size\": 2,\n" +
-                "\"max_shingle_size\": 3\n" +
-                "}\n" +
-                "}\n" +
-                "}\n" +
-                "}\n" +
-                "}";
+String settingsJson = 
+"""
+  {
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "trigram": {
+            "type": "custom",
+            "tokenizer": "standard",
+            "filter": [
+              "lowercase",
+              "shingle"
+            ]
+          }
+        },
+        "filter": {
+          "shingle": {
+            "type": "shingle",
+            "min_shingle_size": 2,
+            "max_shingle_size": 3
+          }
+        }
+      }
+    }
+  }
+""";
 
-String mappingJson = "{\n" +
-                "\"properties\": {\n" +
-                "\"msg\": {\n" +
-                "\"type\": \"text\",\n" +
-                "\"fields\": {\n" +
-                "\"trigram\": {\n" +
-                "\"type\": \"text\",\n" +
-                "\"analyzer\": \"trigram\"\n" +
-                "}\n" +
-                "}\n" +
-                "}\n" +
-                "}\n" +
-                "}";
+String mappingJson =
+"""
+{
+  "properties": {
+    "msg": {
+      "type": "text",
+      "fields": {
+        "trigram": {
+          "type": "text",
+          "analyzer": "trigram"
+        }
+      }
+    }
+  }
+}
+""";
+
 
     ObjectMapper mapper = new JsonMapper();
 JsonpMapper jsonpMapper = new JacksonJsonpMapper(mapper);
