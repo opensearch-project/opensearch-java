@@ -84,7 +84,7 @@ public class PhraseSuggestOption implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code highlighted}
+	 * API name: {@code highlighted}
 	 */
 	@Nullable
 	public final String highlighted() {
