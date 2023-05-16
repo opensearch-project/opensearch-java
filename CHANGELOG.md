@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added Point-In-Time APIs ([#461](https://github.com/opensearch-project/opensearch-java/pull/461))
 
 ### Dependencies
+- Bumps `com.github.jk1.dependency-license-report` from 1.19 to 2.2
 
 ### Changed
 - Improve time taken by Github actions by using cache ([#439](https://github.com/opensearch-project/opensearch-java/pull/439))
