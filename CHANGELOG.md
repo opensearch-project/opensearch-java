@@ -13,6 +13,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bumps `io.github.classgraph:classgraph` from 4.8.157 to 4.8.158
+- Bumps `com.github.jk1.dependency-license-report` from 1.19 to 2.2
 
 ### Changed
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
