@@ -63,18 +63,19 @@ public interface JsonEnum extends JsonpSerializable {
         private final Map<String, T> lookupTable;
 
         public Deserializer(T[] values) {
-            super(
-                EnumSet.of(JsonParser.Event.VALUE_STRING, JsonParser.Event.KEY_NAME),
-                EnumSet.of(JsonParser.Event.VALUE_STRING)
-            );
+            this(values, EnumSet.of(JsonParser.Event.VALUE_STRING, JsonParser.Event.KEY_NAME));
+        }
+
+        private Deserializer(T[] values, EnumSet<JsonParser.Event> acceptedEvents) {
+            super(acceptedEvents, EnumSet.of(JsonParser.Event.VALUE_STRING));
 
             // Use the same size calculation as in java.lang.Enum.enumConstantDirectory
-            this.lookupTable = new HashMap<>((int)(values.length / 0.75f) + 1);
+            this.lookupTable = new HashMap<>((int) (values.length / 0.75f) + 1);
             for (T member : values) {
                 this.lookupTable.put(member.jsonValue(), member);
                 String[] aliases = member.aliases();
                 if (aliases != null) {
-                    for (String alias: aliases) {
+                    for (String alias : aliases) {
                         this.lookupTable.put(alias, member);
                     }
                 }
@@ -116,6 +117,38 @@ public interface JsonEnum extends JsonpSerializable {
                 throw new NoSuchElementException("Invalid enum '" + value + "'");
             }
             return result;
+        }
+    }
+
+    class DeserializerSupportingBooleans<T extends JsonEnum> extends Deserializer<T> {
+
+        private static final EnumSet<JsonParser.Event> ACCEPTED_EVENTS = EnumSet.of(
+            JsonParser.Event.VALUE_STRING,
+            JsonParser.Event.KEY_NAME,
+            JsonParser.Event.VALUE_TRUE,
+            JsonParser.Event.VALUE_FALSE
+        );
+
+        public DeserializerSupportingBooleans(T[] values) {
+            super(values, ACCEPTED_EVENTS);
+        }
+
+        @Override
+        public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+            String value;
+
+            switch (event) {
+                case VALUE_TRUE:
+                    value = "true";
+                    break;
+                case VALUE_FALSE:
+                    value = "false";
+                    break;
+                default:
+                    value = parser.getString();
+            }
+
+            return deserialize(value, parser);
         }
     }
 }

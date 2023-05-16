@@ -33,13 +33,14 @@
 package org.opensearch.client.opensearch.model;
 
 import org.opensearch.client.opensearch._types.Bytes;
+import org.opensearch.client.opensearch._types.mapping.DynamicMapping;
 import org.opensearch.client.opensearch._types.mapping.GeoOrientation;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
 
-public class EnumTest extends Assert {
+public class EnumTest extends ModelTestCase {
 
     @Test
     public void testSimpleEnum() {
@@ -55,5 +56,17 @@ public class EnumTest extends Assert {
         Arrays.asList("right", "RIGHT", "counterclockwise", "ccw").forEach(alias -> {
             assertEquals(GeoOrientation.Right, GeoOrientation._DESERIALIZER.parse(alias));
         });
+    }
+
+    @Test
+    public void testEnumWithBooleanSupport() {
+        var booleanAsString = fromJson("\"true\"", DynamicMapping.class);
+        assertEquals(booleanAsString, DynamicMapping.True);
+
+        var nonBooleanEnumValue = fromJson("\"runtime\"", DynamicMapping.class);
+        assertEquals(nonBooleanEnumValue, DynamicMapping.Runtime);
+
+        var booleanPrimitive = fromJson("false", DynamicMapping.class);
+        assertEquals(booleanPrimitive, DynamicMapping.False);
     }
 }

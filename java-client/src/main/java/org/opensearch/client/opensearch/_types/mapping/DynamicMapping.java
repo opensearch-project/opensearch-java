@@ -62,6 +62,6 @@ public enum DynamicMapping implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<DynamicMapping> _DESERIALIZER = new JsonEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<DynamicMapping> _DESERIALIZER = new JsonEnum.DeserializerSupportingBooleans<>(
 			DynamicMapping.values());
 }
