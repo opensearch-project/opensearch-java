@@ -32,11 +32,10 @@
 
 package org.opensearch.client.opensearch.model;
 
+import org.junit.Test;
 import org.opensearch.client.opensearch._types.Bytes;
 import org.opensearch.client.opensearch._types.mapping.DynamicMapping;
 import org.opensearch.client.opensearch._types.mapping.GeoOrientation;
-import org.junit.Assert;
-import org.junit.Test;
 
 import java.util.Arrays;
 
