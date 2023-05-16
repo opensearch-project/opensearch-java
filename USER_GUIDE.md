@@ -356,7 +356,7 @@ String mappingJson =
 """;
 
 
-    ObjectMapper mapper = new JsonMapper();
+ObjectMapper mapper = new JsonMapper();
 JsonpMapper jsonpMapper = new JacksonJsonpMapper(mapper);
 IndexSettings settings;
 try (JsonParser settingsParser = new JacksonJsonpParser(mapper.createParser(settingsJson))) {
