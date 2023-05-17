@@ -59,5 +59,5 @@ public enum Refresh implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<Refresh> _DESERIALIZER = new JsonEnum.DeserializerSupportingBooleans<>(Refresh.values());
+	public static final JsonEnum.Deserializer<Refresh> _DESERIALIZER = new JsonEnum.Deserializer<>(Refresh.values());
 }
