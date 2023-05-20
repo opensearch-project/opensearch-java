@@ -68,7 +68,7 @@ public class StoreStats implements JsonpSerializable {
 	private final String totalDataSetSize;
 
 	@Nullable
-	private final Integer totalDataSetSizeInBytes;
+	private final Long totalDataSetSizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -129,7 +129,7 @@ public class StoreStats implements JsonpSerializable {
 	 * API name: {@code total_data_set_size_in_bytes}
 	 */
 	@Nullable
-	public final Integer totalDataSetSizeInBytes() {
+	public final Long totalDataSetSizeInBytes() {
 		return this.totalDataSetSizeInBytes;
 	}
 
@@ -183,18 +183,18 @@ public class StoreStats implements JsonpSerializable {
 		@Nullable
 		private String size;
 
-		private Integer sizeInBytes;
+		private Long sizeInBytes;
 
 		@Nullable
 		private String reserved;
 
-		private Integer reservedInBytes;
+		private Long reservedInBytes;
 
 		@Nullable
 		private String totalDataSetSize;
 
 		@Nullable
-		private Integer totalDataSetSizeInBytes;
+		private Long totalDataSetSizeInBytes;
 
 		/**
 		 * API name: {@code size}
@@ -207,7 +207,7 @@ public class StoreStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size_in_bytes}
 		 */
-		public final Builder sizeInBytes(int value) {
+		public final Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -223,7 +223,7 @@ public class StoreStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reserved_in_bytes}
 		 */
-		public final Builder reservedInBytes(int value) {
+		public final Builder reservedInBytes(long value) {
 			this.reservedInBytes = value;
 			return this;
 		}
@@ -239,7 +239,7 @@ public class StoreStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_data_set_size_in_bytes}
 		 */
-		public final Builder totalDataSetSizeInBytes(@Nullable Integer value) {
+		public final Builder totalDataSetSizeInBytes(@Nullable Long value) {
 			this.totalDataSetSizeInBytes = value;
 			return this;
 		}
@@ -268,11 +268,11 @@ public class StoreStats implements JsonpSerializable {
 	protected static void setupStoreStatsDeserializer(ObjectDeserializer<StoreStats.Builder> op) {
 
 		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
-		op.add(Builder::sizeInBytes, JsonpDeserializer.integerDeserializer(), "size_in_bytes");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
 		op.add(Builder::reserved, JsonpDeserializer.stringDeserializer(), "reserved");
-		op.add(Builder::reservedInBytes, JsonpDeserializer.integerDeserializer(), "reserved_in_bytes");
+		op.add(Builder::reservedInBytes, JsonpDeserializer.longDeserializer(), "reserved_in_bytes");
 		op.add(Builder::totalDataSetSize, JsonpDeserializer.stringDeserializer(), "total_data_set_size");
-		op.add(Builder::totalDataSetSizeInBytes, JsonpDeserializer.integerDeserializer(),
+		op.add(Builder::totalDataSetSizeInBytes, JsonpDeserializer.longDeserializer(),
 				"total_data_set_size_in_bytes");
 
 	}
