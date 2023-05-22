@@ -15,6 +15,8 @@ import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 import org.opensearch.client.opensearch.indices.DataStream;
 import org.opensearch.client.opensearch.indices.DataStreamsStatsResponse;
 import org.opensearch.client.opensearch.indices.DeleteDataStreamResponse;
+import org.opensearch.client.opensearch.indices.GetAliasRequest;
+import org.opensearch.client.opensearch.indices.GetAliasResponse;
 import org.opensearch.client.opensearch.indices.GetDataStreamResponse;
 import org.opensearch.client.opensearch.indices.GetIndexRequest;
 import org.opensearch.client.opensearch.indices.GetIndexResponse;
@@ -186,6 +188,21 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         } catch (OpenSearchException ex) {
             assertNotNull(ex);
             assertEquals(ex.status(), 404);
+        }
+    }
+
+    public void testGetNotExistingIndexAlias() throws Exception {
+        String notExistingIndexAlias = "alias_not_exists";
+        GetAliasRequest aliasRequest = new GetAliasRequest.Builder().name(notExistingIndexAlias).build();
+        try {
+            GetAliasResponse response = javaClient().indices().getAlias(aliasRequest);
+            fail();
+        } catch (OpenSearchException ex) {
+            assertNotNull(ex);
+            assertEquals(ex.status(), 404);
+            assertEquals(ex.getMessage(),
+                    "Request failed: [string_error] " +
+                            "alias [alias_not_exists] missing");
         }
     }
 }

@@ -44,7 +44,7 @@ import java.util.NoSuchElementException;
 
 /**
  * Base interface for enumerations in API types. Members have a JSON representation and also accept
- * aliases when parsed from a string value.
+ * aliases when parsed from a string value. For some enumerations primitive boolean values are also supported.
  */
 public interface JsonEnum extends JsonpSerializable {
     String jsonValue();
@@ -62,19 +62,24 @@ public interface JsonEnum extends JsonpSerializable {
     class Deserializer<T extends JsonEnum> extends JsonpDeserializerBase<T> {
         private final Map<String, T> lookupTable;
 
-        public Deserializer(T[] values) {
-            super(
-                EnumSet.of(JsonParser.Event.VALUE_STRING, JsonParser.Event.KEY_NAME),
-                EnumSet.of(JsonParser.Event.VALUE_STRING)
-            );
+        private static final EnumSet<JsonParser.Event> ACCEPTED_EVENTS = EnumSet.of(
+            JsonParser.Event.VALUE_STRING,
+            JsonParser.Event.KEY_NAME,
+            JsonParser.Event.VALUE_TRUE,
+            JsonParser.Event.VALUE_FALSE
+        );
 
-            // Use the same size calculation as in java.lang.Enum.enumConstantDirectory
-            this.lookupTable = new HashMap<>((int)(values.length / 0.75f) + 1);
+        private static final EnumSet<JsonParser.Event> NATIVE_EVENTS = EnumSet.of(JsonParser.Event.VALUE_STRING);
+
+        public Deserializer(T[] values) {
+            super(ACCEPTED_EVENTS, NATIVE_EVENTS);
+
+            this.lookupTable = new HashMap<>((int) (values.length / 0.75f) + 1);
             for (T member : values) {
                 this.lookupTable.put(member.jsonValue(), member);
                 String[] aliases = member.aliases();
                 if (aliases != null) {
-                    for (String alias: aliases) {
+                    for (String alias : aliases) {
                         this.lookupTable.put(alias, member);
                     }
                 }
@@ -83,7 +88,18 @@ public interface JsonEnum extends JsonpSerializable {
 
         @Override
         public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
-            String value = parser.getString();
+            String value;
+            switch (event) {
+                case VALUE_TRUE:
+                    value = "true";
+                    break;
+                case VALUE_FALSE:
+                    value = "false";
+                    break;
+                default:
+                    value = parser.getString();
+            }
+
             return deserialize(value, parser);
         }
 
