@@ -32,7 +32,6 @@
 
 package org.opensearch.client.transport.rest_client;
 
-import jakarta.json.stream.JsonParsingException;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -61,6 +60,7 @@ import org.opensearch.client.Response;
 import org.opensearch.client.ResponseException;
 import org.opensearch.client.ResponseListener;
 import org.opensearch.client.RestClient;
+import software.amazon.awssdk.http.HttpStatusCode;
 
 import javax.annotation.Nullable;
 import java.io.ByteArrayOutputStream;
@@ -247,7 +247,11 @@ public class RestClientTransport implements OpenSearchTransport {
         try {
             int statusCode = clientResp.getStatusLine().getStatusCode();
 
-            if (endpoint.isError(statusCode)) {
+            if (statusCode == HttpStatusCode.FORBIDDEN) {
+                throw new TransportException("Forbidden access", new ResponseException(clientResp));
+            } else if (statusCode == HttpStatusCode.UNAUTHORIZED) {
+                throw new TransportException("Unauthorized access", new ResponseException(clientResp));
+            } else if (endpoint.isError(statusCode)) {
                 JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
                 if (errorDeserializer == null) {
                     throw new TransportException(
@@ -274,7 +278,7 @@ public class RestClientTransport implements OpenSearchTransport {
                         // TODO: have the endpoint provide the exception constructor
                         throw new OpenSearchException((ErrorResponse) error);
                     }
-                } catch(MissingRequiredPropertyException | JsonParsingException errorEx) {
+                } catch(MissingRequiredPropertyException errorEx) {
                     // Could not decode exception, try the response type
                     try {
                         ResponseT response = decodeResponse(statusCode, entity, clientResp, endpoint);
