@@ -39,6 +39,7 @@ import java.util.Optional;
 import java.util.TreeSet;
 
 public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCase implements OpenSearchTransportSupport {
+    private static final List<String> systemIndices = List.of(".opensearch-observability", ".opendistro_security");
     private static OpenSearchClient javaClient;
     private static OpenSearchClient adminJavaClient;
 
@@ -137,7 +138,7 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
             .indices(r -> r.headers("index,creation.date").expandWildcards(ExpandWildcard.All));
 
         for (IndicesRecord index : response.valueBody()) {
-            if (index.index() != null && !".opendistro_security".equals(index.index())) {
+            if (index.index() != null && !systemIndices.contains(index.index())) {
                 adminJavaClient().indices().delete(new DeleteIndexRequest.Builder().index(index.index()).build());
             }
         }
