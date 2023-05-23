@@ -32,6 +32,7 @@
 
 package org.opensearch.client.transport.rest_client;
 
+import jakarta.json.stream.JsonParsingException;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -273,7 +274,7 @@ public class RestClientTransport implements OpenSearchTransport {
                         // TODO: have the endpoint provide the exception constructor
                         throw new OpenSearchException((ErrorResponse) error);
                     }
-                } catch(MissingRequiredPropertyException errorEx) {
+                } catch(MissingRequiredPropertyException | JsonParsingException errorEx) {
                     // Could not decode exception, try the response type
                     try {
                         ResponseT response = decodeResponse(statusCode, entity, clientResp, endpoint);
