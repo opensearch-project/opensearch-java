@@ -32,6 +32,7 @@
 
 package org.opensearch.client.transport.rest_client;
 
+import org.apache.hc.core5.http.HttpStatus;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -60,7 +61,6 @@ import org.opensearch.client.Response;
 import org.opensearch.client.ResponseException;
 import org.opensearch.client.ResponseListener;
 import org.opensearch.client.RestClient;
-import software.amazon.awssdk.http.HttpStatusCode;
 
 import javax.annotation.Nullable;
 import java.io.ByteArrayOutputStream;
@@ -247,9 +247,9 @@ public class RestClientTransport implements OpenSearchTransport {
         try {
             int statusCode = clientResp.getStatusLine().getStatusCode();
 
-            if (statusCode == HttpStatusCode.FORBIDDEN) {
+            if (statusCode == HttpStatus.SC_FORBIDDEN) {
                 throw new TransportException("Forbidden access", new ResponseException(clientResp));
-            } else if (statusCode == HttpStatusCode.UNAUTHORIZED) {
+            } else if (statusCode == HttpStatus.SC_UNAUTHORIZED) {
                 throw new TransportException("Unauthorized access", new ResponseException(clientResp));
             } else if (endpoint.isError(statusCode)) {
                 JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
