@@ -76,6 +76,11 @@ There are multiple low level transports which `OpenSearchClient` could be config
 ### Create a client using `RestClientTransport`
 
 ```java
+//Initialize the client with SSL and TLS enabled
+final RestClient restClient = RestClient
+  .builder(hosts).
+  .build();
+
 OpenSearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper()); 
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
