@@ -37,8 +37,6 @@ import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.rest_client.RestClientTransport;
 import org.opensearch.common.settings.Settings;
 
-import javax.net.ssl.SSLEngine;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class RequestIT extends AbstractRequestIT {
