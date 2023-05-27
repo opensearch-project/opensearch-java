@@ -76,6 +76,17 @@ There are multiple low level transports which `OpenSearchClient` could be config
 ### Create a client using `RestClientTransport`
 
 ```java
+import org.apache.http.HttpHost;
+
+final HttpHost[] hosts = new HttpHost[] {
+    new HttpHost("localhost", 9200, "http")
+  };
+
+// Initialize the client with SSL and TLS enabled
+final RestClient restClient = RestClient
+  .builder(hosts)
+  .build();
+
 OpenSearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper()); 
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
@@ -93,6 +104,12 @@ Upcoming OpenSearch `3.0.0` release brings HTTP/2 support and as such, the `Rest
 ### Create a client using `ApacheHttpClient5Transport`
 
 ```java
+import org.apache.hc.core5.http.HttpHost;
+
+final HttpHost[] hosts = new HttpHost[] {
+    new HttpHost("localhost", "http", 9200)
+  };
+
 final OpenSearchTransport transport = ApacheHttpClient5TransportBuilder
     .builder(hosts)
     .setMapper(new JacksonJsonpMapper())
