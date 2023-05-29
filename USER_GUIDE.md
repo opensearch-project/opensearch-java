@@ -76,10 +76,10 @@ There are multiple low level transports which `OpenSearchClient` could be config
 ### Create a client using `RestClientTransport`
 
 ```java
-import org.apache.http.HttpHost;
+import org.apache.hc.core5.http.HttpHost;
 
 final HttpHost[] hosts = new HttpHost[] {
-    new HttpHost("localhost", 9200, "http")
+    new HttpHost("localhost", "http", 9200)
   };
 
 // Initialize the client with SSL and TLS enabled
