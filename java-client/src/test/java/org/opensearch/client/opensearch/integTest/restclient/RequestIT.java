@@ -11,17 +11,13 @@ package org.opensearch.client.opensearch.integTest.restclient;
 import java.io.IOException;
 import java.util.Optional;
 
-import org.apache.hc.client5.http.auth.AuthScope;
-import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
-import org.apache.hc.client5.http.impl.auth.BasicCredentialsProvider;
-import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManager;
-import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManagerBuilder;
-import org.apache.hc.client5.http.ssl.ClientTlsStrategyBuilder;
-import org.apache.hc.client5.http.ssl.NoopHostnameVerifier;
-import org.apache.hc.core5.http.HttpHost;
-import org.apache.hc.core5.http.nio.ssl.TlsStrategy;
-import org.apache.hc.core5.reactor.ssl.TlsDetails;
-import org.apache.hc.core5.ssl.SSLContextBuilder;
+import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.conn.ssl.TrustAllStrategy;
+import org.apache.http.conn.ssl.TrustStrategy;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.ssl.SSLContexts;
 import org.junit.Assume;
 import org.junit.Test;
 import org.opensearch.client.RestClient;
@@ -36,6 +32,8 @@ import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.rest_client.RestClientTransport;
 import org.opensearch.common.settings.Settings;
+
+import javax.net.ssl.SSLContext;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -56,30 +54,17 @@ public class RequestIT extends AbstractRequestIT {
 
         final BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
         credentialsProvider.setCredentials(new AuthScope(getClusterHosts().get(0)),
-                new UsernamePasswordCredentials(userName, wrongPassword.toCharArray()));
+                new UsernamePasswordCredentials(userName, wrongPassword));
 
         final RestClient restClient = RestClient
                 .builder(getClusterHosts().toArray(new HttpHost[0]))
                 .setHttpClientConfigCallback(httpClientBuilder -> {
                     try {
-                        final TlsStrategy tlsStrategy = ClientTlsStrategyBuilder
-                                .create()
-                                .setSslContext(
-                                        SSLContextBuilder.create().loadTrustMaterial(
-                                                null, (chains, authType) -> true).build())
-                                .setHostnameVerifier(NoopHostnameVerifier.INSTANCE)
-                                .setTlsDetailsFactory(
-                                        sslEngine -> new TlsDetails(
-                                                sslEngine.getSession(), sslEngine.getApplicationProtocol()))
-                                .build();
-
-                        final PoolingAsyncClientConnectionManager connectionManager =
-                                PoolingAsyncClientConnectionManagerBuilder.create()
-                                        .setTlsStrategy(tlsStrategy)
-                                        .build();
-
+                        final TrustStrategy trustStrategy = new TrustAllStrategy();
+                        final SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(
+                                null, trustStrategy).build();
                         return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider)
-                                .setConnectionManager(connectionManager);
+                                .setSSLContext(sslContext);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
