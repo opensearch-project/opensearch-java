@@ -92,6 +92,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Update maintainers, admins and documentation ([#248](https://github.com/opensearch-project/opensearch-java/pull/248))
 
 ### Deprecated
+- Deprecate the totalDataSetSize and totalDataSetSizeInBytes fields in the StoreStats ([#498](https://github.com/opensearch-project/opensearch-java/pull/498))
+
 
 ### Removed
 - Remove support for unsupported dynamic_templates in bulk ([#276](https://github.com/opensearch-project/opensearch-java/pull/276))
