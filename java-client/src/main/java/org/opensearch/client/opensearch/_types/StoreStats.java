@@ -64,9 +64,11 @@ public class StoreStats implements JsonpSerializable {
 
 	private final long reservedInBytes;
 
+	@Deprecated
 	@Nullable
 	private final String totalDataSetSize;
 
+	@Deprecated
 	@Nullable
 	private final Long totalDataSetSizeInBytes;
 
@@ -118,16 +120,22 @@ public class StoreStats implements JsonpSerializable {
 	}
 
 	/**
+	 * @deprecated
+	 * Not returned by server
 	 * API name: {@code total_data_set_size}
 	 */
+	@Deprecated
 	@Nullable
 	public final String totalDataSetSize() {
 		return this.totalDataSetSize;
 	}
 
 	/**
+	 * @deprecated
+	 * Not returned by server
 	 * API name: {@code total_data_set_size_in_bytes}
 	 */
+	@Deprecated
 	@Nullable
 	public final Long totalDataSetSizeInBytes() {
 		return this.totalDataSetSizeInBytes;
@@ -190,9 +198,11 @@ public class StoreStats implements JsonpSerializable {
 
 		private Long reservedInBytes;
 
+		@Deprecated
 		@Nullable
 		private String totalDataSetSize;
 
+		@Deprecated
 		@Nullable
 		private Long totalDataSetSizeInBytes;
 
@@ -229,16 +239,22 @@ public class StoreStats implements JsonpSerializable {
 		}
 
 		/**
+		 * @deprecated
+		 * Not returned by server
 		 * API name: {@code total_data_set_size}
 		 */
+		@Deprecated
 		public final Builder totalDataSetSize(@Nullable String value) {
 			this.totalDataSetSize = value;
 			return this;
 		}
 
 		/**
+		 * @deprecated
+		 * Not returned by server
 		 * API name: {@code total_data_set_size_in_bytes}
 		 */
+		@Deprecated
 		public final Builder totalDataSetSizeInBytes(@Nullable Long value) {
 			this.totalDataSetSizeInBytes = value;
 			return this;
