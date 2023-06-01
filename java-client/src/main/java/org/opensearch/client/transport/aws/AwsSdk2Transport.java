@@ -457,7 +457,13 @@ public class AwsSdk2Transport implements OpenSearchTransport {
                     JsonObject val = JsonpDeserializer.jsonValueDeserializer()
                             .deserialize(parser, mapper)
                             .asJsonObject();
-                    String message = val.getString("Message", null);
+                    String message = null;
+                    if (val.get("error") instanceof JsonObject) {
+                        message = val.get("error").asJsonObject().getString("reason", null);
+                    }
+                    if (message == null) {
+                        message = val.getString("Message", null);
+                    }
                     if (message == null) {
                         message = val.getString("message", null);
                     }
