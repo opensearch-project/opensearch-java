@@ -3,6 +3,21 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.5.0] - 06/02/2023
+### Added
 - Add workflow to publish snapshots via GHA ([#454](https://github.com/opensearch-project/opensearch-java/pull/454))
 - Added Point-In-Time APIs ([#461](https://github.com/opensearch-project/opensearch-java/pull/461))
 
@@ -113,7 +128,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/opensearch-java/compare/v2.4.0...2.x
+[Unreleased]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...2.x
+[2.5.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.1.0...v2.2.0
