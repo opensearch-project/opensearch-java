@@ -1,20 +1,14 @@
 # CHANGELOG
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
-## [Unreleased]
-### Dependencies
-- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
-
 
 ## [Unreleased 3.0]
 
 ### Added
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
-- Added Point-In-Time APIs ([#461](https://github.com/opensearch-project/opensearch-java/pull/461))
 
 ### Dependencies
 - Bumps `io.github.classgraph:classgraph` from 4.8.157 to 4.8.158
-- Bumps `com.github.jk1.dependency-license-report` from 1.19 to 2.2
-- Bumps `org.eclipse.parsson:parsson` from 1.1.1 to 1.1.2
+- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
 
 ### Changed
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
@@ -31,9 +25,28 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 2.x]
 
 ### Added
-- Add workflow to publish snapshots via GHA ([#454](https://github.com/opensearch-project/opensearch-java/pull/454))
 
 ### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.5.0] - 06/02/2023
+
+### Added
+- Add workflow to publish snapshots via GHA ([#454](https://github.com/opensearch-project/opensearch-java/pull/454))
+- Added Point-In-Time APIs ([#461](https://github.com/opensearch-project/opensearch-java/pull/461))
+
+### Dependencies
+- Bumps `com.github.jk1.dependency-license-report` from 1.19 to 2.2
+- Bumps `org.eclipse.parsson:parsson` from 1.1.1 to 1.1.2
 
 ### Changed
 - Improve time taken by Github actions by using cache ([#439](https://github.com/opensearch-project/opensearch-java/pull/439))
@@ -138,7 +151,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.4.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...2.x
+[2.5.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.1.0...v2.2.0
