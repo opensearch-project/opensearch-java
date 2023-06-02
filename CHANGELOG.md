@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bumps `com.github.jk1.dependency-license-report` from 1.19 to 2.2
+- Bumps `org.eclipse.parsson:parsson` from 1.1.1 to 1.1.2
 
 ### Changed
 - Improve time taken by Github actions by using cache ([#439](https://github.com/opensearch-project/opensearch-java/pull/439))
