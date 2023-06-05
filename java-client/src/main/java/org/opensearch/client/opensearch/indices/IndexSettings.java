@@ -199,10 +199,16 @@ public class IndexSettings implements JsonpSerializable {
 	private final Integer maxSlicesPerScroll;
 
 	@Nullable
+	private final Translog translog;
+
+	@Nullable
 	private final String translogDurability;
 
 	@Nullable
 	private final String translogFlushThresholdSize;
+
+	@Nullable
+	private final Time translogSyncInterval;
 
 	@Nullable
 	private final Boolean queryStringLenient;
@@ -280,8 +286,10 @@ public class IndexSettings implements JsonpSerializable {
 		this.verifiedBeforeClose = builder.verifiedBeforeClose;
 		this.format = builder.format;
 		this.maxSlicesPerScroll = builder.maxSlicesPerScroll;
+		this.translog = builder.translog;
 		this.translogDurability = builder.translogDurability;
 		this.translogFlushThresholdSize = builder.translogFlushThresholdSize;
+		this.translogSyncInterval = builder.translogSyncInterval;
 		this.queryStringLenient = builder.queryStringLenient;
 		this.priority = builder.priority;
 		this.topMetricsMaxSize = builder.topMetricsMaxSize;
@@ -681,6 +689,14 @@ public class IndexSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code translog}
+	 */
+	@Nullable
+	public final Translog translog() {
+		return this.translog;
+	}
+
+	/**
 	 * API name: {@code translog.durability}
 	 */
 	@Nullable
@@ -694,6 +710,14 @@ public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	public final String translogFlushThresholdSize() {
 		return this.translogFlushThresholdSize;
+	}
+
+	/**
+	 * API name: {@code translog.sync_interval}
+	 */
+	@Nullable
+	public final Time translogSyncInterval() {
+		return this.translogSyncInterval;
 	}
 
 	/**
@@ -1016,6 +1040,11 @@ public class IndexSettings implements JsonpSerializable {
 			generator.write(this.maxSlicesPerScroll);
 
 		}
+		if (this.translog != null) {
+			generator.writeKey("translog");
+			this.translog.serialize(generator, mapper);
+
+		}
 		if (this.translogDurability != null) {
 			generator.writeKey("translog.durability");
 			generator.write(this.translogDurability);
@@ -1024,6 +1053,11 @@ public class IndexSettings implements JsonpSerializable {
 		if (this.translogFlushThresholdSize != null) {
 			generator.writeKey("translog.flush_threshold_size");
 			generator.write(this.translogFlushThresholdSize);
+
+		}
+		if (this.translogSyncInterval != null) {
+			generator.writeKey("translog.sync_interval");
+			this.translogSyncInterval.serialize(generator, mapper);
 
 		}
 		if (this.queryStringLenient != null) {
@@ -1221,10 +1255,16 @@ public class IndexSettings implements JsonpSerializable {
 		private Integer maxSlicesPerScroll;
 
 		@Nullable
+		private Translog translog;
+
+		@Nullable
 		private String translogDurability;
 
 		@Nullable
 		private String translogFlushThresholdSize;
+
+		@Nullable
+		private Time translogSyncInterval;
 
 		@Nullable
 		private Boolean queryStringLenient;
@@ -1717,6 +1757,14 @@ public class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code translog}
+		 */
+		public final Builder translog(@Nullable Translog value) {
+			this.translog = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code translog.durability}
 		 */
 		public final Builder translogDurability(@Nullable String value) {
@@ -1729,6 +1777,14 @@ public class IndexSettings implements JsonpSerializable {
 		 */
 		public final Builder translogFlushThresholdSize(@Nullable String value) {
 			this.translogFlushThresholdSize = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code translog.sync_interval}
+		 */
+		public final Builder translogSyncInterval(@Nullable Time value) {
+			this.translogSyncInterval = value;
 			return this;
 		}
 
@@ -1920,10 +1976,13 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format", "index.format");
 		op.add(Builder::maxSlicesPerScroll, JsonpDeserializer.integerDeserializer(), "max_slices_per_scroll",
 				"index.max_slices_per_scroll");
+		op.add(Builder::translog, Translog._DESERIALIZER, "translog", "index.translog");
 		op.add(Builder::translogDurability, JsonpDeserializer.stringDeserializer(), "translog.durability",
 				"index.translog.durability");
 		op.add(Builder::translogFlushThresholdSize, JsonpDeserializer.stringDeserializer(),
 				"translog.flush_threshold_size", "index.translog.flush_threshold_size");
+		op.add(Builder::translogSyncInterval, Time._DESERIALIZER,
+				"translog.sync_interval", "index.translog.sync_interval");
 		op.add(Builder::queryStringLenient, JsonpDeserializer.booleanDeserializer(), "query_string.lenient",
 				"index.query_string.lenient");
 		op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority", "index.priority");

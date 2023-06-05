@@ -126,10 +126,11 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
     }
 
     @Test
-    public void testIndexSettingsMapping() throws Exception {
+    public void testIndexSettings() throws Exception {
         var createResponse = javaClient().indices()
                 .create(r -> r.index("test-settings")
                         .settings(s -> s
+                                .translogSyncInterval(Time.of(t -> t.time("10s")))
                                 .mapping(m -> m
                                         .fieldNameLength(f -> f.limit(300L))
                                         .totalFields(f -> f.limit(30L))
@@ -145,6 +146,9 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         assertNotNull(createdIndexSettings);
         assertNotNull(createdIndexSettings.settings());
         assertNotNull(createdIndexSettings.settings().index());
+        assertNotNull(createdIndexSettings.settings().index().translog());
+        assertNotNull(createdIndexSettings.settings().index().translog().syncInterval());
+        assertEquals("10s", createdIndexSettings.settings().index().translog().syncInterval().time());
         var createdMappingSettings = createdIndexSettings.settings().index().mapping();
         assertNotNull(createdMappingSettings);
         assertNotNull(createdMappingSettings.fieldNameLength());
@@ -161,6 +165,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         var putSettingsResponse = javaClient().indices().putSettings(r -> r
                 .index("test-settings")
                 .settings(s -> s
+                        .translogSyncInterval(Time.of(t -> t.time("5s")))
                         .mapping(m -> m
                                 .fieldNameLength(f -> f.limit(400L))
                                 .totalFields(f -> f.limit(130L))
@@ -175,6 +180,9 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         assertNotNull(updatedIndexSettings);
         assertNotNull(updatedIndexSettings.settings());
         assertNotNull(updatedIndexSettings.settings().index());
+        assertNotNull(updatedIndexSettings.settings().index().translog());
+        assertNotNull(updatedIndexSettings.settings().index().translog().syncInterval());
+        assertEquals("5s", updatedIndexSettings.settings().index().translog().syncInterval().time());
         var updatedMappingSettings = updatedIndexSettings.settings().index().mapping();
         assertNotNull(updatedMappingSettings);
         assertNotNull(updatedMappingSettings.fieldNameLength());
