@@ -9,20 +9,27 @@
 package org.opensearch.client.opensearch.integTest;
 
 import org.junit.Test;
+import org.opensearch.client.opensearch._types.FieldSort;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.Refresh;
+import org.opensearch.client.opensearch._types.SortOptions;
+import org.opensearch.client.opensearch._types.SortOrder;
+import org.opensearch.client.opensearch._types.query_dsl.FuzzyQuery;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
 import org.opensearch.client.opensearch.core.MsearchResponse;
 import org.opensearch.client.opensearch.core.msearch.MultiSearchResponseItem;
+import org.opensearch.client.opensearch.core.msearch.MultisearchBody;
 import org.opensearch.client.opensearch.core.msearch.RequestItem;
 import org.opensearch.client.opensearch.core.search.Highlight;
 import org.opensearch.client.opensearch.core.search.HighlightField;
 import org.opensearch.client.opensearch.core.search.Hit;
 import org.opensearch.client.opensearch.core.search.SourceConfig;
+import org.opensearch.client.util.ObjectBuilder;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.function.Function;
 
 public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientTestCase {
 
@@ -74,6 +81,101 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
 		assertResponseSources(response.responses().get(2));
 	}
 
+	@Test
+	public void shouldReturnMultiSearchesSorted() throws Exception {
+		String index = "multiple_searches_request_sort";
+		createTestDocuments(index);
+
+		RequestItem sortedItemsQuery = createMSearchSortedFuzzyRequest();
+
+		MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(sortedItemsQuery));
+		assertEquals(1, response.responses().size());
+		var hits = response.responses().get(0).result().hits().hits();
+		assertEquals(3, hits.size());
+
+		assertEquals("hammer", hits.get(2).source().getName());
+	}
+
+	@Test
+	public void shouldReturnMultiSearchesTrackingScores() throws Exception {
+		String index = "multiple_searches_request_track_scores";
+		createTestDocuments(index);
+
+		RequestItem sortedItemsQuery = createMSearchSortedFuzzyRequest();
+
+		MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(sortedItemsQuery));
+		assertEquals(1, response.responses().size());
+		var hits = response.responses().get(0).result().hits().hits();
+		assertEquals(3, hits.size());
+		assertNull(hits.get(0).score());
+		assertNull(hits.get(1).score());
+		assertNull(hits.get(2).score());
+
+		RequestItem trackScoreItemsQuery = createMSearchSortedFuzzyRequest(b -> b.trackScores(true));
+
+		MsearchResponse<ShopItem> responseTrackingScore = sendMSearchRequest(index, List.of(trackScoreItemsQuery));
+		assertEquals(1, responseTrackingScore.responses().size());
+		var hitsTrackingScore = responseTrackingScore.responses().get(0).result().hits().hits();
+		assertEquals(3, hitsTrackingScore.size());
+		assertNotNull(hitsTrackingScore.get(0).score());
+		assertNotNull(hitsTrackingScore.get(1).score());
+		assertNotNull(hitsTrackingScore.get(2).score());
+	}
+
+	@Test
+	public void shouldReturnMultiSearchesAboveMinScore() throws Exception {
+		String index = "multiple_searches_request_min_score";
+		createTestDocuments(index);
+
+		RequestItem sortedItemsQuery = createMSearchFuzzyRequest();
+
+		MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(sortedItemsQuery));
+		assertEquals(1, response.responses().size());
+		var hits = response.responses().get(0).result().hits().hits();
+		assertEquals(3, hits.size());
+
+		double minScore = hits.get(2).score();
+		double scoreBetweenFirstAndSecondLowest = (hits.get(1).score() + minScore) / 2;
+
+		RequestItem minScoredItemsQuery = createMSearchFuzzyRequest(b -> b.minScore(scoreBetweenFirstAndSecondLowest));
+
+		MsearchResponse<ShopItem> responseAboveMinScore = sendMSearchRequest(index, List.of(minScoredItemsQuery));
+		assertEquals(1, responseAboveMinScore.responses().size());
+		assertEquals(2, responseAboveMinScore.responses().get(0).result().hits().hits().size());
+	}
+
+	@Test
+	public void shouldReturnMultiSearchesApplyingPostFilter() throws Exception {
+		String index = "multiple_searches_request_post_filter";
+		createTestDocuments(index);
+
+		RequestItem filteredItemsQuery = createMSearchFuzzyRequest(b -> b.postFilter(createItemSizeSearchQuery("large")));
+
+		MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(filteredItemsQuery));
+		assertEquals(1, response.responses().size());
+		assertEquals(1, response.responses().get(0).result().hits().hits().size());
+	}
+
+	@Test
+	public void shouldReturnMultiSearchesSearchAfter() throws Exception {
+		String index = "multiple_searches_request_search_after";
+		createTestDocuments(index);
+
+		RequestItem sortedItemsQuery = createMSearchSortedFuzzyRequest();
+
+		MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(sortedItemsQuery));
+		assertEquals(1, response.responses().size());
+		assertEquals(3, response.responses().get(0).result().hits().hits().size());
+
+		List<String> sorts = response.responses().get(0).result().hits().hits().get(1).sort();
+		RequestItem sortedAfterItemsQuery = createMSearchSortedFuzzyRequest(b -> b.searchAfter(sorts));
+
+		MsearchResponse<ShopItem> response2 = sendMSearchRequest(index, List.of(sortedAfterItemsQuery));
+		assertEquals(1, response2.responses().size());
+		assertEquals(1, response2.responses().get(0).result().hits().hits().size());
+	}
+
+
 	private void assertResponseSources(MultiSearchResponseItem<ShopItem> response) {
 		List<Hit<ShopItem>> hitsWithHighlights = response.result().hits().hits();
 		assertEquals(2, hitsWithHighlights.size());
@@ -113,6 +215,34 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
 		);
 	}
 
+	private RequestItem createMSearchSortedFuzzyRequest() {
+		return createMSearchSortedFuzzyRequest(b -> b);
+	}
+
+	private RequestItem createMSearchSortedFuzzyRequest(Function<MultisearchBody.Builder, ObjectBuilder<MultisearchBody>> additional) {
+		return createMSearchFuzzyRequest(b -> additional.apply(b
+				.sort(SortOptions.of(sort -> sort.field(FieldSort.of(f -> f.field("quantity").order(SortOrder.Asc)))))));
+	}
+
+	private RequestItem createMSearchFuzzyRequest() {
+		return createMSearchFuzzyRequest(b -> b);
+	}
+
+	private RequestItem createMSearchFuzzyRequest(Function<MultisearchBody.Builder, ObjectBuilder<MultisearchBody>> additional) {
+		return RequestItem.of(item -> item.header(header -> header)
+				.body(b -> additional.apply(b.query(createNameSearchFuzzyQuery())))
+		);
+	}
+
+	private Query createNameSearchFuzzyQuery() {
+		return Query.of(filter -> filter.fuzzy(
+						FuzzyQuery.of(term -> term.field("name")
+								.value(FieldValue.of("rammer"))
+						)
+				)
+		);
+	}
+
 	private SourceConfig createSourcesConfig(List<String> sources) {
 		return sources.isEmpty() ? null : SourceConfig.of(builder -> builder.filter(filter -> filter.includes(sources)));
 	}
@@ -143,30 +273,34 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
 	}
 
 	private void createTestDocuments(String index) throws IOException {
-		javaClient().create(_1 -> _1.index(index).id("1").document(createItem("hammer", "large", "yes")).refresh(Refresh.True));
-		javaClient().create(_1 -> _1.index(index).id("2").document(createItem("drill", "large", "yes")).refresh(Refresh.True));
-		javaClient().create(_1 -> _1.index(index).id("3").document(createItem("jack", "medium", "yes")).refresh(Refresh.True));
-		javaClient().create(_1 -> _1.index(index).id("4").document(createItem("wrench", "medium", "no")).refresh(Refresh.True));
-		javaClient().create(_1 -> _1.index(index).id("5").document(createItem("screws", "small", "no")).refresh(Refresh.True));
-		javaClient().create(_1 -> _1.index(index).id("6").document(createItem("nuts", "small", "no")).refresh(Refresh.True));
+		javaClient().create(_1 -> _1.index(index).id("1").document(createItem("hummer", "huge", "yes", 2)).refresh(Refresh.True));
+		javaClient().create(_1 -> _1.index(index).id("2").document(createItem("jammer", "huge", "yes", 1)).refresh(Refresh.True));
+		javaClient().create(_1 -> _1.index(index).id("3").document(createItem("hammer", "large", "yes", 3)).refresh(Refresh.True));
+		javaClient().create(_1 -> _1.index(index).id("4").document(createItem("drill", "large", "yes", 3)).refresh(Refresh.True));
+		javaClient().create(_1 -> _1.index(index).id("5").document(createItem("jack", "medium", "yes", 2)).refresh(Refresh.True));
+		javaClient().create(_1 -> _1.index(index).id("6").document(createItem("wrench", "medium", "no", 3)).refresh(Refresh.True));
+		javaClient().create(_1 -> _1.index(index).id("7").document(createItem("screws", "small", "no", 1)).refresh(Refresh.True));
+		javaClient().create(_1 -> _1.index(index).id("8").document(createItem("nuts", "small", "no", 2)).refresh(Refresh.True));
 	}
 
-	private ShopItem createItem(String name, String size, String company) {
-		return new ShopItem(name, size, company);
+	private ShopItem createItem(String name, String size, String company, int quantity) {
+		return new ShopItem(name, size, company, quantity);
 	}
 
 	public static class ShopItem {
 		private String name;
 		private String size;
 		private String company;
+		private int quantity;
 
 		public ShopItem() {
 		}
 
-		public ShopItem(String name, String size, String company) {
+		public ShopItem(String name, String size, String company, int quantity) {
 			this.name = name;
 			this.size = size;
 			this.company = company;
+			this.quantity = quantity;
 		}
 
 		public String getName() {
@@ -191,6 +325,14 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
 
 		public void setCompany(String company) {
 			this.company = company;
+		}
+
+		public int getQuantity() {
+			return quantity;
+		}
+
+		public void setQuantity(int quantity) {
+			this.quantity = quantity;
 		}
 	}
 }
