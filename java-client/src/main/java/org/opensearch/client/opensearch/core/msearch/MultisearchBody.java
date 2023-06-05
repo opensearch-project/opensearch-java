@@ -36,6 +36,7 @@
 
 package org.opensearch.client.opensearch.core.msearch;
 
+import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch.core.search.Highlight;
@@ -53,6 +54,7 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -71,7 +73,20 @@ public class MultisearchBody implements JsonpSerializable {
 	private final Integer from;
 
 	@Nullable
+	private final Double minScore;
+
+	@Nullable
+	private final Query postFilter;
+
+	private final List<String> searchAfter;
+
+	@Nullable
 	private final Integer size;
+
+	private final List<SortOptions> sort;
+
+	@Nullable
+	private final Boolean trackScores;
 
 	@Nullable
 	private final TrackHits trackTotalHits;
@@ -92,7 +107,12 @@ public class MultisearchBody implements JsonpSerializable {
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.query = builder.query;
 		this.from = builder.from;
+		this.minScore = builder.minScore;
+		this.postFilter = builder.postFilter;
+		this.searchAfter = ApiTypeHelper.unmodifiable(builder.searchAfter);
 		this.size = builder.size;
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
+		this.trackScores = builder.trackScores;
 		this.trackTotalHits = builder.trackTotalHits;
 		this.suggest = builder.suggest;
 		this.highlight = builder.highlight;
@@ -128,11 +148,49 @@ public class MultisearchBody implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code from}
+	 */
+	@Nullable
+	public final Double minScore() {
+		return this.minScore;
+	}
+
+	/**
+	 * API name: {@code post_filter}
+	 */
+	@Nullable
+	public final Query postFilter() {
+		return this.postFilter;
+	}
+
+	/**
+	 * API name: {@code search_after}
+	 */
+	public final List<String> searchAfter() {
+		return this.searchAfter;
+	}
+
+	/**
 	 * API name: {@code size}
 	 */
 	@Nullable
 	public final Integer size() {
 		return this.size;
+	}
+
+	/**
+	 * API name: {@code sort}
+	 */
+	public final List<SortOptions> sort() {
+		return this.sort;
+	}
+
+	/**
+	 * API name: {@code track_scores}
+	 */
+	@Nullable
+	public final Boolean trackScores() {
+		return this.trackScores;
 	}
 
 	/**
@@ -199,9 +257,44 @@ public class MultisearchBody implements JsonpSerializable {
 			generator.write(this.from);
 
 		}
+		if (this.minScore != null) {
+			generator.writeKey("min_score");
+			generator.write(this.minScore);
+
+		}
+		if (this.postFilter != null) {
+			generator.writeKey("post_filter");
+			this.postFilter.serialize(generator, mapper);
+
+		}
+		if (ApiTypeHelper.isDefined(this.searchAfter)) {
+			generator.writeKey("search_after");
+			generator.writeStartArray();
+			for (String item0 : this.searchAfter) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.size != null) {
 			generator.writeKey("size");
 			generator.write(this.size);
+
+		}
+		if (ApiTypeHelper.isDefined(this.sort)) {
+			generator.writeKey("sort");
+			generator.writeStartArray();
+			for (SortOptions item0 : this.sort) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.trackScores != null) {
+			generator.writeKey("track_scores");
+			generator.write(this.trackScores);
 
 		}
 		if (this.trackTotalHits != null) {
@@ -246,7 +339,22 @@ public class MultisearchBody implements JsonpSerializable {
 		private Integer from;
 
 		@Nullable
+		private Double minScore;
+
+		@Nullable
+		private Query postFilter;
+
+		@Nullable
+		private List<String> searchAfter;
+
+		@Nullable
 		private Integer size;
+
+		@Nullable
+		private List<SortOptions> sort;
+
+		@Nullable
+		private Boolean trackScores;
 
 		@Nullable
 		private TrackHits trackTotalHits;
@@ -314,10 +422,96 @@ public class MultisearchBody implements JsonpSerializable {
 		}
 
 		/**
+		 * Minimum _score for matching documents. Documents with a lower _score are not
+		 * included in the search results.
+		 * <p>
+		 * API name: {@code min_score}
+		 */
+		public final Builder minScore(@Nullable Double value) {
+			this.minScore = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code post_filter}
+		 */
+		public final Builder postFilter(@Nullable Query value) {
+			this.postFilter = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code post_filter}
+		 */
+		public final Builder postFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.postFilter(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(List<String> list) {
+			this.searchAfter = _listAddAll(this.searchAfter, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code search_after}
+		 * <p>
+		 * Adds one or more values to <code>searchAfter</code>.
+		 */
+		public final Builder searchAfter(String value, String... values) {
+			this.searchAfter = _listAdd(this.searchAfter, value, values);
+			return this;
+		}
+
+		/**
 		 * API name: {@code size}
 		 */
 		public final Builder size(@Nullable Integer value) {
 			this.size = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
+		 */
+		public final Builder sort(List<SortOptions> list) {
+			this.sort = _listAddAll(this.sort, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
+		 */
+		public final Builder sort(SortOptions value, SortOptions... values) {
+			this.sort = _listAdd(this.sort, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort}
+		 * <p>
+		 * Adds a value to <code>sort</code> using a builder lambda.
+		 */
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+			return sort(fn.apply(new SortOptions.Builder()).build());
+		}
+
+		/**
+		 * If true, calculate and return document scores, even if the scores are not
+		 * used for sorting.
+		 * <p>
+		 * API name: {@code track_scores}
+		 */
+		public final Builder trackScores(@Nullable Boolean value) {
+			this.trackScores = value;
 			return this;
 		}
 
@@ -408,7 +602,13 @@ public class MultisearchBody implements JsonpSerializable {
 				"aggregations", "aggs");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
+		op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
+		op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");
+		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"search_after");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
+		op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
 		op.add(Builder::trackTotalHits, TrackHits._DESERIALIZER, "track_total_hits");
 		op.add(Builder::suggest, Suggester._DESERIALIZER, "suggest");
 		op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
