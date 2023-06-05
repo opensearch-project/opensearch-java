@@ -7,7 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
 
 ### Dependencies
-- Bumps `io.github.classgraph:classgraph` from 4.8.157 to 4.8.158
+- Bumps `io.github.classgraph:classgraph` from 4.8.157 to 4.8.160
 - Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
 
 ### Changed
