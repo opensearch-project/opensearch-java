@@ -5,6 +5,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+- Bumps `com.github.jk1.dependency-license-report` from 2.2 to 2.4
+- Bumps `io.github.classgraph:classgraph` from 4.8.157 to 4.8.160
 
 ### Changed
 
