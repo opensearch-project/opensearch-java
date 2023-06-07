@@ -82,6 +82,7 @@ import org.opensearch.client.opensearch.indices.GetMappingResponse;
 import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.IndexSettingsAnalysis;
 import org.opensearch.client.opensearch.indices.IndexState;
+import org.opensearch.client.opensearch.indices.Translog;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 
@@ -130,7 +131,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         var createResponse = javaClient().indices()
                 .create(r -> r.index("test-settings")
                         .settings(s -> s
-                                .translogSyncInterval(Time.of(t -> t.time("10s")))
+                                .translog(Translog.of(tl -> tl.syncInterval(Time.of(t -> t.time("10s")))))
                                 .mapping(m -> m
                                         .fieldNameLength(f -> f.limit(300L))
                                         .totalFields(f -> f.limit(30L))
@@ -165,7 +166,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         var putSettingsResponse = javaClient().indices().putSettings(r -> r
                 .index("test-settings")
                 .settings(s -> s
-                        .translogSyncInterval(Time.of(t -> t.time("5s")))
+                        .translog(Translog.of(tl -> tl.syncInterval(Time.of(t -> t.time("5s")))))
                         .mapping(m -> m
                                 .fieldNameLength(f -> f.limit(400L))
                                 .totalFields(f -> f.limit(130L))
@@ -565,7 +566,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
     public void testCompletionSuggesterFailure() throws IOException {
 
         String index = "test-completion-suggester-failure";
-        
+
 
         Property intValueProp = new Property.Builder()
                 .long_(v -> v)
@@ -631,7 +632,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
             }
             assumeTrue("The PIT is supported in OpenSearch 2.4.0 and later",
                             Version.fromString(version).onOrAfter(Version.fromString("2.4.0")));
-                    
+
             String index = "test-point-in-time";
 
             javaClient().indices().create(c -> c
@@ -744,7 +745,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
     public void testTermSuggester() throws IOException {
 
             String index = "test-term-suggester";
-        
+
             // term suggester does not require a special mapping
             javaClient().indices().create(c -> c
                             .index(index));
@@ -826,7 +827,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                                                         .text(new TextProperty.Builder().analyzer("trigram").build())
                                                         .build()).build())
                                         .build()).build();
-                        
+
 
 			javaClient().indices().create(c -> c
 					.index(index)
