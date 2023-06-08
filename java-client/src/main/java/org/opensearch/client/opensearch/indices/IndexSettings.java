@@ -1903,7 +1903,7 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::analysis, IndexSettingsAnalysis._DESERIALIZER, "analysis", "index.analysis");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::mapping, IndexSettingsMapping._DESERIALIZER, "mapping");
-		op.add(Builder::knn, JsonpDeserializer.booleanDeserializer(), "knn");
+		op.add(Builder::knn, JsonpDeserializer.booleanDeserializer(), "knn", "index.knn");
 
 	}
 
