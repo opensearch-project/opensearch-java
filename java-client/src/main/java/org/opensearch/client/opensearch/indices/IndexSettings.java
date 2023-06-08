@@ -222,6 +222,9 @@ public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	private final IndexSettingsMapping mapping;
 
+	@Nullable
+	private final Boolean knn;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexSettings(Builder builder) {
@@ -282,6 +285,7 @@ public class IndexSettings implements JsonpSerializable {
 		this.analysis = builder.analysis;
 		this.settings = builder.settings;
 		this.mapping = builder.mapping;
+		this.knn = builder.knn;
 
 	}
 
@@ -737,6 +741,14 @@ public class IndexSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code knn}
+	 */
+	@Nullable
+	public final Boolean knn() {
+		return this.knn;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -1032,6 +1044,11 @@ public class IndexSettings implements JsonpSerializable {
 			this.mapping.serialize(generator, mapper);
 
 		}
+		if (this.knn != null) {
+			generator.writeKey("knn");
+			generator.write(this.knn);
+
+		}
 
 	}
 
@@ -1209,6 +1226,9 @@ public class IndexSettings implements JsonpSerializable {
 
 		@Nullable
 		private IndexSettingsMapping mapping;
+
+		@Nullable
+		private Boolean knn;
 
 		/**
 		 * API name: {@code index}
@@ -1773,6 +1793,15 @@ public class IndexSettings implements JsonpSerializable {
 
 			return new IndexSettings(this);
 		}
+
+		/**
+		 *  API name: {@code knn}
+		 */
+		public final Builder knn(@Nullable Boolean value) {
+			this.knn = value;
+			return this;
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -1874,6 +1903,7 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::analysis, IndexSettingsAnalysis._DESERIALIZER, "analysis", "index.analysis");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::mapping, IndexSettingsMapping._DESERIALIZER, "mapping");
+		op.add(Builder::knn, JsonpDeserializer.booleanDeserializer(), "knn");
 
 	}
 
