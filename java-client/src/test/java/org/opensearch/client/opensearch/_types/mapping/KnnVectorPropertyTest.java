@@ -1,13 +1,22 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
 package org.opensearch.client.opensearch._types.mapping;
 
-import jakarta.json.stream.JsonParser;
+import static junit.framework.TestCase.assertEquals;
+
+import java.io.StringReader;
+
 import org.junit.Test;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.util.MissingRequiredPropertyException;
 
-import java.io.StringReader;
-
-import static junit.framework.TestCase.assertEquals;
+import jakarta.json.stream.JsonParser;
 
 public class KnnVectorPropertyTest {
 
@@ -40,7 +49,9 @@ public class KnnVectorPropertyTest {
 
     @Test
     public void testDeserializeKnnVectorProperty() {
-        String jsonString = "{\"type\": \"knn_vector\", \"dimension\": 4, \"model_id\": \"testModelId\", \"method\": {\"name\": \"hnsw\", \"space_type\": \"l2\", \"engine\": \"nmslib\", \"parameters\": {\"ef_construction\": 128, \"m\": 24}}}";
+        String jsonString = "{\"type\": \"knn_vector\", \"dimension\": 4, \"model_id\":" +
+            " \"testModelId\", \"method\": {\"name\": \"hnsw\", \"space_type\": \"l2\"," +
+            " \"engine\": \"nmslib\", \"parameters\": {\"ef_construction\": 128, \"m\": 24}}}";
         StringReader reader = new StringReader(jsonString);
         JacksonJsonpMapper mapper = new JacksonJsonpMapper();
         JsonParser parser = mapper.jsonProvider().createParser(reader);
