@@ -225,6 +225,9 @@ public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	private final Boolean knn;
 
+	@Nullable
+	private final Integer knnAlgoParamEfSearch;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexSettings(Builder builder) {
@@ -286,6 +289,7 @@ public class IndexSettings implements JsonpSerializable {
 		this.settings = builder.settings;
 		this.mapping = builder.mapping;
 		this.knn = builder.knn;
+		this.knnAlgoParamEfSearch = builder.knnAlgoParamEfSearch;
 
 	}
 
@@ -749,6 +753,14 @@ public class IndexSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code knn.algo_param.ef_search}
+	 */
+	@Nullable
+	public final Integer knnAlgoParamEfSearch() {
+		return this.knnAlgoParamEfSearch;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -1049,6 +1061,11 @@ public class IndexSettings implements JsonpSerializable {
 			generator.write(this.knn);
 
 		}
+		if (this.knnAlgoParamEfSearch != null) {
+			generator.writeKey("knn.algo_param_ef_search");
+			generator.write(this.knnAlgoParamEfSearch);
+
+		}
 
 	}
 
@@ -1229,6 +1246,9 @@ public class IndexSettings implements JsonpSerializable {
 
 		@Nullable
 		private Boolean knn;
+
+		@Nullable
+		private Integer knnAlgoParamEfSearch;
 
 		/**
 		 * API name: {@code index}
@@ -1802,6 +1822,14 @@ public class IndexSettings implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code knn.algo_param.ef_search}
+		 */
+		public final Builder knnAlgoParamEfSearch(@Nullable Integer value) {
+			this.knnAlgoParamEfSearch = value;
+			return this;
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -1904,6 +1932,8 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::mapping, IndexSettingsMapping._DESERIALIZER, "mapping");
 		op.add(Builder::knn, JsonpDeserializer.booleanDeserializer(), "knn", "index.knn");
+		op.add(Builder::knnAlgoParamEfSearch, JsonpDeserializer.integerDeserializer(), "knn.algo_param.ef_search",
+				"index.knn.algo_param.ef_search");
 
 	}
 
