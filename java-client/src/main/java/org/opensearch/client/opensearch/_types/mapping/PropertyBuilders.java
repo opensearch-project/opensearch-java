@@ -249,6 +249,14 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link KnnVectorProperty long} {@code Property}
+	 * variant.
+	 */
+	public static KnnVectorProperty.Builder knnVector() {
+		return new KnnVectorProperty.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link LongNumberProperty long} {@code Property}
 	 * variant.
 	 */

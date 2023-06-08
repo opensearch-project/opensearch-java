@@ -118,6 +118,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 
 		Keyword("keyword"),
 
+		KnnVector("knn_vector"),
+
 		Long("long"),
 
 		LongRange("long_range"),
@@ -642,6 +644,19 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 	public KeywordProperty keyword() {
 		return TaggedUnionUtils.get(this, Kind.Keyword);
 	}
+
+	/**
+	 * Is this variant instance of kind {@code knn_vector}?
+	 */
+	public boolean isKnnVector() { return _kind == Kind.KnnVector; }
+
+	/**
+	 * Get the {@code knn_vector} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code knn_vector} kind.
+	 */
+	public KnnVectorProperty knnVector() { return TaggedUnionUtils.get(this, Kind.KnnVector); }
 
 	/**
 	 * Is this variant instance of kind {@code long}?
@@ -1240,6 +1255,16 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this.keyword(fn.apply(new KeywordProperty.Builder()).build());
 		}
 
+		public ObjectBuilder<Property> knnVector(KnnVectorProperty v) {
+			this._kind = Kind.KnnVector;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Property> knnVector(Function<KnnVectorProperty.Builder, ObjectBuilder<KnnVectorProperty>> fn) {
+			return this.knnVector(fn.apply(new KnnVectorProperty.Builder()).build());
+		}
+
 		public ObjectBuilder<Property> long_(LongNumberProperty v) {
 			this._kind = Kind.Long;
 			this._value = v;
@@ -1467,6 +1492,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 		op.add(Builder::ipRange, IpRangeProperty._DESERIALIZER, "ip_range");
 		op.add(Builder::join, JoinProperty._DESERIALIZER, "join");
 		op.add(Builder::keyword, KeywordProperty._DESERIALIZER, "keyword");
+		op.add(Builder::knnVector, KnnVectorProperty._DESERIALIZER, "knn_vector");
 		op.add(Builder::long_, LongNumberProperty._DESERIALIZER, "long");
 		op.add(Builder::longRange, LongRangeProperty._DESERIALIZER, "long_range");
 		op.add(Builder::murmur3, Murmur3HashProperty._DESERIALIZER, "murmur3");

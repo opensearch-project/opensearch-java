@@ -124,6 +124,7 @@ public enum FieldType implements JsonEnum {
 
 	DenseVector("dense_vector"),
 
+	KnnVector("knn_vector"),
 	;
 
 	private final String jsonValue;
