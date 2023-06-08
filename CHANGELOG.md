@@ -26,6 +26,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 2.x]
 
 ### Added
+- Add support for knn_vector field type ([#529](https://github.com/opensearch-project/opensearch-java/pull/524))
 
 ### Dependencies
 
