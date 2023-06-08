@@ -13,12 +13,18 @@ import org.junit.Assert;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch.core.IndexRequest;
 import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.SearchResponse;
+import org.opensearch.client.opensearch.core.pit.CreatePitRequest;
+import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
+import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
+import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -42,6 +48,20 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
     @Test
     public void testAsyncAsyncClient() throws Exception {
         testClientAsync(true);
+    }
+
+    @Test
+    public void testCreateDeletePit() throws Exception {
+        final OpenSearchClient client = getClient(false, null, null);
+
+        final CreatePitResponse createPitResponse = client.createPit(CreatePitRequest.of(createPitRequest -> createPitRequest
+                .keepAlive(new Time.Builder().time("10m").build())
+                .targetIndexes(Collections.singletonList(TEST_INDEX))));
+        Assert.assertNotNull(createPitResponse);
+        Assert.assertNotNull(createPitResponse.pitId());
+
+        final DeletePitResponse deletePitResponse = client.deletePit(DeletePitRequest.of(deletePitBuilder -> deletePitBuilder.pitId(Collections.singletonList(createPitResponse.pitId()))));
+        Assert.assertNotNull(deletePitResponse);
     }
 
     void testClient(boolean async) throws Exception {
