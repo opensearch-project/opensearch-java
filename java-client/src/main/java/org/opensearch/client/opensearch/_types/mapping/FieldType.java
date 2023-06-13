@@ -122,8 +122,6 @@ public enum FieldType implements JsonEnum {
 
 	AggregateMetricDouble("aggregate_metric_double"),
 
-	DenseVector("dense_vector"),
-
 	KnnVector("knn_vector"),
 	;
 

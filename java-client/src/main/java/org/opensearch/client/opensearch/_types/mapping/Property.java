@@ -84,8 +84,6 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 
 		DateRange("date_range"),
 
-		DenseVector("dense_vector"),
-
 		Double("double"),
 
 		DoubleRange("double_range"),
@@ -354,13 +352,6 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 	 */
 	public DateRangeProperty dateRange() {
 		return TaggedUnionUtils.get(this, Kind.DateRange);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code dense_vector}?
-	 */
-	public boolean isDenseVector() {
-		return _kind == Kind.DenseVector;
 	}
 
 	/**
