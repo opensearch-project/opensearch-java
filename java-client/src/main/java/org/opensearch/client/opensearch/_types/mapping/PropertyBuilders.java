@@ -115,14 +115,6 @@ public class PropertyBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link DenseVectorProperty dense_vector}
-	 * {@code Property} variant.
-	 */
-	public static DenseVectorProperty.Builder denseVector() {
-		return new DenseVectorProperty.Builder();
-	}
-
-	/**
 	 * Creates a builder for the {@link DoubleNumberProperty double}
 	 * {@code Property} variant.
 	 */

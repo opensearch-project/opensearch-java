@@ -364,16 +364,6 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 	}
 
 	/**
-	 * Get the {@code dense_vector} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code dense_vector} kind.
-	 */
-	public DenseVectorProperty denseVector() {
-		return TaggedUnionUtils.get(this, Kind.DenseVector);
-	}
-
-	/**
 	 * Is this variant instance of kind {@code double}?
 	 */
 	public boolean isDouble() {
@@ -1072,17 +1062,6 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this.dateRange(fn.apply(new DateRangeProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> denseVector(DenseVectorProperty v) {
-			this._kind = Kind.DenseVector;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<Property> denseVector(
-				Function<DenseVectorProperty.Builder, ObjectBuilder<DenseVectorProperty>> fn) {
-			return this.denseVector(fn.apply(new DenseVectorProperty.Builder()).build());
-		}
-
 		public ObjectBuilder<Property> double_(DoubleNumberProperty v) {
 			this._kind = Kind.Double;
 			this._value = v;
@@ -1475,7 +1454,6 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 		op.add(Builder::dateNanos, DateNanosProperty._DESERIALIZER, "date_nanos");
 		op.add(Builder::date, DateProperty._DESERIALIZER, "date");
 		op.add(Builder::dateRange, DateRangeProperty._DESERIALIZER, "date_range");
-		op.add(Builder::denseVector, DenseVectorProperty._DESERIALIZER, "dense_vector");
 		op.add(Builder::double_, DoubleNumberProperty._DESERIALIZER, "double");
 		op.add(Builder::doubleRange, DoubleRangeProperty._DESERIALIZER, "double_range");
 		op.add(Builder::alias, FieldAliasProperty._DESERIALIZER, "alias");
