@@ -37,7 +37,7 @@
 package org.opensearch.client.opensearch.core.search;
 
 /**
- * Builders for {@link SuggestOption} variants.
+ * Builders for {@link Suggest} variants.
  */
 public class SuggestOptionBuilders {
 	private SuggestOptionBuilders() {
