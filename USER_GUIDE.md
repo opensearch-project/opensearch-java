@@ -309,64 +309,34 @@ SearchResponse<AppData> response = client.search(searchRequest, AppData.class);
 ### Using phrase suggester
 
 ```java
-String index = "phrase-suggester";
+String index = "test-phrase-suggester";
 
-String settingsJson = 
-"""
-  {
-    "index": {
-      "analysis": {
-        "analyzer": {
-          "trigram": {
-            "type": "custom",
-            "tokenizer": "standard",
-            "filter": [
-              "lowercase",
-              "shingle"
-            ]
-          }
-        },
-        "filter": {
-          "shingle": {
-            "type": "shingle",
-            "min_shingle_size": 2,
-            "max_shingle_size": 3
-          }
-        }
-      }
-    }
-  }
-""";
+ShingleTokenFilter shingleTokenFilter = new ShingleTokenFilter.Builder().minShingleSize("2")
+                .maxShingleSize("3")
+                .build();
 
-String mappingJson =
-"""
-{
-  "properties": {
-    "msg": {
-      "type": "text",
-      "fields": {
-        "trigram": {
-          "type": "text",
-          "analyzer": "trigram"
-        }
-      }
-    }
-  }
-}
-""";
+Analyzer analyzer = new Analyzer.Builder()
+                .custom(new CustomAnalyzer.Builder().tokenizer("standard")
+                                .filter(Arrays.asList("lowercase", "shingle")).build())
+                .build();
 
+TokenFilter tokenFilter = new TokenFilter.Builder()
+                .definition(new TokenFilterDefinition.Builder()
+                                .shingle(shingleTokenFilter).build())
+                .build();
 
-ObjectMapper mapper = new JsonMapper();
-JsonpMapper jsonpMapper = new JacksonJsonpMapper(mapper);
-IndexSettings settings;
-try (JsonParser settingsParser = new JacksonJsonpParser(mapper.createParser(settingsJson))) {
-settings = IndexSettings._DESERIALIZER.deserialize(settingsParser, jsonpMapper);
-}
+IndexSettingsAnalysis indexSettingsAnalysis = new IndexSettingsAnalysis.Builder()
+                .analyzer("trigram", analyzer)
+                .filter("shingle", tokenFilter)
+                .build();
 
-TypeMapping mapping;
-try (JsonParser mappingParser = new JacksonJsonpParser(mapper.createParser(mappingJson))) {
-mapping = TypeMapping._DESERIALIZER.deserialize(mappingParser, jsonpMapper);
-}
+IndexSettings settings = new IndexSettings.Builder().analysis(indexSettingsAnalysis).build();
+
+TypeMapping mapping = new TypeMapping.Builder().properties("msg", new Property.Builder()
+                .text(new TextProperty.Builder().fields("trigram", new Property.Builder()
+                                .text(new TextProperty.Builder().analyzer("trigram").build())
+                                .build()).build())
+                .build()).build();
 
 client.indices().create(c -> c
                 .index(index)

@@ -34,9 +34,6 @@ package org.opensearch.client.opensearch.integTest;
 
 import org.junit.Test;
 import org.opensearch.Version;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.jackson.JacksonJsonpMapper;
-import org.opensearch.client.json.jackson.JacksonJsonpParser;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.OpenSearchException;
@@ -45,7 +42,13 @@ import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.HistogramAggregate;
 import org.opensearch.client.opensearch._types.aggregations.TermsAggregation;
+import org.opensearch.client.opensearch._types.analysis.Analyzer;
+import org.opensearch.client.opensearch._types.analysis.CustomAnalyzer;
+import org.opensearch.client.opensearch._types.analysis.ShingleTokenFilter;
+import org.opensearch.client.opensearch._types.analysis.TokenFilter;
+import org.opensearch.client.opensearch._types.analysis.TokenFilterDefinition;
 import org.opensearch.client.opensearch._types.mapping.Property;
+import org.opensearch.client.opensearch._types.mapping.TextProperty;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
 import org.opensearch.client.opensearch._types.query_dsl.BoolQuery;
 import org.opensearch.client.opensearch._types.query_dsl.TermsQuery;
@@ -77,18 +80,13 @@ import org.opensearch.client.opensearch.indices.GetIndexResponse;
 import org.opensearch.client.opensearch.indices.GetIndicesSettingsResponse;
 import org.opensearch.client.opensearch.indices.GetMappingResponse;
 import org.opensearch.client.opensearch.indices.IndexSettings;
+import org.opensearch.client.opensearch.indices.IndexSettingsAnalysis;
 import org.opensearch.client.opensearch.indices.IndexState;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-
-import jakarta.json.stream.JsonParser;
-
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -793,36 +791,34 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 		public void testPhraseSuggester() throws IOException {
 
 			String index = "test-phrase-suggester";
-			String settingsJson;
-			String mappingJson;
-			try (InputStream in = Thread.currentThread().getContextClassLoader()
-					.getResourceAsStream("phraseIndexSettings.json")) {
-				ObjectMapper mapper = new ObjectMapper();
-				JsonNode jsonNode = mapper.readValue(in, JsonNode.class);
-				settingsJson = mapper.writeValueAsString(jsonNode);
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
-			try (InputStream in = Thread.currentThread().getContextClassLoader()
-					.getResourceAsStream("phraseIndexMappings.json")) {
-				ObjectMapper mapper = new ObjectMapper();
-				JsonNode jsonNode = mapper.readValue(in, JsonNode.class);
-				mappingJson = mapper.writeValueAsString(jsonNode);
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
 
-			ObjectMapper mapper = new JsonMapper();
-			JsonpMapper jsonpMapper = new JacksonJsonpMapper(mapper);
-			IndexSettings settings;
-			try (JsonParser settingsParser = new JacksonJsonpParser(mapper.createParser(settingsJson))) {
-				settings = IndexSettings._DESERIALIZER.deserialize(settingsParser, jsonpMapper);
-			}
+                        ShingleTokenFilter shingleTokenFilter = new ShingleTokenFilter.Builder().minShingleSize("2")
+                                        .maxShingleSize("3")
+                                        .build();
 
-			TypeMapping mapping;
-			try (JsonParser mappingParser = new JacksonJsonpParser(mapper.createParser(mappingJson))) {
-				mapping = TypeMapping._DESERIALIZER.deserialize(mappingParser, jsonpMapper);
-			}
+                        Analyzer analyzer = new Analyzer.Builder()
+                                        .custom(new CustomAnalyzer.Builder().tokenizer("standard")
+                                                        .filter(Arrays.asList("lowercase","shingle")).build())
+                                        .build();
+
+                        TokenFilter tokenFilter = new TokenFilter.Builder()
+                                        .definition(new TokenFilterDefinition.Builder()
+                                                        .shingle(shingleTokenFilter).build())
+                                        .build();
+
+                        IndexSettingsAnalysis indexSettingsAnalysis = new IndexSettingsAnalysis.Builder()
+                                        .analyzer("trigram", analyzer)
+                                        .filter("shingle", tokenFilter)
+                                        .build();
+
+                        IndexSettings settings = new IndexSettings.Builder().analysis(indexSettingsAnalysis).build();
+
+                        TypeMapping mapping = new TypeMapping.Builder().properties("msg", new Property.Builder()
+                                        .text(new TextProperty.Builder().fields("trigram", new Property.Builder()
+                                                        .text(new TextProperty.Builder().analyzer("trigram").build())
+                                                        .build()).build())
+                                        .build()).build();
+                        
 
 			javaClient().indices().create(c -> c
 					.index(index)
