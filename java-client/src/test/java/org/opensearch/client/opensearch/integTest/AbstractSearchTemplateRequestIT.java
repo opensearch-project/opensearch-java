@@ -58,12 +58,12 @@ public abstract class AbstractSearchTemplateRequestIT
 		assertEquals(0, searchResponse.aggregations().size());
 		
 		// intentional typo
-		searchResponse = sendTemplateRequest(index, "Docunent", true, false);
+		searchResponse = sendTemplateRequest(index, "Docuent", true, false);
 		assertEquals(0, searchResponse.hits().hits().size());
 		assertEquals(1, searchResponse.suggest().size());
-		var options = searchResponse.suggest().get("term#test-suggest").get(0).options();
+		var options = searchResponse.suggest().get("test-suggest").get(0).term().options();
 		assertEquals(1, options.size());
-		assertEquals("document", options.get(0).term().text());
+		assertEquals("document", options.get(0).text());
 		assertEquals(0, searchResponse.aggregations().size());
 
 	}
