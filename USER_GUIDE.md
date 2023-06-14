@@ -11,6 +11,11 @@
   - [Search for the documents](#search-for-the-documents)
     - [Get raw JSON results](#get-raw-json-results)
   - [Search documents using a match query](#search-documents-using-a-match-query)
+  - [Search documents using suggesters](#search-documents-using-suggesters)
+    - [App Data class](#app-data-class)
+    - [Using completion suggester](#using-completion-suggester)
+    - [Using term suggester](#using-term-suggester)
+    - [Using phrase suggester](#using-phrase-suggester)
   - [Bulk requests](#bulk-requests)
   - [Aggregations](#aggregations)
   - [Delete the document](#delete-the-document)
@@ -173,6 +178,213 @@ SearchResponse<IndexData> searchResponse = client.search(searchRequest, IndexDat
 for (int i = 0; i < searchResponse.hits().hits().size(); i++) {
   System.out.println(searchResponse.hits().hits().get(i).source());
 }
+```
+
+## Search documents using suggesters
+
+### App Data class
+
+```java
+public static class AppData {
+
+    private int intValue;
+    private String msg;
+
+    public int getIntValue() {
+        return intValue;
+    }
+
+    public void setIntValue(int intValue) {
+        this.intValue = intValue;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+}
+```
+
+### Using completion suggester
+
+```java
+String index = "completion-suggester";
+
+Property intValueProp = new Property.Builder()
+                .long_(v -> v)
+                .build();
+Property msgCompletionProp = new Property.Builder()
+                .completion(c -> c)
+                .build();
+client.indices().create(c -> c
+                .index(index)
+                .mappings(m -> m
+                                .properties("intValue", intValueProp)
+                                .properties("msg", msgCompletionProp)));
+
+AppData appData = new AppData();
+appData.setIntValue(1337);
+appData.setMsg("foo");
+
+client.index(b -> b
+                .index(index)
+                .id("1")
+                .document(appData)
+                .refresh(Refresh.True));
+
+appData.setIntValue(1338);
+appData.setMsg("foobar");
+
+client.index(b -> b
+                .index(index)
+                .id("2")
+                .document(appData)
+                .refresh(Refresh.True));
+
+String suggesterName = "msgSuggester";
+
+CompletionSuggester completionSuggester = FieldSuggesterBuilders.completion()
+                .field("msg")
+                .size(1)
+                .build();
+FieldSuggester fieldSuggester = new FieldSuggester.Builder().prefix("foo")
+                .completion(completionSuggester)
+                .build();
+Suggester suggester = new Suggester.Builder()
+                .suggesters(Collections.singletonMap(suggesterName, fieldSuggester))
+                .build();
+SearchRequest searchRequest = new SearchRequest.Builder()
+                .index(index)
+                .suggest(suggester)
+                .build();
+
+SearchResponse<AppData> response = client.search(searchRequest, AppData.class);
+```
+
+### Using term suggester
+
+```java
+ String index = "term-suggester";
+        
+// term suggester does not require a special mapping
+client.indices().create(c -> c
+                .index(index));
+
+AppData appData = new AppData();
+appData.setIntValue(1337);
+appData.setMsg("foo");
+
+client.index(b -> b
+                .index(index)
+                .id("1")
+                .document(appData)
+                .refresh(Refresh.True));
+
+appData.setIntValue(1338);
+appData.setMsg("foobar");
+
+client.index(b -> b
+                .index(index)
+                .id("2")
+                .document(appData)
+                .refresh(Refresh.True));
+
+String suggesterName = "msgSuggester";
+
+TermSuggester termSuggester = FieldSuggesterBuilders.term()
+                .field("msg")
+                .size(1)
+                .build();
+FieldSuggester fieldSuggester = new FieldSuggester.Builder().text("fool")
+                .term(termSuggester)
+                .build();
+Suggester suggester = new Suggester.Builder()
+                .suggesters(Collections.singletonMap(suggesterName, fieldSuggester))
+                .build();
+SearchRequest searchRequest = new SearchRequest.Builder()
+                .index(index)
+                .suggest(suggester)
+                .build();
+
+SearchResponse<AppData> response = client.search(searchRequest, AppData.class);
+```
+
+### Using phrase suggester
+
+```java
+String index = "test-phrase-suggester";
+
+ShingleTokenFilter shingleTokenFilter = new ShingleTokenFilter.Builder().minShingleSize("2")
+                .maxShingleSize("3")
+                .build();
+
+Analyzer analyzer = new Analyzer.Builder()
+                .custom(new CustomAnalyzer.Builder().tokenizer("standard")
+                                .filter(Arrays.asList("lowercase", "shingle")).build())
+                .build();
+
+TokenFilter tokenFilter = new TokenFilter.Builder()
+                .definition(new TokenFilterDefinition.Builder()
+                                .shingle(shingleTokenFilter).build())
+                .build();
+
+IndexSettingsAnalysis indexSettingsAnalysis = new IndexSettingsAnalysis.Builder()
+                .analyzer("trigram", analyzer)
+                .filter("shingle", tokenFilter)
+                .build();
+
+IndexSettings settings = new IndexSettings.Builder().analysis(indexSettingsAnalysis).build();
+
+TypeMapping mapping = new TypeMapping.Builder().properties("msg", new Property.Builder()
+                .text(new TextProperty.Builder().fields("trigram", new Property.Builder()
+                                .text(new TextProperty.Builder().analyzer("trigram").build())
+                                .build()).build())
+                .build()).build();
+
+client.indices().create(c -> c
+                .index(index)
+                .settings(settings)
+                .mappings(mapping));
+
+AppData appData = new AppData();
+appData.setIntValue(1337);
+appData.setMsg("Design Patterns");
+
+client.index(b -> b
+                .index(index)
+                .id("1")
+                .document(appData)
+                .refresh(Refresh.True));
+
+appData.setIntValue(1338);
+appData.setMsg("Software Architecture Patterns Explained");
+
+client.index(b -> b
+                .index(index)
+                .id("2")
+                .document(appData)
+                .refresh(Refresh.True));
+
+String suggesterName = "msgSuggester";
+
+PhraseSuggester phraseSuggester = FieldSuggesterBuilders.phrase()
+                .field("msg.trigram")
+                .build();
+FieldSuggester fieldSuggester = new FieldSuggester.Builder().text("design paterns")
+                .phrase(phraseSuggester)
+                .build();
+Suggester suggester = new Suggester.Builder()
+                .suggesters(Collections.singletonMap(suggesterName, fieldSuggester))
+                .build();
+SearchRequest searchRequest = new SearchRequest.Builder()
+                .index(index)
+                .suggest(suggester)
+                .build();
+
+SearchResponse<AppData> response = client.search(searchRequest, AppData.class);
 ```
 
 ## Bulk requests

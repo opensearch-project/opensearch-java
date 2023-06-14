@@ -45,11 +45,12 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+
+import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FieldSuggester
 
@@ -69,14 +70,7 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 
 		Phrase("phrase"),
 
-		Prefix("prefix"),
-
-		Regex("regex"),
-
 		Term("term"),
-
-		Text("text"),
-
 		;
 
 		private final String jsonValue;
@@ -94,6 +88,15 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 	private final Kind _kind;
 	private final Object _value;
 
+	@Nullable
+	private final String prefix;
+
+	@Nullable
+	private final String regex;
+
+	@Nullable
+	private final String text;
+	
 	@Override
 	public final Kind _kind() {
 		return _kind;
@@ -108,6 +111,9 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 
 		this._kind = ApiTypeHelper.requireNonNull(value._fieldSuggesterKind(), this, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+		this.prefix = null;
+		this.regex = null;
+		this.text = null;
 
 	}
 
@@ -115,11 +121,38 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this.prefix = builder.prefix;
+		this.regex = builder.regex;
+		this.text = builder.text;
 
 	}
 
 	public static FieldSuggester of(Function<Builder, ObjectBuilder<FieldSuggester>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code prefix}
+	 */
+	@Nullable
+	public final String prefix() {
+		return this.prefix;
+	}
+
+	/**
+	 * API name: {@code regex}
+	 */
+	@Nullable
+	public final String regex() {
+		return this.regex;
+	}
+
+	/**
+	 * API name: {@code text}
+	 */
+	@Nullable
+	public final String text() {
+		return this.text;
 	}
 
 	/**
@@ -157,40 +190,6 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 	}
 
 	/**
-	 * Is this variant instance of kind {@code prefix}?
-	 */
-	public boolean isPrefix() {
-		return _kind == Kind.Prefix;
-	}
-
-	/**
-	 * Get the {@code prefix} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code prefix} kind.
-	 */
-	public String prefix() {
-		return TaggedUnionUtils.get(this, Kind.Prefix);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code regex}?
-	 */
-	public boolean isRegex() {
-		return _kind == Kind.Regex;
-	}
-
-	/**
-	 * Get the {@code regex} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code regex} kind.
-	 */
-	public String regex() {
-		return TaggedUnionUtils.get(this, Kind.Regex);
-	}
-
-	/**
 	 * Is this variant instance of kind {@code term}?
 	 */
 	public boolean isTerm() {
@@ -207,23 +206,6 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 		return TaggedUnionUtils.get(this, Kind.Term);
 	}
 
-	/**
-	 * Is this variant instance of kind {@code text}?
-	 */
-	public boolean isText() {
-		return _kind == Kind.Text;
-	}
-
-	/**
-	 * Get the {@code text} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code text} kind.
-	 */
-	public String text() {
-		return TaggedUnionUtils.get(this, Kind.Text);
-	}
-
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -233,30 +215,36 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_kind) {
-				case Prefix :
-					generator.write(((String) this._value));
-
-					break;
-				case Regex :
-					generator.write(((String) this._value));
-
-					break;
-				case Text :
-					generator.write(((String) this._value));
-
-					break;
-			}
+		}
+		if (this.prefix != null) {
+			generator.writeKey("prefix");
+			generator.write(this.prefix);
+		}
+		if (this.regex != null) {
+			generator.writeKey("regex");
+			generator.write(this.regex);
+		}
+		if (this.text != null) {
+			generator.writeKey("text");
+			generator.write(this.text);
 		}
 
 		generator.writeEnd();
 
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSuggester> {
+	public static class Builder extends SuggesterBase.AbstractBuilder<Builder> implements ObjectBuilder<FieldSuggester> {
 		private Kind _kind;
 		private Object _value;
+		
+		@Nullable
+		private String prefix;
+
+		@Nullable
+		private String regex;
+
+		@Nullable
+		private String text;
 
 		public ObjectBuilder<FieldSuggester> completion(CompletionSuggester v) {
 			this._kind = Kind.Completion;
@@ -280,18 +268,6 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 			return this.phrase(fn.apply(new PhraseSuggester.Builder()).build());
 		}
 
-		public ObjectBuilder<FieldSuggester> prefix(String v) {
-			this._kind = Kind.Prefix;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<FieldSuggester> regex(String v) {
-			this._kind = Kind.Regex;
-			this._value = v;
-			return this;
-		}
-
 		public ObjectBuilder<FieldSuggester> term(TermSuggester v) {
 			this._kind = Kind.Term;
 			this._value = v;
@@ -302,9 +278,27 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 			return this.term(fn.apply(new TermSuggester.Builder()).build());
 		}
 
-		public ObjectBuilder<FieldSuggester> text(String v) {
-			this._kind = Kind.Text;
-			this._value = v;
+		/**
+		 * API name: {@code prefix}
+		 */
+		public final Builder prefix(@Nullable String value) {
+			this.prefix = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code regex}
+		 */
+		public final Builder regex(@Nullable String value) {
+			this.regex = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code text}
+		 */
+		public final Builder text(@Nullable String value) {
+			this.text = value;
 			return this;
 		}
 
@@ -313,15 +307,20 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 			return new FieldSuggester(this);
 		}
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
 	}
 
 	protected static void setupFieldSuggesterDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::completion, CompletionSuggester._DESERIALIZER, "completion");
 		op.add(Builder::phrase, PhraseSuggester._DESERIALIZER, "phrase");
+		op.add(Builder::term, TermSuggester._DESERIALIZER, "term");
 		op.add(Builder::prefix, JsonpDeserializer.stringDeserializer(), "prefix");
 		op.add(Builder::regex, JsonpDeserializer.stringDeserializer(), "regex");
-		op.add(Builder::term, TermSuggester._DESERIALIZER, "term");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 
 	}
