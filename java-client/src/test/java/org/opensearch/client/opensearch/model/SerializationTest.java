@@ -32,23 +32,20 @@
 
 package org.opensearch.client.opensearch.model;
 
-import org.opensearch.client.opensearch.cat.NodesResponse;
-import org.opensearch.client.opensearch.core.GetSourceResponse;
-import org.opensearch.client.json.JsonpDeserializable;
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapperBase;
-import org.opensearch.client.json.JsonpUtils;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
 import jakarta.json.Json;
 import jakarta.json.JsonValue;
-import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
 import org.junit.Test;
-
-import java.io.StringReader;
+import org.opensearch.client.json.JsonpDeserializable;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapperBase;
+import org.opensearch.client.json.JsonpUtils;
+import org.opensearch.client.opensearch.cat.NodesResponse;
+import org.opensearch.client.opensearch.core.GetSourceResponse;
 
 public class SerializationTest extends ModelTestCase {
 
@@ -71,8 +68,7 @@ public class SerializationTest extends ModelTestCase {
             assertNotNull(deserializer);
 
             // Deserialize something dummy to resolve lazy deserializers
-            JsonParser parser = mapper.jsonProvider().createParser(new StringReader("-"));
-            assertThrows(JsonParsingException.class, () -> deserializer.deserialize(parser, mapper));
+            assertThrows(JsonParsingException.class, () -> fromJson("-", deserializer));
         }
 
         // Check that all classes that have a _DESERIALIZER field also have the annotation
@@ -119,7 +115,7 @@ public class SerializationTest extends ModelTestCase {
         JsonpDeserializer<GetSourceResponse<String>> deserializer =
             GetSourceResponse.createGetSourceResponseDeserializer(JsonpDeserializer.stringDeserializer());
 
-        r = deserializer.deserialize(mapper.jsonProvider().createParser(new StringReader(json)), mapper);
+        r = fromJson(json, deserializer);
 
         assertEquals("The value", r.valueBody());
 

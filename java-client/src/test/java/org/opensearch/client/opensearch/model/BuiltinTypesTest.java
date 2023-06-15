@@ -32,6 +32,7 @@
 
 package org.opensearch.client.opensearch.model;
 
+import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.SortOptions;
@@ -41,13 +42,9 @@ import org.opensearch.client.opensearch._types.aggregations.StringStatsAggregate
 import org.opensearch.client.opensearch._types.query_dsl.SpanGapQuery;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.indices.IndexSettings;
-import org.junit.Test;
 
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import jakarta.json.stream.JsonParser;
 
 public class BuiltinTypesTest extends ModelTestCase {
 
@@ -239,10 +236,9 @@ public class BuiltinTypesTest extends ModelTestCase {
     public void testNullableStringInArray() {
         // stringOrNullDeserializer allows to handle null events in string arrays
         String json = "[\"lettuce\", null, \"tomato\"]";
-        JsonParser jsonParser = mapper.jsonProvider().createParser(new StringReader(json));
         JsonpDeserializer<String> stringDeserializer = JsonpDeserializer.stringOrNullDeserializer();
 
-        List<String> result = JsonpDeserializer.arrayDeserializer(stringDeserializer).deserialize(jsonParser, mapper);
+        List<String> result = fromJson(json, JsonpDeserializer.arrayDeserializer(stringDeserializer));
 
         List<String> expected = new ArrayList<>();
         expected.add("lettuce");
