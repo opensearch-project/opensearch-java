@@ -79,7 +79,7 @@ There are multiple low level transports which `OpenSearchClient` could be config
 import org.apache.hc.core5.http.HttpHost;
 
 final HttpHost[] hosts = new HttpHost[] {
-    new HttpHost("localhost", "http", 9200)
+    new HttpHost("http", "localhost", 9200)
   };
 
 // Initialize the client with SSL and TLS enabled
@@ -107,7 +107,7 @@ Upcoming OpenSearch `3.0.0` release brings HTTP/2 support and as such, the `Rest
 import org.apache.hc.core5.http.HttpHost;
 
 final HttpHost[] hosts = new HttpHost[] {
-    new HttpHost("localhost", "http", 9200)
+    new HttpHost("http", "localhost", 9200)
   };
 
 final OpenSearchTransport transport = ApacheHttpClient5TransportBuilder
@@ -135,9 +135,30 @@ OpenSearchClient client = new OpenSearchClient(transport);
 
 ## Create an index
 
+### Create an index with default settings
+
 ```java
 String index = "sample-index";
 CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(index).build();
+client.indices().create(createIndexRequest);
+```
+
+### Create an index with custom settings and mappings
+
+```java
+String index = "sample-index";
+IndexSettings settings = new IndexSettings.Builder()
+        .numberOfShards("2")
+        .numberOfReplicas("1")
+        .build();
+TypeMapping mapping = new TypeMapping.Builder()
+        .properties("age", new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build())
+        .build();
+CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder()
+        .index(index)
+        .settings(settings)
+        .mappings(mapping)
+        .build();
 client.indices().create(createIndexRequest);
 ```
 
