@@ -207,6 +207,172 @@ for (int i = 0; i < searchResponse.hits().hits().size(); i++) {
 }
 ```
 
+## Search documents using k-NN
+
+### Exact k-NN with scoring script
+
+1. Create index with custom mapping
+
+```java
+String index = "my-knn-index-1";
+TypeMapping mapping = new TypeMapping.Builder()
+        .properties("my_vector", new Property.Builder()
+            .knnVector(new KnnVectorProperty.Builder()
+                .dimension(4)
+                .build())
+            .build())
+        .build();
+CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder()
+        .index(index)
+        .mappings(mapping)
+        .build();
+client.indices().create(createIndexRequest);
+```
+
+2. Index documents
+
+```java
+JsonObject doc1 = Json.createObjectBuilder()
+        .add("my_vector", Json.createArrayBuilder().add(1.5).add(5.5).add(4.5).add(6.4).build())
+        .add("price", 10.3)
+        .build();
+JsonObject doc2 = Json.createObjectBuilder()
+        .add("my_vector", Json.createArrayBuilder().add(2.5).add(3.5).add(5.6).add(6.7).build())
+        .add("price", 5.5)
+        .build();
+JsonObject doc3 = Json.createObjectBuilder()
+        .add("my_vector", Json.createArrayBuilder().add(4.5).add(5.5).add(6.7).add(3.7).build())
+        .add("price", 4.4)
+        .build();
+
+ArrayList<BulkOperation> operations = new ArrayList<>();
+operations.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(index).id("1").document(doc1))
+        ).build());
+operations.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(index).id("2").document(doc2))
+        ).build());
+operations.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(index).id("3").document(doc3))
+        ).build());
+
+BulkRequest bulkRequest = new BulkRequest.Builder()
+        .index(index)
+        .operations(operations)
+        .build();
+client.bulk(bulkRequest);
+```
+
+3. Search documents using k-NN script score (_This implementation utilizes `com.fasterxml.jackson.databind.JsonNode` as the target document class, which is not part of the OpenSearch Java library. However, any document class that matches the searched data can be used instead._)
+
+```java
+InlineScript inlineScript = new InlineScript.Builder()
+        .source("knn_score")
+        .lang("knn")
+        .params(Map.of(
+                "field", JsonData.of("my_vector"),
+                "query_value", JsonData.of(List.of(1.5, 5.5, 4.5, 6.4)),
+                "space_type", JsonData.of("cosinesimil")
+                ))
+        .build();
+Query query = new Query.Builder()
+        .scriptScore(new ScriptScoreQuery.Builder()
+            .query(new Query.Builder()
+                .matchAll(new MatchAllQuery.Builder().build())
+                .build())
+            .script(new Script.Builder()
+                .inline(inlineScript)
+                .build())
+            .build())
+        .build();
+SearchRequest searchRequest = new SearchRequest.Builder()
+        .index(index)
+        .query(query)
+        .build();
+SearchResponse<JsonNode> searchResponse = client.search(searchRequest, JsonNode.class);
+```
+
+### Exact k-NN with painless scripting extension
+
+1. Create index with custom mapping
+
+```java
+String index = "my-knn-index-1";
+TypeMapping mapping = new TypeMapping.Builder()
+        .properties("my_vector", new Property.Builder()
+            .knnVector(new KnnVectorProperty.Builder()
+                .dimension(4)
+                .build())
+            .build())
+        .build();
+CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder()
+        .index(index)
+        .mappings(mapping)
+        .build();
+client.indices().create(createIndexRequest);
+```
+
+2. Index documents
+
+```java
+JsonObject doc1 = Json.createObjectBuilder()
+        .add("my_vector", Json.createArrayBuilder().add(1.5).add(5.5).add(4.5).add(6.4).build())
+        .add("price", 10.3)
+        .build();
+JsonObject doc2 = Json.createObjectBuilder()
+        .add("my_vector", Json.createArrayBuilder().add(2.5).add(3.5).add(5.6).add(6.7).build())
+        .add("price", 5.5)
+        .build();
+JsonObject doc3 = Json.createObjectBuilder()
+        .add("my_vector", Json.createArrayBuilder().add(4.5).add(5.5).add(6.7).add(3.7).build())
+        .add("price", 4.4)
+        .build();
+
+ArrayList<BulkOperation> operations = new ArrayList<>();
+operations.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(index).id("1").document(doc1))
+        ).build());
+operations.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(index).id("2").document(doc2))
+        ).build());
+operations.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(index).id("3").document(doc3))
+        ).build());
+
+BulkRequest bulkRequest = new BulkRequest.Builder()
+        .index(index)
+        .operations(operations)
+        .build();
+client.bulk(bulkRequest);
+```
+
+3. Search documents using k-NN with painless scripting extension (_This implementation utilizes `com.fasterxml.jackson.databind.JsonNode` as the target document class, which is not part of the OpenSearch Java library. However, any document class that matches the searched data can be used instead._)
+
+```java
+InlineScript inlineScript = new InlineScript.Builder()
+        .source("1.0 + cosineSimilarity(params.query_value, doc[params.field])")
+        .params(Map.of(
+            "field", JsonData.of("my_vector"),
+            "query_value", JsonData.of(List.of(1.5, 5.5, 4.5, 6.4))
+            ))
+        .build();
+Query query = new Query.Builder()
+        .scriptScore(new ScriptScoreQuery.Builder()
+            .query(new Query.Builder()
+                .matchAll(new MatchAllQuery.Builder().build())
+                .build())
+            .script(new Script.Builder()
+                .inline(inlineScript)
+                .build())
+            .build())
+        .build();
+SearchRequest searchRequest = new SearchRequest.Builder()
+        .index(index)
+        .query(query)
+        .build();
+SearchResult<JsonNode> searchResult = client.search(searchRequest, JsonNode.class);
+```
+
 ## Bulk requests
 
 ```java
