@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch._types.aggregations;
 
 import org.opensearch.client.json.ExternallyTaggedUnion;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -192,6 +193,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 
 		WeightedAvg("weighted_avg"),
 
+		_Custom(null),
+
 		;
 
 		private final String jsonValue;
@@ -231,6 +234,11 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
+	}
+
+	public Aggregate(String kind, JsonData value) {
+		this._kind = Kind._Custom;
+		this._value = (AggregateVariant) value;
 	}
 
 	public static Aggregate of(Function<Builder, ObjectBuilder<Aggregate>> fn) {
@@ -2119,6 +2127,6 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 		deserializers.put("weighted_avg", WeightedAvgAggregate._DESERIALIZER);
 
 		_TYPED_KEYS_DESERIALIZER = new ExternallyTaggedUnion.Deserializer<>(deserializers,
-				(name, value) -> new Aggregate(value)).typedKeys();
+				Aggregate::new, Aggregate::new).typedKeys();
 	}
 }
