@@ -3,6 +3,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+- Add support for knn_vector field type ([#529](https://github.com/opensearch-project/opensearch-java/pull/524))
 
 ### Dependencies
 - Bumps `com.github.jk1.dependency-license-report` from 2.2 to 2.4
@@ -16,6 +17,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fixed Suggesters for Completion, Term, and Phrase and refactored the Suggestion class ([#477](https://github.com/opensearch-project/opensearch-java/pull/477))
+
 ### Security
 
 ## [2.5.0] - 06/02/2023
