@@ -115,14 +115,6 @@ public class PropertyBuilders {
 	}
 
 	/**
-	 * Creates a builder for the {@link DenseVectorProperty dense_vector}
-	 * {@code Property} variant.
-	 */
-	public static DenseVectorProperty.Builder denseVector() {
-		return new DenseVectorProperty.Builder();
-	}
-
-	/**
 	 * Creates a builder for the {@link DoubleNumberProperty double}
 	 * {@code Property} variant.
 	 */
@@ -246,6 +238,14 @@ public class PropertyBuilders {
 	 */
 	public static KeywordProperty.Builder keyword() {
 		return new KeywordProperty.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link KnnVectorProperty long} {@code Property}
+	 * variant.
+	 */
+	public static KnnVectorProperty.Builder knnVector() {
+		return new KnnVectorProperty.Builder();
 	}
 
 	/**

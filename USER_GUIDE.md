@@ -7,10 +7,15 @@
     - [Create a client using `RestClientTransport`](#create-a-client-using-restclienttransport)
     - [Create a client using `ApacheHttpClient5Transport`](#create-a-client-using-apachehttpclient5transport)
   - [Create an index](#create-an-index)
+    - [Create an index with default settings](#create-an-index-with-default-settings)
+    - [Create an index with custom settings and mappings](#create-an-index-with-custom-settings-and-mappings)
   - [Index data](#index-data)
   - [Search for the documents](#search-for-the-documents)
     - [Get raw JSON results](#get-raw-json-results)
   - [Search documents using a match query](#search-documents-using-a-match-query)
+  - [Search documents using k-NN](#search-documents-using-k-nn)
+    - [Exact k-NN with scoring script](#exact-k-nn-with-scoring-script)
+    - [Exact k-NN with painless scripting extension](#exact-k-nn-with-painless-scripting-extension)
   - [Search documents using suggesters](#search-documents-using-suggesters)
     - [App Data class](#app-data-class)
     - [Using completion suggester](#using-completion-suggester)
@@ -110,7 +115,7 @@ OpenSearchClient client = new OpenSearchClient(transport);
 import org.apache.hc.core5.http.HttpHost;
 
 final HttpHost[] hosts = new HttpHost[] {
-    new HttpHost("localhost", "http", 9200)
+    new HttpHost("http", "localhost", 9200)
   };
 
 final OpenSearchTransport transport = ApacheHttpClient5TransportBuilder
@@ -129,9 +134,30 @@ The Apache HttpClient 5 based transport has dependences on Apache HttpClient 5 a
 
 ## Create an index
 
+### Create an index with default settings
+
 ```java
 String index = "sample-index";
 CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(index).build();
+client.indices().create(createIndexRequest);
+```
+
+### Create an index with custom settings and mappings
+
+```java
+String index = "sample-index";
+IndexSettings settings = new IndexSettings.Builder()
+        .numberOfShards("2")
+        .numberOfReplicas("1")
+        .build();
+TypeMapping mapping = new TypeMapping.Builder()
+        .properties("age", new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build())
+        .build();
+CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder()
+        .index(index)
+        .settings(settings)
+        .mappings(mapping)
+        .build();
 client.indices().create(createIndexRequest);
 ```
 
@@ -178,6 +204,172 @@ SearchResponse<IndexData> searchResponse = client.search(searchRequest, IndexDat
 for (int i = 0; i < searchResponse.hits().hits().size(); i++) {
   System.out.println(searchResponse.hits().hits().get(i).source());
 }
+```
+
+## Search documents using k-NN
+
+### Exact k-NN with scoring script
+
+1. Create index with custom mapping
+
+```java
+String index = "my-knn-index-1";
+TypeMapping mapping = new TypeMapping.Builder()
+        .properties("my_vector", new Property.Builder()
+            .knnVector(new KnnVectorProperty.Builder()
+                .dimension(4)
+                .build())
+            .build())
+        .build();
+CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder()
+        .index(index)
+        .mappings(mapping)
+        .build();
+client.indices().create(createIndexRequest);
+```
+
+2. Index documents
+
+```java
+JsonObject doc1 = Json.createObjectBuilder()
+        .add("my_vector", Json.createArrayBuilder().add(1.5).add(5.5).add(4.5).add(6.4).build())
+        .add("price", 10.3)
+        .build();
+JsonObject doc2 = Json.createObjectBuilder()
+        .add("my_vector", Json.createArrayBuilder().add(2.5).add(3.5).add(5.6).add(6.7).build())
+        .add("price", 5.5)
+        .build();
+JsonObject doc3 = Json.createObjectBuilder()
+        .add("my_vector", Json.createArrayBuilder().add(4.5).add(5.5).add(6.7).add(3.7).build())
+        .add("price", 4.4)
+        .build();
+
+ArrayList<BulkOperation> operations = new ArrayList<>();
+operations.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(index).id("1").document(doc1))
+        ).build());
+operations.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(index).id("2").document(doc2))
+        ).build());
+operations.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(index).id("3").document(doc3))
+        ).build());
+
+BulkRequest bulkRequest = new BulkRequest.Builder()
+        .index(index)
+        .operations(operations)
+        .build();
+client.bulk(bulkRequest);
+```
+
+3. Search documents using k-NN script score (_This implementation utilizes `com.fasterxml.jackson.databind.JsonNode` as the target document class, which is not part of the OpenSearch Java library. However, any document class that matches the searched data can be used instead._)
+
+```java
+InlineScript inlineScript = new InlineScript.Builder()
+        .source("knn_score")
+        .lang("knn")
+        .params(Map.of(
+                "field", JsonData.of("my_vector"),
+                "query_value", JsonData.of(List.of(1.5, 5.5, 4.5, 6.4)),
+                "space_type", JsonData.of("cosinesimil")
+                ))
+        .build();
+Query query = new Query.Builder()
+        .scriptScore(new ScriptScoreQuery.Builder()
+            .query(new Query.Builder()
+                .matchAll(new MatchAllQuery.Builder().build())
+                .build())
+            .script(new Script.Builder()
+                .inline(inlineScript)
+                .build())
+            .build())
+        .build();
+SearchRequest searchRequest = new SearchRequest.Builder()
+        .index(index)
+        .query(query)
+        .build();
+SearchResponse<JsonNode> searchResponse = client.search(searchRequest, JsonNode.class);
+```
+
+### Exact k-NN with painless scripting extension
+
+1. Create index with custom mapping
+
+```java
+String index = "my-knn-index-1";
+TypeMapping mapping = new TypeMapping.Builder()
+        .properties("my_vector", new Property.Builder()
+            .knnVector(new KnnVectorProperty.Builder()
+                .dimension(4)
+                .build())
+            .build())
+        .build();
+CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder()
+        .index(index)
+        .mappings(mapping)
+        .build();
+client.indices().create(createIndexRequest);
+```
+
+2. Index documents
+
+```java
+JsonObject doc1 = Json.createObjectBuilder()
+        .add("my_vector", Json.createArrayBuilder().add(1.5).add(5.5).add(4.5).add(6.4).build())
+        .add("price", 10.3)
+        .build();
+JsonObject doc2 = Json.createObjectBuilder()
+        .add("my_vector", Json.createArrayBuilder().add(2.5).add(3.5).add(5.6).add(6.7).build())
+        .add("price", 5.5)
+        .build();
+JsonObject doc3 = Json.createObjectBuilder()
+        .add("my_vector", Json.createArrayBuilder().add(4.5).add(5.5).add(6.7).add(3.7).build())
+        .add("price", 4.4)
+        .build();
+
+ArrayList<BulkOperation> operations = new ArrayList<>();
+operations.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(index).id("1").document(doc1))
+        ).build());
+operations.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(index).id("2").document(doc2))
+        ).build());
+operations.add(new BulkOperation.Builder().index(
+        IndexOperation.of(io -> io.index(index).id("3").document(doc3))
+        ).build());
+
+BulkRequest bulkRequest = new BulkRequest.Builder()
+        .index(index)
+        .operations(operations)
+        .build();
+client.bulk(bulkRequest);
+```
+
+3. Search documents using k-NN with painless scripting extension (_This implementation utilizes `com.fasterxml.jackson.databind.JsonNode` as the target document class, which is not part of the OpenSearch Java library. However, any document class that matches the searched data can be used instead._)
+
+```java
+InlineScript inlineScript = new InlineScript.Builder()
+        .source("1.0 + cosineSimilarity(params.query_value, doc[params.field])")
+        .params(Map.of(
+            "field", JsonData.of("my_vector"),
+            "query_value", JsonData.of(List.of(1.5, 5.5, 4.5, 6.4))
+            ))
+        .build();
+Query query = new Query.Builder()
+        .scriptScore(new ScriptScoreQuery.Builder()
+            .query(new Query.Builder()
+                .matchAll(new MatchAllQuery.Builder().build())
+                .build())
+            .script(new Script.Builder()
+                .inline(inlineScript)
+                .build())
+            .build())
+        .build();
+SearchRequest searchRequest = new SearchRequest.Builder()
+        .index(index)
+        .query(query)
+        .build();
+SearchResult<JsonNode> searchResult = client.search(searchRequest, JsonNode.class);
 ```
 
 ## Search documents using suggesters
@@ -268,7 +460,7 @@ SearchResponse<AppData> response = client.search(searchRequest, AppData.class);
 
 ```java
  String index = "term-suggester";
-        
+      
 // term suggester does not require a special mapping
 client.indices().create(c -> c
                 .index(index));
@@ -444,12 +636,14 @@ DeleteIndexResponse deleteIndexResponse = client.indices().delete(deleteIndexReq
 
 ## Data Stream API
 
-### Create a data stream 
-Before creating a data stream, you need to create an index template which configures a set of indices as a data stream.
-A data stream must have a timestamp field. If not specified, OpenSearch uses `@timestamp` as the default timestamp field name. 
+### Create a data stream
 
-The following sample code creates an index template for data stream with a custom timestamp field, and creates a data stream 
-which matches the name pattern specified in the index template. 
+Before creating a data stream, you need to create an index template which configures a set of indices as a data stream.
+A data stream must have a timestamp field. If not specified, OpenSearch uses `@timestamp` as the default timestamp field name.
+
+The following sample code creates an index template for data stream with a custom timestamp field, and creates a data stream
+which matches the name pattern specified in the index template.
+
 ```java
 String dataStreamIndexTemplateName = "sample-data-stream-template";
 String timestampFieldName = "my_timestamp_field";
@@ -472,18 +666,21 @@ CreateDataStreamResponse createDataStreamResponse = javaClient().indices().creat
 ```
 
 ### Get data stream
+
 ```java
 GetDataStreamRequest getDataStreamRequest = new GetDataStreamRequest.Builder().name(dataStreamName).build();
 GetDataStreamResponse getDataStreamResponse = javaClient().indices().getDataStream(getDataStreamRequest);
 ```
 
 ### Data stream stats
+
 ```java
 DataStreamsStatsRequest dataStreamsStatsRequest = new DataStreamsStatsRequest.Builder().name(dataStreamName).build();
 DataStreamsStatsResponse dataStreamsStatsResponse = javaClient().indices().dataStreamsStats(dataStreamsStatsRequest);
 ```
 
 ### Delete data stream and backing indices
+
 ```java
 DeleteDataStreamRequest deleteDataStreamRequest = new DeleteDataStreamRequest.Builder().name(dataStreamName).build();
 DeleteDataStreamResponse deleteDataStreamResponse = javaClient().indices().deleteDataStream(deleteDataStreamRequest);
@@ -501,7 +698,7 @@ CreatePitRequest createPitRequest = new CreatePitRequest.Builder()
                 .keepAlive(new Time.Builder().time("100m").build()).build();
 
 CreatePitResponse createPitResponse = javaClient()
-                .createPit(createPitRequest);                
+                .createPit(createPitRequest);              
 ```
 
 ### List all point in time
@@ -524,10 +721,10 @@ DeletePitResponse deletePitResponse = javaClient()
                 .deletePit(deletePitRequest);
 ```
 
-
 ## Cat API
 
 ### Cat Indices
+
 The following sample code cat indices with required headers and sorted by creation date
 
 ```java
@@ -536,22 +733,27 @@ IndicesRequest indicesRequest = new IndicesRequest.Builder()
 IndicesResponse indicesResponse = javaClient().cat().indices(indicesRequest);
 ```
 
-
 ### Cat aliases
+
 The following sample code cat aliases with name "test-alias" and sorted by index
+
 ```java
 AliasesRequest aliasesRequest = new AliasesRequest.Builder().name("test-alias").sort("index").build();
 AliasesResponse aliasesResponse = javaClient().cat().aliases(aliasesRequest);
 ```
 
 ### Cat nodes
+
 The following sample code cat nodes sorted by cpu
+
 ```java
 NodesResponse nodesResponse = javaClient().cat().nodes(r -> r.sort("cpu"));
 ```
 
 ### Cat point in time segments
-Similarly to the CAT Segments API, the PIT Segments API provides low-level information about the disk utilization of a PIT by describing its Lucene segments. 
+
+Similarly to the CAT Segments API, the PIT Segments API provides low-level information about the disk utilization of a PIT by describing its Lucene segments.
+
 ```java
 SegmentsResponse pitSegmentsResponse = javaClient().cat()
                 .pitSegments(r -> r.headers("index,shard,id,segment,size"));
