@@ -6,7 +6,7 @@
   - [Create a client](#create-a-client)
     - [Create a client using `RestClientTransport`](#create-a-client-using-restclienttransport)
     - [Create a client using `ApacheHttpClient5Transport`](#create-a-client-using-apachehttpclient5transport)
-  - [Create an index](#create-an-index) 
+  - [Create an index](#create-an-index)
     - [Create an index with default settings](#create-an-index-with-default-settings)
     - [Create an index with custom settings and mappings](#create-an-index-with-custom-settings-and-mappings)
   - [Index data](#index-data)
@@ -89,7 +89,7 @@ There are multiple low level transports which `OpenSearchClient` could be config
 import org.apache.http.HttpHost;
 
 final HttpHost[] hosts = new HttpHost[] {
-    new HttpHost("http", "localhost", 9200)
+    new HttpHost("localhost", 9200, "http")
   };
 
 // Initialize the client with SSL and TLS enabled
@@ -460,7 +460,7 @@ SearchResponse<AppData> response = client.search(searchRequest, AppData.class);
 
 ```java
  String index = "term-suggester";
-        
+      
 // term suggester does not require a special mapping
 client.indices().create(c -> c
                 .index(index));
@@ -636,12 +636,14 @@ DeleteIndexResponse deleteIndexResponse = client.indices().delete(deleteIndexReq
 
 ## Data Stream API
 
-### Create a data stream 
-Before creating a data stream, you need to create an index template which configures a set of indices as a data stream.
-A data stream must have a timestamp field. If not specified, OpenSearch uses `@timestamp` as the default timestamp field name. 
+### Create a data stream
 
-The following sample code creates an index template for data stream with a custom timestamp field, and creates a data stream 
-which matches the name pattern specified in the index template. 
+Before creating a data stream, you need to create an index template which configures a set of indices as a data stream.
+A data stream must have a timestamp field. If not specified, OpenSearch uses `@timestamp` as the default timestamp field name.
+
+The following sample code creates an index template for data stream with a custom timestamp field, and creates a data stream
+which matches the name pattern specified in the index template.
+
 ```java
 String dataStreamIndexTemplateName = "sample-data-stream-template";
 String timestampFieldName = "my_timestamp_field";
@@ -664,18 +666,21 @@ CreateDataStreamResponse createDataStreamResponse = javaClient().indices().creat
 ```
 
 ### Get data stream
+
 ```java
 GetDataStreamRequest getDataStreamRequest = new GetDataStreamRequest.Builder().name(dataStreamName).build();
 GetDataStreamResponse getDataStreamResponse = javaClient().indices().getDataStream(getDataStreamRequest);
 ```
 
 ### Data stream stats
+
 ```java
 DataStreamsStatsRequest dataStreamsStatsRequest = new DataStreamsStatsRequest.Builder().name(dataStreamName).build();
 DataStreamsStatsResponse dataStreamsStatsResponse = javaClient().indices().dataStreamsStats(dataStreamsStatsRequest);
 ```
 
 ### Delete data stream and backing indices
+
 ```java
 DeleteDataStreamRequest deleteDataStreamRequest = new DeleteDataStreamRequest.Builder().name(dataStreamName).build();
 DeleteDataStreamResponse deleteDataStreamResponse = javaClient().indices().deleteDataStream(deleteDataStreamRequest);
@@ -693,7 +698,7 @@ CreatePitRequest createPitRequest = new CreatePitRequest.Builder()
                 .keepAlive(new Time.Builder().time("100m").build()).build();
 
 CreatePitResponse createPitResponse = javaClient()
-                .createPit(createPitRequest);                
+                .createPit(createPitRequest);              
 ```
 
 ### List all point in time
@@ -716,10 +721,10 @@ DeletePitResponse deletePitResponse = javaClient()
                 .deletePit(deletePitRequest);
 ```
 
-
 ## Cat API
 
 ### Cat Indices
+
 The following sample code cat indices with required headers and sorted by creation date
 
 ```java
@@ -728,22 +733,27 @@ IndicesRequest indicesRequest = new IndicesRequest.Builder()
 IndicesResponse indicesResponse = javaClient().cat().indices(indicesRequest);
 ```
 
-
 ### Cat aliases
+
 The following sample code cat aliases with name "test-alias" and sorted by index
+
 ```java
 AliasesRequest aliasesRequest = new AliasesRequest.Builder().name("test-alias").sort("index").build();
 AliasesResponse aliasesResponse = javaClient().cat().aliases(aliasesRequest);
 ```
 
 ### Cat nodes
+
 The following sample code cat nodes sorted by cpu
+
 ```java
 NodesResponse nodesResponse = javaClient().cat().nodes(r -> r.sort("cpu"));
 ```
 
 ### Cat point in time segments
-Similarly to the CAT Segments API, the PIT Segments API provides low-level information about the disk utilization of a PIT by describing its Lucene segments. 
+
+Similarly to the CAT Segments API, the PIT Segments API provides low-level information about the disk utilization of a PIT by describing its Lucene segments.
+
 ```java
 SegmentsResponse pitSegmentsResponse = javaClient().cat()
                 .pitSegments(r -> r.headers("index,shard,id,segment,size"));
