@@ -30,6 +30,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add support for knn_vector field type ([#529](https://github.com/opensearch-project/opensearch-java/pull/524))
 
 ### Dependencies
+- Bumps `jackson` from 2.14.2 to 2.15.2 ((#537)[https://github.com/opensearch-project/opensearch-java/pull/537])
 
 ### Changed
 
