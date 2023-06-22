@@ -70,6 +70,11 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * The {@link RestClientTransport} is deprecated and is scheduled for removal in later versions. Please
+ * use {@link org.opensearch.client.transport.httpclient5.ApacheHttpClient5Transport} instead.
+ */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public class RestClientTransport implements OpenSearchTransport {
 
     static final ContentType JsonContentType = ContentType.APPLICATION_JSON;
