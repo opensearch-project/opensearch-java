@@ -48,6 +48,11 @@ import java.util.stream.Collectors;
 import static org.opensearch.client.transport.TransportHeaders.ACCEPT;
 import static org.opensearch.client.transport.TransportHeaders.USER_AGENT;
 
+/**
+ * The {@link RestClientTransport} is deprecated and is scheduled for removal in later versions. Please
+ * use {@link org.opensearch.client.transport.httpclient5.ApacheHttpClient5Transport} instead.
+ */
+@Deprecated(since = "3.0.0", forRemoval = true)
 public class RestClientOptions implements TransportOptions {
 
     private final RequestOptions options;

@@ -81,35 +81,7 @@ static class IndexData {
 
 ## Create a client
 
-There are multiple low level transports which `OpenSearchClient` could be configured with.
-
-### Create a client using `RestClientTransport`
-
-```java
-import org.apache.hc.core5.http.HttpHost;
-
-final HttpHost[] hosts = new HttpHost[] {
-    new HttpHost("http", "localhost", 9200)
-  };
-
-// Initialize the client with SSL and TLS enabled
-final RestClient restClient = RestClient
-  .builder(hosts)
-  .build();
-
-OpenSearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper()); 
-OpenSearchClient client = new OpenSearchClient(transport);
-```
-
-The `JacksonJsonpMapper` class (2.x versions) only supports Java 7 objects by default. [Java 8 modules](https://github.com/FasterXML/jackson-modules-java8) to support JDK8 classes such as the Date and Time API (JSR-310), `Optional`, and more can be used by including [the additional datatype dependency](https://github.com/FasterXML/jackson-modules-java8#usage) and adding the module.  For example, to include JSR-310 classes:
-
-```java
-OpenSearchTransport transport = new RestClientTransport(restClient,
-    new JacksonJsonpMapper(new ObjectMapper().registerModule(new JavaTimeModule()))); 
-OpenSearchClient client = new OpenSearchClient(transport);
-```
-
-Upcoming OpenSearch `3.0.0` release brings HTTP/2 support and as such, the `RestClientTransport` would switch to HTTP/2 if available (for both HTTPS and/or HTTP protocols). The desired protocol could be forced using `RestClientBuilder.HttpClientConfigCallback`.
+There are multiple low level transports which `OpenSearchClient` could be configured with, the `ApacheHttpClient5Transport` being the default one.
 
 ### Create a client using `ApacheHttpClient5Transport`
 
@@ -142,6 +114,34 @@ final OpenSearchTransport transport = ApacheHttpClient5TransportBuilder
     .build();
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
+
+### Create a client using `RestClientTransport` (deprecated)
+
+```java
+import org.apache.hc.core5.http.HttpHost;
+
+final HttpHost[] hosts = new HttpHost[] {
+    new HttpHost("http", "localhost", 9200)
+  };
+
+// Initialize the client with SSL and TLS enabled
+final RestClient restClient = RestClient
+  .builder(hosts)
+  .build();
+
+OpenSearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper()); 
+OpenSearchClient client = new OpenSearchClient(transport);
+```
+
+The `JacksonJsonpMapper` class (2.x versions) only supports Java 7 objects by default. [Java 8 modules](https://github.com/FasterXML/jackson-modules-java8) to support JDK8 classes such as the Date and Time API (JSR-310), `Optional`, and more can be used by including [the additional datatype dependency](https://github.com/FasterXML/jackson-modules-java8#usage) and adding the module.  For example, to include JSR-310 classes:
+
+```java
+OpenSearchTransport transport = new RestClientTransport(restClient,
+    new JacksonJsonpMapper(new ObjectMapper().registerModule(new JavaTimeModule()))); 
+OpenSearchClient client = new OpenSearchClient(transport);
+```
+
+Upcoming OpenSearch `3.0.0` release brings HTTP/2 support and as such, the `RestClientTransport` would switch to HTTP/2 if available (for both HTTPS and/or HTTP protocols). The desired protocol could be forced using `RestClientBuilder.HttpClientConfigCallback`.
 
 ## Create an index
 
