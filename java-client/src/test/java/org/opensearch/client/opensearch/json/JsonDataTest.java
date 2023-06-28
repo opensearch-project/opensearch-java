@@ -32,18 +32,18 @@
 
 package org.opensearch.client.opensearch.json;
 
-import org.opensearch.client.json.JsonData;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
-import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.junit.Assert;
 import org.junit.Test;
+import org.opensearch.client.json.JsonData;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.client.opensearch.model.ModelTestCase;
 
 import java.io.StringReader;
-import java.io.StringWriter;
+
 
 public class JsonDataTest extends Assert {
 
@@ -69,9 +69,7 @@ public class JsonDataTest extends Assert {
         String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
             "\"stringValue\":\"foo\"}";
 
-        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
-        JsonpMapperTest.SomeClass sc =
-            mapper.deserialize(parser, JsonpMapperTest.SomeClass.class);
+        JsonpMapperTest.SomeClass sc = ModelTestCase.fromJson(json, JsonpMapperTest.SomeClass.class, mapper);
 
         assertEquals("foo", sc.getStringValue());
         assertEquals(1, sc.getChildren().size());
@@ -80,13 +78,7 @@ public class JsonDataTest extends Assert {
 
         JsonData data = JsonData.of(sc);
 
-        StringWriter sw = new StringWriter();
-        JsonGenerator generator = mapper.jsonProvider().createGenerator(sw);
-
-        data.serialize(generator, mapper);
-        generator.close();
-
-        assertEquals(json, sw.toString());
+        assertEquals(json, ModelTestCase.toJson(data, mapper));
     }
 
     @Test

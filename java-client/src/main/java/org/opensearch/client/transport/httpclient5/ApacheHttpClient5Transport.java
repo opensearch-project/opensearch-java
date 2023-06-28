@@ -90,6 +90,9 @@ import org.opensearch.client.util.MissingRequiredPropertyException;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
+/**
+ * Apache HttpClient 5 based client transport.
+ */
 public class ApacheHttpClient5Transport implements OpenSearchTransport {
     private static final Log logger = LogFactory.getLog(ApacheHttpClient5Transport.class);
     static final ContentType JsonContentType = ContentType.APPLICATION_JSON;
