@@ -4,6 +4,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased]
 ### Added
 - Add support for knn_vector field type ([#529](https://github.com/opensearch-project/opensearch-java/pull/524))
+- Add translog option object and missing translog sync interval option in index settings ([#518](https://github.com/opensearch-project/opensearch-java/pull/518))
 
 ### Dependencies
 - Bumps `com.github.jk1.dependency-license-report` from 2.2 to 2.4
@@ -13,6 +14,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Changed
 
 ### Deprecated
+- Deprecate translogDurability and translogFlushThresholdSize in IndexSettings in favor of a separate translog object ([#518](https://github.com/opensearch-project/opensearch-java/pull/518))
 
 ### Removed
 
