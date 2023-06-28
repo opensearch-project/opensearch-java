@@ -32,25 +32,15 @@
 
 package org.opensearch.client.opensearch.experiments.inheritance;
 
+import org.junit.Test;
 import org.opensearch.client.opensearch.experiments.inheritance.child.ChildClass;
 import org.opensearch.client.opensearch.experiments.inheritance.final_.FinalClass;
-import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
-import jakarta.json.spi.JsonProvider;
-import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonParser;
-import org.junit.Assert;
-import org.junit.Test;
+import org.opensearch.client.opensearch.model.ModelTestCase;
 
-import java.io.ByteArrayOutputStream;
-import java.io.StringReader;
-
-public class InheritanceTest extends Assert {
+public class InheritanceTest extends ModelTestCase {
 
     @Test
     public void testSerialization() {
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        JsonProvider provider = JsonProvider.provider();
 
         FinalClass fc = new FinalClass.Builder()
             // Start fields from the top of the hierarchy to test setter return values
@@ -59,15 +49,9 @@ public class InheritanceTest extends Assert {
             .finalField("finalValue")
             .build();
 
-        JsonGenerator generator = provider.createGenerator(baos);
-        fc.serialize(generator, new JsonbJsonpMapper());
-
-        generator.close();
-        String str = baos.toString();
+        String str = toJson(fc);
 
         assertEquals("{\"baseField\":\"baseValue\",\"childField\":\"childValue\",\"finalField\":\"finalValue\"}", str);
-
-        baos.reset();
 
         ChildClass cc = new ChildClass.Builder()
             // Start fields from the top of the hierarchy to test setter return values
@@ -75,33 +59,26 @@ public class InheritanceTest extends Assert {
             .childField("childValue")
             .build();
 
-        generator = provider.createGenerator(baos);
-        cc.serialize(generator, new JsonbJsonpMapper());
-
-        generator.close();
-        str = baos.toString();
+        str = toJson(cc);
 
         assertEquals("{\"baseField\":\"baseValue\",\"childField\":\"childValue\"}", str);
     }
 
     @Test
     public void testDeserialization() {
-        JsonProvider provider = JsonProvider.provider();
 
-        JsonParser parser = provider.createParser(new StringReader(
-            "{\"baseField\":\"baseValue\",\"childField\":\"childValue\",\"finalField\":\"finalValue\"}"));
+        String json = "{\"baseField\":\"baseValue\",\"childField\":\"childValue\",\"finalField\":\"finalValue\"}";
 
-        FinalClass fc = FinalClass.JSONP_PARSER.deserialize(parser, new JsonbJsonpMapper());
+        FinalClass fc = fromJson(json, FinalClass.JSONP_PARSER);
 
         assertEquals("baseValue", fc.baseField());
         assertEquals("childValue", fc.childField());
         assertEquals("finalValue", fc.finalField());
 
 
-        parser = provider.createParser(new StringReader(
-            "{\"baseField\":\"baseValue\",\"childField\":\"childValue\"}"));
+        json = "{\"baseField\":\"baseValue\",\"childField\":\"childValue\"}";
 
-        ChildClass cc = ChildClass.JSONP_PARSER.deserialize(parser, new JsonbJsonpMapper());
+        ChildClass cc = fromJson(json, ChildClass.JSONP_PARSER);
 
         assertEquals("baseValue", cc.baseField());
         assertEquals("childValue", cc.childField());
