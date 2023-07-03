@@ -1,3 +1,11 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
 package org.opensearch.client.opensearch.integTest;
 
 import java.util.Arrays;
@@ -72,7 +80,7 @@ public abstract class AbstractKnnIT extends OpenSearchJavaClientTestCase {
         public float[] vector;
         public float price;
 
-        public Doc(float[] vector, float price) {
+        Doc(float[] vector, float price) {
             this.vector = vector;
             this.price = price;
         }
