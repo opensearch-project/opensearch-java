@@ -509,7 +509,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 
 	/**
 	 * The number of slices this task should be divided into. Defaults to 1, meaning
-	 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+	 * the task isn't sliced into subtasks. Can be set to 0 for <code>auto</code>.
 	 * <p>
 	 * API name: {@code slices}
 	 */
@@ -1125,7 +1125,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 
 		/**
 		 * The number of slices this task should be divided into. Defaults to 1, meaning
-		 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+		 * the task isn't sliced into subtasks. Can be set to 0 for <code>auto</code>.
 		 * <p>
 		 * API name: {@code slices}
 		 */
@@ -1327,7 +1327,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.slices != null) {
-					params.put("slices", String.valueOf(request.slices));
+					params.put("slices", request.slices == 0 ? "auto" : String.valueOf(request.slices));
 				}
 				if (request.df != null) {
 					params.put("df", request.df);
