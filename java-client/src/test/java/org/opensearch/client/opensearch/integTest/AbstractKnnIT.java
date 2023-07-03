@@ -8,7 +8,9 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import org.junit.Test;
 import org.opensearch.client.json.JsonData;
@@ -18,6 +20,8 @@ import org.opensearch.client.opensearch.core.bulk.BulkOperation;
 public abstract class AbstractKnnIT extends OpenSearchJavaClientTestCase {
     @Test
     public void testCanIndexAndSearchKnn() throws Exception {
+        assumeKnnInstalled();
+
         final String indexName = "knn-index-and-search";
 
         var createIndexResponse = javaClient()
@@ -74,6 +78,17 @@ public abstract class AbstractKnnIT extends OpenSearchJavaClientTestCase {
         assertEquals(2, hits.size());
         assertEquals(5.5f, hits.get(0).source().price, 0.01f);
         assertEquals(10.3f, hits.get(1).source().price, 0.01f);
+    }
+
+    private void assumeKnnInstalled() throws IOException {
+        var plugins = javaClient().cat().plugins();
+
+        var knnInstalled = plugins
+                .valueBody()
+                .stream()
+                .anyMatch(p -> Objects.equals(p.component(), "opensearch-knn"));
+
+        assumeTrue("KNN plugin is not installed", knnInstalled);
     }
 
     private static class Doc {
