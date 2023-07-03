@@ -152,8 +152,8 @@ dependencies {
     testImplementation("org.opensearch.test", "framework", opensearchVersion)
 
     api("org.apache.httpcomponents.client5:httpclient5:5.1.4")
-    api("org.apache.httpcomponents.core5:httpcore5:5.1.5")
-    api("org.apache.httpcomponents.core5:httpcore5-h2:5.1.5")
+    api("org.apache.httpcomponents.core5:httpcore5:5.2.2")
+    api("org.apache.httpcomponents.core5:httpcore5-h2:5.2.2")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
