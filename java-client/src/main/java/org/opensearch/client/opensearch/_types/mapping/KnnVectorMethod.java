@@ -202,10 +202,12 @@ public class KnnVectorMethod implements JsonpSerializable {
 
         if (this.parameters != null) {
             generator.writeKey("parameters");
+            generator.writeStartObject();
             for (Map.Entry<String, JsonData> item0 : this.parameters.entrySet()) {
                 generator.writeKey(item0.getKey());
                 item0.getValue().serialize(generator, mapper);
             }
+            generator.writeEnd();
         }
 
     }

@@ -1066,7 +1066,7 @@ public class IndexSettings implements JsonpSerializable {
 
 		}
 		if (this.knnAlgoParamEfSearch != null) {
-			generator.writeKey("knn.algo_param_ef_search");
+			generator.writeKey("knn.algo_param.ef_search");
 			generator.write(this.knnAlgoParamEfSearch);
 
 		}

@@ -73,12 +73,16 @@ public abstract class AbstractKnnIT extends OpenSearchJavaClientTestCase {
 
         assertEquals(2, hits.size());
         assertEquals(5.5f, hits.get(0).source().price, 0.01f);
-        assertEquals(4.4f, hits.get(1).source().price, 0.01f);
+        assertEquals(10.3f, hits.get(1).source().price, 0.01f);
     }
 
     private static class Doc {
         public float[] vector;
         public float price;
+
+        Doc() {
+
+        }
 
         Doc(float[] vector, float price) {
             this.vector = vector;
