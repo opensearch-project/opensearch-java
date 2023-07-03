@@ -79,6 +79,14 @@ public class KnnVectorMethod implements JsonpSerializable {
         }
 
         /**
+         * API name: {@code parameters}
+         */
+        public final Builder parameters(String key, JsonData value) {
+            this.parameters = _mapPut(this.parameters, key, value);
+            return this;
+        }
+
+        /**
          * Builds a {@link KnnVectorMethod}.
          *
          * @throws NullPointerException
