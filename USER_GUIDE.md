@@ -128,8 +128,8 @@ OpenSearchClient client = new OpenSearchClient(transport);
 The Apache HttpClient 5 based transport has dependences on Apache HttpClient 5 and Apache HttpCore 5 which has to be added to the project explicitly.
 
 ```gradle
-    implementation("org.apache.httpcomponents.client5", "httpclient5", "5.1.4")
-    implementation("org.apache.httpcomponents.core5", "httpcore5", "5.1.5")
+    implementation("org.apache.httpcomponents.client5", "httpclient5", "5.2.1")
+    implementation("org.apache.httpcomponents.core5", "httpcore5", "5.2.2")
 ```
 
 ## Create an index
