@@ -9,7 +9,7 @@
 package org.opensearch.client.opensearch.integTest.restclient;
 
 import java.io.IOException;
-import org.apache.hc.core5.http.HttpHost;
+import org.apache.http.HttpHost;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.integTest.AbstractKnnIT;
 import org.opensearch.client.transport.OpenSearchTransport;
