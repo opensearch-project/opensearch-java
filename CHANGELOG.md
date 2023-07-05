@@ -1,5 +1,9 @@
 # CHANGELOG
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+## [Unreleased]
+### Dependencies
+- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
+
 
 ## [Unreleased]
 ### Added
