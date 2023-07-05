@@ -183,6 +183,13 @@ public class QueryBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link KnnQuery knn} {@code Query} variant.
+	 */
+	public static KnnQuery.Builder knn() {
+		return new KnnQuery.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link MatchQuery match} {@code Query} variant.
 	 */
 	public static MatchQuery.Builder match() {

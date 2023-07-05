@@ -66,6 +66,13 @@ public class KnnVectorProperty extends PropertyBase implements PropertyVariant {
 		}
 
 		/**
+		 * API name: {@code method}
+		 */
+		public final Builder method(Function<KnnVectorMethod.Builder, ObjectBuilder<KnnVectorMethod>> fn) {
+			return this.method(fn.apply(new KnnVectorMethod.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link KnnVectorProperty}.
 		 *
 		 * @throws NullPointerException
