@@ -7,10 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
 
 ### Dependencies
-- Bumps `io.github.classgraph:classgraph` from 4.8.157 to 4.8.161
 - Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
-- Bumps `com.github.jk1.dependency-license-report` from 2.2 to 2.5
-- Update `org.apache.httpcomponents.client5:httpclient5` from `5.1.4` to `5.2.1` and `org.apache.httpcomponents.core5:httpcore5` from `5.1.5` to `5.2.2`
 - Bumps `org.eclipse.parsson:parsson` from 1.1.2 to 1.1.3
 
 ### Changed
@@ -23,13 +20,26 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
-- Fixed Suggesters for Completion, Term, and Phrase and refactored the Suggestion class ([#477](https://github.com/opensearch-project/opensearch-java/pull/477))
-- Fix highlight max_analyzer_offset field name to match with the one introduced in OpenSearch 2.2.0 ([#555](https://github.com/opensearch-project/opensearch-java/pull/555))
 
 ### Security
 
 ## [Unreleased 2.x]
 
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.6.0] - 07/05/2023
 ### Added
 - Add support for knn_vector field type ([#524](https://github.com/opensearch-project/opensearch-java/pull/524))
 - Add translog option object and missing translog sync interval option in index settings ([#518](https://github.com/opensearch-project/opensearch-java/pull/518))
@@ -37,7 +47,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add support for approximate k-NN queries ([#548](https://github.com/opensearch-project/opensearch-java/pull/548))
 
 ### Dependencies
+- Bumps `com.github.jk1.dependency-license-report` from 2.2 to 2.4
+- Bumps `io.github.classgraph:classgraph` from 4.8.157 to 4.8.160
 - Bumps `jackson` from 2.14.2 to 2.15.2 ((#537)[https://github.com/opensearch-project/opensearch-java/pull/537])
+- Update `org.apache.httpcomponents.client5:httpclient5` from `5.1.4` to `5.2.1` and `org.apache.httpcomponents.core5:httpcore5` from `5.1.5` to `5.2.2`
 
 ### Changed
 
@@ -47,6 +60,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fixed Suggesters for Completion, Term, and Phrase and refactored the Suggestion class ([#477](https://github.com/opensearch-project/opensearch-java/pull/477))
+- Fix highlight max_analyzer_offset field name to match with the one introduced in OpenSearch 2.2.0 ([#555](https://github.com/opensearch-project/opensearch-java/pull/555))
 
 ### Security
 
@@ -163,7 +178,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.6.0...2.x
+[2.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.2.0...v2.3.0
