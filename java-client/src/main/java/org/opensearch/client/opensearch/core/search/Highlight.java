@@ -112,7 +112,7 @@ public class Highlight implements JsonpSerializable {
 	private final Query highlightQuery;
 
 	@Nullable
-	private final String maxAnalyzedOffset;
+	private final String maxAnalyzerOffset;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -137,7 +137,7 @@ public class Highlight implements JsonpSerializable {
 		this.requireFieldMatch = builder.requireFieldMatch;
 		this.tagsSchema = builder.tagsSchema;
 		this.highlightQuery = builder.highlightQuery;
-		this.maxAnalyzedOffset = builder.maxAnalyzedOffset;
+		this.maxAnalyzerOffset = builder.maxAnalyzerOffset;
 
 	}
 
@@ -295,11 +295,11 @@ public class Highlight implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code max_analyzed_offset}
+	 * API name: {@code max_analyzer_offset}
 	 */
 	@Nullable
-	public final String maxAnalyzedOffset() {
-		return this.maxAnalyzedOffset;
+	public final String maxAnalyzerOffset() {
+		return this.maxAnalyzerOffset;
 	}
 
 	/**
@@ -419,9 +419,9 @@ public class Highlight implements JsonpSerializable {
 			this.highlightQuery.serialize(generator, mapper);
 
 		}
-		if (this.maxAnalyzedOffset != null) {
-			generator.writeKey("max_analyzed_offset");
-			generator.write(this.maxAnalyzedOffset);
+		if (this.maxAnalyzerOffset != null) {
+			generator.writeKey("max_analyzer_offset");
+			generator.write(this.maxAnalyzerOffset);
 
 		}
 
@@ -491,7 +491,7 @@ public class Highlight implements JsonpSerializable {
 		private Query highlightQuery;
 
 		@Nullable
-		private String maxAnalyzedOffset;
+		private String maxAnalyzerOffset;
 
 		/**
 		 * Required - API name: {@code fields}
@@ -705,10 +705,10 @@ public class Highlight implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_analyzed_offset}
+		 * API name: {@code max_analyzer_offset}
 		 */
-		public final Builder maxAnalyzedOffset(@Nullable String value) {
-			this.maxAnalyzedOffset = value;
+		public final Builder maxAnalyzerOffset(@Nullable String value) {
+			this.maxAnalyzerOffset = value;
 			return this;
 		}
 
@@ -756,7 +756,7 @@ public class Highlight implements JsonpSerializable {
 		op.add(Builder::requireFieldMatch, JsonpDeserializer.booleanDeserializer(), "require_field_match");
 		op.add(Builder::tagsSchema, HighlighterTagsSchema._DESERIALIZER, "tags_schema");
 		op.add(Builder::highlightQuery, Query._DESERIALIZER, "highlight_query");
-		op.add(Builder::maxAnalyzedOffset, JsonpDeserializer.stringDeserializer(), "max_analyzed_offset");
+		op.add(Builder::maxAnalyzerOffset, JsonpDeserializer.stringDeserializer(), "max_analyzer_offset");
 
 	}
 
