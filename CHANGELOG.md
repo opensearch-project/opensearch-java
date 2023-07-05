@@ -3,6 +3,21 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.6.0] - 07/05/2023
+### Added
 - Add support for knn_vector field type ([#524](https://github.com/opensearch-project/opensearch-java/pull/524))
 - Add translog option object and missing translog sync interval option in index settings ([#518](https://github.com/opensearch-project/opensearch-java/pull/518))
 - Adds the option to set slices=auto for UpdateByQueryRequest, DeleteByQueryRequest and ReindexRequest ([#538](https://github.com/opensearch-project/opensearch-java/pull/538))
@@ -23,6 +38,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fixed Suggesters for Completion, Term, and Phrase and refactored the Suggestion class ([#477](https://github.com/opensearch-project/opensearch-java/pull/477))
+- Fix highlight max_analyzer_offset field name to match with the one introduced in OpenSearch 2.2.0 ([#555](https://github.com/opensearch-project/opensearch-java/pull/555))
 
 ### Security
 
@@ -134,12 +150,12 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix missing cause message in missing permission to call Fine Grained Access Control Amazon OpenSearch domain ([#473](https://github.com/opensearch-project/opensearch-java/issues/473))
 - Fix catching JsonParsingException ([#494](https://github.com/opensearch-project/opensearch-java/issues/494))
 - Fix StoryStats numeric value out of range of int ([#489](https://github.com/opensearch-project/opensearch-java/pull/489))
-- Fix highlight max_analyzer_offset field name to match with the one introduced in OpenSearch 2.2.0 ([#555](https://github.com/opensearch-project/opensearch-java/pull/555))
-- 
+ 
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...2.x
+[Unreleased]: https://github.com/opensearch-project/opensearch-java/compare/v2.6.0...2.x
+[2.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.2.0...v2.3.0
