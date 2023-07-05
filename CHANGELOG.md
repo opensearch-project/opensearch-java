@@ -29,9 +29,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 2.x]
 
 ### Added
-- Add support for knn_vector field type ([#529](https://github.com/opensearch-project/opensearch-java/pull/524))
+- Add support for knn_vector field type ([#524](https://github.com/opensearch-project/opensearch-java/pull/524))
 - Add translog option object and missing translog sync interval option in index settings ([#518](https://github.com/opensearch-project/opensearch-java/pull/518))
 - Adds the option to set slices=auto for UpdateByQueryRequest, DeleteByQueryRequest and ReindexRequest ([#538](https://github.com/opensearch-project/opensearch-java/pull/538))
+- Add support for approximate k-NN queries ([#548](https://github.com/opensearch-project/opensearch-java/pull/548))
 
 ### Dependencies
 - Bumps `jackson` from 2.14.2 to 2.15.2 ((#537)[https://github.com/opensearch-project/opensearch-java/pull/537])
