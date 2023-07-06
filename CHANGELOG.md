@@ -11,6 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
 - Bumps `com.github.jk1.dependency-license-report` from 2.2 to 2.4
 - Update `org.apache.httpcomponents.client5:httpclient5` from `5.1.4` to `5.2.1` and `org.apache.httpcomponents.core5:httpcore5` from `5.1.5` to `5.2.2`
+- Update `org.apache.httpcomponents.client5:httpcore5` from `5.2.2` to `5.2` to be compatible with `org.apache.httpcomponents.core5:httpclient5:5.2.1`
 
 ### Changed
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
