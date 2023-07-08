@@ -253,10 +253,10 @@ class SpdxReporter(val dest: File) : ReportRenderer {
 tasks.withType<Jar> {
     doLast {
         ant.withGroovyBuilder {
-            "checksum"("algorithm" to "md5", "file" to archivePath)
-            "checksum"("algorithm" to "sha1", "file" to archivePath)
-            "checksum"("algorithm" to "sha-256", "file" to archivePath, "fileext" to ".sha256")
-            "checksum"("algorithm" to "sha-512", "file" to archivePath, "fileext" to ".sha512")
+            "checksum"("algorithm" to "md5", "file" to archiveFile.get())
+            "checksum"("algorithm" to "sha1", "file" to archiveFile.get())
+            "checksum"("algorithm" to "sha-256", "file" to archiveFile.get(), "fileext" to ".sha256")
+            "checksum"("algorithm" to "sha-512", "file" to archiveFile.get(), "fileext" to ".sha512")
         }
     }
 }
