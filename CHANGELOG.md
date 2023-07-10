@@ -9,7 +9,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `io.github.classgraph:classgraph` from 4.8.157 to 4.8.160
 - Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
-- Bumps `com.github.jk1.dependency-license-report` from 2.2 to 2.4
+- Bumps `com.github.jk1.dependency-license-report` from 2.2 to 2.5
 - Update `org.apache.httpcomponents.client5:httpclient5` from `5.1.4` to `5.2.1` and `org.apache.httpcomponents.core5:httpcore5` from `5.1.5` to `5.2.2`
 
 ### Changed
