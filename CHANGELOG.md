@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
 - Bumps `com.github.jk1.dependency-license-report` from 2.4 to 2.5
+- Bumps `io.github.classgraph:classgraph` from 4.8.160 to 4.8.161
   
 ### Changed
 
