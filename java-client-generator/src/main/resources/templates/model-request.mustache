@@ -1,0 +1,68 @@
+
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
+
+import java.util.Map;
+import java.util.List;
+import java.util.HashMap;
+import java.util.function.Function;
+
+{{>generatedAnnotation}}
+public class {{classname}} extends RequestBase {
+
+    {{#vars}}
+    private final {{{datatypeWithEnum}}} {{name}};
+    {{/vars}}
+
+
+    private {{classname}}(Builder builder) {
+        {{#vars}}
+        this.{{name}} = builder.{{name}};
+        {{/vars}}
+    }
+
+    public static {{classname}} of(Function<Builder, ObjectBuilder<{{classname}}>> fn) {
+        return fn.apply(new Builder()).build();
+    }
+
+    {{#vars}}
+    public {{{datatypeWithEnum}}} {{getter}}() {
+        return this.{{name}};
+    }
+    {{/vars}}
+
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<{{classname}}> {
+       {{#vars}}
+       private {{{datatypeWithEnum}}} {{name}};
+       {{/vars}}
+
+        {{#vars}}
+        public Builder {{name}}({{{datatypeWithEnum}}} value) {
+            this.{{name}} = value;
+            return this;
+        }
+        {{/vars}}
+    
+        public {{classname}} build() {
+            _checkSingleUse();
+            return new {{classname}}(this);
+        }
+    }
+    
+    public static final Function<{{classname}}, Map<String, String>> _QUERY = request -> {
+        Map<String, String> params = new HashMap<>();
+
+        {{#vars}}
+        if (request.{{name}} != null) {
+            params.put("{{#lambda.snakecase}}{{name}}{{/lambda.snakecase}}", request.{{name}}.toString()); 
+        }
+        {{/vars}}
+
+        return params;
+    };
+    
+    public static final Endpoint<{{classname}}, {{#lambda.titlecase}}{{vendorExtensions.x-request-for}}{{/lambda.titlecase}}Response, ErrorResponse> _ENDPOINT = DefaultApi.{{#lambda.titlecase}}{{vendorExtensions.x-request-for}}{{/lambda.titlecase}}._ENDPOINT; 
+}

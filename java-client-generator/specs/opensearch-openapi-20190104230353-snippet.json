@@ -1,0 +1,238 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "OpenSearch",
+        "description": "OpenSearch API docs",
+        "contact": {
+            "name": "OpenSearch Project",
+            "url": "https://opensearch.org"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "3.0.0-SNAPSHOT"
+    },
+    "servers": [],
+    "paths": {
+        "/_cluster/health": {
+            "get": {
+                "tags": [],
+                "operationId": "health",
+                "parameters": [
+                  {
+                    "name": "params",
+                    "in": "query",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/components/schemas/HealthRequest"
+                    }
+                  }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HealthResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found.",
+                        "content": {}
+                    },
+                    "500": {
+                        "description": "Technical error.",
+                        "content": {}
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "HealthRequest": {
+                "x-request-for": "health",
+                "type": "object",
+                "properties": {
+                    "level": {
+                        "description": "Specify the level of detail for returned information",
+                        "type": "string",
+                        "default": "cluster"
+                    },
+                    "local": {
+                        "description": "Return local information, do not retrieve the state from master node (default: false)",
+                        "type": "boolean"
+                    },
+                    "master_timeout": {
+                        "description": "Explicit operation timeout for connection to master node",
+                        "type": "string"
+                    },
+                    "timeout": {
+                        "description": "Explicit operation timeout",
+                        "type": "string"
+                    },
+                    "wait_for_active_shards": {
+                        "description": "Wait until the specified number of shards is active",
+                        "type": "string"
+                    },
+                    "wait_for_nodes": {
+                        "description": "Wait until the specified number of nodes is available",
+                        "type": "string"
+                    },
+                    "wait_for_events": {
+                        "description": "Wait until all currently queued events with the given priority are processed",
+                        "type": "string"
+                    },
+                    "wait_for_no_relocating_shards": {
+                        "description": "Whether to wait until there are no relocating shards in the cluster",
+                        "type": "boolean"
+                    },
+                    "wait_for_no_initializing_shards": {
+                        "description": "Whether to wait until there are no initializing shards in the cluster",
+                        "type": "boolean"
+                    },
+                    "wait_for_status": {
+                        "description": "Wait until cluster is in a specific state",
+                        "type": "string"
+                    },
+                    "pretty": {
+                        "description": "Pretty format the returned JSON response.",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "human": {
+                        "description": "Return human readable values for statistics.",
+                        "type": "boolean",
+                        "default": true
+                    },
+                    "error_trace": {
+                        "description": "Include the stack trace of returned errors.",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "index": {
+                        "description": "A comma-separated list of filters used to reduce the response.",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "HealthStatus": {
+                "type": "string",
+                "enum": [ "GREEN", "YELLOW", "RED" ]
+            },
+            "IndexHealthStats": {
+                "type": "object",
+                "properties": {
+                    "activePrimaryShards": {
+                        "type": "integer"
+                    },
+                    "activeShards": {
+                        "type": "integer"
+                    },
+                    "initializingShards": {
+                        "type": "integer"
+                    },
+                    "numberOfReplicas": {
+                        "type": "integer"
+                    },
+                    "numberOfShards": {
+                        "type": "integer"
+                    },
+                    "relocatingShards": {
+                        "type": "integer"
+                    },
+                    "unassignedShards": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/HealthStatus"
+                    }
+                },
+                "required": [
+                    "unassignedShards",
+                    "relocatingShards",
+                    "unassignedShards",
+                    "activePrimaryShards",
+                    "activeShards",
+                    "numberOfShards",
+                    "initializingShards"
+                ]
+            },
+            "HealthResponse": {
+                "type": "object",
+                "properties": {
+                    "timedOut": {
+                        "type": "boolean"
+                    },
+                    "activePrimaryShards": {
+                        "type": "integer"
+                    },
+                    "activeShards": {
+                        "type": "integer"
+                    },
+                    "activeShardsPercentAsNumber": {
+                        "type": "string"
+                    },
+                    "clusterName": {
+                        "type": "string"
+                    },
+                    "delayedUnassignedShards": {
+                        "type": "integer"
+                    },
+                    "initializingShards": {
+                        "type": "integer"
+                    },
+                    "numberOfDataNodes": {
+                        "type": "integer"
+                    },
+                    "numberOfInFlightFetch": {
+                        "type": "integer"
+                    },
+                    "numberOfNodes": {
+                        "type": "integer"
+                    },
+                    "numberOfPendingTasks": {
+                        "type": "integer"
+                    },
+                    "relocatingShards": {
+                        "type": "integer"
+                    },
+                    "taskMaxWaitingInQueueMillis": {
+                        "type": "string"
+                    },
+                    "unassignedShards": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/HealthStatus"
+                    },
+                    "indices": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "$ref": "#/components/schemas/IndexHealthStats"
+                        }
+                    }
+                },
+                "required": [
+                    "unassignedShards",
+                    "relocatingShards",
+                    "numberOfPendingTasks",
+                    "numberOfNodes",
+                    "numberOfInFlightFetch",
+                    "numberOfDataNodes",
+                    "initializingShards",
+                    "delayedUnassignedShards",
+                    "activePrimaryShards",
+                    "activeShards"
+                ]
+            }
+        }
+    }
+}
