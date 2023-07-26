@@ -1,5 +1,3 @@
-# User Guide
-
 - [User Guide](#user-guide)
   - [Sample data](#sample-data)
     - [IndexData class](#indexdata-class)
@@ -13,9 +11,6 @@
   - [Search for the documents](#search-for-the-documents)
     - [Get raw JSON results](#get-raw-json-results)
   - [Search documents using a match query](#search-documents-using-a-match-query)
-  - [Search documents using k-NN](#search-documents-using-k-nn)
-    - [Exact k-NN with scoring script](#exact-k-nn-with-scoring-script)
-    - [Exact k-NN with painless scripting extension](#exact-k-nn-with-painless-scripting-extension)
   - [Search documents using suggesters](#search-documents-using-suggesters)
     - [App Data class](#app-data-class)
     - [Using completion suggester](#using-completion-suggester)
@@ -39,8 +34,12 @@
     - [Cat aliases](#cat-aliases)
     - [Cat nodes](#cat-nodes)
     - [Cat point in time segments](#cat-point-in-time-segments)
-- [Using different transport options](#using-different-transport-options)
-  - [Amazon Managed OpenSearch](#amazon-managed-opensearch)
+  - [Using different transport options](#using-different-transport-options)
+    - [Amazon OpenSearch Service](#amazon-opensearch-service)
+  - [Plugins](#plugins)
+
+# User Guide
+>>>>>>> 94ef0cd0644... Add k-NN guide and samples (#586)
 
 ## Sample data
 
@@ -204,172 +203,6 @@ SearchResponse<IndexData> searchResponse = client.search(searchRequest, IndexDat
 for (int i = 0; i < searchResponse.hits().hits().size(); i++) {
   System.out.println(searchResponse.hits().hits().get(i).source());
 }
-```
-
-## Search documents using k-NN
-
-### Exact k-NN with scoring script
-
-1. Create index with custom mapping
-
-```java
-String index = "my-knn-index-1";
-TypeMapping mapping = new TypeMapping.Builder()
-        .properties("my_vector", new Property.Builder()
-            .knnVector(new KnnVectorProperty.Builder()
-                .dimension(4)
-                .build())
-            .build())
-        .build();
-CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder()
-        .index(index)
-        .mappings(mapping)
-        .build();
-client.indices().create(createIndexRequest);
-```
-
-2. Index documents
-
-```java
-JsonObject doc1 = Json.createObjectBuilder()
-        .add("my_vector", Json.createArrayBuilder().add(1.5).add(5.5).add(4.5).add(6.4).build())
-        .add("price", 10.3)
-        .build();
-JsonObject doc2 = Json.createObjectBuilder()
-        .add("my_vector", Json.createArrayBuilder().add(2.5).add(3.5).add(5.6).add(6.7).build())
-        .add("price", 5.5)
-        .build();
-JsonObject doc3 = Json.createObjectBuilder()
-        .add("my_vector", Json.createArrayBuilder().add(4.5).add(5.5).add(6.7).add(3.7).build())
-        .add("price", 4.4)
-        .build();
-
-ArrayList<BulkOperation> operations = new ArrayList<>();
-operations.add(new BulkOperation.Builder().index(
-        IndexOperation.of(io -> io.index(index).id("1").document(doc1))
-        ).build());
-operations.add(new BulkOperation.Builder().index(
-        IndexOperation.of(io -> io.index(index).id("2").document(doc2))
-        ).build());
-operations.add(new BulkOperation.Builder().index(
-        IndexOperation.of(io -> io.index(index).id("3").document(doc3))
-        ).build());
-
-BulkRequest bulkRequest = new BulkRequest.Builder()
-        .index(index)
-        .operations(operations)
-        .build();
-client.bulk(bulkRequest);
-```
-
-3. Search documents using k-NN script score (_This implementation utilizes `com.fasterxml.jackson.databind.JsonNode` as the target document class, which is not part of the OpenSearch Java library. However, any document class that matches the searched data can be used instead._)
-
-```java
-InlineScript inlineScript = new InlineScript.Builder()
-        .source("knn_score")
-        .lang("knn")
-        .params(Map.of(
-                "field", JsonData.of("my_vector"),
-                "query_value", JsonData.of(List.of(1.5, 5.5, 4.5, 6.4)),
-                "space_type", JsonData.of("cosinesimil")
-                ))
-        .build();
-Query query = new Query.Builder()
-        .scriptScore(new ScriptScoreQuery.Builder()
-            .query(new Query.Builder()
-                .matchAll(new MatchAllQuery.Builder().build())
-                .build())
-            .script(new Script.Builder()
-                .inline(inlineScript)
-                .build())
-            .build())
-        .build();
-SearchRequest searchRequest = new SearchRequest.Builder()
-        .index(index)
-        .query(query)
-        .build();
-SearchResponse<JsonNode> searchResponse = client.search(searchRequest, JsonNode.class);
-```
-
-### Exact k-NN with painless scripting extension
-
-1. Create index with custom mapping
-
-```java
-String index = "my-knn-index-1";
-TypeMapping mapping = new TypeMapping.Builder()
-        .properties("my_vector", new Property.Builder()
-            .knnVector(new KnnVectorProperty.Builder()
-                .dimension(4)
-                .build())
-            .build())
-        .build();
-CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder()
-        .index(index)
-        .mappings(mapping)
-        .build();
-client.indices().create(createIndexRequest);
-```
-
-2. Index documents
-
-```java
-JsonObject doc1 = Json.createObjectBuilder()
-        .add("my_vector", Json.createArrayBuilder().add(1.5).add(5.5).add(4.5).add(6.4).build())
-        .add("price", 10.3)
-        .build();
-JsonObject doc2 = Json.createObjectBuilder()
-        .add("my_vector", Json.createArrayBuilder().add(2.5).add(3.5).add(5.6).add(6.7).build())
-        .add("price", 5.5)
-        .build();
-JsonObject doc3 = Json.createObjectBuilder()
-        .add("my_vector", Json.createArrayBuilder().add(4.5).add(5.5).add(6.7).add(3.7).build())
-        .add("price", 4.4)
-        .build();
-
-ArrayList<BulkOperation> operations = new ArrayList<>();
-operations.add(new BulkOperation.Builder().index(
-        IndexOperation.of(io -> io.index(index).id("1").document(doc1))
-        ).build());
-operations.add(new BulkOperation.Builder().index(
-        IndexOperation.of(io -> io.index(index).id("2").document(doc2))
-        ).build());
-operations.add(new BulkOperation.Builder().index(
-        IndexOperation.of(io -> io.index(index).id("3").document(doc3))
-        ).build());
-
-BulkRequest bulkRequest = new BulkRequest.Builder()
-        .index(index)
-        .operations(operations)
-        .build();
-client.bulk(bulkRequest);
-```
-
-3. Search documents using k-NN with painless scripting extension (_This implementation utilizes `com.fasterxml.jackson.databind.JsonNode` as the target document class, which is not part of the OpenSearch Java library. However, any document class that matches the searched data can be used instead._)
-
-```java
-InlineScript inlineScript = new InlineScript.Builder()
-        .source("1.0 + cosineSimilarity(params.query_value, doc[params.field])")
-        .params(Map.of(
-            "field", JsonData.of("my_vector"),
-            "query_value", JsonData.of(List.of(1.5, 5.5, 4.5, 6.4))
-            ))
-        .build();
-Query query = new Query.Builder()
-        .scriptScore(new ScriptScoreQuery.Builder()
-            .query(new Query.Builder()
-                .matchAll(new MatchAllQuery.Builder().build())
-                .build())
-            .script(new Script.Builder()
-                .inline(inlineScript)
-                .build())
-            .build())
-        .build();
-SearchRequest searchRequest = new SearchRequest.Builder()
-        .index(index)
-        .query(query)
-        .build();
-SearchResult<JsonNode> searchResult = client.search(searchRequest, JsonNode.class);
 ```
 
 ## Search documents using suggesters
@@ -637,7 +470,6 @@ DeleteIndexResponse deleteIndexResponse = client.indices().delete(deleteIndexReq
 ## Data Stream API
 
 ### Create a data stream
-
 Before creating a data stream, you need to create an index template which configures a set of indices as a data stream.
 A data stream must have a timestamp field. If not specified, OpenSearch uses `@timestamp` as the default timestamp field name.
 
@@ -759,9 +591,9 @@ SegmentsResponse pitSegmentsResponse = javaClient().cat()
                 .pitSegments(r -> r.headers("index,shard,id,segment,size"));
 ```
 
-# Using different transport options
+## Using different transport options
 
-## Amazon Managed OpenSearch
+### Amazon OpenSearch Service
 
 Use `AwsSdk2Transport` to make requests to Amazon Managed OpenSearch and OpenSearch Serverless.
 
@@ -783,3 +615,7 @@ System.out.println(info.version().distribution() + ": " + info.version().number(
 
 httpClient.close();
 ```
+
+## Plugins
+
+- [k-NN](guides/plugins/knn.md)
