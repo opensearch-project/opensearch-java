@@ -79,7 +79,7 @@ public final class OpenSearchVersionInfo implements JsonpSerializable {
 		this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
 		this.buildSnapshot = ApiTypeHelper.requireNonNull(builder.buildSnapshot, this, "buildSnapshot");
 		this.buildType = ApiTypeHelper.requireNonNull(builder.buildType, this, "buildType");
-		this.distribution = ApiTypeHelper.requireNonNull(builder.distribution, this, "distribution");
+		this.distribution = builder.distribution;
 		this.luceneVersion = ApiTypeHelper.requireNonNull(builder.luceneVersion, this, "luceneVersion");
 		this.minimumIndexCompatibilityVersion = ApiTypeHelper.requireNonNull(builder.minimumIndexCompatibilityVersion,
 				this, "minimumIndexCompatibilityVersion");
