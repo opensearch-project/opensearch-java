@@ -17,9 +17,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
 
 ### Deprecated
-- Deprecate RestClientTransport ((#536)[https://github.com/opensearch-project/opensearch-java/pull/536])
+- Deprecate RestClientTransport ([#536](https://github.com/opensearch-project/opensearch-java/pull/536))
 
 ### Removed
+- Remove generated code comments from all files ([#598](https://github.com/opensearch-project/opensearch-java/pull/598))
 
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
