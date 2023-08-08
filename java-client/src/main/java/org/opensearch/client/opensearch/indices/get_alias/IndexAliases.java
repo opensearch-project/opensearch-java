@@ -30,10 +30,6 @@
  * GitHub history for details.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package org.opensearch.client.opensearch.indices.get_alias;
 
 import org.opensearch.client.opensearch.indices.AliasDefinition;

@@ -30,10 +30,6 @@
  * GitHub history for details.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package org.opensearch.client.opensearch.dangling_indices;
 
 import org.opensearch.client.opensearch.dangling_indices.list_dangling_indices.DanglingIndex;
