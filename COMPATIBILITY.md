@@ -14,6 +14,7 @@ The below matrix shows the compatibility of the [`opensearch-java-client`](https
 | 2.3.0          | 1.3.9-2.7.0        |
 | 2.4.0          | 1.3.9-2.7.0        |
 | 2.5.0          | 1.3.9-2.7.0        |
+| 2.6.0          | 1.3.9-2.7.0        |
 
 ## Upgrading
 
