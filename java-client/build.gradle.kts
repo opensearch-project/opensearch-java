@@ -48,7 +48,7 @@ plugins {
     `java-library`
     checkstyle
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "2.4"
+    id("com.github.jk1.dependency-license-report") version "2.5"
 }
 
 checkstyle {
@@ -186,7 +186,7 @@ dependencies {
     implementation("org.eclipse", "yasson", "2.0.2")
 
     // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.160")
+    testImplementation("io.github.classgraph:classgraph:4.8.161")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {
