@@ -161,6 +161,8 @@ public class TokenFilterDefinition
 
 		WordDelimiter("word_delimiter"),
 
+        SmartcnStop("smartcn_stop"),
+
 		;
 
 		private final String jsonValue;
@@ -1575,7 +1577,18 @@ public class TokenFilterDefinition
 			return this.wordDelimiter(fn.apply(new WordDelimiterTokenFilter.Builder()).build());
 		}
 
-		public TokenFilterDefinition build() {
+        public ObjectBuilder<TokenFilterDefinition> smartcn_stop(SmartcnStopTokenFilter v) {
+            this._kind = Kind.IcuTokenizer;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<TokenFilterDefinition> smartcn_stop(
+            Function<SmartcnStopTokenFilter.Builder, ObjectBuilder<SmartcnStopTokenFilter>> fn) {
+            return this.smartcn_stop(fn.apply(new SmartcnStopTokenFilter.Builder()).build());
+        }
+
+        public TokenFilterDefinition build() {
 			_checkSingleUse();
 			return new TokenFilterDefinition(this);
 		}
@@ -1634,6 +1647,7 @@ public class TokenFilterDefinition
 		op.add(Builder::uppercase, UppercaseTokenFilter._DESERIALIZER, "uppercase");
 		op.add(Builder::wordDelimiterGraph, WordDelimiterGraphTokenFilter._DESERIALIZER, "word_delimiter_graph");
 		op.add(Builder::wordDelimiter, WordDelimiterTokenFilter._DESERIALIZER, "word_delimiter");
+		op.add(Builder::smartcn_stop, SmartcnStopTokenFilter._DESERIALIZER, Kind.SmartcnStop.jsonValue());
 
 		op.setTypeProperty("type", null);
 

@@ -34,6 +34,10 @@ package org.opensearch.client.opensearch.experiments;
 
 import org.junit.Test;
 import org.opensearch.client.opensearch._types.Time;
+import org.opensearch.client.opensearch._types.analysis.Analyzer;
+import org.opensearch.client.opensearch._types.analysis.TokenFilterDefinition;
+import org.opensearch.client.opensearch._types.analysis.TokenizerBuilders;
+import org.opensearch.client.opensearch._types.analysis.TokenizerDefinition;
 import org.opensearch.client.opensearch.experiments.api.FooRequest;
 import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.IndexSettingsMapping;
@@ -112,4 +116,40 @@ public class ParsingTests extends ModelTestCase {
     assertEquals(mapping.fieldNameLength().limit(), deserialized.fieldNameLength().limit());
   }
 
+    @Test
+    public void testSmartcn_Analyzer() {
+        final Analyzer analyzer = new Analyzer.Builder()
+            .smartcn()
+            .build();
+
+        assertTrue(analyzer.isSmartcn());
+
+        String str = toJson(analyzer);
+        assertEquals("{\"type\":\"smartcn\"}", str);
+
+        Analyzer analyzer2 = fromJson(str, Analyzer._DESERIALIZER);
+        assertTrue(analyzer2.isSmartcn());
+    }
+
+    @Test
+    public void testSmartcn_Tokenizer() {
+        final TokenizerDefinition tokenizerDefinition = TokenizerBuilders.definition().smartcn(b -> b).build();
+
+        String str = toJson(tokenizerDefinition);
+        assertEquals("{\"type\":\"smartcn_tokenizer\"}", str);
+
+        TokenizerDefinition tokenizerDefinition2 = fromJson(str, TokenizerDefinition._DESERIALIZER);
+    }
+
+    @Test
+    public void testSmartcn_StopFilter() {
+        final TokenFilterDefinition analyzer = new TokenFilterDefinition.Builder()
+            .smartcn_stop(b -> b)
+            .build();
+
+        String str = toJson(analyzer);
+        assertEquals("{\"type\":\"smartcn_stop\"}", str);
+
+        TokenFilterDefinition analyzer2 = fromJson(str, TokenFilterDefinition._DESERIALIZER);
+    }
 }

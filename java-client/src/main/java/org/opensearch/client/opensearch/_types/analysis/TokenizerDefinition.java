@@ -93,6 +93,8 @@ public class TokenizerDefinition
 
 		Whitespace("whitespace"),
 
+        SmartcnTokenizer("smartcn_tokenizer"),
+
 		;
 
 		private final String jsonValue;
@@ -542,7 +544,18 @@ public class TokenizerDefinition
 			return this.whitespace(fn.apply(new WhitespaceTokenizer.Builder()).build());
 		}
 
-		public TokenizerDefinition build() {
+        public ObjectBuilder<TokenizerDefinition> smartcn(SmartcnTokenizer v) {
+            this._kind = Kind.SmartcnTokenizer;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<TokenizerDefinition> smartcn(
+            Function<SmartcnTokenizer.Builder, ObjectBuilder<SmartcnTokenizer>> fn) {
+            return this.smartcn(fn.apply(new SmartcnTokenizer.Builder()).build());
+        }
+
+        public TokenizerDefinition build() {
 			_checkSingleUse();
 			return new TokenizerDefinition(this);
 		}
@@ -565,6 +578,7 @@ public class TokenizerDefinition
 		op.add(Builder::standard, StandardTokenizer._DESERIALIZER, "standard");
 		op.add(Builder::uaxUrlEmail, UaxEmailUrlTokenizer._DESERIALIZER, "uax_url_email");
 		op.add(Builder::whitespace, WhitespaceTokenizer._DESERIALIZER, "whitespace");
+		op.add(Builder::smartcn, SmartcnTokenizer._DESERIALIZER, Kind.SmartcnTokenizer.jsonValue());
 
 		op.setTypeProperty("type", null);
 
