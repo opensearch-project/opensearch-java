@@ -90,9 +90,9 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 
 		Whitespace("whitespace"),
 
-        Smartcn("smartcn"),
+		Smartcn("smartcn"),
 
-        Cjk("cjk"),
+		Cjk("cjk"),
 
 		;
 
