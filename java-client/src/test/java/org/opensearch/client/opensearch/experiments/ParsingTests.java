@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.experiments;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch._types.analysis.Analyzer;
@@ -151,5 +153,24 @@ public class ParsingTests extends ModelTestCase {
         assertEquals("{\"type\":\"smartcn_stop\"}", str);
 
         TokenFilterDefinition analyzer2 = fromJson(str, TokenFilterDefinition._DESERIALIZER);
+    }
+    @Test
+    public void testCjk_Analyzer() {
+        final Analyzer analyzer = new Analyzer.Builder()
+            .cjk(b -> b
+                .stopwords(List.of("a", "b", "c"))
+                .stopwordsPath("path")
+            )
+            .build();
+
+        assertTrue(analyzer.isCjk());
+
+        String str = toJson(analyzer);
+        assertEquals("{\"type\":\"cjk\",\"stopwords\":[\"a\",\"b\",\"c\"],\"stopwords_path\":\"path\"}", str);
+
+        Analyzer analyzer2 = fromJson(str, Analyzer._DESERIALIZER);
+        assertTrue(analyzer2.isCjk());
+        assertEquals(analyzer.cjk().stopwords(), analyzer2.cjk().stopwords());
+        assertEquals(analyzer.cjk().stopwordsPath(), analyzer2.cjk().stopwordsPath());
     }
 }

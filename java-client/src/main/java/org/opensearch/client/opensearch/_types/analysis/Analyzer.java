@@ -90,7 +90,9 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 
 		Whitespace("whitespace"),
 
-        Smartcn("smartcn"),
+		Smartcn("smartcn"),
+
+		Cjk("cjk"),
 
 		;
 
@@ -393,6 +395,24 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     }
 
 
+    /**
+     * Is this variant instance of kind {@code cjk}?
+     */
+    public boolean isCjk() {
+        return _kind == Kind.Cjk;
+    }
+
+    /**
+     * Get the {@code cjk} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code cjk} kind.
+     */
+    public CjkAnalyzer cjk() {
+        return TaggedUnionUtils.get(this, Kind.Cjk);
+    }
+
+
     @Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
@@ -560,6 +580,17 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
             return this.smartcn(new SmartcnAnalyzer.Builder().build());
 		}
 
+		public ObjectBuilder<Analyzer> cjk(CjkAnalyzer v) {
+			this._kind = Kind.Cjk;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Analyzer> cjk(
+				Function<CjkAnalyzer.Builder, ObjectBuilder<CjkAnalyzer>> fn) {
+			return this.cjk(fn.apply(new CjkAnalyzer.Builder()).build());
+		}
+
 		public Analyzer build() {
 			_checkSingleUse();
 			return new Analyzer(this);
@@ -584,6 +615,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 		op.add(Builder::stop, StopAnalyzer._DESERIALIZER, "stop");
 		op.add(Builder::whitespace, WhitespaceAnalyzer._DESERIALIZER, "whitespace");
 		op.add(Builder::smartcn, SmartcnAnalyzer._DESERIALIZER, Kind.Smartcn.jsonValue());
+		op.add(Builder::cjk, CjkAnalyzer._DESERIALIZER, Kind.Cjk.jsonValue());
 
 		op.setTypeProperty("type", null);
 
