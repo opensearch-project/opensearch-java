@@ -1,6 +1,6 @@
 # CHANGELOG
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
-## [Unreleased]
+## [Unreleased 2.x](https://github.com/opensearch-project/opensearch-java/compare/v2.6.0...2.x)
 ### Added
 
 ### Dependencies
@@ -16,6 +16,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Remove generated code comments from all files ([#598](https://github.com/opensearch-project/opensearch-java/pull/598))
 
 ### Fixed
+- Fix PutMappingRequest by removing unsupported fields ([#597](https://github.com/opensearch-project/opensearch-java/pull/597))
 
 ### Security
 
