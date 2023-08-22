@@ -1,7 +1,9 @@
 # CHANGELOG
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
-## [Unreleased 2.x](https://github.com/opensearch-project/opensearch-java/compare/v2.6.0...2.x)
+## [Unreleased 2.x]
 ### Added
+- Added support for "smartcn" analyzer ([#605](https://github.com/opensearch-project/opensearch-java/pull/605))
+- Added support for "cjk" analyzer ([#604](https://github.com/opensearch-project/opensearch-java/pull/604))
 
 ### Dependencies
 - Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
