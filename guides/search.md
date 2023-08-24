@@ -44,7 +44,7 @@ indexRequest = new IndexRequest.Builder<IndexData>().index(index).id("2").docume
 client.index(indexRequest);
 ```
 
-[IndexData](./samples/src/main/java/org/opensearch/client/samples/util/IndexData.java) refers to sample data class.
+[IndexData](../samples/src/main/java/org/opensearch/client/samples/util/IndexData.java) refers to sample data class.
 
 ## Search API
 

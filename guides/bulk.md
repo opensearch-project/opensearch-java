@@ -36,6 +36,6 @@ BulkRequest.Builder bulkReq = new BulkRequest.Builder()
 BulkResponse bulkResponse = client.bulk(bulkReq.build());
 ```
 
-[IndexData](./samples/src/main/java/org/opensearch/client/samples/util/IndexData.java) refers to sample data class.
+[IndexData](../samples/src/main/java/org/opensearch/client/samples/util/IndexData.java) refers to sample data class.
 
 You can find a working sample of the above code in [Bulk.java](../samples/src/main/java/org/opensearch/client/samples/Bulk.java).
