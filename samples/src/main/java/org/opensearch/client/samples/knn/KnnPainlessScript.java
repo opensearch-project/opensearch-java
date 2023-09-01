@@ -13,8 +13,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.core.BulkRequest;
-import org.opensearch.client.samples.RandUtil;
 import org.opensearch.client.samples.SampleClient;
+import org.opensearch.client.samples.util.RandUtil;
 
 /**
  * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=knn.KnnPainlessScript</c>

@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.samples;
+package org.opensearch.client.samples.util;
 
 public class RandUtil {
     public static float[] rand2SfArray(int n) {
