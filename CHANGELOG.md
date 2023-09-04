@@ -4,6 +4,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Added support for "smartcn" analyzer ([#605](https://github.com/opensearch-project/opensearch-java/pull/605))
 - Added support for "cjk" analyzer ([#604](https://github.com/opensearch-project/opensearch-java/pull/604))
+- Added size attribute to MultiTermsAggregation ([#614](https://github.com/opensearch-project/opensearch-java/pull/614))
 
 ### Dependencies
 - Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
