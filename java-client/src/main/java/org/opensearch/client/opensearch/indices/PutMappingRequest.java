@@ -30,10 +30,6 @@
  * GitHub history for details.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package org.opensearch.client.opensearch.indices;
 
 import org.opensearch.client.opensearch._types.ErrorResponse;
@@ -119,8 +115,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 	private final Map<String, Property> properties;
 
-	private final Map<String, RuntimeField> runtime;
-
 	@Nullable
 	private final Time timeout;
 
@@ -147,7 +141,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		this.clusterManagerTimeout = builder.clusterManagerTimeout;
 		this.numericDetection = builder.numericDetection;
 		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
-		this.runtime = ApiTypeHelper.unmodifiable(builder.runtime);
 		this.timeout = builder.timeout;
 		this.writeIndexOnly = builder.writeIndexOnly;
 
@@ -328,15 +321,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Mapping of runtime fields for the index.
-	 * <p>
-	 * API name: {@code runtime}
-	 */
-	public final Map<String, RuntimeField> runtime() {
-		return this.runtime;
-	}
-
-	/**
 	 * Explicit operation timeout
 	 * <p>
 	 * API name: {@code timeout}
@@ -447,18 +431,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 			generator.writeEnd();
 
 		}
-		if (ApiTypeHelper.isDefined(this.runtime)) {
-			generator.writeKey("runtime");
-			generator.writeStartObject();
-			for (Map.Entry<String, RuntimeField> item0 : this.runtime.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -515,9 +487,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 		@Nullable
 		private Map<String, Property> properties;
-
-		@Nullable
-		private Map<String, RuntimeField> runtime;
 
 		@Nullable
 		private Time timeout;
@@ -861,41 +830,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Mapping of runtime fields for the index.
-		 * <p>
-		 * API name: {@code runtime}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>runtime</code>.
-		 */
-		public final Builder runtime(Map<String, RuntimeField> map) {
-			this.runtime = _mapPutAll(this.runtime, map);
-			return this;
-		}
-
-		/**
-		 * Mapping of runtime fields for the index.
-		 * <p>
-		 * API name: {@code runtime}
-		 * <p>
-		 * Adds an entry to <code>runtime</code>.
-		 */
-		public final Builder runtime(String key, RuntimeField value) {
-			this.runtime = _mapPut(this.runtime, key, value);
-			return this;
-		}
-
-		/**
-		 * Mapping of runtime fields for the index.
-		 * <p>
-		 * API name: {@code runtime}
-		 * <p>
-		 * Adds an entry to <code>runtime</code> using a builder lambda.
-		 */
-		public final Builder runtime(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return runtime(key, fn.apply(new RuntimeField.Builder()).build());
-		}
-
-		/**
 		 * Explicit operation timeout
 		 * <p>
 		 * API name: {@code timeout}
@@ -960,8 +894,6 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 				JsonpDeserializer.stringMapDeserializer(DynamicTemplate._DESERIALIZER)), "dynamic_templates");
 		op.add(Builder::numericDetection, JsonpDeserializer.booleanDeserializer(), "numeric_detection");
 		op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "properties");
-		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER), "runtime");
-
 	}
 
 	// ---------------------------------------------------------------------------------------------

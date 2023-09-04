@@ -1,22 +1,50 @@
 # CHANGELOG
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
-
-## [Unreleased]
+## [Unreleased 2.x]
 ### Added
-- Add support for knn_vector field type ([#529](https://github.com/opensearch-project/opensearch-java/pull/524))
+- Added support for "smartcn" analyzer ([#605](https://github.com/opensearch-project/opensearch-java/pull/605))
+- Added support for "cjk" analyzer ([#604](https://github.com/opensearch-project/opensearch-java/pull/604))
 
 ### Dependencies
-- Bumps `com.github.jk1.dependency-license-report` from 2.2 to 2.4
-- Bumps `io.github.classgraph:classgraph` from 4.8.157 to 4.8.160
-
+- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
+- Bumps `com.github.jk1.dependency-license-report` from 2.4 to 2.5
+- Bumps `io.github.classgraph:classgraph` from 4.8.160 to 4.8.161
+  
 ### Changed
 
 ### Deprecated
 
 ### Removed
+- Remove generated code comments from all files ([#598](https://github.com/opensearch-project/opensearch-java/pull/598))
+
+### Fixed
+- Fix PutMappingRequest by removing unsupported fields ([#597](https://github.com/opensearch-project/opensearch-java/pull/597))
+
+### Security
+
+## [2.6.0] - 07/05/2023
+### Added
+- Add support for knn_vector field type ([#524](https://github.com/opensearch-project/opensearch-java/pull/524))
+- Add translog option object and missing translog sync interval option in index settings ([#518](https://github.com/opensearch-project/opensearch-java/pull/518))
+- Adds the option to set slices=auto for UpdateByQueryRequest, DeleteByQueryRequest and ReindexRequest ([#538](https://github.com/opensearch-project/opensearch-java/pull/538))
+- Add support for approximate k-NN queries ([#548](https://github.com/opensearch-project/opensearch-java/pull/548))
+
+### Dependencies
+- Bumps `com.github.jk1.dependency-license-report` from 2.2 to 2.4
+- Bumps `io.github.classgraph:classgraph` from 4.8.157 to 4.8.160
+- Bumps `jackson` from 2.14.2 to 2.15.2 ((#537)[https://github.com/opensearch-project/opensearch-java/pull/537])
+- Update `org.apache.httpcomponents.client5:httpclient5` from `5.1.4` to `5.2.1` and `org.apache.httpcomponents.core5:httpcore5` from `5.1.5` to `5.2.2`
+
+### Changed
+
+### Deprecated
+- Deprecate translogDurability and translogFlushThresholdSize in IndexSettings in favor of a separate translog object ([#518](https://github.com/opensearch-project/opensearch-java/pull/518))
+
+### Removed
 
 ### Fixed
 - Fixed Suggesters for Completion, Term, and Phrase and refactored the Suggestion class ([#477](https://github.com/opensearch-project/opensearch-java/pull/477))
+- Fix highlight max_analyzer_offset field name to match with the one introduced in OpenSearch 2.2.0 ([#555](https://github.com/opensearch-project/opensearch-java/pull/555))
 
 ### Security
 
@@ -27,7 +55,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bumps `com.github.jk1.dependency-license-report` from 1.19 to 2.2
-- Bumps `org.eclipse.parsson:parsson` from 1.1.1 to 1.1.2
+- Bumps `org.eclipse.parsson:parsson` from 1.1.2 to 1.1.4
 
 ### Changed
 - Improve time taken by Github actions by using cache ([#439](https://github.com/opensearch-project/opensearch-java/pull/439))
@@ -128,11 +156,12 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix missing cause message in missing permission to call Fine Grained Access Control Amazon OpenSearch domain ([#473](https://github.com/opensearch-project/opensearch-java/issues/473))
 - Fix catching JsonParsingException ([#494](https://github.com/opensearch-project/opensearch-java/issues/494))
 - Fix StoryStats numeric value out of range of int ([#489](https://github.com/opensearch-project/opensearch-java/pull/489))
-
+ 
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...2.x
+[Unreleased]: https://github.com/opensearch-project/opensearch-java/compare/v2.6.0...2.x
+[2.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.2.0...v2.3.0

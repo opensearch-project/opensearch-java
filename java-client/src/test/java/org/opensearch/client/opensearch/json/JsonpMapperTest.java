@@ -32,25 +32,24 @@
 
 package org.opensearch.client.opensearch.json;
 
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.jackson.JacksonJsonpMapper;
-import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
-import org.opensearch.client.opensearch.IOUtils;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.MappingJsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.datatype.jsonp.JSONPModule;
-
 import jakarta.json.Json;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.junit.Assert;
 import org.junit.Test;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.jackson.JacksonJsonpMapper;
+import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.client.opensearch.IOUtils;
+import org.opensearch.client.opensearch.model.ModelTestCase;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -186,20 +185,14 @@ public class JsonpMapperTest extends Assert {
         other.setDoubleValue(3.2);
         something.setChildren(Collections.singletonList(other));
 
-        StringWriter strw = new StringWriter();
-        JsonGenerator generator = mapper.jsonProvider().createGenerator(strw);
+        String str = ModelTestCase.toJson(something, mapper);
 
-        mapper.serialize(something, generator);
-
-        generator.close();
-
-        assertEquals(expected, strw.getBuffer().toString());
+        assertEquals(expected, str);
     }
 
     private void testDeserialize(JsonpMapper mapper, String json) {
 
-        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
-        SomeClass parsed = mapper.deserialize(parser, SomeClass.class);
+        SomeClass parsed = ModelTestCase.fromJson(json, SomeClass.class, mapper);
 
         assertEquals(1, parsed.getIntValue());
         assertEquals(2.1, parsed.getDoubleValue(), 0.0);

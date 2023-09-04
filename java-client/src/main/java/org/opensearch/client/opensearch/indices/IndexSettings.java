@@ -30,26 +30,23 @@
  * GitHub history for details.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.Time;
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
+
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettings
 
@@ -199,10 +196,7 @@ public class IndexSettings implements JsonpSerializable {
 	private final Integer maxSlicesPerScroll;
 
 	@Nullable
-	private final String translogDurability;
-
-	@Nullable
-	private final String translogFlushThresholdSize;
+	private final Translog translog;
 
 	@Nullable
 	private final Boolean queryStringLenient;
@@ -280,8 +274,7 @@ public class IndexSettings implements JsonpSerializable {
 		this.verifiedBeforeClose = builder.verifiedBeforeClose;
 		this.format = builder.format;
 		this.maxSlicesPerScroll = builder.maxSlicesPerScroll;
-		this.translogDurability = builder.translogDurability;
-		this.translogFlushThresholdSize = builder.translogFlushThresholdSize;
+		this.translog = builder.translog;
 		this.queryStringLenient = builder.queryStringLenient;
 		this.priority = builder.priority;
 		this.topMetricsMaxSize = builder.topMetricsMaxSize;
@@ -681,19 +674,31 @@ public class IndexSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code translog.durability}
+	 * API name: {@code translog}
 	 */
 	@Nullable
+	public final Translog translog() {
+		return this.translog;
+	}
+
+	/**
+	 * API name: {@code translog.durability}
+	 * @deprecated use {@link #translog()} instead
+	 */
+	@Deprecated
+	@Nullable
 	public final String translogDurability() {
-		return this.translogDurability;
+		return this.translog != null ? this.translog.durability() : null;
 	}
 
 	/**
 	 * API name: {@code translog.flush_threshold_size}
+	 * @deprecated use {@link #translog()} instead
 	 */
+	@Deprecated
 	@Nullable
 	public final String translogFlushThresholdSize() {
-		return this.translogFlushThresholdSize;
+		return this.translog != null ? this.translog.flushThresholdSize() : null;
 	}
 
 	/**
@@ -1016,14 +1021,9 @@ public class IndexSettings implements JsonpSerializable {
 			generator.write(this.maxSlicesPerScroll);
 
 		}
-		if (this.translogDurability != null) {
-			generator.writeKey("translog.durability");
-			generator.write(this.translogDurability);
-
-		}
-		if (this.translogFlushThresholdSize != null) {
-			generator.writeKey("translog.flush_threshold_size");
-			generator.write(this.translogFlushThresholdSize);
+		if (this.translog != null) {
+			generator.writeKey("translog");
+			this.translog.serialize(generator, mapper);
 
 		}
 		if (this.queryStringLenient != null) {
@@ -1062,7 +1062,7 @@ public class IndexSettings implements JsonpSerializable {
 
 		}
 		if (this.knnAlgoParamEfSearch != null) {
-			generator.writeKey("knn.algo_param_ef_search");
+			generator.writeKey("knn.algo_param.ef_search");
 			generator.write(this.knnAlgoParamEfSearch);
 
 		}
@@ -1221,10 +1221,7 @@ public class IndexSettings implements JsonpSerializable {
 		private Integer maxSlicesPerScroll;
 
 		@Nullable
-		private String translogDurability;
-
-		@Nullable
-		private String translogFlushThresholdSize;
+		private Translog translog;
 
 		@Nullable
 		private Boolean queryStringLenient;
@@ -1717,18 +1714,42 @@ public class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code translog.durability}
+		 * API name: {@code translog}
 		 */
+		public final Builder translog(@Nullable Translog value) {
+			this.translog = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code translog.durability}
+		 * @deprecated use {@link #translog()} instead
+		 */
+		@Deprecated
 		public final Builder translogDurability(@Nullable String value) {
-			this.translogDurability = value;
+			if (translog == null) {
+				translog = Translog.of(b -> b.durability(value));
+			} else {
+				translog = Translog.of(b -> b.durability(value)
+						.flushThresholdSize(translog.flushThresholdSize())
+						.syncInterval(translog.syncInterval()));
+			}
 			return this;
 		}
 
 		/**
 		 * API name: {@code translog.flush_threshold_size}
+		 * @deprecated use {@link #translog()} instead
 		 */
+		@Deprecated
 		public final Builder translogFlushThresholdSize(@Nullable String value) {
-			this.translogFlushThresholdSize = value;
+			if (translog == null) {
+				translog = Translog.of(b -> b.flushThresholdSize(value));
+			} else {
+				translog = Translog.of(b -> b.flushThresholdSize(value)
+						.durability(translog.durability())
+						.syncInterval(translog.syncInterval()));
+			}
 			return this;
 		}
 
@@ -1920,6 +1941,7 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format", "index.format");
 		op.add(Builder::maxSlicesPerScroll, JsonpDeserializer.integerDeserializer(), "max_slices_per_scroll",
 				"index.max_slices_per_scroll");
+		op.add(Builder::translog, Translog._DESERIALIZER, "translog", "index.translog");
 		op.add(Builder::translogDurability, JsonpDeserializer.stringDeserializer(), "translog.durability",
 				"index.translog.durability");
 		op.add(Builder::translogFlushThresholdSize, JsonpDeserializer.stringDeserializer(),

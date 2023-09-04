@@ -30,10 +30,6 @@
  * GitHub history for details.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
 package org.opensearch.client.opensearch._types.query_dsl;
 
 /**
@@ -180,6 +176,13 @@ public class QueryBuilders {
 	 */
 	public static IntervalsQuery.Builder intervals() {
 		return new IntervalsQuery.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link KnnQuery knn} {@code Query} variant.
+	 */
+	public static KnnQuery.Builder knn() {
+		return new KnnQuery.Builder();
 	}
 
 	/**

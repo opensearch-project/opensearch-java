@@ -48,7 +48,7 @@ plugins {
     `java-library`
     checkstyle
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "2.4"
+    id("com.github.jk1.dependency-license-report") version "2.5"
 }
 
 checkstyle {
@@ -140,8 +140,8 @@ val integrationTest = task<Test>("integrationTest") {
 dependencies {
 
     val opensearchVersion = "2.7.0"
-    val jacksonVersion = "2.14.2"
-    val jacksonDatabindVersion = "2.14.2"
+    val jacksonVersion = "2.15.2"
+    val jacksonDatabindVersion = "2.15.2"
 
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
@@ -154,7 +154,7 @@ dependencies {
     // Needed even if using Jackson to have an implementation of the Jsonp object model
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/parsson
-    api("org.eclipse.parsson:parsson:1.1.2")
+    api("org.eclipse.parsson:parsson:1.1.4")
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // http://json-b.net/
@@ -186,7 +186,7 @@ dependencies {
     implementation("org.eclipse", "yasson", "2.0.2")
 
     // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.160")
+    testImplementation("io.github.classgraph:classgraph:4.8.161")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {
@@ -248,10 +248,10 @@ class SpdxReporter(val dest: File) : ReportRenderer {
 tasks.withType<Jar> {
     doLast {
         ant.withGroovyBuilder {
-            "checksum"("algorithm" to "md5", "file" to archivePath)
-            "checksum"("algorithm" to "sha1", "file" to archivePath)
-            "checksum"("algorithm" to "sha-256", "file" to archivePath, "fileext" to ".sha256")
-            "checksum"("algorithm" to "sha-512", "file" to archivePath, "fileext" to ".sha512")
+            "checksum"("algorithm" to "md5", "file" to archiveFile.get())
+            "checksum"("algorithm" to "sha1", "file" to archiveFile.get())
+            "checksum"("algorithm" to "sha-256", "file" to archiveFile.get(), "fileext" to ".sha256")
+            "checksum"("algorithm" to "sha-512", "file" to archiveFile.get(), "fileext" to ".sha512")
         }
     }
 }

@@ -32,16 +32,9 @@
 
 package org.opensearch.client.opensearch.experiments.containers;
 
-import org.opensearch.client.opensearch.model.ModelTestCase;
-import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
-import jakarta.json.spi.JsonProvider;
-import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
 import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.StringReader;
+import org.opensearch.client.opensearch.model.ModelTestCase;
 
 public class SomeUnionTest extends ModelTestCase {
 
@@ -67,16 +60,11 @@ public class SomeUnionTest extends ModelTestCase {
     @Test
     public void testSerialization() {
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        JsonProvider provider = JsonProvider.provider();
-        JsonGenerator generator = provider.createGenerator(baos);
+        String str = toJson(su);
 
-        su.serialize(generator, new JsonbJsonpMapper());
-        generator.close();
+        System.out.println(str);
 
-        System.out.println(baos.toString());
-
-        assertEquals(json, baos.toString());
+        assertEquals(json, str);
 
     }
 
@@ -84,11 +72,8 @@ public class SomeUnionTest extends ModelTestCase {
     public void testMissingVariantDeserialization() {
         String json = "{}";
 
-        JsonProvider provider = JsonProvider.provider();
-        JsonParser parser = provider.createParser(new StringReader(json));
-
         JsonParsingException e = assertThrows(JsonParsingException.class, () -> {
-            SomeUnion c = SomeUnion._DESERIALIZER.deserialize(parser, new JsonbJsonpMapper());
+            fromJson(json, SomeUnion._DESERIALIZER);
         });
 
         assertEquals("Property 'type' not found", e.getMessage());
