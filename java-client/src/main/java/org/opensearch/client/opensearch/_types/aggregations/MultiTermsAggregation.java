@@ -41,11 +41,14 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.aggregations.BucketSortAggregation.Builder;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+
+import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MultiTermsAggregation
 
@@ -53,13 +56,16 @@ import java.util.function.Function;
 public class MultiTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	private final List<MultiTermLookup> terms;
 
+	@Nullable
+	private final Integer size;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private MultiTermsAggregation(Builder builder) {
 		super(builder);
 
 		this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
-
+		this.size = builder.size;
 	}
 
 	public static MultiTermsAggregation of(Function<Builder, ObjectBuilder<MultiTermsAggregation>> fn) {
@@ -81,9 +87,22 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		return this.terms;
 	}
 
+	/**
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public final Integer size() {
+		return this.size;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (this.size != null) {
+			generator.writeKey("size");
+			generator.write(this.size);
+
+		}
 		if (ApiTypeHelper.isDefined(this.terms)) {
 			generator.writeKey("terms");
 			generator.writeStartArray();
@@ -107,6 +126,9 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 			implements
 				ObjectBuilder<MultiTermsAggregation> {
 		private List<MultiTermLookup> terms;
+
+		@Nullable
+		private Integer size;
 
 		/**
 		 * Required - API name: {@code terms}
@@ -137,6 +159,14 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 			return terms(fn.apply(new MultiTermLookup.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code size}
+		 */
+		public final Builder size(@Nullable Integer value) {
+			this.size = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -165,8 +195,8 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 
 	protected static void setupMultiTermsAggregationDeserializer(ObjectDeserializer<MultiTermsAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(MultiTermLookup._DESERIALIZER), "terms");
-
 	}
 
 }
