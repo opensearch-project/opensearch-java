@@ -55,6 +55,12 @@ plugins {
 }
 apply(plugin = "opensearch.repositories")
 
+configurations {
+    all {
+        exclude(group = "software.amazon.awssdk", module = "third-party-jackson-core")
+    }
+}
+
 checkstyle {
     toolVersion = "10.0"
 }
