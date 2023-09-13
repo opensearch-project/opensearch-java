@@ -241,9 +241,15 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
                 .pitSegments(r -> r.headers("index,shard,id,segment,size"));
 
         assertNotNull("PitSegmentsResponse.segments() is null", PitSegmentsResponse.valueBody());
-        assertTrue("PitSegmentsResponse.segments().size() == 0",
+
+        if (Version.fromString(version).onOrAfter(Version.fromString("2.10.0"))) {
+            assertTrue("PitSegmentsResponse.segments().size() == 0",
+                PitSegmentsResponse.valueBody().isEmpty());
+        } else {
+            assertTrue("PitSegmentsResponse.segments().size() == 0",
                 PitSegmentsResponse.valueBody().size() > 0);
         }
+    }
 
     private void createIndex(String indexName) throws Exception {
         CreateIndexResponse createResponse = javaClient().indices().create(b -> b.index(indexName));
