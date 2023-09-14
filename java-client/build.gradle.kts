@@ -51,6 +51,12 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "2.5"
 }
 
+configurations {
+    all {
+        exclude(group = "software.amazon.awssdk", module = "third-party-jackson-core")
+    }
+}
+
 checkstyle {
     toolVersion = "10.0"
 }
