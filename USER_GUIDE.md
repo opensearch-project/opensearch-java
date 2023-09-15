@@ -2,8 +2,8 @@
   - [Setup](#setup)
   - [Basic Features](#basic-features)
     - [Creating a client](#creating-a-client)
+      - [Using `RestClientTransport`](#using-restclienttransport)
       - [Using `ApacheHttpClient5Transport`](#using-apachehttpclient5transport)
-      - [Using `RestClientTransport` (deprecated)](#using-restclienttransport-deprecated)
     - [Creating an index](#creating-an-index)
       - [With default settings](#with-default-settings)
       - [With custom settings and mappings](#with-custom-settings-and-mappings)
@@ -46,7 +46,7 @@ You can find working versions of the code below that can be run with a local ins
 
 There are multiple low level transports which `OpenSearchClient` could be configured with.
 
-#### Using `ApacheHttpClient5Transport`
+#### Using `RestClientTransport`
 
 ```java
 import org.apache.http.HttpHost;
@@ -72,9 +72,7 @@ Transport transport = new RestClientTransport(restClient,
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
 
-See [SampleClient.java](./samples/src/main/java/org/opensearch/client/samples/SampleClient.java) for a working sample.
-
-#### Using `RestClientTransport` (deprecated)
+#### Using `ApacheHttpClient5Transport`
 
 ```java
 import org.apache.hc.core5.http.HttpHost;
@@ -98,6 +96,8 @@ The Apache HttpClient 5 based transport has dependences on Apache HttpClient 5 a
 ```
 
 Upcoming OpenSearch `3.0.0` release brings HTTP/2 support and as such, the `RestClientTransport` would switch to HTTP/2 if available (for both HTTPS and/or HTTP protocols). The desired protocol could be forced using `RestClientBuilder.HttpClientConfigCallback`.
+
+See [SampleClient.java](./samples/src/main/java/org/opensearch/client/samples/SampleClient.java) for a working sample.
 
 ### Creating an index
 

@@ -28,6 +28,8 @@ dependencies {
     implementation("org.apache.logging.log4j", "log4j-slf4j2-impl","[2.17.1,3.0)")
     implementation("commons-logging", "commons-logging", "1.2")
     implementation("com.fasterxml.jackson.core", "jackson-databind", "2.15.2")
+    implementation("org.apache.httpcomponents.client5", "httpclient5", "5.2.1")
+    implementation("org.apache.httpcomponents.core5", "httpcore5", "5.2.2")
 }
 
 application {
