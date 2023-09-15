@@ -52,8 +52,10 @@ plugins {
     checkstyle
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "2.5"
+    id("org.owasp.dependencycheck") version "8.4.0"
 }
 apply(plugin = "opensearch.repositories")
+apply(plugin = "org.owasp.dependencycheck")
 
 configurations {
     all {
@@ -62,7 +64,7 @@ configurations {
 }
 
 checkstyle {
-    toolVersion = "10.0"
+    toolVersion = "10.12.3"
 }
 
 java {
