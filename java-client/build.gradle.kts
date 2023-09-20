@@ -73,6 +73,10 @@ java {
 
     withJavadocJar()
     withSourcesJar()
+
+    registerFeature("awsSdk2Support") {
+        usingSourceSet(sourceSets.get("main"))
+    }
 }
 
 tasks.withType<ProcessResources> {
@@ -181,8 +185,8 @@ dependencies {
     testImplementation("com.fasterxml.jackson.datatype", "jackson-datatype-jakarta-jsonp", jacksonVersion)
 
     // For AwsSdk2Transport
-    compileOnly("software.amazon.awssdk","sdk-core","[2.15,3.0)")
-    compileOnly("software.amazon.awssdk","auth","[2.15,3.0)")
+    "awsSdk2SupportCompileOnly"("software.amazon.awssdk","sdk-core","[2.15,3.0)")
+    "awsSdk2SupportCompileOnly"("software.amazon.awssdk","auth","[2.15,3.0)")
     testImplementation("software.amazon.awssdk","sdk-core","[2.15,3.0)")
     testImplementation("software.amazon.awssdk","auth","[2.15,3.0)")
     testImplementation("software.amazon.awssdk","aws-crt-client","[2.15,3.0)")
