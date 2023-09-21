@@ -31,6 +31,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Added
 - Added support for "smartcn" analyzer ([#605](https://github.com/opensearch-project/opensearch-java/pull/605))
+- Added support for "script_fields" in multi search request ([#632](https://github.com/opensearch-project/opensearch-java/pull/632))
 
 ### Dependencies
 

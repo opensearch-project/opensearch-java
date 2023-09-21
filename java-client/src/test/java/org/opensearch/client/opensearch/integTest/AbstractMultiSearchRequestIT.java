@@ -32,7 +32,6 @@ import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.util.ObjectBuilder;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -241,7 +240,8 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
 		return createMSearchQuery(itemSize, null, List.of());
 	}
 
-	private RequestItem createMSearchQueryWithScriptFields(String itemSize, String fieldName, List<String> sources, Map<String, ScriptField> scriptFields) {
+	private RequestItem createMSearchQueryWithScriptFields(String itemSize, String fieldName, List<String> sources, 
+					Map<String, ScriptField> scriptFields) {
 		return RequestItem.of(item -> item.header(header -> header)
 				.body(body -> body.query(createItemSizeSearchQuery(itemSize))
 								.highlight(createHighlight(fieldName))
