@@ -43,6 +43,7 @@ import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch._types.query_dsl.ShapeQuery;
 import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
 import org.opensearch.client.json.JsonData;
+import org.opensearch.client.opensearch._types.query_dsl.WrapperQuery;
 import org.opensearch.client.util.MapBuilder;
 import org.junit.Test;
 
@@ -82,6 +83,19 @@ public class BehaviorsTest extends ModelTestCase {
         assertTrue(q.ignoreUnmapped());
         assertEquals(GeoShapeRelation.Disjoint, q.shape().relation());
         System.out.println(toJson(q));
+    }
+
+    @Test
+    public void testWrapperQuery() {
+        WrapperQuery q = new WrapperQuery.Builder()
+            .query("encoded_query")
+            .build();
+
+        q = checkJsonRoundtrip(q,
+            "{\"query\":\"encoded_query\"}"
+        );
+
+        assertEquals("encoded_query", q.query());
     }
 
     @Test
