@@ -9,9 +9,13 @@
 package org.opensearch.client.opensearch.integTest;
 
 import org.junit.Test;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.FieldSort;
 import org.opensearch.client.opensearch._types.FieldValue;
+import org.opensearch.client.opensearch._types.InlineScript;
 import org.opensearch.client.opensearch._types.Refresh;
+import org.opensearch.client.opensearch._types.Script;
+import org.opensearch.client.opensearch._types.ScriptField;
 import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.query_dsl.FuzzyQuery;
@@ -28,7 +32,10 @@ import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.util.ObjectBuilder;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientTestCase {
@@ -175,6 +182,42 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
 		assertEquals(1, response2.responses().get(0).result().hits().hits().size());
 	}
 
+	@Test
+	public void shouldReturnMultiSearchesScriptFields() throws Exception {
+		String index = "multiple_searches_request_script_fields";
+		createTestDocuments(index);
+
+		RequestItem sortedItemsQuery = createMSearchSortedFuzzyRequest();
+
+		MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(sortedItemsQuery));
+		assertEquals(1, response.responses().size());
+		var hits = response.responses().get(0).result().hits().hits();
+		assertEquals(3, hits.size());
+		assertNull(hits.get(0).score());
+		assertNull(hits.get(1).score());
+		assertNull(hits.get(2).score());
+
+		System.out.println(response.responses().get(0).result().hits().hits().get(0).source());
+		System.out.println(response.responses().get(0).result().hits().hits().get(1).source());
+
+		Map<String, ScriptField> scriptFields = new HashMap<>();
+		scriptFields.put("test1", new ScriptField.Builder().script(Script.of(s -> s.inline(new InlineScript.Builder()
+											.lang("painless")
+											.source("ctx._source.quantity += params.inc")
+                    						.params("inc", JsonData.of(1))
+											.build())))
+										.build());
+		
+
+		RequestItem requestItem = createMSearchQueryWithScriptFields("small", null, List.of(), scriptFields);
+		
+		MsearchResponse<ShopItem> responseTrackingScore = sendMSearchRequest(index, List.of(requestItem));
+		// System.out.println("Search response: " + responseTrackingScore.responses().size());
+		// System.out.println(responseTrackingScore.responses().get(0).failure().error().reason());
+		// System.out.println(responseTrackingScore.responses().get(0).failure().error().stackTrace());
+		// System.out.println(responseTrackingScore.responses().get(0).failure().status());
+	}
+
 
 	private void assertResponseSources(MultiSearchResponseItem<ShopItem> response) {
 		List<Hit<ShopItem>> hitsWithHighlights = response.result().hits().hits();
@@ -196,6 +239,16 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
 
 	private RequestItem createMSearchQuery(String itemSize) {
 		return createMSearchQuery(itemSize, null, List.of());
+	}
+
+	private RequestItem createMSearchQueryWithScriptFields(String itemSize, String fieldName, List<String> sources, Map<String, ScriptField> scriptFields) {
+		return RequestItem.of(item -> item.header(header -> header)
+				.body(body -> body.query(createItemSizeSearchQuery(itemSize))
+								.highlight(createHighlight(fieldName))
+								.source(createSourcesConfig(sources))
+								.scriptFields(scriptFields)
+						)
+				);
 	}
 
 	private RequestItem createMSearchQueryWithHighlight(String itemSize) {
