@@ -9,6 +9,7 @@
 package org.opensearch.client.opensearch.integTest;
 
 import org.junit.Test;
+import org.opensearch.Version;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
 import org.opensearch.client.opensearch._types.aggregations.AggregationRange;
@@ -19,6 +20,7 @@ import org.opensearch.client.opensearch._types.aggregations.MultiTermLookup;
 import org.opensearch.client.opensearch._types.aggregations.MultiTermsAggregation;
 import org.opensearch.client.opensearch._types.aggregations.RangeAggregation;
 import org.opensearch.client.opensearch._types.mapping.Property;
+import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.SearchResponse;
 
 import java.io.IOException;
@@ -67,6 +69,8 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 
 	@Test
 	public void testMultiTermsAggregation() throws Exception {
+		checkIfOpenSearchSupportsMultiTermsAggregation();
+
 		var index = "test-multiterms-aggregation-no-size";
 		createMultiTermsDocuments(index);
 		var searchResponse = sendAggregateRequest(index, "multiterms", getMultiTermsAggregation(null));
@@ -83,6 +87,8 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 
 	@Test
 	public void testMultiTermsAggregationWithSizeFewerThenBucketsSize() throws Exception {
+		checkIfOpenSearchSupportsMultiTermsAggregation();
+
 		var index = "test-multiterms-aggregation-fewer-size";
 		createMultiTermsDocuments(index);
 		var searchResponse = sendAggregateRequest(index, "multiterms", getMultiTermsAggregation(1));
@@ -99,6 +105,8 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 
 	@Test
 	public void testMultiTermsAggregationWithSizeBiggerThenBucketsSize() throws Exception {
+		checkIfOpenSearchSupportsMultiTermsAggregation();
+
 		var index = "test-multiterms-aggregation-bigger-size";
 		createMultiTermsDocuments(index);
 		var searchResponse = sendAggregateRequest(index, "multiterms", getMultiTermsAggregation(50));
@@ -111,6 +119,16 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
 
 		assertEquals(3, buckets.size());
 		assertEquals(1, buckets.get(0).docCount());
+	}
+
+	private void checkIfOpenSearchSupportsMultiTermsAggregation() throws Exception {
+		InfoResponse info = javaClient().info();
+		String version = info.version().number();
+		if (version.contains("SNAPSHOT")) {
+			version = version.split("-")[0];
+		}
+		assumeTrue("multi_terms is supported in OpenSearch 2.1.0 and later",
+		Version.fromString(version).onOrAfter(Version.fromString("2.1.0")));
 	}
 
 	private Aggregation getExpiryDateRangeAggregation() {
