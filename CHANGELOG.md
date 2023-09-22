@@ -12,6 +12,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `io.github.classgraph:classgraph` from 4.8.160 to 4.8.161
   
 ### Changed
+- Moved "software.amazon.awssdk" dependencies to the compileOnly scope. ([#628](https://github.com/opensearch-project/opensearch-java/pull/628))
 
 ### Deprecated
 

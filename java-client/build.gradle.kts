@@ -180,8 +180,8 @@ dependencies {
     implementation("org.apache.httpcomponents.core5", "httpcore5", "5.1.5")
 
     // For AwsSdk2Transport
-    "awsSdk2SupportImplementation"("software.amazon.awssdk","sdk-core","[2.15,3.0)")
-    "awsSdk2SupportImplementation"("software.amazon.awssdk","auth","[2.15,3.0)")
+    "awsSdk2SupportCompileOnly"("software.amazon.awssdk","sdk-core","[2.15,3.0)")
+    "awsSdk2SupportCompileOnly"("software.amazon.awssdk","auth","[2.15,3.0)")
     testImplementation("software.amazon.awssdk","sdk-core","[2.15,3.0)")
     testImplementation("software.amazon.awssdk","auth","[2.15,3.0)")
     testImplementation("software.amazon.awssdk","aws-crt-client","[2.15,3.0)")
