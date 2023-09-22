@@ -31,6 +31,9 @@ import org.opensearch.client.opensearch.core.search.Hit;
 import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.util.ObjectBuilder;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -196,25 +199,27 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
 		assertNull(hits.get(1).score());
 		assertNull(hits.get(2).score());
 
-		System.out.println(response.responses().get(0).result().hits().hits().get(0).source());
-		System.out.println(response.responses().get(0).result().hits().hits().get(1).source());
-
 		Map<String, ScriptField> scriptFields = new HashMap<>();
-		scriptFields.put("test1", new ScriptField.Builder().script(Script.of(s -> s.inline(new InlineScript.Builder()
+		scriptFields.put("quantity", new ScriptField.Builder().script(Script.of(s -> s.inline(new InlineScript.Builder()
 											.lang("painless")
-											.source("ctx._source.quantity += params.inc")
+											.source("doc['quantity'].value + params.inc")
                     						.params("inc", JsonData.of(1))
 											.build())))
 										.build());
 		
 
-		RequestItem requestItem = createMSearchQueryWithScriptFields("small", null, List.of(), scriptFields);
+		RequestItem requestItem = createMSearchQueryWithScriptFields("small", scriptFields);
 		
-		MsearchResponse<ShopItem> responseTrackingScore = sendMSearchRequest(index, List.of(requestItem));
-		// System.out.println("Search response: " + responseTrackingScore.responses().size());
-		// System.out.println(responseTrackingScore.responses().get(0).failure().error().reason());
-		// System.out.println(responseTrackingScore.responses().get(0).failure().error().stackTrace());
-		// System.out.println(responseTrackingScore.responses().get(0).failure().status());
+		MsearchResponse<ShopItem> responseWithScriptFields = sendMSearchRequest(index, List.of(requestItem));
+		var hitsWithScriptFields = responseWithScriptFields.responses().get(0).result().hits().hits();
+		assertEquals(2, hitsWithScriptFields.size());
+		// validating that the quantity for small items is increased by 1
+    	ObjectMapper mapper = new ObjectMapper();
+		JsonNode node = mapper.readTree(hitsWithScriptFields.get(0).fields().get("quantity").toString());
+		assertEquals(2, (int) mapper.treeToValue(node.get(0), int.class));
+		
+		node = mapper.readTree(hitsWithScriptFields.get(1).fields().get("quantity").toString());
+		assertEquals(3, (int) mapper.treeToValue(node.get(0), int.class));
 	}
 
 
@@ -240,12 +245,9 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
 		return createMSearchQuery(itemSize, null, List.of());
 	}
 
-	private RequestItem createMSearchQueryWithScriptFields(String itemSize, String fieldName, List<String> sources, 
-					Map<String, ScriptField> scriptFields) {
+	private RequestItem createMSearchQueryWithScriptFields(String itemSize, Map<String, ScriptField> scriptFields) {
 		return RequestItem.of(item -> item.header(header -> header)
 				.body(body -> body.query(createItemSizeSearchQuery(itemSize))
-								.highlight(createHighlight(fieldName))
-								.source(createSourcesConfig(sources))
 								.scriptFields(scriptFields)
 						)
 				);
