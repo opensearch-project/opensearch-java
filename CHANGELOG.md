@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
 - Added support for "cjk" analyzer ([#604](https://github.com/opensearch-project/opensearch-java/pull/604))
 - Added support for wrapper queries ([#630](https://github.com/opensearch-project/opensearch-java/pull/630))
+- Added size attribute to MultiTermsAggregation ([#627](https://github.com/opensearch-project/opensearch-java/pull/627))
 
 ### Dependencies
 - Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
