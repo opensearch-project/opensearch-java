@@ -14,6 +14,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.eclipse.parsson:parsson` from 1.1.2 to 1.1.3
 - Bumps `io.github.classgraph:classgraph` from 4.8.161 to 4.8.162
 - Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.2 to 5.2.3
+- Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.2 to 5.2.3
 
 ### Changed
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
