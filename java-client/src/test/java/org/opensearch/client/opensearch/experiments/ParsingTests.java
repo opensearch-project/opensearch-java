@@ -189,7 +189,8 @@ public class ParsingTests extends ModelTestCase {
         );
 
         String str = toJson(response);
-        assertEquals("{\"found\":true,\"_id\":\"id\",\"_index\":\"index\",\"term_vectors\":{\"key1\":{\"terms\":{\"term1\":{\"score\":0.3}}}},\"took\":0}", str);
+        assertEquals("{\"found\":true,\"_id\":\"id\",\"_index\":\"index\","
+            +"\"term_vectors\":{\"key1\":{\"terms\":{\"term1\":{\"score\":0.3}}}},\"took\":0}", str);
 
         final TermvectorsResponse response2 = fromJson(str, TermvectorsResponse._DESERIALIZER);
         assertEquals(response.index(), response2.index());
