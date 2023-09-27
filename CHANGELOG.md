@@ -29,7 +29,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
 - Fix PutMappingRequest by removing unsupported fields ([#597](https://github.com/opensearch-project/opensearch-java/pull/597))
-
+- [BUG] Fix TermvectorsResponse for optional fields. ([#642](https://github.com/opensearch-project/opensearch-java/pull/642))
 ### Security
 
 ## [Unreleased 2.x]
