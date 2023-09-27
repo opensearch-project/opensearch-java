@@ -24,6 +24,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - [BUG] JarHell caused by latest software.amazon.awssdk 2.20.141 ([#616](https://github.com/opensearch-project/opensearch-java/pull/616))
 - Don't over-allocate in HeapBufferedAsyncEntityConsumer in order to consume the response ([#620](https://github.com/opensearch-project/opensearch-java/pull/620))
 - Fixed CVE-2976 + added CVE checker ([#624](https://github.com/opensearch-project/opensearch-java/pull/624))
+- [BUG] Fix TermvectorsResponse for optional fields. ([#640](https://github.com/opensearch-project/opensearch-java/pull/640))
 
 ### Security
 
