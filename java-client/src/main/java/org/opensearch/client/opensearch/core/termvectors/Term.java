@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.core.termvectors;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,10 +45,6 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Term
 
@@ -57,7 +57,7 @@ public class Term implements JsonpSerializable {
 	@Nullable
 	private final Double score;
 
-	private final int termFreq;
+	private final Integer termFreq;
 
 	private final List<Token> tokens;
 
@@ -70,8 +70,8 @@ public class Term implements JsonpSerializable {
 
 		this.docFreq = builder.docFreq;
 		this.score = builder.score;
-		this.termFreq = ApiTypeHelper.requireNonNull(builder.termFreq, this, "termFreq");
-		this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
+		this.termFreq = builder.termFreq;
+		this.tokens = ApiTypeHelper.unmodifiable(builder.tokens);
 		this.ttf = builder.ttf;
 
 	}
@@ -139,8 +139,10 @@ public class Term implements JsonpSerializable {
 			generator.write(this.score);
 
 		}
-		generator.writeKey("term_freq");
-		generator.write(this.termFreq);
+        if (null != this.termFreq) {
+            generator.writeKey("term_freq");
+            generator.write(this.termFreq);
+        }
 
 		if (ApiTypeHelper.isDefined(this.tokens)) {
 			generator.writeKey("tokens");

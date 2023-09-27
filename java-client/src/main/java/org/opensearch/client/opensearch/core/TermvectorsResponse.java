@@ -62,7 +62,7 @@ public class TermvectorsResponse implements JsonpSerializable {
 
 	private final long took;
 
-	private final long version;
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ public class TermvectorsResponse implements JsonpSerializable {
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.termVectors = ApiTypeHelper.unmodifiable(builder.termVectors);
 		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.version = builder.version;
 
 	}
 
@@ -157,8 +157,10 @@ public class TermvectorsResponse implements JsonpSerializable {
 		generator.writeKey("took");
 		generator.write(this.took);
 
-		generator.writeKey("_version");
-		generator.write(this.version);
+        if (null != this.version) {
+            generator.writeKey("_version");
+            generator.write(this.version);
+        }
 
 	}
 
