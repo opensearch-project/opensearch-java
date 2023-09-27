@@ -50,9 +50,6 @@ import java.util.function.Function;
 
 @JsonpDeserializable
 public class FieldMapping implements JsonpSerializable {
-	// Single key dictionary
-	private final String field;
-
 	private final String fullName;
 
 	private final Map<String, Property> mapping;
@@ -61,8 +58,6 @@ public class FieldMapping implements JsonpSerializable {
 
 	private FieldMapping(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-
 		this.fullName = ApiTypeHelper.requireNonNull(builder.fullName, this, "fullName");
 		this.mapping = ApiTypeHelper.unmodifiableRequired(builder.mapping, this, "mapping");
 
@@ -70,13 +65,6 @@ public class FieldMapping implements JsonpSerializable {
 
 	public static FieldMapping of(Function<Builder, ObjectBuilder<FieldMapping>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * Required - The target field
-	 */
-	public final String field() {
-		return this.field;
 	}
 
 	/**
@@ -103,8 +91,6 @@ public class FieldMapping implements JsonpSerializable {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(this.field);
-
 		generator.writeKey("full_name");
 		generator.write(this.fullName);
 
@@ -120,8 +106,6 @@ public class FieldMapping implements JsonpSerializable {
 
 		}
 
-		generator.writeEnd();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -131,15 +115,6 @@ public class FieldMapping implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldMapping> {
-		private String field;
-
-		/**
-		 * Required - The target field
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
 
 		private String fullName;
 
@@ -207,8 +182,6 @@ public class FieldMapping implements JsonpSerializable {
 
 		op.add(Builder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");
 		op.add(Builder::mapping, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "mapping");
-
-		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 
 	}
 
