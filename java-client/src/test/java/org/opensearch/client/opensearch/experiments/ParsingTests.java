@@ -33,13 +33,13 @@
 package org.opensearch.client.opensearch.experiments;
 
 import java.util.List;
-
 import org.junit.Test;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch._types.analysis.Analyzer;
 import org.opensearch.client.opensearch._types.analysis.TokenFilterDefinition;
 import org.opensearch.client.opensearch._types.analysis.TokenizerBuilders;
 import org.opensearch.client.opensearch._types.analysis.TokenizerDefinition;
+import org.opensearch.client.opensearch.core.TermvectorsResponse;
 import org.opensearch.client.opensearch.experiments.api.FooRequest;
 import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.IndexSettingsMapping;
@@ -173,4 +173,28 @@ public class ParsingTests extends ModelTestCase {
         assertEquals(analyzer.cjk().stopwords(), analyzer2.cjk().stopwords());
         assertEquals(analyzer.cjk().stopwordsPath(), analyzer2.cjk().stopwordsPath());
     }
+    @Test
+    public void testTermvectorsResponseOptionals() {
+        // Build a response without any optionals
+        final TermvectorsResponse response = TermvectorsResponse.of(b -> b
+            .index("index")
+            .id("id")
+            .found(true)
+            .took(0)
+            .termVectors("key1", tvb -> tvb
+                .terms("term1", tb -> tb
+                    .score(0.3)
+                )
+            )
+        );
+
+        String str = toJson(response);
+        assertEquals("{\"found\":true,\"_id\":\"id\",\"_index\":\"index\","
+            +"\"term_vectors\":{\"key1\":{\"terms\":{\"term1\":{\"score\":0.3}}}},\"took\":0}", str);
+
+        final TermvectorsResponse response2 = fromJson(str, TermvectorsResponse._DESERIALIZER);
+        assertEquals(response.index(), response2.index());
+    }
+
+
 }
