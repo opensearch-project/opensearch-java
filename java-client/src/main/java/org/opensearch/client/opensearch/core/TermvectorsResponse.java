@@ -157,10 +157,10 @@ public class TermvectorsResponse implements JsonpSerializable {
 		generator.writeKey("took");
 		generator.write(this.took);
 
-        if (null != this.version) {
-            generator.writeKey("_version");
-            generator.write(this.version);
-        }
+		if (null != this.version) {
+			generator.writeKey("_version");
+			generator.write(this.version);
+		}
 
 	}
 

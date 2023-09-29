@@ -139,10 +139,10 @@ public class Term implements JsonpSerializable {
 			generator.write(this.score);
 
 		}
-        if (null != this.termFreq) {
-            generator.writeKey("term_freq");
-            generator.write(this.termFreq);
-        }
+		if (null != this.termFreq) {
+			generator.writeKey("term_freq");
+			generator.write(this.termFreq);
+		}
 
 		if (ApiTypeHelper.isDefined(this.tokens)) {
 			generator.writeKey("tokens");
