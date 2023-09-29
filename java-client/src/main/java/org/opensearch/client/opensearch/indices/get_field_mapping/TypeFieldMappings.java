@@ -54,7 +54,7 @@ import java.util.function.Function;
 
 @JsonpDeserializable
 public class TypeFieldMappings implements JsonpSerializable {
-	private final Map<String,FieldMapping> mappings;
+	private final Map<String, FieldMapping> mappings;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,8 +69,8 @@ public class TypeFieldMappings implements JsonpSerializable {
 	}
 
 	/**
-     * Required - API name: {@code mappings}
-     */
+	 * Required - API name: {@code mappings}
+	 */
 	public final Map<String, FieldMapping> mappings() {
 		return this.mappings;
 	}
@@ -87,13 +87,13 @@ public class TypeFieldMappings implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("mappings");
-        generator.writeStartObject();
-        for (Map.Entry<String, FieldMapping> item0 : this.mappings.entrySet()) {
-            generator.writeKey(item0.getKey());
-            item0.getValue().serialize(generator, mapper);
+		generator.writeStartObject();
+		for (Map.Entry<String, FieldMapping> item0 : this.mappings.entrySet()) {
+			generator.writeKey(item0.getKey());
+			item0.getValue().serialize(generator, mapper);
 
-        }
-        generator.writeEnd();
+		}
+		generator.writeEnd();
 
 	}
 
@@ -104,40 +104,40 @@ public class TypeFieldMappings implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TypeFieldMappings> {
-        private Map<String, FieldMapping> mappings;
+		private Map<String, FieldMapping> mappings;
 
-        /**
-         * Required - API name: {@code mappings}
-         */
-        public Builder mappings(Map<String, FieldMapping> value) {
-            this.mappings = value;
-            return this;
-        }
+		/**
+		 * Required - API name: {@code mappings}
+		 */
+		public Builder mappings(Map<String, FieldMapping> value) {
+			this.mappings = value;
+			return this;
+		}
 
-        /**
-         * Add a key/value to {@link #mappings(Map)}, creating the map if needed.
-         */
-        public Builder putMappings(String key, FieldMapping value) {
-            if (this.mappings == null) {
-                this.mappings = new HashMap<>();
-            }
-            this.mappings.put(key, value);
-            return this;
-        }
+		/**
+		 * Add a key/value to {@link #mappings(Map)}, creating the map if needed.
+		 */
+		public Builder putMappings(String key, FieldMapping value) {
+			if (this.mappings == null) {
+				this.mappings = new HashMap<>();
+			}
+			this.mappings.put(key, value);
+			return this;
+		}
 
-        /**
-         * Set {@link #mappings(Map)} to a singleton map.
-         */
-        public Builder mappings(String key, Function<FieldMapping.Builder, ObjectBuilder<FieldMapping>> fn) {
-            return this.mappings(Collections.singletonMap(key, fn.apply(new FieldMapping.Builder()).build()));
-        }
+		/**
+		 * Set {@link #mappings(Map)} to a singleton map.
+		 */
+		public Builder mappings(String key, Function<FieldMapping.Builder, ObjectBuilder<FieldMapping>> fn) {
+			return this.mappings(Collections.singletonMap(key, fn.apply(new FieldMapping.Builder()).build()));
+		}
 
-        /**
-         * Add a key/value to {@link #mappings(Map)}, creating the map if needed.
-         */
-        public Builder putMappings(String key, Function<FieldMapping.Builder, ObjectBuilder<FieldMapping>> fn) {
-            return this.putMappings(key, fn.apply(new FieldMapping.Builder()).build());
-        }
+		/**
+		 * Add a key/value to {@link #mappings(Map)}, creating the map if needed.
+		 */
+		public Builder putMappings(String key, Function<FieldMapping.Builder, ObjectBuilder<FieldMapping>> fn) {
+			return this.putMappings(key, fn.apply(new FieldMapping.Builder()).build());
+		}
 
 		/**
 		 * Builds a {@link TypeFieldMappings}.
@@ -162,7 +162,7 @@ public class TypeFieldMappings implements JsonpSerializable {
 
 	protected static void setupTypeFieldMappingsDeserializer(ObjectDeserializer<TypeFieldMappings.Builder> op) {
 
-        op.add(Builder::mappings, JsonpDeserializer.stringMapDeserializer(FieldMapping._DESERIALIZER), "mappings");
+		op.add(Builder::mappings, JsonpDeserializer.stringMapDeserializer(FieldMapping._DESERIALIZER), "mappings");
 
 	}
 
