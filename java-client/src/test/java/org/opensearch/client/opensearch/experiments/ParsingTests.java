@@ -179,6 +179,7 @@ public class ParsingTests extends ModelTestCase {
         final TermvectorsResponse response = TermvectorsResponse.of(b -> b
             .index("index")
             .id("id")
+            .version(1)
             .found(true)
             .took(0)
             .termVectors("key1", tvb -> tvb
@@ -190,7 +191,7 @@ public class ParsingTests extends ModelTestCase {
 
         String str = toJson(response);
         assertEquals("{\"found\":true,\"_id\":\"id\",\"_index\":\"index\","
-            +"\"term_vectors\":{\"key1\":{\"terms\":{\"term1\":{\"score\":0.3}}}},\"took\":0}", str);
+            +"\"term_vectors\":{\"key1\":{\"terms\":{\"term1\":{\"score\":0.3}}}},\"took\":0,\"_version\":1}", str);
 
         final TermvectorsResponse response2 = fromJson(str, TermvectorsResponse._DESERIALIZER);
         assertEquals(response.index(), response2.index());
