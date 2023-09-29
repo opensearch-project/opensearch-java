@@ -47,7 +47,7 @@ import java.util.TreeSet;
 import javax.net.ssl.SSLEngine;
 
 public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCase implements OpenSearchTransportSupport {
-    private static final List<String> systemIndices = List.of(".opensearch-observability", ".opendistro_security");
+    private static final List<String> systemIndices = List.of(".opensearch-observability", ".opendistro_security", ".plugins-ml-config");
     private static OpenSearchClient javaClient;
     private static OpenSearchClient adminJavaClient;
 
