@@ -32,6 +32,7 @@
 
 package org.opensearch.client.opensearch.core.msearch;
 
+import org.opensearch.client.opensearch._types.ScriptField;
 import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
@@ -96,6 +97,8 @@ public class MultisearchBody implements JsonpSerializable {
 	@Nullable
 	private SourceConfig source;
 
+	private final Map<String, ScriptField> scriptFields;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private MultisearchBody(Builder builder) {
@@ -113,7 +116,7 @@ public class MultisearchBody implements JsonpSerializable {
 		this.suggest = builder.suggest;
 		this.highlight = builder.highlight;
 		this.source = builder.source;
-
+		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 	}
 
 	public static MultisearchBody of(Function<Builder, ObjectBuilder<MultisearchBody>> fn) {
@@ -221,6 +224,10 @@ public class MultisearchBody implements JsonpSerializable {
 		return this.source;
 	}
 
+	public final Map<String, ScriptField> scriptFields() {
+		return this.scriptFields;
+	}
+
 	/**
 	 * Serialize this object to JSON.
 	 */
@@ -316,6 +323,18 @@ public class MultisearchBody implements JsonpSerializable {
 
 		}
 
+		if (ApiTypeHelper.isDefined(this.scriptFields)) {
+			generator.writeKey("script_fields");
+			generator.writeStartObject();
+			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -363,6 +382,8 @@ public class MultisearchBody implements JsonpSerializable {
 
 		@Nullable
 		private SourceConfig source;
+
+		private Map<String, ScriptField> scriptFields;
 
 
 		/**
@@ -572,6 +593,29 @@ public class MultisearchBody implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code script_fields}
+		 */
+		public final Builder scriptFields(Map<String, ScriptField> map) {
+			this.scriptFields = _mapPutAll(this.scriptFields, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code script_fields}
+		 */
+		public final Builder scriptFields(String key, ScriptField value) {
+			this.scriptFields = _mapPut(this.scriptFields, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code script_fields}
+		 */
+		public final Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
+			return scriptFields(key, fn.apply(new ScriptField.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link MultisearchBody}.
 		 *
 		 * @throws NullPointerException
@@ -609,6 +653,8 @@ public class MultisearchBody implements JsonpSerializable {
 		op.add(Builder::suggest, Suggester._DESERIALIZER, "suggest");
 		op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
 		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
+		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
+				"script_fields");
 
 	}
 
