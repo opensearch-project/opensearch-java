@@ -47,7 +47,7 @@ import org.opensearch.client.samples.util.IndexData;
  * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=Search</c>
  */
 public class Search {
-    private static final Logger LOGGER = LogManager.getLogger(IndexingBasics.class);
+    private static final Logger LOGGER = LogManager.getLogger(Search.class);
 
     private static OpenSearchClient client;
 
