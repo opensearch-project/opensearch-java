@@ -112,6 +112,10 @@ tasks.withType<Jar> {
     }
 }
 
+tasks.build {
+    dependsOn("spotlessJavaCheck")
+}
+
 tasks.test {
     systemProperty("tests.security.manager", "false")
 
