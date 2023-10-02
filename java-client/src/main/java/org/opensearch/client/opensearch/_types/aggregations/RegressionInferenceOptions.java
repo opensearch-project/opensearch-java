@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,143 +43,139 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RegressionInferenceOptions
 
-
 @JsonpDeserializable
 public class RegressionInferenceOptions implements JsonpSerializable {
-	@Nullable
-	private final String resultsField;
+    @Nullable
+    private final String resultsField;
 
-	@Nullable
-	private final Integer numTopFeatureImportanceValues;
+    @Nullable
+    private final Integer numTopFeatureImportanceValues;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RegressionInferenceOptions(Builder builder) {
+    private RegressionInferenceOptions(Builder builder) {
 
-		this.resultsField = builder.resultsField;
-		this.numTopFeatureImportanceValues = builder.numTopFeatureImportanceValues;
+        this.resultsField = builder.resultsField;
+        this.numTopFeatureImportanceValues = builder.numTopFeatureImportanceValues;
 
-	}
+    }
 
-	public static RegressionInferenceOptions of(Function<Builder, ObjectBuilder<RegressionInferenceOptions>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RegressionInferenceOptions of(Function<Builder, ObjectBuilder<RegressionInferenceOptions>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * The field that is added to incoming documents to contain the inference
-	 * prediction. Defaults to predicted_value.
-	 * <p>
-	 * API name: {@code results_field}
-	 */
-	@Nullable
-	public final String resultsField() {
-		return this.resultsField;
-	}
+    /**
+     * The field that is added to incoming documents to contain the inference
+     * prediction. Defaults to predicted_value.
+     * <p>
+     * API name: {@code results_field}
+     */
+    @Nullable
+    public final String resultsField() {
+        return this.resultsField;
+    }
 
-	/**
-	 * Specifies the maximum number of feature importance values per document. By
-	 * default, it is zero and no feature importance calculation occurs.
-	 * <p>
-	 * API name: {@code num_top_feature_importance_values}
-	 */
-	@Nullable
-	public final Integer numTopFeatureImportanceValues() {
-		return this.numTopFeatureImportanceValues;
-	}
+    /**
+     * Specifies the maximum number of feature importance values per document. By
+     * default, it is zero and no feature importance calculation occurs.
+     * <p>
+     * API name: {@code num_top_feature_importance_values}
+     */
+    @Nullable
+    public final Integer numTopFeatureImportanceValues() {
+        return this.numTopFeatureImportanceValues;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.resultsField != null) {
-			generator.writeKey("results_field");
-			generator.write(this.resultsField);
+        if (this.resultsField != null) {
+            generator.writeKey("results_field");
+            generator.write(this.resultsField);
 
-		}
-		if (this.numTopFeatureImportanceValues != null) {
-			generator.writeKey("num_top_feature_importance_values");
-			generator.write(this.numTopFeatureImportanceValues);
+        }
+        if (this.numTopFeatureImportanceValues != null) {
+            generator.writeKey("num_top_feature_importance_values");
+            generator.write(this.numTopFeatureImportanceValues);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RegressionInferenceOptions}.
-	 */
+    /**
+     * Builder for {@link RegressionInferenceOptions}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RegressionInferenceOptions> {
-		@Nullable
-		private String resultsField;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RegressionInferenceOptions> {
+        @Nullable
+        private String resultsField;
 
-		@Nullable
-		private Integer numTopFeatureImportanceValues;
+        @Nullable
+        private Integer numTopFeatureImportanceValues;
 
-		/**
-		 * The field that is added to incoming documents to contain the inference
-		 * prediction. Defaults to predicted_value.
-		 * <p>
-		 * API name: {@code results_field}
-		 */
-		public final Builder resultsField(@Nullable String value) {
-			this.resultsField = value;
-			return this;
-		}
+        /**
+         * The field that is added to incoming documents to contain the inference
+         * prediction. Defaults to predicted_value.
+         * <p>
+         * API name: {@code results_field}
+         */
+        public final Builder resultsField(@Nullable String value) {
+            this.resultsField = value;
+            return this;
+        }
 
-		/**
-		 * Specifies the maximum number of feature importance values per document. By
-		 * default, it is zero and no feature importance calculation occurs.
-		 * <p>
-		 * API name: {@code num_top_feature_importance_values}
-		 */
-		public final Builder numTopFeatureImportanceValues(@Nullable Integer value) {
-			this.numTopFeatureImportanceValues = value;
-			return this;
-		}
+        /**
+         * Specifies the maximum number of feature importance values per document. By
+         * default, it is zero and no feature importance calculation occurs.
+         * <p>
+         * API name: {@code num_top_feature_importance_values}
+         */
+        public final Builder numTopFeatureImportanceValues(@Nullable Integer value) {
+            this.numTopFeatureImportanceValues = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RegressionInferenceOptions}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RegressionInferenceOptions build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RegressionInferenceOptions}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RegressionInferenceOptions build() {
+            _checkSingleUse();
 
-			return new RegressionInferenceOptions(this);
-		}
-	}
+            return new RegressionInferenceOptions(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RegressionInferenceOptions}
-	 */
-	public static final JsonpDeserializer<RegressionInferenceOptions> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RegressionInferenceOptions::setupRegressionInferenceOptionsDeserializer);
+    /**
+     * Json deserializer for {@link RegressionInferenceOptions}
+     */
+    public static final JsonpDeserializer<RegressionInferenceOptions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RegressionInferenceOptions::setupRegressionInferenceOptionsDeserializer
+    );
 
-	protected static void setupRegressionInferenceOptionsDeserializer(
-			ObjectDeserializer<RegressionInferenceOptions.Builder> op) {
+    protected static void setupRegressionInferenceOptionsDeserializer(ObjectDeserializer<RegressionInferenceOptions.Builder> op) {
 
-		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
-		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.integerDeserializer(),
-				"num_top_feature_importance_values");
+        op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
+        op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.integerDeserializer(), "num_top_feature_importance_values");
 
-	}
+    }
 
 }

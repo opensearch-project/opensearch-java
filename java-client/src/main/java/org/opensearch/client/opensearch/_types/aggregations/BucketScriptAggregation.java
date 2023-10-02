@@ -32,123 +32,121 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
-import org.opensearch.client.opensearch._types.Script;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketScriptAggregation
 
 @JsonpDeserializable
 public class BucketScriptAggregation extends PipelineAggregationBase implements AggregationVariant {
-	@Nullable
-	private final Script script;
+    @Nullable
+    private final Script script;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private BucketScriptAggregation(Builder builder) {
-		super(builder);
+    private BucketScriptAggregation(Builder builder) {
+        super(builder);
 
-		this.script = builder.script;
+        this.script = builder.script;
 
-	}
+    }
 
-	public static BucketScriptAggregation of(Function<Builder, ObjectBuilder<BucketScriptAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static BucketScriptAggregation of(Function<Builder, ObjectBuilder<BucketScriptAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.BucketScript;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.BucketScript;
+    }
 
-	/**
-	 * API name: {@code script}
-	 */
-	@Nullable
-	public final Script script() {
-		return this.script;
-	}
+    /**
+     * API name: {@code script}
+     */
+    @Nullable
+    public final Script script() {
+        return this.script;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.script != null) {
-			generator.writeKey("script");
-			this.script.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        if (this.script != null) {
+            generator.writeKey("script");
+            this.script.serialize(generator, mapper);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link BucketScriptAggregation}.
-	 */
+    /**
+     * Builder for {@link BucketScriptAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<BucketScriptAggregation> {
-		@Nullable
-		private Script script;
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<BucketScriptAggregation> {
+        @Nullable
+        private Script script;
 
-		/**
-		 * API name: {@code script}
-		 */
-		public final Builder script(@Nullable Script value) {
-			this.script = value;
-			return this;
-		}
+        /**
+         * API name: {@code script}
+         */
+        public final Builder script(@Nullable Script value) {
+            this.script = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code script}
-		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
-		}
+        /**
+         * API name: {@code script}
+         */
+        public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+            return this.script(fn.apply(new Script.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link BucketScriptAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public BucketScriptAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link BucketScriptAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public BucketScriptAggregation build() {
+            _checkSingleUse();
 
-			return new BucketScriptAggregation(this);
-		}
-	}
+            return new BucketScriptAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link BucketScriptAggregation}
-	 */
-	public static final JsonpDeserializer<BucketScriptAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, BucketScriptAggregation::setupBucketScriptAggregationDeserializer);
+    /**
+     * Json deserializer for {@link BucketScriptAggregation}
+     */
+    public static final JsonpDeserializer<BucketScriptAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        BucketScriptAggregation::setupBucketScriptAggregationDeserializer
+    );
 
-	protected static void setupBucketScriptAggregationDeserializer(
-			ObjectDeserializer<BucketScriptAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
-		op.add(Builder::script, Script._DESERIALIZER, "script");
+    protected static void setupBucketScriptAggregationDeserializer(ObjectDeserializer<BucketScriptAggregation.Builder> op) {
+        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+        op.add(Builder::script, Script._DESERIALIZER, "script");
 
-	}
+    }
 
 }

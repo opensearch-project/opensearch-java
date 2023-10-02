@@ -32,13 +32,12 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.DateRangeAggregate
 
@@ -47,67 +46,67 @@ import java.util.function.Function;
  * <code>range</code> aggregation: <code>from</code> and <code>to</code> in
  * <code>buckets</code> are milliseconds since the Epoch, represented as a
  * floating point number.
- * 
+ *
  */
 @JsonpDeserializable
 public class DateRangeAggregate extends RangeAggregate implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DateRangeAggregate(Builder builder) {
-		super(builder);
+    private DateRangeAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DateRangeAggregate of(Function<Builder, ObjectBuilder<DateRangeAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DateRangeAggregate of(Function<Builder, ObjectBuilder<DateRangeAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.DateRange;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.DateRange;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DateRangeAggregate}.
-	 */
+    /**
+     * Builder for {@link DateRangeAggregate}.
+     */
 
-	public static class Builder extends RangeAggregate.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DateRangeAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends RangeAggregate.AbstractBuilder<Builder> implements ObjectBuilder<DateRangeAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DateRangeAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DateRangeAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DateRangeAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DateRangeAggregate build() {
+            _checkSingleUse();
 
-			return new DateRangeAggregate(this);
-		}
-	}
+            return new DateRangeAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DateRangeAggregate}
-	 */
-	public static final JsonpDeserializer<DateRangeAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DateRangeAggregate::setupDateRangeAggregateDeserializer);
+    /**
+     * Json deserializer for {@link DateRangeAggregate}
+     */
+    public static final JsonpDeserializer<DateRangeAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DateRangeAggregate::setupDateRangeAggregateDeserializer
+    );
 
-	protected static void setupDateRangeAggregateDeserializer(ObjectDeserializer<DateRangeAggregate.Builder> op) {
-		RangeAggregate.setupRangeAggregateDeserializer(op);
+    protected static void setupDateRangeAggregateDeserializer(ObjectDeserializer<DateRangeAggregate.Builder> op) {
+        RangeAggregate.setupRangeAggregateDeserializer(op);
 
-	}
+    }
 
 }

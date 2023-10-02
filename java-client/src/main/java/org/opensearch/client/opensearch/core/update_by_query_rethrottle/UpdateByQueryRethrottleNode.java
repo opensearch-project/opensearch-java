@@ -32,133 +32,132 @@
 
 package org.opensearch.client.opensearch.core.update_by_query_rethrottle;
 
-import org.opensearch.client.opensearch._types.BaseNode;
-import org.opensearch.client.opensearch.tasks.Info;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.BaseNode;
+import org.opensearch.client.opensearch.tasks.Info;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: _global.update_by_query_rethrottle.UpdateByQueryRethrottleNode
 
 @JsonpDeserializable
 public class UpdateByQueryRethrottleNode extends BaseNode {
-	private final Map<String, Info> tasks;
+    private final Map<String, Info> tasks;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private UpdateByQueryRethrottleNode(Builder builder) {
-		super(builder);
+    private UpdateByQueryRethrottleNode(Builder builder) {
+        super(builder);
 
-		this.tasks = ApiTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
+        this.tasks = ApiTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
 
-	}
+    }
 
-	public static UpdateByQueryRethrottleNode of(Function<Builder, ObjectBuilder<UpdateByQueryRethrottleNode>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static UpdateByQueryRethrottleNode of(Function<Builder, ObjectBuilder<UpdateByQueryRethrottleNode>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code tasks}
-	 */
-	public final Map<String, Info> tasks() {
-		return this.tasks;
-	}
+    /**
+     * Required - API name: {@code tasks}
+     */
+    public final Map<String, Info> tasks() {
+        return this.tasks;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.tasks)) {
-			generator.writeKey("tasks");
-			generator.writeStartObject();
-			for (Map.Entry<String, Info> item0 : this.tasks.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.tasks)) {
+            generator.writeKey("tasks");
+            generator.writeStartObject();
+            for (Map.Entry<String, Info> item0 : this.tasks.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link UpdateByQueryRethrottleNode}.
-	 */
+    /**
+     * Builder for {@link UpdateByQueryRethrottleNode}.
+     */
 
-	public static class Builder extends BaseNode.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<UpdateByQueryRethrottleNode> {
-		private Map<String, Info> tasks;
+    public static class Builder extends BaseNode.AbstractBuilder<Builder> implements ObjectBuilder<UpdateByQueryRethrottleNode> {
+        private Map<String, Info> tasks;
 
-		/**
-		 * Required - API name: {@code tasks}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>tasks</code>.
-		 */
-		public final Builder tasks(Map<String, Info> map) {
-			this.tasks = _mapPutAll(this.tasks, map);
-			return this;
-		}
+        /**
+         * Required - API name: {@code tasks}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>tasks</code>.
+         */
+        public final Builder tasks(Map<String, Info> map) {
+            this.tasks = _mapPutAll(this.tasks, map);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code tasks}
-		 * <p>
-		 * Adds an entry to <code>tasks</code>.
-		 */
-		public final Builder tasks(String key, Info value) {
-			this.tasks = _mapPut(this.tasks, key, value);
-			return this;
-		}
+        /**
+         * Required - API name: {@code tasks}
+         * <p>
+         * Adds an entry to <code>tasks</code>.
+         */
+        public final Builder tasks(String key, Info value) {
+            this.tasks = _mapPut(this.tasks, key, value);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code tasks}
-		 * <p>
-		 * Adds an entry to <code>tasks</code> using a builder lambda.
-		 */
-		public final Builder tasks(String key, Function<Info.Builder, ObjectBuilder<Info>> fn) {
-			return tasks(key, fn.apply(new Info.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code tasks}
+         * <p>
+         * Adds an entry to <code>tasks</code> using a builder lambda.
+         */
+        public final Builder tasks(String key, Function<Info.Builder, ObjectBuilder<Info>> fn) {
+            return tasks(key, fn.apply(new Info.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link UpdateByQueryRethrottleNode}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public UpdateByQueryRethrottleNode build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link UpdateByQueryRethrottleNode}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public UpdateByQueryRethrottleNode build() {
+            _checkSingleUse();
 
-			return new UpdateByQueryRethrottleNode(this);
-		}
-	}
+            return new UpdateByQueryRethrottleNode(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link UpdateByQueryRethrottleNode}
-	 */
-	public static final JsonpDeserializer<UpdateByQueryRethrottleNode> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateByQueryRethrottleNode::setupUpdateByQueryRethrottleNodeDeserializer);
+    /**
+     * Json deserializer for {@link UpdateByQueryRethrottleNode}
+     */
+    public static final JsonpDeserializer<UpdateByQueryRethrottleNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        UpdateByQueryRethrottleNode::setupUpdateByQueryRethrottleNodeDeserializer
+    );
 
-	protected static void setupUpdateByQueryRethrottleNodeDeserializer(
-			ObjectDeserializer<UpdateByQueryRethrottleNode.Builder> op) {
-		BaseNode.setupBaseNodeDeserializer(op);
-		op.add(Builder::tasks, JsonpDeserializer.stringMapDeserializer(Info._DESERIALIZER), "tasks");
+    protected static void setupUpdateByQueryRethrottleNodeDeserializer(ObjectDeserializer<UpdateByQueryRethrottleNode.Builder> op) {
+        BaseNode.setupBaseNodeDeserializer(op);
+        op.add(Builder::tasks, JsonpDeserializer.stringMapDeserializer(Info._DESERIALIZER), "tasks");
 
-	}
+    }
 
 }

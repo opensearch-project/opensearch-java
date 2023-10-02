@@ -32,132 +32,134 @@
 
 package org.opensearch.client.opensearch.ingest;
 
-import org.opensearch.client.opensearch.ingest.simulate.PipelineSimulation;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.ingest.simulate.PipelineSimulation;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: ingest.simulate.Response
 
 @JsonpDeserializable
 public class SimulateResponse implements JsonpSerializable {
-	private final List<PipelineSimulation> docs;
+    private final List<PipelineSimulation> docs;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SimulateResponse(Builder builder) {
+    private SimulateResponse(Builder builder) {
 
-		this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
+        this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 
-	}
+    }
 
-	public static SimulateResponse of(Function<Builder, ObjectBuilder<SimulateResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SimulateResponse of(Function<Builder, ObjectBuilder<SimulateResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code docs}
-	 */
-	public final List<PipelineSimulation> docs() {
-		return this.docs;
-	}
+    /**
+     * Required - API name: {@code docs}
+     */
+    public final List<PipelineSimulation> docs() {
+        return this.docs;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.docs)) {
-			generator.writeKey("docs");
-			generator.writeStartArray();
-			for (PipelineSimulation item0 : this.docs) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.docs)) {
+            generator.writeKey("docs");
+            generator.writeStartArray();
+            for (PipelineSimulation item0 : this.docs) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SimulateResponse}.
-	 */
+    /**
+     * Builder for {@link SimulateResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateResponse> {
-		private List<PipelineSimulation> docs;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateResponse> {
+        private List<PipelineSimulation> docs;
 
-		/**
-		 * Required - API name: {@code docs}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>docs</code>.
-		 */
-		public final Builder docs(List<PipelineSimulation> list) {
-			this.docs = _listAddAll(this.docs, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code docs}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>docs</code>.
+         */
+        public final Builder docs(List<PipelineSimulation> list) {
+            this.docs = _listAddAll(this.docs, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code docs}
-		 * <p>
-		 * Adds one or more values to <code>docs</code>.
-		 */
-		public final Builder docs(PipelineSimulation value, PipelineSimulation... values) {
-			this.docs = _listAdd(this.docs, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code docs}
+         * <p>
+         * Adds one or more values to <code>docs</code>.
+         */
+        public final Builder docs(PipelineSimulation value, PipelineSimulation... values) {
+            this.docs = _listAdd(this.docs, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code docs}
-		 * <p>
-		 * Adds a value to <code>docs</code> using a builder lambda.
-		 */
-		public final Builder docs(Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
-			return docs(fn.apply(new PipelineSimulation.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code docs}
+         * <p>
+         * Adds a value to <code>docs</code> using a builder lambda.
+         */
+        public final Builder docs(Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
+            return docs(fn.apply(new PipelineSimulation.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link SimulateResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SimulateResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SimulateResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SimulateResponse build() {
+            _checkSingleUse();
 
-			return new SimulateResponse(this);
-		}
-	}
+            return new SimulateResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SimulateResponse}
-	 */
-	public static final JsonpDeserializer<SimulateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SimulateResponse::setupSimulateResponseDeserializer);
+    /**
+     * Json deserializer for {@link SimulateResponse}
+     */
+    public static final JsonpDeserializer<SimulateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SimulateResponse::setupSimulateResponseDeserializer
+    );
 
-	protected static void setupSimulateResponseDeserializer(ObjectDeserializer<SimulateResponse.Builder> op) {
+    protected static void setupSimulateResponseDeserializer(ObjectDeserializer<SimulateResponse.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(PipelineSimulation._DESERIALIZER), "docs");
+        op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(PipelineSimulation._DESERIALIZER), "docs");
 
-	}
+    }
 
 }

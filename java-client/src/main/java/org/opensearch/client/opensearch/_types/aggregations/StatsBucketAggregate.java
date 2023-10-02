@@ -32,76 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.StatsBucketAggregate
-
 
 @JsonpDeserializable
 public class StatsBucketAggregate extends StatsAggregate implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private StatsBucketAggregate(Builder builder) {
-		super(builder);
+    private StatsBucketAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static StatsBucketAggregate of(Function<Builder, ObjectBuilder<StatsBucketAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StatsBucketAggregate of(Function<Builder, ObjectBuilder<StatsBucketAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.StatsBucket;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.StatsBucket;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StatsBucketAggregate}.
-	 */
+    /**
+     * Builder for {@link StatsBucketAggregate}.
+     */
 
-	public static class Builder extends StatsAggregate.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<StatsBucketAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends StatsAggregate.AbstractBuilder<Builder> implements ObjectBuilder<StatsBucketAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StatsBucketAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StatsBucketAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link StatsBucketAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StatsBucketAggregate build() {
+            _checkSingleUse();
 
-			return new StatsBucketAggregate(this);
-		}
-	}
+            return new StatsBucketAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link StatsBucketAggregate}
-	 */
-	public static final JsonpDeserializer<StatsBucketAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StatsBucketAggregate::setupStatsBucketAggregateDeserializer);
+    /**
+     * Json deserializer for {@link StatsBucketAggregate}
+     */
+    public static final JsonpDeserializer<StatsBucketAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StatsBucketAggregate::setupStatsBucketAggregateDeserializer
+    );
 
-	protected static void setupStatsBucketAggregateDeserializer(ObjectDeserializer<StatsBucketAggregate.Builder> op) {
-		StatsAggregate.setupStatsAggregateDeserializer(op);
+    protected static void setupStatsBucketAggregateDeserializer(ObjectDeserializer<StatsBucketAggregate.Builder> op) {
+        StatsAggregate.setupStatsAggregateDeserializer(op);
 
-	}
+    }
 
 }

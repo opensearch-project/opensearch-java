@@ -36,18 +36,14 @@ import org.opensearch.client.json.JsonpDeserializer;
 
 // typedef: _global.ping.Response
 
-
-
 public class PingResponse {
-	public PingResponse() {
-	}
+    public PingResponse() {}
 
-	/**
-	 * Singleton instance for {@link PingResponse}.
-	 */
-	public static final PingResponse _INSTANCE = new PingResponse();
+    /**
+     * Singleton instance for {@link PingResponse}.
+     */
+    public static final PingResponse _INSTANCE = new PingResponse();
 
-	public static final JsonpDeserializer<PingResponse> _DESERIALIZER = JsonpDeserializer
-			.fixedValue(PingResponse._INSTANCE);
+    public static final JsonpDeserializer<PingResponse> _DESERIALIZER = JsonpDeserializer.fixedValue(PingResponse._INSTANCE);
 
 }

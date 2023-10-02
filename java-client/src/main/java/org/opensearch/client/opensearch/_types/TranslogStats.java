@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,250 +44,246 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.TranslogStats
 
 @JsonpDeserializable
 public class TranslogStats implements JsonpSerializable {
-	private final long earliestLastModifiedAge;
+    private final long earliestLastModifiedAge;
 
-	private final long operations;
+    private final long operations;
 
-	@Nullable
-	private final String size;
+    @Nullable
+    private final String size;
 
-	private final long sizeInBytes;
+    private final long sizeInBytes;
 
-	private final int uncommittedOperations;
+    private final int uncommittedOperations;
 
-	@Nullable
-	private final String uncommittedSize;
+    @Nullable
+    private final String uncommittedSize;
 
-	private final long uncommittedSizeInBytes;
+    private final long uncommittedSizeInBytes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TranslogStats(Builder builder) {
+    private TranslogStats(Builder builder) {
 
-		this.earliestLastModifiedAge = ApiTypeHelper.requireNonNull(builder.earliestLastModifiedAge, this,
-				"earliestLastModifiedAge");
-		this.operations = ApiTypeHelper.requireNonNull(builder.operations, this, "operations");
-		this.size = builder.size;
-		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
-		this.uncommittedOperations = ApiTypeHelper.requireNonNull(builder.uncommittedOperations, this,
-				"uncommittedOperations");
-		this.uncommittedSize = builder.uncommittedSize;
-		this.uncommittedSizeInBytes = ApiTypeHelper.requireNonNull(builder.uncommittedSizeInBytes, this,
-				"uncommittedSizeInBytes");
+        this.earliestLastModifiedAge = ApiTypeHelper.requireNonNull(builder.earliestLastModifiedAge, this, "earliestLastModifiedAge");
+        this.operations = ApiTypeHelper.requireNonNull(builder.operations, this, "operations");
+        this.size = builder.size;
+        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+        this.uncommittedOperations = ApiTypeHelper.requireNonNull(builder.uncommittedOperations, this, "uncommittedOperations");
+        this.uncommittedSize = builder.uncommittedSize;
+        this.uncommittedSizeInBytes = ApiTypeHelper.requireNonNull(builder.uncommittedSizeInBytes, this, "uncommittedSizeInBytes");
 
-	}
+    }
 
-	public static TranslogStats of(Function<Builder, ObjectBuilder<TranslogStats>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TranslogStats of(Function<Builder, ObjectBuilder<TranslogStats>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code earliest_last_modified_age}
-	 */
-	public final long earliestLastModifiedAge() {
-		return this.earliestLastModifiedAge;
-	}
+    /**
+     * Required - API name: {@code earliest_last_modified_age}
+     */
+    public final long earliestLastModifiedAge() {
+        return this.earliestLastModifiedAge;
+    }
 
-	/**
-	 * Required - API name: {@code operations}
-	 */
-	public final long operations() {
-		return this.operations;
-	}
+    /**
+     * Required - API name: {@code operations}
+     */
+    public final long operations() {
+        return this.operations;
+    }
 
-	/**
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public final String size() {
-		return this.size;
-	}
+    /**
+     * API name: {@code size}
+     */
+    @Nullable
+    public final String size() {
+        return this.size;
+    }
 
-	/**
-	 * Required - API name: {@code size_in_bytes}
-	 */
-	public final long sizeInBytes() {
-		return this.sizeInBytes;
-	}
+    /**
+     * Required - API name: {@code size_in_bytes}
+     */
+    public final long sizeInBytes() {
+        return this.sizeInBytes;
+    }
 
-	/**
-	 * Required - API name: {@code uncommitted_operations}
-	 */
-	public final int uncommittedOperations() {
-		return this.uncommittedOperations;
-	}
+    /**
+     * Required - API name: {@code uncommitted_operations}
+     */
+    public final int uncommittedOperations() {
+        return this.uncommittedOperations;
+    }
 
-	/**
-	 * API name: {@code uncommitted_size}
-	 */
-	@Nullable
-	public final String uncommittedSize() {
-		return this.uncommittedSize;
-	}
+    /**
+     * API name: {@code uncommitted_size}
+     */
+    @Nullable
+    public final String uncommittedSize() {
+        return this.uncommittedSize;
+    }
 
-	/**
-	 * Required - API name: {@code uncommitted_size_in_bytes}
-	 */
-	public final long uncommittedSizeInBytes() {
-		return this.uncommittedSizeInBytes;
-	}
+    /**
+     * Required - API name: {@code uncommitted_size_in_bytes}
+     */
+    public final long uncommittedSizeInBytes() {
+        return this.uncommittedSizeInBytes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("earliest_last_modified_age");
-		generator.write(this.earliestLastModifiedAge);
+        generator.writeKey("earliest_last_modified_age");
+        generator.write(this.earliestLastModifiedAge);
 
-		generator.writeKey("operations");
-		generator.write(this.operations);
+        generator.writeKey("operations");
+        generator.write(this.operations);
 
-		if (this.size != null) {
-			generator.writeKey("size");
-			generator.write(this.size);
+        if (this.size != null) {
+            generator.writeKey("size");
+            generator.write(this.size);
 
-		}
-		generator.writeKey("size_in_bytes");
-		generator.write(this.sizeInBytes);
+        }
+        generator.writeKey("size_in_bytes");
+        generator.write(this.sizeInBytes);
 
-		generator.writeKey("uncommitted_operations");
-		generator.write(this.uncommittedOperations);
+        generator.writeKey("uncommitted_operations");
+        generator.write(this.uncommittedOperations);
 
-		if (this.uncommittedSize != null) {
-			generator.writeKey("uncommitted_size");
-			generator.write(this.uncommittedSize);
+        if (this.uncommittedSize != null) {
+            generator.writeKey("uncommitted_size");
+            generator.write(this.uncommittedSize);
 
-		}
-		generator.writeKey("uncommitted_size_in_bytes");
-		generator.write(this.uncommittedSizeInBytes);
+        }
+        generator.writeKey("uncommitted_size_in_bytes");
+        generator.write(this.uncommittedSizeInBytes);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TranslogStats}.
-	 */
+    /**
+     * Builder for {@link TranslogStats}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslogStats> {
-		private Long earliestLastModifiedAge;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslogStats> {
+        private Long earliestLastModifiedAge;
 
-		private Long operations;
+        private Long operations;
 
-		@Nullable
-		private String size;
+        @Nullable
+        private String size;
 
-		private Long sizeInBytes;
+        private Long sizeInBytes;
 
-		private Integer uncommittedOperations;
+        private Integer uncommittedOperations;
 
-		@Nullable
-		private String uncommittedSize;
+        @Nullable
+        private String uncommittedSize;
 
-		private Long uncommittedSizeInBytes;
+        private Long uncommittedSizeInBytes;
 
-		/**
-		 * Required - API name: {@code earliest_last_modified_age}
-		 */
-		public final Builder earliestLastModifiedAge(long value) {
-			this.earliestLastModifiedAge = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code earliest_last_modified_age}
+         */
+        public final Builder earliestLastModifiedAge(long value) {
+            this.earliestLastModifiedAge = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code operations}
-		 */
-		public final Builder operations(long value) {
-			this.operations = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code operations}
+         */
+        public final Builder operations(long value) {
+            this.operations = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code size}
-		 */
-		public final Builder size(@Nullable String value) {
-			this.size = value;
-			return this;
-		}
+        /**
+         * API name: {@code size}
+         */
+        public final Builder size(@Nullable String value) {
+            this.size = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code size_in_bytes}
-		 */
-		public final Builder sizeInBytes(long value) {
-			this.sizeInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code size_in_bytes}
+         */
+        public final Builder sizeInBytes(long value) {
+            this.sizeInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code uncommitted_operations}
-		 */
-		public final Builder uncommittedOperations(int value) {
-			this.uncommittedOperations = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code uncommitted_operations}
+         */
+        public final Builder uncommittedOperations(int value) {
+            this.uncommittedOperations = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code uncommitted_size}
-		 */
-		public final Builder uncommittedSize(@Nullable String value) {
-			this.uncommittedSize = value;
-			return this;
-		}
+        /**
+         * API name: {@code uncommitted_size}
+         */
+        public final Builder uncommittedSize(@Nullable String value) {
+            this.uncommittedSize = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code uncommitted_size_in_bytes}
-		 */
-		public final Builder uncommittedSizeInBytes(long value) {
-			this.uncommittedSizeInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code uncommitted_size_in_bytes}
+         */
+        public final Builder uncommittedSizeInBytes(long value) {
+            this.uncommittedSizeInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TranslogStats}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TranslogStats build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TranslogStats}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TranslogStats build() {
+            _checkSingleUse();
 
-			return new TranslogStats(this);
-		}
-	}
+            return new TranslogStats(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TranslogStats}
-	 */
-	public static final JsonpDeserializer<TranslogStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TranslogStats::setupTranslogStatsDeserializer);
+    /**
+     * Json deserializer for {@link TranslogStats}
+     */
+    public static final JsonpDeserializer<TranslogStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TranslogStats::setupTranslogStatsDeserializer
+    );
 
-	protected static void setupTranslogStatsDeserializer(ObjectDeserializer<TranslogStats.Builder> op) {
+    protected static void setupTranslogStatsDeserializer(ObjectDeserializer<TranslogStats.Builder> op) {
 
-		op.add(Builder::earliestLastModifiedAge, JsonpDeserializer.longDeserializer(), "earliest_last_modified_age");
-		op.add(Builder::operations, JsonpDeserializer.longDeserializer(), "operations");
-		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
-		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
-		op.add(Builder::uncommittedOperations, JsonpDeserializer.integerDeserializer(), "uncommitted_operations");
-		op.add(Builder::uncommittedSize, JsonpDeserializer.stringDeserializer(), "uncommitted_size");
-		op.add(Builder::uncommittedSizeInBytes, JsonpDeserializer.longDeserializer(), "uncommitted_size_in_bytes");
+        op.add(Builder::earliestLastModifiedAge, JsonpDeserializer.longDeserializer(), "earliest_last_modified_age");
+        op.add(Builder::operations, JsonpDeserializer.longDeserializer(), "operations");
+        op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
+        op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
+        op.add(Builder::uncommittedOperations, JsonpDeserializer.integerDeserializer(), "uncommitted_operations");
+        op.add(Builder::uncommittedSize, JsonpDeserializer.stringDeserializer(), "uncommitted_size");
+        op.add(Builder::uncommittedSizeInBytes, JsonpDeserializer.longDeserializer(), "uncommitted_size_in_bytes");
 
-	}
+    }
 
 }

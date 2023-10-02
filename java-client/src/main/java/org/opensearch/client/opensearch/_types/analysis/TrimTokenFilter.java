@@ -32,85 +32,84 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.analysis.TrimTokenFilter
 
 @JsonpDeserializable
 public class TrimTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TrimTokenFilter(Builder builder) {
-		super(builder);
+    private TrimTokenFilter(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static TrimTokenFilter of(Function<Builder, ObjectBuilder<TrimTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TrimTokenFilter of(Function<Builder, ObjectBuilder<TrimTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.Trim;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.Trim;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "trim");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "trim");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TrimTokenFilter}.
-	 */
+    /**
+     * Builder for {@link TrimTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<TrimTokenFilter> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<TrimTokenFilter> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TrimTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TrimTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TrimTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TrimTokenFilter build() {
+            _checkSingleUse();
 
-			return new TrimTokenFilter(this);
-		}
-	}
+            return new TrimTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TrimTokenFilter}
-	 */
-	public static final JsonpDeserializer<TrimTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TrimTokenFilter::setupTrimTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link TrimTokenFilter}
+     */
+    public static final JsonpDeserializer<TrimTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TrimTokenFilter::setupTrimTokenFilterDeserializer
+    );
 
-	protected static void setupTrimTokenFilterDeserializer(ObjectDeserializer<TrimTokenFilter.Builder> op) {
-		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
+    protected static void setupTrimTokenFilterDeserializer(ObjectDeserializer<TrimTokenFilter.Builder> op) {
+        TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

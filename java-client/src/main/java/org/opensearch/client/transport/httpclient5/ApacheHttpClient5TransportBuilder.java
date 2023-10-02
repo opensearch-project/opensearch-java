@@ -16,10 +16,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
-
 import org.apache.hc.client5.http.auth.CredentialsProvider;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.DefaultAuthenticationStrategy;
@@ -170,7 +168,7 @@ public class ApacheHttpClient5TransportBuilder {
     }
 
     /**
-     * Sets the {@link JsonpMapper} instance to be used for parsing JSON payloads. If not provided 
+     * Sets the {@link JsonpMapper} instance to be used for parsing JSON payloads. If not provided
      * the {@link JacksonJsonpMapper} is going to be used.
      * @param mapper the {@link JsonpMapper} instance
      */
@@ -279,18 +277,18 @@ public class ApacheHttpClient5TransportBuilder {
         }
 
         final ApacheHttpClient5Transport transport = new ApacheHttpClient5Transport(
-                httpClient,
-                defaultHeaders,
-                nodes,
-                mapper,
-                options,
-                pathPrefix,
-                failureListener,
-                nodeSelector,
-                strictDeprecationMode,
-                compressionEnabled,
-                chunkedEnabled.orElse(false)
-            );
+            httpClient,
+            defaultHeaders,
+            nodes,
+            mapper,
+            options,
+            pathPrefix,
+            failureListener,
+            nodeSelector,
+            strictDeprecationMode,
+            compressionEnabled,
+            chunkedEnabled.orElse(false)
+        );
 
         httpClient.start();
         return transport;
@@ -402,6 +400,5 @@ public class ApacheHttpClient5TransportBuilder {
          */
         HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpClientBuilder);
     }
-
 
 }

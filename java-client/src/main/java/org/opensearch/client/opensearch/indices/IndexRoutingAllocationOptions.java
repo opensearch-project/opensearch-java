@@ -35,29 +35,29 @@ package org.opensearch.client.opensearch.indices;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum IndexRoutingAllocationOptions implements JsonEnum {
-	All("all"),
+    All("all"),
 
-	Primaries("primaries"),
+    Primaries("primaries"),
 
-	NewPrimaries("new_primaries"),
+    NewPrimaries("new_primaries"),
 
-	None("none"),
+    None("none"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	IndexRoutingAllocationOptions(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    IndexRoutingAllocationOptions(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<IndexRoutingAllocationOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IndexRoutingAllocationOptions.values());
+    public static final JsonEnum.Deserializer<IndexRoutingAllocationOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IndexRoutingAllocationOptions.values()
+    );
 }

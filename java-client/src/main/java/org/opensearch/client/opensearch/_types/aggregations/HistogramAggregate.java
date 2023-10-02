@@ -32,77 +32,77 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.HistogramAggregate
-
 
 @JsonpDeserializable
 public class HistogramAggregate extends MultiBucketAggregateBase<HistogramBucket> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private HistogramAggregate(Builder builder) {
-		super(builder);
+    private HistogramAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static HistogramAggregate of(Function<Builder, ObjectBuilder<HistogramAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static HistogramAggregate of(Function<Builder, ObjectBuilder<HistogramAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Histogram;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Histogram;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link HistogramAggregate}.
-	 */
+    /**
+     * Builder for {@link HistogramAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<HistogramBucket, Builder>
-			implements
-				ObjectBuilder<HistogramAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<HistogramBucket, Builder>
+        implements
+            ObjectBuilder<HistogramAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link HistogramAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public HistogramAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link HistogramAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public HistogramAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new HistogramAggregate(this);
-		}
-	}
+            return new HistogramAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link HistogramAggregate}
-	 */
-	public static final JsonpDeserializer<HistogramAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HistogramAggregate::setupHistogramAggregateDeserializer);
+    /**
+     * Json deserializer for {@link HistogramAggregate}
+     */
+    public static final JsonpDeserializer<HistogramAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        HistogramAggregate::setupHistogramAggregateDeserializer
+    );
 
-	protected static void setupHistogramAggregateDeserializer(ObjectDeserializer<HistogramAggregate.Builder> op) {
-		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, HistogramBucket._DESERIALIZER);
+    protected static void setupHistogramAggregateDeserializer(ObjectDeserializer<HistogramAggregate.Builder> op) {
+        MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, HistogramBucket._DESERIALIZER);
 
-	}
+    }
 
 }

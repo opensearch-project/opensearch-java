@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
- /*
+/*
 * Licensed to Elasticsearch B.V. under one or more contributor
 * license agreements. See the NOTICE file distributed with
 * this work for additional information regarding copyright
@@ -32,9 +32,9 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
-
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -44,12 +44,9 @@ import org.opensearch.client.opensearch.core.search.Suggest.Kind;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 
-import jakarta.json.stream.JsonGenerator;
-
 @JsonpDeserializable
 public class PhraseSuggest extends SuggestBase implements SuggestVariant {
     private final List<PhraseSuggestOption> options;
-
 
     private PhraseSuggest(Builder builder) {
         super(builder);
@@ -111,8 +108,10 @@ public class PhraseSuggest extends SuggestBase implements SuggestVariant {
         }
     }
 
-    public static final JsonpDeserializer<PhraseSuggest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-            PhraseSuggest::setupPhraseSuggestDeserializer);
+    public static final JsonpDeserializer<PhraseSuggest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PhraseSuggest::setupPhraseSuggestDeserializer
+    );
 
     protected static void setupPhraseSuggestDeserializer(ObjectDeserializer<PhraseSuggest.Builder> op) {
         SuggestBase.setupSuggestBaseDeserializer(op);

@@ -32,6 +32,12 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch.cat.thread_pool.ThreadPoolSize;
 import org.opensearch.client.transport.Endpoint;
@@ -39,176 +45,170 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 // typedef: cat.thread_pool.Request
 
 /**
  * Returns cluster-wide thread pool statistics per node. By default the active,
  * queue and rejected statistics are returned for all thread pools.
- * 
+ *
  */
 
 public class ThreadPoolRequest extends CatRequestBase {
-	@Nullable
-	private final ThreadPoolSize size;
+    @Nullable
+    private final ThreadPoolSize size;
 
-	private final List<String> threadPoolPatterns;
+    private final List<String> threadPoolPatterns;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ThreadPoolRequest(Builder builder) {
-		super(builder);
-		this.size = builder.size;
-		this.threadPoolPatterns = ApiTypeHelper.unmodifiable(builder.threadPoolPatterns);
+    private ThreadPoolRequest(Builder builder) {
+        super(builder);
+        this.size = builder.size;
+        this.threadPoolPatterns = ApiTypeHelper.unmodifiable(builder.threadPoolPatterns);
 
-	}
+    }
 
-	public static ThreadPoolRequest of(Function<Builder, ObjectBuilder<ThreadPoolRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ThreadPoolRequest of(Function<Builder, ObjectBuilder<ThreadPoolRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * The multiplier in which to display values
-	 * <p>
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public final ThreadPoolSize size() {
-		return this.size;
-	}
+    /**
+     * The multiplier in which to display values
+     * <p>
+     * API name: {@code size}
+     */
+    @Nullable
+    public final ThreadPoolSize size() {
+        return this.size;
+    }
 
-	/**
-	 * A comma-separated list of regular-expressions to filter the thread pools in
-	 * the output
-	 * <p>
-	 * API name: {@code thread_pool_patterns}
-	 */
-	public final List<String> threadPoolPatterns() {
-		return this.threadPoolPatterns;
-	}
+    /**
+     * A comma-separated list of regular-expressions to filter the thread pools in
+     * the output
+     * <p>
+     * API name: {@code thread_pool_patterns}
+     */
+    public final List<String> threadPoolPatterns() {
+        return this.threadPoolPatterns;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ThreadPoolRequest}.
-	 */
+    /**
+     * Builder for {@link ThreadPoolRequest}.
+     */
 
-	public static class Builder extends CatRequestBaseBuilder<ThreadPoolRequest.Builder> {
-		@Nullable
-		private ThreadPoolSize size;
+    public static class Builder extends CatRequestBaseBuilder<ThreadPoolRequest.Builder> {
+        @Nullable
+        private ThreadPoolSize size;
 
-		@Nullable
-		private List<String> threadPoolPatterns;
+        @Nullable
+        private List<String> threadPoolPatterns;
 
-		/**
-		 * The multiplier in which to display values
-		 * <p>
-		 * API name: {@code size}
-		 */
-		public final Builder size(@Nullable ThreadPoolSize value) {
-			this.size = value;
-			return this;
-		}
+        /**
+         * The multiplier in which to display values
+         * <p>
+         * API name: {@code size}
+         */
+        public final Builder size(@Nullable ThreadPoolSize value) {
+            this.size = value;
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of regular-expressions to filter the thread pools in
-		 * the output
-		 * <p>
-		 * API name: {@code thread_pool_patterns}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>threadPoolPatterns</code>.
-		 */
-		public final Builder threadPoolPatterns(List<String> list) {
-			this.threadPoolPatterns = _listAddAll(this.threadPoolPatterns, list);
-			return this;
-		}
+        /**
+         * A comma-separated list of regular-expressions to filter the thread pools in
+         * the output
+         * <p>
+         * API name: {@code thread_pool_patterns}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>threadPoolPatterns</code>.
+         */
+        public final Builder threadPoolPatterns(List<String> list) {
+            this.threadPoolPatterns = _listAddAll(this.threadPoolPatterns, list);
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of regular-expressions to filter the thread pools in
-		 * the output
-		 * <p>
-		 * API name: {@code thread_pool_patterns}
-		 * <p>
-		 * Adds one or more values to <code>threadPoolPatterns</code>.
-		 */
-		public final Builder threadPoolPatterns(String value, String... values) {
-			this.threadPoolPatterns = _listAdd(this.threadPoolPatterns, value, values);
-			return this;
-		}
+        /**
+         * A comma-separated list of regular-expressions to filter the thread pools in
+         * the output
+         * <p>
+         * API name: {@code thread_pool_patterns}
+         * <p>
+         * Adds one or more values to <code>threadPoolPatterns</code>.
+         */
+        public final Builder threadPoolPatterns(String value, String... values) {
+            this.threadPoolPatterns = _listAdd(this.threadPoolPatterns, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ThreadPoolRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ThreadPoolRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ThreadPoolRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ThreadPoolRequest build() {
+            _checkSingleUse();
 
-			return new ThreadPoolRequest(this);
-		}
+            return new ThreadPoolRequest(this);
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
-	}
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.thread_pool}".
-	 */
-	public static final Endpoint<ThreadPoolRequest, ThreadPoolResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.thread_pool}".
+     */
+    public static final Endpoint<ThreadPoolRequest, ThreadPoolResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _threadPoolPatterns = 1 << 0;
+        // Request path
+        request -> {
+            final int _threadPoolPatterns = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.threadPoolPatterns()))
-					propsSet |= _threadPoolPatterns;
+            if (ApiTypeHelper.isDefined(request.threadPoolPatterns())) propsSet |= _threadPoolPatterns;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/thread_pool");
-					return buf.toString();
-				}
-				if (propsSet == (_threadPoolPatterns)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/thread_pool");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.threadPoolPatterns.stream()
-									.map(v -> v).collect(Collectors.joining(",")), buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/thread_pool");
+                return buf.toString();
+            }
+            if (propsSet == (_threadPoolPatterns)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/thread_pool");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.threadPoolPatterns.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>(request.queryParameters());
-				if (request.size != null) {
-					params.put("size", request.size.jsonValue());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>(request.queryParameters());
+            if (request.size != null) {
+                params.put("size", request.size.jsonValue());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ThreadPoolResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        ThreadPoolResponse._DESERIALIZER
+    );
 }

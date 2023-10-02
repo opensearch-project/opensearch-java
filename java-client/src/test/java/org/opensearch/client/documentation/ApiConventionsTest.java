@@ -32,6 +32,14 @@
 
 package org.opensearch.client.documentation;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import org.junit.Assert;
+import org.junit.Test;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.NodeStatistics;
@@ -46,15 +54,6 @@ import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.util.ApiTypeHelper;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 public class ApiConventionsTest extends Assert {
 

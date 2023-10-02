@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,161 +41,160 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.BoostingQuery
 
-
 @JsonpDeserializable
 public class BoostingQuery extends QueryBase implements QueryVariant {
-	private final double negativeBoost;
+    private final double negativeBoost;
 
-	private final Query negative;
+    private final Query negative;
 
-	private final Query positive;
+    private final Query positive;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private BoostingQuery(Builder builder) {
-		super(builder);
+    private BoostingQuery(Builder builder) {
+        super(builder);
 
-		this.negativeBoost = ApiTypeHelper.requireNonNull(builder.negativeBoost, this, "negativeBoost");
-		this.negative = ApiTypeHelper.requireNonNull(builder.negative, this, "negative");
-		this.positive = ApiTypeHelper.requireNonNull(builder.positive, this, "positive");
+        this.negativeBoost = ApiTypeHelper.requireNonNull(builder.negativeBoost, this, "negativeBoost");
+        this.negative = ApiTypeHelper.requireNonNull(builder.negative, this, "negative");
+        this.positive = ApiTypeHelper.requireNonNull(builder.positive, this, "positive");
 
-	}
+    }
 
-	public static BoostingQuery of(Function<Builder, ObjectBuilder<BoostingQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static BoostingQuery of(Function<Builder, ObjectBuilder<BoostingQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.Boosting;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.Boosting;
+    }
 
-	/**
-	 * Required - API name: {@code negative_boost}
-	 */
-	public final double negativeBoost() {
-		return this.negativeBoost;
-	}
+    /**
+     * Required - API name: {@code negative_boost}
+     */
+    public final double negativeBoost() {
+        return this.negativeBoost;
+    }
 
-	/**
-	 * Required - API name: {@code negative}
-	 */
-	public final Query negative() {
-		return this.negative;
-	}
+    /**
+     * Required - API name: {@code negative}
+     */
+    public final Query negative() {
+        return this.negative;
+    }
 
-	/**
-	 * Required - API name: {@code positive}
-	 */
-	public final Query positive() {
-		return this.positive;
-	}
+    /**
+     * Required - API name: {@code positive}
+     */
+    public final Query positive() {
+        return this.positive;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("negative_boost");
-		generator.write(this.negativeBoost);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("negative_boost");
+        generator.write(this.negativeBoost);
 
-		generator.writeKey("negative");
-		this.negative.serialize(generator, mapper);
+        generator.writeKey("negative");
+        this.negative.serialize(generator, mapper);
 
-		generator.writeKey("positive");
-		this.positive.serialize(generator, mapper);
+        generator.writeKey("positive");
+        this.positive.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link BoostingQuery}.
-	 */
+    /**
+     * Builder for {@link BoostingQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<BoostingQuery> {
-		private Double negativeBoost;
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<BoostingQuery> {
+        private Double negativeBoost;
 
-		private Query negative;
+        private Query negative;
 
-		private Query positive;
+        private Query positive;
 
-		/**
-		 * Required - API name: {@code negative_boost}
-		 */
-		public final Builder negativeBoost(double value) {
-			this.negativeBoost = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code negative_boost}
+         */
+        public final Builder negativeBoost(double value) {
+            this.negativeBoost = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code negative}
-		 */
-		public final Builder negative(Query value) {
-			this.negative = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code negative}
+         */
+        public final Builder negative(Query value) {
+            this.negative = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code negative}
-		 */
-		public final Builder negative(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.negative(fn.apply(new Query.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code negative}
+         */
+        public final Builder negative(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+            return this.negative(fn.apply(new Query.Builder()).build());
+        }
 
-		/**
-		 * Required - API name: {@code positive}
-		 */
-		public final Builder positive(Query value) {
-			this.positive = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code positive}
+         */
+        public final Builder positive(Query value) {
+            this.positive = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code positive}
-		 */
-		public final Builder positive(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.positive(fn.apply(new Query.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code positive}
+         */
+        public final Builder positive(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+            return this.positive(fn.apply(new Query.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link BoostingQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public BoostingQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link BoostingQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public BoostingQuery build() {
+            _checkSingleUse();
 
-			return new BoostingQuery(this);
-		}
-	}
+            return new BoostingQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link BoostingQuery}
-	 */
-	public static final JsonpDeserializer<BoostingQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BoostingQuery::setupBoostingQueryDeserializer);
+    /**
+     * Json deserializer for {@link BoostingQuery}
+     */
+    public static final JsonpDeserializer<BoostingQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        BoostingQuery::setupBoostingQueryDeserializer
+    );
 
-	protected static void setupBoostingQueryDeserializer(ObjectDeserializer<BoostingQuery.Builder> op) {
-		setupQueryBaseDeserializer(op);
-		op.add(Builder::negativeBoost, JsonpDeserializer.doubleDeserializer(), "negative_boost");
-		op.add(Builder::negative, Query._DESERIALIZER, "negative");
-		op.add(Builder::positive, Query._DESERIALIZER, "positive");
+    protected static void setupBoostingQueryDeserializer(ObjectDeserializer<BoostingQuery.Builder> op) {
+        setupQueryBaseDeserializer(op);
+        op.add(Builder::negativeBoost, JsonpDeserializer.doubleDeserializer(), "negative_boost");
+        op.add(Builder::negative, Query._DESERIALIZER, "negative");
+        op.add(Builder::positive, Query._DESERIALIZER, "positive");
 
-	}
+    }
 
 }

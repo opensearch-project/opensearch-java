@@ -35,27 +35,27 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum IcuNormalizationType implements JsonEnum {
-	Nfc("nfc"),
+    Nfc("nfc"),
 
-	Nfkc("nfkc"),
+    Nfkc("nfkc"),
 
-	NfkcCf("nfkc_cf"),
+    NfkcCf("nfkc_cf"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	IcuNormalizationType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    IcuNormalizationType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<IcuNormalizationType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IcuNormalizationType.values());
+    public static final JsonEnum.Deserializer<IcuNormalizationType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IcuNormalizationType.values()
+    );
 }

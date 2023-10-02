@@ -37,10 +37,10 @@ package org.opensearch.client.opensearch._types.query_dsl;
  */
 public interface SpanQueryVariant {
 
-	SpanQuery.Kind _spanQueryKind();
+    SpanQuery.Kind _spanQueryKind();
 
-	default SpanQuery _toSpanQuery() {
-		return new SpanQuery(this);
-	}
+    default SpanQuery _toSpanQuery() {
+        return new SpanQuery(this);
+    }
 
 }

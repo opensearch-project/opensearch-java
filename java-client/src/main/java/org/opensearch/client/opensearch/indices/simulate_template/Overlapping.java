@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.indices.simulate_template;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,138 +44,136 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: indices.simulate_template.Overlapping
 
 @JsonpDeserializable
 public class Overlapping implements JsonpSerializable {
-	private final String name;
+    private final String name;
 
-	private final List<String> indexPatterns;
+    private final List<String> indexPatterns;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private Overlapping(Builder builder) {
+    private Overlapping(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.indexPatterns = ApiTypeHelper.unmodifiableRequired(builder.indexPatterns, this, "indexPatterns");
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.indexPatterns = ApiTypeHelper.unmodifiableRequired(builder.indexPatterns, this, "indexPatterns");
 
-	}
+    }
 
-	public static Overlapping of(Function<Builder, ObjectBuilder<Overlapping>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Overlapping of(Function<Builder, ObjectBuilder<Overlapping>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * Required - API name: {@code name}
+     */
+    public final String name() {
+        return this.name;
+    }
 
-	/**
-	 * Required - API name: {@code index_patterns}
-	 */
-	public final List<String> indexPatterns() {
-		return this.indexPatterns;
-	}
+    /**
+     * Required - API name: {@code index_patterns}
+     */
+    public final List<String> indexPatterns() {
+        return this.indexPatterns;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+        generator.writeKey("name");
+        generator.write(this.name);
 
-		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
-			generator.writeKey("index_patterns");
-			generator.writeStartArray();
-			for (String item0 : this.indexPatterns) {
-				generator.write(item0);
+        if (ApiTypeHelper.isDefined(this.indexPatterns)) {
+            generator.writeKey("index_patterns");
+            generator.writeStartArray();
+            for (String item0 : this.indexPatterns) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link Overlapping}.
-	 */
+    /**
+     * Builder for {@link Overlapping}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Overlapping> {
-		private String name;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Overlapping> {
+        private String name;
 
-		private List<String> indexPatterns;
+        private List<String> indexPatterns;
 
-		/**
-		 * Required - API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code name}
+         */
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code index_patterns}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
-		 */
-		public final Builder indexPatterns(List<String> list) {
-			this.indexPatterns = _listAddAll(this.indexPatterns, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code index_patterns}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
+         */
+        public final Builder indexPatterns(List<String> list) {
+            this.indexPatterns = _listAddAll(this.indexPatterns, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code index_patterns}
-		 * <p>
-		 * Adds one or more values to <code>indexPatterns</code>.
-		 */
-		public final Builder indexPatterns(String value, String... values) {
-			this.indexPatterns = _listAdd(this.indexPatterns, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code index_patterns}
+         * <p>
+         * Adds one or more values to <code>indexPatterns</code>.
+         */
+        public final Builder indexPatterns(String value, String... values) {
+            this.indexPatterns = _listAdd(this.indexPatterns, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link Overlapping}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public Overlapping build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link Overlapping}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public Overlapping build() {
+            _checkSingleUse();
 
-			return new Overlapping(this);
-		}
-	}
+            return new Overlapping(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link Overlapping}
-	 */
-	public static final JsonpDeserializer<Overlapping> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Overlapping::setupOverlappingDeserializer);
+    /**
+     * Json deserializer for {@link Overlapping}
+     */
+    public static final JsonpDeserializer<Overlapping> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        Overlapping::setupOverlappingDeserializer
+    );
 
-	protected static void setupOverlappingDeserializer(ObjectDeserializer<Overlapping.Builder> op) {
+    protected static void setupOverlappingDeserializer(ObjectDeserializer<Overlapping.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"index_patterns");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index_patterns");
 
-	}
+    }
 
 }

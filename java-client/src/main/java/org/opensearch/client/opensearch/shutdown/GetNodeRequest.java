@@ -32,6 +32,11 @@
 
 package org.opensearch.client.opensearch.shutdown;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -40,136 +45,132 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import javax.annotation.Nullable;
-
 // typedef: shutdown.get_node.Request
 
 /**
  * Retrieve status of a node or nodes that are currently marked as shutting
  * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
  * supported.
- * 
+ *
  */
 
 public class GetNodeRequest extends RequestBase {
-	private final List<String> nodeId;
+    private final List<String> nodeId;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetNodeRequest(Builder builder) {
+    private GetNodeRequest(Builder builder) {
 
-		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
+        this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 
-	}
+    }
 
-	public static GetNodeRequest of(Function<Builder, ObjectBuilder<GetNodeRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetNodeRequest of(Function<Builder, ObjectBuilder<GetNodeRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Which node for which to retrieve the shutdown status
-	 * <p>
-	 * API name: {@code node_id}
-	 */
-	public final List<String> nodeId() {
-		return this.nodeId;
-	}
+    /**
+     * Which node for which to retrieve the shutdown status
+     * <p>
+     * API name: {@code node_id}
+     */
+    public final List<String> nodeId() {
+        return this.nodeId;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetNodeRequest}.
-	 */
+    /**
+     * Builder for {@link GetNodeRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetNodeRequest> {
-		@Nullable
-		private List<String> nodeId;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetNodeRequest> {
+        @Nullable
+        private List<String> nodeId;
 
-		/**
-		 * Which node for which to retrieve the shutdown status
-		 * <p>
-		 * API name: {@code node_id}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
-		 */
-		public final Builder nodeId(List<String> list) {
-			this.nodeId = _listAddAll(this.nodeId, list);
-			return this;
-		}
+        /**
+         * Which node for which to retrieve the shutdown status
+         * <p>
+         * API name: {@code node_id}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>nodeId</code>.
+         */
+        public final Builder nodeId(List<String> list) {
+            this.nodeId = _listAddAll(this.nodeId, list);
+            return this;
+        }
 
-		/**
-		 * Which node for which to retrieve the shutdown status
-		 * <p>
-		 * API name: {@code node_id}
-		 * <p>
-		 * Adds one or more values to <code>nodeId</code>.
-		 */
-		public final Builder nodeId(String value, String... values) {
-			this.nodeId = _listAdd(this.nodeId, value, values);
-			return this;
-		}
+        /**
+         * Which node for which to retrieve the shutdown status
+         * <p>
+         * API name: {@code node_id}
+         * <p>
+         * Adds one or more values to <code>nodeId</code>.
+         */
+        public final Builder nodeId(String value, String... values) {
+            this.nodeId = _listAdd(this.nodeId, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetNodeRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetNodeRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GetNodeRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetNodeRequest build() {
+            _checkSingleUse();
 
-			return new GetNodeRequest(this);
-		}
-	}
+            return new GetNodeRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code shutdown.get_node}".
-	 */
-	public static final Endpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code shutdown.get_node}".
+     */
+    public static final Endpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _nodeId = 1 << 0;
+        // Request path
+        request -> {
+            final int _nodeId = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.nodeId()))
-					propsSet |= _nodeId;
+            if (ApiTypeHelper.isDefined(request.nodeId())) propsSet |= _nodeId;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_nodes");
-					buf.append("/shutdown");
-					return buf.toString();
-				}
-				if (propsSet == (_nodeId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_nodes");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
-					buf.append("/shutdown");
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_nodes");
+                buf.append("/shutdown");
+                return buf.toString();
+            }
+            if (propsSet == (_nodeId)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_nodes");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                buf.append("/shutdown");
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetNodeResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        GetNodeResponse._DESERIALIZER
+    );
 }

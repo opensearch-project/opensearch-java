@@ -37,6 +37,6 @@ package org.opensearch.client.opensearch._types.query_dsl;
  */
 public interface PinnedQueryVariant {
 
-	PinnedQuery.Kind _pinnedQueryKind();
+    PinnedQuery.Kind _pinnedQueryKind();
 
 }

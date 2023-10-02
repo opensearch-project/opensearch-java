@@ -39,10 +39,10 @@ import org.opensearch.client.json.JsonpSerializable;
  */
 public interface MovingAverageAggregationVariant extends JsonpSerializable {
 
-	MovingAverageAggregation.Kind _movingAverageAggregationKind();
+    MovingAverageAggregation.Kind _movingAverageAggregationKind();
 
-	default MovingAverageAggregation _toMovingAverageAggregation() {
-		return new MovingAverageAggregation(this);
-	}
+    default MovingAverageAggregation _toMovingAverageAggregation() {
+        return new MovingAverageAggregation(this);
+    }
 
 }

@@ -10,5 +10,4 @@ package org.opensearch.client.opensearch.integTest.httpclient5;
 
 import org.opensearch.client.opensearch.integTest.AbstractIndicesClientIT;
 
-public class IndicesClientIT extends AbstractIndicesClientIT implements HttpClient5TransportSupport {
-}
+public class IndicesClientIT extends AbstractIndicesClientIT implements HttpClient5TransportSupport {}

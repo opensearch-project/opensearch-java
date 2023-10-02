@@ -32,68 +32,65 @@
 
 package org.opensearch.client.opensearch.ingest;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
-import org.opensearch.client.json.JsonpDeserializable;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: ingest.delete_pipeline.Response
 
 public class DeletePipelineResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DeletePipelineResponse(Builder builder) {
-		super(builder);
+    private DeletePipelineResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DeletePipelineResponse of(Function<Builder, ObjectBuilder<DeletePipelineResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DeletePipelineResponse of(Function<Builder, ObjectBuilder<DeletePipelineResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DeletePipelineResponse}.
-	 */
+    /**
+     * Builder for {@link DeletePipelineResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DeletePipelineResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeletePipelineResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DeletePipelineResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeletePipelineResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DeletePipelineResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DeletePipelineResponse build() {
+            _checkSingleUse();
 
-			return new DeletePipelineResponse(this);
-		}
-	}
+            return new DeletePipelineResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DeletePipelineResponse}
-	 */
-	public static final JsonpDeserializer<DeletePipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeletePipelineResponse::setupDeletePipelineResponseDeserializer);
+    /**
+     * Json deserializer for {@link DeletePipelineResponse}
+     */
+    public static final JsonpDeserializer<DeletePipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeletePipelineResponse::setupDeletePipelineResponseDeserializer
+    );
 
-	protected static void setupDeletePipelineResponseDeserializer(
-			ObjectDeserializer<DeletePipelineResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupDeletePipelineResponseDeserializer(ObjectDeserializer<DeletePipelineResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

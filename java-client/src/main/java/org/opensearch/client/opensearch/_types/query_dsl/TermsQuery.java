@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,129 +41,128 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.TermsQuery
 
-
 @JsonpDeserializable
 public class TermsQuery extends QueryBase implements QueryVariant {
-	private final String field;
+    private final String field;
 
-	private final TermsQueryField terms;
+    private final TermsQueryField terms;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TermsQuery(Builder builder) {
-		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.terms = ApiTypeHelper.requireNonNull(builder.terms, this, "terms");
+    private TermsQuery(Builder builder) {
+        super(builder);
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.terms = ApiTypeHelper.requireNonNull(builder.terms, this, "terms");
 
-	}
+    }
 
-	public static TermsQuery of(Function<Builder, ObjectBuilder<TermsQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TermsQuery of(Function<Builder, ObjectBuilder<TermsQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.Terms;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.Terms;
+    }
 
-	/**
-	 * Required -
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required -
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * Required -
-	 */
-	public final TermsQueryField terms() {
-		return this.terms;
-	}
+    /**
+     * Required -
+     */
+    public final TermsQueryField terms() {
+        return this.terms;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeKey(this.field);
-		this.terms.serialize(generator, mapper);
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey(this.field);
+        this.terms.serialize(generator, mapper);
 
-		super.serializeInternal(generator, mapper);
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TermsQuery}.
-	 */
+    /**
+     * Builder for {@link TermsQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TermsQuery> {
-		private String field;
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TermsQuery> {
+        private String field;
 
-		private TermsQueryField terms;
+        private TermsQueryField terms;
 
-		/**
-		 * Required -
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required -
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * Required -
-		 */
-		public final Builder terms(TermsQueryField value) {
-			this.terms = value;
-			return this;
-		}
+        /**
+         * Required -
+         */
+        public final Builder terms(TermsQueryField value) {
+            this.terms = value;
+            return this;
+        }
 
-		/**
-		 * Required -
-		 */
-		public final Builder terms(Function<TermsQueryField.Builder, ObjectBuilder<TermsQueryField>> fn) {
-			return this.terms(fn.apply(new TermsQueryField.Builder()).build());
-		}
+        /**
+         * Required -
+         */
+        public final Builder terms(Function<TermsQueryField.Builder, ObjectBuilder<TermsQueryField>> fn) {
+            return this.terms(fn.apply(new TermsQueryField.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TermsQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TermsQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TermsQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TermsQuery build() {
+            _checkSingleUse();
 
-			return new TermsQuery(this);
-		}
-	}
+            return new TermsQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TermsQuery}
-	 */
-	public static final JsonpDeserializer<TermsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TermsQuery::setupTermsQueryDeserializer);
+    /**
+     * Json deserializer for {@link TermsQuery}
+     */
+    public static final JsonpDeserializer<TermsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TermsQuery::setupTermsQueryDeserializer
+    );
 
-	protected static void setupTermsQueryDeserializer(ObjectDeserializer<TermsQuery.Builder> op) {
-		QueryBase.setupQueryBaseDeserializer(op);
+    protected static void setupTermsQueryDeserializer(ObjectDeserializer<TermsQuery.Builder> op) {
+        QueryBase.setupQueryBaseDeserializer(op);
 
-		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			builder.field(name);
-			builder.terms(TermsQueryField._DESERIALIZER.deserialize(parser, mapper));
-		});
+        op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+            builder.field(name);
+            builder.terms(TermsQueryField._DESERIALIZER.deserialize(parser, mapper));
+        });
 
-	}
+    }
 
 }

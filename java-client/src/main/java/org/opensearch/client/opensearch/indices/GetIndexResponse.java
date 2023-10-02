@@ -32,6 +32,7 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -39,65 +40,63 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.transport.endpoints.DictionaryResponse;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: indices.get.Response
-
 
 @JsonpDeserializable
 public class GetIndexResponse extends DictionaryResponse<String, IndexState> {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetIndexResponse(Builder builder) {
-		super(builder);
+    private GetIndexResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static GetIndexResponse of(Function<Builder, ObjectBuilder<GetIndexResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetIndexResponse of(Function<Builder, ObjectBuilder<GetIndexResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetIndexResponse}.
-	 */
+    /**
+     * Builder for {@link GetIndexResponse}.
+     */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
-			implements
-				ObjectBuilder<GetIndexResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
+        implements
+            ObjectBuilder<GetIndexResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetIndexResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetIndexResponse build() {
-			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
+        /**
+         * Builds a {@link GetIndexResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetIndexResponse build() {
+            _checkSingleUse();
+            super.tKeySerializer(null);
+            super.tValueSerializer(null);
 
-			return new GetIndexResponse(this);
-		}
-	}
+            return new GetIndexResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GetIndexResponse}
-	 */
-	public static final JsonpDeserializer<GetIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetIndexResponse::setupGetIndexResponseDeserializer);
+    /**
+     * Json deserializer for {@link GetIndexResponse}
+     */
+    public static final JsonpDeserializer<GetIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GetIndexResponse::setupGetIndexResponseDeserializer
+    );
 
-	protected static void setupGetIndexResponseDeserializer(ObjectDeserializer<GetIndexResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				IndexState._DESERIALIZER);
+    protected static void setupGetIndexResponseDeserializer(ObjectDeserializer<GetIndexResponse.Builder> op) {
+        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), IndexState._DESERIALIZER);
 
-	}
+    }
 
 }

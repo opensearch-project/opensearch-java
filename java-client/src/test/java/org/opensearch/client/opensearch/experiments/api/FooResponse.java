@@ -36,5 +36,5 @@ import org.opensearch.client.json.JsonpDeserializer;
 
 public class FooResponse {
 
-  public static JsonpDeserializer<FooResponse> PARSER = null;
+    public static JsonpDeserializer<FooResponse> PARSER = null;
 }

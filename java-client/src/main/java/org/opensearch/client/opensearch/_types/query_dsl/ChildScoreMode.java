@@ -35,31 +35,29 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum ChildScoreMode implements JsonEnum {
-	None("none"),
+    None("none"),
 
-	Avg("avg"),
+    Avg("avg"),
 
-	Sum("sum"),
+    Sum("sum"),
 
-	Max("max"),
+    Max("max"),
 
-	Min("min"),
+    Min("min"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ChildScoreMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ChildScoreMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ChildScoreMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ChildScoreMode.values());
+    public static final JsonEnum.Deserializer<ChildScoreMode> _DESERIALIZER = new JsonEnum.Deserializer<>(ChildScoreMode.values());
 }

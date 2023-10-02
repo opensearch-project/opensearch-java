@@ -32,13 +32,13 @@
 
 package org.opensearch.client.opensearch.experiments.api.query2;
 
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
 
 public class TermsQuery implements JsonpSerializable, Query.Variant {
 

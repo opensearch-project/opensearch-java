@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.ingest.simulate;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,151 +45,150 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Document
 
 @JsonpDeserializable
 public class Document implements JsonpSerializable {
-	@Nullable
-	private final String id;
+    @Nullable
+    private final String id;
 
-	@Nullable
-	private final String index;
+    @Nullable
+    private final String index;
 
-	private final JsonData source;
+    private final JsonData source;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private Document(Builder builder) {
+    private Document(Builder builder) {
 
-		this.id = builder.id;
-		this.index = builder.index;
-		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+        this.id = builder.id;
+        this.index = builder.index;
+        this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
-	}
+    }
 
-	public static Document of(Function<Builder, ObjectBuilder<Document>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Document of(Function<Builder, ObjectBuilder<Document>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code _id}
-	 */
-	@Nullable
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * API name: {@code _id}
+     */
+    @Nullable
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * API name: {@code _index}
-	 */
-	@Nullable
-	public final String index() {
-		return this.index;
-	}
+    /**
+     * API name: {@code _index}
+     */
+    @Nullable
+    public final String index() {
+        return this.index;
+    }
 
-	/**
-	 * Required - API name: {@code _source}
-	 */
-	public final JsonData source() {
-		return this.source;
-	}
+    /**
+     * Required - API name: {@code _source}
+     */
+    public final JsonData source() {
+        return this.source;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.id != null) {
-			generator.writeKey("_id");
-			generator.write(this.id);
+        if (this.id != null) {
+            generator.writeKey("_id");
+            generator.write(this.id);
 
-		}
-		if (this.index != null) {
-			generator.writeKey("_index");
-			generator.write(this.index);
+        }
+        if (this.index != null) {
+            generator.writeKey("_index");
+            generator.write(this.index);
 
-		}
-		generator.writeKey("_source");
-		this.source.serialize(generator, mapper);
+        }
+        generator.writeKey("_source");
+        this.source.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link Document}.
-	 */
+    /**
+     * Builder for {@link Document}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Document> {
-		@Nullable
-		private String id;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Document> {
+        @Nullable
+        private String id;
 
-		@Nullable
-		private String index;
+        @Nullable
+        private String index;
 
-		private JsonData source;
+        private JsonData source;
 
-		/**
-		 * API name: {@code _id}
-		 */
-		public final Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * API name: {@code _id}
+         */
+        public final Builder id(@Nullable String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code _index}
-		 */
-		public final Builder index(@Nullable String value) {
-			this.index = value;
-			return this;
-		}
+        /**
+         * API name: {@code _index}
+         */
+        public final Builder index(@Nullable String value) {
+            this.index = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code _source}
-		 */
-		public final Builder source(JsonData value) {
-			this.source = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code _source}
+         */
+        public final Builder source(JsonData value) {
+            this.source = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link Document}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public Document build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link Document}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public Document build() {
+            _checkSingleUse();
 
-			return new Document(this);
-		}
-	}
+            return new Document(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link Document}
-	 */
-	public static final JsonpDeserializer<Document> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Document::setupDocumentDeserializer);
+    /**
+     * Json deserializer for {@link Document}
+     */
+    public static final JsonpDeserializer<Document> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        Document::setupDocumentDeserializer
+    );
 
-	protected static void setupDocumentDeserializer(ObjectDeserializer<Document.Builder> op) {
+    protected static void setupDocumentDeserializer(ObjectDeserializer<Document.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::source, JsonData._DESERIALIZER, "_source");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+        op.add(Builder::source, JsonData._DESERIALIZER, "_source");
 
-	}
+    }
 
 }

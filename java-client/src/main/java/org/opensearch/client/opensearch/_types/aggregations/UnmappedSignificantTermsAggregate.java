@@ -32,13 +32,12 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.UnmappedSignificantTermsAggregate
 
@@ -49,66 +48,68 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class UnmappedSignificantTermsAggregate extends MultiBucketAggregateBase<Void> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private UnmappedSignificantTermsAggregate(Builder builder) {
-		super(builder);
+    private UnmappedSignificantTermsAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static UnmappedSignificantTermsAggregate of(
-			Function<Builder, ObjectBuilder<UnmappedSignificantTermsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static UnmappedSignificantTermsAggregate of(Function<Builder, ObjectBuilder<UnmappedSignificantTermsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Umsigterms;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Umsigterms;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link UnmappedSignificantTermsAggregate}.
-	 */
+    /**
+     * Builder for {@link UnmappedSignificantTermsAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<Void, Builder>
-			implements
-				ObjectBuilder<UnmappedSignificantTermsAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<Void, Builder>
+        implements
+            ObjectBuilder<UnmappedSignificantTermsAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link UnmappedSignificantTermsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public UnmappedSignificantTermsAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link UnmappedSignificantTermsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public UnmappedSignificantTermsAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new UnmappedSignificantTermsAggregate(this);
-		}
-	}
+            return new UnmappedSignificantTermsAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link UnmappedSignificantTermsAggregate}
-	 */
-	public static final JsonpDeserializer<UnmappedSignificantTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UnmappedSignificantTermsAggregate::setupUnmappedSignificantTermsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link UnmappedSignificantTermsAggregate}
+     */
+    public static final JsonpDeserializer<UnmappedSignificantTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        UnmappedSignificantTermsAggregate::setupUnmappedSignificantTermsAggregateDeserializer
+    );
 
-	protected static void setupUnmappedSignificantTermsAggregateDeserializer(
-			ObjectDeserializer<UnmappedSignificantTermsAggregate.Builder> op) {
-		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, JsonpDeserializer.voidDeserializer());
+    protected static void setupUnmappedSignificantTermsAggregateDeserializer(
+        ObjectDeserializer<UnmappedSignificantTermsAggregate.Builder> op
+    ) {
+        MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, JsonpDeserializer.voidDeserializer());
 
-	}
+    }
 
 }

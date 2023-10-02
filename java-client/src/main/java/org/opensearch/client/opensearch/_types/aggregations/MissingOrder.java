@@ -37,24 +37,23 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum MissingOrder implements JsonEnum {
-	First("first"),
+    First("first"),
 
-	Last("last"),
+    Last("last"),
 
-	Default("default"),
+    Default("default"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	MissingOrder(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    MissingOrder(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<MissingOrder> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			MissingOrder.values());
+    public static final JsonEnum.Deserializer<MissingOrder> _DESERIALIZER = new JsonEnum.Deserializer<>(MissingOrder.values());
 }

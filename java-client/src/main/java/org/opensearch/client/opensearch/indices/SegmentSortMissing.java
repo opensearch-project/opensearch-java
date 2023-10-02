@@ -35,25 +35,23 @@ package org.opensearch.client.opensearch.indices;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum SegmentSortMissing implements JsonEnum {
-	Last("_last"),
+    Last("_last"),
 
-	First("_first"),
+    First("_first"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	SegmentSortMissing(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    SegmentSortMissing(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<SegmentSortMissing> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SegmentSortMissing.values());
+    public static final JsonEnum.Deserializer<SegmentSortMissing> _DESERIALIZER = new JsonEnum.Deserializer<>(SegmentSortMissing.values());
 }

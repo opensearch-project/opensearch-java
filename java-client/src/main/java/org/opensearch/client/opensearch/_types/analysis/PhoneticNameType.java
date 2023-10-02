@@ -35,27 +35,25 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum PhoneticNameType implements JsonEnum {
-	Generic("generic"),
+    Generic("generic"),
 
-	Ashkenazi("ashkenazi"),
+    Ashkenazi("ashkenazi"),
 
-	Sephardic("sephardic"),
+    Sephardic("sephardic"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	PhoneticNameType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    PhoneticNameType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<PhoneticNameType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			PhoneticNameType.values());
+    public static final JsonEnum.Deserializer<PhoneticNameType> _DESERIALIZER = new JsonEnum.Deserializer<>(PhoneticNameType.values());
 }

@@ -32,203 +32,204 @@
 
 package org.opensearch.client.opensearch.indices.rollover;
 
-import org.opensearch.client.opensearch._types.Time;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices.rollover.RolloverConditions
 
-
 @JsonpDeserializable
 public class RolloverConditions implements JsonpSerializable {
-	@Nullable
-	private final Time maxAge;
+    @Nullable
+    private final Time maxAge;
 
-	@Nullable
-	private final Long maxDocs;
+    @Nullable
+    private final Long maxDocs;
 
-	@Nullable
-	private final String maxSize;
+    @Nullable
+    private final String maxSize;
 
-	@Nullable
-	private final String maxPrimaryShardSize;
+    @Nullable
+    private final String maxPrimaryShardSize;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RolloverConditions(Builder builder) {
+    private RolloverConditions(Builder builder) {
 
-		this.maxAge = builder.maxAge;
-		this.maxDocs = builder.maxDocs;
-		this.maxSize = builder.maxSize;
-		this.maxPrimaryShardSize = builder.maxPrimaryShardSize;
+        this.maxAge = builder.maxAge;
+        this.maxDocs = builder.maxDocs;
+        this.maxSize = builder.maxSize;
+        this.maxPrimaryShardSize = builder.maxPrimaryShardSize;
 
-	}
+    }
 
-	public static RolloverConditions of(Function<Builder, ObjectBuilder<RolloverConditions>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RolloverConditions of(Function<Builder, ObjectBuilder<RolloverConditions>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code max_age}
-	 */
-	@Nullable
-	public final Time maxAge() {
-		return this.maxAge;
-	}
+    /**
+     * API name: {@code max_age}
+     */
+    @Nullable
+    public final Time maxAge() {
+        return this.maxAge;
+    }
 
-	/**
-	 * API name: {@code max_docs}
-	 */
-	@Nullable
-	public final Long maxDocs() {
-		return this.maxDocs;
-	}
+    /**
+     * API name: {@code max_docs}
+     */
+    @Nullable
+    public final Long maxDocs() {
+        return this.maxDocs;
+    }
 
-	/**
-	 * API name: {@code max_size}
-	 */
-	@Nullable
-	public final String maxSize() {
-		return this.maxSize;
-	}
+    /**
+     * API name: {@code max_size}
+     */
+    @Nullable
+    public final String maxSize() {
+        return this.maxSize;
+    }
 
-	/**
-	 * API name: {@code max_primary_shard_size}
-	 */
-	@Nullable
-	public final String maxPrimaryShardSize() {
-		return this.maxPrimaryShardSize;
-	}
+    /**
+     * API name: {@code max_primary_shard_size}
+     */
+    @Nullable
+    public final String maxPrimaryShardSize() {
+        return this.maxPrimaryShardSize;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.maxAge != null) {
-			generator.writeKey("max_age");
-			this.maxAge.serialize(generator, mapper);
+        if (this.maxAge != null) {
+            generator.writeKey("max_age");
+            this.maxAge.serialize(generator, mapper);
 
-		}
-		if (this.maxDocs != null) {
-			generator.writeKey("max_docs");
-			generator.write(this.maxDocs);
+        }
+        if (this.maxDocs != null) {
+            generator.writeKey("max_docs");
+            generator.write(this.maxDocs);
 
-		}
-		if (this.maxSize != null) {
-			generator.writeKey("max_size");
-			generator.write(this.maxSize);
+        }
+        if (this.maxSize != null) {
+            generator.writeKey("max_size");
+            generator.write(this.maxSize);
 
-		}
-		if (this.maxPrimaryShardSize != null) {
-			generator.writeKey("max_primary_shard_size");
-			generator.write(this.maxPrimaryShardSize);
+        }
+        if (this.maxPrimaryShardSize != null) {
+            generator.writeKey("max_primary_shard_size");
+            generator.write(this.maxPrimaryShardSize);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RolloverConditions}.
-	 */
+    /**
+     * Builder for {@link RolloverConditions}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RolloverConditions> {
-		@Nullable
-		private Time maxAge;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RolloverConditions> {
+        @Nullable
+        private Time maxAge;
 
-		@Nullable
-		private Long maxDocs;
+        @Nullable
+        private Long maxDocs;
 
-		@Nullable
-		private String maxSize;
+        @Nullable
+        private String maxSize;
 
-		@Nullable
-		private String maxPrimaryShardSize;
+        @Nullable
+        private String maxPrimaryShardSize;
 
-		/**
-		 * API name: {@code max_age}
-		 */
-		public final Builder maxAge(@Nullable Time value) {
-			this.maxAge = value;
-			return this;
-		}
+        /**
+         * API name: {@code max_age}
+         */
+        public final Builder maxAge(@Nullable Time value) {
+            this.maxAge = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code max_age}
-		 */
-		public final Builder maxAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.maxAge(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * API name: {@code max_age}
+         */
+        public final Builder maxAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.maxAge(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code max_docs}
-		 */
-		public final Builder maxDocs(@Nullable Long value) {
-			this.maxDocs = value;
-			return this;
-		}
+        /**
+         * API name: {@code max_docs}
+         */
+        public final Builder maxDocs(@Nullable Long value) {
+            this.maxDocs = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code max_size}
-		 */
-		public final Builder maxSize(@Nullable String value) {
-			this.maxSize = value;
-			return this;
-		}
+        /**
+         * API name: {@code max_size}
+         */
+        public final Builder maxSize(@Nullable String value) {
+            this.maxSize = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code max_primary_shard_size}
-		 */
-		public final Builder maxPrimaryShardSize(@Nullable String value) {
-			this.maxPrimaryShardSize = value;
-			return this;
-		}
+        /**
+         * API name: {@code max_primary_shard_size}
+         */
+        public final Builder maxPrimaryShardSize(@Nullable String value) {
+            this.maxPrimaryShardSize = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RolloverConditions}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RolloverConditions build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RolloverConditions}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RolloverConditions build() {
+            _checkSingleUse();
 
-			return new RolloverConditions(this);
-		}
-	}
+            return new RolloverConditions(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RolloverConditions}
-	 */
-	public static final JsonpDeserializer<RolloverConditions> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RolloverConditions::setupRolloverConditionsDeserializer);
+    /**
+     * Json deserializer for {@link RolloverConditions}
+     */
+    public static final JsonpDeserializer<RolloverConditions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RolloverConditions::setupRolloverConditionsDeserializer
+    );
 
-	protected static void setupRolloverConditionsDeserializer(ObjectDeserializer<RolloverConditions.Builder> op) {
+    protected static void setupRolloverConditionsDeserializer(ObjectDeserializer<RolloverConditions.Builder> op) {
 
-		op.add(Builder::maxAge, Time._DESERIALIZER, "max_age");
-		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
-		op.add(Builder::maxSize, JsonpDeserializer.stringDeserializer(), "max_size");
-		op.add(Builder::maxPrimaryShardSize, JsonpDeserializer.stringDeserializer(), "max_primary_shard_size");
+        op.add(Builder::maxAge, Time._DESERIALIZER, "max_age");
+        op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
+        op.add(Builder::maxSize, JsonpDeserializer.stringDeserializer(), "max_size");
+        op.add(Builder::maxPrimaryShardSize, JsonpDeserializer.stringDeserializer(), "max_primary_shard_size");
 
-	}
+    }
 
 }

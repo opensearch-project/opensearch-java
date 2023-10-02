@@ -32,116 +32,115 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ObjectProperty
 
-
 @JsonpDeserializable
 public class ObjectProperty extends CorePropertyBase implements PropertyVariant {
-	@Nullable
-	private final Boolean enabled;
+    @Nullable
+    private final Boolean enabled;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ObjectProperty(Builder builder) {
-		super(builder);
+    private ObjectProperty(Builder builder) {
+        super(builder);
 
-		this.enabled = builder.enabled;
+        this.enabled = builder.enabled;
 
-	}
+    }
 
-	public static ObjectProperty of(Function<Builder, ObjectBuilder<ObjectProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ObjectProperty of(Function<Builder, ObjectBuilder<ObjectProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Object;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Object;
+    }
 
-	/**
-	 * API name: {@code enabled}
-	 */
-	@Nullable
-	public final Boolean enabled() {
-		return this.enabled;
-	}
+    /**
+     * API name: {@code enabled}
+     */
+    @Nullable
+    public final Boolean enabled() {
+        return this.enabled;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "object");
-		super.serializeInternal(generator, mapper);
-		if (this.enabled != null) {
-			generator.writeKey("enabled");
-			generator.write(this.enabled);
+        generator.write("type", "object");
+        super.serializeInternal(generator, mapper);
+        if (this.enabled != null) {
+            generator.writeKey("enabled");
+            generator.write(this.enabled);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ObjectProperty}.
-	 */
+    /**
+     * Builder for {@link ObjectProperty}.
+     */
 
-	public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ObjectProperty> {
-		@Nullable
-		private Boolean enabled;
+    public static class Builder extends CorePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<ObjectProperty> {
+        @Nullable
+        private Boolean enabled;
 
-		/**
-		 * API name: {@code enabled}
-		 */
-		public final Builder enabled(@Nullable Boolean value) {
-			this.enabled = value;
-			return this;
-		}
+        /**
+         * API name: {@code enabled}
+         */
+        public final Builder enabled(@Nullable Boolean value) {
+            this.enabled = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ObjectProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ObjectProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ObjectProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ObjectProperty build() {
+            _checkSingleUse();
 
-			return new ObjectProperty(this);
-		}
-	}
+            return new ObjectProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ObjectProperty}
-	 */
-	public static final JsonpDeserializer<ObjectProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ObjectProperty::setupObjectPropertyDeserializer);
+    /**
+     * Json deserializer for {@link ObjectProperty}
+     */
+    public static final JsonpDeserializer<ObjectProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ObjectProperty::setupObjectPropertyDeserializer
+    );
 
-	protected static void setupObjectPropertyDeserializer(ObjectDeserializer<ObjectProperty.Builder> op) {
-		setupCorePropertyBaseDeserializer(op);
-		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+    protected static void setupObjectPropertyDeserializer(ObjectDeserializer<ObjectProperty.Builder> op) {
+        setupCorePropertyBaseDeserializer(op);
+        op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

@@ -32,75 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.MissingAggregate
 
 @JsonpDeserializable
 public class MissingAggregate extends SingleBucketAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MissingAggregate(Builder builder) {
-		super(builder);
+    private MissingAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static MissingAggregate of(Function<Builder, ObjectBuilder<MissingAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MissingAggregate of(Function<Builder, ObjectBuilder<MissingAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Missing;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Missing;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MissingAggregate}.
-	 */
+    /**
+     * Builder for {@link MissingAggregate}.
+     */
 
-	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<MissingAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<MissingAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MissingAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MissingAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MissingAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MissingAggregate build() {
+            _checkSingleUse();
 
-			return new MissingAggregate(this);
-		}
-	}
+            return new MissingAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MissingAggregate}
-	 */
-	public static final JsonpDeserializer<MissingAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MissingAggregate::setupMissingAggregateDeserializer);
+    /**
+     * Json deserializer for {@link MissingAggregate}
+     */
+    public static final JsonpDeserializer<MissingAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MissingAggregate::setupMissingAggregateDeserializer
+    );
 
-	protected static void setupMissingAggregateDeserializer(ObjectDeserializer<MissingAggregate.Builder> op) {
-		setupSingleBucketAggregateBaseDeserializer(op);
+    protected static void setupMissingAggregateDeserializer(ObjectDeserializer<MissingAggregate.Builder> op) {
+        setupSingleBucketAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

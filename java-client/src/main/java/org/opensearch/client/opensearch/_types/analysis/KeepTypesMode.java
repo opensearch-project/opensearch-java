@@ -37,22 +37,21 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum KeepTypesMode implements JsonEnum {
-	Include("include"),
+    Include("include"),
 
-	Exclude("exclude"),
+    Exclude("exclude"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	KeepTypesMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    KeepTypesMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<KeepTypesMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			KeepTypesMode.values());
+    public static final JsonEnum.Deserializer<KeepTypesMode> _DESERIALIZER = new JsonEnum.Deserializer<>(KeepTypesMode.values());
 }

@@ -8,10 +8,9 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
-
 import javax.annotation.Nullable;
-
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -21,8 +20,6 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-
-import jakarta.json.stream.JsonGenerator;
 
 @JsonpDeserializable
 public class Pit implements JsonpSerializable {
@@ -115,8 +112,7 @@ public class Pit implements JsonpSerializable {
     /**
      * Json deserializer for {@link Pit}
      */
-    public static final JsonpDeserializer<Pit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-            Pit::setupPitDeserializer);
+    public static final JsonpDeserializer<Pit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new, Pit::setupPitDeserializer);
 
     protected static void setupPitDeserializer(ObjectDeserializer<Pit.Builder> op) {
 

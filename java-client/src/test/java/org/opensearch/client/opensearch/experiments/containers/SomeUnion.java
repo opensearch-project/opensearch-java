@@ -46,6 +46,8 @@ package org.opensearch.client.opensearch.experiments.containers;
   }
 */
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -56,9 +58,6 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 @JsonpDeserializable
 public class SomeUnion implements TaggedUnion<SomeUnion.Kind, SomeUnionVariant>, JsonpSerializable {
@@ -91,7 +90,7 @@ public class SomeUnion implements TaggedUnion<SomeUnion.Kind, SomeUnionVariant>,
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         // Delegate to the variant object
         if (_value instanceof JsonpSerializable) {
-            ((JsonpSerializable)_value).serialize(generator, mapper);
+            ((JsonpSerializable) _value).serialize(generator, mapper);
         }
     }
 
@@ -153,8 +152,11 @@ public class SomeUnion implements TaggedUnion<SomeUnion.Kind, SomeUnionVariant>,
         }
     }
 
-    public static final JsonpDeserializer<SomeUnion> _DESERIALIZER = ObjectBuilderDeserializer.lazy(SomeUnion.Builder::new,
-        SomeUnion::setupSomeUnionDeserializer, SomeUnion.Builder::build);
+    public static final JsonpDeserializer<SomeUnion> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        SomeUnion.Builder::new,
+        SomeUnion::setupSomeUnionDeserializer,
+        SomeUnion.Builder::build
+    );
 
     protected static void setupSomeUnionDeserializer(ObjectDeserializer<Builder> op) {
         op.add(SomeUnion.Builder::variantA, UVariantA._DESERIALIZER, "variant_a");

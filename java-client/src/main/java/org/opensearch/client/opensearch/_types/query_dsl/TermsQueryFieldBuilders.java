@@ -37,18 +37,17 @@ package org.opensearch.client.opensearch._types.query_dsl;
  * <p>
  * Variants <code>value</code> are not available here as they don't have a
  * dedicated class. Use {@link TermsQueryField}'s builder for these.
- * 
+ *
  */
 public class TermsQueryFieldBuilders {
-	private TermsQueryFieldBuilders() {
-	}
+    private TermsQueryFieldBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link TermsLookup lookup} {@code TermsQueryField}
-	 * variant.
-	 */
-	public static TermsLookup.Builder lookup() {
-		return new TermsLookup.Builder();
-	}
+    /**
+     * Creates a builder for the {@link TermsLookup lookup} {@code TermsQueryField}
+     * variant.
+     */
+    public static TermsLookup.Builder lookup() {
+        return new TermsLookup.Builder();
+    }
 
 }

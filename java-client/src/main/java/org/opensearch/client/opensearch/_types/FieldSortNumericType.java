@@ -37,26 +37,27 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum FieldSortNumericType implements JsonEnum {
-	Long("long"),
+    Long("long"),
 
-	Double("double"),
+    Double("double"),
 
-	Date("date"),
+    Date("date"),
 
-	DateNanos("date_nanos"),
+    DateNanos("date_nanos"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	FieldSortNumericType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    FieldSortNumericType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<FieldSortNumericType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			FieldSortNumericType.values());
+    public static final JsonEnum.Deserializer<FieldSortNumericType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        FieldSortNumericType.values()
+    );
 }

@@ -32,72 +32,72 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch.indices.recovery.RecoveryStatus;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.indices.recovery.RecoveryStatus;
 import org.opensearch.client.transport.endpoints.DictionaryResponse;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.recovery.Response
 
 @JsonpDeserializable
 public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus> {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RecoveryResponse(Builder builder) {
-		super(builder);
+    private RecoveryResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static RecoveryResponse of(Function<Builder, ObjectBuilder<RecoveryResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RecoveryResponse of(Function<Builder, ObjectBuilder<RecoveryResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RecoveryResponse}.
-	 */
+    /**
+     * Builder for {@link RecoveryResponse}.
+     */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RecoveryStatus, Builder>
-			implements
-				ObjectBuilder<RecoveryResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends DictionaryResponse.AbstractBuilder<String, RecoveryStatus, Builder>
+        implements
+            ObjectBuilder<RecoveryResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RecoveryResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RecoveryResponse build() {
-			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
+        /**
+         * Builds a {@link RecoveryResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RecoveryResponse build() {
+            _checkSingleUse();
+            super.tKeySerializer(null);
+            super.tValueSerializer(null);
 
-			return new RecoveryResponse(this);
-		}
-	}
+            return new RecoveryResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RecoveryResponse}
-	 */
-	public static final JsonpDeserializer<RecoveryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RecoveryResponse::setupRecoveryResponseDeserializer);
+    /**
+     * Json deserializer for {@link RecoveryResponse}
+     */
+    public static final JsonpDeserializer<RecoveryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RecoveryResponse::setupRecoveryResponseDeserializer
+    );
 
-	protected static void setupRecoveryResponseDeserializer(ObjectDeserializer<RecoveryResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				RecoveryStatus._DESERIALIZER);
+    protected static void setupRecoveryResponseDeserializer(ObjectDeserializer<RecoveryResponse.Builder> op) {
+        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), RecoveryStatus._DESERIALIZER);
 
-	}
+    }
 
 }

@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.cluster.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,118 +43,118 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterOperatingSystemPrettyName
 
 @JsonpDeserializable
 public class ClusterOperatingSystemPrettyName implements JsonpSerializable {
-	private final int count;
+    private final int count;
 
-	private final String prettyName;
+    private final String prettyName;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ClusterOperatingSystemPrettyName(Builder builder) {
+    private ClusterOperatingSystemPrettyName(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.prettyName = ApiTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+        this.prettyName = ApiTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
 
-	}
+    }
 
-	public static ClusterOperatingSystemPrettyName of(
-			Function<Builder, ObjectBuilder<ClusterOperatingSystemPrettyName>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ClusterOperatingSystemPrettyName of(Function<Builder, ObjectBuilder<ClusterOperatingSystemPrettyName>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code count}
-	 */
-	public final int count() {
-		return this.count;
-	}
+    /**
+     * Required - API name: {@code count}
+     */
+    public final int count() {
+        return this.count;
+    }
 
-	/**
-	 * Required - API name: {@code pretty_name}
-	 */
-	public final String prettyName() {
-		return this.prettyName;
-	}
+    /**
+     * Required - API name: {@code pretty_name}
+     */
+    public final String prettyName() {
+        return this.prettyName;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("count");
-		generator.write(this.count);
+        generator.writeKey("count");
+        generator.write(this.count);
 
-		generator.writeKey("pretty_name");
-		generator.write(this.prettyName);
+        generator.writeKey("pretty_name");
+        generator.write(this.prettyName);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ClusterOperatingSystemPrettyName}.
-	 */
+    /**
+     * Builder for {@link ClusterOperatingSystemPrettyName}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterOperatingSystemPrettyName> {
-		private Integer count;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterOperatingSystemPrettyName> {
+        private Integer count;
 
-		private String prettyName;
+        private String prettyName;
 
-		/**
-		 * Required - API name: {@code count}
-		 */
-		public final Builder count(int value) {
-			this.count = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code count}
+         */
+        public final Builder count(int value) {
+            this.count = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code pretty_name}
-		 */
-		public final Builder prettyName(String value) {
-			this.prettyName = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code pretty_name}
+         */
+        public final Builder prettyName(String value) {
+            this.prettyName = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ClusterOperatingSystemPrettyName}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ClusterOperatingSystemPrettyName build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ClusterOperatingSystemPrettyName}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ClusterOperatingSystemPrettyName build() {
+            _checkSingleUse();
 
-			return new ClusterOperatingSystemPrettyName(this);
-		}
-	}
+            return new ClusterOperatingSystemPrettyName(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ClusterOperatingSystemPrettyName}
-	 */
-	public static final JsonpDeserializer<ClusterOperatingSystemPrettyName> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterOperatingSystemPrettyName::setupClusterOperatingSystemPrettyNameDeserializer);
+    /**
+     * Json deserializer for {@link ClusterOperatingSystemPrettyName}
+     */
+    public static final JsonpDeserializer<ClusterOperatingSystemPrettyName> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ClusterOperatingSystemPrettyName::setupClusterOperatingSystemPrettyNameDeserializer
+    );
 
-	protected static void setupClusterOperatingSystemPrettyNameDeserializer(
-			ObjectDeserializer<ClusterOperatingSystemPrettyName.Builder> op) {
+    protected static void setupClusterOperatingSystemPrettyNameDeserializer(
+        ObjectDeserializer<ClusterOperatingSystemPrettyName.Builder> op
+    ) {
 
-		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
-		op.add(Builder::prettyName, JsonpDeserializer.stringDeserializer(), "pretty_name");
+        op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+        op.add(Builder::prettyName, JsonpDeserializer.stringDeserializer(), "pretty_name");
 
-	}
+    }
 
 }

@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,118 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _global.search._types.PhraseSuggestHighlight
 
-
 @JsonpDeserializable
 public class PhraseSuggestHighlight implements JsonpSerializable {
-	private final String postTag;
+    private final String postTag;
 
-	private final String preTag;
+    private final String preTag;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PhraseSuggestHighlight(Builder builder) {
+    private PhraseSuggestHighlight(Builder builder) {
 
-		this.postTag = ApiTypeHelper.requireNonNull(builder.postTag, this, "postTag");
-		this.preTag = ApiTypeHelper.requireNonNull(builder.preTag, this, "preTag");
+        this.postTag = ApiTypeHelper.requireNonNull(builder.postTag, this, "postTag");
+        this.preTag = ApiTypeHelper.requireNonNull(builder.preTag, this, "preTag");
 
-	}
+    }
 
-	public static PhraseSuggestHighlight of(Function<Builder, ObjectBuilder<PhraseSuggestHighlight>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PhraseSuggestHighlight of(Function<Builder, ObjectBuilder<PhraseSuggestHighlight>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code post_tag}
-	 */
-	public final String postTag() {
-		return this.postTag;
-	}
+    /**
+     * Required - API name: {@code post_tag}
+     */
+    public final String postTag() {
+        return this.postTag;
+    }
 
-	/**
-	 * Required - API name: {@code pre_tag}
-	 */
-	public final String preTag() {
-		return this.preTag;
-	}
+    /**
+     * Required - API name: {@code pre_tag}
+     */
+    public final String preTag() {
+        return this.preTag;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("post_tag");
-		generator.write(this.postTag);
+        generator.writeKey("post_tag");
+        generator.write(this.postTag);
 
-		generator.writeKey("pre_tag");
-		generator.write(this.preTag);
+        generator.writeKey("pre_tag");
+        generator.write(this.preTag);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PhraseSuggestHighlight}.
-	 */
+    /**
+     * Builder for {@link PhraseSuggestHighlight}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestHighlight> {
-		private String postTag;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestHighlight> {
+        private String postTag;
 
-		private String preTag;
+        private String preTag;
 
-		/**
-		 * Required - API name: {@code post_tag}
-		 */
-		public final Builder postTag(String value) {
-			this.postTag = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code post_tag}
+         */
+        public final Builder postTag(String value) {
+            this.postTag = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code pre_tag}
-		 */
-		public final Builder preTag(String value) {
-			this.preTag = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code pre_tag}
+         */
+        public final Builder preTag(String value) {
+            this.preTag = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PhraseSuggestHighlight}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PhraseSuggestHighlight build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PhraseSuggestHighlight}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PhraseSuggestHighlight build() {
+            _checkSingleUse();
 
-			return new PhraseSuggestHighlight(this);
-		}
-	}
+            return new PhraseSuggestHighlight(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PhraseSuggestHighlight}
-	 */
-	public static final JsonpDeserializer<PhraseSuggestHighlight> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PhraseSuggestHighlight::setupPhraseSuggestHighlightDeserializer);
+    /**
+     * Json deserializer for {@link PhraseSuggestHighlight}
+     */
+    public static final JsonpDeserializer<PhraseSuggestHighlight> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PhraseSuggestHighlight::setupPhraseSuggestHighlightDeserializer
+    );
 
-	protected static void setupPhraseSuggestHighlightDeserializer(
-			ObjectDeserializer<PhraseSuggestHighlight.Builder> op) {
+    protected static void setupPhraseSuggestHighlightDeserializer(ObjectDeserializer<PhraseSuggestHighlight.Builder> op) {
 
-		op.add(Builder::postTag, JsonpDeserializer.stringDeserializer(), "post_tag");
-		op.add(Builder::preTag, JsonpDeserializer.stringDeserializer(), "pre_tag");
+        op.add(Builder::postTag, JsonpDeserializer.stringDeserializer(), "post_tag");
+        op.add(Builder::preTag, JsonpDeserializer.stringDeserializer(), "pre_tag");
 
-	}
+    }
 
 }

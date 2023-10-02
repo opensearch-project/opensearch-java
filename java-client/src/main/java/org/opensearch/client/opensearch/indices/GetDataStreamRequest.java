@@ -8,6 +8,10 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -15,11 +19,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 // typedef: indices.get_data_stream.Request
 
@@ -96,39 +95,40 @@ public class GetDataStreamRequest extends RequestBase {
      * Endpoint "{@code indices.get_data_stream}".
      */
     public static final Endpoint<GetDataStreamRequest, GetDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-            // Request method
-            request -> {
-                return "GET";
-            },
+        // Request method
+        request -> { return "GET"; },
 
-            // Request path
-            request -> {
-                final int _name = 1 << 0;
-                int propsSet = 0;
+        // Request path
+        request -> {
+            final int _name = 1 << 0;
+            int propsSet = 0;
 
-                if (ApiTypeHelper.isDefined(request.name())) {
-                    propsSet |= _name;
-                }
+            if (ApiTypeHelper.isDefined(request.name())) {
+                propsSet |= _name;
+            }
 
-                if (propsSet == 0) {
-                    StringBuilder sbd = new StringBuilder();
-                    sbd.append("/_data_stream");
-                    return sbd.toString();
-                }
+            if (propsSet == 0) {
+                StringBuilder sbd = new StringBuilder();
+                sbd.append("/_data_stream");
+                return sbd.toString();
+            }
 
-                if (propsSet == (_name)) {
-                    StringBuilder sbd = new StringBuilder();
-                    sbd.append("/_data_stream");
-                    sbd.append("/");
-                    SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), sbd);
-                    return sbd.toString();
-                }
-                throw SimpleEndpoint.noPathTemplateFound("path");
-            },
+            if (propsSet == (_name)) {
+                StringBuilder sbd = new StringBuilder();
+                sbd.append("/_data_stream");
+                sbd.append("/");
+                SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), sbd);
+                return sbd.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
+        },
 
-            // Request parameters
-            SimpleEndpoint.emptyMap(),
+        // Request parameters
+        SimpleEndpoint.emptyMap(),
 
-            SimpleEndpoint.emptyMap(), false, GetDataStreamResponse._DESERIALIZER);
+        SimpleEndpoint.emptyMap(),
+        false,
+        GetDataStreamResponse._DESERIALIZER
+    );
 
 }

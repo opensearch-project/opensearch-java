@@ -32,113 +32,112 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.NormalizeAggregation
 
 @JsonpDeserializable
 public class NormalizeAggregation extends PipelineAggregationBase implements AggregationVariant {
-	@Nullable
-	private final NormalizeMethod method;
+    @Nullable
+    private final NormalizeMethod method;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NormalizeAggregation(Builder builder) {
-		super(builder);
+    private NormalizeAggregation(Builder builder) {
+        super(builder);
 
-		this.method = builder.method;
+        this.method = builder.method;
 
-	}
+    }
 
-	public static NormalizeAggregation of(Function<Builder, ObjectBuilder<NormalizeAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NormalizeAggregation of(Function<Builder, ObjectBuilder<NormalizeAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Normalize;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.Normalize;
+    }
 
-	/**
-	 * API name: {@code method}
-	 */
-	@Nullable
-	public final NormalizeMethod method() {
-		return this.method;
-	}
+    /**
+     * API name: {@code method}
+     */
+    @Nullable
+    public final NormalizeMethod method() {
+        return this.method;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.method != null) {
-			generator.writeKey("method");
-			this.method.serialize(generator, mapper);
-		}
+        super.serializeInternal(generator, mapper);
+        if (this.method != null) {
+            generator.writeKey("method");
+            this.method.serialize(generator, mapper);
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NormalizeAggregation}.
-	 */
+    /**
+     * Builder for {@link NormalizeAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<NormalizeAggregation> {
-		@Nullable
-		private NormalizeMethod method;
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<NormalizeAggregation> {
+        @Nullable
+        private NormalizeMethod method;
 
-		/**
-		 * API name: {@code method}
-		 */
-		public final Builder method(@Nullable NormalizeMethod value) {
-			this.method = value;
-			return this;
-		}
+        /**
+         * API name: {@code method}
+         */
+        public final Builder method(@Nullable NormalizeMethod value) {
+            this.method = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NormalizeAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NormalizeAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NormalizeAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NormalizeAggregation build() {
+            _checkSingleUse();
 
-			return new NormalizeAggregation(this);
-		}
-	}
+            return new NormalizeAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NormalizeAggregation}
-	 */
-	public static final JsonpDeserializer<NormalizeAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NormalizeAggregation::setupNormalizeAggregationDeserializer);
+    /**
+     * Json deserializer for {@link NormalizeAggregation}
+     */
+    public static final JsonpDeserializer<NormalizeAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NormalizeAggregation::setupNormalizeAggregationDeserializer
+    );
 
-	protected static void setupNormalizeAggregationDeserializer(ObjectDeserializer<NormalizeAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
-		op.add(Builder::method, NormalizeMethod._DESERIALIZER, "method");
+    protected static void setupNormalizeAggregationDeserializer(ObjectDeserializer<NormalizeAggregation.Builder> op) {
+        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+        op.add(Builder::method, NormalizeMethod._DESERIALIZER, "method");
 
-	}
+    }
 
 }

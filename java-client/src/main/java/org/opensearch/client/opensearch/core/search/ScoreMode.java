@@ -35,31 +35,29 @@ package org.opensearch.client.opensearch.core.search;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum ScoreMode implements JsonEnum {
-	Avg("avg"),
+    Avg("avg"),
 
-	Max("max"),
+    Max("max"),
 
-	Min("min"),
+    Min("min"),
 
-	Multiply("multiply"),
+    Multiply("multiply"),
 
-	Total("total"),
+    Total("total"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ScoreMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ScoreMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ScoreMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ScoreMode.values());
+    public static final JsonEnum.Deserializer<ScoreMode> _DESERIALIZER = new JsonEnum.Deserializer<>(ScoreMode.values());
 }

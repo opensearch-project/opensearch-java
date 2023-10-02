@@ -32,87 +32,84 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.analysis.RemoveDuplicatesTokenFilter
 
-
 @JsonpDeserializable
 public class RemoveDuplicatesTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RemoveDuplicatesTokenFilter(Builder builder) {
-		super(builder);
+    private RemoveDuplicatesTokenFilter(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static RemoveDuplicatesTokenFilter of(Function<Builder, ObjectBuilder<RemoveDuplicatesTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RemoveDuplicatesTokenFilter of(Function<Builder, ObjectBuilder<RemoveDuplicatesTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.RemoveDuplicates;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.RemoveDuplicates;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "remove_duplicates");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "remove_duplicates");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RemoveDuplicatesTokenFilter}.
-	 */
+    /**
+     * Builder for {@link RemoveDuplicatesTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RemoveDuplicatesTokenFilter> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<RemoveDuplicatesTokenFilter> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RemoveDuplicatesTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RemoveDuplicatesTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RemoveDuplicatesTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RemoveDuplicatesTokenFilter build() {
+            _checkSingleUse();
 
-			return new RemoveDuplicatesTokenFilter(this);
-		}
-	}
+            return new RemoveDuplicatesTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RemoveDuplicatesTokenFilter}
-	 */
-	public static final JsonpDeserializer<RemoveDuplicatesTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RemoveDuplicatesTokenFilter::setupRemoveDuplicatesTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link RemoveDuplicatesTokenFilter}
+     */
+    public static final JsonpDeserializer<RemoveDuplicatesTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RemoveDuplicatesTokenFilter::setupRemoveDuplicatesTokenFilterDeserializer
+    );
 
-	protected static void setupRemoveDuplicatesTokenFilterDeserializer(
-			ObjectDeserializer<RemoveDuplicatesTokenFilter.Builder> op) {
-		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
+    protected static void setupRemoveDuplicatesTokenFilterDeserializer(ObjectDeserializer<RemoveDuplicatesTokenFilter.Builder> op) {
+        TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

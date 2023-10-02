@@ -8,13 +8,12 @@
 
 package org.opensearch.client.transport.aws;
 
-import org.reactivestreams.Publisher;
-import software.amazon.awssdk.http.SdkHttpResponse;
-import software.amazon.awssdk.http.async.SdkAsyncHttpResponseHandler;
-
 import java.nio.ByteBuffer;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
+import org.reactivestreams.Publisher;
+import software.amazon.awssdk.http.SdkHttpResponse;
+import software.amazon.awssdk.http.async.SdkAsyncHttpResponseHandler;
 
 /**
  * An implementation of AWS {@link SdkAsyncHttpResponseHandler} that captures the response,

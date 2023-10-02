@@ -35,27 +35,27 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum DelimitedPayloadEncoding implements JsonEnum {
-	Int("int"),
+    Int("int"),
 
-	Float("float"),
+    Float("float"),
 
-	Identity("identity"),
+    Identity("identity"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	DelimitedPayloadEncoding(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    DelimitedPayloadEncoding(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<DelimitedPayloadEncoding> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			DelimitedPayloadEncoding.values());
+    public static final JsonEnum.Deserializer<DelimitedPayloadEncoding> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        DelimitedPayloadEncoding.values()
+    );
 }

@@ -32,116 +32,115 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.FloatNumberProperty
 
-
 @JsonpDeserializable
 public class FloatNumberProperty extends StandardNumberProperty implements PropertyVariant {
-	@Nullable
-	private final Float nullValue;
+    @Nullable
+    private final Float nullValue;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FloatNumberProperty(Builder builder) {
-		super(builder);
+    private FloatNumberProperty(Builder builder) {
+        super(builder);
 
-		this.nullValue = builder.nullValue;
+        this.nullValue = builder.nullValue;
 
-	}
+    }
 
-	public static FloatNumberProperty of(Function<Builder, ObjectBuilder<FloatNumberProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FloatNumberProperty of(Function<Builder, ObjectBuilder<FloatNumberProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Float;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Float;
+    }
 
-	/**
-	 * API name: {@code null_value}
-	 */
-	@Nullable
-	public final Float nullValue() {
-		return this.nullValue;
-	}
+    /**
+     * API name: {@code null_value}
+     */
+    @Nullable
+    public final Float nullValue() {
+        return this.nullValue;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "float");
-		super.serializeInternal(generator, mapper);
-		if (this.nullValue != null) {
-			generator.writeKey("null_value");
-			generator.write(this.nullValue);
+        generator.write("type", "float");
+        super.serializeInternal(generator, mapper);
+        if (this.nullValue != null) {
+            generator.writeKey("null_value");
+            generator.write(this.nullValue);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FloatNumberProperty}.
-	 */
+    /**
+     * Builder for {@link FloatNumberProperty}.
+     */
 
-	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<FloatNumberProperty> {
-		@Nullable
-		private Float nullValue;
+    public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder> implements ObjectBuilder<FloatNumberProperty> {
+        @Nullable
+        private Float nullValue;
 
-		/**
-		 * API name: {@code null_value}
-		 */
-		public final Builder nullValue(@Nullable Float value) {
-			this.nullValue = value;
-			return this;
-		}
+        /**
+         * API name: {@code null_value}
+         */
+        public final Builder nullValue(@Nullable Float value) {
+            this.nullValue = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FloatNumberProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FloatNumberProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FloatNumberProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FloatNumberProperty build() {
+            _checkSingleUse();
 
-			return new FloatNumberProperty(this);
-		}
-	}
+            return new FloatNumberProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FloatNumberProperty}
-	 */
-	public static final JsonpDeserializer<FloatNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FloatNumberProperty::setupFloatNumberPropertyDeserializer);
+    /**
+     * Json deserializer for {@link FloatNumberProperty}
+     */
+    public static final JsonpDeserializer<FloatNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FloatNumberProperty::setupFloatNumberPropertyDeserializer
+    );
 
-	protected static void setupFloatNumberPropertyDeserializer(ObjectDeserializer<FloatNumberProperty.Builder> op) {
-		StandardNumberProperty.setupStandardNumberPropertyDeserializer(op);
-		op.add(Builder::nullValue, JsonpDeserializer.floatDeserializer(), "null_value");
+    protected static void setupFloatNumberPropertyDeserializer(ObjectDeserializer<FloatNumberProperty.Builder> op) {
+        StandardNumberProperty.setupStandardNumberPropertyDeserializer(op);
+        op.add(Builder::nullValue, JsonpDeserializer.floatDeserializer(), "null_value");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

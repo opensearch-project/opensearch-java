@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.core;
 
+import java.util.function.Function;
+import java.util.function.Supplier;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.NamedDeserializer;
@@ -40,73 +42,77 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch.core.search.SearchResult;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-import java.util.function.Supplier;
-
 // typedef: _global.search.Response
 
 @JsonpDeserializable
 public class SearchResponse<TDocument> extends SearchResult<TDocument> {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected SearchResponse(SearchResult.AbstractBuilder<TDocument, ?> builder) {
-		super(builder);
+    protected SearchResponse(SearchResult.AbstractBuilder<TDocument, ?> builder) {
+        super(builder);
 
-	}
+    }
 
     public static <TDocument> SearchResponse<TDocument> searchResponseOf(
-            Function<Builder<TDocument>, ObjectBuilder<SearchResponse<TDocument>>> fn) {
+        Function<Builder<TDocument>, ObjectBuilder<SearchResponse<TDocument>>> fn
+    ) {
         return fn.apply(new Builder<>()).build();
     }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SearchResponse}.
-	 */
-	public static class Builder<TDocument> extends SearchResult.AbstractBuilder<TDocument, Builder<TDocument>>
-			implements
-				ObjectBuilder<SearchResponse<TDocument>> {
-		@Override
-		protected Builder<TDocument> self() {
-			return this;
-		}
+    /**
+     * Builder for {@link SearchResponse}.
+     */
+    public static class Builder<TDocument> extends SearchResult.AbstractBuilder<TDocument, Builder<TDocument>>
+        implements
+            ObjectBuilder<SearchResponse<TDocument>> {
+        @Override
+        protected Builder<TDocument> self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SearchResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SearchResponse<TDocument> build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SearchResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SearchResponse<TDocument> build() {
+            _checkSingleUse();
 
-			return new SearchResponse<TDocument>(this);
-		}
-	}
+            return new SearchResponse<TDocument>(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Create a JSON deserializer for SearchResponse
-	 */
-	public static <TDocument> JsonpDeserializer<SearchResponse<TDocument>> createSearchResponseDeserializer(
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> SearchResponse.setupSearchResponseDeserializer(op, tDocumentDeserializer));
-	};
+    /**
+     * Create a JSON deserializer for SearchResponse
+     */
+    public static <TDocument> JsonpDeserializer<SearchResponse<TDocument>> createSearchResponseDeserializer(
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
+        return ObjectBuilderDeserializer.createForObject(
+            (Supplier<Builder<TDocument>>) Builder::new,
+            op -> SearchResponse.setupSearchResponseDeserializer(op, tDocumentDeserializer)
+        );
+    };
 
-	/**
-	 * Json deserializer for {@link SearchResponse} based on named deserializers
-	 * provided by the calling {@code JsonMapper}.
-	 */
-	public static final JsonpDeserializer<SearchResponse<Object>> _DESERIALIZER = createSearchResponseDeserializer(
-			new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.search.TDocument"));
+    /**
+     * Json deserializer for {@link SearchResponse} based on named deserializers
+     * provided by the calling {@code JsonMapper}.
+     */
+    public static final JsonpDeserializer<SearchResponse<Object>> _DESERIALIZER = createSearchResponseDeserializer(
+        new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.search.TDocument")
+    );
 
-	protected static <TDocument, BuilderT extends SearchResult.AbstractBuilder<TDocument, BuilderT>> void setupSearchResponseDeserializer(
-			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		SearchResult.setupSearchResultDeserializer(op, tDocumentDeserializer);
+    protected static <TDocument, BuilderT extends SearchResult.AbstractBuilder<TDocument, BuilderT>> void setupSearchResponseDeserializer(
+        ObjectDeserializer<BuilderT> op,
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
+        SearchResult.setupSearchResultDeserializer(op, tDocumentDeserializer);
 
-	}
-	
+    }
+
 }

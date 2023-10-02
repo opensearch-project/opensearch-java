@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.FieldValue;
@@ -42,9 +44,6 @@ import org.opensearch.client.opensearch._types.aggregations.StringStatsAggregate
 import org.opensearch.client.opensearch._types.query_dsl.SpanGapQuery;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.indices.IndexSettings;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BuiltinTypesTest extends ModelTestCase {
 
@@ -68,10 +67,7 @@ public class BuiltinTypesTest extends ModelTestCase {
     @Test
     public void testSpanGapQuery() {
         // Hand-written class
-        SpanGapQuery q = SpanGapQuery.of(b -> b
-            .field("a-field")
-            .spanWidth(12)
-        );
+        SpanGapQuery q = SpanGapQuery.of(b -> b.field("a-field").spanWidth(12));
 
         q = checkJsonRoundtrip(q, "{\"a-field\":12}");
 
@@ -87,39 +83,43 @@ public class BuiltinTypesTest extends ModelTestCase {
         SortOptions sort;
 
         // Arbitrary field
-        sort = fromJson(
-            "{ \"post_date\" : {\"order\" : \"asc\", \"format\": \"strict_date_optional_time_nanos\"}}",
-            SortOptions.class);
+        sort = fromJson("{ \"post_date\" : {\"order\" : \"asc\", \"format\": \"strict_date_optional_time_nanos\"}}", SortOptions.class);
 
         assertEquals("post_date", sort.field().field());
         assertEquals(SortOrder.Asc, sort.field().order());
 
-        sort = fromJson("{\n" +
-            "          \"offer.price\" : {\n" +
-            "             \"mode\" :  \"avg\",\n" +
-            "             \"order\" : \"asc\",\n" +
-            "             \"nested\": {\n" +
-            "                \"path\": \"offer\",\n" +
-            "                \"filter\": {\n" +
-            "                   \"term\" : { \"offer.color\" : \"blue\" }\n" +
-            "                }\n" +
-            "             }\n" +
-            "          }\n" +
-            "       }", SortOptions.class);
+        sort = fromJson(
+            "{\n"
+                + "          \"offer.price\" : {\n"
+                + "             \"mode\" :  \"avg\",\n"
+                + "             \"order\" : \"asc\",\n"
+                + "             \"nested\": {\n"
+                + "                \"path\": \"offer\",\n"
+                + "                \"filter\": {\n"
+                + "                   \"term\" : { \"offer.color\" : \"blue\" }\n"
+                + "                }\n"
+                + "             }\n"
+                + "          }\n"
+                + "       }",
+            SortOptions.class
+        );
 
         assertEquals("blue", sort.field().nested().filter().term().value().stringValue());
 
         // Geo distance
-        sort = fromJson("{\n" +
-            "      \"_geo_distance\" : {\n" +
-            "        \"pin.location\" : {\n" +
-            "          \"lat\" : 40,\n" +
-            "          \"lon\" : -70\n" +
-            "        },\n" +
-            "        \"order\" : \"asc\",\n" +
-            "        \"unit\" : \"km\"\n" +
-            "      }\n" +
-            "    }", SortOptions.class);
+        sort = fromJson(
+            "{\n"
+                + "      \"_geo_distance\" : {\n"
+                + "        \"pin.location\" : {\n"
+                + "          \"lat\" : 40,\n"
+                + "          \"lon\" : -70\n"
+                + "        },\n"
+                + "        \"order\" : \"asc\",\n"
+                + "        \"unit\" : \"km\"\n"
+                + "      }\n"
+                + "    }",
+            SortOptions.class
+        );
 
         assertEquals(40, sort.geoDistance().location().get(0).latlon().lat(), 0.1);
 
@@ -181,12 +181,13 @@ public class BuiltinTypesTest extends ModelTestCase {
         StatsAggregate stats;
 
         // Regular values
-        stats = StatsAggregate.statsAggregateOf(b -> b // Parent classes can't have an overloaded "of" method
-            .count(10)
-            .min(1.0)
-            .avg(1.5)
-            .max(2.0)
-            .sum(5.0)
+        stats = StatsAggregate.statsAggregateOf(
+            b -> b // Parent classes can't have an overloaded "of" method
+                .count(10)
+                .min(1.0)
+                .avg(1.5)
+                .max(2.0)
+                .sum(5.0)
         );
 
         stats = checkJsonRoundtrip(stats, "{\"count\":10,\"min\":1.0,\"max\":2.0,\"avg\":1.5,\"sum\":5.0}");
@@ -212,13 +213,7 @@ public class BuiltinTypesTest extends ModelTestCase {
 
     @Test
     public void testNullableInt() {
-        StringStatsAggregate stats = StringStatsAggregate.of(b -> b
-            .count(1)
-            .minLength(2)
-            .avgLength(3)
-            .maxLength(4)
-            .entropy(0)
-        );
+        StringStatsAggregate stats = StringStatsAggregate.of(b -> b.count(1).minLength(2).avgLength(3).maxLength(4).entropy(0));
 
         stats = checkJsonRoundtrip(stats, "{\"count\":1,\"min_length\":2,\"max_length\":4,\"avg_length\":3.0,\"entropy\":0.0}");
         assertEquals(2, stats.minLength());

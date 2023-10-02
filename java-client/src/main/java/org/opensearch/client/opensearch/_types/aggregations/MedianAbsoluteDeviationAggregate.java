@@ -32,78 +32,78 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.MedianAbsoluteDeviationAggregate
-
 
 @JsonpDeserializable
 public class MedianAbsoluteDeviationAggregate extends SingleMetricAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MedianAbsoluteDeviationAggregate(Builder builder) {
-		super(builder);
+    private MedianAbsoluteDeviationAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static MedianAbsoluteDeviationAggregate of(
-			Function<Builder, ObjectBuilder<MedianAbsoluteDeviationAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MedianAbsoluteDeviationAggregate of(Function<Builder, ObjectBuilder<MedianAbsoluteDeviationAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.MedianAbsoluteDeviation;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.MedianAbsoluteDeviation;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MedianAbsoluteDeviationAggregate}.
-	 */
+    /**
+     * Builder for {@link MedianAbsoluteDeviationAggregate}.
+     */
 
-	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<MedianAbsoluteDeviationAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<MedianAbsoluteDeviationAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MedianAbsoluteDeviationAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MedianAbsoluteDeviationAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MedianAbsoluteDeviationAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MedianAbsoluteDeviationAggregate build() {
+            _checkSingleUse();
 
-			return new MedianAbsoluteDeviationAggregate(this);
-		}
-	}
+            return new MedianAbsoluteDeviationAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MedianAbsoluteDeviationAggregate}
-	 */
-	public static final JsonpDeserializer<MedianAbsoluteDeviationAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MedianAbsoluteDeviationAggregate::setupMedianAbsoluteDeviationAggregateDeserializer);
+    /**
+     * Json deserializer for {@link MedianAbsoluteDeviationAggregate}
+     */
+    public static final JsonpDeserializer<MedianAbsoluteDeviationAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MedianAbsoluteDeviationAggregate::setupMedianAbsoluteDeviationAggregateDeserializer
+    );
 
-	protected static void setupMedianAbsoluteDeviationAggregateDeserializer(
-			ObjectDeserializer<MedianAbsoluteDeviationAggregate.Builder> op) {
-		setupSingleMetricAggregateBaseDeserializer(op);
+    protected static void setupMedianAbsoluteDeviationAggregateDeserializer(
+        ObjectDeserializer<MedianAbsoluteDeviationAggregate.Builder> op
+    ) {
+        setupSingleMetricAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

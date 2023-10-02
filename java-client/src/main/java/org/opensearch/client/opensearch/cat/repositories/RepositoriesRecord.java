@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.cat.repositories;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,137 +43,135 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: cat.repositories.RepositoriesRecord
 
-
 @JsonpDeserializable
 public class RepositoriesRecord implements JsonpSerializable {
-	@Nullable
-	private final String id;
+    @Nullable
+    private final String id;
 
-	@Nullable
-	private final String type;
+    @Nullable
+    private final String type;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RepositoriesRecord(Builder builder) {
+    private RepositoriesRecord(Builder builder) {
 
-		this.id = builder.id;
-		this.type = builder.type;
+        this.id = builder.id;
+        this.type = builder.type;
 
-	}
+    }
 
-	public static RepositoriesRecord of(Function<Builder, ObjectBuilder<RepositoriesRecord>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RepositoriesRecord of(Function<Builder, ObjectBuilder<RepositoriesRecord>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * unique repository id
-	 * <p>
-	 * API name: {@code id}
-	 */
-	@Nullable
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * unique repository id
+     * <p>
+     * API name: {@code id}
+     */
+    @Nullable
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * repository type
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
+    /**
+     * repository type
+     * <p>
+     * API name: {@code type}
+     */
+    @Nullable
+    public final String type() {
+        return this.type;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.id != null) {
-			generator.writeKey("id");
-			generator.write(this.id);
+        if (this.id != null) {
+            generator.writeKey("id");
+            generator.write(this.id);
 
-		}
-		if (this.type != null) {
-			generator.writeKey("type");
-			generator.write(this.type);
+        }
+        if (this.type != null) {
+            generator.writeKey("type");
+            generator.write(this.type);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RepositoriesRecord}.
-	 */
+    /**
+     * Builder for {@link RepositoriesRecord}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RepositoriesRecord> {
-		@Nullable
-		private String id;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RepositoriesRecord> {
+        @Nullable
+        private String id;
 
-		@Nullable
-		private String type;
+        @Nullable
+        private String type;
 
-		/**
-		 * unique repository id
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public final Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * unique repository id
+         * <p>
+         * API name: {@code id}
+         */
+        public final Builder id(@Nullable String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * repository type
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
+        /**
+         * repository type
+         * <p>
+         * API name: {@code type}
+         */
+        public final Builder type(@Nullable String value) {
+            this.type = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RepositoriesRecord}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RepositoriesRecord build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RepositoriesRecord}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RepositoriesRecord build() {
+            _checkSingleUse();
 
-			return new RepositoriesRecord(this);
-		}
-	}
+            return new RepositoriesRecord(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RepositoriesRecord}
-	 */
-	public static final JsonpDeserializer<RepositoriesRecord> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RepositoriesRecord::setupRepositoriesRecordDeserializer);
+    /**
+     * Json deserializer for {@link RepositoriesRecord}
+     */
+    public static final JsonpDeserializer<RepositoriesRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RepositoriesRecord::setupRepositoriesRecordDeserializer
+    );
 
-	protected static void setupRepositoriesRecordDeserializer(ObjectDeserializer<RepositoriesRecord.Builder> op) {
+    protected static void setupRepositoriesRecordDeserializer(ObjectDeserializer<RepositoriesRecord.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id", "repoId");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "t");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id", "repoId");
+        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "t");
 
-	}
+    }
 
 }

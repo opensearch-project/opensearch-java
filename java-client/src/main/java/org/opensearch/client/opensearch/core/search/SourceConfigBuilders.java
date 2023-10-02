@@ -37,18 +37,17 @@ package org.opensearch.client.opensearch.core.search;
  * <p>
  * Variants <code>fetch</code> are not available here as they don't have a
  * dedicated class. Use {@link SourceConfig}'s builder for these.
- * 
+ *
  */
 public class SourceConfigBuilders {
-	private SourceConfigBuilders() {
-	}
+    private SourceConfigBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link SourceFilter filter} {@code SourceConfig}
-	 * variant.
-	 */
-	public static SourceFilter.Builder filter() {
-		return new SourceFilter.Builder();
-	}
+    /**
+     * Creates a builder for the {@link SourceFilter filter} {@code SourceConfig}
+     * variant.
+     */
+    public static SourceFilter.Builder filter() {
+        return new SourceFilter.Builder();
+    }
 
 }

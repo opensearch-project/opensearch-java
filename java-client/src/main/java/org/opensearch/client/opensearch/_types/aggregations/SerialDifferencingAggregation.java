@@ -32,115 +32,115 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SerialDifferencingAggregation
 
-
 @JsonpDeserializable
 public class SerialDifferencingAggregation extends PipelineAggregationBase implements AggregationVariant {
-	@Nullable
-	private final Integer lag;
+    @Nullable
+    private final Integer lag;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SerialDifferencingAggregation(Builder builder) {
-		super(builder);
+    private SerialDifferencingAggregation(Builder builder) {
+        super(builder);
 
-		this.lag = builder.lag;
+        this.lag = builder.lag;
 
-	}
+    }
 
-	public static SerialDifferencingAggregation of(Function<Builder, ObjectBuilder<SerialDifferencingAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SerialDifferencingAggregation of(Function<Builder, ObjectBuilder<SerialDifferencingAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.SerialDiff;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.SerialDiff;
+    }
 
-	/**
-	 * API name: {@code lag}
-	 */
-	@Nullable
-	public final Integer lag() {
-		return this.lag;
-	}
+    /**
+     * API name: {@code lag}
+     */
+    @Nullable
+    public final Integer lag() {
+        return this.lag;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.lag != null) {
-			generator.writeKey("lag");
-			generator.write(this.lag);
+        super.serializeInternal(generator, mapper);
+        if (this.lag != null) {
+            generator.writeKey("lag");
+            generator.write(this.lag);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SerialDifferencingAggregation}.
-	 */
+    /**
+     * Builder for {@link SerialDifferencingAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<SerialDifferencingAggregation> {
-		@Nullable
-		private Integer lag;
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<SerialDifferencingAggregation> {
+        @Nullable
+        private Integer lag;
 
-		/**
-		 * API name: {@code lag}
-		 */
-		public final Builder lag(@Nullable Integer value) {
-			this.lag = value;
-			return this;
-		}
+        /**
+         * API name: {@code lag}
+         */
+        public final Builder lag(@Nullable Integer value) {
+            this.lag = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SerialDifferencingAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SerialDifferencingAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SerialDifferencingAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SerialDifferencingAggregation build() {
+            _checkSingleUse();
 
-			return new SerialDifferencingAggregation(this);
-		}
-	}
+            return new SerialDifferencingAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SerialDifferencingAggregation}
-	 */
-	public static final JsonpDeserializer<SerialDifferencingAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SerialDifferencingAggregation::setupSerialDifferencingAggregationDeserializer);
+    /**
+     * Json deserializer for {@link SerialDifferencingAggregation}
+     */
+    public static final JsonpDeserializer<SerialDifferencingAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SerialDifferencingAggregation::setupSerialDifferencingAggregationDeserializer
+    );
 
-	protected static void setupSerialDifferencingAggregationDeserializer(
-			ObjectDeserializer<SerialDifferencingAggregation.Builder> op) {
-		setupPipelineAggregationBaseDeserializer(op);
-		op.add(Builder::lag, JsonpDeserializer.integerDeserializer(), "lag");
+    protected static void setupSerialDifferencingAggregationDeserializer(ObjectDeserializer<SerialDifferencingAggregation.Builder> op) {
+        setupPipelineAggregationBaseDeserializer(op);
+        op.add(Builder::lag, JsonpDeserializer.integerDeserializer(), "lag");
 
-	}
+    }
 
 }

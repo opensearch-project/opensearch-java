@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,138 +44,139 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.WaitForActiveShards
 
 @JsonpDeserializable
 public class WaitForActiveShards implements TaggedUnion<WaitForActiveShards.Kind, Object>, JsonpSerializable {
 
-	public enum Kind {
-		Option, Count
+    public enum Kind {
+        Option,
+        Count
 
-	}
+    }
 
-	private final Kind _kind;
-	private final Object _value;
+    private final Kind _kind;
+    private final Object _value;
 
-	@Override
-	public final Kind _kind() {
-		return _kind;
-	}
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
 
-	@Override
-	public final Object _get() {
-		return _value;
-	}
+    @Override
+    public final Object _get() {
+        return _value;
+    }
 
-	private WaitForActiveShards(Kind kind, Object value) {
-		this._kind = kind;
-		this._value = value;
-	}
+    private WaitForActiveShards(Kind kind, Object value) {
+        this._kind = kind;
+        this._value = value;
+    }
 
-	public String _toJsonString() {
-		switch (_kind) {
-			case Option :
-				return this.option().jsonValue();
-			case Count :
-				return String.valueOf(this.count());
+    public String _toJsonString() {
+        switch (_kind) {
+            case Option:
+                return this.option().jsonValue();
+            case Count:
+                return String.valueOf(this.count());
 
-			default :
-				throw new IllegalStateException("Unknown kind " + _kind);
-		}
-	}
+            default:
+                throw new IllegalStateException("Unknown kind " + _kind);
+        }
+    }
 
-	private WaitForActiveShards(Builder builder) {
+    private WaitForActiveShards(Builder builder) {
 
-		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-	}
+    }
 
-	public static WaitForActiveShards of(Function<Builder, ObjectBuilder<WaitForActiveShards>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static WaitForActiveShards of(Function<Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Is this variant instance of kind {@code option}?
-	 */
-	public boolean isOption() {
-		return _kind == Kind.Option;
-	}
+    /**
+     * Is this variant instance of kind {@code option}?
+     */
+    public boolean isOption() {
+        return _kind == Kind.Option;
+    }
 
-	/**
-	 * Get the {@code option} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code option} kind.
-	 */
-	public WaitForActiveShardOptions option() {
-		return TaggedUnionUtils.get(this, Kind.Option);
-	}
+    /**
+     * Get the {@code option} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code option} kind.
+     */
+    public WaitForActiveShardOptions option() {
+        return TaggedUnionUtils.get(this, Kind.Option);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code count}?
-	 */
-	public boolean isCount() {
-		return _kind == Kind.Count;
-	}
+    /**
+     * Is this variant instance of kind {@code count}?
+     */
+    public boolean isCount() {
+        return _kind == Kind.Count;
+    }
 
-	/**
-	 * Get the {@code count} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code count} kind.
-	 */
-	public Integer count() {
-		return TaggedUnionUtils.get(this, Kind.Count);
-	}
+    /**
+     * Get the {@code count} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code count} kind.
+     */
+    public Integer count() {
+        return TaggedUnionUtils.get(this, Kind.Count);
+    }
 
-	@Override
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_kind) {
-				case Count :
-					generator.write(((Integer) this._value));
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        if (_value instanceof JsonpSerializable) {
+            ((JsonpSerializable) _value).serialize(generator, mapper);
+        } else {
+            switch (_kind) {
+                case Count:
+                    generator.write(((Integer) this._value));
 
-					break;
-			}
-		}
+                    break;
+            }
+        }
 
-	}
+    }
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WaitForActiveShards> {
-		private Kind _kind;
-		private Object _value;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WaitForActiveShards> {
+        private Kind _kind;
+        private Object _value;
 
-		public ObjectBuilder<WaitForActiveShards> option(WaitForActiveShardOptions v) {
-			this._kind = Kind.Option;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<WaitForActiveShards> option(WaitForActiveShardOptions v) {
+            this._kind = Kind.Option;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<WaitForActiveShards> count(Integer v) {
-			this._kind = Kind.Count;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<WaitForActiveShards> count(Integer v) {
+            this._kind = Kind.Count;
+            this._value = v;
+            return this;
+        }
 
-		public WaitForActiveShards build() {
-			_checkSingleUse();
-			return new WaitForActiveShards(this);
-		}
+        public WaitForActiveShards build() {
+            _checkSingleUse();
+            return new WaitForActiveShards(this);
+        }
 
-	}
+    }
 
-	private static JsonpDeserializer<WaitForActiveShards> buildWaitForActiveShardsDeserializer() {
-		return new UnionDeserializer.Builder<WaitForActiveShards, Kind, Object>(WaitForActiveShards::new, false)
-				.addMember(Kind.Option, WaitForActiveShardOptions._DESERIALIZER)
-				.addMember(Kind.Count, JsonpDeserializer.integerDeserializer()).build();
-	}
+    private static JsonpDeserializer<WaitForActiveShards> buildWaitForActiveShardsDeserializer() {
+        return new UnionDeserializer.Builder<WaitForActiveShards, Kind, Object>(WaitForActiveShards::new, false).addMember(
+            Kind.Option,
+            WaitForActiveShardOptions._DESERIALIZER
+        ).addMember(Kind.Count, JsonpDeserializer.integerDeserializer()).build();
+    }
 
-	public static final JsonpDeserializer<WaitForActiveShards> _DESERIALIZER = JsonpDeserializer
-			.lazy(WaitForActiveShards::buildWaitForActiveShardsDeserializer);
+    public static final JsonpDeserializer<WaitForActiveShards> _DESERIALIZER = JsonpDeserializer.lazy(
+        WaitForActiveShards::buildWaitForActiveShardsDeserializer
+    );
 }

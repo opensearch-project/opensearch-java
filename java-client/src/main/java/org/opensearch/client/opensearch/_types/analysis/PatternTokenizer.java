@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,151 +41,148 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.analysis.PatternTokenizer
 
-
 @JsonpDeserializable
 public class PatternTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
-	private final String flags;
+    private final String flags;
 
-	private final int group;
+    private final int group;
 
-	private final String pattern;
+    private final String pattern;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PatternTokenizer(Builder builder) {
-		super(builder);
+    private PatternTokenizer(Builder builder) {
+        super(builder);
 
-		this.flags = ApiTypeHelper.requireNonNull(builder.flags, this, "flags");
-		this.group = ApiTypeHelper.requireNonNull(builder.group, this, "group");
-		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+        this.flags = ApiTypeHelper.requireNonNull(builder.flags, this, "flags");
+        this.group = ApiTypeHelper.requireNonNull(builder.group, this, "group");
+        this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
 
-	}
+    }
 
-	public static PatternTokenizer of(Function<Builder, ObjectBuilder<PatternTokenizer>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PatternTokenizer of(Function<Builder, ObjectBuilder<PatternTokenizer>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenizerDefinition variant kind.
-	 */
-	@Override
-	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
-		return TokenizerDefinition.Kind.Pattern;
-	}
+    /**
+     * TokenizerDefinition variant kind.
+     */
+    @Override
+    public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+        return TokenizerDefinition.Kind.Pattern;
+    }
 
-	/**
-	 * Required - API name: {@code flags}
-	 */
-	public final String flags() {
-		return this.flags;
-	}
+    /**
+     * Required - API name: {@code flags}
+     */
+    public final String flags() {
+        return this.flags;
+    }
 
-	/**
-	 * Required - API name: {@code group}
-	 */
-	public final int group() {
-		return this.group;
-	}
+    /**
+     * Required - API name: {@code group}
+     */
+    public final int group() {
+        return this.group;
+    }
 
-	/**
-	 * Required - API name: {@code pattern}
-	 */
-	public final String pattern() {
-		return this.pattern;
-	}
+    /**
+     * Required - API name: {@code pattern}
+     */
+    public final String pattern() {
+        return this.pattern;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "pattern");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("flags");
-		generator.write(this.flags);
+        generator.write("type", "pattern");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("flags");
+        generator.write(this.flags);
 
-		generator.writeKey("group");
-		generator.write(this.group);
+        generator.writeKey("group");
+        generator.write(this.group);
 
-		generator.writeKey("pattern");
-		generator.write(this.pattern);
+        generator.writeKey("pattern");
+        generator.write(this.pattern);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PatternTokenizer}.
-	 */
+    /**
+     * Builder for {@link PatternTokenizer}.
+     */
 
-	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PatternTokenizer> {
-		private String flags;
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<PatternTokenizer> {
+        private String flags;
 
-		private Integer group;
+        private Integer group;
 
-		private String pattern;
+        private String pattern;
 
-		/**
-		 * Required - API name: {@code flags}
-		 */
-		public final Builder flags(String value) {
-			this.flags = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code flags}
+         */
+        public final Builder flags(String value) {
+            this.flags = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code group}
-		 */
-		public final Builder group(int value) {
-			this.group = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code group}
+         */
+        public final Builder group(int value) {
+            this.group = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code pattern}
-		 */
-		public final Builder pattern(String value) {
-			this.pattern = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code pattern}
+         */
+        public final Builder pattern(String value) {
+            this.pattern = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PatternTokenizer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PatternTokenizer build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PatternTokenizer}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PatternTokenizer build() {
+            _checkSingleUse();
 
-			return new PatternTokenizer(this);
-		}
-	}
+            return new PatternTokenizer(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PatternTokenizer}
-	 */
-	public static final JsonpDeserializer<PatternTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PatternTokenizer::setupPatternTokenizerDeserializer);
+    /**
+     * Json deserializer for {@link PatternTokenizer}
+     */
+    public static final JsonpDeserializer<PatternTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PatternTokenizer::setupPatternTokenizerDeserializer
+    );
 
-	protected static void setupPatternTokenizerDeserializer(ObjectDeserializer<PatternTokenizer.Builder> op) {
-		setupTokenizerBaseDeserializer(op);
-		op.add(Builder::flags, JsonpDeserializer.stringDeserializer(), "flags");
-		op.add(Builder::group, JsonpDeserializer.integerDeserializer(), "group");
-		op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
+    protected static void setupPatternTokenizerDeserializer(ObjectDeserializer<PatternTokenizer.Builder> op) {
+        setupTokenizerBaseDeserializer(op);
+        op.add(Builder::flags, JsonpDeserializer.stringDeserializer(), "flags");
+        op.add(Builder::group, JsonpDeserializer.integerDeserializer(), "group");
+        op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

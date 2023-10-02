@@ -47,7 +47,6 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonGeneratorFactory;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParserFactory;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -81,7 +80,7 @@ public class JacksonJsonProvider extends JsonProvider {
         return this.jsonFactory;
     }
 
-    //---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // Parser
 
     private final ParserFactory defaultParserFactory = new ParserFactory(null);
@@ -166,7 +165,7 @@ public class JacksonJsonProvider extends JsonProvider {
         }
     }
 
-    //---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // Generator
 
     private final JsonGeneratorFactory defaultGeneratorFactory = new GeneratorFactory(null);
@@ -233,7 +232,7 @@ public class JacksonJsonProvider extends JsonProvider {
         }
     }
 
-    //---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     // Unsupported operations
 
     /**

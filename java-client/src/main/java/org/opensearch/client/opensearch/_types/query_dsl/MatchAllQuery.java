@@ -32,74 +32,74 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.query_dsl.MatchAllQuery
-
 
 @JsonpDeserializable
 public class MatchAllQuery extends QueryBase implements QueryVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MatchAllQuery(Builder builder) {
-		super(builder);
+    private MatchAllQuery(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static MatchAllQuery of(Function<Builder, ObjectBuilder<MatchAllQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MatchAllQuery of(Function<Builder, ObjectBuilder<MatchAllQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.MatchAll;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.MatchAll;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MatchAllQuery}.
-	 */
+    /**
+     * Builder for {@link MatchAllQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchAllQuery> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchAllQuery> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MatchAllQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MatchAllQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MatchAllQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MatchAllQuery build() {
+            _checkSingleUse();
 
-			return new MatchAllQuery(this);
-		}
-	}
+            return new MatchAllQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MatchAllQuery}
-	 */
-	public static final JsonpDeserializer<MatchAllQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MatchAllQuery::setupMatchAllQueryDeserializer);
+    /**
+     * Json deserializer for {@link MatchAllQuery}
+     */
+    public static final JsonpDeserializer<MatchAllQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MatchAllQuery::setupMatchAllQueryDeserializer
+    );
 
-	protected static void setupMatchAllQueryDeserializer(ObjectDeserializer<MatchAllQuery.Builder> op) {
-		QueryBase.setupQueryBaseDeserializer(op);
+    protected static void setupMatchAllQueryDeserializer(ObjectDeserializer<MatchAllQuery.Builder> op) {
+        QueryBase.setupQueryBaseDeserializer(op);
 
-	}
+    }
 
 }

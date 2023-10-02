@@ -32,6 +32,12 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.Bytes;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
@@ -40,13 +46,6 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 // typedef: cat.indices.Request
 
@@ -71,7 +70,6 @@ public class IndicesRequest extends CatRequestBase {
 
     @Nullable
     private final Boolean pri;
-
 
     // ---------------------------------------------------------------------------------------------
 
@@ -149,7 +147,6 @@ public class IndicesRequest extends CatRequestBase {
     public final Boolean pri() {
         return this.pri;
     }
-
 
     // ---------------------------------------------------------------------------------------------
 
@@ -292,60 +289,61 @@ public class IndicesRequest extends CatRequestBase {
      */
     public static final Endpoint<IndicesRequest, IndicesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-            // Request method
-            request -> {
-                return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-            },
+        },
 
-            // Request path
-            request -> {
-                final int _index = 1 << 0;
+        // Request path
+        request -> {
+            final int _index = 1 << 0;
 
-                int propsSet = 0;
+            int propsSet = 0;
 
-                if (ApiTypeHelper.isDefined(request.index()))
-                    propsSet |= _index;
+            if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
 
-                if (propsSet == 0) {
-                    StringBuilder buf = new StringBuilder();
-                    buf.append("/_cat");
-                    buf.append("/indices");
-                    return buf.toString();
-                }
-                if (propsSet == (_index)) {
-                    StringBuilder buf = new StringBuilder();
-                    buf.append("/_cat");
-                    buf.append("/indices");
-                    buf.append("/");
-                    SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-                    return buf.toString();
-                }
-                throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/indices");
+                return buf.toString();
+            }
+            if (propsSet == (_index)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/indices");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-            },
+        },
 
-            // Request parameters
-            request -> {
-                Map<String, String> params =  new HashMap<>(request.queryParameters());
-                if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                    params.put("expand_wildcards",
-                            request.expandWildcards.stream()
-                                    .map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-                }
-                if (request.bytes != null) {
-                    params.put("bytes", request.bytes.jsonValue());
-                }
-                if (request.pri != null) {
-                    params.put("pri", String.valueOf(request.pri));
-                }
-                if (request.health != null) {
-                    params.put("health", request.health.jsonValue());
-                }
-                if (request.includeUnloadedSegments != null) {
-                    params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
-                }
-                return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>(request.queryParameters());
+            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+            }
+            if (request.bytes != null) {
+                params.put("bytes", request.bytes.jsonValue());
+            }
+            if (request.pri != null) {
+                params.put("pri", String.valueOf(request.pri));
+            }
+            if (request.health != null) {
+                params.put("health", request.health.jsonValue());
+            }
+            if (request.includeUnloadedSegments != null) {
+                params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
+            }
+            return params;
 
-            }, SimpleEndpoint.emptyMap(), false, IndicesResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        IndicesResponse._DESERIALIZER
+    );
 }

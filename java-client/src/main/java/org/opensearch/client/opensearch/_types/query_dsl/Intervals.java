@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -44,288 +46,287 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.IntervalsContainer
-
 
 @JsonpDeserializable
 public class Intervals implements TaggedUnion<Intervals.Kind, Object>, IntervalsFilterVariant, JsonpSerializable {
 
-	/**
-	 * {@link Intervals} variant kinds.
-	 */
-	/**
-	 * {@link Intervals} variant kinds.
-	 */
+    /**
+     * {@link Intervals} variant kinds.
+     */
+    /**
+     * {@link Intervals} variant kinds.
+     */
 
-	public enum Kind implements JsonEnum {
-		AllOf("all_of"),
+    public enum Kind implements JsonEnum {
+        AllOf("all_of"),
 
-		AnyOf("any_of"),
+        AnyOf("any_of"),
 
-		Fuzzy("fuzzy"),
+        Fuzzy("fuzzy"),
 
-		Match("match"),
+        Match("match"),
 
-		Prefix("prefix"),
+        Prefix("prefix"),
 
-		Wildcard("wildcard"),
+        Wildcard("wildcard"),
 
-		;
+        ;
 
-		private final String jsonValue;
+        private final String jsonValue;
 
-		Kind(String jsonValue) {
-			this.jsonValue = jsonValue;
-		}
+        Kind(String jsonValue) {
+            this.jsonValue = jsonValue;
+        }
 
-		public String jsonValue() {
-			return this.jsonValue;
-		}
+        public String jsonValue() {
+            return this.jsonValue;
+        }
 
-	}
+    }
 
-	/**
-	 * IntervalsFilter variant kind.
-	 */
-	@Override
-	public IntervalsFilter.Kind _intervalsFilterKind() {
-		return IntervalsFilter.Kind.Overlapping;
-	}
+    /**
+     * IntervalsFilter variant kind.
+     */
+    @Override
+    public IntervalsFilter.Kind _intervalsFilterKind() {
+        return IntervalsFilter.Kind.Overlapping;
+    }
 
-	private final Kind _kind;
-	private final Object _value;
+    private final Kind _kind;
+    private final Object _value;
 
-	@Override
-	public final Kind _kind() {
-		return _kind;
-	}
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
 
-	@Override
-	public final Object _get() {
-		return _value;
-	}
+    @Override
+    public final Object _get() {
+        return _value;
+    }
 
-	public Intervals(IntervalsVariant value) {
+    public Intervals(IntervalsVariant value) {
 
-		this._kind = ApiTypeHelper.requireNonNull(value._intervalsKind(), this, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+        this._kind = ApiTypeHelper.requireNonNull(value._intervalsKind(), this, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
+    }
 
-	private Intervals(Builder builder) {
+    private Intervals(Builder builder) {
 
-		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-	}
+    }
 
-	public static Intervals of(Function<Builder, ObjectBuilder<Intervals>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Intervals of(Function<Builder, ObjectBuilder<Intervals>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Is this variant instance of kind {@code all_of}?
-	 */
-	public boolean isAllOf() {
-		return _kind == Kind.AllOf;
-	}
+    /**
+     * Is this variant instance of kind {@code all_of}?
+     */
+    public boolean isAllOf() {
+        return _kind == Kind.AllOf;
+    }
 
-	/**
-	 * Get the {@code all_of} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code all_of} kind.
-	 */
-	public IntervalsAllOf allOf() {
-		return TaggedUnionUtils.get(this, Kind.AllOf);
-	}
+    /**
+     * Get the {@code all_of} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code all_of} kind.
+     */
+    public IntervalsAllOf allOf() {
+        return TaggedUnionUtils.get(this, Kind.AllOf);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code any_of}?
-	 */
-	public boolean isAnyOf() {
-		return _kind == Kind.AnyOf;
-	}
+    /**
+     * Is this variant instance of kind {@code any_of}?
+     */
+    public boolean isAnyOf() {
+        return _kind == Kind.AnyOf;
+    }
 
-	/**
-	 * Get the {@code any_of} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code any_of} kind.
-	 */
-	public IntervalsAnyOf anyOf() {
-		return TaggedUnionUtils.get(this, Kind.AnyOf);
-	}
+    /**
+     * Get the {@code any_of} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code any_of} kind.
+     */
+    public IntervalsAnyOf anyOf() {
+        return TaggedUnionUtils.get(this, Kind.AnyOf);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code fuzzy}?
-	 */
-	public boolean isFuzzy() {
-		return _kind == Kind.Fuzzy;
-	}
+    /**
+     * Is this variant instance of kind {@code fuzzy}?
+     */
+    public boolean isFuzzy() {
+        return _kind == Kind.Fuzzy;
+    }
 
-	/**
-	 * Get the {@code fuzzy} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code fuzzy} kind.
-	 */
-	public IntervalsFuzzy fuzzy() {
-		return TaggedUnionUtils.get(this, Kind.Fuzzy);
-	}
+    /**
+     * Get the {@code fuzzy} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code fuzzy} kind.
+     */
+    public IntervalsFuzzy fuzzy() {
+        return TaggedUnionUtils.get(this, Kind.Fuzzy);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code match}?
-	 */
-	public boolean isMatch() {
-		return _kind == Kind.Match;
-	}
+    /**
+     * Is this variant instance of kind {@code match}?
+     */
+    public boolean isMatch() {
+        return _kind == Kind.Match;
+    }
 
-	/**
-	 * Get the {@code match} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code match} kind.
-	 */
-	public IntervalsMatch match() {
-		return TaggedUnionUtils.get(this, Kind.Match);
-	}
+    /**
+     * Get the {@code match} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code match} kind.
+     */
+    public IntervalsMatch match() {
+        return TaggedUnionUtils.get(this, Kind.Match);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code prefix}?
-	 */
-	public boolean isPrefix() {
-		return _kind == Kind.Prefix;
-	}
+    /**
+     * Is this variant instance of kind {@code prefix}?
+     */
+    public boolean isPrefix() {
+        return _kind == Kind.Prefix;
+    }
 
-	/**
-	 * Get the {@code prefix} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code prefix} kind.
-	 */
-	public IntervalsPrefix prefix() {
-		return TaggedUnionUtils.get(this, Kind.Prefix);
-	}
+    /**
+     * Get the {@code prefix} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code prefix} kind.
+     */
+    public IntervalsPrefix prefix() {
+        return TaggedUnionUtils.get(this, Kind.Prefix);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code wildcard}?
-	 */
-	public boolean isWildcard() {
-		return _kind == Kind.Wildcard;
-	}
+    /**
+     * Is this variant instance of kind {@code wildcard}?
+     */
+    public boolean isWildcard() {
+        return _kind == Kind.Wildcard;
+    }
 
-	/**
-	 * Get the {@code wildcard} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code wildcard} kind.
-	 */
-	public IntervalsWildcard wildcard() {
-		return TaggedUnionUtils.get(this, Kind.Wildcard);
-	}
+    /**
+     * Get the {@code wildcard} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code wildcard} kind.
+     */
+    public IntervalsWildcard wildcard() {
+        return TaggedUnionUtils.get(this, Kind.Wildcard);
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+    @Override
+    @SuppressWarnings("unchecked")
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeStartObject();
+        generator.writeStartObject();
 
-		generator.writeKey(_kind.jsonValue());
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		}
+        generator.writeKey(_kind.jsonValue());
+        if (_value instanceof JsonpSerializable) {
+            ((JsonpSerializable) _value).serialize(generator, mapper);
+        }
 
-		generator.writeEnd();
+        generator.writeEnd();
 
-	}
+    }
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Intervals> {
-		private Kind _kind;
-		private Object _value;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Intervals> {
+        private Kind _kind;
+        private Object _value;
 
-		public ObjectBuilder<Intervals> allOf(IntervalsAllOf v) {
-			this._kind = Kind.AllOf;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<Intervals> allOf(IntervalsAllOf v) {
+            this._kind = Kind.AllOf;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<Intervals> allOf(Function<IntervalsAllOf.Builder, ObjectBuilder<IntervalsAllOf>> fn) {
-			return this.allOf(fn.apply(new IntervalsAllOf.Builder()).build());
-		}
+        public ObjectBuilder<Intervals> allOf(Function<IntervalsAllOf.Builder, ObjectBuilder<IntervalsAllOf>> fn) {
+            return this.allOf(fn.apply(new IntervalsAllOf.Builder()).build());
+        }
 
-		public ObjectBuilder<Intervals> anyOf(IntervalsAnyOf v) {
-			this._kind = Kind.AnyOf;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<Intervals> anyOf(IntervalsAnyOf v) {
+            this._kind = Kind.AnyOf;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<Intervals> anyOf(Function<IntervalsAnyOf.Builder, ObjectBuilder<IntervalsAnyOf>> fn) {
-			return this.anyOf(fn.apply(new IntervalsAnyOf.Builder()).build());
-		}
+        public ObjectBuilder<Intervals> anyOf(Function<IntervalsAnyOf.Builder, ObjectBuilder<IntervalsAnyOf>> fn) {
+            return this.anyOf(fn.apply(new IntervalsAnyOf.Builder()).build());
+        }
 
-		public ObjectBuilder<Intervals> fuzzy(IntervalsFuzzy v) {
-			this._kind = Kind.Fuzzy;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<Intervals> fuzzy(IntervalsFuzzy v) {
+            this._kind = Kind.Fuzzy;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<Intervals> fuzzy(Function<IntervalsFuzzy.Builder, ObjectBuilder<IntervalsFuzzy>> fn) {
-			return this.fuzzy(fn.apply(new IntervalsFuzzy.Builder()).build());
-		}
+        public ObjectBuilder<Intervals> fuzzy(Function<IntervalsFuzzy.Builder, ObjectBuilder<IntervalsFuzzy>> fn) {
+            return this.fuzzy(fn.apply(new IntervalsFuzzy.Builder()).build());
+        }
 
-		public ObjectBuilder<Intervals> match(IntervalsMatch v) {
-			this._kind = Kind.Match;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<Intervals> match(IntervalsMatch v) {
+            this._kind = Kind.Match;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<Intervals> match(Function<IntervalsMatch.Builder, ObjectBuilder<IntervalsMatch>> fn) {
-			return this.match(fn.apply(new IntervalsMatch.Builder()).build());
-		}
+        public ObjectBuilder<Intervals> match(Function<IntervalsMatch.Builder, ObjectBuilder<IntervalsMatch>> fn) {
+            return this.match(fn.apply(new IntervalsMatch.Builder()).build());
+        }
 
-		public ObjectBuilder<Intervals> prefix(IntervalsPrefix v) {
-			this._kind = Kind.Prefix;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<Intervals> prefix(IntervalsPrefix v) {
+            this._kind = Kind.Prefix;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<Intervals> prefix(Function<IntervalsPrefix.Builder, ObjectBuilder<IntervalsPrefix>> fn) {
-			return this.prefix(fn.apply(new IntervalsPrefix.Builder()).build());
-		}
+        public ObjectBuilder<Intervals> prefix(Function<IntervalsPrefix.Builder, ObjectBuilder<IntervalsPrefix>> fn) {
+            return this.prefix(fn.apply(new IntervalsPrefix.Builder()).build());
+        }
 
-		public ObjectBuilder<Intervals> wildcard(IntervalsWildcard v) {
-			this._kind = Kind.Wildcard;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<Intervals> wildcard(IntervalsWildcard v) {
+            this._kind = Kind.Wildcard;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<Intervals> wildcard(
-				Function<IntervalsWildcard.Builder, ObjectBuilder<IntervalsWildcard>> fn) {
-			return this.wildcard(fn.apply(new IntervalsWildcard.Builder()).build());
-		}
+        public ObjectBuilder<Intervals> wildcard(Function<IntervalsWildcard.Builder, ObjectBuilder<IntervalsWildcard>> fn) {
+            return this.wildcard(fn.apply(new IntervalsWildcard.Builder()).build());
+        }
 
-		public Intervals build() {
-			_checkSingleUse();
-			return new Intervals(this);
-		}
+        public Intervals build() {
+            _checkSingleUse();
+            return new Intervals(this);
+        }
 
-	}
+    }
 
-	protected static void setupIntervalsDeserializer(ObjectDeserializer<Builder> op) {
+    protected static void setupIntervalsDeserializer(ObjectDeserializer<Builder> op) {
 
-		op.add(Builder::allOf, IntervalsAllOf._DESERIALIZER, "all_of");
-		op.add(Builder::anyOf, IntervalsAnyOf._DESERIALIZER, "any_of");
-		op.add(Builder::fuzzy, IntervalsFuzzy._DESERIALIZER, "fuzzy");
-		op.add(Builder::match, IntervalsMatch._DESERIALIZER, "match");
-		op.add(Builder::prefix, IntervalsPrefix._DESERIALIZER, "prefix");
-		op.add(Builder::wildcard, IntervalsWildcard._DESERIALIZER, "wildcard");
+        op.add(Builder::allOf, IntervalsAllOf._DESERIALIZER, "all_of");
+        op.add(Builder::anyOf, IntervalsAnyOf._DESERIALIZER, "any_of");
+        op.add(Builder::fuzzy, IntervalsFuzzy._DESERIALIZER, "fuzzy");
+        op.add(Builder::match, IntervalsMatch._DESERIALIZER, "match");
+        op.add(Builder::prefix, IntervalsPrefix._DESERIALIZER, "prefix");
+        op.add(Builder::wildcard, IntervalsWildcard._DESERIALIZER, "wildcard");
 
-	}
+    }
 
-	public static final JsonpDeserializer<Intervals> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Intervals::setupIntervalsDeserializer, Builder::build);
+    public static final JsonpDeserializer<Intervals> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        Intervals::setupIntervalsDeserializer,
+        Builder::build
+    );
 }

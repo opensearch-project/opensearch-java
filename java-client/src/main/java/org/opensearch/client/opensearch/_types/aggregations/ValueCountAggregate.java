@@ -32,13 +32,12 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.ValueCountAggregate
 
@@ -48,63 +47,63 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class ValueCountAggregate extends SingleMetricAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ValueCountAggregate(Builder builder) {
-		super(builder);
+    private ValueCountAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static ValueCountAggregate of(Function<Builder, ObjectBuilder<ValueCountAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ValueCountAggregate of(Function<Builder, ObjectBuilder<ValueCountAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.ValueCount;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.ValueCount;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ValueCountAggregate}.
-	 */
+    /**
+     * Builder for {@link ValueCountAggregate}.
+     */
 
-	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ValueCountAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<ValueCountAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ValueCountAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ValueCountAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ValueCountAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ValueCountAggregate build() {
+            _checkSingleUse();
 
-			return new ValueCountAggregate(this);
-		}
-	}
+            return new ValueCountAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ValueCountAggregate}
-	 */
-	public static final JsonpDeserializer<ValueCountAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ValueCountAggregate::setupValueCountAggregateDeserializer);
+    /**
+     * Json deserializer for {@link ValueCountAggregate}
+     */
+    public static final JsonpDeserializer<ValueCountAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ValueCountAggregate::setupValueCountAggregateDeserializer
+    );
 
-	protected static void setupValueCountAggregateDeserializer(ObjectDeserializer<ValueCountAggregate.Builder> op) {
-		setupSingleMetricAggregateBaseDeserializer(op);
+    protected static void setupValueCountAggregateDeserializer(ObjectDeserializer<ValueCountAggregate.Builder> op) {
+        setupSingleMetricAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

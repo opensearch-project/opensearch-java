@@ -8,6 +8,9 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -15,10 +18,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 // typedef: indices.delete_data_stream.Request
 
@@ -94,30 +93,31 @@ public class DeleteDataStreamRequest extends RequestBase {
      * Endpoint "{@code indices.delete_data_stream}".
      */
     public static final Endpoint<DeleteDataStreamRequest, DeleteDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-            // Request method
-            request -> {
-                return "DELETE";
-            },
+        // Request method
+        request -> { return "DELETE"; },
 
-            // Request path
-            request -> {
-                final int _name = 1 << 0;
-                int propsSet = 0;
-                propsSet |= _name;
+        // Request path
+        request -> {
+            final int _name = 1 << 0;
+            int propsSet = 0;
+            propsSet |= _name;
 
-                if (propsSet == (_name)) {
-                    StringBuilder sbd = new StringBuilder();
-                    sbd.append("/_data_stream");
-                    sbd.append("/");
-                    SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), sbd);
-                    return sbd.toString();
-                }
-                throw SimpleEndpoint.noPathTemplateFound("path");
-            },
+            if (propsSet == (_name)) {
+                StringBuilder sbd = new StringBuilder();
+                sbd.append("/_data_stream");
+                sbd.append("/");
+                SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), sbd);
+                return sbd.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
+        },
 
-            // Request parameters
-            SimpleEndpoint.emptyMap(),
+        // Request parameters
+        SimpleEndpoint.emptyMap(),
 
-            SimpleEndpoint.emptyMap(), false, DeleteDataStreamResponse._DESERIALIZER);
+        SimpleEndpoint.emptyMap(),
+        false,
+        DeleteDataStreamResponse._DESERIALIZER
+    );
 
 }

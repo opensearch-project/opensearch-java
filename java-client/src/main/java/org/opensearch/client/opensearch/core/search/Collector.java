@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,197 +45,194 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Collector
 
-
 @JsonpDeserializable
 public class Collector implements JsonpSerializable {
-	private final String name;
+    private final String name;
 
-	private final String reason;
+    private final String reason;
 
-	private final long timeInNanos;
+    private final long timeInNanos;
 
-	private final List<Collector> children;
+    private final List<Collector> children;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private Collector(Builder builder) {
+    private Collector(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
-		this.children = ApiTypeHelper.unmodifiable(builder.children);
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+        this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
+        this.children = ApiTypeHelper.unmodifiable(builder.children);
 
-	}
+    }
 
-	public static Collector of(Function<Builder, ObjectBuilder<Collector>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Collector of(Function<Builder, ObjectBuilder<Collector>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * Required - API name: {@code name}
+     */
+    public final String name() {
+        return this.name;
+    }
 
-	/**
-	 * Required - API name: {@code reason}
-	 */
-	public final String reason() {
-		return this.reason;
-	}
+    /**
+     * Required - API name: {@code reason}
+     */
+    public final String reason() {
+        return this.reason;
+    }
 
-	/**
-	 * Required - API name: {@code time_in_nanos}
-	 */
-	public final long timeInNanos() {
-		return this.timeInNanos;
-	}
+    /**
+     * Required - API name: {@code time_in_nanos}
+     */
+    public final long timeInNanos() {
+        return this.timeInNanos;
+    }
 
-	/**
-	 * API name: {@code children}
-	 */
-	public final List<Collector> children() {
-		return this.children;
-	}
+    /**
+     * API name: {@code children}
+     */
+    public final List<Collector> children() {
+        return this.children;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+        generator.writeKey("name");
+        generator.write(this.name);
 
-		generator.writeKey("reason");
-		generator.write(this.reason);
+        generator.writeKey("reason");
+        generator.write(this.reason);
 
-		generator.writeKey("time_in_nanos");
-		generator.write(this.timeInNanos);
+        generator.writeKey("time_in_nanos");
+        generator.write(this.timeInNanos);
 
-		if (ApiTypeHelper.isDefined(this.children)) {
-			generator.writeKey("children");
-			generator.writeStartArray();
-			for (Collector item0 : this.children) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.children)) {
+            generator.writeKey("children");
+            generator.writeStartArray();
+            for (Collector item0 : this.children) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link Collector}.
-	 */
+    /**
+     * Builder for {@link Collector}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Collector> {
-		private String name;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Collector> {
+        private String name;
 
-		private String reason;
+        private String reason;
 
-		private Long timeInNanos;
+        private Long timeInNanos;
 
-		@Nullable
-		private List<Collector> children;
+        @Nullable
+        private List<Collector> children;
 
-		/**
-		 * Required - API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code name}
+         */
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code reason}
-		 */
-		public final Builder reason(String value) {
-			this.reason = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code reason}
+         */
+        public final Builder reason(String value) {
+            this.reason = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code time_in_nanos}
-		 */
-		public final Builder timeInNanos(long value) {
-			this.timeInNanos = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code time_in_nanos}
+         */
+        public final Builder timeInNanos(long value) {
+            this.timeInNanos = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code children}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>children</code>.
-		 */
-		public final Builder children(List<Collector> list) {
-			this.children = _listAddAll(this.children, list);
-			return this;
-		}
+        /**
+         * API name: {@code children}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>children</code>.
+         */
+        public final Builder children(List<Collector> list) {
+            this.children = _listAddAll(this.children, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code children}
-		 * <p>
-		 * Adds one or more values to <code>children</code>.
-		 */
-		public final Builder children(Collector value, Collector... values) {
-			this.children = _listAdd(this.children, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code children}
+         * <p>
+         * Adds one or more values to <code>children</code>.
+         */
+        public final Builder children(Collector value, Collector... values) {
+            this.children = _listAdd(this.children, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code children}
-		 * <p>
-		 * Adds a value to <code>children</code> using a builder lambda.
-		 */
-		public final Builder children(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
-			return children(fn.apply(new Collector.Builder()).build());
-		}
+        /**
+         * API name: {@code children}
+         * <p>
+         * Adds a value to <code>children</code> using a builder lambda.
+         */
+        public final Builder children(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
+            return children(fn.apply(new Collector.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link Collector}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public Collector build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link Collector}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public Collector build() {
+            _checkSingleUse();
 
-			return new Collector(this);
-		}
-	}
+            return new Collector(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link Collector}
-	 */
-	public static final JsonpDeserializer<Collector> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Collector::setupCollectorDeserializer);
+    /**
+     * Json deserializer for {@link Collector}
+     */
+    public static final JsonpDeserializer<Collector> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        Collector::setupCollectorDeserializer
+    );
 
-	protected static void setupCollectorDeserializer(ObjectDeserializer<Collector.Builder> op) {
+    protected static void setupCollectorDeserializer(ObjectDeserializer<Collector.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
-		op.add(Builder::timeInNanos, JsonpDeserializer.longDeserializer(), "time_in_nanos");
-		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(Collector._DESERIALIZER), "children");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
+        op.add(Builder::timeInNanos, JsonpDeserializer.longDeserializer(), "time_in_nanos");
+        op.add(Builder::children, JsonpDeserializer.arrayDeserializer(Collector._DESERIALIZER), "children");
 
-	}
+    }
 
 }

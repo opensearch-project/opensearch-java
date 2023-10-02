@@ -37,24 +37,25 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum ShardStoreAllocation implements JsonEnum {
-	Primary("primary"),
+    Primary("primary"),
 
-	Replica("replica"),
+    Replica("replica"),
 
-	Unused("unused"),
+    Unused("unused"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ShardStoreAllocation(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ShardStoreAllocation(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ShardStoreAllocation> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ShardStoreAllocation.values());
+    public static final JsonEnum.Deserializer<ShardStoreAllocation> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        ShardStoreAllocation.values()
+    );
 }

@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,93 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoSettingsNetwork
 
 @JsonpDeserializable
 public class NodeInfoSettingsNetwork implements JsonpSerializable {
-	private final String host;
+    private final String host;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoSettingsNetwork(Builder builder) {
+    private NodeInfoSettingsNetwork(Builder builder) {
 
-		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
+        this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
 
-	}
+    }
 
-	public static NodeInfoSettingsNetwork of(Function<Builder, ObjectBuilder<NodeInfoSettingsNetwork>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoSettingsNetwork of(Function<Builder, ObjectBuilder<NodeInfoSettingsNetwork>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code host}
-	 */
-	public final String host() {
-		return this.host;
-	}
+    /**
+     * Required - API name: {@code host}
+     */
+    public final String host() {
+        return this.host;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("host");
-		generator.write(this.host);
+        generator.writeKey("host");
+        generator.write(this.host);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoSettingsNetwork}.
-	 */
+    /**
+     * Builder for {@link NodeInfoSettingsNetwork}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsNetwork> {
-		private String host;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsNetwork> {
+        private String host;
 
-		/**
-		 * Required - API name: {@code host}
-		 */
-		public final Builder host(String value) {
-			this.host = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code host}
+         */
+        public final Builder host(String value) {
+            this.host = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeInfoSettingsNetwork}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoSettingsNetwork build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoSettingsNetwork}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoSettingsNetwork build() {
+            _checkSingleUse();
 
-			return new NodeInfoSettingsNetwork(this);
-		}
-	}
+            return new NodeInfoSettingsNetwork(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoSettingsNetwork}
-	 */
-	public static final JsonpDeserializer<NodeInfoSettingsNetwork> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoSettingsNetwork::setupNodeInfoSettingsNetworkDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoSettingsNetwork}
+     */
+    public static final JsonpDeserializer<NodeInfoSettingsNetwork> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoSettingsNetwork::setupNodeInfoSettingsNetworkDeserializer
+    );
 
-	protected static void setupNodeInfoSettingsNetworkDeserializer(
-			ObjectDeserializer<NodeInfoSettingsNetwork.Builder> op) {
+    protected static void setupNodeInfoSettingsNetworkDeserializer(ObjectDeserializer<NodeInfoSettingsNetwork.Builder> op) {
 
-		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
+        op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
 
-	}
+    }
 
 }

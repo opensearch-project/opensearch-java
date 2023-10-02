@@ -37,42 +37,41 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum HealthStatus implements JsonEnum {
-	/**
-	 * All shards are assigned.
-	 */
-	Green("green", "GREEN"),
+    /**
+     * All shards are assigned.
+     */
+    Green("green", "GREEN"),
 
-	/**
-	 * All primary shards are assigned, but one or more replica shards are
-	 * unassigned. If a node in the cluster fails, some data could be unavailable
-	 * until that node is repaired.
-	 */
-	Yellow("yellow", "YELLOW"),
+    /**
+     * All primary shards are assigned, but one or more replica shards are
+     * unassigned. If a node in the cluster fails, some data could be unavailable
+     * until that node is repaired.
+     */
+    Yellow("yellow", "YELLOW"),
 
-	/**
-	 * One or more primary shards are unassigned, so some data is unavailable. This
-	 * can occur briefly during cluster startup as primary shards are assigned.
-	 */
-	Red("red", "RED"),
+    /**
+     * One or more primary shards are unassigned, so some data is unavailable. This
+     * can occur briefly during cluster startup as primary shards are assigned.
+     */
+    Red("red", "RED"),
 
-	;
+    ;
 
-	private final String jsonValue;
-	private final String[] aliases;
+    private final String jsonValue;
+    private final String[] aliases;
 
-	HealthStatus(String jsonValue, String... aliases) {
-		this.jsonValue = jsonValue;
-		this.aliases = aliases;
-	}
+    HealthStatus(String jsonValue, String... aliases) {
+        this.jsonValue = jsonValue;
+        this.aliases = aliases;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public String[] aliases() {
-		return this.aliases;
-	}
+    public String[] aliases() {
+        return this.aliases;
+    }
 
-	public static final JsonEnum.Deserializer<HealthStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			HealthStatus.values());
+    public static final JsonEnum.Deserializer<HealthStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(HealthStatus.values());
 }

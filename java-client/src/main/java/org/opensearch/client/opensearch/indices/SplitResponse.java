@@ -32,124 +32,124 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: indices.split.Response
 
 @JsonpDeserializable
 public class SplitResponse extends AcknowledgedResponseBase {
-	private final boolean shardsAcknowledged;
+    private final boolean shardsAcknowledged;
 
-	private final String index;
+    private final String index;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SplitResponse(Builder builder) {
-		super(builder);
+    private SplitResponse(Builder builder) {
+        super(builder);
 
-		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
-	}
+    }
 
-	public static SplitResponse of(Function<Builder, ObjectBuilder<SplitResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SplitResponse of(Function<Builder, ObjectBuilder<SplitResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code shards_acknowledged}
-	 */
-	public final boolean shardsAcknowledged() {
-		return this.shardsAcknowledged;
-	}
+    /**
+     * Required - API name: {@code shards_acknowledged}
+     */
+    public final boolean shardsAcknowledged() {
+        return this.shardsAcknowledged;
+    }
 
-	/**
-	 * Required - API name: {@code index}
-	 */
-	public final String index() {
-		return this.index;
-	}
+    /**
+     * Required - API name: {@code index}
+     */
+    public final String index() {
+        return this.index;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("shards_acknowledged");
-		generator.write(this.shardsAcknowledged);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("shards_acknowledged");
+        generator.write(this.shardsAcknowledged);
 
-		generator.writeKey("index");
-		generator.write(this.index);
+        generator.writeKey("index");
+        generator.write(this.index);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SplitResponse}.
-	 */
+    /**
+     * Builder for {@link SplitResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<SplitResponse> {
-		private Boolean shardsAcknowledged;
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<SplitResponse> {
+        private Boolean shardsAcknowledged;
 
-		private String index;
+        private String index;
 
-		/**
-		 * Required - API name: {@code shards_acknowledged}
-		 */
-		public final Builder shardsAcknowledged(boolean value) {
-			this.shardsAcknowledged = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code shards_acknowledged}
+         */
+        public final Builder shardsAcknowledged(boolean value) {
+            this.shardsAcknowledged = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code index}
-		 */
-		public final Builder index(String value) {
-			this.index = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code index}
+         */
+        public final Builder index(String value) {
+            this.index = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SplitResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SplitResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SplitResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SplitResponse build() {
+            _checkSingleUse();
 
-			return new SplitResponse(this);
-		}
-	}
+            return new SplitResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SplitResponse}
-	 */
-	public static final JsonpDeserializer<SplitResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SplitResponse::setupSplitResponseDeserializer);
+    /**
+     * Json deserializer for {@link SplitResponse}
+     */
+    public static final JsonpDeserializer<SplitResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SplitResponse::setupSplitResponseDeserializer
+    );
 
-	protected static void setupSplitResponseDeserializer(ObjectDeserializer<SplitResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+    protected static void setupSplitResponseDeserializer(ObjectDeserializer<SplitResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+        op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 
-	}
+    }
 
 }

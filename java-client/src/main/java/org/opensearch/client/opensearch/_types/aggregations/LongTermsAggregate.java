@@ -32,13 +32,12 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.LongTermsAggregate
 
@@ -49,64 +48,66 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private LongTermsAggregate(Builder builder) {
-		super(builder);
+    private LongTermsAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static LongTermsAggregate of(Function<Builder, ObjectBuilder<LongTermsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static LongTermsAggregate of(Function<Builder, ObjectBuilder<LongTermsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Lterms;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Lterms;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link LongTermsAggregate}.
-	 */
+    /**
+     * Builder for {@link LongTermsAggregate}.
+     */
 
-	public static class Builder extends TermsAggregateBase.AbstractBuilder<LongTermsBucket, Builder>
-			implements
-				ObjectBuilder<LongTermsAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends TermsAggregateBase.AbstractBuilder<LongTermsBucket, Builder>
+        implements
+            ObjectBuilder<LongTermsAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link LongTermsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public LongTermsAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link LongTermsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public LongTermsAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new LongTermsAggregate(this);
-		}
-	}
+            return new LongTermsAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link LongTermsAggregate}
-	 */
-	public static final JsonpDeserializer<LongTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LongTermsAggregate::setupLongTermsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link LongTermsAggregate}
+     */
+    public static final JsonpDeserializer<LongTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        LongTermsAggregate::setupLongTermsAggregateDeserializer
+    );
 
-	protected static void setupLongTermsAggregateDeserializer(ObjectDeserializer<LongTermsAggregate.Builder> op) {
-		setupTermsAggregateBaseDeserializer(op, LongTermsBucket._DESERIALIZER);
+    protected static void setupLongTermsAggregateDeserializer(ObjectDeserializer<LongTermsAggregate.Builder> op) {
+        setupTermsAggregateBaseDeserializer(op, LongTermsBucket._DESERIALIZER);
 
-	}
+    }
 
 }

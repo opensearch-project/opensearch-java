@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,126 +41,123 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.analysis.IcuTransformTokenFilter
 
 @JsonpDeserializable
 public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final IcuTransformDirection dir;
+    private final IcuTransformDirection dir;
 
-	private final String id;
+    private final String id;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IcuTransformTokenFilter(Builder builder) {
-		super(builder);
+    private IcuTransformTokenFilter(Builder builder) {
+        super(builder);
 
-		this.dir = ApiTypeHelper.requireNonNull(builder.dir, this, "dir");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.dir = ApiTypeHelper.requireNonNull(builder.dir, this, "dir");
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
-	}
+    }
 
-	public static IcuTransformTokenFilter of(Function<Builder, ObjectBuilder<IcuTransformTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IcuTransformTokenFilter of(Function<Builder, ObjectBuilder<IcuTransformTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.IcuTransform;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.IcuTransform;
+    }
 
-	/**
-	 * Required - API name: {@code dir}
-	 */
-	public final IcuTransformDirection dir() {
-		return this.dir;
-	}
+    /**
+     * Required - API name: {@code dir}
+     */
+    public final IcuTransformDirection dir() {
+        return this.dir;
+    }
 
-	/**
-	 * Required - API name: {@code id}
-	 */
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * Required - API name: {@code id}
+     */
+    public final String id() {
+        return this.id;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "icu_transform");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("dir");
-		this.dir.serialize(generator, mapper);
-		generator.writeKey("id");
-		generator.write(this.id);
+        generator.write("type", "icu_transform");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("dir");
+        this.dir.serialize(generator, mapper);
+        generator.writeKey("id");
+        generator.write(this.id);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IcuTransformTokenFilter}.
-	 */
+    /**
+     * Builder for {@link IcuTransformTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<IcuTransformTokenFilter> {
-		private IcuTransformDirection dir;
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<IcuTransformTokenFilter> {
+        private IcuTransformDirection dir;
 
-		private String id;
+        private String id;
 
-		/**
-		 * Required - API name: {@code dir}
-		 */
-		public final Builder dir(IcuTransformDirection value) {
-			this.dir = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code dir}
+         */
+        public final Builder dir(IcuTransformDirection value) {
+            this.dir = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code id}
+         */
+        public final Builder id(String value) {
+            this.id = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IcuTransformTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IcuTransformTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IcuTransformTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IcuTransformTokenFilter build() {
+            _checkSingleUse();
 
-			return new IcuTransformTokenFilter(this);
-		}
-	}
+            return new IcuTransformTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IcuTransformTokenFilter}
-	 */
-	public static final JsonpDeserializer<IcuTransformTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IcuTransformTokenFilter::setupIcuTransformTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link IcuTransformTokenFilter}
+     */
+    public static final JsonpDeserializer<IcuTransformTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IcuTransformTokenFilter::setupIcuTransformTokenFilterDeserializer
+    );
 
-	protected static void setupIcuTransformTokenFilterDeserializer(
-			ObjectDeserializer<IcuTransformTokenFilter.Builder> op) {
-		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::dir, IcuTransformDirection._DESERIALIZER, "dir");
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+    protected static void setupIcuTransformTokenFilterDeserializer(ObjectDeserializer<IcuTransformTokenFilter.Builder> op) {
+        TokenFilterBase.setupTokenFilterBaseDeserializer(op);
+        op.add(Builder::dir, IcuTransformDirection._DESERIALIZER, "dir");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

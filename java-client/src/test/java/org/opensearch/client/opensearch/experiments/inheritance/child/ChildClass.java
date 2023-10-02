@@ -32,16 +32,15 @@
 
 package org.opensearch.client.opensearch.experiments.inheritance.child;
 
-import org.opensearch.client.opensearch.experiments.inheritance.base.BaseClass;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.experiments.inheritance.base.BaseClass;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.Objects;
 
 /**
  * A concrete class that both inherits a parent class and has child classes
@@ -65,7 +64,7 @@ public class ChildClass extends BaseClass implements JsonpSerializable {
         generator.write("childField", this.childField);
     }
 
-    //---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     protected abstract static class AbstractBuilder<T extends AbstractBuilder<T>> extends BaseClass.AbstractBuilder<T> {
 
@@ -92,7 +91,7 @@ public class ChildClass extends BaseClass implements JsonpSerializable {
         }
     }
 
-    //---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     protected static <T extends AbstractBuilder<T>> void setupChildClassParser(ObjectDeserializer<T> op) {
         BaseClass.setupBaseClassParser(op);
@@ -100,7 +99,8 @@ public class ChildClass extends BaseClass implements JsonpSerializable {
     }
 
     public static final JsonpDeserializer<ChildClass> JSONP_PARSER = ObjectBuilderDeserializer.createForObject(
-        Builder::new, ChildClass::setupChildClassParser
+        Builder::new,
+        ChildClass::setupChildClassParser
     );
 
 }

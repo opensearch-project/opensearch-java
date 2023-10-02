@@ -32,10 +32,9 @@
 
 package org.opensearch.client.opensearch.experiments.api.query2;
 
+import java.util.Collection;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Collection;
 
 public class QueryTest extends Assert {
     @Test

@@ -8,6 +8,9 @@
 
 package org.opensearch.client.transport.httpclient5;
 
+import static org.opensearch.client.transport.TransportHeaders.ACCEPT;
+import static org.opensearch.client.transport.TransportHeaders.USER_AGENT;
+
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,11 +18,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.message.BasicHeader;
@@ -27,19 +29,16 @@ import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.Version;
 
-import static org.opensearch.client.transport.TransportHeaders.ACCEPT;
-import static org.opensearch.client.transport.TransportHeaders.USER_AGENT;
-
 public class ApacheHttpClient5Options implements TransportOptions {
     /**
      * Default request options.
      */
     public static final ApacheHttpClient5Options DEFAULT = new Builder(
-            Collections.emptyList(),
-            HttpAsyncResponseConsumerFactory.HeapBufferedResponseConsumerFactory.DEFAULT,
-            null,
-            null
-        ).build();
+        Collections.emptyList(),
+        HttpAsyncResponseConsumerFactory.HeapBufferedResponseConsumerFactory.DEFAULT,
+        null,
+        null
+    ).build();
 
     private final List<Header> headers;
     private final HttpAsyncResponseConsumerFactory httpAsyncResponseConsumerFactory;
@@ -67,9 +66,7 @@ public class ApacheHttpClient5Options implements TransportOptions {
 
     @Override
     public Collection<Entry<String, String>> headers() {
-        return headers.stream()
-            .map(h -> new AbstractMap.SimpleImmutableEntry<>(h.getName(), h.getValue()))
-            .collect(Collectors.toList());
+        return headers.stream().map(h -> new AbstractMap.SimpleImmutableEntry<>(h.getName(), h.getValue())).collect(Collectors.toList());
     }
 
     @Override
@@ -90,23 +87,22 @@ public class ApacheHttpClient5Options implements TransportOptions {
     public Builder toBuilder() {
         return new Builder(headers, httpAsyncResponseConsumerFactory, warningsHandler, requestConfig);
     }
-    
+
     public static class Builder implements TransportOptions.Builder {
         private final List<Header> headers;
         private HttpAsyncResponseConsumerFactory httpAsyncResponseConsumerFactory;
         private WarningsHandler warningsHandler;
         private RequestConfig requestConfig;
-        
+
         private Builder(Builder builder) {
-            this(builder.headers, builder.httpAsyncResponseConsumerFactory, 
-                builder.warningsHandler, builder.requestConfig);
+            this(builder.headers, builder.httpAsyncResponseConsumerFactory, builder.warningsHandler, builder.requestConfig);
         }
 
         private Builder(
-                List<Header> headers,
-                HttpAsyncResponseConsumerFactory httpAsyncResponseConsumerFactory,
-                WarningsHandler warningsHandler,
-                RequestConfig requestConfig
+            List<Header> headers,
+            HttpAsyncResponseConsumerFactory httpAsyncResponseConsumerFactory,
+            WarningsHandler warningsHandler,
+            RequestConfig requestConfig
         ) {
             this.headers = new ArrayList<>(headers);
             this.httpAsyncResponseConsumerFactory = httpAsyncResponseConsumerFactory;
@@ -153,7 +149,7 @@ public class ApacheHttpClient5Options implements TransportOptions {
 
             return this;
         }
-        
+
         /**
          * Set the {@link HttpAsyncResponseConsumerFactory} used to create one
          * {@link AsyncResponseConsumer} callback per retry. Controls how the
@@ -219,15 +215,13 @@ public class ApacheHttpClient5Options implements TransportOptions {
         );
 
         return new ApacheHttpClient5Options(
-            DEFAULT.toBuilder()
-                .addHeader(USER_AGENT, ua)
-                .addHeader(ACCEPT, ApacheHttpClient5Transport.JsonContentType.toString())
+            DEFAULT.toBuilder().addHeader(USER_AGENT, ua).addHeader(ACCEPT, ApacheHttpClient5Transport.JsonContentType.toString())
         );
     }
-    
+
     static ApacheHttpClient5Options of(TransportOptions options) {
         if (options instanceof ApacheHttpClient5Options) {
-            return (ApacheHttpClient5Options)options;
+            return (ApacheHttpClient5Options) options;
 
         } else {
             final Builder builder = new Builder(DEFAULT.toBuilder());
@@ -237,7 +231,7 @@ public class ApacheHttpClient5Options implements TransportOptions {
             return builder.build();
         }
     }
-    
+
     /**
      * Custom implementation of {@link BasicHeader} that overrides equals and
      * hashCode so it is easier to test equality of {@link ApacheHttpClient5Options}.

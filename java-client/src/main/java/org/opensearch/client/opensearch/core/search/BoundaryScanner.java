@@ -37,24 +37,23 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum BoundaryScanner implements JsonEnum {
-	Chars("chars"),
+    Chars("chars"),
 
-	Sentence("sentence"),
+    Sentence("sentence"),
 
-	Word("word"),
+    Word("word"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	BoundaryScanner(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    BoundaryScanner(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<BoundaryScanner> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			BoundaryScanner.values());
+    public static final JsonEnum.Deserializer<BoundaryScanner> _DESERIALIZER = new JsonEnum.Deserializer<>(BoundaryScanner.values());
 }

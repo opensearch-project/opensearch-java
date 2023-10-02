@@ -41,7 +41,6 @@ import jakarta.json.JsonObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonParsingException;
-
 import java.io.IOException;
 
 /**
@@ -58,7 +57,7 @@ class JsonValueParser {
         JsonObjectBuilder ob = DefaultJsonProvider.INSTANCE.createObjectBuilder();
 
         JsonToken token;
-        while((token = parser.nextToken()) != JsonToken.END_OBJECT) {
+        while ((token = parser.nextToken()) != JsonToken.END_OBJECT) {
             if (token != JsonToken.FIELD_NAME) {
                 throw new JsonParsingException("Expected a property name", new JacksonJsonpLocation(parser));
             }
@@ -72,7 +71,7 @@ class JsonValueParser {
     public JsonArray parseArray(JsonParser parser) throws IOException {
         JsonArrayBuilder ab = DefaultJsonProvider.INSTANCE.createArrayBuilder();
 
-        while(parser.nextToken() != JsonToken.END_ARRAY) {
+        while (parser.nextToken() != JsonToken.END_ARRAY) {
             ab.add(parseValue(parser));
         }
         return ab.build();
@@ -100,7 +99,7 @@ class JsonValueParser {
 
             case VALUE_NUMBER_FLOAT:
             case VALUE_NUMBER_INT:
-                switch(parser.getNumberType()) {
+                switch (parser.getNumberType()) {
                     case INT:
                         return DefaultJsonProvider.INSTANCE.createValue(parser.getIntValue());
                     case LONG:

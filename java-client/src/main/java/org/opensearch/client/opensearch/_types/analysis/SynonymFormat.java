@@ -37,22 +37,21 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum SynonymFormat implements JsonEnum {
-	Solr("solr"),
+    Solr("solr"),
 
-	Wordnet("wordnet"),
+    Wordnet("wordnet"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	SynonymFormat(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    SynonymFormat(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<SynonymFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SynonymFormat.values());
+    public static final JsonEnum.Deserializer<SynonymFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(SynonymFormat.values());
 }

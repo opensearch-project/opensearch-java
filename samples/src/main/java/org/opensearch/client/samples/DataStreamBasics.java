@@ -38,15 +38,12 @@ public class DataStreamBasics {
             String dataStreamName = "sample-data-stream-1";
 
             // Create an index template which configures data stream
-            PutIndexTemplateRequest putIndexTemplateRequest = new PutIndexTemplateRequest.Builder()
-                    .name(dataStreamIndexTemplateName)
-                    .indexPatterns(namePattern)
-                    .dataStream(new DataStream.Builder()
-                            .timestampField(t -> t.name(timestampFieldName))
-                            .build())
-                    .build();
+            PutIndexTemplateRequest putIndexTemplateRequest = new PutIndexTemplateRequest.Builder().name(dataStreamIndexTemplateName)
+                .indexPatterns(namePattern)
+                .dataStream(new DataStream.Builder().timestampField(t -> t.name(timestampFieldName)).build())
+                .build();
             client.indices().putIndexTemplate(putIndexTemplateRequest);
-            
+
             // Create a data stream
             CreateDataStreamRequest createDataStreamRequest = new CreateDataStreamRequest.Builder().name(dataStreamName).build();
             client.indices().createDataStream(createDataStreamRequest);

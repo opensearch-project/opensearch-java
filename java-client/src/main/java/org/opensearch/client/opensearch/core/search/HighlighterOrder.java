@@ -37,20 +37,19 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum HighlighterOrder implements JsonEnum {
-	Score("score"),
+    Score("score"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	HighlighterOrder(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    HighlighterOrder(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<HighlighterOrder> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			HighlighterOrder.values());
+    public static final JsonEnum.Deserializer<HighlighterOrder> _DESERIALIZER = new JsonEnum.Deserializer<>(HighlighterOrder.values());
 }

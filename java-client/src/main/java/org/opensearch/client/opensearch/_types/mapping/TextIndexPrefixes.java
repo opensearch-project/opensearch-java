@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,117 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.mapping.TextIndexPrefixes
 
-
 @JsonpDeserializable
 public class TextIndexPrefixes implements JsonpSerializable {
-	private final int maxChars;
+    private final int maxChars;
 
-	private final int minChars;
+    private final int minChars;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TextIndexPrefixes(Builder builder) {
+    private TextIndexPrefixes(Builder builder) {
 
-		this.maxChars = ApiTypeHelper.requireNonNull(builder.maxChars, this, "maxChars");
-		this.minChars = ApiTypeHelper.requireNonNull(builder.minChars, this, "minChars");
+        this.maxChars = ApiTypeHelper.requireNonNull(builder.maxChars, this, "maxChars");
+        this.minChars = ApiTypeHelper.requireNonNull(builder.minChars, this, "minChars");
 
-	}
+    }
 
-	public static TextIndexPrefixes of(Function<Builder, ObjectBuilder<TextIndexPrefixes>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TextIndexPrefixes of(Function<Builder, ObjectBuilder<TextIndexPrefixes>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code max_chars}
-	 */
-	public final int maxChars() {
-		return this.maxChars;
-	}
+    /**
+     * Required - API name: {@code max_chars}
+     */
+    public final int maxChars() {
+        return this.maxChars;
+    }
 
-	/**
-	 * Required - API name: {@code min_chars}
-	 */
-	public final int minChars() {
-		return this.minChars;
-	}
+    /**
+     * Required - API name: {@code min_chars}
+     */
+    public final int minChars() {
+        return this.minChars;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("max_chars");
-		generator.write(this.maxChars);
+        generator.writeKey("max_chars");
+        generator.write(this.maxChars);
 
-		generator.writeKey("min_chars");
-		generator.write(this.minChars);
+        generator.writeKey("min_chars");
+        generator.write(this.minChars);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TextIndexPrefixes}.
-	 */
+    /**
+     * Builder for {@link TextIndexPrefixes}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TextIndexPrefixes> {
-		private Integer maxChars;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TextIndexPrefixes> {
+        private Integer maxChars;
 
-		private Integer minChars;
+        private Integer minChars;
 
-		/**
-		 * Required - API name: {@code max_chars}
-		 */
-		public final Builder maxChars(int value) {
-			this.maxChars = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code max_chars}
+         */
+        public final Builder maxChars(int value) {
+            this.maxChars = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code min_chars}
-		 */
-		public final Builder minChars(int value) {
-			this.minChars = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code min_chars}
+         */
+        public final Builder minChars(int value) {
+            this.minChars = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TextIndexPrefixes}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TextIndexPrefixes build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TextIndexPrefixes}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TextIndexPrefixes build() {
+            _checkSingleUse();
 
-			return new TextIndexPrefixes(this);
-		}
-	}
+            return new TextIndexPrefixes(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TextIndexPrefixes}
-	 */
-	public static final JsonpDeserializer<TextIndexPrefixes> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TextIndexPrefixes::setupTextIndexPrefixesDeserializer);
+    /**
+     * Json deserializer for {@link TextIndexPrefixes}
+     */
+    public static final JsonpDeserializer<TextIndexPrefixes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TextIndexPrefixes::setupTextIndexPrefixesDeserializer
+    );
 
-	protected static void setupTextIndexPrefixesDeserializer(ObjectDeserializer<TextIndexPrefixes.Builder> op) {
+    protected static void setupTextIndexPrefixesDeserializer(ObjectDeserializer<TextIndexPrefixes.Builder> op) {
 
-		op.add(Builder::maxChars, JsonpDeserializer.integerDeserializer(), "max_chars");
-		op.add(Builder::minChars, JsonpDeserializer.integerDeserializer(), "min_chars");
+        op.add(Builder::maxChars, JsonpDeserializer.integerDeserializer(), "max_chars");
+        op.add(Builder::minChars, JsonpDeserializer.integerDeserializer(), "min_chars");
 
-	}
+    }
 
 }

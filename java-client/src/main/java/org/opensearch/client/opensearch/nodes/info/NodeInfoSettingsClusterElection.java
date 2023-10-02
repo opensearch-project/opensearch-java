@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,94 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoSettingsClusterElection
 
 @JsonpDeserializable
 public class NodeInfoSettingsClusterElection implements JsonpSerializable {
-	private final String strategy;
+    private final String strategy;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoSettingsClusterElection(Builder builder) {
+    private NodeInfoSettingsClusterElection(Builder builder) {
 
-		this.strategy = ApiTypeHelper.requireNonNull(builder.strategy, this, "strategy");
+        this.strategy = ApiTypeHelper.requireNonNull(builder.strategy, this, "strategy");
 
-	}
+    }
 
-	public static NodeInfoSettingsClusterElection of(
-			Function<Builder, ObjectBuilder<NodeInfoSettingsClusterElection>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoSettingsClusterElection of(Function<Builder, ObjectBuilder<NodeInfoSettingsClusterElection>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code strategy}
-	 */
-	public final String strategy() {
-		return this.strategy;
-	}
+    /**
+     * Required - API name: {@code strategy}
+     */
+    public final String strategy() {
+        return this.strategy;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("strategy");
-		generator.write(this.strategy);
+        generator.writeKey("strategy");
+        generator.write(this.strategy);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoSettingsClusterElection}.
-	 */
+    /**
+     * Builder for {@link NodeInfoSettingsClusterElection}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsClusterElection> {
-		private String strategy;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsClusterElection> {
+        private String strategy;
 
-		/**
-		 * Required - API name: {@code strategy}
-		 */
-		public final Builder strategy(String value) {
-			this.strategy = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code strategy}
+         */
+        public final Builder strategy(String value) {
+            this.strategy = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeInfoSettingsClusterElection}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoSettingsClusterElection build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoSettingsClusterElection}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoSettingsClusterElection build() {
+            _checkSingleUse();
 
-			return new NodeInfoSettingsClusterElection(this);
-		}
-	}
+            return new NodeInfoSettingsClusterElection(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoSettingsClusterElection}
-	 */
-	public static final JsonpDeserializer<NodeInfoSettingsClusterElection> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoSettingsClusterElection::setupNodeInfoSettingsClusterElectionDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoSettingsClusterElection}
+     */
+    public static final JsonpDeserializer<NodeInfoSettingsClusterElection> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoSettingsClusterElection::setupNodeInfoSettingsClusterElectionDeserializer
+    );
 
-	protected static void setupNodeInfoSettingsClusterElectionDeserializer(
-			ObjectDeserializer<NodeInfoSettingsClusterElection.Builder> op) {
+    protected static void setupNodeInfoSettingsClusterElectionDeserializer(ObjectDeserializer<NodeInfoSettingsClusterElection.Builder> op) {
 
-		op.add(Builder::strategy, JsonpDeserializer.stringDeserializer(), "strategy");
+        op.add(Builder::strategy, JsonpDeserializer.stringDeserializer(), "strategy");
 
-	}
+    }
 
 }

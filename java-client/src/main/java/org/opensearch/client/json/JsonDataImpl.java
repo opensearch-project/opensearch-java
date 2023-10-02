@@ -35,7 +35,6 @@ package org.opensearch.client.json;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -67,8 +66,9 @@ class JsonDataImpl implements JsonData {
         // Provided mapper has precedence over the one that was optionally set at creation time
         mapper = mapper != null ? mapper : this.mapper;
         if (mapper == null) {
-            throw new IllegalStateException("Contains a '" + value.getClass().getName() +
-                "' that cannot be converted to a JsonValue without a mapper");
+            throw new IllegalStateException(
+                "Contains a '" + value.getClass().getName() + "' that cannot be converted to a JsonValue without a mapper"
+            );
         }
 
         final JsonParser parser = getParser(mapper);

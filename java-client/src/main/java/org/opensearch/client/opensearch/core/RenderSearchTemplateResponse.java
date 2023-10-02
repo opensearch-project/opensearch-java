@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.core;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,116 +45,113 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: _global.render_search_template.Response
 
 @JsonpDeserializable
 public class RenderSearchTemplateResponse implements JsonpSerializable {
-	private final Map<String, JsonData> templateOutput;
+    private final Map<String, JsonData> templateOutput;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RenderSearchTemplateResponse(Builder builder) {
+    private RenderSearchTemplateResponse(Builder builder) {
 
-		this.templateOutput = ApiTypeHelper.unmodifiableRequired(builder.templateOutput, this, "templateOutput");
+        this.templateOutput = ApiTypeHelper.unmodifiableRequired(builder.templateOutput, this, "templateOutput");
 
-	}
+    }
 
-	public static RenderSearchTemplateResponse of(Function<Builder, ObjectBuilder<RenderSearchTemplateResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RenderSearchTemplateResponse of(Function<Builder, ObjectBuilder<RenderSearchTemplateResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code template_output}
-	 */
-	public final Map<String, JsonData> templateOutput() {
-		return this.templateOutput;
-	}
+    /**
+     * Required - API name: {@code template_output}
+     */
+    public final Map<String, JsonData> templateOutput() {
+        return this.templateOutput;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.templateOutput)) {
-			generator.writeKey("template_output");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.templateOutput.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.templateOutput)) {
+            generator.writeKey("template_output");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.templateOutput.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RenderSearchTemplateResponse}.
-	 */
+    /**
+     * Builder for {@link RenderSearchTemplateResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RenderSearchTemplateResponse> {
-		private Map<String, JsonData> templateOutput;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RenderSearchTemplateResponse> {
+        private Map<String, JsonData> templateOutput;
 
-		/**
-		 * Required - API name: {@code template_output}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>templateOutput</code>.
-		 */
-		public final Builder templateOutput(Map<String, JsonData> map) {
-			this.templateOutput = _mapPutAll(this.templateOutput, map);
-			return this;
-		}
+        /**
+         * Required - API name: {@code template_output}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>templateOutput</code>.
+         */
+        public final Builder templateOutput(Map<String, JsonData> map) {
+            this.templateOutput = _mapPutAll(this.templateOutput, map);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code template_output}
-		 * <p>
-		 * Adds an entry to <code>templateOutput</code>.
-		 */
-		public final Builder templateOutput(String key, JsonData value) {
-			this.templateOutput = _mapPut(this.templateOutput, key, value);
-			return this;
-		}
+        /**
+         * Required - API name: {@code template_output}
+         * <p>
+         * Adds an entry to <code>templateOutput</code>.
+         */
+        public final Builder templateOutput(String key, JsonData value) {
+            this.templateOutput = _mapPut(this.templateOutput, key, value);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RenderSearchTemplateResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RenderSearchTemplateResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RenderSearchTemplateResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RenderSearchTemplateResponse build() {
+            _checkSingleUse();
 
-			return new RenderSearchTemplateResponse(this);
-		}
-	}
+            return new RenderSearchTemplateResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RenderSearchTemplateResponse}
-	 */
-	public static final JsonpDeserializer<RenderSearchTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RenderSearchTemplateResponse::setupRenderSearchTemplateResponseDeserializer);
+    /**
+     * Json deserializer for {@link RenderSearchTemplateResponse}
+     */
+    public static final JsonpDeserializer<RenderSearchTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RenderSearchTemplateResponse::setupRenderSearchTemplateResponseDeserializer
+    );
 
-	protected static void setupRenderSearchTemplateResponseDeserializer(
-			ObjectDeserializer<RenderSearchTemplateResponse.Builder> op) {
+    protected static void setupRenderSearchTemplateResponseDeserializer(ObjectDeserializer<RenderSearchTemplateResponse.Builder> op) {
 
-		op.add(Builder::templateOutput, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
-				"template_output");
+        op.add(Builder::templateOutput, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "template_output");
 
-	}
+    }
 
 }

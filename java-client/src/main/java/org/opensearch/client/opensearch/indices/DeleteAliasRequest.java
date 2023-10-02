@@ -32,6 +32,12 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -41,305 +47,302 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import javax.annotation.Nullable;
-
 // typedef: indices.delete_alias.Request
 
 /**
  * Deletes an alias.
- * 
+ *
  */
 
 public class DeleteAliasRequest extends RequestBase {
-	private final List<String> index;
+    private final List<String> index;
 
-	@Deprecated
-	@Nullable
-	private final Time masterTimeout;
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
 
-	@Nullable
-	private final Time clusterManagerTimeout;
+    @Nullable
+    private final Time clusterManagerTimeout;
 
-	private final List<String> name;
+    private final List<String> name;
 
-	@Nullable
-	private final Time timeout;
+    @Nullable
+    private final Time timeout;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DeleteAliasRequest(Builder builder) {
+    private DeleteAliasRequest(Builder builder) {
 
-		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
-		this.masterTimeout = builder.masterTimeout;
-		this.clusterManagerTimeout = builder.clusterManagerTimeout;
-		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
-		this.timeout = builder.timeout;
+        this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+        this.masterTimeout = builder.masterTimeout;
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
+        this.timeout = builder.timeout;
 
-	}
+    }
 
-	public static DeleteAliasRequest of(Function<Builder, ObjectBuilder<DeleteAliasRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DeleteAliasRequest of(Function<Builder, ObjectBuilder<DeleteAliasRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - A comma-separated list of index names (supports wildcards); use
-	 * <code>_all</code> for all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public final List<String> index() {
-		return this.index;
-	}
+    /**
+     * Required - A comma-separated list of index names (supports wildcards); use
+     * <code>_all</code> for all indices
+     * <p>
+     * API name: {@code index}
+     */
+    public final List<String> index() {
+        return this.index;
+    }
 
-	/**
-	 * Specify timeout for connection to master
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Deprecated
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
+    /**
+     * Specify timeout for connection to master
+     * <p>
+     * API name: {@code master_timeout}
+     */
+    @Deprecated
+    @Nullable
+    public final Time masterTimeout() {
+        return this.masterTimeout;
+    }
 
-	/**
-	 * Specify timeout for connection to cluster-manager
-	 * <p>
-	 * API name: {@code cluster_manager_timeout}
-	 */
-	@Nullable
-	public final Time clusterManagerTimeout() {
-		return this.clusterManagerTimeout;
-	}
+    /**
+     * Specify timeout for connection to cluster-manager
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
 
-	/**
-	 * Required - A comma-separated list of aliases to delete (supports wildcards);
-	 * use <code>_all</code> to delete all aliases for the specified indices.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public final List<String> name() {
-		return this.name;
-	}
+    /**
+     * Required - A comma-separated list of aliases to delete (supports wildcards);
+     * use <code>_all</code> to delete all aliases for the specified indices.
+     * <p>
+     * API name: {@code name}
+     */
+    public final List<String> name() {
+        return this.name;
+    }
 
-	/**
-	 * Explicit timestamp for the document
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public final Time timeout() {
-		return this.timeout;
-	}
+    /**
+     * Explicit timestamp for the document
+     * <p>
+     * API name: {@code timeout}
+     */
+    @Nullable
+    public final Time timeout() {
+        return this.timeout;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DeleteAliasRequest}.
-	 */
+    /**
+     * Builder for {@link DeleteAliasRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteAliasRequest> {
-		private List<String> index;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteAliasRequest> {
+        private List<String> index;
 
-		@Deprecated
-		@Nullable
-		private Time masterTimeout;
+        @Deprecated
+        @Nullable
+        private Time masterTimeout;
 
-		@Nullable
-		private Time clusterManagerTimeout;
+        @Nullable
+        private Time clusterManagerTimeout;
 
-		private List<String> name;
+        private List<String> name;
 
-		@Nullable
-		private Time timeout;
+        @Nullable
+        private Time timeout;
 
-		/**
-		 * Required - A comma-separated list of index names (supports wildcards); use
-		 * <code>_all</code> for all indices
-		 * <p>
-		 * API name: {@code index}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 */
-		public final Builder index(List<String> list) {
-			this.index = _listAddAll(this.index, list);
-			return this;
-		}
+        /**
+         * Required - A comma-separated list of index names (supports wildcards); use
+         * <code>_all</code> for all indices
+         * <p>
+         * API name: {@code index}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>index</code>.
+         */
+        public final Builder index(List<String> list) {
+            this.index = _listAddAll(this.index, list);
+            return this;
+        }
 
-		/**
-		 * Required - A comma-separated list of index names (supports wildcards); use
-		 * <code>_all</code> for all indices
-		 * <p>
-		 * API name: {@code index}
-		 * <p>
-		 * Adds one or more values to <code>index</code>.
-		 */
-		public final Builder index(String value, String... values) {
-			this.index = _listAdd(this.index, value, values);
-			return this;
-		}
+        /**
+         * Required - A comma-separated list of index names (supports wildcards); use
+         * <code>_all</code> for all indices
+         * <p>
+         * API name: {@code index}
+         * <p>
+         * Adds one or more values to <code>index</code>.
+         */
+        public final Builder index(String value, String... values) {
+            this.index = _listAdd(this.index, value, values);
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
+        /**
+         * Specify timeout for connection to master
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Specify timeout for connection to master
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.masterTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Specify timeout for connection to cluster-manager
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(@Nullable Time value) {
-			this.clusterManagerTimeout = value;
-			return this;
-		}
+        /**
+         * Specify timeout for connection to cluster-manager
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to cluster-manager
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Specify timeout for connection to cluster-manager
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Required - A comma-separated list of aliases to delete (supports wildcards);
-		 * use <code>_all</code> to delete all aliases for the specified indices.
-		 * <p>
-		 * API name: {@code name}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>name</code>.
-		 */
-		public final Builder name(List<String> list) {
-			this.name = _listAddAll(this.name, list);
-			return this;
-		}
+        /**
+         * Required - A comma-separated list of aliases to delete (supports wildcards);
+         * use <code>_all</code> to delete all aliases for the specified indices.
+         * <p>
+         * API name: {@code name}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>name</code>.
+         */
+        public final Builder name(List<String> list) {
+            this.name = _listAddAll(this.name, list);
+            return this;
+        }
 
-		/**
-		 * Required - A comma-separated list of aliases to delete (supports wildcards);
-		 * use <code>_all</code> to delete all aliases for the specified indices.
-		 * <p>
-		 * API name: {@code name}
-		 * <p>
-		 * Adds one or more values to <code>name</code>.
-		 */
-		public final Builder name(String value, String... values) {
-			this.name = _listAdd(this.name, value, values);
-			return this;
-		}
+        /**
+         * Required - A comma-separated list of aliases to delete (supports wildcards);
+         * use <code>_all</code> to delete all aliases for the specified indices.
+         * <p>
+         * API name: {@code name}
+         * <p>
+         * Adds one or more values to <code>name</code>.
+         */
+        public final Builder name(String value, String... values) {
+            this.name = _listAdd(this.name, value, values);
+            return this;
+        }
 
-		/**
-		 * Explicit timestamp for the document
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable Time value) {
-			this.timeout = value;
-			return this;
-		}
+        /**
+         * Explicit timestamp for the document
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit timestamp for the document
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit timestamp for the document
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.timeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link DeleteAliasRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeleteAliasRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DeleteAliasRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DeleteAliasRequest build() {
+            _checkSingleUse();
 
-			return new DeleteAliasRequest(this);
-		}
-	}
+            return new DeleteAliasRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code indices.delete_alias}".
-	 */
-	public static final Endpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code indices.delete_alias}".
+     */
+    public static final Endpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "DELETE";
+        // Request method
+        request -> {
+            return "DELETE";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _name = 1 << 0;
-				final int _index = 1 << 1;
+        // Request path
+        request -> {
+            final int _name = 1 << 0;
+            final int _index = 1 << 1;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				propsSet |= _name;
-				propsSet |= _index;
+            propsSet |= _name;
+            propsSet |= _index;
 
-				if (propsSet == (_index | _name)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_alias");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _name)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_aliases");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == (_index | _name)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                buf.append("/_alias");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            if (propsSet == (_index | _name)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                buf.append("/_aliases");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.clusterManagerTimeout != null) {
-					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
+            if (request.clusterManagerTimeout != null) {
+                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
+            }
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteAliasResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        DeleteAliasResponse._DESERIALIZER
+    );
 }

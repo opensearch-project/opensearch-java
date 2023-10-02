@@ -32,178 +32,179 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
-import org.opensearch.client.opensearch._types.Script;
-import org.opensearch.client.opensearch._types.query_dsl.Query;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.Script;
+import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TestPopulation
 
-
 @JsonpDeserializable
 public class TestPopulation implements JsonpSerializable {
-	private final String field;
+    private final String field;
 
-	@Nullable
-	private final Script script;
+    @Nullable
+    private final Script script;
 
-	@Nullable
-	private final Query filter;
+    @Nullable
+    private final Query filter;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TestPopulation(Builder builder) {
+    private TestPopulation(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.script = builder.script;
-		this.filter = builder.filter;
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.script = builder.script;
+        this.filter = builder.filter;
 
-	}
+    }
 
-	public static TestPopulation of(Function<Builder, ObjectBuilder<TestPopulation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TestPopulation of(Function<Builder, ObjectBuilder<TestPopulation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * API name: {@code script}
-	 */
-	@Nullable
-	public final Script script() {
-		return this.script;
-	}
+    /**
+     * API name: {@code script}
+     */
+    @Nullable
+    public final Script script() {
+        return this.script;
+    }
 
-	/**
-	 * API name: {@code filter}
-	 */
-	@Nullable
-	public final Query filter() {
-		return this.filter;
-	}
+    /**
+     * API name: {@code filter}
+     */
+    @Nullable
+    public final Query filter() {
+        return this.filter;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("field");
-		generator.write(this.field);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-		if (this.script != null) {
-			generator.writeKey("script");
-			this.script.serialize(generator, mapper);
+        if (this.script != null) {
+            generator.writeKey("script");
+            this.script.serialize(generator, mapper);
 
-		}
-		if (this.filter != null) {
-			generator.writeKey("filter");
-			this.filter.serialize(generator, mapper);
+        }
+        if (this.filter != null) {
+            generator.writeKey("filter");
+            this.filter.serialize(generator, mapper);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TestPopulation}.
-	 */
+    /**
+     * Builder for {@link TestPopulation}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TestPopulation> {
-		private String field;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TestPopulation> {
+        private String field;
 
-		@Nullable
-		private Script script;
+        @Nullable
+        private Script script;
 
-		@Nullable
-		private Query filter;
+        @Nullable
+        private Query filter;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code script}
-		 */
-		public final Builder script(@Nullable Script value) {
-			this.script = value;
-			return this;
-		}
+        /**
+         * API name: {@code script}
+         */
+        public final Builder script(@Nullable Script value) {
+            this.script = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code script}
-		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
-		}
+        /**
+         * API name: {@code script}
+         */
+        public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+            return this.script(fn.apply(new Script.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code filter}
-		 */
-		public final Builder filter(@Nullable Query value) {
-			this.filter = value;
-			return this;
-		}
+        /**
+         * API name: {@code filter}
+         */
+        public final Builder filter(@Nullable Query value) {
+            this.filter = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code filter}
-		 */
-		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filter(fn.apply(new Query.Builder()).build());
-		}
+        /**
+         * API name: {@code filter}
+         */
+        public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+            return this.filter(fn.apply(new Query.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link TestPopulation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TestPopulation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TestPopulation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TestPopulation build() {
+            _checkSingleUse();
 
-			return new TestPopulation(this);
-		}
-	}
+            return new TestPopulation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TestPopulation}
-	 */
-	public static final JsonpDeserializer<TestPopulation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TestPopulation::setupTestPopulationDeserializer);
+    /**
+     * Json deserializer for {@link TestPopulation}
+     */
+    public static final JsonpDeserializer<TestPopulation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TestPopulation::setupTestPopulationDeserializer
+    );
 
-	protected static void setupTestPopulationDeserializer(ObjectDeserializer<TestPopulation.Builder> op) {
+    protected static void setupTestPopulationDeserializer(ObjectDeserializer<TestPopulation.Builder> op) {
 
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::script, Script._DESERIALIZER, "script");
-		op.add(Builder::filter, Query._DESERIALIZER, "filter");
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::script, Script._DESERIALIZER, "script");
+        op.add(Builder::filter, Query._DESERIALIZER, "filter");
 
-	}
+    }
 
 }

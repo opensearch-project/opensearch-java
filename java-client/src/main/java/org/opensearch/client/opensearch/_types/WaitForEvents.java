@@ -37,30 +37,29 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum WaitForEvents implements JsonEnum {
-	Immediate("immediate"),
+    Immediate("immediate"),
 
-	Urgent("urgent"),
+    Urgent("urgent"),
 
-	High("high"),
+    High("high"),
 
-	Normal("normal"),
+    Normal("normal"),
 
-	Low("low"),
+    Low("low"),
 
-	Languid("languid"),
+    Languid("languid"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	WaitForEvents(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    WaitForEvents(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<WaitForEvents> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			WaitForEvents.values());
+    public static final JsonEnum.Deserializer<WaitForEvents> _DESERIALIZER = new JsonEnum.Deserializer<>(WaitForEvents.values());
 }

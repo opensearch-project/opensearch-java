@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.indices.update_aliases;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,154 +45,150 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.RemoveIndexAction
 
-
 @JsonpDeserializable
 public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
-	@Nullable
-	private final String index;
+    @Nullable
+    private final String index;
 
-	private final List<String> indices;
+    private final List<String> indices;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RemoveIndexAction(Builder builder) {
+    private RemoveIndexAction(Builder builder) {
 
-		this.index = builder.index;
-		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
+        this.index = builder.index;
+        this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 
-	}
+    }
 
-	public static RemoveIndexAction of(Function<Builder, ObjectBuilder<RemoveIndexAction>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RemoveIndexAction of(Function<Builder, ObjectBuilder<RemoveIndexAction>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Action variant kind.
-	 */
-	@Override
-	public Action.Kind _actionKind() {
-		return Action.Kind.RemoveIndex;
-	}
+    /**
+     * Action variant kind.
+     */
+    @Override
+    public Action.Kind _actionKind() {
+        return Action.Kind.RemoveIndex;
+    }
 
-	/**
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public final String index() {
-		return this.index;
-	}
+    /**
+     * API name: {@code index}
+     */
+    @Nullable
+    public final String index() {
+        return this.index;
+    }
 
-	/**
-	 * API name: {@code indices}
-	 */
-	public final List<String> indices() {
-		return this.indices;
-	}
+    /**
+     * API name: {@code indices}
+     */
+    public final List<String> indices() {
+        return this.indices;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.index != null) {
-			generator.writeKey("index");
-			generator.write(this.index);
+        if (this.index != null) {
+            generator.writeKey("index");
+            generator.write(this.index);
 
-		}
-		if (ApiTypeHelper.isDefined(this.indices)) {
-			generator.writeKey("indices");
-			generator.writeStartArray();
-			for (String item0 : this.indices) {
-				generator.write(item0);
+        }
+        if (ApiTypeHelper.isDefined(this.indices)) {
+            generator.writeKey("indices");
+            generator.writeStartArray();
+            for (String item0 : this.indices) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RemoveIndexAction}.
-	 */
+    /**
+     * Builder for {@link RemoveIndexAction}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemoveIndexAction> {
-		@Nullable
-		private String index;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemoveIndexAction> {
+        @Nullable
+        private String index;
 
-		@Nullable
-		private List<String> indices;
+        @Nullable
+        private List<String> indices;
 
-		/**
-		 * API name: {@code index}
-		 */
-		public final Builder index(@Nullable String value) {
-			this.index = value;
-			return this;
-		}
+        /**
+         * API name: {@code index}
+         */
+        public final Builder index(@Nullable String value) {
+            this.index = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code indices}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 */
-		public final Builder indices(List<String> list) {
-			this.indices = _listAddAll(this.indices, list);
-			return this;
-		}
+        /**
+         * API name: {@code indices}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>indices</code>.
+         */
+        public final Builder indices(List<String> list) {
+            this.indices = _listAddAll(this.indices, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code indices}
-		 * <p>
-		 * Adds one or more values to <code>indices</code>.
-		 */
-		public final Builder indices(String value, String... values) {
-			this.indices = _listAdd(this.indices, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code indices}
+         * <p>
+         * Adds one or more values to <code>indices</code>.
+         */
+        public final Builder indices(String value, String... values) {
+            this.indices = _listAdd(this.indices, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RemoveIndexAction}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RemoveIndexAction build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RemoveIndexAction}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RemoveIndexAction build() {
+            _checkSingleUse();
 
-			return new RemoveIndexAction(this);
-		}
-	}
+            return new RemoveIndexAction(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RemoveIndexAction}
-	 */
-	public static final JsonpDeserializer<RemoveIndexAction> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RemoveIndexAction::setupRemoveIndexActionDeserializer);
+    /**
+     * Json deserializer for {@link RemoveIndexAction}
+     */
+    public static final JsonpDeserializer<RemoveIndexAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RemoveIndexAction::setupRemoveIndexActionDeserializer
+    );
 
-	protected static void setupRemoveIndexActionDeserializer(ObjectDeserializer<RemoveIndexAction.Builder> op) {
+    protected static void setupRemoveIndexActionDeserializer(ObjectDeserializer<RemoveIndexAction.Builder> op) {
 
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"indices");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+        op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices");
 
-	}
+    }
 
 }

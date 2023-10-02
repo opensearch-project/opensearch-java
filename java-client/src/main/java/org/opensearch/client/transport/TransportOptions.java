@@ -32,8 +32,6 @@
 
 package org.opensearch.client.transport;
 
-import org.opensearch.client.util.ObjectBuilder;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -42,6 +40,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import org.opensearch.client.util.ObjectBuilder;
 
 /**
  * Container for all application-specific or request-specific options, including headers, query parameters and warning handlers.
@@ -77,18 +76,17 @@ public interface TransportOptions {
 
     class BuilderImpl implements Builder {
         protected List<Map.Entry<String, String>> headers = Collections.emptyList();
-        protected Map<String,String> queryParameters = Collections.emptyMap();
+        protected Map<String, String> queryParameters = Collections.emptyMap();
         protected Function<List<String>, Boolean> onWarnings = null;
 
-        public BuilderImpl() {
-        }
+        public BuilderImpl() {}
 
         public BuilderImpl(TransportOptions src) {
             Collection<Map.Entry<String, String>> srcHeaders = src.headers();
             if (srcHeaders != null && !srcHeaders.isEmpty()) {
                 headers = new ArrayList<>(srcHeaders);
             }
-            Map<String,String> srcParams = src.queryParameters();
+            Map<String, String> srcParams = src.queryParameters();
             if (srcParams != null && !srcParams.isEmpty()) {
                 queryParameters = new HashMap<>(srcParams);
             }
@@ -138,9 +136,7 @@ public interface TransportOptions {
 
         protected DefaultImpl(BuilderImpl builder) {
             this.headers = builder.headers.isEmpty() ? Collections.emptyList() : List.copyOf(builder.headers);
-            this.params = builder.queryParameters.isEmpty() ?
-                    Collections.emptyMap() :
-                    Map.copyOf(builder.queryParameters);
+            this.params = builder.queryParameters.isEmpty() ? Collections.emptyMap() : Map.copyOf(builder.queryParameters);
             this.onWarnings = builder.onWarnings;
         }
 

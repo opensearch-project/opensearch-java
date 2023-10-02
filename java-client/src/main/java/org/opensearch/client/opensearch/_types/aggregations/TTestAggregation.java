@@ -32,186 +32,184 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TTestAggregation
 
-
 @JsonpDeserializable
 public class TTestAggregation extends AggregationBase implements AggregationVariant {
-	@Nullable
-	private final TestPopulation a;
+    @Nullable
+    private final TestPopulation a;
 
-	@Nullable
-	private final TestPopulation b;
+    @Nullable
+    private final TestPopulation b;
 
-	@Nullable
-	private final TTestType type;
+    @Nullable
+    private final TTestType type;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TTestAggregation(Builder builder) {
-		super(builder);
+    private TTestAggregation(Builder builder) {
+        super(builder);
 
-		this.a = builder.a;
-		this.b = builder.b;
-		this.type = builder.type;
+        this.a = builder.a;
+        this.b = builder.b;
+        this.type = builder.type;
 
-	}
+    }
 
-	public static TTestAggregation of(Function<Builder, ObjectBuilder<TTestAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TTestAggregation of(Function<Builder, ObjectBuilder<TTestAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.TTest;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.TTest;
+    }
 
-	/**
-	 * API name: {@code a}
-	 */
-	@Nullable
-	public final TestPopulation a() {
-		return this.a;
-	}
+    /**
+     * API name: {@code a}
+     */
+    @Nullable
+    public final TestPopulation a() {
+        return this.a;
+    }
 
-	/**
-	 * API name: {@code b}
-	 */
-	@Nullable
-	public final TestPopulation b() {
-		return this.b;
-	}
+    /**
+     * API name: {@code b}
+     */
+    @Nullable
+    public final TestPopulation b() {
+        return this.b;
+    }
 
-	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public final TTestType type() {
-		return this.type;
-	}
+    /**
+     * API name: {@code type}
+     */
+    @Nullable
+    public final TTestType type() {
+        return this.type;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.a != null) {
-			generator.writeKey("a");
-			this.a.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        if (this.a != null) {
+            generator.writeKey("a");
+            this.a.serialize(generator, mapper);
 
-		}
-		if (this.b != null) {
-			generator.writeKey("b");
-			this.b.serialize(generator, mapper);
+        }
+        if (this.b != null) {
+            generator.writeKey("b");
+            this.b.serialize(generator, mapper);
 
-		}
-		if (this.type != null) {
-			generator.writeKey("type");
-			this.type.serialize(generator, mapper);
-		}
+        }
+        if (this.type != null) {
+            generator.writeKey("type");
+            this.type.serialize(generator, mapper);
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TTestAggregation}.
-	 */
+    /**
+     * Builder for {@link TTestAggregation}.
+     */
 
-	public static class Builder extends AggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<TTestAggregation> {
-		@Nullable
-		private TestPopulation a;
+    public static class Builder extends AggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<TTestAggregation> {
+        @Nullable
+        private TestPopulation a;
 
-		@Nullable
-		private TestPopulation b;
+        @Nullable
+        private TestPopulation b;
 
-		@Nullable
-		private TTestType type;
+        @Nullable
+        private TTestType type;
 
-		/**
-		 * API name: {@code a}
-		 */
-		public final Builder a(@Nullable TestPopulation value) {
-			this.a = value;
-			return this;
-		}
+        /**
+         * API name: {@code a}
+         */
+        public final Builder a(@Nullable TestPopulation value) {
+            this.a = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code a}
-		 */
-		public final Builder a(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
-			return this.a(fn.apply(new TestPopulation.Builder()).build());
-		}
+        /**
+         * API name: {@code a}
+         */
+        public final Builder a(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
+            return this.a(fn.apply(new TestPopulation.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code b}
-		 */
-		public final Builder b(@Nullable TestPopulation value) {
-			this.b = value;
-			return this;
-		}
+        /**
+         * API name: {@code b}
+         */
+        public final Builder b(@Nullable TestPopulation value) {
+            this.b = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code b}
-		 */
-		public final Builder b(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
-			return this.b(fn.apply(new TestPopulation.Builder()).build());
-		}
+        /**
+         * API name: {@code b}
+         */
+        public final Builder b(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
+            return this.b(fn.apply(new TestPopulation.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code type}
-		 */
-		public final Builder type(@Nullable TTestType value) {
-			this.type = value;
-			return this;
-		}
+        /**
+         * API name: {@code type}
+         */
+        public final Builder type(@Nullable TTestType value) {
+            this.type = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TTestAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TTestAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TTestAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TTestAggregation build() {
+            _checkSingleUse();
 
-			return new TTestAggregation(this);
-		}
-	}
+            return new TTestAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TTestAggregation}
-	 */
-	public static final JsonpDeserializer<TTestAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TTestAggregation::setupTTestAggregationDeserializer);
+    /**
+     * Json deserializer for {@link TTestAggregation}
+     */
+    public static final JsonpDeserializer<TTestAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TTestAggregation::setupTTestAggregationDeserializer
+    );
 
-	protected static void setupTTestAggregationDeserializer(ObjectDeserializer<TTestAggregation.Builder> op) {
-		setupAggregationBaseDeserializer(op);
-		op.add(Builder::a, TestPopulation._DESERIALIZER, "a");
-		op.add(Builder::b, TestPopulation._DESERIALIZER, "b");
-		op.add(Builder::type, TTestType._DESERIALIZER, "type");
+    protected static void setupTTestAggregationDeserializer(ObjectDeserializer<TTestAggregation.Builder> op) {
+        setupAggregationBaseDeserializer(op);
+        op.add(Builder::a, TestPopulation._DESERIALIZER, "a");
+        op.add(Builder::b, TestPopulation._DESERIALIZER, "b");
+        op.add(Builder::type, TTestType._DESERIALIZER, "type");
 
-	}
+    }
 
 }

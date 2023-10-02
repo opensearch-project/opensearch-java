@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,132 +43,130 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.TopRightBottomLeftGeoBounds
 
 @JsonpDeserializable
 public class TopRightBottomLeftGeoBounds implements JsonpSerializable {
-	private final GeoLocation topRight;
+    private final GeoLocation topRight;
 
-	private final GeoLocation bottomLeft;
+    private final GeoLocation bottomLeft;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TopRightBottomLeftGeoBounds(Builder builder) {
+    private TopRightBottomLeftGeoBounds(Builder builder) {
 
-		this.topRight = ApiTypeHelper.requireNonNull(builder.topRight, this, "topRight");
-		this.bottomLeft = ApiTypeHelper.requireNonNull(builder.bottomLeft, this, "bottomLeft");
+        this.topRight = ApiTypeHelper.requireNonNull(builder.topRight, this, "topRight");
+        this.bottomLeft = ApiTypeHelper.requireNonNull(builder.bottomLeft, this, "bottomLeft");
 
-	}
+    }
 
-	public static TopRightBottomLeftGeoBounds of(Function<Builder, ObjectBuilder<TopRightBottomLeftGeoBounds>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TopRightBottomLeftGeoBounds of(Function<Builder, ObjectBuilder<TopRightBottomLeftGeoBounds>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code top_right}
-	 */
-	public final GeoLocation topRight() {
-		return this.topRight;
-	}
+    /**
+     * Required - API name: {@code top_right}
+     */
+    public final GeoLocation topRight() {
+        return this.topRight;
+    }
 
-	/**
-	 * Required - API name: {@code bottom_left}
-	 */
-	public final GeoLocation bottomLeft() {
-		return this.bottomLeft;
-	}
+    /**
+     * Required - API name: {@code bottom_left}
+     */
+    public final GeoLocation bottomLeft() {
+        return this.bottomLeft;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("top_right");
-		this.topRight.serialize(generator, mapper);
+        generator.writeKey("top_right");
+        this.topRight.serialize(generator, mapper);
 
-		generator.writeKey("bottom_left");
-		this.bottomLeft.serialize(generator, mapper);
+        generator.writeKey("bottom_left");
+        this.bottomLeft.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TopRightBottomLeftGeoBounds}.
-	 */
+    /**
+     * Builder for {@link TopRightBottomLeftGeoBounds}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopRightBottomLeftGeoBounds> {
-		private GeoLocation topRight;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopRightBottomLeftGeoBounds> {
+        private GeoLocation topRight;
 
-		private GeoLocation bottomLeft;
+        private GeoLocation bottomLeft;
 
-		/**
-		 * Required - API name: {@code top_right}
-		 */
-		public final Builder topRight(GeoLocation value) {
-			this.topRight = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code top_right}
+         */
+        public final Builder topRight(GeoLocation value) {
+            this.topRight = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code top_right}
-		 */
-		public final Builder topRight(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
-			return this.topRight(fn.apply(new GeoLocation.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code top_right}
+         */
+        public final Builder topRight(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+            return this.topRight(fn.apply(new GeoLocation.Builder()).build());
+        }
 
-		/**
-		 * Required - API name: {@code bottom_left}
-		 */
-		public final Builder bottomLeft(GeoLocation value) {
-			this.bottomLeft = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code bottom_left}
+         */
+        public final Builder bottomLeft(GeoLocation value) {
+            this.bottomLeft = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code bottom_left}
-		 */
-		public final Builder bottomLeft(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
-			return this.bottomLeft(fn.apply(new GeoLocation.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code bottom_left}
+         */
+        public final Builder bottomLeft(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+            return this.bottomLeft(fn.apply(new GeoLocation.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link TopRightBottomLeftGeoBounds}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TopRightBottomLeftGeoBounds build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TopRightBottomLeftGeoBounds}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TopRightBottomLeftGeoBounds build() {
+            _checkSingleUse();
 
-			return new TopRightBottomLeftGeoBounds(this);
-		}
-	}
+            return new TopRightBottomLeftGeoBounds(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TopRightBottomLeftGeoBounds}
-	 */
-	public static final JsonpDeserializer<TopRightBottomLeftGeoBounds> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TopRightBottomLeftGeoBounds::setupTopRightBottomLeftGeoBoundsDeserializer);
+    /**
+     * Json deserializer for {@link TopRightBottomLeftGeoBounds}
+     */
+    public static final JsonpDeserializer<TopRightBottomLeftGeoBounds> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TopRightBottomLeftGeoBounds::setupTopRightBottomLeftGeoBoundsDeserializer
+    );
 
-	protected static void setupTopRightBottomLeftGeoBoundsDeserializer(
-			ObjectDeserializer<TopRightBottomLeftGeoBounds.Builder> op) {
+    protected static void setupTopRightBottomLeftGeoBoundsDeserializer(ObjectDeserializer<TopRightBottomLeftGeoBounds.Builder> op) {
 
-		op.add(Builder::topRight, GeoLocation._DESERIALIZER, "top_right");
-		op.add(Builder::bottomLeft, GeoLocation._DESERIALIZER, "bottom_left");
+        op.add(Builder::topRight, GeoLocation._DESERIALIZER, "top_right");
+        op.add(Builder::bottomLeft, GeoLocation._DESERIALIZER, "bottom_left");
 
-	}
+    }
 
 }

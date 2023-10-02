@@ -32,159 +32,163 @@
 
 package org.opensearch.client.opensearch.core;
 
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch._types.RequestBase;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.clear_scroll.Request
 
 /**
  * Explicitly clears the search context for a scroll.
- * 
+ *
  */
 @JsonpDeserializable
 public class ClearScrollRequest extends RequestBase implements JsonpSerializable {
-	private final List<String> scrollId;
+    private final List<String> scrollId;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ClearScrollRequest(Builder builder) {
+    private ClearScrollRequest(Builder builder) {
 
-		this.scrollId = ApiTypeHelper.unmodifiable(builder.scrollId);
+        this.scrollId = ApiTypeHelper.unmodifiable(builder.scrollId);
 
-	}
+    }
 
-	public static ClearScrollRequest of(Function<Builder, ObjectBuilder<ClearScrollRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ClearScrollRequest of(Function<Builder, ObjectBuilder<ClearScrollRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code scroll_id}
-	 */
-	public final List<String> scrollId() {
-		return this.scrollId;
-	}
+    /**
+     * API name: {@code scroll_id}
+     */
+    public final List<String> scrollId() {
+        return this.scrollId;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.scrollId)) {
-			generator.writeKey("scroll_id");
-			generator.writeStartArray();
-			for (String item0 : this.scrollId) {
-				generator.write(item0);
+        if (ApiTypeHelper.isDefined(this.scrollId)) {
+            generator.writeKey("scroll_id");
+            generator.writeStartArray();
+            for (String item0 : this.scrollId) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ClearScrollRequest}.
-	 */
+    /**
+     * Builder for {@link ClearScrollRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearScrollRequest> {
-		@Nullable
-		private List<String> scrollId;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearScrollRequest> {
+        @Nullable
+        private List<String> scrollId;
 
-		/**
-		 * API name: {@code scroll_id}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>scrollId</code>.
-		 */
-		public final Builder scrollId(List<String> list) {
-			this.scrollId = _listAddAll(this.scrollId, list);
-			return this;
-		}
+        /**
+         * API name: {@code scroll_id}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>scrollId</code>.
+         */
+        public final Builder scrollId(List<String> list) {
+            this.scrollId = _listAddAll(this.scrollId, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code scroll_id}
-		 * <p>
-		 * Adds one or more values to <code>scrollId</code>.
-		 */
-		public final Builder scrollId(String value, String... values) {
-			this.scrollId = _listAdd(this.scrollId, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code scroll_id}
+         * <p>
+         * Adds one or more values to <code>scrollId</code>.
+         */
+        public final Builder scrollId(String value, String... values) {
+            this.scrollId = _listAdd(this.scrollId, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ClearScrollRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ClearScrollRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ClearScrollRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ClearScrollRequest build() {
+            _checkSingleUse();
 
-			return new ClearScrollRequest(this);
-		}
-	}
+            return new ClearScrollRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ClearScrollRequest}
-	 */
-	public static final JsonpDeserializer<ClearScrollRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClearScrollRequest::setupClearScrollRequestDeserializer);
+    /**
+     * Json deserializer for {@link ClearScrollRequest}
+     */
+    public static final JsonpDeserializer<ClearScrollRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ClearScrollRequest::setupClearScrollRequestDeserializer
+    );
 
-	protected static void setupClearScrollRequestDeserializer(ObjectDeserializer<ClearScrollRequest.Builder> op) {
+    protected static void setupClearScrollRequestDeserializer(ObjectDeserializer<ClearScrollRequest.Builder> op) {
 
-		op.add(Builder::scrollId, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"scroll_id");
+        op.add(Builder::scrollId, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "scroll_id");
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code clear_scroll}".
-	 */
-	public static final Endpoint<ClearScrollRequest, ClearScrollResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code clear_scroll}".
+     */
+    public static final Endpoint<ClearScrollRequest, ClearScrollResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "DELETE";
+        // Request method
+        request -> {
+            return "DELETE";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_search/scroll";
+        // Request path
+        request -> {
+            return "/_search/scroll";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, ClearScrollResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        true,
+        ClearScrollResponse._DESERIALIZER
+    );
 }

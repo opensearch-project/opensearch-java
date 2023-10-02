@@ -32,111 +32,111 @@
 
 package org.opensearch.client.opensearch.indices.get_field_mapping;
 
-import org.opensearch.client.opensearch._types.mapping.FieldMapping;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.mapping.FieldMapping;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: indices.get_field_mapping.TypeFieldMappings
 
-
 @JsonpDeserializable
 public class TypeFieldMappings implements JsonpSerializable {
-	private final FieldMapping mappings;
+    private final FieldMapping mappings;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TypeFieldMappings(Builder builder) {
+    private TypeFieldMappings(Builder builder) {
 
-		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
+        this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
 
-	}
+    }
 
-	public static TypeFieldMappings of(Function<Builder, ObjectBuilder<TypeFieldMappings>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TypeFieldMappings of(Function<Builder, ObjectBuilder<TypeFieldMappings>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code mappings}
-	 */
-	public final FieldMapping mappings() {
-		return this.mappings;
-	}
+    /**
+     * Required - API name: {@code mappings}
+     */
+    public final FieldMapping mappings() {
+        return this.mappings;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("mappings");
-		this.mappings.serialize(generator, mapper);
+        generator.writeKey("mappings");
+        this.mappings.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TypeFieldMappings}.
-	 */
+    /**
+     * Builder for {@link TypeFieldMappings}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TypeFieldMappings> {
-		private FieldMapping mappings;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TypeFieldMappings> {
+        private FieldMapping mappings;
 
-		/**
-		 * Required - API name: {@code mappings}
-		 */
-		public final Builder mappings(FieldMapping value) {
-			this.mappings = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code mappings}
+         */
+        public final Builder mappings(FieldMapping value) {
+            this.mappings = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code mappings}
-		 */
-		public final Builder mappings(Function<FieldMapping.Builder, ObjectBuilder<FieldMapping>> fn) {
-			return this.mappings(fn.apply(new FieldMapping.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code mappings}
+         */
+        public final Builder mappings(Function<FieldMapping.Builder, ObjectBuilder<FieldMapping>> fn) {
+            return this.mappings(fn.apply(new FieldMapping.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link TypeFieldMappings}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TypeFieldMappings build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TypeFieldMappings}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TypeFieldMappings build() {
+            _checkSingleUse();
 
-			return new TypeFieldMappings(this);
-		}
-	}
+            return new TypeFieldMappings(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TypeFieldMappings}
-	 */
-	public static final JsonpDeserializer<TypeFieldMappings> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TypeFieldMappings::setupTypeFieldMappingsDeserializer);
+    /**
+     * Json deserializer for {@link TypeFieldMappings}
+     */
+    public static final JsonpDeserializer<TypeFieldMappings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TypeFieldMappings::setupTypeFieldMappingsDeserializer
+    );
 
-	protected static void setupTypeFieldMappingsDeserializer(ObjectDeserializer<TypeFieldMappings.Builder> op) {
+    protected static void setupTypeFieldMappingsDeserializer(ObjectDeserializer<TypeFieldMappings.Builder> op) {
 
-		op.add(Builder::mappings, FieldMapping._DESERIALIZER, "mappings");
+        op.add(Builder::mappings, FieldMapping._DESERIALIZER, "mappings");
 
-	}
+    }
 
 }

@@ -32,16 +32,15 @@
 
 package org.opensearch.client.json;
 
-import org.opensearch.client.util.TriFunction;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
-
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
+import org.opensearch.client.util.TriFunction;
 
 public interface JsonpDeserializer<V> {
 
@@ -98,13 +97,13 @@ public interface JsonpDeserializer<V> {
      */
     V deserialize(JsonParser parser, JsonpMapper mapper, Event event);
 
-    //---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Creates a deserializer for a class that delegates to the mapper provided to
      * {@link #deserialize(JsonParser, JsonpMapper)}.
      */
-    static <T>JsonpDeserializer<T> of (Class<T> clazz) {
+    static <T> JsonpDeserializer<T> of(Class<T> clazz) {
         return new JsonpDeserializerBase<T>(EnumSet.allOf(JsonParser.Event.class)) {
             @Override
             public T deserialize(JsonParser parser, JsonpMapper mapper) {
@@ -145,7 +144,7 @@ public interface JsonpDeserializer<V> {
         return new LazyDeserializer<>(ctor);
     }
 
-    //----- Builtin types
+    // ----- Builtin types
 
     static <T> JsonpDeserializer<T> fixedValue(T value) {
         return new JsonpDeserializerBase<T>(EnumSet.noneOf(Event.class)) {
@@ -229,7 +228,8 @@ public interface JsonpDeserializer<V> {
     }
 
     static <K extends JsonEnum, V> JsonpDeserializer<Map<K, V>> enumMapDeserializer(
-        JsonpDeserializer<K> keyDeserializer, JsonpDeserializer<V> valueDeserializer
+        JsonpDeserializer<K> keyDeserializer,
+        JsonpDeserializer<V> valueDeserializer
     ) {
         return new JsonpDeserializerBase.EnumMapDeserializer<K, V>(keyDeserializer, valueDeserializer);
     }

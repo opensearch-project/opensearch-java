@@ -32,111 +32,111 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch.indices.simulate_template.Template;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.indices.simulate_template.Template;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: indices.simulate_template.Response
 
 @JsonpDeserializable
 public class SimulateTemplateResponse implements JsonpSerializable {
-	private final Template template;
+    private final Template template;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SimulateTemplateResponse(Builder builder) {
+    private SimulateTemplateResponse(Builder builder) {
 
-		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
+        this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
 
-	}
+    }
 
-	public static SimulateTemplateResponse of(Function<Builder, ObjectBuilder<SimulateTemplateResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SimulateTemplateResponse of(Function<Builder, ObjectBuilder<SimulateTemplateResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code template}
-	 */
-	public final Template template() {
-		return this.template;
-	}
+    /**
+     * Required - API name: {@code template}
+     */
+    public final Template template() {
+        return this.template;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("template");
-		this.template.serialize(generator, mapper);
+        generator.writeKey("template");
+        this.template.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SimulateTemplateResponse}.
-	 */
+    /**
+     * Builder for {@link SimulateTemplateResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateTemplateResponse> {
-		private Template template;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateTemplateResponse> {
+        private Template template;
 
-		/**
-		 * Required - API name: {@code template}
-		 */
-		public final Builder template(Template value) {
-			this.template = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code template}
+         */
+        public final Builder template(Template value) {
+            this.template = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code template}
-		 */
-		public final Builder template(Function<Template.Builder, ObjectBuilder<Template>> fn) {
-			return this.template(fn.apply(new Template.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code template}
+         */
+        public final Builder template(Function<Template.Builder, ObjectBuilder<Template>> fn) {
+            return this.template(fn.apply(new Template.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link SimulateTemplateResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SimulateTemplateResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SimulateTemplateResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SimulateTemplateResponse build() {
+            _checkSingleUse();
 
-			return new SimulateTemplateResponse(this);
-		}
-	}
+            return new SimulateTemplateResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SimulateTemplateResponse}
-	 */
-	public static final JsonpDeserializer<SimulateTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SimulateTemplateResponse::setupSimulateTemplateResponseDeserializer);
+    /**
+     * Json deserializer for {@link SimulateTemplateResponse}
+     */
+    public static final JsonpDeserializer<SimulateTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SimulateTemplateResponse::setupSimulateTemplateResponseDeserializer
+    );
 
-	protected static void setupSimulateTemplateResponseDeserializer(
-			ObjectDeserializer<SimulateTemplateResponse.Builder> op) {
+    protected static void setupSimulateTemplateResponseDeserializer(ObjectDeserializer<SimulateTemplateResponse.Builder> op) {
 
-		op.add(Builder::template, Template._DESERIALIZER, "template");
+        op.add(Builder::template, Template._DESERIALIZER, "template");
 
-	}
+    }
 
 }

@@ -32,77 +32,77 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.DateHistogramAggregate
 
 @JsonpDeserializable
 public class DateHistogramAggregate extends MultiBucketAggregateBase<DateHistogramBucket> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DateHistogramAggregate(Builder builder) {
-		super(builder);
+    private DateHistogramAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DateHistogramAggregate of(Function<Builder, ObjectBuilder<DateHistogramAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DateHistogramAggregate of(Function<Builder, ObjectBuilder<DateHistogramAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.DateHistogram;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.DateHistogram;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DateHistogramAggregate}.
-	 */
+    /**
+     * Builder for {@link DateHistogramAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<DateHistogramBucket, Builder>
-			implements
-				ObjectBuilder<DateHistogramAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<DateHistogramBucket, Builder>
+        implements
+            ObjectBuilder<DateHistogramAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DateHistogramAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DateHistogramAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link DateHistogramAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DateHistogramAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new DateHistogramAggregate(this);
-		}
-	}
+            return new DateHistogramAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DateHistogramAggregate}
-	 */
-	public static final JsonpDeserializer<DateHistogramAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DateHistogramAggregate::setupDateHistogramAggregateDeserializer);
+    /**
+     * Json deserializer for {@link DateHistogramAggregate}
+     */
+    public static final JsonpDeserializer<DateHistogramAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DateHistogramAggregate::setupDateHistogramAggregateDeserializer
+    );
 
-	protected static void setupDateHistogramAggregateDeserializer(
-			ObjectDeserializer<DateHistogramAggregate.Builder> op) {
-		setupMultiBucketAggregateBaseDeserializer(op, DateHistogramBucket._DESERIALIZER);
+    protected static void setupDateHistogramAggregateDeserializer(ObjectDeserializer<DateHistogramAggregate.Builder> op) {
+        setupMultiBucketAggregateBaseDeserializer(op, DateHistogramBucket._DESERIALIZER);
 
-	}
+    }
 
 }

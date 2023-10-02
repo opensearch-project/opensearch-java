@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.core.rank_eval;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,155 +43,154 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _global.rank_eval.DocumentRating
 
-
 @JsonpDeserializable
 public class DocumentRating implements JsonpSerializable {
-	private final String id;
+    private final String id;
 
-	private final String index;
+    private final String index;
 
-	private final int rating;
+    private final int rating;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DocumentRating(Builder builder) {
+    private DocumentRating(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.rating = ApiTypeHelper.requireNonNull(builder.rating, this, "rating");
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.rating = ApiTypeHelper.requireNonNull(builder.rating, this, "rating");
 
-	}
+    }
 
-	public static DocumentRating of(Function<Builder, ObjectBuilder<DocumentRating>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DocumentRating of(Function<Builder, ObjectBuilder<DocumentRating>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - The document ID.
-	 * <p>
-	 * API name: {@code _id}
-	 */
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * Required - The document ID.
+     * <p>
+     * API name: {@code _id}
+     */
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * Required - The document's index. For data streams, this should be the
-	 * document's backing index.
-	 * <p>
-	 * API name: {@code _index}
-	 */
-	public final String index() {
-		return this.index;
-	}
+    /**
+     * Required - The document's index. For data streams, this should be the
+     * document's backing index.
+     * <p>
+     * API name: {@code _index}
+     */
+    public final String index() {
+        return this.index;
+    }
 
-	/**
-	 * Required - The document's relevance with regard to this search request.
-	 * <p>
-	 * API name: {@code rating}
-	 */
-	public final int rating() {
-		return this.rating;
-	}
+    /**
+     * Required - The document's relevance with regard to this search request.
+     * <p>
+     * API name: {@code rating}
+     */
+    public final int rating() {
+        return this.rating;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("_id");
-		generator.write(this.id);
+        generator.writeKey("_id");
+        generator.write(this.id);
 
-		generator.writeKey("_index");
-		generator.write(this.index);
+        generator.writeKey("_index");
+        generator.write(this.index);
 
-		generator.writeKey("rating");
-		generator.write(this.rating);
+        generator.writeKey("rating");
+        generator.write(this.rating);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DocumentRating}.
-	 */
+    /**
+     * Builder for {@link DocumentRating}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DocumentRating> {
-		private String id;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DocumentRating> {
+        private String id;
 
-		private String index;
+        private String index;
 
-		private Integer rating;
+        private Integer rating;
 
-		/**
-		 * Required - The document ID.
-		 * <p>
-		 * API name: {@code _id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * Required - The document ID.
+         * <p>
+         * API name: {@code _id}
+         */
+        public final Builder id(String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * Required - The document's index. For data streams, this should be the
-		 * document's backing index.
-		 * <p>
-		 * API name: {@code _index}
-		 */
-		public final Builder index(String value) {
-			this.index = value;
-			return this;
-		}
+        /**
+         * Required - The document's index. For data streams, this should be the
+         * document's backing index.
+         * <p>
+         * API name: {@code _index}
+         */
+        public final Builder index(String value) {
+            this.index = value;
+            return this;
+        }
 
-		/**
-		 * Required - The document's relevance with regard to this search request.
-		 * <p>
-		 * API name: {@code rating}
-		 */
-		public final Builder rating(int value) {
-			this.rating = value;
-			return this;
-		}
+        /**
+         * Required - The document's relevance with regard to this search request.
+         * <p>
+         * API name: {@code rating}
+         */
+        public final Builder rating(int value) {
+            this.rating = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DocumentRating}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DocumentRating build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DocumentRating}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DocumentRating build() {
+            _checkSingleUse();
 
-			return new DocumentRating(this);
-		}
-	}
+            return new DocumentRating(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DocumentRating}
-	 */
-	public static final JsonpDeserializer<DocumentRating> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DocumentRating::setupDocumentRatingDeserializer);
+    /**
+     * Json deserializer for {@link DocumentRating}
+     */
+    public static final JsonpDeserializer<DocumentRating> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DocumentRating::setupDocumentRatingDeserializer
+    );
 
-	protected static void setupDocumentRatingDeserializer(ObjectDeserializer<DocumentRating.Builder> op) {
+    protected static void setupDocumentRatingDeserializer(ObjectDeserializer<DocumentRating.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::rating, JsonpDeserializer.integerDeserializer(), "rating");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+        op.add(Builder::rating, JsonpDeserializer.integerDeserializer(), "rating");
 
-	}
+    }
 
 }

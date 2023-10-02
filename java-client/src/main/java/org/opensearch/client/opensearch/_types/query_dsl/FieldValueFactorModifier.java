@@ -35,41 +35,41 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum FieldValueFactorModifier implements JsonEnum {
-	None("none"),
+    None("none"),
 
-	Log("log"),
+    Log("log"),
 
-	Log1p("log1p"),
+    Log1p("log1p"),
 
-	Log2p("log2p"),
+    Log2p("log2p"),
 
-	Ln("ln"),
+    Ln("ln"),
 
-	Ln1p("ln1p"),
+    Ln1p("ln1p"),
 
-	Ln2p("ln2p"),
+    Ln2p("ln2p"),
 
-	Square("square"),
+    Square("square"),
 
-	Sqrt("sqrt"),
+    Sqrt("sqrt"),
 
-	Reciprocal("reciprocal"),
+    Reciprocal("reciprocal"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	FieldValueFactorModifier(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    FieldValueFactorModifier(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<FieldValueFactorModifier> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			FieldValueFactorModifier.values());
+    public static final JsonEnum.Deserializer<FieldValueFactorModifier> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        FieldValueFactorModifier.values()
+    );
 }

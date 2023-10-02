@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -40,335 +43,333 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RangeQuery
 
-
 @JsonpDeserializable
 public class RangeQuery extends RangeQueryBase implements QueryVariant {
-	// Single key dictionary
-	private final String field;
+    // Single key dictionary
+    private final String field;
 
-	@Nullable
-	private final JsonData gt;
+    @Nullable
+    private final JsonData gt;
 
-	@Nullable
-	private final JsonData gte;
+    @Nullable
+    private final JsonData gte;
 
-	@Nullable
-	private final JsonData lt;
+    @Nullable
+    private final JsonData lt;
 
-	@Nullable
-	private final JsonData lte;
+    @Nullable
+    private final JsonData lte;
 
-	@Nullable
-	private final JsonData from;
+    @Nullable
+    private final JsonData from;
 
-	@Nullable
-	private final JsonData to;
+    @Nullable
+    private final JsonData to;
 
-	@Nullable
-	private final String format;
+    @Nullable
+    private final String format;
 
-	@Nullable
-	private final String timeZone;
+    @Nullable
+    private final String timeZone;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RangeQuery(Builder builder) {
-		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+    private RangeQuery(Builder builder) {
+        super(builder);
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-		this.gt = builder.gt;
-		this.gte = builder.gte;
-		this.lt = builder.lt;
-		this.lte = builder.lte;
-		this.from = builder.from;
-		this.to = builder.to;
-		this.format = builder.format;
-		this.timeZone = builder.timeZone;
+        this.gt = builder.gt;
+        this.gte = builder.gte;
+        this.lt = builder.lt;
+        this.lte = builder.lte;
+        this.from = builder.from;
+        this.to = builder.to;
+        this.format = builder.format;
+        this.timeZone = builder.timeZone;
 
-	}
+    }
 
-	public static RangeQuery of(Function<Builder, ObjectBuilder<RangeQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RangeQuery of(Function<Builder, ObjectBuilder<RangeQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.Range;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.Range;
+    }
 
-	/**
-	 * Required - The target field
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - The target field
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * API name: {@code gt}
-	 */
-	@Nullable
-	public final JsonData gt() {
-		return this.gt;
-	}
+    /**
+     * API name: {@code gt}
+     */
+    @Nullable
+    public final JsonData gt() {
+        return this.gt;
+    }
 
-	/**
-	 * API name: {@code gte}
-	 */
-	@Nullable
-	public final JsonData gte() {
-		return this.gte;
-	}
+    /**
+     * API name: {@code gte}
+     */
+    @Nullable
+    public final JsonData gte() {
+        return this.gte;
+    }
 
-	/**
-	 * API name: {@code lt}
-	 */
-	@Nullable
-	public final JsonData lt() {
-		return this.lt;
-	}
+    /**
+     * API name: {@code lt}
+     */
+    @Nullable
+    public final JsonData lt() {
+        return this.lt;
+    }
 
-	/**
-	 * API name: {@code lte}
-	 */
-	@Nullable
-	public final JsonData lte() {
-		return this.lte;
-	}
+    /**
+     * API name: {@code lte}
+     */
+    @Nullable
+    public final JsonData lte() {
+        return this.lte;
+    }
 
-	/**
-	 * API name: {@code from}
-	 */
-	@Nullable
-	public final JsonData from() {
-		return this.from;
-	}
+    /**
+     * API name: {@code from}
+     */
+    @Nullable
+    public final JsonData from() {
+        return this.from;
+    }
 
-	/**
-	 * API name: {@code to}
-	 */
-	@Nullable
-	public final JsonData to() {
-		return this.to;
-	}
+    /**
+     * API name: {@code to}
+     */
+    @Nullable
+    public final JsonData to() {
+        return this.to;
+    }
 
-	/**
-	 * API name: {@code format}
-	 */
-	@Nullable
-	public final String format() {
-		return this.format;
-	}
+    /**
+     * API name: {@code format}
+     */
+    @Nullable
+    public final String format() {
+        return this.format;
+    }
 
-	/**
-	 * API name: {@code time_zone}
-	 */
-	@Nullable
-	public final String timeZone() {
-		return this.timeZone;
-	}
+    /**
+     * API name: {@code time_zone}
+     */
+    @Nullable
+    public final String timeZone() {
+        return this.timeZone;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(this.field);
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject(this.field);
 
-		super.serializeInternal(generator, mapper);
-		if (this.gt != null) {
-			generator.writeKey("gt");
-			this.gt.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        if (this.gt != null) {
+            generator.writeKey("gt");
+            this.gt.serialize(generator, mapper);
 
-		}
-		if (this.gte != null) {
-			generator.writeKey("gte");
-			this.gte.serialize(generator, mapper);
+        }
+        if (this.gte != null) {
+            generator.writeKey("gte");
+            this.gte.serialize(generator, mapper);
 
-		}
-		if (this.lt != null) {
-			generator.writeKey("lt");
-			this.lt.serialize(generator, mapper);
+        }
+        if (this.lt != null) {
+            generator.writeKey("lt");
+            this.lt.serialize(generator, mapper);
 
-		}
-		if (this.lte != null) {
-			generator.writeKey("lte");
-			this.lte.serialize(generator, mapper);
+        }
+        if (this.lte != null) {
+            generator.writeKey("lte");
+            this.lte.serialize(generator, mapper);
 
-		}
-		if (this.from != null) {
-			generator.writeKey("from");
-			this.from.serialize(generator, mapper);
+        }
+        if (this.from != null) {
+            generator.writeKey("from");
+            this.from.serialize(generator, mapper);
 
-		}
-		if (this.to != null) {
-			generator.writeKey("to");
-			this.to.serialize(generator, mapper);
+        }
+        if (this.to != null) {
+            generator.writeKey("to");
+            this.to.serialize(generator, mapper);
 
-		}
-		if (this.format != null) {
-			generator.writeKey("format");
-			generator.write(this.format);
+        }
+        if (this.format != null) {
+            generator.writeKey("format");
+            generator.write(this.format);
 
-		}
-		if (this.timeZone != null) {
-			generator.writeKey("time_zone");
-			generator.write(this.timeZone);
+        }
+        if (this.timeZone != null) {
+            generator.writeKey("time_zone");
+            generator.write(this.timeZone);
 
-		}
+        }
 
-		generator.writeEnd();
+        generator.writeEnd();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RangeQuery}.
-	 */
+    /**
+     * Builder for {@link RangeQuery}.
+     */
 
-	public static class Builder extends RangeQueryBase.AbstractBuilder<Builder> implements ObjectBuilder<RangeQuery> {
-		private String field;
+    public static class Builder extends RangeQueryBase.AbstractBuilder<Builder> implements ObjectBuilder<RangeQuery> {
+        private String field;
 
-		/**
-		 * Required - The target field
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - The target field
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		@Nullable
-		private JsonData gt;
+        @Nullable
+        private JsonData gt;
 
-		@Nullable
-		private JsonData gte;
+        @Nullable
+        private JsonData gte;
 
-		@Nullable
-		private JsonData lt;
+        @Nullable
+        private JsonData lt;
 
-		@Nullable
-		private JsonData lte;
+        @Nullable
+        private JsonData lte;
 
-		@Nullable
-		private JsonData from;
+        @Nullable
+        private JsonData from;
 
-		@Nullable
-		private JsonData to;
+        @Nullable
+        private JsonData to;
 
-		@Nullable
-		private String format;
+        @Nullable
+        private String format;
 
-		@Nullable
-		private String timeZone;
+        @Nullable
+        private String timeZone;
 
-		/**
-		 * API name: {@code gt}
-		 */
-		public final Builder gt(@Nullable JsonData value) {
-			this.gt = value;
-			return this;
-		}
+        /**
+         * API name: {@code gt}
+         */
+        public final Builder gt(@Nullable JsonData value) {
+            this.gt = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code gte}
-		 */
-		public final Builder gte(@Nullable JsonData value) {
-			this.gte = value;
-			return this;
-		}
+        /**
+         * API name: {@code gte}
+         */
+        public final Builder gte(@Nullable JsonData value) {
+            this.gte = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code lt}
-		 */
-		public final Builder lt(@Nullable JsonData value) {
-			this.lt = value;
-			return this;
-		}
+        /**
+         * API name: {@code lt}
+         */
+        public final Builder lt(@Nullable JsonData value) {
+            this.lt = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code lte}
-		 */
-		public final Builder lte(@Nullable JsonData value) {
-			this.lte = value;
-			return this;
-		}
+        /**
+         * API name: {@code lte}
+         */
+        public final Builder lte(@Nullable JsonData value) {
+            this.lte = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code from}
-		 */
-		public final Builder from(@Nullable JsonData value) {
-			this.from = value;
-			return this;
-		}
+        /**
+         * API name: {@code from}
+         */
+        public final Builder from(@Nullable JsonData value) {
+            this.from = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code to}
-		 */
-		public final Builder to(@Nullable JsonData value) {
-			this.to = value;
-			return this;
-		}
+        /**
+         * API name: {@code to}
+         */
+        public final Builder to(@Nullable JsonData value) {
+            this.to = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code format}
-		 */
-		public final Builder format(@Nullable String value) {
-			this.format = value;
-			return this;
-		}
+        /**
+         * API name: {@code format}
+         */
+        public final Builder format(@Nullable String value) {
+            this.format = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code time_zone}
-		 */
-		public final Builder timeZone(@Nullable String value) {
-			this.timeZone = value;
-			return this;
-		}
+        /**
+         * API name: {@code time_zone}
+         */
+        public final Builder timeZone(@Nullable String value) {
+            this.timeZone = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RangeQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RangeQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RangeQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RangeQuery build() {
+            _checkSingleUse();
 
-			return new RangeQuery(this);
-		}
-	}
+            return new RangeQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RangeQuery}
-	 */
-	public static final JsonpDeserializer<RangeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RangeQuery::setupRangeQueryDeserializer);
+    /**
+     * Json deserializer for {@link RangeQuery}
+     */
+    public static final JsonpDeserializer<RangeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RangeQuery::setupRangeQueryDeserializer
+    );
 
-	protected static void setupRangeQueryDeserializer(ObjectDeserializer<RangeQuery.Builder> op) {
-		RangeQueryBase.setupRangeQueryBaseDeserializer(op);
-		op.add(Builder::gt, JsonData._DESERIALIZER, "gt");
-		op.add(Builder::gte, JsonData._DESERIALIZER, "gte");
-		op.add(Builder::lt, JsonData._DESERIALIZER, "lt");
-		op.add(Builder::lte, JsonData._DESERIALIZER, "lte");
-		op.add(Builder::from, JsonData._DESERIALIZER, "from");
-		op.add(Builder::to, JsonData._DESERIALIZER, "to");
-		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
+    protected static void setupRangeQueryDeserializer(ObjectDeserializer<RangeQuery.Builder> op) {
+        RangeQueryBase.setupRangeQueryBaseDeserializer(op);
+        op.add(Builder::gt, JsonData._DESERIALIZER, "gt");
+        op.add(Builder::gte, JsonData._DESERIALIZER, "gte");
+        op.add(Builder::lt, JsonData._DESERIALIZER, "lt");
+        op.add(Builder::lte, JsonData._DESERIALIZER, "lte");
+        op.add(Builder::from, JsonData._DESERIALIZER, "from");
+        op.add(Builder::to, JsonData._DESERIALIZER, "to");
+        op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+        op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 
-		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+        op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 
-	}
+    }
 
 }

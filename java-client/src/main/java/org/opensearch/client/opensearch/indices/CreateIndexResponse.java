@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,147 +44,146 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices.create.Response
 
 @JsonpDeserializable
 public class CreateIndexResponse implements JsonpSerializable {
-	private final String index;
+    private final String index;
 
-	private final boolean shardsAcknowledged;
+    private final boolean shardsAcknowledged;
 
-	@Nullable
-	private final Boolean acknowledged;
+    @Nullable
+    private final Boolean acknowledged;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CreateIndexResponse(Builder builder) {
+    private CreateIndexResponse(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
-		this.acknowledged = builder.acknowledged;
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+        this.acknowledged = builder.acknowledged;
 
-	}
+    }
 
-	public static CreateIndexResponse of(Function<Builder, ObjectBuilder<CreateIndexResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CreateIndexResponse of(Function<Builder, ObjectBuilder<CreateIndexResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code index}
-	 */
-	public final String index() {
-		return this.index;
-	}
+    /**
+     * Required - API name: {@code index}
+     */
+    public final String index() {
+        return this.index;
+    }
 
-	/**
-	 * Required - API name: {@code shards_acknowledged}
-	 */
-	public final boolean shardsAcknowledged() {
-		return this.shardsAcknowledged;
-	}
+    /**
+     * Required - API name: {@code shards_acknowledged}
+     */
+    public final boolean shardsAcknowledged() {
+        return this.shardsAcknowledged;
+    }
 
-	/**
-	 * API name: {@code acknowledged}
-	 */
-	@Nullable
-	public final Boolean acknowledged() {
-		return this.acknowledged;
-	}
+    /**
+     * API name: {@code acknowledged}
+     */
+    @Nullable
+    public final Boolean acknowledged() {
+        return this.acknowledged;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index");
-		generator.write(this.index);
+        generator.writeKey("index");
+        generator.write(this.index);
 
-		generator.writeKey("shards_acknowledged");
-		generator.write(this.shardsAcknowledged);
+        generator.writeKey("shards_acknowledged");
+        generator.write(this.shardsAcknowledged);
 
-		if (this.acknowledged != null) {
-			generator.writeKey("acknowledged");
-			generator.write(this.acknowledged);
+        if (this.acknowledged != null) {
+            generator.writeKey("acknowledged");
+            generator.write(this.acknowledged);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CreateIndexResponse}.
-	 */
+    /**
+     * Builder for {@link CreateIndexResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateIndexResponse> {
-		private String index;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateIndexResponse> {
+        private String index;
 
-		private Boolean shardsAcknowledged;
+        private Boolean shardsAcknowledged;
 
-		@Nullable
-		private Boolean acknowledged;
+        @Nullable
+        private Boolean acknowledged;
 
-		/**
-		 * Required - API name: {@code index}
-		 */
-		public final Builder index(String value) {
-			this.index = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code index}
+         */
+        public final Builder index(String value) {
+            this.index = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code shards_acknowledged}
-		 */
-		public final Builder shardsAcknowledged(boolean value) {
-			this.shardsAcknowledged = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code shards_acknowledged}
+         */
+        public final Builder shardsAcknowledged(boolean value) {
+            this.shardsAcknowledged = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code acknowledged}
-		 */
-		public final Builder acknowledged(@Nullable Boolean value) {
-			this.acknowledged = value;
-			return this;
-		}
+        /**
+         * API name: {@code acknowledged}
+         */
+        public final Builder acknowledged(@Nullable Boolean value) {
+            this.acknowledged = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CreateIndexResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CreateIndexResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CreateIndexResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CreateIndexResponse build() {
+            _checkSingleUse();
 
-			return new CreateIndexResponse(this);
-		}
-	}
+            return new CreateIndexResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CreateIndexResponse}
-	 */
-	public static final JsonpDeserializer<CreateIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateIndexResponse::setupCreateIndexResponseDeserializer);
+    /**
+     * Json deserializer for {@link CreateIndexResponse}
+     */
+    public static final JsonpDeserializer<CreateIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CreateIndexResponse::setupCreateIndexResponseDeserializer
+    );
 
-	protected static void setupCreateIndexResponseDeserializer(ObjectDeserializer<CreateIndexResponse.Builder> op) {
+    protected static void setupCreateIndexResponseDeserializer(ObjectDeserializer<CreateIndexResponse.Builder> op) {
 
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
-		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+        op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
+        op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 
-	}
+    }
 
 }

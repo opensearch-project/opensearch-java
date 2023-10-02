@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,152 +43,147 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: ingest._types.RemoveProcessor
 
-
 @JsonpDeserializable
 public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
-	private final List<String> field;
+    private final List<String> field;
 
-	@Nullable
-	private final Boolean ignoreMissing;
+    @Nullable
+    private final Boolean ignoreMissing;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RemoveProcessor(Builder builder) {
-		super(builder);
+    private RemoveProcessor(Builder builder) {
+        super(builder);
 
-		this.field = ApiTypeHelper.unmodifiableRequired(builder.field, this, "field");
-		this.ignoreMissing = builder.ignoreMissing;
+        this.field = ApiTypeHelper.unmodifiableRequired(builder.field, this, "field");
+        this.ignoreMissing = builder.ignoreMissing;
 
-	}
+    }
 
-	public static RemoveProcessor of(Function<Builder, ObjectBuilder<RemoveProcessor>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RemoveProcessor of(Function<Builder, ObjectBuilder<RemoveProcessor>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Processor variant kind.
-	 */
-	@Override
-	public Processor.Kind _processorKind() {
-		return Processor.Kind.Remove;
-	}
+    /**
+     * Processor variant kind.
+     */
+    @Override
+    public Processor.Kind _processorKind() {
+        return Processor.Kind.Remove;
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final List<String> field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final List<String> field() {
+        return this.field;
+    }
 
-	/**
-	 * API name: {@code ignore_missing}
-	 */
-	@Nullable
-	public final Boolean ignoreMissing() {
-		return this.ignoreMissing;
-	}
+    /**
+     * API name: {@code ignore_missing}
+     */
+    @Nullable
+    public final Boolean ignoreMissing() {
+        return this.ignoreMissing;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.field)) {
-			generator.writeKey("field");
-			generator.writeStartArray();
-			for (String item0 : this.field) {
-				generator.write(item0);
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.field)) {
+            generator.writeKey("field");
+            generator.writeStartArray();
+            for (String item0 : this.field) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.ignoreMissing != null) {
-			generator.writeKey("ignore_missing");
-			generator.write(this.ignoreMissing);
+        }
+        if (this.ignoreMissing != null) {
+            generator.writeKey("ignore_missing");
+            generator.write(this.ignoreMissing);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RemoveProcessor}.
-	 */
+    /**
+     * Builder for {@link RemoveProcessor}.
+     */
 
-	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RemoveProcessor> {
-		private List<String> field;
+    public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<RemoveProcessor> {
+        private List<String> field;
 
-		@Nullable
-		private Boolean ignoreMissing;
+        @Nullable
+        private Boolean ignoreMissing;
 
-		/**
-		 * Required - API name: {@code field}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>field</code>.
-		 */
-		public final Builder field(List<String> list) {
-			this.field = _listAddAll(this.field, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>field</code>.
+         */
+        public final Builder field(List<String> list) {
+            this.field = _listAddAll(this.field, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code field}
-		 * <p>
-		 * Adds one or more values to <code>field</code>.
-		 */
-		public final Builder field(String value, String... values) {
-			this.field = _listAdd(this.field, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         * <p>
+         * Adds one or more values to <code>field</code>.
+         */
+        public final Builder field(String value, String... values) {
+            this.field = _listAdd(this.field, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code ignore_missing}
-		 */
-		public final Builder ignoreMissing(@Nullable Boolean value) {
-			this.ignoreMissing = value;
-			return this;
-		}
+        /**
+         * API name: {@code ignore_missing}
+         */
+        public final Builder ignoreMissing(@Nullable Boolean value) {
+            this.ignoreMissing = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RemoveProcessor}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RemoveProcessor build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RemoveProcessor}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RemoveProcessor build() {
+            _checkSingleUse();
 
-			return new RemoveProcessor(this);
-		}
-	}
+            return new RemoveProcessor(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RemoveProcessor}
-	 */
-	public static final JsonpDeserializer<RemoveProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RemoveProcessor::setupRemoveProcessorDeserializer);
+    /**
+     * Json deserializer for {@link RemoveProcessor}
+     */
+    public static final JsonpDeserializer<RemoveProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RemoveProcessor::setupRemoveProcessorDeserializer
+    );
 
-	protected static void setupRemoveProcessorDeserializer(ObjectDeserializer<RemoveProcessor.Builder> op) {
-		setupProcessorBaseDeserializer(op);
-		op.add(Builder::field, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "field");
-		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+    protected static void setupRemoveProcessorDeserializer(ObjectDeserializer<RemoveProcessor.Builder> op) {
+        setupProcessorBaseDeserializer(op);
+        op.add(Builder::field, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "field");
+        op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
 
-	}
+    }
 
 }

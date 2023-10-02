@@ -32,68 +32,67 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.upgrade.Response
 
 @JsonpDeserializable
 public class UpgradeResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private UpgradeResponse(Builder builder) {
-		super(builder);
+    private UpgradeResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static UpgradeResponse of(Function<Builder, ObjectBuilder<UpgradeResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static UpgradeResponse of(Function<Builder, ObjectBuilder<UpgradeResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link UpgradeResponse}.
-	 */
+    /**
+     * Builder for {@link UpgradeResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<UpgradeResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<UpgradeResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link UpgradeResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public UpgradeResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link UpgradeResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public UpgradeResponse build() {
+            _checkSingleUse();
 
-			return new UpgradeResponse(this);
-		}
-	}
+            return new UpgradeResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link UpgradeResponse}
-	 */
-	public static final JsonpDeserializer<UpgradeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			UpgradeResponse::setupUpgradeResponseDeserializer);
+    /**
+     * Json deserializer for {@link UpgradeResponse}
+     */
+    public static final JsonpDeserializer<UpgradeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        UpgradeResponse::setupUpgradeResponseDeserializer
+    );
 
-	protected static void setupUpgradeResponseDeserializer(ObjectDeserializer<Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupUpgradeResponseDeserializer(ObjectDeserializer<Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

@@ -8,6 +8,14 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import static java.util.Collections.emptyMap;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import org.opensearch.client.ResponseException;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchClient;
@@ -25,15 +33,6 @@ import org.opensearch.client.opensearch.cluster.health.ShardHealthStats;
 import org.opensearch.cluster.routing.allocation.decider.EnableAllocationDecider;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.indices.recovery.RecoverySettings;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import static java.util.Collections.emptyMap;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertTrue;
 
 public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCase {
     public void testClusterPutSettings() throws IOException {
@@ -53,29 +52,34 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         transientSettingsMap.put(transientSettingKey, JsonData.of(transientSettingValue));
         persistentSettingsMap.put(persistentSettingKey, JsonData.of(persistentSettingValue));
 
-        PutClusterSettingsRequest request = new PutClusterSettingsRequest.Builder()
-                .persistent(persistentSettingsMap)
-                .transient_(transientSettingsMap)
-                .build();
+        PutClusterSettingsRequest request = new PutClusterSettingsRequest.Builder().persistent(persistentSettingsMap)
+            .transient_(transientSettingsMap)
+            .build();
         PutClusterSettingsResponse response = openSearchClient.cluster().putSettings(request);
 
         assertTrue(response.acknowledged());
         assertThat(response.transient_().get(transientSettingKeySplit[0]), notNullValue());
         assertThat(response.transient_().get(persistentSettingKeySplit[0]), nullValue());
         assertEquals(
-                response.transient_().get(transientSettingKeySplit[0]).toJson().asJsonObject()
-                        .getJsonObject("recovery")
-                        .getString("max_bytes_per_sec"),
-                transientSettingValue
+            response.transient_()
+                .get(transientSettingKeySplit[0])
+                .toJson()
+                .asJsonObject()
+                .getJsonObject("recovery")
+                .getString("max_bytes_per_sec"),
+            transientSettingValue
         );
         assertThat(response.persistent().get(transientSettingKeySplit[0]), nullValue());
         assertThat(response.persistent().get(persistentSettingKeySplit[0]), notNullValue());
         assertEquals(
-                response.persistent().get(persistentSettingKeySplit[0]).toJson().asJsonObject()
-                        .getJsonObject("routing")
-                        .getJsonObject("allocation")
-                        .getString("enable"),
-                persistentSettingValue
+            response.persistent()
+                .get(persistentSettingKeySplit[0])
+                .toJson()
+                .asJsonObject()
+                .getJsonObject("routing")
+                .getJsonObject("allocation")
+                .getString("enable"),
+            persistentSettingValue
         );
     }
 
@@ -87,9 +91,7 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         Map<String, JsonData> transientSettingsMap = new HashMap<>();
         transientSettingsMap.put(setting, JsonData.of(value));
 
-        PutClusterSettingsRequest request = new PutClusterSettingsRequest.Builder()
-                .transient_(transientSettingsMap)
-                .build();
+        PutClusterSettingsRequest request = new PutClusterSettingsRequest.Builder().transient_(transientSettingsMap).build();
         try {
             openSearchClient.cluster().putSettings(request);
             fail();
@@ -115,21 +117,23 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         transientSettingsMap.put(transientSettingKey, JsonData.of(transientSettingValue));
         persistentSettingsMap.put(persistentSettingKey, JsonData.of(persistentSettingValue));
 
-        PutClusterSettingsRequest request = new PutClusterSettingsRequest.Builder()
-                .persistent(persistentSettingsMap)
-                .transient_(transientSettingsMap)
-                .build();
+        PutClusterSettingsRequest request = new PutClusterSettingsRequest.Builder().persistent(persistentSettingsMap)
+            .transient_(transientSettingsMap)
+            .build();
         openSearchClient.cluster().putSettings(request);
 
         GetClusterSettingsResponse getSettingsResponse = openSearchClient.cluster()
-                .getSettings(new GetClusterSettingsRequest.Builder().build());
+            .getSettings(new GetClusterSettingsRequest.Builder().build());
         assertTrue(getSettingsResponse.persistent().containsKey("cluster"));
         assertEquals(
-                getSettingsResponse.persistent().get("cluster").toJson().asJsonObject()
-                        .getJsonObject("routing")
-                        .getJsonObject("allocation")
-                        .getString("enable"),
-                persistentSettingValue
+            getSettingsResponse.persistent()
+                .get("cluster")
+                .toJson()
+                .asJsonObject()
+                .getJsonObject("routing")
+                .getJsonObject("allocation")
+                .getString("enable"),
+            persistentSettingValue
         );
         assertEquals(1, getSettingsResponse.transient_().size());
         assertEquals(0, getSettingsResponse.defaults().size());
@@ -150,31 +154,33 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         transientSettingsMap.put(transientSettingKey, JsonData.of(transientSettingValue));
         persistentSettingsMap.put(persistentSettingKey, JsonData.of(persistentSettingValue));
 
-        PutClusterSettingsRequest request = new PutClusterSettingsRequest.Builder()
-                .persistent(persistentSettingsMap)
-                .transient_(transientSettingsMap)
-                .build();
+        PutClusterSettingsRequest request = new PutClusterSettingsRequest.Builder().persistent(persistentSettingsMap)
+            .transient_(transientSettingsMap)
+            .build();
         openSearchClient.cluster().putSettings(request);
 
-        GetClusterSettingsResponse getSettingsResponse = openSearchClient.cluster().getSettings(new GetClusterSettingsRequest.Builder()
-                .includeDefaults(true).build());
+        GetClusterSettingsResponse getSettingsResponse = openSearchClient.cluster()
+            .getSettings(new GetClusterSettingsRequest.Builder().includeDefaults(true).build());
         assertTrue(getSettingsResponse.persistent().containsKey("cluster"));
         assertEquals(
-                getSettingsResponse.persistent().get("cluster").toJson().asJsonObject()
-                        .getJsonObject("routing")
-                        .getJsonObject("allocation")
-                        .getString("enable"),
-                persistentSettingValue
+            getSettingsResponse.persistent()
+                .get("cluster")
+                .toJson()
+                .asJsonObject()
+                .getJsonObject("routing")
+                .getJsonObject("allocation")
+                .getString("enable"),
+            persistentSettingValue
         );
         assertEquals(1, getSettingsResponse.transient_().size());
-        assertTrue(getSettingsResponse.defaults().size()>0);
+        assertTrue(getSettingsResponse.defaults().size() > 0);
     }
 
     public void testClusterHealthYellowClusterLevel() throws IOException {
         OpenSearchClient openSearchClient = javaClient();
         createIndex("index", Settings.EMPTY);
         createIndex("index2", Settings.EMPTY);
-        HealthRequest request = new HealthRequest.Builder().timeout(t->t.time("5s")).build();
+        HealthRequest request = new HealthRequest.Builder().timeout(t -> t.time("5s")).build();
         HealthResponse response = openSearchClient.cluster().health(request);
         assertEquals(response.indices().size(), 0);
     }
@@ -191,11 +197,10 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         if (randomBoolean()) {
             createIndex(ignoredIndex, Settings.EMPTY);
         }
-        HealthRequest request = new HealthRequest.Builder()
-                .index(firstIndex, secondIndex)
-                .timeout(t->t.time("5s"))
-                .level(Level.Indices)
-                .build();
+        HealthRequest request = new HealthRequest.Builder().index(firstIndex, secondIndex)
+            .timeout(t -> t.time("5s"))
+            .level(Level.Indices)
+            .build();
         HealthResponse response = openSearchClient.cluster().health(request);
         assertYellowShards(response);
         assertEquals(response.indices().size(), 2);
@@ -212,7 +217,7 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         assertEquals(response.numberOfDataNodes(), 1);
         assertEquals(response.numberOfNodes(), 1);
         assertEquals(response.activeShards(), 2);
-        assertEquals(response.delayedUnassignedShards(),0);
+        assertEquals(response.delayedUnassignedShards(), 0);
         assertEquals(response.initializingShards(), 0);
         assertEquals(response.unassignedShards(), 2);
     }
@@ -221,11 +226,7 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         OpenSearchClient openSearchClient = javaClient();
         createIndex("index", Settings.EMPTY);
         createIndex("index2", Settings.EMPTY);
-        HealthRequest request = new HealthRequest.Builder()
-                .index("index")
-                .timeout(t->t.time("5s"))
-                .level(Level.Shards)
-                .build();
+        HealthRequest request = new HealthRequest.Builder().index("index").timeout(t -> t.time("5s")).level(Level.Shards).build();
         HealthResponse response = openSearchClient.cluster().health(request);
 
         assertNotNull(response);
@@ -245,7 +246,7 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
 
     private static void assertYellowIndex(String indexName, IndexHealthStats indexHealth, boolean emptyShards) {
         assertNotNull(indexHealth);
-        assertEquals(indexHealth.activePrimaryShards(),1);
+        assertEquals(indexHealth.activePrimaryShards(), 1);
         assertEquals(indexHealth.activeShards(), 1);
         assertEquals(indexHealth.numberOfReplicas(), 1);
         assertEquals(indexHealth.initializingShards(), 0);
@@ -285,11 +286,10 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
     public void testClusterHealthNotFoundIndex() throws IOException {
         OpenSearchClient openSearchClient = javaClient();
         createIndex("index", Settings.EMPTY);
-        HealthRequest request = new HealthRequest.Builder()
-                .index("notexisted-index")
-                .timeout(t->t.time("5s"))
-                .level(Level.Indices)
-                .build();
+        HealthRequest request = new HealthRequest.Builder().index("notexisted-index")
+            .timeout(t -> t.time("5s"))
+            .level(Level.Indices)
+            .build();
         try {
             HealthResponse response = openSearchClient.cluster().health(request);
             assertNotNull(response);

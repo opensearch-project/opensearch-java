@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,10 +46,6 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 // typedef: _global.search._types.SourceConfigParam
 
@@ -53,144 +53,147 @@ import java.util.stream.Collectors;
  * Defines how to fetch a source. Fetching can be disabled entirely, or the
  * source can be filtered. Used as a query parameter along with the
  * <code>_source_includes</code> and <code>_source_excludes</code> parameters.
- * 
+ *
  */
 @JsonpDeserializable
 public class SourceConfigParam implements TaggedUnion<SourceConfigParam.Kind, Object>, JsonpSerializable {
 
-	public enum Kind {
-		Fields, Fetch
+    public enum Kind {
+        Fields,
+        Fetch
 
-	}
+    }
 
-	private final Kind _kind;
-	private final Object _value;
+    private final Kind _kind;
+    private final Object _value;
 
-	@Override
-	public final Kind _kind() {
-		return _kind;
-	}
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
 
-	@Override
-	public final Object _get() {
-		return _value;
-	}
+    @Override
+    public final Object _get() {
+        return _value;
+    }
 
-	private SourceConfigParam(Kind kind, Object value) {
-		this._kind = kind;
-		this._value = value;
-	}
+    private SourceConfigParam(Kind kind, Object value) {
+        this._kind = kind;
+        this._value = value;
+    }
 
-	public String _toJsonString() {
-		switch (_kind) {
-			case Fields :
-				return this.fields().stream().map(v -> v).collect(Collectors.joining(","));
-			case Fetch :
-				return String.valueOf(this.fetch());
+    public String _toJsonString() {
+        switch (_kind) {
+            case Fields:
+                return this.fields().stream().map(v -> v).collect(Collectors.joining(","));
+            case Fetch:
+                return String.valueOf(this.fetch());
 
-			default :
-				throw new IllegalStateException("Unknown kind " + _kind);
-		}
-	}
+            default:
+                throw new IllegalStateException("Unknown kind " + _kind);
+        }
+    }
 
-	private SourceConfigParam(Builder builder) {
+    private SourceConfigParam(Builder builder) {
 
-		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-	}
+    }
 
-	public static SourceConfigParam of(Function<Builder, ObjectBuilder<SourceConfigParam>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SourceConfigParam of(Function<Builder, ObjectBuilder<SourceConfigParam>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Is this variant instance of kind {@code fields}?
-	 */
-	public boolean isFields() {
-		return _kind == Kind.Fields;
-	}
+    /**
+     * Is this variant instance of kind {@code fields}?
+     */
+    public boolean isFields() {
+        return _kind == Kind.Fields;
+    }
 
-	/**
-	 * Get the {@code fields} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code fields} kind.
-	 */
-	public List<String> fields() {
-		return TaggedUnionUtils.get(this, Kind.Fields);
-	}
+    /**
+     * Get the {@code fields} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code fields} kind.
+     */
+    public List<String> fields() {
+        return TaggedUnionUtils.get(this, Kind.Fields);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code fetch}?
-	 */
-	public boolean isFetch() {
-		return _kind == Kind.Fetch;
-	}
+    /**
+     * Is this variant instance of kind {@code fetch}?
+     */
+    public boolean isFetch() {
+        return _kind == Kind.Fetch;
+    }
 
-	/**
-	 * Get the {@code fetch} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code fetch} kind.
-	 */
-	public Boolean fetch() {
-		return TaggedUnionUtils.get(this, Kind.Fetch);
-	}
+    /**
+     * Get the {@code fetch} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code fetch} kind.
+     */
+    public Boolean fetch() {
+        return TaggedUnionUtils.get(this, Kind.Fetch);
+    }
 
-	@Override
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_kind) {
-				case Fields :
-					generator.writeStartArray();
-					for (String item0 : ((List<String>) this._value)) {
-						generator.write(item0);
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        if (_value instanceof JsonpSerializable) {
+            ((JsonpSerializable) _value).serialize(generator, mapper);
+        } else {
+            switch (_kind) {
+                case Fields:
+                    generator.writeStartArray();
+                    for (String item0 : ((List<String>) this._value)) {
+                        generator.write(item0);
 
-					}
-					generator.writeEnd();
+                    }
+                    generator.writeEnd();
 
-					break;
-				case Fetch :
-					generator.write(((Boolean) this._value));
+                    break;
+                case Fetch:
+                    generator.write(((Boolean) this._value));
 
-					break;
-			}
-		}
+                    break;
+            }
+        }
 
-	}
+    }
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceConfigParam> {
-		private Kind _kind;
-		private Object _value;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceConfigParam> {
+        private Kind _kind;
+        private Object _value;
 
-		public ObjectBuilder<SourceConfigParam> fields(List<String> v) {
-			this._kind = Kind.Fields;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<SourceConfigParam> fields(List<String> v) {
+            this._kind = Kind.Fields;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<SourceConfigParam> fetch(Boolean v) {
-			this._kind = Kind.Fetch;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<SourceConfigParam> fetch(Boolean v) {
+            this._kind = Kind.Fetch;
+            this._value = v;
+            return this;
+        }
 
-		public SourceConfigParam build() {
-			_checkSingleUse();
-			return new SourceConfigParam(this);
-		}
+        public SourceConfigParam build() {
+            _checkSingleUse();
+            return new SourceConfigParam(this);
+        }
 
-	}
+    }
 
-	private static JsonpDeserializer<SourceConfigParam> buildSourceConfigParamDeserializer() {
-		return new UnionDeserializer.Builder<SourceConfigParam, Kind, Object>(SourceConfigParam::new, false)
-				.addMember(Kind.Fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()))
-				.addMember(Kind.Fetch, JsonpDeserializer.booleanDeserializer()).build();
-	}
+    private static JsonpDeserializer<SourceConfigParam> buildSourceConfigParamDeserializer() {
+        return new UnionDeserializer.Builder<SourceConfigParam, Kind, Object>(SourceConfigParam::new, false).addMember(
+            Kind.Fields,
+            JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())
+        ).addMember(Kind.Fetch, JsonpDeserializer.booleanDeserializer()).build();
+    }
 
-	public static final JsonpDeserializer<SourceConfigParam> _DESERIALIZER = JsonpDeserializer
-			.lazy(SourceConfigParam::buildSourceConfigParamDeserializer);
+    public static final JsonpDeserializer<SourceConfigParam> _DESERIALIZER = JsonpDeserializer.lazy(
+        SourceConfigParam::buildSourceConfigParamDeserializer
+    );
 }

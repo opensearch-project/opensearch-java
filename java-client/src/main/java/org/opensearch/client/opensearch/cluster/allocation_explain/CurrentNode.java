@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.cluster.allocation_explain;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,211 +44,208 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: cluster.allocation_explain.CurrentNode
 
-
 @JsonpDeserializable
 public class CurrentNode implements JsonpSerializable {
-	private final String id;
+    private final String id;
 
-	private final String name;
+    private final String name;
 
-	private final Map<String, String> attributes;
+    private final Map<String, String> attributes;
 
-	private final String transportAddress;
+    private final String transportAddress;
 
-	private final int weightRanking;
+    private final int weightRanking;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CurrentNode(Builder builder) {
+    private CurrentNode(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
-		this.weightRanking = ApiTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking");
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+        this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+        this.weightRanking = ApiTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking");
 
-	}
+    }
 
-	public static CurrentNode of(Function<Builder, ObjectBuilder<CurrentNode>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CurrentNode of(Function<Builder, ObjectBuilder<CurrentNode>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code id}
-	 */
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * Required - API name: {@code id}
+     */
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * Required - API name: {@code name}
+     */
+    public final String name() {
+        return this.name;
+    }
 
-	/**
-	 * Required - API name: {@code attributes}
-	 */
-	public final Map<String, String> attributes() {
-		return this.attributes;
-	}
+    /**
+     * Required - API name: {@code attributes}
+     */
+    public final Map<String, String> attributes() {
+        return this.attributes;
+    }
 
-	/**
-	 * Required - API name: {@code transport_address}
-	 */
-	public final String transportAddress() {
-		return this.transportAddress;
-	}
+    /**
+     * Required - API name: {@code transport_address}
+     */
+    public final String transportAddress() {
+        return this.transportAddress;
+    }
 
-	/**
-	 * Required - API name: {@code weight_ranking}
-	 */
-	public final int weightRanking() {
-		return this.weightRanking;
-	}
+    /**
+     * Required - API name: {@code weight_ranking}
+     */
+    public final int weightRanking() {
+        return this.weightRanking;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("id");
-		generator.write(this.id);
+        generator.writeKey("id");
+        generator.write(this.id);
 
-		generator.writeKey("name");
-		generator.write(this.name);
+        generator.writeKey("name");
+        generator.write(this.name);
 
-		if (ApiTypeHelper.isDefined(this.attributes)) {
-			generator.writeKey("attributes");
-			generator.writeStartObject();
-			for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
-				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+        if (ApiTypeHelper.isDefined(this.attributes)) {
+            generator.writeKey("attributes");
+            generator.writeStartObject();
+            for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
+                generator.writeKey(item0.getKey());
+                generator.write(item0.getValue());
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		generator.writeKey("transport_address");
-		generator.write(this.transportAddress);
+        }
+        generator.writeKey("transport_address");
+        generator.write(this.transportAddress);
 
-		generator.writeKey("weight_ranking");
-		generator.write(this.weightRanking);
+        generator.writeKey("weight_ranking");
+        generator.write(this.weightRanking);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CurrentNode}.
-	 */
+    /**
+     * Builder for {@link CurrentNode}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CurrentNode> {
-		private String id;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CurrentNode> {
+        private String id;
 
-		private String name;
+        private String name;
 
-		private Map<String, String> attributes;
+        private Map<String, String> attributes;
 
-		private String transportAddress;
+        private String transportAddress;
 
-		private Integer weightRanking;
+        private Integer weightRanking;
 
-		/**
-		 * Required - API name: {@code id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code id}
+         */
+        public final Builder id(String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code name}
+         */
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code attributes}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>attributes</code>.
-		 */
-		public final Builder attributes(Map<String, String> map) {
-			this.attributes = _mapPutAll(this.attributes, map);
-			return this;
-		}
+        /**
+         * Required - API name: {@code attributes}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>attributes</code>.
+         */
+        public final Builder attributes(Map<String, String> map) {
+            this.attributes = _mapPutAll(this.attributes, map);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code attributes}
-		 * <p>
-		 * Adds an entry to <code>attributes</code>.
-		 */
-		public final Builder attributes(String key, String value) {
-			this.attributes = _mapPut(this.attributes, key, value);
-			return this;
-		}
+        /**
+         * Required - API name: {@code attributes}
+         * <p>
+         * Adds an entry to <code>attributes</code>.
+         */
+        public final Builder attributes(String key, String value) {
+            this.attributes = _mapPut(this.attributes, key, value);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code transport_address}
-		 */
-		public final Builder transportAddress(String value) {
-			this.transportAddress = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code transport_address}
+         */
+        public final Builder transportAddress(String value) {
+            this.transportAddress = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code weight_ranking}
-		 */
-		public final Builder weightRanking(int value) {
-			this.weightRanking = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code weight_ranking}
+         */
+        public final Builder weightRanking(int value) {
+            this.weightRanking = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CurrentNode}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CurrentNode build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CurrentNode}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CurrentNode build() {
+            _checkSingleUse();
 
-			return new CurrentNode(this);
-		}
-	}
+            return new CurrentNode(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CurrentNode}
-	 */
-	public static final JsonpDeserializer<CurrentNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CurrentNode::setupCurrentNodeDeserializer);
+    /**
+     * Json deserializer for {@link CurrentNode}
+     */
+    public static final JsonpDeserializer<CurrentNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CurrentNode::setupCurrentNodeDeserializer
+    );
 
-	protected static void setupCurrentNodeDeserializer(ObjectDeserializer<CurrentNode.Builder> op) {
+    protected static void setupCurrentNodeDeserializer(ObjectDeserializer<CurrentNode.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
-				"attributes");
-		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
-		op.add(Builder::weightRanking, JsonpDeserializer.integerDeserializer(), "weight_ranking");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "attributes");
+        op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
+        op.add(Builder::weightRanking, JsonpDeserializer.integerDeserializer(), "weight_ranking");
 
-	}
+    }
 
 }

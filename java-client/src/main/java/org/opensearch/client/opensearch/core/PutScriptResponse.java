@@ -32,68 +32,67 @@
 
 package org.opensearch.client.opensearch.core;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _global.put_script.Response
 
 @JsonpDeserializable
 public class PutScriptResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PutScriptResponse(Builder builder) {
-		super(builder);
+    private PutScriptResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static PutScriptResponse of(Function<Builder, ObjectBuilder<PutScriptResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PutScriptResponse of(Function<Builder, ObjectBuilder<PutScriptResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PutScriptResponse}.
-	 */
+    /**
+     * Builder for {@link PutScriptResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PutScriptResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<PutScriptResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PutScriptResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PutScriptResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PutScriptResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PutScriptResponse build() {
+            _checkSingleUse();
 
-			return new PutScriptResponse(this);
-		}
-	}
+            return new PutScriptResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PutScriptResponse}
-	 */
-	public static final JsonpDeserializer<PutScriptResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutScriptResponse::setupPutScriptResponseDeserializer);
+    /**
+     * Json deserializer for {@link PutScriptResponse}
+     */
+    public static final JsonpDeserializer<PutScriptResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PutScriptResponse::setupPutScriptResponseDeserializer
+    );
 
-	protected static void setupPutScriptResponseDeserializer(ObjectDeserializer<PutScriptResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupPutScriptResponseDeserializer(ObjectDeserializer<PutScriptResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

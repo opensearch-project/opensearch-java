@@ -41,15 +41,15 @@ import org.opensearch.client.json.JsonpDeserializer;
  */
 
 public class ExistsSourceResponse {
-	public ExistsSourceResponse() {
-	}
+    public ExistsSourceResponse() {}
 
-	/**
-	 * Singleton instance for {@link ExistsSourceResponse}.
-	 */
-	public static final ExistsSourceResponse _INSTANCE = new ExistsSourceResponse();
+    /**
+     * Singleton instance for {@link ExistsSourceResponse}.
+     */
+    public static final ExistsSourceResponse _INSTANCE = new ExistsSourceResponse();
 
-	public static final JsonpDeserializer<ExistsSourceResponse> _DESERIALIZER = JsonpDeserializer
-			.fixedValue(ExistsSourceResponse._INSTANCE);
+    public static final JsonpDeserializer<ExistsSourceResponse> _DESERIALIZER = JsonpDeserializer.fixedValue(
+        ExistsSourceResponse._INSTANCE
+    );
 
 }

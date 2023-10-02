@@ -8,6 +8,8 @@
 
 package org.opensearch.client.transport.httpclient5;
 
+import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -24,10 +26,10 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.Map.Entry;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
@@ -36,9 +38,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.GZIPOutputStream;
-
 import javax.annotation.Nullable;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hc.client5.http.auth.AuthCache;
@@ -87,9 +87,6 @@ import org.opensearch.client.transport.httpclient5.internal.Node;
 import org.opensearch.client.transport.httpclient5.internal.NodeSelector;
 import org.opensearch.client.util.MissingRequiredPropertyException;
 
-import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonParser;
-
 /**
  * Apache HttpClient 5 based client transport.
  */
@@ -111,10 +108,19 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
     private final String pathPrefix;
     private final List<Header> defaultHeaders;
 
-    public ApacheHttpClient5Transport(final CloseableHttpAsyncClient client, final Header[] defaultHeaders,
-            final List<Node> nodes, final JsonpMapper mapper, @Nullable TransportOptions options, final String pathPrefix, 
-                final FailureListener failureListener, final NodeSelector nodeSelector, final boolean strictDeprecationMode, 
-                    final boolean compressionEnabled, final boolean chunkedEnabled) {
+    public ApacheHttpClient5Transport(
+        final CloseableHttpAsyncClient client,
+        final Header[] defaultHeaders,
+        final List<Node> nodes,
+        final JsonpMapper mapper,
+        @Nullable TransportOptions options,
+        final String pathPrefix,
+        final FailureListener failureListener,
+        final NodeSelector nodeSelector,
+        final boolean strictDeprecationMode,
+        final boolean compressionEnabled,
+        final boolean chunkedEnabled
+    ) {
         this.mapper = mapper;
         this.client = client;
         this.defaultHeaders = Collections.unmodifiableList(Arrays.asList(defaultHeaders));
@@ -129,8 +135,11 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
     }
 
     @Override
-    public <RequestT, ResponseT, ErrorT> ResponseT performRequest(RequestT request,
-            Endpoint<RequestT, ResponseT, ErrorT> endpoint, TransportOptions options) throws IOException {
+    public <RequestT, ResponseT, ErrorT> ResponseT performRequest(
+        RequestT request,
+        Endpoint<RequestT, ResponseT, ErrorT> endpoint,
+        TransportOptions options
+    ) throws IOException {
         try {
             return performRequestAsync(request, endpoint, options).join();
         } catch (final CompletionException ex) {
@@ -140,29 +149,33 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                 throw (IOException) ex.getCause();
             } else {
                 throw new IOException(ex.getCause());
-            } 
+            }
         }
     }
 
     @Override
-    public <RequestT, ResponseT, ErrorT> CompletableFuture<ResponseT> performRequestAsync(RequestT request,
-            Endpoint<RequestT, ResponseT, ErrorT> endpoint, TransportOptions options) {
+    public <RequestT, ResponseT, ErrorT> CompletableFuture<ResponseT> performRequestAsync(
+        RequestT request,
+        Endpoint<RequestT, ResponseT, ErrorT> endpoint,
+        TransportOptions options
+    ) {
 
         final ApacheHttpClient5Options requestOptions = (options == null) ? transportOptions : ApacheHttpClient5Options.of(options);
         final CompletableFuture<Response> future = new CompletableFuture<>();
         final HttpUriRequestBase clientReq = prepareLowLevelRequest(request, endpoint, requestOptions);
-        final WarningsHandler warningsHandler = (requestOptions.getWarningsHandler() == null) ? 
-            this.warningsHandler : requestOptions.getWarningsHandler();
+        final WarningsHandler warningsHandler = (requestOptions.getWarningsHandler() == null)
+            ? this.warningsHandler
+            : requestOptions.getWarningsHandler();
 
         try {
             performRequestAsync(nextNodes(), requestOptions, clientReq, warningsHandler, future);
-        } catch(final IOException ex) {
+        } catch (final IOException ex) {
             future.completeExceptionally(ex);
         }
-        
+
         return future.thenApply(r -> {
             try {
-                return (ResponseT)prepareResponse(r, endpoint);
+                return (ResponseT) prepareResponse(r, endpoint);
             } catch (final IOException ex) {
                 throw new CompletionException(ex);
             }
@@ -184,8 +197,13 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         client.close();
     }
 
-    private void performRequestAsync(final NodeTuple<Iterator<Node>> nodeTuple, final ApacheHttpClient5Options options,
-            final HttpUriRequestBase request, final WarningsHandler warningsHandler, final CompletableFuture<Response> listener) {
+    private void performRequestAsync(
+        final NodeTuple<Iterator<Node>> nodeTuple,
+        final ApacheHttpClient5Options options,
+        final HttpUriRequestBase request,
+        final WarningsHandler warningsHandler,
+        final CompletableFuture<Response> listener
+    ) {
         final RequestContext context = createContextForNextAttempt(options, request, nodeTuple.nodes.next(), nodeTuple.authCache);
         Future<ClassicHttpResponse> future = client.execute(
             context.requestProducer,
@@ -195,8 +213,12 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                 @Override
                 public void completed(ClassicHttpResponse httpResponse) {
                     try {
-                        ResponseOrResponseException responseOrResponseException = convertResponse(request, context.node,
-                            httpResponse, warningsHandler);
+                        ResponseOrResponseException responseOrResponseException = convertResponse(
+                            request,
+                            context.node,
+                            httpResponse,
+                            warningsHandler
+                        );
                         if (responseOrResponseException.responseException == null) {
                             listener.complete(responseOrResponseException.response);
                         } else {
@@ -236,7 +258,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             request.setDependency((org.apache.hc.core5.concurrent.Cancellable) future);
         }
     }
-    
+
     /**
      * Replaces the nodes with which the client communicates.
      *
@@ -259,8 +281,12 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         this.denylist.clear();
     }
 
-    private ResponseOrResponseException convertResponse(final HttpUriRequestBase request, final Node node, 
-            final ClassicHttpResponse httpResponse, final WarningsHandler warningsHandler) throws IOException {
+    private ResponseOrResponseException convertResponse(
+        final HttpUriRequestBase request,
+        final Node node,
+        final ClassicHttpResponse httpResponse,
+        final WarningsHandler warningsHandler
+    ) throws IOException {
         int statusCode = httpResponse.getCode();
 
         Optional.ofNullable(httpResponse.getEntity())
@@ -440,15 +466,17 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         failureListener.onFailure(node);
     }
 
-    private RequestContext createContextForNextAttempt(final ApacheHttpClient5Options options, 
-            final HttpUriRequestBase request, final Node node, final AuthCache authCache) {
+    private RequestContext createContextForNextAttempt(
+        final ApacheHttpClient5Options options,
+        final HttpUriRequestBase request,
+        final Node node,
+        final AuthCache authCache
+    ) {
         request.reset();
         return new RequestContext(options, request, node, authCache);
     }
 
-    private <ResponseT, ErrorT> ResponseT prepareResponse(Response clientResp,
-            Endpoint<?, ResponseT, ErrorT> endpoint
-    ) throws IOException {
+    private <ResponseT, ErrorT> ResponseT prepareResponse(Response clientResp, Endpoint<?, ResponseT, ErrorT> endpoint) throws IOException {
 
         try {
             int statusCode = clientResp.getStatusLine().getStatusCode();
@@ -456,18 +484,12 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             if (endpoint.isError(statusCode)) {
                 JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
                 if (errorDeserializer == null) {
-                    throw new TransportException(
-                        "Request failed with status code '" + statusCode + "'",
-                        new ResponseException(clientResp)
-                    );
+                    throw new TransportException("Request failed with status code '" + statusCode + "'", new ResponseException(clientResp));
                 }
 
                 HttpEntity entity = clientResp.getEntity();
                 if (entity == null) {
-                    throw new TransportException(
-                        "Expecting a response body, but none was sent",
-                        new ResponseException(clientResp)
-                    );
+                    throw new TransportException("Expecting a response body, but none was sent", new ResponseException(clientResp));
                 }
 
                 // We may have to replay it.
@@ -480,12 +502,12 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                         // TODO: have the endpoint provide the exception constructor
                         throw new OpenSearchException((ErrorResponse) error);
                     }
-                } catch(MissingRequiredPropertyException errorEx) {
+                } catch (MissingRequiredPropertyException errorEx) {
                     // Could not decode exception, try the response type
                     try {
                         ResponseT response = decodeResponse(statusCode, entity, clientResp, endpoint);
                         return response;
-                    } catch(Exception respEx) {
+                    } catch (Exception respEx) {
                         // No better luck: throw the original error decoding exception
                         throw new TransportException("Failed to decode error response", new ResponseException(clientResp));
                     }
@@ -499,9 +521,9 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
     }
 
     private <RequestT> HttpUriRequestBase prepareLowLevelRequest(
-            RequestT request,
-            Endpoint<RequestT, ?, ?> endpoint,
-            @Nullable ApacheHttpClient5Options options
+        RequestT request,
+        Endpoint<RequestT, ?, ?> endpoint,
+        @Nullable ApacheHttpClient5Options options
     ) {
         final String method = endpoint.method(request);
         final String path = endpoint.requestUrl(request);
@@ -565,6 +587,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             httpRequest.addHeader("Accept-Encoding", "gzip");
         }
     }
+
     /**
      * Called after each successful request call.
      * Receives as an argument the host that was used for the successful request.
@@ -577,8 +600,11 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
     }
 
     private <ResponseT> ResponseT decodeResponse(
-            int statusCode, @Nullable HttpEntity entity, Response clientResp, Endpoint<?, ResponseT, ?> endpoint
-        ) throws IOException {
+        int statusCode,
+        @Nullable HttpEntity entity,
+        Response clientResp,
+        Endpoint<?, ResponseT, ?> endpoint
+    ) throws IOException {
 
         if (endpoint instanceof BooleanEndpoint) {
             BooleanEndpoint<?> bep = (BooleanEndpoint<?>) endpoint;
@@ -587,23 +613,21 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             ResponseT response = (ResponseT) new BooleanResponse(bep.getResult(statusCode));
             return response;
 
-        } else if (endpoint instanceof JsonEndpoint){
-            JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>)endpoint;
+        } else if (endpoint instanceof JsonEndpoint) {
+            JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>) endpoint;
             // Successful response
             ResponseT response = null;
             JsonpDeserializer<ResponseT> responseParser = jsonEndpoint.responseDeserializer();
             if (responseParser != null) {
                 // Expecting a body
                 if (entity == null) {
-                    throw new TransportException(
-                        "Expecting a response body, but none was sent",
-                        new ResponseException(clientResp)
-                    );
+                    throw new TransportException("Expecting a response body, but none was sent", new ResponseException(clientResp));
                 }
                 InputStream content = entity.getContent();
                 try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                     response = responseParser.deserialize(parser, mapper);
-                };
+                }
+                ;
             }
             return response;
         } else {
@@ -682,7 +706,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
      */
     private void writeNdJson(NdJsonpSerializable value, ByteArrayOutputStream baos) {
         Iterator<?> values = value._serializables();
-        while(values.hasNext()) {
+        while (values.hasNext()) {
             Object item = values.next();
             if (item instanceof NdJsonpSerializable && item != value) { // do not recurse on the item itself
                 writeNdJson((NdJsonpSerializable) item, baos);
@@ -694,7 +718,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             }
         }
     }
-    
+
     private static URI buildUri(String pathPrefix, String path, Map<String, String> params) {
         Objects.requireNonNull(path, "path must not be null");
         try {
@@ -732,18 +756,20 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         private final AsyncResponseConsumer<ClassicHttpResponse> asyncResponseConsumer;
         private final HttpClientContext context;
 
-        RequestContext(final ApacheHttpClient5Options options, final HttpUriRequestBase request, 
-                final Node node, final AuthCache authCache) {
+        RequestContext(
+            final ApacheHttpClient5Options options,
+            final HttpUriRequestBase request,
+            final Node node,
+            final AuthCache authCache
+        ) {
             this.node = node;
             this.requestProducer = HttpUriRequestProducer.create(request, node.getHost());
-            this.asyncResponseConsumer = options
-                    .getHttpAsyncResponseConsumerFactory()
-                    .createHttpAsyncResponseConsumer();
+            this.asyncResponseConsumer = options.getHttpAsyncResponseConsumerFactory().createHttpAsyncResponseConsumer();
             this.context = HttpClientContext.create();
             context.setAuthCache(new WrappingAuthCache(context, authCache));
         }
     }
-    
+
     /**
      * The Apache HttpClient 5 adds "Authorization" header even if the credentials for basic authentication are not provided
      * (effectively, username and password are 'null'). To workaround that, wrapping the AuthCache around current HttpClientContext
@@ -817,7 +843,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             this.response = null;
         }
     }
-    
+
     /**
      * Listener that allows to be notified whenever a failure happens. Useful when sniffing is enabled, so that we can sniff on failure.
      * The default implementation is a no-op.
@@ -835,7 +861,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
          */
         public void onFailure(Node node) {}
     }
-    
+
     /**
      * A gzip compressing entity that also implements {@code getContent()}.
      */

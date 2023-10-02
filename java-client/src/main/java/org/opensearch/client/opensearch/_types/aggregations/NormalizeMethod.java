@@ -37,30 +37,29 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum NormalizeMethod implements JsonEnum {
-	Rescale_0_1("rescale_0_1"),
+    Rescale_0_1("rescale_0_1"),
 
-	Rescale_0_100("rescale_0_100"),
+    Rescale_0_100("rescale_0_100"),
 
-	PercentOfSum("percent_of_sum"),
+    PercentOfSum("percent_of_sum"),
 
-	Mean("mean"),
+    Mean("mean"),
 
-	ZScore("z-score"),
+    ZScore("z-score"),
 
-	Softmax("softmax"),
+    Softmax("softmax"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	NormalizeMethod(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    NormalizeMethod(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<NormalizeMethod> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			NormalizeMethod.values());
+    public static final JsonEnum.Deserializer<NormalizeMethod> _DESERIALIZER = new JsonEnum.Deserializer<>(NormalizeMethod.values());
 }

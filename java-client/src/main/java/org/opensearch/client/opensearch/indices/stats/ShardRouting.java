@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.indices.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,171 +44,169 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardRouting
 
-
 @JsonpDeserializable
 public class ShardRouting implements JsonpSerializable {
-	private final String node;
+    private final String node;
 
-	private final boolean primary;
+    private final boolean primary;
 
-	@Nullable
-	private final String relocatingNode;
+    @Nullable
+    private final String relocatingNode;
 
-	private final ShardRoutingState state;
+    private final ShardRoutingState state;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ShardRouting(Builder builder) {
+    private ShardRouting(Builder builder) {
 
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
-		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
-		this.relocatingNode = builder.relocatingNode;
-		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+        this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+        this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
+        this.relocatingNode = builder.relocatingNode;
+        this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
-	}
+    }
 
-	public static ShardRouting of(Function<Builder, ObjectBuilder<ShardRouting>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ShardRouting of(Function<Builder, ObjectBuilder<ShardRouting>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code node}
-	 */
-	public final String node() {
-		return this.node;
-	}
+    /**
+     * Required - API name: {@code node}
+     */
+    public final String node() {
+        return this.node;
+    }
 
-	/**
-	 * Required - API name: {@code primary}
-	 */
-	public final boolean primary() {
-		return this.primary;
-	}
+    /**
+     * Required - API name: {@code primary}
+     */
+    public final boolean primary() {
+        return this.primary;
+    }
 
-	/**
-	 * API name: {@code relocating_node}
-	 */
-	@Nullable
-	public final String relocatingNode() {
-		return this.relocatingNode;
-	}
+    /**
+     * API name: {@code relocating_node}
+     */
+    @Nullable
+    public final String relocatingNode() {
+        return this.relocatingNode;
+    }
 
-	/**
-	 * Required - API name: {@code state}
-	 */
-	public final ShardRoutingState state() {
-		return this.state;
-	}
+    /**
+     * Required - API name: {@code state}
+     */
+    public final ShardRoutingState state() {
+        return this.state;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("node");
-		generator.write(this.node);
+        generator.writeKey("node");
+        generator.write(this.node);
 
-		generator.writeKey("primary");
-		generator.write(this.primary);
+        generator.writeKey("primary");
+        generator.write(this.primary);
 
-		if (this.relocatingNode != null) {
-			generator.writeKey("relocating_node");
-			generator.write(this.relocatingNode);
+        if (this.relocatingNode != null) {
+            generator.writeKey("relocating_node");
+            generator.write(this.relocatingNode);
 
-		}
-		generator.writeKey("state");
-		this.state.serialize(generator, mapper);
+        }
+        generator.writeKey("state");
+        this.state.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ShardRouting}.
-	 */
+    /**
+     * Builder for {@link ShardRouting}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardRouting> {
-		private String node;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardRouting> {
+        private String node;
 
-		private Boolean primary;
+        private Boolean primary;
 
-		@Nullable
-		private String relocatingNode;
+        @Nullable
+        private String relocatingNode;
 
-		private ShardRoutingState state;
+        private ShardRoutingState state;
 
-		/**
-		 * Required - API name: {@code node}
-		 */
-		public final Builder node(String value) {
-			this.node = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code node}
+         */
+        public final Builder node(String value) {
+            this.node = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code primary}
-		 */
-		public final Builder primary(boolean value) {
-			this.primary = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code primary}
+         */
+        public final Builder primary(boolean value) {
+            this.primary = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code relocating_node}
-		 */
-		public final Builder relocatingNode(@Nullable String value) {
-			this.relocatingNode = value;
-			return this;
-		}
+        /**
+         * API name: {@code relocating_node}
+         */
+        public final Builder relocatingNode(@Nullable String value) {
+            this.relocatingNode = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code state}
-		 */
-		public final Builder state(ShardRoutingState value) {
-			this.state = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code state}
+         */
+        public final Builder state(ShardRoutingState value) {
+            this.state = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ShardRouting}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ShardRouting build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ShardRouting}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ShardRouting build() {
+            _checkSingleUse();
 
-			return new ShardRouting(this);
-		}
-	}
+            return new ShardRouting(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ShardRouting}
-	 */
-	public static final JsonpDeserializer<ShardRouting> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardRouting::setupShardRoutingDeserializer);
+    /**
+     * Json deserializer for {@link ShardRouting}
+     */
+    public static final JsonpDeserializer<ShardRouting> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ShardRouting::setupShardRoutingDeserializer
+    );
 
-	protected static void setupShardRoutingDeserializer(ObjectDeserializer<ShardRouting.Builder> op) {
+    protected static void setupShardRoutingDeserializer(ObjectDeserializer<ShardRouting.Builder> op) {
 
-		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
-		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
-		op.add(Builder::relocatingNode, JsonpDeserializer.stringDeserializer(), "relocating_node");
-		op.add(Builder::state, ShardRoutingState._DESERIALIZER, "state");
+        op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+        op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
+        op.add(Builder::relocatingNode, JsonpDeserializer.stringDeserializer(), "relocating_node");
+        op.add(Builder::state, ShardRoutingState._DESERIALIZER, "state");
 
-	}
+    }
 
 }

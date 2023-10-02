@@ -37,10 +37,9 @@ package org.opensearch.client.opensearch._types.aggregations;
  * <p>
  * Variants <code>expr</code>, <code>value</code> are not available here as they
  * don't have a dedicated class. Use {@link FieldDateMath}'s builder for these.
- * 
+ *
  */
 public class FieldDateMathBuilders {
-	private FieldDateMathBuilders() {
-	}
+    private FieldDateMathBuilders() {}
 
 }

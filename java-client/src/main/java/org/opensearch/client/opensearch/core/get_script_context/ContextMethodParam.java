@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.core.get_script_context;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,117 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _global.get_script_context.ContextMethodParam
 
-
 @JsonpDeserializable
 public class ContextMethodParam implements JsonpSerializable {
-	private final String name;
+    private final String name;
 
-	private final String type;
+    private final String type;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ContextMethodParam(Builder builder) {
+    private ContextMethodParam(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
-	}
+    }
 
-	public static ContextMethodParam of(Function<Builder, ObjectBuilder<ContextMethodParam>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ContextMethodParam of(Function<Builder, ObjectBuilder<ContextMethodParam>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * Required - API name: {@code name}
+     */
+    public final String name() {
+        return this.name;
+    }
 
-	/**
-	 * Required - API name: {@code type}
-	 */
-	public final String type() {
-		return this.type;
-	}
+    /**
+     * Required - API name: {@code type}
+     */
+    public final String type() {
+        return this.type;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+        generator.writeKey("name");
+        generator.write(this.name);
 
-		generator.writeKey("type");
-		generator.write(this.type);
+        generator.writeKey("type");
+        generator.write(this.type);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ContextMethodParam}.
-	 */
+    /**
+     * Builder for {@link ContextMethodParam}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ContextMethodParam> {
-		private String name;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ContextMethodParam> {
+        private String name;
 
-		private String type;
+        private String type;
 
-		/**
-		 * Required - API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code name}
+         */
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public final Builder type(String value) {
-			this.type = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code type}
+         */
+        public final Builder type(String value) {
+            this.type = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ContextMethodParam}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ContextMethodParam build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ContextMethodParam}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ContextMethodParam build() {
+            _checkSingleUse();
 
-			return new ContextMethodParam(this);
-		}
-	}
+            return new ContextMethodParam(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ContextMethodParam}
-	 */
-	public static final JsonpDeserializer<ContextMethodParam> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ContextMethodParam::setupContextMethodParamDeserializer);
+    /**
+     * Json deserializer for {@link ContextMethodParam}
+     */
+    public static final JsonpDeserializer<ContextMethodParam> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ContextMethodParam::setupContextMethodParamDeserializer
+    );
 
-	protected static void setupContextMethodParamDeserializer(ObjectDeserializer<ContextMethodParam.Builder> op) {
+    protected static void setupContextMethodParamDeserializer(ObjectDeserializer<ContextMethodParam.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
-	}
+    }
 
 }

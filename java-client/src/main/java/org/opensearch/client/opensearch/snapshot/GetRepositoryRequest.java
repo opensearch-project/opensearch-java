@@ -32,6 +32,12 @@
 
 package org.opensearch.client.opensearch.snapshot;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -41,13 +47,6 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import javax.annotation.Nullable;
-
 // typedef: snapshot.get_repository.Request
 
 /**
@@ -55,233 +54,236 @@ import javax.annotation.Nullable;
  */
 
 public class GetRepositoryRequest extends RequestBase {
-	@Nullable
-	private final Boolean local;
+    @Nullable
+    private final Boolean local;
 
-	@Deprecated
-	@Nullable
-	private final Time masterTimeout;
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
 
-	@Nullable
-	private final Time clusterManagerTimeout;
+    @Nullable
+    private final Time clusterManagerTimeout;
 
-	private final List<String> name;
+    private final List<String> name;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetRepositoryRequest(Builder builder) {
+    private GetRepositoryRequest(Builder builder) {
 
-		this.local = builder.local;
-		this.masterTimeout = builder.masterTimeout;
-		this.clusterManagerTimeout = builder.clusterManagerTimeout;
-		this.name = ApiTypeHelper.unmodifiable(builder.name);
+        this.local = builder.local;
+        this.masterTimeout = builder.masterTimeout;
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.name = ApiTypeHelper.unmodifiable(builder.name);
 
-	}
+    }
 
-	public static GetRepositoryRequest of(Function<Builder, ObjectBuilder<GetRepositoryRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetRepositoryRequest of(Function<Builder, ObjectBuilder<GetRepositoryRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Return local information, do not retrieve the state from cluster-manager node
-	 * (default: false)
-	 * <p>
-	 * API name: {@code local}
-	 */
-	@Nullable
-	public final Boolean local() {
-		return this.local;
-	}
+    /**
+     * Return local information, do not retrieve the state from cluster-manager node
+     * (default: false)
+     * <p>
+     * API name: {@code local}
+     */
+    @Nullable
+    public final Boolean local() {
+        return this.local;
+    }
 
-	/**
-	 * Explicit operation timeout for connection to master node
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Deprecated
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
+    /**
+     * Explicit operation timeout for connection to master node
+     * <p>
+     * API name: {@code master_timeout}
+     */
+    @Deprecated
+    @Nullable
+    public final Time masterTimeout() {
+        return this.masterTimeout;
+    }
 
-	/**
-	 * Explicit operation timeout for connection to cluster-manager node
-	 * <p>
-	 * API name: {@code cluster_manager_timeout}
-	 */
-	@Nullable
-	public final Time clusterManagerTimeout() {
-		return this.clusterManagerTimeout;
-	}
+    /**
+     * Explicit operation timeout for connection to cluster-manager node
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
 
-	/**
-	 * A comma-separated list of repository names
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	public final List<String> name() {
-		return this.name;
-	}
+    /**
+     * A comma-separated list of repository names
+     * <p>
+     * API name: {@code repository}
+     */
+    public final List<String> name() {
+        return this.name;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetRepositoryRequest}.
-	 */
+    /**
+     * Builder for {@link GetRepositoryRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRepositoryRequest> {
-		@Nullable
-		private Boolean local;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRepositoryRequest> {
+        @Nullable
+        private Boolean local;
 
-		@Deprecated
-		@Nullable
-		private Time masterTimeout;
+        @Deprecated
+        @Nullable
+        private Time masterTimeout;
 
-		@Nullable
-		private Time clusterManagerTimeout;
+        @Nullable
+        private Time clusterManagerTimeout;
 
-		@Nullable
-		private List<String> name;
+        @Nullable
+        private List<String> name;
 
-		/**
-		 * Return local information, do not retrieve the state from cluster-manager node
-		 * (default: false)
-		 * <p>
-		 * API name: {@code local}
-		 */
-		public final Builder local(@Nullable Boolean value) {
-			this.local = value;
-			return this;
-		}
+        /**
+         * Return local information, do not retrieve the state from cluster-manager node
+         * (default: false)
+         * <p>
+         * API name: {@code local}
+         */
+        public final Builder local(@Nullable Boolean value) {
+            this.local = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout for connection to master node
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout for connection to master node
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.masterTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Explicit operation timeout for connection to cluster-manager node
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(@Nullable Time value) {
-			this.clusterManagerTimeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to cluster-manager node
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * A comma-separated list of repository names
-		 * <p>
-		 * API name: {@code repository}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>name</code>.
-		 */
-		public final Builder name(List<String> list) {
-			this.name = _listAddAll(this.name, list);
-			return this;
-		}
+        /**
+         * A comma-separated list of repository names
+         * <p>
+         * API name: {@code repository}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>name</code>.
+         */
+        public final Builder name(List<String> list) {
+            this.name = _listAddAll(this.name, list);
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of repository names
-		 * <p>
-		 * API name: {@code repository}
-		 * <p>
-		 * Adds one or more values to <code>name</code>.
-		 */
-		public final Builder name(String value, String... values) {
-			this.name = _listAdd(this.name, value, values);
-			return this;
-		}
+        /**
+         * A comma-separated list of repository names
+         * <p>
+         * API name: {@code repository}
+         * <p>
+         * Adds one or more values to <code>name</code>.
+         */
+        public final Builder name(String value, String... values) {
+            this.name = _listAdd(this.name, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetRepositoryRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetRepositoryRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GetRepositoryRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetRepositoryRequest build() {
+            _checkSingleUse();
 
-			return new GetRepositoryRequest(this);
-		}
-	}
+            return new GetRepositoryRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code snapshot.get_repository}".
-	 */
-	public static final Endpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code snapshot.get_repository}".
+     */
+    public static final Endpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _name = 1 << 0;
+        // Request path
+        request -> {
+            final int _name = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.name()))
-					propsSet |= _name;
+            if (ApiTypeHelper.isDefined(request.name())) propsSet |= _name;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_snapshot");
-					return buf.toString();
-				}
-				if (propsSet == (_name)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_snapshot");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_snapshot");
+                return buf.toString();
+            }
+            if (propsSet == (_name)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_snapshot");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.clusterManagerTimeout != null) {
-					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-				}
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
+            if (request.clusterManagerTimeout != null) {
+                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
+            }
+            if (request.local != null) {
+                params.put("local", String.valueOf(request.local));
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetRepositoryResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        GetRepositoryResponse._DESERIALIZER
+    );
 }

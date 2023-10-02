@@ -32,76 +32,74 @@
 
 package org.opensearch.client.opensearch.core.bulk;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _global.bulk.DeleteOperation
-
 
 @JsonpDeserializable
 public class DeleteOperation extends BulkOperationBase implements BulkOperationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DeleteOperation(Builder builder) {
-		super(builder);
+    private DeleteOperation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DeleteOperation of(Function<Builder, ObjectBuilder<DeleteOperation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DeleteOperation of(Function<Builder, ObjectBuilder<DeleteOperation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * BulkOperation variant kind.
-	 */
-	@Override
-	public BulkOperation.Kind _bulkOperationKind() {
-		return BulkOperation.Kind.Delete;
-	}
+    /**
+     * BulkOperation variant kind.
+     */
+    @Override
+    public BulkOperation.Kind _bulkOperationKind() {
+        return BulkOperation.Kind.Delete;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DeleteOperation}.
-	 */
+    /**
+     * Builder for {@link DeleteOperation}.
+     */
 
-	public static class Builder extends BulkOperationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DeleteOperation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends BulkOperationBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteOperation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DeleteOperation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeleteOperation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DeleteOperation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DeleteOperation build() {
+            _checkSingleUse();
 
-			return new DeleteOperation(this);
-		}
-	}
+            return new DeleteOperation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DeleteOperation}
-	 */
-	public static final JsonpDeserializer<DeleteOperation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DeleteOperation::setupDeleteOperationDeserializer);
+    /**
+     * Json deserializer for {@link DeleteOperation}
+     */
+    public static final JsonpDeserializer<DeleteOperation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeleteOperation::setupDeleteOperationDeserializer
+    );
 
-	protected static void setupDeleteOperationDeserializer(ObjectDeserializer<DeleteOperation.Builder> op) {
-		setupBulkOperationBaseDeserializer(op);
+    protected static void setupDeleteOperationDeserializer(ObjectDeserializer<DeleteOperation.Builder> op) {
+        setupBulkOperationBaseDeserializer(op);
 
-	}
+    }
 
 }

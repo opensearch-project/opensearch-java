@@ -32,40 +32,29 @@ public class SampleClient {
         var user = env.getOrDefault("USERNAME", "admin");
         var pass = env.getOrDefault("PASSWORD", "admin");
 
-        final var hosts = new HttpHost[]{
-                new HttpHost(https ? "https" : "http", hostname, port)
-        };
+        final var hosts = new HttpHost[] { new HttpHost(https ? "https" : "http", hostname, port) };
 
-        final var sslContext = SSLContextBuilder.create()
-                .loadTrustMaterial(null, (chains, authType) -> true)
-                .build();
+        final var sslContext = SSLContextBuilder.create().loadTrustMaterial(null, (chains, authType) -> true).build();
 
-        final var transport = ApacheHttpClient5TransportBuilder
-                .builder(hosts)
-                .setMapper(new JacksonJsonpMapper())
-                .setHttpClientConfigCallback(httpClientBuilder -> {
-                    final var credentialsProvider = new BasicCredentialsProvider();
-                    for (final var host : hosts) {
-                        credentialsProvider.setCredentials(
-                                new AuthScope(host),
-                                new UsernamePasswordCredentials(user, pass.toCharArray()));
-                    }
+        final var transport = ApacheHttpClient5TransportBuilder.builder(hosts)
+            .setMapper(new JacksonJsonpMapper())
+            .setHttpClientConfigCallback(httpClientBuilder -> {
+                final var credentialsProvider = new BasicCredentialsProvider();
+                for (final var host : hosts) {
+                    credentialsProvider.setCredentials(new AuthScope(host), new UsernamePasswordCredentials(user, pass.toCharArray()));
+                }
 
-                    // Disable SSL/TLS verification as our local testing clusters use self-signed certificates
-                    final var tlsStrategy = ClientTlsStrategyBuilder.create()
-                            .setSslContext(sslContext)
-                            .setHostnameVerifier(NoopHostnameVerifier.INSTANCE)
-                            .build();
+                // Disable SSL/TLS verification as our local testing clusters use self-signed certificates
+                final var tlsStrategy = ClientTlsStrategyBuilder.create()
+                    .setSslContext(sslContext)
+                    .setHostnameVerifier(NoopHostnameVerifier.INSTANCE)
+                    .build();
 
-                    final var connectionManager = PoolingAsyncClientConnectionManagerBuilder.create()
-                            .setTlsStrategy(tlsStrategy)
-                            .build();
+                final var connectionManager = PoolingAsyncClientConnectionManagerBuilder.create().setTlsStrategy(tlsStrategy).build();
 
-                    return httpClientBuilder
-                            .setDefaultCredentialsProvider(credentialsProvider)
-                            .setConnectionManager(connectionManager);
-                })
-                .build();
+                return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider).setConnectionManager(connectionManager);
+            })
+            .build();
         return new OpenSearchClient(transport);
     }
 }

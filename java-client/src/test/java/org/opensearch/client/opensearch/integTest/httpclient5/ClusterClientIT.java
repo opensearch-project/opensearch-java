@@ -9,7 +9,6 @@
 package org.opensearch.client.opensearch.integTest.httpclient5;
 
 import java.io.IOException;
-
 import org.opensearch.client.opensearch.integTest.AbstractClusterClientIT;
 import org.opensearch.client.transport.httpclient5.ResponseException;
 

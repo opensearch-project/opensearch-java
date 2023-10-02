@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.nodes.usage;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,207 +45,205 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: nodes.usage.NodeUsage
 
 @JsonpDeserializable
 public class NodeUsage implements JsonpSerializable {
-	private final Map<String, Integer> restActions;
+    private final Map<String, Integer> restActions;
 
-	private final String since;
+    private final String since;
 
-	private final String timestamp;
+    private final String timestamp;
 
-	private final Map<String, JsonData> aggregations;
+    private final Map<String, JsonData> aggregations;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeUsage(Builder builder) {
+    private NodeUsage(Builder builder) {
 
-		this.restActions = ApiTypeHelper.unmodifiableRequired(builder.restActions, this, "restActions");
-		this.since = ApiTypeHelper.requireNonNull(builder.since, this, "since");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.aggregations = ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
+        this.restActions = ApiTypeHelper.unmodifiableRequired(builder.restActions, this, "restActions");
+        this.since = ApiTypeHelper.requireNonNull(builder.since, this, "since");
+        this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+        this.aggregations = ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
 
-	}
+    }
 
-	public static NodeUsage of(Function<Builder, ObjectBuilder<NodeUsage>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeUsage of(Function<Builder, ObjectBuilder<NodeUsage>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code rest_actions}
-	 */
-	public final Map<String, Integer> restActions() {
-		return this.restActions;
-	}
+    /**
+     * Required - API name: {@code rest_actions}
+     */
+    public final Map<String, Integer> restActions() {
+        return this.restActions;
+    }
 
-	/**
-	 * Required - API name: {@code since}
-	 */
-	public final String since() {
-		return this.since;
-	}
+    /**
+     * Required - API name: {@code since}
+     */
+    public final String since() {
+        return this.since;
+    }
 
-	/**
-	 * Required - API name: {@code timestamp}
-	 */
-	public final String timestamp() {
-		return this.timestamp;
-	}
+    /**
+     * Required - API name: {@code timestamp}
+     */
+    public final String timestamp() {
+        return this.timestamp;
+    }
 
-	/**
-	 * Required - API name: {@code aggregations}
-	 */
-	public final Map<String, JsonData> aggregations() {
-		return this.aggregations;
-	}
+    /**
+     * Required - API name: {@code aggregations}
+     */
+    public final Map<String, JsonData> aggregations() {
+        return this.aggregations;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.restActions)) {
-			generator.writeKey("rest_actions");
-			generator.writeStartObject();
-			for (Map.Entry<String, Integer> item0 : this.restActions.entrySet()) {
-				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+        if (ApiTypeHelper.isDefined(this.restActions)) {
+            generator.writeKey("rest_actions");
+            generator.writeStartObject();
+            for (Map.Entry<String, Integer> item0 : this.restActions.entrySet()) {
+                generator.writeKey(item0.getKey());
+                generator.write(item0.getValue());
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		generator.writeKey("since");
-		generator.write(this.since);
+        }
+        generator.writeKey("since");
+        generator.write(this.since);
 
-		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
+        generator.writeKey("timestamp");
+        generator.write(this.timestamp);
 
-		if (ApiTypeHelper.isDefined(this.aggregations)) {
-			generator.writeKey("aggregations");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.aggregations.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.aggregations)) {
+            generator.writeKey("aggregations");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.aggregations.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeUsage}.
-	 */
+    /**
+     * Builder for {@link NodeUsage}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeUsage> {
-		private Map<String, Integer> restActions;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeUsage> {
+        private Map<String, Integer> restActions;
 
-		private String since;
+        private String since;
 
-		private String timestamp;
+        private String timestamp;
 
-		private Map<String, JsonData> aggregations;
+        private Map<String, JsonData> aggregations;
 
-		/**
-		 * Required - API name: {@code rest_actions}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>restActions</code>.
-		 */
-		public final Builder restActions(Map<String, Integer> map) {
-			this.restActions = _mapPutAll(this.restActions, map);
-			return this;
-		}
+        /**
+         * Required - API name: {@code rest_actions}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>restActions</code>.
+         */
+        public final Builder restActions(Map<String, Integer> map) {
+            this.restActions = _mapPutAll(this.restActions, map);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code rest_actions}
-		 * <p>
-		 * Adds an entry to <code>restActions</code>.
-		 */
-		public final Builder restActions(String key, Integer value) {
-			this.restActions = _mapPut(this.restActions, key, value);
-			return this;
-		}
+        /**
+         * Required - API name: {@code rest_actions}
+         * <p>
+         * Adds an entry to <code>restActions</code>.
+         */
+        public final Builder restActions(String key, Integer value) {
+            this.restActions = _mapPut(this.restActions, key, value);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code since}
-		 */
-		public final Builder since(String value) {
-			this.since = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code since}
+         */
+        public final Builder since(String value) {
+            this.since = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code timestamp}
-		 */
-		public final Builder timestamp(String value) {
-			this.timestamp = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code timestamp}
+         */
+        public final Builder timestamp(String value) {
+            this.timestamp = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code aggregations}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
-		 */
-		public final Builder aggregations(Map<String, JsonData> map) {
-			this.aggregations = _mapPutAll(this.aggregations, map);
-			return this;
-		}
+        /**
+         * Required - API name: {@code aggregations}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>aggregations</code>.
+         */
+        public final Builder aggregations(Map<String, JsonData> map) {
+            this.aggregations = _mapPutAll(this.aggregations, map);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code aggregations}
-		 * <p>
-		 * Adds an entry to <code>aggregations</code>.
-		 */
-		public final Builder aggregations(String key, JsonData value) {
-			this.aggregations = _mapPut(this.aggregations, key, value);
-			return this;
-		}
+        /**
+         * Required - API name: {@code aggregations}
+         * <p>
+         * Adds an entry to <code>aggregations</code>.
+         */
+        public final Builder aggregations(String key, JsonData value) {
+            this.aggregations = _mapPut(this.aggregations, key, value);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeUsage}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeUsage build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeUsage}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeUsage build() {
+            _checkSingleUse();
 
-			return new NodeUsage(this);
-		}
-	}
+            return new NodeUsage(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeUsage}
-	 */
-	public static final JsonpDeserializer<NodeUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeUsage::setupNodeUsageDeserializer);
+    /**
+     * Json deserializer for {@link NodeUsage}
+     */
+    public static final JsonpDeserializer<NodeUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeUsage::setupNodeUsageDeserializer
+    );
 
-	protected static void setupNodeUsageDeserializer(ObjectDeserializer<NodeUsage.Builder> op) {
+    protected static void setupNodeUsageDeserializer(ObjectDeserializer<NodeUsage.Builder> op) {
 
-		op.add(Builder::restActions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
-				"rest_actions");
-		op.add(Builder::since, JsonpDeserializer.stringDeserializer(), "since");
-		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
-		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "aggregations");
+        op.add(Builder::restActions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()), "rest_actions");
+        op.add(Builder::since, JsonpDeserializer.stringDeserializer(), "since");
+        op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+        op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "aggregations");
 
-	}
+    }
 
 }

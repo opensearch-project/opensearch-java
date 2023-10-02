@@ -14,7 +14,6 @@ import static org.hamcrest.Matchers.anEmptyMap;
 
 import java.io.IOException;
 import java.util.Arrays;
-
 import org.opensearch.client.opensearch.nodes.NodesStatsResponse;
 import org.opensearch.client.opensearch.tasks.ListRequest;
 import org.opensearch.client.opensearch.tasks.ListResponse;

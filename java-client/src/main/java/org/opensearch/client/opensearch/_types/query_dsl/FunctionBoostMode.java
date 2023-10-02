@@ -35,33 +35,31 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum FunctionBoostMode implements JsonEnum {
-	Multiply("multiply"),
+    Multiply("multiply"),
 
-	Replace("replace"),
+    Replace("replace"),
 
-	Sum("sum"),
+    Sum("sum"),
 
-	Avg("avg"),
+    Avg("avg"),
 
-	Max("max"),
+    Max("max"),
 
-	Min("min"),
+    Min("min"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	FunctionBoostMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    FunctionBoostMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<FunctionBoostMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			FunctionBoostMode.values());
+    public static final JsonEnum.Deserializer<FunctionBoostMode> _DESERIALIZER = new JsonEnum.Deserializer<>(FunctionBoostMode.values());
 }

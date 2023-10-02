@@ -35,25 +35,23 @@ package org.opensearch.client.opensearch.ingest;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum ShapeType implements JsonEnum {
-	GeoShape("geo_shape"),
+    GeoShape("geo_shape"),
 
-	Shape("shape"),
+    Shape("shape"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ShapeType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ShapeType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ShapeType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ShapeType.values());
+    public static final JsonEnum.Deserializer<ShapeType> _DESERIALIZER = new JsonEnum.Deserializer<>(ShapeType.values());
 }

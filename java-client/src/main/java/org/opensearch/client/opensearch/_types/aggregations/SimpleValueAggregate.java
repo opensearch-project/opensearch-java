@@ -32,76 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.SimpleValueAggregate
-
 
 @JsonpDeserializable
 public class SimpleValueAggregate extends SingleMetricAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SimpleValueAggregate(Builder builder) {
-		super(builder);
+    private SimpleValueAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static SimpleValueAggregate of(Function<Builder, ObjectBuilder<SimpleValueAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SimpleValueAggregate of(Function<Builder, ObjectBuilder<SimpleValueAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.SimpleValue;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.SimpleValue;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SimpleValueAggregate}.
-	 */
+    /**
+     * Builder for {@link SimpleValueAggregate}.
+     */
 
-	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<SimpleValueAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<SimpleValueAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SimpleValueAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SimpleValueAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SimpleValueAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SimpleValueAggregate build() {
+            _checkSingleUse();
 
-			return new SimpleValueAggregate(this);
-		}
-	}
+            return new SimpleValueAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SimpleValueAggregate}
-	 */
-	public static final JsonpDeserializer<SimpleValueAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SimpleValueAggregate::setupSimpleValueAggregateDeserializer);
+    /**
+     * Json deserializer for {@link SimpleValueAggregate}
+     */
+    public static final JsonpDeserializer<SimpleValueAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SimpleValueAggregate::setupSimpleValueAggregateDeserializer
+    );
 
-	protected static void setupSimpleValueAggregateDeserializer(ObjectDeserializer<SimpleValueAggregate.Builder> op) {
-		setupSingleMetricAggregateBaseDeserializer(op);
+    protected static void setupSimpleValueAggregateDeserializer(ObjectDeserializer<SimpleValueAggregate.Builder> op) {
+        setupSingleMetricAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

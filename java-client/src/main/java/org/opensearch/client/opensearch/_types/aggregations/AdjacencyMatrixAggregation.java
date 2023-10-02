@@ -32,142 +32,143 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
-import org.opensearch.client.opensearch._types.query_dsl.Query;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AdjacencyMatrixAggregation
 
 @JsonpDeserializable
 public class AdjacencyMatrixAggregation extends BucketAggregationBase implements AggregationVariant {
-	private final Map<String, Query> filters;
+    private final Map<String, Query> filters;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private AdjacencyMatrixAggregation(Builder builder) {
-		super(builder);
+    private AdjacencyMatrixAggregation(Builder builder) {
+        super(builder);
 
-		this.filters = ApiTypeHelper.unmodifiable(builder.filters);
+        this.filters = ApiTypeHelper.unmodifiable(builder.filters);
 
-	}
+    }
 
-	public static AdjacencyMatrixAggregation of(Function<Builder, ObjectBuilder<AdjacencyMatrixAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static AdjacencyMatrixAggregation of(Function<Builder, ObjectBuilder<AdjacencyMatrixAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.AdjacencyMatrix;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.AdjacencyMatrix;
+    }
 
-	/**
-	 * API name: {@code filters}
-	 */
-	public final Map<String, Query> filters() {
-		return this.filters;
-	}
+    /**
+     * API name: {@code filters}
+     */
+    public final Map<String, Query> filters() {
+        return this.filters;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.filters)) {
-			generator.writeKey("filters");
-			generator.writeStartObject();
-			for (Map.Entry<String, Query> item0 : this.filters.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.filters)) {
+            generator.writeKey("filters");
+            generator.writeStartObject();
+            for (Map.Entry<String, Query> item0 : this.filters.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link AdjacencyMatrixAggregation}.
-	 */
+    /**
+     * Builder for {@link AdjacencyMatrixAggregation}.
+     */
 
-	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<AdjacencyMatrixAggregation> {
-		@Nullable
-		private Map<String, Query> filters;
+    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<AdjacencyMatrixAggregation> {
+        @Nullable
+        private Map<String, Query> filters;
 
-		/**
-		 * API name: {@code filters}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>filters</code>.
-		 */
-		public final Builder filters(Map<String, Query> map) {
-			this.filters = _mapPutAll(this.filters, map);
-			return this;
-		}
+        /**
+         * API name: {@code filters}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>filters</code>.
+         */
+        public final Builder filters(Map<String, Query> map) {
+            this.filters = _mapPutAll(this.filters, map);
+            return this;
+        }
 
-		/**
-		 * API name: {@code filters}
-		 * <p>
-		 * Adds an entry to <code>filters</code>.
-		 */
-		public final Builder filters(String key, Query value) {
-			this.filters = _mapPut(this.filters, key, value);
-			return this;
-		}
+        /**
+         * API name: {@code filters}
+         * <p>
+         * Adds an entry to <code>filters</code>.
+         */
+        public final Builder filters(String key, Query value) {
+            this.filters = _mapPut(this.filters, key, value);
+            return this;
+        }
 
-		/**
-		 * API name: {@code filters}
-		 * <p>
-		 * Adds an entry to <code>filters</code> using a builder lambda.
-		 */
-		public final Builder filters(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return filters(key, fn.apply(new Query.Builder()).build());
-		}
+        /**
+         * API name: {@code filters}
+         * <p>
+         * Adds an entry to <code>filters</code> using a builder lambda.
+         */
+        public final Builder filters(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
+            return filters(key, fn.apply(new Query.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link AdjacencyMatrixAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public AdjacencyMatrixAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link AdjacencyMatrixAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public AdjacencyMatrixAggregation build() {
+            _checkSingleUse();
 
-			return new AdjacencyMatrixAggregation(this);
-		}
-	}
+            return new AdjacencyMatrixAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link AdjacencyMatrixAggregation}
-	 */
-	public static final JsonpDeserializer<AdjacencyMatrixAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AdjacencyMatrixAggregation::setupAdjacencyMatrixAggregationDeserializer);
+    /**
+     * Json deserializer for {@link AdjacencyMatrixAggregation}
+     */
+    public static final JsonpDeserializer<AdjacencyMatrixAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        AdjacencyMatrixAggregation::setupAdjacencyMatrixAggregationDeserializer
+    );
 
-	protected static void setupAdjacencyMatrixAggregationDeserializer(
-			ObjectDeserializer<AdjacencyMatrixAggregation.Builder> op) {
-		setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::filters, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "filters");
+    protected static void setupAdjacencyMatrixAggregationDeserializer(ObjectDeserializer<AdjacencyMatrixAggregation.Builder> op) {
+        setupBucketAggregationBaseDeserializer(op);
+        op.add(Builder::filters, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "filters");
 
-	}
+    }
 
 }

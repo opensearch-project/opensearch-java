@@ -38,10 +38,9 @@ package org.opensearch.client.opensearch.core.search;
  * Variants <code>builtin</code>, <code>custom</code> are not available here as
  * they don't have a dedicated class. Use {@link HighlighterType}'s builder for
  * these.
- * 
+ *
  */
 public class HighlighterTypeBuilders {
-	private HighlighterTypeBuilders() {
-	}
+    private HighlighterTypeBuilders() {}
 
 }

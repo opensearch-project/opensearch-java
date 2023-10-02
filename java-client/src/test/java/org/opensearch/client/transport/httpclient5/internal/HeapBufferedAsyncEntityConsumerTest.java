@@ -8,20 +8,17 @@
 
 package org.opensearch.client.transport.httpclient5.internal;
 
-import org.apache.hc.core5.http.ContentTooLongException;
-
-import com.carrotsearch.randomizedtesting.RandomizedTest;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.IOException;
-import java.nio.ByteBuffer;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertThrows;
+
+import com.carrotsearch.randomizedtesting.RandomizedTest;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import org.apache.hc.core5.http.ContentTooLongException;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 public class HeapBufferedAsyncEntityConsumerTest extends RandomizedTest {
     private static final int BUFFER_LIMIT = 100 * 1024 * 1024 /* 100Mb */;

@@ -32,14 +32,14 @@
 
 package org.opensearch.client.opensearch.experiments.api.query2;
 
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpDeserializerBase;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.util.TriConsumer;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpDeserializerBase;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.util.TriConsumer;
 
 /**
  * A tagged union (also known as variant, sum type or coproduct) with two members.
@@ -56,112 +56,113 @@ import jakarta.json.stream.JsonParsingException;
 
 public class Union2<A, B> {
 
-  /**
-   * The variant tag.
-   */
-  public enum Tag{A, B};
+    /**
+     * The variant tag.
+     */
+    public enum Tag {
+        A,
+        B
+    };
 
-  private final Tag tag;
-  private final Object value;
+    private final Tag tag;
+    private final Object value;
 
-  private Union2(Tag tag, Object value) {
-    this.tag = tag;
-    this.value = value;
-  }
-
-  /**
-   * Creates a variant {@code A}.
-   */
-  public static <A, B> Union2<A, B> ofA(A value) {
-    return new Union2<>(Tag.A, value);
-  }
-
-  /**
-   * Creates a variant {@code B}.
-   */
-  public static <A, B> Union2<A, B> ofB(B value) {
-    return new Union2<>(Tag.B, value);
-  }
-
-  /**
-   * Get the variant's tag of this union.
-   *
-   * @return the variant's tag
-   */
-  public Tag tag() {
-    return tag;
-  }
-
-  /**
-   * Get the variant {@code A} of this union.
-   *
-   * @return the variant's value
-   * @throws IllegalStateException if the union is not holding a variant {@code A}
-   */
-  public A a() {
-    return getVariant(Tag.A);
-  }
-
-  /**
-   * Get the variant {@code B} of this union.
-   *
-   * @return the variant's value
-   * @throws IllegalStateException if the union is not holding a variant {@code B}
-   */
-  public B b() {
-    return getVariant(Tag.B);
-  }
-
-  private <T> T getVariant(Tag tag) {
-    if (this.tag != tag) throw new IllegalStateException("Union holds variant " + tag);
-
-    @SuppressWarnings("unchecked")
-    T result = (T)value;
-
-    return result;
-  }
-
-  //-----------------------------------------------------------------------------------------------
-  // Serialization / deserialization
-
-  public void serialize(
-    JsonGenerator builder, JsonpMapper params,
-    TriConsumer<A, JsonGenerator, JsonpMapper> a,
-    TriConsumer<B, JsonGenerator, JsonpMapper> b
-  ) {
-    switch (this.tag) {
-      case A:
-        a.accept(this.a(), builder, params);
-      case B:
-        b.accept(this.b(), builder, params);
+    private Union2(Tag tag, Object value) {
+        this.tag = tag;
+        this.value = value;
     }
-  }
 
-  public static class JsonpParser<A, B> extends JsonpDeserializerBase<Union2<A, B>> {
+    /**
+     * Creates a variant {@code A}.
+     */
+    public static <A, B> Union2<A, B> ofA(A value) {
+        return new Union2<>(Tag.A, value);
+    }
 
-    private final JsonpDeserializer<A> parserA;
-    private final JsonpDeserializer<B> parserB;
+    /**
+     * Creates a variant {@code B}.
+     */
+    public static <A, B> Union2<A, B> ofB(B value) {
+        return new Union2<>(Tag.B, value);
+    }
 
-    public JsonpParser(
-        JsonpDeserializer<A> parserA,
-        JsonpDeserializer<B> parserB
+    /**
+     * Get the variant's tag of this union.
+     *
+     * @return the variant's tag
+     */
+    public Tag tag() {
+        return tag;
+    }
+
+    /**
+     * Get the variant {@code A} of this union.
+     *
+     * @return the variant's value
+     * @throws IllegalStateException if the union is not holding a variant {@code A}
+     */
+    public A a() {
+        return getVariant(Tag.A);
+    }
+
+    /**
+     * Get the variant {@code B} of this union.
+     *
+     * @return the variant's value
+     * @throws IllegalStateException if the union is not holding a variant {@code B}
+     */
+    public B b() {
+        return getVariant(Tag.B);
+    }
+
+    private <T> T getVariant(Tag tag) {
+        if (this.tag != tag) throw new IllegalStateException("Union holds variant " + tag);
+
+        @SuppressWarnings("unchecked")
+        T result = (T) value;
+
+        return result;
+    }
+
+    // -----------------------------------------------------------------------------------------------
+    // Serialization / deserialization
+
+    public void serialize(
+        JsonGenerator builder,
+        JsonpMapper params,
+        TriConsumer<A, JsonGenerator, JsonpMapper> a,
+        TriConsumer<B, JsonGenerator, JsonpMapper> b
     ) {
-      super(allAcceptedEvents(parserA, parserB));
-      this.parserA = parserA;
-      this.parserB = parserB;
+        switch (this.tag) {
+            case A:
+                a.accept(this.a(), builder, params);
+            case B:
+                b.accept(this.b(), builder, params);
+        }
     }
 
-    @Override
-    public Union2<A, B> deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-      if (parserA.accepts(event)) {
-        return Union2.ofA(parserA.deserialize(parser, mapper, event));
+    public static class JsonpParser<A, B> extends JsonpDeserializerBase<Union2<A, B>> {
 
-      } else if (parserB.accepts(event)) {
-        return Union2.ofB(parserB.deserialize(parser, mapper, event));
+        private final JsonpDeserializer<A> parserA;
+        private final JsonpDeserializer<B> parserB;
 
-      } else {
-        throw new JsonParsingException("Unexpected event '" + event + "'", parser.getLocation());
-      }
+        public JsonpParser(JsonpDeserializer<A> parserA, JsonpDeserializer<B> parserB) {
+            super(allAcceptedEvents(parserA, parserB));
+            this.parserA = parserA;
+            this.parserB = parserB;
+        }
+
+        @Override
+        public Union2<A, B> deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            if (parserA.accepts(event)) {
+                return Union2.ofA(parserA.deserialize(parser, mapper, event));
+
+            } else if (parserB.accepts(event)) {
+                return Union2.ofB(parserB.deserialize(parser, mapper, event));
+
+            } else {
+                throw new JsonParsingException("Unexpected event '" + event + "'", parser.getLocation());
+            }
+        }
     }
-  }
 }

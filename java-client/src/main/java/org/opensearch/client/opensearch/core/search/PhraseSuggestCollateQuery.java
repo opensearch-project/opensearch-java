@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,9 +43,6 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggestCollateQuery
 
@@ -154,11 +154,12 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
     /**
      * Json deserializer for {@link PhraseSuggestCollateQuery}
      */
-    public static final JsonpDeserializer<PhraseSuggestCollateQuery> _DESERIALIZER = ObjectBuilderDeserializer
-            .lazy(Builder::new, PhraseSuggestCollateQuery::setupPhraseSuggestCollateQueryDeserializer);
+    public static final JsonpDeserializer<PhraseSuggestCollateQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PhraseSuggestCollateQuery::setupPhraseSuggestCollateQueryDeserializer
+    );
 
-    protected static void setupPhraseSuggestCollateQueryDeserializer(
-            ObjectDeserializer<PhraseSuggestCollateQuery.Builder> op) {
+    protected static void setupPhraseSuggestCollateQueryDeserializer(ObjectDeserializer<PhraseSuggestCollateQuery.Builder> op) {
 
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
         op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");

@@ -32,126 +32,128 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
 
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.function.Function;
-
 // typedef: cat.templates.Request
 
 /**
  * Returns information about existing templates.
- * 
+ *
  */
 
 public class TemplatesRequest extends CatRequestBase {
-	@Nullable
-	private final String name;
+    @Nullable
+    private final String name;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TemplatesRequest(Builder builder) {
-		super(builder);
-		this.name = builder.name;
+    private TemplatesRequest(Builder builder) {
+        super(builder);
+        this.name = builder.name;
 
-	}
+    }
 
-	public static TemplatesRequest of(Function<Builder, ObjectBuilder<TemplatesRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TemplatesRequest of(Function<Builder, ObjectBuilder<TemplatesRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * A pattern that returned template names must match
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * A pattern that returned template names must match
+     * <p>
+     * API name: {@code name}
+     */
+    @Nullable
+    public final String name() {
+        return this.name;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TemplatesRequest}.
-	 */
+    /**
+     * Builder for {@link TemplatesRequest}.
+     */
 
-	public static class Builder extends CatRequestBaseBuilder<TemplatesRequest.Builder> {
-		@Nullable
-		private String name;
+    public static class Builder extends CatRequestBaseBuilder<TemplatesRequest.Builder> {
+        @Nullable
+        private String name;
 
-		/**
-		 * A pattern that returned template names must match
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public final Builder name(@Nullable String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * A pattern that returned template names must match
+         * <p>
+         * API name: {@code name}
+         */
+        public final Builder name(@Nullable String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TemplatesRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TemplatesRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TemplatesRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TemplatesRequest build() {
+            _checkSingleUse();
 
-			return new TemplatesRequest(this);
-		}
+            return new TemplatesRequest(this);
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
-	}
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.templates}".
-	 */
-	public static final Endpoint<TemplatesRequest, TemplatesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.templates}".
+     */
+    public static final Endpoint<TemplatesRequest, TemplatesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _name = 1 << 0;
+        // Request path
+        request -> {
+            final int _name = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+            if (request.name() != null) propsSet |= _name;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/templates");
-					return buf.toString();
-				}
-				if (propsSet == (_name)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/templates");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/templates");
+                return buf.toString();
+            }
+            if (propsSet == (_name)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/templates");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.name, buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, TemplatesResponse._DESERIALIZER);
+        // Request parameters
+        request -> new HashMap<>(request.queryParameters()),
+        SimpleEndpoint.emptyMap(),
+        false,
+        TemplatesResponse._DESERIALIZER
+    );
 }

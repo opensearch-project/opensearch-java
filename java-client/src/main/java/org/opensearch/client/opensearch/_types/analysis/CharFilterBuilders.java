@@ -37,18 +37,17 @@ package org.opensearch.client.opensearch._types.analysis;
  * <p>
  * Variants <code>name</code> are not available here as they don't have a
  * dedicated class. Use {@link CharFilter}'s builder for these.
- * 
+ *
  */
 public class CharFilterBuilders {
-	private CharFilterBuilders() {
-	}
+    private CharFilterBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link CharFilterDefinition definition}
-	 * {@code CharFilter} variant.
-	 */
-	public static CharFilterDefinition.Builder definition() {
-		return new CharFilterDefinition.Builder();
-	}
+    /**
+     * Creates a builder for the {@link CharFilterDefinition definition}
+     * {@code CharFilter} variant.
+     */
+    public static CharFilterDefinition.Builder definition() {
+        return new CharFilterDefinition.Builder();
+    }
 
 }

@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,92 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoSearchRemote
 
 @JsonpDeserializable
 public class NodeInfoSearchRemote implements JsonpSerializable {
-	private final String connect;
+    private final String connect;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoSearchRemote(Builder builder) {
+    private NodeInfoSearchRemote(Builder builder) {
 
-		this.connect = ApiTypeHelper.requireNonNull(builder.connect, this, "connect");
+        this.connect = ApiTypeHelper.requireNonNull(builder.connect, this, "connect");
 
-	}
+    }
 
-	public static NodeInfoSearchRemote of(Function<Builder, ObjectBuilder<NodeInfoSearchRemote>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoSearchRemote of(Function<Builder, ObjectBuilder<NodeInfoSearchRemote>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code connect}
-	 */
-	public final String connect() {
-		return this.connect;
-	}
+    /**
+     * Required - API name: {@code connect}
+     */
+    public final String connect() {
+        return this.connect;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("connect");
-		generator.write(this.connect);
+        generator.writeKey("connect");
+        generator.write(this.connect);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoSearchRemote}.
-	 */
+    /**
+     * Builder for {@link NodeInfoSearchRemote}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSearchRemote> {
-		private String connect;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSearchRemote> {
+        private String connect;
 
-		/**
-		 * Required - API name: {@code connect}
-		 */
-		public final Builder connect(String value) {
-			this.connect = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code connect}
+         */
+        public final Builder connect(String value) {
+            this.connect = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeInfoSearchRemote}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoSearchRemote build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoSearchRemote}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoSearchRemote build() {
+            _checkSingleUse();
 
-			return new NodeInfoSearchRemote(this);
-		}
-	}
+            return new NodeInfoSearchRemote(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoSearchRemote}
-	 */
-	public static final JsonpDeserializer<NodeInfoSearchRemote> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoSearchRemote::setupNodeInfoSearchRemoteDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoSearchRemote}
+     */
+    public static final JsonpDeserializer<NodeInfoSearchRemote> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoSearchRemote::setupNodeInfoSearchRemoteDeserializer
+    );
 
-	protected static void setupNodeInfoSearchRemoteDeserializer(ObjectDeserializer<NodeInfoSearchRemote.Builder> op) {
+    protected static void setupNodeInfoSearchRemoteDeserializer(ObjectDeserializer<NodeInfoSearchRemote.Builder> op) {
 
-		op.add(Builder::connect, JsonpDeserializer.stringDeserializer(), "connect");
+        op.add(Builder::connect, JsonpDeserializer.stringDeserializer(), "connect");
 
-	}
+    }
 
 }

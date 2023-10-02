@@ -38,10 +38,9 @@ package org.opensearch.client.opensearch.core.search;
  * Variants <code>fields</code>, <code>fetch</code> are not available here as
  * they don't have a dedicated class. Use {@link SourceConfigParam}'s builder
  * for these.
- * 
+ *
  */
 public class SourceConfigParamBuilders {
-	private SourceConfigParamBuilders() {
-	}
+    private SourceConfigParamBuilders() {}
 
 }

@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,93 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.mapping.FieldNamesField
 
-
 @JsonpDeserializable
 public class FieldNamesField implements JsonpSerializable {
-	private final boolean enabled;
+    private final boolean enabled;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FieldNamesField(Builder builder) {
+    private FieldNamesField(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
-	}
+    }
 
-	public static FieldNamesField of(Function<Builder, ObjectBuilder<FieldNamesField>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FieldNamesField of(Function<Builder, ObjectBuilder<FieldNamesField>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code enabled}
-	 */
-	public final boolean enabled() {
-		return this.enabled;
-	}
+    /**
+     * Required - API name: {@code enabled}
+     */
+    public final boolean enabled() {
+        return this.enabled;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("enabled");
-		generator.write(this.enabled);
+        generator.writeKey("enabled");
+        generator.write(this.enabled);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FieldNamesField}.
-	 */
+    /**
+     * Builder for {@link FieldNamesField}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldNamesField> {
-		private Boolean enabled;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldNamesField> {
+        private Boolean enabled;
 
-		/**
-		 * Required - API name: {@code enabled}
-		 */
-		public final Builder enabled(boolean value) {
-			this.enabled = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code enabled}
+         */
+        public final Builder enabled(boolean value) {
+            this.enabled = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FieldNamesField}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FieldNamesField build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FieldNamesField}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FieldNamesField build() {
+            _checkSingleUse();
 
-			return new FieldNamesField(this);
-		}
-	}
+            return new FieldNamesField(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FieldNamesField}
-	 */
-	public static final JsonpDeserializer<FieldNamesField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldNamesField::setupFieldNamesFieldDeserializer);
+    /**
+     * Json deserializer for {@link FieldNamesField}
+     */
+    public static final JsonpDeserializer<FieldNamesField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FieldNamesField::setupFieldNamesFieldDeserializer
+    );
 
-	protected static void setupFieldNamesFieldDeserializer(ObjectDeserializer<FieldNamesField.Builder> op) {
+    protected static void setupFieldNamesFieldDeserializer(ObjectDeserializer<FieldNamesField.Builder> op) {
 
-		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+        op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
-	}
+    }
 
 }

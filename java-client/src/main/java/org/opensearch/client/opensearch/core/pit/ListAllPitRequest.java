@@ -12,10 +12,9 @@ import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
-
 /**
  * Lists all PITs on the OpenSearch cluster
- * 
+ *
  */
 public class ListAllPitRequest {
     public ListAllPitRequest() {
@@ -28,13 +27,14 @@ public class ListAllPitRequest {
     public static final ListAllPitRequest _INSTANCE = new ListAllPitRequest();
 
     public static final Endpoint<ListAllPitRequest, ListAllPitResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-            // Request method
-            request -> {
-                return "GET";
-            },
+        // Request method
+        request -> { return "GET"; },
 
-            // Request Path
-            request -> {
-                return "/_search/point_in_time/_all";
-            }, SimpleEndpoint.emptyMap(), SimpleEndpoint.emptyMap(), false, ListAllPitResponse._DESERIALIZER);
+        // Request Path
+        request -> { return "/_search/point_in_time/_all"; },
+        SimpleEndpoint.emptyMap(),
+        SimpleEndpoint.emptyMap(),
+        false,
+        ListAllPitResponse._DESERIALIZER
+    );
 }

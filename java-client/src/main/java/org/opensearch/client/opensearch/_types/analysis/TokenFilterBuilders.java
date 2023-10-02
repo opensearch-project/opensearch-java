@@ -37,18 +37,17 @@ package org.opensearch.client.opensearch._types.analysis;
  * <p>
  * Variants <code>name</code> are not available here as they don't have a
  * dedicated class. Use {@link TokenFilter}'s builder for these.
- * 
+ *
  */
 public class TokenFilterBuilders {
-	private TokenFilterBuilders() {
-	}
+    private TokenFilterBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link TokenFilterDefinition definition}
-	 * {@code TokenFilter} variant.
-	 */
-	public static TokenFilterDefinition.Builder definition() {
-		return new TokenFilterDefinition.Builder();
-	}
+    /**
+     * Creates a builder for the {@link TokenFilterDefinition definition}
+     * {@code TokenFilter} variant.
+     */
+    public static TokenFilterDefinition.Builder definition() {
+        return new TokenFilterDefinition.Builder();
+    }
 
 }

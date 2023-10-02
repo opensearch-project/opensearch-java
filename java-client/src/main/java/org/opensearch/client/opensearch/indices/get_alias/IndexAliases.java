@@ -32,133 +32,135 @@
 
 package org.opensearch.client.opensearch.indices.get_alias;
 
-import org.opensearch.client.opensearch.indices.AliasDefinition;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.indices.AliasDefinition;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: indices.get_alias.IndexAliases
 
 @JsonpDeserializable
 public class IndexAliases implements JsonpSerializable {
-	private final Map<String, AliasDefinition> aliases;
+    private final Map<String, AliasDefinition> aliases;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndexAliases(Builder builder) {
+    private IndexAliases(Builder builder) {
 
-		this.aliases = ApiTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
+        this.aliases = ApiTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
 
-	}
+    }
 
-	public static IndexAliases of(Function<Builder, ObjectBuilder<IndexAliases>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndexAliases of(Function<Builder, ObjectBuilder<IndexAliases>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code aliases}
-	 */
-	public final Map<String, AliasDefinition> aliases() {
-		return this.aliases;
-	}
+    /**
+     * Required - API name: {@code aliases}
+     */
+    public final Map<String, AliasDefinition> aliases() {
+        return this.aliases;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.aliases)) {
-			generator.writeKey("aliases");
-			generator.writeStartObject();
-			for (Map.Entry<String, AliasDefinition> item0 : this.aliases.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.aliases)) {
+            generator.writeKey("aliases");
+            generator.writeStartObject();
+            for (Map.Entry<String, AliasDefinition> item0 : this.aliases.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndexAliases}.
-	 */
+    /**
+     * Builder for {@link IndexAliases}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexAliases> {
-		private Map<String, AliasDefinition> aliases;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexAliases> {
+        private Map<String, AliasDefinition> aliases;
 
-		/**
-		 * Required - API name: {@code aliases}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>aliases</code>.
-		 */
-		public final Builder aliases(Map<String, AliasDefinition> map) {
-			this.aliases = _mapPutAll(this.aliases, map);
-			return this;
-		}
+        /**
+         * Required - API name: {@code aliases}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>aliases</code>.
+         */
+        public final Builder aliases(Map<String, AliasDefinition> map) {
+            this.aliases = _mapPutAll(this.aliases, map);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code aliases}
-		 * <p>
-		 * Adds an entry to <code>aliases</code>.
-		 */
-		public final Builder aliases(String key, AliasDefinition value) {
-			this.aliases = _mapPut(this.aliases, key, value);
-			return this;
-		}
+        /**
+         * Required - API name: {@code aliases}
+         * <p>
+         * Adds an entry to <code>aliases</code>.
+         */
+        public final Builder aliases(String key, AliasDefinition value) {
+            this.aliases = _mapPut(this.aliases, key, value);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code aliases}
-		 * <p>
-		 * Adds an entry to <code>aliases</code> using a builder lambda.
-		 */
-		public final Builder aliases(String key, Function<AliasDefinition.Builder, ObjectBuilder<AliasDefinition>> fn) {
-			return aliases(key, fn.apply(new AliasDefinition.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code aliases}
+         * <p>
+         * Adds an entry to <code>aliases</code> using a builder lambda.
+         */
+        public final Builder aliases(String key, Function<AliasDefinition.Builder, ObjectBuilder<AliasDefinition>> fn) {
+            return aliases(key, fn.apply(new AliasDefinition.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link IndexAliases}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndexAliases build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndexAliases}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndexAliases build() {
+            _checkSingleUse();
 
-			return new IndexAliases(this);
-		}
-	}
+            return new IndexAliases(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IndexAliases}
-	 */
-	public static final JsonpDeserializer<IndexAliases> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexAliases::setupIndexAliasesDeserializer);
+    /**
+     * Json deserializer for {@link IndexAliases}
+     */
+    public static final JsonpDeserializer<IndexAliases> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IndexAliases::setupIndexAliasesDeserializer
+    );
 
-	protected static void setupIndexAliasesDeserializer(ObjectDeserializer<IndexAliases.Builder> op) {
+    protected static void setupIndexAliasesDeserializer(ObjectDeserializer<IndexAliases.Builder> op) {
 
-		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");
+        op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");
 
-	}
+    }
 
 }
