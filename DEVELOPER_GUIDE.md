@@ -97,11 +97,28 @@ Follow links in the [Java Tutorial](https://code.visualstudio.com/docs/java/java
 
 ## Java Language Formatting Guidelines
 
-Java files in the opensearch-java codebase are formatted with the [checkstyle plugin](https://docs.gradle.org/current/userguide/checkstyle_plugin.html). This plugin is configured using [checkstyle.xml](config/checkstyle/checkstyle.xml). To run the formatting checks:
+Java files in the OpenSearch codebase are formatted with the Eclipse JDT formatter, using the [Spotless Gradle](https://github.com/diffplug/spotless/tree/master/plugin-gradle) plugin. This plugin is configured on a project-by-project basis, via `build.gradle.kts`. So long as at least one project is configured, the formatting check can be run explicitly with:
 
-```
-./gradlew checkstyleMain checkstyleTest
-```
+    ./gradlew spotlessJavaCheck
+
+The code can be formatted with:
+
+    ./gradlew spotlessApply
+
+These tasks can also be run for specific subprojects, e.g.
+
+    ./gradlew :java-client:spotlessJavaCheck
+    ./gradlew :samples:spotlessJavaCheck
+
+Please follow these formatting guidelines:
+
+* Java indent is 4 spaces
+* Line width is 140 characters
+* Lines of code surrounded by `// tag::NAME` and `// end::NAME` comments are included in the documentation and should only be 76 characters wide not counting leading indentation. Such regions of code are not formatted automatically as it is not possible to change the line length rule of the formatter for part of a file. Please format such sections sympathetically with the rest of the code, while keeping lines to maximum length of 76 characters.
+* Wildcard imports (`import foo.bar.baz.*`) are forbidden and will cause the build to fail.
+* If *absolutely* necessary, you can disable formatting for regions of code with the `// tag::NAME` and `// end::NAME` directives, but note that these are intended for use in documentation, so please make it clear what you have done, and only do this where the benefit clearly outweighs the decrease in consistency.
+* Note that JavaDoc and block comments i.e. `/* ... */` are not formatted, but line comments i.e `// ...` are.
+* There is an implicit rule that negative boolean expressions should use the form `foo == false` instead of `!foo` for better readability of the code. While this isn't strictly enforced, if might get called out in PR reviews as something to change.
 
 ## Submitting Changes
 
