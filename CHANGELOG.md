@@ -41,7 +41,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 
 ### Changed
-- Migrated from checkstyle to spotless ([#645](https://github.com/opensearch-project/opensearch-java/pull/645))
+- Migrated from checkstyle to spotless ([#648](https://github.com/opensearch-project/opensearch-java/pull/648))
 
 ### Deprecated
 

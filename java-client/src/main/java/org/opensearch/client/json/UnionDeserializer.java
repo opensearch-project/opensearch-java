@@ -218,10 +218,6 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
                 otherMembers.put(Event.START_OBJECT, objectMembers.remove(0));
             }
 
-            // if (objectMembers.size() > 1) {
-            // System.out.println("multiple objects in " + buildFn);
-            // }
-
             return new UnionDeserializer<>(objectMembers, otherMembers, buildFn);
         }
     }

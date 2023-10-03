@@ -67,11 +67,6 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
         for (JsonpDeserializer<?> deserializer : deserializers) {
 
             EnumSet<Event> set = deserializer.acceptedEvents();
-            // Disabled for now. Only happens with the experimental Union2 and is caused by string and number
-            // parsers leniency. Need to be replaced with a check on a preferred event type.
-            // if (!Collections.disjoint(result, set)) {
-            // throw new IllegalArgumentException("Deserializer accepted events are not disjoint");
-            // }
 
             result.addAll(set);
         }

@@ -278,26 +278,4 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
         add(setter::accept, JsonpDeserializer.integerDeserializer(), name, deprecatedNames);
     }
 
-    // Experiment: avoid boxing, allow multiple primitive parsers (e.g. int as number & string)
-    // public void add(
-    // ObjIntConsumer<ObjectType> setter,
-    // JsonpIntParser vp,
-    // String name, String... deprecatedNames
-    // ) {
-    // this.fieldDeserializers.put(name, new FieldDeserializer<ObjectType>(name, deprecatedNames) {
-    // @Override
-    // public void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object) {
-    // JsonpUtils.expectNextEvent(parser, Event.VALUE_NUMBER);
-    // setter.accept(object, vp.parse(parser));
-    // }
-    // });
-    // }
-    //
-    // public static class JsonpIntParser {
-    // public int parse(JsonParser parser) {
-    // JsonpUtils.expectNextEvent(parser, Event.VALUE_NUMBER);
-    // return parser.getInt();
-    // }
-    // }
-
 }
