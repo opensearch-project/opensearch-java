@@ -9,7 +9,6 @@
 package org.opensearch.client.samples;
 
 import java.util.ArrayList;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.json.JsonData;
@@ -47,27 +46,24 @@ public class IndexingBasics {
 
             if (!client.indices().exists(r -> r.index(indexName)).value()) {
                 LOGGER.info("Creating index {}", indexName);
-                IndexSettings settings = new IndexSettings.Builder()
-                        .numberOfShards("2")
-                        .numberOfReplicas("1")
-                        .build();
-                TypeMapping mapping = new TypeMapping.Builder()
-                        .properties("age", new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build())
-                        .build();
-                CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder()
-                        .index(indexName)
-                        .settings(settings)
-                        .mappings(mapping)
-                        .build();
+                IndexSettings settings = new IndexSettings.Builder().numberOfShards("2").numberOfReplicas("1").build();
+                TypeMapping mapping = new TypeMapping.Builder().properties(
+                    "age",
+                    new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build()
+                ).build();
+                CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(indexName)
+                    .settings(settings)
+                    .mappings(mapping)
+                    .build();
                 client.indices().create(createIndexRequest);
             }
 
             LOGGER.info("Indexing documents");
             IndexData indexData = new IndexData("Document 1", "Text for document 1");
             IndexRequest<IndexData> indexRequest = new IndexRequest.Builder<IndexData>().index(indexName)
-                                                                            .id("1")
-                                                                            .document(indexData)
-                                                                            .build();
+                .id("1")
+                .document(indexData)
+                .build();
             client.index(indexRequest);
 
             indexData = new IndexData("Document 2", "Text for document 2");
@@ -84,14 +80,8 @@ public class IndexingBasics {
 
             LOGGER.info("Adding a new mapping to index {}", indexName);
             PutMappingRequest.Builder mappingsRequestBuilder = new PutMappingRequest.Builder().index(indexName)
-                .source(
-                    new SourceField.Builder()
-                        .enabled(true)
-                        .build())
-                .routing(
-                    new RoutingField.Builder()
-                        .required(false)
-                        .build())
+                .source(new SourceField.Builder().enabled(true).build())
+                .routing(new RoutingField.Builder().required(false).build())
                 .dynamic(DynamicMapping.Strict)
                 .meta("key", JsonData.of("key value"))
                 .fieldNames(new FieldNamesField.Builder().enabled(false).build())
@@ -100,7 +90,7 @@ public class IndexingBasics {
                 .dynamicTemplates(new ArrayList<>())
                 .numericDetection(false);
             client.indices().putMapping(mappingsRequestBuilder.build());
-            
+
             GetMappingRequest mappingsRequest = new GetMappingRequest.Builder().index(indexName).build();
             GetMappingResponse getMappingResponse = client.indices().getMapping(mappingsRequest);
             LOGGER.info("Mappings {} found for index {}", getMappingResponse.result().get(indexName).mappings(), indexName);

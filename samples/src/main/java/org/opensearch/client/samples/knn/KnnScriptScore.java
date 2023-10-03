@@ -34,12 +34,12 @@ public class KnnScriptScore {
 
             if (!client.indices().exists(r -> r.index(indexName)).value()) {
                 LOGGER.info("Creating index {}", indexName);
-                client.indices().create(r -> r
-                        .index(indexName)
-                        .settings(s -> s.knn(true))
-                        .mappings(m -> m
-                                .properties("values", p -> p
-                                        .knnVector(k -> k.dimension(dimensions)))));
+                client.indices()
+                    .create(
+                        r -> r.index(indexName)
+                            .settings(s -> s.knn(true))
+                            .mappings(m -> m.properties("values", p -> p.knnVector(k -> k.dimension(dimensions))))
+                    );
             }
 
             final var nVectors = 10;
@@ -47,11 +47,7 @@ public class KnnScriptScore {
             for (var i = 0; i < nVectors; ++i) {
                 var id = Integer.toString(i);
                 var doc = Doc.rand(dimensions);
-                bulkRequest.operations(b -> b
-                        .index(o -> o
-                                .index(indexName)
-                                .id(id)
-                                .document(doc)));
+                bulkRequest.operations(b -> b.index(o -> o.index(indexName).id(id).document(doc)));
             }
 
             LOGGER.info("Indexing {} vectors", nVectors);
@@ -63,19 +59,24 @@ public class KnnScriptScore {
             final var searchVector = RandUtil.rand2SfArray(dimensions);
             LOGGER.info("Searching for vector {}", searchVector);
 
-            var searchResponse = client.search(s -> s
-                    .index(indexName)
-                    .query(q -> q
-                            .scriptScore(ss -> ss
-                                    .query(qq -> qq.matchAll(m -> m))
-                                    .script(sss -> sss
-                                            .inline(i -> i
-                                                    .source("knn_score")
-                                                    .lang("knn")
-                                                    .params("field", JsonData.of("values"))
-                                                    .params("query_value", JsonData.of(searchVector))
-                                                    .params("space_type", JsonData.of("cosinesimil")))))),
-                    Doc.class);
+            var searchResponse = client.search(
+                s -> s.index(indexName)
+                    .query(
+                        q -> q.scriptScore(
+                            ss -> ss.query(qq -> qq.matchAll(m -> m))
+                                .script(
+                                    sss -> sss.inline(
+                                        i -> i.source("knn_score")
+                                            .lang("knn")
+                                            .params("field", JsonData.of("values"))
+                                            .params("query_value", JsonData.of(searchVector))
+                                            .params("space_type", JsonData.of("cosinesimil"))
+                                    )
+                                )
+                        )
+                    ),
+                Doc.class
+            );
 
             for (var hit : searchResponse.hits().hits()) {
                 LOGGER.info("Found {} with score {}", hit.source(), hit.score());
@@ -111,9 +112,7 @@ public class KnnScriptScore {
 
         @Override
         public String toString() {
-            return "{" +
-                    "values=" + Arrays.toString(values) +
-                    '}';
+            return "{" + "values=" + Arrays.toString(values) + '}';
         }
     }
 }
