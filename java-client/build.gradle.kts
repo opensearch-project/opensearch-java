@@ -272,7 +272,7 @@ tasks.withType<Jar> {
 spotless {
   java {
 
-    target("**/*.java")
+    target("**/json/**/*.java", "**/transport/**/*.java", "**/util/**/*.java")
 
     // Use the default importOrder configuration
     importOrder()

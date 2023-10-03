@@ -35,9 +35,8 @@ package org.opensearch.client.json;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-
-import javax.annotation.Nullable;
 import java.lang.reflect.Field;
+import javax.annotation.Nullable;
 
 public abstract class JsonpMapperBase implements JsonpMapper {
 
@@ -61,7 +60,7 @@ public abstract class JsonpMapperBase implements JsonpMapper {
         if (annotation != null) {
             try {
                 Field field = clazz.getDeclaredField(annotation.field());
-                return (JsonpDeserializer<T>)field.get(null);
+                return (JsonpDeserializer<T>) field.get(null);
             } catch (Exception e) {
                 throw new RuntimeException("No deserializer found in '" + clazz.getName() + "." + annotation.field() + "'");
             }

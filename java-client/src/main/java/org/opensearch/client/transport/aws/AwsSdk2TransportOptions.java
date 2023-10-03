@@ -8,12 +8,11 @@
 
 package org.opensearch.client.transport.aws;
 
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.transport.TransportOptions;
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
-
-import java.util.List;
-import java.util.function.Function;
 
 public interface AwsSdk2TransportOptions extends TransportOptions {
 
@@ -103,8 +102,7 @@ public interface AwsSdk2TransportOptions extends TransportOptions {
         protected Boolean responseCompression;
         protected JsonpMapper mapper;
 
-        public BuilderImpl() {
-        }
+        public BuilderImpl() {}
 
         public BuilderImpl(AwsSdk2TransportOptions src) {
             super(src);

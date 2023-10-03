@@ -38,5 +38,5 @@ package org.opensearch.client.util;
  * @param <T> the type that will be built.
  */
 public interface ObjectBuilder<T> {
-  T build();
+    T build();
 }

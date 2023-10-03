@@ -32,6 +32,11 @@
 
 package org.opensearch.client.transport.endpoints;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
@@ -39,12 +44,6 @@ import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Base class for dictionary responses, i.e. a series of key/value pairs.
@@ -98,8 +97,8 @@ public abstract class DictionaryResponse<TKey, TValue> implements JsonpSerializa
         }
     }
 
-    protected abstract static class AbstractBuilder<TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>>
-        extends ObjectBuilderBase {
+    protected abstract static class AbstractBuilder<TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>> extends
+        ObjectBuilderBase {
 
         private Map<String, TValue> result;
 
@@ -154,11 +153,13 @@ public abstract class DictionaryResponse<TKey, TValue> implements JsonpSerializa
 
     // ---------------------------------------------------------------------------------------------
     protected static <TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>> void setupDictionaryResponseDeserializer(
-        ObjectDeserializer<BuilderT> op, JsonpDeserializer<TKey> tKeyParser,
-        JsonpDeserializer<TValue> tValueParser) {
+        ObjectDeserializer<BuilderT> op,
+        JsonpDeserializer<TKey> tKeyParser,
+        JsonpDeserializer<TValue> tValueParser
+    ) {
 
-        op.setUnknownFieldHandler((builder, name, parser, params) -> {
-            builder.putResult(name, tValueParser.deserialize(parser, params));
-        });
+        op.setUnknownFieldHandler(
+            (builder, name, parser, params) -> { builder.putResult(name, tValueParser.deserialize(parser, params)); }
+        );
     }
 }

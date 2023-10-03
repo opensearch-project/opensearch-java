@@ -32,13 +32,12 @@
 
 package org.opensearch.client.transport.httpclient5.internal;
 
-import org.apache.hc.core5.http.HttpHost;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
+import org.apache.hc.core5.http.HttpHost;
 
 /**
  * Metadata about an {@link HttpHost} running OpenSearch.

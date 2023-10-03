@@ -32,13 +32,12 @@
 
 package org.opensearch.client.transport.endpoints;
 
+import jakarta.json.stream.JsonParser;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.DelegatingDeserializer;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.transport.JsonEndpoint;
-import jakarta.json.stream.JsonParser;
-
-import javax.annotation.Nullable;
 
 /**
  * An endpoint wrapper that adds attributes to the JSON mapper used to deserialize its response.

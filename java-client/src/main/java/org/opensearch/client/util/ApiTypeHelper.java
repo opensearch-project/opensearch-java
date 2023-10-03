@@ -32,7 +32,6 @@
 
 package org.opensearch.client.util;
 
-import javax.annotation.Nullable;
 import java.util.AbstractList;
 import java.util.AbstractMap;
 import java.util.Collections;
@@ -40,6 +39,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.annotation.Nullable;
 
 /**
  * Utility functions for API model types
@@ -48,7 +48,7 @@ public class ApiTypeHelper {
 
     private ApiTypeHelper() {}
 
-    //----- Required properties
+    // ----- Required properties
 
     private static final ThreadLocal<Boolean> disableRequiredPropertiesCheck = new ThreadLocal<>();
 
@@ -62,6 +62,7 @@ public class ApiTypeHelper {
         public DisabledChecksHandle(Boolean value) {
             this.value = value;
         }
+
         @Override
         public void close() {
             disableRequiredPropertiesCheck.set(value);
@@ -90,7 +91,7 @@ public class ApiTypeHelper {
         return value;
     }
 
-    //----- Lists
+    // ----- Lists
 
     /** Immutable empty list implementation so that we can create marker list objects */
     static class EmptyList extends AbstractList<Object> {
@@ -118,7 +119,7 @@ public class ApiTypeHelper {
      */
     @SuppressWarnings("unchecked")
     public static <T> List<T> undefinedList() {
-        return (List<T>)UNDEFINED_LIST;
+        return (List<T>) UNDEFINED_LIST;
     }
 
     /**
@@ -154,7 +155,7 @@ public class ApiTypeHelper {
         return Collections.unmodifiableList(list);
     }
 
-    //----- Maps
+    // ----- Maps
 
     static class EmptyMap extends AbstractMap<Object, Object> {
         @Override
@@ -171,7 +172,7 @@ public class ApiTypeHelper {
      */
     @SuppressWarnings("unchecked")
     public static <K, V> Map<K, V> undefinedMap() {
-        return (Map<K, V>)UNDEFINED_MAP;
+        return (Map<K, V>) UNDEFINED_MAP;
     }
 
     /**

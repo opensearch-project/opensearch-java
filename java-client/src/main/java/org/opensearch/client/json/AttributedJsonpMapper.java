@@ -72,7 +72,7 @@ class AttributedJsonpMapper implements JsonpMapper {
     @SuppressWarnings("unchecked")
     public <T> T attribute(String name) {
         if (this.name.equals(name)) {
-            return (T)this.value;
+            return (T) this.value;
         } else {
             return mapper.attribute(name);
         }

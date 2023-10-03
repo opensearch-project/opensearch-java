@@ -32,10 +32,8 @@
 
 package org.opensearch.client.transport.rest_client;
 
-import org.opensearch.client.transport.TransportOptions;
-import org.opensearch.client.transport.Version;
-import org.opensearch.client.RequestOptions;
-import org.opensearch.client.WarningsHandler;
+import static org.opensearch.client.transport.TransportHeaders.ACCEPT;
+import static org.opensearch.client.transport.TransportHeaders.USER_AGENT;
 
 import java.util.AbstractMap;
 import java.util.Collection;
@@ -44,9 +42,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
-import static org.opensearch.client.transport.TransportHeaders.ACCEPT;
-import static org.opensearch.client.transport.TransportHeaders.USER_AGENT;
+import org.opensearch.client.RequestOptions;
+import org.opensearch.client.WarningsHandler;
+import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.transport.Version;
 
 /**
  * The {@link RestClientTransport} is deprecated and is scheduled for removal in later versions. Please
@@ -59,7 +58,7 @@ public class RestClientOptions implements TransportOptions {
 
     static RestClientOptions of(TransportOptions options) {
         if (options instanceof RestClientOptions) {
-            return (RestClientOptions)options;
+            return (RestClientOptions) options;
 
         } else {
             final Builder builder = new Builder(RequestOptions.DEFAULT.toBuilder());
@@ -87,15 +86,16 @@ public class RestClientOptions implements TransportOptions {
 
     @Override
     public Collection<Map.Entry<String, String>> headers() {
-        return options.getHeaders().stream()
+        return options.getHeaders()
+            .stream()
             .map(h -> new AbstractMap.SimpleImmutableEntry<>(h.getName(), h.getValue()))
             .collect(Collectors.toList());
     }
 
     @Override
     public Map<String, String> queryParameters() {
-        //        TODO - param not available
-//        return options.getParameters();
+        // TODO - param not available
+        // return options.getParameters();
         return null;
     }
 
@@ -138,7 +138,7 @@ public class RestClientOptions implements TransportOptions {
                 // We must filter out our own user-agent from the options or they'll end up as multiple values for the header
                 RequestOptions options = builder.build();
                 builder = RequestOptions.DEFAULT.toBuilder();
-//                options.getParameters().forEach((k, v) -> builder.addParameter(k, v));
+                // options.getParameters().forEach((k, v) -> builder.addParameter(k, v));
                 options.getHeaders().forEach(h -> {
                     if (!h.getName().equalsIgnoreCase(USER_AGENT)) {
                         builder.addHeader(h.getName(), h.getValue());
@@ -155,8 +155,8 @@ public class RestClientOptions implements TransportOptions {
 
         @Override
         public TransportOptions.Builder setParameter(String name, String value) {
-            //TODO - param not available
-//            builder.addParameter(name, value);
+            // TODO - param not available
+            // builder.addParameter(name, value);
             return this;
         }
 
