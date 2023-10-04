@@ -33,17 +33,23 @@
 package org.opensearch.client.opensearch.experiments;
 
 import java.util.List;
-
+import java.util.Map;
 import org.junit.Test;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch._types.analysis.Analyzer;
 import org.opensearch.client.opensearch._types.analysis.TokenFilterDefinition;
 import org.opensearch.client.opensearch._types.analysis.TokenizerBuilders;
 import org.opensearch.client.opensearch._types.analysis.TokenizerDefinition;
+import org.opensearch.client.opensearch._types.mapping.FieldMapping;
+import org.opensearch.client.opensearch._types.mapping.Property;
+import org.opensearch.client.opensearch._types.mapping.TermVectorOption;
+import org.opensearch.client.opensearch._types.mapping.TextProperty;
 import org.opensearch.client.opensearch.experiments.api.FooRequest;
+import org.opensearch.client.opensearch.indices.GetFieldMappingResponse;
 import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.IndexSettingsMapping;
 import org.opensearch.client.opensearch.indices.Translog;
+import org.opensearch.client.opensearch.indices.get_field_mapping.TypeFieldMappings;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
 public class ParsingTests extends ModelTestCase {
@@ -173,4 +179,74 @@ public class ParsingTests extends ModelTestCase {
         assertEquals(analyzer.cjk().stopwords(), analyzer2.cjk().stopwords());
         assertEquals(analyzer.cjk().stopwordsPath(), analyzer2.cjk().stopwordsPath());
     }
+
+    @Test
+    public void testFieldMappingResponse() {
+        final String indexName = "indexName";
+        final String field1Name = "field1";
+        final String field1Analyzer = "my_analyzer";
+        final FieldMapping field1 = FieldMapping.of(fmb -> fmb
+            .fullName(field1Name)
+            .mapping(field1Name, pb -> pb
+                .text(tpb -> tpb
+                    .store(true)
+                    .termVector(TermVectorOption.WithPositionsOffsets)
+                    .analyzer(field1Analyzer)
+                    .positionIncrementGap(10))
+            )
+        );
+        final String field3Name = "field3";
+        // Build aFieldMappingResponse with several fields
+        final GetFieldMappingResponse response = GetFieldMappingResponse.of(b -> b
+            .putResult(indexName, TypeFieldMappings.of(tfmb -> tfmb
+                    .putMappings(field1Name, field1)
+                    .putMappings("field2", fmb -> fmb
+                        .fullName("field2")
+                        .mapping("field2", pb -> pb
+                            .text(tpb -> tpb
+                                .store(true)
+                                .termVector(TermVectorOption.WithPositionsOffsets)
+                                .analyzer("another_analyzer")
+                                .positionIncrementGap(10))
+                        )
+                    )
+                    .putMappings(field3Name, fmb -> fmb
+                        .fullName(field3Name)
+                        .mapping(field3Name, pb -> pb
+                            .text(tpb -> tpb
+                                .store(true)
+                                .termVector(TermVectorOption.WithPositionsOffsets)
+                                .analyzer("this_analyzer")
+                                .positionIncrementGap(10))
+                        )
+                    )
+                )
+            )
+        );
+        String str = toJson(response);
+        assertEquals("{\"indexName\":{\"mappings\":{\"field1\":{\"full_name\":\"field1\",\"mapping\""
+            +":{\"field1\":{\"type\":\"text\",\"store\":true,\"analyzer\":\"my_analyzer\"," +
+            "\"position_increment_gap\":10,\"term_vector\":\"with_positions_offsets\"}}},"
+            +"\"field3\":{\"full_name\":\"field3\",\"mapping\":{\"field3\":{\"type\":\"text\",\"store\":true," +
+            "\"analyzer\":\"this_analyzer\",\"position_increment_gap\":10,\"term_vector\":\"with_positions_offsets\"}}},"
+            +"\"field2\":{\"full_name\":\"field2\",\"mapping\":{\"field2\":{\"type\":\"text\",\"store\":true,"
+            +"\"analyzer\":\"another_analyzer\",\"position_increment_gap\":10,\"term_vector\":\"with_positions_offsets\"}}}}}}", str);
+
+        final GetFieldMappingResponse response2 = fromJson(str, GetFieldMappingResponse._DESERIALIZER);
+        final TypeFieldMappings typeFieldMappings = response2.get(indexName);
+        assertNotNull(typeFieldMappings);
+        final Map<String, FieldMapping> mappings = typeFieldMappings.mappings();
+        assertFalse(mappings.isEmpty());
+        final FieldMapping field1_des = mappings.get(field1Name);
+        assertNotNull(field1_des);
+        assertEquals(field1Name, field1_des.fullName());
+        final Property field1Prop = field1_des.mapping().get(field1Name);
+        assertNotNull(field1Prop);
+        final TextProperty textProperty = field1Prop.text();
+        assertNotNull(textProperty);
+        assertEquals(field1Analyzer, textProperty.analyzer());
+
+        assertNotNull(mappings.get(field3Name));
+    }
+
 }
