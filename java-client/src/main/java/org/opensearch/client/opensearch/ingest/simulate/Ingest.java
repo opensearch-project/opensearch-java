@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.ingest.simulate;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,123 +44,122 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Ingest
 
 @JsonpDeserializable
 public class Ingest implements JsonpSerializable {
-	private final String timestamp;
+    private final String timestamp;
 
-	@Nullable
-	private final String pipeline;
+    @Nullable
+    private final String pipeline;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private Ingest(Builder builder) {
+    private Ingest(Builder builder) {
 
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.pipeline = builder.pipeline;
+        this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+        this.pipeline = builder.pipeline;
 
-	}
+    }
 
-	public static Ingest of(Function<Builder, ObjectBuilder<Ingest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Ingest of(Function<Builder, ObjectBuilder<Ingest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code timestamp}
-	 */
-	public final String timestamp() {
-		return this.timestamp;
-	}
+    /**
+     * Required - API name: {@code timestamp}
+     */
+    public final String timestamp() {
+        return this.timestamp;
+    }
 
-	/**
-	 * API name: {@code pipeline}
-	 */
-	@Nullable
-	public final String pipeline() {
-		return this.pipeline;
-	}
+    /**
+     * API name: {@code pipeline}
+     */
+    @Nullable
+    public final String pipeline() {
+        return this.pipeline;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
+        generator.writeKey("timestamp");
+        generator.write(this.timestamp);
 
-		if (this.pipeline != null) {
-			generator.writeKey("pipeline");
-			generator.write(this.pipeline);
+        if (this.pipeline != null) {
+            generator.writeKey("pipeline");
+            generator.write(this.pipeline);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link Ingest}.
-	 */
+    /**
+     * Builder for {@link Ingest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ingest> {
-		private String timestamp;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ingest> {
+        private String timestamp;
 
-		@Nullable
-		private String pipeline;
+        @Nullable
+        private String pipeline;
 
-		/**
-		 * Required - API name: {@code timestamp}
-		 */
-		public final Builder timestamp(String value) {
-			this.timestamp = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code timestamp}
+         */
+        public final Builder timestamp(String value) {
+            this.timestamp = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code pipeline}
-		 */
-		public final Builder pipeline(@Nullable String value) {
-			this.pipeline = value;
-			return this;
-		}
+        /**
+         * API name: {@code pipeline}
+         */
+        public final Builder pipeline(@Nullable String value) {
+            this.pipeline = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link Ingest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public Ingest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link Ingest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public Ingest build() {
+            _checkSingleUse();
 
-			return new Ingest(this);
-		}
-	}
+            return new Ingest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link Ingest}
-	 */
-	public static final JsonpDeserializer<Ingest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Ingest::setupIngestDeserializer);
+    /**
+     * Json deserializer for {@link Ingest}
+     */
+    public static final JsonpDeserializer<Ingest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        Ingest::setupIngestDeserializer
+    );
 
-	protected static void setupIngestDeserializer(ObjectDeserializer<Ingest.Builder> op) {
+    protected static void setupIngestDeserializer(ObjectDeserializer<Ingest.Builder> op) {
 
-		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
-		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
+        op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+        op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
 
-	}
+    }
 
 }

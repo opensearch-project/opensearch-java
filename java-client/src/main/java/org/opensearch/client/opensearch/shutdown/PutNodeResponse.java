@@ -32,68 +32,67 @@
 
 package org.opensearch.client.opensearch.shutdown;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: shutdown.put_node.Response
 
 @JsonpDeserializable
 public class PutNodeResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PutNodeResponse(Builder builder) {
-		super(builder);
+    private PutNodeResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static PutNodeResponse of(Function<Builder, ObjectBuilder<PutNodeResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PutNodeResponse of(Function<Builder, ObjectBuilder<PutNodeResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PutNodeResponse}.
-	 */
+    /**
+     * Builder for {@link PutNodeResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PutNodeResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<PutNodeResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PutNodeResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PutNodeResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PutNodeResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PutNodeResponse build() {
+            _checkSingleUse();
 
-			return new PutNodeResponse(this);
-		}
-	}
+            return new PutNodeResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PutNodeResponse}
-	 */
-	public static final JsonpDeserializer<PutNodeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutNodeResponse::setupPutNodeResponseDeserializer);
+    /**
+     * Json deserializer for {@link PutNodeResponse}
+     */
+    public static final JsonpDeserializer<PutNodeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PutNodeResponse::setupPutNodeResponseDeserializer
+    );
 
-	protected static void setupPutNodeResponseDeserializer(ObjectDeserializer<PutNodeResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupPutNodeResponseDeserializer(ObjectDeserializer<PutNodeResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

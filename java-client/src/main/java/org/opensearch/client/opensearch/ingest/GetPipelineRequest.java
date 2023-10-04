@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -40,234 +44,232 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
-
 // typedef: ingest.get_pipeline.Request
 
 /**
  * Returns a pipeline.
- * 
+ *
  */
 
 public class GetPipelineRequest extends RequestBase {
-	@Nullable
-	private final String id;
+    @Nullable
+    private final String id;
 
-	@Deprecated
-	@Nullable
-	private final Time masterTimeout;
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
 
-	@Nullable
-	private final Time clusterManagerTimeout;
+    @Nullable
+    private final Time clusterManagerTimeout;
 
-	@Nullable
-	private final Boolean summary;
+    @Nullable
+    private final Boolean summary;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetPipelineRequest(Builder builder) {
+    private GetPipelineRequest(Builder builder) {
 
-		this.id = builder.id;
-		this.masterTimeout = builder.masterTimeout;
-		this.clusterManagerTimeout = builder.clusterManagerTimeout;
-		this.summary = builder.summary;
+        this.id = builder.id;
+        this.masterTimeout = builder.masterTimeout;
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.summary = builder.summary;
 
-	}
+    }
 
-	public static GetPipelineRequest of(Function<Builder, ObjectBuilder<GetPipelineRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetPipelineRequest of(Function<Builder, ObjectBuilder<GetPipelineRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Comma separated list of pipeline ids. Wildcards supported
-	 * <p>
-	 * API name: {@code id}
-	 */
-	@Nullable
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * Comma separated list of pipeline ids. Wildcards supported
+     * <p>
+     * API name: {@code id}
+     */
+    @Nullable
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * Explicit operation timeout for connection to master node
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Deprecated
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
+    /**
+     * Explicit operation timeout for connection to master node
+     * <p>
+     * API name: {@code master_timeout}
+     */
+    @Deprecated
+    @Nullable
+    public final Time masterTimeout() {
+        return this.masterTimeout;
+    }
 
-	/**
-	 * Explicit operation timeout for connection to cluster-manager node
-	 * <p>
-	 * API name: {@code cluster_manager_timeout}
-	 */
-	@Nullable
-	public final Time clusterManagerTimeout() {
-		return this.clusterManagerTimeout;
-	}
+    /**
+     * Explicit operation timeout for connection to cluster-manager node
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
 
-	/**
-	 * Return pipelines without their definitions (default: false)
-	 * <p>
-	 * API name: {@code summary}
-	 */
-	@Nullable
-	public final Boolean summary() {
-		return this.summary;
-	}
+    /**
+     * Return pipelines without their definitions (default: false)
+     * <p>
+     * API name: {@code summary}
+     */
+    @Nullable
+    public final Boolean summary() {
+        return this.summary;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetPipelineRequest}.
-	 */
+    /**
+     * Builder for {@link GetPipelineRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPipelineRequest> {
-		@Nullable
-		private String id;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPipelineRequest> {
+        @Nullable
+        private String id;
 
-		@Deprecated
-		@Nullable
-		private Time masterTimeout;
+        @Deprecated
+        @Nullable
+        private Time masterTimeout;
 
-		@Nullable
-		private Time clusterManagerTimeout;
+        @Nullable
+        private Time clusterManagerTimeout;
 
-		@Nullable
-		private Boolean summary;
+        @Nullable
+        private Boolean summary;
 
-		/**
-		 * Comma separated list of pipeline ids. Wildcards supported
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public final Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * Comma separated list of pipeline ids. Wildcards supported
+         * <p>
+         * API name: {@code id}
+         */
+        public final Builder id(@Nullable String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout for connection to master node
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout for connection to master node
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.masterTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Explicit operation timeout for connection to cluster-manager node
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(@Nullable Time value) {
-			this.clusterManagerTimeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to cluster-manager node
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Return pipelines without their definitions (default: false)
-		 * <p>
-		 * API name: {@code summary}
-		 */
-		public final Builder summary(@Nullable Boolean value) {
-			this.summary = value;
-			return this;
-		}
+        /**
+         * Return pipelines without their definitions (default: false)
+         * <p>
+         * API name: {@code summary}
+         */
+        public final Builder summary(@Nullable Boolean value) {
+            this.summary = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetPipelineRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetPipelineRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GetPipelineRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetPipelineRequest build() {
+            _checkSingleUse();
 
-			return new GetPipelineRequest(this);
-		}
-	}
+            return new GetPipelineRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code ingest.get_pipeline}".
-	 */
-	public static final Endpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code ingest.get_pipeline}".
+     */
+    public static final Endpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _id = 1 << 0;
+        // Request path
+        request -> {
+            final int _id = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (request.id() != null)
-					propsSet |= _id;
+            if (request.id() != null) propsSet |= _id;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_ingest");
-					buf.append("/pipeline");
-					return buf.toString();
-				}
-				if (propsSet == (_id)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_ingest");
-					buf.append("/pipeline");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.id, buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_ingest");
+                buf.append("/pipeline");
+                return buf.toString();
+            }
+            if (propsSet == (_id)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_ingest");
+                buf.append("/pipeline");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.id, buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.clusterManagerTimeout != null) {
-					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-				}
-				if (request.summary != null) {
-					params.put("summary", String.valueOf(request.summary));
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
+            if (request.clusterManagerTimeout != null) {
+                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
+            }
+            if (request.summary != null) {
+                params.put("summary", String.valueOf(request.summary));
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetPipelineResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        GetPipelineResponse._DESERIALIZER
+    );
 }

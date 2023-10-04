@@ -32,154 +32,150 @@
 
 package org.opensearch.client.opensearch.shutdown;
 
-import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.OpenSearchTransport;
-import org.opensearch.client.transport.JsonEndpoint;
-import org.opensearch.client.transport.TransportOptions;
-import org.opensearch.client.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.transport.JsonEndpoint;
+import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.util.ObjectBuilder;
 
 /**
  * Client for the shutdown namespace.
  */
-public class OpenSearchShutdownAsyncClient
-		extends
-			ApiClient<OpenSearchTransport, OpenSearchShutdownAsyncClient> {
+public class OpenSearchShutdownAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchShutdownAsyncClient> {
 
-	public OpenSearchShutdownAsyncClient(OpenSearchTransport transport) {
-		super(transport, null);
-	}
+    public OpenSearchShutdownAsyncClient(OpenSearchTransport transport) {
+        super(transport, null);
+    }
 
-	public OpenSearchShutdownAsyncClient(OpenSearchTransport transport,
-                                         @Nullable TransportOptions transportOptions) {
-		super(transport, transportOptions);
-	}
+    public OpenSearchShutdownAsyncClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+        super(transport, transportOptions);
+    }
 
-	@Override
-	public OpenSearchShutdownAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpenSearchShutdownAsyncClient(this.transport, transportOptions);
-	}
+    @Override
+    public OpenSearchShutdownAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchShutdownAsyncClient(this.transport, transportOptions);
+    }
 
-	// ----- Endpoint: shutdown.delete_node
+    // ----- Endpoint: shutdown.delete_node
 
-	/**
-	 * Removes a node from the shutdown list. Designed for indirect use by ECE/ESS
-	 * and ECK. Direct use is not supported.
-	 * 
-	 *
-	 */
+    /**
+     * Removes a node from the shutdown list. Designed for indirect use by ECE/ESS
+     * and ECK. Direct use is not supported.
+     *
+     *
+     */
 
-	public CompletableFuture<DeleteNodeResponse> deleteNode(DeleteNodeRequest request)
-			throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse>) DeleteNodeRequest._ENDPOINT;
+    public CompletableFuture<DeleteNodeResponse> deleteNode(DeleteNodeRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            DeleteNodeRequest,
+            DeleteNodeResponse,
+            ErrorResponse>) DeleteNodeRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Removes a node from the shutdown list. Designed for indirect use by ECE/ESS
-	 * and ECK. Direct use is not supported.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link DeleteNodeRequest}
-	 *
-	 */
+    /**
+     * Removes a node from the shutdown list. Designed for indirect use by ECE/ESS
+     * and ECK. Direct use is not supported.
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link DeleteNodeRequest}
+     *
+     */
 
-	public final CompletableFuture<DeleteNodeResponse> deleteNode(
-			Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn)
-			throws IOException, OpenSearchException {
-		return deleteNode(fn.apply(new DeleteNodeRequest.Builder()).build());
-	}
+    public final CompletableFuture<DeleteNodeResponse> deleteNode(Function<DeleteNodeRequest.Builder, ObjectBuilder<DeleteNodeRequest>> fn)
+        throws IOException, OpenSearchException {
+        return deleteNode(fn.apply(new DeleteNodeRequest.Builder()).build());
+    }
 
-	// ----- Endpoint: shutdown.get_node
+    // ----- Endpoint: shutdown.get_node
 
-	/**
-	 * Retrieve status of a node or nodes that are currently marked as shutting
-	 * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
-	 * supported.
-	 * 
-	 *
-	 */
+    /**
+     * Retrieve status of a node or nodes that are currently marked as shutting
+     * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+     * supported.
+     *
+     *
+     */
 
-	public CompletableFuture<GetNodeResponse> getNode(GetNodeRequest request)
-			throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<GetNodeRequest, GetNodeResponse, ErrorResponse>) GetNodeRequest._ENDPOINT;
+    public CompletableFuture<GetNodeResponse> getNode(GetNodeRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            GetNodeRequest,
+            GetNodeResponse,
+            ErrorResponse>) GetNodeRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Retrieve status of a node or nodes that are currently marked as shutting
-	 * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
-	 * supported.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetNodeRequest}
-	 *
-	 */
+    /**
+     * Retrieve status of a node or nodes that are currently marked as shutting
+     * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+     * supported.
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link GetNodeRequest}
+     *
+     */
 
-	public final CompletableFuture<GetNodeResponse> getNode(
-			Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn)
-			throws IOException, OpenSearchException {
-		return getNode(fn.apply(new GetNodeRequest.Builder()).build());
-	}
+    public final CompletableFuture<GetNodeResponse> getNode(Function<GetNodeRequest.Builder, ObjectBuilder<GetNodeRequest>> fn)
+        throws IOException, OpenSearchException {
+        return getNode(fn.apply(new GetNodeRequest.Builder()).build());
+    }
 
-	/**
-	 * Retrieve status of a node or nodes that are currently marked as shutting
-	 * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
-	 * supported.
-	 * 
-	 *
-	 */
+    /**
+     * Retrieve status of a node or nodes that are currently marked as shutting
+     * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+     * supported.
+     *
+     *
+     */
 
-	public CompletableFuture<GetNodeResponse> getNode() throws IOException, OpenSearchException {
-		return this.transport.performRequestAsync(new GetNodeRequest.Builder().build(), GetNodeRequest._ENDPOINT,
-				this.transportOptions);
-	}
+    public CompletableFuture<GetNodeResponse> getNode() throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(new GetNodeRequest.Builder().build(), GetNodeRequest._ENDPOINT, this.transportOptions);
+    }
 
-	// ----- Endpoint: shutdown.put_node
+    // ----- Endpoint: shutdown.put_node
 
-	/**
-	 * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
-	 * Direct use is not supported.
-	 * 
-	 *
-	 */
+    /**
+     * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
+     * Direct use is not supported.
+     *
+     *
+     */
 
-	public CompletableFuture<PutNodeResponse> putNode(PutNodeRequest request)
-			throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutNodeRequest, PutNodeResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<PutNodeRequest, PutNodeResponse, ErrorResponse>) PutNodeRequest._ENDPOINT;
+    public CompletableFuture<PutNodeResponse> putNode(PutNodeRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<PutNodeRequest, PutNodeResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            PutNodeRequest,
+            PutNodeResponse,
+            ErrorResponse>) PutNodeRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
-	 * Direct use is not supported.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link PutNodeRequest}
-	 *
-	 */
+    /**
+     * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
+     * Direct use is not supported.
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link PutNodeRequest}
+     *
+     */
 
-	public final CompletableFuture<PutNodeResponse> putNode(
-			Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn)
-			throws IOException, OpenSearchException {
-		return putNode(fn.apply(new PutNodeRequest.Builder()).build());
-	}
+    public final CompletableFuture<PutNodeResponse> putNode(Function<PutNodeRequest.Builder, ObjectBuilder<PutNodeRequest>> fn)
+        throws IOException, OpenSearchException {
+        return putNode(fn.apply(new PutNodeRequest.Builder()).build());
+    }
 
 }

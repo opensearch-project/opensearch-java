@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.shutdown.get_node;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,93 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: shutdown.get_node.PersistentTaskStatus
 
 @JsonpDeserializable
 public class PersistentTaskStatus implements JsonpSerializable {
-	private final ShutdownStatus status;
+    private final ShutdownStatus status;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PersistentTaskStatus(Builder builder) {
+    private PersistentTaskStatus(Builder builder) {
 
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+        this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
-	}
+    }
 
-	public static PersistentTaskStatus of(Function<Builder, ObjectBuilder<PersistentTaskStatus>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PersistentTaskStatus of(Function<Builder, ObjectBuilder<PersistentTaskStatus>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code status}
-	 */
-	public final ShutdownStatus status() {
-		return this.status;
-	}
+    /**
+     * Required - API name: {@code status}
+     */
+    public final ShutdownStatus status() {
+        return this.status;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("status");
-		this.status.serialize(generator, mapper);
+        generator.writeKey("status");
+        this.status.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PersistentTaskStatus}.
-	 */
+    /**
+     * Builder for {@link PersistentTaskStatus}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PersistentTaskStatus> {
-		private ShutdownStatus status;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PersistentTaskStatus> {
+        private ShutdownStatus status;
 
-		/**
-		 * Required - API name: {@code status}
-		 */
-		public final Builder status(ShutdownStatus value) {
-			this.status = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code status}
+         */
+        public final Builder status(ShutdownStatus value) {
+            this.status = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PersistentTaskStatus}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PersistentTaskStatus build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PersistentTaskStatus}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PersistentTaskStatus build() {
+            _checkSingleUse();
 
-			return new PersistentTaskStatus(this);
-		}
-	}
+            return new PersistentTaskStatus(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PersistentTaskStatus}
-	 */
-	public static final JsonpDeserializer<PersistentTaskStatus> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PersistentTaskStatus::setupPersistentTaskStatusDeserializer);
+    /**
+     * Json deserializer for {@link PersistentTaskStatus}
+     */
+    public static final JsonpDeserializer<PersistentTaskStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PersistentTaskStatus::setupPersistentTaskStatusDeserializer
+    );
 
-	protected static void setupPersistentTaskStatusDeserializer(ObjectDeserializer<PersistentTaskStatus.Builder> op) {
+    protected static void setupPersistentTaskStatusDeserializer(ObjectDeserializer<PersistentTaskStatus.Builder> op) {
 
-		op.add(Builder::status, ShutdownStatus._DESERIALIZER, "status");
+        op.add(Builder::status, ShutdownStatus._DESERIALIZER, "status");
 
-	}
+    }
 
 }

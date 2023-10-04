@@ -32,51 +32,53 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import java.util.Collections;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
-import java.util.Collections;
-
 // typedef: ingest.processor_grok.Request
 
 /**
  * Returns a list of the built-in patterns.
- * 
+ *
  */
 
 public class ProcessorGrokRequest extends RequestBase {
-	public ProcessorGrokRequest() {
-	}
+    public ProcessorGrokRequest() {}
 
-	/**
-	 * Singleton instance for {@link ProcessorGrokRequest}.
-	 */
-	public static final ProcessorGrokRequest _INSTANCE = new ProcessorGrokRequest();
+    /**
+     * Singleton instance for {@link ProcessorGrokRequest}.
+     */
+    public static final ProcessorGrokRequest _INSTANCE = new ProcessorGrokRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code ingest.processor_grok}".
-	 */
-	public static final Endpoint<ProcessorGrokRequest, ProcessorGrokResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code ingest.processor_grok}".
+     */
+    public static final Endpoint<ProcessorGrokRequest, ProcessorGrokResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_ingest/processor/grok";
+        // Request path
+        request -> {
+            return "/_ingest/processor/grok";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, ProcessorGrokResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        ProcessorGrokResponse._DESERIALIZER
+    );
 }

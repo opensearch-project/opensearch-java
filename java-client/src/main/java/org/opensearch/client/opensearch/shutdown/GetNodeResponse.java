@@ -32,133 +32,134 @@
 
 package org.opensearch.client.opensearch.shutdown;
 
-import org.opensearch.client.opensearch.shutdown.get_node.NodeShutdownStatus;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.shutdown.get_node.NodeShutdownStatus;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: shutdown.get_node.Response
 
 @JsonpDeserializable
 public class GetNodeResponse implements JsonpSerializable {
-	private final List<NodeShutdownStatus> nodes;
+    private final List<NodeShutdownStatus> nodes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetNodeResponse(Builder builder) {
+    private GetNodeResponse(Builder builder) {
 
-		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+        this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
-	}
+    }
 
-	public static GetNodeResponse of(Function<Builder, ObjectBuilder<GetNodeResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetNodeResponse of(Function<Builder, ObjectBuilder<GetNodeResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code nodes}
-	 */
-	public final List<NodeShutdownStatus> nodes() {
-		return this.nodes;
-	}
+    /**
+     * Required - API name: {@code nodes}
+     */
+    public final List<NodeShutdownStatus> nodes() {
+        return this.nodes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.nodes)) {
-			generator.writeKey("nodes");
-			generator.writeStartArray();
-			for (NodeShutdownStatus item0 : this.nodes) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.nodes)) {
+            generator.writeKey("nodes");
+            generator.writeStartArray();
+            for (NodeShutdownStatus item0 : this.nodes) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetNodeResponse}.
-	 */
+    /**
+     * Builder for {@link GetNodeResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetNodeResponse> {
-		private List<NodeShutdownStatus> nodes;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetNodeResponse> {
+        private List<NodeShutdownStatus> nodes;
 
-		/**
-		 * Required - API name: {@code nodes}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodes</code>.
-		 */
-		public final Builder nodes(List<NodeShutdownStatus> list) {
-			this.nodes = _listAddAll(this.nodes, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code nodes}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>nodes</code>.
+         */
+        public final Builder nodes(List<NodeShutdownStatus> list) {
+            this.nodes = _listAddAll(this.nodes, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code nodes}
-		 * <p>
-		 * Adds one or more values to <code>nodes</code>.
-		 */
-		public final Builder nodes(NodeShutdownStatus value, NodeShutdownStatus... values) {
-			this.nodes = _listAdd(this.nodes, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code nodes}
+         * <p>
+         * Adds one or more values to <code>nodes</code>.
+         */
+        public final Builder nodes(NodeShutdownStatus value, NodeShutdownStatus... values) {
+            this.nodes = _listAdd(this.nodes, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code nodes}
-		 * <p>
-		 * Adds a value to <code>nodes</code> using a builder lambda.
-		 */
-		public final Builder nodes(Function<NodeShutdownStatus.Builder, ObjectBuilder<NodeShutdownStatus>> fn) {
-			return nodes(fn.apply(new NodeShutdownStatus.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code nodes}
+         * <p>
+         * Adds a value to <code>nodes</code> using a builder lambda.
+         */
+        public final Builder nodes(Function<NodeShutdownStatus.Builder, ObjectBuilder<NodeShutdownStatus>> fn) {
+            return nodes(fn.apply(new NodeShutdownStatus.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link GetNodeResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetNodeResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GetNodeResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetNodeResponse build() {
+            _checkSingleUse();
 
-			return new GetNodeResponse(this);
-		}
-	}
+            return new GetNodeResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GetNodeResponse}
-	 */
-	public static final JsonpDeserializer<GetNodeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetNodeResponse::setupGetNodeResponseDeserializer);
+    /**
+     * Json deserializer for {@link GetNodeResponse}
+     */
+    public static final JsonpDeserializer<GetNodeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GetNodeResponse::setupGetNodeResponseDeserializer
+    );
 
-	protected static void setupGetNodeResponseDeserializer(ObjectDeserializer<GetNodeResponse.Builder> op) {
+    protected static void setupGetNodeResponseDeserializer(ObjectDeserializer<GetNodeResponse.Builder> op) {
 
-		op.add(Builder::nodes, JsonpDeserializer.arrayDeserializer(NodeShutdownStatus._DESERIALIZER), "nodes");
+        op.add(Builder::nodes, JsonpDeserializer.arrayDeserializer(NodeShutdownStatus._DESERIALIZER), "nodes");
 
-	}
+    }
 
 }

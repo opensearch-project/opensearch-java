@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,147 +41,146 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: ingest._types.JsonProcessor
 
-
 @JsonpDeserializable
 public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
-	private final boolean addToRoot;
+    private final boolean addToRoot;
 
-	private final String field;
+    private final String field;
 
-	private final String targetField;
+    private final String targetField;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private JsonProcessor(Builder builder) {
-		super(builder);
+    private JsonProcessor(Builder builder) {
+        super(builder);
 
-		this.addToRoot = ApiTypeHelper.requireNonNull(builder.addToRoot, this, "addToRoot");
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+        this.addToRoot = ApiTypeHelper.requireNonNull(builder.addToRoot, this, "addToRoot");
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
-	}
+    }
 
-	public static JsonProcessor of(Function<Builder, ObjectBuilder<JsonProcessor>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static JsonProcessor of(Function<Builder, ObjectBuilder<JsonProcessor>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Processor variant kind.
-	 */
-	@Override
-	public Processor.Kind _processorKind() {
-		return Processor.Kind.Json;
-	}
+    /**
+     * Processor variant kind.
+     */
+    @Override
+    public Processor.Kind _processorKind() {
+        return Processor.Kind.Json;
+    }
 
-	/**
-	 * Required - API name: {@code add_to_root}
-	 */
-	public final boolean addToRoot() {
-		return this.addToRoot;
-	}
+    /**
+     * Required - API name: {@code add_to_root}
+     */
+    public final boolean addToRoot() {
+        return this.addToRoot;
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * Required - API name: {@code target_field}
-	 */
-	public final String targetField() {
-		return this.targetField;
-	}
+    /**
+     * Required - API name: {@code target_field}
+     */
+    public final String targetField() {
+        return this.targetField;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("add_to_root");
-		generator.write(this.addToRoot);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("add_to_root");
+        generator.write(this.addToRoot);
 
-		generator.writeKey("field");
-		generator.write(this.field);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-		generator.writeKey("target_field");
-		generator.write(this.targetField);
+        generator.writeKey("target_field");
+        generator.write(this.targetField);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link JsonProcessor}.
-	 */
+    /**
+     * Builder for {@link JsonProcessor}.
+     */
 
-	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<JsonProcessor> {
-		private Boolean addToRoot;
+    public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<JsonProcessor> {
+        private Boolean addToRoot;
 
-		private String field;
+        private String field;
 
-		private String targetField;
+        private String targetField;
 
-		/**
-		 * Required - API name: {@code add_to_root}
-		 */
-		public final Builder addToRoot(boolean value) {
-			this.addToRoot = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code add_to_root}
+         */
+        public final Builder addToRoot(boolean value) {
+            this.addToRoot = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code target_field}
-		 */
-		public final Builder targetField(String value) {
-			this.targetField = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code target_field}
+         */
+        public final Builder targetField(String value) {
+            this.targetField = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link JsonProcessor}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public JsonProcessor build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link JsonProcessor}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public JsonProcessor build() {
+            _checkSingleUse();
 
-			return new JsonProcessor(this);
-		}
-	}
+            return new JsonProcessor(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link JsonProcessor}
-	 */
-	public static final JsonpDeserializer<JsonProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			JsonProcessor::setupJsonProcessorDeserializer);
+    /**
+     * Json deserializer for {@link JsonProcessor}
+     */
+    public static final JsonpDeserializer<JsonProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        JsonProcessor::setupJsonProcessorDeserializer
+    );
 
-	protected static void setupJsonProcessorDeserializer(ObjectDeserializer<JsonProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseDeserializer(op);
-		op.add(Builder::addToRoot, JsonpDeserializer.booleanDeserializer(), "add_to_root");
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+    protected static void setupJsonProcessorDeserializer(ObjectDeserializer<JsonProcessor.Builder> op) {
+        ProcessorBase.setupProcessorBaseDeserializer(op);
+        op.add(Builder::addToRoot, JsonpDeserializer.booleanDeserializer(), "add_to_root");
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
-	}
+    }
 
 }

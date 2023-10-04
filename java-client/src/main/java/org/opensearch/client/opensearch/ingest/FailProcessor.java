@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,99 +41,98 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: ingest._types.FailProcessor
 
-
 @JsonpDeserializable
 public class FailProcessor extends ProcessorBase implements ProcessorVariant {
-	private final String message;
+    private final String message;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FailProcessor(Builder builder) {
-		super(builder);
+    private FailProcessor(Builder builder) {
+        super(builder);
 
-		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
+        this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
 
-	}
+    }
 
-	public static FailProcessor of(Function<Builder, ObjectBuilder<FailProcessor>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FailProcessor of(Function<Builder, ObjectBuilder<FailProcessor>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Processor variant kind.
-	 */
-	@Override
-	public Processor.Kind _processorKind() {
-		return Processor.Kind.Fail;
-	}
+    /**
+     * Processor variant kind.
+     */
+    @Override
+    public Processor.Kind _processorKind() {
+        return Processor.Kind.Fail;
+    }
 
-	/**
-	 * Required - API name: {@code message}
-	 */
-	public final String message() {
-		return this.message;
-	}
+    /**
+     * Required - API name: {@code message}
+     */
+    public final String message() {
+        return this.message;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("message");
-		generator.write(this.message);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("message");
+        generator.write(this.message);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FailProcessor}.
-	 */
+    /**
+     * Builder for {@link FailProcessor}.
+     */
 
-	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<FailProcessor> {
-		private String message;
+    public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<FailProcessor> {
+        private String message;
 
-		/**
-		 * Required - API name: {@code message}
-		 */
-		public final Builder message(String value) {
-			this.message = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code message}
+         */
+        public final Builder message(String value) {
+            this.message = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FailProcessor}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FailProcessor build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FailProcessor}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FailProcessor build() {
+            _checkSingleUse();
 
-			return new FailProcessor(this);
-		}
-	}
+            return new FailProcessor(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FailProcessor}
-	 */
-	public static final JsonpDeserializer<FailProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FailProcessor::setupFailProcessorDeserializer);
+    /**
+     * Json deserializer for {@link FailProcessor}
+     */
+    public static final JsonpDeserializer<FailProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FailProcessor::setupFailProcessorDeserializer
+    );
 
-	protected static void setupFailProcessorDeserializer(ObjectDeserializer<FailProcessor.Builder> op) {
-		setupProcessorBaseDeserializer(op);
-		op.add(Builder::message, JsonpDeserializer.stringDeserializer(), "message");
+    protected static void setupFailProcessorDeserializer(ObjectDeserializer<FailProcessor.Builder> op) {
+        setupProcessorBaseDeserializer(op);
+        op.add(Builder::message, JsonpDeserializer.stringDeserializer(), "message");
 
-	}
+    }
 
 }
