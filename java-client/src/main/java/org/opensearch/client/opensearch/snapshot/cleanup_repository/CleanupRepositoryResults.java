@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.snapshot.cleanup_repository;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,117 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: snapshot.cleanup_repository.CleanupRepositoryResults
 
 @JsonpDeserializable
 public class CleanupRepositoryResults implements JsonpSerializable {
-	private final long deletedBlobs;
+    private final long deletedBlobs;
 
-	private final long deletedBytes;
+    private final long deletedBytes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CleanupRepositoryResults(Builder builder) {
+    private CleanupRepositoryResults(Builder builder) {
 
-		this.deletedBlobs = ApiTypeHelper.requireNonNull(builder.deletedBlobs, this, "deletedBlobs");
-		this.deletedBytes = ApiTypeHelper.requireNonNull(builder.deletedBytes, this, "deletedBytes");
+        this.deletedBlobs = ApiTypeHelper.requireNonNull(builder.deletedBlobs, this, "deletedBlobs");
+        this.deletedBytes = ApiTypeHelper.requireNonNull(builder.deletedBytes, this, "deletedBytes");
 
-	}
+    }
 
-	public static CleanupRepositoryResults of(Function<Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CleanupRepositoryResults of(Function<Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code deleted_blobs}
-	 */
-	public final long deletedBlobs() {
-		return this.deletedBlobs;
-	}
+    /**
+     * Required - API name: {@code deleted_blobs}
+     */
+    public final long deletedBlobs() {
+        return this.deletedBlobs;
+    }
 
-	/**
-	 * Required - API name: {@code deleted_bytes}
-	 */
-	public final long deletedBytes() {
-		return this.deletedBytes;
-	}
+    /**
+     * Required - API name: {@code deleted_bytes}
+     */
+    public final long deletedBytes() {
+        return this.deletedBytes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("deleted_blobs");
-		generator.write(this.deletedBlobs);
+        generator.writeKey("deleted_blobs");
+        generator.write(this.deletedBlobs);
 
-		generator.writeKey("deleted_bytes");
-		generator.write(this.deletedBytes);
+        generator.writeKey("deleted_bytes");
+        generator.write(this.deletedBytes);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CleanupRepositoryResults}.
-	 */
+    /**
+     * Builder for {@link CleanupRepositoryResults}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResults> {
-		private Long deletedBlobs;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResults> {
+        private Long deletedBlobs;
 
-		private Long deletedBytes;
+        private Long deletedBytes;
 
-		/**
-		 * Required - API name: {@code deleted_blobs}
-		 */
-		public final Builder deletedBlobs(long value) {
-			this.deletedBlobs = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code deleted_blobs}
+         */
+        public final Builder deletedBlobs(long value) {
+            this.deletedBlobs = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code deleted_bytes}
-		 */
-		public final Builder deletedBytes(long value) {
-			this.deletedBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code deleted_bytes}
+         */
+        public final Builder deletedBytes(long value) {
+            this.deletedBytes = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CleanupRepositoryResults}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CleanupRepositoryResults build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CleanupRepositoryResults}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CleanupRepositoryResults build() {
+            _checkSingleUse();
 
-			return new CleanupRepositoryResults(this);
-		}
-	}
+            return new CleanupRepositoryResults(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CleanupRepositoryResults}
-	 */
-	public static final JsonpDeserializer<CleanupRepositoryResults> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CleanupRepositoryResults::setupCleanupRepositoryResultsDeserializer);
+    /**
+     * Json deserializer for {@link CleanupRepositoryResults}
+     */
+    public static final JsonpDeserializer<CleanupRepositoryResults> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CleanupRepositoryResults::setupCleanupRepositoryResultsDeserializer
+    );
 
-	protected static void setupCleanupRepositoryResultsDeserializer(
-			ObjectDeserializer<CleanupRepositoryResults.Builder> op) {
+    protected static void setupCleanupRepositoryResultsDeserializer(ObjectDeserializer<CleanupRepositoryResults.Builder> op) {
 
-		op.add(Builder::deletedBlobs, JsonpDeserializer.longDeserializer(), "deleted_blobs");
-		op.add(Builder::deletedBytes, JsonpDeserializer.longDeserializer(), "deleted_bytes");
+        op.add(Builder::deletedBlobs, JsonpDeserializer.longDeserializer(), "deleted_blobs");
+        op.add(Builder::deletedBytes, JsonpDeserializer.longDeserializer(), "deleted_bytes");
 
-	}
+    }
 
 }

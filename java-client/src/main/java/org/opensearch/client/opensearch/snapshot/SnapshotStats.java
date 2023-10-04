@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.snapshot;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,180 +43,178 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: snapshot._types.SnapshotStats
 
-
 @JsonpDeserializable
 public class SnapshotStats implements JsonpSerializable {
-	private final FileCountSnapshotStats incremental;
+    private final FileCountSnapshotStats incremental;
 
-	private final long startTimeInMillis;
+    private final long startTimeInMillis;
 
-	private final long timeInMillis;
+    private final long timeInMillis;
 
-	private final FileCountSnapshotStats total;
+    private final FileCountSnapshotStats total;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SnapshotStats(Builder builder) {
+    private SnapshotStats(Builder builder) {
 
-		this.incremental = ApiTypeHelper.requireNonNull(builder.incremental, this, "incremental");
-		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
-		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.incremental = ApiTypeHelper.requireNonNull(builder.incremental, this, "incremental");
+        this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+        this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
-	}
+    }
 
-	public static SnapshotStats of(Function<Builder, ObjectBuilder<SnapshotStats>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SnapshotStats of(Function<Builder, ObjectBuilder<SnapshotStats>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code incremental}
-	 */
-	public final FileCountSnapshotStats incremental() {
-		return this.incremental;
-	}
+    /**
+     * Required - API name: {@code incremental}
+     */
+    public final FileCountSnapshotStats incremental() {
+        return this.incremental;
+    }
 
-	/**
-	 * Required - API name: {@code start_time_in_millis}
-	 */
-	public final long startTimeInMillis() {
-		return this.startTimeInMillis;
-	}
+    /**
+     * Required - API name: {@code start_time_in_millis}
+     */
+    public final long startTimeInMillis() {
+        return this.startTimeInMillis;
+    }
 
-	/**
-	 * Required - API name: {@code time_in_millis}
-	 */
-	public final long timeInMillis() {
-		return this.timeInMillis;
-	}
+    /**
+     * Required - API name: {@code time_in_millis}
+     */
+    public final long timeInMillis() {
+        return this.timeInMillis;
+    }
 
-	/**
-	 * Required - API name: {@code total}
-	 */
-	public final FileCountSnapshotStats total() {
-		return this.total;
-	}
+    /**
+     * Required - API name: {@code total}
+     */
+    public final FileCountSnapshotStats total() {
+        return this.total;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("incremental");
-		this.incremental.serialize(generator, mapper);
+        generator.writeKey("incremental");
+        this.incremental.serialize(generator, mapper);
 
-		generator.writeKey("start_time_in_millis");
-		generator.write(this.startTimeInMillis);
+        generator.writeKey("start_time_in_millis");
+        generator.write(this.startTimeInMillis);
 
-		generator.writeKey("time_in_millis");
-		generator.write(this.timeInMillis);
+        generator.writeKey("time_in_millis");
+        generator.write(this.timeInMillis);
 
-		generator.writeKey("total");
-		this.total.serialize(generator, mapper);
+        generator.writeKey("total");
+        this.total.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SnapshotStats}.
-	 */
+    /**
+     * Builder for {@link SnapshotStats}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotStats> {
-		private FileCountSnapshotStats incremental;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotStats> {
+        private FileCountSnapshotStats incremental;
 
-		private Long startTimeInMillis;
+        private Long startTimeInMillis;
 
-		private Long timeInMillis;
+        private Long timeInMillis;
 
-		private FileCountSnapshotStats total;
+        private FileCountSnapshotStats total;
 
-		/**
-		 * Required - API name: {@code incremental}
-		 */
-		public final Builder incremental(FileCountSnapshotStats value) {
-			this.incremental = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code incremental}
+         */
+        public final Builder incremental(FileCountSnapshotStats value) {
+            this.incremental = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code incremental}
-		 */
-		public final Builder incremental(
-				Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
-			return this.incremental(fn.apply(new FileCountSnapshotStats.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code incremental}
+         */
+        public final Builder incremental(Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
+            return this.incremental(fn.apply(new FileCountSnapshotStats.Builder()).build());
+        }
 
-		/**
-		 * Required - API name: {@code start_time_in_millis}
-		 */
-		public final Builder startTimeInMillis(long value) {
-			this.startTimeInMillis = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code start_time_in_millis}
+         */
+        public final Builder startTimeInMillis(long value) {
+            this.startTimeInMillis = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code time_in_millis}
-		 */
-		public final Builder timeInMillis(long value) {
-			this.timeInMillis = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code time_in_millis}
+         */
+        public final Builder timeInMillis(long value) {
+            this.timeInMillis = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total}
-		 */
-		public final Builder total(FileCountSnapshotStats value) {
-			this.total = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total}
+         */
+        public final Builder total(FileCountSnapshotStats value) {
+            this.total = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total}
-		 */
-		public final Builder total(Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
-			return this.total(fn.apply(new FileCountSnapshotStats.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code total}
+         */
+        public final Builder total(Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
+            return this.total(fn.apply(new FileCountSnapshotStats.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link SnapshotStats}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SnapshotStats build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SnapshotStats}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SnapshotStats build() {
+            _checkSingleUse();
 
-			return new SnapshotStats(this);
-		}
-	}
+            return new SnapshotStats(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SnapshotStats}
-	 */
-	public static final JsonpDeserializer<SnapshotStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SnapshotStats::setupSnapshotStatsDeserializer);
+    /**
+     * Json deserializer for {@link SnapshotStats}
+     */
+    public static final JsonpDeserializer<SnapshotStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SnapshotStats::setupSnapshotStatsDeserializer
+    );
 
-	protected static void setupSnapshotStatsDeserializer(ObjectDeserializer<SnapshotStats.Builder> op) {
+    protected static void setupSnapshotStatsDeserializer(ObjectDeserializer<SnapshotStats.Builder> op) {
 
-		op.add(Builder::incremental, FileCountSnapshotStats._DESERIALIZER, "incremental");
-		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
-		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
-		op.add(Builder::total, FileCountSnapshotStats._DESERIALIZER, "total");
+        op.add(Builder::incremental, FileCountSnapshotStats._DESERIALIZER, "incremental");
+        op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
+        op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
+        op.add(Builder::total, FileCountSnapshotStats._DESERIALIZER, "total");
 
-	}
+    }
 
 }

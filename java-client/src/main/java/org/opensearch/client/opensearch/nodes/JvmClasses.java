@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,140 +43,140 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes._types.JvmClasses
 
 @JsonpDeserializable
 public class JvmClasses implements JsonpSerializable {
-	private final long currentLoadedCount;
+    private final long currentLoadedCount;
 
-	private final long totalLoadedCount;
+    private final long totalLoadedCount;
 
-	private final long totalUnloadedCount;
+    private final long totalUnloadedCount;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private JvmClasses(Builder builder) {
+    private JvmClasses(Builder builder) {
 
-		this.currentLoadedCount = ApiTypeHelper.requireNonNull(builder.currentLoadedCount, this, "currentLoadedCount");
-		this.totalLoadedCount = ApiTypeHelper.requireNonNull(builder.totalLoadedCount, this, "totalLoadedCount");
-		this.totalUnloadedCount = ApiTypeHelper.requireNonNull(builder.totalUnloadedCount, this, "totalUnloadedCount");
+        this.currentLoadedCount = ApiTypeHelper.requireNonNull(builder.currentLoadedCount, this, "currentLoadedCount");
+        this.totalLoadedCount = ApiTypeHelper.requireNonNull(builder.totalLoadedCount, this, "totalLoadedCount");
+        this.totalUnloadedCount = ApiTypeHelper.requireNonNull(builder.totalUnloadedCount, this, "totalUnloadedCount");
 
-	}
+    }
 
-	public static JvmClasses of(Function<Builder, ObjectBuilder<JvmClasses>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static JvmClasses of(Function<Builder, ObjectBuilder<JvmClasses>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code current_loaded_count}
-	 */
-	public final long currentLoadedCount() {
-		return this.currentLoadedCount;
-	}
+    /**
+     * Required - API name: {@code current_loaded_count}
+     */
+    public final long currentLoadedCount() {
+        return this.currentLoadedCount;
+    }
 
-	/**
-	 * Required - API name: {@code total_loaded_count}
-	 */
-	public final long totalLoadedCount() {
-		return this.totalLoadedCount;
-	}
+    /**
+     * Required - API name: {@code total_loaded_count}
+     */
+    public final long totalLoadedCount() {
+        return this.totalLoadedCount;
+    }
 
-	/**
-	 * Required - API name: {@code total_unloaded_count}
-	 */
-	public final long totalUnloadedCount() {
-		return this.totalUnloadedCount;
-	}
+    /**
+     * Required - API name: {@code total_unloaded_count}
+     */
+    public final long totalUnloadedCount() {
+        return this.totalUnloadedCount;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("current_loaded_count");
-		generator.write(this.currentLoadedCount);
+        generator.writeKey("current_loaded_count");
+        generator.write(this.currentLoadedCount);
 
-		generator.writeKey("total_loaded_count");
-		generator.write(this.totalLoadedCount);
+        generator.writeKey("total_loaded_count");
+        generator.write(this.totalLoadedCount);
 
-		generator.writeKey("total_unloaded_count");
-		generator.write(this.totalUnloadedCount);
+        generator.writeKey("total_unloaded_count");
+        generator.write(this.totalUnloadedCount);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link JvmClasses}.
-	 */
+    /**
+     * Builder for {@link JvmClasses}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JvmClasses> {
-		private Long currentLoadedCount;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JvmClasses> {
+        private Long currentLoadedCount;
 
-		private Long totalLoadedCount;
+        private Long totalLoadedCount;
 
-		private Long totalUnloadedCount;
+        private Long totalUnloadedCount;
 
-		/**
-		 * Required - API name: {@code current_loaded_count}
-		 */
-		public final Builder currentLoadedCount(long value) {
-			this.currentLoadedCount = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code current_loaded_count}
+         */
+        public final Builder currentLoadedCount(long value) {
+            this.currentLoadedCount = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total_loaded_count}
-		 */
-		public final Builder totalLoadedCount(long value) {
-			this.totalLoadedCount = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total_loaded_count}
+         */
+        public final Builder totalLoadedCount(long value) {
+            this.totalLoadedCount = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total_unloaded_count}
-		 */
-		public final Builder totalUnloadedCount(long value) {
-			this.totalUnloadedCount = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total_unloaded_count}
+         */
+        public final Builder totalUnloadedCount(long value) {
+            this.totalUnloadedCount = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link JvmClasses}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public JvmClasses build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link JvmClasses}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public JvmClasses build() {
+            _checkSingleUse();
 
-			return new JvmClasses(this);
-		}
-	}
+            return new JvmClasses(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link JvmClasses}
-	 */
-	public static final JsonpDeserializer<JvmClasses> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			JvmClasses::setupJvmClassesDeserializer);
+    /**
+     * Json deserializer for {@link JvmClasses}
+     */
+    public static final JsonpDeserializer<JvmClasses> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        JvmClasses::setupJvmClassesDeserializer
+    );
 
-	protected static void setupJvmClassesDeserializer(ObjectDeserializer<JvmClasses.Builder> op) {
+    protected static void setupJvmClassesDeserializer(ObjectDeserializer<JvmClasses.Builder> op) {
 
-		op.add(Builder::currentLoadedCount, JsonpDeserializer.longDeserializer(), "current_loaded_count");
-		op.add(Builder::totalLoadedCount, JsonpDeserializer.longDeserializer(), "total_loaded_count");
-		op.add(Builder::totalUnloadedCount, JsonpDeserializer.longDeserializer(), "total_unloaded_count");
+        op.add(Builder::currentLoadedCount, JsonpDeserializer.longDeserializer(), "current_loaded_count");
+        op.add(Builder::totalLoadedCount, JsonpDeserializer.longDeserializer(), "total_loaded_count");
+        op.add(Builder::totalUnloadedCount, JsonpDeserializer.longDeserializer(), "total_unloaded_count");
 
-	}
+    }
 
 }

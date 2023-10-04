@@ -32,69 +32,69 @@
 
 package org.opensearch.client.opensearch.snapshot;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: snapshot.create_repository.Response
 
 @JsonpDeserializable
 public class CreateRepositoryResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CreateRepositoryResponse(Builder builder) {
-		super(builder);
+    private CreateRepositoryResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static CreateRepositoryResponse of(Function<Builder, ObjectBuilder<CreateRepositoryResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CreateRepositoryResponse of(Function<Builder, ObjectBuilder<CreateRepositoryResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CreateRepositoryResponse}.
-	 */
+    /**
+     * Builder for {@link CreateRepositoryResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<CreateRepositoryResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<CreateRepositoryResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CreateRepositoryResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CreateRepositoryResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CreateRepositoryResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CreateRepositoryResponse build() {
+            _checkSingleUse();
 
-			return new CreateRepositoryResponse(this);
-		}
-	}
+            return new CreateRepositoryResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CreateRepositoryResponse}
-	 */
-	public static final JsonpDeserializer<CreateRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateRepositoryResponse::setupCreateRepositoryResponseDeserializer);
+    /**
+     * Json deserializer for {@link CreateRepositoryResponse}
+     */
+    public static final JsonpDeserializer<CreateRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CreateRepositoryResponse::setupCreateRepositoryResponseDeserializer
+    );
 
-	protected static void setupCreateRepositoryResponseDeserializer(
-			ObjectDeserializer<CreateRepositoryResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupCreateRepositoryResponseDeserializer(ObjectDeserializer<CreateRepositoryResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

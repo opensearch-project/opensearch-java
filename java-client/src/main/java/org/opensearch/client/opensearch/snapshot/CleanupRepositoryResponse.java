@@ -32,112 +32,111 @@
 
 package org.opensearch.client.opensearch.snapshot;
 
-import org.opensearch.client.opensearch.snapshot.cleanup_repository.CleanupRepositoryResults;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.snapshot.cleanup_repository.CleanupRepositoryResults;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: snapshot.cleanup_repository.Response
 
 @JsonpDeserializable
 public class CleanupRepositoryResponse implements JsonpSerializable {
-	private final CleanupRepositoryResults results;
+    private final CleanupRepositoryResults results;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CleanupRepositoryResponse(Builder builder) {
+    private CleanupRepositoryResponse(Builder builder) {
 
-		this.results = ApiTypeHelper.requireNonNull(builder.results, this, "results");
+        this.results = ApiTypeHelper.requireNonNull(builder.results, this, "results");
 
-	}
+    }
 
-	public static CleanupRepositoryResponse of(Function<Builder, ObjectBuilder<CleanupRepositoryResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CleanupRepositoryResponse of(Function<Builder, ObjectBuilder<CleanupRepositoryResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code results}
-	 */
-	public final CleanupRepositoryResults results() {
-		return this.results;
-	}
+    /**
+     * Required - API name: {@code results}
+     */
+    public final CleanupRepositoryResults results() {
+        return this.results;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("results");
-		this.results.serialize(generator, mapper);
+        generator.writeKey("results");
+        this.results.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CleanupRepositoryResponse}.
-	 */
+    /**
+     * Builder for {@link CleanupRepositoryResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResponse> {
-		private CleanupRepositoryResults results;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResponse> {
+        private CleanupRepositoryResults results;
 
-		/**
-		 * Required - API name: {@code results}
-		 */
-		public final Builder results(CleanupRepositoryResults value) {
-			this.results = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code results}
+         */
+        public final Builder results(CleanupRepositoryResults value) {
+            this.results = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code results}
-		 */
-		public final Builder results(
-				Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
-			return this.results(fn.apply(new CleanupRepositoryResults.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code results}
+         */
+        public final Builder results(Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
+            return this.results(fn.apply(new CleanupRepositoryResults.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link CleanupRepositoryResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CleanupRepositoryResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CleanupRepositoryResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CleanupRepositoryResponse build() {
+            _checkSingleUse();
 
-			return new CleanupRepositoryResponse(this);
-		}
-	}
+            return new CleanupRepositoryResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CleanupRepositoryResponse}
-	 */
-	public static final JsonpDeserializer<CleanupRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CleanupRepositoryResponse::setupCleanupRepositoryResponseDeserializer);
+    /**
+     * Json deserializer for {@link CleanupRepositoryResponse}
+     */
+    public static final JsonpDeserializer<CleanupRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CleanupRepositoryResponse::setupCleanupRepositoryResponseDeserializer
+    );
 
-	protected static void setupCleanupRepositoryResponseDeserializer(
-			ObjectDeserializer<CleanupRepositoryResponse.Builder> op) {
+    protected static void setupCleanupRepositoryResponseDeserializer(ObjectDeserializer<CleanupRepositoryResponse.Builder> op) {
 
-		op.add(Builder::results, CleanupRepositoryResults._DESERIALIZER, "results");
+        op.add(Builder::results, CleanupRepositoryResults._DESERIALIZER, "results");
 
-	}
+    }
 
 }

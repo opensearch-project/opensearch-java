@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,189 +43,188 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes._types.AdaptiveSelection
 
-
 @JsonpDeserializable
 public class AdaptiveSelection implements JsonpSerializable {
-	private final long avgQueueSize;
+    private final long avgQueueSize;
 
-	private final long avgResponseTimeNs;
+    private final long avgResponseTimeNs;
 
-	private final long avgServiceTimeNs;
+    private final long avgServiceTimeNs;
 
-	private final long outgoingSearches;
+    private final long outgoingSearches;
 
-	private final String rank;
+    private final String rank;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private AdaptiveSelection(Builder builder) {
+    private AdaptiveSelection(Builder builder) {
 
-		this.avgQueueSize = ApiTypeHelper.requireNonNull(builder.avgQueueSize, this, "avgQueueSize");
-		this.avgResponseTimeNs = ApiTypeHelper.requireNonNull(builder.avgResponseTimeNs, this, "avgResponseTimeNs");
-		this.avgServiceTimeNs = ApiTypeHelper.requireNonNull(builder.avgServiceTimeNs, this, "avgServiceTimeNs");
-		this.outgoingSearches = ApiTypeHelper.requireNonNull(builder.outgoingSearches, this, "outgoingSearches");
-		this.rank = ApiTypeHelper.requireNonNull(builder.rank, this, "rank");
+        this.avgQueueSize = ApiTypeHelper.requireNonNull(builder.avgQueueSize, this, "avgQueueSize");
+        this.avgResponseTimeNs = ApiTypeHelper.requireNonNull(builder.avgResponseTimeNs, this, "avgResponseTimeNs");
+        this.avgServiceTimeNs = ApiTypeHelper.requireNonNull(builder.avgServiceTimeNs, this, "avgServiceTimeNs");
+        this.outgoingSearches = ApiTypeHelper.requireNonNull(builder.outgoingSearches, this, "outgoingSearches");
+        this.rank = ApiTypeHelper.requireNonNull(builder.rank, this, "rank");
 
-	}
+    }
 
-	public static AdaptiveSelection of(Function<Builder, ObjectBuilder<AdaptiveSelection>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static AdaptiveSelection of(Function<Builder, ObjectBuilder<AdaptiveSelection>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code avg_queue_size}
-	 */
-	public final long avgQueueSize() {
-		return this.avgQueueSize;
-	}
+    /**
+     * Required - API name: {@code avg_queue_size}
+     */
+    public final long avgQueueSize() {
+        return this.avgQueueSize;
+    }
 
-	/**
-	 * Required - API name: {@code avg_response_time_ns}
-	 */
-	public final long avgResponseTimeNs() {
-		return this.avgResponseTimeNs;
-	}
+    /**
+     * Required - API name: {@code avg_response_time_ns}
+     */
+    public final long avgResponseTimeNs() {
+        return this.avgResponseTimeNs;
+    }
 
-	/**
-	 * Required - API name: {@code avg_service_time_ns}
-	 */
-	public final long avgServiceTimeNs() {
-		return this.avgServiceTimeNs;
-	}
+    /**
+     * Required - API name: {@code avg_service_time_ns}
+     */
+    public final long avgServiceTimeNs() {
+        return this.avgServiceTimeNs;
+    }
 
-	/**
-	 * Required - API name: {@code outgoing_searches}
-	 */
-	public final long outgoingSearches() {
-		return this.outgoingSearches;
-	}
+    /**
+     * Required - API name: {@code outgoing_searches}
+     */
+    public final long outgoingSearches() {
+        return this.outgoingSearches;
+    }
 
-	/**
-	 * Required - API name: {@code rank}
-	 */
-	public final String rank() {
-		return this.rank;
-	}
+    /**
+     * Required - API name: {@code rank}
+     */
+    public final String rank() {
+        return this.rank;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("avg_queue_size");
-		generator.write(this.avgQueueSize);
+        generator.writeKey("avg_queue_size");
+        generator.write(this.avgQueueSize);
 
-		generator.writeKey("avg_response_time_ns");
-		generator.write(this.avgResponseTimeNs);
+        generator.writeKey("avg_response_time_ns");
+        generator.write(this.avgResponseTimeNs);
 
-		generator.writeKey("avg_service_time_ns");
-		generator.write(this.avgServiceTimeNs);
+        generator.writeKey("avg_service_time_ns");
+        generator.write(this.avgServiceTimeNs);
 
-		generator.writeKey("outgoing_searches");
-		generator.write(this.outgoingSearches);
+        generator.writeKey("outgoing_searches");
+        generator.write(this.outgoingSearches);
 
-		generator.writeKey("rank");
-		generator.write(this.rank);
+        generator.writeKey("rank");
+        generator.write(this.rank);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link AdaptiveSelection}.
-	 */
+    /**
+     * Builder for {@link AdaptiveSelection}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AdaptiveSelection> {
-		private Long avgQueueSize;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AdaptiveSelection> {
+        private Long avgQueueSize;
 
-		private Long avgResponseTimeNs;
+        private Long avgResponseTimeNs;
 
-		private Long avgServiceTimeNs;
+        private Long avgServiceTimeNs;
 
-		private Long outgoingSearches;
+        private Long outgoingSearches;
 
-		private String rank;
+        private String rank;
 
-		/**
-		 * Required - API name: {@code avg_queue_size}
-		 */
-		public final Builder avgQueueSize(long value) {
-			this.avgQueueSize = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code avg_queue_size}
+         */
+        public final Builder avgQueueSize(long value) {
+            this.avgQueueSize = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code avg_response_time_ns}
-		 */
-		public final Builder avgResponseTimeNs(long value) {
-			this.avgResponseTimeNs = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code avg_response_time_ns}
+         */
+        public final Builder avgResponseTimeNs(long value) {
+            this.avgResponseTimeNs = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code avg_service_time_ns}
-		 */
-		public final Builder avgServiceTimeNs(long value) {
-			this.avgServiceTimeNs = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code avg_service_time_ns}
+         */
+        public final Builder avgServiceTimeNs(long value) {
+            this.avgServiceTimeNs = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code outgoing_searches}
-		 */
-		public final Builder outgoingSearches(long value) {
-			this.outgoingSearches = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code outgoing_searches}
+         */
+        public final Builder outgoingSearches(long value) {
+            this.outgoingSearches = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code rank}
-		 */
-		public final Builder rank(String value) {
-			this.rank = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code rank}
+         */
+        public final Builder rank(String value) {
+            this.rank = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link AdaptiveSelection}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public AdaptiveSelection build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link AdaptiveSelection}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public AdaptiveSelection build() {
+            _checkSingleUse();
 
-			return new AdaptiveSelection(this);
-		}
-	}
+            return new AdaptiveSelection(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link AdaptiveSelection}
-	 */
-	public static final JsonpDeserializer<AdaptiveSelection> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AdaptiveSelection::setupAdaptiveSelectionDeserializer);
+    /**
+     * Json deserializer for {@link AdaptiveSelection}
+     */
+    public static final JsonpDeserializer<AdaptiveSelection> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        AdaptiveSelection::setupAdaptiveSelectionDeserializer
+    );
 
-	protected static void setupAdaptiveSelectionDeserializer(ObjectDeserializer<AdaptiveSelection.Builder> op) {
+    protected static void setupAdaptiveSelectionDeserializer(ObjectDeserializer<AdaptiveSelection.Builder> op) {
 
-		op.add(Builder::avgQueueSize, JsonpDeserializer.longDeserializer(), "avg_queue_size");
-		op.add(Builder::avgResponseTimeNs, JsonpDeserializer.longDeserializer(), "avg_response_time_ns");
-		op.add(Builder::avgServiceTimeNs, JsonpDeserializer.longDeserializer(), "avg_service_time_ns");
-		op.add(Builder::outgoingSearches, JsonpDeserializer.longDeserializer(), "outgoing_searches");
-		op.add(Builder::rank, JsonpDeserializer.stringDeserializer(), "rank");
+        op.add(Builder::avgQueueSize, JsonpDeserializer.longDeserializer(), "avg_queue_size");
+        op.add(Builder::avgResponseTimeNs, JsonpDeserializer.longDeserializer(), "avg_response_time_ns");
+        op.add(Builder::avgServiceTimeNs, JsonpDeserializer.longDeserializer(), "avg_service_time_ns");
+        op.add(Builder::outgoingSearches, JsonpDeserializer.longDeserializer(), "outgoing_searches");
+        op.add(Builder::rank, JsonpDeserializer.stringDeserializer(), "rank");
 
-	}
+    }
 
 }
