@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.indices.recovery;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,141 +43,140 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: indices.recovery.FileDetails
 
-
 @JsonpDeserializable
 public class FileDetails implements JsonpSerializable {
-	private final long length;
+    private final long length;
 
-	private final String name;
+    private final String name;
 
-	private final long recovered;
+    private final long recovered;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FileDetails(Builder builder) {
+    private FileDetails(Builder builder) {
 
-		this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
+        this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
 
-	}
+    }
 
-	public static FileDetails of(Function<Builder, ObjectBuilder<FileDetails>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FileDetails of(Function<Builder, ObjectBuilder<FileDetails>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code length}
-	 */
-	public final long length() {
-		return this.length;
-	}
+    /**
+     * Required - API name: {@code length}
+     */
+    public final long length() {
+        return this.length;
+    }
 
-	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * Required - API name: {@code name}
+     */
+    public final String name() {
+        return this.name;
+    }
 
-	/**
-	 * Required - API name: {@code recovered}
-	 */
-	public final long recovered() {
-		return this.recovered;
-	}
+    /**
+     * Required - API name: {@code recovered}
+     */
+    public final long recovered() {
+        return this.recovered;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("length");
-		generator.write(this.length);
+        generator.writeKey("length");
+        generator.write(this.length);
 
-		generator.writeKey("name");
-		generator.write(this.name);
+        generator.writeKey("name");
+        generator.write(this.name);
 
-		generator.writeKey("recovered");
-		generator.write(this.recovered);
+        generator.writeKey("recovered");
+        generator.write(this.recovered);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FileDetails}.
-	 */
+    /**
+     * Builder for {@link FileDetails}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FileDetails> {
-		private Long length;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FileDetails> {
+        private Long length;
 
-		private String name;
+        private String name;
 
-		private Long recovered;
+        private Long recovered;
 
-		/**
-		 * Required - API name: {@code length}
-		 */
-		public final Builder length(long value) {
-			this.length = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code length}
+         */
+        public final Builder length(long value) {
+            this.length = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code name}
+         */
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code recovered}
-		 */
-		public final Builder recovered(long value) {
-			this.recovered = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code recovered}
+         */
+        public final Builder recovered(long value) {
+            this.recovered = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FileDetails}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FileDetails build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FileDetails}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FileDetails build() {
+            _checkSingleUse();
 
-			return new FileDetails(this);
-		}
-	}
+            return new FileDetails(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FileDetails}
-	 */
-	public static final JsonpDeserializer<FileDetails> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FileDetails::setupFileDetailsDeserializer);
+    /**
+     * Json deserializer for {@link FileDetails}
+     */
+    public static final JsonpDeserializer<FileDetails> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FileDetails::setupFileDetailsDeserializer
+    );
 
-	protected static void setupFileDetailsDeserializer(ObjectDeserializer<FileDetails.Builder> op) {
+    protected static void setupFileDetailsDeserializer(ObjectDeserializer<FileDetails.Builder> op) {
 
-		op.add(Builder::length, JsonpDeserializer.longDeserializer(), "length");
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");
+        op.add(Builder::length, JsonpDeserializer.longDeserializer(), "length");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");
 
-	}
+    }
 
 }

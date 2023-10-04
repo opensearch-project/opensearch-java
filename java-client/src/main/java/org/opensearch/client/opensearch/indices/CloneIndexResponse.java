@@ -32,124 +32,124 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: indices.clone.Response
 
 @JsonpDeserializable
 public class CloneIndexResponse extends AcknowledgedResponseBase {
-	private final String index;
+    private final String index;
 
-	private final boolean shardsAcknowledged;
+    private final boolean shardsAcknowledged;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CloneIndexResponse(Builder builder) {
-		super(builder);
+    private CloneIndexResponse(Builder builder) {
+        super(builder);
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
 
-	}
+    }
 
-	public static CloneIndexResponse of(Function<Builder, ObjectBuilder<CloneIndexResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CloneIndexResponse of(Function<Builder, ObjectBuilder<CloneIndexResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code index}
-	 */
-	public final String index() {
-		return this.index;
-	}
+    /**
+     * Required - API name: {@code index}
+     */
+    public final String index() {
+        return this.index;
+    }
 
-	/**
-	 * Required - API name: {@code shards_acknowledged}
-	 */
-	public final boolean shardsAcknowledged() {
-		return this.shardsAcknowledged;
-	}
+    /**
+     * Required - API name: {@code shards_acknowledged}
+     */
+    public final boolean shardsAcknowledged() {
+        return this.shardsAcknowledged;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("index");
-		generator.write(this.index);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("index");
+        generator.write(this.index);
 
-		generator.writeKey("shards_acknowledged");
-		generator.write(this.shardsAcknowledged);
+        generator.writeKey("shards_acknowledged");
+        generator.write(this.shardsAcknowledged);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CloneIndexResponse}.
-	 */
+    /**
+     * Builder for {@link CloneIndexResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<CloneIndexResponse> {
-		private String index;
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<CloneIndexResponse> {
+        private String index;
 
-		private Boolean shardsAcknowledged;
+        private Boolean shardsAcknowledged;
 
-		/**
-		 * Required - API name: {@code index}
-		 */
-		public final Builder index(String value) {
-			this.index = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code index}
+         */
+        public final Builder index(String value) {
+            this.index = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code shards_acknowledged}
-		 */
-		public final Builder shardsAcknowledged(boolean value) {
-			this.shardsAcknowledged = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code shards_acknowledged}
+         */
+        public final Builder shardsAcknowledged(boolean value) {
+            this.shardsAcknowledged = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CloneIndexResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CloneIndexResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CloneIndexResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CloneIndexResponse build() {
+            _checkSingleUse();
 
-			return new CloneIndexResponse(this);
-		}
-	}
+            return new CloneIndexResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CloneIndexResponse}
-	 */
-	public static final JsonpDeserializer<CloneIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CloneIndexResponse::setupCloneIndexResponseDeserializer);
+    /**
+     * Json deserializer for {@link CloneIndexResponse}
+     */
+    public static final JsonpDeserializer<CloneIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CloneIndexResponse::setupCloneIndexResponseDeserializer
+    );
 
-	protected static void setupCloneIndexResponseDeserializer(ObjectDeserializer<CloneIndexResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
+    protected static void setupCloneIndexResponseDeserializer(ObjectDeserializer<CloneIndexResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+        op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 
-	}
+    }
 
 }

@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.indices.segments;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,141 +43,140 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: indices.segments.ShardSegmentRouting
 
-
 @JsonpDeserializable
 public class ShardSegmentRouting implements JsonpSerializable {
-	private final String node;
+    private final String node;
 
-	private final boolean primary;
+    private final boolean primary;
 
-	private final String state;
+    private final String state;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ShardSegmentRouting(Builder builder) {
+    private ShardSegmentRouting(Builder builder) {
 
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
-		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
-		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+        this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+        this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
+        this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
-	}
+    }
 
-	public static ShardSegmentRouting of(Function<Builder, ObjectBuilder<ShardSegmentRouting>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ShardSegmentRouting of(Function<Builder, ObjectBuilder<ShardSegmentRouting>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code node}
-	 */
-	public final String node() {
-		return this.node;
-	}
+    /**
+     * Required - API name: {@code node}
+     */
+    public final String node() {
+        return this.node;
+    }
 
-	/**
-	 * Required - API name: {@code primary}
-	 */
-	public final boolean primary() {
-		return this.primary;
-	}
+    /**
+     * Required - API name: {@code primary}
+     */
+    public final boolean primary() {
+        return this.primary;
+    }
 
-	/**
-	 * Required - API name: {@code state}
-	 */
-	public final String state() {
-		return this.state;
-	}
+    /**
+     * Required - API name: {@code state}
+     */
+    public final String state() {
+        return this.state;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("node");
-		generator.write(this.node);
+        generator.writeKey("node");
+        generator.write(this.node);
 
-		generator.writeKey("primary");
-		generator.write(this.primary);
+        generator.writeKey("primary");
+        generator.write(this.primary);
 
-		generator.writeKey("state");
-		generator.write(this.state);
+        generator.writeKey("state");
+        generator.write(this.state);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ShardSegmentRouting}.
-	 */
+    /**
+     * Builder for {@link ShardSegmentRouting}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardSegmentRouting> {
-		private String node;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardSegmentRouting> {
+        private String node;
 
-		private Boolean primary;
+        private Boolean primary;
 
-		private String state;
+        private String state;
 
-		/**
-		 * Required - API name: {@code node}
-		 */
-		public final Builder node(String value) {
-			this.node = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code node}
+         */
+        public final Builder node(String value) {
+            this.node = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code primary}
-		 */
-		public final Builder primary(boolean value) {
-			this.primary = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code primary}
+         */
+        public final Builder primary(boolean value) {
+            this.primary = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code state}
-		 */
-		public final Builder state(String value) {
-			this.state = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code state}
+         */
+        public final Builder state(String value) {
+            this.state = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ShardSegmentRouting}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ShardSegmentRouting build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ShardSegmentRouting}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ShardSegmentRouting build() {
+            _checkSingleUse();
 
-			return new ShardSegmentRouting(this);
-		}
-	}
+            return new ShardSegmentRouting(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ShardSegmentRouting}
-	 */
-	public static final JsonpDeserializer<ShardSegmentRouting> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShardSegmentRouting::setupShardSegmentRoutingDeserializer);
+    /**
+     * Json deserializer for {@link ShardSegmentRouting}
+     */
+    public static final JsonpDeserializer<ShardSegmentRouting> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ShardSegmentRouting::setupShardSegmentRoutingDeserializer
+    );
 
-	protected static void setupShardSegmentRoutingDeserializer(ObjectDeserializer<ShardSegmentRouting.Builder> op) {
+    protected static void setupShardSegmentRoutingDeserializer(ObjectDeserializer<ShardSegmentRouting.Builder> op) {
 
-		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
-		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
-		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
+        op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+        op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
+        op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
 
-	}
+    }
 
 }

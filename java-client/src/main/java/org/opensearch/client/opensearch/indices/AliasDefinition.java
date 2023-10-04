@@ -32,232 +32,233 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.query_dsl.Query;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices._types.AliasDefinition
 
-
 @JsonpDeserializable
 public class AliasDefinition implements JsonpSerializable {
-	@Nullable
-	private final Query filter;
+    @Nullable
+    private final Query filter;
 
-	@Nullable
-	private final String indexRouting;
+    @Nullable
+    private final String indexRouting;
 
-	@Nullable
-	private final Boolean isWriteIndex;
+    @Nullable
+    private final Boolean isWriteIndex;
 
-	@Nullable
-	private final String routing;
+    @Nullable
+    private final String routing;
 
-	@Nullable
-	private final String searchRouting;
+    @Nullable
+    private final String searchRouting;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private AliasDefinition(Builder builder) {
+    private AliasDefinition(Builder builder) {
 
-		this.filter = builder.filter;
-		this.indexRouting = builder.indexRouting;
-		this.isWriteIndex = builder.isWriteIndex;
-		this.routing = builder.routing;
-		this.searchRouting = builder.searchRouting;
+        this.filter = builder.filter;
+        this.indexRouting = builder.indexRouting;
+        this.isWriteIndex = builder.isWriteIndex;
+        this.routing = builder.routing;
+        this.searchRouting = builder.searchRouting;
 
-	}
+    }
 
-	public static AliasDefinition of(Function<Builder, ObjectBuilder<AliasDefinition>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static AliasDefinition of(Function<Builder, ObjectBuilder<AliasDefinition>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code filter}
-	 */
-	@Nullable
-	public final Query filter() {
-		return this.filter;
-	}
+    /**
+     * API name: {@code filter}
+     */
+    @Nullable
+    public final Query filter() {
+        return this.filter;
+    }
 
-	/**
-	 * API name: {@code index_routing}
-	 */
-	@Nullable
-	public final String indexRouting() {
-		return this.indexRouting;
-	}
+    /**
+     * API name: {@code index_routing}
+     */
+    @Nullable
+    public final String indexRouting() {
+        return this.indexRouting;
+    }
 
-	/**
-	 * API name: {@code is_write_index}
-	 */
-	@Nullable
-	public final Boolean isWriteIndex() {
-		return this.isWriteIndex;
-	}
+    /**
+     * API name: {@code is_write_index}
+     */
+    @Nullable
+    public final Boolean isWriteIndex() {
+        return this.isWriteIndex;
+    }
 
-	/**
-	 * API name: {@code routing}
-	 */
-	@Nullable
-	public final String routing() {
-		return this.routing;
-	}
+    /**
+     * API name: {@code routing}
+     */
+    @Nullable
+    public final String routing() {
+        return this.routing;
+    }
 
-	/**
-	 * API name: {@code search_routing}
-	 */
-	@Nullable
-	public final String searchRouting() {
-		return this.searchRouting;
-	}
+    /**
+     * API name: {@code search_routing}
+     */
+    @Nullable
+    public final String searchRouting() {
+        return this.searchRouting;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.filter != null) {
-			generator.writeKey("filter");
-			this.filter.serialize(generator, mapper);
+        if (this.filter != null) {
+            generator.writeKey("filter");
+            this.filter.serialize(generator, mapper);
 
-		}
-		if (this.indexRouting != null) {
-			generator.writeKey("index_routing");
-			generator.write(this.indexRouting);
+        }
+        if (this.indexRouting != null) {
+            generator.writeKey("index_routing");
+            generator.write(this.indexRouting);
 
-		}
-		if (this.isWriteIndex != null) {
-			generator.writeKey("is_write_index");
-			generator.write(this.isWriteIndex);
+        }
+        if (this.isWriteIndex != null) {
+            generator.writeKey("is_write_index");
+            generator.write(this.isWriteIndex);
 
-		}
-		if (this.routing != null) {
-			generator.writeKey("routing");
-			generator.write(this.routing);
+        }
+        if (this.routing != null) {
+            generator.writeKey("routing");
+            generator.write(this.routing);
 
-		}
-		if (this.searchRouting != null) {
-			generator.writeKey("search_routing");
-			generator.write(this.searchRouting);
+        }
+        if (this.searchRouting != null) {
+            generator.writeKey("search_routing");
+            generator.write(this.searchRouting);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link AliasDefinition}.
-	 */
+    /**
+     * Builder for {@link AliasDefinition}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AliasDefinition> {
-		@Nullable
-		private Query filter;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AliasDefinition> {
+        @Nullable
+        private Query filter;
 
-		@Nullable
-		private String indexRouting;
+        @Nullable
+        private String indexRouting;
 
-		@Nullable
-		private Boolean isWriteIndex;
+        @Nullable
+        private Boolean isWriteIndex;
 
-		@Nullable
-		private String routing;
+        @Nullable
+        private String routing;
 
-		@Nullable
-		private String searchRouting;
+        @Nullable
+        private String searchRouting;
 
-		/**
-		 * API name: {@code filter}
-		 */
-		public final Builder filter(@Nullable Query value) {
-			this.filter = value;
-			return this;
-		}
+        /**
+         * API name: {@code filter}
+         */
+        public final Builder filter(@Nullable Query value) {
+            this.filter = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code filter}
-		 */
-		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filter(fn.apply(new Query.Builder()).build());
-		}
+        /**
+         * API name: {@code filter}
+         */
+        public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+            return this.filter(fn.apply(new Query.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code index_routing}
-		 */
-		public final Builder indexRouting(@Nullable String value) {
-			this.indexRouting = value;
-			return this;
-		}
+        /**
+         * API name: {@code index_routing}
+         */
+        public final Builder indexRouting(@Nullable String value) {
+            this.indexRouting = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code is_write_index}
-		 */
-		public final Builder isWriteIndex(@Nullable Boolean value) {
-			this.isWriteIndex = value;
-			return this;
-		}
+        /**
+         * API name: {@code is_write_index}
+         */
+        public final Builder isWriteIndex(@Nullable Boolean value) {
+            this.isWriteIndex = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code routing}
-		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
-			return this;
-		}
+        /**
+         * API name: {@code routing}
+         */
+        public final Builder routing(@Nullable String value) {
+            this.routing = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code search_routing}
-		 */
-		public final Builder searchRouting(@Nullable String value) {
-			this.searchRouting = value;
-			return this;
-		}
+        /**
+         * API name: {@code search_routing}
+         */
+        public final Builder searchRouting(@Nullable String value) {
+            this.searchRouting = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link AliasDefinition}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public AliasDefinition build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link AliasDefinition}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public AliasDefinition build() {
+            _checkSingleUse();
 
-			return new AliasDefinition(this);
-		}
-	}
+            return new AliasDefinition(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link AliasDefinition}
-	 */
-	public static final JsonpDeserializer<AliasDefinition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AliasDefinition::setupAliasDefinitionDeserializer);
+    /**
+     * Json deserializer for {@link AliasDefinition}
+     */
+    public static final JsonpDeserializer<AliasDefinition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        AliasDefinition::setupAliasDefinitionDeserializer
+    );
 
-	protected static void setupAliasDefinitionDeserializer(ObjectDeserializer<AliasDefinition.Builder> op) {
+    protected static void setupAliasDefinitionDeserializer(ObjectDeserializer<AliasDefinition.Builder> op) {
 
-		op.add(Builder::filter, Query._DESERIALIZER, "filter");
-		op.add(Builder::indexRouting, JsonpDeserializer.stringDeserializer(), "index_routing");
-		op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
-		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
-		op.add(Builder::searchRouting, JsonpDeserializer.stringDeserializer(), "search_routing");
+        op.add(Builder::filter, Query._DESERIALIZER, "filter");
+        op.add(Builder::indexRouting, JsonpDeserializer.stringDeserializer(), "index_routing");
+        op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
+        op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+        op.add(Builder::searchRouting, JsonpDeserializer.stringDeserializer(), "search_routing");
 
-	}
+    }
 
 }

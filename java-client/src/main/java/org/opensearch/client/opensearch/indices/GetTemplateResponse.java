@@ -32,6 +32,7 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -39,64 +40,63 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.transport.endpoints.DictionaryResponse;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: indices.get_template.Response
 
 @JsonpDeserializable
 public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapping> {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetTemplateResponse(Builder builder) {
-		super(builder);
+    private GetTemplateResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static GetTemplateResponse of(Function<Builder, ObjectBuilder<GetTemplateResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetTemplateResponse of(Function<Builder, ObjectBuilder<GetTemplateResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetTemplateResponse}.
-	 */
+    /**
+     * Builder for {@link GetTemplateResponse}.
+     */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, TemplateMapping, Builder>
-			implements
-				ObjectBuilder<GetTemplateResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends DictionaryResponse.AbstractBuilder<String, TemplateMapping, Builder>
+        implements
+            ObjectBuilder<GetTemplateResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetTemplateResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetTemplateResponse build() {
-			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
+        /**
+         * Builds a {@link GetTemplateResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetTemplateResponse build() {
+            _checkSingleUse();
+            super.tKeySerializer(null);
+            super.tValueSerializer(null);
 
-			return new GetTemplateResponse(this);
-		}
-	}
+            return new GetTemplateResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GetTemplateResponse}
-	 */
-	public static final JsonpDeserializer<GetTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetTemplateResponse::setupGetTemplateResponseDeserializer);
+    /**
+     * Json deserializer for {@link GetTemplateResponse}
+     */
+    public static final JsonpDeserializer<GetTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GetTemplateResponse::setupGetTemplateResponseDeserializer
+    );
 
-	protected static void setupGetTemplateResponseDeserializer(ObjectDeserializer<GetTemplateResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				TemplateMapping._DESERIALIZER);
+    protected static void setupGetTemplateResponseDeserializer(ObjectDeserializer<GetTemplateResponse.Builder> op) {
+        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), TemplateMapping._DESERIALIZER);
 
-	}
+    }
 
 }

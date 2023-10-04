@@ -32,242 +32,241 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: indices.rollover.Response
 
 @JsonpDeserializable
 public class RolloverResponse extends AcknowledgedResponseBase {
-	private final Map<String, Boolean> conditions;
+    private final Map<String, Boolean> conditions;
 
-	private final boolean dryRun;
+    private final boolean dryRun;
 
-	private final String newIndex;
+    private final String newIndex;
 
-	private final String oldIndex;
+    private final String oldIndex;
 
-	private final boolean rolledOver;
+    private final boolean rolledOver;
 
-	private final boolean shardsAcknowledged;
+    private final boolean shardsAcknowledged;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RolloverResponse(Builder builder) {
-		super(builder);
+    private RolloverResponse(Builder builder) {
+        super(builder);
 
-		this.conditions = ApiTypeHelper.unmodifiableRequired(builder.conditions, this, "conditions");
-		this.dryRun = ApiTypeHelper.requireNonNull(builder.dryRun, this, "dryRun");
-		this.newIndex = ApiTypeHelper.requireNonNull(builder.newIndex, this, "newIndex");
-		this.oldIndex = ApiTypeHelper.requireNonNull(builder.oldIndex, this, "oldIndex");
-		this.rolledOver = ApiTypeHelper.requireNonNull(builder.rolledOver, this, "rolledOver");
-		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+        this.conditions = ApiTypeHelper.unmodifiableRequired(builder.conditions, this, "conditions");
+        this.dryRun = ApiTypeHelper.requireNonNull(builder.dryRun, this, "dryRun");
+        this.newIndex = ApiTypeHelper.requireNonNull(builder.newIndex, this, "newIndex");
+        this.oldIndex = ApiTypeHelper.requireNonNull(builder.oldIndex, this, "oldIndex");
+        this.rolledOver = ApiTypeHelper.requireNonNull(builder.rolledOver, this, "rolledOver");
+        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
 
-	}
+    }
 
-	public static RolloverResponse of(Function<Builder, ObjectBuilder<RolloverResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RolloverResponse of(Function<Builder, ObjectBuilder<RolloverResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code conditions}
-	 */
-	public final Map<String, Boolean> conditions() {
-		return this.conditions;
-	}
+    /**
+     * Required - API name: {@code conditions}
+     */
+    public final Map<String, Boolean> conditions() {
+        return this.conditions;
+    }
 
-	/**
-	 * Required - API name: {@code dry_run}
-	 */
-	public final boolean dryRun() {
-		return this.dryRun;
-	}
+    /**
+     * Required - API name: {@code dry_run}
+     */
+    public final boolean dryRun() {
+        return this.dryRun;
+    }
 
-	/**
-	 * Required - API name: {@code new_index}
-	 */
-	public final String newIndex() {
-		return this.newIndex;
-	}
+    /**
+     * Required - API name: {@code new_index}
+     */
+    public final String newIndex() {
+        return this.newIndex;
+    }
 
-	/**
-	 * Required - API name: {@code old_index}
-	 */
-	public final String oldIndex() {
-		return this.oldIndex;
-	}
+    /**
+     * Required - API name: {@code old_index}
+     */
+    public final String oldIndex() {
+        return this.oldIndex;
+    }
 
-	/**
-	 * Required - API name: {@code rolled_over}
-	 */
-	public final boolean rolledOver() {
-		return this.rolledOver;
-	}
+    /**
+     * Required - API name: {@code rolled_over}
+     */
+    public final boolean rolledOver() {
+        return this.rolledOver;
+    }
 
-	/**
-	 * Required - API name: {@code shards_acknowledged}
-	 */
-	public final boolean shardsAcknowledged() {
-		return this.shardsAcknowledged;
-	}
+    /**
+     * Required - API name: {@code shards_acknowledged}
+     */
+    public final boolean shardsAcknowledged() {
+        return this.shardsAcknowledged;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.conditions)) {
-			generator.writeKey("conditions");
-			generator.writeStartObject();
-			for (Map.Entry<String, Boolean> item0 : this.conditions.entrySet()) {
-				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.conditions)) {
+            generator.writeKey("conditions");
+            generator.writeStartObject();
+            for (Map.Entry<String, Boolean> item0 : this.conditions.entrySet()) {
+                generator.writeKey(item0.getKey());
+                generator.write(item0.getValue());
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		generator.writeKey("dry_run");
-		generator.write(this.dryRun);
+        }
+        generator.writeKey("dry_run");
+        generator.write(this.dryRun);
 
-		generator.writeKey("new_index");
-		generator.write(this.newIndex);
+        generator.writeKey("new_index");
+        generator.write(this.newIndex);
 
-		generator.writeKey("old_index");
-		generator.write(this.oldIndex);
+        generator.writeKey("old_index");
+        generator.write(this.oldIndex);
 
-		generator.writeKey("rolled_over");
-		generator.write(this.rolledOver);
+        generator.writeKey("rolled_over");
+        generator.write(this.rolledOver);
 
-		generator.writeKey("shards_acknowledged");
-		generator.write(this.shardsAcknowledged);
+        generator.writeKey("shards_acknowledged");
+        generator.write(this.shardsAcknowledged);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RolloverResponse}.
-	 */
+    /**
+     * Builder for {@link RolloverResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RolloverResponse> {
-		private Map<String, Boolean> conditions;
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<RolloverResponse> {
+        private Map<String, Boolean> conditions;
 
-		private Boolean dryRun;
+        private Boolean dryRun;
 
-		private String newIndex;
+        private String newIndex;
 
-		private String oldIndex;
+        private String oldIndex;
 
-		private Boolean rolledOver;
+        private Boolean rolledOver;
 
-		private Boolean shardsAcknowledged;
+        private Boolean shardsAcknowledged;
 
-		/**
-		 * Required - API name: {@code conditions}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>conditions</code>.
-		 */
-		public final Builder conditions(Map<String, Boolean> map) {
-			this.conditions = _mapPutAll(this.conditions, map);
-			return this;
-		}
+        /**
+         * Required - API name: {@code conditions}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>conditions</code>.
+         */
+        public final Builder conditions(Map<String, Boolean> map) {
+            this.conditions = _mapPutAll(this.conditions, map);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code conditions}
-		 * <p>
-		 * Adds an entry to <code>conditions</code>.
-		 */
-		public final Builder conditions(String key, Boolean value) {
-			this.conditions = _mapPut(this.conditions, key, value);
-			return this;
-		}
+        /**
+         * Required - API name: {@code conditions}
+         * <p>
+         * Adds an entry to <code>conditions</code>.
+         */
+        public final Builder conditions(String key, Boolean value) {
+            this.conditions = _mapPut(this.conditions, key, value);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code dry_run}
-		 */
-		public final Builder dryRun(boolean value) {
-			this.dryRun = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code dry_run}
+         */
+        public final Builder dryRun(boolean value) {
+            this.dryRun = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code new_index}
-		 */
-		public final Builder newIndex(String value) {
-			this.newIndex = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code new_index}
+         */
+        public final Builder newIndex(String value) {
+            this.newIndex = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code old_index}
-		 */
-		public final Builder oldIndex(String value) {
-			this.oldIndex = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code old_index}
+         */
+        public final Builder oldIndex(String value) {
+            this.oldIndex = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code rolled_over}
-		 */
-		public final Builder rolledOver(boolean value) {
-			this.rolledOver = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code rolled_over}
+         */
+        public final Builder rolledOver(boolean value) {
+            this.rolledOver = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code shards_acknowledged}
-		 */
-		public final Builder shardsAcknowledged(boolean value) {
-			this.shardsAcknowledged = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code shards_acknowledged}
+         */
+        public final Builder shardsAcknowledged(boolean value) {
+            this.shardsAcknowledged = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RolloverResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RolloverResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RolloverResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RolloverResponse build() {
+            _checkSingleUse();
 
-			return new RolloverResponse(this);
-		}
-	}
+            return new RolloverResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RolloverResponse}
-	 */
-	public static final JsonpDeserializer<RolloverResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RolloverResponse::setupRolloverResponseDeserializer);
+    /**
+     * Json deserializer for {@link RolloverResponse}
+     */
+    public static final JsonpDeserializer<RolloverResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RolloverResponse::setupRolloverResponseDeserializer
+    );
 
-	protected static void setupRolloverResponseDeserializer(ObjectDeserializer<RolloverResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(Builder::conditions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.booleanDeserializer()),
-				"conditions");
-		op.add(Builder::dryRun, JsonpDeserializer.booleanDeserializer(), "dry_run");
-		op.add(Builder::newIndex, JsonpDeserializer.stringDeserializer(), "new_index");
-		op.add(Builder::oldIndex, JsonpDeserializer.stringDeserializer(), "old_index");
-		op.add(Builder::rolledOver, JsonpDeserializer.booleanDeserializer(), "rolled_over");
-		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
+    protected static void setupRolloverResponseDeserializer(ObjectDeserializer<RolloverResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+        op.add(Builder::conditions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.booleanDeserializer()), "conditions");
+        op.add(Builder::dryRun, JsonpDeserializer.booleanDeserializer(), "dry_run");
+        op.add(Builder::newIndex, JsonpDeserializer.stringDeserializer(), "new_index");
+        op.add(Builder::oldIndex, JsonpDeserializer.stringDeserializer(), "old_index");
+        op.add(Builder::rolledOver, JsonpDeserializer.booleanDeserializer(), "rolled_over");
+        op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 
-	}
+    }
 
 }

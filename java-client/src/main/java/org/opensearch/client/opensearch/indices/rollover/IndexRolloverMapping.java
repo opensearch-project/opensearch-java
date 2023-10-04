@@ -32,150 +32,151 @@
 
 package org.opensearch.client.opensearch.indices.rollover;
 
-import org.opensearch.client.opensearch._types.mapping.TypeMapping;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.UnionDeserializer;
+import org.opensearch.client.opensearch._types.mapping.TypeMapping;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: indices.rollover.IndexRolloverMapping
-
 
 @JsonpDeserializable
 public class IndexRolloverMapping implements TaggedUnion<IndexRolloverMapping.Kind, Object>, JsonpSerializable {
 
-	public enum Kind {
-		ByType, Single
+    public enum Kind {
+        ByType,
+        Single
 
-	}
+    }
 
-	private final Kind _kind;
-	private final Object _value;
+    private final Kind _kind;
+    private final Object _value;
 
-	@Override
-	public final Kind _kind() {
-		return _kind;
-	}
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
 
-	@Override
-	public final Object _get() {
-		return _value;
-	}
+    @Override
+    public final Object _get() {
+        return _value;
+    }
 
-	private IndexRolloverMapping(Kind kind, Object value) {
-		this._kind = kind;
-		this._value = value;
-	}
+    private IndexRolloverMapping(Kind kind, Object value) {
+        this._kind = kind;
+        this._value = value;
+    }
 
-	private IndexRolloverMapping(Builder builder) {
+    private IndexRolloverMapping(Builder builder) {
 
-		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-	}
+    }
 
-	public static IndexRolloverMapping of(Function<Builder, ObjectBuilder<IndexRolloverMapping>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndexRolloverMapping of(Function<Builder, ObjectBuilder<IndexRolloverMapping>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Is this variant instance of kind {@code by_type}?
-	 */
-	public boolean isByType() {
-		return _kind == Kind.ByType;
-	}
+    /**
+     * Is this variant instance of kind {@code by_type}?
+     */
+    public boolean isByType() {
+        return _kind == Kind.ByType;
+    }
 
-	/**
-	 * Get the {@code by_type} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code by_type} kind.
-	 */
-	public Map<String, TypeMapping> byType() {
-		return TaggedUnionUtils.get(this, Kind.ByType);
-	}
+    /**
+     * Get the {@code by_type} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code by_type} kind.
+     */
+    public Map<String, TypeMapping> byType() {
+        return TaggedUnionUtils.get(this, Kind.ByType);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code single}?
-	 */
-	public boolean isSingle() {
-		return _kind == Kind.Single;
-	}
+    /**
+     * Is this variant instance of kind {@code single}?
+     */
+    public boolean isSingle() {
+        return _kind == Kind.Single;
+    }
 
-	/**
-	 * Get the {@code single} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code single} kind.
-	 */
-	public TypeMapping single() {
-		return TaggedUnionUtils.get(this, Kind.Single);
-	}
+    /**
+     * Get the {@code single} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code single} kind.
+     */
+    public TypeMapping single() {
+        return TaggedUnionUtils.get(this, Kind.Single);
+    }
 
-	@Override
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_kind) {
-				case ByType :
-					generator.writeStartObject();
-					for (Map.Entry<String, TypeMapping> item0 : ((Map<String, TypeMapping>) this._value).entrySet()) {
-						generator.writeKey(item0.getKey());
-						item0.getValue().serialize(generator, mapper);
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        if (_value instanceof JsonpSerializable) {
+            ((JsonpSerializable) _value).serialize(generator, mapper);
+        } else {
+            switch (_kind) {
+                case ByType:
+                    generator.writeStartObject();
+                    for (Map.Entry<String, TypeMapping> item0 : ((Map<String, TypeMapping>) this._value).entrySet()) {
+                        generator.writeKey(item0.getKey());
+                        item0.getValue().serialize(generator, mapper);
 
-					}
-					generator.writeEnd();
+                    }
+                    generator.writeEnd();
 
-					break;
-			}
-		}
+                    break;
+            }
+        }
 
-	}
+    }
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRolloverMapping> {
-		private Kind _kind;
-		private Object _value;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRolloverMapping> {
+        private Kind _kind;
+        private Object _value;
 
-		public ObjectBuilder<IndexRolloverMapping> byType(Map<String, TypeMapping> v) {
-			this._kind = Kind.ByType;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<IndexRolloverMapping> byType(Map<String, TypeMapping> v) {
+            this._kind = Kind.ByType;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<IndexRolloverMapping> single(TypeMapping v) {
-			this._kind = Kind.Single;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<IndexRolloverMapping> single(TypeMapping v) {
+            this._kind = Kind.Single;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<IndexRolloverMapping> single(
-				Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
-			return this.single(fn.apply(new TypeMapping.Builder()).build());
-		}
+        public ObjectBuilder<IndexRolloverMapping> single(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+            return this.single(fn.apply(new TypeMapping.Builder()).build());
+        }
 
-		public IndexRolloverMapping build() {
-			_checkSingleUse();
-			return new IndexRolloverMapping(this);
-		}
+        public IndexRolloverMapping build() {
+            _checkSingleUse();
+            return new IndexRolloverMapping(this);
+        }
 
-	}
+    }
 
-	private static JsonpDeserializer<IndexRolloverMapping> buildIndexRolloverMappingDeserializer() {
-		return new UnionDeserializer.Builder<IndexRolloverMapping, Kind, Object>(IndexRolloverMapping::new, false)
-				.addMember(Kind.ByType, JsonpDeserializer.stringMapDeserializer(TypeMapping._DESERIALIZER))
-				.addMember(Kind.Single, TypeMapping._DESERIALIZER).build();
-	}
+    private static JsonpDeserializer<IndexRolloverMapping> buildIndexRolloverMappingDeserializer() {
+        return new UnionDeserializer.Builder<IndexRolloverMapping, Kind, Object>(IndexRolloverMapping::new, false).addMember(
+            Kind.ByType,
+            JsonpDeserializer.stringMapDeserializer(TypeMapping._DESERIALIZER)
+        ).addMember(Kind.Single, TypeMapping._DESERIALIZER).build();
+    }
 
-	public static final JsonpDeserializer<IndexRolloverMapping> _DESERIALIZER = JsonpDeserializer
-			.lazy(IndexRolloverMapping::buildIndexRolloverMappingDeserializer);
+    public static final JsonpDeserializer<IndexRolloverMapping> _DESERIALIZER = JsonpDeserializer.lazy(
+        IndexRolloverMapping::buildIndexRolloverMappingDeserializer
+    );
 }

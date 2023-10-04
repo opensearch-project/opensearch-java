@@ -35,27 +35,27 @@ package org.opensearch.client.opensearch.indices;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum IndexCheckOnStartup implements JsonEnum {
-	False("false"),
+    False("false"),
 
-	Checksum("checksum"),
+    Checksum("checksum"),
 
-	True("true"),
+    True("true"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	IndexCheckOnStartup(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    IndexCheckOnStartup(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<IndexCheckOnStartup> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IndexCheckOnStartup.values());
+    public static final JsonEnum.Deserializer<IndexCheckOnStartup> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IndexCheckOnStartup.values()
+    );
 }

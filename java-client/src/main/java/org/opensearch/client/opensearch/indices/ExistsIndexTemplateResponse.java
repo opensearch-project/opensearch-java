@@ -36,17 +36,16 @@ import org.opensearch.client.json.JsonpDeserializer;
 
 // typedef: indices.exists_index_template.Response
 
-
 public class ExistsIndexTemplateResponse {
-	public ExistsIndexTemplateResponse() {
-	}
+    public ExistsIndexTemplateResponse() {}
 
-	/**
-	 * Singleton instance for {@link ExistsIndexTemplateResponse}.
-	 */
-	public static final ExistsIndexTemplateResponse _INSTANCE = new ExistsIndexTemplateResponse();
+    /**
+     * Singleton instance for {@link ExistsIndexTemplateResponse}.
+     */
+    public static final ExistsIndexTemplateResponse _INSTANCE = new ExistsIndexTemplateResponse();
 
-	public static final JsonpDeserializer<ExistsIndexTemplateResponse> _DESERIALIZER = JsonpDeserializer
-			.fixedValue(ExistsIndexTemplateResponse._INSTANCE);
+    public static final JsonpDeserializer<ExistsIndexTemplateResponse> _DESERIALIZER = JsonpDeserializer.fixedValue(
+        ExistsIndexTemplateResponse._INSTANCE
+    );
 
 }

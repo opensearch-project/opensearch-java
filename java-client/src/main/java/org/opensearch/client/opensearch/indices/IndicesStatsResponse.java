@@ -32,198 +32,199 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.ShardStatistics;
-import org.opensearch.client.opensearch.indices.stats.IndicesStats;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.ShardStatistics;
+import org.opensearch.client.opensearch.indices.stats.IndicesStats;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices.stats.Response
 
 @JsonpDeserializable
 public class IndicesStatsResponse implements JsonpSerializable {
-	private final Map<String, IndicesStats> indices;
+    private final Map<String, IndicesStats> indices;
 
-	private final ShardStatistics shards;
+    private final ShardStatistics shards;
 
-	private final IndicesStats all;
+    private final IndicesStats all;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndicesStatsResponse(Builder builder) {
+    private IndicesStatsResponse(Builder builder) {
 
-		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
+        this.indices = ApiTypeHelper.unmodifiable(builder.indices);
+        this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+        this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
 
-	}
+    }
 
-	public static IndicesStatsResponse of(Function<Builder, ObjectBuilder<IndicesStatsResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndicesStatsResponse of(Function<Builder, ObjectBuilder<IndicesStatsResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code indices}
-	 */
-	public final Map<String, IndicesStats> indices() {
-		return this.indices;
-	}
+    /**
+     * API name: {@code indices}
+     */
+    public final Map<String, IndicesStats> indices() {
+        return this.indices;
+    }
 
-	/**
-	 * Required - API name: {@code _shards}
-	 */
-	public final ShardStatistics shards() {
-		return this.shards;
-	}
+    /**
+     * Required - API name: {@code _shards}
+     */
+    public final ShardStatistics shards() {
+        return this.shards;
+    }
 
-	/**
-	 * Required - API name: {@code _all}
-	 */
-	public final IndicesStats all() {
-		return this.all;
-	}
+    /**
+     * Required - API name: {@code _all}
+     */
+    public final IndicesStats all() {
+        return this.all;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.indices)) {
-			generator.writeKey("indices");
-			generator.writeStartObject();
-			for (Map.Entry<String, IndicesStats> item0 : this.indices.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.indices)) {
+            generator.writeKey("indices");
+            generator.writeStartObject();
+            for (Map.Entry<String, IndicesStats> item0 : this.indices.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		generator.writeKey("_shards");
-		this.shards.serialize(generator, mapper);
+        }
+        generator.writeKey("_shards");
+        this.shards.serialize(generator, mapper);
 
-		generator.writeKey("_all");
-		this.all.serialize(generator, mapper);
+        generator.writeKey("_all");
+        this.all.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndicesStatsResponse}.
-	 */
+    /**
+     * Builder for {@link IndicesStatsResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesStatsResponse> {
-		@Nullable
-		private Map<String, IndicesStats> indices;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesStatsResponse> {
+        @Nullable
+        private Map<String, IndicesStats> indices;
 
-		private ShardStatistics shards;
+        private ShardStatistics shards;
 
-		private IndicesStats all;
+        private IndicesStats all;
 
-		/**
-		 * API name: {@code indices}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>indices</code>.
-		 */
-		public final Builder indices(Map<String, IndicesStats> map) {
-			this.indices = _mapPutAll(this.indices, map);
-			return this;
-		}
+        /**
+         * API name: {@code indices}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>indices</code>.
+         */
+        public final Builder indices(Map<String, IndicesStats> map) {
+            this.indices = _mapPutAll(this.indices, map);
+            return this;
+        }
 
-		/**
-		 * API name: {@code indices}
-		 * <p>
-		 * Adds an entry to <code>indices</code>.
-		 */
-		public final Builder indices(String key, IndicesStats value) {
-			this.indices = _mapPut(this.indices, key, value);
-			return this;
-		}
+        /**
+         * API name: {@code indices}
+         * <p>
+         * Adds an entry to <code>indices</code>.
+         */
+        public final Builder indices(String key, IndicesStats value) {
+            this.indices = _mapPut(this.indices, key, value);
+            return this;
+        }
 
-		/**
-		 * API name: {@code indices}
-		 * <p>
-		 * Adds an entry to <code>indices</code> using a builder lambda.
-		 */
-		public final Builder indices(String key, Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
-			return indices(key, fn.apply(new IndicesStats.Builder()).build());
-		}
+        /**
+         * API name: {@code indices}
+         * <p>
+         * Adds an entry to <code>indices</code> using a builder lambda.
+         */
+        public final Builder indices(String key, Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
+            return indices(key, fn.apply(new IndicesStats.Builder()).build());
+        }
 
-		/**
-		 * Required - API name: {@code _shards}
-		 */
-		public final Builder shards(ShardStatistics value) {
-			this.shards = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code _shards}
+         */
+        public final Builder shards(ShardStatistics value) {
+            this.shards = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code _shards}
-		 */
-		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code _shards}
+         */
+        public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+            return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+        }
 
-		/**
-		 * Required - API name: {@code _all}
-		 */
-		public final Builder all(IndicesStats value) {
-			this.all = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code _all}
+         */
+        public final Builder all(IndicesStats value) {
+            this.all = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code _all}
-		 */
-		public final Builder all(Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
-			return this.all(fn.apply(new IndicesStats.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code _all}
+         */
+        public final Builder all(Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
+            return this.all(fn.apply(new IndicesStats.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link IndicesStatsResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndicesStatsResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndicesStatsResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndicesStatsResponse build() {
+            _checkSingleUse();
 
-			return new IndicesStatsResponse(this);
-		}
-	}
+            return new IndicesStatsResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IndicesStatsResponse}
-	 */
-	public static final JsonpDeserializer<IndicesStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndicesStatsResponse::setupIndicesStatsResponseDeserializer);
+    /**
+     * Json deserializer for {@link IndicesStatsResponse}
+     */
+    public static final JsonpDeserializer<IndicesStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IndicesStatsResponse::setupIndicesStatsResponseDeserializer
+    );
 
-	protected static void setupIndicesStatsResponseDeserializer(ObjectDeserializer<IndicesStatsResponse.Builder> op) {
+    protected static void setupIndicesStatsResponseDeserializer(ObjectDeserializer<IndicesStatsResponse.Builder> op) {
 
-		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndicesStats._DESERIALIZER), "indices");
-		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
-		op.add(Builder::all, IndicesStats._DESERIALIZER, "_all");
+        op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndicesStats._DESERIALIZER), "indices");
+        op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
+        op.add(Builder::all, IndicesStats._DESERIALIZER, "_all");
 
-	}
+    }
 
 }

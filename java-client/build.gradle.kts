@@ -272,7 +272,7 @@ tasks.withType<Jar> {
 spotless {
   java {
 
-    target("**/json/**/*.java", "**/transport/**/*.java", "**/util/**/*.java", "**/_types/**/*.java", "**/cat/**/*.java", "**/cluster/**/*.java", "**/core/**/*.java", "**/dangling_indices/**/*.java", "**/features/**/*.java", "**/ingest/**/*.java", "**/shutdown/**/*.java", "**/tasks/**/*.java")
+    target("**/json/**/*.java", "**/transport/**/*.java", "**/util/**/*.java", "**/_types/**/*.java", "**/cat/**/*.java", "**/cluster/**/*.java", "**/core/**/*.java", "**/dangling_indices/**/*.java", "**/features/**/*.java", "**/ingest/**/*.java", "**/shutdown/**/*.java", "**/tasks/**/*.java", "**/indices/**/*.java")
 
     // Use the default importOrder configuration
     importOrder()

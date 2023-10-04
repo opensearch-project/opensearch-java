@@ -32,69 +32,69 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.put_settings.Response
 
 @JsonpDeserializable
 public class PutIndicesSettingsResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PutIndicesSettingsResponse(Builder builder) {
-		super(builder);
+    private PutIndicesSettingsResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static PutIndicesSettingsResponse of(Function<Builder, ObjectBuilder<PutIndicesSettingsResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PutIndicesSettingsResponse of(Function<Builder, ObjectBuilder<PutIndicesSettingsResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PutIndicesSettingsResponse}.
-	 */
+    /**
+     * Builder for {@link PutIndicesSettingsResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PutIndicesSettingsResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<PutIndicesSettingsResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PutIndicesSettingsResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PutIndicesSettingsResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PutIndicesSettingsResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PutIndicesSettingsResponse build() {
+            _checkSingleUse();
 
-			return new PutIndicesSettingsResponse(this);
-		}
-	}
+            return new PutIndicesSettingsResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PutIndicesSettingsResponse}
-	 */
-	public static final JsonpDeserializer<PutIndicesSettingsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutIndicesSettingsResponse::setupPutIndicesSettingsResponseDeserializer);
+    /**
+     * Json deserializer for {@link PutIndicesSettingsResponse}
+     */
+    public static final JsonpDeserializer<PutIndicesSettingsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PutIndicesSettingsResponse::setupPutIndicesSettingsResponseDeserializer
+    );
 
-	protected static void setupPutIndicesSettingsResponseDeserializer(
-			ObjectDeserializer<PutIndicesSettingsResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupPutIndicesSettingsResponseDeserializer(ObjectDeserializer<PutIndicesSettingsResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

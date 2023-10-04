@@ -8,6 +8,7 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -15,13 +16,11 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: indices.delete_data_stream.Response
 
 @JsonpDeserializable
 public class DeleteDataStreamResponse extends AcknowledgedResponseBase {
-    
+
     // ---------------------------------------------------------------------------------------------
 
     private DeleteDataStreamResponse(Builder builder) {
@@ -38,7 +37,8 @@ public class DeleteDataStreamResponse extends AcknowledgedResponseBase {
      * Builder for {@link DeleteDataStreamResponse}
      */
     public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-            implements ObjectBuilder<DeleteDataStreamResponse> {
+        implements
+            ObjectBuilder<DeleteDataStreamResponse> {
 
         @Override
         protected Builder self() {
@@ -58,14 +58,15 @@ public class DeleteDataStreamResponse extends AcknowledgedResponseBase {
         }
     }
 
-
     // ---------------------------------------------------------------------------------------------
 
     /**
      * Json deserializer for {@link DeleteDataStreamResponse}
      */
-    public static final JsonpDeserializer<DeleteDataStreamResponse> _DESERIALIZER = ObjectBuilderDeserializer
-            .lazy(Builder::new, DeleteDataStreamResponse::setupDeleteDataStreamResponseDeserializer);
+    public static final JsonpDeserializer<DeleteDataStreamResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeleteDataStreamResponse::setupDeleteDataStreamResponseDeserializer
+    );
 
     protected static void setupDeleteDataStreamResponseDeserializer(ObjectDeserializer<DeleteDataStreamResponse.Builder> op) {
         AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

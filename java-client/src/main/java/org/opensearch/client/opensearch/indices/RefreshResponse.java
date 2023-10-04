@@ -32,68 +32,67 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.ShardsOperationResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.ShardsOperationResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.refresh.Response
 
 @JsonpDeserializable
 public class RefreshResponse extends ShardsOperationResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RefreshResponse(Builder builder) {
-		super(builder);
+    private RefreshResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static RefreshResponse of(Function<Builder, ObjectBuilder<RefreshResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RefreshResponse of(Function<Builder, ObjectBuilder<RefreshResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RefreshResponse}.
-	 */
+    /**
+     * Builder for {@link RefreshResponse}.
+     */
 
-	public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RefreshResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<RefreshResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RefreshResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RefreshResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RefreshResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RefreshResponse build() {
+            _checkSingleUse();
 
-			return new RefreshResponse(this);
-		}
-	}
+            return new RefreshResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RefreshResponse}
-	 */
-	public static final JsonpDeserializer<RefreshResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RefreshResponse::setupRefreshResponseDeserializer);
+    /**
+     * Json deserializer for {@link RefreshResponse}
+     */
+    public static final JsonpDeserializer<RefreshResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RefreshResponse::setupRefreshResponseDeserializer
+    );
 
-	protected static void setupRefreshResponseDeserializer(ObjectDeserializer<RefreshResponse.Builder> op) {
-		ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
+    protected static void setupRefreshResponseDeserializer(ObjectDeserializer<RefreshResponse.Builder> op) {
+        ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

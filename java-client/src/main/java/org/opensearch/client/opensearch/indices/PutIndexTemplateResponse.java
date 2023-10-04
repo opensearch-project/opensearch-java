@@ -32,69 +32,69 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.put_index_template.Response
 
 @JsonpDeserializable
 public class PutIndexTemplateResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PutIndexTemplateResponse(Builder builder) {
-		super(builder);
+    private PutIndexTemplateResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static PutIndexTemplateResponse of(Function<Builder, ObjectBuilder<PutIndexTemplateResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PutIndexTemplateResponse of(Function<Builder, ObjectBuilder<PutIndexTemplateResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PutIndexTemplateResponse}.
-	 */
+    /**
+     * Builder for {@link PutIndexTemplateResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PutIndexTemplateResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<PutIndexTemplateResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PutIndexTemplateResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PutIndexTemplateResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PutIndexTemplateResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PutIndexTemplateResponse build() {
+            _checkSingleUse();
 
-			return new PutIndexTemplateResponse(this);
-		}
-	}
+            return new PutIndexTemplateResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PutIndexTemplateResponse}
-	 */
-	public static final JsonpDeserializer<PutIndexTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutIndexTemplateResponse::setupPutIndexTemplateResponseDeserializer);
+    /**
+     * Json deserializer for {@link PutIndexTemplateResponse}
+     */
+    public static final JsonpDeserializer<PutIndexTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PutIndexTemplateResponse::setupPutIndexTemplateResponseDeserializer
+    );
 
-	protected static void setupPutIndexTemplateResponseDeserializer(
-			ObjectDeserializer<PutIndexTemplateResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupPutIndexTemplateResponseDeserializer(ObjectDeserializer<PutIndexTemplateResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }
