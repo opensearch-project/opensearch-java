@@ -32,76 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.GlobalAggregation
-
 
 @JsonpDeserializable
 public class GlobalAggregation extends BucketAggregationBase implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GlobalAggregation(Builder builder) {
-		super(builder);
+    private GlobalAggregation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static GlobalAggregation of(Function<Builder, ObjectBuilder<GlobalAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GlobalAggregation of(Function<Builder, ObjectBuilder<GlobalAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Global;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.Global;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GlobalAggregation}.
-	 */
+    /**
+     * Builder for {@link GlobalAggregation}.
+     */
 
-	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<GlobalAggregation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<GlobalAggregation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GlobalAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GlobalAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GlobalAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GlobalAggregation build() {
+            _checkSingleUse();
 
-			return new GlobalAggregation(this);
-		}
-	}
+            return new GlobalAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GlobalAggregation}
-	 */
-	public static final JsonpDeserializer<GlobalAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GlobalAggregation::setupGlobalAggregationDeserializer);
+    /**
+     * Json deserializer for {@link GlobalAggregation}
+     */
+    public static final JsonpDeserializer<GlobalAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GlobalAggregation::setupGlobalAggregationDeserializer
+    );
 
-	protected static void setupGlobalAggregationDeserializer(ObjectDeserializer<GlobalAggregation.Builder> op) {
-		setupBucketAggregationBaseDeserializer(op);
+    protected static void setupGlobalAggregationDeserializer(ObjectDeserializer<GlobalAggregation.Builder> op) {
+        setupBucketAggregationBaseDeserializer(op);
 
-	}
+    }
 
 }

@@ -35,25 +35,23 @@ package org.opensearch.client.opensearch._types.mapping;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum OnScriptError implements JsonEnum {
-	Fail("fail"),
+    Fail("fail"),
 
-	Continue("continue"),
+    Continue("continue"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	OnScriptError(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    OnScriptError(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<OnScriptError> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			OnScriptError.values());
+    public static final JsonEnum.Deserializer<OnScriptError> _DESERIALIZER = new JsonEnum.Deserializer<>(OnScriptError.values());
 }

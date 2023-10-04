@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,127 +45,124 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.DutchAnalyzer
 
 @JsonpDeserializable
 public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
-	private final List<String> stopwords;
+    private final List<String> stopwords;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DutchAnalyzer(Builder builder) {
+    private DutchAnalyzer(Builder builder) {
 
-		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
+        this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
 
-	}
+    }
 
-	public static DutchAnalyzer of(Function<Builder, ObjectBuilder<DutchAnalyzer>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DutchAnalyzer of(Function<Builder, ObjectBuilder<DutchAnalyzer>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Analyzer variant kind.
-	 */
-	@Override
-	public Analyzer.Kind _analyzerKind() {
-		return Analyzer.Kind.Dutch;
-	}
+    /**
+     * Analyzer variant kind.
+     */
+    @Override
+    public Analyzer.Kind _analyzerKind() {
+        return Analyzer.Kind.Dutch;
+    }
 
-	/**
-	 * API name: {@code stopwords}
-	 */
-	public final List<String> stopwords() {
-		return this.stopwords;
-	}
+    /**
+     * API name: {@code stopwords}
+     */
+    public final List<String> stopwords() {
+        return this.stopwords;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "dutch");
+        generator.write("type", "dutch");
 
-		if (ApiTypeHelper.isDefined(this.stopwords)) {
-			generator.writeKey("stopwords");
-			generator.writeStartArray();
-			for (String item0 : this.stopwords) {
-				generator.write(item0);
+        if (ApiTypeHelper.isDefined(this.stopwords)) {
+            generator.writeKey("stopwords");
+            generator.writeStartArray();
+            for (String item0 : this.stopwords) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DutchAnalyzer}.
-	 */
+    /**
+     * Builder for {@link DutchAnalyzer}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DutchAnalyzer> {
-		@Nullable
-		private List<String> stopwords;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DutchAnalyzer> {
+        @Nullable
+        private List<String> stopwords;
 
-		/**
-		 * API name: {@code stopwords}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
-		 */
-		public final Builder stopwords(List<String> list) {
-			this.stopwords = _listAddAll(this.stopwords, list);
-			return this;
-		}
+        /**
+         * API name: {@code stopwords}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>stopwords</code>.
+         */
+        public final Builder stopwords(List<String> list) {
+            this.stopwords = _listAddAll(this.stopwords, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code stopwords}
-		 * <p>
-		 * Adds one or more values to <code>stopwords</code>.
-		 */
-		public final Builder stopwords(String value, String... values) {
-			this.stopwords = _listAdd(this.stopwords, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code stopwords}
+         * <p>
+         * Adds one or more values to <code>stopwords</code>.
+         */
+        public final Builder stopwords(String value, String... values) {
+            this.stopwords = _listAdd(this.stopwords, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DutchAnalyzer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DutchAnalyzer build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DutchAnalyzer}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DutchAnalyzer build() {
+            _checkSingleUse();
 
-			return new DutchAnalyzer(this);
-		}
-	}
+            return new DutchAnalyzer(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DutchAnalyzer}
-	 */
-	public static final JsonpDeserializer<DutchAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DutchAnalyzer::setupDutchAnalyzerDeserializer);
+    /**
+     * Json deserializer for {@link DutchAnalyzer}
+     */
+    public static final JsonpDeserializer<DutchAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DutchAnalyzer::setupDutchAnalyzerDeserializer
+    );
 
-	protected static void setupDutchAnalyzerDeserializer(ObjectDeserializer<DutchAnalyzer.Builder> op) {
+    protected static void setupDutchAnalyzerDeserializer(ObjectDeserializer<DutchAnalyzer.Builder> op) {
 
-		op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"stopwords");
+        op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stopwords");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

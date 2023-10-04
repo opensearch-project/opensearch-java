@@ -32,82 +32,77 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.VariableWidthHistogramAggregate
 
-
 @JsonpDeserializable
-public class VariableWidthHistogramAggregate extends MultiBucketAggregateBase<VariableWidthHistogramBucket>
-		implements
-			AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+public class VariableWidthHistogramAggregate extends MultiBucketAggregateBase<VariableWidthHistogramBucket> implements AggregateVariant {
+    // ---------------------------------------------------------------------------------------------
 
-	private VariableWidthHistogramAggregate(Builder builder) {
-		super(builder);
+    private VariableWidthHistogramAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static VariableWidthHistogramAggregate of(
-			Function<Builder, ObjectBuilder<VariableWidthHistogramAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static VariableWidthHistogramAggregate of(Function<Builder, ObjectBuilder<VariableWidthHistogramAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.VariableWidthHistogram;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.VariableWidthHistogram;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link VariableWidthHistogramAggregate}.
-	 */
+    /**
+     * Builder for {@link VariableWidthHistogramAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<VariableWidthHistogramBucket, Builder>
-			implements
-				ObjectBuilder<VariableWidthHistogramAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<VariableWidthHistogramBucket, Builder>
+        implements
+            ObjectBuilder<VariableWidthHistogramAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link VariableWidthHistogramAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public VariableWidthHistogramAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link VariableWidthHistogramAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public VariableWidthHistogramAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new VariableWidthHistogramAggregate(this);
-		}
-	}
+            return new VariableWidthHistogramAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link VariableWidthHistogramAggregate}
-	 */
-	public static final JsonpDeserializer<VariableWidthHistogramAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, VariableWidthHistogramAggregate::setupVariableWidthHistogramAggregateDeserializer);
+    /**
+     * Json deserializer for {@link VariableWidthHistogramAggregate}
+     */
+    public static final JsonpDeserializer<VariableWidthHistogramAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        VariableWidthHistogramAggregate::setupVariableWidthHistogramAggregateDeserializer
+    );
 
-	protected static void setupVariableWidthHistogramAggregateDeserializer(
-			ObjectDeserializer<VariableWidthHistogramAggregate.Builder> op) {
-		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op,
-				VariableWidthHistogramBucket._DESERIALIZER);
+    protected static void setupVariableWidthHistogramAggregateDeserializer(ObjectDeserializer<VariableWidthHistogramAggregate.Builder> op) {
+        MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, VariableWidthHistogramBucket._DESERIALIZER);
 
-	}
+    }
 
 }

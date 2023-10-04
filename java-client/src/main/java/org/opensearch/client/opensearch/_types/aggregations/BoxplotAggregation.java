@@ -32,113 +32,113 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BoxplotAggregation
 
 @JsonpDeserializable
 public class BoxplotAggregation extends MetricAggregationBase implements AggregationVariant {
-	@Nullable
-	private final Double compression;
+    @Nullable
+    private final Double compression;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private BoxplotAggregation(Builder builder) {
-		super(builder);
+    private BoxplotAggregation(Builder builder) {
+        super(builder);
 
-		this.compression = builder.compression;
+        this.compression = builder.compression;
 
-	}
+    }
 
-	public static BoxplotAggregation of(Function<Builder, ObjectBuilder<BoxplotAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static BoxplotAggregation of(Function<Builder, ObjectBuilder<BoxplotAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Boxplot;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.Boxplot;
+    }
 
-	/**
-	 * API name: {@code compression}
-	 */
-	@Nullable
-	public final Double compression() {
-		return this.compression;
-	}
+    /**
+     * API name: {@code compression}
+     */
+    @Nullable
+    public final Double compression() {
+        return this.compression;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.compression != null) {
-			generator.writeKey("compression");
-			generator.write(this.compression);
+        super.serializeInternal(generator, mapper);
+        if (this.compression != null) {
+            generator.writeKey("compression");
+            generator.write(this.compression);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link BoxplotAggregation}.
-	 */
+    /**
+     * Builder for {@link BoxplotAggregation}.
+     */
 
-	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<BoxplotAggregation> {
-		@Nullable
-		private Double compression;
+    public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<BoxplotAggregation> {
+        @Nullable
+        private Double compression;
 
-		/**
-		 * API name: {@code compression}
-		 */
-		public final Builder compression(@Nullable Double value) {
-			this.compression = value;
-			return this;
-		}
+        /**
+         * API name: {@code compression}
+         */
+        public final Builder compression(@Nullable Double value) {
+            this.compression = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link BoxplotAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public BoxplotAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link BoxplotAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public BoxplotAggregation build() {
+            _checkSingleUse();
 
-			return new BoxplotAggregation(this);
-		}
-	}
+            return new BoxplotAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link BoxplotAggregation}
-	 */
-	public static final JsonpDeserializer<BoxplotAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, BoxplotAggregation::setupBoxplotAggregationDeserializer);
+    /**
+     * Json deserializer for {@link BoxplotAggregation}
+     */
+    public static final JsonpDeserializer<BoxplotAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        BoxplotAggregation::setupBoxplotAggregationDeserializer
+    );
 
-	protected static void setupBoxplotAggregationDeserializer(ObjectDeserializer<BoxplotAggregation.Builder> op) {
-		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
-		op.add(Builder::compression, JsonpDeserializer.doubleDeserializer(), "compression");
+    protected static void setupBoxplotAggregationDeserializer(ObjectDeserializer<BoxplotAggregation.Builder> op) {
+        MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
+        op.add(Builder::compression, JsonpDeserializer.doubleDeserializer(), "compression");
 
-	}
+    }
 
 }

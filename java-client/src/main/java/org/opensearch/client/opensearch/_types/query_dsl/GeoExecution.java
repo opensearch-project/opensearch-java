@@ -35,25 +35,23 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum GeoExecution implements JsonEnum {
-	Memory("memory"),
+    Memory("memory"),
 
-	Indexed("indexed"),
+    Indexed("indexed"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	GeoExecution(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    GeoExecution(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<GeoExecution> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			GeoExecution.values());
+    public static final JsonEnum.Deserializer<GeoExecution> _DESERIALIZER = new JsonEnum.Deserializer<>(GeoExecution.values());
 }

@@ -37,26 +37,25 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum VersionType implements JsonEnum {
-	Internal("internal"),
+    Internal("internal"),
 
-	External("external"),
+    External("external"),
 
-	ExternalGte("external_gte"),
+    ExternalGte("external_gte"),
 
-	Force("force"),
+    Force("force"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	VersionType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    VersionType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<VersionType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			VersionType.values());
+    public static final JsonEnum.Deserializer<VersionType> _DESERIALIZER = new JsonEnum.Deserializer<>(VersionType.values());
 }

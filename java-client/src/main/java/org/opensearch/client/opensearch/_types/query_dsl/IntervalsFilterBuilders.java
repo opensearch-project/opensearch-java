@@ -38,79 +38,78 @@ import org.opensearch.client.opensearch._types.Script;
  * Builders for {@link IntervalsFilter} variants.
  */
 public class IntervalsFilterBuilders {
-	private IntervalsFilterBuilders() {
-	}
+    private IntervalsFilterBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link Intervals after} {@code IntervalsFilter}
-	 * variant.
-	 */
-	public static Intervals.Builder after() {
-		return new Intervals.Builder();
-	}
+    /**
+     * Creates a builder for the {@link Intervals after} {@code IntervalsFilter}
+     * variant.
+     */
+    public static Intervals.Builder after() {
+        return new Intervals.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link Intervals before} {@code IntervalsFilter}
-	 * variant.
-	 */
-	public static Intervals.Builder before() {
-		return new Intervals.Builder();
-	}
+    /**
+     * Creates a builder for the {@link Intervals before} {@code IntervalsFilter}
+     * variant.
+     */
+    public static Intervals.Builder before() {
+        return new Intervals.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link Intervals contained_by}
-	 * {@code IntervalsFilter} variant.
-	 */
-	public static Intervals.Builder containedBy() {
-		return new Intervals.Builder();
-	}
+    /**
+     * Creates a builder for the {@link Intervals contained_by}
+     * {@code IntervalsFilter} variant.
+     */
+    public static Intervals.Builder containedBy() {
+        return new Intervals.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link Intervals containing}
-	 * {@code IntervalsFilter} variant.
-	 */
-	public static Intervals.Builder containing() {
-		return new Intervals.Builder();
-	}
+    /**
+     * Creates a builder for the {@link Intervals containing}
+     * {@code IntervalsFilter} variant.
+     */
+    public static Intervals.Builder containing() {
+        return new Intervals.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link Intervals not_contained_by}
-	 * {@code IntervalsFilter} variant.
-	 */
-	public static Intervals.Builder notContainedBy() {
-		return new Intervals.Builder();
-	}
+    /**
+     * Creates a builder for the {@link Intervals not_contained_by}
+     * {@code IntervalsFilter} variant.
+     */
+    public static Intervals.Builder notContainedBy() {
+        return new Intervals.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link Intervals not_containing}
-	 * {@code IntervalsFilter} variant.
-	 */
-	public static Intervals.Builder notContaining() {
-		return new Intervals.Builder();
-	}
+    /**
+     * Creates a builder for the {@link Intervals not_containing}
+     * {@code IntervalsFilter} variant.
+     */
+    public static Intervals.Builder notContaining() {
+        return new Intervals.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link Intervals not_overlapping}
-	 * {@code IntervalsFilter} variant.
-	 */
-	public static Intervals.Builder notOverlapping() {
-		return new Intervals.Builder();
-	}
+    /**
+     * Creates a builder for the {@link Intervals not_overlapping}
+     * {@code IntervalsFilter} variant.
+     */
+    public static Intervals.Builder notOverlapping() {
+        return new Intervals.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link Intervals overlapping}
-	 * {@code IntervalsFilter} variant.
-	 */
-	public static Intervals.Builder overlapping() {
-		return new Intervals.Builder();
-	}
+    /**
+     * Creates a builder for the {@link Intervals overlapping}
+     * {@code IntervalsFilter} variant.
+     */
+    public static Intervals.Builder overlapping() {
+        return new Intervals.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link Script script} {@code IntervalsFilter}
-	 * variant.
-	 */
-	public static Script.Builder script() {
-		return new Script.Builder();
-	}
+    /**
+     * Creates a builder for the {@link Script script} {@code IntervalsFilter}
+     * variant.
+     */
+    public static Script.Builder script() {
+        return new Script.Builder();
+    }
 
 }

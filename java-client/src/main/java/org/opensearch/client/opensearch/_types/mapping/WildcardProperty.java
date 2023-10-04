@@ -32,116 +32,115 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.WildcardProperty
 
-
 @JsonpDeserializable
 public class WildcardProperty extends DocValuesPropertyBase implements PropertyVariant {
-	@Nullable
-	private final String nullValue;
+    @Nullable
+    private final String nullValue;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private WildcardProperty(Builder builder) {
-		super(builder);
+    private WildcardProperty(Builder builder) {
+        super(builder);
 
-		this.nullValue = builder.nullValue;
+        this.nullValue = builder.nullValue;
 
-	}
+    }
 
-	public static WildcardProperty of(Function<Builder, ObjectBuilder<WildcardProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static WildcardProperty of(Function<Builder, ObjectBuilder<WildcardProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Wildcard;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Wildcard;
+    }
 
-	/**
-	 * API name: {@code null_value}
-	 */
-	@Nullable
-	public final String nullValue() {
-		return this.nullValue;
-	}
+    /**
+     * API name: {@code null_value}
+     */
+    @Nullable
+    public final String nullValue() {
+        return this.nullValue;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "wildcard");
-		super.serializeInternal(generator, mapper);
-		if (this.nullValue != null) {
-			generator.writeKey("null_value");
-			generator.write(this.nullValue);
+        generator.write("type", "wildcard");
+        super.serializeInternal(generator, mapper);
+        if (this.nullValue != null) {
+            generator.writeKey("null_value");
+            generator.write(this.nullValue);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link WildcardProperty}.
-	 */
+    /**
+     * Builder for {@link WildcardProperty}.
+     */
 
-	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<WildcardProperty> {
-		@Nullable
-		private String nullValue;
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<WildcardProperty> {
+        @Nullable
+        private String nullValue;
 
-		/**
-		 * API name: {@code null_value}
-		 */
-		public final Builder nullValue(@Nullable String value) {
-			this.nullValue = value;
-			return this;
-		}
+        /**
+         * API name: {@code null_value}
+         */
+        public final Builder nullValue(@Nullable String value) {
+            this.nullValue = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link WildcardProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public WildcardProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link WildcardProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public WildcardProperty build() {
+            _checkSingleUse();
 
-			return new WildcardProperty(this);
-		}
-	}
+            return new WildcardProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link WildcardProperty}
-	 */
-	public static final JsonpDeserializer<WildcardProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			WildcardProperty::setupWildcardPropertyDeserializer);
+    /**
+     * Json deserializer for {@link WildcardProperty}
+     */
+    public static final JsonpDeserializer<WildcardProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        WildcardProperty::setupWildcardPropertyDeserializer
+    );
 
-	protected static void setupWildcardPropertyDeserializer(ObjectDeserializer<WildcardProperty.Builder> op) {
-		setupDocValuesPropertyBaseDeserializer(op);
-		op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
+    protected static void setupWildcardPropertyDeserializer(ObjectDeserializer<WildcardProperty.Builder> op) {
+        setupDocValuesPropertyBaseDeserializer(op);
+        op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

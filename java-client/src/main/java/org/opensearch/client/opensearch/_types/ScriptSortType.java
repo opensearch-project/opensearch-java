@@ -37,22 +37,21 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum ScriptSortType implements JsonEnum {
-	String("string"),
+    String("string"),
 
-	Number("number"),
+    Number("number"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ScriptSortType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ScriptSortType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ScriptSortType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ScriptSortType.values());
+    public static final JsonEnum.Deserializer<ScriptSortType> _DESERIALIZER = new JsonEnum.Deserializer<>(ScriptSortType.values());
 }

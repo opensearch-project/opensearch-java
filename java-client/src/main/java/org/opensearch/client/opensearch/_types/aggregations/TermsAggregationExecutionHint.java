@@ -35,29 +35,29 @@ package org.opensearch.client.opensearch._types.aggregations;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum TermsAggregationExecutionHint implements JsonEnum {
-	Map("map"),
+    Map("map"),
 
-	GlobalOrdinals("global_ordinals"),
+    GlobalOrdinals("global_ordinals"),
 
-	GlobalOrdinalsHash("global_ordinals_hash"),
+    GlobalOrdinalsHash("global_ordinals_hash"),
 
-	GlobalOrdinalsLowCardinality("global_ordinals_low_cardinality"),
+    GlobalOrdinalsLowCardinality("global_ordinals_low_cardinality"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	TermsAggregationExecutionHint(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    TermsAggregationExecutionHint(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<TermsAggregationExecutionHint> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			TermsAggregationExecutionHint.values());
+    public static final JsonEnum.Deserializer<TermsAggregationExecutionHint> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        TermsAggregationExecutionHint.values()
+    );
 }

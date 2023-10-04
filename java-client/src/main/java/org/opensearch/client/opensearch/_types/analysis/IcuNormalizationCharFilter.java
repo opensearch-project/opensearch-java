@@ -32,144 +32,142 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuNormalizationCharFilter
 
 @JsonpDeserializable
 public class IcuNormalizationCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
-	@Nullable
-	private final IcuNormalizationMode mode;
+    @Nullable
+    private final IcuNormalizationMode mode;
 
-	@Nullable
-	private final IcuNormalizationType name;
+    @Nullable
+    private final IcuNormalizationType name;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IcuNormalizationCharFilter(Builder builder) {
-		super(builder);
+    private IcuNormalizationCharFilter(Builder builder) {
+        super(builder);
 
-		this.mode = builder.mode;
-		this.name = builder.name;
+        this.mode = builder.mode;
+        this.name = builder.name;
 
-	}
+    }
 
-	public static IcuNormalizationCharFilter of(Function<Builder, ObjectBuilder<IcuNormalizationCharFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IcuNormalizationCharFilter of(Function<Builder, ObjectBuilder<IcuNormalizationCharFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * CharFilterDefinition variant kind.
-	 */
-	@Override
-	public CharFilterDefinition.Kind _charFilterDefinitionKind() {
-		return CharFilterDefinition.Kind.IcuNormalizer;
-	}
+    /**
+     * CharFilterDefinition variant kind.
+     */
+    @Override
+    public CharFilterDefinition.Kind _charFilterDefinitionKind() {
+        return CharFilterDefinition.Kind.IcuNormalizer;
+    }
 
-	/**
-	 * API name: {@code mode}
-	 */
-	@Nullable
-	public final IcuNormalizationMode mode() {
-		return this.mode;
-	}
+    /**
+     * API name: {@code mode}
+     */
+    @Nullable
+    public final IcuNormalizationMode mode() {
+        return this.mode;
+    }
 
-	/**
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public final IcuNormalizationType name() {
-		return this.name;
-	}
+    /**
+     * API name: {@code name}
+     */
+    @Nullable
+    public final IcuNormalizationType name() {
+        return this.name;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "icu_normalizer");
-		super.serializeInternal(generator, mapper);
-		if (this.mode != null) {
-			generator.writeKey("mode");
-			this.mode.serialize(generator, mapper);
-		}
-		if (this.name != null) {
-			generator.writeKey("name");
-			this.name.serialize(generator, mapper);
-		}
+        generator.write("type", "icu_normalizer");
+        super.serializeInternal(generator, mapper);
+        if (this.mode != null) {
+            generator.writeKey("mode");
+            this.mode.serialize(generator, mapper);
+        }
+        if (this.name != null) {
+            generator.writeKey("name");
+            this.name.serialize(generator, mapper);
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IcuNormalizationCharFilter}.
-	 */
+    /**
+     * Builder for {@link IcuNormalizationCharFilter}.
+     */
 
-	public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<IcuNormalizationCharFilter> {
-		@Nullable
-		private IcuNormalizationMode mode;
+    public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<IcuNormalizationCharFilter> {
+        @Nullable
+        private IcuNormalizationMode mode;
 
-		@Nullable
-		private IcuNormalizationType name;
+        @Nullable
+        private IcuNormalizationType name;
 
-		/**
-		 * API name: {@code mode}
-		 */
-		public final Builder mode(@Nullable IcuNormalizationMode value) {
-			this.mode = value;
-			return this;
-		}
+        /**
+         * API name: {@code mode}
+         */
+        public final Builder mode(@Nullable IcuNormalizationMode value) {
+            this.mode = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code name}
-		 */
-		public final Builder name(@Nullable IcuNormalizationType value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * API name: {@code name}
+         */
+        public final Builder name(@Nullable IcuNormalizationType value) {
+            this.name = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IcuNormalizationCharFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IcuNormalizationCharFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IcuNormalizationCharFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IcuNormalizationCharFilter build() {
+            _checkSingleUse();
 
-			return new IcuNormalizationCharFilter(this);
-		}
-	}
+            return new IcuNormalizationCharFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IcuNormalizationCharFilter}
-	 */
-	public static final JsonpDeserializer<IcuNormalizationCharFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IcuNormalizationCharFilter::setupIcuNormalizationCharFilterDeserializer);
+    /**
+     * Json deserializer for {@link IcuNormalizationCharFilter}
+     */
+    public static final JsonpDeserializer<IcuNormalizationCharFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IcuNormalizationCharFilter::setupIcuNormalizationCharFilterDeserializer
+    );
 
-	protected static void setupIcuNormalizationCharFilterDeserializer(
-			ObjectDeserializer<IcuNormalizationCharFilter.Builder> op) {
-		setupCharFilterBaseDeserializer(op);
-		op.add(Builder::mode, IcuNormalizationMode._DESERIALIZER, "mode");
-		op.add(Builder::name, IcuNormalizationType._DESERIALIZER, "name");
+    protected static void setupIcuNormalizationCharFilterDeserializer(ObjectDeserializer<IcuNormalizationCharFilter.Builder> op) {
+        setupCharFilterBaseDeserializer(op);
+        op.add(Builder::mode, IcuNormalizationMode._DESERIALIZER, "mode");
+        op.add(Builder::name, IcuNormalizationType._DESERIALIZER, "name");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

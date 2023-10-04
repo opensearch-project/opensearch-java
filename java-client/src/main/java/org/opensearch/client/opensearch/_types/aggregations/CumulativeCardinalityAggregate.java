@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,137 +42,132 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CumulativeCardinalityAggregate
 
 /**
  * Result of the <code>cumulative_cardinality</code> aggregation
- * 
+ *
  */
 @JsonpDeserializable
 public class CumulativeCardinalityAggregate extends AggregateBase implements AggregateVariant {
-	private final long value;
+    private final long value;
 
-	@Nullable
-	private final String valueAsString;
+    @Nullable
+    private final String valueAsString;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CumulativeCardinalityAggregate(Builder builder) {
-		super(builder);
+    private CumulativeCardinalityAggregate(Builder builder) {
+        super(builder);
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
-		this.valueAsString = builder.valueAsString;
+        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+        this.valueAsString = builder.valueAsString;
 
-	}
+    }
 
-	public static CumulativeCardinalityAggregate of(
-			Function<Builder, ObjectBuilder<CumulativeCardinalityAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CumulativeCardinalityAggregate of(Function<Builder, ObjectBuilder<CumulativeCardinalityAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.SimpleLongValue;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.SimpleLongValue;
+    }
 
-	/**
-	 * Required - API name: {@code value}
-	 */
-	public final long value() {
-		return this.value;
-	}
+    /**
+     * Required - API name: {@code value}
+     */
+    public final long value() {
+        return this.value;
+    }
 
-	/**
-	 * API name: {@code value_as_string}
-	 */
-	@Nullable
-	public final String valueAsString() {
-		return this.valueAsString;
-	}
+    /**
+     * API name: {@code value_as_string}
+     */
+    @Nullable
+    public final String valueAsString() {
+        return this.valueAsString;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("value");
-		generator.write(this.value);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("value");
+        generator.write(this.value);
 
-		if (this.valueAsString != null) {
-			generator.writeKey("value_as_string");
-			generator.write(this.valueAsString);
+        if (this.valueAsString != null) {
+            generator.writeKey("value_as_string");
+            generator.write(this.valueAsString);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CumulativeCardinalityAggregate}.
-	 */
+    /**
+     * Builder for {@link CumulativeCardinalityAggregate}.
+     */
 
-	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<CumulativeCardinalityAggregate> {
-		private Long value;
+    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<CumulativeCardinalityAggregate> {
+        private Long value;
 
-		@Nullable
-		private String valueAsString;
+        @Nullable
+        private String valueAsString;
 
-		/**
-		 * Required - API name: {@code value}
-		 */
-		public final Builder value(long value) {
-			this.value = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code value}
+         */
+        public final Builder value(long value) {
+            this.value = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code value_as_string}
-		 */
-		public final Builder valueAsString(@Nullable String value) {
-			this.valueAsString = value;
-			return this;
-		}
+        /**
+         * API name: {@code value_as_string}
+         */
+        public final Builder valueAsString(@Nullable String value) {
+            this.valueAsString = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CumulativeCardinalityAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CumulativeCardinalityAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CumulativeCardinalityAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CumulativeCardinalityAggregate build() {
+            _checkSingleUse();
 
-			return new CumulativeCardinalityAggregate(this);
-		}
-	}
+            return new CumulativeCardinalityAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CumulativeCardinalityAggregate}
-	 */
-	public static final JsonpDeserializer<CumulativeCardinalityAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CumulativeCardinalityAggregate::setupCumulativeCardinalityAggregateDeserializer);
+    /**
+     * Json deserializer for {@link CumulativeCardinalityAggregate}
+     */
+    public static final JsonpDeserializer<CumulativeCardinalityAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CumulativeCardinalityAggregate::setupCumulativeCardinalityAggregateDeserializer
+    );
 
-	protected static void setupCumulativeCardinalityAggregateDeserializer(
-			ObjectDeserializer<CumulativeCardinalityAggregate.Builder> op) {
-		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");
-		op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
+    protected static void setupCumulativeCardinalityAggregateDeserializer(ObjectDeserializer<CumulativeCardinalityAggregate.Builder> op) {
+        AggregateBase.setupAggregateBaseDeserializer(op);
+        op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");
+        op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
 
-	}
+    }
 
 }

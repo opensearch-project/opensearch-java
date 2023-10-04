@@ -181,8 +181,10 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         }
     }
 
-    public static final JsonpDeserializer<KnnQuery> _DESERIALIZER = ObjectBuilderDeserializer
-            .lazy(Builder::new, KnnQuery::setupKnnQueryDeserializer);
+    public static final JsonpDeserializer<KnnQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        KnnQuery::setupKnnQueryDeserializer
+    );
 
     protected static void setupKnnQueryDeserializer(ObjectDeserializer<Builder> op) {
         setupQueryBaseDeserializer(op);

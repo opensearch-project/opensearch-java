@@ -37,22 +37,23 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum IcuCollationCaseFirst implements JsonEnum {
-	Lower("lower"),
+    Lower("lower"),
 
-	Upper("upper"),
+    Upper("upper"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	IcuCollationCaseFirst(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    IcuCollationCaseFirst(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<IcuCollationCaseFirst> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IcuCollationCaseFirst.values());
+    public static final JsonEnum.Deserializer<IcuCollationCaseFirst> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IcuCollationCaseFirst.values()
+    );
 }

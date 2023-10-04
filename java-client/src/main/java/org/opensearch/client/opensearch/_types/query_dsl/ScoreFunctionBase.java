@@ -32,119 +32,114 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScoreFunctionBase
 
-
-
 public abstract class ScoreFunctionBase implements JsonpSerializable {
-	@Nullable
-	private final Query filter;
+    @Nullable
+    private final Query filter;
 
-	@Nullable
-	private final Double weight;
+    @Nullable
+    private final Double weight;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected ScoreFunctionBase(AbstractBuilder<?> builder) {
+    protected ScoreFunctionBase(AbstractBuilder<?> builder) {
 
-		this.filter = builder.filter;
-		this.weight = builder.weight;
+        this.filter = builder.filter;
+        this.weight = builder.weight;
 
-	}
+    }
 
-	/**
-	 * API name: {@code filter}
-	 */
-	@Nullable
-	public final Query filter() {
-		return this.filter;
-	}
+    /**
+     * API name: {@code filter}
+     */
+    @Nullable
+    public final Query filter() {
+        return this.filter;
+    }
 
-	/**
-	 * API name: {@code weight}
-	 */
-	@Nullable
-	public final Double weight() {
-		return this.weight;
-	}
+    /**
+     * API name: {@code weight}
+     */
+    @Nullable
+    public final Double weight() {
+        return this.weight;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.filter != null) {
-			generator.writeKey("filter");
-			this.filter.serialize(generator, mapper);
+        if (this.filter != null) {
+            generator.writeKey("filter");
+            this.filter.serialize(generator, mapper);
 
-		}
-		if (this.weight != null) {
-			generator.writeKey("weight");
-			generator.write(this.weight);
+        }
+        if (this.weight != null) {
+            generator.writeKey("weight");
+            generator.write(this.weight);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ObjectBuilderBase {
-		@Nullable
-		private Query filter;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+        @Nullable
+        private Query filter;
 
-		@Nullable
-		private Double weight;
+        @Nullable
+        private Double weight;
 
-		/**
-		 * API name: {@code filter}
-		 */
-		public final BuilderT filter(@Nullable Query value) {
-			this.filter = value;
-			return self();
-		}
+        /**
+         * API name: {@code filter}
+         */
+        public final BuilderT filter(@Nullable Query value) {
+            this.filter = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code filter}
-		 */
-		public final BuilderT filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filter(fn.apply(new Query.Builder()).build());
-		}
+        /**
+         * API name: {@code filter}
+         */
+        public final BuilderT filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+            return this.filter(fn.apply(new Query.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code weight}
-		 */
-		public final BuilderT weight(@Nullable Double value) {
-			this.weight = value;
-			return self();
-		}
+        /**
+         * API name: {@code weight}
+         */
+        public final BuilderT weight(@Nullable Double value) {
+            this.weight = value;
+            return self();
+        }
 
-		protected abstract BuilderT self();
+        protected abstract BuilderT self();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupScoreFunctionBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupScoreFunctionBaseDeserializer(ObjectDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::filter, Query._DESERIALIZER, "filter");
-		op.add(AbstractBuilder::weight, JsonpDeserializer.doubleDeserializer(), "weight");
+        op.add(AbstractBuilder::filter, Query._DESERIALIZER, "filter");
+        op.add(AbstractBuilder::weight, JsonpDeserializer.doubleDeserializer(), "weight");
 
-	}
+    }
 
 }

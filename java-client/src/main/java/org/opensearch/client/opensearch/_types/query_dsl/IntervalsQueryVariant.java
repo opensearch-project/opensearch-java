@@ -37,6 +37,6 @@ package org.opensearch.client.opensearch._types.query_dsl;
  */
 public interface IntervalsQueryVariant {
 
-	IntervalsQuery.Kind _intervalsQueryKind();
+    IntervalsQuery.Kind _intervalsQueryKind();
 
 }

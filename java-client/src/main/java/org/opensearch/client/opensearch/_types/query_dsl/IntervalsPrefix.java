@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,169 +44,167 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsPrefix
 
-
 @JsonpDeserializable
 public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
-	@Nullable
-	private final String analyzer;
+    @Nullable
+    private final String analyzer;
 
-	private final String prefix;
+    private final String prefix;
 
-	@Nullable
-	private final String useField;
+    @Nullable
+    private final String useField;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IntervalsPrefix(Builder builder) {
+    private IntervalsPrefix(Builder builder) {
 
-		this.analyzer = builder.analyzer;
-		this.prefix = ApiTypeHelper.requireNonNull(builder.prefix, this, "prefix");
-		this.useField = builder.useField;
+        this.analyzer = builder.analyzer;
+        this.prefix = ApiTypeHelper.requireNonNull(builder.prefix, this, "prefix");
+        this.useField = builder.useField;
 
-	}
+    }
 
-	public static IntervalsPrefix of(Function<Builder, ObjectBuilder<IntervalsPrefix>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IntervalsPrefix of(Function<Builder, ObjectBuilder<IntervalsPrefix>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * IntervalsQuery variant kind.
-	 */
-	@Override
-	public IntervalsQuery.Kind _intervalsQueryKind() {
-		return IntervalsQuery.Kind.Prefix;
-	}
+    /**
+     * IntervalsQuery variant kind.
+     */
+    @Override
+    public IntervalsQuery.Kind _intervalsQueryKind() {
+        return IntervalsQuery.Kind.Prefix;
+    }
 
-	/**
-	 * Intervals variant kind.
-	 */
-	@Override
-	public Intervals.Kind _intervalsKind() {
-		return Intervals.Kind.Prefix;
-	}
+    /**
+     * Intervals variant kind.
+     */
+    @Override
+    public Intervals.Kind _intervalsKind() {
+        return Intervals.Kind.Prefix;
+    }
 
-	/**
-	 * API name: {@code analyzer}
-	 */
-	@Nullable
-	public final String analyzer() {
-		return this.analyzer;
-	}
+    /**
+     * API name: {@code analyzer}
+     */
+    @Nullable
+    public final String analyzer() {
+        return this.analyzer;
+    }
 
-	/**
-	 * Required - API name: {@code prefix}
-	 */
-	public final String prefix() {
-		return this.prefix;
-	}
+    /**
+     * Required - API name: {@code prefix}
+     */
+    public final String prefix() {
+        return this.prefix;
+    }
 
-	/**
-	 * API name: {@code use_field}
-	 */
-	@Nullable
-	public final String useField() {
-		return this.useField;
-	}
+    /**
+     * API name: {@code use_field}
+     */
+    @Nullable
+    public final String useField() {
+        return this.useField;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.analyzer != null) {
-			generator.writeKey("analyzer");
-			generator.write(this.analyzer);
+        if (this.analyzer != null) {
+            generator.writeKey("analyzer");
+            generator.write(this.analyzer);
 
-		}
-		generator.writeKey("prefix");
-		generator.write(this.prefix);
+        }
+        generator.writeKey("prefix");
+        generator.write(this.prefix);
 
-		if (this.useField != null) {
-			generator.writeKey("use_field");
-			generator.write(this.useField);
+        if (this.useField != null) {
+            generator.writeKey("use_field");
+            generator.write(this.useField);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IntervalsPrefix}.
-	 */
+    /**
+     * Builder for {@link IntervalsPrefix}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsPrefix> {
-		@Nullable
-		private String analyzer;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsPrefix> {
+        @Nullable
+        private String analyzer;
 
-		private String prefix;
+        private String prefix;
 
-		@Nullable
-		private String useField;
+        @Nullable
+        private String useField;
 
-		/**
-		 * API name: {@code analyzer}
-		 */
-		public final Builder analyzer(@Nullable String value) {
-			this.analyzer = value;
-			return this;
-		}
+        /**
+         * API name: {@code analyzer}
+         */
+        public final Builder analyzer(@Nullable String value) {
+            this.analyzer = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code prefix}
-		 */
-		public final Builder prefix(String value) {
-			this.prefix = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code prefix}
+         */
+        public final Builder prefix(String value) {
+            this.prefix = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code use_field}
-		 */
-		public final Builder useField(@Nullable String value) {
-			this.useField = value;
-			return this;
-		}
+        /**
+         * API name: {@code use_field}
+         */
+        public final Builder useField(@Nullable String value) {
+            this.useField = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IntervalsPrefix}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IntervalsPrefix build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IntervalsPrefix}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IntervalsPrefix build() {
+            _checkSingleUse();
 
-			return new IntervalsPrefix(this);
-		}
-	}
+            return new IntervalsPrefix(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IntervalsPrefix}
-	 */
-	public static final JsonpDeserializer<IntervalsPrefix> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IntervalsPrefix::setupIntervalsPrefixDeserializer);
+    /**
+     * Json deserializer for {@link IntervalsPrefix}
+     */
+    public static final JsonpDeserializer<IntervalsPrefix> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IntervalsPrefix::setupIntervalsPrefixDeserializer
+    );
 
-	protected static void setupIntervalsPrefixDeserializer(ObjectDeserializer<IntervalsPrefix.Builder> op) {
+    protected static void setupIntervalsPrefixDeserializer(ObjectDeserializer<IntervalsPrefix.Builder> op) {
 
-		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
-		op.add(Builder::prefix, JsonpDeserializer.stringDeserializer(), "prefix");
-		op.add(Builder::useField, JsonpDeserializer.stringDeserializer(), "use_field");
+        op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
+        op.add(Builder::prefix, JsonpDeserializer.stringDeserializer(), "prefix");
+        op.add(Builder::useField, JsonpDeserializer.stringDeserializer(), "use_field");
 
-	}
+    }
 
 }

@@ -38,18 +38,17 @@ package org.opensearch.client.opensearch._types.aggregations;
  * Variants <code>terms</code>, <code>regexp</code> are not available here as
  * they don't have a dedicated class. Use {@link TermsInclude}'s builder for
  * these.
- * 
+ *
  */
 public class TermsIncludeBuilders {
-	private TermsIncludeBuilders() {
-	}
+    private TermsIncludeBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link TermsPartition partition}
-	 * {@code TermsInclude} variant.
-	 */
-	public static TermsPartition.Builder partition() {
-		return new TermsPartition.Builder();
-	}
+    /**
+     * Creates a builder for the {@link TermsPartition partition}
+     * {@code TermsInclude} variant.
+     */
+    public static TermsPartition.Builder partition() {
+        return new TermsPartition.Builder();
+    }
 
 }

@@ -32,76 +32,77 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.MultiTermsAggregate
 
 @JsonpDeserializable
 public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MultiTermsAggregate(Builder builder) {
-		super(builder);
+    private MultiTermsAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static MultiTermsAggregate of(Function<Builder, ObjectBuilder<MultiTermsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MultiTermsAggregate of(Function<Builder, ObjectBuilder<MultiTermsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.MultiTerms;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.MultiTerms;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MultiTermsAggregate}.
-	 */
+    /**
+     * Builder for {@link MultiTermsAggregate}.
+     */
 
-	public static class Builder extends TermsAggregateBase.AbstractBuilder<MultiTermsBucket, Builder>
-			implements
-				ObjectBuilder<MultiTermsAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends TermsAggregateBase.AbstractBuilder<MultiTermsBucket, Builder>
+        implements
+            ObjectBuilder<MultiTermsAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MultiTermsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MultiTermsAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link MultiTermsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MultiTermsAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new MultiTermsAggregate(this);
-		}
-	}
+            return new MultiTermsAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MultiTermsAggregate}
-	 */
-	public static final JsonpDeserializer<MultiTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MultiTermsAggregate::setupMultiTermsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link MultiTermsAggregate}
+     */
+    public static final JsonpDeserializer<MultiTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MultiTermsAggregate::setupMultiTermsAggregateDeserializer
+    );
 
-	protected static void setupMultiTermsAggregateDeserializer(ObjectDeserializer<MultiTermsAggregate.Builder> op) {
-		setupTermsAggregateBaseDeserializer(op, MultiTermsBucket._DESERIALIZER);
+    protected static void setupMultiTermsAggregateDeserializer(ObjectDeserializer<MultiTermsAggregate.Builder> op) {
+        setupTermsAggregateBaseDeserializer(op, MultiTermsBucket._DESERIALIZER);
 
-	}
+    }
 
 }

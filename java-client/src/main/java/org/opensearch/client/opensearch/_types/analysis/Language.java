@@ -37,85 +37,85 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum Language implements JsonEnum {
-	Arabic("Arabic"),
+    Arabic("Arabic"),
 
-	Armenian("Armenian"),
+    Armenian("Armenian"),
 
-	Basque("Basque"),
+    Basque("Basque"),
 
-	Brazilian("Brazilian"),
+    Brazilian("Brazilian"),
 
-	Bulgarian("Bulgarian"),
+    Bulgarian("Bulgarian"),
 
-	Catalan("Catalan"),
+    Catalan("Catalan"),
 
-	Chinese("Chinese"),
+    Chinese("Chinese"),
 
-	Cjk("Cjk"),
+    Cjk("Cjk"),
 
-	Czech("Czech"),
+    Czech("Czech"),
 
-	Danish("Danish"),
+    Danish("Danish"),
 
-	Dutch("Dutch"),
+    Dutch("Dutch"),
 
-	English("English"),
+    English("English"),
 
-	Estonian("Estonian"),
+    Estonian("Estonian"),
 
-	Finnish("Finnish"),
+    Finnish("Finnish"),
 
-	French("French"),
+    French("French"),
 
-	Galician("Galician"),
+    Galician("Galician"),
 
-	German("German"),
+    German("German"),
 
-	Greek("Greek"),
+    Greek("Greek"),
 
-	Hindi("Hindi"),
+    Hindi("Hindi"),
 
-	Hungarian("Hungarian"),
+    Hungarian("Hungarian"),
 
-	Indonesian("Indonesian"),
+    Indonesian("Indonesian"),
 
-	Irish("Irish"),
+    Irish("Irish"),
 
-	Italian("Italian"),
+    Italian("Italian"),
 
-	Latvian("Latvian"),
+    Latvian("Latvian"),
 
-	Norwegian("Norwegian"),
+    Norwegian("Norwegian"),
 
-	Persian("Persian"),
+    Persian("Persian"),
 
-	Portuguese("Portuguese"),
+    Portuguese("Portuguese"),
 
-	Romanian("Romanian"),
+    Romanian("Romanian"),
 
-	Russian("Russian"),
+    Russian("Russian"),
 
-	Sorani("Sorani"),
+    Sorani("Sorani"),
 
-	Spanish("Spanish"),
+    Spanish("Spanish"),
 
-	Swedish("Swedish"),
+    Swedish("Swedish"),
 
-	Turkish("Turkish"),
+    Turkish("Turkish"),
 
-	Thai("Thai"),
+    Thai("Thai"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	Language(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    Language(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<Language> _DESERIALIZER = new JsonEnum.Deserializer<>(Language.values());
+    public static final JsonEnum.Deserializer<Language> _DESERIALIZER = new JsonEnum.Deserializer<>(Language.values());
 }

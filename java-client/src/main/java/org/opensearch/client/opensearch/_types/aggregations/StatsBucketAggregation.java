@@ -32,77 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.StatsBucketAggregation
-
 
 @JsonpDeserializable
 public class StatsBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private StatsBucketAggregation(Builder builder) {
-		super(builder);
+    private StatsBucketAggregation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static StatsBucketAggregation of(Function<Builder, ObjectBuilder<StatsBucketAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StatsBucketAggregation of(Function<Builder, ObjectBuilder<StatsBucketAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.StatsBucket;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.StatsBucket;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StatsBucketAggregation}.
-	 */
+    /**
+     * Builder for {@link StatsBucketAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<StatsBucketAggregation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<StatsBucketAggregation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StatsBucketAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StatsBucketAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link StatsBucketAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StatsBucketAggregation build() {
+            _checkSingleUse();
 
-			return new StatsBucketAggregation(this);
-		}
-	}
+            return new StatsBucketAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link StatsBucketAggregation}
-	 */
-	public static final JsonpDeserializer<StatsBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StatsBucketAggregation::setupStatsBucketAggregationDeserializer);
+    /**
+     * Json deserializer for {@link StatsBucketAggregation}
+     */
+    public static final JsonpDeserializer<StatsBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StatsBucketAggregation::setupStatsBucketAggregationDeserializer
+    );
 
-	protected static void setupStatsBucketAggregationDeserializer(
-			ObjectDeserializer<StatsBucketAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+    protected static void setupStatsBucketAggregationDeserializer(ObjectDeserializer<StatsBucketAggregation.Builder> op) {
+        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
-	}
+    }
 
 }

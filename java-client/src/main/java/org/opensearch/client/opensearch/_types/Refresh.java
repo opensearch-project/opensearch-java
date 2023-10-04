@@ -37,23 +37,23 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum Refresh implements JsonEnum {
-	True("true"),
+    True("true"),
 
-	False("false"),
+    False("false"),
 
-	WaitFor("wait_for"),
+    WaitFor("wait_for"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	Refresh(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    Refresh(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<Refresh> _DESERIALIZER = new JsonEnum.Deserializer<>(Refresh.values());
+    public static final JsonEnum.Deserializer<Refresh> _DESERIALIZER = new JsonEnum.Deserializer<>(Refresh.values());
 }

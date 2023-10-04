@@ -35,27 +35,27 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum GeoValidationMethod implements JsonEnum {
-	Coerce("coerce"),
+    Coerce("coerce"),
 
-	IgnoreMalformed("ignore_malformed"),
+    IgnoreMalformed("ignore_malformed"),
 
-	Strict("strict"),
+    Strict("strict"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	GeoValidationMethod(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    GeoValidationMethod(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<GeoValidationMethod> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			GeoValidationMethod.values());
+    public static final JsonEnum.Deserializer<GeoValidationMethod> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        GeoValidationMethod.values()
+    );
 }

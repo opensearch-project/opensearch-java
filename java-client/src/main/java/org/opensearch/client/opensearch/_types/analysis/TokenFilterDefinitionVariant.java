@@ -39,10 +39,10 @@ import org.opensearch.client.json.JsonpSerializable;
  */
 public interface TokenFilterDefinitionVariant extends JsonpSerializable {
 
-	TokenFilterDefinition.Kind _tokenFilterDefinitionKind();
+    TokenFilterDefinition.Kind _tokenFilterDefinitionKind();
 
-	default TokenFilterDefinition _toTokenFilterDefinition() {
-		return new TokenFilterDefinition(this);
-	}
+    default TokenFilterDefinition _toTokenFilterDefinition() {
+        return new TokenFilterDefinition(this);
+    }
 
 }

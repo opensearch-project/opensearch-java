@@ -32,174 +32,173 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.PointProperty
 
-
 @JsonpDeserializable
 public class PointProperty extends DocValuesPropertyBase implements PropertyVariant {
-	@Nullable
-	private final Boolean ignoreMalformed;
+    @Nullable
+    private final Boolean ignoreMalformed;
 
-	@Nullable
-	private final Boolean ignoreZValue;
+    @Nullable
+    private final Boolean ignoreZValue;
 
-	@Nullable
-	private final String nullValue;
+    @Nullable
+    private final String nullValue;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PointProperty(Builder builder) {
-		super(builder);
+    private PointProperty(Builder builder) {
+        super(builder);
 
-		this.ignoreMalformed = builder.ignoreMalformed;
-		this.ignoreZValue = builder.ignoreZValue;
-		this.nullValue = builder.nullValue;
+        this.ignoreMalformed = builder.ignoreMalformed;
+        this.ignoreZValue = builder.ignoreZValue;
+        this.nullValue = builder.nullValue;
 
-	}
+    }
 
-	public static PointProperty of(Function<Builder, ObjectBuilder<PointProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PointProperty of(Function<Builder, ObjectBuilder<PointProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Point;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Point;
+    }
 
-	/**
-	 * API name: {@code ignore_malformed}
-	 */
-	@Nullable
-	public final Boolean ignoreMalformed() {
-		return this.ignoreMalformed;
-	}
+    /**
+     * API name: {@code ignore_malformed}
+     */
+    @Nullable
+    public final Boolean ignoreMalformed() {
+        return this.ignoreMalformed;
+    }
 
-	/**
-	 * API name: {@code ignore_z_value}
-	 */
-	@Nullable
-	public final Boolean ignoreZValue() {
-		return this.ignoreZValue;
-	}
+    /**
+     * API name: {@code ignore_z_value}
+     */
+    @Nullable
+    public final Boolean ignoreZValue() {
+        return this.ignoreZValue;
+    }
 
-	/**
-	 * API name: {@code null_value}
-	 */
-	@Nullable
-	public final String nullValue() {
-		return this.nullValue;
-	}
+    /**
+     * API name: {@code null_value}
+     */
+    @Nullable
+    public final String nullValue() {
+        return this.nullValue;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "point");
-		super.serializeInternal(generator, mapper);
-		if (this.ignoreMalformed != null) {
-			generator.writeKey("ignore_malformed");
-			generator.write(this.ignoreMalformed);
+        generator.write("type", "point");
+        super.serializeInternal(generator, mapper);
+        if (this.ignoreMalformed != null) {
+            generator.writeKey("ignore_malformed");
+            generator.write(this.ignoreMalformed);
 
-		}
-		if (this.ignoreZValue != null) {
-			generator.writeKey("ignore_z_value");
-			generator.write(this.ignoreZValue);
+        }
+        if (this.ignoreZValue != null) {
+            generator.writeKey("ignore_z_value");
+            generator.write(this.ignoreZValue);
 
-		}
-		if (this.nullValue != null) {
-			generator.writeKey("null_value");
-			generator.write(this.nullValue);
+        }
+        if (this.nullValue != null) {
+            generator.writeKey("null_value");
+            generator.write(this.nullValue);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PointProperty}.
-	 */
+    /**
+     * Builder for {@link PointProperty}.
+     */
 
-	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PointProperty> {
-		@Nullable
-		private Boolean ignoreMalformed;
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<PointProperty> {
+        @Nullable
+        private Boolean ignoreMalformed;
 
-		@Nullable
-		private Boolean ignoreZValue;
+        @Nullable
+        private Boolean ignoreZValue;
 
-		@Nullable
-		private String nullValue;
+        @Nullable
+        private String nullValue;
 
-		/**
-		 * API name: {@code ignore_malformed}
-		 */
-		public final Builder ignoreMalformed(@Nullable Boolean value) {
-			this.ignoreMalformed = value;
-			return this;
-		}
+        /**
+         * API name: {@code ignore_malformed}
+         */
+        public final Builder ignoreMalformed(@Nullable Boolean value) {
+            this.ignoreMalformed = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code ignore_z_value}
-		 */
-		public final Builder ignoreZValue(@Nullable Boolean value) {
-			this.ignoreZValue = value;
-			return this;
-		}
+        /**
+         * API name: {@code ignore_z_value}
+         */
+        public final Builder ignoreZValue(@Nullable Boolean value) {
+            this.ignoreZValue = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code null_value}
-		 */
-		public final Builder nullValue(@Nullable String value) {
-			this.nullValue = value;
-			return this;
-		}
+        /**
+         * API name: {@code null_value}
+         */
+        public final Builder nullValue(@Nullable String value) {
+            this.nullValue = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PointProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PointProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PointProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PointProperty build() {
+            _checkSingleUse();
 
-			return new PointProperty(this);
-		}
-	}
+            return new PointProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PointProperty}
-	 */
-	public static final JsonpDeserializer<PointProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PointProperty::setupPointPropertyDeserializer);
+    /**
+     * Json deserializer for {@link PointProperty}
+     */
+    public static final JsonpDeserializer<PointProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PointProperty::setupPointPropertyDeserializer
+    );
 
-	protected static void setupPointPropertyDeserializer(ObjectDeserializer<PointProperty.Builder> op) {
-		setupDocValuesPropertyBaseDeserializer(op);
-		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
-		op.add(Builder::ignoreZValue, JsonpDeserializer.booleanDeserializer(), "ignore_z_value");
-		op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
+    protected static void setupPointPropertyDeserializer(ObjectDeserializer<PointProperty.Builder> op) {
+        setupDocValuesPropertyBaseDeserializer(op);
+        op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
+        op.add(Builder::ignoreZValue, JsonpDeserializer.booleanDeserializer(), "ignore_z_value");
+        op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

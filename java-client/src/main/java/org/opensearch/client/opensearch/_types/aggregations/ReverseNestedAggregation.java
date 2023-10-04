@@ -32,115 +32,113 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ReverseNestedAggregation
 
-
 @JsonpDeserializable
 public class ReverseNestedAggregation extends BucketAggregationBase implements AggregationVariant {
-	@Nullable
-	private final String path;
+    @Nullable
+    private final String path;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ReverseNestedAggregation(Builder builder) {
-		super(builder);
+    private ReverseNestedAggregation(Builder builder) {
+        super(builder);
 
-		this.path = builder.path;
+        this.path = builder.path;
 
-	}
+    }
 
-	public static ReverseNestedAggregation of(Function<Builder, ObjectBuilder<ReverseNestedAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ReverseNestedAggregation of(Function<Builder, ObjectBuilder<ReverseNestedAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.ReverseNested;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.ReverseNested;
+    }
 
-	/**
-	 * API name: {@code path}
-	 */
-	@Nullable
-	public final String path() {
-		return this.path;
-	}
+    /**
+     * API name: {@code path}
+     */
+    @Nullable
+    public final String path() {
+        return this.path;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.path != null) {
-			generator.writeKey("path");
-			generator.write(this.path);
+        super.serializeInternal(generator, mapper);
+        if (this.path != null) {
+            generator.writeKey("path");
+            generator.write(this.path);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ReverseNestedAggregation}.
-	 */
+    /**
+     * Builder for {@link ReverseNestedAggregation}.
+     */
 
-	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ReverseNestedAggregation> {
-		@Nullable
-		private String path;
+    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<ReverseNestedAggregation> {
+        @Nullable
+        private String path;
 
-		/**
-		 * API name: {@code path}
-		 */
-		public final Builder path(@Nullable String value) {
-			this.path = value;
-			return this;
-		}
+        /**
+         * API name: {@code path}
+         */
+        public final Builder path(@Nullable String value) {
+            this.path = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ReverseNestedAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ReverseNestedAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ReverseNestedAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ReverseNestedAggregation build() {
+            _checkSingleUse();
 
-			return new ReverseNestedAggregation(this);
-		}
-	}
+            return new ReverseNestedAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ReverseNestedAggregation}
-	 */
-	public static final JsonpDeserializer<ReverseNestedAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ReverseNestedAggregation::setupReverseNestedAggregationDeserializer);
+    /**
+     * Json deserializer for {@link ReverseNestedAggregation}
+     */
+    public static final JsonpDeserializer<ReverseNestedAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ReverseNestedAggregation::setupReverseNestedAggregationDeserializer
+    );
 
-	protected static void setupReverseNestedAggregationDeserializer(
-			ObjectDeserializer<ReverseNestedAggregation.Builder> op) {
-		setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+    protected static void setupReverseNestedAggregationDeserializer(ObjectDeserializer<ReverseNestedAggregation.Builder> op) {
+        setupBucketAggregationBaseDeserializer(op);
+        op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 
-	}
+    }
 
 }

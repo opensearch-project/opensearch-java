@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,159 +43,154 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MultiTermsAggregation
 
 @JsonpDeserializable
 public class MultiTermsAggregation extends BucketAggregationBase implements AggregationVariant {
-	private final List<MultiTermLookup> terms;
+    private final List<MultiTermLookup> terms;
 
-	@Nullable
-	private final Integer size;
+    @Nullable
+    private final Integer size;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MultiTermsAggregation(Builder builder) {
-		super(builder);
+    private MultiTermsAggregation(Builder builder) {
+        super(builder);
 
-		this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
-		this.size = builder.size;
-	}
+        this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
+        this.size = builder.size;
+    }
 
-	public static MultiTermsAggregation of(Function<Builder, ObjectBuilder<MultiTermsAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MultiTermsAggregation of(Function<Builder, ObjectBuilder<MultiTermsAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.MultiTerms;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.MultiTerms;
+    }
 
-	/**
-	 * Required - API name: {@code terms}
-	 */
-	public final List<MultiTermLookup> terms() {
-		return this.terms;
-	}
+    /**
+     * Required - API name: {@code terms}
+     */
+    public final List<MultiTermLookup> terms() {
+        return this.terms;
+    }
 
-	/**
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public final Integer size() {
-		return this.size;
-	}
+    /**
+     * API name: {@code size}
+     */
+    @Nullable
+    public final Integer size() {
+        return this.size;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.size != null) {
-			generator.writeKey("size");
-			generator.write(this.size);
+        super.serializeInternal(generator, mapper);
+        if (this.size != null) {
+            generator.writeKey("size");
+            generator.write(this.size);
 
-		}
-		if (ApiTypeHelper.isDefined(this.terms)) {
-			generator.writeKey("terms");
-			generator.writeStartArray();
-			for (MultiTermLookup item0 : this.terms) {
-				item0.serialize(generator, mapper);
+        }
+        if (ApiTypeHelper.isDefined(this.terms)) {
+            generator.writeKey("terms");
+            generator.writeStartArray();
+            for (MultiTermLookup item0 : this.terms) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MultiTermsAggregation}.
-	 */
+    /**
+     * Builder for {@link MultiTermsAggregation}.
+     */
 
-	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<MultiTermsAggregation> {
-		private List<MultiTermLookup> terms;
+    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<MultiTermsAggregation> {
+        private List<MultiTermLookup> terms;
 
-		@Nullable
-		private Integer size;
+        @Nullable
+        private Integer size;
 
-		/**
-		 * Required - API name: {@code terms}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>terms</code>.
-		 */
-		public final Builder terms(List<MultiTermLookup> list) {
-			this.terms = _listAddAll(this.terms, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code terms}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>terms</code>.
+         */
+        public final Builder terms(List<MultiTermLookup> list) {
+            this.terms = _listAddAll(this.terms, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code terms}
-		 * <p>
-		 * Adds one or more values to <code>terms</code>.
-		 */
-		public final Builder terms(MultiTermLookup value, MultiTermLookup... values) {
-			this.terms = _listAdd(this.terms, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code terms}
+         * <p>
+         * Adds one or more values to <code>terms</code>.
+         */
+        public final Builder terms(MultiTermLookup value, MultiTermLookup... values) {
+            this.terms = _listAdd(this.terms, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code terms}
-		 * <p>
-		 * Adds a value to <code>terms</code> using a builder lambda.
-		 */
-		public final Builder terms(Function<MultiTermLookup.Builder, ObjectBuilder<MultiTermLookup>> fn) {
-			return terms(fn.apply(new MultiTermLookup.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code terms}
+         * <p>
+         * Adds a value to <code>terms</code> using a builder lambda.
+         */
+        public final Builder terms(Function<MultiTermLookup.Builder, ObjectBuilder<MultiTermLookup>> fn) {
+            return terms(fn.apply(new MultiTermLookup.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code size}
-		 */
-		public final Builder size(@Nullable Integer value) {
-			this.size = value;
-			return this;
-		}
+        /**
+         * API name: {@code size}
+         */
+        public final Builder size(@Nullable Integer value) {
+            this.size = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MultiTermsAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MultiTermsAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MultiTermsAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MultiTermsAggregation build() {
+            _checkSingleUse();
 
-			return new MultiTermsAggregation(this);
-		}
-	}
+            return new MultiTermsAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MultiTermsAggregation}
-	 */
-	public static final JsonpDeserializer<MultiTermsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MultiTermsAggregation::setupMultiTermsAggregationDeserializer);
+    /**
+     * Json deserializer for {@link MultiTermsAggregation}
+     */
+    public static final JsonpDeserializer<MultiTermsAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MultiTermsAggregation::setupMultiTermsAggregationDeserializer
+    );
 
-	protected static void setupMultiTermsAggregationDeserializer(ObjectDeserializer<MultiTermsAggregation.Builder> op) {
-		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(MultiTermLookup._DESERIALIZER), "terms");
-	}
+    protected static void setupMultiTermsAggregationDeserializer(ObjectDeserializer<MultiTermsAggregation.Builder> op) {
+        BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+        op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
+        op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(MultiTermLookup._DESERIALIZER), "terms");
+    }
 
 }

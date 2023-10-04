@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,104 +41,100 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiReadingFormTokenFilter
 
 @JsonpDeserializable
 public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final boolean useRomaji;
+    private final boolean useRomaji;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private KuromojiReadingFormTokenFilter(Builder builder) {
-		super(builder);
+    private KuromojiReadingFormTokenFilter(Builder builder) {
+        super(builder);
 
-		this.useRomaji = ApiTypeHelper.requireNonNull(builder.useRomaji, this, "useRomaji");
+        this.useRomaji = ApiTypeHelper.requireNonNull(builder.useRomaji, this, "useRomaji");
 
-	}
+    }
 
-	public static KuromojiReadingFormTokenFilter of(
-			Function<Builder, ObjectBuilder<KuromojiReadingFormTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static KuromojiReadingFormTokenFilter of(Function<Builder, ObjectBuilder<KuromojiReadingFormTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.KuromojiReadingform;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.KuromojiReadingform;
+    }
 
-	/**
-	 * Required - API name: {@code use_romaji}
-	 */
-	public final boolean useRomaji() {
-		return this.useRomaji;
-	}
+    /**
+     * Required - API name: {@code use_romaji}
+     */
+    public final boolean useRomaji() {
+        return this.useRomaji;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "kuromoji_readingform");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("use_romaji");
-		generator.write(this.useRomaji);
+        generator.write("type", "kuromoji_readingform");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("use_romaji");
+        generator.write(this.useRomaji);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link KuromojiReadingFormTokenFilter}.
-	 */
+    /**
+     * Builder for {@link KuromojiReadingFormTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<KuromojiReadingFormTokenFilter> {
-		private Boolean useRomaji;
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<KuromojiReadingFormTokenFilter> {
+        private Boolean useRomaji;
 
-		/**
-		 * Required - API name: {@code use_romaji}
-		 */
-		public final Builder useRomaji(boolean value) {
-			this.useRomaji = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code use_romaji}
+         */
+        public final Builder useRomaji(boolean value) {
+            this.useRomaji = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link KuromojiReadingFormTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public KuromojiReadingFormTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link KuromojiReadingFormTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public KuromojiReadingFormTokenFilter build() {
+            _checkSingleUse();
 
-			return new KuromojiReadingFormTokenFilter(this);
-		}
-	}
+            return new KuromojiReadingFormTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link KuromojiReadingFormTokenFilter}
-	 */
-	public static final JsonpDeserializer<KuromojiReadingFormTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, KuromojiReadingFormTokenFilter::setupKuromojiReadingFormTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link KuromojiReadingFormTokenFilter}
+     */
+    public static final JsonpDeserializer<KuromojiReadingFormTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        KuromojiReadingFormTokenFilter::setupKuromojiReadingFormTokenFilterDeserializer
+    );
 
-	protected static void setupKuromojiReadingFormTokenFilterDeserializer(
-			ObjectDeserializer<KuromojiReadingFormTokenFilter.Builder> op) {
-		setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::useRomaji, JsonpDeserializer.booleanDeserializer(), "use_romaji");
+    protected static void setupKuromojiReadingFormTokenFilterDeserializer(ObjectDeserializer<KuromojiReadingFormTokenFilter.Builder> op) {
+        setupTokenFilterBaseDeserializer(op);
+        op.add(Builder::useRomaji, JsonpDeserializer.booleanDeserializer(), "use_romaji");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

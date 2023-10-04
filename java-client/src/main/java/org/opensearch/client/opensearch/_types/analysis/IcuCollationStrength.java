@@ -37,28 +37,29 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum IcuCollationStrength implements JsonEnum {
-	Primary("primary"),
+    Primary("primary"),
 
-	Secondary("secondary"),
+    Secondary("secondary"),
 
-	Tertiary("tertiary"),
+    Tertiary("tertiary"),
 
-	Quaternary("quaternary"),
+    Quaternary("quaternary"),
 
-	Identical("identical"),
+    Identical("identical"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	IcuCollationStrength(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    IcuCollationStrength(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<IcuCollationStrength> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IcuCollationStrength.values());
+    public static final JsonEnum.Deserializer<IcuCollationStrength> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IcuCollationStrength.values()
+    );
 }

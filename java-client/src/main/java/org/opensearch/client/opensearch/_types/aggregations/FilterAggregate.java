@@ -32,75 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.FilterAggregate
 
 @JsonpDeserializable
 public class FilterAggregate extends SingleBucketAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FilterAggregate(Builder builder) {
-		super(builder);
+    private FilterAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static FilterAggregate of(Function<Builder, ObjectBuilder<FilterAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FilterAggregate of(Function<Builder, ObjectBuilder<FilterAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Filter;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Filter;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FilterAggregate}.
-	 */
+    /**
+     * Builder for {@link FilterAggregate}.
+     */
 
-	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<FilterAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<FilterAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FilterAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FilterAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FilterAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FilterAggregate build() {
+            _checkSingleUse();
 
-			return new FilterAggregate(this);
-		}
-	}
+            return new FilterAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FilterAggregate}
-	 */
-	public static final JsonpDeserializer<FilterAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FilterAggregate::setupFilterAggregateDeserializer);
+    /**
+     * Json deserializer for {@link FilterAggregate}
+     */
+    public static final JsonpDeserializer<FilterAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FilterAggregate::setupFilterAggregateDeserializer
+    );
 
-	protected static void setupFilterAggregateDeserializer(ObjectDeserializer<FilterAggregate.Builder> op) {
-		setupSingleBucketAggregateBaseDeserializer(op);
+    protected static void setupFilterAggregateDeserializer(ObjectDeserializer<FilterAggregate.Builder> op) {
+        setupSingleBucketAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

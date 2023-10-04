@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,252 +44,249 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.StoreStats
 
 @JsonpDeserializable
 public class StoreStats implements JsonpSerializable {
-	@Nullable
-	private final String size;
+    @Nullable
+    private final String size;
 
-	private final long sizeInBytes;
+    private final long sizeInBytes;
 
-	@Nullable
-	private final String reserved;
+    @Nullable
+    private final String reserved;
 
-	private final long reservedInBytes;
+    private final long reservedInBytes;
 
-	@Deprecated
-	@Nullable
-	private final String totalDataSetSize;
+    @Deprecated
+    @Nullable
+    private final String totalDataSetSize;
 
-	@Deprecated
-	@Nullable
-	private final Long totalDataSetSizeInBytes;
+    @Deprecated
+    @Nullable
+    private final Long totalDataSetSizeInBytes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private StoreStats(Builder builder) {
+    private StoreStats(Builder builder) {
 
-		this.size = builder.size;
-		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
-		this.reserved = builder.reserved;
-		this.reservedInBytes = ApiTypeHelper.requireNonNull(builder.reservedInBytes, this, "reservedInBytes");
-		this.totalDataSetSize = builder.totalDataSetSize;
-		this.totalDataSetSizeInBytes = builder.totalDataSetSizeInBytes;
+        this.size = builder.size;
+        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+        this.reserved = builder.reserved;
+        this.reservedInBytes = ApiTypeHelper.requireNonNull(builder.reservedInBytes, this, "reservedInBytes");
+        this.totalDataSetSize = builder.totalDataSetSize;
+        this.totalDataSetSizeInBytes = builder.totalDataSetSizeInBytes;
 
-	}
+    }
 
-	public static StoreStats of(Function<Builder, ObjectBuilder<StoreStats>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StoreStats of(Function<Builder, ObjectBuilder<StoreStats>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public final String size() {
-		return this.size;
-	}
+    /**
+     * API name: {@code size}
+     */
+    @Nullable
+    public final String size() {
+        return this.size;
+    }
 
-	/**
-	 * Required - API name: {@code size_in_bytes}
-	 */
-	public final long sizeInBytes() {
-		return this.sizeInBytes;
-	}
+    /**
+     * Required - API name: {@code size_in_bytes}
+     */
+    public final long sizeInBytes() {
+        return this.sizeInBytes;
+    }
 
-	/**
-	 * API name: {@code reserved}
-	 */
-	@Nullable
-	public final String reserved() {
-		return this.reserved;
-	}
+    /**
+     * API name: {@code reserved}
+     */
+    @Nullable
+    public final String reserved() {
+        return this.reserved;
+    }
 
-	/**
-	 * Required - API name: {@code reserved_in_bytes}
-	 */
-	public final long reservedInBytes() {
-		return this.reservedInBytes;
-	}
+    /**
+     * Required - API name: {@code reserved_in_bytes}
+     */
+    public final long reservedInBytes() {
+        return this.reservedInBytes;
+    }
 
-	/**
-	 * @deprecated
-	 * Not returned by server
-	 * API name: {@code total_data_set_size}
-	 */
-	@Deprecated
-	@Nullable
-	public final String totalDataSetSize() {
-		return this.totalDataSetSize;
-	}
+    /**
+     * @deprecated
+     * Not returned by server
+     * API name: {@code total_data_set_size}
+     */
+    @Deprecated
+    @Nullable
+    public final String totalDataSetSize() {
+        return this.totalDataSetSize;
+    }
 
-	/**
-	 * @deprecated
-	 * Not returned by server
-	 * API name: {@code total_data_set_size_in_bytes}
-	 */
-	@Deprecated
-	@Nullable
-	public final Long totalDataSetSizeInBytes() {
-		return this.totalDataSetSizeInBytes;
-	}
+    /**
+     * @deprecated
+     * Not returned by server
+     * API name: {@code total_data_set_size_in_bytes}
+     */
+    @Deprecated
+    @Nullable
+    public final Long totalDataSetSizeInBytes() {
+        return this.totalDataSetSizeInBytes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.size != null) {
-			generator.writeKey("size");
-			generator.write(this.size);
+        if (this.size != null) {
+            generator.writeKey("size");
+            generator.write(this.size);
 
-		}
-		generator.writeKey("size_in_bytes");
-		generator.write(this.sizeInBytes);
+        }
+        generator.writeKey("size_in_bytes");
+        generator.write(this.sizeInBytes);
 
-		if (this.reserved != null) {
-			generator.writeKey("reserved");
-			generator.write(this.reserved);
+        if (this.reserved != null) {
+            generator.writeKey("reserved");
+            generator.write(this.reserved);
 
-		}
-		generator.writeKey("reserved_in_bytes");
-		generator.write(this.reservedInBytes);
+        }
+        generator.writeKey("reserved_in_bytes");
+        generator.write(this.reservedInBytes);
 
-		if (this.totalDataSetSize != null) {
-			generator.writeKey("total_data_set_size");
-			generator.write(this.totalDataSetSize);
+        if (this.totalDataSetSize != null) {
+            generator.writeKey("total_data_set_size");
+            generator.write(this.totalDataSetSize);
 
-		}
-		if (this.totalDataSetSizeInBytes != null) {
-			generator.writeKey("total_data_set_size_in_bytes");
-			generator.write(this.totalDataSetSizeInBytes);
+        }
+        if (this.totalDataSetSizeInBytes != null) {
+            generator.writeKey("total_data_set_size_in_bytes");
+            generator.write(this.totalDataSetSizeInBytes);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StoreStats}.
-	 */
+    /**
+     * Builder for {@link StoreStats}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StoreStats> {
-		@Nullable
-		private String size;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StoreStats> {
+        @Nullable
+        private String size;
 
-		private Long sizeInBytes;
+        private Long sizeInBytes;
 
-		@Nullable
-		private String reserved;
+        @Nullable
+        private String reserved;
 
-		private Long reservedInBytes;
+        private Long reservedInBytes;
 
-		@Deprecated
-		@Nullable
-		private String totalDataSetSize;
+        @Deprecated
+        @Nullable
+        private String totalDataSetSize;
 
-		@Deprecated
-		@Nullable
-		private Long totalDataSetSizeInBytes;
+        @Deprecated
+        @Nullable
+        private Long totalDataSetSizeInBytes;
 
-		/**
-		 * API name: {@code size}
-		 */
-		public final Builder size(@Nullable String value) {
-			this.size = value;
-			return this;
-		}
+        /**
+         * API name: {@code size}
+         */
+        public final Builder size(@Nullable String value) {
+            this.size = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code size_in_bytes}
-		 */
-		public final Builder sizeInBytes(long value) {
-			this.sizeInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code size_in_bytes}
+         */
+        public final Builder sizeInBytes(long value) {
+            this.sizeInBytes = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code reserved}
-		 */
-		public final Builder reserved(@Nullable String value) {
-			this.reserved = value;
-			return this;
-		}
+        /**
+         * API name: {@code reserved}
+         */
+        public final Builder reserved(@Nullable String value) {
+            this.reserved = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code reserved_in_bytes}
-		 */
-		public final Builder reservedInBytes(long value) {
-			this.reservedInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code reserved_in_bytes}
+         */
+        public final Builder reservedInBytes(long value) {
+            this.reservedInBytes = value;
+            return this;
+        }
 
-		/**
-		 * @deprecated
-		 * Not returned by server
-		 * API name: {@code total_data_set_size}
-		 */
-		@Deprecated
-		public final Builder totalDataSetSize(@Nullable String value) {
-			this.totalDataSetSize = value;
-			return this;
-		}
+        /**
+         * @deprecated
+         * Not returned by server
+         * API name: {@code total_data_set_size}
+         */
+        @Deprecated
+        public final Builder totalDataSetSize(@Nullable String value) {
+            this.totalDataSetSize = value;
+            return this;
+        }
 
-		/**
-		 * @deprecated
-		 * Not returned by server
-		 * API name: {@code total_data_set_size_in_bytes}
-		 */
-		@Deprecated
-		public final Builder totalDataSetSizeInBytes(@Nullable Long value) {
-			this.totalDataSetSizeInBytes = value;
-			return this;
-		}
+        /**
+         * @deprecated
+         * Not returned by server
+         * API name: {@code total_data_set_size_in_bytes}
+         */
+        @Deprecated
+        public final Builder totalDataSetSizeInBytes(@Nullable Long value) {
+            this.totalDataSetSizeInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StoreStats}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StoreStats build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link StoreStats}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StoreStats build() {
+            _checkSingleUse();
 
-			return new StoreStats(this);
-		}
-	}
+            return new StoreStats(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link StoreStats}
-	 */
-	public static final JsonpDeserializer<StoreStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StoreStats::setupStoreStatsDeserializer);
+    /**
+     * Json deserializer for {@link StoreStats}
+     */
+    public static final JsonpDeserializer<StoreStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StoreStats::setupStoreStatsDeserializer
+    );
 
-	protected static void setupStoreStatsDeserializer(ObjectDeserializer<StoreStats.Builder> op) {
+    protected static void setupStoreStatsDeserializer(ObjectDeserializer<StoreStats.Builder> op) {
 
-		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
-		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
-		op.add(Builder::reserved, JsonpDeserializer.stringDeserializer(), "reserved");
-		op.add(Builder::reservedInBytes, JsonpDeserializer.longDeserializer(), "reserved_in_bytes");
-		op.add(Builder::totalDataSetSize, JsonpDeserializer.stringDeserializer(), "total_data_set_size");
-		op.add(Builder::totalDataSetSizeInBytes, JsonpDeserializer.longDeserializer(),
-				"total_data_set_size_in_bytes");
+        op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
+        op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
+        op.add(Builder::reserved, JsonpDeserializer.stringDeserializer(), "reserved");
+        op.add(Builder::reservedInBytes, JsonpDeserializer.longDeserializer(), "reserved_in_bytes");
+        op.add(Builder::totalDataSetSize, JsonpDeserializer.stringDeserializer(), "total_data_set_size");
+        op.add(Builder::totalDataSetSizeInBytes, JsonpDeserializer.longDeserializer(), "total_data_set_size_in_bytes");
 
-	}
+    }
 
 }

@@ -32,13 +32,12 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.StringRareTermsAggregate
 
@@ -47,68 +46,67 @@ import java.util.function.Function;
  *
  */
 @JsonpDeserializable
-public class StringRareTermsAggregate extends MultiBucketAggregateBase<StringRareTermsBucket>
-		implements
-			AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+public class StringRareTermsAggregate extends MultiBucketAggregateBase<StringRareTermsBucket> implements AggregateVariant {
+    // ---------------------------------------------------------------------------------------------
 
-	private StringRareTermsAggregate(Builder builder) {
-		super(builder);
+    private StringRareTermsAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static StringRareTermsAggregate of(Function<Builder, ObjectBuilder<StringRareTermsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StringRareTermsAggregate of(Function<Builder, ObjectBuilder<StringRareTermsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Srareterms;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Srareterms;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StringRareTermsAggregate}.
-	 */
+    /**
+     * Builder for {@link StringRareTermsAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<StringRareTermsBucket, Builder>
-			implements
-				ObjectBuilder<StringRareTermsAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<StringRareTermsBucket, Builder>
+        implements
+            ObjectBuilder<StringRareTermsAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StringRareTermsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StringRareTermsAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link StringRareTermsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StringRareTermsAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new StringRareTermsAggregate(this);
-		}
-	}
+            return new StringRareTermsAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link StringRareTermsAggregate}
-	 */
-	public static final JsonpDeserializer<StringRareTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StringRareTermsAggregate::setupStringRareTermsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link StringRareTermsAggregate}
+     */
+    public static final JsonpDeserializer<StringRareTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StringRareTermsAggregate::setupStringRareTermsAggregateDeserializer
+    );
 
-	protected static void setupStringRareTermsAggregateDeserializer(
-			ObjectDeserializer<StringRareTermsAggregate.Builder> op) {
-		setupMultiBucketAggregateBaseDeserializer(op, StringRareTermsBucket._DESERIALIZER);
+    protected static void setupStringRareTermsAggregateDeserializer(ObjectDeserializer<StringRareTermsAggregate.Builder> op) {
+        setupMultiBucketAggregateBaseDeserializer(op, StringRareTermsBucket._DESERIALIZER);
 
-	}
+    }
 
 }

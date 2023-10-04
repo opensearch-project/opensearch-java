@@ -32,148 +32,150 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
-import org.opensearch.client.opensearch._types.FieldValue;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.UnionDeserializer;
+import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.TermsQueryField
-
 
 @JsonpDeserializable
 public class TermsQueryField implements TaggedUnion<TermsQueryField.Kind, Object>, JsonpSerializable {
 
-	public enum Kind {
-		Value, Lookup
+    public enum Kind {
+        Value,
+        Lookup
 
-	}
+    }
 
-	private final Kind _kind;
-	private final Object _value;
+    private final Kind _kind;
+    private final Object _value;
 
-	@Override
-	public final Kind _kind() {
-		return _kind;
-	}
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
 
-	@Override
-	public final Object _get() {
-		return _value;
-	}
+    @Override
+    public final Object _get() {
+        return _value;
+    }
 
-	private TermsQueryField(Kind kind, Object value) {
-		this._kind = kind;
-		this._value = value;
-	}
+    private TermsQueryField(Kind kind, Object value) {
+        this._kind = kind;
+        this._value = value;
+    }
 
-	private TermsQueryField(Builder builder) {
+    private TermsQueryField(Builder builder) {
 
-		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-	}
+    }
 
-	public static TermsQueryField of(Function<Builder, ObjectBuilder<TermsQueryField>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TermsQueryField of(Function<Builder, ObjectBuilder<TermsQueryField>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Is this variant instance of kind {@code value}?
-	 */
-	public boolean isValue() {
-		return _kind == Kind.Value;
-	}
+    /**
+     * Is this variant instance of kind {@code value}?
+     */
+    public boolean isValue() {
+        return _kind == Kind.Value;
+    }
 
-	/**
-	 * Get the {@code value} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code value} kind.
-	 */
-	public List<FieldValue> value() {
-		return TaggedUnionUtils.get(this, Kind.Value);
-	}
+    /**
+     * Get the {@code value} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code value} kind.
+     */
+    public List<FieldValue> value() {
+        return TaggedUnionUtils.get(this, Kind.Value);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code lookup}?
-	 */
-	public boolean isLookup() {
-		return _kind == Kind.Lookup;
-	}
+    /**
+     * Is this variant instance of kind {@code lookup}?
+     */
+    public boolean isLookup() {
+        return _kind == Kind.Lookup;
+    }
 
-	/**
-	 * Get the {@code lookup} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code lookup} kind.
-	 */
-	public TermsLookup lookup() {
-		return TaggedUnionUtils.get(this, Kind.Lookup);
-	}
+    /**
+     * Get the {@code lookup} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code lookup} kind.
+     */
+    public TermsLookup lookup() {
+        return TaggedUnionUtils.get(this, Kind.Lookup);
+    }
 
-	@Override
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_kind) {
-				case Value :
-					generator.writeStartArray();
-					for (FieldValue item0 : ((List<FieldValue>) this._value)) {
-						item0.serialize(generator, mapper);
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        if (_value instanceof JsonpSerializable) {
+            ((JsonpSerializable) _value).serialize(generator, mapper);
+        } else {
+            switch (_kind) {
+                case Value:
+                    generator.writeStartArray();
+                    for (FieldValue item0 : ((List<FieldValue>) this._value)) {
+                        item0.serialize(generator, mapper);
 
-					}
-					generator.writeEnd();
+                    }
+                    generator.writeEnd();
 
-					break;
-			}
-		}
+                    break;
+            }
+        }
 
-	}
+    }
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsQueryField> {
-		private Kind _kind;
-		private Object _value;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsQueryField> {
+        private Kind _kind;
+        private Object _value;
 
-		public ObjectBuilder<TermsQueryField> value(List<FieldValue> v) {
-			this._kind = Kind.Value;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<TermsQueryField> value(List<FieldValue> v) {
+            this._kind = Kind.Value;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<TermsQueryField> lookup(TermsLookup v) {
-			this._kind = Kind.Lookup;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<TermsQueryField> lookup(TermsLookup v) {
+            this._kind = Kind.Lookup;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<TermsQueryField> lookup(Function<TermsLookup.Builder, ObjectBuilder<TermsLookup>> fn) {
-			return this.lookup(fn.apply(new TermsLookup.Builder()).build());
-		}
+        public ObjectBuilder<TermsQueryField> lookup(Function<TermsLookup.Builder, ObjectBuilder<TermsLookup>> fn) {
+            return this.lookup(fn.apply(new TermsLookup.Builder()).build());
+        }
 
-		public TermsQueryField build() {
-			_checkSingleUse();
-			return new TermsQueryField(this);
-		}
+        public TermsQueryField build() {
+            _checkSingleUse();
+            return new TermsQueryField(this);
+        }
 
-	}
+    }
 
-	private static JsonpDeserializer<TermsQueryField> buildTermsQueryFieldDeserializer() {
-		return new UnionDeserializer.Builder<TermsQueryField, Kind, Object>(TermsQueryField::new, false)
-				.addMember(Kind.Value, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER))
-				.addMember(Kind.Lookup, TermsLookup._DESERIALIZER).build();
-	}
+    private static JsonpDeserializer<TermsQueryField> buildTermsQueryFieldDeserializer() {
+        return new UnionDeserializer.Builder<TermsQueryField, Kind, Object>(TermsQueryField::new, false).addMember(
+            Kind.Value,
+            JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER)
+        ).addMember(Kind.Lookup, TermsLookup._DESERIALIZER).build();
+    }
 
-	public static final JsonpDeserializer<TermsQueryField> _DESERIALIZER = JsonpDeserializer
-			.lazy(TermsQueryField::buildTermsQueryFieldDeserializer);
+    public static final JsonpDeserializer<TermsQueryField> _DESERIALIZER = JsonpDeserializer.lazy(
+        TermsQueryField::buildTermsQueryFieldDeserializer
+    );
 }

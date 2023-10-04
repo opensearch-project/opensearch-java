@@ -32,116 +32,115 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.FieldAliasProperty
 
-
 @JsonpDeserializable
 public class FieldAliasProperty extends PropertyBase implements PropertyVariant {
-	@Nullable
-	private final String path;
+    @Nullable
+    private final String path;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FieldAliasProperty(Builder builder) {
-		super(builder);
+    private FieldAliasProperty(Builder builder) {
+        super(builder);
 
-		this.path = builder.path;
+        this.path = builder.path;
 
-	}
+    }
 
-	public static FieldAliasProperty of(Function<Builder, ObjectBuilder<FieldAliasProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FieldAliasProperty of(Function<Builder, ObjectBuilder<FieldAliasProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Alias;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Alias;
+    }
 
-	/**
-	 * API name: {@code path}
-	 */
-	@Nullable
-	public final String path() {
-		return this.path;
-	}
+    /**
+     * API name: {@code path}
+     */
+    @Nullable
+    public final String path() {
+        return this.path;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "alias");
-		super.serializeInternal(generator, mapper);
-		if (this.path != null) {
-			generator.writeKey("path");
-			generator.write(this.path);
+        generator.write("type", "alias");
+        super.serializeInternal(generator, mapper);
+        if (this.path != null) {
+            generator.writeKey("path");
+            generator.write(this.path);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FieldAliasProperty}.
-	 */
+    /**
+     * Builder for {@link FieldAliasProperty}.
+     */
 
-	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<FieldAliasProperty> {
-		@Nullable
-		private String path;
+    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<FieldAliasProperty> {
+        @Nullable
+        private String path;
 
-		/**
-		 * API name: {@code path}
-		 */
-		public final Builder path(@Nullable String value) {
-			this.path = value;
-			return this;
-		}
+        /**
+         * API name: {@code path}
+         */
+        public final Builder path(@Nullable String value) {
+            this.path = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FieldAliasProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FieldAliasProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FieldAliasProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FieldAliasProperty build() {
+            _checkSingleUse();
 
-			return new FieldAliasProperty(this);
-		}
-	}
+            return new FieldAliasProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FieldAliasProperty}
-	 */
-	public static final JsonpDeserializer<FieldAliasProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FieldAliasProperty::setupFieldAliasPropertyDeserializer);
+    /**
+     * Json deserializer for {@link FieldAliasProperty}
+     */
+    public static final JsonpDeserializer<FieldAliasProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FieldAliasProperty::setupFieldAliasPropertyDeserializer
+    );
 
-	protected static void setupFieldAliasPropertyDeserializer(ObjectDeserializer<FieldAliasProperty.Builder> op) {
-		PropertyBase.setupPropertyBaseDeserializer(op);
-		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+    protected static void setupFieldAliasPropertyDeserializer(ObjectDeserializer<FieldAliasProperty.Builder> op) {
+        PropertyBase.setupPropertyBaseDeserializer(op);
+        op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

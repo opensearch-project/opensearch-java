@@ -32,69 +32,64 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
-import jakarta.json.stream.JsonGenerator;
-
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RangeQueryBase
 
-
-
 public abstract class RangeQueryBase extends QueryBase {
-	@Nullable
-	private final RangeRelation relation;
+    @Nullable
+    private final RangeRelation relation;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected RangeQueryBase(AbstractBuilder<?> builder) {
-		super(builder);
+    protected RangeQueryBase(AbstractBuilder<?> builder) {
+        super(builder);
 
-		this.relation = builder.relation;
+        this.relation = builder.relation;
 
-	}
+    }
 
-	/**
-	 * API name: {@code relation}
-	 */
-	@Nullable
-	public final RangeRelation relation() {
-		return this.relation;
-	}
+    /**
+     * API name: {@code relation}
+     */
+    @Nullable
+    public final RangeRelation relation() {
+        return this.relation;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.relation != null) {
-			generator.writeKey("relation");
-			this.relation.serialize(generator, mapper);
-		}
+        super.serializeInternal(generator, mapper);
+        if (this.relation != null) {
+            generator.writeKey("relation");
+            this.relation.serialize(generator, mapper);
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				QueryBase.AbstractBuilder<BuilderT> {
-		@Nullable
-		private RangeRelation relation;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends QueryBase.AbstractBuilder<
+        BuilderT> {
+        @Nullable
+        private RangeRelation relation;
 
-		/**
-		 * API name: {@code relation}
-		 */
-		public final BuilderT relation(@Nullable RangeRelation value) {
-			this.relation = value;
-			return self();
-		}
+        /**
+         * API name: {@code relation}
+         */
+        public final BuilderT relation(@Nullable RangeRelation value) {
+            this.relation = value;
+            return self();
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRangeQueryBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		setupQueryBaseDeserializer(op);
-		op.add(AbstractBuilder::relation, RangeRelation._DESERIALIZER, "relation");
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRangeQueryBaseDeserializer(ObjectDeserializer<BuilderT> op) {
+        setupQueryBaseDeserializer(op);
+        op.add(AbstractBuilder::relation, RangeRelation._DESERIALIZER, "relation");
 
-	}
+    }
 
 }

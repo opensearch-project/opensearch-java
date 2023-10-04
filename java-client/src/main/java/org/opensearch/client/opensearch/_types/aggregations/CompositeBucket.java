@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -40,114 +43,111 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.CompositeBucket
 
 @JsonpDeserializable
 public class CompositeBucket extends MultiBucketBase {
-	private final Map<String, JsonData> key;
+    private final Map<String, JsonData> key;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CompositeBucket(Builder builder) {
-		super(builder);
+    private CompositeBucket(Builder builder) {
+        super(builder);
 
-		this.key = ApiTypeHelper.unmodifiableRequired(builder.key, this, "key");
+        this.key = ApiTypeHelper.unmodifiableRequired(builder.key, this, "key");
 
-	}
+    }
 
-	public static CompositeBucket of(Function<Builder, ObjectBuilder<CompositeBucket>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CompositeBucket of(Function<Builder, ObjectBuilder<CompositeBucket>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code key}
-	 */
-	public final Map<String, JsonData> key() {
-		return this.key;
-	}
+    /**
+     * Required - API name: {@code key}
+     */
+    public final Map<String, JsonData> key() {
+        return this.key;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.key)) {
-			generator.writeKey("key");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.key.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.key)) {
+            generator.writeKey("key");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.key.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CompositeBucket}.
-	 */
+    /**
+     * Builder for {@link CompositeBucket}.
+     */
 
-	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<CompositeBucket> {
-		private Map<String, JsonData> key;
+    public static class Builder extends MultiBucketBase.AbstractBuilder<Builder> implements ObjectBuilder<CompositeBucket> {
+        private Map<String, JsonData> key;
 
-		/**
-		 * Required - API name: {@code key}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>key</code>.
-		 */
-		public final Builder key(Map<String, JsonData> map) {
-			this.key = _mapPutAll(this.key, map);
-			return this;
-		}
+        /**
+         * Required - API name: {@code key}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>key</code>.
+         */
+        public final Builder key(Map<String, JsonData> map) {
+            this.key = _mapPutAll(this.key, map);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code key}
-		 * <p>
-		 * Adds an entry to <code>key</code>.
-		 */
-		public final Builder key(String key, JsonData value) {
-			this.key = _mapPut(this.key, key, value);
-			return this;
-		}
+        /**
+         * Required - API name: {@code key}
+         * <p>
+         * Adds an entry to <code>key</code>.
+         */
+        public final Builder key(String key, JsonData value) {
+            this.key = _mapPut(this.key, key, value);
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CompositeBucket}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CompositeBucket build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CompositeBucket}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CompositeBucket build() {
+            _checkSingleUse();
 
-			return new CompositeBucket(this);
-		}
-	}
+            return new CompositeBucket(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CompositeBucket}
-	 */
-	public static final JsonpDeserializer<CompositeBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CompositeBucket::setupCompositeBucketDeserializer);
+    /**
+     * Json deserializer for {@link CompositeBucket}
+     */
+    public static final JsonpDeserializer<CompositeBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CompositeBucket::setupCompositeBucketDeserializer
+    );
 
-	protected static void setupCompositeBucketDeserializer(ObjectDeserializer<CompositeBucket.Builder> op) {
-		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
-		op.add(Builder::key, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "key");
+    protected static void setupCompositeBucketDeserializer(ObjectDeserializer<CompositeBucket.Builder> op) {
+        MultiBucketBase.setupMultiBucketBaseDeserializer(op);
+        op.add(Builder::key, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "key");
 
-	}
+    }
 
 }

@@ -35,25 +35,23 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum PhoneticRuleType implements JsonEnum {
-	Approx("approx"),
+    Approx("approx"),
 
-	Exact("exact"),
+    Exact("exact"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	PhoneticRuleType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    PhoneticRuleType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<PhoneticRuleType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			PhoneticRuleType.values());
+    public static final JsonEnum.Deserializer<PhoneticRuleType> _DESERIALIZER = new JsonEnum.Deserializer<>(PhoneticRuleType.values());
 }

@@ -32,75 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.DerivativeAggregation
 
 @JsonpDeserializable
 public class DerivativeAggregation extends PipelineAggregationBase implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DerivativeAggregation(Builder builder) {
-		super(builder);
+    private DerivativeAggregation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DerivativeAggregation of(Function<Builder, ObjectBuilder<DerivativeAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DerivativeAggregation of(Function<Builder, ObjectBuilder<DerivativeAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Derivative;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.Derivative;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DerivativeAggregation}.
-	 */
+    /**
+     * Builder for {@link DerivativeAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DerivativeAggregation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<DerivativeAggregation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DerivativeAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DerivativeAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DerivativeAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DerivativeAggregation build() {
+            _checkSingleUse();
 
-			return new DerivativeAggregation(this);
-		}
-	}
+            return new DerivativeAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DerivativeAggregation}
-	 */
-	public static final JsonpDeserializer<DerivativeAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DerivativeAggregation::setupDerivativeAggregationDeserializer);
+    /**
+     * Json deserializer for {@link DerivativeAggregation}
+     */
+    public static final JsonpDeserializer<DerivativeAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DerivativeAggregation::setupDerivativeAggregationDeserializer
+    );
 
-	protected static void setupDerivativeAggregationDeserializer(ObjectDeserializer<DerivativeAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+    protected static void setupDerivativeAggregationDeserializer(ObjectDeserializer<DerivativeAggregation.Builder> op) {
+        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
-	}
+    }
 
 }

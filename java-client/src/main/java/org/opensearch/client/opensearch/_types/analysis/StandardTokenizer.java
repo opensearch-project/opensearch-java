@@ -32,116 +32,115 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StandardTokenizer
 
-
 @JsonpDeserializable
 public class StandardTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
-	@Nullable
-	private final Integer maxTokenLength;
+    @Nullable
+    private final Integer maxTokenLength;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private StandardTokenizer(Builder builder) {
-		super(builder);
+    private StandardTokenizer(Builder builder) {
+        super(builder);
 
-		this.maxTokenLength = builder.maxTokenLength;
+        this.maxTokenLength = builder.maxTokenLength;
 
-	}
+    }
 
-	public static StandardTokenizer of(Function<Builder, ObjectBuilder<StandardTokenizer>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StandardTokenizer of(Function<Builder, ObjectBuilder<StandardTokenizer>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenizerDefinition variant kind.
-	 */
-	@Override
-	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
-		return TokenizerDefinition.Kind.Standard;
-	}
+    /**
+     * TokenizerDefinition variant kind.
+     */
+    @Override
+    public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+        return TokenizerDefinition.Kind.Standard;
+    }
 
-	/**
-	 * API name: {@code max_token_length}
-	 */
-	@Nullable
-	public final Integer maxTokenLength() {
-		return this.maxTokenLength;
-	}
+    /**
+     * API name: {@code max_token_length}
+     */
+    @Nullable
+    public final Integer maxTokenLength() {
+        return this.maxTokenLength;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "standard");
-		super.serializeInternal(generator, mapper);
-		if (this.maxTokenLength != null) {
-			generator.writeKey("max_token_length");
-			generator.write(this.maxTokenLength);
+        generator.write("type", "standard");
+        super.serializeInternal(generator, mapper);
+        if (this.maxTokenLength != null) {
+            generator.writeKey("max_token_length");
+            generator.write(this.maxTokenLength);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StandardTokenizer}.
-	 */
+    /**
+     * Builder for {@link StandardTokenizer}.
+     */
 
-	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<StandardTokenizer> {
-		@Nullable
-		private Integer maxTokenLength;
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<StandardTokenizer> {
+        @Nullable
+        private Integer maxTokenLength;
 
-		/**
-		 * API name: {@code max_token_length}
-		 */
-		public final Builder maxTokenLength(@Nullable Integer value) {
-			this.maxTokenLength = value;
-			return this;
-		}
+        /**
+         * API name: {@code max_token_length}
+         */
+        public final Builder maxTokenLength(@Nullable Integer value) {
+            this.maxTokenLength = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StandardTokenizer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StandardTokenizer build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link StandardTokenizer}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StandardTokenizer build() {
+            _checkSingleUse();
 
-			return new StandardTokenizer(this);
-		}
-	}
+            return new StandardTokenizer(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link StandardTokenizer}
-	 */
-	public static final JsonpDeserializer<StandardTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StandardTokenizer::setupStandardTokenizerDeserializer);
+    /**
+     * Json deserializer for {@link StandardTokenizer}
+     */
+    public static final JsonpDeserializer<StandardTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StandardTokenizer::setupStandardTokenizerDeserializer
+    );
 
-	protected static void setupStandardTokenizerDeserializer(ObjectDeserializer<StandardTokenizer.Builder> op) {
-		TokenizerBase.setupTokenizerBaseDeserializer(op);
-		op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
+    protected static void setupStandardTokenizerDeserializer(ObjectDeserializer<StandardTokenizer.Builder> op) {
+        TokenizerBase.setupTokenizerBaseDeserializer(op);
+        op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

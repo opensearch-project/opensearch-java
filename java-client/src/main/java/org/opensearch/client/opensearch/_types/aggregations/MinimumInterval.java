@@ -37,30 +37,29 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum MinimumInterval implements JsonEnum {
-	Second("second"),
+    Second("second"),
 
-	Minute("minute"),
+    Minute("minute"),
 
-	Hour("hour"),
+    Hour("hour"),
 
-	Day("day"),
+    Day("day"),
 
-	Month("month"),
+    Month("month"),
 
-	Year("year"),
+    Year("year"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	MinimumInterval(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    MinimumInterval(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<MinimumInterval> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			MinimumInterval.values());
+    public static final JsonEnum.Deserializer<MinimumInterval> _DESERIALIZER = new JsonEnum.Deserializer<>(MinimumInterval.values());
 }

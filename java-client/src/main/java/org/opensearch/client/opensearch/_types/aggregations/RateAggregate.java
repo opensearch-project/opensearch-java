@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,130 +42,128 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RateAggregate
 
-
 @JsonpDeserializable
 public class RateAggregate extends AggregateBase implements AggregateVariant {
-	private final double value;
+    private final double value;
 
-	@Nullable
-	private final String valueAsString;
+    @Nullable
+    private final String valueAsString;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RateAggregate(Builder builder) {
-		super(builder);
+    private RateAggregate(Builder builder) {
+        super(builder);
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
-		this.valueAsString = builder.valueAsString;
+        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+        this.valueAsString = builder.valueAsString;
 
-	}
+    }
 
-	public static RateAggregate of(Function<Builder, ObjectBuilder<RateAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RateAggregate of(Function<Builder, ObjectBuilder<RateAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Rate;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Rate;
+    }
 
-	/**
-	 * Required - API name: {@code value}
-	 */
-	public final double value() {
-		return this.value;
-	}
+    /**
+     * Required - API name: {@code value}
+     */
+    public final double value() {
+        return this.value;
+    }
 
-	/**
-	 * API name: {@code value_as_string}
-	 */
-	@Nullable
-	public final String valueAsString() {
-		return this.valueAsString;
-	}
+    /**
+     * API name: {@code value_as_string}
+     */
+    @Nullable
+    public final String valueAsString() {
+        return this.valueAsString;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("value");
-		generator.write(this.value);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("value");
+        generator.write(this.value);
 
-		if (this.valueAsString != null) {
-			generator.writeKey("value_as_string");
-			generator.write(this.valueAsString);
+        if (this.valueAsString != null) {
+            generator.writeKey("value_as_string");
+            generator.write(this.valueAsString);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RateAggregate}.
-	 */
+    /**
+     * Builder for {@link RateAggregate}.
+     */
 
-	public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<RateAggregate> {
-		private Double value;
+    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<RateAggregate> {
+        private Double value;
 
-		@Nullable
-		private String valueAsString;
+        @Nullable
+        private String valueAsString;
 
-		/**
-		 * Required - API name: {@code value}
-		 */
-		public final Builder value(double value) {
-			this.value = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code value}
+         */
+        public final Builder value(double value) {
+            this.value = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code value_as_string}
-		 */
-		public final Builder valueAsString(@Nullable String value) {
-			this.valueAsString = value;
-			return this;
-		}
+        /**
+         * API name: {@code value_as_string}
+         */
+        public final Builder valueAsString(@Nullable String value) {
+            this.valueAsString = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RateAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RateAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RateAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RateAggregate build() {
+            _checkSingleUse();
 
-			return new RateAggregate(this);
-		}
-	}
+            return new RateAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RateAggregate}
-	 */
-	public static final JsonpDeserializer<RateAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RateAggregate::setupRateAggregateDeserializer);
+    /**
+     * Json deserializer for {@link RateAggregate}
+     */
+    public static final JsonpDeserializer<RateAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RateAggregate::setupRateAggregateDeserializer
+    );
 
-	protected static void setupRateAggregateDeserializer(ObjectDeserializer<RateAggregate.Builder> op) {
-		setupAggregateBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.doubleDeserializer(), "value");
-		op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
+    protected static void setupRateAggregateDeserializer(ObjectDeserializer<RateAggregate.Builder> op) {
+        setupAggregateBaseDeserializer(op);
+        op.add(Builder::value, JsonpDeserializer.doubleDeserializer(), "value");
+        op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
 
-	}
+    }
 
 }

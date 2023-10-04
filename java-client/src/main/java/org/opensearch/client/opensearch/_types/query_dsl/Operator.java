@@ -35,30 +35,29 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum Operator implements JsonEnum {
-	And("and", "AND"),
+    And("and", "AND"),
 
-	Or("or", "OR"),
+    Or("or", "OR"),
 
-	;
+    ;
 
-	private final String jsonValue;
-	private final String[] aliases;
+    private final String jsonValue;
+    private final String[] aliases;
 
-	Operator(String jsonValue, String... aliases) {
-		this.jsonValue = jsonValue;
-		this.aliases = aliases;
-	}
+    Operator(String jsonValue, String... aliases) {
+        this.jsonValue = jsonValue;
+        this.aliases = aliases;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public String[] aliases() {
-		return this.aliases;
-	}
+    public String[] aliases() {
+        return this.aliases;
+    }
 
-	public static final JsonEnum.Deserializer<Operator> _DESERIALIZER = new JsonEnum.Deserializer<>(Operator.values());
+    public static final JsonEnum.Deserializer<Operator> _DESERIALIZER = new JsonEnum.Deserializer<>(Operator.values());
 }

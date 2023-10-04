@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,103 +41,100 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.analysis.TruncateTokenFilter
 
-
 @JsonpDeserializable
 public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final int length;
+    private final int length;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TruncateTokenFilter(Builder builder) {
-		super(builder);
+    private TruncateTokenFilter(Builder builder) {
+        super(builder);
 
-		this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
+        this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
 
-	}
+    }
 
-	public static TruncateTokenFilter of(Function<Builder, ObjectBuilder<TruncateTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TruncateTokenFilter of(Function<Builder, ObjectBuilder<TruncateTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.Truncate;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.Truncate;
+    }
 
-	/**
-	 * Required - API name: {@code length}
-	 */
-	public final int length() {
-		return this.length;
-	}
+    /**
+     * Required - API name: {@code length}
+     */
+    public final int length() {
+        return this.length;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "truncate");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("length");
-		generator.write(this.length);
+        generator.write("type", "truncate");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("length");
+        generator.write(this.length);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TruncateTokenFilter}.
-	 */
+    /**
+     * Builder for {@link TruncateTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<TruncateTokenFilter> {
-		private Integer length;
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<TruncateTokenFilter> {
+        private Integer length;
 
-		/**
-		 * Required - API name: {@code length}
-		 */
-		public final Builder length(int value) {
-			this.length = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code length}
+         */
+        public final Builder length(int value) {
+            this.length = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TruncateTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TruncateTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TruncateTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TruncateTokenFilter build() {
+            _checkSingleUse();
 
-			return new TruncateTokenFilter(this);
-		}
-	}
+            return new TruncateTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TruncateTokenFilter}
-	 */
-	public static final JsonpDeserializer<TruncateTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TruncateTokenFilter::setupTruncateTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link TruncateTokenFilter}
+     */
+    public static final JsonpDeserializer<TruncateTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TruncateTokenFilter::setupTruncateTokenFilterDeserializer
+    );
 
-	protected static void setupTruncateTokenFilterDeserializer(ObjectDeserializer<TruncateTokenFilter.Builder> op) {
-		setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::length, JsonpDeserializer.integerDeserializer(), "length");
+    protected static void setupTruncateTokenFilterDeserializer(ObjectDeserializer<TruncateTokenFilter.Builder> op) {
+        setupTokenFilterBaseDeserializer(op);
+        op.add(Builder::length, JsonpDeserializer.integerDeserializer(), "length");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

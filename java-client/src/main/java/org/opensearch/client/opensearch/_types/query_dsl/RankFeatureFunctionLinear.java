@@ -32,38 +32,38 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
 
 @JsonpDeserializable
 public class RankFeatureFunctionLinear extends RankFeatureFunction implements JsonpSerializable {
 
-	public static final class Builder implements ObjectBuilder<RankFeatureFunctionLinear> {
-		@Override
-		public RankFeatureFunctionLinear build() {
-			return RankFeatureFunctionLinear._INSTANCE;
-		}
-	}
+    public static final class Builder implements ObjectBuilder<RankFeatureFunctionLinear> {
+        @Override
+        public RankFeatureFunctionLinear build() {
+            return RankFeatureFunctionLinear._INSTANCE;
+        }
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        generator.writeEnd();
+    }
 
-	/**
-	 * Singleton instance for empty class {@link RankFeatureFunctionLinear}.
-	 */
-	public static final RankFeatureFunctionLinear _INSTANCE = new RankFeatureFunctionLinear();
+    /**
+     * Singleton instance for empty class {@link RankFeatureFunctionLinear}.
+     */
+    public static final RankFeatureFunctionLinear _INSTANCE = new RankFeatureFunctionLinear();
 
-	public static final JsonpDeserializer<RankFeatureFunctionLinear> _DESERIALIZER = JsonpDeserializer
-			.emptyObject(RankFeatureFunctionLinear._INSTANCE);
+    public static final JsonpDeserializer<RankFeatureFunctionLinear> _DESERIALIZER = JsonpDeserializer.emptyObject(
+        RankFeatureFunctionLinear._INSTANCE
+    );
 
 }

@@ -36,38 +36,37 @@ package org.opensearch.client.opensearch._types;
  * Builders for {@link GeoBounds} variants.
  */
 public class GeoBoundsBuilders {
-	private GeoBoundsBuilders() {
-	}
+    private GeoBoundsBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link CoordsGeoBounds coords} {@code GeoBounds}
-	 * variant.
-	 */
-	public static CoordsGeoBounds.Builder coords() {
-		return new CoordsGeoBounds.Builder();
-	}
+    /**
+     * Creates a builder for the {@link CoordsGeoBounds coords} {@code GeoBounds}
+     * variant.
+     */
+    public static CoordsGeoBounds.Builder coords() {
+        return new CoordsGeoBounds.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link TopLeftBottomRightGeoBounds tlbr}
-	 * {@code GeoBounds} variant.
-	 */
-	public static TopLeftBottomRightGeoBounds.Builder tlbr() {
-		return new TopLeftBottomRightGeoBounds.Builder();
-	}
+    /**
+     * Creates a builder for the {@link TopLeftBottomRightGeoBounds tlbr}
+     * {@code GeoBounds} variant.
+     */
+    public static TopLeftBottomRightGeoBounds.Builder tlbr() {
+        return new TopLeftBottomRightGeoBounds.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link TopRightBottomLeftGeoBounds trbl}
-	 * {@code GeoBounds} variant.
-	 */
-	public static TopRightBottomLeftGeoBounds.Builder trbl() {
-		return new TopRightBottomLeftGeoBounds.Builder();
-	}
+    /**
+     * Creates a builder for the {@link TopRightBottomLeftGeoBounds trbl}
+     * {@code GeoBounds} variant.
+     */
+    public static TopRightBottomLeftGeoBounds.Builder trbl() {
+        return new TopRightBottomLeftGeoBounds.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link WktGeoBounds wkt} {@code GeoBounds} variant.
-	 */
-	public static WktGeoBounds.Builder wkt() {
-		return new WktGeoBounds.Builder();
-	}
+    /**
+     * Creates a builder for the {@link WktGeoBounds wkt} {@code GeoBounds} variant.
+     */
+    public static WktGeoBounds.Builder wkt() {
+        return new WktGeoBounds.Builder();
+    }
 
 }

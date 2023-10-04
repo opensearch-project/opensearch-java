@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,101 +43,98 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSaturation
 
-
 @JsonpDeserializable
 public class RankFeatureFunctionSaturation extends RankFeatureFunction implements JsonpSerializable {
-	@Nullable
-	private final Float pivot;
+    @Nullable
+    private final Float pivot;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RankFeatureFunctionSaturation(Builder builder) {
+    private RankFeatureFunctionSaturation(Builder builder) {
 
-		this.pivot = builder.pivot;
+        this.pivot = builder.pivot;
 
-	}
+    }
 
-	public static RankFeatureFunctionSaturation of(Function<Builder, ObjectBuilder<RankFeatureFunctionSaturation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RankFeatureFunctionSaturation of(Function<Builder, ObjectBuilder<RankFeatureFunctionSaturation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code pivot}
-	 */
-	@Nullable
-	public final Float pivot() {
-		return this.pivot;
-	}
+    /**
+     * API name: {@code pivot}
+     */
+    @Nullable
+    public final Float pivot() {
+        return this.pivot;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.pivot != null) {
-			generator.writeKey("pivot");
-			generator.write(this.pivot);
+        if (this.pivot != null) {
+            generator.writeKey("pivot");
+            generator.write(this.pivot);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RankFeatureFunctionSaturation}.
-	 */
+    /**
+     * Builder for {@link RankFeatureFunctionSaturation}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionSaturation> {
-		@Nullable
-		private Float pivot;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionSaturation> {
+        @Nullable
+        private Float pivot;
 
-		/**
-		 * API name: {@code pivot}
-		 */
-		public final Builder pivot(@Nullable Float value) {
-			this.pivot = value;
-			return this;
-		}
+        /**
+         * API name: {@code pivot}
+         */
+        public final Builder pivot(@Nullable Float value) {
+            this.pivot = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RankFeatureFunctionSaturation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RankFeatureFunctionSaturation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RankFeatureFunctionSaturation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RankFeatureFunctionSaturation build() {
+            _checkSingleUse();
 
-			return new RankFeatureFunctionSaturation(this);
-		}
-	}
+            return new RankFeatureFunctionSaturation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RankFeatureFunctionSaturation}
-	 */
-	public static final JsonpDeserializer<RankFeatureFunctionSaturation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankFeatureFunctionSaturation::setupRankFeatureFunctionSaturationDeserializer);
+    /**
+     * Json deserializer for {@link RankFeatureFunctionSaturation}
+     */
+    public static final JsonpDeserializer<RankFeatureFunctionSaturation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RankFeatureFunctionSaturation::setupRankFeatureFunctionSaturationDeserializer
+    );
 
-	protected static void setupRankFeatureFunctionSaturationDeserializer(
-			ObjectDeserializer<RankFeatureFunctionSaturation.Builder> op) {
+    protected static void setupRankFeatureFunctionSaturationDeserializer(ObjectDeserializer<RankFeatureFunctionSaturation.Builder> op) {
 
-		op.add(Builder::pivot, JsonpDeserializer.floatDeserializer(), "pivot");
+        op.add(Builder::pivot, JsonpDeserializer.floatDeserializer(), "pivot");
 
-	}
+    }
 
 }

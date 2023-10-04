@@ -37,24 +37,25 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum LifecycleOperationMode implements JsonEnum {
-	Running("RUNNING"),
+    Running("RUNNING"),
 
-	Stopping("STOPPING"),
+    Stopping("STOPPING"),
 
-	Stopped("STOPPED"),
+    Stopped("STOPPED"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	LifecycleOperationMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    LifecycleOperationMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<LifecycleOperationMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			LifecycleOperationMode.values());
+    public static final JsonEnum.Deserializer<LifecycleOperationMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        LifecycleOperationMode.values()
+    );
 }

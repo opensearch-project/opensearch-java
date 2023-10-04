@@ -37,29 +37,29 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum Bytes implements JsonEnum {
-	Bytes("b"),
+    Bytes("b"),
 
-	KiloBytes("kb"),
+    KiloBytes("kb"),
 
-	MegaBytes("mb"),
+    MegaBytes("mb"),
 
-	GigaBytes("gb"),
+    GigaBytes("gb"),
 
-	TeraBytes("tb"),
+    TeraBytes("tb"),
 
-	PetaBytes("pb"),
+    PetaBytes("pb"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	Bytes(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    Bytes(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<Bytes> _DESERIALIZER = new JsonEnum.Deserializer<>(Bytes.values());
+    public static final JsonEnum.Deserializer<Bytes> _DESERIALIZER = new JsonEnum.Deserializer<>(Bytes.values());
 }

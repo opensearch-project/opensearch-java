@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,92 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.GeoLinePoint
 
 @JsonpDeserializable
 public class GeoLinePoint implements JsonpSerializable {
-	private final String field;
+    private final String field;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GeoLinePoint(Builder builder) {
+    private GeoLinePoint(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-	}
+    }
 
-	public static GeoLinePoint of(Function<Builder, ObjectBuilder<GeoLinePoint>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GeoLinePoint of(Function<Builder, ObjectBuilder<GeoLinePoint>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("field");
-		generator.write(this.field);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GeoLinePoint}.
-	 */
+    /**
+     * Builder for {@link GeoLinePoint}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLinePoint> {
-		private String field;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLinePoint> {
+        private String field;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GeoLinePoint}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GeoLinePoint build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GeoLinePoint}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GeoLinePoint build() {
+            _checkSingleUse();
 
-			return new GeoLinePoint(this);
-		}
-	}
+            return new GeoLinePoint(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GeoLinePoint}
-	 */
-	public static final JsonpDeserializer<GeoLinePoint> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoLinePoint::setupGeoLinePointDeserializer);
+    /**
+     * Json deserializer for {@link GeoLinePoint}
+     */
+    public static final JsonpDeserializer<GeoLinePoint> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GeoLinePoint::setupGeoLinePointDeserializer
+    );
 
-	protected static void setupGeoLinePointDeserializer(ObjectDeserializer<GeoLinePoint.Builder> op) {
+    protected static void setupGeoLinePointDeserializer(ObjectDeserializer<GeoLinePoint.Builder> op) {
 
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 
-	}
+    }
 
 }

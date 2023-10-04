@@ -35,29 +35,27 @@ package org.opensearch.client.opensearch._types.mapping;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum IndexOptions implements JsonEnum {
-	Docs("docs"),
+    Docs("docs"),
 
-	Freqs("freqs"),
+    Freqs("freqs"),
 
-	Positions("positions"),
+    Positions("positions"),
 
-	Offsets("offsets"),
+    Offsets("offsets"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	IndexOptions(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    IndexOptions(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<IndexOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IndexOptions.values());
+    public static final JsonEnum.Deserializer<IndexOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(IndexOptions.values());
 }

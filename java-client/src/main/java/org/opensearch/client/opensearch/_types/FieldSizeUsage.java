@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,122 +44,121 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.FieldSizeUsage
 
 @JsonpDeserializable
 public class FieldSizeUsage implements JsonpSerializable {
-	@Nullable
-	private final String size;
+    @Nullable
+    private final String size;
 
-	private final long sizeInBytes;
+    private final long sizeInBytes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FieldSizeUsage(Builder builder) {
+    private FieldSizeUsage(Builder builder) {
 
-		this.size = builder.size;
-		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+        this.size = builder.size;
+        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 
-	}
+    }
 
-	public static FieldSizeUsage of(Function<Builder, ObjectBuilder<FieldSizeUsage>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FieldSizeUsage of(Function<Builder, ObjectBuilder<FieldSizeUsage>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public final String size() {
-		return this.size;
-	}
+    /**
+     * API name: {@code size}
+     */
+    @Nullable
+    public final String size() {
+        return this.size;
+    }
 
-	/**
-	 * Required - API name: {@code size_in_bytes}
-	 */
-	public final long sizeInBytes() {
-		return this.sizeInBytes;
-	}
+    /**
+     * Required - API name: {@code size_in_bytes}
+     */
+    public final long sizeInBytes() {
+        return this.sizeInBytes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.size != null) {
-			generator.writeKey("size");
-			generator.write(this.size);
+        if (this.size != null) {
+            generator.writeKey("size");
+            generator.write(this.size);
 
-		}
-		generator.writeKey("size_in_bytes");
-		generator.write(this.sizeInBytes);
+        }
+        generator.writeKey("size_in_bytes");
+        generator.write(this.sizeInBytes);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FieldSizeUsage}.
-	 */
+    /**
+     * Builder for {@link FieldSizeUsage}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSizeUsage> {
-		@Nullable
-		private String size;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSizeUsage> {
+        @Nullable
+        private String size;
 
-		private Long sizeInBytes;
+        private Long sizeInBytes;
 
-		/**
-		 * API name: {@code size}
-		 */
-		public final Builder size(@Nullable String value) {
-			this.size = value;
-			return this;
-		}
+        /**
+         * API name: {@code size}
+         */
+        public final Builder size(@Nullable String value) {
+            this.size = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code size_in_bytes}
-		 */
-		public final Builder sizeInBytes(long value) {
-			this.sizeInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code size_in_bytes}
+         */
+        public final Builder sizeInBytes(long value) {
+            this.sizeInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FieldSizeUsage}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FieldSizeUsage build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FieldSizeUsage}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FieldSizeUsage build() {
+            _checkSingleUse();
 
-			return new FieldSizeUsage(this);
-		}
-	}
+            return new FieldSizeUsage(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FieldSizeUsage}
-	 */
-	public static final JsonpDeserializer<FieldSizeUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldSizeUsage::setupFieldSizeUsageDeserializer);
+    /**
+     * Json deserializer for {@link FieldSizeUsage}
+     */
+    public static final JsonpDeserializer<FieldSizeUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FieldSizeUsage::setupFieldSizeUsageDeserializer
+    );
 
-	protected static void setupFieldSizeUsageDeserializer(ObjectDeserializer<FieldSizeUsage.Builder> op) {
+    protected static void setupFieldSizeUsageDeserializer(ObjectDeserializer<FieldSizeUsage.Builder> op) {
 
-		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
-		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
+        op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
+        op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
 
-	}
+    }
 
 }

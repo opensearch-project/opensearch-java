@@ -32,146 +32,146 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
-import org.opensearch.client.opensearch._types.GeoLocation;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.GeoLocation;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoCentroidAggregate
 
 @JsonpDeserializable
 public class GeoCentroidAggregate extends AggregateBase implements AggregateVariant {
-	private final long count;
+    private final long count;
 
-	@Nullable
-	private final GeoLocation location;
+    @Nullable
+    private final GeoLocation location;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GeoCentroidAggregate(Builder builder) {
-		super(builder);
+    private GeoCentroidAggregate(Builder builder) {
+        super(builder);
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.location = builder.location;
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+        this.location = builder.location;
 
-	}
+    }
 
-	public static GeoCentroidAggregate of(Function<Builder, ObjectBuilder<GeoCentroidAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GeoCentroidAggregate of(Function<Builder, ObjectBuilder<GeoCentroidAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.GeoCentroid;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.GeoCentroid;
+    }
 
-	/**
-	 * Required - API name: {@code count}
-	 */
-	public final long count() {
-		return this.count;
-	}
+    /**
+     * Required - API name: {@code count}
+     */
+    public final long count() {
+        return this.count;
+    }
 
-	/**
-	 * API name: {@code location}
-	 */
-	@Nullable
-	public final GeoLocation location() {
-		return this.location;
-	}
+    /**
+     * API name: {@code location}
+     */
+    @Nullable
+    public final GeoLocation location() {
+        return this.location;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("count");
-		generator.write(this.count);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("count");
+        generator.write(this.count);
 
-		if (this.location != null) {
-			generator.writeKey("location");
-			this.location.serialize(generator, mapper);
+        if (this.location != null) {
+            generator.writeKey("location");
+            this.location.serialize(generator, mapper);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GeoCentroidAggregate}.
-	 */
+    /**
+     * Builder for {@link GeoCentroidAggregate}.
+     */
 
-	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<GeoCentroidAggregate> {
-		private Long count;
+    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoCentroidAggregate> {
+        private Long count;
 
-		@Nullable
-		private GeoLocation location;
+        @Nullable
+        private GeoLocation location;
 
-		/**
-		 * Required - API name: {@code count}
-		 */
-		public final Builder count(long value) {
-			this.count = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code count}
+         */
+        public final Builder count(long value) {
+            this.count = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code location}
-		 */
-		public final Builder location(@Nullable GeoLocation value) {
-			this.location = value;
-			return this;
-		}
+        /**
+         * API name: {@code location}
+         */
+        public final Builder location(@Nullable GeoLocation value) {
+            this.location = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code location}
-		 */
-		public final Builder location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
-			return this.location(fn.apply(new GeoLocation.Builder()).build());
-		}
+        /**
+         * API name: {@code location}
+         */
+        public final Builder location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+            return this.location(fn.apply(new GeoLocation.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GeoCentroidAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GeoCentroidAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GeoCentroidAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GeoCentroidAggregate build() {
+            _checkSingleUse();
 
-			return new GeoCentroidAggregate(this);
-		}
-	}
+            return new GeoCentroidAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GeoCentroidAggregate}
-	 */
-	public static final JsonpDeserializer<GeoCentroidAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoCentroidAggregate::setupGeoCentroidAggregateDeserializer);
+    /**
+     * Json deserializer for {@link GeoCentroidAggregate}
+     */
+    public static final JsonpDeserializer<GeoCentroidAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GeoCentroidAggregate::setupGeoCentroidAggregateDeserializer
+    );
 
-	protected static void setupGeoCentroidAggregateDeserializer(ObjectDeserializer<GeoCentroidAggregate.Builder> op) {
-		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(Builder::location, GeoLocation._DESERIALIZER, "location");
+    protected static void setupGeoCentroidAggregateDeserializer(ObjectDeserializer<GeoCentroidAggregate.Builder> op) {
+        AggregateBase.setupAggregateBaseDeserializer(op);
+        op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+        op.add(Builder::location, GeoLocation._DESERIALIZER, "location");
 
-	}
+    }
 
 }

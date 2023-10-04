@@ -32,86 +32,84 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.mapping.VersionProperty
 
-
 @JsonpDeserializable
 public class VersionProperty extends DocValuesPropertyBase implements PropertyVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private VersionProperty(Builder builder) {
-		super(builder);
+    private VersionProperty(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static VersionProperty of(Function<Builder, ObjectBuilder<VersionProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static VersionProperty of(Function<Builder, ObjectBuilder<VersionProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Version;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Version;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "version");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "version");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link VersionProperty}.
-	 */
+    /**
+     * Builder for {@link VersionProperty}.
+     */
 
-	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<VersionProperty> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<VersionProperty> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link VersionProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public VersionProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link VersionProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public VersionProperty build() {
+            _checkSingleUse();
 
-			return new VersionProperty(this);
-		}
-	}
+            return new VersionProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link VersionProperty}
-	 */
-	public static final JsonpDeserializer<VersionProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			VersionProperty::setupVersionPropertyDeserializer);
+    /**
+     * Json deserializer for {@link VersionProperty}
+     */
+    public static final JsonpDeserializer<VersionProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        VersionProperty::setupVersionPropertyDeserializer
+    );
 
-	protected static void setupVersionPropertyDeserializer(ObjectDeserializer<VersionProperty.Builder> op) {
-		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
+    protected static void setupVersionPropertyDeserializer(ObjectDeserializer<VersionProperty.Builder> op) {
+        DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

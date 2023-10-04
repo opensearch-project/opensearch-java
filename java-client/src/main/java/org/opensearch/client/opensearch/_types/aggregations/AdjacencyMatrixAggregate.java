@@ -32,79 +32,77 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.AdjacencyMatrixAggregate
 
 @JsonpDeserializable
-public class AdjacencyMatrixAggregate extends MultiBucketAggregateBase<AdjacencyMatrixBucket>
-		implements
-			AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+public class AdjacencyMatrixAggregate extends MultiBucketAggregateBase<AdjacencyMatrixBucket> implements AggregateVariant {
+    // ---------------------------------------------------------------------------------------------
 
-	private AdjacencyMatrixAggregate(Builder builder) {
-		super(builder);
+    private AdjacencyMatrixAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static AdjacencyMatrixAggregate of(Function<Builder, ObjectBuilder<AdjacencyMatrixAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static AdjacencyMatrixAggregate of(Function<Builder, ObjectBuilder<AdjacencyMatrixAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.AdjacencyMatrix;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.AdjacencyMatrix;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link AdjacencyMatrixAggregate}.
-	 */
+    /**
+     * Builder for {@link AdjacencyMatrixAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<AdjacencyMatrixBucket, Builder>
-			implements
-				ObjectBuilder<AdjacencyMatrixAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<AdjacencyMatrixBucket, Builder>
+        implements
+            ObjectBuilder<AdjacencyMatrixAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link AdjacencyMatrixAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public AdjacencyMatrixAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link AdjacencyMatrixAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public AdjacencyMatrixAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new AdjacencyMatrixAggregate(this);
-		}
-	}
+            return new AdjacencyMatrixAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link AdjacencyMatrixAggregate}
-	 */
-	public static final JsonpDeserializer<AdjacencyMatrixAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AdjacencyMatrixAggregate::setupAdjacencyMatrixAggregateDeserializer);
+    /**
+     * Json deserializer for {@link AdjacencyMatrixAggregate}
+     */
+    public static final JsonpDeserializer<AdjacencyMatrixAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        AdjacencyMatrixAggregate::setupAdjacencyMatrixAggregateDeserializer
+    );
 
-	protected static void setupAdjacencyMatrixAggregateDeserializer(
-			ObjectDeserializer<AdjacencyMatrixAggregate.Builder> op) {
-		setupMultiBucketAggregateBaseDeserializer(op, AdjacencyMatrixBucket._DESERIALIZER);
+    protected static void setupAdjacencyMatrixAggregateDeserializer(ObjectDeserializer<AdjacencyMatrixAggregate.Builder> op) {
+        setupMultiBucketAggregateBaseDeserializer(op, AdjacencyMatrixBucket._DESERIALIZER);
 
-	}
+    }
 
 }

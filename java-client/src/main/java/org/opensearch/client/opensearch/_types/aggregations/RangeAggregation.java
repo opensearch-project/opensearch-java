@@ -32,264 +32,263 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
-import org.opensearch.client.opensearch._types.Script;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RangeAggregation
 
-
 @JsonpDeserializable
 public class RangeAggregation extends BucketAggregationBase implements AggregationVariant {
-	@Nullable
-	private final String field;
+    @Nullable
+    private final String field;
 
-	@Nullable
-	private final Integer missing;
+    @Nullable
+    private final Integer missing;
 
-	private final List<AggregationRange> ranges;
+    private final List<AggregationRange> ranges;
 
-	@Nullable
-	private final Script script;
+    @Nullable
+    private final Script script;
 
-	@Nullable
-	private final Boolean keyed;
+    @Nullable
+    private final Boolean keyed;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RangeAggregation(Builder builder) {
-		super(builder);
+    private RangeAggregation(Builder builder) {
+        super(builder);
 
-		this.field = builder.field;
-		this.missing = builder.missing;
-		this.ranges = ApiTypeHelper.unmodifiable(builder.ranges);
-		this.script = builder.script;
-		this.keyed = builder.keyed;
+        this.field = builder.field;
+        this.missing = builder.missing;
+        this.ranges = ApiTypeHelper.unmodifiable(builder.ranges);
+        this.script = builder.script;
+        this.keyed = builder.keyed;
 
-	}
+    }
 
-	public static RangeAggregation of(Function<Builder, ObjectBuilder<RangeAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RangeAggregation of(Function<Builder, ObjectBuilder<RangeAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Range;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.Range;
+    }
 
-	/**
-	 * API name: {@code field}
-	 */
-	@Nullable
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * API name: {@code field}
+     */
+    @Nullable
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * API name: {@code missing}
-	 */
-	@Nullable
-	public final Integer missing() {
-		return this.missing;
-	}
+    /**
+     * API name: {@code missing}
+     */
+    @Nullable
+    public final Integer missing() {
+        return this.missing;
+    }
 
-	/**
-	 * API name: {@code ranges}
-	 */
-	public final List<AggregationRange> ranges() {
-		return this.ranges;
-	}
+    /**
+     * API name: {@code ranges}
+     */
+    public final List<AggregationRange> ranges() {
+        return this.ranges;
+    }
 
-	/**
-	 * API name: {@code script}
-	 */
-	@Nullable
-	public final Script script() {
-		return this.script;
-	}
+    /**
+     * API name: {@code script}
+     */
+    @Nullable
+    public final Script script() {
+        return this.script;
+    }
 
-	/**
-	 * API name: {@code keyed}
-	 */
-	@Nullable
-	public final Boolean keyed() {
-		return this.keyed;
-	}
+    /**
+     * API name: {@code keyed}
+     */
+    @Nullable
+    public final Boolean keyed() {
+        return this.keyed;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.field != null) {
-			generator.writeKey("field");
-			generator.write(this.field);
+        super.serializeInternal(generator, mapper);
+        if (this.field != null) {
+            generator.writeKey("field");
+            generator.write(this.field);
 
-		}
-		if (this.missing != null) {
-			generator.writeKey("missing");
-			generator.write(this.missing);
+        }
+        if (this.missing != null) {
+            generator.writeKey("missing");
+            generator.write(this.missing);
 
-		}
-		if (ApiTypeHelper.isDefined(this.ranges)) {
-			generator.writeKey("ranges");
-			generator.writeStartArray();
-			for (AggregationRange item0 : this.ranges) {
-				item0.serialize(generator, mapper);
+        }
+        if (ApiTypeHelper.isDefined(this.ranges)) {
+            generator.writeKey("ranges");
+            generator.writeStartArray();
+            for (AggregationRange item0 : this.ranges) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.script != null) {
-			generator.writeKey("script");
-			this.script.serialize(generator, mapper);
+        }
+        if (this.script != null) {
+            generator.writeKey("script");
+            this.script.serialize(generator, mapper);
 
-		}
-		if (this.keyed != null) {
-			generator.writeKey("keyed");
-			generator.write(this.keyed);
+        }
+        if (this.keyed != null) {
+            generator.writeKey("keyed");
+            generator.write(this.keyed);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RangeAggregation}.
-	 */
+    /**
+     * Builder for {@link RangeAggregation}.
+     */
 
-	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RangeAggregation> {
-		@Nullable
-		private String field;
+    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<RangeAggregation> {
+        @Nullable
+        private String field;
 
-		@Nullable
-		private Integer missing;
+        @Nullable
+        private Integer missing;
 
-		@Nullable
-		private List<AggregationRange> ranges;
+        @Nullable
+        private List<AggregationRange> ranges;
 
-		@Nullable
-		private Script script;
+        @Nullable
+        private Script script;
 
-		@Nullable
-		private Boolean keyed;
+        @Nullable
+        private Boolean keyed;
 
-		/**
-		 * API name: {@code field}
-		 */
-		public final Builder field(@Nullable String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * API name: {@code field}
+         */
+        public final Builder field(@Nullable String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code missing}
-		 */
-		public final Builder missing(@Nullable Integer value) {
-			this.missing = value;
-			return this;
-		}
+        /**
+         * API name: {@code missing}
+         */
+        public final Builder missing(@Nullable Integer value) {
+            this.missing = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code ranges}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>ranges</code>.
-		 */
-		public final Builder ranges(List<AggregationRange> list) {
-			this.ranges = _listAddAll(this.ranges, list);
-			return this;
-		}
+        /**
+         * API name: {@code ranges}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>ranges</code>.
+         */
+        public final Builder ranges(List<AggregationRange> list) {
+            this.ranges = _listAddAll(this.ranges, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code ranges}
-		 * <p>
-		 * Adds one or more values to <code>ranges</code>.
-		 */
-		public final Builder ranges(AggregationRange value, AggregationRange... values) {
-			this.ranges = _listAdd(this.ranges, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code ranges}
+         * <p>
+         * Adds one or more values to <code>ranges</code>.
+         */
+        public final Builder ranges(AggregationRange value, AggregationRange... values) {
+            this.ranges = _listAdd(this.ranges, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code ranges}
-		 * <p>
-		 * Adds a value to <code>ranges</code> using a builder lambda.
-		 */
-		public final Builder ranges(Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>> fn) {
-			return ranges(fn.apply(new AggregationRange.Builder()).build());
-		}
+        /**
+         * API name: {@code ranges}
+         * <p>
+         * Adds a value to <code>ranges</code> using a builder lambda.
+         */
+        public final Builder ranges(Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>> fn) {
+            return ranges(fn.apply(new AggregationRange.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code script}
-		 */
-		public final Builder script(@Nullable Script value) {
-			this.script = value;
-			return this;
-		}
+        /**
+         * API name: {@code script}
+         */
+        public final Builder script(@Nullable Script value) {
+            this.script = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code script}
-		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
-		}
+        /**
+         * API name: {@code script}
+         */
+        public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+            return this.script(fn.apply(new Script.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code keyed}
-		 */
-		public final Builder keyed(@Nullable Boolean value) {
-			this.keyed = value;
-			return this;
-		}
+        /**
+         * API name: {@code keyed}
+         */
+        public final Builder keyed(@Nullable Boolean value) {
+            this.keyed = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RangeAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RangeAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RangeAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RangeAggregation build() {
+            _checkSingleUse();
 
-			return new RangeAggregation(this);
-		}
-	}
+            return new RangeAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RangeAggregation}
-	 */
-	public static final JsonpDeserializer<RangeAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RangeAggregation::setupRangeAggregationDeserializer);
+    /**
+     * Json deserializer for {@link RangeAggregation}
+     */
+    public static final JsonpDeserializer<RangeAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RangeAggregation::setupRangeAggregationDeserializer
+    );
 
-	protected static void setupRangeAggregationDeserializer(ObjectDeserializer<RangeAggregation.Builder> op) {
-		setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::missing, JsonpDeserializer.integerDeserializer(), "missing");
-		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(AggregationRange._DESERIALIZER), "ranges");
-		op.add(Builder::script, Script._DESERIALIZER, "script");
-		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
+    protected static void setupRangeAggregationDeserializer(ObjectDeserializer<RangeAggregation.Builder> op) {
+        setupBucketAggregationBaseDeserializer(op);
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::missing, JsonpDeserializer.integerDeserializer(), "missing");
+        op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(AggregationRange._DESERIALIZER), "ranges");
+        op.add(Builder::script, Script._DESERIALIZER, "script");
+        op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 
-	}
+    }
 
 }

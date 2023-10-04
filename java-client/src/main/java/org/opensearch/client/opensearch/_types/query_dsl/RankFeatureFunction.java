@@ -36,17 +36,12 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.query_dsl.RankFeatureFunction
 
-
-
 public abstract class RankFeatureFunction {
-	public RankFeatureFunction() {
-	}
+    public RankFeatureFunction() {}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ObjectBuilderBase {
-		protected abstract BuilderT self();
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+        protected abstract BuilderT self();
 
-	}
+    }
 
 }

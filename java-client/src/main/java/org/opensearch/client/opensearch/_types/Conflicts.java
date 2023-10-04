@@ -37,22 +37,21 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum Conflicts implements JsonEnum {
-	Abort("abort"),
+    Abort("abort"),
 
-	Proceed("proceed"),
+    Proceed("proceed"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	Conflicts(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    Conflicts(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<Conflicts> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			Conflicts.values());
+    public static final JsonEnum.Deserializer<Conflicts> _DESERIALIZER = new JsonEnum.Deserializer<>(Conflicts.values());
 }

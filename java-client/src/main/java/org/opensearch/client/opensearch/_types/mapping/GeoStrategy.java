@@ -35,25 +35,23 @@ package org.opensearch.client.opensearch._types.mapping;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum GeoStrategy implements JsonEnum {
-	Recursive("recursive"),
+    Recursive("recursive"),
 
-	Term("term"),
+    Term("term"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	GeoStrategy(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    GeoStrategy(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<GeoStrategy> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			GeoStrategy.values());
+    public static final JsonEnum.Deserializer<GeoStrategy> _DESERIALIZER = new JsonEnum.Deserializer<>(GeoStrategy.values());
 }

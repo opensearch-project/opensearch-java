@@ -32,116 +32,117 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MedianAbsoluteDeviationAggregation
 
 @JsonpDeserializable
 public class MedianAbsoluteDeviationAggregation extends FormatMetricAggregationBase implements AggregationVariant {
-	@Nullable
-	private final Double compression;
+    @Nullable
+    private final Double compression;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MedianAbsoluteDeviationAggregation(Builder builder) {
-		super(builder);
+    private MedianAbsoluteDeviationAggregation(Builder builder) {
+        super(builder);
 
-		this.compression = builder.compression;
+        this.compression = builder.compression;
 
-	}
+    }
 
-	public static MedianAbsoluteDeviationAggregation of(
-			Function<Builder, ObjectBuilder<MedianAbsoluteDeviationAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MedianAbsoluteDeviationAggregation of(Function<Builder, ObjectBuilder<MedianAbsoluteDeviationAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.MedianAbsoluteDeviation;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.MedianAbsoluteDeviation;
+    }
 
-	/**
-	 * API name: {@code compression}
-	 */
-	@Nullable
-	public final Double compression() {
-		return this.compression;
-	}
+    /**
+     * API name: {@code compression}
+     */
+    @Nullable
+    public final Double compression() {
+        return this.compression;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.compression != null) {
-			generator.writeKey("compression");
-			generator.write(this.compression);
+        super.serializeInternal(generator, mapper);
+        if (this.compression != null) {
+            generator.writeKey("compression");
+            generator.write(this.compression);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MedianAbsoluteDeviationAggregation}.
-	 */
+    /**
+     * Builder for {@link MedianAbsoluteDeviationAggregation}.
+     */
 
-	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<MedianAbsoluteDeviationAggregation> {
-		@Nullable
-		private Double compression;
+    public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<MedianAbsoluteDeviationAggregation> {
+        @Nullable
+        private Double compression;
 
-		/**
-		 * API name: {@code compression}
-		 */
-		public final Builder compression(@Nullable Double value) {
-			this.compression = value;
-			return this;
-		}
+        /**
+         * API name: {@code compression}
+         */
+        public final Builder compression(@Nullable Double value) {
+            this.compression = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MedianAbsoluteDeviationAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MedianAbsoluteDeviationAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MedianAbsoluteDeviationAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MedianAbsoluteDeviationAggregation build() {
+            _checkSingleUse();
 
-			return new MedianAbsoluteDeviationAggregation(this);
-		}
-	}
+            return new MedianAbsoluteDeviationAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MedianAbsoluteDeviationAggregation}
-	 */
-	public static final JsonpDeserializer<MedianAbsoluteDeviationAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new,
-					MedianAbsoluteDeviationAggregation::setupMedianAbsoluteDeviationAggregationDeserializer);
+    /**
+     * Json deserializer for {@link MedianAbsoluteDeviationAggregation}
+     */
+    public static final JsonpDeserializer<MedianAbsoluteDeviationAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MedianAbsoluteDeviationAggregation::setupMedianAbsoluteDeviationAggregationDeserializer
+    );
 
-	protected static void setupMedianAbsoluteDeviationAggregationDeserializer(
-			ObjectDeserializer<MedianAbsoluteDeviationAggregation.Builder> op) {
-		setupFormatMetricAggregationBaseDeserializer(op);
-		op.add(Builder::compression, JsonpDeserializer.doubleDeserializer(), "compression");
+    protected static void setupMedianAbsoluteDeviationAggregationDeserializer(
+        ObjectDeserializer<MedianAbsoluteDeviationAggregation.Builder> op
+    ) {
+        setupFormatMetricAggregationBaseDeserializer(op);
+        op.add(Builder::compression, JsonpDeserializer.doubleDeserializer(), "compression");
 
-	}
+    }
 
 }

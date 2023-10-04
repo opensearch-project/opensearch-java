@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,100 +41,98 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.CardinalityAggregate
 
 @JsonpDeserializable
 public class CardinalityAggregate extends AggregateBase implements AggregateVariant {
-	private final long value;
+    private final long value;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CardinalityAggregate(Builder builder) {
-		super(builder);
+    private CardinalityAggregate(Builder builder) {
+        super(builder);
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
-	}
+    }
 
-	public static CardinalityAggregate of(Function<Builder, ObjectBuilder<CardinalityAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CardinalityAggregate of(Function<Builder, ObjectBuilder<CardinalityAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Cardinality;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Cardinality;
+    }
 
-	/**
-	 * Required - API name: {@code value}
-	 */
-	public final long value() {
-		return this.value;
-	}
+    /**
+     * Required - API name: {@code value}
+     */
+    public final long value() {
+        return this.value;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("value");
-		generator.write(this.value);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("value");
+        generator.write(this.value);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CardinalityAggregate}.
-	 */
+    /**
+     * Builder for {@link CardinalityAggregate}.
+     */
 
-	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<CardinalityAggregate> {
-		private Long value;
+    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<CardinalityAggregate> {
+        private Long value;
 
-		/**
-		 * Required - API name: {@code value}
-		 */
-		public final Builder value(long value) {
-			this.value = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code value}
+         */
+        public final Builder value(long value) {
+            this.value = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CardinalityAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CardinalityAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CardinalityAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CardinalityAggregate build() {
+            _checkSingleUse();
 
-			return new CardinalityAggregate(this);
-		}
-	}
+            return new CardinalityAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CardinalityAggregate}
-	 */
-	public static final JsonpDeserializer<CardinalityAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CardinalityAggregate::setupCardinalityAggregateDeserializer);
+    /**
+     * Json deserializer for {@link CardinalityAggregate}
+     */
+    public static final JsonpDeserializer<CardinalityAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CardinalityAggregate::setupCardinalityAggregateDeserializer
+    );
 
-	protected static void setupCardinalityAggregateDeserializer(ObjectDeserializer<CardinalityAggregate.Builder> op) {
-		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");
+    protected static void setupCardinalityAggregateDeserializer(ObjectDeserializer<CardinalityAggregate.Builder> op) {
+        AggregateBase.setupAggregateBaseDeserializer(op);
+        op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");
 
-	}
+    }
 
 }

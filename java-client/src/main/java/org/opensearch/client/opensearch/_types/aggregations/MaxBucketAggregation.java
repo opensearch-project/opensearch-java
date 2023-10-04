@@ -32,76 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.MaxBucketAggregation
-
 
 @JsonpDeserializable
 public class MaxBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MaxBucketAggregation(Builder builder) {
-		super(builder);
+    private MaxBucketAggregation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static MaxBucketAggregation of(Function<Builder, ObjectBuilder<MaxBucketAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MaxBucketAggregation of(Function<Builder, ObjectBuilder<MaxBucketAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.MaxBucket;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.MaxBucket;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MaxBucketAggregation}.
-	 */
+    /**
+     * Builder for {@link MaxBucketAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<MaxBucketAggregation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<MaxBucketAggregation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MaxBucketAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MaxBucketAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MaxBucketAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MaxBucketAggregation build() {
+            _checkSingleUse();
 
-			return new MaxBucketAggregation(this);
-		}
-	}
+            return new MaxBucketAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MaxBucketAggregation}
-	 */
-	public static final JsonpDeserializer<MaxBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MaxBucketAggregation::setupMaxBucketAggregationDeserializer);
+    /**
+     * Json deserializer for {@link MaxBucketAggregation}
+     */
+    public static final JsonpDeserializer<MaxBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MaxBucketAggregation::setupMaxBucketAggregationDeserializer
+    );
 
-	protected static void setupMaxBucketAggregationDeserializer(ObjectDeserializer<MaxBucketAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+    protected static void setupMaxBucketAggregationDeserializer(ObjectDeserializer<MaxBucketAggregation.Builder> op) {
+        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
-	}
+    }
 
 }

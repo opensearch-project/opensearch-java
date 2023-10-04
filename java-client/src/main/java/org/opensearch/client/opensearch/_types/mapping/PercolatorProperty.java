@@ -32,86 +32,84 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.mapping.PercolatorProperty
 
-
 @JsonpDeserializable
 public class PercolatorProperty extends PropertyBase implements PropertyVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PercolatorProperty(Builder builder) {
-		super(builder);
+    private PercolatorProperty(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static PercolatorProperty of(Function<Builder, ObjectBuilder<PercolatorProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PercolatorProperty of(Function<Builder, ObjectBuilder<PercolatorProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Percolator;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Percolator;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "percolator");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "percolator");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PercolatorProperty}.
-	 */
+    /**
+     * Builder for {@link PercolatorProperty}.
+     */
 
-	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PercolatorProperty> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<PercolatorProperty> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PercolatorProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PercolatorProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PercolatorProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PercolatorProperty build() {
+            _checkSingleUse();
 
-			return new PercolatorProperty(this);
-		}
-	}
+            return new PercolatorProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PercolatorProperty}
-	 */
-	public static final JsonpDeserializer<PercolatorProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PercolatorProperty::setupPercolatorPropertyDeserializer);
+    /**
+     * Json deserializer for {@link PercolatorProperty}
+     */
+    public static final JsonpDeserializer<PercolatorProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PercolatorProperty::setupPercolatorPropertyDeserializer
+    );
 
-	protected static void setupPercolatorPropertyDeserializer(ObjectDeserializer<PercolatorProperty.Builder> op) {
-		PropertyBase.setupPropertyBaseDeserializer(op);
+    protected static void setupPercolatorPropertyDeserializer(ObjectDeserializer<PercolatorProperty.Builder> op) {
+        PropertyBase.setupPropertyBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

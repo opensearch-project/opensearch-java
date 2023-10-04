@@ -36,47 +36,46 @@ package org.opensearch.client.opensearch._types.aggregations;
  * Builders for {@link MovingAverageAggregation} variants.
  */
 public class MovingAverageAggregationBuilders {
-	private MovingAverageAggregationBuilders() {
-	}
+    private MovingAverageAggregationBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link EwmaMovingAverageAggregation ewma}
-	 * {@code MovingAverageAggregation} variant.
-	 */
-	public static EwmaMovingAverageAggregation.Builder ewma() {
-		return new EwmaMovingAverageAggregation.Builder();
-	}
+    /**
+     * Creates a builder for the {@link EwmaMovingAverageAggregation ewma}
+     * {@code MovingAverageAggregation} variant.
+     */
+    public static EwmaMovingAverageAggregation.Builder ewma() {
+        return new EwmaMovingAverageAggregation.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link HoltMovingAverageAggregation holt}
-	 * {@code MovingAverageAggregation} variant.
-	 */
-	public static HoltMovingAverageAggregation.Builder holt() {
-		return new HoltMovingAverageAggregation.Builder();
-	}
+    /**
+     * Creates a builder for the {@link HoltMovingAverageAggregation holt}
+     * {@code MovingAverageAggregation} variant.
+     */
+    public static HoltMovingAverageAggregation.Builder holt() {
+        return new HoltMovingAverageAggregation.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link HoltWintersMovingAverageAggregation
-	 * holt_winters} {@code MovingAverageAggregation} variant.
-	 */
-	public static HoltWintersMovingAverageAggregation.Builder holtWinters() {
-		return new HoltWintersMovingAverageAggregation.Builder();
-	}
+    /**
+     * Creates a builder for the {@link HoltWintersMovingAverageAggregation
+     * holt_winters} {@code MovingAverageAggregation} variant.
+     */
+    public static HoltWintersMovingAverageAggregation.Builder holtWinters() {
+        return new HoltWintersMovingAverageAggregation.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link LinearMovingAverageAggregation linear}
-	 * {@code MovingAverageAggregation} variant.
-	 */
-	public static LinearMovingAverageAggregation.Builder linear() {
-		return new LinearMovingAverageAggregation.Builder();
-	}
+    /**
+     * Creates a builder for the {@link LinearMovingAverageAggregation linear}
+     * {@code MovingAverageAggregation} variant.
+     */
+    public static LinearMovingAverageAggregation.Builder linear() {
+        return new LinearMovingAverageAggregation.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link SimpleMovingAverageAggregation simple}
-	 * {@code MovingAverageAggregation} variant.
-	 */
-	public static SimpleMovingAverageAggregation.Builder simple() {
-		return new SimpleMovingAverageAggregation.Builder();
-	}
+    /**
+     * Creates a builder for the {@link SimpleMovingAverageAggregation simple}
+     * {@code MovingAverageAggregation} variant.
+     */
+    public static SimpleMovingAverageAggregation.Builder simple() {
+        return new SimpleMovingAverageAggregation.Builder();
+    }
 
 }

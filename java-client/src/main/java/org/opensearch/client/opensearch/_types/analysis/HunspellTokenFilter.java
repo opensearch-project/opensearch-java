@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,175 +41,172 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.analysis.HunspellTokenFilter
 
-
 @JsonpDeserializable
 public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final boolean dedup;
+    private final boolean dedup;
 
-	private final String dictionary;
+    private final String dictionary;
 
-	private final String locale;
+    private final String locale;
 
-	private final boolean longestOnly;
+    private final boolean longestOnly;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private HunspellTokenFilter(Builder builder) {
-		super(builder);
+    private HunspellTokenFilter(Builder builder) {
+        super(builder);
 
-		this.dedup = ApiTypeHelper.requireNonNull(builder.dedup, this, "dedup");
-		this.dictionary = ApiTypeHelper.requireNonNull(builder.dictionary, this, "dictionary");
-		this.locale = ApiTypeHelper.requireNonNull(builder.locale, this, "locale");
-		this.longestOnly = ApiTypeHelper.requireNonNull(builder.longestOnly, this, "longestOnly");
+        this.dedup = ApiTypeHelper.requireNonNull(builder.dedup, this, "dedup");
+        this.dictionary = ApiTypeHelper.requireNonNull(builder.dictionary, this, "dictionary");
+        this.locale = ApiTypeHelper.requireNonNull(builder.locale, this, "locale");
+        this.longestOnly = ApiTypeHelper.requireNonNull(builder.longestOnly, this, "longestOnly");
 
-	}
+    }
 
-	public static HunspellTokenFilter of(Function<Builder, ObjectBuilder<HunspellTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static HunspellTokenFilter of(Function<Builder, ObjectBuilder<HunspellTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.Hunspell;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.Hunspell;
+    }
 
-	/**
-	 * Required - API name: {@code dedup}
-	 */
-	public final boolean dedup() {
-		return this.dedup;
-	}
+    /**
+     * Required - API name: {@code dedup}
+     */
+    public final boolean dedup() {
+        return this.dedup;
+    }
 
-	/**
-	 * Required - API name: {@code dictionary}
-	 */
-	public final String dictionary() {
-		return this.dictionary;
-	}
+    /**
+     * Required - API name: {@code dictionary}
+     */
+    public final String dictionary() {
+        return this.dictionary;
+    }
 
-	/**
-	 * Required - API name: {@code locale}
-	 */
-	public final String locale() {
-		return this.locale;
-	}
+    /**
+     * Required - API name: {@code locale}
+     */
+    public final String locale() {
+        return this.locale;
+    }
 
-	/**
-	 * Required - API name: {@code longest_only}
-	 */
-	public final boolean longestOnly() {
-		return this.longestOnly;
-	}
+    /**
+     * Required - API name: {@code longest_only}
+     */
+    public final boolean longestOnly() {
+        return this.longestOnly;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "hunspell");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("dedup");
-		generator.write(this.dedup);
+        generator.write("type", "hunspell");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("dedup");
+        generator.write(this.dedup);
 
-		generator.writeKey("dictionary");
-		generator.write(this.dictionary);
+        generator.writeKey("dictionary");
+        generator.write(this.dictionary);
 
-		generator.writeKey("locale");
-		generator.write(this.locale);
+        generator.writeKey("locale");
+        generator.write(this.locale);
 
-		generator.writeKey("longest_only");
-		generator.write(this.longestOnly);
+        generator.writeKey("longest_only");
+        generator.write(this.longestOnly);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link HunspellTokenFilter}.
-	 */
+    /**
+     * Builder for {@link HunspellTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<HunspellTokenFilter> {
-		private Boolean dedup;
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<HunspellTokenFilter> {
+        private Boolean dedup;
 
-		private String dictionary;
+        private String dictionary;
 
-		private String locale;
+        private String locale;
 
-		private Boolean longestOnly;
+        private Boolean longestOnly;
 
-		/**
-		 * Required - API name: {@code dedup}
-		 */
-		public final Builder dedup(boolean value) {
-			this.dedup = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code dedup}
+         */
+        public final Builder dedup(boolean value) {
+            this.dedup = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code dictionary}
-		 */
-		public final Builder dictionary(String value) {
-			this.dictionary = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code dictionary}
+         */
+        public final Builder dictionary(String value) {
+            this.dictionary = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code locale}
-		 */
-		public final Builder locale(String value) {
-			this.locale = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code locale}
+         */
+        public final Builder locale(String value) {
+            this.locale = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code longest_only}
-		 */
-		public final Builder longestOnly(boolean value) {
-			this.longestOnly = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code longest_only}
+         */
+        public final Builder longestOnly(boolean value) {
+            this.longestOnly = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link HunspellTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public HunspellTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link HunspellTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public HunspellTokenFilter build() {
+            _checkSingleUse();
 
-			return new HunspellTokenFilter(this);
-		}
-	}
+            return new HunspellTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link HunspellTokenFilter}
-	 */
-	public static final JsonpDeserializer<HunspellTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HunspellTokenFilter::setupHunspellTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link HunspellTokenFilter}
+     */
+    public static final JsonpDeserializer<HunspellTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        HunspellTokenFilter::setupHunspellTokenFilterDeserializer
+    );
 
-	protected static void setupHunspellTokenFilterDeserializer(ObjectDeserializer<HunspellTokenFilter.Builder> op) {
-		setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::dedup, JsonpDeserializer.booleanDeserializer(), "dedup");
-		op.add(Builder::dictionary, JsonpDeserializer.stringDeserializer(), "dictionary");
-		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
-		op.add(Builder::longestOnly, JsonpDeserializer.booleanDeserializer(), "longest_only");
+    protected static void setupHunspellTokenFilterDeserializer(ObjectDeserializer<HunspellTokenFilter.Builder> op) {
+        setupTokenFilterBaseDeserializer(op);
+        op.add(Builder::dedup, JsonpDeserializer.booleanDeserializer(), "dedup");
+        op.add(Builder::dictionary, JsonpDeserializer.stringDeserializer(), "dictionary");
+        op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
+        op.add(Builder::longestOnly, JsonpDeserializer.booleanDeserializer(), "longest_only");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

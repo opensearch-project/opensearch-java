@@ -37,21 +37,21 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum OpType implements JsonEnum {
-	Index("index"),
+    Index("index"),
 
-	Create("create"),
+    Create("create"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	OpType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    OpType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<OpType> _DESERIALIZER = new JsonEnum.Deserializer<>(OpType.values());
+    public static final JsonEnum.Deserializer<OpType> _DESERIALIZER = new JsonEnum.Deserializer<>(OpType.values());
 }

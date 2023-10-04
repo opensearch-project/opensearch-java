@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,134 +41,133 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.SpanTermQuery
 
-
 @JsonpDeserializable
 public class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
-	// Single key dictionary
-	private final String field;
+    // Single key dictionary
+    private final String field;
 
-	private final String value;
+    private final String value;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SpanTermQuery(Builder builder) {
-		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+    private SpanTermQuery(Builder builder) {
+        super(builder);
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
-	}
+    }
 
-	public static SpanTermQuery of(Function<Builder, ObjectBuilder<SpanTermQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SpanTermQuery of(Function<Builder, ObjectBuilder<SpanTermQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * SpanQuery variant kind.
-	 */
-	@Override
-	public SpanQuery.Kind _spanQueryKind() {
-		return SpanQuery.Kind.SpanTerm;
-	}
+    /**
+     * SpanQuery variant kind.
+     */
+    @Override
+    public SpanQuery.Kind _spanQueryKind() {
+        return SpanQuery.Kind.SpanTerm;
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.SpanTerm;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.SpanTerm;
+    }
 
-	/**
-	 * Required - The target field
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - The target field
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * Required - API name: {@code value}
-	 */
-	public final String value() {
-		return this.value;
-	}
+    /**
+     * Required - API name: {@code value}
+     */
+    public final String value() {
+        return this.value;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(this.field);
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject(this.field);
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("value");
-		generator.write(this.value);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("value");
+        generator.write(this.value);
 
-		generator.writeEnd();
+        generator.writeEnd();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SpanTermQuery}.
-	 */
+    /**
+     * Builder for {@link SpanTermQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanTermQuery> {
-		private String field;
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanTermQuery> {
+        private String field;
 
-		/**
-		 * Required - The target field
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - The target field
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		private String value;
+        private String value;
 
-		/**
-		 * Required - API name: {@code value}
-		 */
-		public final Builder value(String value) {
-			this.value = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code value}
+         */
+        public final Builder value(String value) {
+            this.value = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SpanTermQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SpanTermQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SpanTermQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SpanTermQuery build() {
+            _checkSingleUse();
 
-			return new SpanTermQuery(this);
-		}
-	}
+            return new SpanTermQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SpanTermQuery}
-	 */
-	public static final JsonpDeserializer<SpanTermQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SpanTermQuery::setupSpanTermQueryDeserializer);
+    /**
+     * Json deserializer for {@link SpanTermQuery}
+     */
+    public static final JsonpDeserializer<SpanTermQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SpanTermQuery::setupSpanTermQueryDeserializer
+    );
 
-	protected static void setupSpanTermQueryDeserializer(ObjectDeserializer<SpanTermQuery.Builder> op) {
-		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
+    protected static void setupSpanTermQueryDeserializer(ObjectDeserializer<SpanTermQuery.Builder> op) {
+        QueryBase.setupQueryBaseDeserializer(op);
+        op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 
-		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
-		op.shortcutProperty("value");
+        op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+        op.shortcutProperty("value");
 
-	}
+    }
 
 }

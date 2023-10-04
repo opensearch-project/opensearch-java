@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,103 +41,100 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiStemmerTokenFilter
 
 @JsonpDeserializable
 public class KuromojiStemmerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final int minimumLength;
+    private final int minimumLength;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private KuromojiStemmerTokenFilter(Builder builder) {
-		super(builder);
+    private KuromojiStemmerTokenFilter(Builder builder) {
+        super(builder);
 
-		this.minimumLength = ApiTypeHelper.requireNonNull(builder.minimumLength, this, "minimumLength");
+        this.minimumLength = ApiTypeHelper.requireNonNull(builder.minimumLength, this, "minimumLength");
 
-	}
+    }
 
-	public static KuromojiStemmerTokenFilter of(Function<Builder, ObjectBuilder<KuromojiStemmerTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static KuromojiStemmerTokenFilter of(Function<Builder, ObjectBuilder<KuromojiStemmerTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.KuromojiStemmer;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.KuromojiStemmer;
+    }
 
-	/**
-	 * Required - API name: {@code minimum_length}
-	 */
-	public final int minimumLength() {
-		return this.minimumLength;
-	}
+    /**
+     * Required - API name: {@code minimum_length}
+     */
+    public final int minimumLength() {
+        return this.minimumLength;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "kuromoji_stemmer");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("minimum_length");
-		generator.write(this.minimumLength);
+        generator.write("type", "kuromoji_stemmer");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("minimum_length");
+        generator.write(this.minimumLength);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link KuromojiStemmerTokenFilter}.
-	 */
+    /**
+     * Builder for {@link KuromojiStemmerTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<KuromojiStemmerTokenFilter> {
-		private Integer minimumLength;
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<KuromojiStemmerTokenFilter> {
+        private Integer minimumLength;
 
-		/**
-		 * Required - API name: {@code minimum_length}
-		 */
-		public final Builder minimumLength(int value) {
-			this.minimumLength = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code minimum_length}
+         */
+        public final Builder minimumLength(int value) {
+            this.minimumLength = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link KuromojiStemmerTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public KuromojiStemmerTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link KuromojiStemmerTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public KuromojiStemmerTokenFilter build() {
+            _checkSingleUse();
 
-			return new KuromojiStemmerTokenFilter(this);
-		}
-	}
+            return new KuromojiStemmerTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link KuromojiStemmerTokenFilter}
-	 */
-	public static final JsonpDeserializer<KuromojiStemmerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, KuromojiStemmerTokenFilter::setupKuromojiStemmerTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link KuromojiStemmerTokenFilter}
+     */
+    public static final JsonpDeserializer<KuromojiStemmerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        KuromojiStemmerTokenFilter::setupKuromojiStemmerTokenFilterDeserializer
+    );
 
-	protected static void setupKuromojiStemmerTokenFilterDeserializer(
-			ObjectDeserializer<KuromojiStemmerTokenFilter.Builder> op) {
-		setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::minimumLength, JsonpDeserializer.integerDeserializer(), "minimum_length");
+    protected static void setupKuromojiStemmerTokenFilterDeserializer(ObjectDeserializer<KuromojiStemmerTokenFilter.Builder> op) {
+        setupTokenFilterBaseDeserializer(op);
+        op.add(Builder::minimumLength, JsonpDeserializer.integerDeserializer(), "minimum_length");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

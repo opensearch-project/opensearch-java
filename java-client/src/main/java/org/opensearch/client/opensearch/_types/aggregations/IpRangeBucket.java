@@ -32,135 +32,134 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.IpRangeBucket
 
-
 @JsonpDeserializable
 public class IpRangeBucket extends MultiBucketBase {
-	@Nullable
-	private final String from;
+    @Nullable
+    private final String from;
 
-	@Nullable
-	private final String to;
+    @Nullable
+    private final String to;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IpRangeBucket(Builder builder) {
-		super(builder);
+    private IpRangeBucket(Builder builder) {
+        super(builder);
 
-		this.from = builder.from;
-		this.to = builder.to;
+        this.from = builder.from;
+        this.to = builder.to;
 
-	}
+    }
 
-	public static IpRangeBucket of(Function<Builder, ObjectBuilder<IpRangeBucket>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IpRangeBucket of(Function<Builder, ObjectBuilder<IpRangeBucket>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code from}
-	 */
-	@Nullable
-	public final String from() {
-		return this.from;
-	}
+    /**
+     * API name: {@code from}
+     */
+    @Nullable
+    public final String from() {
+        return this.from;
+    }
 
-	/**
-	 * API name: {@code to}
-	 */
-	@Nullable
-	public final String to() {
-		return this.to;
-	}
+    /**
+     * API name: {@code to}
+     */
+    @Nullable
+    public final String to() {
+        return this.to;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.from != null) {
-			generator.writeKey("from");
-			generator.write(this.from);
+        super.serializeInternal(generator, mapper);
+        if (this.from != null) {
+            generator.writeKey("from");
+            generator.write(this.from);
 
-		}
-		if (this.to != null) {
-			generator.writeKey("to");
-			generator.write(this.to);
+        }
+        if (this.to != null) {
+            generator.writeKey("to");
+            generator.write(this.to);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IpRangeBucket}.
-	 */
+    /**
+     * Builder for {@link IpRangeBucket}.
+     */
 
-	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<IpRangeBucket> {
-		@Nullable
-		private String from;
+    public static class Builder extends MultiBucketBase.AbstractBuilder<Builder> implements ObjectBuilder<IpRangeBucket> {
+        @Nullable
+        private String from;
 
-		@Nullable
-		private String to;
+        @Nullable
+        private String to;
 
-		/**
-		 * API name: {@code from}
-		 */
-		public final Builder from(@Nullable String value) {
-			this.from = value;
-			return this;
-		}
+        /**
+         * API name: {@code from}
+         */
+        public final Builder from(@Nullable String value) {
+            this.from = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code to}
-		 */
-		public final Builder to(@Nullable String value) {
-			this.to = value;
-			return this;
-		}
+        /**
+         * API name: {@code to}
+         */
+        public final Builder to(@Nullable String value) {
+            this.to = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IpRangeBucket}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IpRangeBucket build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IpRangeBucket}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IpRangeBucket build() {
+            _checkSingleUse();
 
-			return new IpRangeBucket(this);
-		}
-	}
+            return new IpRangeBucket(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IpRangeBucket}
-	 */
-	public static final JsonpDeserializer<IpRangeBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IpRangeBucket::setupIpRangeBucketDeserializer);
+    /**
+     * Json deserializer for {@link IpRangeBucket}
+     */
+    public static final JsonpDeserializer<IpRangeBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IpRangeBucket::setupIpRangeBucketDeserializer
+    );
 
-	protected static void setupIpRangeBucketDeserializer(ObjectDeserializer<IpRangeBucket.Builder> op) {
-		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
-		op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
-		op.add(Builder::to, JsonpDeserializer.stringDeserializer(), "to");
+    protected static void setupIpRangeBucketDeserializer(ObjectDeserializer<IpRangeBucket.Builder> op) {
+        MultiBucketBase.setupMultiBucketBaseDeserializer(op);
+        op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
+        op.add(Builder::to, JsonpDeserializer.stringDeserializer(), "to");
 
-	}
+    }
 
 }
