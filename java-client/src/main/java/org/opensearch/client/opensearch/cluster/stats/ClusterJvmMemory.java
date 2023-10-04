@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.cluster.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,117 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterJvmMemory
 
-
 @JsonpDeserializable
 public class ClusterJvmMemory implements JsonpSerializable {
-	private final long heapMaxInBytes;
+    private final long heapMaxInBytes;
 
-	private final long heapUsedInBytes;
+    private final long heapUsedInBytes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ClusterJvmMemory(Builder builder) {
+    private ClusterJvmMemory(Builder builder) {
 
-		this.heapMaxInBytes = ApiTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes");
-		this.heapUsedInBytes = ApiTypeHelper.requireNonNull(builder.heapUsedInBytes, this, "heapUsedInBytes");
+        this.heapMaxInBytes = ApiTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes");
+        this.heapUsedInBytes = ApiTypeHelper.requireNonNull(builder.heapUsedInBytes, this, "heapUsedInBytes");
 
-	}
+    }
 
-	public static ClusterJvmMemory of(Function<Builder, ObjectBuilder<ClusterJvmMemory>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ClusterJvmMemory of(Function<Builder, ObjectBuilder<ClusterJvmMemory>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code heap_max_in_bytes}
-	 */
-	public final long heapMaxInBytes() {
-		return this.heapMaxInBytes;
-	}
+    /**
+     * Required - API name: {@code heap_max_in_bytes}
+     */
+    public final long heapMaxInBytes() {
+        return this.heapMaxInBytes;
+    }
 
-	/**
-	 * Required - API name: {@code heap_used_in_bytes}
-	 */
-	public final long heapUsedInBytes() {
-		return this.heapUsedInBytes;
-	}
+    /**
+     * Required - API name: {@code heap_used_in_bytes}
+     */
+    public final long heapUsedInBytes() {
+        return this.heapUsedInBytes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("heap_max_in_bytes");
-		generator.write(this.heapMaxInBytes);
+        generator.writeKey("heap_max_in_bytes");
+        generator.write(this.heapMaxInBytes);
 
-		generator.writeKey("heap_used_in_bytes");
-		generator.write(this.heapUsedInBytes);
+        generator.writeKey("heap_used_in_bytes");
+        generator.write(this.heapUsedInBytes);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ClusterJvmMemory}.
-	 */
+    /**
+     * Builder for {@link ClusterJvmMemory}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterJvmMemory> {
-		private Long heapMaxInBytes;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterJvmMemory> {
+        private Long heapMaxInBytes;
 
-		private Long heapUsedInBytes;
+        private Long heapUsedInBytes;
 
-		/**
-		 * Required - API name: {@code heap_max_in_bytes}
-		 */
-		public final Builder heapMaxInBytes(long value) {
-			this.heapMaxInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code heap_max_in_bytes}
+         */
+        public final Builder heapMaxInBytes(long value) {
+            this.heapMaxInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code heap_used_in_bytes}
-		 */
-		public final Builder heapUsedInBytes(long value) {
-			this.heapUsedInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code heap_used_in_bytes}
+         */
+        public final Builder heapUsedInBytes(long value) {
+            this.heapUsedInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ClusterJvmMemory}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ClusterJvmMemory build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ClusterJvmMemory}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ClusterJvmMemory build() {
+            _checkSingleUse();
 
-			return new ClusterJvmMemory(this);
-		}
-	}
+            return new ClusterJvmMemory(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ClusterJvmMemory}
-	 */
-	public static final JsonpDeserializer<ClusterJvmMemory> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ClusterJvmMemory::setupClusterJvmMemoryDeserializer);
+    /**
+     * Json deserializer for {@link ClusterJvmMemory}
+     */
+    public static final JsonpDeserializer<ClusterJvmMemory> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ClusterJvmMemory::setupClusterJvmMemoryDeserializer
+    );
 
-	protected static void setupClusterJvmMemoryDeserializer(ObjectDeserializer<ClusterJvmMemory.Builder> op) {
+    protected static void setupClusterJvmMemoryDeserializer(ObjectDeserializer<ClusterJvmMemory.Builder> op) {
 
-		op.add(Builder::heapMaxInBytes, JsonpDeserializer.longDeserializer(), "heap_max_in_bytes");
-		op.add(Builder::heapUsedInBytes, JsonpDeserializer.longDeserializer(), "heap_used_in_bytes");
+        op.add(Builder::heapMaxInBytes, JsonpDeserializer.longDeserializer(), "heap_max_in_bytes");
+        op.add(Builder::heapUsedInBytes, JsonpDeserializer.longDeserializer(), "heap_used_in_bytes");
 
-	}
+    }
 
 }

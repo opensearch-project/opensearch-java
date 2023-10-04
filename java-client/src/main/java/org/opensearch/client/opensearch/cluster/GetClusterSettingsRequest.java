@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.cluster;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -40,255 +44,254 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
-
 // typedef: cluster.get_settings.Request
 
 /**
  * Returns cluster settings.
- * 
+ *
  */
 
 public class GetClusterSettingsRequest extends RequestBase {
-	@Nullable
-	private final Boolean flatSettings;
+    @Nullable
+    private final Boolean flatSettings;
 
-	@Nullable
-	private final Boolean includeDefaults;
+    @Nullable
+    private final Boolean includeDefaults;
 
-	@Deprecated
-	@Nullable
-	private final Time masterTimeout;
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
 
-	@Nullable
-	private final Time clusterManagerTimeout;
+    @Nullable
+    private final Time clusterManagerTimeout;
 
-	@Nullable
-	private final Time timeout;
+    @Nullable
+    private final Time timeout;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetClusterSettingsRequest(Builder builder) {
+    private GetClusterSettingsRequest(Builder builder) {
 
-		this.flatSettings = builder.flatSettings;
-		this.includeDefaults = builder.includeDefaults;
-		this.masterTimeout = builder.masterTimeout;
-		this.clusterManagerTimeout = builder.clusterManagerTimeout;
-		this.timeout = builder.timeout;
+        this.flatSettings = builder.flatSettings;
+        this.includeDefaults = builder.includeDefaults;
+        this.masterTimeout = builder.masterTimeout;
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.timeout = builder.timeout;
 
-	}
+    }
 
-	public static GetClusterSettingsRequest of(Function<Builder, ObjectBuilder<GetClusterSettingsRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetClusterSettingsRequest of(Function<Builder, ObjectBuilder<GetClusterSettingsRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Return settings in flat format (default: false)
-	 * <p>
-	 * API name: {@code flat_settings}
-	 */
-	@Nullable
-	public final Boolean flatSettings() {
-		return this.flatSettings;
-	}
+    /**
+     * Return settings in flat format (default: false)
+     * <p>
+     * API name: {@code flat_settings}
+     */
+    @Nullable
+    public final Boolean flatSettings() {
+        return this.flatSettings;
+    }
 
-	/**
-	 * Whether to return all default clusters setting.
-	 * <p>
-	 * API name: {@code include_defaults}
-	 */
-	@Nullable
-	public final Boolean includeDefaults() {
-		return this.includeDefaults;
-	}
+    /**
+     * Whether to return all default clusters setting.
+     * <p>
+     * API name: {@code include_defaults}
+     */
+    @Nullable
+    public final Boolean includeDefaults() {
+        return this.includeDefaults;
+    }
 
-	/**
-	 * Explicit operation timeout for connection to master node
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Deprecated
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
+    /**
+     * Explicit operation timeout for connection to master node
+     * <p>
+     * API name: {@code master_timeout}
+     */
+    @Deprecated
+    @Nullable
+    public final Time masterTimeout() {
+        return this.masterTimeout;
+    }
 
-	/**
-	 * Explicit operation timeout for connection to cluster-manager node
-	 * <p>
-	 * API name: {@code cluster_manager_timeout}
-	 */
-	@Nullable
-	public final Time clusterManagerTimeout() {
-		return this.clusterManagerTimeout;
-	}
+    /**
+     * Explicit operation timeout for connection to cluster-manager node
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
 
-	/**
-	 * Explicit operation timeout
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public final Time timeout() {
-		return this.timeout;
-	}
+    /**
+     * Explicit operation timeout
+     * <p>
+     * API name: {@code timeout}
+     */
+    @Nullable
+    public final Time timeout() {
+        return this.timeout;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetClusterSettingsRequest}.
-	 */
+    /**
+     * Builder for {@link GetClusterSettingsRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetClusterSettingsRequest> {
-		@Nullable
-		private Boolean flatSettings;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetClusterSettingsRequest> {
+        @Nullable
+        private Boolean flatSettings;
 
-		@Nullable
-		private Boolean includeDefaults;
+        @Nullable
+        private Boolean includeDefaults;
 
-		@Deprecated
-		@Nullable
-		private Time masterTimeout;
+        @Deprecated
+        @Nullable
+        private Time masterTimeout;
 
-		@Nullable
-		private Time clusterManagerTimeout;
+        @Nullable
+        private Time clusterManagerTimeout;
 
-		@Nullable
-		private Time timeout;
+        @Nullable
+        private Time timeout;
 
-		/**
-		 * Return settings in flat format (default: false)
-		 * <p>
-		 * API name: {@code flat_settings}
-		 */
-		public final Builder flatSettings(@Nullable Boolean value) {
-			this.flatSettings = value;
-			return this;
-		}
+        /**
+         * Return settings in flat format (default: false)
+         * <p>
+         * API name: {@code flat_settings}
+         */
+        public final Builder flatSettings(@Nullable Boolean value) {
+            this.flatSettings = value;
+            return this;
+        }
 
-		/**
-		 * Whether to return all default clusters setting.
-		 * <p>
-		 * API name: {@code include_defaults}
-		 */
-		public final Builder includeDefaults(@Nullable Boolean value) {
-			this.includeDefaults = value;
-			return this;
-		}
+        /**
+         * Whether to return all default clusters setting.
+         * <p>
+         * API name: {@code include_defaults}
+         */
+        public final Builder includeDefaults(@Nullable Boolean value) {
+            this.includeDefaults = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout for connection to master node
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout for connection to master node
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.masterTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Explicit operation timeout for connection to cluster-manager node
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(@Nullable Time value) {
-			this.clusterManagerTimeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to cluster-manager node
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable Time value) {
-			this.timeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.timeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link GetClusterSettingsRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetClusterSettingsRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GetClusterSettingsRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetClusterSettingsRequest build() {
+            _checkSingleUse();
 
-			return new GetClusterSettingsRequest(this);
-		}
-	}
+            return new GetClusterSettingsRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cluster.get_settings}".
-	 */
-	public static final Endpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cluster.get_settings}".
+     */
+    public static final Endpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_cluster/settings";
+        // Request path
+        request -> {
+            return "/_cluster/settings";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.clusterManagerTimeout != null) {
-					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-				}
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
-				}
-				if (request.includeDefaults != null) {
-					params.put("include_defaults", String.valueOf(request.includeDefaults));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
+            if (request.clusterManagerTimeout != null) {
+                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
+            }
+            if (request.flatSettings != null) {
+                params.put("flat_settings", String.valueOf(request.flatSettings));
+            }
+            if (request.includeDefaults != null) {
+                params.put("include_defaults", String.valueOf(request.includeDefaults));
+            }
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetClusterSettingsResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        GetClusterSettingsResponse._DESERIALIZER
+    );
 }

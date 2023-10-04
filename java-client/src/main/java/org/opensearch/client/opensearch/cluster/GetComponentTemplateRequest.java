@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.cluster;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -40,261 +44,258 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
-
 // typedef: cluster.get_component_template.Request
 
 /**
  * Returns one or more component templates
- * 
+ *
  */
 
 public class GetComponentTemplateRequest extends RequestBase {
-	@Nullable
-	private final Boolean flatSettings;
+    @Nullable
+    private final Boolean flatSettings;
 
-	@Nullable
-	private final Boolean local;
+    @Nullable
+    private final Boolean local;
 
-	@Deprecated
-	@Nullable
-	private final Time masterTimeout;
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
 
-	@Nullable
-	private final Time clusterManagerTimeout;
+    @Nullable
+    private final Time clusterManagerTimeout;
 
-	@Nullable
-	private final String name;
+    @Nullable
+    private final String name;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetComponentTemplateRequest(Builder builder) {
+    private GetComponentTemplateRequest(Builder builder) {
 
-		this.flatSettings = builder.flatSettings;
-		this.local = builder.local;
-		this.masterTimeout = builder.masterTimeout;
-		this.clusterManagerTimeout = builder.clusterManagerTimeout;
-		this.name = builder.name;
+        this.flatSettings = builder.flatSettings;
+        this.local = builder.local;
+        this.masterTimeout = builder.masterTimeout;
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.name = builder.name;
 
-	}
+    }
 
-	public static GetComponentTemplateRequest of(Function<Builder, ObjectBuilder<GetComponentTemplateRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetComponentTemplateRequest of(Function<Builder, ObjectBuilder<GetComponentTemplateRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code flat_settings}
-	 */
-	@Nullable
-	public final Boolean flatSettings() {
-		return this.flatSettings;
-	}
+    /**
+     * API name: {@code flat_settings}
+     */
+    @Nullable
+    public final Boolean flatSettings() {
+        return this.flatSettings;
+    }
 
-	/**
-	 * Return local information, do not retrieve the state from master node
-	 * (default: false)
-	 * <p>
-	 * API name: {@code local}
-	 */
-	@Nullable
-	public final Boolean local() {
-		return this.local;
-	}
+    /**
+     * Return local information, do not retrieve the state from master node
+     * (default: false)
+     * <p>
+     * API name: {@code local}
+     */
+    @Nullable
+    public final Boolean local() {
+        return this.local;
+    }
 
-	/**
-	 * Explicit operation timeout for connection to master node
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Deprecated
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
+    /**
+     * Explicit operation timeout for connection to master node
+     * <p>
+     * API name: {@code master_timeout}
+     */
+    @Deprecated
+    @Nullable
+    public final Time masterTimeout() {
+        return this.masterTimeout;
+    }
 
-	/**
-	 * Explicit operation timeout for connection to cluster-manager node
-	 * <p>
-	 * API name: {@code cluster_manager_timeout}
-	 */
-	@Nullable
-	public final Time clusterManagerTimeout() {
-		return this.clusterManagerTimeout;
-	}
+    /**
+     * Explicit operation timeout for connection to cluster-manager node
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
 
-	/**
-	 * The comma separated names of the component templates
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * The comma separated names of the component templates
+     * <p>
+     * API name: {@code name}
+     */
+    @Nullable
+    public final String name() {
+        return this.name;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetComponentTemplateRequest}.
-	 */
+    /**
+     * Builder for {@link GetComponentTemplateRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetComponentTemplateRequest> {
-		@Nullable
-		private Boolean flatSettings;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetComponentTemplateRequest> {
+        @Nullable
+        private Boolean flatSettings;
 
-		@Nullable
-		private Boolean local;
+        @Nullable
+        private Boolean local;
 
-		@Deprecated
-		@Nullable
-		private Time masterTimeout;
+        @Deprecated
+        @Nullable
+        private Time masterTimeout;
 
-		@Nullable
-		private Time clusterManagerTimeout;
+        @Nullable
+        private Time clusterManagerTimeout;
 
-		@Nullable
-		private String name;
+        @Nullable
+        private String name;
 
-		/**
-		 * API name: {@code flat_settings}
-		 */
-		public final Builder flatSettings(@Nullable Boolean value) {
-			this.flatSettings = value;
-			return this;
-		}
+        /**
+         * API name: {@code flat_settings}
+         */
+        public final Builder flatSettings(@Nullable Boolean value) {
+            this.flatSettings = value;
+            return this;
+        }
 
-		/**
-		 * Return local information, do not retrieve the state from master node
-		 * (default: false)
-		 * <p>
-		 * API name: {@code local}
-		 */
-		public final Builder local(@Nullable Boolean value) {
-			this.local = value;
-			return this;
-		}
+        /**
+         * Return local information, do not retrieve the state from master node
+         * (default: false)
+         * <p>
+         * API name: {@code local}
+         */
+        public final Builder local(@Nullable Boolean value) {
+            this.local = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout for connection to master node
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout for connection to master node
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.masterTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Explicit operation timeout for connection to cluster-manager node
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(@Nullable Time value) {
-			this.clusterManagerTimeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to cluster-manager node
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * The comma separated names of the component templates
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public final Builder name(@Nullable String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * The comma separated names of the component templates
+         * <p>
+         * API name: {@code name}
+         */
+        public final Builder name(@Nullable String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetComponentTemplateRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetComponentTemplateRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GetComponentTemplateRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetComponentTemplateRequest build() {
+            _checkSingleUse();
 
-			return new GetComponentTemplateRequest(this);
-		}
-	}
+            return new GetComponentTemplateRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cluster.get_component_template}".
-	 */
-	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse> _ENDPOINT =
-			new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cluster.get_component_template}".
+     */
+    public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _name = 1 << 0;
+        // Request path
+        request -> {
+            final int _name = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+            if (request.name() != null) propsSet |= _name;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_component_template");
-					return buf.toString();
-				}
-				if (propsSet == (_name)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_component_template");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_component_template");
+                return buf.toString();
+            }
+            if (propsSet == (_name)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_component_template");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.name, buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.clusterManagerTimeout != null) {
-					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-				}
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
-				}
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
+            if (request.clusterManagerTimeout != null) {
+                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
+            }
+            if (request.flatSettings != null) {
+                params.put("flat_settings", String.valueOf(request.flatSettings));
+            }
+            if (request.local != null) {
+                params.put("local", String.valueOf(request.local));
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetComponentTemplateResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        GetComponentTemplateResponse._DESERIALIZER
+    );
 }

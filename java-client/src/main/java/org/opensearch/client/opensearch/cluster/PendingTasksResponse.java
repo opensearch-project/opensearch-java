@@ -32,133 +32,134 @@
 
 package org.opensearch.client.opensearch.cluster;
 
-import org.opensearch.client.opensearch.cluster.pending_tasks.PendingTask;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.cluster.pending_tasks.PendingTask;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: cluster.pending_tasks.Response
 
 @JsonpDeserializable
 public class PendingTasksResponse implements JsonpSerializable {
-	private final List<PendingTask> tasks;
+    private final List<PendingTask> tasks;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PendingTasksResponse(Builder builder) {
+    private PendingTasksResponse(Builder builder) {
 
-		this.tasks = ApiTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
+        this.tasks = ApiTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
 
-	}
+    }
 
-	public static PendingTasksResponse of(Function<Builder, ObjectBuilder<PendingTasksResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PendingTasksResponse of(Function<Builder, ObjectBuilder<PendingTasksResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code tasks}
-	 */
-	public final List<PendingTask> tasks() {
-		return this.tasks;
-	}
+    /**
+     * Required - API name: {@code tasks}
+     */
+    public final List<PendingTask> tasks() {
+        return this.tasks;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.tasks)) {
-			generator.writeKey("tasks");
-			generator.writeStartArray();
-			for (PendingTask item0 : this.tasks) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.tasks)) {
+            generator.writeKey("tasks");
+            generator.writeStartArray();
+            for (PendingTask item0 : this.tasks) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PendingTasksResponse}.
-	 */
+    /**
+     * Builder for {@link PendingTasksResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksResponse> {
-		private List<PendingTask> tasks;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksResponse> {
+        private List<PendingTask> tasks;
 
-		/**
-		 * Required - API name: {@code tasks}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>tasks</code>.
-		 */
-		public final Builder tasks(List<PendingTask> list) {
-			this.tasks = _listAddAll(this.tasks, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code tasks}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>tasks</code>.
+         */
+        public final Builder tasks(List<PendingTask> list) {
+            this.tasks = _listAddAll(this.tasks, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code tasks}
-		 * <p>
-		 * Adds one or more values to <code>tasks</code>.
-		 */
-		public final Builder tasks(PendingTask value, PendingTask... values) {
-			this.tasks = _listAdd(this.tasks, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code tasks}
+         * <p>
+         * Adds one or more values to <code>tasks</code>.
+         */
+        public final Builder tasks(PendingTask value, PendingTask... values) {
+            this.tasks = _listAdd(this.tasks, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code tasks}
-		 * <p>
-		 * Adds a value to <code>tasks</code> using a builder lambda.
-		 */
-		public final Builder tasks(Function<PendingTask.Builder, ObjectBuilder<PendingTask>> fn) {
-			return tasks(fn.apply(new PendingTask.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code tasks}
+         * <p>
+         * Adds a value to <code>tasks</code> using a builder lambda.
+         */
+        public final Builder tasks(Function<PendingTask.Builder, ObjectBuilder<PendingTask>> fn) {
+            return tasks(fn.apply(new PendingTask.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link PendingTasksResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PendingTasksResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PendingTasksResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PendingTasksResponse build() {
+            _checkSingleUse();
 
-			return new PendingTasksResponse(this);
-		}
-	}
+            return new PendingTasksResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PendingTasksResponse}
-	 */
-	public static final JsonpDeserializer<PendingTasksResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PendingTasksResponse::setupPendingTasksResponseDeserializer);
+    /**
+     * Json deserializer for {@link PendingTasksResponse}
+     */
+    public static final JsonpDeserializer<PendingTasksResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PendingTasksResponse::setupPendingTasksResponseDeserializer
+    );
 
-	protected static void setupPendingTasksResponseDeserializer(ObjectDeserializer<PendingTasksResponse.Builder> op) {
+    protected static void setupPendingTasksResponseDeserializer(ObjectDeserializer<PendingTasksResponse.Builder> op) {
 
-		op.add(Builder::tasks, JsonpDeserializer.arrayDeserializer(PendingTask._DESERIALIZER), "tasks");
+        op.add(Builder::tasks, JsonpDeserializer.arrayDeserializer(PendingTask._DESERIALIZER), "tasks");
 
-	}
+    }
 
 }

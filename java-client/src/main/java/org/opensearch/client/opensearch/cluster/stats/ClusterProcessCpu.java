@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.cluster.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,92 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcessCpu
 
 @JsonpDeserializable
 public class ClusterProcessCpu implements JsonpSerializable {
-	private final int percent;
+    private final int percent;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ClusterProcessCpu(Builder builder) {
+    private ClusterProcessCpu(Builder builder) {
 
-		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+        this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
 
-	}
+    }
 
-	public static ClusterProcessCpu of(Function<Builder, ObjectBuilder<ClusterProcessCpu>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ClusterProcessCpu of(Function<Builder, ObjectBuilder<ClusterProcessCpu>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code percent}
-	 */
-	public final int percent() {
-		return this.percent;
-	}
+    /**
+     * Required - API name: {@code percent}
+     */
+    public final int percent() {
+        return this.percent;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("percent");
-		generator.write(this.percent);
+        generator.writeKey("percent");
+        generator.write(this.percent);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ClusterProcessCpu}.
-	 */
+    /**
+     * Builder for {@link ClusterProcessCpu}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcessCpu> {
-		private Integer percent;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcessCpu> {
+        private Integer percent;
 
-		/**
-		 * Required - API name: {@code percent}
-		 */
-		public final Builder percent(int value) {
-			this.percent = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code percent}
+         */
+        public final Builder percent(int value) {
+            this.percent = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ClusterProcessCpu}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ClusterProcessCpu build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ClusterProcessCpu}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ClusterProcessCpu build() {
+            _checkSingleUse();
 
-			return new ClusterProcessCpu(this);
-		}
-	}
+            return new ClusterProcessCpu(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ClusterProcessCpu}
-	 */
-	public static final JsonpDeserializer<ClusterProcessCpu> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterProcessCpu::setupClusterProcessCpuDeserializer);
+    /**
+     * Json deserializer for {@link ClusterProcessCpu}
+     */
+    public static final JsonpDeserializer<ClusterProcessCpu> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ClusterProcessCpu::setupClusterProcessCpuDeserializer
+    );
 
-	protected static void setupClusterProcessCpuDeserializer(ObjectDeserializer<ClusterProcessCpu.Builder> op) {
+    protected static void setupClusterProcessCpuDeserializer(ObjectDeserializer<ClusterProcessCpu.Builder> op) {
 
-		op.add(Builder::percent, JsonpDeserializer.integerDeserializer(), "percent");
+        op.add(Builder::percent, JsonpDeserializer.integerDeserializer(), "percent");
 
-	}
+    }
 
 }

@@ -32,69 +32,69 @@
 
 package org.opensearch.client.opensearch.cluster;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: cluster.put_component_template.Response
 
 @JsonpDeserializable
 public class PutComponentTemplateResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PutComponentTemplateResponse(Builder builder) {
-		super(builder);
+    private PutComponentTemplateResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static PutComponentTemplateResponse of(Function<Builder, ObjectBuilder<PutComponentTemplateResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PutComponentTemplateResponse of(Function<Builder, ObjectBuilder<PutComponentTemplateResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PutComponentTemplateResponse}.
-	 */
+    /**
+     * Builder for {@link PutComponentTemplateResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PutComponentTemplateResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<PutComponentTemplateResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PutComponentTemplateResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PutComponentTemplateResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PutComponentTemplateResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PutComponentTemplateResponse build() {
+            _checkSingleUse();
 
-			return new PutComponentTemplateResponse(this);
-		}
-	}
+            return new PutComponentTemplateResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PutComponentTemplateResponse}
-	 */
-	public static final JsonpDeserializer<PutComponentTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutComponentTemplateResponse::setupPutComponentTemplateResponseDeserializer);
+    /**
+     * Json deserializer for {@link PutComponentTemplateResponse}
+     */
+    public static final JsonpDeserializer<PutComponentTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PutComponentTemplateResponse::setupPutComponentTemplateResponseDeserializer
+    );
 
-	protected static void setupPutComponentTemplateResponseDeserializer(
-			ObjectDeserializer<PutComponentTemplateResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupPutComponentTemplateResponseDeserializer(ObjectDeserializer<PutComponentTemplateResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

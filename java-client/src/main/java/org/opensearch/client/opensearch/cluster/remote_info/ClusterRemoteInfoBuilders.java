@@ -36,23 +36,22 @@ package org.opensearch.client.opensearch.cluster.remote_info;
  * Builders for {@link ClusterRemoteInfo} variants.
  */
 public class ClusterRemoteInfoBuilders {
-	private ClusterRemoteInfoBuilders() {
-	}
+    private ClusterRemoteInfoBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link ClusterRemoteProxyInfo proxy}
-	 * {@code ClusterRemoteInfo} variant.
-	 */
-	public static ClusterRemoteProxyInfo.Builder proxy() {
-		return new ClusterRemoteProxyInfo.Builder();
-	}
+    /**
+     * Creates a builder for the {@link ClusterRemoteProxyInfo proxy}
+     * {@code ClusterRemoteInfo} variant.
+     */
+    public static ClusterRemoteProxyInfo.Builder proxy() {
+        return new ClusterRemoteProxyInfo.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link ClusterRemoteSniffInfo sniff}
-	 * {@code ClusterRemoteInfo} variant.
-	 */
-	public static ClusterRemoteSniffInfo.Builder sniff() {
-		return new ClusterRemoteSniffInfo.Builder();
-	}
+    /**
+     * Creates a builder for the {@link ClusterRemoteSniffInfo sniff}
+     * {@code ClusterRemoteInfo} variant.
+     */
+    public static ClusterRemoteSniffInfo.Builder sniff() {
+        return new ClusterRemoteSniffInfo.Builder();
+    }
 
 }
