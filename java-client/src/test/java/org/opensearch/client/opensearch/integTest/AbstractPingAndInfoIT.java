@@ -8,14 +8,13 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import java.io.IOException;
+import java.util.Map;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.opensearch.client.Request;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
-
-import java.io.IOException;
-import java.util.Map;
 
 public abstract class AbstractPingAndInfoIT extends OpenSearchJavaClientTestCase {
     public void testPing() throws IOException {
@@ -43,4 +42,4 @@ public abstract class AbstractPingAndInfoIT extends OpenSearchJavaClientTestCase
         assertEquals(versionMap.get("lucene_version"), info.version().luceneVersion());
         assertTrue(versionMap.get("number").toString().startsWith(info.version().number()));
     }
-} 
+}

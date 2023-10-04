@@ -32,12 +32,11 @@
 
 package org.opensearch.client.opensearch.model;
 
+import java.util.Arrays;
 import org.junit.Test;
 import org.opensearch.client.opensearch._types.Bytes;
 import org.opensearch.client.opensearch._types.mapping.DynamicMapping;
 import org.opensearch.client.opensearch._types.mapping.GeoOrientation;
-
-import java.util.Arrays;
 
 public class EnumTest extends ModelTestCase {
 

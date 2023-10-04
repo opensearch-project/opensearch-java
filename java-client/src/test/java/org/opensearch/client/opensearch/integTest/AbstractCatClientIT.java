@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import org.junit.Test;
 import org.opensearch.Version;
 import org.opensearch.client.opensearch._types.Bytes;
@@ -42,8 +41,12 @@ import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
 
     public void testCatNodes() throws Exception {
-        NodesResponse nodesResponse = javaClient().cat().nodes(r -> r.bytes(Bytes.Bytes).fullId(true)
-                .headers("id,ip,name,version,pid,heap.percent,ram.percent,cpu,load_1m,load_5m,load_15m,node.role"));
+        NodesResponse nodesResponse = javaClient().cat()
+            .nodes(
+                r -> r.bytes(Bytes.Bytes)
+                    .fullId(true)
+                    .headers("id,ip,name,version,pid,heap.percent,ram.percent,cpu,load_1m,load_5m,load_15m,node.role")
+            );
 
         assertNotNull(nodesResponse.valueBody());
         assertTrue(nodesResponse.valueBody().size() > 0);
@@ -67,8 +70,13 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
     public void testCatIndices() throws Exception {
         createIndex("my-index-for-cat-test");
 
-        IndicesResponse indicesResponse = javaClient().cat().indices(r -> r.headers("index,health,status,uuid,pri,rep,docs.count," +
-                "docs.deleted,store.size,pri.store.size,creation.date,creation.date.string").bytes(Bytes.Bytes));
+        IndicesResponse indicesResponse = javaClient().cat()
+            .indices(
+                r -> r.headers(
+                    "index,health,status,uuid,pri,rep,docs.count,"
+                        + "docs.deleted,store.size,pri.store.size,creation.date,creation.date.string"
+                ).bytes(Bytes.Bytes)
+            );
 
         assertNotNull(indicesResponse.valueBody());
         assertTrue(indicesResponse.valueBody().size() > 0);
@@ -91,8 +99,13 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
 
     public void testCatRecovery() throws Exception {
         createIndex("test-cat-recovery-index");
-        RecoveryResponse recoveryResponse = javaClient().cat().recovery(r -> r.headers("index,shard,type,stage,source_host,source_node," +
-                "target_host,target_node,repository,snapshot,files,files_recovered,files_percent,files_total").bytes(Bytes.Bytes));
+        RecoveryResponse recoveryResponse = javaClient().cat()
+            .recovery(
+                r -> r.headers(
+                    "index,shard,type,stage,source_host,source_node,"
+                        + "target_host,target_node,repository,snapshot,files,files_recovered,files_percent,files_total"
+                ).bytes(Bytes.Bytes)
+            );
 
         assertNotNull("recoveryResponse.valueBody() is null", recoveryResponse.valueBody());
         assertTrue("recoveryResponse.valueBody().size() == 0", recoveryResponse.valueBody().size() > 0);
@@ -121,14 +134,17 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
         createIndex(indexName);
         assertTrue(javaClient().indices().putAlias(r -> r.index(indexName).name(alias).isWriteIndex(true)).acknowledged());
 
-        AliasesResponse aliasesResponse = javaClient().cat().aliases(r ->
-                r.headers("alias,index,is_write_index,routing.index,routing.search").sort("is_write_index"));
+        AliasesResponse aliasesResponse = javaClient().cat()
+            .aliases(r -> r.headers("alias,index,is_write_index,routing.index,routing.search").sort("is_write_index"));
 
         assertNotNull(aliasesResponse.valueBody());
         assertTrue(aliasesResponse.valueBody().size() > 0);
 
-        AliasesRecord aliasRecord = aliasesResponse.valueBody().stream().filter(aliasesRecord -> aliasesRecord.alias().equals(alias))
-                .findAny().get();
+        AliasesRecord aliasRecord = aliasesResponse.valueBody()
+            .stream()
+            .filter(aliasesRecord -> aliasesRecord.alias().equals(alias))
+            .findAny()
+            .get();
 
         assertTrue(aliasRecord.index().equals(indexName));
         assertTrue(aliasRecord.isWriteIndex().equals(Boolean.TRUE.toString()));
@@ -143,8 +159,8 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
         createIndex("test-cat-shards-index-2");
         createIndex("a-test-cat-shards-index");
 
-        ShardsResponse shardsResponse = javaClient().cat().shards(r -> r.headers("index,shard,prirep,state,store").sort("index")
-                .bytes(Bytes.Bytes));
+        ShardsResponse shardsResponse = javaClient().cat()
+            .shards(r -> r.headers("index,shard,prirep,state,store").sort("index").bytes(Bytes.Bytes));
         assertNotNull(shardsResponse.valueBody());
         assertTrue(shardsResponse.valueBody().size() > 0);
 
@@ -165,13 +181,16 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
     public void testCatAllocation() throws Exception {
         createIndex("test-cat-allocations-index");
 
-        AllocationResponse allocationResponse = javaClient().cat().allocation(r ->
-                r.headers("ip,node,shards,disk.indices,disk.used,disk.avail,disk.total,disk.percent").sort("ip"));
+        AllocationResponse allocationResponse = javaClient().cat()
+            .allocation(r -> r.headers("ip,node,shards,disk.indices,disk.used,disk.avail,disk.total,disk.percent").sort("ip"));
         assertNotNull(allocationResponse.valueBody());
         assertTrue(allocationResponse.valueBody().size() > 0);
 
-        AllocationRecord allocationRecord = allocationResponse.valueBody().stream().filter(allocation ->
-                !allocation.node().equals("UNASSIGNED")).findAny().get();
+        AllocationRecord allocationRecord = allocationResponse.valueBody()
+            .stream()
+            .filter(allocation -> !allocation.node().equals("UNASSIGNED"))
+            .findAny()
+            .get();
         assertNotNull(allocationRecord.ip());
         assertNotNull(allocationRecord.node());
         assertNotNull(allocationRecord.shards());
@@ -193,11 +212,12 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
     public void testCatSegments() throws Exception {
         createIndex("cat-segments-test-index");
 
-        final IndexResponse index = javaClient().index(b -> b
-                .index("test-cat-segments-index")
+        final IndexResponse index = javaClient().index(
+            b -> b.index("test-cat-segments-index")
                 .id("id")
                 .refresh(Refresh.True)
-                .document(Map.of("test-cat-segments-key", "test-cat-segments-value")));
+                .document(Map.of("test-cat-segments-key", "test-cat-segments-value"))
+        );
 
         assertTrue(index.result() == Result.Created);
 
@@ -215,39 +235,39 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
         assertNull(segmentsRecord.ip());
         assertNull(segmentsRecord.prirep());
     }
-    
+
     @Test
     public void testCatPitSegments() throws Exception {
         InfoResponse info = javaClient().info();
         String version = info.version().number();
         if (version.contains("SNAPSHOT")) {
-                version = version.split("-")[0];
+            version = version.split("-")[0];
         }
-        assumeTrue("The PIT is supported in OpenSearch 2.4.0 and later",
-                Version.fromString(version).onOrAfter(Version.fromString("2.4.0")));
+        assumeTrue(
+            "The PIT is supported in OpenSearch 2.4.0 and later",
+            Version.fromString(version).onOrAfter(Version.fromString("2.4.0"))
+        );
         createIndex("cat-pit-segments-test-index");
 
-        final IndexResponse index = javaClient().index(b -> b
-                .index("test-cat-pit-segments-index")
+        final IndexResponse index = javaClient().index(
+            b -> b.index("test-cat-pit-segments-index")
                 .id("id")
                 .refresh(Refresh.True)
-                .document(Map.of("test-cat-pit-segments-key", "test-cat-pit-segments-value")));
+                .document(Map.of("test-cat-pit-segments-key", "test-cat-pit-segments-value"))
+        );
 
         assertTrue(index.result() == Result.Created);
 
         createPit("cat-pit-segments-test-index");
 
-        SegmentsResponse PitSegmentsResponse = javaClient().cat()
-                .pitSegments(r -> r.headers("index,shard,id,segment,size"));
+        SegmentsResponse PitSegmentsResponse = javaClient().cat().pitSegments(r -> r.headers("index,shard,id,segment,size"));
 
         assertNotNull("PitSegmentsResponse.segments() is null", PitSegmentsResponse.valueBody());
 
         if (Version.fromString(version).onOrAfter(Version.fromString("2.10.0"))) {
-            assertTrue("PitSegmentsResponse.segments().size() == 0",
-                PitSegmentsResponse.valueBody().isEmpty());
+            assertTrue("PitSegmentsResponse.segments().size() == 0", PitSegmentsResponse.valueBody().isEmpty());
         } else {
-            assertTrue("PitSegmentsResponse.segments().size() == 0",
-                PitSegmentsResponse.valueBody().size() > 0);
+            assertTrue("PitSegmentsResponse.segments().size() == 0", PitSegmentsResponse.valueBody().size() > 0);
         }
     }
 
@@ -258,9 +278,9 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
     }
 
     private void createPit(String indexName) throws Exception {
-        CreatePitResponse createPitResponse = javaClient()
-                .createPit(r -> r.targetIndexes(Collections.singletonList(indexName))
-                        .keepAlive(new Time.Builder().time("100m").build()));
+        CreatePitResponse createPitResponse = javaClient().createPit(
+            r -> r.targetIndexes(Collections.singletonList(indexName)).keepAlive(new Time.Builder().time("100m").build())
+        );
         assertNotNull(createPitResponse);
         assertNotNull(createPitResponse.pitId());
     }

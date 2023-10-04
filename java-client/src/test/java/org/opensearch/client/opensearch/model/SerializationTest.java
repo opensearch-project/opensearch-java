@@ -52,17 +52,13 @@ public class SerializationTest extends ModelTestCase {
     @Test
     public void loadAllDeserializers() throws Exception {
 
-        ScanResult scan = new ClassGraph()
-            .acceptPackages("org.opensearch.client")
-            .enableAnnotationInfo()
-            .enableFieldInfo()
-            .scan();
+        ScanResult scan = new ClassGraph().acceptPackages("org.opensearch.client").enableAnnotationInfo().enableFieldInfo().scan();
 
         ClassInfoList withAnnotation = scan.getClassesWithAnnotation(JsonpDeserializable.class.getName());
 
         assertFalse("No JsonpDeserializable classes", withAnnotation.isEmpty());
 
-        for (ClassInfo info: withAnnotation) {
+        for (ClassInfo info : withAnnotation) {
             Class<?> clazz = Class.forName(info.getName());
             JsonpDeserializer<?> deserializer = JsonpMapperBase.findDeserializer(clazz);
             assertNotNull(deserializer);
@@ -75,24 +71,23 @@ public class SerializationTest extends ModelTestCase {
         ClassInfoList withDeserializer = scan.getAllClasses().filter((c) -> c.hasDeclaredField("_DESERIALIZER"));
         assertFalse("No classes with a _DESERIALIZER field", withDeserializer.isEmpty());
 
-// Disabled for now, empty response classes still need a deserializer object
-// e.g. ExistsIndexTemplateResponse, PingResponse, ExistsResponse, ExistsAliasResponse
-//
-//        Set<String> annotationNames = withAnnotation.stream().map(c -> c.getName()).collect(Collectors.toSet());
-//        Set<String> withFieldNames = withDeserializer.stream().map(c -> c.getName()).collect(Collectors.toSet());
-//
-//        withFieldNames.removeAll(annotationNames);
-//
-//        assertFalse("Some classes with the field but not the annotation: " + withFieldNames, !withFieldNames.isEmpty());
+        // Disabled for now, empty response classes still need a deserializer object
+        // e.g. ExistsIndexTemplateResponse, PingResponse, ExistsResponse, ExistsAliasResponse
+        //
+        // Set<String> annotationNames = withAnnotation.stream().map(c -> c.getName()).collect(Collectors.toSet());
+        // Set<String> withFieldNames = withDeserializer.stream().map(c -> c.getName()).collect(Collectors.toSet());
+        //
+        // withFieldNames.removeAll(annotationNames);
+        //
+        // assertFalse("Some classes with the field but not the annotation: " + withFieldNames, !withFieldNames.isEmpty());
 
     }
 
     @Test
     public void testArrayValueBody() {
 
-        NodesResponse nr = NodesResponse.of(_0 -> _0
-            .valueBody(_1 -> _1.bulkTotalOperations("1"))
-            .valueBody(_1 -> _1.bulkTotalOperations("2"))
+        NodesResponse nr = NodesResponse.of(
+            _0 -> _0.valueBody(_1 -> _1.bulkTotalOperations("1")).valueBody(_1 -> _1.bulkTotalOperations("2"))
         );
 
         checkJsonRoundtrip(nr, "[{\"bulk.total_operations\":\"1\"},{\"bulk.total_operations\":\"2\"}]");
@@ -105,15 +100,14 @@ public class SerializationTest extends ModelTestCase {
     @Test
     public void testGenericValueBody() {
 
-        GetSourceResponse<String> r = GetSourceResponse.of(_0 -> _0
-            .valueBody("The value")
-        );
+        GetSourceResponse<String> r = GetSourceResponse.of(_0 -> _0.valueBody("The value"));
 
         String json = toJson(r);
         assertEquals("\"The value\"", json);
 
-        JsonpDeserializer<GetSourceResponse<String>> deserializer =
-            GetSourceResponse.createGetSourceResponseDeserializer(JsonpDeserializer.stringDeserializer());
+        JsonpDeserializer<GetSourceResponse<String>> deserializer = GetSourceResponse.createGetSourceResponseDeserializer(
+            JsonpDeserializer.stringDeserializer()
+        );
 
         r = fromJson(json, deserializer);
 
@@ -132,8 +126,6 @@ public class SerializationTest extends ModelTestCase {
         assertEquals("null", JsonpUtils.toString(JsonValue.NULL));
         assertEquals("a,b,c", JsonpUtils.toString(Json.createArrayBuilder().add("a").add("b").add("c").build()));
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            JsonpUtils.toString(Json.createObjectBuilder().build());
-        });
+        assertThrows(IllegalArgumentException.class, () -> { JsonpUtils.toString(Json.createObjectBuilder().build()); });
     }
 }

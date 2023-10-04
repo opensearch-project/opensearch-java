@@ -32,13 +32,12 @@
 
 package org.opensearch.client.opensearch.experiments.inheritance.base;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.Objects;
 
 /**
  * An abstract transport class
@@ -66,7 +65,7 @@ public abstract class BaseClass implements JsonpSerializable {
         generator.write("baseField", this.baseField);
     }
 
-    //---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     // This is class protected as it's only of interest to subclasses. Yet public members are visible
     // from the outside on public subclasses.
@@ -82,7 +81,7 @@ public abstract class BaseClass implements JsonpSerializable {
         protected abstract T self();
     }
 
-    //---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     protected static <T extends AbstractBuilder<T>> void setupBaseClassParser(ObjectDeserializer<T> op) {
         op.add(AbstractBuilder::baseField, JsonpDeserializer.stringDeserializer(), "baseField");
