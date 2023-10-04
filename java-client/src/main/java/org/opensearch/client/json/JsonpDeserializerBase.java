@@ -37,7 +37,6 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -65,14 +64,9 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
     /** Combines accepted events from a number of deserializers */
     protected static EnumSet<Event> allAcceptedEvents(JsonpDeserializer<?>... deserializers) {
         EnumSet<Event> result = EnumSet.noneOf(Event.class);
-        for (JsonpDeserializer<?> deserializer: deserializers) {
+        for (JsonpDeserializer<?> deserializer : deserializers) {
 
             EnumSet<Event> set = deserializer.acceptedEvents();
-            // Disabled for now. Only happens with the experimental Union2 and is caused by string and number
-            // parsers leniency. Need to be replaced with a check on a preferred event type.
-            //if (!Collections.disjoint(result, set)) {
-            //    throw new IllegalArgumentException("Deserializer accepted events are not disjoint");
-            //}
 
             result.addAll(set);
         }
@@ -98,16 +92,14 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
         return acceptedEvents.contains(event);
     }
 
-    //---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-    //----- Builtin types
+    // ----- Builtin types
 
     static final JsonpDeserializer<String> STRING =
         // String parsing is lenient and accepts any other primitive type
-        new JsonpDeserializerBase<String>(EnumSet.of(
-                Event.KEY_NAME, Event.VALUE_STRING, Event.VALUE_NUMBER,
-                Event.VALUE_FALSE, Event.VALUE_TRUE
-            ),
+        new JsonpDeserializerBase<String>(
+            EnumSet.of(Event.KEY_NAME, Event.VALUE_STRING, Event.VALUE_NUMBER, Event.VALUE_FALSE, Event.VALUE_TRUE),
             EnumSet.of(Event.VALUE_STRING)
         ) {
             @Override
@@ -122,77 +114,72 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
             }
         };
 
-    static final JsonpDeserializer<Integer> INTEGER =
-        new JsonpDeserializerBase<Integer>(
-            EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING),
-            EnumSet.of(Event.VALUE_NUMBER)
-        ) {
-            @Override
-            public Integer deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-                if (event == Event.VALUE_STRING) {
-                    return Integer.valueOf(parser.getString());
-                }
-                return parser.getInt();
+    static final JsonpDeserializer<Integer> INTEGER = new JsonpDeserializerBase<Integer>(
+        EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING),
+        EnumSet.of(Event.VALUE_NUMBER)
+    ) {
+        @Override
+        public Integer deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            if (event == Event.VALUE_STRING) {
+                return Integer.valueOf(parser.getString());
             }
-        };
+            return parser.getInt();
+        }
+    };
 
-    static final JsonpDeserializer<Boolean> BOOLEAN =
-        new JsonpDeserializerBase<Boolean>(
-            EnumSet.of(Event.VALUE_FALSE, Event.VALUE_TRUE, Event.VALUE_STRING),
-            EnumSet.of(Event.VALUE_FALSE, Event.VALUE_TRUE)
-        ) {
-            @Override
-            public Boolean deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-                if (event == Event.VALUE_STRING) {
-                    return Boolean.parseBoolean(parser.getString());
-                } else {
-                    return event == Event.VALUE_TRUE;
-                }
+    static final JsonpDeserializer<Boolean> BOOLEAN = new JsonpDeserializerBase<Boolean>(
+        EnumSet.of(Event.VALUE_FALSE, Event.VALUE_TRUE, Event.VALUE_STRING),
+        EnumSet.of(Event.VALUE_FALSE, Event.VALUE_TRUE)
+    ) {
+        @Override
+        public Boolean deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            if (event == Event.VALUE_STRING) {
+                return Boolean.parseBoolean(parser.getString());
+            } else {
+                return event == Event.VALUE_TRUE;
             }
-        };
+        }
+    };
 
-    static final JsonpDeserializer<Long> LONG =
-        new JsonpDeserializerBase<Long>(
-            EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING),
-            EnumSet.of(Event.VALUE_NUMBER)
-        ) {
-            @Override
-            public Long deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-                if (event == Event.VALUE_STRING) {
-                    return Long.valueOf(parser.getString());
-                }
-                return parser.getLong();
+    static final JsonpDeserializer<Long> LONG = new JsonpDeserializerBase<Long>(
+        EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING),
+        EnumSet.of(Event.VALUE_NUMBER)
+    ) {
+        @Override
+        public Long deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            if (event == Event.VALUE_STRING) {
+                return Long.valueOf(parser.getString());
             }
-        };
+            return parser.getLong();
+        }
+    };
 
-    static final JsonpDeserializer<Float> FLOAT =
-        new JsonpDeserializerBase<Float>(
-            EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING),
-            EnumSet.of(Event.VALUE_NUMBER)
+    static final JsonpDeserializer<Float> FLOAT = new JsonpDeserializerBase<Float>(
+        EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING),
+        EnumSet.of(Event.VALUE_NUMBER)
 
-        ) {
-            @Override
-            public Float deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-                if (event == Event.VALUE_STRING) {
-                    return Float.valueOf(parser.getString());
-                }
-                return parser.getBigDecimal().floatValue();
+    ) {
+        @Override
+        public Float deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            if (event == Event.VALUE_STRING) {
+                return Float.valueOf(parser.getString());
             }
-        };
+            return parser.getBigDecimal().floatValue();
+        }
+    };
 
-    static final JsonpDeserializer<Double> DOUBLE =
-        new JsonpDeserializerBase<Double>(
-            EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING),
-            EnumSet.of(Event.VALUE_NUMBER)
-        ) {
-            @Override
-            public Double deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-                if (event == Event.VALUE_STRING) {
-                    return Double.valueOf(parser.getString());
-                }
-                return parser.getBigDecimal().doubleValue();
+    static final JsonpDeserializer<Double> DOUBLE = new JsonpDeserializerBase<Double>(
+        EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING),
+        EnumSet.of(Event.VALUE_NUMBER)
+    ) {
+        @Override
+        public Double deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            if (event == Event.VALUE_STRING) {
+                return Double.valueOf(parser.getString());
             }
-        };
+            return parser.getBigDecimal().doubleValue();
+        }
+    };
 
     static final class DoubleOrNullDeserializer extends JsonpDeserializerBase<Double> {
         static final EnumSet<Event> nativeEvents = EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_NULL);
@@ -240,8 +227,14 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
 
     static final class StringOrNullDeserializer extends JsonpDeserializerBase<String> {
         static final EnumSet<Event> nativeEvents = EnumSet.of(Event.VALUE_STRING, Event.VALUE_NULL);
-        static final EnumSet<Event> acceptedEvents = EnumSet.of(Event.KEY_NAME, Event.VALUE_STRING,
-            Event.VALUE_NUMBER, Event.VALUE_FALSE, Event.VALUE_TRUE, Event.VALUE_NULL);
+        static final EnumSet<Event> acceptedEvents = EnumSet.of(
+            Event.KEY_NAME,
+            Event.VALUE_STRING,
+            Event.VALUE_NUMBER,
+            Event.VALUE_FALSE,
+            Event.VALUE_TRUE,
+            Event.VALUE_NULL
+        );
 
         StringOrNullDeserializer() {
             super(acceptedEvents, nativeEvents);
@@ -262,50 +255,43 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
         }
     }
 
-    static final JsonpDeserializer<Double> DOUBLE_OR_NAN =
-        new JsonpDeserializerBase<Double>(
-            EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING, Event.VALUE_NULL),
-            EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_NULL)
-        ) {
-            @Override
-            public Double deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-                if (event == Event.VALUE_NULL) {
-                    return Double.NaN;
-                }
-                if (event == Event.VALUE_STRING) {
-                    return Double.valueOf(parser.getString());
-                }
-                return parser.getBigDecimal().doubleValue();
-            }
-        };
-
-    static final JsonpDeserializer<Number> NUMBER =
-        new JsonpDeserializerBase<Number>(
-            EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING),
-            EnumSet.of(Event.VALUE_NUMBER)
-        ) {
-            @Override
-            public Number deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-                if (event == Event.VALUE_STRING) {
-                    return Double.valueOf(parser.getString());
-                }
-                return ((JsonNumber)parser.getValue()).numberValue();
-            }
-        };
-
-    static final JsonpDeserializer<JsonValue> JSON_VALUE =
-        new JsonpDeserializerBase<JsonValue>(
-            EnumSet.allOf(Event.class)
-        ) {
-            @Override
-            public JsonValue deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
-                return parser.getValue();
-            }
-        };
-
-    static final JsonpDeserializer<Void> VOID = new JsonpDeserializerBase<Void>(
-        EnumSet.noneOf(Event.class)
+    static final JsonpDeserializer<Double> DOUBLE_OR_NAN = new JsonpDeserializerBase<Double>(
+        EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING, Event.VALUE_NULL),
+        EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_NULL)
     ) {
+        @Override
+        public Double deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            if (event == Event.VALUE_NULL) {
+                return Double.NaN;
+            }
+            if (event == Event.VALUE_STRING) {
+                return Double.valueOf(parser.getString());
+            }
+            return parser.getBigDecimal().doubleValue();
+        }
+    };
+
+    static final JsonpDeserializer<Number> NUMBER = new JsonpDeserializerBase<Number>(
+        EnumSet.of(Event.VALUE_NUMBER, Event.VALUE_STRING),
+        EnumSet.of(Event.VALUE_NUMBER)
+    ) {
+        @Override
+        public Number deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            if (event == Event.VALUE_STRING) {
+                return Double.valueOf(parser.getString());
+            }
+            return ((JsonNumber) parser.getValue()).numberValue();
+        }
+    };
+
+    static final JsonpDeserializer<JsonValue> JSON_VALUE = new JsonpDeserializerBase<JsonValue>(EnumSet.allOf(Event.class)) {
+        @Override
+        public JsonValue deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            return parser.getValue();
+        }
+    };
+
+    static final JsonpDeserializer<Void> VOID = new JsonpDeserializerBase<Void>(EnumSet.noneOf(Event.class)) {
         @Override
         public Void deserialize(JsonParser parser, JsonpMapper mapper) {
             throw new JsonParsingException("Void types should not have any value", parser.getLocation());
@@ -317,7 +303,7 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
         }
     };
 
-    //----- Collections
+    // ----- Collections
 
     static class ArrayDeserializer<T> implements JsonpDeserializer<List<T>> {
         private final JsonpDeserializer<T> itemDeserializer;

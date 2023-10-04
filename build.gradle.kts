@@ -42,8 +42,6 @@ allprojects {
         mavenCentral()
         maven(url = "https://plugins.gradle.org/m2/")
     }
-
-    apply(plugin = "checkstyle")
 }
 
 // Find git information.

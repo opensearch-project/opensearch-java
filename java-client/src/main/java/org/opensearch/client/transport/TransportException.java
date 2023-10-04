@@ -36,7 +36,6 @@ import java.io.IOException;
 
 public class TransportException extends IOException {
 
-
     public TransportException(String message) {
         this(message, null);
     }

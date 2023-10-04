@@ -8,19 +8,18 @@
 
 package org.opensearch.client.transport.httpclient5.internal;
 
-import org.apache.hc.core5.http.HttpEntity;
-import org.apache.hc.core5.http.nio.AsyncEntityProducer;
-import org.apache.hc.core5.http.nio.DataStreamChannel;
-import org.apache.hc.core5.http.nio.ResourceHolder;
-import org.apache.hc.core5.util.Args;
-import org.apache.hc.core5.util.Asserts;
-
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
+import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.nio.AsyncEntityProducer;
+import org.apache.hc.core5.http.nio.DataStreamChannel;
+import org.apache.hc.core5.http.nio.ResourceHolder;
+import org.apache.hc.core5.util.Args;
+import org.apache.hc.core5.util.Asserts;
 
 /**
  * The {@link AsyncEntityProducer} implementation for {@link HttpEntity}

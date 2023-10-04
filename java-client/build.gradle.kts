@@ -49,10 +49,10 @@ buildscript {
 plugins {
     java
     `java-library`
-    checkstyle
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "2.5"
     id("org.owasp.dependencycheck") version "8.4.0"
+    id("com.diffplug.spotless") version "6.22.0"
 }
 apply(plugin = "opensearch.repositories")
 apply(plugin = "org.owasp.dependencycheck")
@@ -61,10 +61,6 @@ configurations {
     all {
         exclude(group = "software.amazon.awssdk", module = "third-party-jackson-core")
     }
-}
-
-checkstyle {
-    toolVersion = "10.12.3"
 }
 
 java {
@@ -114,6 +110,10 @@ tasks.withType<Jar> {
         from("../LICENSE.txt")
         from("../NOTICE.txt")
     }
+}
+
+tasks.build {
+    dependsOn("spotlessJavaCheck")
 }
 
 tasks.test {
@@ -267,6 +267,22 @@ tasks.withType<Jar> {
             "checksum"("algorithm" to "sha-512", "file" to archiveFile.get(), "fileext" to ".sha512")
         }
     }
+}
+
+spotless {
+  java {
+
+    target("**/json/**/*.java", "**/transport/**/*.java", "**/util/**/*.java")
+
+    // Use the default importOrder configuration
+    importOrder()
+    removeUnusedImports()
+
+    eclipse().configFile("../buildSrc/formatterConfig.xml")
+
+    trimTrailingWhitespace()
+    endWithNewline()
+  }
 }
 
 publishing {

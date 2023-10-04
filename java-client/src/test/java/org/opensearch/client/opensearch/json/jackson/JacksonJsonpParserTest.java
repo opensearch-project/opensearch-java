@@ -33,6 +33,14 @@
 package org.opensearch.client.opensearch.json.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParser.Event;
+import java.io.StringReader;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Nullable;
+import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpMapperBase;
@@ -40,15 +48,6 @@ import org.opensearch.client.json.jackson.JacksonJsonProvider;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.core.MsearchResponse;
 import org.opensearch.client.opensearch.model.ModelTestCase;
-import jakarta.json.stream.JsonParser;
-import jakarta.json.stream.JsonParser.Event;
-import org.junit.Test;
-
-import javax.annotation.Nullable;
-import java.io.StringReader;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 public class JacksonJsonpParserTest extends ModelTestCase {
 
@@ -114,72 +113,73 @@ public class JacksonJsonpParserTest extends ModelTestCase {
         try {
             assertEquals("fooValue", parser.getString());
             fail();
-        } catch(IllegalStateException e) {
+        } catch (IllegalStateException e) {
             // expected
         }
     }
 
     @Test
     public void testMultiSearchResponse() {
-        String json =
-                "{\n" +
-                        "  \"took\" : 1,\n" +
-                        "  \"responses\" : [\n" +
-                        "    {\n" +
-                        "      \"error\" : {\n" +
-                        "        \"root_cause\" : [\n" +
-                        "          {\n" +
-                        "            \"type\" : \"index_not_found_exception\",\n" +
-                        "            \"reason\" : \"no such index [foo_bar]\",\n" +
-                        "            \"resource.type\" : \"index_or_alias\",\n" +
-                        "            \"resource.id\" : \"foo_bar\",\n" +
-                        "            \"index_uuid\" : \"_na_\",\n" +
-                        "            \"index\" : \"foo_bar\"\n" +
-                        "          }\n" +
-                        "        ],\n" +
-                        "        \"type\" : \"index_not_found_exception\",\n" +
-                        "        \"reason\" : \"no such index [foo_bar]\",\n" +
-                        "        \"resource.type\" : \"index_or_alias\",\n" +
-                        "        \"resource.id\" : \"foo_bar\",\n" +
-                        "        \"index_uuid\" : \"_na_\",\n" +
-                        "        \"index\" : \"foo_bar\"\n" +
-                        "      },\n" +
-                        "      \"status\" : 404\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"took\" : 1,\n" +
-                        "      \"timed_out\" : false,\n" +
-                        "      \"_shards\" : {\n" +
-                        "        \"total\" : 1,\n" +
-                        "        \"successful\" : 1,\n" +
-                        "        \"skipped\" : 0,\n" +
-                        "        \"failed\" : 0\n" +
-                        "      },\n" +
-                        "      \"hits\" : {\n" +
-                        "        \"total\" : {\n" +
-                        "          \"value\" : 5,\n" +
-                        "          \"relation\" : \"eq\"\n" +
-                        "        },\n" +
-                        "        \"max_score\" : 1.0,\n" +
-                        "        \"hits\" : [\n" +
-                        "          {\n" +
-                        "            \"_index\" : \"foo\",\n" +
-                        "            \"_id\" : \"Wr0ApoEBa_iiaABtVM57\",\n" +
-                        "            \"_score\" : 1.0,\n" +
-                        "            \"_source\" : {\n" +
-                        "              \"x\" : 1,\n" +
-                        "              \"y\" : true\n" +
-                        "            }\n" +
-                        "          }\n" +
-                        "        ]\n" +
-                        "      },\n" +
-                        "      \"status\" : 200\n" +
-                        "    }\n" +
-                        "  ]\n" +
-                        "}\n";
+        String json = "{\n"
+            + "  \"took\" : 1,\n"
+            + "  \"responses\" : [\n"
+            + "    {\n"
+            + "      \"error\" : {\n"
+            + "        \"root_cause\" : [\n"
+            + "          {\n"
+            + "            \"type\" : \"index_not_found_exception\",\n"
+            + "            \"reason\" : \"no such index [foo_bar]\",\n"
+            + "            \"resource.type\" : \"index_or_alias\",\n"
+            + "            \"resource.id\" : \"foo_bar\",\n"
+            + "            \"index_uuid\" : \"_na_\",\n"
+            + "            \"index\" : \"foo_bar\"\n"
+            + "          }\n"
+            + "        ],\n"
+            + "        \"type\" : \"index_not_found_exception\",\n"
+            + "        \"reason\" : \"no such index [foo_bar]\",\n"
+            + "        \"resource.type\" : \"index_or_alias\",\n"
+            + "        \"resource.id\" : \"foo_bar\",\n"
+            + "        \"index_uuid\" : \"_na_\",\n"
+            + "        \"index\" : \"foo_bar\"\n"
+            + "      },\n"
+            + "      \"status\" : 404\n"
+            + "    },\n"
+            + "    {\n"
+            + "      \"took\" : 1,\n"
+            + "      \"timed_out\" : false,\n"
+            + "      \"_shards\" : {\n"
+            + "        \"total\" : 1,\n"
+            + "        \"successful\" : 1,\n"
+            + "        \"skipped\" : 0,\n"
+            + "        \"failed\" : 0\n"
+            + "      },\n"
+            + "      \"hits\" : {\n"
+            + "        \"total\" : {\n"
+            + "          \"value\" : 5,\n"
+            + "          \"relation\" : \"eq\"\n"
+            + "        },\n"
+            + "        \"max_score\" : 1.0,\n"
+            + "        \"hits\" : [\n"
+            + "          {\n"
+            + "            \"_index\" : \"foo\",\n"
+            + "            \"_id\" : \"Wr0ApoEBa_iiaABtVM57\",\n"
+            + "            \"_score\" : 1.0,\n"
+            + "            \"_source\" : {\n"
+            + "              \"x\" : 1,\n"
+            + "              \"y\" : true\n"
+            + "            }\n"
+            + "          }\n"
+            + "        ]\n"
+            + "      },\n"
+            + "      \"status\" : 200\n"
+            + "    }\n"
+            + "  ]\n"
+            + "}\n";
 
-        JsonpMapper mapper = new AttributedJacksonJsonpMapper()
-                .withAttribute("org.opensearch.client:Deserializer:_global.msearch.TDocument", JsonpDeserializer.of(Foo.class));
+        JsonpMapper mapper = new AttributedJacksonJsonpMapper().withAttribute(
+            "org.opensearch.client:Deserializer:_global.msearch.TDocument",
+            JsonpDeserializer.of(Foo.class)
+        );
 
         @SuppressWarnings("unchecked")
         MsearchResponse<Foo> response = fromJson(json, MsearchResponse.class, mapper);
@@ -204,7 +204,7 @@ public class JacksonJsonpParserTest extends ModelTestCase {
         @Override
         @SuppressWarnings("unchecked")
         public <T> T attribute(String name) {
-            return attributes == null ? null : (T)attributes.get(name);
+            return attributes == null ? null : (T) attributes.get(name);
         }
 
         /**

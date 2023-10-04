@@ -32,12 +32,9 @@
 
 package org.opensearch.client.json;
 
-import org.opensearch.client.util.QuadConsumer;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
-
-import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -47,6 +44,8 @@ import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.ObjIntConsumer;
 import java.util.function.Supplier;
+import javax.annotation.Nullable;
+import org.opensearch.client.util.QuadConsumer;
 
 public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectType> {
 
@@ -68,10 +67,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
         private final BiConsumer<ObjectType, FieldType> setter;
         private final JsonpDeserializer<FieldType> deserializer;
 
-        public FieldObjectDeserializer(
-            BiConsumer<ObjectType, FieldType> setter, JsonpDeserializer<FieldType> deserializer,
-            String name
-        ) {
+        public FieldObjectDeserializer(BiConsumer<ObjectType, FieldType> setter, JsonpDeserializer<FieldType> deserializer, String name) {
             super(name);
             this.setter = setter;
             this.deserializer = deserializer;
@@ -106,7 +102,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
         }
     };
 
-    //---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
     private static final EnumSet<Event> EventSetObject = EnumSet.of(Event.START_OBJECT, Event.KEY_NAME);
     private static final EnumSet<Event> EventSetObjectAndString = EnumSet.of(Event.START_OBJECT, Event.VALUE_STRING, Event.KEY_NAME);
 
@@ -222,7 +218,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
 
         } else {
             throw new JsonParsingException(
-                "Unknown field '" + fieldName + "' for type '" + object.getClass().getName() +"'",
+                "Unknown field '" + fieldName + "' for type '" + object.getClass().getName() + "'",
                 parser.getLocation()
             );
         }
@@ -246,27 +242,22 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
         acceptedEvents = EventSetObjectAndString;
     }
 
-    //----- Object types
+    // ----- Object types
 
-    public <FieldType> void add(
-        BiConsumer<ObjectType, FieldType> setter,
-        JsonpDeserializer<FieldType> deserializer,
-        String name
-    ) {
-        FieldObjectDeserializer<ObjectType, FieldType> fieldDeserializer =
-            new FieldObjectDeserializer<>(setter, deserializer, name);
+    public <FieldType> void add(BiConsumer<ObjectType, FieldType> setter, JsonpDeserializer<FieldType> deserializer, String name) {
+        FieldObjectDeserializer<ObjectType, FieldType> fieldDeserializer = new FieldObjectDeserializer<>(setter, deserializer, name);
         this.fieldDeserializers.put(name, fieldDeserializer);
     }
 
     public <FieldType> void add(
         BiConsumer<ObjectType, FieldType> setter,
         JsonpDeserializer<FieldType> deserializer,
-        String name, String... aliases
+        String name,
+        String... aliases
     ) {
-        FieldObjectDeserializer<ObjectType, FieldType> fieldDeserializer =
-            new FieldObjectDeserializer<>(setter, deserializer, name);
+        FieldObjectDeserializer<ObjectType, FieldType> fieldDeserializer = new FieldObjectDeserializer<>(setter, deserializer, name);
         this.fieldDeserializers.put(name, fieldDeserializer);
-        for (String alias: aliases) {
+        for (String alias : aliases) {
             this.fieldDeserializers.put(alias, fieldDeserializer);
         }
     }
@@ -280,33 +271,11 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
         this.defaultType = defaultType;
     }
 
-    //----- Primitive types
+    // ----- Primitive types
 
     public void add(ObjIntConsumer<ObjectType> setter, String name, String... deprecatedNames) {
         // FIXME (perf): add specialized deserializer to avoid intermediate boxing
         add(setter::accept, JsonpDeserializer.integerDeserializer(), name, deprecatedNames);
     }
-
-// Experiment: avoid boxing, allow multiple primitive parsers (e.g. int as number & string)
-//    public void add(
-//        ObjIntConsumer<ObjectType> setter,
-//        JsonpIntParser vp,
-//        String name, String... deprecatedNames
-//    ) {
-//        this.fieldDeserializers.put(name, new FieldDeserializer<ObjectType>(name, deprecatedNames) {
-//            @Override
-//            public void deserialize(JsonParser parser, JsonpMapper mapper, String fieldName, ObjectType object) {
-//                JsonpUtils.expectNextEvent(parser, Event.VALUE_NUMBER);
-//                setter.accept(object, vp.parse(parser));
-//            }
-//        });
-//    }
-//
-//    public static class JsonpIntParser {
-//        public int parse(JsonParser parser) {
-//            JsonpUtils.expectNextEvent(parser, Event.VALUE_NUMBER);
-//            return parser.getInt();
-//        }
-//    }
 
 }

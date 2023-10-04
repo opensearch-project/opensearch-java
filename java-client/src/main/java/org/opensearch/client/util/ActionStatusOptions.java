@@ -35,7 +35,6 @@ package org.opensearch.client.util;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum ActionStatusOptions implements JsonEnum {
     Success("success"),
@@ -59,5 +58,6 @@ public enum ActionStatusOptions implements JsonEnum {
     }
 
     public static final JsonEnum.Deserializer<ActionStatusOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
-            ActionStatusOptions.values());
+        ActionStatusOptions.values()
+    );
 }

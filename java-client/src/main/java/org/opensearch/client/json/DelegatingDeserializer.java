@@ -33,7 +33,6 @@
 package org.opensearch.client.json;
 
 import jakarta.json.stream.JsonParser;
-
 import java.util.EnumSet;
 
 public abstract class DelegatingDeserializer<T, U> implements JsonpDeserializer<T> {
@@ -68,7 +67,7 @@ public abstract class DelegatingDeserializer<T, U> implements JsonpDeserializer<
      */
     public static JsonpDeserializer<?> unwrap(JsonpDeserializer<?> deserializer) {
         while (deserializer instanceof DelegatingDeserializer) {
-            deserializer = ((DelegatingDeserializer<?,?>) deserializer).unwrap();
+            deserializer = ((DelegatingDeserializer<?, ?>) deserializer).unwrap();
         }
         return deserializer;
     }

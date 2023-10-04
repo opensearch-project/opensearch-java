@@ -32,14 +32,13 @@
 
 package org.opensearch.client.transport.endpoints;
 
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.apache.hc.core5.net.URLEncodedUtils;
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.transport.JsonEndpoint;
-
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
+import org.apache.hc.core5.net.URLEncodedUtils;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.transport.JsonEndpoint;
 
 public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<RequestT, ResponseT, ErrorResponse> {
 
@@ -121,19 +120,16 @@ public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<Request
     public <NewResponseT> SimpleEndpoint<RequestT, NewResponseT> withResponseDeserializer(
         JsonpDeserializer<NewResponseT> newResponseParser
     ) {
-        return new SimpleEndpoint<>(
-            method,
-            requestUrl,
-            queryParameters,
-            headers,
-            hasRequestBody,
-            newResponseParser
-        );
+        return new SimpleEndpoint<>(method, requestUrl, queryParameters, headers, hasRequestBody, newResponseParser);
     }
 
     public static RuntimeException noPathTemplateFound(String what) {
-        return new RuntimeException("Could not find a request " + what + " with this set of properties. " +
-            "Please check the API documentation, or raise an issue if this should be a valid request.");
+        return new RuntimeException(
+            "Could not find a request "
+                + what
+                + " with this set of properties. "
+                + "Please check the API documentation, or raise an issue if this should be a valid request."
+        );
     }
 
     public static void pathEncode(String src, StringBuilder dest) {

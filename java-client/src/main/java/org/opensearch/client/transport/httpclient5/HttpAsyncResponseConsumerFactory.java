@@ -47,7 +47,8 @@ public interface HttpAsyncResponseConsumerFactory {
      * Creates the default type of {@link AsyncResponseConsumer}, based on heap buffering with a buffer limit of 100MB.
      */
     HttpAsyncResponseConsumerFactory DEFAULT = new HeapBufferedResponseConsumerFactory(
-        HeapBufferedResponseConsumerFactory.DEFAULT_BUFFER_LIMIT);
+        HeapBufferedResponseConsumerFactory.DEFAULT_BUFFER_LIMIT
+    );
 
     /**
      * Creates the {@link AsyncResponseConsumer}, called once per request attempt.

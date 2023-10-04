@@ -13,16 +13,15 @@
 
 package org.opensearch.client.transport.httpclient5.internal;
 
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.util.concurrent.atomic.AtomicReference;
 import org.apache.hc.core5.http.ContentTooLongException;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpException;
 import org.apache.hc.core5.http.nio.AsyncEntityConsumer;
 import org.apache.hc.core5.http.nio.entity.AbstractBinAsyncEntityConsumer;
 import org.apache.hc.core5.util.ByteArrayBuffer;
-
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Default implementation of {@link AsyncEntityConsumer}. Buffers the whole

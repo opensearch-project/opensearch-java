@@ -18,6 +18,6 @@ public class RandUtil {
     }
 
     public static <T> T choice(T[] arr) {
-        return arr[(int)Math.floor(Math.random() * arr.length)];
+        return arr[(int) Math.floor(Math.random() * arr.length)];
     }
 }

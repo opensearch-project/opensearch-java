@@ -35,6 +35,7 @@ package org.opensearch.client.opensearch.json;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
+import java.io.StringReader;
 import org.junit.Assert;
 import org.junit.Test;
 import org.opensearch.client.json.JsonData;
@@ -42,16 +43,13 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
-import java.io.StringReader;
-
-
 public class JsonDataTest extends Assert {
 
     @Test
     public void testParsing() {
         JsonpMapper mapper = new JsonbJsonpMapper();
-        String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
-            "\"stringValue\":\"foo\"}";
+        String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1,"
+            + "\"stringValue\":\"foo\"}";
 
         JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
 
@@ -66,8 +64,8 @@ public class JsonDataTest extends Assert {
     public void testSerialize() {
 
         JsonpMapper mapper = new JsonbJsonpMapper();
-        String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
-            "\"stringValue\":\"foo\"}";
+        String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1,"
+            + "\"stringValue\":\"foo\"}";
 
         JsonpMapperTest.SomeClass sc = ModelTestCase.fromJson(json, JsonpMapperTest.SomeClass.class, mapper);
 
@@ -89,6 +87,6 @@ public class JsonDataTest extends Assert {
         final JsonValue value = json.toJson(new JsonbJsonpMapper());
 
         assertEquals(JsonValue.ValueType.STRING, value.getValueType());
-        assertEquals("foo", ((JsonString)value).getString());
+        assertEquals("foo", ((JsonString) value).getString());
     }
 }
