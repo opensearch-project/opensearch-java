@@ -48,25 +48,24 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _global.termvectors.Term
 
-
 @JsonpDeserializable
 public class Term implements JsonpSerializable {
-	@Nullable
-	private final Integer docFreq;
+    @Nullable
+    private final Integer docFreq;
 
-	@Nullable
-	private final Double score;
+    @Nullable
+    private final Double score;
 
 	private final Integer termFreq;
 
-	private final List<Token> tokens;
+    private final List<Token> tokens;
 
-	@Nullable
-	private final Integer ttf;
+    @Nullable
+    private final Integer ttf;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private Term(Builder builder) {
+    private Term(Builder builder) {
 
 		this.docFreq = builder.docFreq;
 		this.score = builder.score;
@@ -74,69 +73,69 @@ public class Term implements JsonpSerializable {
 		this.tokens = ApiTypeHelper.unmodifiable(builder.tokens);
 		this.ttf = builder.ttf;
 
-	}
+    }
 
-	public static Term of(Function<Builder, ObjectBuilder<Term>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Term of(Function<Builder, ObjectBuilder<Term>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code doc_freq}
-	 */
-	@Nullable
-	public final Integer docFreq() {
-		return this.docFreq;
-	}
+    /**
+     * API name: {@code doc_freq}
+     */
+    @Nullable
+    public final Integer docFreq() {
+        return this.docFreq;
+    }
 
-	/**
-	 * API name: {@code score}
-	 */
-	@Nullable
-	public final Double score() {
-		return this.score;
-	}
+    /**
+     * API name: {@code score}
+     */
+    @Nullable
+    public final Double score() {
+        return this.score;
+    }
 
-	/**
-	 * Required - API name: {@code term_freq}
-	 */
-	public final int termFreq() {
-		return this.termFreq;
-	}
+    /**
+     * Required - API name: {@code term_freq}
+     */
+    public final int termFreq() {
+        return this.termFreq;
+    }
 
-	/**
-	 * Required - API name: {@code tokens}
-	 */
-	public final List<Token> tokens() {
-		return this.tokens;
-	}
+    /**
+     * Required - API name: {@code tokens}
+     */
+    public final List<Token> tokens() {
+        return this.tokens;
+    }
 
-	/**
-	 * API name: {@code ttf}
-	 */
-	@Nullable
-	public final Integer ttf() {
-		return this.ttf;
-	}
+    /**
+     * API name: {@code ttf}
+     */
+    @Nullable
+    public final Integer ttf() {
+        return this.ttf;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.docFreq != null) {
-			generator.writeKey("doc_freq");
-			generator.write(this.docFreq);
+        if (this.docFreq != null) {
+            generator.writeKey("doc_freq");
+            generator.write(this.docFreq);
 
-		}
-		if (this.score != null) {
-			generator.writeKey("score");
-			generator.write(this.score);
+        }
+        if (this.score != null) {
+            generator.writeKey("score");
+            generator.write(this.score);
 
 		}
 		if (null != this.termFreq) {
@@ -144,134 +143,133 @@ public class Term implements JsonpSerializable {
 			generator.write(this.termFreq);
 		}
 
-		if (ApiTypeHelper.isDefined(this.tokens)) {
-			generator.writeKey("tokens");
-			generator.writeStartArray();
-			for (Token item0 : this.tokens) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.tokens)) {
+            generator.writeKey("tokens");
+            generator.writeStartArray();
+            for (Token item0 : this.tokens) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.ttf != null) {
-			generator.writeKey("ttf");
-			generator.write(this.ttf);
+        }
+        if (this.ttf != null) {
+            generator.writeKey("ttf");
+            generator.write(this.ttf);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link Term}.
-	 */
+    /**
+     * Builder for {@link Term}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Term> {
-		@Nullable
-		private Integer docFreq;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Term> {
+        @Nullable
+        private Integer docFreq;
 
-		@Nullable
-		private Double score;
+        @Nullable
+        private Double score;
 
-		private Integer termFreq;
+        private Integer termFreq;
 
-		private List<Token> tokens;
+        private List<Token> tokens;
 
-		@Nullable
-		private Integer ttf;
+        @Nullable
+        private Integer ttf;
 
-		/**
-		 * API name: {@code doc_freq}
-		 */
-		public final Builder docFreq(@Nullable Integer value) {
-			this.docFreq = value;
-			return this;
-		}
+        /**
+         * API name: {@code doc_freq}
+         */
+        public final Builder docFreq(@Nullable Integer value) {
+            this.docFreq = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code score}
-		 */
-		public final Builder score(@Nullable Double value) {
-			this.score = value;
-			return this;
-		}
+        /**
+         * API name: {@code score}
+         */
+        public final Builder score(@Nullable Double value) {
+            this.score = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code term_freq}
-		 */
-		public final Builder termFreq(int value) {
-			this.termFreq = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code term_freq}
+         */
+        public final Builder termFreq(int value) {
+            this.termFreq = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code tokens}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>tokens</code>.
-		 */
-		public final Builder tokens(List<Token> list) {
-			this.tokens = _listAddAll(this.tokens, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code tokens}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>tokens</code>.
+         */
+        public final Builder tokens(List<Token> list) {
+            this.tokens = _listAddAll(this.tokens, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code tokens}
-		 * <p>
-		 * Adds one or more values to <code>tokens</code>.
-		 */
-		public final Builder tokens(Token value, Token... values) {
-			this.tokens = _listAdd(this.tokens, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code tokens}
+         * <p>
+         * Adds one or more values to <code>tokens</code>.
+         */
+        public final Builder tokens(Token value, Token... values) {
+            this.tokens = _listAdd(this.tokens, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code tokens}
-		 * <p>
-		 * Adds a value to <code>tokens</code> using a builder lambda.
-		 */
-		public final Builder tokens(Function<Token.Builder, ObjectBuilder<Token>> fn) {
-			return tokens(fn.apply(new Token.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code tokens}
+         * <p>
+         * Adds a value to <code>tokens</code> using a builder lambda.
+         */
+        public final Builder tokens(Function<Token.Builder, ObjectBuilder<Token>> fn) {
+            return tokens(fn.apply(new Token.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code ttf}
-		 */
-		public final Builder ttf(@Nullable Integer value) {
-			this.ttf = value;
-			return this;
-		}
+        /**
+         * API name: {@code ttf}
+         */
+        public final Builder ttf(@Nullable Integer value) {
+            this.ttf = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link Term}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public Term build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link Term}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public Term build() {
+            _checkSingleUse();
 
-			return new Term(this);
-		}
-	}
+            return new Term(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link Term}
-	 */
-	public static final JsonpDeserializer<Term> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Term::setupTermDeserializer);
+    /**
+     * Json deserializer for {@link Term}
+     */
+    public static final JsonpDeserializer<Term> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new, Term::setupTermDeserializer);
 
-	protected static void setupTermDeserializer(ObjectDeserializer<Term.Builder> op) {
+    protected static void setupTermDeserializer(ObjectDeserializer<Term.Builder> op) {
 
-		op.add(Builder::docFreq, JsonpDeserializer.integerDeserializer(), "doc_freq");
-		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "score");
-		op.add(Builder::termFreq, JsonpDeserializer.integerDeserializer(), "term_freq");
-		op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(Token._DESERIALIZER), "tokens");
-		op.add(Builder::ttf, JsonpDeserializer.integerDeserializer(), "ttf");
+        op.add(Builder::docFreq, JsonpDeserializer.integerDeserializer(), "doc_freq");
+        op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "score");
+        op.add(Builder::termFreq, JsonpDeserializer.integerDeserializer(), "term_freq");
+        op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(Token._DESERIALIZER), "tokens");
+        op.add(Builder::ttf, JsonpDeserializer.integerDeserializer(), "ttf");
 
-	}
+    }
 
 }

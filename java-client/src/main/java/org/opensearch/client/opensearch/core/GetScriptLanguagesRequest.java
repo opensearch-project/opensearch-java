@@ -32,51 +32,53 @@
 
 package org.opensearch.client.opensearch.core;
 
+import java.util.Collections;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
-import java.util.Collections;
-
 // typedef: _global.get_script_languages.Request
 
 /**
  * Returns available script types, languages and contexts
- * 
+ *
  */
 
 public class GetScriptLanguagesRequest extends RequestBase {
-	public GetScriptLanguagesRequest() {
-	}
+    public GetScriptLanguagesRequest() {}
 
-	/**
-	 * Singleton instance for {@link GetScriptLanguagesRequest}.
-	 */
-	public static final GetScriptLanguagesRequest _INSTANCE = new GetScriptLanguagesRequest();
+    /**
+     * Singleton instance for {@link GetScriptLanguagesRequest}.
+     */
+    public static final GetScriptLanguagesRequest _INSTANCE = new GetScriptLanguagesRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code get_script_languages}".
-	 */
-	public static final Endpoint<GetScriptLanguagesRequest, GetScriptLanguagesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code get_script_languages}".
+     */
+    public static final Endpoint<GetScriptLanguagesRequest, GetScriptLanguagesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_script_language";
+        // Request path
+        request -> {
+            return "/_script_language";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetScriptLanguagesResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        GetScriptLanguagesResponse._DESERIALIZER
+    );
 }

@@ -13,9 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
 import javax.annotation.Nullable;
-
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -26,10 +24,9 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-
 /**
  * Creates a Point In Time attribute on Search
- * 
+ *
  */
 public class CreatePitRequest extends RequestBase {
 
@@ -281,7 +278,7 @@ public class CreatePitRequest extends RequestBase {
 
         /**
          * Builds a {@link CreatePitRequest}.
-         * 
+         *
          * @throws NullPointerException if some of the required fields are null.
          */
         public CreatePitRequest build() {
@@ -291,47 +288,47 @@ public class CreatePitRequest extends RequestBase {
     }
 
     public static final Endpoint<CreatePitRequest, CreatePitResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-            // Request method
-            request -> {
-                return "POST";
-            },
+        // Request method
+        request -> { return "POST"; },
 
-            // Request Path
-            request -> {
+        // Request Path
+        request -> {
 
-                final int _targetIndexes = 1 << 0;
+            final int _targetIndexes = 1 << 0;
 
-                int propsSet = 0;
+            int propsSet = 0;
 
-                propsSet |= _targetIndexes;
+            propsSet |= _targetIndexes;
 
-                if (propsSet == (_targetIndexes)) {
-                    StringBuilder buf = new StringBuilder();
-                    buf.append("/");
-                    SimpleEndpoint.pathEncode(
-                            request.targetIndexes.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-                    buf.append("/_search/point_in_time");
-                    return buf.toString();
-                }
-                throw SimpleEndpoint.noPathTemplateFound("path");
-            }, request -> {
-                Map<String, String> params = new HashMap<>();
-                params.put("keep_alive", request.keepAlive._toJsonString());
+            if (propsSet == (_targetIndexes)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.targetIndexes.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                buf.append("/_search/point_in_time");
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
+        },
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            params.put("keep_alive", request.keepAlive._toJsonString());
 
-                if (request.preference != null) {
-                    params.put("preference", request.preference);
-                }
-                if (request.routing != null) {
-                    params.put("routing", request.routing);
-                }
-                if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                    params.put("expand_wildcards",
-                            request.expandWildcards.stream()
-                                    .map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-                }
-                if (request.allowPartialPitCreation != null) {
-                    params.put("allow_partial_pit_creation", String.valueOf(request.allowPartialPitCreation));
-                }
-                return params;
-            }, SimpleEndpoint.emptyMap(), false, CreatePitResponse._DESERIALIZER);
+            if (request.preference != null) {
+                params.put("preference", request.preference);
+            }
+            if (request.routing != null) {
+                params.put("routing", request.routing);
+            }
+            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+            }
+            if (request.allowPartialPitCreation != null) {
+                params.put("allow_partial_pit_creation", String.valueOf(request.allowPartialPitCreation));
+            }
+            return params;
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        CreatePitResponse._DESERIALIZER
+    );
 }

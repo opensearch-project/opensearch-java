@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,8 +43,6 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _global.search._types.StupidBackoffSmoothingModel
 
@@ -128,11 +128,12 @@ public class StupidBackoffSmoothingModel implements SmoothingModelVariant, Jsonp
     /**
      * Json deserializer for {@link StupidBackoffSmoothingModel}
      */
-    public static final JsonpDeserializer<StupidBackoffSmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer
-            .lazy(Builder::new, StupidBackoffSmoothingModel::setupStupidBackoffSmoothingModelDeserializer);
+    public static final JsonpDeserializer<StupidBackoffSmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StupidBackoffSmoothingModel::setupStupidBackoffSmoothingModelDeserializer
+    );
 
-    protected static void setupStupidBackoffSmoothingModelDeserializer(
-            ObjectDeserializer<StupidBackoffSmoothingModel.Builder> op) {
+    protected static void setupStupidBackoffSmoothingModelDeserializer(ObjectDeserializer<StupidBackoffSmoothingModel.Builder> op) {
 
         op.add(Builder::discount, JsonpDeserializer.doubleDeserializer(), "discount");
 

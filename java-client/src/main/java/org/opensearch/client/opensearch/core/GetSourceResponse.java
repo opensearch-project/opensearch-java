@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.core;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,112 +45,110 @@ import org.opensearch.client.json.NamedDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.get_source.Response
 
-
 @JsonpDeserializable
 public class GetSourceResponse<TDocument> implements JsonpSerializable {
-	private final TDocument valueBody;
+    private final TDocument valueBody;
 
-	@Nullable
-	private final JsonpSerializer<TDocument> tDocumentSerializer;
+    @Nullable
+    private final JsonpSerializer<TDocument> tDocumentSerializer;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetSourceResponse(Builder<TDocument> builder) {
+    private GetSourceResponse(Builder<TDocument> builder) {
 
-		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
-		this.tDocumentSerializer = builder.tDocumentSerializer;
+        this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+        this.tDocumentSerializer = builder.tDocumentSerializer;
 
-	}
+    }
 
-	public static <TDocument> GetSourceResponse<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<GetSourceResponse<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
-	}
+    public static <TDocument> GetSourceResponse<TDocument> of(
+        Function<Builder<TDocument>, ObjectBuilder<GetSourceResponse<TDocument>>> fn
+    ) {
+        return fn.apply(new Builder<>()).build();
+    }
 
-	/**
-	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
-	 */
-	public final TDocument valueBody() {
-		return this.valueBody;
-	}
+    /**
+     * Required - Response value.
+     * <p>
+     * API name: {@code _value_body}
+     */
+    public final TDocument valueBody() {
+        return this.valueBody;
+    }
 
-	/**
-	 * Serialize this value to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		JsonpUtils.serialize(this.valueBody, generator, tDocumentSerializer, mapper);
+    /**
+     * Serialize this value to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        JsonpUtils.serialize(this.valueBody, generator, tDocumentSerializer, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetSourceResponse}.
-	 */
+    /**
+     * Builder for {@link GetSourceResponse}.
+     */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase
-			implements
-				ObjectBuilder<GetSourceResponse<TDocument>> {
-		private TDocument valueBody;
+    public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<GetSourceResponse<TDocument>> {
+        private TDocument valueBody;
 
-		@Nullable
-		private JsonpSerializer<TDocument> tDocumentSerializer;
+        @Nullable
+        private JsonpSerializer<TDocument> tDocumentSerializer;
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 */
-		public final Builder<TDocument> valueBody(TDocument value) {
-			this.valueBody = value;
-			return this;
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         */
+        public final Builder<TDocument> valueBody(TDocument value) {
+            this.valueBody = value;
+            return this;
+        }
 
-		/**
-		 * Serializer for TDocument. If not set, an attempt will be made to find a
-		 * serializer from the JSON context.
-		 */
-		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
-			this.tDocumentSerializer = value;
-			return this;
-		}
+        /**
+         * Serializer for TDocument. If not set, an attempt will be made to find a
+         * serializer from the JSON context.
+         */
+        public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+            this.tDocumentSerializer = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetSourceResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetSourceResponse<TDocument> build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GetSourceResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetSourceResponse<TDocument> build() {
+            _checkSingleUse();
 
-			return new GetSourceResponse<TDocument>(this);
-		}
-	}
+            return new GetSourceResponse<TDocument>(this);
+        }
+    }
 
-	/**
-	 * Json deserializer for {@link GetSourceResponse} based on named deserializers
-	 * provided by the calling {@code JsonMapper}.
-	 */
-	public static final JsonpDeserializer<GetSourceResponse<Object>> _DESERIALIZER = createGetSourceResponseDeserializer(
-			new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.get_source.TDocument"));
+    /**
+     * Json deserializer for {@link GetSourceResponse} based on named deserializers
+     * provided by the calling {@code JsonMapper}.
+     */
+    public static final JsonpDeserializer<GetSourceResponse<Object>> _DESERIALIZER = createGetSourceResponseDeserializer(
+        new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.get_source.TDocument")
+    );
 
-	public static <TDocument> JsonpDeserializer<GetSourceResponse<TDocument>> createGetSourceResponseDeserializer(
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+    public static <TDocument> JsonpDeserializer<GetSourceResponse<TDocument>> createGetSourceResponseDeserializer(
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
 
-		JsonpDeserializer<TDocument> valueDeserializer = tDocumentDeserializer;
+        JsonpDeserializer<TDocument> valueDeserializer = tDocumentDeserializer;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper) -> new Builder<TDocument>()
-				.valueBody(valueDeserializer.deserialize(parser, mapper)).build());
-	}
+        return JsonpDeserializer.of(
+            valueDeserializer.acceptedEvents(),
+            (parser, mapper) -> new Builder<TDocument>().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
+        );
+    }
 
 }

@@ -38,34 +38,33 @@ package org.opensearch.client.opensearch.core.search;
  * Variants <code>prefix</code>, <code>regex</code>, <code>text</code> are not
  * available here as they don't have a dedicated class. Use
  * {@link FieldSuggester}'s builder for these.
- * 
+ *
  */
 public class FieldSuggesterBuilders {
-	private FieldSuggesterBuilders() {
-	}
+    private FieldSuggesterBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link CompletionSuggester completion}
-	 * {@code FieldSuggester} variant.
-	 */
-	public static CompletionSuggester.Builder completion() {
-		return new CompletionSuggester.Builder();
-	}
+    /**
+     * Creates a builder for the {@link CompletionSuggester completion}
+     * {@code FieldSuggester} variant.
+     */
+    public static CompletionSuggester.Builder completion() {
+        return new CompletionSuggester.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link PhraseSuggester phrase}
-	 * {@code FieldSuggester} variant.
-	 */
-	public static PhraseSuggester.Builder phrase() {
-		return new PhraseSuggester.Builder();
-	}
+    /**
+     * Creates a builder for the {@link PhraseSuggester phrase}
+     * {@code FieldSuggester} variant.
+     */
+    public static PhraseSuggester.Builder phrase() {
+        return new PhraseSuggester.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link TermSuggester term} {@code FieldSuggester}
-	 * variant.
-	 */
-	public static TermSuggester.Builder term() {
-		return new TermSuggester.Builder();
-	}
+    /**
+     * Creates a builder for the {@link TermSuggester term} {@code FieldSuggester}
+     * variant.
+     */
+    public static TermSuggester.Builder term() {
+        return new TermSuggester.Builder();
+    }
 
 }

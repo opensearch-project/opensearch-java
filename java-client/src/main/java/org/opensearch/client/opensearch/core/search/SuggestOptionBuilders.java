@@ -36,31 +36,30 @@ package org.opensearch.client.opensearch.core.search;
  * Builders for {@link Suggest} variants.
  */
 public class SuggestOptionBuilders {
-	private SuggestOptionBuilders() {
-	}
+    private SuggestOptionBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link CompletionSuggestOption completion}
-	 * {@code SuggestOption} variant.
-	 */
-	public static <TDocument> CompletionSuggestOption.Builder<TDocument> completion() {
-		return new CompletionSuggestOption.Builder<TDocument>();
-	}
+    /**
+     * Creates a builder for the {@link CompletionSuggestOption completion}
+     * {@code SuggestOption} variant.
+     */
+    public static <TDocument> CompletionSuggestOption.Builder<TDocument> completion() {
+        return new CompletionSuggestOption.Builder<TDocument>();
+    }
 
-	/**
-	 * Creates a builder for the {@link PhraseSuggestOption phrase}
-	 * {@code SuggestOption} variant.
-	 */
-	public static <TDocument> PhraseSuggestOption.Builder phrase() {
-		return new PhraseSuggestOption.Builder();
-	}
+    /**
+     * Creates a builder for the {@link PhraseSuggestOption phrase}
+     * {@code SuggestOption} variant.
+     */
+    public static <TDocument> PhraseSuggestOption.Builder phrase() {
+        return new PhraseSuggestOption.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link TermSuggestOption term}
-	 * {@code SuggestOption} variant.
-	 */
-	public static <TDocument> TermSuggestOption.Builder term() {
-		return new TermSuggestOption.Builder();
-	}
+    /**
+     * Creates a builder for the {@link TermSuggestOption term}
+     * {@code SuggestOption} variant.
+     */
+    public static <TDocument> TermSuggestOption.Builder term() {
+        return new TermSuggestOption.Builder();
+    }
 
 }

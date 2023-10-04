@@ -32,13 +32,12 @@
 
 package org.opensearch.client.opensearch.core.rank_eval;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _global.rank_eval.RankEvalMetricMeanReciprocalRank
 
@@ -47,57 +46,59 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRatingTreshold {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RankEvalMetricMeanReciprocalRank(Builder builder) {
-		super(builder);
+    private RankEvalMetricMeanReciprocalRank(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static RankEvalMetricMeanReciprocalRank of(
-			Function<Builder, ObjectBuilder<RankEvalMetricMeanReciprocalRank>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RankEvalMetricMeanReciprocalRank of(Function<Builder, ObjectBuilder<RankEvalMetricMeanReciprocalRank>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RankEvalMetricMeanReciprocalRank}.
-	 */
+    /**
+     * Builder for {@link RankEvalMetricMeanReciprocalRank}.
+     */
 
-	public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RankEvalMetricMeanReciprocalRank> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<RankEvalMetricMeanReciprocalRank> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RankEvalMetricMeanReciprocalRank}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RankEvalMetricMeanReciprocalRank build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RankEvalMetricMeanReciprocalRank}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RankEvalMetricMeanReciprocalRank build() {
+            _checkSingleUse();
 
-			return new RankEvalMetricMeanReciprocalRank(this);
-		}
-	}
+            return new RankEvalMetricMeanReciprocalRank(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RankEvalMetricMeanReciprocalRank}
-	 */
-	public static final JsonpDeserializer<RankEvalMetricMeanReciprocalRank> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankEvalMetricMeanReciprocalRank::setupRankEvalMetricMeanReciprocalRankDeserializer);
+    /**
+     * Json deserializer for {@link RankEvalMetricMeanReciprocalRank}
+     */
+    public static final JsonpDeserializer<RankEvalMetricMeanReciprocalRank> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RankEvalMetricMeanReciprocalRank::setupRankEvalMetricMeanReciprocalRankDeserializer
+    );
 
-	protected static void setupRankEvalMetricMeanReciprocalRankDeserializer(
-			ObjectDeserializer<RankEvalMetricMeanReciprocalRank.Builder> op) {
-		RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
+    protected static void setupRankEvalMetricMeanReciprocalRankDeserializer(
+        ObjectDeserializer<RankEvalMetricMeanReciprocalRank.Builder> op
+    ) {
+        RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
 
-	}
+    }
 
 }

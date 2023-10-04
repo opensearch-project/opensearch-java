@@ -32,12 +32,11 @@
 
 package org.opensearch.client.opensearch.core;
 
+import java.util.Collections;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-
-import java.util.Collections;
 
 // typedef: _global.info.Request
 
@@ -47,36 +46,39 @@ import java.util.Collections;
  */
 
 public class InfoRequest extends RequestBase {
-	public InfoRequest() {
-	}
+    public InfoRequest() {}
 
-	/**
-	 * Singleton instance for {@link InfoRequest}.
-	 */
-	public static final InfoRequest _INSTANCE = new InfoRequest();
+    /**
+     * Singleton instance for {@link InfoRequest}.
+     */
+    public static final InfoRequest _INSTANCE = new InfoRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code info}".
-	 */
-	public static final Endpoint<InfoRequest, InfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code info}".
+     */
+    public static final Endpoint<InfoRequest, InfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/";
+        // Request path
+        request -> {
+            return "/";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, InfoResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        InfoResponse._DESERIALIZER
+    );
 }

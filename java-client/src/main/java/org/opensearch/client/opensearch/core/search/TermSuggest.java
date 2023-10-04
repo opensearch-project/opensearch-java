@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
- /*
+/*
 * Licensed to Elasticsearch B.V. under one or more contributor
 * license agreements. See the NOTICE file distributed with
 * this work for additional information regarding copyright
@@ -32,9 +32,9 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
-
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -43,8 +43,6 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch.core.search.Suggest.Kind;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-
-import jakarta.json.stream.JsonGenerator;
 
 @JsonpDeserializable
 public class TermSuggest extends SuggestBase implements SuggestVariant {
@@ -110,8 +108,10 @@ public class TermSuggest extends SuggestBase implements SuggestVariant {
         }
     }
 
-    public static final JsonpDeserializer<TermSuggest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-            TermSuggest::setupTermSuggestDeserializer);
+    public static final JsonpDeserializer<TermSuggest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TermSuggest::setupTermSuggestDeserializer
+    );
 
     protected static void setupTermSuggestDeserializer(ObjectDeserializer<TermSuggest.Builder> op) {
         SuggestBase.setupSuggestBaseDeserializer(op);

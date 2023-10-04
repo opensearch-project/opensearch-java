@@ -32,83 +32,86 @@
 
 package org.opensearch.client.opensearch.core;
 
-import org.opensearch.client.opensearch.core.msearch.MultiSearchResult;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.NamedDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.core.msearch.MultiSearchResult;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 // typedef: _global.msearch.Response
 
 @JsonpDeserializable
 public class MsearchResponse<TDocument> extends MultiSearchResult<TDocument> {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MsearchResponse(Builder<TDocument> builder) {
-		super(builder);
+    private MsearchResponse(Builder<TDocument> builder) {
+        super(builder);
 
-	}
+    }
 
-	public static <TDocument> MsearchResponse<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<MsearchResponse<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
-	}
+    public static <TDocument> MsearchResponse<TDocument> of(Function<Builder<TDocument>, ObjectBuilder<MsearchResponse<TDocument>>> fn) {
+        return fn.apply(new Builder<>()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MsearchResponse}.
-	 */
+    /**
+     * Builder for {@link MsearchResponse}.
+     */
 
-	public static class Builder<TDocument> extends MultiSearchResult.AbstractBuilder<TDocument, Builder<TDocument>>
-			implements
-				ObjectBuilder<MsearchResponse<TDocument>> {
-		@Override
-		protected Builder<TDocument> self() {
-			return this;
-		}
+    public static class Builder<TDocument> extends MultiSearchResult.AbstractBuilder<TDocument, Builder<TDocument>>
+        implements
+            ObjectBuilder<MsearchResponse<TDocument>> {
+        @Override
+        protected Builder<TDocument> self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MsearchResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MsearchResponse<TDocument> build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MsearchResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MsearchResponse<TDocument> build() {
+            _checkSingleUse();
 
-			return new MsearchResponse<TDocument>(this);
-		}
-	}
+            return new MsearchResponse<TDocument>(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Create a JSON deserializer for MsearchResponse
-	 */
-	public static <TDocument> JsonpDeserializer<MsearchResponse<TDocument>> createMsearchResponseDeserializer(
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> MsearchResponse.setupMsearchResponseDeserializer(op, tDocumentDeserializer));
-	};
+    /**
+     * Create a JSON deserializer for MsearchResponse
+     */
+    public static <TDocument> JsonpDeserializer<MsearchResponse<TDocument>> createMsearchResponseDeserializer(
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
+        return ObjectBuilderDeserializer.createForObject(
+            (Supplier<Builder<TDocument>>) Builder::new,
+            op -> MsearchResponse.setupMsearchResponseDeserializer(op, tDocumentDeserializer)
+        );
+    };
 
-	/**
-	 * Json deserializer for {@link MsearchResponse} based on named deserializers
-	 * provided by the calling {@code JsonMapper}.
-	 */
-	public static final JsonpDeserializer<MsearchResponse<Object>> _DESERIALIZER = createMsearchResponseDeserializer(
-			new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.msearch.TDocument"));
+    /**
+     * Json deserializer for {@link MsearchResponse} based on named deserializers
+     * provided by the calling {@code JsonMapper}.
+     */
+    public static final JsonpDeserializer<MsearchResponse<Object>> _DESERIALIZER = createMsearchResponseDeserializer(
+        new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.msearch.TDocument")
+    );
 
-	protected static <TDocument> void setupMsearchResponseDeserializer(
-			ObjectDeserializer<MsearchResponse.Builder<TDocument>> op,
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		MultiSearchResult.setupMultiSearchResultDeserializer(op, tDocumentDeserializer);
+    protected static <TDocument> void setupMsearchResponseDeserializer(
+        ObjectDeserializer<MsearchResponse.Builder<TDocument>> op,
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
+        MultiSearchResult.setupMultiSearchResultDeserializer(op, tDocumentDeserializer);
 
-	}
+    }
 
 }

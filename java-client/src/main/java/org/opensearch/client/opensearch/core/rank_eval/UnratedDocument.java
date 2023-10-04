@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.core.rank_eval;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,117 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _global.rank_eval.UnratedDocument
 
-
 @JsonpDeserializable
 public class UnratedDocument implements JsonpSerializable {
-	private final String id;
+    private final String id;
 
-	private final String index;
+    private final String index;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private UnratedDocument(Builder builder) {
+    private UnratedDocument(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
-	}
+    }
 
-	public static UnratedDocument of(Function<Builder, ObjectBuilder<UnratedDocument>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static UnratedDocument of(Function<Builder, ObjectBuilder<UnratedDocument>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code _id}
-	 */
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * Required - API name: {@code _id}
+     */
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * Required - API name: {@code _index}
-	 */
-	public final String index() {
-		return this.index;
-	}
+    /**
+     * Required - API name: {@code _index}
+     */
+    public final String index() {
+        return this.index;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("_id");
-		generator.write(this.id);
+        generator.writeKey("_id");
+        generator.write(this.id);
 
-		generator.writeKey("_index");
-		generator.write(this.index);
+        generator.writeKey("_index");
+        generator.write(this.index);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link UnratedDocument}.
-	 */
+    /**
+     * Builder for {@link UnratedDocument}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnratedDocument> {
-		private String id;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnratedDocument> {
+        private String id;
 
-		private String index;
+        private String index;
 
-		/**
-		 * Required - API name: {@code _id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code _id}
+         */
+        public final Builder id(String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code _index}
-		 */
-		public final Builder index(String value) {
-			this.index = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code _index}
+         */
+        public final Builder index(String value) {
+            this.index = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link UnratedDocument}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public UnratedDocument build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link UnratedDocument}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public UnratedDocument build() {
+            _checkSingleUse();
 
-			return new UnratedDocument(this);
-		}
-	}
+            return new UnratedDocument(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link UnratedDocument}
-	 */
-	public static final JsonpDeserializer<UnratedDocument> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			UnratedDocument::setupUnratedDocumentDeserializer);
+    /**
+     * Json deserializer for {@link UnratedDocument}
+     */
+    public static final JsonpDeserializer<UnratedDocument> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        UnratedDocument::setupUnratedDocumentDeserializer
+    );
 
-	protected static void setupUnratedDocumentDeserializer(ObjectDeserializer<UnratedDocument.Builder> op) {
+    protected static void setupUnratedDocumentDeserializer(ObjectDeserializer<UnratedDocument.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 
-	}
+    }
 
 }

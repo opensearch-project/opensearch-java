@@ -32,163 +32,163 @@
 
 package org.opensearch.client.opensearch.core.search_shards;
 
-import org.opensearch.client.opensearch._types.query_dsl.Query;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.search_shards.ShardStoreIndex
 
 @JsonpDeserializable
 public class ShardStoreIndex implements JsonpSerializable {
-	private final List<String> aliases;
+    private final List<String> aliases;
 
-	@Nullable
-	private final Query filter;
+    @Nullable
+    private final Query filter;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ShardStoreIndex(Builder builder) {
+    private ShardStoreIndex(Builder builder) {
 
-		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
-		this.filter = builder.filter;
+        this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
+        this.filter = builder.filter;
 
-	}
+    }
 
-	public static ShardStoreIndex of(Function<Builder, ObjectBuilder<ShardStoreIndex>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ShardStoreIndex of(Function<Builder, ObjectBuilder<ShardStoreIndex>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code aliases}
-	 */
-	public final List<String> aliases() {
-		return this.aliases;
-	}
+    /**
+     * API name: {@code aliases}
+     */
+    public final List<String> aliases() {
+        return this.aliases;
+    }
 
-	/**
-	 * API name: {@code filter}
-	 */
-	@Nullable
-	public final Query filter() {
-		return this.filter;
-	}
+    /**
+     * API name: {@code filter}
+     */
+    @Nullable
+    public final Query filter() {
+        return this.filter;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.aliases)) {
-			generator.writeKey("aliases");
-			generator.writeStartArray();
-			for (String item0 : this.aliases) {
-				generator.write(item0);
+        if (ApiTypeHelper.isDefined(this.aliases)) {
+            generator.writeKey("aliases");
+            generator.writeStartArray();
+            for (String item0 : this.aliases) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.filter != null) {
-			generator.writeKey("filter");
-			this.filter.serialize(generator, mapper);
+        }
+        if (this.filter != null) {
+            generator.writeKey("filter");
+            this.filter.serialize(generator, mapper);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ShardStoreIndex}.
-	 */
+    /**
+     * Builder for {@link ShardStoreIndex}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoreIndex> {
-		@Nullable
-		private List<String> aliases;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoreIndex> {
+        @Nullable
+        private List<String> aliases;
 
-		@Nullable
-		private Query filter;
+        @Nullable
+        private Query filter;
 
-		/**
-		 * API name: {@code aliases}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>aliases</code>.
-		 */
-		public final Builder aliases(List<String> list) {
-			this.aliases = _listAddAll(this.aliases, list);
-			return this;
-		}
+        /**
+         * API name: {@code aliases}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>aliases</code>.
+         */
+        public final Builder aliases(List<String> list) {
+            this.aliases = _listAddAll(this.aliases, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code aliases}
-		 * <p>
-		 * Adds one or more values to <code>aliases</code>.
-		 */
-		public final Builder aliases(String value, String... values) {
-			this.aliases = _listAdd(this.aliases, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code aliases}
+         * <p>
+         * Adds one or more values to <code>aliases</code>.
+         */
+        public final Builder aliases(String value, String... values) {
+            this.aliases = _listAdd(this.aliases, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code filter}
-		 */
-		public final Builder filter(@Nullable Query value) {
-			this.filter = value;
-			return this;
-		}
+        /**
+         * API name: {@code filter}
+         */
+        public final Builder filter(@Nullable Query value) {
+            this.filter = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code filter}
-		 */
-		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filter(fn.apply(new Query.Builder()).build());
-		}
+        /**
+         * API name: {@code filter}
+         */
+        public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+            return this.filter(fn.apply(new Query.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link ShardStoreIndex}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ShardStoreIndex build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ShardStoreIndex}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ShardStoreIndex build() {
+            _checkSingleUse();
 
-			return new ShardStoreIndex(this);
-		}
-	}
+            return new ShardStoreIndex(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ShardStoreIndex}
-	 */
-	public static final JsonpDeserializer<ShardStoreIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardStoreIndex::setupShardStoreIndexDeserializer);
+    /**
+     * Json deserializer for {@link ShardStoreIndex}
+     */
+    public static final JsonpDeserializer<ShardStoreIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ShardStoreIndex::setupShardStoreIndexDeserializer
+    );
 
-	protected static void setupShardStoreIndexDeserializer(ObjectDeserializer<ShardStoreIndex.Builder> op) {
+    protected static void setupShardStoreIndexDeserializer(ObjectDeserializer<ShardStoreIndex.Builder> op) {
 
-		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"aliases");
-		op.add(Builder::filter, Query._DESERIALIZER, "filter");
+        op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "aliases");
+        op.add(Builder::filter, Query._DESERIALIZER, "filter");
 
-	}
+    }
 
 }

@@ -32,69 +32,67 @@
 
 package org.opensearch.client.opensearch.core;
 
-import org.opensearch.client.opensearch._types.WriteResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.WriteResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _global.index.Response
 
-
 @JsonpDeserializable
 public class IndexResponse extends WriteResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndexResponse(Builder builder) {
-		super(builder);
+    private IndexResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static IndexResponse of(Function<Builder, ObjectBuilder<IndexResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndexResponse of(Function<Builder, ObjectBuilder<IndexResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndexResponse}.
-	 */
+    /**
+     * Builder for {@link IndexResponse}.
+     */
 
-	public static class Builder extends WriteResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<IndexResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<IndexResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IndexResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndexResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndexResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndexResponse build() {
+            _checkSingleUse();
 
-			return new IndexResponse(this);
-		}
-	}
+            return new IndexResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IndexResponse}
-	 */
-	public static final JsonpDeserializer<IndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexResponse::setupIndexResponseDeserializer);
+    /**
+     * Json deserializer for {@link IndexResponse}
+     */
+    public static final JsonpDeserializer<IndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IndexResponse::setupIndexResponseDeserializer
+    );
 
-	protected static void setupIndexResponseDeserializer(ObjectDeserializer<IndexResponse.Builder> op) {
-		WriteResponseBase.setupWriteResponseBaseDeserializer(op);
+    protected static void setupIndexResponseDeserializer(ObjectDeserializer<IndexResponse.Builder> op) {
+        WriteResponseBase.setupWriteResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

@@ -32,71 +32,72 @@
 
 package org.opensearch.client.opensearch.core.rank_eval;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _global.rank_eval.RankEvalMetricRecall
 
 /**
  * Recall at K (R@k)
- * 
+ *
  */
 @JsonpDeserializable
 public class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RankEvalMetricRecall(Builder builder) {
-		super(builder);
+    private RankEvalMetricRecall(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static RankEvalMetricRecall of(Function<Builder, ObjectBuilder<RankEvalMetricRecall>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RankEvalMetricRecall of(Function<Builder, ObjectBuilder<RankEvalMetricRecall>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RankEvalMetricRecall}.
-	 */
+    /**
+     * Builder for {@link RankEvalMetricRecall}.
+     */
 
-	public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RankEvalMetricRecall> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<RankEvalMetricRecall> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RankEvalMetricRecall}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RankEvalMetricRecall build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RankEvalMetricRecall}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RankEvalMetricRecall build() {
+            _checkSingleUse();
 
-			return new RankEvalMetricRecall(this);
-		}
-	}
+            return new RankEvalMetricRecall(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RankEvalMetricRecall}
-	 */
-	public static final JsonpDeserializer<RankEvalMetricRecall> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankEvalMetricRecall::setupRankEvalMetricRecallDeserializer);
+    /**
+     * Json deserializer for {@link RankEvalMetricRecall}
+     */
+    public static final JsonpDeserializer<RankEvalMetricRecall> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RankEvalMetricRecall::setupRankEvalMetricRecallDeserializer
+    );
 
-	protected static void setupRankEvalMetricRecallDeserializer(ObjectDeserializer<RankEvalMetricRecall.Builder> op) {
-		RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
+    protected static void setupRankEvalMetricRecallDeserializer(ObjectDeserializer<RankEvalMetricRecall.Builder> op) {
+        RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
 
-	}
+    }
 
 }

@@ -35,31 +35,29 @@ package org.opensearch.client.opensearch.core.search;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum TotalHitsRelation implements JsonEnum {
-	/**
-	 * Accurate
-	 */
-	Eq("eq"),
+    /**
+     * Accurate
+     */
+    Eq("eq"),
 
-	/**
-	 * Lower bound, including returned events or sequences
-	 */
-	Gte("gte"),
+    /**
+     * Lower bound, including returned events or sequences
+     */
+    Gte("gte"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	TotalHitsRelation(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    TotalHitsRelation(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<TotalHitsRelation> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			TotalHitsRelation.values());
+    public static final JsonEnum.Deserializer<TotalHitsRelation> _DESERIALIZER = new JsonEnum.Deserializer<>(TotalHitsRelation.values());
 }

@@ -37,22 +37,21 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum HighlighterEncoder implements JsonEnum {
-	Default("default"),
+    Default("default"),
 
-	Html("html"),
+    Html("html"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	HighlighterEncoder(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    HighlighterEncoder(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<HighlighterEncoder> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			HighlighterEncoder.values());
+    public static final JsonEnum.Deserializer<HighlighterEncoder> _DESERIALIZER = new JsonEnum.Deserializer<>(HighlighterEncoder.values());
 }

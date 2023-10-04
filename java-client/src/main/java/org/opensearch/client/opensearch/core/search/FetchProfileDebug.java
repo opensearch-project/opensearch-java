@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,146 +45,142 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FetchProfileDebug
 
-
 @JsonpDeserializable
 public class FetchProfileDebug implements JsonpSerializable {
-	private final List<String> storedFields;
+    private final List<String> storedFields;
 
-	@Nullable
-	private final Integer fastPath;
+    @Nullable
+    private final Integer fastPath;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FetchProfileDebug(Builder builder) {
+    private FetchProfileDebug(Builder builder) {
 
-		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
-		this.fastPath = builder.fastPath;
+        this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
+        this.fastPath = builder.fastPath;
 
-	}
+    }
 
-	public static FetchProfileDebug of(Function<Builder, ObjectBuilder<FetchProfileDebug>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FetchProfileDebug of(Function<Builder, ObjectBuilder<FetchProfileDebug>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code stored_fields}
-	 */
-	public final List<String> storedFields() {
-		return this.storedFields;
-	}
+    /**
+     * API name: {@code stored_fields}
+     */
+    public final List<String> storedFields() {
+        return this.storedFields;
+    }
 
-	/**
-	 * API name: {@code fast_path}
-	 */
-	@Nullable
-	public final Integer fastPath() {
-		return this.fastPath;
-	}
+    /**
+     * API name: {@code fast_path}
+     */
+    @Nullable
+    public final Integer fastPath() {
+        return this.fastPath;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.storedFields)) {
-			generator.writeKey("stored_fields");
-			generator.writeStartArray();
-			for (String item0 : this.storedFields) {
-				generator.write(item0);
+        if (ApiTypeHelper.isDefined(this.storedFields)) {
+            generator.writeKey("stored_fields");
+            generator.writeStartArray();
+            for (String item0 : this.storedFields) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.fastPath != null) {
-			generator.writeKey("fast_path");
-			generator.write(this.fastPath);
+        }
+        if (this.fastPath != null) {
+            generator.writeKey("fast_path");
+            generator.write(this.fastPath);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FetchProfileDebug}.
-	 */
+    /**
+     * Builder for {@link FetchProfileDebug}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FetchProfileDebug> {
-		@Nullable
-		private List<String> storedFields;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FetchProfileDebug> {
+        @Nullable
+        private List<String> storedFields;
 
-		@Nullable
-		private Integer fastPath;
+        @Nullable
+        private Integer fastPath;
 
-		/**
-		 * API name: {@code stored_fields}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
-		 */
-		public final Builder storedFields(List<String> list) {
-			this.storedFields = _listAddAll(this.storedFields, list);
-			return this;
-		}
+        /**
+         * API name: {@code stored_fields}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>storedFields</code>.
+         */
+        public final Builder storedFields(List<String> list) {
+            this.storedFields = _listAddAll(this.storedFields, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code stored_fields}
-		 * <p>
-		 * Adds one or more values to <code>storedFields</code>.
-		 */
-		public final Builder storedFields(String value, String... values) {
-			this.storedFields = _listAdd(this.storedFields, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code stored_fields}
+         * <p>
+         * Adds one or more values to <code>storedFields</code>.
+         */
+        public final Builder storedFields(String value, String... values) {
+            this.storedFields = _listAdd(this.storedFields, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code fast_path}
-		 */
-		public final Builder fastPath(@Nullable Integer value) {
-			this.fastPath = value;
-			return this;
-		}
+        /**
+         * API name: {@code fast_path}
+         */
+        public final Builder fastPath(@Nullable Integer value) {
+            this.fastPath = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FetchProfileDebug}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FetchProfileDebug build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FetchProfileDebug}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FetchProfileDebug build() {
+            _checkSingleUse();
 
-			return new FetchProfileDebug(this);
-		}
-	}
+            return new FetchProfileDebug(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FetchProfileDebug}
-	 */
-	public static final JsonpDeserializer<FetchProfileDebug> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FetchProfileDebug::setupFetchProfileDebugDeserializer);
+    /**
+     * Json deserializer for {@link FetchProfileDebug}
+     */
+    public static final JsonpDeserializer<FetchProfileDebug> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FetchProfileDebug::setupFetchProfileDebugDeserializer
+    );
 
-	protected static void setupFetchProfileDebugDeserializer(ObjectDeserializer<FetchProfileDebug.Builder> op) {
+    protected static void setupFetchProfileDebugDeserializer(ObjectDeserializer<FetchProfileDebug.Builder> op) {
 
-		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"stored_fields");
-		op.add(Builder::fastPath, JsonpDeserializer.integerDeserializer(), "fast_path");
+        op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stored_fields");
+        op.add(Builder::fastPath, JsonpDeserializer.integerDeserializer(), "fast_path");
 
-	}
+    }
 
 }

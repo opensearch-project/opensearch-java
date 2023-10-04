@@ -32,25 +32,24 @@
 
 package org.opensearch.client.opensearch.core;
 
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch._types.RequestBase;
-import org.opensearch.client.opensearch._types.Time;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Collections;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.Collections;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.scroll.Request
 
@@ -60,164 +59,170 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ScrollRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final Time scroll;
+    @Nullable
+    private final Time scroll;
 
-	private final String scrollId;
+    private final String scrollId;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ScrollRequest(Builder builder) {
+    private ScrollRequest(Builder builder) {
 
-		this.scroll = builder.scroll;
-		this.scrollId = ApiTypeHelper.requireNonNull(builder.scrollId, this, "scrollId");
+        this.scroll = builder.scroll;
+        this.scrollId = ApiTypeHelper.requireNonNull(builder.scrollId, this, "scrollId");
 
-	}
+    }
 
-	public static ScrollRequest of(Function<Builder, ObjectBuilder<ScrollRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ScrollRequest of(Function<Builder, ObjectBuilder<ScrollRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Period to retain the search context for scrolling.
-	 * <p>
-	 * API name: {@code scroll}
-	 */
-	@Nullable
-	public final Time scroll() {
-		return this.scroll;
-	}
+    /**
+     * Period to retain the search context for scrolling.
+     * <p>
+     * API name: {@code scroll}
+     */
+    @Nullable
+    public final Time scroll() {
+        return this.scroll;
+    }
 
-	/**
-	 * Required - Scroll ID of the search.
-	 * <p>
-	 * API name: {@code scroll_id}
-	 */
-	public final String scrollId() {
-		return this.scrollId;
-	}
+    /**
+     * Required - Scroll ID of the search.
+     * <p>
+     * API name: {@code scroll_id}
+     */
+    public final String scrollId() {
+        return this.scrollId;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.scroll != null) {
-			generator.writeKey("scroll");
-			this.scroll.serialize(generator, mapper);
+        if (this.scroll != null) {
+            generator.writeKey("scroll");
+            this.scroll.serialize(generator, mapper);
 
-		}
-		generator.writeKey("scroll_id");
-		generator.write(this.scrollId);
+        }
+        generator.writeKey("scroll_id");
+        generator.write(this.scrollId);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ScrollRequest}.
-	 */
+    /**
+     * Builder for {@link ScrollRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScrollRequest> {
-		@Nullable
-		private Time scroll;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScrollRequest> {
+        @Nullable
+        private Time scroll;
 
-		private String scrollId;
+        private String scrollId;
 
-		/**
-		 * Period to retain the search context for scrolling.
-		 * <p>
-		 * API name: {@code scroll}
-		 */
-		public final Builder scroll(@Nullable Time value) {
-			this.scroll = value;
-			return this;
-		}
+        /**
+         * Period to retain the search context for scrolling.
+         * <p>
+         * API name: {@code scroll}
+         */
+        public final Builder scroll(@Nullable Time value) {
+            this.scroll = value;
+            return this;
+        }
 
-		/**
-		 * Period to retain the search context for scrolling.
-		 * <p>
-		 * API name: {@code scroll}
-		 */
-		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.scroll(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Period to retain the search context for scrolling.
+         * <p>
+         * API name: {@code scroll}
+         */
+        public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.scroll(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Required - Scroll ID of the search.
-		 * <p>
-		 * API name: {@code scroll_id}
-		 */
-		public final Builder scrollId(String value) {
-			this.scrollId = value;
-			return this;
-		}
+        /**
+         * Required - Scroll ID of the search.
+         * <p>
+         * API name: {@code scroll_id}
+         */
+        public final Builder scrollId(String value) {
+            this.scrollId = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ScrollRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ScrollRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ScrollRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ScrollRequest build() {
+            _checkSingleUse();
 
-			return new ScrollRequest(this);
-		}
-	}
+            return new ScrollRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ScrollRequest}
-	 */
-	public static final JsonpDeserializer<ScrollRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ScrollRequest::setupScrollRequestDeserializer);
+    /**
+     * Json deserializer for {@link ScrollRequest}
+     */
+    public static final JsonpDeserializer<ScrollRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ScrollRequest::setupScrollRequestDeserializer
+    );
 
-	protected static void setupScrollRequestDeserializer(ObjectDeserializer<ScrollRequest.Builder> op) {
+    protected static void setupScrollRequestDeserializer(ObjectDeserializer<ScrollRequest.Builder> op) {
 
-		op.add(Builder::scroll, Time._DESERIALIZER, "scroll");
-		op.add(Builder::scrollId, JsonpDeserializer.stringDeserializer(), "scroll_id");
+        op.add(Builder::scroll, Time._DESERIALIZER, "scroll");
+        op.add(Builder::scrollId, JsonpDeserializer.stringDeserializer(), "scroll_id");
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code scroll}".
-	 */
-	public static final SimpleEndpoint<ScrollRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code scroll}".
+     */
+    public static final SimpleEndpoint<ScrollRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "POST";
+        // Request method
+        request -> {
+            return "POST";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_search/scroll";
+        // Request path
+        request -> {
+            return "/_search/scroll";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, ScrollResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        true,
+        ScrollResponse._DESERIALIZER
+    );
 
-	/**
-	 * Create an "{@code scroll}" endpoint.
-	 */
-	public static <TDocument> Endpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse> createScrollEndpoint(
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return _ENDPOINT
-				.withResponseDeserializer(ScrollResponse.createScrollResponseDeserializer(tDocumentDeserializer));
-	}
+    /**
+     * Create an "{@code scroll}" endpoint.
+     */
+    public static <TDocument> Endpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse> createScrollEndpoint(
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
+        return _ENDPOINT.withResponseDeserializer(ScrollResponse.createScrollResponseDeserializer(tDocumentDeserializer));
+    }
 }
