@@ -32,11 +32,10 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-
-import java.util.HashMap;
 
 // typedef: cat.cluster_manager.Request
 
@@ -45,54 +44,61 @@ import java.util.HashMap;
  *
  */
 public class ClusterManagerRequest extends CatRequestBase {
-	public ClusterManagerRequest() {
-	}
+    public ClusterManagerRequest() {}
 
-	/**
-	 * Singleton instance for {@link ClusterManagerRequest}.
-	 */
-	public static final ClusterManagerRequest _INSTANCE = new ClusterManagerRequest();
+    /**
+     * Singleton instance for {@link ClusterManagerRequest}.
+     */
+    public static final ClusterManagerRequest _INSTANCE = new ClusterManagerRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.master}".
-	 */
-	@Deprecated
-	public static final Endpoint<ClusterManagerRequest, ClusterManagerResponse, ErrorResponse> _DEPRECATED_ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.master}".
+     */
+    @Deprecated
+    public static final Endpoint<ClusterManagerRequest, ClusterManagerResponse, ErrorResponse> _DEPRECATED_ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_cat/master";
+        // Request path
+        request -> {
+            return "/_cat/master";
 
-			},
+        },
 
-			// Request parameters
-			request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, ClusterManagerResponse._DESERIALIZER);
+        // Request parameters
+        request -> new HashMap<>(request.queryParameters()),
+        SimpleEndpoint.emptyMap(),
+        false,
+        ClusterManagerResponse._DESERIALIZER
+    );
 
-	/**
-	 * Endpoint "{@code cat.cluster_manager}".
-	 */
-	public static final Endpoint<ClusterManagerRequest, ClusterManagerResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.cluster_manager}".
+     */
+    public static final Endpoint<ClusterManagerRequest, ClusterManagerResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_cat/cluster_manager";
+        // Request path
+        request -> {
+            return "/_cat/cluster_manager";
 
-			},
+        },
 
-			// Request parameters
-			request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, ClusterManagerResponse._DESERIALIZER);
+        // Request parameters
+        request -> new HashMap<>(request.queryParameters()),
+        SimpleEndpoint.emptyMap(),
+        false,
+        ClusterManagerResponse._DESERIALIZER
+    );
 }

@@ -32,124 +32,125 @@
 
 package org.opensearch.client.opensearch.cat;
 
-import org.opensearch.client.opensearch.cat.snapshots.SnapshotsRecord;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.opensearch.cat.snapshots.SnapshotsRecord;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: cat.snapshots.Response
 
 @JsonpDeserializable
 public class SnapshotsResponse implements JsonpSerializable {
-	private final List<SnapshotsRecord> valueBody;
+    private final List<SnapshotsRecord> valueBody;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SnapshotsResponse(Builder builder) {
+    private SnapshotsResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+        this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
-	}
+    }
 
-	public static SnapshotsResponse of(Function<Builder, ObjectBuilder<SnapshotsResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SnapshotsResponse of(Function<Builder, ObjectBuilder<SnapshotsResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
-	 */
-	public final List<SnapshotsRecord> valueBody() {
-		return this.valueBody;
-	}
+    /**
+     * Required - Response value.
+     * <p>
+     * API name: {@code _value_body}
+     */
+    public final List<SnapshotsRecord> valueBody() {
+        return this.valueBody;
+    }
 
-	/**
-	 * Serialize this value to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartArray();
-		for (SnapshotsRecord item0 : this.valueBody) {
-			item0.serialize(generator, mapper);
+    /**
+     * Serialize this value to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartArray();
+        for (SnapshotsRecord item0 : this.valueBody) {
+            item0.serialize(generator, mapper);
 
-		}
-		generator.writeEnd();
+        }
+        generator.writeEnd();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SnapshotsResponse}.
-	 */
+    /**
+     * Builder for {@link SnapshotsResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotsResponse> {
-		private List<SnapshotsRecord> valueBody;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotsResponse> {
+        private List<SnapshotsRecord> valueBody;
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
-		 */
-		public final Builder valueBody(List<SnapshotsRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
-			return this;
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>valueBody</code>.
+         */
+        public final Builder valueBody(List<SnapshotsRecord> list) {
+            this.valueBody = _listAddAll(this.valueBody, list);
+            return this;
+        }
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
-		 */
-		public final Builder valueBody(SnapshotsRecord value, SnapshotsRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
-			return this;
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds one or more values to <code>valueBody</code>.
+         */
+        public final Builder valueBody(SnapshotsRecord value, SnapshotsRecord... values) {
+            this.valueBody = _listAdd(this.valueBody, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
-		 */
-		public final Builder valueBody(Function<SnapshotsRecord.Builder, ObjectBuilder<SnapshotsRecord>> fn) {
-			return valueBody(fn.apply(new SnapshotsRecord.Builder()).build());
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds a value to <code>valueBody</code> using a builder lambda.
+         */
+        public final Builder valueBody(Function<SnapshotsRecord.Builder, ObjectBuilder<SnapshotsRecord>> fn) {
+            return valueBody(fn.apply(new SnapshotsRecord.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link SnapshotsResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SnapshotsResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SnapshotsResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SnapshotsResponse build() {
+            _checkSingleUse();
 
-			return new SnapshotsResponse(this);
-		}
-	}
+            return new SnapshotsResponse(this);
+        }
+    }
 
-	public static final JsonpDeserializer<SnapshotsResponse> _DESERIALIZER = createSnapshotsResponseDeserializer();
-	protected static JsonpDeserializer<SnapshotsResponse> createSnapshotsResponseDeserializer() {
+    public static final JsonpDeserializer<SnapshotsResponse> _DESERIALIZER = createSnapshotsResponseDeserializer();
 
-		JsonpDeserializer<List<SnapshotsRecord>> valueDeserializer = JsonpDeserializer
-				.arrayDeserializer(SnapshotsRecord._DESERIALIZER);
+    protected static JsonpDeserializer<SnapshotsResponse> createSnapshotsResponseDeserializer() {
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
-	}
+        JsonpDeserializer<List<SnapshotsRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(SnapshotsRecord._DESERIALIZER);
+
+        return JsonpDeserializer.of(
+            valueDeserializer.acceptedEvents(),
+            (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
+        );
+    }
 
 }

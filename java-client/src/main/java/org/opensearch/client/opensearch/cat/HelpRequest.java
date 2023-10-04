@@ -32,11 +32,10 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-
-import java.util.HashMap;
 
 // typedef: cat.help.Request
 
@@ -45,8 +44,7 @@ import java.util.HashMap;
  */
 
 public class HelpRequest extends CatRequestBase {
-    public HelpRequest() {
-    }
+    public HelpRequest() {}
 
     /**
      * Singleton instance for {@link HelpRequest}.
@@ -60,18 +58,22 @@ public class HelpRequest extends CatRequestBase {
      */
     public static final Endpoint<HelpRequest, HelpResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-            // Request method
-            request -> {
-                return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-            },
+        },
 
-            // Request path
-            request -> {
-                return "/_cat";
+        // Request path
+        request -> {
+            return "/_cat";
 
-            },
+        },
 
-            // Request parameters
-            request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, HelpResponse._DESERIALIZER);
+        // Request parameters
+        request -> new HashMap<>(request.queryParameters()),
+        SimpleEndpoint.emptyMap(),
+        false,
+        HelpResponse._DESERIALIZER
+    );
 }
