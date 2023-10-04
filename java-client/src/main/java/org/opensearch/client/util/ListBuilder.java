@@ -59,7 +59,7 @@ public class ListBuilder<T, B> implements ObjectBuilder<List<T>> {
     }
 
     public ListBuilder<T, B> addAll(Iterable<? extends T> iterable) {
-        for (T item: iterable) {
+        for (T item : iterable) {
             list.add(item);
         }
         return this;

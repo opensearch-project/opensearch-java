@@ -32,9 +32,6 @@
 
 package org.opensearch.client.transport;
 
-import org.opensearch.client.opensearch.OpenSearchClient;
-import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
-import org.opensearch.client.transport.rest_client.RestClientTransport;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
@@ -55,12 +52,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.client.opensearch.OpenSearchClient;
+import org.opensearch.client.transport.rest_client.RestClientTransport;
 
 public class RequestOptionsTest extends Assert {
 
     private static HttpServer httpServer;
     private static RestClient restClient;
-
 
     @Before
     public void classSetup() throws IOException {
@@ -77,7 +76,7 @@ public class RequestOptionsTest extends Assert {
             ex.getResponseHeaders().putAll(ex.getRequestHeaders());
             ex.sendResponseHeaders(418, 0);
             OutputStreamWriter out = new OutputStreamWriter(ex.getResponseBody(), StandardCharsets.UTF_8);
-            for (Map.Entry<String, List<String>> header: ex.getRequestHeaders().entrySet()) {
+            for (Map.Entry<String, List<String>> header : ex.getRequestHeaders().entrySet()) {
                 out.write("header-");
                 out.write(header.getKey().toLowerCase(Locale.ROOT));
                 out.write("=");
@@ -85,7 +84,7 @@ public class RequestOptionsTest extends Assert {
                 out.write("\n");
             }
             final List<NameValuePair> params = URLEncodedUtils.parse(ex.getRequestURI(), StandardCharsets.UTF_8);
-            for (NameValuePair param: params) {
+            for (NameValuePair param : params) {
                 out.write("param-");
                 out.write(param.getName());
                 out.write("=");
@@ -117,12 +116,9 @@ public class RequestOptionsTest extends Assert {
     @Test
     public void testClientHeader() throws IOException {
         final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
-        final OpenSearchClient client = new OpenSearchClient(trsp)
-            .withTransportOptions(trsp.options().with(
-                b -> b.addHeader("X-Foo", "Bar")
-                    .addHeader("uSer-agEnt", "MegaClient/1.2.3")
-                )
-            );
+        final OpenSearchClient client = new OpenSearchClient(trsp).withTransportOptions(
+            trsp.options().with(b -> b.addHeader("X-Foo", "Bar").addHeader("uSer-agEnt", "MegaClient/1.2.3"))
+        );
 
         Properties props = getProps(client);
         assertEquals("Bar", props.getProperty("header-x-foo"));

@@ -37,7 +37,6 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParser;
-
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.stream.Stream;

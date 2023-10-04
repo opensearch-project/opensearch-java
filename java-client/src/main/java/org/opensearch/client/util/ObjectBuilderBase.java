@@ -50,12 +50,11 @@ public class ObjectBuilderBase {
         this._used = true;
     }
 
-    //----- List utilities
+    // ----- List utilities
 
     /** A private extension of ArrayList so that we can recognize our own creations */
     static final class InternalList<T> extends ArrayList<T> {
-        InternalList() {
-        }
+        InternalList() {}
 
         InternalList(Collection<? extends T> c) {
             super(c);
@@ -98,12 +97,11 @@ public class ObjectBuilderBase {
         }
     }
 
-    //----- Map utilities
+    // ----- Map utilities
 
     /** A private extension of HashMap so that we can recognize our own creations */
     private static final class InternalMap<K, V> extends HashMap<K, V> {
-        InternalMap() {
-        }
+        InternalMap() {}
 
         InternalMap(Map<? extends K, ? extends V> m) {
             super(m);

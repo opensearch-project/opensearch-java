@@ -8,13 +8,12 @@
 
 package org.opensearch.client.transport.aws;
 
+import java.nio.ByteBuffer;
+import java.util.Optional;
+import javax.annotation.CheckForNull;
 import org.reactivestreams.Subscriber;
 import software.amazon.awssdk.core.async.AsyncRequestBody;
 import software.amazon.awssdk.http.async.SdkHttpContentPublisher;
-
-import javax.annotation.CheckForNull;
-import java.nio.ByteBuffer;
-import java.util.Optional;
 
 /**
  * An implementation of AWS {@SdkHttpContentPublisher} that transfers a pre-existing

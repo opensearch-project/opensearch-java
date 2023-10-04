@@ -32,6 +32,7 @@
 
 package org.opensearch.client.transport.httpclient5.internal;
 
+import java.io.IOException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hc.core5.http.ClassicHttpResponse;
@@ -45,8 +46,6 @@ import org.apache.hc.core5.http.message.BasicClassicHttpResponse;
 import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
 import org.apache.hc.core5.http.nio.support.AbstractAsyncResponseConsumer;
 import org.apache.hc.core5.http.protocol.HttpContext;
-
-import java.io.IOException;
 
 /**
  * Default implementation of {@link AsyncResponseConsumer}. Buffers the whole

@@ -38,7 +38,6 @@ import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerationException;
 import jakarta.json.stream.JsonGenerator;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -339,10 +338,10 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     }
 
     private void writeValue(JsonValue value) throws IOException {
-        switch(value.getValueType()) {
+        switch (value.getValueType()) {
             case OBJECT:
                 generator.writeStartObject();
-                for (Map.Entry<String, JsonValue> entry: value.asJsonObject().entrySet()) {
+                for (Map.Entry<String, JsonValue> entry : value.asJsonObject().entrySet()) {
                     generator.writeFieldName(entry.getKey());
                     writeValue(entry.getValue());
                 }
@@ -351,14 +350,14 @@ public class JacksonJsonpGenerator implements JsonGenerator {
 
             case ARRAY:
                 generator.writeStartArray();
-                for (JsonValue item: value.asJsonArray()) {
+                for (JsonValue item : value.asJsonArray()) {
                     writeValue(item);
                 }
                 generator.writeEndArray();
                 break;
 
             case STRING:
-                generator.writeString(((JsonString)value).getString());
+                generator.writeString(((JsonString) value).getString());
                 break;
 
             case FALSE:

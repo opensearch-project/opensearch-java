@@ -41,24 +41,21 @@ public class PointInTime {
 
             if (!client.indices().exists(r -> r.index(indexName)).value()) {
                 LOGGER.info("Creating index {}", indexName);
-                IndexSettings settings = new IndexSettings.Builder()
-                        .numberOfShards("2")
-                        .numberOfReplicas("1")
-                        .build();
-                TypeMapping mapping = new TypeMapping.Builder()
-                        .properties("age", new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build())
-                        .build();
-                CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder()
-                        .index(indexName)
-                        .settings(settings)
-                        .mappings(mapping)
-                        .build();
+                IndexSettings settings = new IndexSettings.Builder().numberOfShards("2").numberOfReplicas("1").build();
+                TypeMapping mapping = new TypeMapping.Builder().properties(
+                    "age",
+                    new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build()
+                ).build();
+                CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(indexName)
+                    .settings(settings)
+                    .mappings(mapping)
+                    .build();
                 client.indices().create(createIndexRequest);
             }
 
-            CreatePitRequest createPitRequest = new CreatePitRequest.Builder()
-                                                        .targetIndexes(Collections.singletonList(indexName))
-                                                        .keepAlive(new Time.Builder().time("100m").build()).build();
+            CreatePitRequest createPitRequest = new CreatePitRequest.Builder().targetIndexes(Collections.singletonList(indexName))
+                .keepAlive(new Time.Builder().time("100m").build())
+                .build();
 
             CreatePitResponse createPitResponse = client.createPit(createPitRequest);
             LOGGER.info("PIT created with id: {}", createPitResponse.pitId());
@@ -66,11 +63,11 @@ public class PointInTime {
             ListAllPitResponse listAllPitResponse = client.listAllPit();
             LOGGER.info("Found {} PITs", listAllPitResponse.pits().size());
 
-            DeletePitRequest deletePitRequest = new DeletePitRequest.Builder()
-                                                                    .pitId(Collections.singletonList(createPitResponse.pitId())).build();
+            DeletePitRequest deletePitRequest = new DeletePitRequest.Builder().pitId(Collections.singletonList(createPitResponse.pitId()))
+                .build();
             DeletePitResponse deletePitResponse = client.deletePit(deletePitRequest);
             LOGGER.info("Deleting PIT: {}", deletePitResponse.pits());
-            
+
             LOGGER.info("Deleting index {}", indexName);
             DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest.Builder().index(indexName).build();
             client.indices().delete(deleteIndexRequest);

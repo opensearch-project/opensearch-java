@@ -32,7 +32,6 @@
 
 package org.opensearch.client.json;
 
-import org.opensearch.client.util.ObjectBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
@@ -41,12 +40,12 @@ import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
-
-import javax.annotation.Nullable;
 import java.io.StringReader;
 import java.util.AbstractMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import javax.annotation.Nullable;
+import org.opensearch.client.util.ObjectBuilder;
 
 public class JsonpUtils {
 
@@ -94,7 +93,7 @@ public class JsonpUtils {
      * Skip the value at the current position of the parser.
      */
     public static void skipValue(JsonParser parser, Event event) {
-        switch(event) {
+        switch (event) {
             case START_OBJECT:
                 parser.skipObject();
                 break;
@@ -111,7 +110,7 @@ public class JsonpUtils {
 
     public static <T> T buildVariant(JsonParser parser, ObjectBuilder<T> builder) {
         if (builder == null) {
-            throw new JsonParsingException("No variant found" , parser.getLocation());
+            throw new JsonParsingException("No variant found", parser.getLocation());
         }
         return builder.build();
     }
@@ -134,7 +133,10 @@ public class JsonpUtils {
      * (the object has been consumed from the original one).
      */
     public static Map.Entry<String, JsonParser> lookAheadFieldValue(
-        String name, String defaultValue, JsonParser parser, JsonpMapper mapper
+        String name,
+        String defaultValue,
+        JsonParser parser,
+        JsonpMapper mapper
     ) {
         JsonLocation location = parser.getLocation();
 
@@ -192,17 +194,15 @@ public class JsonpUtils {
     }
 
     public static String toString(JsonValue value) {
-        switch(value.getValueType()) {
+        switch (value.getValueType()) {
             case OBJECT:
                 throw new IllegalArgumentException("Json objects cannot be used as string");
 
             case ARRAY:
-                return value.asJsonArray().stream()
-                    .map(JsonpUtils::toString)
-                    .collect(Collectors.joining(","));
+                return value.asJsonArray().stream().map(JsonpUtils::toString).collect(Collectors.joining(","));
 
             case STRING:
-                return ((JsonString)value).getString();
+                return ((JsonString) value).getString();
 
             case TRUE:
                 return "true";

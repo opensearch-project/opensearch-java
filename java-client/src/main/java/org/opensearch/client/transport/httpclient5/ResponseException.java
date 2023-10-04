@@ -32,13 +32,12 @@
 
 package org.opensearch.client.transport.httpclient5;
 
+import java.io.IOException;
+import java.util.Locale;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.BufferedHttpEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
-
-import java.io.IOException;
-import java.util.Locale;
 
 /**
  * Exception thrown when an opensearch node responds to a request with a status code that indicates an error.

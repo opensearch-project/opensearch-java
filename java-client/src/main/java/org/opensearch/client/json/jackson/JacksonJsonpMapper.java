@@ -32,11 +32,6 @@
 
 package org.opensearch.client.json.jackson;
 
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpDeserializerBase;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpMapperBase;
-import org.opensearch.client.json.JsonpSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,9 +39,13 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-
 import java.io.IOException;
 import java.util.EnumSet;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpDeserializerBase;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpMapperBase;
+import org.opensearch.client.json.JsonpSerializer;
 
 public class JacksonJsonpMapper extends JsonpMapperBase {
 
@@ -64,9 +63,8 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
     }
 
     public JacksonJsonpMapper() {
-        this(new ObjectMapper()
-            .configure(SerializationFeature.INDENT_OUTPUT, false)
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+        this(
+            new ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, false).setSerializationInclusion(JsonInclude.Include.NON_NULL)
         );
     }
 
@@ -83,7 +81,7 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
     }
 
     @Override
-    protected  <T> JsonpDeserializer<T> getDefaultDeserializer(Class<T> clazz) {
+    protected <T> JsonpDeserializer<T> getDefaultDeserializer(Class<T> clazz) {
         return new JacksonValueParser<>(clazz);
     }
 
@@ -100,7 +98,7 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
             return;
         }
 
-        com.fasterxml.jackson.core.JsonGenerator jkGenerator = ((JacksonJsonpGenerator)generator).jacksonGenerator();
+        com.fasterxml.jackson.core.JsonGenerator jkGenerator = ((JacksonJsonpGenerator) generator).jacksonGenerator();
         try {
             objectMapper.writeValue(jkGenerator, value);
         } catch (IOException ioe) {
@@ -124,11 +122,11 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
                 throw new IllegalArgumentException("Jackson's ObjectMapper can only be used with the JacksonJsonpProvider");
             }
 
-            com.fasterxml.jackson.core.JsonParser jkParser = ((JacksonJsonpParser)parser).jacksonParser();
+            com.fasterxml.jackson.core.JsonParser jkParser = ((JacksonJsonpParser) parser).jacksonParser();
 
             try {
                 return objectMapper.readValue(jkParser, clazz);
-            } catch(IOException ioe) {
+            } catch (IOException ioe) {
                 throw JacksonUtils.convertException(ioe);
             }
         }

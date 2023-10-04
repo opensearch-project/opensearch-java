@@ -9,12 +9,6 @@
 package org.opensearch.client.util;
 
 import jakarta.json.stream.JsonGenerator;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.NdJsonpSerializable;
-import org.opensearch.client.transport.OpenSearchTransport;
-
-import javax.annotation.CheckForNull;
-import javax.annotation.Nonnull;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,6 +16,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.zip.GZIPOutputStream;
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.NdJsonpSerializable;
+import org.opensearch.client.transport.OpenSearchTransport;
 
 /**
  * Serializes and captures an OpenSearch request body, and then provides access to it in convenient
@@ -220,8 +219,7 @@ public class OpenSearchRequestBodyBuffer {
         }
 
         @Override
-        public void close() throws IOException {
-        }
+        public void close() throws IOException {}
     }
 
     private static class CompressingOutputBuffer extends OutputStream {

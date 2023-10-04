@@ -32,12 +32,11 @@
 
 package org.opensearch.client.json;
 
-import org.opensearch.client.util.ObjectBuilder;
 import jakarta.json.stream.JsonParser;
-
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import org.opensearch.client.util.ObjectBuilder;
 
 /**
  * An object deserializer based on an {@link ObjectBuilder}.
@@ -63,10 +62,10 @@ public class ObjectBuilderDeserializer<T, B extends ObjectBuilder<T>> extends De
         Function<B, T> buildFn
     ) {
         return new LazyDeserializer<>(() -> {
-                ObjectDeserializer<B> builderDeser = new ObjectDeserializer<B>(builderCtor);
-                builderDeserializerSetup.accept(builderDeser);
-                return new BuildFunctionDeserializer<>(builderDeser, buildFn);
-            });
+            ObjectDeserializer<B> builderDeser = new ObjectDeserializer<B>(builderCtor);
+            builderDeserializerSetup.accept(builderDeser);
+            return new BuildFunctionDeserializer<>(builderDeser, buildFn);
+        });
     }
 
     public static <T, B extends ObjectBuilder<T>> JsonpDeserializer<T> createForObject(

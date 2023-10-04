@@ -32,21 +32,20 @@
 
 package org.opensearch.client.json.jsonb;
 
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpDeserializerBase;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpMapperBase;
-import org.opensearch.client.json.JsonpSerializable;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.spi.JsonbProvider;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
-
 import java.io.CharArrayReader;
 import java.io.CharArrayWriter;
 import java.util.EnumSet;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpDeserializerBase;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpMapperBase;
+import org.opensearch.client.json.JsonpSerializable;
 
 public class JsonbJsonpMapper extends JsonpMapperBase {
 
@@ -74,7 +73,7 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
     @Override
     public <T> void serialize(T value, JsonGenerator generator) {
         if (value instanceof JsonpSerializable) {
-            ((JsonpSerializable)value).serialize(generator, this);
+            ((JsonpSerializable) value).serialize(generator, this);
             return;
         }
 
@@ -126,7 +125,7 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
      */
     private void transferAll(JsonParser from, JsonParser.Event event, JsonGenerator to) {
         transferEvent(from, event, to);
-        switch(event) {
+        switch (event) {
             case START_OBJECT: {
                 int depth = 1;
                 do {
@@ -140,9 +139,9 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
                             depth--;
                             break;
                     }
-                } while(!(event == Event.END_OBJECT && depth == 0));
+                } while (!(event == Event.END_OBJECT && depth == 0));
             }
-            break;
+                break;
 
             case START_ARRAY: {
                 int depth = 1;
@@ -157,9 +156,9 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
                             depth--;
                             break;
                     }
-                } while(!(event == Event.END_ARRAY && depth == 0));
+                } while (!(event == Event.END_ARRAY && depth == 0));
             }
-            break;
+                break;
 
             default:
                 // nothing more

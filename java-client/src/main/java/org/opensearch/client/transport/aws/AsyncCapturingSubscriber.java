@@ -8,12 +8,11 @@
 
 package org.opensearch.client.transport.aws;
 
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
-
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.util.concurrent.CompletableFuture;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 /**
  * A reactive subscriber that captures a byte stream into a byte array

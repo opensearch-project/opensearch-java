@@ -62,7 +62,7 @@ public class MapBuilder<K, V, B> implements ObjectBuilder<Map<K, V>> {
     }
 
     public MapBuilder<K, V, B> putAll(Iterable<Map.Entry<? extends K, ? extends V>> entries) {
-        for (Map.Entry<? extends K, ? extends V> entry: entries) {
+        for (Map.Entry<? extends K, ? extends V> entry : entries) {
             this.map.put(entry.getKey(), entry.getValue());
         }
         return this;
@@ -94,12 +94,12 @@ public class MapBuilder<K, V, B> implements ObjectBuilder<Map<K, V>> {
     }
 
     private static <K, V> Map<K, V> makeMap(Object... values) {
-        Map<K, V> result = new HashMap<>(values.length/2);
-        for (int i = 0; i < values.length; i+=2) {
+        Map<K, V> result = new HashMap<>(values.length / 2);
+        for (int i = 0; i < values.length; i += 2) {
             @SuppressWarnings("unchecked")
-            K k = (K)values[i];
+            K k = (K) values[i];
             @SuppressWarnings("unchecked")
-            V v = (V)values[i+1];
+            V v = (V) values[i + 1];
             result.put(k, v);
         }
         return result;

@@ -32,12 +32,11 @@
 
 package org.opensearch.client.transport;
 
-import org.opensearch.client.ApiClient;
-
-import javax.annotation.Nullable;
 import java.io.InputStream;
 import java.util.Objects;
 import java.util.Properties;
+import javax.annotation.Nullable;
+import org.opensearch.client.ApiClient;
 
 /**
  * This class represents a SemVer version, with an optional patch revision.
@@ -60,8 +59,7 @@ public class Version {
         if (hyphen >= 0) {
             version = version.substring(0, hyphen);
             isPreRelease = true;
-        }
-        else {
+        } else {
             isPreRelease = false;
         }
 
@@ -71,8 +69,7 @@ public class Version {
             int minor = (bits.length >= 2) ? Integer.parseInt(bits[1]) : 0;
             int maintenance = (bits.length >= 3) ? Integer.parseInt(bits[2]) : -1;
             return new Version(major, minor, maintenance, isPreRelease);
-        }
-        catch(NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             return null;
         }
     }
@@ -105,10 +102,7 @@ public class Version {
         if (this == other) return true;
         if (!(other instanceof Version)) return false;
         Version that = (Version) other;
-        return (major == that.major &&
-                minor == that.minor &&
-                maintenance == that.maintenance &&
-                isPreRelease == that.isPreRelease);
+        return (major == that.major && minor == that.minor && maintenance == that.maintenance && isPreRelease == that.isPreRelease);
     }
 
     @Override

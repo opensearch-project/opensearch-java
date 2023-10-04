@@ -42,6 +42,13 @@ import jakarta.json.Json;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -51,18 +58,9 @@ import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.opensearch.IOUtils;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class JsonpMapperTest extends Assert {
 
-    String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
-        "\"stringValue\":\"foo\"}";
+    String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," + "\"stringValue\":\"foo\"}";
 
     @Test
     public void testJsonb() {
@@ -86,8 +84,8 @@ public class JsonpMapperTest extends Assert {
 
         JacksonJsonpMapper mapper = new JacksonJsonpMapper(jkMapper);
 
-        String json = "{\"children\":[{\"double_value\":3.2,\"int_value\":2}],\"double_value\":2.1,\"int_value\":1," +
-            "\"string_value\":\"foo\"}";
+        String json = "{\"children\":[{\"double_value\":3.2,\"int_value\":2}],\"double_value\":2.1,\"int_value\":1,"
+            + "\"string_value\":\"foo\"}";
 
         testSerialize(mapper, json);
         testDeserialize(mapper, json);
@@ -100,18 +98,14 @@ public class JsonpMapperTest extends Assert {
         final JacksonJsonpMapper mapper = new JacksonJsonpMapper(jkMapper, jsonFactory);
 
         final JsonValue json = Json.createObjectBuilder()
-            .add("children", Json
-                .createArrayBuilder()
-                .add(Json.createObjectBuilder()
-                    .add("doubleValue", 3.2)
-                    .add("intValue", 2)))
+            .add("children", Json.createArrayBuilder().add(Json.createObjectBuilder().add("doubleValue", 3.2).add("intValue", 2)))
             .add("doubleValue", "2.1")
             .add("intValue", 1)
             .add("stringValue", "foo")
             .build();
 
         final Writer writer = new StringWriter();
-        try (JsonGenerator generator = mapper.jsonProvider().createGenerator(writer)){
+        try (JsonGenerator generator = mapper.jsonProvider().createGenerator(writer)) {
             generator.write(json);
         }
 
@@ -134,7 +128,7 @@ public class JsonpMapperTest extends Assert {
             return JsonpDeserializer.integerDeserializer();
         });
 
-        // Two threads will attempt to deserialize.  They should both be successful
+        // Two threads will attempt to deserialize. They should both be successful
         final AtomicInteger successes = new AtomicInteger(0);
         final JsonpMapper mapper = new JsonbJsonpMapper();
         Runnable threadProc = () -> {
@@ -142,7 +136,7 @@ public class JsonpMapperTest extends Assert {
             try {
                 // Prior to fix, one of these would throw NPE because its
                 // LazyDeserializer resolution would return null
-                deserializer.deserialize(parser,mapper);
+                deserializer.deserialize(parser, mapper);
                 successes.incrementAndGet();
             } catch (Throwable e) {
                 // We'll notice that we failed to increment successes
@@ -171,7 +165,6 @@ public class JsonpMapperTest extends Assert {
         thread2.join();
         assertEquals(2, successes.get());
     }
-
 
     private void testSerialize(JsonpMapper mapper, String expected) {
 

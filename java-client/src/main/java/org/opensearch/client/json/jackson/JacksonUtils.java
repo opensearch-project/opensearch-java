@@ -36,7 +36,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import jakarta.json.JsonException;
 import jakarta.json.stream.JsonGenerationException;
 import jakarta.json.stream.JsonParsingException;
-
 import java.io.IOException;
 
 class JacksonUtils {

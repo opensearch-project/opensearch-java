@@ -1,4 +1,3 @@
-[![Checkstyle](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/checkstyle.yml)
 [![Build](https://github.com/opensearch-project/opensearch-java/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/build.yml)
 [![Integration Tests](https://github.com/opensearch-project/opensearch-java/actions/workflows/test-integration.yml/badge.svg?branch=main)](https://github.com/opensearch-project/opensearch-java/actions/workflows/test-integration.yml)
 ![Maven Central](https://img.shields.io/maven-central/v/org.opensearch.client/opensearch-java)

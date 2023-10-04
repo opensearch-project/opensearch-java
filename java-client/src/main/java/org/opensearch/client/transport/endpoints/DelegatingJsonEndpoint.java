@@ -32,11 +32,10 @@
 
 package org.opensearch.client.transport.endpoints;
 
+import java.util.Map;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.transport.JsonEndpoint;
-
-import javax.annotation.Nullable;
-import java.util.Map;
 
 public class DelegatingJsonEndpoint<Req, Res, Err> implements JsonEndpoint<Req, Res, Err> {
 

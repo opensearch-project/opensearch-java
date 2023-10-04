@@ -35,7 +35,6 @@ package org.opensearch.client.json;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
-
 import java.util.EnumSet;
 
 public class UnexpectedJsonEventException extends JsonParsingException {

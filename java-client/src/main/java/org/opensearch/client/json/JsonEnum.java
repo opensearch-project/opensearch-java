@@ -35,12 +35,11 @@ package org.opensearch.client.json;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
-
-import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import javax.annotation.Nullable;
 
 /**
  * Base interface for enumerations in API types. Members have a JSON representation and also accept

@@ -15,6 +15,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
   
 ### Changed
 - Moved "software.amazon.awssdk" dependencies to the compileOnly scope. ([#628](https://github.com/opensearch-project/opensearch-java/pull/628))
+- Migrated from checkstyle to spotless ([#648](https://github.com/opensearch-project/opensearch-java/pull/648))
 
 ### Deprecated
 
