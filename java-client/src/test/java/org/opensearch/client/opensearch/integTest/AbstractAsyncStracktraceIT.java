@@ -17,9 +17,6 @@ public abstract class AbstractAsyncStracktraceIT extends OpenSearchJavaClientTes
         var thrown = assertThrows(Exception.class, () -> javaClient().indices().get(g -> g.index("nonexisting-index")));
 
         var stacktraceElements = Throwables.toStringList(thrown);
-
-        stacktraceElements.forEach(System.out::println);
-
         var someElementContainsCallerMethodName =
                 stacktraceElements.stream().anyMatch(it -> it.contains("testFailureFromClientPreservesStacktraceOfCaller"));
 
