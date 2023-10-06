@@ -80,8 +80,10 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
             try {
                 javaClient().indices().get(request);
                 fail(); // should never execute
-            } catch (OpenSearchException ex) {
-                assertNotNull(ex);
+            } catch (Exception ex) {
+                if (!(ex instanceof OpenSearchException)) {
+                    assertTrue(ex.getCause() instanceof OpenSearchException);
+                }
             }
         }
     }
