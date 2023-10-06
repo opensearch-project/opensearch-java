@@ -216,7 +216,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
                 .build();
             try {
                 javaClient().update(updateRequest, AppData.class);
-            } catch (Exception e) {
+            } catch (OpenSearchException | IOException e) {
                 OpenSearchException openSearchException;
                 if (e instanceof OpenSearchException) {
                     openSearchException = (OpenSearchException) e;

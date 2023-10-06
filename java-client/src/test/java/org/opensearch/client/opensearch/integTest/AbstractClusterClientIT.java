@@ -95,7 +95,7 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         try {
             openSearchClient.cluster().putSettings(request);
             fail();
-        } catch (Exception e) {
+        } catch (OpenSearchException | IOException e) {
             OpenSearchException openSearchException;
             if (e instanceof OpenSearchException) {
                 openSearchException = (OpenSearchException) e;

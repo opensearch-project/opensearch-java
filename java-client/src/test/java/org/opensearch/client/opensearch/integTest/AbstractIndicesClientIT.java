@@ -52,7 +52,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
             try {
                 javaClient().indices().get(request);
                 fail(); // should never execute
-            } catch (Exception ex) {
+            } catch (OpenSearchException | IOException ex) {
                 OpenSearchException openSearchException;
                 if (ex instanceof OpenSearchException) {
                     openSearchException = (OpenSearchException) ex;
@@ -80,7 +80,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
             try {
                 javaClient().indices().get(request);
                 fail(); // should never execute
-            } catch (Exception ex) {
+            } catch (OpenSearchException | IOException ex) {
                 if (!(ex instanceof OpenSearchException)) {
                     assertTrue(ex.getCause() instanceof OpenSearchException);
                 }
@@ -113,7 +113,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         try {
             javaClient().indices().getSettings(getIndicesSettingsRequest);
             fail();
-        } catch (Exception ex) {
+        } catch (OpenSearchException | IOException ex) {
             OpenSearchException openSearchException;
             if (ex instanceof OpenSearchException) {
                 openSearchException = (OpenSearchException) ex;
@@ -194,7 +194,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         try {
             javaClient().indices().getDataStream(b -> b.name(dataStreamName));
             fail();
-        } catch (Exception ex) {
+        } catch (OpenSearchException | IOException ex) {
             OpenSearchException openSearchException;
             if (ex instanceof OpenSearchException) {
                 openSearchException = (OpenSearchException) ex;
@@ -213,7 +213,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         try {
             GetAliasResponse response = javaClient().indices().getAlias(aliasRequest);
             fail();
-        } catch (Exception ex) {
+        } catch (OpenSearchException | IOException ex) {
             OpenSearchException openSearchException;
             if (ex instanceof OpenSearchException) {
                 openSearchException = (OpenSearchException) ex;
