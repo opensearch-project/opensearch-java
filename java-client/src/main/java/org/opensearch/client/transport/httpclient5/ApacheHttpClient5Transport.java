@@ -143,11 +143,15 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         try {
             return performRequestAsync(request, endpoint, options).join();
         } catch (final CompletionException ex) {
-            if (ex.getCause() instanceof IOException) {
-                throw (IOException) ex.getCause();
-            } else {
-                throw new IOException(ex.getCause());
+            Throwable cause = ex.getCause();
+            if (cause != null) {
+                if (cause instanceof IOException) {
+                    throw (IOException) cause;
+                } else {
+                    throw new IOException(cause);
+                }
             }
+            throw new IOException(ex);
         }
     }
 
