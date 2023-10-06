@@ -419,22 +419,32 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         BooleanResponse exists = javaClient().exists(_0 -> _0.index("doesnotexist").id("reallynot"));
         assertFalse(exists.value());
 
-        OpenSearchException ex = assertThrows(OpenSearchException.class, () -> {
-            GetResponse<String> response = javaClient().get(_0 -> _0.index("doesnotexist").id("reallynot"), String.class);
+        Exception ex = assertThrows(Exception.class, () -> {
+            GetResponse<String> response = javaClient().get(
+                    _0 -> _0.index("doesnotexist").id("reallynot"), String.class
+            );
         });
 
-        assertEquals(404, ex.status());
-        assertEquals("index_not_found_exception", ex.error().type());
-        assertEquals("doesnotexist", ex.error().metadata().get("index").to(String.class));
+        OpenSearchException openSearchException;
+        if (ex instanceof OpenSearchException) {
+            openSearchException = (OpenSearchException) ex;
+        } else {
+            assertTrue(ex.getCause() instanceof OpenSearchException);
+            openSearchException = (OpenSearchException) ex.getCause();
+        }
+
+        assertEquals(404, openSearchException.status());
+        assertEquals("index_not_found_exception", openSearchException.error().type());
+        assertEquals("doesnotexist", openSearchException.error().metadata().get("index").to(String.class));
 
         ExecutionException ee = assertThrows(ExecutionException.class, () -> {
             OpenSearchAsyncClient aClient = new OpenSearchAsyncClient(javaClient()._transport());
             GetResponse<String> response = aClient.get(_0 -> _0.index("doesnotexist").id("reallynot"), String.class).get();
         });
 
-        ex = ((OpenSearchException) ee.getCause());
-        assertEquals(404, ex.status());
-        assertEquals("index_not_found_exception", ex.error().type());
+        openSearchException = ((OpenSearchException) ee.getCause());
+        assertEquals(404, openSearchException.status());
+        assertEquals("index_not_found_exception", openSearchException.error().type());
     }
 
     @Test

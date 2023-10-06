@@ -118,12 +118,21 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
     public void testGet() throws IOException {
 
         {
-            OpenSearchException exception = expectThrows(
-                OpenSearchException.class,
-                () -> javaClient().get(new GetRequest.Builder().index("index").id("id").build(), String.class)
+            Exception exception = expectThrows(
+                    Exception.class,
+                    () -> javaClient().get(new GetRequest.Builder().index("index").id("id").build(), String.class)
             );
-            assertEquals(404, exception.status());
-            assertEquals("Request failed: [index_not_found_exception] no such index [index]", exception.getMessage());
+            OpenSearchException openSearchException;
+            if (exception instanceof OpenSearchException) {
+                openSearchException = (OpenSearchException) exception;
+            } else {
+                assertTrue(exception.getCause() instanceof OpenSearchException);
+                openSearchException = (OpenSearchException) exception.getCause();
+            }
+
+            assertEquals(404, openSearchException.status());
+            assertEquals("Request failed: [index_not_found_exception] no such index [index]",
+                    openSearchException.getMessage());
         }
 
         AppData appData = new AppData();
@@ -207,12 +216,20 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
                 .build();
             try {
                 javaClient().update(updateRequest, AppData.class);
-            } catch (OpenSearchException e) {
+            } catch (Exception e) {
+                OpenSearchException openSearchException;
+                if (e instanceof OpenSearchException) {
+                    openSearchException = (OpenSearchException) e;
+                } else {
+                    assertTrue(e.getCause() instanceof OpenSearchException);
+                    openSearchException = (OpenSearchException) e.getCause();
+                }
+
                 // 1.x: [document_missing_exception] [_doc][does_not_exist]: document missing
                 // 2.x: [document_missing_exception] [does_not_exist]: document missing
-                assertTrue(e.getMessage().contains("[document_missing_exception]"));
-                assertTrue(e.getMessage().contains("[does_not_exist]: document missing"));
-                assertEquals(404, e.status());
+                assertTrue(openSearchException.getMessage().contains("[document_missing_exception]"));
+                assertTrue(openSearchException.getMessage().contains("[does_not_exist]: document missing"));
+                assertEquals(404, openSearchException.status());
             }
         }
         {
