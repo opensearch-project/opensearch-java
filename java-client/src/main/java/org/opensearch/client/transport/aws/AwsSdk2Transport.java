@@ -194,17 +194,11 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             try {
                 return executeAsync((SdkAsyncHttpClient) httpClient, clientReq, requestBody, endpoint, options).get();
             } catch (ExecutionException e) {
-                Throwable cause = e.getCause();
-                if (cause != null) {
-                    if (cause instanceof IOException) {
-                        throw (IOException) cause;
-                    }
-                    if (cause instanceof RuntimeException) {
-                        throw (RuntimeException) cause;
-                    }
-                    throw new RuntimeException(cause);
+                if (e.getCause() instanceof IOException) {
+                    throw (IOException) e.getCause();
+                } else {
+                    throw new IOException(e.getCause());
                 }
-                throw new RuntimeException(e);
             } catch (InterruptedException e) {
                 throw new IOException("HttpRequest was interrupted", e);
             }
