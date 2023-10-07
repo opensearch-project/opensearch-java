@@ -30,7 +30,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
 - Fix PutMappingRequest by removing unsupported fields ([#597](https://github.com/opensearch-project/opensearch-java/pull/597))
 - Fix parsing of GetFieldMappingResponse ([#641](https://github.com/opensearch-project/opensearch-java/pull/641))
-- Fix TermvectorsResponse for optional fields. ([#642](https://github.com/opensearch-project/opensearch-java/pull/642))
+- Fix TermvectorsResponse for optional fields ([#642](https://github.com/opensearch-project/opensearch-java/pull/642))
 
 ### Security
 
