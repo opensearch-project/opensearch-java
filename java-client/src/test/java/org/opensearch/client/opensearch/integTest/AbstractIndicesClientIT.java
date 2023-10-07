@@ -8,8 +8,12 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import jakarta.json.stream.JsonParser;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch.indices.CreateDataStreamResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 import org.opensearch.client.opensearch.indices.DataStream;
@@ -21,11 +25,16 @@ import org.opensearch.client.opensearch.indices.GetDataStreamResponse;
 import org.opensearch.client.opensearch.indices.GetIndexRequest;
 import org.opensearch.client.opensearch.indices.GetIndexResponse;
 import org.opensearch.client.opensearch.indices.GetIndicesSettingsRequest;
+import org.opensearch.client.opensearch.indices.DeleteIndexTemplateResponse;
+import org.opensearch.client.opensearch.indices.GetIndexTemplateResponse;
 import org.opensearch.client.opensearch.indices.IndexState;
 import org.opensearch.client.opensearch.indices.PutIndexTemplateResponse;
+import org.opensearch.client.opensearch.indices.get_index_template.IndexTemplate;
 import org.opensearch.common.settings.Settings;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -205,4 +214,93 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
                             "alias [alias_not_exists] missing");
         }
     }
+
+    public void testWithJsonPutIndexTemplateRequest() throws IOException {
+
+        String jsonTemplate ="{ " +
+                "  \"index_patterns\": [ " +
+                "    \"logs-2023-01-*\"" +
+                "  ], " +
+                "  \"composed_of\":[], "+
+                "  \"template\": { " +
+                "    \"aliases\": { " +
+                "      \"my_logs\": {} " +
+                "    }, " +
+                "    \"settings\": { " +
+                "      \"number_of_shards\": 2, " +
+                "      \"number_of_replicas\": 1 " +
+                "    }, " +
+                "    \"mappings\": { " +
+                "      \"properties\": { " +
+                "        \"timestamp\": {  " +
+                "          \"type\": \"date\"," +
+                "          \"format\": \"yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis\"" +
+                "        },\n" +
+                "        \"value\": { " +
+                "          \"type\": \"double\" " +
+                "        } " +
+                "      } " +
+                "    } " +
+                "  } " +
+                "}";
+
+        final var pTemplateName = "daily_logs";
+        InputStream pTemplateJson = new ByteArrayInputStream(jsonTemplate.getBytes());
+
+        // create an index template before creating data streams
+        PutIndexTemplateResponse putIndexTemplateResponse = javaClient().indices()
+                .putIndexTemplate(b -> b.name(pTemplateName).withJson(pTemplateJson));
+        assertTrue(putIndexTemplateResponse.acknowledged());
+
+
+        // verify the settings
+        GetIndexTemplateResponse getIndexTemplateResponse = javaClient().indices()
+                .getIndexTemplate(b->b.name(pTemplateName));
+        assertEquals(1, getIndexTemplateResponse.indexTemplates().size());
+        assertEquals("logs-2023-01-*",getIndexTemplateResponse.indexTemplates()
+                .get(0).indexTemplate().indexPatterns().get(0));
+
+        IndexTemplate responseIndexTemplate = getIndexTemplateResponse.indexTemplates().get(0).indexTemplate();
+
+        JsonpMapper mapper = new JsonbJsonpMapper();
+        JsonParser parser = mapper.jsonProvider().createParser(new ByteArrayInputStream(jsonTemplate.getBytes()));
+        IndexTemplate indexTemplate = IndexTemplate._DESERIALIZER.deserialize(parser,mapper);
+
+        assertEquals(indexTemplate.priority(),responseIndexTemplate.priority());
+        assert indexTemplate.template() != null;
+        assert responseIndexTemplate.template() != null;
+        assertEquals(indexTemplate.template().aliases().size(),responseIndexTemplate.template().aliases().size());
+        assert indexTemplate.template().mappings() != null;
+        assert responseIndexTemplate.template().mappings() != null;
+        assertEquals(indexTemplate.template().mappings().size(),responseIndexTemplate.template().mappings().size());
+
+        var mappings = indexTemplate.template().mappings().properties();
+        var mappingValues = mappings.get("value");
+        assertEquals(Property.Kind.Double,mappingValues._kind());
+
+        var timestampValues = mappings.get("timestamp");
+        assertEquals("yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis",timestampValues.date().format());
+
+        var indicesSettings = responseIndexTemplate.template().settings().get("index").toJson().asJsonObject();
+        assertEquals("\"2\"",indicesSettings.get("number_of_shards").toString());
+        assertEquals("\"1\"",indicesSettings.get("number_of_replicas").toString());
+
+        // delete index template index
+        DeleteIndexTemplateResponse deleteIndexTemplateResponse = javaClient().indices()
+                .deleteIndexTemplate(b -> b.name(pTemplateName));
+        assertTrue(deleteIndexTemplateResponse.acknowledged());
+
+        // verify index template is deleted
+        try {
+            javaClient().indices().getIndexTemplate(b -> b.name(pTemplateName));
+            fail();
+        } catch (OpenSearchException ex) {
+            assertNotNull(ex);
+            assertEquals(ex.status(), 404);
+        }
+
+
+
+    }
+
 }
