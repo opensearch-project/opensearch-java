@@ -58,7 +58,7 @@ public class TermVector implements JsonpSerializable {
 
 	private TermVector(Builder builder) {
 
-		this.fieldStatistics = ApiTypeHelper.requireNonNull(builder.fieldStatistics, this, "fieldStatistics");
+		this.fieldStatistics = builder.fieldStatistics;
 		this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
 
 	}
@@ -92,8 +92,10 @@ public class TermVector implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("field_statistics");
-		this.fieldStatistics.serialize(generator, mapper);
+		if (null != this.fieldStatistics) {
+			generator.writeKey("field_statistics");
+			this.fieldStatistics.serialize(generator, mapper);
+		}
 
 		if (ApiTypeHelper.isDefined(this.terms)) {
 			generator.writeKey("terms");
