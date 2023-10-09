@@ -37,26 +37,27 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum AllocationExplainDecision implements JsonEnum {
-	No("NO"),
+    No("NO"),
 
-	Yes("YES"),
+    Yes("YES"),
 
-	Throttle("THROTTLE"),
+    Throttle("THROTTLE"),
 
-	Always("ALWAYS"),
+    Always("ALWAYS"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	AllocationExplainDecision(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    AllocationExplainDecision(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<AllocationExplainDecision> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			AllocationExplainDecision.values());
+    public static final JsonEnum.Deserializer<AllocationExplainDecision> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        AllocationExplainDecision.values()
+    );
 }

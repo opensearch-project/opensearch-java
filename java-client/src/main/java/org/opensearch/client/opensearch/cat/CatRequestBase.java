@@ -32,16 +32,14 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
-
 // typedef: cat._types.CatRequestBase
-
 
 public abstract class CatRequestBase extends RequestBase {
 
@@ -66,13 +64,12 @@ public abstract class CatRequestBase extends RequestBase {
         if (headers != null && !headers.isBlank()) {
             params.put("h", headers);
         }
-        if(sort != null && !sort.isBlank()) {
+        if (sort != null && !sort.isBlank()) {
             params.put("s", sort);
         }
         params.put("format", "json");
         return params;
     }
-
 
     /**
      * A comma-separated list of headers to limit the returned information
@@ -93,8 +90,9 @@ public abstract class CatRequestBase extends RequestBase {
         return this.sort;
     }
 
-
-    protected abstract static class CatRequestBaseBuilder<BuilderT extends CatRequestBaseBuilder> extends ObjectBuilderBase implements ObjectBuilder {
+    protected abstract static class CatRequestBaseBuilder<BuilderT extends CatRequestBaseBuilder> extends ObjectBuilderBase
+        implements
+            ObjectBuilder {
 
         @Nullable
         protected String headers;

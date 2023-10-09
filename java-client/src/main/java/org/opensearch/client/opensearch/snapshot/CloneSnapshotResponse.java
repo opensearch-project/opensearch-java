@@ -32,68 +32,67 @@
 
 package org.opensearch.client.opensearch.snapshot;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: snapshot.clone.Response
 
 @JsonpDeserializable
 public class CloneSnapshotResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CloneSnapshotResponse(Builder builder) {
-		super(builder);
+    private CloneSnapshotResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static CloneSnapshotResponse of(Function<Builder, ObjectBuilder<CloneSnapshotResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CloneSnapshotResponse of(Function<Builder, ObjectBuilder<CloneSnapshotResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CloneSnapshotResponse}.
-	 */
+    /**
+     * Builder for {@link CloneSnapshotResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<CloneSnapshotResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<CloneSnapshotResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CloneSnapshotResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CloneSnapshotResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CloneSnapshotResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CloneSnapshotResponse build() {
+            _checkSingleUse();
 
-			return new CloneSnapshotResponse(this);
-		}
-	}
+            return new CloneSnapshotResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CloneSnapshotResponse}
-	 */
-	public static final JsonpDeserializer<CloneSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CloneSnapshotResponse::setupCloneSnapshotResponseDeserializer);
+    /**
+     * Json deserializer for {@link CloneSnapshotResponse}
+     */
+    public static final JsonpDeserializer<CloneSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CloneSnapshotResponse::setupCloneSnapshotResponseDeserializer
+    );
 
-	protected static void setupCloneSnapshotResponseDeserializer(ObjectDeserializer<CloneSnapshotResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupCloneSnapshotResponseDeserializer(ObjectDeserializer<CloneSnapshotResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,233 +44,232 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeThreadPoolInfo
 
 @JsonpDeserializable
 public class NodeThreadPoolInfo implements JsonpSerializable {
-	@Nullable
-	private final Integer core;
+    @Nullable
+    private final Integer core;
 
-	@Nullable
-	private final String keepAlive;
+    @Nullable
+    private final String keepAlive;
 
-	@Nullable
-	private final Integer max;
+    @Nullable
+    private final Integer max;
 
-	private final int queueSize;
+    private final int queueSize;
 
-	@Nullable
-	private final Integer size;
+    @Nullable
+    private final Integer size;
 
-	private final String type;
+    private final String type;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeThreadPoolInfo(Builder builder) {
+    private NodeThreadPoolInfo(Builder builder) {
 
-		this.core = builder.core;
-		this.keepAlive = builder.keepAlive;
-		this.max = builder.max;
-		this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
-		this.size = builder.size;
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+        this.core = builder.core;
+        this.keepAlive = builder.keepAlive;
+        this.max = builder.max;
+        this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
+        this.size = builder.size;
+        this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
-	}
+    }
 
-	public static NodeThreadPoolInfo of(Function<Builder, ObjectBuilder<NodeThreadPoolInfo>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeThreadPoolInfo of(Function<Builder, ObjectBuilder<NodeThreadPoolInfo>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code core}
-	 */
-	@Nullable
-	public final Integer core() {
-		return this.core;
-	}
+    /**
+     * API name: {@code core}
+     */
+    @Nullable
+    public final Integer core() {
+        return this.core;
+    }
 
-	/**
-	 * API name: {@code keep_alive}
-	 */
-	@Nullable
-	public final String keepAlive() {
-		return this.keepAlive;
-	}
+    /**
+     * API name: {@code keep_alive}
+     */
+    @Nullable
+    public final String keepAlive() {
+        return this.keepAlive;
+    }
 
-	/**
-	 * API name: {@code max}
-	 */
-	@Nullable
-	public final Integer max() {
-		return this.max;
-	}
+    /**
+     * API name: {@code max}
+     */
+    @Nullable
+    public final Integer max() {
+        return this.max;
+    }
 
-	/**
-	 * Required - API name: {@code queue_size}
-	 */
-	public final int queueSize() {
-		return this.queueSize;
-	}
+    /**
+     * Required - API name: {@code queue_size}
+     */
+    public final int queueSize() {
+        return this.queueSize;
+    }
 
-	/**
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public final Integer size() {
-		return this.size;
-	}
+    /**
+     * API name: {@code size}
+     */
+    @Nullable
+    public final Integer size() {
+        return this.size;
+    }
 
-	/**
-	 * Required - API name: {@code type}
-	 */
-	public final String type() {
-		return this.type;
-	}
+    /**
+     * Required - API name: {@code type}
+     */
+    public final String type() {
+        return this.type;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.core != null) {
-			generator.writeKey("core");
-			generator.write(this.core);
+        if (this.core != null) {
+            generator.writeKey("core");
+            generator.write(this.core);
 
-		}
-		if (this.keepAlive != null) {
-			generator.writeKey("keep_alive");
-			generator.write(this.keepAlive);
+        }
+        if (this.keepAlive != null) {
+            generator.writeKey("keep_alive");
+            generator.write(this.keepAlive);
 
-		}
-		if (this.max != null) {
-			generator.writeKey("max");
-			generator.write(this.max);
+        }
+        if (this.max != null) {
+            generator.writeKey("max");
+            generator.write(this.max);
 
-		}
-		generator.writeKey("queue_size");
-		generator.write(this.queueSize);
+        }
+        generator.writeKey("queue_size");
+        generator.write(this.queueSize);
 
-		if (this.size != null) {
-			generator.writeKey("size");
-			generator.write(this.size);
+        if (this.size != null) {
+            generator.writeKey("size");
+            generator.write(this.size);
 
-		}
-		generator.writeKey("type");
-		generator.write(this.type);
+        }
+        generator.writeKey("type");
+        generator.write(this.type);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeThreadPoolInfo}.
-	 */
+    /**
+     * Builder for {@link NodeThreadPoolInfo}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeThreadPoolInfo> {
-		@Nullable
-		private Integer core;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeThreadPoolInfo> {
+        @Nullable
+        private Integer core;
 
-		@Nullable
-		private String keepAlive;
+        @Nullable
+        private String keepAlive;
 
-		@Nullable
-		private Integer max;
+        @Nullable
+        private Integer max;
 
-		private Integer queueSize;
+        private Integer queueSize;
 
-		@Nullable
-		private Integer size;
+        @Nullable
+        private Integer size;
 
-		private String type;
+        private String type;
 
-		/**
-		 * API name: {@code core}
-		 */
-		public final Builder core(@Nullable Integer value) {
-			this.core = value;
-			return this;
-		}
+        /**
+         * API name: {@code core}
+         */
+        public final Builder core(@Nullable Integer value) {
+            this.core = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code keep_alive}
-		 */
-		public final Builder keepAlive(@Nullable String value) {
-			this.keepAlive = value;
-			return this;
-		}
+        /**
+         * API name: {@code keep_alive}
+         */
+        public final Builder keepAlive(@Nullable String value) {
+            this.keepAlive = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code max}
-		 */
-		public final Builder max(@Nullable Integer value) {
-			this.max = value;
-			return this;
-		}
+        /**
+         * API name: {@code max}
+         */
+        public final Builder max(@Nullable Integer value) {
+            this.max = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code queue_size}
-		 */
-		public final Builder queueSize(int value) {
-			this.queueSize = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code queue_size}
+         */
+        public final Builder queueSize(int value) {
+            this.queueSize = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code size}
-		 */
-		public final Builder size(@Nullable Integer value) {
-			this.size = value;
-			return this;
-		}
+        /**
+         * API name: {@code size}
+         */
+        public final Builder size(@Nullable Integer value) {
+            this.size = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public final Builder type(String value) {
-			this.type = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code type}
+         */
+        public final Builder type(String value) {
+            this.type = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeThreadPoolInfo}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeThreadPoolInfo build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeThreadPoolInfo}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeThreadPoolInfo build() {
+            _checkSingleUse();
 
-			return new NodeThreadPoolInfo(this);
-		}
-	}
+            return new NodeThreadPoolInfo(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeThreadPoolInfo}
-	 */
-	public static final JsonpDeserializer<NodeThreadPoolInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeThreadPoolInfo::setupNodeThreadPoolInfoDeserializer);
+    /**
+     * Json deserializer for {@link NodeThreadPoolInfo}
+     */
+    public static final JsonpDeserializer<NodeThreadPoolInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeThreadPoolInfo::setupNodeThreadPoolInfoDeserializer
+    );
 
-	protected static void setupNodeThreadPoolInfoDeserializer(ObjectDeserializer<NodeThreadPoolInfo.Builder> op) {
+    protected static void setupNodeThreadPoolInfoDeserializer(ObjectDeserializer<NodeThreadPoolInfo.Builder> op) {
 
-		op.add(Builder::core, JsonpDeserializer.integerDeserializer(), "core");
-		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");
-		op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
-		op.add(Builder::queueSize, JsonpDeserializer.integerDeserializer(), "queue_size");
-		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+        op.add(Builder::core, JsonpDeserializer.integerDeserializer(), "core");
+        op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");
+        op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
+        op.add(Builder::queueSize, JsonpDeserializer.integerDeserializer(), "queue_size");
+        op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
+        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
-	}
+    }
 
 }

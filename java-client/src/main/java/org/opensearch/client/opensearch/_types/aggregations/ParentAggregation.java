@@ -32,113 +32,113 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ParentAggregation
 
 @JsonpDeserializable
 public class ParentAggregation extends BucketAggregationBase implements AggregationVariant {
-	@Nullable
-	private final String type;
+    @Nullable
+    private final String type;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ParentAggregation(Builder builder) {
-		super(builder);
+    private ParentAggregation(Builder builder) {
+        super(builder);
 
-		this.type = builder.type;
+        this.type = builder.type;
 
-	}
+    }
 
-	public static ParentAggregation of(Function<Builder, ObjectBuilder<ParentAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ParentAggregation of(Function<Builder, ObjectBuilder<ParentAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Parent;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.Parent;
+    }
 
-	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
+    /**
+     * API name: {@code type}
+     */
+    @Nullable
+    public final String type() {
+        return this.type;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.type != null) {
-			generator.writeKey("type");
-			generator.write(this.type);
+        super.serializeInternal(generator, mapper);
+        if (this.type != null) {
+            generator.writeKey("type");
+            generator.write(this.type);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ParentAggregation}.
-	 */
+    /**
+     * Builder for {@link ParentAggregation}.
+     */
 
-	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ParentAggregation> {
-		@Nullable
-		private String type;
+    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<ParentAggregation> {
+        @Nullable
+        private String type;
 
-		/**
-		 * API name: {@code type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
+        /**
+         * API name: {@code type}
+         */
+        public final Builder type(@Nullable String value) {
+            this.type = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ParentAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ParentAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ParentAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ParentAggregation build() {
+            _checkSingleUse();
 
-			return new ParentAggregation(this);
-		}
-	}
+            return new ParentAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ParentAggregation}
-	 */
-	public static final JsonpDeserializer<ParentAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ParentAggregation::setupParentAggregationDeserializer);
+    /**
+     * Json deserializer for {@link ParentAggregation}
+     */
+    public static final JsonpDeserializer<ParentAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ParentAggregation::setupParentAggregationDeserializer
+    );
 
-	protected static void setupParentAggregationDeserializer(ObjectDeserializer<ParentAggregation.Builder> op) {
-		setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+    protected static void setupParentAggregationDeserializer(ObjectDeserializer<ParentAggregation.Builder> op) {
+        setupBucketAggregationBaseDeserializer(op);
+        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
-	}
+    }
 
 }

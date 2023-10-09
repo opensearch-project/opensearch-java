@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.cluster.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,120 +43,118 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterOperatingSystemArchitecture
 
-
 @JsonpDeserializable
 public class ClusterOperatingSystemArchitecture implements JsonpSerializable {
-	private final int count;
+    private final int count;
 
-	private final String arch;
+    private final String arch;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ClusterOperatingSystemArchitecture(Builder builder) {
+    private ClusterOperatingSystemArchitecture(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.arch = ApiTypeHelper.requireNonNull(builder.arch, this, "arch");
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+        this.arch = ApiTypeHelper.requireNonNull(builder.arch, this, "arch");
 
-	}
+    }
 
-	public static ClusterOperatingSystemArchitecture of(
-			Function<Builder, ObjectBuilder<ClusterOperatingSystemArchitecture>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ClusterOperatingSystemArchitecture of(Function<Builder, ObjectBuilder<ClusterOperatingSystemArchitecture>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code count}
-	 */
-	public final int count() {
-		return this.count;
-	}
+    /**
+     * Required - API name: {@code count}
+     */
+    public final int count() {
+        return this.count;
+    }
 
-	/**
-	 * Required - API name: {@code arch}
-	 */
-	public final String arch() {
-		return this.arch;
-	}
+    /**
+     * Required - API name: {@code arch}
+     */
+    public final String arch() {
+        return this.arch;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("count");
-		generator.write(this.count);
+        generator.writeKey("count");
+        generator.write(this.count);
 
-		generator.writeKey("arch");
-		generator.write(this.arch);
+        generator.writeKey("arch");
+        generator.write(this.arch);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ClusterOperatingSystemArchitecture}.
-	 */
+    /**
+     * Builder for {@link ClusterOperatingSystemArchitecture}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterOperatingSystemArchitecture> {
-		private Integer count;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterOperatingSystemArchitecture> {
+        private Integer count;
 
-		private String arch;
+        private String arch;
 
-		/**
-		 * Required - API name: {@code count}
-		 */
-		public final Builder count(int value) {
-			this.count = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code count}
+         */
+        public final Builder count(int value) {
+            this.count = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code arch}
-		 */
-		public final Builder arch(String value) {
-			this.arch = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code arch}
+         */
+        public final Builder arch(String value) {
+            this.arch = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ClusterOperatingSystemArchitecture}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ClusterOperatingSystemArchitecture build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ClusterOperatingSystemArchitecture}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ClusterOperatingSystemArchitecture build() {
+            _checkSingleUse();
 
-			return new ClusterOperatingSystemArchitecture(this);
-		}
-	}
+            return new ClusterOperatingSystemArchitecture(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ClusterOperatingSystemArchitecture}
-	 */
-	public static final JsonpDeserializer<ClusterOperatingSystemArchitecture> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new,
-					ClusterOperatingSystemArchitecture::setupClusterOperatingSystemArchitectureDeserializer);
+    /**
+     * Json deserializer for {@link ClusterOperatingSystemArchitecture}
+     */
+    public static final JsonpDeserializer<ClusterOperatingSystemArchitecture> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ClusterOperatingSystemArchitecture::setupClusterOperatingSystemArchitectureDeserializer
+    );
 
-	protected static void setupClusterOperatingSystemArchitectureDeserializer(
-			ObjectDeserializer<ClusterOperatingSystemArchitecture.Builder> op) {
+    protected static void setupClusterOperatingSystemArchitectureDeserializer(
+        ObjectDeserializer<ClusterOperatingSystemArchitecture.Builder> op
+    ) {
 
-		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
-		op.add(Builder::arch, JsonpDeserializer.stringDeserializer(), "arch");
+        op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+        op.add(Builder::arch, JsonpDeserializer.stringDeserializer(), "arch");
 
-	}
+    }
 
 }

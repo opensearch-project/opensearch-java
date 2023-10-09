@@ -32,13 +32,12 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.UnmappedRareTermsAggregate
 
@@ -49,65 +48,66 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class UnmappedRareTermsAggregate extends MultiBucketAggregateBase<Void> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private UnmappedRareTermsAggregate(Builder builder) {
-		super(builder);
+    private UnmappedRareTermsAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static UnmappedRareTermsAggregate of(Function<Builder, ObjectBuilder<UnmappedRareTermsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static UnmappedRareTermsAggregate of(Function<Builder, ObjectBuilder<UnmappedRareTermsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Umrareterms;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Umrareterms;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link UnmappedRareTermsAggregate}.
-	 */
+    /**
+     * Builder for {@link UnmappedRareTermsAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<Void, Builder>
-			implements
-				ObjectBuilder<UnmappedRareTermsAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<Void, Builder>
+        implements
+            ObjectBuilder<UnmappedRareTermsAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link UnmappedRareTermsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public UnmappedRareTermsAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link UnmappedRareTermsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public UnmappedRareTermsAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new UnmappedRareTermsAggregate(this);
-		}
-	}
+            return new UnmappedRareTermsAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link UnmappedRareTermsAggregate}
-	 */
-	public static final JsonpDeserializer<UnmappedRareTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UnmappedRareTermsAggregate::setupUnmappedRareTermsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link UnmappedRareTermsAggregate}
+     */
+    public static final JsonpDeserializer<UnmappedRareTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        UnmappedRareTermsAggregate::setupUnmappedRareTermsAggregateDeserializer
+    );
 
-	protected static void setupUnmappedRareTermsAggregateDeserializer(
-			ObjectDeserializer<UnmappedRareTermsAggregate.Builder> op) {
-		setupMultiBucketAggregateBaseDeserializer(op, JsonpDeserializer.voidDeserializer());
+    protected static void setupUnmappedRareTermsAggregateDeserializer(ObjectDeserializer<UnmappedRareTermsAggregate.Builder> op) {
+        setupMultiBucketAggregateBaseDeserializer(op, JsonpDeserializer.voidDeserializer());
 
-	}
+    }
 
 }

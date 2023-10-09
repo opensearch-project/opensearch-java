@@ -32,204 +32,203 @@
 
 package org.opensearch.client.opensearch.ingest;
 
-import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.OpenSearchTransport;
-import org.opensearch.client.transport.JsonEndpoint;
-import org.opensearch.client.transport.TransportOptions;
-import org.opensearch.client.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.transport.JsonEndpoint;
+import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.util.ObjectBuilder;
 
 /**
  * Client for the ingest namespace.
  */
 public class OpenSearchIngestClient extends ApiClient<OpenSearchTransport, OpenSearchIngestClient> {
 
-	public OpenSearchIngestClient(OpenSearchTransport transport) {
-		super(transport, null);
-	}
+    public OpenSearchIngestClient(OpenSearchTransport transport) {
+        super(transport, null);
+    }
 
-	public OpenSearchIngestClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
-		super(transport, transportOptions);
-	}
+    public OpenSearchIngestClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+        super(transport, transportOptions);
+    }
 
-	@Override
-	public OpenSearchIngestClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpenSearchIngestClient(this.transport, transportOptions);
-	}
+    @Override
+    public OpenSearchIngestClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchIngestClient(this.transport, transportOptions);
+    }
 
-	// ----- Endpoint: ingest.delete_pipeline
+    // ----- Endpoint: ingest.delete_pipeline
 
-	/**
-	 * Deletes a pipeline.
-	 * 
-	 *
-	 */
+    /**
+     * Deletes a pipeline.
+     *
+     *
+     */
 
-	public DeletePipelineResponse deletePipeline(DeletePipelineRequest request)
-			throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse>)
-						DeletePipelineRequest._ENDPOINT;
+    public DeletePipelineResponse deletePipeline(DeletePipelineRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            DeletePipelineRequest,
+            DeletePipelineResponse,
+            ErrorResponse>) DeletePipelineRequest._ENDPOINT;
 
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Deletes a pipeline.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link DeletePipelineRequest}
-	 *
-	 */
+    /**
+     * Deletes a pipeline.
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link DeletePipelineRequest}
+     *
+     */
 
-	public final DeletePipelineResponse deletePipeline(
-			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn)
-			throws IOException, OpenSearchException {
-		return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
-	}
+    public final DeletePipelineResponse deletePipeline(Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn)
+        throws IOException, OpenSearchException {
+        return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
+    }
 
-	// ----- Endpoint: ingest.geo_ip_stats
+    // ----- Endpoint: ingest.geo_ip_stats
 
-	/**
-	 * Returns statistical information about geoip databases
-	 * 
-	 *
-	 */
-	public GeoIpStatsResponse geoIpStats() throws IOException, OpenSearchException {
-		return this.transport.performRequest(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest._ENDPOINT,
-				this.transportOptions);
-	}
+    /**
+     * Returns statistical information about geoip databases
+     *
+     *
+     */
+    public GeoIpStatsResponse geoIpStats() throws IOException, OpenSearchException {
+        return this.transport.performRequest(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest._ENDPOINT, this.transportOptions);
+    }
 
-	// ----- Endpoint: ingest.get_pipeline
+    // ----- Endpoint: ingest.get_pipeline
 
-	/**
-	 * Returns a pipeline.
-	 * 
-	 *
-	 */
+    /**
+     * Returns a pipeline.
+     *
+     *
+     */
 
-	public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse>) GetPipelineRequest._ENDPOINT;
+    public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            GetPipelineRequest,
+            GetPipelineResponse,
+            ErrorResponse>) GetPipelineRequest._ENDPOINT;
 
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Returns a pipeline.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetPipelineRequest}
-	 *
-	 */
+    /**
+     * Returns a pipeline.
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link GetPipelineRequest}
+     *
+     */
 
-	public final GetPipelineResponse getPipeline(
-			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
-			throws IOException, OpenSearchException {
-		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
-	}
+    public final GetPipelineResponse getPipeline(Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
+        throws IOException, OpenSearchException {
+        return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
+    }
 
-	/**
-	 * Returns a pipeline.
-	 * 
-	 *
-	 */
+    /**
+     * Returns a pipeline.
+     *
+     *
+     */
 
-	public GetPipelineResponse getPipeline() throws IOException, OpenSearchException {
-		return this.transport.performRequest(new GetPipelineRequest.Builder().build(), GetPipelineRequest._ENDPOINT,
-				this.transportOptions);
-	}
+    public GetPipelineResponse getPipeline() throws IOException, OpenSearchException {
+        return this.transport.performRequest(new GetPipelineRequest.Builder().build(), GetPipelineRequest._ENDPOINT, this.transportOptions);
+    }
 
-	// ----- Endpoint: ingest.processor_grok
+    // ----- Endpoint: ingest.processor_grok
 
-	/**
-	 * Returns a list of the built-in patterns.
-	 * 
-	 *
-	 */
-	public ProcessorGrokResponse processorGrok() throws IOException, OpenSearchException {
-		return this.transport.performRequest(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest._ENDPOINT,
-				this.transportOptions);
-	}
+    /**
+     * Returns a list of the built-in patterns.
+     *
+     *
+     */
+    public ProcessorGrokResponse processorGrok() throws IOException, OpenSearchException {
+        return this.transport.performRequest(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest._ENDPOINT, this.transportOptions);
+    }
 
-	// ----- Endpoint: ingest.put_pipeline
+    // ----- Endpoint: ingest.put_pipeline
 
-	/**
-	 * Creates or updates a pipeline.
-	 * 
-	 *
-	 */
+    /**
+     * Creates or updates a pipeline.
+     *
+     *
+     */
 
-	public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse>) PutPipelineRequest._ENDPOINT;
+    public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            PutPipelineRequest,
+            PutPipelineResponse,
+            ErrorResponse>) PutPipelineRequest._ENDPOINT;
 
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Creates or updates a pipeline.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link PutPipelineRequest}
-	 *
-	 */
+    /**
+     * Creates or updates a pipeline.
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link PutPipelineRequest}
+     *
+     */
 
-	public final PutPipelineResponse putPipeline(
-			Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
-			throws IOException, OpenSearchException {
-		return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
-	}
+    public final PutPipelineResponse putPipeline(Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
+        throws IOException, OpenSearchException {
+        return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
+    }
 
-	// ----- Endpoint: ingest.simulate
+    // ----- Endpoint: ingest.simulate
 
-	/**
-	 * Allows to simulate a pipeline with example documents.
-	 * 
-	 *
-	 */
+    /**
+     * Allows to simulate a pipeline with example documents.
+     *
+     *
+     */
 
-	public SimulateResponse simulate(SimulateRequest request) throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<SimulateRequest, SimulateResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<SimulateRequest, SimulateResponse, ErrorResponse>) SimulateRequest._ENDPOINT;
+    public SimulateResponse simulate(SimulateRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<SimulateRequest, SimulateResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            SimulateRequest,
+            SimulateResponse,
+            ErrorResponse>) SimulateRequest._ENDPOINT;
 
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Allows to simulate a pipeline with example documents.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link SimulateRequest}
-	 *
-	 */
+    /**
+     * Allows to simulate a pipeline with example documents.
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link SimulateRequest}
+     *
+     */
 
-	public final SimulateResponse simulate(Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn)
-			throws IOException, OpenSearchException {
-		return simulate(fn.apply(new SimulateRequest.Builder()).build());
-	}
+    public final SimulateResponse simulate(Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn) throws IOException,
+        OpenSearchException {
+        return simulate(fn.apply(new SimulateRequest.Builder()).build());
+    }
 
-	/**
-	 * Allows to simulate a pipeline with example documents.
-	 * 
-	 *
-	 */
+    /**
+     * Allows to simulate a pipeline with example documents.
+     *
+     *
+     */
 
-	public SimulateResponse simulate() throws IOException, OpenSearchException {
-		return this.transport.performRequest(new SimulateRequest.Builder().build(), SimulateRequest._ENDPOINT,
-				this.transportOptions);
-	}
+    public SimulateResponse simulate() throws IOException, OpenSearchException {
+        return this.transport.performRequest(new SimulateRequest.Builder().build(), SimulateRequest._ENDPOINT, this.transportOptions);
+    }
 
 }

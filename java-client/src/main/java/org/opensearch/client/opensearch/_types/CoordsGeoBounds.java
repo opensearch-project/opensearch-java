@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,164 +43,164 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.CoordsGeoBounds
 
 @JsonpDeserializable
 public class CoordsGeoBounds implements JsonpSerializable {
-	private final double top;
+    private final double top;
 
-	private final double bottom;
+    private final double bottom;
 
-	private final double left;
+    private final double left;
 
-	private final double right;
+    private final double right;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CoordsGeoBounds(Builder builder) {
+    private CoordsGeoBounds(Builder builder) {
 
-		this.top = ApiTypeHelper.requireNonNull(builder.top, this, "top");
-		this.bottom = ApiTypeHelper.requireNonNull(builder.bottom, this, "bottom");
-		this.left = ApiTypeHelper.requireNonNull(builder.left, this, "left");
-		this.right = ApiTypeHelper.requireNonNull(builder.right, this, "right");
+        this.top = ApiTypeHelper.requireNonNull(builder.top, this, "top");
+        this.bottom = ApiTypeHelper.requireNonNull(builder.bottom, this, "bottom");
+        this.left = ApiTypeHelper.requireNonNull(builder.left, this, "left");
+        this.right = ApiTypeHelper.requireNonNull(builder.right, this, "right");
 
-	}
+    }
 
-	public static CoordsGeoBounds of(Function<Builder, ObjectBuilder<CoordsGeoBounds>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CoordsGeoBounds of(Function<Builder, ObjectBuilder<CoordsGeoBounds>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code top}
-	 */
-	public final double top() {
-		return this.top;
-	}
+    /**
+     * Required - API name: {@code top}
+     */
+    public final double top() {
+        return this.top;
+    }
 
-	/**
-	 * Required - API name: {@code bottom}
-	 */
-	public final double bottom() {
-		return this.bottom;
-	}
+    /**
+     * Required - API name: {@code bottom}
+     */
+    public final double bottom() {
+        return this.bottom;
+    }
 
-	/**
-	 * Required - API name: {@code left}
-	 */
-	public final double left() {
-		return this.left;
-	}
+    /**
+     * Required - API name: {@code left}
+     */
+    public final double left() {
+        return this.left;
+    }
 
-	/**
-	 * Required - API name: {@code right}
-	 */
-	public final double right() {
-		return this.right;
-	}
+    /**
+     * Required - API name: {@code right}
+     */
+    public final double right() {
+        return this.right;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("top");
-		generator.write(this.top);
+        generator.writeKey("top");
+        generator.write(this.top);
 
-		generator.writeKey("bottom");
-		generator.write(this.bottom);
+        generator.writeKey("bottom");
+        generator.write(this.bottom);
 
-		generator.writeKey("left");
-		generator.write(this.left);
+        generator.writeKey("left");
+        generator.write(this.left);
 
-		generator.writeKey("right");
-		generator.write(this.right);
+        generator.writeKey("right");
+        generator.write(this.right);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CoordsGeoBounds}.
-	 */
+    /**
+     * Builder for {@link CoordsGeoBounds}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CoordsGeoBounds> {
-		private Double top;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CoordsGeoBounds> {
+        private Double top;
 
-		private Double bottom;
+        private Double bottom;
 
-		private Double left;
+        private Double left;
 
-		private Double right;
+        private Double right;
 
-		/**
-		 * Required - API name: {@code top}
-		 */
-		public final Builder top(double value) {
-			this.top = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code top}
+         */
+        public final Builder top(double value) {
+            this.top = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code bottom}
-		 */
-		public final Builder bottom(double value) {
-			this.bottom = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code bottom}
+         */
+        public final Builder bottom(double value) {
+            this.bottom = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code left}
-		 */
-		public final Builder left(double value) {
-			this.left = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code left}
+         */
+        public final Builder left(double value) {
+            this.left = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code right}
-		 */
-		public final Builder right(double value) {
-			this.right = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code right}
+         */
+        public final Builder right(double value) {
+            this.right = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CoordsGeoBounds}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CoordsGeoBounds build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CoordsGeoBounds}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CoordsGeoBounds build() {
+            _checkSingleUse();
 
-			return new CoordsGeoBounds(this);
-		}
-	}
+            return new CoordsGeoBounds(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CoordsGeoBounds}
-	 */
-	public static final JsonpDeserializer<CoordsGeoBounds> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CoordsGeoBounds::setupCoordsGeoBoundsDeserializer);
+    /**
+     * Json deserializer for {@link CoordsGeoBounds}
+     */
+    public static final JsonpDeserializer<CoordsGeoBounds> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CoordsGeoBounds::setupCoordsGeoBoundsDeserializer
+    );
 
-	protected static void setupCoordsGeoBoundsDeserializer(ObjectDeserializer<CoordsGeoBounds.Builder> op) {
+    protected static void setupCoordsGeoBoundsDeserializer(ObjectDeserializer<CoordsGeoBounds.Builder> op) {
 
-		op.add(Builder::top, JsonpDeserializer.doubleDeserializer(), "top");
-		op.add(Builder::bottom, JsonpDeserializer.doubleDeserializer(), "bottom");
-		op.add(Builder::left, JsonpDeserializer.doubleDeserializer(), "left");
-		op.add(Builder::right, JsonpDeserializer.doubleDeserializer(), "right");
+        op.add(Builder::top, JsonpDeserializer.doubleDeserializer(), "top");
+        op.add(Builder::bottom, JsonpDeserializer.doubleDeserializer(), "bottom");
+        op.add(Builder::left, JsonpDeserializer.doubleDeserializer(), "left");
+        op.add(Builder::right, JsonpDeserializer.doubleDeserializer(), "right");
 
-	}
+    }
 
 }

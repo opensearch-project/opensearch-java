@@ -35,25 +35,25 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum CombinedFieldsOperator implements JsonEnum {
-	Or("or"),
+    Or("or"),
 
-	And("and"),
+    And("and"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	CombinedFieldsOperator(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    CombinedFieldsOperator(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<CombinedFieldsOperator> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			CombinedFieldsOperator.values());
+    public static final JsonEnum.Deserializer<CombinedFieldsOperator> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        CombinedFieldsOperator.values()
+    );
 }

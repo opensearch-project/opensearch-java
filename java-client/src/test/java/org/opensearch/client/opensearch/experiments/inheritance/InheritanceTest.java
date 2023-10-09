@@ -75,7 +75,6 @@ public class InheritanceTest extends ModelTestCase {
         assertEquals("childValue", fc.childField());
         assertEquals("finalValue", fc.finalField());
 
-
         json = "{\"baseField\":\"baseValue\",\"childField\":\"childValue\"}";
 
         ChildClass cc = fromJson(json, ChildClass.JSONP_PARSER);

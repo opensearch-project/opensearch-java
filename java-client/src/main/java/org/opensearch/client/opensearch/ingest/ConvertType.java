@@ -35,35 +35,33 @@ package org.opensearch.client.opensearch.ingest;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum ConvertType implements JsonEnum {
-	Integer("integer"),
+    Integer("integer"),
 
-	Long("long"),
+    Long("long"),
 
-	Float("float"),
+    Float("float"),
 
-	Double("double"),
+    Double("double"),
 
-	String("string"),
+    String("string"),
 
-	Boolean("boolean"),
+    Boolean("boolean"),
 
-	Auto("auto"),
+    Auto("auto"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ConvertType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ConvertType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ConvertType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ConvertType.values());
+    public static final JsonEnum.Deserializer<ConvertType> _DESERIALIZER = new JsonEnum.Deserializer<>(ConvertType.values());
 }

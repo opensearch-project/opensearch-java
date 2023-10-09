@@ -32,19 +32,18 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.Bytes;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 // typedef: cat.segments.Request
 
@@ -54,155 +53,158 @@ import java.util.stream.Collectors;
  */
 
 public class SegmentsRequest extends CatRequestBase {
-	@Nullable
-	private final Bytes bytes;
+    @Nullable
+    private final Bytes bytes;
 
-	private final List<String> index;
+    private final List<String> index;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SegmentsRequest(Builder builder) {
-		super(builder);
-		this.bytes = builder.bytes;
-		this.index = ApiTypeHelper.unmodifiable(builder.index);
+    private SegmentsRequest(Builder builder) {
+        super(builder);
+        this.bytes = builder.bytes;
+        this.index = ApiTypeHelper.unmodifiable(builder.index);
 
-	}
+    }
 
-	public static SegmentsRequest of(Function<Builder, ObjectBuilder<SegmentsRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SegmentsRequest of(Function<Builder, ObjectBuilder<SegmentsRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * The unit in which to display byte values
-	 * <p>
-	 * API name: {@code bytes}
-	 */
-	@Nullable
-	public final Bytes bytes() {
-		return this.bytes;
-	}
+    /**
+     * The unit in which to display byte values
+     * <p>
+     * API name: {@code bytes}
+     */
+    @Nullable
+    public final Bytes bytes() {
+        return this.bytes;
+    }
 
-	/**
-	 * A comma-separated list of index names to limit the returned information
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public final List<String> index() {
-		return this.index;
-	}
+    /**
+     * A comma-separated list of index names to limit the returned information
+     * <p>
+     * API name: {@code index}
+     */
+    public final List<String> index() {
+        return this.index;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SegmentsRequest}.
-	 */
+    /**
+     * Builder for {@link SegmentsRequest}.
+     */
 
-	public static class Builder extends CatRequestBaseBuilder<SegmentsRequest.Builder> {
-		@Nullable
-		private Bytes bytes;
+    public static class Builder extends CatRequestBaseBuilder<SegmentsRequest.Builder> {
+        @Nullable
+        private Bytes bytes;
 
-		@Nullable
-		private List<String> index;
+        @Nullable
+        private List<String> index;
 
-		/**
-		 * The unit in which to display byte values
-		 * <p>
-		 * API name: {@code bytes}
-		 */
-		public final Builder bytes(@Nullable Bytes value) {
-			this.bytes = value;
-			return this;
-		}
+        /**
+         * The unit in which to display byte values
+         * <p>
+         * API name: {@code bytes}
+         */
+        public final Builder bytes(@Nullable Bytes value) {
+            this.bytes = value;
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of index names to limit the returned information
-		 * <p>
-		 * API name: {@code index}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 */
-		public final Builder index(List<String> list) {
-			this.index = _listAddAll(this.index, list);
-			return this;
-		}
+        /**
+         * A comma-separated list of index names to limit the returned information
+         * <p>
+         * API name: {@code index}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>index</code>.
+         */
+        public final Builder index(List<String> list) {
+            this.index = _listAddAll(this.index, list);
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of index names to limit the returned information
-		 * <p>
-		 * API name: {@code index}
-		 * <p>
-		 * Adds one or more values to <code>index</code>.
-		 */
-		public final Builder index(String value, String... values) {
-			this.index = _listAdd(this.index, value, values);
-			return this;
-		}
+        /**
+         * A comma-separated list of index names to limit the returned information
+         * <p>
+         * API name: {@code index}
+         * <p>
+         * Adds one or more values to <code>index</code>.
+         */
+        public final Builder index(String value, String... values) {
+            this.index = _listAdd(this.index, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SegmentsRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SegmentsRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SegmentsRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SegmentsRequest build() {
+            _checkSingleUse();
 
-			return new SegmentsRequest(this);
-		}
+            return new SegmentsRequest(this);
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
-	}
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.segments}".
-	 */
-	public static final Endpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.segments}".
+     */
+    public static final Endpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _index = 1 << 0;
+        // Request path
+        request -> {
+            final int _index = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.index()))
-					propsSet |= _index;
+            if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/segments");
-					return buf.toString();
-				}
-				if (propsSet == (_index)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/segments");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/segments");
+                return buf.toString();
+            }
+            if (propsSet == (_index)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/segments");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>(request.queryParameters());
-				if (request.bytes != null) {
-					params.put("bytes", request.bytes.jsonValue());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>(request.queryParameters());
+            if (request.bytes != null) {
+                params.put("bytes", request.bytes.jsonValue());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, SegmentsResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        SegmentsResponse._DESERIALIZER
+    );
 }

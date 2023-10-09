@@ -32,6 +32,7 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -39,64 +40,63 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.transport.endpoints.DictionaryResponse;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: ingest.get_pipeline.Response
 
 @JsonpDeserializable
 public class GetPipelineResponse extends DictionaryResponse<String, Pipeline> {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetPipelineResponse(Builder builder) {
-		super(builder);
+    private GetPipelineResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static GetPipelineResponse of(Function<Builder, ObjectBuilder<GetPipelineResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetPipelineResponse of(Function<Builder, ObjectBuilder<GetPipelineResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetPipelineResponse}.
-	 */
+    /**
+     * Builder for {@link GetPipelineResponse}.
+     */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Pipeline, Builder>
-			implements
-				ObjectBuilder<GetPipelineResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends DictionaryResponse.AbstractBuilder<String, Pipeline, Builder>
+        implements
+            ObjectBuilder<GetPipelineResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetPipelineResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetPipelineResponse build() {
-			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
+        /**
+         * Builds a {@link GetPipelineResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetPipelineResponse build() {
+            _checkSingleUse();
+            super.tKeySerializer(null);
+            super.tValueSerializer(null);
 
-			return new GetPipelineResponse(this);
-		}
-	}
+            return new GetPipelineResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GetPipelineResponse}
-	 */
-	public static final JsonpDeserializer<GetPipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer);
+    /**
+     * Json deserializer for {@link GetPipelineResponse}
+     */
+    public static final JsonpDeserializer<GetPipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GetPipelineResponse::setupGetPipelineResponseDeserializer
+    );
 
-	protected static void setupGetPipelineResponseDeserializer(ObjectDeserializer<GetPipelineResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				Pipeline._DESERIALIZER);
+    protected static void setupGetPipelineResponseDeserializer(ObjectDeserializer<GetPipelineResponse.Builder> op) {
+        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), Pipeline._DESERIALIZER);
 
-	}
+    }
 
 }

@@ -32,133 +32,134 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
-import org.opensearch.client.opensearch._types.GeoLocation;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.GeoLocation;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.GeoPolygonPoints
 
-
 @JsonpDeserializable
 public class GeoPolygonPoints implements JsonpSerializable {
-	private final List<GeoLocation> points;
+    private final List<GeoLocation> points;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GeoPolygonPoints(Builder builder) {
+    private GeoPolygonPoints(Builder builder) {
 
-		this.points = ApiTypeHelper.unmodifiableRequired(builder.points, this, "points");
+        this.points = ApiTypeHelper.unmodifiableRequired(builder.points, this, "points");
 
-	}
+    }
 
-	public static GeoPolygonPoints of(Function<Builder, ObjectBuilder<GeoPolygonPoints>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GeoPolygonPoints of(Function<Builder, ObjectBuilder<GeoPolygonPoints>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code points}
-	 */
-	public final List<GeoLocation> points() {
-		return this.points;
-	}
+    /**
+     * Required - API name: {@code points}
+     */
+    public final List<GeoLocation> points() {
+        return this.points;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.points)) {
-			generator.writeKey("points");
-			generator.writeStartArray();
-			for (GeoLocation item0 : this.points) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.points)) {
+            generator.writeKey("points");
+            generator.writeStartArray();
+            for (GeoLocation item0 : this.points) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GeoPolygonPoints}.
-	 */
+    /**
+     * Builder for {@link GeoPolygonPoints}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoPolygonPoints> {
-		private List<GeoLocation> points;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoPolygonPoints> {
+        private List<GeoLocation> points;
 
-		/**
-		 * Required - API name: {@code points}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>points</code>.
-		 */
-		public final Builder points(List<GeoLocation> list) {
-			this.points = _listAddAll(this.points, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code points}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>points</code>.
+         */
+        public final Builder points(List<GeoLocation> list) {
+            this.points = _listAddAll(this.points, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code points}
-		 * <p>
-		 * Adds one or more values to <code>points</code>.
-		 */
-		public final Builder points(GeoLocation value, GeoLocation... values) {
-			this.points = _listAdd(this.points, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code points}
+         * <p>
+         * Adds one or more values to <code>points</code>.
+         */
+        public final Builder points(GeoLocation value, GeoLocation... values) {
+            this.points = _listAdd(this.points, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code points}
-		 * <p>
-		 * Adds a value to <code>points</code> using a builder lambda.
-		 */
-		public final Builder points(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
-			return points(fn.apply(new GeoLocation.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code points}
+         * <p>
+         * Adds a value to <code>points</code> using a builder lambda.
+         */
+        public final Builder points(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+            return points(fn.apply(new GeoLocation.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link GeoPolygonPoints}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GeoPolygonPoints build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GeoPolygonPoints}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GeoPolygonPoints build() {
+            _checkSingleUse();
 
-			return new GeoPolygonPoints(this);
-		}
-	}
+            return new GeoPolygonPoints(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GeoPolygonPoints}
-	 */
-	public static final JsonpDeserializer<GeoPolygonPoints> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoPolygonPoints::setupGeoPolygonPointsDeserializer);
+    /**
+     * Json deserializer for {@link GeoPolygonPoints}
+     */
+    public static final JsonpDeserializer<GeoPolygonPoints> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GeoPolygonPoints::setupGeoPolygonPointsDeserializer
+    );
 
-	protected static void setupGeoPolygonPointsDeserializer(ObjectDeserializer<GeoPolygonPoints.Builder> op) {
+    protected static void setupGeoPolygonPointsDeserializer(ObjectDeserializer<GeoPolygonPoints.Builder> op) {
 
-		op.add(Builder::points, JsonpDeserializer.arrayDeserializer(GeoLocation._DESERIALIZER), "points");
+        op.add(Builder::points, JsonpDeserializer.arrayDeserializer(GeoLocation._DESERIALIZER), "points");
 
-	}
+    }
 
 }

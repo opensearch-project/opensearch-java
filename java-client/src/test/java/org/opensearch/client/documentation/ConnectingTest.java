@@ -32,20 +32,20 @@
 
 package org.opensearch.client.documentation;
 
-import org.opensearch.client.opensearch.OpenSearchClient;
-import org.opensearch.client.opensearch.core.SearchResponse;
-import org.opensearch.client.opensearch.core.search.Hit;
-import org.opensearch.client.json.jackson.JacksonJsonpMapper;
-import org.opensearch.client.transport.OpenSearchTransport;
-import org.opensearch.client.transport.rest_client.RestClientTransport;
-import org.opensearch.client.RestClient;
 import org.apache.hc.core5.http.HttpHost;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.opensearch.client.RestClient;
+import org.opensearch.client.json.jackson.JacksonJsonpMapper;
+import org.opensearch.client.opensearch.OpenSearchClient;
+import org.opensearch.client.opensearch.core.SearchResponse;
+import org.opensearch.client.opensearch.core.search.Hit;
+import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.rest_client.RestClientTransport;
 
 public class ConnectingTest {
 
-    private static class Product{}
+    private static class Product {}
 
     @Ignore // we don't have a running ES
     @Test

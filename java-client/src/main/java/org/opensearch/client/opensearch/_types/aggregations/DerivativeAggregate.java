@@ -32,142 +32,142 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DerivativeAggregate
 
 @JsonpDeserializable
 public class DerivativeAggregate extends SingleMetricAggregateBase implements AggregateVariant {
-	@Nullable
-	private final Double normalizedValue;
+    @Nullable
+    private final Double normalizedValue;
 
-	@Nullable
-	private final String normalizedValueAsString;
+    @Nullable
+    private final String normalizedValueAsString;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DerivativeAggregate(Builder builder) {
-		super(builder);
+    private DerivativeAggregate(Builder builder) {
+        super(builder);
 
-		this.normalizedValue = builder.normalizedValue;
-		this.normalizedValueAsString = builder.normalizedValueAsString;
+        this.normalizedValue = builder.normalizedValue;
+        this.normalizedValueAsString = builder.normalizedValueAsString;
 
-	}
+    }
 
-	public static DerivativeAggregate of(Function<Builder, ObjectBuilder<DerivativeAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DerivativeAggregate of(Function<Builder, ObjectBuilder<DerivativeAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Derivative;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Derivative;
+    }
 
-	/**
-	 * API name: {@code normalized_value}
-	 */
-	@Nullable
-	public final Double normalizedValue() {
-		return this.normalizedValue;
-	}
+    /**
+     * API name: {@code normalized_value}
+     */
+    @Nullable
+    public final Double normalizedValue() {
+        return this.normalizedValue;
+    }
 
-	/**
-	 * API name: {@code normalized_value_as_string}
-	 */
-	@Nullable
-	public final String normalizedValueAsString() {
-		return this.normalizedValueAsString;
-	}
+    /**
+     * API name: {@code normalized_value_as_string}
+     */
+    @Nullable
+    public final String normalizedValueAsString() {
+        return this.normalizedValueAsString;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.normalizedValue != null) {
-			generator.writeKey("normalized_value");
-			generator.write(this.normalizedValue);
+        super.serializeInternal(generator, mapper);
+        if (this.normalizedValue != null) {
+            generator.writeKey("normalized_value");
+            generator.write(this.normalizedValue);
 
-		}
-		if (this.normalizedValueAsString != null) {
-			generator.writeKey("normalized_value_as_string");
-			generator.write(this.normalizedValueAsString);
+        }
+        if (this.normalizedValueAsString != null) {
+            generator.writeKey("normalized_value_as_string");
+            generator.write(this.normalizedValueAsString);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DerivativeAggregate}.
-	 */
+    /**
+     * Builder for {@link DerivativeAggregate}.
+     */
 
-	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DerivativeAggregate> {
-		@Nullable
-		private Double normalizedValue;
+    public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<DerivativeAggregate> {
+        @Nullable
+        private Double normalizedValue;
 
-		@Nullable
-		private String normalizedValueAsString;
+        @Nullable
+        private String normalizedValueAsString;
 
-		/**
-		 * API name: {@code normalized_value}
-		 */
-		public final Builder normalizedValue(@Nullable Double value) {
-			this.normalizedValue = value;
-			return this;
-		}
+        /**
+         * API name: {@code normalized_value}
+         */
+        public final Builder normalizedValue(@Nullable Double value) {
+            this.normalizedValue = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code normalized_value_as_string}
-		 */
-		public final Builder normalizedValueAsString(@Nullable String value) {
-			this.normalizedValueAsString = value;
-			return this;
-		}
+        /**
+         * API name: {@code normalized_value_as_string}
+         */
+        public final Builder normalizedValueAsString(@Nullable String value) {
+            this.normalizedValueAsString = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DerivativeAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DerivativeAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DerivativeAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DerivativeAggregate build() {
+            _checkSingleUse();
 
-			return new DerivativeAggregate(this);
-		}
-	}
+            return new DerivativeAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DerivativeAggregate}
-	 */
-	public static final JsonpDeserializer<DerivativeAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DerivativeAggregate::setupDerivativeAggregateDeserializer);
+    /**
+     * Json deserializer for {@link DerivativeAggregate}
+     */
+    public static final JsonpDeserializer<DerivativeAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DerivativeAggregate::setupDerivativeAggregateDeserializer
+    );
 
-	protected static void setupDerivativeAggregateDeserializer(ObjectDeserializer<DerivativeAggregate.Builder> op) {
-		setupSingleMetricAggregateBaseDeserializer(op);
-		op.add(Builder::normalizedValue, JsonpDeserializer.doubleDeserializer(), "normalized_value");
-		op.add(Builder::normalizedValueAsString, JsonpDeserializer.stringDeserializer(), "normalized_value_as_string");
+    protected static void setupDerivativeAggregateDeserializer(ObjectDeserializer<DerivativeAggregate.Builder> op) {
+        setupSingleMetricAggregateBaseDeserializer(op);
+        op.add(Builder::normalizedValue, JsonpDeserializer.doubleDeserializer(), "normalized_value");
+        op.add(Builder::normalizedValueAsString, JsonpDeserializer.stringDeserializer(), "normalized_value_as_string");
 
-	}
+    }
 
 }

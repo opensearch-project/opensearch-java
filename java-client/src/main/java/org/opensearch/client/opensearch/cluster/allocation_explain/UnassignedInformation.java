@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.cluster.allocation_explain;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,263 +44,261 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.UnassignedInformation
 
 @JsonpDeserializable
 public class UnassignedInformation implements JsonpSerializable {
-	private final String at;
+    private final String at;
 
-	@Nullable
-	private final String lastAllocationStatus;
+    @Nullable
+    private final String lastAllocationStatus;
 
-	private final UnassignedInformationReason reason;
+    private final UnassignedInformationReason reason;
 
-	@Nullable
-	private final String details;
+    @Nullable
+    private final String details;
 
-	@Nullable
-	private final Integer failedAllocationAttempts;
+    @Nullable
+    private final Integer failedAllocationAttempts;
 
-	@Nullable
-	private final Boolean delayed;
+    @Nullable
+    private final Boolean delayed;
 
-	@Nullable
-	private final String allocationStatus;
+    @Nullable
+    private final String allocationStatus;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private UnassignedInformation(Builder builder) {
+    private UnassignedInformation(Builder builder) {
 
-		this.at = ApiTypeHelper.requireNonNull(builder.at, this, "at");
-		this.lastAllocationStatus = builder.lastAllocationStatus;
-		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.details = builder.details;
-		this.failedAllocationAttempts = builder.failedAllocationAttempts;
-		this.delayed = builder.delayed;
-		this.allocationStatus = builder.allocationStatus;
+        this.at = ApiTypeHelper.requireNonNull(builder.at, this, "at");
+        this.lastAllocationStatus = builder.lastAllocationStatus;
+        this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+        this.details = builder.details;
+        this.failedAllocationAttempts = builder.failedAllocationAttempts;
+        this.delayed = builder.delayed;
+        this.allocationStatus = builder.allocationStatus;
 
-	}
+    }
 
-	public static UnassignedInformation of(Function<Builder, ObjectBuilder<UnassignedInformation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static UnassignedInformation of(Function<Builder, ObjectBuilder<UnassignedInformation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code at}
-	 */
-	public final String at() {
-		return this.at;
-	}
+    /**
+     * Required - API name: {@code at}
+     */
+    public final String at() {
+        return this.at;
+    }
 
-	/**
-	 * API name: {@code last_allocation_status}
-	 */
-	@Nullable
-	public final String lastAllocationStatus() {
-		return this.lastAllocationStatus;
-	}
+    /**
+     * API name: {@code last_allocation_status}
+     */
+    @Nullable
+    public final String lastAllocationStatus() {
+        return this.lastAllocationStatus;
+    }
 
-	/**
-	 * Required - API name: {@code reason}
-	 */
-	public final UnassignedInformationReason reason() {
-		return this.reason;
-	}
+    /**
+     * Required - API name: {@code reason}
+     */
+    public final UnassignedInformationReason reason() {
+        return this.reason;
+    }
 
-	/**
-	 * API name: {@code details}
-	 */
-	@Nullable
-	public final String details() {
-		return this.details;
-	}
+    /**
+     * API name: {@code details}
+     */
+    @Nullable
+    public final String details() {
+        return this.details;
+    }
 
-	/**
-	 * API name: {@code failed_allocation_attempts}
-	 */
-	@Nullable
-	public final Integer failedAllocationAttempts() {
-		return this.failedAllocationAttempts;
-	}
+    /**
+     * API name: {@code failed_allocation_attempts}
+     */
+    @Nullable
+    public final Integer failedAllocationAttempts() {
+        return this.failedAllocationAttempts;
+    }
 
-	/**
-	 * API name: {@code delayed}
-	 */
-	@Nullable
-	public final Boolean delayed() {
-		return this.delayed;
-	}
+    /**
+     * API name: {@code delayed}
+     */
+    @Nullable
+    public final Boolean delayed() {
+        return this.delayed;
+    }
 
-	/**
-	 * API name: {@code allocation_status}
-	 */
-	@Nullable
-	public final String allocationStatus() {
-		return this.allocationStatus;
-	}
+    /**
+     * API name: {@code allocation_status}
+     */
+    @Nullable
+    public final String allocationStatus() {
+        return this.allocationStatus;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("at");
-		generator.write(this.at);
+        generator.writeKey("at");
+        generator.write(this.at);
 
-		if (this.lastAllocationStatus != null) {
-			generator.writeKey("last_allocation_status");
-			generator.write(this.lastAllocationStatus);
+        if (this.lastAllocationStatus != null) {
+            generator.writeKey("last_allocation_status");
+            generator.write(this.lastAllocationStatus);
 
-		}
-		generator.writeKey("reason");
-		this.reason.serialize(generator, mapper);
-		if (this.details != null) {
-			generator.writeKey("details");
-			generator.write(this.details);
+        }
+        generator.writeKey("reason");
+        this.reason.serialize(generator, mapper);
+        if (this.details != null) {
+            generator.writeKey("details");
+            generator.write(this.details);
 
-		}
-		if (this.failedAllocationAttempts != null) {
-			generator.writeKey("failed_allocation_attempts");
-			generator.write(this.failedAllocationAttempts);
+        }
+        if (this.failedAllocationAttempts != null) {
+            generator.writeKey("failed_allocation_attempts");
+            generator.write(this.failedAllocationAttempts);
 
-		}
-		if (this.delayed != null) {
-			generator.writeKey("delayed");
-			generator.write(this.delayed);
+        }
+        if (this.delayed != null) {
+            generator.writeKey("delayed");
+            generator.write(this.delayed);
 
-		}
-		if (this.allocationStatus != null) {
-			generator.writeKey("allocation_status");
-			generator.write(this.allocationStatus);
+        }
+        if (this.allocationStatus != null) {
+            generator.writeKey("allocation_status");
+            generator.write(this.allocationStatus);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link UnassignedInformation}.
-	 */
+    /**
+     * Builder for {@link UnassignedInformation}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnassignedInformation> {
-		private String at;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnassignedInformation> {
+        private String at;
 
-		@Nullable
-		private String lastAllocationStatus;
+        @Nullable
+        private String lastAllocationStatus;
 
-		private UnassignedInformationReason reason;
+        private UnassignedInformationReason reason;
 
-		@Nullable
-		private String details;
+        @Nullable
+        private String details;
 
-		@Nullable
-		private Integer failedAllocationAttempts;
+        @Nullable
+        private Integer failedAllocationAttempts;
 
-		@Nullable
-		private Boolean delayed;
+        @Nullable
+        private Boolean delayed;
 
-		@Nullable
-		private String allocationStatus;
+        @Nullable
+        private String allocationStatus;
 
-		/**
-		 * Required - API name: {@code at}
-		 */
-		public final Builder at(String value) {
-			this.at = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code at}
+         */
+        public final Builder at(String value) {
+            this.at = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code last_allocation_status}
-		 */
-		public final Builder lastAllocationStatus(@Nullable String value) {
-			this.lastAllocationStatus = value;
-			return this;
-		}
+        /**
+         * API name: {@code last_allocation_status}
+         */
+        public final Builder lastAllocationStatus(@Nullable String value) {
+            this.lastAllocationStatus = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code reason}
-		 */
-		public final Builder reason(UnassignedInformationReason value) {
-			this.reason = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code reason}
+         */
+        public final Builder reason(UnassignedInformationReason value) {
+            this.reason = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code details}
-		 */
-		public final Builder details(@Nullable String value) {
-			this.details = value;
-			return this;
-		}
+        /**
+         * API name: {@code details}
+         */
+        public final Builder details(@Nullable String value) {
+            this.details = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code failed_allocation_attempts}
-		 */
-		public final Builder failedAllocationAttempts(@Nullable Integer value) {
-			this.failedAllocationAttempts = value;
-			return this;
-		}
+        /**
+         * API name: {@code failed_allocation_attempts}
+         */
+        public final Builder failedAllocationAttempts(@Nullable Integer value) {
+            this.failedAllocationAttempts = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code delayed}
-		 */
-		public final Builder delayed(@Nullable Boolean value) {
-			this.delayed = value;
-			return this;
-		}
+        /**
+         * API name: {@code delayed}
+         */
+        public final Builder delayed(@Nullable Boolean value) {
+            this.delayed = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code allocation_status}
-		 */
-		public final Builder allocationStatus(@Nullable String value) {
-			this.allocationStatus = value;
-			return this;
-		}
+        /**
+         * API name: {@code allocation_status}
+         */
+        public final Builder allocationStatus(@Nullable String value) {
+            this.allocationStatus = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link UnassignedInformation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public UnassignedInformation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link UnassignedInformation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public UnassignedInformation build() {
+            _checkSingleUse();
 
-			return new UnassignedInformation(this);
-		}
-	}
+            return new UnassignedInformation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link UnassignedInformation}
-	 */
-	public static final JsonpDeserializer<UnassignedInformation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UnassignedInformation::setupUnassignedInformationDeserializer);
+    /**
+     * Json deserializer for {@link UnassignedInformation}
+     */
+    public static final JsonpDeserializer<UnassignedInformation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        UnassignedInformation::setupUnassignedInformationDeserializer
+    );
 
-	protected static void setupUnassignedInformationDeserializer(ObjectDeserializer<UnassignedInformation.Builder> op) {
+    protected static void setupUnassignedInformationDeserializer(ObjectDeserializer<UnassignedInformation.Builder> op) {
 
-		op.add(Builder::at, JsonpDeserializer.stringDeserializer(), "at");
-		op.add(Builder::lastAllocationStatus, JsonpDeserializer.stringDeserializer(), "last_allocation_status");
-		op.add(Builder::reason, UnassignedInformationReason._DESERIALIZER, "reason");
-		op.add(Builder::details, JsonpDeserializer.stringDeserializer(), "details");
-		op.add(Builder::failedAllocationAttempts, JsonpDeserializer.integerDeserializer(),
-				"failed_allocation_attempts");
-		op.add(Builder::delayed, JsonpDeserializer.booleanDeserializer(), "delayed");
-		op.add(Builder::allocationStatus, JsonpDeserializer.stringDeserializer(), "allocation_status");
+        op.add(Builder::at, JsonpDeserializer.stringDeserializer(), "at");
+        op.add(Builder::lastAllocationStatus, JsonpDeserializer.stringDeserializer(), "last_allocation_status");
+        op.add(Builder::reason, UnassignedInformationReason._DESERIALIZER, "reason");
+        op.add(Builder::details, JsonpDeserializer.stringDeserializer(), "details");
+        op.add(Builder::failedAllocationAttempts, JsonpDeserializer.integerDeserializer(), "failed_allocation_attempts");
+        op.add(Builder::delayed, JsonpDeserializer.booleanDeserializer(), "delayed");
+        op.add(Builder::allocationStatus, JsonpDeserializer.stringDeserializer(), "allocation_status");
 
-	}
+    }
 
 }

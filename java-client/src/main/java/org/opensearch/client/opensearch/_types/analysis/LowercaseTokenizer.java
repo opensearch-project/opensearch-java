@@ -32,86 +32,84 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.analysis.LowercaseTokenizer
 
-
 @JsonpDeserializable
 public class LowercaseTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private LowercaseTokenizer(Builder builder) {
-		super(builder);
+    private LowercaseTokenizer(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static LowercaseTokenizer of(Function<Builder, ObjectBuilder<LowercaseTokenizer>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static LowercaseTokenizer of(Function<Builder, ObjectBuilder<LowercaseTokenizer>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenizerDefinition variant kind.
-	 */
-	@Override
-	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
-		return TokenizerDefinition.Kind.Lowercase;
-	}
+    /**
+     * TokenizerDefinition variant kind.
+     */
+    @Override
+    public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+        return TokenizerDefinition.Kind.Lowercase;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "lowercase");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "lowercase");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link LowercaseTokenizer}.
-	 */
+    /**
+     * Builder for {@link LowercaseTokenizer}.
+     */
 
-	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<LowercaseTokenizer> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<LowercaseTokenizer> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link LowercaseTokenizer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public LowercaseTokenizer build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link LowercaseTokenizer}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public LowercaseTokenizer build() {
+            _checkSingleUse();
 
-			return new LowercaseTokenizer(this);
-		}
-	}
+            return new LowercaseTokenizer(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link LowercaseTokenizer}
-	 */
-	public static final JsonpDeserializer<LowercaseTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LowercaseTokenizer::setupLowercaseTokenizerDeserializer);
+    /**
+     * Json deserializer for {@link LowercaseTokenizer}
+     */
+    public static final JsonpDeserializer<LowercaseTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        LowercaseTokenizer::setupLowercaseTokenizerDeserializer
+    );
 
-	protected static void setupLowercaseTokenizerDeserializer(ObjectDeserializer<LowercaseTokenizer.Builder> op) {
-		setupTokenizerBaseDeserializer(op);
+    protected static void setupLowercaseTokenizerDeserializer(ObjectDeserializer<LowercaseTokenizer.Builder> op) {
+        setupTokenizerBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

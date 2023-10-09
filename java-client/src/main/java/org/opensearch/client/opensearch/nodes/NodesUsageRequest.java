@@ -32,6 +32,12 @@
 
 package org.opensearch.client.opensearch.nodes;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -41,13 +47,6 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import javax.annotation.Nullable;
-
 // typedef: nodes.usage.Request
 
 /**
@@ -56,229 +55,227 @@ import javax.annotation.Nullable;
  */
 
 public class NodesUsageRequest extends RequestBase {
-	private final List<String> metric;
+    private final List<String> metric;
 
-	private final List<String> nodeId;
+    private final List<String> nodeId;
 
-	@Nullable
-	private final Time timeout;
+    @Nullable
+    private final Time timeout;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodesUsageRequest(Builder builder) {
+    private NodesUsageRequest(Builder builder) {
 
-		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
-		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
-		this.timeout = builder.timeout;
+        this.metric = ApiTypeHelper.unmodifiable(builder.metric);
+        this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
+        this.timeout = builder.timeout;
 
-	}
+    }
 
-	public static NodesUsageRequest of(Function<Builder, ObjectBuilder<NodesUsageRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodesUsageRequest of(Function<Builder, ObjectBuilder<NodesUsageRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Limit the information returned to the specified metrics
-	 * <p>
-	 * API name: {@code metric}
-	 */
-	public final List<String> metric() {
-		return this.metric;
-	}
+    /**
+     * Limit the information returned to the specified metrics
+     * <p>
+     * API name: {@code metric}
+     */
+    public final List<String> metric() {
+        return this.metric;
+    }
 
-	/**
-	 * A comma-separated list of node IDs or names to limit the returned
-	 * information; use <code>_local</code> to return information from the node
-	 * you're connecting to, leave empty to get information from all nodes
-	 * <p>
-	 * API name: {@code node_id}
-	 */
-	public final List<String> nodeId() {
-		return this.nodeId;
-	}
+    /**
+     * A comma-separated list of node IDs or names to limit the returned
+     * information; use <code>_local</code> to return information from the node
+     * you're connecting to, leave empty to get information from all nodes
+     * <p>
+     * API name: {@code node_id}
+     */
+    public final List<String> nodeId() {
+        return this.nodeId;
+    }
 
-	/**
-	 * Explicit operation timeout
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public final Time timeout() {
-		return this.timeout;
-	}
+    /**
+     * Explicit operation timeout
+     * <p>
+     * API name: {@code timeout}
+     */
+    @Nullable
+    public final Time timeout() {
+        return this.timeout;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodesUsageRequest}.
-	 */
+    /**
+     * Builder for {@link NodesUsageRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesUsageRequest> {
-		@Nullable
-		private List<String> metric;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesUsageRequest> {
+        @Nullable
+        private List<String> metric;
 
-		@Nullable
-		private List<String> nodeId;
+        @Nullable
+        private List<String> nodeId;
 
-		@Nullable
-		private Time timeout;
+        @Nullable
+        private Time timeout;
 
-		/**
-		 * Limit the information returned to the specified metrics
-		 * <p>
-		 * API name: {@code metric}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>metric</code>.
-		 */
-		public final Builder metric(List<String> list) {
-			this.metric = _listAddAll(this.metric, list);
-			return this;
-		}
+        /**
+         * Limit the information returned to the specified metrics
+         * <p>
+         * API name: {@code metric}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>metric</code>.
+         */
+        public final Builder metric(List<String> list) {
+            this.metric = _listAddAll(this.metric, list);
+            return this;
+        }
 
-		/**
-		 * Limit the information returned to the specified metrics
-		 * <p>
-		 * API name: {@code metric}
-		 * <p>
-		 * Adds one or more values to <code>metric</code>.
-		 */
-		public final Builder metric(String value, String... values) {
-			this.metric = _listAdd(this.metric, value, values);
-			return this;
-		}
+        /**
+         * Limit the information returned to the specified metrics
+         * <p>
+         * API name: {@code metric}
+         * <p>
+         * Adds one or more values to <code>metric</code>.
+         */
+        public final Builder metric(String value, String... values) {
+            this.metric = _listAdd(this.metric, value, values);
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
-		 * <p>
-		 * API name: {@code node_id}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
-		 */
-		public final Builder nodeId(List<String> list) {
-			this.nodeId = _listAddAll(this.nodeId, list);
-			return this;
-		}
+        /**
+         * A comma-separated list of node IDs or names to limit the returned
+         * information; use <code>_local</code> to return information from the node
+         * you're connecting to, leave empty to get information from all nodes
+         * <p>
+         * API name: {@code node_id}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>nodeId</code>.
+         */
+        public final Builder nodeId(List<String> list) {
+            this.nodeId = _listAddAll(this.nodeId, list);
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
-		 * <p>
-		 * API name: {@code node_id}
-		 * <p>
-		 * Adds one or more values to <code>nodeId</code>.
-		 */
-		public final Builder nodeId(String value, String... values) {
-			this.nodeId = _listAdd(this.nodeId, value, values);
-			return this;
-		}
+        /**
+         * A comma-separated list of node IDs or names to limit the returned
+         * information; use <code>_local</code> to return information from the node
+         * you're connecting to, leave empty to get information from all nodes
+         * <p>
+         * API name: {@code node_id}
+         * <p>
+         * Adds one or more values to <code>nodeId</code>.
+         */
+        public final Builder nodeId(String value, String... values) {
+            this.nodeId = _listAdd(this.nodeId, value, values);
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable Time value) {
-			this.timeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.timeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link NodesUsageRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodesUsageRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodesUsageRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodesUsageRequest build() {
+            _checkSingleUse();
 
-			return new NodesUsageRequest(this);
-		}
-	}
+            return new NodesUsageRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code nodes.usage}".
-	 */
-	public static final Endpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code nodes.usage}".
+     */
+    public static final Endpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _metric = 1 << 0;
-				final int _nodeId = 1 << 1;
+        // Request path
+        request -> {
+            final int _metric = 1 << 0;
+            final int _nodeId = 1 << 1;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.metric()))
-					propsSet |= _metric;
-				if (ApiTypeHelper.isDefined(request.nodeId()))
-					propsSet |= _nodeId;
+            if (ApiTypeHelper.isDefined(request.metric())) propsSet |= _metric;
+            if (ApiTypeHelper.isDefined(request.nodeId())) propsSet |= _nodeId;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_nodes");
-					buf.append("/usage");
-					return buf.toString();
-				}
-				if (propsSet == (_nodeId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_nodes");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
-					buf.append("/usage");
-					return buf.toString();
-				}
-				if (propsSet == (_metric)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_nodes");
-					buf.append("/usage");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
-					return buf.toString();
-				}
-				if (propsSet == (_nodeId | _metric)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_nodes");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
-					buf.append("/usage");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_nodes");
+                buf.append("/usage");
+                return buf.toString();
+            }
+            if (propsSet == (_nodeId)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_nodes");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                buf.append("/usage");
+                return buf.toString();
+            }
+            if (propsSet == (_metric)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_nodes");
+                buf.append("/usage");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            if (propsSet == (_nodeId | _metric)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_nodes");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                buf.append("/usage");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, NodesUsageResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        NodesUsageResponse._DESERIALIZER
+    );
 }

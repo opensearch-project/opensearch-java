@@ -35,27 +35,27 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum KuromojiTokenizationMode implements JsonEnum {
-	Normal("normal"),
+    Normal("normal"),
 
-	Search("search"),
+    Search("search"),
 
-	Extended("extended"),
+    Extended("extended"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	KuromojiTokenizationMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    KuromojiTokenizationMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<KuromojiTokenizationMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			KuromojiTokenizationMode.values());
+    public static final JsonEnum.Deserializer<KuromojiTokenizationMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        KuromojiTokenizationMode.values()
+    );
 }

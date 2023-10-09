@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.indices.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,165 +43,164 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: indices.stats.ShardLease
 
-
 @JsonpDeserializable
 public class ShardLease implements JsonpSerializable {
-	private final String id;
+    private final String id;
 
-	private final long retainingSeqNo;
+    private final long retainingSeqNo;
 
-	private final long timestamp;
+    private final long timestamp;
 
-	private final String source;
+    private final String source;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ShardLease(Builder builder) {
+    private ShardLease(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.retainingSeqNo = ApiTypeHelper.requireNonNull(builder.retainingSeqNo, this, "retainingSeqNo");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.retainingSeqNo = ApiTypeHelper.requireNonNull(builder.retainingSeqNo, this, "retainingSeqNo");
+        this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+        this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
-	}
+    }
 
-	public static ShardLease of(Function<Builder, ObjectBuilder<ShardLease>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ShardLease of(Function<Builder, ObjectBuilder<ShardLease>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code id}
-	 */
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * Required - API name: {@code id}
+     */
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * Required - API name: {@code retaining_seq_no}
-	 */
-	public final long retainingSeqNo() {
-		return this.retainingSeqNo;
-	}
+    /**
+     * Required - API name: {@code retaining_seq_no}
+     */
+    public final long retainingSeqNo() {
+        return this.retainingSeqNo;
+    }
 
-	/**
-	 * Required - API name: {@code timestamp}
-	 */
-	public final long timestamp() {
-		return this.timestamp;
-	}
+    /**
+     * Required - API name: {@code timestamp}
+     */
+    public final long timestamp() {
+        return this.timestamp;
+    }
 
-	/**
-	 * Required - API name: {@code source}
-	 */
-	public final String source() {
-		return this.source;
-	}
+    /**
+     * Required - API name: {@code source}
+     */
+    public final String source() {
+        return this.source;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("id");
-		generator.write(this.id);
+        generator.writeKey("id");
+        generator.write(this.id);
 
-		generator.writeKey("retaining_seq_no");
-		generator.write(this.retainingSeqNo);
+        generator.writeKey("retaining_seq_no");
+        generator.write(this.retainingSeqNo);
 
-		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
+        generator.writeKey("timestamp");
+        generator.write(this.timestamp);
 
-		generator.writeKey("source");
-		generator.write(this.source);
+        generator.writeKey("source");
+        generator.write(this.source);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ShardLease}.
-	 */
+    /**
+     * Builder for {@link ShardLease}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardLease> {
-		private String id;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardLease> {
+        private String id;
 
-		private Long retainingSeqNo;
+        private Long retainingSeqNo;
 
-		private Long timestamp;
+        private Long timestamp;
 
-		private String source;
+        private String source;
 
-		/**
-		 * Required - API name: {@code id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code id}
+         */
+        public final Builder id(String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code retaining_seq_no}
-		 */
-		public final Builder retainingSeqNo(long value) {
-			this.retainingSeqNo = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code retaining_seq_no}
+         */
+        public final Builder retainingSeqNo(long value) {
+            this.retainingSeqNo = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code timestamp}
-		 */
-		public final Builder timestamp(long value) {
-			this.timestamp = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code timestamp}
+         */
+        public final Builder timestamp(long value) {
+            this.timestamp = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code source}
-		 */
-		public final Builder source(String value) {
-			this.source = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code source}
+         */
+        public final Builder source(String value) {
+            this.source = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ShardLease}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ShardLease build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ShardLease}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ShardLease build() {
+            _checkSingleUse();
 
-			return new ShardLease(this);
-		}
-	}
+            return new ShardLease(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ShardLease}
-	 */
-	public static final JsonpDeserializer<ShardLease> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardLease::setupShardLeaseDeserializer);
+    /**
+     * Json deserializer for {@link ShardLease}
+     */
+    public static final JsonpDeserializer<ShardLease> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ShardLease::setupShardLeaseDeserializer
+    );
 
-	protected static void setupShardLeaseDeserializer(ObjectDeserializer<ShardLease.Builder> op) {
+    protected static void setupShardLeaseDeserializer(ObjectDeserializer<ShardLease.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::retainingSeqNo, JsonpDeserializer.longDeserializer(), "retaining_seq_no");
-		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
-		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+        op.add(Builder::retainingSeqNo, JsonpDeserializer.longDeserializer(), "retaining_seq_no");
+        op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
+        op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
-	}
+    }
 
 }

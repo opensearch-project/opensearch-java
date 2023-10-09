@@ -37,10 +37,9 @@ package org.opensearch.client.opensearch._types;
  * <p>
  * Variants <code>offset</code>, <code>time</code> are not available here as
  * they don't have a dedicated class. Use {@link Time}'s builder for these.
- * 
+ *
  */
 public class TimeBuilders {
-	private TimeBuilders() {
-	}
+    private TimeBuilders() {}
 
 }

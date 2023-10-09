@@ -35,27 +35,25 @@ package org.opensearch.client.opensearch._types.aggregations;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum TTestType implements JsonEnum {
-	Paired("paired"),
+    Paired("paired"),
 
-	Homoscedastic("homoscedastic"),
+    Homoscedastic("homoscedastic"),
 
-	Heteroscedastic("heteroscedastic"),
+    Heteroscedastic("heteroscedastic"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	TTestType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    TTestType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<TTestType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			TTestType.values());
+    public static final JsonEnum.Deserializer<TTestType> _DESERIALIZER = new JsonEnum.Deserializer<>(TTestType.values());
 }

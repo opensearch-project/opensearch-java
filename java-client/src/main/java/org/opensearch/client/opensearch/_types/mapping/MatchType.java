@@ -35,25 +35,23 @@ package org.opensearch.client.opensearch._types.mapping;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum MatchType implements JsonEnum {
-	Simple("simple"),
+    Simple("simple"),
 
-	Regex("regex"),
+    Regex("regex"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	MatchType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    MatchType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<MatchType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			MatchType.values());
+    public static final JsonEnum.Deserializer<MatchType> _DESERIALIZER = new JsonEnum.Deserializer<>(MatchType.values());
 }

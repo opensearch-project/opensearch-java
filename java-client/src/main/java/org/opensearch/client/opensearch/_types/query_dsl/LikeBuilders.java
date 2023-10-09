@@ -37,17 +37,16 @@ package org.opensearch.client.opensearch._types.query_dsl;
  * <p>
  * Variants <code>text</code> are not available here as they don't have a
  * dedicated class. Use {@link Like}'s builder for these.
- * 
+ *
  */
 public class LikeBuilders {
-	private LikeBuilders() {
-	}
+    private LikeBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link LikeDocument document} {@code Like} variant.
-	 */
-	public static LikeDocument.Builder document() {
-		return new LikeDocument.Builder();
-	}
+    /**
+     * Creates a builder for the {@link LikeDocument document} {@code Like} variant.
+     */
+    public static LikeDocument.Builder document() {
+        return new LikeDocument.Builder();
+    }
 
 }

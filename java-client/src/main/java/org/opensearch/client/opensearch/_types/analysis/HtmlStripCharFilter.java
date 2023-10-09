@@ -32,85 +32,84 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.analysis.HtmlStripCharFilter
 
 @JsonpDeserializable
 public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private HtmlStripCharFilter(Builder builder) {
-		super(builder);
+    private HtmlStripCharFilter(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static HtmlStripCharFilter of(Function<Builder, ObjectBuilder<HtmlStripCharFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static HtmlStripCharFilter of(Function<Builder, ObjectBuilder<HtmlStripCharFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * CharFilterDefinition variant kind.
-	 */
-	@Override
-	public CharFilterDefinition.Kind _charFilterDefinitionKind() {
-		return CharFilterDefinition.Kind.HtmlStrip;
-	}
+    /**
+     * CharFilterDefinition variant kind.
+     */
+    @Override
+    public CharFilterDefinition.Kind _charFilterDefinitionKind() {
+        return CharFilterDefinition.Kind.HtmlStrip;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "html_strip");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "html_strip");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link HtmlStripCharFilter}.
-	 */
+    /**
+     * Builder for {@link HtmlStripCharFilter}.
+     */
 
-	public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<HtmlStripCharFilter> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<HtmlStripCharFilter> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link HtmlStripCharFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public HtmlStripCharFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link HtmlStripCharFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public HtmlStripCharFilter build() {
+            _checkSingleUse();
 
-			return new HtmlStripCharFilter(this);
-		}
-	}
+            return new HtmlStripCharFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link HtmlStripCharFilter}
-	 */
-	public static final JsonpDeserializer<HtmlStripCharFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HtmlStripCharFilter::setupHtmlStripCharFilterDeserializer);
+    /**
+     * Json deserializer for {@link HtmlStripCharFilter}
+     */
+    public static final JsonpDeserializer<HtmlStripCharFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        HtmlStripCharFilter::setupHtmlStripCharFilterDeserializer
+    );
 
-	protected static void setupHtmlStripCharFilterDeserializer(ObjectDeserializer<HtmlStripCharFilter.Builder> op) {
-		setupCharFilterBaseDeserializer(op);
+    protected static void setupHtmlStripCharFilterDeserializer(ObjectDeserializer<HtmlStripCharFilter.Builder> op) {
+        setupCharFilterBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

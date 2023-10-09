@@ -37,48 +37,49 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum UnassignedInformationReason implements JsonEnum {
-	IndexCreated("INDEX_CREATED"),
+    IndexCreated("INDEX_CREATED"),
 
-	ClusterRecovered("CLUSTER_RECOVERED"),
+    ClusterRecovered("CLUSTER_RECOVERED"),
 
-	IndexReopened("INDEX_REOPENED"),
+    IndexReopened("INDEX_REOPENED"),
 
-	DanglingIndexImported("DANGLING_INDEX_IMPORTED"),
+    DanglingIndexImported("DANGLING_INDEX_IMPORTED"),
 
-	NewIndexRestored("NEW_INDEX_RESTORED"),
+    NewIndexRestored("NEW_INDEX_RESTORED"),
 
-	ExistingIndexRestored("EXISTING_INDEX_RESTORED"),
+    ExistingIndexRestored("EXISTING_INDEX_RESTORED"),
 
-	ReplicaAdded("REPLICA_ADDED"),
+    ReplicaAdded("REPLICA_ADDED"),
 
-	AllocationFailed("ALLOCATION_FAILED"),
+    AllocationFailed("ALLOCATION_FAILED"),
 
-	NodeLeft("NODE_LEFT"),
+    NodeLeft("NODE_LEFT"),
 
-	RerouteCancelled("REROUTE_CANCELLED"),
+    RerouteCancelled("REROUTE_CANCELLED"),
 
-	Reinitialized("REINITIALIZED"),
+    Reinitialized("REINITIALIZED"),
 
-	ReallocatedReplica("REALLOCATED_REPLICA"),
+    ReallocatedReplica("REALLOCATED_REPLICA"),
 
-	PrimaryFailed("PRIMARY_FAILED"),
+    PrimaryFailed("PRIMARY_FAILED"),
 
-	ForcedEmptyPrimary("FORCED_EMPTY_PRIMARY"),
+    ForcedEmptyPrimary("FORCED_EMPTY_PRIMARY"),
 
-	ManualAllocation("MANUAL_ALLOCATION"),
+    ManualAllocation("MANUAL_ALLOCATION"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	UnassignedInformationReason(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    UnassignedInformationReason(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<UnassignedInformationReason> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			UnassignedInformationReason.values());
+    public static final JsonEnum.Deserializer<UnassignedInformationReason> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        UnassignedInformationReason.values()
+    );
 }

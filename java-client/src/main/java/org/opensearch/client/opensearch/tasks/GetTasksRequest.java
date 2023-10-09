@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.tasks;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -41,11 +45,6 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
-
 // typedef: tasks.get.Request
 
 /**
@@ -54,166 +53,170 @@ import javax.annotation.Nullable;
  */
 
 public class GetTasksRequest extends RequestBase {
-	private final String taskId;
+    private final String taskId;
 
-	@Nullable
-	private final Time timeout;
+    @Nullable
+    private final Time timeout;
 
-	@Nullable
-	private final Boolean waitForCompletion;
+    @Nullable
+    private final Boolean waitForCompletion;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetTasksRequest(Builder builder) {
+    private GetTasksRequest(Builder builder) {
 
-		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
-		this.timeout = builder.timeout;
-		this.waitForCompletion = builder.waitForCompletion;
+        this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
+        this.timeout = builder.timeout;
+        this.waitForCompletion = builder.waitForCompletion;
 
-	}
+    }
 
-	public static GetTasksRequest of(Function<Builder, ObjectBuilder<GetTasksRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetTasksRequest of(Function<Builder, ObjectBuilder<GetTasksRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Return the task with specified id (node_id:task_number)
-	 * <p>
-	 * API name: {@code task_id}
-	 */
-	public final String taskId() {
-		return this.taskId;
-	}
+    /**
+     * Required - Return the task with specified id (node_id:task_number)
+     * <p>
+     * API name: {@code task_id}
+     */
+    public final String taskId() {
+        return this.taskId;
+    }
 
-	/**
-	 * Explicit operation timeout
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public final Time timeout() {
-		return this.timeout;
-	}
+    /**
+     * Explicit operation timeout
+     * <p>
+     * API name: {@code timeout}
+     */
+    @Nullable
+    public final Time timeout() {
+        return this.timeout;
+    }
 
-	/**
-	 * Wait for the matching tasks to complete (default: false)
-	 * <p>
-	 * API name: {@code wait_for_completion}
-	 */
-	@Nullable
-	public final Boolean waitForCompletion() {
-		return this.waitForCompletion;
-	}
+    /**
+     * Wait for the matching tasks to complete (default: false)
+     * <p>
+     * API name: {@code wait_for_completion}
+     */
+    @Nullable
+    public final Boolean waitForCompletion() {
+        return this.waitForCompletion;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetTasksRequest}.
-	 */
+    /**
+     * Builder for {@link GetTasksRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTasksRequest> {
-		private String taskId;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTasksRequest> {
+        private String taskId;
 
-		@Nullable
-		private Time timeout;
+        @Nullable
+        private Time timeout;
 
-		@Nullable
-		private Boolean waitForCompletion;
+        @Nullable
+        private Boolean waitForCompletion;
 
-		/**
-		 * Required - Return the task with specified id (node_id:task_number)
-		 * <p>
-		 * API name: {@code task_id}
-		 */
-		public final Builder taskId(String value) {
-			this.taskId = value;
-			return this;
-		}
+        /**
+         * Required - Return the task with specified id (node_id:task_number)
+         * <p>
+         * API name: {@code task_id}
+         */
+        public final Builder taskId(String value) {
+            this.taskId = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable Time value) {
-			this.timeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.timeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Wait for the matching tasks to complete (default: false)
-		 * <p>
-		 * API name: {@code wait_for_completion}
-		 */
-		public final Builder waitForCompletion(@Nullable Boolean value) {
-			this.waitForCompletion = value;
-			return this;
-		}
+        /**
+         * Wait for the matching tasks to complete (default: false)
+         * <p>
+         * API name: {@code wait_for_completion}
+         */
+        public final Builder waitForCompletion(@Nullable Boolean value) {
+            this.waitForCompletion = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetTasksRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetTasksRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GetTasksRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetTasksRequest build() {
+            _checkSingleUse();
 
-			return new GetTasksRequest(this);
-		}
-	}
+            return new GetTasksRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code tasks.get}".
-	 */
-	public static final Endpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code tasks.get}".
+     */
+    public static final Endpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _taskId = 1 << 0;
+        // Request path
+        request -> {
+            final int _taskId = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				propsSet |= _taskId;
+            propsSet |= _taskId;
 
-				if (propsSet == (_taskId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_tasks");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.taskId, buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == (_taskId)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_tasks");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.taskId, buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.waitForCompletion != null) {
-					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.waitForCompletion != null) {
+                params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+            }
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetTasksResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        GetTasksResponse._DESERIALIZER
+    );
 }

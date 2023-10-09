@@ -8,14 +8,13 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.create_data_stream.Response
 
@@ -38,7 +37,8 @@ public class CreateDataStreamResponse extends AcknowledgedResponseBase {
      * Builder for {@link CreateDataStreamResponse}
      */
     public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-            implements ObjectBuilder<CreateDataStreamResponse> {
+        implements
+            ObjectBuilder<CreateDataStreamResponse> {
 
         @Override
         protected Builder self() {
@@ -58,14 +58,15 @@ public class CreateDataStreamResponse extends AcknowledgedResponseBase {
         }
     }
 
-
     // ---------------------------------------------------------------------------------------------
 
     /**
      * Json deserializer for {@link CreateDataStreamResponse}
      */
-    public static final JsonpDeserializer<CreateDataStreamResponse> _DESERIALIZER = ObjectBuilderDeserializer
-            .lazy(Builder::new, CreateDataStreamResponse::setupCreateDataStreamResponseDeserializer);
+    public static final JsonpDeserializer<CreateDataStreamResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CreateDataStreamResponse::setupCreateDataStreamResponseDeserializer
+    );
 
     protected static void setupCreateDataStreamResponseDeserializer(ObjectDeserializer<CreateDataStreamResponse.Builder> op) {
         AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

@@ -37,10 +37,10 @@ package org.opensearch.client.opensearch.core.search;
  */
 public interface SmoothingModelVariant {
 
-	SmoothingModel.Kind _smoothingModelKind();
+    SmoothingModel.Kind _smoothingModelKind();
 
-	default SmoothingModel _toSmoothingModel() {
-		return new SmoothingModel(this);
-	}
+    default SmoothingModel _toSmoothingModel() {
+        return new SmoothingModel(this);
+    }
 
 }

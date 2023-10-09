@@ -37,23 +37,23 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum Level implements JsonEnum {
-	Cluster("cluster"),
+    Cluster("cluster"),
 
-	Indices("indices"),
+    Indices("indices"),
 
-	Shards("shards"),
+    Shards("shards"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	Level(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    Level(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<Level> _DESERIALIZER = new JsonEnum.Deserializer<>(Level.values());
+    public static final JsonEnum.Deserializer<Level> _DESERIALIZER = new JsonEnum.Deserializer<>(Level.values());
 }

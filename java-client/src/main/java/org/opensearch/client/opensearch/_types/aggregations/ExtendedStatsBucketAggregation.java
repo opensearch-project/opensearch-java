@@ -32,115 +32,115 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsBucketAggregation
 
 @JsonpDeserializable
 public class ExtendedStatsBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
-	@Nullable
-	private final Double sigma;
+    @Nullable
+    private final Double sigma;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ExtendedStatsBucketAggregation(Builder builder) {
-		super(builder);
+    private ExtendedStatsBucketAggregation(Builder builder) {
+        super(builder);
 
-		this.sigma = builder.sigma;
+        this.sigma = builder.sigma;
 
-	}
+    }
 
-	public static ExtendedStatsBucketAggregation of(
-			Function<Builder, ObjectBuilder<ExtendedStatsBucketAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ExtendedStatsBucketAggregation of(Function<Builder, ObjectBuilder<ExtendedStatsBucketAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.ExtendedStatsBucket;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.ExtendedStatsBucket;
+    }
 
-	/**
-	 * API name: {@code sigma}
-	 */
-	@Nullable
-	public final Double sigma() {
-		return this.sigma;
-	}
+    /**
+     * API name: {@code sigma}
+     */
+    @Nullable
+    public final Double sigma() {
+        return this.sigma;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.sigma != null) {
-			generator.writeKey("sigma");
-			generator.write(this.sigma);
+        super.serializeInternal(generator, mapper);
+        if (this.sigma != null) {
+            generator.writeKey("sigma");
+            generator.write(this.sigma);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ExtendedStatsBucketAggregation}.
-	 */
+    /**
+     * Builder for {@link ExtendedStatsBucketAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ExtendedStatsBucketAggregation> {
-		@Nullable
-		private Double sigma;
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<ExtendedStatsBucketAggregation> {
+        @Nullable
+        private Double sigma;
 
-		/**
-		 * API name: {@code sigma}
-		 */
-		public final Builder sigma(@Nullable Double value) {
-			this.sigma = value;
-			return this;
-		}
+        /**
+         * API name: {@code sigma}
+         */
+        public final Builder sigma(@Nullable Double value) {
+            this.sigma = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ExtendedStatsBucketAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ExtendedStatsBucketAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ExtendedStatsBucketAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ExtendedStatsBucketAggregation build() {
+            _checkSingleUse();
 
-			return new ExtendedStatsBucketAggregation(this);
-		}
-	}
+            return new ExtendedStatsBucketAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ExtendedStatsBucketAggregation}
-	 */
-	public static final JsonpDeserializer<ExtendedStatsBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExtendedStatsBucketAggregation::setupExtendedStatsBucketAggregationDeserializer);
+    /**
+     * Json deserializer for {@link ExtendedStatsBucketAggregation}
+     */
+    public static final JsonpDeserializer<ExtendedStatsBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ExtendedStatsBucketAggregation::setupExtendedStatsBucketAggregationDeserializer
+    );
 
-	protected static void setupExtendedStatsBucketAggregationDeserializer(
-			ObjectDeserializer<ExtendedStatsBucketAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
-		op.add(Builder::sigma, JsonpDeserializer.doubleDeserializer(), "sigma");
+    protected static void setupExtendedStatsBucketAggregationDeserializer(ObjectDeserializer<ExtendedStatsBucketAggregation.Builder> op) {
+        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+        op.add(Builder::sigma, JsonpDeserializer.doubleDeserializer(), "sigma");
 
-	}
+    }
 
 }

@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,117 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.ChiSquareHeuristic
 
 @JsonpDeserializable
 public class ChiSquareHeuristic implements JsonpSerializable {
-	private final boolean backgroundIsSuperset;
+    private final boolean backgroundIsSuperset;
 
-	private final boolean includeNegatives;
+    private final boolean includeNegatives;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ChiSquareHeuristic(Builder builder) {
+    private ChiSquareHeuristic(Builder builder) {
 
-		this.backgroundIsSuperset = ApiTypeHelper.requireNonNull(builder.backgroundIsSuperset, this,
-				"backgroundIsSuperset");
-		this.includeNegatives = ApiTypeHelper.requireNonNull(builder.includeNegatives, this, "includeNegatives");
+        this.backgroundIsSuperset = ApiTypeHelper.requireNonNull(builder.backgroundIsSuperset, this, "backgroundIsSuperset");
+        this.includeNegatives = ApiTypeHelper.requireNonNull(builder.includeNegatives, this, "includeNegatives");
 
-	}
+    }
 
-	public static ChiSquareHeuristic of(Function<Builder, ObjectBuilder<ChiSquareHeuristic>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ChiSquareHeuristic of(Function<Builder, ObjectBuilder<ChiSquareHeuristic>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code background_is_superset}
-	 */
-	public final boolean backgroundIsSuperset() {
-		return this.backgroundIsSuperset;
-	}
+    /**
+     * Required - API name: {@code background_is_superset}
+     */
+    public final boolean backgroundIsSuperset() {
+        return this.backgroundIsSuperset;
+    }
 
-	/**
-	 * Required - API name: {@code include_negatives}
-	 */
-	public final boolean includeNegatives() {
-		return this.includeNegatives;
-	}
+    /**
+     * Required - API name: {@code include_negatives}
+     */
+    public final boolean includeNegatives() {
+        return this.includeNegatives;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("background_is_superset");
-		generator.write(this.backgroundIsSuperset);
+        generator.writeKey("background_is_superset");
+        generator.write(this.backgroundIsSuperset);
 
-		generator.writeKey("include_negatives");
-		generator.write(this.includeNegatives);
+        generator.writeKey("include_negatives");
+        generator.write(this.includeNegatives);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ChiSquareHeuristic}.
-	 */
+    /**
+     * Builder for {@link ChiSquareHeuristic}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChiSquareHeuristic> {
-		private Boolean backgroundIsSuperset;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChiSquareHeuristic> {
+        private Boolean backgroundIsSuperset;
 
-		private Boolean includeNegatives;
+        private Boolean includeNegatives;
 
-		/**
-		 * Required - API name: {@code background_is_superset}
-		 */
-		public final Builder backgroundIsSuperset(boolean value) {
-			this.backgroundIsSuperset = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code background_is_superset}
+         */
+        public final Builder backgroundIsSuperset(boolean value) {
+            this.backgroundIsSuperset = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code include_negatives}
-		 */
-		public final Builder includeNegatives(boolean value) {
-			this.includeNegatives = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code include_negatives}
+         */
+        public final Builder includeNegatives(boolean value) {
+            this.includeNegatives = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ChiSquareHeuristic}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ChiSquareHeuristic build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ChiSquareHeuristic}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ChiSquareHeuristic build() {
+            _checkSingleUse();
 
-			return new ChiSquareHeuristic(this);
-		}
-	}
+            return new ChiSquareHeuristic(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ChiSquareHeuristic}
-	 */
-	public static final JsonpDeserializer<ChiSquareHeuristic> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ChiSquareHeuristic::setupChiSquareHeuristicDeserializer);
+    /**
+     * Json deserializer for {@link ChiSquareHeuristic}
+     */
+    public static final JsonpDeserializer<ChiSquareHeuristic> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ChiSquareHeuristic::setupChiSquareHeuristicDeserializer
+    );
 
-	protected static void setupChiSquareHeuristicDeserializer(ObjectDeserializer<ChiSquareHeuristic.Builder> op) {
+    protected static void setupChiSquareHeuristicDeserializer(ObjectDeserializer<ChiSquareHeuristic.Builder> op) {
 
-		op.add(Builder::backgroundIsSuperset, JsonpDeserializer.booleanDeserializer(), "background_is_superset");
-		op.add(Builder::includeNegatives, JsonpDeserializer.booleanDeserializer(), "include_negatives");
+        op.add(Builder::backgroundIsSuperset, JsonpDeserializer.booleanDeserializer(), "background_is_superset");
+        op.add(Builder::includeNegatives, JsonpDeserializer.booleanDeserializer(), "include_negatives");
 
-	}
+    }
 
 }

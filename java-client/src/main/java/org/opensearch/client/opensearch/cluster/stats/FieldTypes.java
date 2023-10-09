@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.cluster.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,172 +44,170 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: cluster.stats.FieldTypes
 
-
 @JsonpDeserializable
 public class FieldTypes implements JsonpSerializable {
-	private final String name;
+    private final String name;
 
-	private final int count;
+    private final int count;
 
-	private final int indexCount;
+    private final int indexCount;
 
-	@Nullable
-	private final Integer scriptCount;
+    @Nullable
+    private final Integer scriptCount;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FieldTypes(Builder builder) {
+    private FieldTypes(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
-		this.scriptCount = builder.scriptCount;
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+        this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
+        this.scriptCount = builder.scriptCount;
 
-	}
+    }
 
-	public static FieldTypes of(Function<Builder, ObjectBuilder<FieldTypes>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FieldTypes of(Function<Builder, ObjectBuilder<FieldTypes>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * Required - API name: {@code name}
+     */
+    public final String name() {
+        return this.name;
+    }
 
-	/**
-	 * Required - API name: {@code count}
-	 */
-	public final int count() {
-		return this.count;
-	}
+    /**
+     * Required - API name: {@code count}
+     */
+    public final int count() {
+        return this.count;
+    }
 
-	/**
-	 * Required - API name: {@code index_count}
-	 */
-	public final int indexCount() {
-		return this.indexCount;
-	}
+    /**
+     * Required - API name: {@code index_count}
+     */
+    public final int indexCount() {
+        return this.indexCount;
+    }
 
-	/**
-	 * API name: {@code script_count}
-	 */
-	@Nullable
-	public final Integer scriptCount() {
-		return this.scriptCount;
-	}
+    /**
+     * API name: {@code script_count}
+     */
+    @Nullable
+    public final Integer scriptCount() {
+        return this.scriptCount;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+        generator.writeKey("name");
+        generator.write(this.name);
 
-		generator.writeKey("count");
-		generator.write(this.count);
+        generator.writeKey("count");
+        generator.write(this.count);
 
-		generator.writeKey("index_count");
-		generator.write(this.indexCount);
+        generator.writeKey("index_count");
+        generator.write(this.indexCount);
 
-		if (this.scriptCount != null) {
-			generator.writeKey("script_count");
-			generator.write(this.scriptCount);
+        if (this.scriptCount != null) {
+            generator.writeKey("script_count");
+            generator.write(this.scriptCount);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FieldTypes}.
-	 */
+    /**
+     * Builder for {@link FieldTypes}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldTypes> {
-		private String name;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldTypes> {
+        private String name;
 
-		private Integer count;
+        private Integer count;
 
-		private Integer indexCount;
+        private Integer indexCount;
 
-		@Nullable
-		private Integer scriptCount;
+        @Nullable
+        private Integer scriptCount;
 
-		/**
-		 * Required - API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code name}
+         */
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code count}
-		 */
-		public final Builder count(int value) {
-			this.count = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code count}
+         */
+        public final Builder count(int value) {
+            this.count = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code index_count}
-		 */
-		public final Builder indexCount(int value) {
-			this.indexCount = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code index_count}
+         */
+        public final Builder indexCount(int value) {
+            this.indexCount = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code script_count}
-		 */
-		public final Builder scriptCount(@Nullable Integer value) {
-			this.scriptCount = value;
-			return this;
-		}
+        /**
+         * API name: {@code script_count}
+         */
+        public final Builder scriptCount(@Nullable Integer value) {
+            this.scriptCount = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FieldTypes}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FieldTypes build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FieldTypes}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FieldTypes build() {
+            _checkSingleUse();
 
-			return new FieldTypes(this);
-		}
-	}
+            return new FieldTypes(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FieldTypes}
-	 */
-	public static final JsonpDeserializer<FieldTypes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldTypes::setupFieldTypesDeserializer);
+    /**
+     * Json deserializer for {@link FieldTypes}
+     */
+    public static final JsonpDeserializer<FieldTypes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FieldTypes::setupFieldTypesDeserializer
+    );
 
-	protected static void setupFieldTypesDeserializer(ObjectDeserializer<FieldTypes.Builder> op) {
+    protected static void setupFieldTypesDeserializer(ObjectDeserializer<FieldTypes.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
-		op.add(Builder::indexCount, JsonpDeserializer.integerDeserializer(), "index_count");
-		op.add(Builder::scriptCount, JsonpDeserializer.integerDeserializer(), "script_count");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+        op.add(Builder::indexCount, JsonpDeserializer.integerDeserializer(), "index_count");
+        op.add(Builder::scriptCount, JsonpDeserializer.integerDeserializer(), "script_count");
 
-	}
+    }
 
 }

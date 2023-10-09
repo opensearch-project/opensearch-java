@@ -32,86 +32,84 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.mapping.LongRangeProperty
 
-
 @JsonpDeserializable
 public class LongRangeProperty extends RangePropertyBase implements PropertyVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private LongRangeProperty(Builder builder) {
-		super(builder);
+    private LongRangeProperty(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static LongRangeProperty of(Function<Builder, ObjectBuilder<LongRangeProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static LongRangeProperty of(Function<Builder, ObjectBuilder<LongRangeProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.LongRange;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.LongRange;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "long_range");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "long_range");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link LongRangeProperty}.
-	 */
+    /**
+     * Builder for {@link LongRangeProperty}.
+     */
 
-	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<LongRangeProperty> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends RangePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<LongRangeProperty> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link LongRangeProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public LongRangeProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link LongRangeProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public LongRangeProperty build() {
+            _checkSingleUse();
 
-			return new LongRangeProperty(this);
-		}
-	}
+            return new LongRangeProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link LongRangeProperty}
-	 */
-	public static final JsonpDeserializer<LongRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LongRangeProperty::setupLongRangePropertyDeserializer);
+    /**
+     * Json deserializer for {@link LongRangeProperty}
+     */
+    public static final JsonpDeserializer<LongRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        LongRangeProperty::setupLongRangePropertyDeserializer
+    );
 
-	protected static void setupLongRangePropertyDeserializer(ObjectDeserializer<LongRangeProperty.Builder> op) {
-		RangePropertyBase.setupRangePropertyBaseDeserializer(op);
+    protected static void setupLongRangePropertyDeserializer(ObjectDeserializer<LongRangeProperty.Builder> op) {
+        RangePropertyBase.setupRangePropertyBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.cluster.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,141 +43,140 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterFileSystem
 
-
 @JsonpDeserializable
 public class ClusterFileSystem implements JsonpSerializable {
-	private final long availableInBytes;
+    private final long availableInBytes;
 
-	private final long freeInBytes;
+    private final long freeInBytes;
 
-	private final long totalInBytes;
+    private final long totalInBytes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ClusterFileSystem(Builder builder) {
+    private ClusterFileSystem(Builder builder) {
 
-		this.availableInBytes = ApiTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
-		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
-		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+        this.availableInBytes = ApiTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
+        this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
+        this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
 
-	}
+    }
 
-	public static ClusterFileSystem of(Function<Builder, ObjectBuilder<ClusterFileSystem>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ClusterFileSystem of(Function<Builder, ObjectBuilder<ClusterFileSystem>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code available_in_bytes}
-	 */
-	public final long availableInBytes() {
-		return this.availableInBytes;
-	}
+    /**
+     * Required - API name: {@code available_in_bytes}
+     */
+    public final long availableInBytes() {
+        return this.availableInBytes;
+    }
 
-	/**
-	 * Required - API name: {@code free_in_bytes}
-	 */
-	public final long freeInBytes() {
-		return this.freeInBytes;
-	}
+    /**
+     * Required - API name: {@code free_in_bytes}
+     */
+    public final long freeInBytes() {
+        return this.freeInBytes;
+    }
 
-	/**
-	 * Required - API name: {@code total_in_bytes}
-	 */
-	public final long totalInBytes() {
-		return this.totalInBytes;
-	}
+    /**
+     * Required - API name: {@code total_in_bytes}
+     */
+    public final long totalInBytes() {
+        return this.totalInBytes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("available_in_bytes");
-		generator.write(this.availableInBytes);
+        generator.writeKey("available_in_bytes");
+        generator.write(this.availableInBytes);
 
-		generator.writeKey("free_in_bytes");
-		generator.write(this.freeInBytes);
+        generator.writeKey("free_in_bytes");
+        generator.write(this.freeInBytes);
 
-		generator.writeKey("total_in_bytes");
-		generator.write(this.totalInBytes);
+        generator.writeKey("total_in_bytes");
+        generator.write(this.totalInBytes);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ClusterFileSystem}.
-	 */
+    /**
+     * Builder for {@link ClusterFileSystem}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterFileSystem> {
-		private Long availableInBytes;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterFileSystem> {
+        private Long availableInBytes;
 
-		private Long freeInBytes;
+        private Long freeInBytes;
 
-		private Long totalInBytes;
+        private Long totalInBytes;
 
-		/**
-		 * Required - API name: {@code available_in_bytes}
-		 */
-		public final Builder availableInBytes(long value) {
-			this.availableInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code available_in_bytes}
+         */
+        public final Builder availableInBytes(long value) {
+            this.availableInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code free_in_bytes}
-		 */
-		public final Builder freeInBytes(long value) {
-			this.freeInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code free_in_bytes}
+         */
+        public final Builder freeInBytes(long value) {
+            this.freeInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total_in_bytes}
-		 */
-		public final Builder totalInBytes(long value) {
-			this.totalInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total_in_bytes}
+         */
+        public final Builder totalInBytes(long value) {
+            this.totalInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ClusterFileSystem}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ClusterFileSystem build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ClusterFileSystem}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ClusterFileSystem build() {
+            _checkSingleUse();
 
-			return new ClusterFileSystem(this);
-		}
-	}
+            return new ClusterFileSystem(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ClusterFileSystem}
-	 */
-	public static final JsonpDeserializer<ClusterFileSystem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterFileSystem::setupClusterFileSystemDeserializer);
+    /**
+     * Json deserializer for {@link ClusterFileSystem}
+     */
+    public static final JsonpDeserializer<ClusterFileSystem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ClusterFileSystem::setupClusterFileSystemDeserializer
+    );
 
-	protected static void setupClusterFileSystemDeserializer(ObjectDeserializer<ClusterFileSystem.Builder> op) {
+    protected static void setupClusterFileSystemDeserializer(ObjectDeserializer<ClusterFileSystem.Builder> op) {
 
-		op.add(Builder::availableInBytes, JsonpDeserializer.longDeserializer(), "available_in_bytes");
-		op.add(Builder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");
-		op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
+        op.add(Builder::availableInBytes, JsonpDeserializer.longDeserializer(), "available_in_bytes");
+        op.add(Builder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");
+        op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
 
-	}
+    }
 
 }

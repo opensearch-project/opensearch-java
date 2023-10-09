@@ -37,48 +37,48 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum NodeRole implements JsonEnum {
-	@Deprecated
-	Master("master"),
+    @Deprecated
+    Master("master"),
 
-	ClusterManager("cluster_manager"),
+    ClusterManager("cluster_manager"),
 
-	Data("data"),
+    Data("data"),
 
-	DataCold("data_cold"),
+    DataCold("data_cold"),
 
-	DataContent("data_content"),
+    DataContent("data_content"),
 
-	DataFrozen("data_frozen"),
+    DataFrozen("data_frozen"),
 
-	DataHot("data_hot"),
+    DataHot("data_hot"),
 
-	DataWarm("data_warm"),
+    DataWarm("data_warm"),
 
-	Client("client"),
+    Client("client"),
 
-	Ingest("ingest"),
+    Ingest("ingest"),
 
-	Ml("ml"),
+    Ml("ml"),
 
-	VotingOnly("voting_only"),
+    VotingOnly("voting_only"),
 
-	Transform("transform"),
+    Transform("transform"),
 
-	RemoteClusterClient("remote_cluster_client"),
+    RemoteClusterClient("remote_cluster_client"),
 
-	CoordinatingOnly("coordinating_only"),
+    CoordinatingOnly("coordinating_only"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	NodeRole(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    NodeRole(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<NodeRole> _DESERIALIZER = new JsonEnum.Deserializer<>(NodeRole.values());
+    public static final JsonEnum.Deserializer<NodeRole> _DESERIALIZER = new JsonEnum.Deserializer<>(NodeRole.values());
 }

@@ -32,74 +32,74 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: ingest._types.DropProcessor
-
 
 @JsonpDeserializable
 public class DropProcessor extends ProcessorBase implements ProcessorVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DropProcessor(Builder builder) {
-		super(builder);
+    private DropProcessor(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DropProcessor of(Function<Builder, ObjectBuilder<DropProcessor>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DropProcessor of(Function<Builder, ObjectBuilder<DropProcessor>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Processor variant kind.
-	 */
-	@Override
-	public Processor.Kind _processorKind() {
-		return Processor.Kind.Drop;
-	}
+    /**
+     * Processor variant kind.
+     */
+    @Override
+    public Processor.Kind _processorKind() {
+        return Processor.Kind.Drop;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DropProcessor}.
-	 */
+    /**
+     * Builder for {@link DropProcessor}.
+     */
 
-	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<DropProcessor> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<DropProcessor> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DropProcessor}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DropProcessor build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DropProcessor}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DropProcessor build() {
+            _checkSingleUse();
 
-			return new DropProcessor(this);
-		}
-	}
+            return new DropProcessor(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DropProcessor}
-	 */
-	public static final JsonpDeserializer<DropProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DropProcessor::setupDropProcessorDeserializer);
+    /**
+     * Json deserializer for {@link DropProcessor}
+     */
+    public static final JsonpDeserializer<DropProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DropProcessor::setupDropProcessorDeserializer
+    );
 
-	protected static void setupDropProcessorDeserializer(ObjectDeserializer<DropProcessor.Builder> op) {
-		setupProcessorBaseDeserializer(op);
+    protected static void setupDropProcessorDeserializer(ObjectDeserializer<DropProcessor.Builder> op) {
+        setupProcessorBaseDeserializer(op);
 
-	}
+    }
 
 }

@@ -32,100 +32,101 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
+import java.util.EnumSet;
+import java.util.Objects;
+import java.util.function.Consumer;
+import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonParser;
-
-import java.util.EnumSet;
-import java.util.Objects;
-import java.util.function.Consumer;
 
 @JsonpDeserializable
 public class SpanGapQuery implements SpanQueryVariant, JsonpSerializable {
 
-	private final String field;
+    private final String field;
 
-	private final int spanWidth;
+    private final int spanWidth;
 
-	@Override
-	public SpanQuery.Kind _spanQueryKind() {
-		return SpanQuery.Kind.SpanGap;
-	}
+    @Override
+    public SpanQuery.Kind _spanQueryKind() {
+        return SpanQuery.Kind.SpanGap;
+    }
 
-	private SpanGapQuery(SpanGapQuery.Builder builder) {
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.spanWidth = Objects.requireNonNull(builder.spanWidth, "span_width");
-	}
+    private SpanGapQuery(SpanGapQuery.Builder builder) {
+        this.field = Objects.requireNonNull(builder.field, "field");
+        this.spanWidth = Objects.requireNonNull(builder.spanWidth, "span_width");
+    }
 
-	public static SpanGapQuery of(Consumer<SpanGapQuery.Builder> fn) {
-		Builder builder = new Builder();
-		fn.accept(builder);
-		return builder.build();
-	}
+    public static SpanGapQuery of(Consumer<SpanGapQuery.Builder> fn) {
+        Builder builder = new Builder();
+        fn.accept(builder);
+        return builder.build();
+    }
 
-	public final String field() {
-		return this.field;
-	}
+    public final String field() {
+        return this.field;
+    }
 
-	public final int spanWidth() {
-		return this.spanWidth;
-	}
+    public final int spanWidth() {
+        return this.spanWidth;
+    }
 
-	@Override
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		generator.write(this.field, this.spanWidth);
-		generator.writeEnd();
-	}
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        generator.write(this.field, this.spanWidth);
+        generator.writeEnd();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SpanGapQuery}.
-	 */
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SpanGapQuery> {
+    /**
+     * Builder for {@link SpanGapQuery}.
+     */
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SpanGapQuery> {
 
-		private String field;
-		private Integer spanWidth;
+        private String field;
+        private Integer spanWidth;
 
-		public final SpanGapQuery.Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        public final SpanGapQuery.Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		public final SpanGapQuery.Builder spanWidth(int value) {
-			this.spanWidth = value;
-			return this;
-		}
+        public final SpanGapQuery.Builder spanWidth(int value) {
+            this.spanWidth = value;
+            return this;
+        }
 
-		@Override
-		public SpanGapQuery build() {
-			_checkSingleUse();
-			return new SpanGapQuery(this);
-		}
-	}
+        @Override
+        public SpanGapQuery build() {
+            _checkSingleUse();
+            return new SpanGapQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SpanGapQuery}
-	 */
-	public static final JsonpDeserializer<SpanGapQuery> _DESERIALIZER = JsonpDeserializer
-			.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, mapper) -> {
-				JsonpUtils.expectNextEvent(parser, JsonParser.Event.START_OBJECT);
-				String name = JsonpUtils.expectKeyName(parser, parser.next());
+    /**
+     * Json deserializer for {@link SpanGapQuery}
+     */
+    public static final JsonpDeserializer<SpanGapQuery> _DESERIALIZER = JsonpDeserializer.of(
+        EnumSet.of(JsonParser.Event.START_OBJECT),
+        (parser, mapper) -> {
+            JsonpUtils.expectNextEvent(parser, JsonParser.Event.START_OBJECT);
+            String name = JsonpUtils.expectKeyName(parser, parser.next());
 
-				JsonpUtils.expectNextEvent(parser, JsonParser.Event.VALUE_NUMBER);
-				int spanWidth = parser.getInt();
+            JsonpUtils.expectNextEvent(parser, JsonParser.Event.VALUE_NUMBER);
+            int spanWidth = parser.getInt();
 
-				JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
+            JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
 
-				return new Builder().field(name).spanWidth(spanWidth).build();
-			});
+            return new Builder().field(name).spanWidth(spanWidth).build();
+        }
+    );
 }

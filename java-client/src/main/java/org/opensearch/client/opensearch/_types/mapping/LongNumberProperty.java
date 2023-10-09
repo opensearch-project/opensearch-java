@@ -32,116 +32,115 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.LongNumberProperty
 
-
 @JsonpDeserializable
 public class LongNumberProperty extends StandardNumberProperty implements PropertyVariant {
-	@Nullable
-	private final Long nullValue;
+    @Nullable
+    private final Long nullValue;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private LongNumberProperty(Builder builder) {
-		super(builder);
+    private LongNumberProperty(Builder builder) {
+        super(builder);
 
-		this.nullValue = builder.nullValue;
+        this.nullValue = builder.nullValue;
 
-	}
+    }
 
-	public static LongNumberProperty of(Function<Builder, ObjectBuilder<LongNumberProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static LongNumberProperty of(Function<Builder, ObjectBuilder<LongNumberProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Long;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Long;
+    }
 
-	/**
-	 * API name: {@code null_value}
-	 */
-	@Nullable
-	public final Long nullValue() {
-		return this.nullValue;
-	}
+    /**
+     * API name: {@code null_value}
+     */
+    @Nullable
+    public final Long nullValue() {
+        return this.nullValue;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "long");
-		super.serializeInternal(generator, mapper);
-		if (this.nullValue != null) {
-			generator.writeKey("null_value");
-			generator.write(this.nullValue);
+        generator.write("type", "long");
+        super.serializeInternal(generator, mapper);
+        if (this.nullValue != null) {
+            generator.writeKey("null_value");
+            generator.write(this.nullValue);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link LongNumberProperty}.
-	 */
+    /**
+     * Builder for {@link LongNumberProperty}.
+     */
 
-	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<LongNumberProperty> {
-		@Nullable
-		private Long nullValue;
+    public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder> implements ObjectBuilder<LongNumberProperty> {
+        @Nullable
+        private Long nullValue;
 
-		/**
-		 * API name: {@code null_value}
-		 */
-		public final Builder nullValue(@Nullable Long value) {
-			this.nullValue = value;
-			return this;
-		}
+        /**
+         * API name: {@code null_value}
+         */
+        public final Builder nullValue(@Nullable Long value) {
+            this.nullValue = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link LongNumberProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public LongNumberProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link LongNumberProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public LongNumberProperty build() {
+            _checkSingleUse();
 
-			return new LongNumberProperty(this);
-		}
-	}
+            return new LongNumberProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link LongNumberProperty}
-	 */
-	public static final JsonpDeserializer<LongNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LongNumberProperty::setupLongNumberPropertyDeserializer);
+    /**
+     * Json deserializer for {@link LongNumberProperty}
+     */
+    public static final JsonpDeserializer<LongNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        LongNumberProperty::setupLongNumberPropertyDeserializer
+    );
 
-	protected static void setupLongNumberPropertyDeserializer(ObjectDeserializer<LongNumberProperty.Builder> op) {
-		StandardNumberProperty.setupStandardNumberPropertyDeserializer(op);
-		op.add(Builder::nullValue, JsonpDeserializer.longDeserializer(), "null_value");
+    protected static void setupLongNumberPropertyDeserializer(ObjectDeserializer<LongNumberProperty.Builder> op) {
+        StandardNumberProperty.setupStandardNumberPropertyDeserializer(op);
+        op.add(Builder::nullValue, JsonpDeserializer.longDeserializer(), "null_value");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

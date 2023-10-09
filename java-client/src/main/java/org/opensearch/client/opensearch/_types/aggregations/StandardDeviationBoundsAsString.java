@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,215 +43,212 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.StandardDeviationBoundsAsString
 
-
 @JsonpDeserializable
 public class StandardDeviationBoundsAsString implements JsonpSerializable {
-	private final String upper;
+    private final String upper;
 
-	private final String lower;
+    private final String lower;
 
-	private final String upperPopulation;
+    private final String upperPopulation;
 
-	private final String lowerPopulation;
+    private final String lowerPopulation;
 
-	private final String upperSampling;
+    private final String upperSampling;
 
-	private final String lowerSampling;
+    private final String lowerSampling;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private StandardDeviationBoundsAsString(Builder builder) {
+    private StandardDeviationBoundsAsString(Builder builder) {
 
-		this.upper = ApiTypeHelper.requireNonNull(builder.upper, this, "upper");
-		this.lower = ApiTypeHelper.requireNonNull(builder.lower, this, "lower");
-		this.upperPopulation = ApiTypeHelper.requireNonNull(builder.upperPopulation, this, "upperPopulation");
-		this.lowerPopulation = ApiTypeHelper.requireNonNull(builder.lowerPopulation, this, "lowerPopulation");
-		this.upperSampling = ApiTypeHelper.requireNonNull(builder.upperSampling, this, "upperSampling");
-		this.lowerSampling = ApiTypeHelper.requireNonNull(builder.lowerSampling, this, "lowerSampling");
+        this.upper = ApiTypeHelper.requireNonNull(builder.upper, this, "upper");
+        this.lower = ApiTypeHelper.requireNonNull(builder.lower, this, "lower");
+        this.upperPopulation = ApiTypeHelper.requireNonNull(builder.upperPopulation, this, "upperPopulation");
+        this.lowerPopulation = ApiTypeHelper.requireNonNull(builder.lowerPopulation, this, "lowerPopulation");
+        this.upperSampling = ApiTypeHelper.requireNonNull(builder.upperSampling, this, "upperSampling");
+        this.lowerSampling = ApiTypeHelper.requireNonNull(builder.lowerSampling, this, "lowerSampling");
 
-	}
+    }
 
-	public static StandardDeviationBoundsAsString of(
-			Function<Builder, ObjectBuilder<StandardDeviationBoundsAsString>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StandardDeviationBoundsAsString of(Function<Builder, ObjectBuilder<StandardDeviationBoundsAsString>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code upper}
-	 */
-	public final String upper() {
-		return this.upper;
-	}
+    /**
+     * Required - API name: {@code upper}
+     */
+    public final String upper() {
+        return this.upper;
+    }
 
-	/**
-	 * Required - API name: {@code lower}
-	 */
-	public final String lower() {
-		return this.lower;
-	}
+    /**
+     * Required - API name: {@code lower}
+     */
+    public final String lower() {
+        return this.lower;
+    }
 
-	/**
-	 * Required - API name: {@code upper_population}
-	 */
-	public final String upperPopulation() {
-		return this.upperPopulation;
-	}
+    /**
+     * Required - API name: {@code upper_population}
+     */
+    public final String upperPopulation() {
+        return this.upperPopulation;
+    }
 
-	/**
-	 * Required - API name: {@code lower_population}
-	 */
-	public final String lowerPopulation() {
-		return this.lowerPopulation;
-	}
+    /**
+     * Required - API name: {@code lower_population}
+     */
+    public final String lowerPopulation() {
+        return this.lowerPopulation;
+    }
 
-	/**
-	 * Required - API name: {@code upper_sampling}
-	 */
-	public final String upperSampling() {
-		return this.upperSampling;
-	}
+    /**
+     * Required - API name: {@code upper_sampling}
+     */
+    public final String upperSampling() {
+        return this.upperSampling;
+    }
 
-	/**
-	 * Required - API name: {@code lower_sampling}
-	 */
-	public final String lowerSampling() {
-		return this.lowerSampling;
-	}
+    /**
+     * Required - API name: {@code lower_sampling}
+     */
+    public final String lowerSampling() {
+        return this.lowerSampling;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("upper");
-		generator.write(this.upper);
+        generator.writeKey("upper");
+        generator.write(this.upper);
 
-		generator.writeKey("lower");
-		generator.write(this.lower);
+        generator.writeKey("lower");
+        generator.write(this.lower);
 
-		generator.writeKey("upper_population");
-		generator.write(this.upperPopulation);
+        generator.writeKey("upper_population");
+        generator.write(this.upperPopulation);
 
-		generator.writeKey("lower_population");
-		generator.write(this.lowerPopulation);
+        generator.writeKey("lower_population");
+        generator.write(this.lowerPopulation);
 
-		generator.writeKey("upper_sampling");
-		generator.write(this.upperSampling);
+        generator.writeKey("upper_sampling");
+        generator.write(this.upperSampling);
 
-		generator.writeKey("lower_sampling");
-		generator.write(this.lowerSampling);
+        generator.writeKey("lower_sampling");
+        generator.write(this.lowerSampling);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StandardDeviationBoundsAsString}.
-	 */
+    /**
+     * Builder for {@link StandardDeviationBoundsAsString}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StandardDeviationBoundsAsString> {
-		private String upper;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StandardDeviationBoundsAsString> {
+        private String upper;
 
-		private String lower;
+        private String lower;
 
-		private String upperPopulation;
+        private String upperPopulation;
 
-		private String lowerPopulation;
+        private String lowerPopulation;
 
-		private String upperSampling;
+        private String upperSampling;
 
-		private String lowerSampling;
+        private String lowerSampling;
 
-		/**
-		 * Required - API name: {@code upper}
-		 */
-		public final Builder upper(String value) {
-			this.upper = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code upper}
+         */
+        public final Builder upper(String value) {
+            this.upper = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code lower}
-		 */
-		public final Builder lower(String value) {
-			this.lower = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code lower}
+         */
+        public final Builder lower(String value) {
+            this.lower = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code upper_population}
-		 */
-		public final Builder upperPopulation(String value) {
-			this.upperPopulation = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code upper_population}
+         */
+        public final Builder upperPopulation(String value) {
+            this.upperPopulation = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code lower_population}
-		 */
-		public final Builder lowerPopulation(String value) {
-			this.lowerPopulation = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code lower_population}
+         */
+        public final Builder lowerPopulation(String value) {
+            this.lowerPopulation = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code upper_sampling}
-		 */
-		public final Builder upperSampling(String value) {
-			this.upperSampling = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code upper_sampling}
+         */
+        public final Builder upperSampling(String value) {
+            this.upperSampling = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code lower_sampling}
-		 */
-		public final Builder lowerSampling(String value) {
-			this.lowerSampling = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code lower_sampling}
+         */
+        public final Builder lowerSampling(String value) {
+            this.lowerSampling = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StandardDeviationBoundsAsString}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StandardDeviationBoundsAsString build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link StandardDeviationBoundsAsString}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StandardDeviationBoundsAsString build() {
+            _checkSingleUse();
 
-			return new StandardDeviationBoundsAsString(this);
-		}
-	}
+            return new StandardDeviationBoundsAsString(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link StandardDeviationBoundsAsString}
-	 */
-	public static final JsonpDeserializer<StandardDeviationBoundsAsString> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StandardDeviationBoundsAsString::setupStandardDeviationBoundsAsStringDeserializer);
+    /**
+     * Json deserializer for {@link StandardDeviationBoundsAsString}
+     */
+    public static final JsonpDeserializer<StandardDeviationBoundsAsString> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StandardDeviationBoundsAsString::setupStandardDeviationBoundsAsStringDeserializer
+    );
 
-	protected static void setupStandardDeviationBoundsAsStringDeserializer(
-			ObjectDeserializer<StandardDeviationBoundsAsString.Builder> op) {
+    protected static void setupStandardDeviationBoundsAsStringDeserializer(ObjectDeserializer<StandardDeviationBoundsAsString.Builder> op) {
 
-		op.add(Builder::upper, JsonpDeserializer.stringDeserializer(), "upper");
-		op.add(Builder::lower, JsonpDeserializer.stringDeserializer(), "lower");
-		op.add(Builder::upperPopulation, JsonpDeserializer.stringDeserializer(), "upper_population");
-		op.add(Builder::lowerPopulation, JsonpDeserializer.stringDeserializer(), "lower_population");
-		op.add(Builder::upperSampling, JsonpDeserializer.stringDeserializer(), "upper_sampling");
-		op.add(Builder::lowerSampling, JsonpDeserializer.stringDeserializer(), "lower_sampling");
+        op.add(Builder::upper, JsonpDeserializer.stringDeserializer(), "upper");
+        op.add(Builder::lower, JsonpDeserializer.stringDeserializer(), "lower");
+        op.add(Builder::upperPopulation, JsonpDeserializer.stringDeserializer(), "upper_population");
+        op.add(Builder::lowerPopulation, JsonpDeserializer.stringDeserializer(), "lower_population");
+        op.add(Builder::upperSampling, JsonpDeserializer.stringDeserializer(), "upper_sampling");
+        op.add(Builder::lowerSampling, JsonpDeserializer.stringDeserializer(), "lower_sampling");
 
-	}
+    }
 
 }

@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,131 +41,128 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.DecayFunction
 
-
 @JsonpDeserializable
 public class DecayFunction extends DecayFunctionBase implements FunctionScoreVariant {
-	private final String field;
+    private final String field;
 
-	private final DecayPlacement placement;
+    private final DecayPlacement placement;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DecayFunction(Builder builder) {
-		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.placement = ApiTypeHelper.requireNonNull(builder.placement, this, "placement");
+    private DecayFunction(Builder builder) {
+        super(builder);
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.placement = ApiTypeHelper.requireNonNull(builder.placement, this, "placement");
 
-	}
+    }
 
-	public static DecayFunction of(Function<Builder, ObjectBuilder<DecayFunction>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DecayFunction of(Function<Builder, ObjectBuilder<DecayFunction>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * FunctionScore variant kind.
-	 */
-	@Override
-	public FunctionScore.Kind _functionScoreKind() {
-		return FunctionScore.Kind.Linear;
-	}
+    /**
+     * FunctionScore variant kind.
+     */
+    @Override
+    public FunctionScore.Kind _functionScoreKind() {
+        return FunctionScore.Kind.Linear;
+    }
 
-	/**
-	 * Required -
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required -
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * Required -
-	 */
-	public final DecayPlacement placement() {
-		return this.placement;
-	}
+    /**
+     * Required -
+     */
+    public final DecayPlacement placement() {
+        return this.placement;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeKey(this.field);
-		this.placement.serialize(generator, mapper);
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey(this.field);
+        this.placement.serialize(generator, mapper);
 
-		super.serializeInternal(generator, mapper);
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DecayFunction}.
-	 */
+    /**
+     * Builder for {@link DecayFunction}.
+     */
 
-	public static class Builder extends DecayFunctionBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DecayFunction> {
-		private String field;
+    public static class Builder extends DecayFunctionBase.AbstractBuilder<Builder> implements ObjectBuilder<DecayFunction> {
+        private String field;
 
-		private DecayPlacement placement;
+        private DecayPlacement placement;
 
-		/**
-		 * Required -
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required -
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * Required -
-		 */
-		public final Builder placement(DecayPlacement value) {
-			this.placement = value;
-			return this;
-		}
+        /**
+         * Required -
+         */
+        public final Builder placement(DecayPlacement value) {
+            this.placement = value;
+            return this;
+        }
 
-		/**
-		 * Required -
-		 */
-		public final Builder placement(Function<DecayPlacement.Builder, ObjectBuilder<DecayPlacement>> fn) {
-			return this.placement(fn.apply(new DecayPlacement.Builder()).build());
-		}
+        /**
+         * Required -
+         */
+        public final Builder placement(Function<DecayPlacement.Builder, ObjectBuilder<DecayPlacement>> fn) {
+            return this.placement(fn.apply(new DecayPlacement.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DecayFunction}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DecayFunction build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DecayFunction}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DecayFunction build() {
+            _checkSingleUse();
 
-			return new DecayFunction(this);
-		}
-	}
+            return new DecayFunction(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DecayFunction}
-	 */
-	public static final JsonpDeserializer<DecayFunction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DecayFunction::setupDecayFunctionDeserializer);
+    /**
+     * Json deserializer for {@link DecayFunction}
+     */
+    public static final JsonpDeserializer<DecayFunction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DecayFunction::setupDecayFunctionDeserializer
+    );
 
-	protected static void setupDecayFunctionDeserializer(ObjectDeserializer<DecayFunction.Builder> op) {
-		setupDecayFunctionBaseDeserializer(op);
+    protected static void setupDecayFunctionDeserializer(ObjectDeserializer<DecayFunction.Builder> op) {
+        setupDecayFunctionBaseDeserializer(op);
 
-		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			builder.field(name);
-			builder.placement(DecayPlacement._DESERIALIZER.deserialize(parser, mapper));
-		});
+        op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+            builder.field(name);
+            builder.placement(DecayPlacement._DESERIALIZER.deserialize(parser, mapper));
+        });
 
-	}
+    }
 
 }

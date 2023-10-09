@@ -8,6 +8,7 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.function.Function;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -15,8 +16,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-
-import java.util.function.Function;
 
 // typedef: indices.create_data_stream.Request
 
@@ -78,29 +77,30 @@ public class CreateDataStreamRequest extends RequestBase {
      * Endpoint "{@code indices.create_data_stream}".
      */
     public static final Endpoint<CreateDataStreamRequest, CreateDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-            // Request method
-            request -> {
-                return "PUT";
-            },
+        // Request method
+        request -> { return "PUT"; },
 
-            // Request path
-            request -> {
-                final int _name = 1 << 0;
-                int propsSet = 0;
-                propsSet |= _name;
+        // Request path
+        request -> {
+            final int _name = 1 << 0;
+            int propsSet = 0;
+            propsSet |= _name;
 
-                if (propsSet == (_name)) {
-                    StringBuilder sbd = new StringBuilder();
-                    sbd.append("/_data_stream");
-                    sbd.append("/");
-                    SimpleEndpoint.pathEncode(request.name, sbd);
-                    return sbd.toString();
-                }
-                throw SimpleEndpoint.noPathTemplateFound("path");
-            },
+            if (propsSet == (_name)) {
+                StringBuilder sbd = new StringBuilder();
+                sbd.append("/_data_stream");
+                sbd.append("/");
+                SimpleEndpoint.pathEncode(request.name, sbd);
+                return sbd.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
+        },
 
-            // Request parameters
-            SimpleEndpoint.emptyMap(),
+        // Request parameters
+        SimpleEndpoint.emptyMap(),
 
-            SimpleEndpoint.emptyMap(), false, CreateDataStreamResponse._DESERIALIZER);
+        SimpleEndpoint.emptyMap(),
+        false,
+        CreateDataStreamResponse._DESERIALIZER
+    );
 }

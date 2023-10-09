@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,99 +41,98 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.TypeQuery
 
-
 @JsonpDeserializable
 public class TypeQuery extends QueryBase implements QueryVariant {
-	private final String value;
+    private final String value;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TypeQuery(Builder builder) {
-		super(builder);
+    private TypeQuery(Builder builder) {
+        super(builder);
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
-	}
+    }
 
-	public static TypeQuery of(Function<Builder, ObjectBuilder<TypeQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TypeQuery of(Function<Builder, ObjectBuilder<TypeQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.Type;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.Type;
+    }
 
-	/**
-	 * Required - API name: {@code value}
-	 */
-	public final String value() {
-		return this.value;
-	}
+    /**
+     * Required - API name: {@code value}
+     */
+    public final String value() {
+        return this.value;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("value");
-		generator.write(this.value);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("value");
+        generator.write(this.value);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TypeQuery}.
-	 */
+    /**
+     * Builder for {@link TypeQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TypeQuery> {
-		private String value;
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TypeQuery> {
+        private String value;
 
-		/**
-		 * Required - API name: {@code value}
-		 */
-		public final Builder value(String value) {
-			this.value = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code value}
+         */
+        public final Builder value(String value) {
+            this.value = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TypeQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TypeQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TypeQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TypeQuery build() {
+            _checkSingleUse();
 
-			return new TypeQuery(this);
-		}
-	}
+            return new TypeQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TypeQuery}
-	 */
-	public static final JsonpDeserializer<TypeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TypeQuery::setupTypeQueryDeserializer);
+    /**
+     * Json deserializer for {@link TypeQuery}
+     */
+    public static final JsonpDeserializer<TypeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TypeQuery::setupTypeQueryDeserializer
+    );
 
-	protected static void setupTypeQueryDeserializer(ObjectDeserializer<TypeQuery.Builder> op) {
-		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
+    protected static void setupTypeQueryDeserializer(ObjectDeserializer<TypeQuery.Builder> op) {
+        QueryBase.setupQueryBaseDeserializer(op);
+        op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 
-	}
+    }
 
 }

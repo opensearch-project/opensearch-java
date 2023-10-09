@@ -35,29 +35,27 @@ package org.opensearch.client.opensearch._types.mapping;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum DynamicMapping implements JsonEnum {
-	Strict("strict"),
+    Strict("strict"),
 
-	Runtime("runtime"),
+    Runtime("runtime"),
 
-	True("true"),
+    True("true"),
 
-	False("false"),
+    False("false"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	DynamicMapping(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    DynamicMapping(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<DynamicMapping> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			DynamicMapping.values());
+    public static final JsonEnum.Deserializer<DynamicMapping> _DESERIALIZER = new JsonEnum.Deserializer<>(DynamicMapping.values());
 }

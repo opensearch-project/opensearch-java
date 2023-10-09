@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,154 +43,149 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharGroupTokenizer
 
 @JsonpDeserializable
 public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
-	private final List<String> tokenizeOnChars;
+    private final List<String> tokenizeOnChars;
 
-	@Nullable
-	private final Integer maxTokenLength;
+    @Nullable
+    private final Integer maxTokenLength;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CharGroupTokenizer(Builder builder) {
-		super(builder);
+    private CharGroupTokenizer(Builder builder) {
+        super(builder);
 
-		this.tokenizeOnChars = ApiTypeHelper.unmodifiableRequired(builder.tokenizeOnChars, this, "tokenizeOnChars");
-		this.maxTokenLength = builder.maxTokenLength;
+        this.tokenizeOnChars = ApiTypeHelper.unmodifiableRequired(builder.tokenizeOnChars, this, "tokenizeOnChars");
+        this.maxTokenLength = builder.maxTokenLength;
 
-	}
+    }
 
-	public static CharGroupTokenizer of(Function<Builder, ObjectBuilder<CharGroupTokenizer>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CharGroupTokenizer of(Function<Builder, ObjectBuilder<CharGroupTokenizer>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenizerDefinition variant kind.
-	 */
-	@Override
-	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
-		return TokenizerDefinition.Kind.CharGroup;
-	}
+    /**
+     * TokenizerDefinition variant kind.
+     */
+    @Override
+    public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+        return TokenizerDefinition.Kind.CharGroup;
+    }
 
-	/**
-	 * Required - API name: {@code tokenize_on_chars}
-	 */
-	public final List<String> tokenizeOnChars() {
-		return this.tokenizeOnChars;
-	}
+    /**
+     * Required - API name: {@code tokenize_on_chars}
+     */
+    public final List<String> tokenizeOnChars() {
+        return this.tokenizeOnChars;
+    }
 
-	/**
-	 * API name: {@code max_token_length}
-	 */
-	@Nullable
-	public final Integer maxTokenLength() {
-		return this.maxTokenLength;
-	}
+    /**
+     * API name: {@code max_token_length}
+     */
+    @Nullable
+    public final Integer maxTokenLength() {
+        return this.maxTokenLength;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "char_group");
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.tokenizeOnChars)) {
-			generator.writeKey("tokenize_on_chars");
-			generator.writeStartArray();
-			for (String item0 : this.tokenizeOnChars) {
-				generator.write(item0);
+        generator.write("type", "char_group");
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.tokenizeOnChars)) {
+            generator.writeKey("tokenize_on_chars");
+            generator.writeStartArray();
+            for (String item0 : this.tokenizeOnChars) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.maxTokenLength != null) {
-			generator.writeKey("max_token_length");
-			generator.write(this.maxTokenLength);
+        }
+        if (this.maxTokenLength != null) {
+            generator.writeKey("max_token_length");
+            generator.write(this.maxTokenLength);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CharGroupTokenizer}.
-	 */
+    /**
+     * Builder for {@link CharGroupTokenizer}.
+     */
 
-	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<CharGroupTokenizer> {
-		private List<String> tokenizeOnChars;
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<CharGroupTokenizer> {
+        private List<String> tokenizeOnChars;
 
-		@Nullable
-		private Integer maxTokenLength;
+        @Nullable
+        private Integer maxTokenLength;
 
-		/**
-		 * Required - API name: {@code tokenize_on_chars}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>tokenizeOnChars</code>.
-		 */
-		public final Builder tokenizeOnChars(List<String> list) {
-			this.tokenizeOnChars = _listAddAll(this.tokenizeOnChars, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code tokenize_on_chars}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>tokenizeOnChars</code>.
+         */
+        public final Builder tokenizeOnChars(List<String> list) {
+            this.tokenizeOnChars = _listAddAll(this.tokenizeOnChars, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code tokenize_on_chars}
-		 * <p>
-		 * Adds one or more values to <code>tokenizeOnChars</code>.
-		 */
-		public final Builder tokenizeOnChars(String value, String... values) {
-			this.tokenizeOnChars = _listAdd(this.tokenizeOnChars, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code tokenize_on_chars}
+         * <p>
+         * Adds one or more values to <code>tokenizeOnChars</code>.
+         */
+        public final Builder tokenizeOnChars(String value, String... values) {
+            this.tokenizeOnChars = _listAdd(this.tokenizeOnChars, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code max_token_length}
-		 */
-		public final Builder maxTokenLength(@Nullable Integer value) {
-			this.maxTokenLength = value;
-			return this;
-		}
+        /**
+         * API name: {@code max_token_length}
+         */
+        public final Builder maxTokenLength(@Nullable Integer value) {
+            this.maxTokenLength = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CharGroupTokenizer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CharGroupTokenizer build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CharGroupTokenizer}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CharGroupTokenizer build() {
+            _checkSingleUse();
 
-			return new CharGroupTokenizer(this);
-		}
-	}
+            return new CharGroupTokenizer(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CharGroupTokenizer}
-	 */
-	public static final JsonpDeserializer<CharGroupTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CharGroupTokenizer::setupCharGroupTokenizerDeserializer);
+    /**
+     * Json deserializer for {@link CharGroupTokenizer}
+     */
+    public static final JsonpDeserializer<CharGroupTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CharGroupTokenizer::setupCharGroupTokenizerDeserializer
+    );
 
-	protected static void setupCharGroupTokenizerDeserializer(ObjectDeserializer<CharGroupTokenizer.Builder> op) {
-		TokenizerBase.setupTokenizerBaseDeserializer(op);
-		op.add(Builder::tokenizeOnChars, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"tokenize_on_chars");
-		op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
+    protected static void setupCharGroupTokenizerDeserializer(ObjectDeserializer<CharGroupTokenizer.Builder> op) {
+        TokenizerBase.setupTokenizerBaseDeserializer(op);
+        op.add(Builder::tokenizeOnChars, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "tokenize_on_chars");
+        op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

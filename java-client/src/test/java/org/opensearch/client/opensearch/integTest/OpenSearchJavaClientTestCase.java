@@ -8,6 +8,13 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.TreeSet;
+import javax.net.ssl.SSLEngine;
 import org.apache.hc.client5.http.auth.AuthScope;
 import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
 import org.apache.hc.client5.http.impl.auth.BasicCredentialsProvider;
@@ -20,6 +27,9 @@ import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.nio.ssl.TlsStrategy;
 import org.apache.hc.core5.reactor.ssl.TlsDetails;
 import org.apache.hc.core5.ssl.SSLContextBuilder;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
 import org.opensearch.Version;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestClientBuilder;
@@ -31,20 +41,8 @@ import org.opensearch.client.opensearch.cat.indices.IndicesRecord;
 import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
 import org.opensearch.client.opensearch.nodes.NodesInfoResponse;
 import org.opensearch.client.opensearch.nodes.info.NodeInfo;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.test.rest.OpenSearchRestTestCase;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.TreeSet;
-
-import javax.net.ssl.SSLEngine;
 
 public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCase implements OpenSearchTransportSupport {
     private static final List<String> systemIndices = List.of(".opensearch-observability", ".opendistro_security", ".plugins-ml-config");
@@ -96,16 +94,17 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
             builder.setHttpClientConfigCallback(httpClientBuilder -> {
                 String userName = Optional.ofNullable(System.getProperty("user")).orElse("admin");
                 String password = Optional.ofNullable(System.getProperty("password")).orElse("admin");
-    
+
                 final BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-                for (final HttpHost host: hosts) {
-                    credentialsProvider.setCredentials(new AuthScope(host),
-                        new UsernamePasswordCredentials(userName, password.toCharArray()));
+                for (final HttpHost host : hosts) {
+                    credentialsProvider.setCredentials(
+                        new AuthScope(host),
+                        new UsernamePasswordCredentials(userName, password.toCharArray())
+                    );
                 }
-    
+
                 try {
-                    final TlsStrategy tlsStrategy = ClientTlsStrategyBuilder
-                        .create()
+                    final TlsStrategy tlsStrategy = ClientTlsStrategyBuilder.create()
                         .setSslContext(SSLContextBuilder.create().loadTrustMaterial(null, (chains, authType) -> true).build())
                         // disable the certificate since our testing cluster just uses the default security configuration
                         .setHostnameVerifier(NoopHostnameVerifier.INSTANCE)
@@ -117,14 +116,12 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
                             }
                         })
                         .build();
-    
+
                     final PoolingAsyncClientConnectionManager connectionManager = PoolingAsyncClientConnectionManagerBuilder.create()
                         .setTlsStrategy(tlsStrategy)
                         .build();
-    
-                    return httpClientBuilder
-                        .setDefaultCredentialsProvider(credentialsProvider)
-                        .setConnectionManager(connectionManager);
+
+                    return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider).setConnectionManager(connectionManager);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -157,8 +154,7 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
         adminJavaClient().indices().deleteDataStream(b -> b.name("*"));
 
         // wipe all indices
-        final IndicesResponse response = adminJavaClient()
-            .cat()
+        final IndicesResponse response = adminJavaClient().cat()
             .indices(r -> r.headers("index,creation.date").expandWildcards(ExpandWildcard.All));
 
         for (IndicesRecord index : response.valueBody()) {
@@ -174,7 +170,7 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
             if (javaClient != null) {
                 IOUtils.closeQueitly(javaClient._transport());
             }
-            
+
             if (adminJavaClient != null) {
                 IOUtils.closeQueitly(adminJavaClient._transport());
             }
@@ -190,4 +186,4 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
     protected boolean preserveIndicesUponCompletion() {
         return true;
     }
-} 
+}

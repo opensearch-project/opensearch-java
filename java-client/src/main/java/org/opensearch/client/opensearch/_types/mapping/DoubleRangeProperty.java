@@ -32,86 +32,84 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.mapping.DoubleRangeProperty
 
-
 @JsonpDeserializable
 public class DoubleRangeProperty extends RangePropertyBase implements PropertyVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DoubleRangeProperty(Builder builder) {
-		super(builder);
+    private DoubleRangeProperty(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DoubleRangeProperty of(Function<Builder, ObjectBuilder<DoubleRangeProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DoubleRangeProperty of(Function<Builder, ObjectBuilder<DoubleRangeProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.DoubleRange;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.DoubleRange;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "double_range");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "double_range");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DoubleRangeProperty}.
-	 */
+    /**
+     * Builder for {@link DoubleRangeProperty}.
+     */
 
-	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DoubleRangeProperty> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends RangePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<DoubleRangeProperty> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DoubleRangeProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DoubleRangeProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DoubleRangeProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DoubleRangeProperty build() {
+            _checkSingleUse();
 
-			return new DoubleRangeProperty(this);
-		}
-	}
+            return new DoubleRangeProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DoubleRangeProperty}
-	 */
-	public static final JsonpDeserializer<DoubleRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DoubleRangeProperty::setupDoubleRangePropertyDeserializer);
+    /**
+     * Json deserializer for {@link DoubleRangeProperty}
+     */
+    public static final JsonpDeserializer<DoubleRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DoubleRangeProperty::setupDoubleRangePropertyDeserializer
+    );
 
-	protected static void setupDoubleRangePropertyDeserializer(ObjectDeserializer<DoubleRangeProperty.Builder> op) {
-		RangePropertyBase.setupRangePropertyBaseDeserializer(op);
+    protected static void setupDoubleRangePropertyDeserializer(ObjectDeserializer<DoubleRangeProperty.Builder> op) {
+        RangePropertyBase.setupRangePropertyBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

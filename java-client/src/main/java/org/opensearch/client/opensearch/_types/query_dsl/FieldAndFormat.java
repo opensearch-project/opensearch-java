@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,9 +44,6 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FieldAndFormat
 
@@ -54,156 +54,158 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class FieldAndFormat implements JsonpSerializable {
-	private final String field;
+    private final String field;
 
-	@Nullable
-	private final String format;
+    @Nullable
+    private final String format;
 
-	@Nullable
-	private final Boolean includeUnmapped;
+    @Nullable
+    private final Boolean includeUnmapped;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FieldAndFormat(Builder builder) {
+    private FieldAndFormat(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.format = builder.format;
-		this.includeUnmapped = builder.includeUnmapped;
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.format = builder.format;
+        this.includeUnmapped = builder.includeUnmapped;
 
-	}
+    }
 
-	public static FieldAndFormat of(Function<Builder, ObjectBuilder<FieldAndFormat>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FieldAndFormat of(Function<Builder, ObjectBuilder<FieldAndFormat>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Wildcard pattern. The request returns values for field names
-	 * matching this pattern.
-	 * <p>
-	 * API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - Wildcard pattern. The request returns values for field names
+     * matching this pattern.
+     * <p>
+     * API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * Format in which the values are returned.
-	 * <p>
-	 * API name: {@code format}
-	 */
-	@Nullable
-	public final String format() {
-		return this.format;
-	}
+    /**
+     * Format in which the values are returned.
+     * <p>
+     * API name: {@code format}
+     */
+    @Nullable
+    public final String format() {
+        return this.format;
+    }
 
-	/**
-	 * API name: {@code include_unmapped}
-	 */
-	@Nullable
-	public final Boolean includeUnmapped() {
-		return this.includeUnmapped;
-	}
+    /**
+     * API name: {@code include_unmapped}
+     */
+    @Nullable
+    public final Boolean includeUnmapped() {
+        return this.includeUnmapped;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("field");
-		generator.write(this.field);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-		if (this.format != null) {
-			generator.writeKey("format");
-			generator.write(this.format);
+        if (this.format != null) {
+            generator.writeKey("format");
+            generator.write(this.format);
 
-		}
-		if (this.includeUnmapped != null) {
-			generator.writeKey("include_unmapped");
-			generator.write(this.includeUnmapped);
+        }
+        if (this.includeUnmapped != null) {
+            generator.writeKey("include_unmapped");
+            generator.write(this.includeUnmapped);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FieldAndFormat}.
-	 */
+    /**
+     * Builder for {@link FieldAndFormat}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldAndFormat> {
-		private String field;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldAndFormat> {
+        private String field;
 
-		@Nullable
-		private String format;
+        @Nullable
+        private String format;
 
-		@Nullable
-		private Boolean includeUnmapped;
+        @Nullable
+        private Boolean includeUnmapped;
 
-		/**
-		 * Required - Wildcard pattern. The request returns values for field names
-		 * matching this pattern.
-		 * <p>
-		 * API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - Wildcard pattern. The request returns values for field names
+         * matching this pattern.
+         * <p>
+         * API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * Format in which the values are returned.
-		 * <p>
-		 * API name: {@code format}
-		 */
-		public final Builder format(@Nullable String value) {
-			this.format = value;
-			return this;
-		}
+        /**
+         * Format in which the values are returned.
+         * <p>
+         * API name: {@code format}
+         */
+        public final Builder format(@Nullable String value) {
+            this.format = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code include_unmapped}
-		 */
-		public final Builder includeUnmapped(@Nullable Boolean value) {
-			this.includeUnmapped = value;
-			return this;
-		}
+        /**
+         * API name: {@code include_unmapped}
+         */
+        public final Builder includeUnmapped(@Nullable Boolean value) {
+            this.includeUnmapped = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FieldAndFormat}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FieldAndFormat build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FieldAndFormat}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FieldAndFormat build() {
+            _checkSingleUse();
 
-			return new FieldAndFormat(this);
-		}
-	}
+            return new FieldAndFormat(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FieldAndFormat}
-	 */
-	public static final JsonpDeserializer<FieldAndFormat> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldAndFormat::setupFieldAndFormatDeserializer);
+    /**
+     * Json deserializer for {@link FieldAndFormat}
+     */
+    public static final JsonpDeserializer<FieldAndFormat> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FieldAndFormat::setupFieldAndFormatDeserializer
+    );
 
-	protected static void setupFieldAndFormatDeserializer(ObjectDeserializer<FieldAndFormat.Builder> op) {
+    protected static void setupFieldAndFormatDeserializer(ObjectDeserializer<FieldAndFormat.Builder> op) {
 
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::includeUnmapped, JsonpDeserializer.booleanDeserializer(), "include_unmapped");
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+        op.add(Builder::includeUnmapped, JsonpDeserializer.booleanDeserializer(), "include_unmapped");
 
-		op.shortcutProperty("field");
+        op.shortcutProperty("field");
 
-	}
+    }
 
 }

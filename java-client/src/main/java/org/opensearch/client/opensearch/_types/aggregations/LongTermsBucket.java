@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,124 +42,120 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.LongTermsBucket
 
-
 @JsonpDeserializable
 public class LongTermsBucket extends TermsBucketBase {
-	private final String key;
+    private final String key;
 
-	@Nullable
-	private final String keyAsString;
+    @Nullable
+    private final String keyAsString;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private LongTermsBucket(Builder builder) {
-		super(builder);
+    private LongTermsBucket(Builder builder) {
+        super(builder);
 
-		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
-		this.keyAsString = builder.keyAsString;
+        this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+        this.keyAsString = builder.keyAsString;
 
-	}
+    }
 
-	public static LongTermsBucket of(Function<Builder, ObjectBuilder<LongTermsBucket>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static LongTermsBucket of(Function<Builder, ObjectBuilder<LongTermsBucket>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code key}
-	 */
-	public final String key() {
-		return this.key;
-	}
+    /**
+     * Required - API name: {@code key}
+     */
+    public final String key() {
+        return this.key;
+    }
 
-	/**
-	 * API name: {@code key_as_string}
-	 */
-	@Nullable
-	public final String keyAsString() {
-		return this.keyAsString;
-	}
+    /**
+     * API name: {@code key_as_string}
+     */
+    @Nullable
+    public final String keyAsString() {
+        return this.keyAsString;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("key");
-		generator.write(this.key);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("key");
+        generator.write(this.key);
 
-		if (this.keyAsString != null) {
-			generator.writeKey("key_as_string");
-			generator.write(this.keyAsString);
+        if (this.keyAsString != null) {
+            generator.writeKey("key_as_string");
+            generator.write(this.keyAsString);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link LongTermsBucket}.
-	 */
+    /**
+     * Builder for {@link LongTermsBucket}.
+     */
 
-	public static class Builder extends TermsBucketBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<LongTermsBucket> {
-		private String key;
+    public static class Builder extends TermsBucketBase.AbstractBuilder<Builder> implements ObjectBuilder<LongTermsBucket> {
+        private String key;
 
-		@Nullable
-		private String keyAsString;
+        @Nullable
+        private String keyAsString;
 
-		/**
-		 * Required - API name: {@code key}
-		 */
-		public final Builder key(String value) {
-			this.key = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code key}
+         */
+        public final Builder key(String value) {
+            this.key = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code key_as_string}
-		 */
-		public final Builder keyAsString(@Nullable String value) {
-			this.keyAsString = value;
-			return this;
-		}
+        /**
+         * API name: {@code key_as_string}
+         */
+        public final Builder keyAsString(@Nullable String value) {
+            this.keyAsString = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link LongTermsBucket}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public LongTermsBucket build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link LongTermsBucket}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public LongTermsBucket build() {
+            _checkSingleUse();
 
-			return new LongTermsBucket(this);
-		}
-	}
+            return new LongTermsBucket(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link LongTermsBucket}
-	 */
-	public static final JsonpDeserializer<LongTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			LongTermsBucket::setupLongTermsBucketDeserializer);
+    /**
+     * Json deserializer for {@link LongTermsBucket}
+     */
+    public static final JsonpDeserializer<LongTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        LongTermsBucket::setupLongTermsBucketDeserializer
+    );
 
-	protected static void setupLongTermsBucketDeserializer(ObjectDeserializer<LongTermsBucket.Builder> op) {
-		TermsBucketBase.setupTermsBucketBaseDeserializer(op);
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
-		op.add(Builder::keyAsString, JsonpDeserializer.stringDeserializer(), "key_as_string");
+    protected static void setupLongTermsBucketDeserializer(ObjectDeserializer<LongTermsBucket.Builder> op) {
+        TermsBucketBase.setupTermsBucketBaseDeserializer(op);
+        op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
+        op.add(Builder::keyAsString, JsonpDeserializer.stringDeserializer(), "key_as_string");
 
-	}
+    }
 
 }

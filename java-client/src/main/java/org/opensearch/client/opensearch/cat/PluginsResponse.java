@@ -32,125 +32,125 @@
 
 package org.opensearch.client.opensearch.cat;
 
-import org.opensearch.client.opensearch.cat.plugins.PluginsRecord;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.opensearch.cat.plugins.PluginsRecord;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: cat.plugins.Response
 
-
 @JsonpDeserializable
 public class PluginsResponse implements JsonpSerializable {
-	private final List<PluginsRecord> valueBody;
+    private final List<PluginsRecord> valueBody;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PluginsResponse(Builder builder) {
+    private PluginsResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+        this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
-	}
+    }
 
-	public static PluginsResponse of(Function<Builder, ObjectBuilder<PluginsResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PluginsResponse of(Function<Builder, ObjectBuilder<PluginsResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
-	 */
-	public final List<PluginsRecord> valueBody() {
-		return this.valueBody;
-	}
+    /**
+     * Required - Response value.
+     * <p>
+     * API name: {@code _value_body}
+     */
+    public final List<PluginsRecord> valueBody() {
+        return this.valueBody;
+    }
 
-	/**
-	 * Serialize this value to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartArray();
-		for (PluginsRecord item0 : this.valueBody) {
-			item0.serialize(generator, mapper);
+    /**
+     * Serialize this value to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartArray();
+        for (PluginsRecord item0 : this.valueBody) {
+            item0.serialize(generator, mapper);
 
-		}
-		generator.writeEnd();
+        }
+        generator.writeEnd();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PluginsResponse}.
-	 */
+    /**
+     * Builder for {@link PluginsResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PluginsResponse> {
-		private List<PluginsRecord> valueBody;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PluginsResponse> {
+        private List<PluginsRecord> valueBody;
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
-		 */
-		public final Builder valueBody(List<PluginsRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
-			return this;
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>valueBody</code>.
+         */
+        public final Builder valueBody(List<PluginsRecord> list) {
+            this.valueBody = _listAddAll(this.valueBody, list);
+            return this;
+        }
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
-		 */
-		public final Builder valueBody(PluginsRecord value, PluginsRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
-			return this;
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds one or more values to <code>valueBody</code>.
+         */
+        public final Builder valueBody(PluginsRecord value, PluginsRecord... values) {
+            this.valueBody = _listAdd(this.valueBody, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
-		 */
-		public final Builder valueBody(Function<PluginsRecord.Builder, ObjectBuilder<PluginsRecord>> fn) {
-			return valueBody(fn.apply(new PluginsRecord.Builder()).build());
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds a value to <code>valueBody</code> using a builder lambda.
+         */
+        public final Builder valueBody(Function<PluginsRecord.Builder, ObjectBuilder<PluginsRecord>> fn) {
+            return valueBody(fn.apply(new PluginsRecord.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link PluginsResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PluginsResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PluginsResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PluginsResponse build() {
+            _checkSingleUse();
 
-			return new PluginsResponse(this);
-		}
-	}
+            return new PluginsResponse(this);
+        }
+    }
 
-	public static final JsonpDeserializer<PluginsResponse> _DESERIALIZER = createPluginsResponseDeserializer();
-	protected static JsonpDeserializer<PluginsResponse> createPluginsResponseDeserializer() {
+    public static final JsonpDeserializer<PluginsResponse> _DESERIALIZER = createPluginsResponseDeserializer();
 
-		JsonpDeserializer<List<PluginsRecord>> valueDeserializer = JsonpDeserializer
-				.arrayDeserializer(PluginsRecord._DESERIALIZER);
+    protected static JsonpDeserializer<PluginsResponse> createPluginsResponseDeserializer() {
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
-	}
+        JsonpDeserializer<List<PluginsRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(PluginsRecord._DESERIALIZER);
+
+        return JsonpDeserializer.of(
+            valueDeserializer.acceptedEvents(),
+            (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
+        );
+    }
 
 }

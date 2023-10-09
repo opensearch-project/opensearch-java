@@ -32,114 +32,115 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsAggregation
 
 @JsonpDeserializable
 public class ExtendedStatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
-	@Nullable
-	private final Double sigma;
+    @Nullable
+    private final Double sigma;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ExtendedStatsAggregation(Builder builder) {
-		super(builder);
+    private ExtendedStatsAggregation(Builder builder) {
+        super(builder);
 
-		this.sigma = builder.sigma;
+        this.sigma = builder.sigma;
 
-	}
+    }
 
-	public static ExtendedStatsAggregation of(Function<Builder, ObjectBuilder<ExtendedStatsAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ExtendedStatsAggregation of(Function<Builder, ObjectBuilder<ExtendedStatsAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.ExtendedStats;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.ExtendedStats;
+    }
 
-	/**
-	 * API name: {@code sigma}
-	 */
-	@Nullable
-	public final Double sigma() {
-		return this.sigma;
-	}
+    /**
+     * API name: {@code sigma}
+     */
+    @Nullable
+    public final Double sigma() {
+        return this.sigma;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.sigma != null) {
-			generator.writeKey("sigma");
-			generator.write(this.sigma);
+        super.serializeInternal(generator, mapper);
+        if (this.sigma != null) {
+            generator.writeKey("sigma");
+            generator.write(this.sigma);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ExtendedStatsAggregation}.
-	 */
+    /**
+     * Builder for {@link ExtendedStatsAggregation}.
+     */
 
-	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ExtendedStatsAggregation> {
-		@Nullable
-		private Double sigma;
+    public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<ExtendedStatsAggregation> {
+        @Nullable
+        private Double sigma;
 
-		/**
-		 * API name: {@code sigma}
-		 */
-		public final Builder sigma(@Nullable Double value) {
-			this.sigma = value;
-			return this;
-		}
+        /**
+         * API name: {@code sigma}
+         */
+        public final Builder sigma(@Nullable Double value) {
+            this.sigma = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ExtendedStatsAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ExtendedStatsAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ExtendedStatsAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ExtendedStatsAggregation build() {
+            _checkSingleUse();
 
-			return new ExtendedStatsAggregation(this);
-		}
-	}
+            return new ExtendedStatsAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ExtendedStatsAggregation}
-	 */
-	public static final JsonpDeserializer<ExtendedStatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExtendedStatsAggregation::setupExtendedStatsAggregationDeserializer);
+    /**
+     * Json deserializer for {@link ExtendedStatsAggregation}
+     */
+    public static final JsonpDeserializer<ExtendedStatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ExtendedStatsAggregation::setupExtendedStatsAggregationDeserializer
+    );
 
-	protected static void setupExtendedStatsAggregationDeserializer(
-			ObjectDeserializer<ExtendedStatsAggregation.Builder> op) {
-		setupFormatMetricAggregationBaseDeserializer(op);
-		op.add(Builder::sigma, JsonpDeserializer.doubleDeserializer(), "sigma");
+    protected static void setupExtendedStatsAggregationDeserializer(ObjectDeserializer<ExtendedStatsAggregation.Builder> op) {
+        setupFormatMetricAggregationBaseDeserializer(op);
+        op.add(Builder::sigma, JsonpDeserializer.doubleDeserializer(), "sigma");
 
-	}
+    }
 
 }

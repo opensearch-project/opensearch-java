@@ -39,18 +39,17 @@ import org.opensearch.client.opensearch._types.mapping.TypeMapping;
  * <p>
  * Variants <code>by_type</code> are not available here as they don't have a
  * dedicated class. Use {@link IndexRolloverMapping}'s builder for these.
- * 
+ *
  */
 public class IndexRolloverMappingBuilders {
-	private IndexRolloverMappingBuilders() {
-	}
+    private IndexRolloverMappingBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link TypeMapping single}
-	 * {@code IndexRolloverMapping} variant.
-	 */
-	public static TypeMapping.Builder single() {
-		return new TypeMapping.Builder();
-	}
+    /**
+     * Creates a builder for the {@link TypeMapping single}
+     * {@code IndexRolloverMapping} variant.
+     */
+    public static TypeMapping.Builder single() {
+        return new TypeMapping.Builder();
+    }
 
 }

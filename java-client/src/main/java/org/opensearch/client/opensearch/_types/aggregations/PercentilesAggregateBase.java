@@ -32,72 +32,70 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.PercentilesAggregateBase
 
-
 public abstract class PercentilesAggregateBase extends AggregateBase {
-	private final Percentiles values;
+    private final Percentiles values;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected PercentilesAggregateBase(AbstractBuilder<?> builder) {
-		super(builder);
+    protected PercentilesAggregateBase(AbstractBuilder<?> builder) {
+        super(builder);
 
-		this.values = ApiTypeHelper.requireNonNull(builder.values, this, "values");
+        this.values = ApiTypeHelper.requireNonNull(builder.values, this, "values");
 
-	}
+    }
 
-	/**
-	 * Required - API name: {@code values}
-	 */
-	public final Percentiles values() {
-		return this.values;
-	}
+    /**
+     * Required - API name: {@code values}
+     */
+    public final Percentiles values() {
+        return this.values;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("values");
-		this.values.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("values");
+        this.values.serialize(generator, mapper);
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				AggregateBase.AbstractBuilder<BuilderT> {
-		private Percentiles values;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregateBase.AbstractBuilder<
+        BuilderT> {
+        private Percentiles values;
 
-		/**
-		 * Required - API name: {@code values}
-		 */
-		public final BuilderT values(Percentiles value) {
-			this.values = value;
-			return self();
-		}
+        /**
+         * Required - API name: {@code values}
+         */
+        public final BuilderT values(Percentiles value) {
+            this.values = value;
+            return self();
+        }
 
-		/**
-		 * Required - API name: {@code values}
-		 */
-		public final BuilderT values(Function<Percentiles.Builder, ObjectBuilder<Percentiles>> fn) {
-			return this.values(fn.apply(new Percentiles.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code values}
+         */
+        public final BuilderT values(Function<Percentiles.Builder, ObjectBuilder<Percentiles>> fn) {
+            return this.values(fn.apply(new Percentiles.Builder()).build());
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPercentilesAggregateBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(AbstractBuilder::values, Percentiles._DESERIALIZER, "values");
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPercentilesAggregateBaseDeserializer(
+        ObjectDeserializer<BuilderT> op
+    ) {
+        AggregateBase.setupAggregateBaseDeserializer(op);
+        op.add(AbstractBuilder::values, Percentiles._DESERIALIZER, "values");
 
-	}
+    }
 
 }

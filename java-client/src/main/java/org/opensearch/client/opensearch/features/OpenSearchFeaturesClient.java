@@ -32,55 +32,52 @@
 
 package org.opensearch.client.opensearch.features;
 
+import java.io.IOException;
+import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
-
-import java.io.IOException;
-import javax.annotation.Nullable;
 
 /**
  * Client for the features namespace.
  */
 public class OpenSearchFeaturesClient extends ApiClient<OpenSearchTransport, OpenSearchFeaturesClient> {
 
-	public OpenSearchFeaturesClient(OpenSearchTransport transport) {
-		super(transport, null);
-	}
+    public OpenSearchFeaturesClient(OpenSearchTransport transport) {
+        super(transport, null);
+    }
 
-	public OpenSearchFeaturesClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
-		super(transport, transportOptions);
-	}
+    public OpenSearchFeaturesClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+        super(transport, transportOptions);
+    }
 
-	@Override
-	public OpenSearchFeaturesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpenSearchFeaturesClient(this.transport, transportOptions);
-	}
+    @Override
+    public OpenSearchFeaturesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchFeaturesClient(this.transport, transportOptions);
+    }
 
-	// ----- Endpoint: features.get_features
+    // ----- Endpoint: features.get_features
 
-	/**
-	 * Gets a list of features which can be included in snapshots using the
-	 * feature_states field when creating a snapshot
-	 * 
-	 *
-	 */
-	public GetFeaturesResponse getFeatures() throws IOException, OpenSearchException {
-		return this.transport.performRequest(GetFeaturesRequest._INSTANCE, GetFeaturesRequest._ENDPOINT,
-				this.transportOptions);
-	}
+    /**
+     * Gets a list of features which can be included in snapshots using the
+     * feature_states field when creating a snapshot
+     *
+     *
+     */
+    public GetFeaturesResponse getFeatures() throws IOException, OpenSearchException {
+        return this.transport.performRequest(GetFeaturesRequest._INSTANCE, GetFeaturesRequest._ENDPOINT, this.transportOptions);
+    }
 
-	// ----- Endpoint: features.reset_features
+    // ----- Endpoint: features.reset_features
 
-	/**
-	 * Resets the internal state of features, usually by deleting system indices
-	 * 
-	 *
-	 */
-	public ResetFeaturesResponse resetFeatures() throws IOException, OpenSearchException {
-		return this.transport.performRequest(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest._ENDPOINT,
-				this.transportOptions);
-	}
+    /**
+     * Resets the internal state of features, usually by deleting system indices
+     *
+     *
+     */
+    public ResetFeaturesResponse resetFeatures() throws IOException, OpenSearchException {
+        return this.transport.performRequest(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest._ENDPOINT, this.transportOptions);
+    }
 
 }

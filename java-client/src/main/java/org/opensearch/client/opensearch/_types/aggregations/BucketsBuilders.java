@@ -37,10 +37,9 @@ package org.opensearch.client.opensearch._types.aggregations;
  * <p>
  * Variants <code>array</code>, <code>keyed</code> are not available here as
  * they don't have a dedicated class. Use {@link Buckets}'s builder for these.
- * 
+ *
  */
 public class BucketsBuilders {
-	private BucketsBuilders() {
-	}
+    private BucketsBuilders() {}
 
 }

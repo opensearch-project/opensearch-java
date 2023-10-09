@@ -8,8 +8,8 @@
 
 package org.opensearch.client.opensearch.core.pit;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
-
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -18,8 +18,6 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-
-import jakarta.json.stream.JsonGenerator;
 
 @JsonpDeserializable
 public class PitRecord implements JsonpSerializable {
@@ -139,11 +137,11 @@ public class PitRecord implements JsonpSerializable {
      * Json deserializer for {@link PitRecord}
      */
     public static final JsonpDeserializer<PitRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-            Builder::new,
-            PitRecord::setupPitRecordDeserializer);
+        Builder::new,
+        PitRecord::setupPitRecordDeserializer
+    );
 
-    protected static void setupPitRecordDeserializer(
-            ObjectDeserializer<PitRecord.Builder> op) {
+    protected static void setupPitRecordDeserializer(ObjectDeserializer<PitRecord.Builder> op) {
 
         op.add(Builder::pitId, JsonpDeserializer.stringDeserializer(), "pit_id");
         op.add(Builder::creationTime, JsonpDeserializer.longDeserializer(), "creation_time");

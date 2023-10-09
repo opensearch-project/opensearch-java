@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -39,112 +42,106 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ConstantKeywordProperty
 
-
 @JsonpDeserializable
 public class ConstantKeywordProperty extends PropertyBase implements PropertyVariant {
-	@Nullable
-	private final JsonData value;
+    @Nullable
+    private final JsonData value;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ConstantKeywordProperty(Builder builder) {
-		super(builder);
+    private ConstantKeywordProperty(Builder builder) {
+        super(builder);
 
-		this.value = builder.value;
+        this.value = builder.value;
 
-	}
+    }
 
-	public static ConstantKeywordProperty of(Function<Builder, ObjectBuilder<ConstantKeywordProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ConstantKeywordProperty of(Function<Builder, ObjectBuilder<ConstantKeywordProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.ConstantKeyword;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.ConstantKeyword;
+    }
 
-	/**
-	 * API name: {@code value}
-	 */
-	@Nullable
-	public final JsonData value() {
-		return this.value;
-	}
+    /**
+     * API name: {@code value}
+     */
+    @Nullable
+    public final JsonData value() {
+        return this.value;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "constant_keyword");
-		super.serializeInternal(generator, mapper);
-		if (this.value != null) {
-			generator.writeKey("value");
-			this.value.serialize(generator, mapper);
+        generator.write("type", "constant_keyword");
+        super.serializeInternal(generator, mapper);
+        if (this.value != null) {
+            generator.writeKey("value");
+            this.value.serialize(generator, mapper);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ConstantKeywordProperty}.
-	 */
+    /**
+     * Builder for {@link ConstantKeywordProperty}.
+     */
 
-	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ConstantKeywordProperty> {
-		@Nullable
-		private JsonData value;
+    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<ConstantKeywordProperty> {
+        @Nullable
+        private JsonData value;
 
-		/**
-		 * API name: {@code value}
-		 */
-		public final Builder value(@Nullable JsonData value) {
-			this.value = value;
-			return this;
-		}
+        /**
+         * API name: {@code value}
+         */
+        public final Builder value(@Nullable JsonData value) {
+            this.value = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ConstantKeywordProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ConstantKeywordProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ConstantKeywordProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ConstantKeywordProperty build() {
+            _checkSingleUse();
 
-			return new ConstantKeywordProperty(this);
-		}
-	}
+            return new ConstantKeywordProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ConstantKeywordProperty}
-	 */
-	public static final JsonpDeserializer<ConstantKeywordProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ConstantKeywordProperty::setupConstantKeywordPropertyDeserializer);
+    /**
+     * Json deserializer for {@link ConstantKeywordProperty}
+     */
+    public static final JsonpDeserializer<ConstantKeywordProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ConstantKeywordProperty::setupConstantKeywordPropertyDeserializer
+    );
 
-	protected static void setupConstantKeywordPropertyDeserializer(
-			ObjectDeserializer<ConstantKeywordProperty.Builder> op) {
-		PropertyBase.setupPropertyBaseDeserializer(op);
-		op.add(Builder::value, JsonData._DESERIALIZER, "value");
+    protected static void setupConstantKeywordPropertyDeserializer(ObjectDeserializer<ConstantKeywordProperty.Builder> op) {
+        PropertyBase.setupPropertyBaseDeserializer(op);
+        op.add(Builder::value, JsonData._DESERIALIZER, "value");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

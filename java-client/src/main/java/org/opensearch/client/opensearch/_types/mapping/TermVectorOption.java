@@ -35,35 +35,33 @@ package org.opensearch.client.opensearch._types.mapping;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum TermVectorOption implements JsonEnum {
-	No("no"),
+    No("no"),
 
-	Yes("yes"),
+    Yes("yes"),
 
-	WithOffsets("with_offsets"),
+    WithOffsets("with_offsets"),
 
-	WithPositions("with_positions"),
+    WithPositions("with_positions"),
 
-	WithPositionsOffsets("with_positions_offsets"),
+    WithPositionsOffsets("with_positions_offsets"),
 
-	WithPositionsOffsetsPayloads("with_positions_offsets_payloads"),
+    WithPositionsOffsetsPayloads("with_positions_offsets_payloads"),
 
-	WithPositionsPayloads("with_positions_payloads"),
+    WithPositionsPayloads("with_positions_payloads"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	TermVectorOption(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    TermVectorOption(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<TermVectorOption> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			TermVectorOption.values());
+    public static final JsonEnum.Deserializer<TermVectorOption> _DESERIALIZER = new JsonEnum.Deserializer<>(TermVectorOption.values());
 }

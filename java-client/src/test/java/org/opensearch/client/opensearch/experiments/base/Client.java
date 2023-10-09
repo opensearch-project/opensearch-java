@@ -32,30 +32,28 @@
 
 package org.opensearch.client.opensearch.experiments.base;
 
+import java.io.IOException;
+import java.util.function.Function;
 import org.opensearch.client.opensearch.experiments.api.FooRequest;
 import org.opensearch.client.opensearch.experiments.api.FooResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.Transport;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.io.IOException;
-import java.util.function.Function;
-
 public class Client {
 
-  private Transport transport;
+    private Transport transport;
 
-  public FooResponse foo(FooRequest request) throws IOException {
-    return performRequest(request, FooRequest.ENDPOINT);
-  }
+    public FooResponse foo(FooRequest request) throws IOException {
+        return performRequest(request, FooRequest.ENDPOINT);
+    }
 
-  public FooResponse foo(Function<FooRequest.Builder, ObjectBuilder<FooRequest>> b) throws IOException {
-    return foo(b.apply(new FooRequest.Builder()).build());
-  }
+    public FooResponse foo(Function<FooRequest.Builder, ObjectBuilder<FooRequest>> b) throws IOException {
+        return foo(b.apply(new FooRequest.Builder()).build());
+    }
 
-  protected <RequestT, ResponseT, ErrorT> ResponseT performRequest(
-      RequestT request, Endpoint<RequestT, ResponseT, ErrorT> endpoint
-  ) throws IOException {
-    return transport.performRequest(request, endpoint, null);
-  }
+    protected <RequestT, ResponseT, ErrorT> ResponseT performRequest(RequestT request, Endpoint<RequestT, ResponseT, ErrorT> endpoint)
+        throws IOException {
+        return transport.performRequest(request, endpoint, null);
+    }
 }

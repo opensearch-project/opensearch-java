@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,109 +41,108 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.analysis.IcuTokenizer
 
-
 @JsonpDeserializable
 public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVariant, TokenFilterDefinitionVariant {
-	private final String ruleFiles;
+    private final String ruleFiles;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IcuTokenizer(Builder builder) {
-		super(builder);
+    private IcuTokenizer(Builder builder) {
+        super(builder);
 
-		this.ruleFiles = ApiTypeHelper.requireNonNull(builder.ruleFiles, this, "ruleFiles");
+        this.ruleFiles = ApiTypeHelper.requireNonNull(builder.ruleFiles, this, "ruleFiles");
 
-	}
+    }
 
-	public static IcuTokenizer of(Function<Builder, ObjectBuilder<IcuTokenizer>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IcuTokenizer of(Function<Builder, ObjectBuilder<IcuTokenizer>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenizerDefinition variant kind.
-	 */
-	@Override
-	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
-		return TokenizerDefinition.Kind.IcuTokenizer;
-	}
+    /**
+     * TokenizerDefinition variant kind.
+     */
+    @Override
+    public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+        return TokenizerDefinition.Kind.IcuTokenizer;
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.IcuTokenizer;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.IcuTokenizer;
+    }
 
-	/**
-	 * Required - API name: {@code rule_files}
-	 */
-	public final String ruleFiles() {
-		return this.ruleFiles;
-	}
+    /**
+     * Required - API name: {@code rule_files}
+     */
+    public final String ruleFiles() {
+        return this.ruleFiles;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "icu_tokenizer");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("rule_files");
-		generator.write(this.ruleFiles);
+        generator.write("type", "icu_tokenizer");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("rule_files");
+        generator.write(this.ruleFiles);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IcuTokenizer}.
-	 */
+    /**
+     * Builder for {@link IcuTokenizer}.
+     */
 
-	public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<IcuTokenizer> {
-		private String ruleFiles;
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<IcuTokenizer> {
+        private String ruleFiles;
 
-		/**
-		 * Required - API name: {@code rule_files}
-		 */
-		public final Builder ruleFiles(String value) {
-			this.ruleFiles = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code rule_files}
+         */
+        public final Builder ruleFiles(String value) {
+            this.ruleFiles = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IcuTokenizer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IcuTokenizer build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IcuTokenizer}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IcuTokenizer build() {
+            _checkSingleUse();
 
-			return new IcuTokenizer(this);
-		}
-	}
+            return new IcuTokenizer(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IcuTokenizer}
-	 */
-	public static final JsonpDeserializer<IcuTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IcuTokenizer::setupIcuTokenizerDeserializer);
+    /**
+     * Json deserializer for {@link IcuTokenizer}
+     */
+    public static final JsonpDeserializer<IcuTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IcuTokenizer::setupIcuTokenizerDeserializer
+    );
 
-	protected static void setupIcuTokenizerDeserializer(ObjectDeserializer<IcuTokenizer.Builder> op) {
-		TokenizerBase.setupTokenizerBaseDeserializer(op);
-		op.add(Builder::ruleFiles, JsonpDeserializer.stringDeserializer(), "rule_files");
+    protected static void setupIcuTokenizerDeserializer(ObjectDeserializer<IcuTokenizer.Builder> op) {
+        TokenizerBase.setupTokenizerBaseDeserializer(op);
+        op.add(Builder::ruleFiles, JsonpDeserializer.stringDeserializer(), "rule_files");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

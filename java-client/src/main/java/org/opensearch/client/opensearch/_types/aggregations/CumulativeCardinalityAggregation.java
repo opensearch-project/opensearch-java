@@ -32,77 +32,78 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.CumulativeCardinalityAggregation
 
 @JsonpDeserializable
 public class CumulativeCardinalityAggregation extends PipelineAggregationBase implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CumulativeCardinalityAggregation(Builder builder) {
-		super(builder);
+    private CumulativeCardinalityAggregation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static CumulativeCardinalityAggregation of(
-			Function<Builder, ObjectBuilder<CumulativeCardinalityAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CumulativeCardinalityAggregation of(Function<Builder, ObjectBuilder<CumulativeCardinalityAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.CumulativeCardinality;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.CumulativeCardinality;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CumulativeCardinalityAggregation}.
-	 */
+    /**
+     * Builder for {@link CumulativeCardinalityAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<CumulativeCardinalityAggregation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<CumulativeCardinalityAggregation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CumulativeCardinalityAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CumulativeCardinalityAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CumulativeCardinalityAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CumulativeCardinalityAggregation build() {
+            _checkSingleUse();
 
-			return new CumulativeCardinalityAggregation(this);
-		}
-	}
+            return new CumulativeCardinalityAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CumulativeCardinalityAggregation}
-	 */
-	public static final JsonpDeserializer<CumulativeCardinalityAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CumulativeCardinalityAggregation::setupCumulativeCardinalityAggregationDeserializer);
+    /**
+     * Json deserializer for {@link CumulativeCardinalityAggregation}
+     */
+    public static final JsonpDeserializer<CumulativeCardinalityAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CumulativeCardinalityAggregation::setupCumulativeCardinalityAggregationDeserializer
+    );
 
-	protected static void setupCumulativeCardinalityAggregationDeserializer(
-			ObjectDeserializer<CumulativeCardinalityAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+    protected static void setupCumulativeCardinalityAggregationDeserializer(
+        ObjectDeserializer<CumulativeCardinalityAggregation.Builder> op
+    ) {
+        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
-	}
+    }
 
 }

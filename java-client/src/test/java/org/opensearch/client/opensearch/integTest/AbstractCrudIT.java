@@ -8,6 +8,10 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -34,11 +38,6 @@ import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 import org.opensearch.client.opensearch.indices.DeleteIndexResponse;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
 
     public void testDelete() throws IOException {
@@ -59,11 +58,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
             String index = "my-index1";
             javaClient().indices().create(b -> b.index(index));
 
-            String id = javaClient().index(b -> b
-                    .index(index)
-                    .id(docId)
-                    .document(Collections.singletonMap("foo", "bar")))
-                    .id();
+            String id = javaClient().index(b -> b.index(index).id(docId).document(Collections.singletonMap("foo", "bar"))).id();
             assertEquals(id, docId);
 
             DeleteResponse deleteResponse = javaClient().delete(d -> d.id(docId).index(index));
@@ -84,19 +79,13 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         assertFalse(javaClient().indices().exists(b -> b.index("index")).value());
         String index = "ingest-test";
         // Create an index
-        CreateIndexResponse createIndexResponse = javaClient().indices().create(b -> b
-                .index(index)
-        );
+        CreateIndexResponse createIndexResponse = javaClient().indices().create(b -> b.index(index));
         assertEquals(index, createIndexResponse.index());
 
         // Check that it actually exists. Example of a boolean response
         assertTrue(javaClient().indices().exists(b -> b.index(index)).value());
 
-        javaClient().index(b -> b
-                .index(index)
-                .id("id")
-                .document(Collections.singletonMap("foo", "bar"))
-                .refresh(Refresh.True));
+        javaClient().index(b -> b.index(index).id("id").document(Collections.singletonMap("foo", "bar")).refresh(Refresh.True));
 
         assertTrue(javaClient().exists(b -> b.index(index).id("id")).value());
         assertFalse(javaClient().exists(b -> b.index(index).id("random_id")).value());
@@ -109,31 +98,18 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         appData.setMsg("foo");
 
         {
-            ExistsSourceRequest request = new ExistsSourceRequest.Builder()
-                    .index("index")
-                    .id("id")
-                    .build();
+            ExistsSourceRequest request = new ExistsSourceRequest.Builder().index("index").id("id").build();
             BooleanResponse response = javaClient().existsSource(request);
             assertFalse(response.value());
         }
-        javaClient().index(b -> b
-                .index("index")
-                .id("id")
-                .refresh(Refresh.True)
-                .document(appData));
+        javaClient().index(b -> b.index("index").id("id").refresh(Refresh.True).document(appData));
         {
-            ExistsSourceRequest request = new ExistsSourceRequest.Builder()
-                    .index("index")
-                    .id("id")
-                    .build();
+            ExistsSourceRequest request = new ExistsSourceRequest.Builder().index("index").id("id").build();
             BooleanResponse response = javaClient().existsSource(request);
             assertTrue(response.value());
         }
         {
-            ExistsSourceRequest request = new ExistsSourceRequest.Builder()
-                    .index("index")
-                    .id("does_not_exist")
-                    .build();
+            ExistsSourceRequest request = new ExistsSourceRequest.Builder().index("index").id("does_not_exist").build();
             BooleanResponse response = javaClient().existsSource(request);
             assertFalse(response.value());
         }
@@ -143,12 +119,11 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
 
         {
             OpenSearchException exception = expectThrows(
-                    OpenSearchException.class,
-                    () -> javaClient().get(new GetRequest.Builder().index("index").id("id").build(), String.class)
+                OpenSearchException.class,
+                () -> javaClient().get(new GetRequest.Builder().index("index").id("id").build(), String.class)
             );
             assertEquals(404, exception.status());
-            assertEquals("Request failed: [index_not_found_exception] no such index [index]",
-                    exception.getMessage());
+            assertEquals("Request failed: [index_not_found_exception] no such index [index]", exception.getMessage());
         }
 
         AppData appData = new AppData();
@@ -158,12 +133,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         javaClient().index(b -> b.index("index").id("id").document(appData).refresh(Refresh.True));
 
         {
-            GetResponse<AppData> getResponse = javaClient().get(b -> b
-                            .index("index")
-                            .id("id")
-                            .version(1L)
-                    , AppData.class
-            );
+            GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id("id").version(1L), AppData.class);
             assertEquals("index", getResponse.index());
             assertEquals("id", getResponse.id());
             assertTrue(getResponse.found());
@@ -172,11 +142,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
             assertEquals(appData.getMsg(), getResponse.source().getMsg());
         }
         {
-            GetResponse<AppData> getResponse = javaClient().get(b -> b
-                            .index("index")
-                            .id("does_not_exist")
-                    , AppData.class
-            );
+            GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id("does_not_exist"), AppData.class);
             assertEquals("index", getResponse.index());
             assertEquals("does_not_exist", getResponse.id());
             assertFalse(getResponse.found());
@@ -190,17 +156,9 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         appData.setIntValue(1337);
         appData.setMsg("foo");
 
-        javaClient().index(b -> b
-                .index("index")
-                .id("id")
-                .document(appData)
-                .refresh(Refresh.True));
+        javaClient().index(b -> b.index("index").id("id").document(appData).refresh(Refresh.True));
 
-        GetResponse<AppData> getResponse = javaClient().get(b -> b
-                        .index("index")
-                        .id("id")
-                , AppData.class
-        );
+        GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id("id"), AppData.class);
 
         assertEquals("index", getResponse.index());
         assertEquals("id", getResponse.id());
@@ -219,27 +177,17 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
             List<String> ids = new ArrayList<>();
             ids.add("id1");
             ids.add("id2");
-            MgetResponse<AppData> response = javaClient().mget(b -> b
-                            .index("index")
-                            .ids(ids)
-                    , AppData.class
-            );
+            MgetResponse<AppData> response = javaClient().mget(b -> b.index("index").ids(ids), AppData.class);
             assertEquals(2, response.docs().size());
 
             assertTrue(response.docs().get(0).isFailure());
             assertEquals("id1", response.docs().get(0).failure().id());
             assertEquals("index", response.docs().get(0).failure().index());
-            assertEquals(
-                    "no such index [index]",
-                    response.docs().get(0).failure().error().reason()
-            );
+            assertEquals("no such index [index]", response.docs().get(0).failure().error().reason());
             assertTrue(response.docs().get(1).isFailure());
             assertEquals("id2", response.docs().get(1).failure().id());
             assertEquals("index", response.docs().get(1).failure().index());
-            assertEquals(
-                    "no such index [index]",
-                    response.docs().get(1).failure().error().reason()
-            );
+            assertEquals("no such index [index]", response.docs().get(1).failure().error().reason());
         }
     }
 
@@ -253,11 +201,10 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         appData.setMsg("bar");
 
         {
-            UpdateRequest<AppData, AppData> updateRequest = new UpdateRequest.Builder<AppData, AppData>()
-                    .index("index")
-                    .id("does_not_exist")
-                    .doc(appData)
-                    .build();
+            UpdateRequest<AppData, AppData> updateRequest = new UpdateRequest.Builder<AppData, AppData>().index("index")
+                .id("does_not_exist")
+                .doc(appData)
+                .build();
             try {
                 javaClient().update(updateRequest, AppData.class);
             } catch (OpenSearchException e) {
@@ -269,22 +216,17 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
             }
         }
         {
-            IndexRequest<AppData> indexRequest = new IndexRequest.Builder<AppData>()
-                    .index("index")
-                    .id("id")
-                    .document(appData)
-                    .build();
+            IndexRequest<AppData> indexRequest = new IndexRequest.Builder<AppData>().index("index").id("id").document(appData).build();
             IndexResponse indexResponse = javaClient().index(indexRequest);
             assertEquals(Result.Created, indexResponse.result());
 
             long lastUpdateSeqNo;
             long lastUpdatePrimaryTerm;
             {
-                UpdateRequest<AppData, AppData> updateRequest = new UpdateRequest.Builder<AppData, AppData>()
-                        .index("index")
-                        .id("id")
-                        .doc(updatedAppData)
-                        .build();
+                UpdateRequest<AppData, AppData> updateRequest = new UpdateRequest.Builder<AppData, AppData>().index("index")
+                    .id("id")
+                    .doc(updatedAppData)
+                    .build();
                 UpdateResponse<AppData> updateResponse = javaClient().update(updateRequest, AppData.class);
                 assertEquals(Result.Updated, updateResponse.result());
                 assertEquals(indexResponse.version() + 1, updateResponse.version());
@@ -307,18 +249,13 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         appData.setIntValue(3333);
         appData.setMsg("bar");
 
-        IndexRequest<AppData> indexRequest = new IndexRequest.Builder<AppData>()
-                .index("index")
-                .id("id")
-                .document(appData)
-                .build();
+        IndexRequest<AppData> indexRequest = new IndexRequest.Builder<AppData>().index("index").id("id").document(appData).build();
         IndexResponse indexResponse = javaClient().index(indexRequest);
 
-        UpdateRequest<AppData, AppData> updateRequest = new UpdateRequest.Builder<AppData, AppData>()
-                .index("index")
-                .id("id")
-                .doc(updatedAppData)
-                .build();
+        UpdateRequest<AppData, AppData> updateRequest = new UpdateRequest.Builder<AppData, AppData>().index("index")
+            .id("id")
+            .doc(updatedAppData)
+            .build();
         UpdateResponse<AppData> updateResponse = javaClient().update(updateRequest, AppData.class);
 
         assertEquals(Result.Updated, updateResponse.result());
@@ -338,14 +275,15 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
             String id = String.valueOf(i);
             boolean erroneous = randomBoolean();
             errors[i] = erroneous;
-            BulkOperation.Kind opType = randomFrom(BulkOperation.Kind.Delete, BulkOperation.Kind.Index,
-                    BulkOperation.Kind.Create, BulkOperation.Kind.Update);
+            BulkOperation.Kind opType = randomFrom(
+                BulkOperation.Kind.Delete,
+                BulkOperation.Kind.Index,
+                BulkOperation.Kind.Create,
+                BulkOperation.Kind.Update
+            );
             if (opType.equals(BulkOperation.Kind.Delete)) {
                 if (!erroneous) {
-                    assertEquals(
-                            Result.Created,
-                            javaClient().index(b -> b.index("index").id(id).document(appData)).result()
-                    );
+                    assertEquals(Result.Created, javaClient().index(b -> b.index("index").id(id).document(appData)).result());
                 }
                 BulkOperation op = new BulkOperation.Builder().delete(d -> d.index("index").id(id)).build();
                 opsList.add(op);
@@ -353,39 +291,26 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
                 appData.setIntValue(i);
                 appData.setMsg("id");
                 if (opType.equals(BulkOperation.Kind.Index)) {
-                    BulkOperation op = new BulkOperation.Builder().index(b -> b
-                            .index("index")
-                            .id(id)
-                            .document(appData)
-                            .ifSeqNo(erroneous ? 12L : null)
-                            .ifPrimaryTerm(erroneous ? 12L : null)).build();
+                    BulkOperation op = new BulkOperation.Builder().index(
+                        b -> b.index("index").id(id).document(appData).ifSeqNo(erroneous ? 12L : null).ifPrimaryTerm(erroneous ? 12L : null)
+                    ).build();
                     opsList.add(op);
 
                 } else if (opType.equals(BulkOperation.Kind.Create)) {
-                    BulkOperation op = new BulkOperation.Builder().create(o -> o
-                            .index("index")
-                            .id(id)
-                            .document(appData)
-                    ).build();
+                    BulkOperation op = new BulkOperation.Builder().create(o -> o.index("index").id(id).document(appData)).build();
                     opsList.add(op);
 
                     if (erroneous) {
-                        assertEquals(Result.Created, javaClient().index(b -> b.
-                                index("index").id(id).document(appData)).result());
+                        assertEquals(Result.Created, javaClient().index(b -> b.index("index").id(id).document(appData)).result());
                     }
 
                 } else if (opType.equals(BulkOperation.Kind.Update)) {
-                    BulkOperation op = new BulkOperation.Builder().update(o -> o
-                            .index("index")
-                            .id(id)
-                            .document(Collections.singletonMap("key", "value"))
+                    BulkOperation op = new BulkOperation.Builder().update(
+                        o -> o.index("index").id(id).document(Collections.singletonMap("key", "value"))
                     ).build();
                     opsList.add(op);
                     if (!erroneous) {
-                        assertEquals(
-                                Result.Created,
-                                javaClient().index(b -> b.index("index").id(id).document(appData)).result()
-                        );
+                        assertEquals(Result.Created, javaClient().index(b -> b.index("index").id(id).document(appData)).result());
                     }
                 }
             }
@@ -406,20 +331,22 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         appData.setIntValue(1337);
         appData.setMsg("foo");
 
-        assertEquals(
-            Result.Created,
-            javaClient().index(b -> b.index("index").id(id).document(appData)).result()
-        );
+        assertEquals(Result.Created, javaClient().index(b -> b.index("index").id(id).document(appData)).result());
 
-        final BulkOperation op = new BulkOperation.Builder().update(o -> o
-                .index("index")
+        final BulkOperation op = new BulkOperation.Builder().update(
+            o -> o.index("index")
                 .id(id)
-                .script(Script.of(s -> s.inline(new InlineScript.Builder()
-                    .lang("painless")
-                    .source("ctx._source.intValue += params.inc")
-                    .params("inc", JsonData.of(1))
-                    .build())))
-            ).build();
+                .script(
+                    Script.of(
+                        s -> s.inline(
+                            new InlineScript.Builder().lang("painless")
+                                .source("ctx._source.intValue += params.inc")
+                                .params("inc", JsonData.of(1))
+                                .build()
+                        )
+                    )
+                )
+        ).build();
 
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
         BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
@@ -439,16 +366,21 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         appData.setIntValue(1337);
         appData.setMsg("foo");
 
-        final BulkOperation op = new BulkOperation.Builder().update(o -> o
-                .index("index")
+        final BulkOperation op = new BulkOperation.Builder().update(
+            o -> o.index("index")
                 .id(id)
                 .upsert(appData)
-                .script(Script.of(s -> s.inline(new InlineScript.Builder()
-                    .lang("painless")
-                    .source("ctx._source.intValue += params.inc")
-                    .params("inc", JsonData.of(1))
-                    .build())))
-            ).build();
+                .script(
+                    Script.of(
+                        s -> s.inline(
+                            new InlineScript.Builder().lang("painless")
+                                .source("ctx._source.intValue += params.inc")
+                                .params("inc", JsonData.of(1))
+                                .build()
+                        )
+                    )
+                )
+        ).build();
 
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
         BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
@@ -468,12 +400,8 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         appData.setIntValue(1337);
         appData.setMsg("foo");
 
-        final BulkOperation op = new BulkOperation.Builder().update(o -> o
-                .index("index")
-                .id(id)
-                .document(new AppData())
-                .upsert(appData)
-            ).build();
+        final BulkOperation op = new BulkOperation.Builder().update(o -> o.index("index").id(id).document(new AppData()).upsert(appData))
+            .build();
 
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
         BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
@@ -509,7 +437,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
     public void testUrlEncode() throws IOException {
         String indexPattern = "<logstash-{now/M}>";
         String expectedIndex = "logstash-"
-                + DateTimeFormat.forPattern("YYYY.MM.dd").print(new DateTime(DateTimeZone.UTC).monthOfYear().roundFloorCopy());
+            + DateTimeFormat.forPattern("YYYY.MM.dd").print(new DateTime(DateTimeZone.UTC).monthOfYear().roundFloorCopy());
         AppData appData = new AppData();
         appData.setIntValue(1337);
         appData.setMsg("foo");
@@ -519,8 +447,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
             assertEquals("id#1", response.id());
         }
         {
-            GetResponse<AppData> getResponse = javaClient().get(b -> b
-                    .index(indexPattern).id("id#1"), AppData.class);
+            GetResponse<AppData> getResponse = javaClient().get(b -> b.index(indexPattern).id("id#1"), AppData.class);
             assertTrue(getResponse.found());
             assertEquals(expectedIndex, getResponse.index());
             assertEquals("id#1", getResponse.id());
@@ -533,8 +460,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
             assertEquals(docId, indexResponse.id());
         }
         {
-            GetResponse<AppData> getResponse = javaClient().get(b -> b
-                    .index("index").id(docId), AppData.class);
+            GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id(docId), AppData.class);
             assertTrue(getResponse.found());
             assertEquals("index", getResponse.index());
             assertEquals(docId, getResponse.id());
@@ -555,8 +481,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
             assertEquals(id, response.id());
         }
         {
-            GetResponse<AppData> getResponse = javaClient().get(b -> b
-                    .index("index").id("id").routing(routing), AppData.class);
+            GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id("id").routing(routing), AppData.class);
             assertTrue(getResponse.found());
             assertEquals("index", getResponse.index());
             assertEquals("id", getResponse.id());
@@ -571,14 +496,12 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         appData.setMsg("foo");
 
         {
-            IndexResponse indexResponse = javaClient().index(b -> b
-                    .index("index").id(id).document(appData));
+            IndexResponse indexResponse = javaClient().index(b -> b.index("index").id(id).document(appData));
             assertEquals("index", indexResponse.index());
             assertEquals(id, indexResponse.id());
         }
         {
-            GetResponse<AppData> getResponse = javaClient().get(b -> b
-                    .index("index").id(id), AppData.class);
+            GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id(id), AppData.class);
             assertTrue(getResponse.found());
             assertEquals("index", getResponse.index());
             assertEquals(id, getResponse.id());

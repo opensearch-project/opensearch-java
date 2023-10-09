@@ -32,86 +32,84 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.mapping.RankFeaturesProperty
 
-
 @JsonpDeserializable
 public class RankFeaturesProperty extends PropertyBase implements PropertyVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RankFeaturesProperty(Builder builder) {
-		super(builder);
+    private RankFeaturesProperty(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static RankFeaturesProperty of(Function<Builder, ObjectBuilder<RankFeaturesProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RankFeaturesProperty of(Function<Builder, ObjectBuilder<RankFeaturesProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.RankFeatures;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.RankFeatures;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "rank_features");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "rank_features");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RankFeaturesProperty}.
-	 */
+    /**
+     * Builder for {@link RankFeaturesProperty}.
+     */
 
-	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RankFeaturesProperty> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<RankFeaturesProperty> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RankFeaturesProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RankFeaturesProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RankFeaturesProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RankFeaturesProperty build() {
+            _checkSingleUse();
 
-			return new RankFeaturesProperty(this);
-		}
-	}
+            return new RankFeaturesProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RankFeaturesProperty}
-	 */
-	public static final JsonpDeserializer<RankFeaturesProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankFeaturesProperty::setupRankFeaturesPropertyDeserializer);
+    /**
+     * Json deserializer for {@link RankFeaturesProperty}
+     */
+    public static final JsonpDeserializer<RankFeaturesProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RankFeaturesProperty::setupRankFeaturesPropertyDeserializer
+    );
 
-	protected static void setupRankFeaturesPropertyDeserializer(ObjectDeserializer<RankFeaturesProperty.Builder> op) {
-		PropertyBase.setupPropertyBaseDeserializer(op);
+    protected static void setupRankFeaturesPropertyDeserializer(ObjectDeserializer<RankFeaturesProperty.Builder> op) {
+        PropertyBase.setupPropertyBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

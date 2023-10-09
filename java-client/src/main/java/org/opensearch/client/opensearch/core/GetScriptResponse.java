@@ -32,164 +32,166 @@
 
 package org.opensearch.client.opensearch.core;
 
-import org.opensearch.client.opensearch._types.StoredScript;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.StoredScript;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.get_script.Response
 
 @JsonpDeserializable
 public class GetScriptResponse implements JsonpSerializable {
-	private final String id;
+    private final String id;
 
-	private final boolean found;
+    private final boolean found;
 
-	@Nullable
-	private final StoredScript script;
+    @Nullable
+    private final StoredScript script;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetScriptResponse(Builder builder) {
+    private GetScriptResponse(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
-		this.script = builder.script;
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+        this.script = builder.script;
 
-	}
+    }
 
-	public static GetScriptResponse of(Function<Builder, ObjectBuilder<GetScriptResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetScriptResponse of(Function<Builder, ObjectBuilder<GetScriptResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code _id}
-	 */
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * Required - API name: {@code _id}
+     */
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * Required - API name: {@code found}
-	 */
-	public final boolean found() {
-		return this.found;
-	}
+    /**
+     * Required - API name: {@code found}
+     */
+    public final boolean found() {
+        return this.found;
+    }
 
-	/**
-	 * API name: {@code script}
-	 */
-	@Nullable
-	public final StoredScript script() {
-		return this.script;
-	}
+    /**
+     * API name: {@code script}
+     */
+    @Nullable
+    public final StoredScript script() {
+        return this.script;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("_id");
-		generator.write(this.id);
+        generator.writeKey("_id");
+        generator.write(this.id);
 
-		generator.writeKey("found");
-		generator.write(this.found);
+        generator.writeKey("found");
+        generator.write(this.found);
 
-		if (this.script != null) {
-			generator.writeKey("script");
-			this.script.serialize(generator, mapper);
+        if (this.script != null) {
+            generator.writeKey("script");
+            this.script.serialize(generator, mapper);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetScriptResponse}.
-	 */
+    /**
+     * Builder for {@link GetScriptResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptResponse> {
-		private String id;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptResponse> {
+        private String id;
 
-		private Boolean found;
+        private Boolean found;
 
-		@Nullable
-		private StoredScript script;
+        @Nullable
+        private StoredScript script;
 
-		/**
-		 * Required - API name: {@code _id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code _id}
+         */
+        public final Builder id(String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code found}
-		 */
-		public final Builder found(boolean value) {
-			this.found = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code found}
+         */
+        public final Builder found(boolean value) {
+            this.found = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code script}
-		 */
-		public final Builder script(@Nullable StoredScript value) {
-			this.script = value;
-			return this;
-		}
+        /**
+         * API name: {@code script}
+         */
+        public final Builder script(@Nullable StoredScript value) {
+            this.script = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code script}
-		 */
-		public final Builder script(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
-			return this.script(fn.apply(new StoredScript.Builder()).build());
-		}
+        /**
+         * API name: {@code script}
+         */
+        public final Builder script(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
+            return this.script(fn.apply(new StoredScript.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link GetScriptResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetScriptResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GetScriptResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetScriptResponse build() {
+            _checkSingleUse();
 
-			return new GetScriptResponse(this);
-		}
-	}
+            return new GetScriptResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GetScriptResponse}
-	 */
-	public static final JsonpDeserializer<GetScriptResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetScriptResponse::setupGetScriptResponseDeserializer);
+    /**
+     * Json deserializer for {@link GetScriptResponse}
+     */
+    public static final JsonpDeserializer<GetScriptResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GetScriptResponse::setupGetScriptResponseDeserializer
+    );
 
-	protected static void setupGetScriptResponseDeserializer(ObjectDeserializer<GetScriptResponse.Builder> op) {
+    protected static void setupGetScriptResponseDeserializer(ObjectDeserializer<GetScriptResponse.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
-		op.add(Builder::script, StoredScript._DESERIALIZER, "script");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+        op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
+        op.add(Builder::script, StoredScript._DESERIALIZER, "script");
 
-	}
+    }
 
 }

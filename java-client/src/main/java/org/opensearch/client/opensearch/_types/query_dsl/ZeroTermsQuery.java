@@ -35,25 +35,23 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum ZeroTermsQuery implements JsonEnum {
-	All("all"),
+    All("all"),
 
-	None("none"),
+    None("none"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ZeroTermsQuery(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ZeroTermsQuery(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ZeroTermsQuery> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ZeroTermsQuery.values());
+    public static final JsonEnum.Deserializer<ZeroTermsQuery> _DESERIALIZER = new JsonEnum.Deserializer<>(ZeroTermsQuery.values());
 }

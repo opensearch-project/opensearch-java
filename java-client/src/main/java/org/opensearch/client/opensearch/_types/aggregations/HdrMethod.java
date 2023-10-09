@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,101 +43,98 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HdrMethod
 
-
 @JsonpDeserializable
 public class HdrMethod implements JsonpSerializable {
-	@Nullable
-	private final Integer numberOfSignificantValueDigits;
+    @Nullable
+    private final Integer numberOfSignificantValueDigits;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private HdrMethod(Builder builder) {
+    private HdrMethod(Builder builder) {
 
-		this.numberOfSignificantValueDigits = builder.numberOfSignificantValueDigits;
+        this.numberOfSignificantValueDigits = builder.numberOfSignificantValueDigits;
 
-	}
+    }
 
-	public static HdrMethod of(Function<Builder, ObjectBuilder<HdrMethod>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static HdrMethod of(Function<Builder, ObjectBuilder<HdrMethod>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code number_of_significant_value_digits}
-	 */
-	@Nullable
-	public final Integer numberOfSignificantValueDigits() {
-		return this.numberOfSignificantValueDigits;
-	}
+    /**
+     * API name: {@code number_of_significant_value_digits}
+     */
+    @Nullable
+    public final Integer numberOfSignificantValueDigits() {
+        return this.numberOfSignificantValueDigits;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.numberOfSignificantValueDigits != null) {
-			generator.writeKey("number_of_significant_value_digits");
-			generator.write(this.numberOfSignificantValueDigits);
+        if (this.numberOfSignificantValueDigits != null) {
+            generator.writeKey("number_of_significant_value_digits");
+            generator.write(this.numberOfSignificantValueDigits);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link HdrMethod}.
-	 */
+    /**
+     * Builder for {@link HdrMethod}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HdrMethod> {
-		@Nullable
-		private Integer numberOfSignificantValueDigits;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HdrMethod> {
+        @Nullable
+        private Integer numberOfSignificantValueDigits;
 
-		/**
-		 * API name: {@code number_of_significant_value_digits}
-		 */
-		public final Builder numberOfSignificantValueDigits(@Nullable Integer value) {
-			this.numberOfSignificantValueDigits = value;
-			return this;
-		}
+        /**
+         * API name: {@code number_of_significant_value_digits}
+         */
+        public final Builder numberOfSignificantValueDigits(@Nullable Integer value) {
+            this.numberOfSignificantValueDigits = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link HdrMethod}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public HdrMethod build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link HdrMethod}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public HdrMethod build() {
+            _checkSingleUse();
 
-			return new HdrMethod(this);
-		}
-	}
+            return new HdrMethod(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link HdrMethod}
-	 */
-	public static final JsonpDeserializer<HdrMethod> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			HdrMethod::setupHdrMethodDeserializer);
+    /**
+     * Json deserializer for {@link HdrMethod}
+     */
+    public static final JsonpDeserializer<HdrMethod> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        HdrMethod::setupHdrMethodDeserializer
+    );
 
-	protected static void setupHdrMethodDeserializer(ObjectDeserializer<HdrMethod.Builder> op) {
+    protected static void setupHdrMethodDeserializer(ObjectDeserializer<HdrMethod.Builder> op) {
 
-		op.add(Builder::numberOfSignificantValueDigits, JsonpDeserializer.integerDeserializer(),
-				"number_of_significant_value_digits");
+        op.add(Builder::numberOfSignificantValueDigits, JsonpDeserializer.integerDeserializer(), "number_of_significant_value_digits");
 
-	}
+    }
 
 }

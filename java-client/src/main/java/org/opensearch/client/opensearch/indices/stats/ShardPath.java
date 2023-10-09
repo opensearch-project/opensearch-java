@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.indices.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,141 +43,140 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: indices.stats.ShardPath
 
-
 @JsonpDeserializable
 public class ShardPath implements JsonpSerializable {
-	private final String dataPath;
+    private final String dataPath;
 
-	private final boolean isCustomDataPath;
+    private final boolean isCustomDataPath;
 
-	private final String statePath;
+    private final String statePath;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ShardPath(Builder builder) {
+    private ShardPath(Builder builder) {
 
-		this.dataPath = ApiTypeHelper.requireNonNull(builder.dataPath, this, "dataPath");
-		this.isCustomDataPath = ApiTypeHelper.requireNonNull(builder.isCustomDataPath, this, "isCustomDataPath");
-		this.statePath = ApiTypeHelper.requireNonNull(builder.statePath, this, "statePath");
+        this.dataPath = ApiTypeHelper.requireNonNull(builder.dataPath, this, "dataPath");
+        this.isCustomDataPath = ApiTypeHelper.requireNonNull(builder.isCustomDataPath, this, "isCustomDataPath");
+        this.statePath = ApiTypeHelper.requireNonNull(builder.statePath, this, "statePath");
 
-	}
+    }
 
-	public static ShardPath of(Function<Builder, ObjectBuilder<ShardPath>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ShardPath of(Function<Builder, ObjectBuilder<ShardPath>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code data_path}
-	 */
-	public final String dataPath() {
-		return this.dataPath;
-	}
+    /**
+     * Required - API name: {@code data_path}
+     */
+    public final String dataPath() {
+        return this.dataPath;
+    }
 
-	/**
-	 * Required - API name: {@code is_custom_data_path}
-	 */
-	public final boolean isCustomDataPath() {
-		return this.isCustomDataPath;
-	}
+    /**
+     * Required - API name: {@code is_custom_data_path}
+     */
+    public final boolean isCustomDataPath() {
+        return this.isCustomDataPath;
+    }
 
-	/**
-	 * Required - API name: {@code state_path}
-	 */
-	public final String statePath() {
-		return this.statePath;
-	}
+    /**
+     * Required - API name: {@code state_path}
+     */
+    public final String statePath() {
+        return this.statePath;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("data_path");
-		generator.write(this.dataPath);
+        generator.writeKey("data_path");
+        generator.write(this.dataPath);
 
-		generator.writeKey("is_custom_data_path");
-		generator.write(this.isCustomDataPath);
+        generator.writeKey("is_custom_data_path");
+        generator.write(this.isCustomDataPath);
 
-		generator.writeKey("state_path");
-		generator.write(this.statePath);
+        generator.writeKey("state_path");
+        generator.write(this.statePath);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ShardPath}.
-	 */
+    /**
+     * Builder for {@link ShardPath}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardPath> {
-		private String dataPath;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardPath> {
+        private String dataPath;
 
-		private Boolean isCustomDataPath;
+        private Boolean isCustomDataPath;
 
-		private String statePath;
+        private String statePath;
 
-		/**
-		 * Required - API name: {@code data_path}
-		 */
-		public final Builder dataPath(String value) {
-			this.dataPath = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code data_path}
+         */
+        public final Builder dataPath(String value) {
+            this.dataPath = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code is_custom_data_path}
-		 */
-		public final Builder isCustomDataPath(boolean value) {
-			this.isCustomDataPath = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code is_custom_data_path}
+         */
+        public final Builder isCustomDataPath(boolean value) {
+            this.isCustomDataPath = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code state_path}
-		 */
-		public final Builder statePath(String value) {
-			this.statePath = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code state_path}
+         */
+        public final Builder statePath(String value) {
+            this.statePath = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ShardPath}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ShardPath build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ShardPath}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ShardPath build() {
+            _checkSingleUse();
 
-			return new ShardPath(this);
-		}
-	}
+            return new ShardPath(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ShardPath}
-	 */
-	public static final JsonpDeserializer<ShardPath> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardPath::setupShardPathDeserializer);
+    /**
+     * Json deserializer for {@link ShardPath}
+     */
+    public static final JsonpDeserializer<ShardPath> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ShardPath::setupShardPathDeserializer
+    );
 
-	protected static void setupShardPathDeserializer(ObjectDeserializer<ShardPath.Builder> op) {
+    protected static void setupShardPathDeserializer(ObjectDeserializer<ShardPath.Builder> op) {
 
-		op.add(Builder::dataPath, JsonpDeserializer.stringDeserializer(), "data_path");
-		op.add(Builder::isCustomDataPath, JsonpDeserializer.booleanDeserializer(), "is_custom_data_path");
-		op.add(Builder::statePath, JsonpDeserializer.stringDeserializer(), "state_path");
+        op.add(Builder::dataPath, JsonpDeserializer.stringDeserializer(), "data_path");
+        op.add(Builder::isCustomDataPath, JsonpDeserializer.booleanDeserializer(), "is_custom_data_path");
+        op.add(Builder::statePath, JsonpDeserializer.stringDeserializer(), "state_path");
 
-	}
+    }
 
 }

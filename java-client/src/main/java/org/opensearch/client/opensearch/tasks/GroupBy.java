@@ -35,26 +35,25 @@ package org.opensearch.client.opensearch.tasks;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum GroupBy implements JsonEnum {
-	Nodes("nodes"),
+    Nodes("nodes"),
 
-	Parents("parents"),
+    Parents("parents"),
 
-	None("none"),
+    None("none"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	GroupBy(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    GroupBy(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<GroupBy> _DESERIALIZER = new JsonEnum.Deserializer<>(GroupBy.values());
+    public static final JsonEnum.Deserializer<GroupBy> _DESERIALIZER = new JsonEnum.Deserializer<>(GroupBy.values());
 }

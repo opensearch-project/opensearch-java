@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.ingest.geo_ip_stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,97 +43,96 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: ingest.geo_ip_stats.GeoIpNodeDatabaseName
 
-
 @JsonpDeserializable
 public class GeoIpNodeDatabaseName implements JsonpSerializable {
-	private final String name;
+    private final String name;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GeoIpNodeDatabaseName(Builder builder) {
+    private GeoIpNodeDatabaseName(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
-	}
+    }
 
-	public static GeoIpNodeDatabaseName of(Function<Builder, ObjectBuilder<GeoIpNodeDatabaseName>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GeoIpNodeDatabaseName of(Function<Builder, ObjectBuilder<GeoIpNodeDatabaseName>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Name of the database.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * Required - Name of the database.
+     * <p>
+     * API name: {@code name}
+     */
+    public final String name() {
+        return this.name;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+        generator.writeKey("name");
+        generator.write(this.name);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GeoIpNodeDatabaseName}.
-	 */
+    /**
+     * Builder for {@link GeoIpNodeDatabaseName}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoIpNodeDatabaseName> {
-		private String name;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoIpNodeDatabaseName> {
+        private String name;
 
-		/**
-		 * Required - Name of the database.
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * Required - Name of the database.
+         * <p>
+         * API name: {@code name}
+         */
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GeoIpNodeDatabaseName}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GeoIpNodeDatabaseName build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GeoIpNodeDatabaseName}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GeoIpNodeDatabaseName build() {
+            _checkSingleUse();
 
-			return new GeoIpNodeDatabaseName(this);
-		}
-	}
+            return new GeoIpNodeDatabaseName(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GeoIpNodeDatabaseName}
-	 */
-	public static final JsonpDeserializer<GeoIpNodeDatabaseName> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoIpNodeDatabaseName::setupGeoIpNodeDatabaseNameDeserializer);
+    /**
+     * Json deserializer for {@link GeoIpNodeDatabaseName}
+     */
+    public static final JsonpDeserializer<GeoIpNodeDatabaseName> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GeoIpNodeDatabaseName::setupGeoIpNodeDatabaseNameDeserializer
+    );
 
-	protected static void setupGeoIpNodeDatabaseNameDeserializer(ObjectDeserializer<GeoIpNodeDatabaseName.Builder> op) {
+    protected static void setupGeoIpNodeDatabaseNameDeserializer(ObjectDeserializer<GeoIpNodeDatabaseName.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
-	}
+    }
 
 }

@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.indices.recovery;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,219 +45,217 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryFiles
 
 @JsonpDeserializable
 public class RecoveryFiles implements JsonpSerializable {
-	private final List<FileDetails> details;
+    private final List<FileDetails> details;
 
-	private final String percent;
+    private final String percent;
 
-	private final long recovered;
+    private final long recovered;
 
-	private final long reused;
+    private final long reused;
 
-	private final long total;
+    private final long total;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RecoveryFiles(Builder builder) {
+    private RecoveryFiles(Builder builder) {
 
-		this.details = ApiTypeHelper.unmodifiable(builder.details);
-		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
-		this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
-		this.reused = ApiTypeHelper.requireNonNull(builder.reused, this, "reused");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.details = ApiTypeHelper.unmodifiable(builder.details);
+        this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+        this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
+        this.reused = ApiTypeHelper.requireNonNull(builder.reused, this, "reused");
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
-	}
+    }
 
-	public static RecoveryFiles of(Function<Builder, ObjectBuilder<RecoveryFiles>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RecoveryFiles of(Function<Builder, ObjectBuilder<RecoveryFiles>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code details}
-	 */
-	public final List<FileDetails> details() {
-		return this.details;
-	}
+    /**
+     * API name: {@code details}
+     */
+    public final List<FileDetails> details() {
+        return this.details;
+    }
 
-	/**
-	 * Required - API name: {@code percent}
-	 */
-	public final String percent() {
-		return this.percent;
-	}
+    /**
+     * Required - API name: {@code percent}
+     */
+    public final String percent() {
+        return this.percent;
+    }
 
-	/**
-	 * Required - API name: {@code recovered}
-	 */
-	public final long recovered() {
-		return this.recovered;
-	}
+    /**
+     * Required - API name: {@code recovered}
+     */
+    public final long recovered() {
+        return this.recovered;
+    }
 
-	/**
-	 * Required - API name: {@code reused}
-	 */
-	public final long reused() {
-		return this.reused;
-	}
+    /**
+     * Required - API name: {@code reused}
+     */
+    public final long reused() {
+        return this.reused;
+    }
 
-	/**
-	 * Required - API name: {@code total}
-	 */
-	public final long total() {
-		return this.total;
-	}
+    /**
+     * Required - API name: {@code total}
+     */
+    public final long total() {
+        return this.total;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.details)) {
-			generator.writeKey("details");
-			generator.writeStartArray();
-			for (FileDetails item0 : this.details) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.details)) {
+            generator.writeKey("details");
+            generator.writeStartArray();
+            for (FileDetails item0 : this.details) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		generator.writeKey("percent");
-		generator.write(this.percent);
+        }
+        generator.writeKey("percent");
+        generator.write(this.percent);
 
-		generator.writeKey("recovered");
-		generator.write(this.recovered);
+        generator.writeKey("recovered");
+        generator.write(this.recovered);
 
-		generator.writeKey("reused");
-		generator.write(this.reused);
+        generator.writeKey("reused");
+        generator.write(this.reused);
 
-		generator.writeKey("total");
-		generator.write(this.total);
+        generator.writeKey("total");
+        generator.write(this.total);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RecoveryFiles}.
-	 */
+    /**
+     * Builder for {@link RecoveryFiles}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryFiles> {
-		@Nullable
-		private List<FileDetails> details;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryFiles> {
+        @Nullable
+        private List<FileDetails> details;
 
-		private String percent;
+        private String percent;
 
-		private Long recovered;
+        private Long recovered;
 
-		private Long reused;
+        private Long reused;
 
-		private Long total;
+        private Long total;
 
-		/**
-		 * API name: {@code details}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>details</code>.
-		 */
-		public final Builder details(List<FileDetails> list) {
-			this.details = _listAddAll(this.details, list);
-			return this;
-		}
+        /**
+         * API name: {@code details}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>details</code>.
+         */
+        public final Builder details(List<FileDetails> list) {
+            this.details = _listAddAll(this.details, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code details}
-		 * <p>
-		 * Adds one or more values to <code>details</code>.
-		 */
-		public final Builder details(FileDetails value, FileDetails... values) {
-			this.details = _listAdd(this.details, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code details}
+         * <p>
+         * Adds one or more values to <code>details</code>.
+         */
+        public final Builder details(FileDetails value, FileDetails... values) {
+            this.details = _listAdd(this.details, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code details}
-		 * <p>
-		 * Adds a value to <code>details</code> using a builder lambda.
-		 */
-		public final Builder details(Function<FileDetails.Builder, ObjectBuilder<FileDetails>> fn) {
-			return details(fn.apply(new FileDetails.Builder()).build());
-		}
+        /**
+         * API name: {@code details}
+         * <p>
+         * Adds a value to <code>details</code> using a builder lambda.
+         */
+        public final Builder details(Function<FileDetails.Builder, ObjectBuilder<FileDetails>> fn) {
+            return details(fn.apply(new FileDetails.Builder()).build());
+        }
 
-		/**
-		 * Required - API name: {@code percent}
-		 */
-		public final Builder percent(String value) {
-			this.percent = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code percent}
+         */
+        public final Builder percent(String value) {
+            this.percent = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code recovered}
-		 */
-		public final Builder recovered(long value) {
-			this.recovered = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code recovered}
+         */
+        public final Builder recovered(long value) {
+            this.recovered = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code reused}
-		 */
-		public final Builder reused(long value) {
-			this.reused = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code reused}
+         */
+        public final Builder reused(long value) {
+            this.reused = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total}
-		 */
-		public final Builder total(long value) {
-			this.total = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total}
+         */
+        public final Builder total(long value) {
+            this.total = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RecoveryFiles}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RecoveryFiles build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RecoveryFiles}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RecoveryFiles build() {
+            _checkSingleUse();
 
-			return new RecoveryFiles(this);
-		}
-	}
+            return new RecoveryFiles(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RecoveryFiles}
-	 */
-	public static final JsonpDeserializer<RecoveryFiles> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RecoveryFiles::setupRecoveryFilesDeserializer);
+    /**
+     * Json deserializer for {@link RecoveryFiles}
+     */
+    public static final JsonpDeserializer<RecoveryFiles> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RecoveryFiles::setupRecoveryFilesDeserializer
+    );
 
-	protected static void setupRecoveryFilesDeserializer(ObjectDeserializer<RecoveryFiles.Builder> op) {
+    protected static void setupRecoveryFilesDeserializer(ObjectDeserializer<RecoveryFiles.Builder> op) {
 
-		op.add(Builder::details, JsonpDeserializer.arrayDeserializer(FileDetails._DESERIALIZER), "details");
-		op.add(Builder::percent, JsonpDeserializer.stringDeserializer(), "percent");
-		op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");
-		op.add(Builder::reused, JsonpDeserializer.longDeserializer(), "reused");
-		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
+        op.add(Builder::details, JsonpDeserializer.arrayDeserializer(FileDetails._DESERIALIZER), "details");
+        op.add(Builder::percent, JsonpDeserializer.stringDeserializer(), "percent");
+        op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");
+        op.add(Builder::reused, JsonpDeserializer.longDeserializer(), "reused");
+        op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 
-	}
+    }
 
 }

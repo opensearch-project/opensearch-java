@@ -32,18 +32,17 @@
 
 package org.opensearch.client.opensearch.experiments.api.query2;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.function.Function;
 
 public class BoolQuery implements Query.Variant, JsonpSerializable {
 
@@ -81,24 +80,23 @@ public class BoolQuery implements Query.Variant, JsonpSerializable {
         if (should != null) {
             builder.writeKey("should");
             builder.writeStartArray();
-            for (Query v: should) v.serialize(builder, mapper);
+            for (Query v : should)
+                v.serialize(builder, mapper);
             builder.writeEnd();
         }
 
         if (should != null) {
             builder.writeKey("must");
             builder.writeStartArray();
-            for (Query v: must) v.serialize(builder, mapper);
+            for (Query v : must)
+                v.serialize(builder, mapper);
             builder.writeEnd();
         }
 
         if (minimumShouldMatch != null) {
             builder.writeKey("minimum_should_match");
             // Unions have to be expanded inline as serialization depends on the value type.
-            this.minimumShouldMatch.serialize(builder, mapper,
-                (v, b, p) -> builder.write(v),
-                (v, b, p) -> builder.write(v)
-            );
+            this.minimumShouldMatch.serialize(builder, mapper, (v, b, p) -> builder.write(v), (v, b, p) -> builder.write(v));
         }
 
         builder.writeEnd();
@@ -175,10 +173,11 @@ public class BoolQuery implements Query.Variant, JsonpSerializable {
         op.add(Builder::must, JsonpDeserializer.arrayDeserializer(Query.parser()), "must");
         op.add(Builder::should, JsonpDeserializer.arrayDeserializer(Query.parser()), "should");
 
-        op.add(Builder::minimumShouldMatch, new Union2.JsonpParser<>(
-            JsonpDeserializer.integerDeserializer(),
-            JsonpDeserializer.stringDeserializer()
-        ), "minimum_should_match");
+        op.add(
+            Builder::minimumShouldMatch,
+            new Union2.JsonpParser<>(JsonpDeserializer.integerDeserializer(), JsonpDeserializer.stringDeserializer()),
+            "minimum_should_match"
+        );
 
         PARSER = new ObjectBuilderDeserializer<>(op);
     }

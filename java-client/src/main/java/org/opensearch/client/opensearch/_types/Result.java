@@ -37,27 +37,27 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum Result implements JsonEnum {
-	Created("created"),
+    Created("created"),
 
-	Updated("updated"),
+    Updated("updated"),
 
-	Deleted("deleted"),
+    Deleted("deleted"),
 
-	NotFound("not_found"),
+    NotFound("not_found"),
 
-	NoOp("noop"),
+    NoOp("noop"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	Result(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    Result(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<Result> _DESERIALIZER = new JsonEnum.Deserializer<>(Result.values());
+    public static final JsonEnum.Deserializer<Result> _DESERIALIZER = new JsonEnum.Deserializer<>(Result.values());
 }

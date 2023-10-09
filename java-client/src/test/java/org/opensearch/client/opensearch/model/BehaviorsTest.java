@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.model;
 
+import org.junit.Test;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.ErrorCause;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.GeoLocation;
@@ -42,20 +44,14 @@ import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch._types.query_dsl.ShapeQuery;
 import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.query_dsl.WrapperQuery;
 import org.opensearch.client.util.MapBuilder;
-import org.junit.Test;
 
 public class BehaviorsTest extends ModelTestCase {
 
     @Test
     public void testSingleKeyDictionary() {
-        TermQuery q = new TermQuery.Builder()
-            .queryName("query-name")
-            .field("field-name")
-            .value(FieldValue.of("some-value"))
-            .build();
+        TermQuery q = new TermQuery.Builder().queryName("query-name").field("field-name").value(FieldValue.of("some-value")).build();
 
         q = checkJsonRoundtrip(q, "{\"field-name\":{\"_name\":\"query-name\",\"value\":\"some-value\"}}");
 
@@ -66,18 +62,13 @@ public class BehaviorsTest extends ModelTestCase {
 
     @Test
     public void testAdditionalPropertyOnClass() {
-        ShapeQuery q = new ShapeQuery.Builder()
-            .queryName("query-name")
+        ShapeQuery q = new ShapeQuery.Builder().queryName("query-name")
             .field("field-name")
-            .shape(_0 -> _0
-                .relation(GeoShapeRelation.Disjoint)
-            )
+            .shape(_0 -> _0.relation(GeoShapeRelation.Disjoint))
             .ignoreUnmapped(true)
             .build();
 
-        q = checkJsonRoundtrip(q,
-            "{\"field-name\":{\"relation\":\"disjoint\"},\"_name\":\"query-name\",\"ignore_unmapped\":true}"
-        );
+        q = checkJsonRoundtrip(q, "{\"field-name\":{\"relation\":\"disjoint\"},\"_name\":\"query-name\",\"ignore_unmapped\":true}");
 
         assertEquals("query-name", q.queryName());
         assertTrue(q.ignoreUnmapped());
@@ -87,13 +78,9 @@ public class BehaviorsTest extends ModelTestCase {
 
     @Test
     public void testWrapperQuery() {
-        WrapperQuery q = new WrapperQuery.Builder()
-            .query("encoded_query")
-            .build();
+        WrapperQuery q = new WrapperQuery.Builder().query("encoded_query").build();
 
-        q = checkJsonRoundtrip(q,
-            "{\"query\":\"encoded_query\"}"
-        );
+        q = checkJsonRoundtrip(q, "{\"query\":\"encoded_query\"}");
 
         assertEquals("encoded_query", q.query());
     }
@@ -102,9 +89,7 @@ public class BehaviorsTest extends ModelTestCase {
     public void testAdditionalPropertyOnContainer() {
         // Regular variant
         {
-            SortOptions so = SortOptions.of(_0 -> _0
-                .doc(_1 -> _1.order(SortOrder.Asc))
-            );
+            SortOptions so = SortOptions.of(_0 -> _0.doc(_1 -> _1.order(SortOrder.Asc)));
 
             so = checkJsonRoundtrip(so, "{\"_doc\":{\"order\":\"asc\"}}");
             assertEquals(SortOptions.Kind.Doc, so._kind());
@@ -126,8 +111,7 @@ public class BehaviorsTest extends ModelTestCase {
         }
 
         {
-            SortOptions so = SortOptions.of(_0 -> _0
-                .score(_1 -> _1.order(SortOrder.Asc)));
+            SortOptions so = SortOptions.of(_0 -> _0.score(_1 -> _1.order(SortOrder.Asc)));
 
             so = checkJsonRoundtrip(so, "{\"_score\":{\"order\":\"asc\"}}");
             assertEquals(SortOptions.Kind.Score, so._kind());
@@ -135,9 +119,7 @@ public class BehaviorsTest extends ModelTestCase {
         }
 
         {
-            SortOptions so = SortOptions.of(_0 -> _0
-                .script(_1 -> _1.script(_2 -> _2.inline(_3 -> _3.source("blah"))))
-            );
+            SortOptions so = SortOptions.of(_0 -> _0.script(_1 -> _1.script(_2 -> _2.inline(_3 -> _3.source("blah")))));
             so = checkJsonRoundtrip(so, "{\"_script\":{\"script\":{\"source\":\"blah\"}}}");
             assertEquals("blah", so.script().script().inline().source());
 
@@ -145,9 +127,7 @@ public class BehaviorsTest extends ModelTestCase {
 
         // Additional property variant
         {
-            SortOptions so = SortOptions.of(_0 -> _0
-                .field(_1 -> _1.field("foo").order(SortOrder.Desc))
-            );
+            SortOptions so = SortOptions.of(_0 -> _0.field(_1 -> _1.field("foo").order(SortOrder.Desc)));
 
             so = checkJsonRoundtrip(so, "{\"foo\":{\"order\":\"desc\"}}");
             assertEquals(SortOptions.Kind.Field, so._kind());
@@ -156,23 +136,15 @@ public class BehaviorsTest extends ModelTestCase {
         }
     }
 
-
     @Test
     public void testAdditionalProperties() {
         // Check that additional property map is initialized even if not set explicitly
-        ErrorCause err = new ErrorCause.Builder()
-            .reason("Foo")
-            .type("Bar")
-            .build();
+        ErrorCause err = new ErrorCause.Builder().reason("Foo").type("Bar").build();
         assertEquals(0, err.metadata().size());
 
-        err = new ErrorCause.Builder()
-            .reason("Some failure")
+        err = new ErrorCause.Builder().reason("Some failure")
             .type("Some type")
-            .metadata(MapBuilder.of(
-                "index", JsonData.of("test"),
-                "retries", JsonData.of(1)
-            ))
+            .metadata(MapBuilder.of("index", JsonData.of("test"), "retries", JsonData.of(1)))
             .build();
 
         err = checkJsonRoundtrip(err, "{\"index\":\"test\",\"retries\":1,\"type\":\"Some type\",\"reason\":\"Some failure\"}");

@@ -32,83 +32,80 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.ShardsOperationResponseBase
 
-
 public abstract class ShardsOperationResponseBase implements JsonpSerializable {
-	private final ShardStatistics shards;
+    private final ShardStatistics shards;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected ShardsOperationResponseBase(AbstractBuilder<?> builder) {
+    protected ShardsOperationResponseBase(AbstractBuilder<?> builder) {
 
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+        this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
-	}
+    }
 
-	/**
-	 * Required - API name: {@code _shards}
-	 */
-	public final ShardStatistics shards() {
-		return this.shards;
-	}
+    /**
+     * Required - API name: {@code _shards}
+     */
+    public final ShardStatistics shards() {
+        return this.shards;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("_shards");
-		this.shards.serialize(generator, mapper);
+        generator.writeKey("_shards");
+        this.shards.serialize(generator, mapper);
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ObjectBuilderBase {
-		private ShardStatistics shards;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+        private ShardStatistics shards;
 
-		/**
-		 * Required - API name: {@code _shards}
-		 */
-		public final BuilderT shards(ShardStatistics value) {
-			this.shards = value;
-			return self();
-		}
+        /**
+         * Required - API name: {@code _shards}
+         */
+        public final BuilderT shards(ShardStatistics value) {
+            this.shards = value;
+            return self();
+        }
 
-		/**
-		 * Required - API name: {@code _shards}
-		 */
-		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code _shards}
+         */
+        public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+            return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+        }
 
-		protected abstract BuilderT self();
+        protected abstract BuilderT self();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupShardsOperationResponseBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupShardsOperationResponseBaseDeserializer(
+        ObjectDeserializer<BuilderT> op
+    ) {
 
-		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
+        op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
 
-	}
+    }
 
 }

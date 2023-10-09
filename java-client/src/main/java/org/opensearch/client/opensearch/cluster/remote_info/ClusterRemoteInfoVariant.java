@@ -39,10 +39,10 @@ import org.opensearch.client.json.JsonpSerializable;
  */
 public interface ClusterRemoteInfoVariant extends JsonpSerializable {
 
-	ClusterRemoteInfo.Kind _clusterRemoteInfoKind();
+    ClusterRemoteInfo.Kind _clusterRemoteInfoKind();
 
-	default ClusterRemoteInfo _toClusterRemoteInfo() {
-		return new ClusterRemoteInfo(this);
-	}
+    default ClusterRemoteInfo _toClusterRemoteInfo() {
+        return new ClusterRemoteInfo(this);
+    }
 
 }

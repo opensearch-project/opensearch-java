@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,116 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoMemory
 
 @JsonpDeserializable
 public class NodeInfoMemory implements JsonpSerializable {
-	private final String total;
+    private final String total;
 
-	private final long totalInBytes;
+    private final long totalInBytes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoMemory(Builder builder) {
+    private NodeInfoMemory(Builder builder) {
 
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
 
-	}
+    }
 
-	public static NodeInfoMemory of(Function<Builder, ObjectBuilder<NodeInfoMemory>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoMemory of(Function<Builder, ObjectBuilder<NodeInfoMemory>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code total}
-	 */
-	public final String total() {
-		return this.total;
-	}
+    /**
+     * Required - API name: {@code total}
+     */
+    public final String total() {
+        return this.total;
+    }
 
-	/**
-	 * Required - API name: {@code total_in_bytes}
-	 */
-	public final long totalInBytes() {
-		return this.totalInBytes;
-	}
+    /**
+     * Required - API name: {@code total_in_bytes}
+     */
+    public final long totalInBytes() {
+        return this.totalInBytes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("total");
-		generator.write(this.total);
+        generator.writeKey("total");
+        generator.write(this.total);
 
-		generator.writeKey("total_in_bytes");
-		generator.write(this.totalInBytes);
+        generator.writeKey("total_in_bytes");
+        generator.write(this.totalInBytes);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoMemory}.
-	 */
+    /**
+     * Builder for {@link NodeInfoMemory}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoMemory> {
-		private String total;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoMemory> {
+        private String total;
 
-		private Long totalInBytes;
+        private Long totalInBytes;
 
-		/**
-		 * Required - API name: {@code total}
-		 */
-		public final Builder total(String value) {
-			this.total = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total}
+         */
+        public final Builder total(String value) {
+            this.total = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total_in_bytes}
-		 */
-		public final Builder totalInBytes(long value) {
-			this.totalInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total_in_bytes}
+         */
+        public final Builder totalInBytes(long value) {
+            this.totalInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeInfoMemory}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoMemory build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoMemory}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoMemory build() {
+            _checkSingleUse();
 
-			return new NodeInfoMemory(this);
-		}
-	}
+            return new NodeInfoMemory(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoMemory}
-	 */
-	public static final JsonpDeserializer<NodeInfoMemory> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoMemory::setupNodeInfoMemoryDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoMemory}
+     */
+    public static final JsonpDeserializer<NodeInfoMemory> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoMemory::setupNodeInfoMemoryDeserializer
+    );
 
-	protected static void setupNodeInfoMemoryDeserializer(ObjectDeserializer<NodeInfoMemory.Builder> op) {
+    protected static void setupNodeInfoMemoryDeserializer(ObjectDeserializer<NodeInfoMemory.Builder> op) {
 
-		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
-		op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
+        op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
+        op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
 
-	}
+    }
 
 }

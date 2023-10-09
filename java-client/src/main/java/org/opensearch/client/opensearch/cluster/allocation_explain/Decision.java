@@ -35,36 +35,35 @@ package org.opensearch.client.opensearch.cluster.allocation_explain;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum Decision implements JsonEnum {
-	Yes("yes"),
+    Yes("yes"),
 
-	No("no"),
+    No("no"),
 
-	WorseBalance("worse_balance"),
+    WorseBalance("worse_balance"),
 
-	Throttled("throttled"),
+    Throttled("throttled"),
 
-	AwaitingInfo("awaiting_info"),
+    AwaitingInfo("awaiting_info"),
 
-	AllocationDelayed("allocation_delayed"),
+    AllocationDelayed("allocation_delayed"),
 
-	NoValidShardCopy("no_valid_shard_copy"),
+    NoValidShardCopy("no_valid_shard_copy"),
 
-	NoAttempt("no_attempt"),
+    NoAttempt("no_attempt"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	Decision(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    Decision(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<Decision> _DESERIALIZER = new JsonEnum.Deserializer<>(Decision.values());
+    public static final JsonEnum.Deserializer<Decision> _DESERIALIZER = new JsonEnum.Deserializer<>(Decision.values());
 }

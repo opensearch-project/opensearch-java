@@ -32,69 +32,64 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
-import jakarta.json.stream.JsonGenerator;
-
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DecayFunctionBase
 
-
-
 public abstract class DecayFunctionBase extends ScoreFunctionBase {
-	@Nullable
-	private final MultiValueMode multiValueMode;
+    @Nullable
+    private final MultiValueMode multiValueMode;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected DecayFunctionBase(AbstractBuilder<?> builder) {
-		super(builder);
+    protected DecayFunctionBase(AbstractBuilder<?> builder) {
+        super(builder);
 
-		this.multiValueMode = builder.multiValueMode;
+        this.multiValueMode = builder.multiValueMode;
 
-	}
+    }
 
-	/**
-	 * API name: {@code multi_value_mode}
-	 */
-	@Nullable
-	public final MultiValueMode multiValueMode() {
-		return this.multiValueMode;
-	}
+    /**
+     * API name: {@code multi_value_mode}
+     */
+    @Nullable
+    public final MultiValueMode multiValueMode() {
+        return this.multiValueMode;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.multiValueMode != null) {
-			generator.writeKey("multi_value_mode");
-			this.multiValueMode.serialize(generator, mapper);
-		}
+        super.serializeInternal(generator, mapper);
+        if (this.multiValueMode != null) {
+            generator.writeKey("multi_value_mode");
+            this.multiValueMode.serialize(generator, mapper);
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ScoreFunctionBase.AbstractBuilder<BuilderT> {
-		@Nullable
-		private MultiValueMode multiValueMode;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ScoreFunctionBase.AbstractBuilder<
+        BuilderT> {
+        @Nullable
+        private MultiValueMode multiValueMode;
 
-		/**
-		 * API name: {@code multi_value_mode}
-		 */
-		public final BuilderT multiValueMode(@Nullable MultiValueMode value) {
-			this.multiValueMode = value;
-			return self();
-		}
+        /**
+         * API name: {@code multi_value_mode}
+         */
+        public final BuilderT multiValueMode(@Nullable MultiValueMode value) {
+            this.multiValueMode = value;
+            return self();
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDecayFunctionBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
-		op.add(AbstractBuilder::multiValueMode, MultiValueMode._DESERIALIZER, "multi_value_mode");
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDecayFunctionBaseDeserializer(ObjectDeserializer<BuilderT> op) {
+        ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
+        op.add(AbstractBuilder::multiValueMode, MultiValueMode._DESERIALIZER, "multi_value_mode");
 
-	}
+    }
 
 }

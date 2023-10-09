@@ -32,81 +32,77 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.SignificantLongTermsAggregate
 
-
 @JsonpDeserializable
-public class SignificantLongTermsAggregate extends MultiBucketAggregateBase<SignificantLongTermsBucket>
-		implements
-			AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+public class SignificantLongTermsAggregate extends MultiBucketAggregateBase<SignificantLongTermsBucket> implements AggregateVariant {
+    // ---------------------------------------------------------------------------------------------
 
-	private SignificantLongTermsAggregate(Builder builder) {
-		super(builder);
+    private SignificantLongTermsAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static SignificantLongTermsAggregate of(Function<Builder, ObjectBuilder<SignificantLongTermsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SignificantLongTermsAggregate of(Function<Builder, ObjectBuilder<SignificantLongTermsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Siglterms;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Siglterms;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SignificantLongTermsAggregate}.
-	 */
+    /**
+     * Builder for {@link SignificantLongTermsAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<SignificantLongTermsBucket, Builder>
-			implements
-				ObjectBuilder<SignificantLongTermsAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<SignificantLongTermsBucket, Builder>
+        implements
+            ObjectBuilder<SignificantLongTermsAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SignificantLongTermsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SignificantLongTermsAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link SignificantLongTermsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SignificantLongTermsAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new SignificantLongTermsAggregate(this);
-		}
-	}
+            return new SignificantLongTermsAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SignificantLongTermsAggregate}
-	 */
-	public static final JsonpDeserializer<SignificantLongTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SignificantLongTermsAggregate::setupSignificantLongTermsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link SignificantLongTermsAggregate}
+     */
+    public static final JsonpDeserializer<SignificantLongTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SignificantLongTermsAggregate::setupSignificantLongTermsAggregateDeserializer
+    );
 
-	protected static void setupSignificantLongTermsAggregateDeserializer(
-			ObjectDeserializer<SignificantLongTermsAggregate.Builder> op) {
-		setupMultiBucketAggregateBaseDeserializer(op,
-				SignificantLongTermsBucket._DESERIALIZER);
+    protected static void setupSignificantLongTermsAggregateDeserializer(ObjectDeserializer<SignificantLongTermsAggregate.Builder> op) {
+        setupMultiBucketAggregateBaseDeserializer(op, SignificantLongTermsBucket._DESERIALIZER);
 
-	}
+    }
 
 }

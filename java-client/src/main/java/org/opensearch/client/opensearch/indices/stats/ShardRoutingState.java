@@ -35,29 +35,27 @@ package org.opensearch.client.opensearch.indices.stats;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum ShardRoutingState implements JsonEnum {
-	Unassigned("UNASSIGNED"),
+    Unassigned("UNASSIGNED"),
 
-	Initializing("INITIALIZING"),
+    Initializing("INITIALIZING"),
 
-	Started("STARTED"),
+    Started("STARTED"),
 
-	Relocating("RELOCATING"),
+    Relocating("RELOCATING"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ShardRoutingState(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ShardRoutingState(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ShardRoutingState> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ShardRoutingState.values());
+    public static final JsonEnum.Deserializer<ShardRoutingState> _DESERIALIZER = new JsonEnum.Deserializer<>(ShardRoutingState.values());
 }

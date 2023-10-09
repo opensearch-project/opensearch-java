@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.indices.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,93 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: indices.stats.ShardsTotalStats
 
-
 @JsonpDeserializable
 public class ShardsTotalStats implements JsonpSerializable {
-	private final long totalCount;
+    private final long totalCount;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ShardsTotalStats(Builder builder) {
+    private ShardsTotalStats(Builder builder) {
 
-		this.totalCount = ApiTypeHelper.requireNonNull(builder.totalCount, this, "totalCount");
+        this.totalCount = ApiTypeHelper.requireNonNull(builder.totalCount, this, "totalCount");
 
-	}
+    }
 
-	public static ShardsTotalStats of(Function<Builder, ObjectBuilder<ShardsTotalStats>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ShardsTotalStats of(Function<Builder, ObjectBuilder<ShardsTotalStats>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code total_count}
-	 */
-	public final long totalCount() {
-		return this.totalCount;
-	}
+    /**
+     * Required - API name: {@code total_count}
+     */
+    public final long totalCount() {
+        return this.totalCount;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("total_count");
-		generator.write(this.totalCount);
+        generator.writeKey("total_count");
+        generator.write(this.totalCount);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ShardsTotalStats}.
-	 */
+    /**
+     * Builder for {@link ShardsTotalStats}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsTotalStats> {
-		private Long totalCount;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsTotalStats> {
+        private Long totalCount;
 
-		/**
-		 * Required - API name: {@code total_count}
-		 */
-		public final Builder totalCount(long value) {
-			this.totalCount = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total_count}
+         */
+        public final Builder totalCount(long value) {
+            this.totalCount = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ShardsTotalStats}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ShardsTotalStats build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ShardsTotalStats}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ShardsTotalStats build() {
+            _checkSingleUse();
 
-			return new ShardsTotalStats(this);
-		}
-	}
+            return new ShardsTotalStats(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ShardsTotalStats}
-	 */
-	public static final JsonpDeserializer<ShardsTotalStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardsTotalStats::setupShardsTotalStatsDeserializer);
+    /**
+     * Json deserializer for {@link ShardsTotalStats}
+     */
+    public static final JsonpDeserializer<ShardsTotalStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ShardsTotalStats::setupShardsTotalStatsDeserializer
+    );
 
-	protected static void setupShardsTotalStatsDeserializer(ObjectDeserializer<ShardsTotalStats.Builder> op) {
+    protected static void setupShardsTotalStatsDeserializer(ObjectDeserializer<ShardsTotalStats.Builder> op) {
 
-		op.add(Builder::totalCount, JsonpDeserializer.longDeserializer(), "total_count");
+        op.add(Builder::totalCount, JsonpDeserializer.longDeserializer(), "total_count");
 
-	}
+    }
 
 }

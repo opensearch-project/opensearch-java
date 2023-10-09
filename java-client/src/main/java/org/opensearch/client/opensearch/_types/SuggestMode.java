@@ -37,24 +37,23 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum SuggestMode implements JsonEnum {
-	Missing("missing"),
+    Missing("missing"),
 
-	Popular("popular"),
+    Popular("popular"),
 
-	Always("always"),
+    Always("always"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	SuggestMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    SuggestMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<SuggestMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SuggestMode.values());
+    public static final JsonEnum.Deserializer<SuggestMode> _DESERIALIZER = new JsonEnum.Deserializer<>(SuggestMode.values());
 }

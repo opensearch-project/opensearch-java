@@ -35,25 +35,23 @@ package org.opensearch.client.opensearch._types.aggregations;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum HoltWintersType implements JsonEnum {
-	Additive("add"),
+    Additive("add"),
 
-	Multiplicative("mult"),
+    Multiplicative("mult"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	HoltWintersType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    HoltWintersType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<HoltWintersType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			HoltWintersType.values());
+    public static final JsonEnum.Deserializer<HoltWintersType> _DESERIALIZER = new JsonEnum.Deserializer<>(HoltWintersType.values());
 }

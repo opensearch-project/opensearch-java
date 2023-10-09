@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.core;
 
+import java.util.function.Function;
+import java.util.function.Supplier;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.NamedDeserializer;
@@ -39,76 +41,76 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-import java.util.function.Supplier;
-
 // typedef: _global.scroll.Response
-
 
 @JsonpDeserializable
 public class ScrollResponse<TDocument> extends SearchResponse<TDocument> {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ScrollResponse(Builder<TDocument> builder) {
-		super(builder);
+    private ScrollResponse(Builder<TDocument> builder) {
+        super(builder);
 
-	}
+    }
 
-	public static <TDocument> ScrollResponse<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<ScrollResponse<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
-	}
+    public static <TDocument> ScrollResponse<TDocument> of(Function<Builder<TDocument>, ObjectBuilder<ScrollResponse<TDocument>>> fn) {
+        return fn.apply(new Builder<>()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ScrollResponse}.
-	 */
+    /**
+     * Builder for {@link ScrollResponse}.
+     */
 
-	public static class Builder<TDocument> extends SearchResponse.AbstractBuilder<TDocument, Builder<TDocument>>
-			implements
-				ObjectBuilder<ScrollResponse<TDocument>> {
-		@Override
-		protected Builder<TDocument> self() {
-			return this;
-		}
+    public static class Builder<TDocument> extends SearchResponse.AbstractBuilder<TDocument, Builder<TDocument>>
+        implements
+            ObjectBuilder<ScrollResponse<TDocument>> {
+        @Override
+        protected Builder<TDocument> self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ScrollResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ScrollResponse<TDocument> build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ScrollResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ScrollResponse<TDocument> build() {
+            _checkSingleUse();
 
-			return new ScrollResponse<TDocument>(this);
-		}
-	}
+            return new ScrollResponse<TDocument>(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Create a JSON deserializer for ScrollResponse
-	 */
-	public static <TDocument> JsonpDeserializer<ScrollResponse<TDocument>> createScrollResponseDeserializer(
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> ScrollResponse.setupScrollResponseDeserializer(op, tDocumentDeserializer));
-	};
+    /**
+     * Create a JSON deserializer for ScrollResponse
+     */
+    public static <TDocument> JsonpDeserializer<ScrollResponse<TDocument>> createScrollResponseDeserializer(
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
+        return ObjectBuilderDeserializer.createForObject(
+            (Supplier<Builder<TDocument>>) Builder::new,
+            op -> ScrollResponse.setupScrollResponseDeserializer(op, tDocumentDeserializer)
+        );
+    };
 
-	/**
-	 * Json deserializer for {@link ScrollResponse} based on named deserializers
-	 * provided by the calling {@code JsonMapper}.
-	 */
-	public static final JsonpDeserializer<ScrollResponse<Object>> _DESERIALIZER = createScrollResponseDeserializer(
-			new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.scroll.TDocument"));
+    /**
+     * Json deserializer for {@link ScrollResponse} based on named deserializers
+     * provided by the calling {@code JsonMapper}.
+     */
+    public static final JsonpDeserializer<ScrollResponse<Object>> _DESERIALIZER = createScrollResponseDeserializer(
+        new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.scroll.TDocument")
+    );
 
-	protected static <TDocument> void setupScrollResponseDeserializer(
-			ObjectDeserializer<ScrollResponse.Builder<TDocument>> op,
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		setupSearchResponseDeserializer(op, tDocumentDeserializer);
+    protected static <TDocument> void setupScrollResponseDeserializer(
+        ObjectDeserializer<ScrollResponse.Builder<TDocument>> op,
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
+        setupSearchResponseDeserializer(op, tDocumentDeserializer);
 
-	}
+    }
 
 }

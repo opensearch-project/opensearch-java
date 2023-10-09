@@ -32,114 +32,113 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StringStatsAggregation
 
 @JsonpDeserializable
 public class StringStatsAggregation extends MetricAggregationBase implements AggregationVariant {
-	@Nullable
-	private final Boolean showDistribution;
+    @Nullable
+    private final Boolean showDistribution;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private StringStatsAggregation(Builder builder) {
-		super(builder);
+    private StringStatsAggregation(Builder builder) {
+        super(builder);
 
-		this.showDistribution = builder.showDistribution;
+        this.showDistribution = builder.showDistribution;
 
-	}
+    }
 
-	public static StringStatsAggregation of(Function<Builder, ObjectBuilder<StringStatsAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StringStatsAggregation of(Function<Builder, ObjectBuilder<StringStatsAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.StringStats;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.StringStats;
+    }
 
-	/**
-	 * API name: {@code show_distribution}
-	 */
-	@Nullable
-	public final Boolean showDistribution() {
-		return this.showDistribution;
-	}
+    /**
+     * API name: {@code show_distribution}
+     */
+    @Nullable
+    public final Boolean showDistribution() {
+        return this.showDistribution;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.showDistribution != null) {
-			generator.writeKey("show_distribution");
-			generator.write(this.showDistribution);
+        super.serializeInternal(generator, mapper);
+        if (this.showDistribution != null) {
+            generator.writeKey("show_distribution");
+            generator.write(this.showDistribution);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StringStatsAggregation}.
-	 */
+    /**
+     * Builder for {@link StringStatsAggregation}.
+     */
 
-	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<StringStatsAggregation> {
-		@Nullable
-		private Boolean showDistribution;
+    public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<StringStatsAggregation> {
+        @Nullable
+        private Boolean showDistribution;
 
-		/**
-		 * API name: {@code show_distribution}
-		 */
-		public final Builder showDistribution(@Nullable Boolean value) {
-			this.showDistribution = value;
-			return this;
-		}
+        /**
+         * API name: {@code show_distribution}
+         */
+        public final Builder showDistribution(@Nullable Boolean value) {
+            this.showDistribution = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StringStatsAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StringStatsAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link StringStatsAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StringStatsAggregation build() {
+            _checkSingleUse();
 
-			return new StringStatsAggregation(this);
-		}
-	}
+            return new StringStatsAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link StringStatsAggregation}
-	 */
-	public static final JsonpDeserializer<StringStatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StringStatsAggregation::setupStringStatsAggregationDeserializer);
+    /**
+     * Json deserializer for {@link StringStatsAggregation}
+     */
+    public static final JsonpDeserializer<StringStatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StringStatsAggregation::setupStringStatsAggregationDeserializer
+    );
 
-	protected static void setupStringStatsAggregationDeserializer(
-			ObjectDeserializer<StringStatsAggregation.Builder> op) {
-		setupMetricAggregationBaseDeserializer(op);
-		op.add(Builder::showDistribution, JsonpDeserializer.booleanDeserializer(), "show_distribution");
+    protected static void setupStringStatsAggregationDeserializer(ObjectDeserializer<StringStatsAggregation.Builder> op) {
+        setupMetricAggregationBaseDeserializer(op);
+        op.add(Builder::showDistribution, JsonpDeserializer.booleanDeserializer(), "show_distribution");
 
-	}
+    }
 
 }

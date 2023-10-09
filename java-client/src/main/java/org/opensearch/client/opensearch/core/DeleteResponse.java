@@ -32,69 +32,67 @@
 
 package org.opensearch.client.opensearch.core;
 
-import org.opensearch.client.opensearch._types.WriteResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.WriteResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _global.delete.Response
 
-
 @JsonpDeserializable
 public class DeleteResponse extends WriteResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DeleteResponse(Builder builder) {
-		super(builder);
+    private DeleteResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DeleteResponse of(Function<Builder, ObjectBuilder<DeleteResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DeleteResponse of(Function<Builder, ObjectBuilder<DeleteResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DeleteResponse}.
-	 */
+    /**
+     * Builder for {@link DeleteResponse}.
+     */
 
-	public static class Builder extends WriteResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DeleteResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DeleteResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeleteResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DeleteResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DeleteResponse build() {
+            _checkSingleUse();
 
-			return new DeleteResponse(this);
-		}
-	}
+            return new DeleteResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DeleteResponse}
-	 */
-	public static final JsonpDeserializer<DeleteResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DeleteResponse::setupDeleteResponseDeserializer);
+    /**
+     * Json deserializer for {@link DeleteResponse}
+     */
+    public static final JsonpDeserializer<DeleteResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeleteResponse::setupDeleteResponseDeserializer
+    );
 
-	protected static void setupDeleteResponseDeserializer(ObjectDeserializer<DeleteResponse.Builder> op) {
-		WriteResponseBase.setupWriteResponseBaseDeserializer(op);
+    protected static void setupDeleteResponseDeserializer(ObjectDeserializer<DeleteResponse.Builder> op) {
+        WriteResponseBase.setupWriteResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

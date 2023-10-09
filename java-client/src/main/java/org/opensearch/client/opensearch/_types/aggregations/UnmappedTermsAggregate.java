@@ -32,13 +32,12 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.UnmappedTermsAggregate
 
@@ -49,65 +48,64 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class UnmappedTermsAggregate extends TermsAggregateBase<Void> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private UnmappedTermsAggregate(Builder builder) {
-		super(builder);
+    private UnmappedTermsAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static UnmappedTermsAggregate of(Function<Builder, ObjectBuilder<UnmappedTermsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static UnmappedTermsAggregate of(Function<Builder, ObjectBuilder<UnmappedTermsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Umterms;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Umterms;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link UnmappedTermsAggregate}.
-	 */
+    /**
+     * Builder for {@link UnmappedTermsAggregate}.
+     */
 
-	public static class Builder extends TermsAggregateBase.AbstractBuilder<Void, Builder>
-			implements
-				ObjectBuilder<UnmappedTermsAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends TermsAggregateBase.AbstractBuilder<Void, Builder> implements ObjectBuilder<UnmappedTermsAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link UnmappedTermsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public UnmappedTermsAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link UnmappedTermsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public UnmappedTermsAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new UnmappedTermsAggregate(this);
-		}
-	}
+            return new UnmappedTermsAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link UnmappedTermsAggregate}
-	 */
-	public static final JsonpDeserializer<UnmappedTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UnmappedTermsAggregate::setupUnmappedTermsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link UnmappedTermsAggregate}
+     */
+    public static final JsonpDeserializer<UnmappedTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        UnmappedTermsAggregate::setupUnmappedTermsAggregateDeserializer
+    );
 
-	protected static void setupUnmappedTermsAggregateDeserializer(
-			ObjectDeserializer<UnmappedTermsAggregate.Builder> op) {
-		setupTermsAggregateBaseDeserializer(op, JsonpDeserializer.voidDeserializer());
+    protected static void setupUnmappedTermsAggregateDeserializer(ObjectDeserializer<UnmappedTermsAggregate.Builder> op) {
+        setupTermsAggregateBaseDeserializer(op, JsonpDeserializer.voidDeserializer());
 
-	}
+    }
 
 }

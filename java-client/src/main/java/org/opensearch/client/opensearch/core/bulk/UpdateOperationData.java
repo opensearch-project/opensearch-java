@@ -8,8 +8,8 @@
 
 package org.opensearch.client.opensearch.core.bulk;
 
+import jakarta.json.stream.JsonGenerator;
 import javax.annotation.Nullable;
-
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
@@ -17,18 +17,16 @@ import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ObjectBuilder;
 
-import jakarta.json.stream.JsonGenerator;
-
 public class UpdateOperationData<TDocument> implements JsonpSerializable {
     @Nullable
     private final TDocument document;
 
     @Nullable
     private final Boolean docAsUpsert;
-    
+
     @Nullable
     private final TDocument upsert;
-    
+
     @Nullable
     private final Script script;
 
@@ -77,9 +75,9 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
      * Builder for {@link UpdateOperationData}.
      */
     public static class Builder<TDocument> extends BulkOperationBase.AbstractBuilder<Builder<TDocument>>
-            implements
-                ObjectBuilder<UpdateOperationData<TDocument>> {
-        
+        implements
+            ObjectBuilder<UpdateOperationData<TDocument>> {
+
         @Nullable
         private TDocument document;
 
@@ -92,7 +90,6 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
         @Nullable
         private TDocument upsert;
 
-
         @Nullable
         private Script script;
 
@@ -103,7 +100,6 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
             this.document = value;
             return this;
         }
-
 
         /**
          * API name: {@code docAsUpsert}

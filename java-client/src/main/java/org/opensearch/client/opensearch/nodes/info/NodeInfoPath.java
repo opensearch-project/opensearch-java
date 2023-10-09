@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,207 +45,205 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoPath
 
 @JsonpDeserializable
 public class NodeInfoPath implements JsonpSerializable {
-	private final String logs;
+    private final String logs;
 
-	private final String home;
+    private final String home;
 
-	@Nullable
-	private final List<String> repo;
+    @Nullable
+    private final List<String> repo;
 
-	private final List<String> data;
+    private final List<String> data;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoPath(Builder builder) {
+    private NodeInfoPath(Builder builder) {
 
-		this.logs = ApiTypeHelper.requireNonNull(builder.logs, this, "logs");
-		this.home = ApiTypeHelper.requireNonNull(builder.home, this, "home");
-		this.repo = ApiTypeHelper.unmodifiable(builder.repo);
-		this.data = ApiTypeHelper.unmodifiable(builder.data);
+        this.logs = ApiTypeHelper.requireNonNull(builder.logs, this, "logs");
+        this.home = ApiTypeHelper.requireNonNull(builder.home, this, "home");
+        this.repo = ApiTypeHelper.unmodifiable(builder.repo);
+        this.data = ApiTypeHelper.unmodifiable(builder.data);
 
-	}
+    }
 
-	public static NodeInfoPath of(Function<Builder, ObjectBuilder<NodeInfoPath>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoPath of(Function<Builder, ObjectBuilder<NodeInfoPath>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code logs}
-	 */
-	public final String logs() {
-		return this.logs;
-	}
+    /**
+     * Required - API name: {@code logs}
+     */
+    public final String logs() {
+        return this.logs;
+    }
 
-	/**
-	 * Required - API name: {@code home}
-	 */
-	public final String home() {
-		return this.home;
-	}
+    /**
+     * Required - API name: {@code home}
+     */
+    public final String home() {
+        return this.home;
+    }
 
-	/**
-	 * API name: {@code repo}
-	 */
-	public final List<String> repo() {
-		return this.repo;
-	}
+    /**
+     * API name: {@code repo}
+     */
+    public final List<String> repo() {
+        return this.repo;
+    }
 
-	/**
-	 * API name: {@code data}
-	 */
-	public final List<String> data() {
-		return this.data;
-	}
+    /**
+     * API name: {@code data}
+     */
+    public final List<String> data() {
+        return this.data;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("logs");
-		generator.write(this.logs);
+        generator.writeKey("logs");
+        generator.write(this.logs);
 
-		generator.writeKey("home");
-		generator.write(this.home);
+        generator.writeKey("home");
+        generator.write(this.home);
 
-		if (ApiTypeHelper.isDefined(this.repo)) {
-			generator.writeKey("repo");
-			generator.writeStartArray();
-			for (String item0 : this.repo) {
-				generator.write(item0);
+        if (ApiTypeHelper.isDefined(this.repo)) {
+            generator.writeKey("repo");
+            generator.writeStartArray();
+            for (String item0 : this.repo) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (ApiTypeHelper.isDefined(this.data)) {
-			generator.writeKey("data");
-			generator.writeStartArray();
-			for (String item0 : this.data) {
-				generator.write(item0);
+        }
+        if (ApiTypeHelper.isDefined(this.data)) {
+            generator.writeKey("data");
+            generator.writeStartArray();
+            for (String item0 : this.data) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoPath}.
-	 */
+    /**
+     * Builder for {@link NodeInfoPath}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoPath> {
-		private String logs;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoPath> {
+        private String logs;
 
-		private String home;
+        private String home;
 
-		private List<String> repo;
+        private List<String> repo;
 
-		@Nullable
-		private List<String> data;
+        @Nullable
+        private List<String> data;
 
-		/**
-		 * Required - API name: {@code logs}
-		 */
-		public final Builder logs(String value) {
-			this.logs = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code logs}
+         */
+        public final Builder logs(String value) {
+            this.logs = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code home}
-		 */
-		public final Builder home(String value) {
-			this.home = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code home}
+         */
+        public final Builder home(String value) {
+            this.home = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code repo}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>repo</code>.
-		 */
-		public final Builder repo(List<String> list) {
-			this.repo = _listAddAll(this.repo, list);
-			return this;
-		}
+        /**
+         * API name: {@code repo}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>repo</code>.
+         */
+        public final Builder repo(List<String> list) {
+            this.repo = _listAddAll(this.repo, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code repo}
-		 * <p>
-		 * Adds one or more values to <code>repo</code>.
-		 */
-		public final Builder repo(String value, String... values) {
-			this.repo = _listAdd(this.repo, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code repo}
+         * <p>
+         * Adds one or more values to <code>repo</code>.
+         */
+        public final Builder repo(String value, String... values) {
+            this.repo = _listAdd(this.repo, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code data}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>data</code>.
-		 */
-		public final Builder data(List<String> list) {
-			this.data = _listAddAll(this.data, list);
-			return this;
-		}
+        /**
+         * API name: {@code data}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>data</code>.
+         */
+        public final Builder data(List<String> list) {
+            this.data = _listAddAll(this.data, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code data}
-		 * <p>
-		 * Adds one or more values to <code>data</code>.
-		 */
-		public final Builder data(String value, String... values) {
-			this.data = _listAdd(this.data, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code data}
+         * <p>
+         * Adds one or more values to <code>data</code>.
+         */
+        public final Builder data(String value, String... values) {
+            this.data = _listAdd(this.data, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeInfoPath}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoPath build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoPath}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoPath build() {
+            _checkSingleUse();
 
-			return new NodeInfoPath(this);
-		}
-	}
+            return new NodeInfoPath(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoPath}
-	 */
-	public static final JsonpDeserializer<NodeInfoPath> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoPath::setupNodeInfoPathDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoPath}
+     */
+    public static final JsonpDeserializer<NodeInfoPath> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoPath::setupNodeInfoPathDeserializer
+    );
 
-	protected static void setupNodeInfoPathDeserializer(ObjectDeserializer<NodeInfoPath.Builder> op) {
+    protected static void setupNodeInfoPathDeserializer(ObjectDeserializer<NodeInfoPath.Builder> op) {
 
-		op.add(Builder::logs, JsonpDeserializer.stringDeserializer(), "logs");
-		op.add(Builder::home, JsonpDeserializer.stringDeserializer(), "home");
-		op.add(Builder::repo, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "repo");
-		op.add(Builder::data, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "data");
+        op.add(Builder::logs, JsonpDeserializer.stringDeserializer(), "logs");
+        op.add(Builder::home, JsonpDeserializer.stringDeserializer(), "home");
+        op.add(Builder::repo, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "repo");
+        op.add(Builder::data, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "data");
 
-	}
+    }
 
 }

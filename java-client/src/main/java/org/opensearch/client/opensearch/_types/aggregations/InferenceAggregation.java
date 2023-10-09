@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,139 +42,135 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceAggregation
 
-
 @JsonpDeserializable
 public class InferenceAggregation extends PipelineAggregationBase implements AggregationVariant {
-	private final String modelId;
+    private final String modelId;
 
-	@Nullable
-	private final InferenceConfig inferenceConfig;
+    @Nullable
+    private final InferenceConfig inferenceConfig;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private InferenceAggregation(Builder builder) {
-		super(builder);
+    private InferenceAggregation(Builder builder) {
+        super(builder);
 
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.inferenceConfig = builder.inferenceConfig;
+        this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+        this.inferenceConfig = builder.inferenceConfig;
 
-	}
+    }
 
-	public static InferenceAggregation of(Function<Builder, ObjectBuilder<InferenceAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static InferenceAggregation of(Function<Builder, ObjectBuilder<InferenceAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Inference;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.Inference;
+    }
 
-	/**
-	 * Required - API name: {@code model_id}
-	 */
-	public final String modelId() {
-		return this.modelId;
-	}
+    /**
+     * Required - API name: {@code model_id}
+     */
+    public final String modelId() {
+        return this.modelId;
+    }
 
-	/**
-	 * API name: {@code inference_config}
-	 */
-	@Nullable
-	public final InferenceConfig inferenceConfig() {
-		return this.inferenceConfig;
-	}
+    /**
+     * API name: {@code inference_config}
+     */
+    @Nullable
+    public final InferenceConfig inferenceConfig() {
+        return this.inferenceConfig;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("model_id");
-		generator.write(this.modelId);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("model_id");
+        generator.write(this.modelId);
 
-		if (this.inferenceConfig != null) {
-			generator.writeKey("inference_config");
-			this.inferenceConfig.serialize(generator, mapper);
+        if (this.inferenceConfig != null) {
+            generator.writeKey("inference_config");
+            this.inferenceConfig.serialize(generator, mapper);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link InferenceAggregation}.
-	 */
+    /**
+     * Builder for {@link InferenceAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<InferenceAggregation> {
-		private String modelId;
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<InferenceAggregation> {
+        private String modelId;
 
-		@Nullable
-		private InferenceConfig inferenceConfig;
+        @Nullable
+        private InferenceConfig inferenceConfig;
 
-		/**
-		 * Required - API name: {@code model_id}
-		 */
-		public final Builder modelId(String value) {
-			this.modelId = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code model_id}
+         */
+        public final Builder modelId(String value) {
+            this.modelId = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code inference_config}
-		 */
-		public final Builder inferenceConfig(@Nullable InferenceConfig value) {
-			this.inferenceConfig = value;
-			return this;
-		}
+        /**
+         * API name: {@code inference_config}
+         */
+        public final Builder inferenceConfig(@Nullable InferenceConfig value) {
+            this.inferenceConfig = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code inference_config}
-		 */
-		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
-			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
-		}
+        /**
+         * API name: {@code inference_config}
+         */
+        public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+            return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link InferenceAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public InferenceAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link InferenceAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public InferenceAggregation build() {
+            _checkSingleUse();
 
-			return new InferenceAggregation(this);
-		}
-	}
+            return new InferenceAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link InferenceAggregation}
-	 */
-	public static final JsonpDeserializer<InferenceAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InferenceAggregation::setupInferenceAggregationDeserializer);
+    /**
+     * Json deserializer for {@link InferenceAggregation}
+     */
+    public static final JsonpDeserializer<InferenceAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        InferenceAggregation::setupInferenceAggregationDeserializer
+    );
 
-	protected static void setupInferenceAggregationDeserializer(ObjectDeserializer<InferenceAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
-		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-		op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
+    protected static void setupInferenceAggregationDeserializer(ObjectDeserializer<InferenceAggregation.Builder> op) {
+        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+        op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
+        op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
 
-	}
+    }
 
 }

@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,111 +43,109 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SimpleAnalyzer
 
-
 @JsonpDeserializable
 public class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable {
-	@Nullable
-	private final String version;
+    @Nullable
+    private final String version;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SimpleAnalyzer(Builder builder) {
+    private SimpleAnalyzer(Builder builder) {
 
-		this.version = builder.version;
+        this.version = builder.version;
 
-	}
+    }
 
-	public static SimpleAnalyzer of(Function<Builder, ObjectBuilder<SimpleAnalyzer>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SimpleAnalyzer of(Function<Builder, ObjectBuilder<SimpleAnalyzer>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Analyzer variant kind.
-	 */
-	@Override
-	public Analyzer.Kind _analyzerKind() {
-		return Analyzer.Kind.Simple;
-	}
+    /**
+     * Analyzer variant kind.
+     */
+    @Override
+    public Analyzer.Kind _analyzerKind() {
+        return Analyzer.Kind.Simple;
+    }
 
-	/**
-	 * API name: {@code version}
-	 */
-	@Nullable
-	public final String version() {
-		return this.version;
-	}
+    /**
+     * API name: {@code version}
+     */
+    @Nullable
+    public final String version() {
+        return this.version;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "simple");
+        generator.write("type", "simple");
 
-		if (this.version != null) {
-			generator.writeKey("version");
-			generator.write(this.version);
+        if (this.version != null) {
+            generator.writeKey("version");
+            generator.write(this.version);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SimpleAnalyzer}.
-	 */
+    /**
+     * Builder for {@link SimpleAnalyzer}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimpleAnalyzer> {
-		@Nullable
-		private String version;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimpleAnalyzer> {
+        @Nullable
+        private String version;
 
-		/**
-		 * API name: {@code version}
-		 */
-		public final Builder version(@Nullable String value) {
-			this.version = value;
-			return this;
-		}
+        /**
+         * API name: {@code version}
+         */
+        public final Builder version(@Nullable String value) {
+            this.version = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SimpleAnalyzer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SimpleAnalyzer build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SimpleAnalyzer}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SimpleAnalyzer build() {
+            _checkSingleUse();
 
-			return new SimpleAnalyzer(this);
-		}
-	}
+            return new SimpleAnalyzer(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SimpleAnalyzer}
-	 */
-	public static final JsonpDeserializer<SimpleAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SimpleAnalyzer::setupSimpleAnalyzerDeserializer);
+    /**
+     * Json deserializer for {@link SimpleAnalyzer}
+     */
+    public static final JsonpDeserializer<SimpleAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SimpleAnalyzer::setupSimpleAnalyzerDeserializer
+    );
 
-	protected static void setupSimpleAnalyzerDeserializer(ObjectDeserializer<SimpleAnalyzer.Builder> op) {
+    protected static void setupSimpleAnalyzerDeserializer(ObjectDeserializer<SimpleAnalyzer.Builder> op) {
 
-		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+        op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

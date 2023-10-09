@@ -32,146 +32,141 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.CorePropertyBase
 
-
-
 public abstract class CorePropertyBase extends PropertyBase {
-	private final List<String> copyTo;
+    private final List<String> copyTo;
 
-	@Nullable
-	private final String similarity;
+    @Nullable
+    private final String similarity;
 
-	@Nullable
-	private final Boolean store;
+    @Nullable
+    private final Boolean store;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected CorePropertyBase(AbstractBuilder<?> builder) {
-		super(builder);
+    protected CorePropertyBase(AbstractBuilder<?> builder) {
+        super(builder);
 
-		this.copyTo = ApiTypeHelper.unmodifiable(builder.copyTo);
-		this.similarity = builder.similarity;
-		this.store = builder.store;
+        this.copyTo = ApiTypeHelper.unmodifiable(builder.copyTo);
+        this.similarity = builder.similarity;
+        this.store = builder.store;
 
-	}
+    }
 
-	/**
-	 * API name: {@code copy_to}
-	 */
-	public final List<String> copyTo() {
-		return this.copyTo;
-	}
+    /**
+     * API name: {@code copy_to}
+     */
+    public final List<String> copyTo() {
+        return this.copyTo;
+    }
 
-	/**
-	 * API name: {@code similarity}
-	 */
-	@Nullable
-	public final String similarity() {
-		return this.similarity;
-	}
+    /**
+     * API name: {@code similarity}
+     */
+    @Nullable
+    public final String similarity() {
+        return this.similarity;
+    }
 
-	/**
-	 * API name: {@code store}
-	 */
-	@Nullable
-	public final Boolean store() {
-		return this.store;
-	}
+    /**
+     * API name: {@code store}
+     */
+    @Nullable
+    public final Boolean store() {
+        return this.store;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.copyTo)) {
-			generator.writeKey("copy_to");
-			generator.writeStartArray();
-			for (String item0 : this.copyTo) {
-				generator.write(item0);
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.copyTo)) {
+            generator.writeKey("copy_to");
+            generator.writeStartArray();
+            for (String item0 : this.copyTo) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.similarity != null) {
-			generator.writeKey("similarity");
-			generator.write(this.similarity);
+        }
+        if (this.similarity != null) {
+            generator.writeKey("similarity");
+            generator.write(this.similarity);
 
-		}
-		if (this.store != null) {
-			generator.writeKey("store");
-			generator.write(this.store);
+        }
+        if (this.store != null) {
+            generator.writeKey("store");
+            generator.write(this.store);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				PropertyBase.AbstractBuilder<BuilderT> {
-		@Nullable
-		private List<String> copyTo;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends PropertyBase.AbstractBuilder<
+        BuilderT> {
+        @Nullable
+        private List<String> copyTo;
 
-		@Nullable
-		private String similarity;
+        @Nullable
+        private String similarity;
 
-		@Nullable
-		private Boolean store;
+        @Nullable
+        private Boolean store;
 
-		/**
-		 * API name: {@code copy_to}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>copyTo</code>.
-		 */
-		public final BuilderT copyTo(List<String> list) {
-			this.copyTo = _listAddAll(this.copyTo, list);
-			return self();
-		}
+        /**
+         * API name: {@code copy_to}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>copyTo</code>.
+         */
+        public final BuilderT copyTo(List<String> list) {
+            this.copyTo = _listAddAll(this.copyTo, list);
+            return self();
+        }
 
-		/**
-		 * API name: {@code copy_to}
-		 * <p>
-		 * Adds one or more values to <code>copyTo</code>.
-		 */
-		public final BuilderT copyTo(String value, String... values) {
-			this.copyTo = _listAdd(this.copyTo, value, values);
-			return self();
-		}
+        /**
+         * API name: {@code copy_to}
+         * <p>
+         * Adds one or more values to <code>copyTo</code>.
+         */
+        public final BuilderT copyTo(String value, String... values) {
+            this.copyTo = _listAdd(this.copyTo, value, values);
+            return self();
+        }
 
-		/**
-		 * API name: {@code similarity}
-		 */
-		public final BuilderT similarity(@Nullable String value) {
-			this.similarity = value;
-			return self();
-		}
+        /**
+         * API name: {@code similarity}
+         */
+        public final BuilderT similarity(@Nullable String value) {
+            this.similarity = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code store}
-		 */
-		public final BuilderT store(@Nullable Boolean value) {
-			this.store = value;
-			return self();
-		}
+        /**
+         * API name: {@code store}
+         */
+        public final BuilderT store(@Nullable Boolean value) {
+            this.store = value;
+            return self();
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupCorePropertyBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		PropertyBase.setupPropertyBaseDeserializer(op);
-		op.add(AbstractBuilder::copyTo, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"copy_to");
-		op.add(AbstractBuilder::similarity, JsonpDeserializer.stringDeserializer(), "similarity");
-		op.add(AbstractBuilder::store, JsonpDeserializer.booleanDeserializer(), "store");
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupCorePropertyBaseDeserializer(ObjectDeserializer<BuilderT> op) {
+        PropertyBase.setupPropertyBaseDeserializer(op);
+        op.add(AbstractBuilder::copyTo, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "copy_to");
+        op.add(AbstractBuilder::similarity, JsonpDeserializer.stringDeserializer(), "similarity");
+        op.add(AbstractBuilder::store, JsonpDeserializer.booleanDeserializer(), "store");
 
-	}
+    }
 
 }

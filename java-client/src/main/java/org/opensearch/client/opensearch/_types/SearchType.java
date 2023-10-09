@@ -37,30 +37,29 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum SearchType implements JsonEnum {
-	/**
-	 * Documents are scored using local term and document frequencies for the shard.
-	 * This is usually faster but less accurate.
-	 */
-	QueryThenFetch("query_then_fetch"),
+    /**
+     * Documents are scored using local term and document frequencies for the shard.
+     * This is usually faster but less accurate.
+     */
+    QueryThenFetch("query_then_fetch"),
 
-	/**
-	 * Documents are scored using global term and document frequencies across all
-	 * shards. This is usually slower but more accurate.
-	 */
-	DfsQueryThenFetch("dfs_query_then_fetch"),
+    /**
+     * Documents are scored using global term and document frequencies across all
+     * shards. This is usually slower but more accurate.
+     */
+    DfsQueryThenFetch("dfs_query_then_fetch"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	SearchType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    SearchType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<SearchType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SearchType.values());
+    public static final JsonEnum.Deserializer<SearchType> _DESERIALIZER = new JsonEnum.Deserializer<>(SearchType.values());
 }

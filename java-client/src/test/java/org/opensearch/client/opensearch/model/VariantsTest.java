@@ -32,14 +32,14 @@
 
 package org.opensearch.client.opensearch.model;
 
+import org.junit.Test;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch._types.query_dsl.QueryBuilders;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.indices.GetMappingResponse;
-import org.opensearch.client.json.JsonData;
-import org.junit.Test;
 
 public class VariantsTest extends ModelTestCase {
 
@@ -49,19 +49,11 @@ public class VariantsTest extends ModelTestCase {
         // intervals is a single key dictionary
         // query has container properties
 
-        Query q = Query.of(_0 -> _0
-            .intervals(_1 -> _1
-                .queryName("my-query")
-                .field("a_field")
-                .anyOf(_2 -> _2
-                    .intervals(_3 -> _3
-                        .match(
-                            _5 -> _5
-                                .query("match-query")
-                                .analyzer("lowercase")
-                            )
-                        )
-                )
+        Query q = Query.of(
+            _0 -> _0.intervals(
+                _1 -> _1.queryName("my-query")
+                    .field("a_field")
+                    .anyOf(_2 -> _2.intervals(_3 -> _3.match(_5 -> _5.query("match-query").analyzer("lowercase"))))
             )
         );
 
@@ -73,8 +65,11 @@ public class VariantsTest extends ModelTestCase {
 
         String json = toJson(q);
 
-        assertEquals("{\"intervals\":{\"a_field\":{\"_name\":\"my-query\"," +
-            "\"any_of\":{\"intervals\":[{\"match\":{\"analyzer\":\"lowercase\",\"query\":\"match-query\"}}]}}}}", json);
+        assertEquals(
+            "{\"intervals\":{\"a_field\":{\"_name\":\"my-query\","
+                + "\"any_of\":{\"intervals\":[{\"match\":{\"analyzer\":\"lowercase\",\"query\":\"match-query\"}}]}}}}",
+            json
+        );
 
         Query q2 = fromJson(json, Query.class);
         assertEquals(json, toJson(q2));
@@ -89,21 +84,10 @@ public class VariantsTest extends ModelTestCase {
 
     @Test
     public void testInternalTag() {
-        String expected = "{\"type\":\"ip\",\"fields\":{\"a-field\":{\"type\":\"float\",\"coerce\":true}},\"boost\":1" +
-            ".0,\"index\":true}";
+        String expected = "{\"type\":\"ip\",\"fields\":{\"a-field\":{\"type\":\"float\",\"coerce\":true}},\"boost\":1"
+            + ".0,\"index\":true}";
 
-        Property p = Property.of(_0 -> _0
-            .ip(_1 -> _1
-                .index(true)
-                .boost(1.0)
-                .fields(
-                    "a-field", _3 -> _3
-                    .float_(_4 -> _4
-                        .coerce(true)
-                    )
-                )
-            )
-        );
+        Property p = Property.of(_0 -> _0.ip(_1 -> _1.index(true).boost(1.0).fields("a-field", _3 -> _3.float_(_4 -> _4.coerce(true)))));
 
         assertEquals(expected, toJson(p));
 
@@ -121,7 +105,6 @@ public class VariantsTest extends ModelTestCase {
         assertEquals("{\"exists\":{\"field\":\"foo\"}}", toJson(q));
     }
 
-
     @Test
     public void testNestedTaggedUnionWithDefaultTag() {
 
@@ -132,57 +115,64 @@ public class VariantsTest extends ModelTestCase {
         // Mappings are therefore a hierarchy of internally-tagged unions based on the "type" property
         // with a default "object" tag value if the "type" property is missing.
 
-        String json =
-            "{\n" +
-            "  \"testindex\" : {\n" +
-            "    \"mappings\" : {\n" +
-            "      \"properties\" : {\n" +
-            "        \"id\" : {\n" +
-            "          \"type\" : \"text\",\n" +
-            "          \"fields\" : {\n" +
-            "            \"keyword\" : {\n" +
-            "              \"type\" : \"keyword\",\n" +
-            "              \"ignore_above\" : 256\n" +
-            "            }\n" +
-            "          }\n" +
-            "        },\n" +
-            "        \"name\" : {\n" +
-            "          \"properties\" : {\n" +
-            "            \"first\" : {\n" +
-            "              \"type\" : \"text\",\n" +
-            "              \"fields\" : {\n" +
-            "                \"keyword\" : {\n" +
-            "                  \"type\" : \"keyword\",\n" +
-            "                  \"ignore_above\" : 256\n" +
-            "                }\n" +
-            "              }\n" +
-            "            },\n" +
-            "            \"last\" : {\n" +
-            "              \"type\" : \"text\",\n" +
-            "              \"fields\" : {\n" +
-            "                \"keyword\" : {\n" +
-            "                  \"type\" : \"keyword\",\n" +
-            "                  \"ignore_above\" : 256\n" +
-            "                }\n" +
-            "              }\n" +
-            "            }\n" +
-            "          }\n" +
-            "        }\n" +
-            "      }\n" +
-            "    }\n" +
-            "  }\n" +
-            "}";
+        String json = "{\n"
+            + "  \"testindex\" : {\n"
+            + "    \"mappings\" : {\n"
+            + "      \"properties\" : {\n"
+            + "        \"id\" : {\n"
+            + "          \"type\" : \"text\",\n"
+            + "          \"fields\" : {\n"
+            + "            \"keyword\" : {\n"
+            + "              \"type\" : \"keyword\",\n"
+            + "              \"ignore_above\" : 256\n"
+            + "            }\n"
+            + "          }\n"
+            + "        },\n"
+            + "        \"name\" : {\n"
+            + "          \"properties\" : {\n"
+            + "            \"first\" : {\n"
+            + "              \"type\" : \"text\",\n"
+            + "              \"fields\" : {\n"
+            + "                \"keyword\" : {\n"
+            + "                  \"type\" : \"keyword\",\n"
+            + "                  \"ignore_above\" : 256\n"
+            + "                }\n"
+            + "              }\n"
+            + "            },\n"
+            + "            \"last\" : {\n"
+            + "              \"type\" : \"text\",\n"
+            + "              \"fields\" : {\n"
+            + "                \"keyword\" : {\n"
+            + "                  \"type\" : \"keyword\",\n"
+            + "                  \"ignore_above\" : 256\n"
+            + "                }\n"
+            + "              }\n"
+            + "            }\n"
+            + "          }\n"
+            + "        }\n"
+            + "      }\n"
+            + "    }\n"
+            + "  }\n"
+            + "}";
 
         GetMappingResponse response = fromJson(json, GetMappingResponse.class);
 
         TypeMapping mappings = response.get("testindex").mappings();
         assertTrue(mappings.properties().get("name").isObject());
 
-        assertEquals(256, mappings
-            .properties().get("name").object()
-            .properties().get("first").text()
-            .fields().get("keyword").keyword().
-            ignoreAbove().longValue()
+        assertEquals(
+            256,
+            mappings.properties()
+                .get("name")
+                .object()
+                .properties()
+                .get("first")
+                .text()
+                .fields()
+                .get("keyword")
+                .keyword()
+                .ignoreAbove()
+                .longValue()
         );
 
         assertTrue(mappings.properties().get("id").isText());
@@ -201,10 +191,10 @@ public class VariantsTest extends ModelTestCase {
     @Test
     public void testNestedVariantsWithContainerProperties() {
 
-        SearchRequest search = SearchRequest.of(s -> s
-            .aggregations(
-                "agg1", a -> a
-                    .meta("m1", JsonData.of("m1 value"))
+        SearchRequest search = SearchRequest.of(
+            s -> s.aggregations(
+                "agg1",
+                a -> a.meta("m1", JsonData.of("m1 value"))
                     // Here we can choose any aggregation type, but build() isn't accessible
                     .valueCount(v -> v.field("f"))
                     // Here we can only set container properties (meta and (sub)aggregations) or build()

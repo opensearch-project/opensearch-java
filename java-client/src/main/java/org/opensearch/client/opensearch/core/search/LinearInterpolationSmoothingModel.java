@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,151 +43,150 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _global.search._types.LinearInterpolationSmoothingModel
 
-
 @JsonpDeserializable
 public class LinearInterpolationSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
-	private final double bigramLambda;
+    private final double bigramLambda;
 
-	private final double trigramLambda;
+    private final double trigramLambda;
 
-	private final double unigramLambda;
+    private final double unigramLambda;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private LinearInterpolationSmoothingModel(Builder builder) {
+    private LinearInterpolationSmoothingModel(Builder builder) {
 
-		this.bigramLambda = ApiTypeHelper.requireNonNull(builder.bigramLambda, this, "bigramLambda");
-		this.trigramLambda = ApiTypeHelper.requireNonNull(builder.trigramLambda, this, "trigramLambda");
-		this.unigramLambda = ApiTypeHelper.requireNonNull(builder.unigramLambda, this, "unigramLambda");
+        this.bigramLambda = ApiTypeHelper.requireNonNull(builder.bigramLambda, this, "bigramLambda");
+        this.trigramLambda = ApiTypeHelper.requireNonNull(builder.trigramLambda, this, "trigramLambda");
+        this.unigramLambda = ApiTypeHelper.requireNonNull(builder.unigramLambda, this, "unigramLambda");
 
-	}
+    }
 
-	public static LinearInterpolationSmoothingModel of(
-			Function<Builder, ObjectBuilder<LinearInterpolationSmoothingModel>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static LinearInterpolationSmoothingModel of(Function<Builder, ObjectBuilder<LinearInterpolationSmoothingModel>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * SmoothingModel variant kind.
-	 */
-	@Override
-	public SmoothingModel.Kind _smoothingModelKind() {
-		return SmoothingModel.Kind.LinearInterpolation;
-	}
+    /**
+     * SmoothingModel variant kind.
+     */
+    @Override
+    public SmoothingModel.Kind _smoothingModelKind() {
+        return SmoothingModel.Kind.LinearInterpolation;
+    }
 
-	/**
-	 * Required - API name: {@code bigram_lambda}
-	 */
-	public final double bigramLambda() {
-		return this.bigramLambda;
-	}
+    /**
+     * Required - API name: {@code bigram_lambda}
+     */
+    public final double bigramLambda() {
+        return this.bigramLambda;
+    }
 
-	/**
-	 * Required - API name: {@code trigram_lambda}
-	 */
-	public final double trigramLambda() {
-		return this.trigramLambda;
-	}
+    /**
+     * Required - API name: {@code trigram_lambda}
+     */
+    public final double trigramLambda() {
+        return this.trigramLambda;
+    }
 
-	/**
-	 * Required - API name: {@code unigram_lambda}
-	 */
-	public final double unigramLambda() {
-		return this.unigramLambda;
-	}
+    /**
+     * Required - API name: {@code unigram_lambda}
+     */
+    public final double unigramLambda() {
+        return this.unigramLambda;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("bigram_lambda");
-		generator.write(this.bigramLambda);
+        generator.writeKey("bigram_lambda");
+        generator.write(this.bigramLambda);
 
-		generator.writeKey("trigram_lambda");
-		generator.write(this.trigramLambda);
+        generator.writeKey("trigram_lambda");
+        generator.write(this.trigramLambda);
 
-		generator.writeKey("unigram_lambda");
-		generator.write(this.unigramLambda);
+        generator.writeKey("unigram_lambda");
+        generator.write(this.unigramLambda);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link LinearInterpolationSmoothingModel}.
-	 */
+    /**
+     * Builder for {@link LinearInterpolationSmoothingModel}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LinearInterpolationSmoothingModel> {
-		private Double bigramLambda;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LinearInterpolationSmoothingModel> {
+        private Double bigramLambda;
 
-		private Double trigramLambda;
+        private Double trigramLambda;
 
-		private Double unigramLambda;
+        private Double unigramLambda;
 
-		/**
-		 * Required - API name: {@code bigram_lambda}
-		 */
-		public final Builder bigramLambda(double value) {
-			this.bigramLambda = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code bigram_lambda}
+         */
+        public final Builder bigramLambda(double value) {
+            this.bigramLambda = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code trigram_lambda}
-		 */
-		public final Builder trigramLambda(double value) {
-			this.trigramLambda = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code trigram_lambda}
+         */
+        public final Builder trigramLambda(double value) {
+            this.trigramLambda = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code unigram_lambda}
-		 */
-		public final Builder unigramLambda(double value) {
-			this.unigramLambda = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code unigram_lambda}
+         */
+        public final Builder unigramLambda(double value) {
+            this.unigramLambda = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link LinearInterpolationSmoothingModel}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public LinearInterpolationSmoothingModel build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link LinearInterpolationSmoothingModel}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public LinearInterpolationSmoothingModel build() {
+            _checkSingleUse();
 
-			return new LinearInterpolationSmoothingModel(this);
-		}
-	}
+            return new LinearInterpolationSmoothingModel(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link LinearInterpolationSmoothingModel}
-	 */
-	public static final JsonpDeserializer<LinearInterpolationSmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LinearInterpolationSmoothingModel::setupLinearInterpolationSmoothingModelDeserializer);
+    /**
+     * Json deserializer for {@link LinearInterpolationSmoothingModel}
+     */
+    public static final JsonpDeserializer<LinearInterpolationSmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        LinearInterpolationSmoothingModel::setupLinearInterpolationSmoothingModelDeserializer
+    );
 
-	protected static void setupLinearInterpolationSmoothingModelDeserializer(
-			ObjectDeserializer<LinearInterpolationSmoothingModel.Builder> op) {
+    protected static void setupLinearInterpolationSmoothingModelDeserializer(
+        ObjectDeserializer<LinearInterpolationSmoothingModel.Builder> op
+    ) {
 
-		op.add(Builder::bigramLambda, JsonpDeserializer.doubleDeserializer(), "bigram_lambda");
-		op.add(Builder::trigramLambda, JsonpDeserializer.doubleDeserializer(), "trigram_lambda");
-		op.add(Builder::unigramLambda, JsonpDeserializer.doubleDeserializer(), "unigram_lambda");
+        op.add(Builder::bigramLambda, JsonpDeserializer.doubleDeserializer(), "bigram_lambda");
+        op.add(Builder::trigramLambda, JsonpDeserializer.doubleDeserializer(), "trigram_lambda");
+        op.add(Builder::unigramLambda, JsonpDeserializer.doubleDeserializer(), "unigram_lambda");
 
-	}
+    }
 
 }

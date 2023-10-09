@@ -35,31 +35,29 @@ package org.opensearch.client.opensearch.core.search;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum StringDistance implements JsonEnum {
-	Internal("internal"),
+    Internal("internal"),
 
-	DamerauLevenshtein("damerau_levenshtein"),
+    DamerauLevenshtein("damerau_levenshtein"),
 
-	Levenshtein("levenshtein"),
+    Levenshtein("levenshtein"),
 
-	JaroWinkler("jaro_winkler"),
+    JaroWinkler("jaro_winkler"),
 
-	Ngram("ngram"),
+    Ngram("ngram"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	StringDistance(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    StringDistance(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<StringDistance> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			StringDistance.values());
+    public static final JsonEnum.Deserializer<StringDistance> _DESERIALIZER = new JsonEnum.Deserializer<>(StringDistance.values());
 }

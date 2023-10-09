@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.core.termvectors;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,182 +44,180 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Token
 
-
 @JsonpDeserializable
 public class Token implements JsonpSerializable {
-	@Nullable
-	private final Integer endOffset;
+    @Nullable
+    private final Integer endOffset;
 
-	@Nullable
-	private final String payload;
+    @Nullable
+    private final String payload;
 
-	private final int position;
+    private final int position;
 
-	@Nullable
-	private final Integer startOffset;
+    @Nullable
+    private final Integer startOffset;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private Token(Builder builder) {
+    private Token(Builder builder) {
 
-		this.endOffset = builder.endOffset;
-		this.payload = builder.payload;
-		this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position");
-		this.startOffset = builder.startOffset;
+        this.endOffset = builder.endOffset;
+        this.payload = builder.payload;
+        this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position");
+        this.startOffset = builder.startOffset;
 
-	}
+    }
 
-	public static Token of(Function<Builder, ObjectBuilder<Token>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Token of(Function<Builder, ObjectBuilder<Token>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code end_offset}
-	 */
-	@Nullable
-	public final Integer endOffset() {
-		return this.endOffset;
-	}
+    /**
+     * API name: {@code end_offset}
+     */
+    @Nullable
+    public final Integer endOffset() {
+        return this.endOffset;
+    }
 
-	/**
-	 * API name: {@code payload}
-	 */
-	@Nullable
-	public final String payload() {
-		return this.payload;
-	}
+    /**
+     * API name: {@code payload}
+     */
+    @Nullable
+    public final String payload() {
+        return this.payload;
+    }
 
-	/**
-	 * Required - API name: {@code position}
-	 */
-	public final int position() {
-		return this.position;
-	}
+    /**
+     * Required - API name: {@code position}
+     */
+    public final int position() {
+        return this.position;
+    }
 
-	/**
-	 * API name: {@code start_offset}
-	 */
-	@Nullable
-	public final Integer startOffset() {
-		return this.startOffset;
-	}
+    /**
+     * API name: {@code start_offset}
+     */
+    @Nullable
+    public final Integer startOffset() {
+        return this.startOffset;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.endOffset != null) {
-			generator.writeKey("end_offset");
-			generator.write(this.endOffset);
+        if (this.endOffset != null) {
+            generator.writeKey("end_offset");
+            generator.write(this.endOffset);
 
-		}
-		if (this.payload != null) {
-			generator.writeKey("payload");
-			generator.write(this.payload);
+        }
+        if (this.payload != null) {
+            generator.writeKey("payload");
+            generator.write(this.payload);
 
-		}
-		generator.writeKey("position");
-		generator.write(this.position);
+        }
+        generator.writeKey("position");
+        generator.write(this.position);
 
-		if (this.startOffset != null) {
-			generator.writeKey("start_offset");
-			generator.write(this.startOffset);
+        if (this.startOffset != null) {
+            generator.writeKey("start_offset");
+            generator.write(this.startOffset);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link Token}.
-	 */
+    /**
+     * Builder for {@link Token}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Token> {
-		@Nullable
-		private Integer endOffset;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Token> {
+        @Nullable
+        private Integer endOffset;
 
-		@Nullable
-		private String payload;
+        @Nullable
+        private String payload;
 
-		private Integer position;
+        private Integer position;
 
-		@Nullable
-		private Integer startOffset;
+        @Nullable
+        private Integer startOffset;
 
-		/**
-		 * API name: {@code end_offset}
-		 */
-		public final Builder endOffset(@Nullable Integer value) {
-			this.endOffset = value;
-			return this;
-		}
+        /**
+         * API name: {@code end_offset}
+         */
+        public final Builder endOffset(@Nullable Integer value) {
+            this.endOffset = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code payload}
-		 */
-		public final Builder payload(@Nullable String value) {
-			this.payload = value;
-			return this;
-		}
+        /**
+         * API name: {@code payload}
+         */
+        public final Builder payload(@Nullable String value) {
+            this.payload = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code position}
-		 */
-		public final Builder position(int value) {
-			this.position = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code position}
+         */
+        public final Builder position(int value) {
+            this.position = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code start_offset}
-		 */
-		public final Builder startOffset(@Nullable Integer value) {
-			this.startOffset = value;
-			return this;
-		}
+        /**
+         * API name: {@code start_offset}
+         */
+        public final Builder startOffset(@Nullable Integer value) {
+            this.startOffset = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link Token}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public Token build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link Token}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public Token build() {
+            _checkSingleUse();
 
-			return new Token(this);
-		}
-	}
+            return new Token(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link Token}
-	 */
-	public static final JsonpDeserializer<Token> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Token::setupTokenDeserializer);
+    /**
+     * Json deserializer for {@link Token}
+     */
+    public static final JsonpDeserializer<Token> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        Token::setupTokenDeserializer
+    );
 
-	protected static void setupTokenDeserializer(ObjectDeserializer<Token.Builder> op) {
+    protected static void setupTokenDeserializer(ObjectDeserializer<Token.Builder> op) {
 
-		op.add(Builder::endOffset, JsonpDeserializer.integerDeserializer(), "end_offset");
-		op.add(Builder::payload, JsonpDeserializer.stringDeserializer(), "payload");
-		op.add(Builder::position, JsonpDeserializer.integerDeserializer(), "position");
-		op.add(Builder::startOffset, JsonpDeserializer.integerDeserializer(), "start_offset");
+        op.add(Builder::endOffset, JsonpDeserializer.integerDeserializer(), "end_offset");
+        op.add(Builder::payload, JsonpDeserializer.stringDeserializer(), "payload");
+        op.add(Builder::position, JsonpDeserializer.integerDeserializer(), "position");
+        op.add(Builder::startOffset, JsonpDeserializer.integerDeserializer(), "start_offset");
 
-	}
+    }
 
 }

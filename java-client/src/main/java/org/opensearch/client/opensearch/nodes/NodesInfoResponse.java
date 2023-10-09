@@ -32,157 +32,155 @@
 
 package org.opensearch.client.opensearch.nodes;
 
-import org.opensearch.client.opensearch.nodes.info.NodeInfo;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.nodes.info.NodeInfo;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: nodes.info.Response
 
-
 @JsonpDeserializable
 public class NodesInfoResponse extends NodesResponseBase {
-	private final String clusterName;
+    private final String clusterName;
 
-	private final Map<String, NodeInfo> nodes;
+    private final Map<String, NodeInfo> nodes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodesInfoResponse(Builder builder) {
-		super(builder);
+    private NodesInfoResponse(Builder builder) {
+        super(builder);
 
-		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
-		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+        this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+        this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
-	}
+    }
 
-	public static NodesInfoResponse of(Function<Builder, ObjectBuilder<NodesInfoResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodesInfoResponse of(Function<Builder, ObjectBuilder<NodesInfoResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code cluster_name}
-	 */
-	public final String clusterName() {
-		return this.clusterName;
-	}
+    /**
+     * Required - API name: {@code cluster_name}
+     */
+    public final String clusterName() {
+        return this.clusterName;
+    }
 
-	/**
-	 * Required - API name: {@code nodes}
-	 */
-	public final Map<String, NodeInfo> nodes() {
-		return this.nodes;
-	}
+    /**
+     * Required - API name: {@code nodes}
+     */
+    public final Map<String, NodeInfo> nodes() {
+        return this.nodes;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("cluster_name");
-		generator.write(this.clusterName);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("cluster_name");
+        generator.write(this.clusterName);
 
-		if (ApiTypeHelper.isDefined(this.nodes)) {
-			generator.writeKey("nodes");
-			generator.writeStartObject();
-			for (Map.Entry<String, NodeInfo> item0 : this.nodes.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.nodes)) {
+            generator.writeKey("nodes");
+            generator.writeStartObject();
+            for (Map.Entry<String, NodeInfo> item0 : this.nodes.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodesInfoResponse}.
-	 */
+    /**
+     * Builder for {@link NodesInfoResponse}.
+     */
 
-	public static class Builder extends NodesResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<NodesInfoResponse> {
-		private String clusterName;
+    public static class Builder extends NodesResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<NodesInfoResponse> {
+        private String clusterName;
 
-		private Map<String, NodeInfo> nodes;
+        private Map<String, NodeInfo> nodes;
 
-		/**
-		 * Required - API name: {@code cluster_name}
-		 */
-		public final Builder clusterName(String value) {
-			this.clusterName = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code cluster_name}
+         */
+        public final Builder clusterName(String value) {
+            this.clusterName = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code nodes}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>nodes</code>.
-		 */
-		public final Builder nodes(Map<String, NodeInfo> map) {
-			this.nodes = _mapPutAll(this.nodes, map);
-			return this;
-		}
+        /**
+         * Required - API name: {@code nodes}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>nodes</code>.
+         */
+        public final Builder nodes(Map<String, NodeInfo> map) {
+            this.nodes = _mapPutAll(this.nodes, map);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code nodes}
-		 * <p>
-		 * Adds an entry to <code>nodes</code>.
-		 */
-		public final Builder nodes(String key, NodeInfo value) {
-			this.nodes = _mapPut(this.nodes, key, value);
-			return this;
-		}
+        /**
+         * Required - API name: {@code nodes}
+         * <p>
+         * Adds an entry to <code>nodes</code>.
+         */
+        public final Builder nodes(String key, NodeInfo value) {
+            this.nodes = _mapPut(this.nodes, key, value);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code nodes}
-		 * <p>
-		 * Adds an entry to <code>nodes</code> using a builder lambda.
-		 */
-		public final Builder nodes(String key, Function<NodeInfo.Builder, ObjectBuilder<NodeInfo>> fn) {
-			return nodes(key, fn.apply(new NodeInfo.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code nodes}
+         * <p>
+         * Adds an entry to <code>nodes</code> using a builder lambda.
+         */
+        public final Builder nodes(String key, Function<NodeInfo.Builder, ObjectBuilder<NodeInfo>> fn) {
+            return nodes(key, fn.apply(new NodeInfo.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodesInfoResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodesInfoResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodesInfoResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodesInfoResponse build() {
+            _checkSingleUse();
 
-			return new NodesInfoResponse(this);
-		}
-	}
+            return new NodesInfoResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodesInfoResponse}
-	 */
-	public static final JsonpDeserializer<NodesInfoResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodesInfoResponse::setupNodesInfoResponseDeserializer);
+    /**
+     * Json deserializer for {@link NodesInfoResponse}
+     */
+    public static final JsonpDeserializer<NodesInfoResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodesInfoResponse::setupNodesInfoResponseDeserializer
+    );
 
-	protected static void setupNodesInfoResponseDeserializer(ObjectDeserializer<NodesInfoResponse.Builder> op) {
-		NodesResponseBase.setupNodesResponseBaseDeserializer(op);
-		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeInfo._DESERIALIZER), "nodes");
+    protected static void setupNodesInfoResponseDeserializer(ObjectDeserializer<NodesInfoResponse.Builder> op) {
+        NodesResponseBase.setupNodesResponseBaseDeserializer(op);
+        op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
+        op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeInfo._DESERIALIZER), "nodes");
 
-	}
+    }
 
 }

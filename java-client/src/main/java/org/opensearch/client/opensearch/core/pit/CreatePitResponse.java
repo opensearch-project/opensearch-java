@@ -8,8 +8,8 @@
 
 package org.opensearch.client.opensearch.core.pit;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
-
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -20,9 +20,6 @@ import org.opensearch.client.opensearch._types.ShardStatistics;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-
-import jakarta.json.stream.JsonGenerator;
-
 
 @JsonpDeserializable
 public class CreatePitResponse implements JsonpSerializable {
@@ -142,15 +139,15 @@ public class CreatePitResponse implements JsonpSerializable {
     /**
      * Json deserializer for {@link CreatePitResponse}
      */
-    public static final JsonpDeserializer<CreatePitResponse> _DESERIALIZER = ObjectBuilderDeserializer
-            .lazy(Builder::new, CreatePitResponse::setupCreatePitResponseDeserializer);
+    public static final JsonpDeserializer<CreatePitResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CreatePitResponse::setupCreatePitResponseDeserializer
+    );
 
     protected static void setupCreatePitResponseDeserializer(ObjectDeserializer<CreatePitResponse.Builder> op) {
 
         op.add(Builder::pitId, JsonpDeserializer.stringDeserializer(), "pit_id");
-        op.add(Builder::shards,
-                ShardStatistics._DESERIALIZER,
-                "_shards");
+        op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
         op.add(Builder::creationTime, JsonpDeserializer.longDeserializer(), "creation_time");
 
     }

@@ -32,237 +32,239 @@
 
 package org.opensearch.client.opensearch.core.reindex;
 
-import org.opensearch.client.opensearch._types.OpType;
-import org.opensearch.client.opensearch._types.VersionType;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.OpType;
+import org.opensearch.client.opensearch._types.VersionType;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Destination
 
 @JsonpDeserializable
 public class Destination implements JsonpSerializable {
-	@Nullable
-	private final String index;
+    @Nullable
+    private final String index;
 
-	@Nullable
-	private final OpType opType;
+    @Nullable
+    private final OpType opType;
 
-	@Nullable
-	private final String pipeline;
+    @Nullable
+    private final String pipeline;
 
-	@Nullable
-	private final String routing;
+    @Nullable
+    private final String routing;
 
-	@Nullable
-	private final VersionType versionType;
+    @Nullable
+    private final VersionType versionType;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private Destination(Builder builder) {
+    private Destination(Builder builder) {
 
-		this.index = builder.index;
-		this.opType = builder.opType;
-		this.pipeline = builder.pipeline;
-		this.routing = builder.routing;
-		this.versionType = builder.versionType;
+        this.index = builder.index;
+        this.opType = builder.opType;
+        this.pipeline = builder.pipeline;
+        this.routing = builder.routing;
+        this.versionType = builder.versionType;
 
-	}
+    }
 
-	public static Destination of(Function<Builder, ObjectBuilder<Destination>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Destination of(Function<Builder, ObjectBuilder<Destination>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * The destination index for the transform. The mappings of the destination
-	 * index are deduced based on the source fields when possible. If alternate
-	 * mappings are required, use the Create index API prior to starting the
-	 * transform.
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public final String index() {
-		return this.index;
-	}
+    /**
+     * The destination index for the transform. The mappings of the destination
+     * index are deduced based on the source fields when possible. If alternate
+     * mappings are required, use the Create index API prior to starting the
+     * transform.
+     * <p>
+     * API name: {@code index}
+     */
+    @Nullable
+    public final String index() {
+        return this.index;
+    }
 
-	/**
-	 * API name: {@code op_type}
-	 */
-	@Nullable
-	public final OpType opType() {
-		return this.opType;
-	}
+    /**
+     * API name: {@code op_type}
+     */
+    @Nullable
+    public final OpType opType() {
+        return this.opType;
+    }
 
-	/**
-	 * The unique identifier for an ingest pipeline.
-	 * <p>
-	 * API name: {@code pipeline}
-	 */
-	@Nullable
-	public final String pipeline() {
-		return this.pipeline;
-	}
+    /**
+     * The unique identifier for an ingest pipeline.
+     * <p>
+     * API name: {@code pipeline}
+     */
+    @Nullable
+    public final String pipeline() {
+        return this.pipeline;
+    }
 
-	/**
-	 * API name: {@code routing}
-	 */
-	@Nullable
-	public final String routing() {
-		return this.routing;
-	}
+    /**
+     * API name: {@code routing}
+     */
+    @Nullable
+    public final String routing() {
+        return this.routing;
+    }
 
-	/**
-	 * API name: {@code version_type}
-	 */
-	@Nullable
-	public final VersionType versionType() {
-		return this.versionType;
-	}
+    /**
+     * API name: {@code version_type}
+     */
+    @Nullable
+    public final VersionType versionType() {
+        return this.versionType;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.index != null) {
-			generator.writeKey("index");
-			generator.write(this.index);
+        if (this.index != null) {
+            generator.writeKey("index");
+            generator.write(this.index);
 
-		}
-		if (this.opType != null) {
-			generator.writeKey("op_type");
-			this.opType.serialize(generator, mapper);
-		}
-		if (this.pipeline != null) {
-			generator.writeKey("pipeline");
-			generator.write(this.pipeline);
+        }
+        if (this.opType != null) {
+            generator.writeKey("op_type");
+            this.opType.serialize(generator, mapper);
+        }
+        if (this.pipeline != null) {
+            generator.writeKey("pipeline");
+            generator.write(this.pipeline);
 
-		}
-		if (this.routing != null) {
-			generator.writeKey("routing");
-			generator.write(this.routing);
+        }
+        if (this.routing != null) {
+            generator.writeKey("routing");
+            generator.write(this.routing);
 
-		}
-		if (this.versionType != null) {
-			generator.writeKey("version_type");
-			this.versionType.serialize(generator, mapper);
-		}
+        }
+        if (this.versionType != null) {
+            generator.writeKey("version_type");
+            this.versionType.serialize(generator, mapper);
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link Destination}.
-	 */
+    /**
+     * Builder for {@link Destination}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Destination> {
-		@Nullable
-		private String index;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Destination> {
+        @Nullable
+        private String index;
 
-		@Nullable
-		private OpType opType;
+        @Nullable
+        private OpType opType;
 
-		@Nullable
-		private String pipeline;
+        @Nullable
+        private String pipeline;
 
-		@Nullable
-		private String routing;
+        @Nullable
+        private String routing;
 
-		@Nullable
-		private VersionType versionType;
+        @Nullable
+        private VersionType versionType;
 
-		/**
-		 * The destination index for the transform. The mappings of the destination
-		 * index are deduced based on the source fields when possible. If alternate
-		 * mappings are required, use the Create index API prior to starting the
-		 * transform.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public final Builder index(@Nullable String value) {
-			this.index = value;
-			return this;
-		}
+        /**
+         * The destination index for the transform. The mappings of the destination
+         * index are deduced based on the source fields when possible. If alternate
+         * mappings are required, use the Create index API prior to starting the
+         * transform.
+         * <p>
+         * API name: {@code index}
+         */
+        public final Builder index(@Nullable String value) {
+            this.index = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code op_type}
-		 */
-		public final Builder opType(@Nullable OpType value) {
-			this.opType = value;
-			return this;
-		}
+        /**
+         * API name: {@code op_type}
+         */
+        public final Builder opType(@Nullable OpType value) {
+            this.opType = value;
+            return this;
+        }
 
-		/**
-		 * The unique identifier for an ingest pipeline.
-		 * <p>
-		 * API name: {@code pipeline}
-		 */
-		public final Builder pipeline(@Nullable String value) {
-			this.pipeline = value;
-			return this;
-		}
+        /**
+         * The unique identifier for an ingest pipeline.
+         * <p>
+         * API name: {@code pipeline}
+         */
+        public final Builder pipeline(@Nullable String value) {
+            this.pipeline = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code routing}
-		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
-			return this;
-		}
+        /**
+         * API name: {@code routing}
+         */
+        public final Builder routing(@Nullable String value) {
+            this.routing = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code version_type}
-		 */
-		public final Builder versionType(@Nullable VersionType value) {
-			this.versionType = value;
-			return this;
-		}
+        /**
+         * API name: {@code version_type}
+         */
+        public final Builder versionType(@Nullable VersionType value) {
+            this.versionType = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link Destination}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public Destination build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link Destination}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public Destination build() {
+            _checkSingleUse();
 
-			return new Destination(this);
-		}
-	}
+            return new Destination(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link Destination}
-	 */
-	public static final JsonpDeserializer<Destination> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Destination::setupDestinationDeserializer);
+    /**
+     * Json deserializer for {@link Destination}
+     */
+    public static final JsonpDeserializer<Destination> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        Destination::setupDestinationDeserializer
+    );
 
-	protected static void setupDestinationDeserializer(ObjectDeserializer<Destination.Builder> op) {
+    protected static void setupDestinationDeserializer(ObjectDeserializer<Destination.Builder> op) {
 
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::opType, OpType._DESERIALIZER, "op_type");
-		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
-		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
-		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+        op.add(Builder::opType, OpType._DESERIALIZER, "op_type");
+        op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
+        op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+        op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 
-	}
+    }
 
 }

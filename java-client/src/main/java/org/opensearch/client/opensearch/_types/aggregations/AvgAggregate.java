@@ -32,75 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.AvgAggregate
 
 @JsonpDeserializable
 public class AvgAggregate extends SingleMetricAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private AvgAggregate(Builder builder) {
-		super(builder);
+    private AvgAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static AvgAggregate of(Function<Builder, ObjectBuilder<AvgAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static AvgAggregate of(Function<Builder, ObjectBuilder<AvgAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Avg;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Avg;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link AvgAggregate}.
-	 */
+    /**
+     * Builder for {@link AvgAggregate}.
+     */
 
-	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<AvgAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<AvgAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link AvgAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public AvgAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link AvgAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public AvgAggregate build() {
+            _checkSingleUse();
 
-			return new AvgAggregate(this);
-		}
-	}
+            return new AvgAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link AvgAggregate}
-	 */
-	public static final JsonpDeserializer<AvgAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AvgAggregate::setupAvgAggregateDeserializer);
+    /**
+     * Json deserializer for {@link AvgAggregate}
+     */
+    public static final JsonpDeserializer<AvgAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        AvgAggregate::setupAvgAggregateDeserializer
+    );
 
-	protected static void setupAvgAggregateDeserializer(ObjectDeserializer<AvgAggregate.Builder> op) {
-		setupSingleMetricAggregateBaseDeserializer(op);
+    protected static void setupAvgAggregateDeserializer(ObjectDeserializer<AvgAggregate.Builder> op) {
+        setupSingleMetricAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

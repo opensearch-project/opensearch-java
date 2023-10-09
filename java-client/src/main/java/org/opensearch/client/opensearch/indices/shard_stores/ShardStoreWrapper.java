@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.indices.shard_stores;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,123 +44,121 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: indices.shard_stores.ShardStoreWrapper
 
-
 @JsonpDeserializable
 public class ShardStoreWrapper implements JsonpSerializable {
-	private final List<ShardStore> stores;
+    private final List<ShardStore> stores;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ShardStoreWrapper(Builder builder) {
+    private ShardStoreWrapper(Builder builder) {
 
-		this.stores = ApiTypeHelper.unmodifiableRequired(builder.stores, this, "stores");
+        this.stores = ApiTypeHelper.unmodifiableRequired(builder.stores, this, "stores");
 
-	}
+    }
 
-	public static ShardStoreWrapper of(Function<Builder, ObjectBuilder<ShardStoreWrapper>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ShardStoreWrapper of(Function<Builder, ObjectBuilder<ShardStoreWrapper>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code stores}
-	 */
-	public final List<ShardStore> stores() {
-		return this.stores;
-	}
+    /**
+     * Required - API name: {@code stores}
+     */
+    public final List<ShardStore> stores() {
+        return this.stores;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.stores)) {
-			generator.writeKey("stores");
-			generator.writeStartArray();
-			for (ShardStore item0 : this.stores) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.stores)) {
+            generator.writeKey("stores");
+            generator.writeStartArray();
+            for (ShardStore item0 : this.stores) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ShardStoreWrapper}.
-	 */
+    /**
+     * Builder for {@link ShardStoreWrapper}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoreWrapper> {
-		private List<ShardStore> stores;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoreWrapper> {
+        private List<ShardStore> stores;
 
-		/**
-		 * Required - API name: {@code stores}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>stores</code>.
-		 */
-		public final Builder stores(List<ShardStore> list) {
-			this.stores = _listAddAll(this.stores, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code stores}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>stores</code>.
+         */
+        public final Builder stores(List<ShardStore> list) {
+            this.stores = _listAddAll(this.stores, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code stores}
-		 * <p>
-		 * Adds one or more values to <code>stores</code>.
-		 */
-		public final Builder stores(ShardStore value, ShardStore... values) {
-			this.stores = _listAdd(this.stores, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code stores}
+         * <p>
+         * Adds one or more values to <code>stores</code>.
+         */
+        public final Builder stores(ShardStore value, ShardStore... values) {
+            this.stores = _listAdd(this.stores, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code stores}
-		 * <p>
-		 * Adds a value to <code>stores</code> using a builder lambda.
-		 */
-		public final Builder stores(Function<ShardStore.Builder, ObjectBuilder<ShardStore>> fn) {
-			return stores(fn.apply(new ShardStore.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code stores}
+         * <p>
+         * Adds a value to <code>stores</code> using a builder lambda.
+         */
+        public final Builder stores(Function<ShardStore.Builder, ObjectBuilder<ShardStore>> fn) {
+            return stores(fn.apply(new ShardStore.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link ShardStoreWrapper}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ShardStoreWrapper build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ShardStoreWrapper}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ShardStoreWrapper build() {
+            _checkSingleUse();
 
-			return new ShardStoreWrapper(this);
-		}
-	}
+            return new ShardStoreWrapper(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ShardStoreWrapper}
-	 */
-	public static final JsonpDeserializer<ShardStoreWrapper> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShardStoreWrapper::setupShardStoreWrapperDeserializer);
+    /**
+     * Json deserializer for {@link ShardStoreWrapper}
+     */
+    public static final JsonpDeserializer<ShardStoreWrapper> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ShardStoreWrapper::setupShardStoreWrapperDeserializer
+    );
 
-	protected static void setupShardStoreWrapperDeserializer(ObjectDeserializer<ShardStoreWrapper.Builder> op) {
+    protected static void setupShardStoreWrapperDeserializer(ObjectDeserializer<ShardStoreWrapper.Builder> op) {
 
-		op.add(Builder::stores, JsonpDeserializer.arrayDeserializer(ShardStore._DESERIALIZER), "stores");
+        op.add(Builder::stores, JsonpDeserializer.arrayDeserializer(ShardStore._DESERIALIZER), "stores");
 
-	}
+    }
 
 }

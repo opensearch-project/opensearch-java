@@ -32,75 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.NestedAggregate
 
 @JsonpDeserializable
 public class NestedAggregate extends SingleBucketAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NestedAggregate(Builder builder) {
-		super(builder);
+    private NestedAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static NestedAggregate of(Function<Builder, ObjectBuilder<NestedAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NestedAggregate of(Function<Builder, ObjectBuilder<NestedAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Nested;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Nested;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NestedAggregate}.
-	 */
+    /**
+     * Builder for {@link NestedAggregate}.
+     */
 
-	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<NestedAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<NestedAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NestedAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NestedAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NestedAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NestedAggregate build() {
+            _checkSingleUse();
 
-			return new NestedAggregate(this);
-		}
-	}
+            return new NestedAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NestedAggregate}
-	 */
-	public static final JsonpDeserializer<NestedAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NestedAggregate::setupNestedAggregateDeserializer);
+    /**
+     * Json deserializer for {@link NestedAggregate}
+     */
+    public static final JsonpDeserializer<NestedAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NestedAggregate::setupNestedAggregateDeserializer
+    );
 
-	protected static void setupNestedAggregateDeserializer(ObjectDeserializer<NestedAggregate.Builder> op) {
-		setupSingleBucketAggregateBaseDeserializer(op);
+    protected static void setupNestedAggregateDeserializer(ObjectDeserializer<NestedAggregate.Builder> op) {
+        setupSingleBucketAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

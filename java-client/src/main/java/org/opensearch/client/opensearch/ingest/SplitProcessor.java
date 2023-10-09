@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,214 +42,210 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: ingest._types.SplitProcessor
 
-
 @JsonpDeserializable
 public class SplitProcessor extends ProcessorBase implements ProcessorVariant {
-	private final String field;
+    private final String field;
 
-	@Nullable
-	private final Boolean ignoreMissing;
+    @Nullable
+    private final Boolean ignoreMissing;
 
-	@Nullable
-	private final Boolean preserveTrailing;
+    @Nullable
+    private final Boolean preserveTrailing;
 
-	private final String separator;
+    private final String separator;
 
-	@Nullable
-	private final String targetField;
+    @Nullable
+    private final String targetField;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SplitProcessor(Builder builder) {
-		super(builder);
+    private SplitProcessor(Builder builder) {
+        super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.ignoreMissing = builder.ignoreMissing;
-		this.preserveTrailing = builder.preserveTrailing;
-		this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
-		this.targetField = builder.targetField;
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.ignoreMissing = builder.ignoreMissing;
+        this.preserveTrailing = builder.preserveTrailing;
+        this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
+        this.targetField = builder.targetField;
 
-	}
+    }
 
-	public static SplitProcessor of(Function<Builder, ObjectBuilder<SplitProcessor>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SplitProcessor of(Function<Builder, ObjectBuilder<SplitProcessor>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Processor variant kind.
-	 */
-	@Override
-	public Processor.Kind _processorKind() {
-		return Processor.Kind.Split;
-	}
+    /**
+     * Processor variant kind.
+     */
+    @Override
+    public Processor.Kind _processorKind() {
+        return Processor.Kind.Split;
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * API name: {@code ignore_missing}
-	 */
-	@Nullable
-	public final Boolean ignoreMissing() {
-		return this.ignoreMissing;
-	}
+    /**
+     * API name: {@code ignore_missing}
+     */
+    @Nullable
+    public final Boolean ignoreMissing() {
+        return this.ignoreMissing;
+    }
 
-	/**
-	 * API name: {@code preserve_trailing}
-	 */
-	@Nullable
-	public final Boolean preserveTrailing() {
-		return this.preserveTrailing;
-	}
+    /**
+     * API name: {@code preserve_trailing}
+     */
+    @Nullable
+    public final Boolean preserveTrailing() {
+        return this.preserveTrailing;
+    }
 
-	/**
-	 * Required - API name: {@code separator}
-	 */
-	public final String separator() {
-		return this.separator;
-	}
+    /**
+     * Required - API name: {@code separator}
+     */
+    public final String separator() {
+        return this.separator;
+    }
 
-	/**
-	 * API name: {@code target_field}
-	 */
-	@Nullable
-	public final String targetField() {
-		return this.targetField;
-	}
+    /**
+     * API name: {@code target_field}
+     */
+    @Nullable
+    public final String targetField() {
+        return this.targetField;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("field");
-		generator.write(this.field);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-		if (this.ignoreMissing != null) {
-			generator.writeKey("ignore_missing");
-			generator.write(this.ignoreMissing);
+        if (this.ignoreMissing != null) {
+            generator.writeKey("ignore_missing");
+            generator.write(this.ignoreMissing);
 
-		}
-		if (this.preserveTrailing != null) {
-			generator.writeKey("preserve_trailing");
-			generator.write(this.preserveTrailing);
+        }
+        if (this.preserveTrailing != null) {
+            generator.writeKey("preserve_trailing");
+            generator.write(this.preserveTrailing);
 
-		}
-		generator.writeKey("separator");
-		generator.write(this.separator);
+        }
+        generator.writeKey("separator");
+        generator.write(this.separator);
 
-		if (this.targetField != null) {
-			generator.writeKey("target_field");
-			generator.write(this.targetField);
+        if (this.targetField != null) {
+            generator.writeKey("target_field");
+            generator.write(this.targetField);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SplitProcessor}.
-	 */
+    /**
+     * Builder for {@link SplitProcessor}.
+     */
 
-	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<SplitProcessor> {
-		private String field;
+    public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<SplitProcessor> {
+        private String field;
 
-		@Nullable
-		private Boolean ignoreMissing;
+        @Nullable
+        private Boolean ignoreMissing;
 
-		@Nullable
-		private Boolean preserveTrailing;
+        @Nullable
+        private Boolean preserveTrailing;
 
-		private String separator;
+        private String separator;
 
-		@Nullable
-		private String targetField;
+        @Nullable
+        private String targetField;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code ignore_missing}
-		 */
-		public final Builder ignoreMissing(@Nullable Boolean value) {
-			this.ignoreMissing = value;
-			return this;
-		}
+        /**
+         * API name: {@code ignore_missing}
+         */
+        public final Builder ignoreMissing(@Nullable Boolean value) {
+            this.ignoreMissing = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code preserve_trailing}
-		 */
-		public final Builder preserveTrailing(@Nullable Boolean value) {
-			this.preserveTrailing = value;
-			return this;
-		}
+        /**
+         * API name: {@code preserve_trailing}
+         */
+        public final Builder preserveTrailing(@Nullable Boolean value) {
+            this.preserveTrailing = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code separator}
-		 */
-		public final Builder separator(String value) {
-			this.separator = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code separator}
+         */
+        public final Builder separator(String value) {
+            this.separator = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code target_field}
-		 */
-		public final Builder targetField(@Nullable String value) {
-			this.targetField = value;
-			return this;
-		}
+        /**
+         * API name: {@code target_field}
+         */
+        public final Builder targetField(@Nullable String value) {
+            this.targetField = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SplitProcessor}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SplitProcessor build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SplitProcessor}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SplitProcessor build() {
+            _checkSingleUse();
 
-			return new SplitProcessor(this);
-		}
-	}
+            return new SplitProcessor(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SplitProcessor}
-	 */
-	public static final JsonpDeserializer<SplitProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SplitProcessor::setupSplitProcessorDeserializer);
+    /**
+     * Json deserializer for {@link SplitProcessor}
+     */
+    public static final JsonpDeserializer<SplitProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SplitProcessor::setupSplitProcessorDeserializer
+    );
 
-	protected static void setupSplitProcessorDeserializer(ObjectDeserializer<SplitProcessor.Builder> op) {
-		setupProcessorBaseDeserializer(op);
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
-		op.add(Builder::preserveTrailing, JsonpDeserializer.booleanDeserializer(), "preserve_trailing");
-		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
-		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+    protected static void setupSplitProcessorDeserializer(ObjectDeserializer<SplitProcessor.Builder> op) {
+        setupProcessorBaseDeserializer(op);
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+        op.add(Builder::preserveTrailing, JsonpDeserializer.booleanDeserializer(), "preserve_trailing");
+        op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
+        op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
-	}
+    }
 
 }

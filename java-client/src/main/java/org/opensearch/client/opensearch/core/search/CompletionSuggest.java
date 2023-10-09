@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
- /*
+/*
 * Licensed to Elasticsearch B.V. under one or more contributor
 * license agreements. See the NOTICE file distributed with
 * this work for additional information regarding copyright
@@ -32,12 +32,11 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
-
 import javax.annotation.Nullable;
-
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -48,8 +47,6 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch.core.search.Suggest.Kind;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-
-import jakarta.json.stream.JsonGenerator;
 
 @JsonpDeserializable
 public class CompletionSuggest<TDocument> extends SuggestBase implements SuggestVariant {
@@ -67,7 +64,8 @@ public class CompletionSuggest<TDocument> extends SuggestBase implements Suggest
     }
 
     public static <TDocument> CompletionSuggest<TDocument> of(
-            Function<Builder<TDocument>, ObjectBuilder<CompletionSuggest<TDocument>>> fn) {
+        Function<Builder<TDocument>, ObjectBuilder<CompletionSuggest<TDocument>>> fn
+    ) {
         return fn.apply(new Builder<>()).build();
     }
 
@@ -92,7 +90,7 @@ public class CompletionSuggest<TDocument> extends SuggestBase implements Suggest
     }
 
     public static class Builder<TDocument> extends SuggestBase.AbstractBuilder<Builder<TDocument>>
-            implements
+        implements
             ObjectBuilder<CompletionSuggest<TDocument>> {
         private List<CompletionSuggestOption<TDocument>> options;
 
@@ -104,14 +102,14 @@ public class CompletionSuggest<TDocument> extends SuggestBase implements Suggest
             return this;
         }
 
-        public final Builder<TDocument> options(CompletionSuggestOption<TDocument> value,
-                CompletionSuggestOption<TDocument>... values) {
+        public final Builder<TDocument> options(CompletionSuggestOption<TDocument> value, CompletionSuggestOption<TDocument>... values) {
             this.options = _listAdd(this.options, value, values);
             return this;
         }
 
         public final Builder<TDocument> options(
-                Function<CompletionSuggestOption.Builder<TDocument>, ObjectBuilder<CompletionSuggestOption<TDocument>>> fn) {
+            Function<CompletionSuggestOption.Builder<TDocument>, ObjectBuilder<CompletionSuggestOption<TDocument>>> fn
+        ) {
             return options(fn.apply(new CompletionSuggestOption.Builder<TDocument>()).build());
         }
 
@@ -133,23 +131,30 @@ public class CompletionSuggest<TDocument> extends SuggestBase implements Suggest
     }
 
     public static <TDocument> JsonpDeserializer<CompletionSuggest<TDocument>> createCompletionSuggestDeserializer(
-            JsonpDeserializer<TDocument> tDocumentDeserializer) {
-        return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-                op -> CompletionSuggest.setupCompletionSuggestDeserializer(op, tDocumentDeserializer));
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
+        return ObjectBuilderDeserializer.createForObject(
+            (Supplier<Builder<TDocument>>) Builder::new,
+            op -> CompletionSuggest.setupCompletionSuggestDeserializer(op, tDocumentDeserializer)
+        );
     };
 
-    public static final JsonpDeserializer<CompletionSuggest<Object>> _DESERIALIZER = JsonpDeserializer
-            .lazy(() -> createCompletionSuggestDeserializer(
-                    new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.search._types.TDocument")));
+    public static final JsonpDeserializer<CompletionSuggest<Object>> _DESERIALIZER = JsonpDeserializer.lazy(
+        () -> createCompletionSuggestDeserializer(
+            new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.search._types.TDocument")
+        )
+    );
 
     protected static <TDocument> void setupCompletionSuggestDeserializer(
-            ObjectDeserializer<CompletionSuggest.Builder<TDocument>> op,
-            JsonpDeserializer<TDocument> tDocumentDeserializer) {
+        ObjectDeserializer<CompletionSuggest.Builder<TDocument>> op,
+        JsonpDeserializer<TDocument> tDocumentDeserializer
+    ) {
         SuggestBase.setupSuggestBaseDeserializer(op);
-        op.add(Builder::options,
-                JsonpDeserializer.arrayDeserializer(
-                        CompletionSuggestOption.createCompletionSuggestOptionDeserializer(tDocumentDeserializer)),
-                "options");
+        op.add(
+            Builder::options,
+            JsonpDeserializer.arrayDeserializer(CompletionSuggestOption.createCompletionSuggestOptionDeserializer(tDocumentDeserializer)),
+            "options"
+        );
 
     }
 
@@ -157,5 +162,5 @@ public class CompletionSuggest<TDocument> extends SuggestBase implements Suggest
     public Kind _suggestionKind() {
         return Suggest.Kind.Completion;
     }
-    
+
 }

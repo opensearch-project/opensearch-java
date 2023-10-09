@@ -32,101 +32,100 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: indices.open.Response
 
-
 @JsonpDeserializable
 public class OpenResponse extends AcknowledgedResponseBase {
-	private final boolean shardsAcknowledged;
+    private final boolean shardsAcknowledged;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private OpenResponse(Builder builder) {
-		super(builder);
+    private OpenResponse(Builder builder) {
+        super(builder);
 
-		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+        this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
 
-	}
+    }
 
-	public static OpenResponse of(Function<Builder, ObjectBuilder<OpenResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static OpenResponse of(Function<Builder, ObjectBuilder<OpenResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code shards_acknowledged}
-	 */
-	public final boolean shardsAcknowledged() {
-		return this.shardsAcknowledged;
-	}
+    /**
+     * Required - API name: {@code shards_acknowledged}
+     */
+    public final boolean shardsAcknowledged() {
+        return this.shardsAcknowledged;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("shards_acknowledged");
-		generator.write(this.shardsAcknowledged);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("shards_acknowledged");
+        generator.write(this.shardsAcknowledged);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link OpenResponse}.
-	 */
+    /**
+     * Builder for {@link OpenResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<OpenResponse> {
-		private Boolean shardsAcknowledged;
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<OpenResponse> {
+        private Boolean shardsAcknowledged;
 
-		/**
-		 * Required - API name: {@code shards_acknowledged}
-		 */
-		public final Builder shardsAcknowledged(boolean value) {
-			this.shardsAcknowledged = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code shards_acknowledged}
+         */
+        public final Builder shardsAcknowledged(boolean value) {
+            this.shardsAcknowledged = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link OpenResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public OpenResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link OpenResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public OpenResponse build() {
+            _checkSingleUse();
 
-			return new OpenResponse(this);
-		}
-	}
+            return new OpenResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link OpenResponse}
-	 */
-	public static final JsonpDeserializer<OpenResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			OpenResponse::setupOpenResponseDeserializer);
+    /**
+     * Json deserializer for {@link OpenResponse}
+     */
+    public static final JsonpDeserializer<OpenResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        OpenResponse::setupOpenResponseDeserializer
+    );
 
-	protected static void setupOpenResponseDeserializer(ObjectDeserializer<OpenResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
+    protected static void setupOpenResponseDeserializer(ObjectDeserializer<OpenResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+        op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 
-	}
+    }
 
 }

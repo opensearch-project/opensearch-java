@@ -37,10 +37,10 @@ package org.opensearch.client.opensearch._types;
  */
 public interface SortOptionsVariant {
 
-	SortOptions.Kind _sortOptionsKind();
+    SortOptions.Kind _sortOptionsKind();
 
-	default SortOptions _toSortOptions() {
-		return new SortOptions(this);
-	}
+    default SortOptions _toSortOptions() {
+        return new SortOptions(this);
+    }
 
 }

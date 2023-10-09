@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.indices.update_aliases;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,257 +45,252 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.RemoveAction
 
-
 @JsonpDeserializable
 public class RemoveAction implements ActionVariant, JsonpSerializable {
-	@Nullable
-	private final String alias;
+    @Nullable
+    private final String alias;
 
-	private final List<String> aliases;
+    private final List<String> aliases;
 
-	@Nullable
-	private final String index;
+    @Nullable
+    private final String index;
 
-	private final List<String> indices;
+    private final List<String> indices;
 
-	@Nullable
-	private final Boolean mustExist;
+    @Nullable
+    private final Boolean mustExist;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RemoveAction(Builder builder) {
+    private RemoveAction(Builder builder) {
 
-		this.alias = builder.alias;
-		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
-		this.index = builder.index;
-		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
-		this.mustExist = builder.mustExist;
+        this.alias = builder.alias;
+        this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
+        this.index = builder.index;
+        this.indices = ApiTypeHelper.unmodifiable(builder.indices);
+        this.mustExist = builder.mustExist;
 
-	}
+    }
 
-	public static RemoveAction of(Function<Builder, ObjectBuilder<RemoveAction>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RemoveAction of(Function<Builder, ObjectBuilder<RemoveAction>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Action variant kind.
-	 */
-	@Override
-	public Action.Kind _actionKind() {
-		return Action.Kind.Remove;
-	}
+    /**
+     * Action variant kind.
+     */
+    @Override
+    public Action.Kind _actionKind() {
+        return Action.Kind.Remove;
+    }
 
-	/**
-	 * API name: {@code alias}
-	 */
-	@Nullable
-	public final String alias() {
-		return this.alias;
-	}
+    /**
+     * API name: {@code alias}
+     */
+    @Nullable
+    public final String alias() {
+        return this.alias;
+    }
 
-	/**
-	 * API name: {@code aliases}
-	 */
-	public final List<String> aliases() {
-		return this.aliases;
-	}
+    /**
+     * API name: {@code aliases}
+     */
+    public final List<String> aliases() {
+        return this.aliases;
+    }
 
-	/**
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public final String index() {
-		return this.index;
-	}
+    /**
+     * API name: {@code index}
+     */
+    @Nullable
+    public final String index() {
+        return this.index;
+    }
 
-	/**
-	 * API name: {@code indices}
-	 */
-	public final List<String> indices() {
-		return this.indices;
-	}
+    /**
+     * API name: {@code indices}
+     */
+    public final List<String> indices() {
+        return this.indices;
+    }
 
-	/**
-	 * API name: {@code must_exist}
-	 */
-	@Nullable
-	public final Boolean mustExist() {
-		return this.mustExist;
-	}
+    /**
+     * API name: {@code must_exist}
+     */
+    @Nullable
+    public final Boolean mustExist() {
+        return this.mustExist;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.alias != null) {
-			generator.writeKey("alias");
-			generator.write(this.alias);
+        if (this.alias != null) {
+            generator.writeKey("alias");
+            generator.write(this.alias);
 
-		}
-		if (ApiTypeHelper.isDefined(this.aliases)) {
-			generator.writeKey("aliases");
-			generator.writeStartArray();
-			for (String item0 : this.aliases) {
-				generator.write(item0);
+        }
+        if (ApiTypeHelper.isDefined(this.aliases)) {
+            generator.writeKey("aliases");
+            generator.writeStartArray();
+            for (String item0 : this.aliases) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.index != null) {
-			generator.writeKey("index");
-			generator.write(this.index);
+        }
+        if (this.index != null) {
+            generator.writeKey("index");
+            generator.write(this.index);
 
-		}
-		if (ApiTypeHelper.isDefined(this.indices)) {
-			generator.writeKey("indices");
-			generator.writeStartArray();
-			for (String item0 : this.indices) {
-				generator.write(item0);
+        }
+        if (ApiTypeHelper.isDefined(this.indices)) {
+            generator.writeKey("indices");
+            generator.writeStartArray();
+            for (String item0 : this.indices) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.mustExist != null) {
-			generator.writeKey("must_exist");
-			generator.write(this.mustExist);
+        }
+        if (this.mustExist != null) {
+            generator.writeKey("must_exist");
+            generator.write(this.mustExist);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RemoveAction}.
-	 */
+    /**
+     * Builder for {@link RemoveAction}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemoveAction> {
-		@Nullable
-		private String alias;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemoveAction> {
+        @Nullable
+        private String alias;
 
-		@Nullable
-		private List<String> aliases;
+        @Nullable
+        private List<String> aliases;
 
-		@Nullable
-		private String index;
+        @Nullable
+        private String index;
 
-		@Nullable
-		private List<String> indices;
+        @Nullable
+        private List<String> indices;
 
-		@Nullable
-		private Boolean mustExist;
+        @Nullable
+        private Boolean mustExist;
 
-		/**
-		 * API name: {@code alias}
-		 */
-		public final Builder alias(@Nullable String value) {
-			this.alias = value;
-			return this;
-		}
+        /**
+         * API name: {@code alias}
+         */
+        public final Builder alias(@Nullable String value) {
+            this.alias = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code aliases}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>aliases</code>.
-		 */
-		public final Builder aliases(List<String> list) {
-			this.aliases = _listAddAll(this.aliases, list);
-			return this;
-		}
+        /**
+         * API name: {@code aliases}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>aliases</code>.
+         */
+        public final Builder aliases(List<String> list) {
+            this.aliases = _listAddAll(this.aliases, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code aliases}
-		 * <p>
-		 * Adds one or more values to <code>aliases</code>.
-		 */
-		public final Builder aliases(String value, String... values) {
-			this.aliases = _listAdd(this.aliases, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code aliases}
+         * <p>
+         * Adds one or more values to <code>aliases</code>.
+         */
+        public final Builder aliases(String value, String... values) {
+            this.aliases = _listAdd(this.aliases, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code index}
-		 */
-		public final Builder index(@Nullable String value) {
-			this.index = value;
-			return this;
-		}
+        /**
+         * API name: {@code index}
+         */
+        public final Builder index(@Nullable String value) {
+            this.index = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code indices}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 */
-		public final Builder indices(List<String> list) {
-			this.indices = _listAddAll(this.indices, list);
-			return this;
-		}
+        /**
+         * API name: {@code indices}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>indices</code>.
+         */
+        public final Builder indices(List<String> list) {
+            this.indices = _listAddAll(this.indices, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code indices}
-		 * <p>
-		 * Adds one or more values to <code>indices</code>.
-		 */
-		public final Builder indices(String value, String... values) {
-			this.indices = _listAdd(this.indices, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code indices}
+         * <p>
+         * Adds one or more values to <code>indices</code>.
+         */
+        public final Builder indices(String value, String... values) {
+            this.indices = _listAdd(this.indices, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code must_exist}
-		 */
-		public final Builder mustExist(@Nullable Boolean value) {
-			this.mustExist = value;
-			return this;
-		}
+        /**
+         * API name: {@code must_exist}
+         */
+        public final Builder mustExist(@Nullable Boolean value) {
+            this.mustExist = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RemoveAction}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RemoveAction build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RemoveAction}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RemoveAction build() {
+            _checkSingleUse();
 
-			return new RemoveAction(this);
-		}
-	}
+            return new RemoveAction(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RemoveAction}
-	 */
-	public static final JsonpDeserializer<RemoveAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RemoveAction::setupRemoveActionDeserializer);
+    /**
+     * Json deserializer for {@link RemoveAction}
+     */
+    public static final JsonpDeserializer<RemoveAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RemoveAction::setupRemoveActionDeserializer
+    );
 
-	protected static void setupRemoveActionDeserializer(ObjectDeserializer<RemoveAction.Builder> op) {
+    protected static void setupRemoveActionDeserializer(ObjectDeserializer<RemoveAction.Builder> op) {
 
-		op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias");
-		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"aliases");
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"indices");
-		op.add(Builder::mustExist, JsonpDeserializer.booleanDeserializer(), "must_exist");
+        op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias");
+        op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "aliases");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+        op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices");
+        op.add(Builder::mustExist, JsonpDeserializer.booleanDeserializer(), "must_exist");
 
-	}
+    }
 
 }

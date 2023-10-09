@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.cluster;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -40,84 +42,84 @@ import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: cluster.state.Response
 
 @JsonpDeserializable
 public class StateResponse implements JsonpSerializable {
-	private final JsonData valueBody;
+    private final JsonData valueBody;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private StateResponse(Builder builder) {
+    private StateResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+        this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
-	}
+    }
 
-	public static StateResponse of(Function<Builder, ObjectBuilder<StateResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StateResponse of(Function<Builder, ObjectBuilder<StateResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
-	 */
-	public final JsonData valueBody() {
-		return this.valueBody;
-	}
+    /**
+     * Required - Response value.
+     * <p>
+     * API name: {@code _value_body}
+     */
+    public final JsonData valueBody() {
+        return this.valueBody;
+    }
 
-	/**
-	 * Serialize this value to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.valueBody.serialize(generator, mapper);
+    /**
+     * Serialize this value to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        this.valueBody.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StateResponse}.
-	 */
+    /**
+     * Builder for {@link StateResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StateResponse> {
-		private JsonData valueBody;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StateResponse> {
+        private JsonData valueBody;
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 */
-		public final Builder valueBody(JsonData value) {
-			this.valueBody = value;
-			return this;
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         */
+        public final Builder valueBody(JsonData value) {
+            this.valueBody = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StateResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StateResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link StateResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StateResponse build() {
+            _checkSingleUse();
 
-			return new StateResponse(this);
-		}
-	}
+            return new StateResponse(this);
+        }
+    }
 
-	public static final JsonpDeserializer<StateResponse> _DESERIALIZER = createStateResponseDeserializer();
-	protected static JsonpDeserializer<StateResponse> createStateResponseDeserializer() {
+    public static final JsonpDeserializer<StateResponse> _DESERIALIZER = createStateResponseDeserializer();
 
-		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
+    protected static JsonpDeserializer<StateResponse> createStateResponseDeserializer() {
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
-	}
+        JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
+
+        return JsonpDeserializer.of(
+            valueDeserializer.acceptedEvents(),
+            (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
+        );
+    }
 
 }
