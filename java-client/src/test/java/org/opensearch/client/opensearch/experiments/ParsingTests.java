@@ -40,6 +40,7 @@ import org.opensearch.client.opensearch._types.analysis.Analyzer;
 import org.opensearch.client.opensearch._types.analysis.TokenFilterDefinition;
 import org.opensearch.client.opensearch._types.analysis.TokenizerBuilders;
 import org.opensearch.client.opensearch._types.analysis.TokenizerDefinition;
+import org.opensearch.client.opensearch.core.TermvectorsResponse;
 import org.opensearch.client.opensearch._types.mapping.FieldMapping;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.mapping.TermVectorOption;
@@ -247,6 +248,30 @@ public class ParsingTests extends ModelTestCase {
         assertEquals(field1Analyzer, textProperty.analyzer());
 
         assertNotNull(mappings.get(field3Name));
+    }
+ 
+    @Test
+    public void testTermvectorsResponseOptionals() {
+        // Build a response without any optionals
+        final TermvectorsResponse response = TermvectorsResponse.of(b -> b
+            .index("index")
+            .id("id")
+            .version(1)
+            .found(true)
+            .took(0)
+            .termVectors("key1", tvb -> tvb
+                .terms("term1", tb -> tb
+                    .score(0.3)
+                )
+            )
+        );
+
+        String str = toJson(response);
+        assertEquals("{\"found\":true,\"_id\":\"id\",\"_index\":\"index\","
+            +"\"term_vectors\":{\"key1\":{\"terms\":{\"term1\":{\"score\":0.3}}}},\"took\":0,\"_version\":1}", str);
+
+        final TermvectorsResponse response2 = fromJson(str, TermvectorsResponse._DESERIALIZER);
+        assertEquals(response.index(), response2.index());
     }
 
 }
