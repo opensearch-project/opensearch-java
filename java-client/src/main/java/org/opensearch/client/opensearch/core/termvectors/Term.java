@@ -56,7 +56,7 @@ public class Term implements JsonpSerializable {
     @Nullable
     private final Double score;
 
-	private final Integer termFreq;
+    private final Integer termFreq;
 
     private final List<Token> tokens;
 
@@ -67,11 +67,11 @@ public class Term implements JsonpSerializable {
 
     private Term(Builder builder) {
 
-		this.docFreq = builder.docFreq;
-		this.score = builder.score;
-		this.termFreq = builder.termFreq;
-		this.tokens = ApiTypeHelper.unmodifiable(builder.tokens);
-		this.ttf = builder.ttf;
+        this.docFreq = builder.docFreq;
+        this.score = builder.score;
+        this.termFreq = builder.termFreq;
+        this.tokens = ApiTypeHelper.unmodifiable(builder.tokens);
+        this.ttf = builder.ttf;
 
     }
 
@@ -137,11 +137,11 @@ public class Term implements JsonpSerializable {
             generator.writeKey("score");
             generator.write(this.score);
 
-		}
-		if (null != this.termFreq) {
-			generator.writeKey("term_freq");
-			generator.write(this.termFreq);
-		}
+        }
+        if (null != this.termFreq) {
+            generator.writeKey("term_freq");
+            generator.write(this.termFreq);
+        }
 
         if (ApiTypeHelper.isDefined(this.tokens)) {
             generator.writeKey("tokens");
