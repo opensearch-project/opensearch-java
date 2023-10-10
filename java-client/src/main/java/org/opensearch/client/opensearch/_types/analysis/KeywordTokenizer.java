@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,103 +41,100 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.analysis.KeywordTokenizer
 
-
 @JsonpDeserializable
 public class KeywordTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
-	private final int bufferSize;
+    private final int bufferSize;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private KeywordTokenizer(Builder builder) {
-		super(builder);
+    private KeywordTokenizer(Builder builder) {
+        super(builder);
 
-		this.bufferSize = ApiTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize");
+        this.bufferSize = ApiTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize");
 
-	}
+    }
 
-	public static KeywordTokenizer of(Function<Builder, ObjectBuilder<KeywordTokenizer>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static KeywordTokenizer of(Function<Builder, ObjectBuilder<KeywordTokenizer>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenizerDefinition variant kind.
-	 */
-	@Override
-	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
-		return TokenizerDefinition.Kind.Keyword;
-	}
+    /**
+     * TokenizerDefinition variant kind.
+     */
+    @Override
+    public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+        return TokenizerDefinition.Kind.Keyword;
+    }
 
-	/**
-	 * Required - API name: {@code buffer_size}
-	 */
-	public final int bufferSize() {
-		return this.bufferSize;
-	}
+    /**
+     * Required - API name: {@code buffer_size}
+     */
+    public final int bufferSize() {
+        return this.bufferSize;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "keyword");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("buffer_size");
-		generator.write(this.bufferSize);
+        generator.write("type", "keyword");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("buffer_size");
+        generator.write(this.bufferSize);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link KeywordTokenizer}.
-	 */
+    /**
+     * Builder for {@link KeywordTokenizer}.
+     */
 
-	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<KeywordTokenizer> {
-		private Integer bufferSize;
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<KeywordTokenizer> {
+        private Integer bufferSize;
 
-		/**
-		 * Required - API name: {@code buffer_size}
-		 */
-		public final Builder bufferSize(int value) {
-			this.bufferSize = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code buffer_size}
+         */
+        public final Builder bufferSize(int value) {
+            this.bufferSize = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link KeywordTokenizer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public KeywordTokenizer build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link KeywordTokenizer}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public KeywordTokenizer build() {
+            _checkSingleUse();
 
-			return new KeywordTokenizer(this);
-		}
-	}
+            return new KeywordTokenizer(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link KeywordTokenizer}
-	 */
-	public static final JsonpDeserializer<KeywordTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KeywordTokenizer::setupKeywordTokenizerDeserializer);
+    /**
+     * Json deserializer for {@link KeywordTokenizer}
+     */
+    public static final JsonpDeserializer<KeywordTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        KeywordTokenizer::setupKeywordTokenizerDeserializer
+    );
 
-	protected static void setupKeywordTokenizerDeserializer(ObjectDeserializer<KeywordTokenizer.Builder> op) {
-		TokenizerBase.setupTokenizerBaseDeserializer(op);
-		op.add(Builder::bufferSize, JsonpDeserializer.integerDeserializer(), "buffer_size");
+    protected static void setupKeywordTokenizerDeserializer(ObjectDeserializer<KeywordTokenizer.Builder> op) {
+        TokenizerBase.setupTokenizerBaseDeserializer(op);
+        op.add(Builder::bufferSize, JsonpDeserializer.integerDeserializer(), "buffer_size");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

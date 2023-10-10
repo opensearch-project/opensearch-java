@@ -36,55 +36,54 @@ package org.opensearch.client.opensearch._types.query_dsl;
  * Builders for {@link Intervals} variants.
  */
 public class IntervalsBuilders {
-	private IntervalsBuilders() {
-	}
+    private IntervalsBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link IntervalsAllOf all_of} {@code Intervals}
-	 * variant.
-	 */
-	public static IntervalsAllOf.Builder allOf() {
-		return new IntervalsAllOf.Builder();
-	}
+    /**
+     * Creates a builder for the {@link IntervalsAllOf all_of} {@code Intervals}
+     * variant.
+     */
+    public static IntervalsAllOf.Builder allOf() {
+        return new IntervalsAllOf.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link IntervalsAnyOf any_of} {@code Intervals}
-	 * variant.
-	 */
-	public static IntervalsAnyOf.Builder anyOf() {
-		return new IntervalsAnyOf.Builder();
-	}
+    /**
+     * Creates a builder for the {@link IntervalsAnyOf any_of} {@code Intervals}
+     * variant.
+     */
+    public static IntervalsAnyOf.Builder anyOf() {
+        return new IntervalsAnyOf.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link IntervalsFuzzy fuzzy} {@code Intervals}
-	 * variant.
-	 */
-	public static IntervalsFuzzy.Builder fuzzy() {
-		return new IntervalsFuzzy.Builder();
-	}
+    /**
+     * Creates a builder for the {@link IntervalsFuzzy fuzzy} {@code Intervals}
+     * variant.
+     */
+    public static IntervalsFuzzy.Builder fuzzy() {
+        return new IntervalsFuzzy.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link IntervalsMatch match} {@code Intervals}
-	 * variant.
-	 */
-	public static IntervalsMatch.Builder match() {
-		return new IntervalsMatch.Builder();
-	}
+    /**
+     * Creates a builder for the {@link IntervalsMatch match} {@code Intervals}
+     * variant.
+     */
+    public static IntervalsMatch.Builder match() {
+        return new IntervalsMatch.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link IntervalsPrefix prefix} {@code Intervals}
-	 * variant.
-	 */
-	public static IntervalsPrefix.Builder prefix() {
-		return new IntervalsPrefix.Builder();
-	}
+    /**
+     * Creates a builder for the {@link IntervalsPrefix prefix} {@code Intervals}
+     * variant.
+     */
+    public static IntervalsPrefix.Builder prefix() {
+        return new IntervalsPrefix.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link IntervalsWildcard wildcard}
-	 * {@code Intervals} variant.
-	 */
-	public static IntervalsWildcard.Builder wildcard() {
-		return new IntervalsWildcard.Builder();
-	}
+    /**
+     * Creates a builder for the {@link IntervalsWildcard wildcard}
+     * {@code Intervals} variant.
+     */
+    public static IntervalsWildcard.Builder wildcard() {
+        return new IntervalsWildcard.Builder();
+    }
 
 }

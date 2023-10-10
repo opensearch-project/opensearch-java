@@ -37,10 +37,10 @@ package org.opensearch.client.opensearch.ingest;
  */
 public interface ProcessorVariant {
 
-	Processor.Kind _processorKind();
+    Processor.Kind _processorKind();
 
-	default Processor _toProcessor() {
-		return new Processor(this);
-	}
+    default Processor _toProcessor() {
+        return new Processor(this);
+    }
 
 }

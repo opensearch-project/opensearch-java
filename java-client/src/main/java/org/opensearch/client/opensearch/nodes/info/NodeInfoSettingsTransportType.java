@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,95 +43,94 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoSettingsTransportType
 
 @JsonpDeserializable
 public class NodeInfoSettingsTransportType implements JsonpSerializable {
-	private final String default_;
+    private final String default_;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoSettingsTransportType(Builder builder) {
+    private NodeInfoSettingsTransportType(Builder builder) {
 
-		this.default_ = ApiTypeHelper.requireNonNull(builder.default_, this, "default_");
+        this.default_ = ApiTypeHelper.requireNonNull(builder.default_, this, "default_");
 
-	}
+    }
 
-	public static NodeInfoSettingsTransportType of(Function<Builder, ObjectBuilder<NodeInfoSettingsTransportType>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoSettingsTransportType of(Function<Builder, ObjectBuilder<NodeInfoSettingsTransportType>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code default}
-	 */
-	public final String default_() {
-		return this.default_;
-	}
+    /**
+     * Required - API name: {@code default}
+     */
+    public final String default_() {
+        return this.default_;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("default");
-		generator.write(this.default_);
+        generator.writeKey("default");
+        generator.write(this.default_);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoSettingsTransportType}.
-	 */
+    /**
+     * Builder for {@link NodeInfoSettingsTransportType}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsTransportType> {
-		private String default_;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsTransportType> {
+        private String default_;
 
-		/**
-		 * Required - API name: {@code default}
-		 */
-		public final Builder default_(String value) {
-			this.default_ = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code default}
+         */
+        public final Builder default_(String value) {
+            this.default_ = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeInfoSettingsTransportType}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoSettingsTransportType build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoSettingsTransportType}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoSettingsTransportType build() {
+            _checkSingleUse();
 
-			return new NodeInfoSettingsTransportType(this);
-		}
-	}
+            return new NodeInfoSettingsTransportType(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoSettingsTransportType}
-	 */
-	public static final JsonpDeserializer<NodeInfoSettingsTransportType> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoSettingsTransportType::setupNodeInfoSettingsTransportTypeDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoSettingsTransportType}
+     */
+    public static final JsonpDeserializer<NodeInfoSettingsTransportType> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoSettingsTransportType::setupNodeInfoSettingsTransportTypeDeserializer
+    );
 
-	protected static void setupNodeInfoSettingsTransportTypeDeserializer(
-			ObjectDeserializer<NodeInfoSettingsTransportType.Builder> op) {
+    protected static void setupNodeInfoSettingsTransportTypeDeserializer(ObjectDeserializer<NodeInfoSettingsTransportType.Builder> op) {
 
-		op.add(Builder::default_, JsonpDeserializer.stringDeserializer(), "default");
+        op.add(Builder::default_, JsonpDeserializer.stringDeserializer(), "default");
 
-		op.shortcutProperty("default");
+        op.shortcutProperty("default");
 
-	}
+    }
 
 }

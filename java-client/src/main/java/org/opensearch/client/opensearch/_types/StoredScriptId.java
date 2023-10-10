@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,90 +41,90 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.StoredScriptId
 
 @JsonpDeserializable
 public class StoredScriptId extends ScriptBase {
-	private final String id;
+    private final String id;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private StoredScriptId(Builder builder) {
-		super(builder);
+    private StoredScriptId(Builder builder) {
+        super(builder);
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
-	}
+    }
 
-	public static StoredScriptId of(Function<Builder, ObjectBuilder<StoredScriptId>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StoredScriptId of(Function<Builder, ObjectBuilder<StoredScriptId>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code id}
-	 */
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * Required - API name: {@code id}
+     */
+    public final String id() {
+        return this.id;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("id");
-		generator.write(this.id);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("id");
+        generator.write(this.id);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StoredScriptId}.
-	 */
+    /**
+     * Builder for {@link StoredScriptId}.
+     */
 
-	public static class Builder extends ScriptBase.AbstractBuilder<Builder> implements ObjectBuilder<StoredScriptId> {
-		private String id;
+    public static class Builder extends ScriptBase.AbstractBuilder<Builder> implements ObjectBuilder<StoredScriptId> {
+        private String id;
 
-		/**
-		 * Required - API name: {@code id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code id}
+         */
+        public final Builder id(String value) {
+            this.id = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StoredScriptId}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StoredScriptId build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link StoredScriptId}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StoredScriptId build() {
+            _checkSingleUse();
 
-			return new StoredScriptId(this);
-		}
-	}
+            return new StoredScriptId(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link StoredScriptId}
-	 */
-	public static final JsonpDeserializer<StoredScriptId> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StoredScriptId::setupStoredScriptIdDeserializer);
+    /**
+     * Json deserializer for {@link StoredScriptId}
+     */
+    public static final JsonpDeserializer<StoredScriptId> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StoredScriptId::setupStoredScriptIdDeserializer
+    );
 
-	protected static void setupStoredScriptIdDeserializer(ObjectDeserializer<StoredScriptId.Builder> op) {
-		ScriptBase.setupScriptBaseDeserializer(op);
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+    protected static void setupStoredScriptIdDeserializer(ObjectDeserializer<StoredScriptId.Builder> op) {
+        ScriptBase.setupScriptBaseDeserializer(op);
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 
-	}
+    }
 
 }

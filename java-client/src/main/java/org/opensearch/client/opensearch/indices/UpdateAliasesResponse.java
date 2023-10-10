@@ -32,68 +32,67 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.update_aliases.Response
 
 @JsonpDeserializable
 public class UpdateAliasesResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private UpdateAliasesResponse(Builder builder) {
-		super(builder);
+    private UpdateAliasesResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static UpdateAliasesResponse of(Function<Builder, ObjectBuilder<UpdateAliasesResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static UpdateAliasesResponse of(Function<Builder, ObjectBuilder<UpdateAliasesResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link UpdateAliasesResponse}.
-	 */
+    /**
+     * Builder for {@link UpdateAliasesResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<UpdateAliasesResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<UpdateAliasesResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link UpdateAliasesResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public UpdateAliasesResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link UpdateAliasesResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public UpdateAliasesResponse build() {
+            _checkSingleUse();
 
-			return new UpdateAliasesResponse(this);
-		}
-	}
+            return new UpdateAliasesResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link UpdateAliasesResponse}
-	 */
-	public static final JsonpDeserializer<UpdateAliasesResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateAliasesResponse::setupUpdateAliasesResponseDeserializer);
+    /**
+     * Json deserializer for {@link UpdateAliasesResponse}
+     */
+    public static final JsonpDeserializer<UpdateAliasesResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        UpdateAliasesResponse::setupUpdateAliasesResponseDeserializer
+    );
 
-	protected static void setupUpdateAliasesResponseDeserializer(ObjectDeserializer<UpdateAliasesResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupUpdateAliasesResponseDeserializer(ObjectDeserializer<UpdateAliasesResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

@@ -38,10 +38,9 @@ package org.opensearch.client.opensearch._types;
  * Variants <code>geohash_length</code>, <code>distance</code> are not available
  * here as they don't have a dedicated class. Use {@link GeoHashPrecision}'s
  * builder for these.
- * 
+ *
  */
 public class GeoHashPrecisionBuilders {
-	private GeoHashPrecisionBuilders() {
-	}
+    private GeoHashPrecisionBuilders() {}
 
 }

@@ -37,22 +37,21 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum SortOrder implements JsonEnum {
-	Asc("asc"),
+    Asc("asc"),
 
-	Desc("desc"),
+    Desc("desc"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	SortOrder(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    SortOrder(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<SortOrder> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SortOrder.values());
+    public static final JsonEnum.Deserializer<SortOrder> _DESERIALIZER = new JsonEnum.Deserializer<>(SortOrder.values());
 }

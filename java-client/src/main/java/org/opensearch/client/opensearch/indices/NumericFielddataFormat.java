@@ -37,22 +37,23 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum NumericFielddataFormat implements JsonEnum {
-	Array("array"),
+    Array("array"),
 
-	Disabled("disabled"),
+    Disabled("disabled"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	NumericFielddataFormat(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    NumericFielddataFormat(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<NumericFielddataFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			NumericFielddataFormat.values());
+    public static final JsonEnum.Deserializer<NumericFielddataFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        NumericFielddataFormat.values()
+    );
 }

@@ -37,24 +37,25 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum BuiltinHighlighterType implements JsonEnum {
-	Plain("plain"),
+    Plain("plain"),
 
-	FastVector("fvh"),
+    FastVector("fvh"),
 
-	Unified("unified"),
+    Unified("unified"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	BuiltinHighlighterType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    BuiltinHighlighterType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<BuiltinHighlighterType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			BuiltinHighlighterType.values());
+    public static final JsonEnum.Deserializer<BuiltinHighlighterType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        BuiltinHighlighterType.values()
+    );
 }

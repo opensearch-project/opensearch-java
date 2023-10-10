@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,113 +41,109 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.EwmaMovingAverageAggregation
 
 @JsonpDeserializable
-public class EwmaMovingAverageAggregation extends MovingAverageAggregationBase
-		implements
-			MovingAverageAggregationVariant {
-	private final EwmaModelSettings settings;
+public class EwmaMovingAverageAggregation extends MovingAverageAggregationBase implements MovingAverageAggregationVariant {
+    private final EwmaModelSettings settings;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private EwmaMovingAverageAggregation(Builder builder) {
-		super(builder);
+    private EwmaMovingAverageAggregation(Builder builder) {
+        super(builder);
 
-		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
+        this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
-	}
+    }
 
-	public static EwmaMovingAverageAggregation of(Function<Builder, ObjectBuilder<EwmaMovingAverageAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static EwmaMovingAverageAggregation of(Function<Builder, ObjectBuilder<EwmaMovingAverageAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * MovingAverageAggregation variant kind.
-	 */
-	@Override
-	public MovingAverageAggregation.Kind _movingAverageAggregationKind() {
-		return MovingAverageAggregation.Kind.Ewma;
-	}
+    /**
+     * MovingAverageAggregation variant kind.
+     */
+    @Override
+    public MovingAverageAggregation.Kind _movingAverageAggregationKind() {
+        return MovingAverageAggregation.Kind.Ewma;
+    }
 
-	/**
-	 * Required - API name: {@code settings}
-	 */
-	public final EwmaModelSettings settings() {
-		return this.settings;
-	}
+    /**
+     * Required - API name: {@code settings}
+     */
+    public final EwmaModelSettings settings() {
+        return this.settings;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("model", "ewma");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("settings");
-		this.settings.serialize(generator, mapper);
+        generator.write("model", "ewma");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("settings");
+        this.settings.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link EwmaMovingAverageAggregation}.
-	 */
+    /**
+     * Builder for {@link EwmaMovingAverageAggregation}.
+     */
 
-	public static class Builder extends MovingAverageAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<EwmaMovingAverageAggregation> {
-		private EwmaModelSettings settings;
+    public static class Builder extends MovingAverageAggregationBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<EwmaMovingAverageAggregation> {
+        private EwmaModelSettings settings;
 
-		/**
-		 * Required - API name: {@code settings}
-		 */
-		public final Builder settings(EwmaModelSettings value) {
-			this.settings = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code settings}
+         */
+        public final Builder settings(EwmaModelSettings value) {
+            this.settings = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code settings}
-		 */
-		public final Builder settings(Function<EwmaModelSettings.Builder, ObjectBuilder<EwmaModelSettings>> fn) {
-			return this.settings(fn.apply(new EwmaModelSettings.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code settings}
+         */
+        public final Builder settings(Function<EwmaModelSettings.Builder, ObjectBuilder<EwmaModelSettings>> fn) {
+            return this.settings(fn.apply(new EwmaModelSettings.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link EwmaMovingAverageAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public EwmaMovingAverageAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link EwmaMovingAverageAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public EwmaMovingAverageAggregation build() {
+            _checkSingleUse();
 
-			return new EwmaMovingAverageAggregation(this);
-		}
-	}
+            return new EwmaMovingAverageAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link EwmaMovingAverageAggregation}
-	 */
-	public static final JsonpDeserializer<EwmaMovingAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, EwmaMovingAverageAggregation::setupEwmaMovingAverageAggregationDeserializer);
+    /**
+     * Json deserializer for {@link EwmaMovingAverageAggregation}
+     */
+    public static final JsonpDeserializer<EwmaMovingAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        EwmaMovingAverageAggregation::setupEwmaMovingAverageAggregationDeserializer
+    );
 
-	protected static void setupEwmaMovingAverageAggregationDeserializer(
-			ObjectDeserializer<EwmaMovingAverageAggregation.Builder> op) {
-		MovingAverageAggregationBase.setupMovingAverageAggregationBaseDeserializer(op);
-		op.add(Builder::settings, EwmaModelSettings._DESERIALIZER, "settings");
+    protected static void setupEwmaMovingAverageAggregationDeserializer(ObjectDeserializer<EwmaMovingAverageAggregation.Builder> op) {
+        MovingAverageAggregationBase.setupMovingAverageAggregationBaseDeserializer(op);
+        op.add(Builder::settings, EwmaModelSettings._DESERIALIZER, "settings");
 
-		op.ignore("model");
-	}
+        op.ignore("model");
+    }
 
 }

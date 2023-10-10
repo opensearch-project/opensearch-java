@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,117 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.TermsPartition
 
-
 @JsonpDeserializable
 public class TermsPartition implements JsonpSerializable {
-	private final long numPartitions;
+    private final long numPartitions;
 
-	private final long partition;
+    private final long partition;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TermsPartition(Builder builder) {
+    private TermsPartition(Builder builder) {
 
-		this.numPartitions = ApiTypeHelper.requireNonNull(builder.numPartitions, this, "numPartitions");
-		this.partition = ApiTypeHelper.requireNonNull(builder.partition, this, "partition");
+        this.numPartitions = ApiTypeHelper.requireNonNull(builder.numPartitions, this, "numPartitions");
+        this.partition = ApiTypeHelper.requireNonNull(builder.partition, this, "partition");
 
-	}
+    }
 
-	public static TermsPartition of(Function<Builder, ObjectBuilder<TermsPartition>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TermsPartition of(Function<Builder, ObjectBuilder<TermsPartition>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code num_partitions}
-	 */
-	public final long numPartitions() {
-		return this.numPartitions;
-	}
+    /**
+     * Required - API name: {@code num_partitions}
+     */
+    public final long numPartitions() {
+        return this.numPartitions;
+    }
 
-	/**
-	 * Required - API name: {@code partition}
-	 */
-	public final long partition() {
-		return this.partition;
-	}
+    /**
+     * Required - API name: {@code partition}
+     */
+    public final long partition() {
+        return this.partition;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("num_partitions");
-		generator.write(this.numPartitions);
+        generator.writeKey("num_partitions");
+        generator.write(this.numPartitions);
 
-		generator.writeKey("partition");
-		generator.write(this.partition);
+        generator.writeKey("partition");
+        generator.write(this.partition);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TermsPartition}.
-	 */
+    /**
+     * Builder for {@link TermsPartition}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsPartition> {
-		private Long numPartitions;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsPartition> {
+        private Long numPartitions;
 
-		private Long partition;
+        private Long partition;
 
-		/**
-		 * Required - API name: {@code num_partitions}
-		 */
-		public final Builder numPartitions(long value) {
-			this.numPartitions = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code num_partitions}
+         */
+        public final Builder numPartitions(long value) {
+            this.numPartitions = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code partition}
-		 */
-		public final Builder partition(long value) {
-			this.partition = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code partition}
+         */
+        public final Builder partition(long value) {
+            this.partition = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TermsPartition}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TermsPartition build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TermsPartition}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TermsPartition build() {
+            _checkSingleUse();
 
-			return new TermsPartition(this);
-		}
-	}
+            return new TermsPartition(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TermsPartition}
-	 */
-	public static final JsonpDeserializer<TermsPartition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TermsPartition::setupTermsPartitionDeserializer);
+    /**
+     * Json deserializer for {@link TermsPartition}
+     */
+    public static final JsonpDeserializer<TermsPartition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TermsPartition::setupTermsPartitionDeserializer
+    );
 
-	protected static void setupTermsPartitionDeserializer(ObjectDeserializer<TermsPartition.Builder> op) {
+    protected static void setupTermsPartitionDeserializer(ObjectDeserializer<TermsPartition.Builder> op) {
 
-		op.add(Builder::numPartitions, JsonpDeserializer.longDeserializer(), "num_partitions");
-		op.add(Builder::partition, JsonpDeserializer.longDeserializer(), "partition");
+        op.add(Builder::numPartitions, JsonpDeserializer.longDeserializer(), "num_partitions");
+        op.add(Builder::partition, JsonpDeserializer.longDeserializer(), "partition");
 
-	}
+    }
 
 }

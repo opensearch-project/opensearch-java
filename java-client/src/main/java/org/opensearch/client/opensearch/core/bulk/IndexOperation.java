@@ -32,108 +32,104 @@
 
 package org.opensearch.client.opensearch.core.bulk;
 
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.NdJsonpSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
-
 // typedef: _global.bulk.IndexOperation
 
-
-
 public class IndexOperation<TDocument> extends WriteOperation implements NdJsonpSerializable, BulkOperationVariant {
-	private final TDocument document;
+    private final TDocument document;
 
-	@Nullable
-	private final JsonpSerializer<TDocument> tDocumentSerializer;
+    @Nullable
+    private final JsonpSerializer<TDocument> tDocumentSerializer;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndexOperation(Builder<TDocument> builder) {
-		super(builder);
-		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
+    private IndexOperation(Builder<TDocument> builder) {
+        super(builder);
+        this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
 
-		this.tDocumentSerializer = builder.tDocumentSerializer;
+        this.tDocumentSerializer = builder.tDocumentSerializer;
 
-	}
+    }
 
-	public static <TDocument> IndexOperation<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<IndexOperation<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
-	}
+    public static <TDocument> IndexOperation<TDocument> of(Function<Builder<TDocument>, ObjectBuilder<IndexOperation<TDocument>>> fn) {
+        return fn.apply(new Builder<>()).build();
+    }
 
-	/**
-	 * BulkOperation variant kind.
-	 */
-	@Override
-	public BulkOperation.Kind _bulkOperationKind() {
-		return BulkOperation.Kind.Index;
-	}
+    /**
+     * BulkOperation variant kind.
+     */
+    @Override
+    public BulkOperation.Kind _bulkOperationKind() {
+        return BulkOperation.Kind.Index;
+    }
 
-	/**
-	 * Required - API name: {@code document}
-	 */
-	public final TDocument document() {
-		return this.document;
-	}
+    /**
+     * Required - API name: {@code document}
+     */
+    public final TDocument document() {
+        return this.document;
+    }
 
-	@Override
-	public Iterator<?> _serializables() {
-		return Arrays.asList(this, this.document).iterator();
-	}
+    @Override
+    public Iterator<?> _serializables() {
+        return Arrays.asList(this, this.document).iterator();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndexOperation}.
-	 */
+    /**
+     * Builder for {@link IndexOperation}.
+     */
 
-	public static class Builder<TDocument> extends WriteOperation.AbstractBuilder<Builder<TDocument>>
-			implements
-				ObjectBuilder<IndexOperation<TDocument>> {
-		private TDocument document;
+    public static class Builder<TDocument> extends WriteOperation.AbstractBuilder<Builder<TDocument>>
+        implements
+            ObjectBuilder<IndexOperation<TDocument>> {
+        private TDocument document;
 
-		/**
-		 * Required - API name: {@code document}
-		 */
-		public final Builder<TDocument> document(TDocument value) {
-			this.document = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code document}
+         */
+        public final Builder<TDocument> document(TDocument value) {
+            this.document = value;
+            return this;
+        }
 
-		@Nullable
-		private JsonpSerializer<TDocument> tDocumentSerializer;
+        @Nullable
+        private JsonpSerializer<TDocument> tDocumentSerializer;
 
-		/**
-		 * Serializer for TDocument. If not set, an attempt will be made to find a
-		 * serializer from the JSON context.
-		 */
-		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
-			this.tDocumentSerializer = value;
-			return this;
-		}
+        /**
+         * Serializer for TDocument. If not set, an attempt will be made to find a
+         * serializer from the JSON context.
+         */
+        public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+            this.tDocumentSerializer = value;
+            return this;
+        }
 
-		@Override
-		protected Builder<TDocument> self() {
-			return this;
-		}
+        @Override
+        protected Builder<TDocument> self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IndexOperation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndexOperation<TDocument> build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndexOperation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndexOperation<TDocument> build() {
+            _checkSingleUse();
 
-			return new IndexOperation<TDocument>(this);
-		}
-	}
+            return new IndexOperation<TDocument>(this);
+        }
+    }
 
 }

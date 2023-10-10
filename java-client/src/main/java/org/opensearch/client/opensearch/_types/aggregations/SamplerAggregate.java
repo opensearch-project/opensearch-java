@@ -32,76 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.SamplerAggregate
-
 
 @JsonpDeserializable
 public class SamplerAggregate extends SingleBucketAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SamplerAggregate(Builder builder) {
-		super(builder);
+    private SamplerAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static SamplerAggregate of(Function<Builder, ObjectBuilder<SamplerAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SamplerAggregate of(Function<Builder, ObjectBuilder<SamplerAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Sampler;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Sampler;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SamplerAggregate}.
-	 */
+    /**
+     * Builder for {@link SamplerAggregate}.
+     */
 
-	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<SamplerAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<SamplerAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SamplerAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SamplerAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SamplerAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SamplerAggregate build() {
+            _checkSingleUse();
 
-			return new SamplerAggregate(this);
-		}
-	}
+            return new SamplerAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SamplerAggregate}
-	 */
-	public static final JsonpDeserializer<SamplerAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SamplerAggregate::setupSamplerAggregateDeserializer);
+    /**
+     * Json deserializer for {@link SamplerAggregate}
+     */
+    public static final JsonpDeserializer<SamplerAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SamplerAggregate::setupSamplerAggregateDeserializer
+    );
 
-	protected static void setupSamplerAggregateDeserializer(ObjectDeserializer<SamplerAggregate.Builder> op) {
-		setupSingleBucketAggregateBaseDeserializer(op);
+    protected static void setupSamplerAggregateDeserializer(ObjectDeserializer<SamplerAggregate.Builder> op) {
+        setupSingleBucketAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

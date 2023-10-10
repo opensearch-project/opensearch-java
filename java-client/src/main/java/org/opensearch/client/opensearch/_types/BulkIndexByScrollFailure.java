@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,196 +43,195 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.BulkIndexByScrollFailure
 
 @JsonpDeserializable
 public class BulkIndexByScrollFailure implements JsonpSerializable {
-	private final ErrorCause cause;
+    private final ErrorCause cause;
 
-	private final String id;
+    private final String id;
 
-	private final String index;
+    private final String index;
 
-	private final int status;
+    private final int status;
 
-	private final String type;
+    private final String type;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private BulkIndexByScrollFailure(Builder builder) {
+    private BulkIndexByScrollFailure(Builder builder) {
 
-		this.cause = ApiTypeHelper.requireNonNull(builder.cause, this, "cause");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+        this.cause = ApiTypeHelper.requireNonNull(builder.cause, this, "cause");
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+        this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
-	}
+    }
 
-	public static BulkIndexByScrollFailure of(Function<Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static BulkIndexByScrollFailure of(Function<Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code cause}
-	 */
-	public final ErrorCause cause() {
-		return this.cause;
-	}
+    /**
+     * Required - API name: {@code cause}
+     */
+    public final ErrorCause cause() {
+        return this.cause;
+    }
 
-	/**
-	 * Required - API name: {@code id}
-	 */
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * Required - API name: {@code id}
+     */
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * Required - API name: {@code index}
-	 */
-	public final String index() {
-		return this.index;
-	}
+    /**
+     * Required - API name: {@code index}
+     */
+    public final String index() {
+        return this.index;
+    }
 
-	/**
-	 * Required - API name: {@code status}
-	 */
-	public final int status() {
-		return this.status;
-	}
+    /**
+     * Required - API name: {@code status}
+     */
+    public final int status() {
+        return this.status;
+    }
 
-	/**
-	 * Required - API name: {@code type}
-	 */
-	public final String type() {
-		return this.type;
-	}
+    /**
+     * Required - API name: {@code type}
+     */
+    public final String type() {
+        return this.type;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("cause");
-		this.cause.serialize(generator, mapper);
+        generator.writeKey("cause");
+        this.cause.serialize(generator, mapper);
 
-		generator.writeKey("id");
-		generator.write(this.id);
+        generator.writeKey("id");
+        generator.write(this.id);
 
-		generator.writeKey("index");
-		generator.write(this.index);
+        generator.writeKey("index");
+        generator.write(this.index);
 
-		generator.writeKey("status");
-		generator.write(this.status);
+        generator.writeKey("status");
+        generator.write(this.status);
 
-		generator.writeKey("type");
-		generator.write(this.type);
+        generator.writeKey("type");
+        generator.write(this.type);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link BulkIndexByScrollFailure}.
-	 */
+    /**
+     * Builder for {@link BulkIndexByScrollFailure}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkIndexByScrollFailure> {
-		private ErrorCause cause;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkIndexByScrollFailure> {
+        private ErrorCause cause;
 
-		private String id;
+        private String id;
 
-		private String index;
+        private String index;
 
-		private Integer status;
+        private Integer status;
 
-		private String type;
+        private String type;
 
-		/**
-		 * Required - API name: {@code cause}
-		 */
-		public final Builder cause(ErrorCause value) {
-			this.cause = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code cause}
+         */
+        public final Builder cause(ErrorCause value) {
+            this.cause = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code cause}
-		 */
-		public final Builder cause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.cause(fn.apply(new ErrorCause.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code cause}
+         */
+        public final Builder cause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+            return this.cause(fn.apply(new ErrorCause.Builder()).build());
+        }
 
-		/**
-		 * Required - API name: {@code id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code id}
+         */
+        public final Builder id(String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code index}
-		 */
-		public final Builder index(String value) {
-			this.index = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code index}
+         */
+        public final Builder index(String value) {
+            this.index = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code status}
-		 */
-		public final Builder status(int value) {
-			this.status = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code status}
+         */
+        public final Builder status(int value) {
+            this.status = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public final Builder type(String value) {
-			this.type = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code type}
+         */
+        public final Builder type(String value) {
+            this.type = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link BulkIndexByScrollFailure}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public BulkIndexByScrollFailure build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link BulkIndexByScrollFailure}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public BulkIndexByScrollFailure build() {
+            _checkSingleUse();
 
-			return new BulkIndexByScrollFailure(this);
-		}
-	}
+            return new BulkIndexByScrollFailure(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link BulkIndexByScrollFailure}
-	 */
-	public static final JsonpDeserializer<BulkIndexByScrollFailure> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, BulkIndexByScrollFailure::setupBulkIndexByScrollFailureDeserializer);
+    /**
+     * Json deserializer for {@link BulkIndexByScrollFailure}
+     */
+    public static final JsonpDeserializer<BulkIndexByScrollFailure> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        BulkIndexByScrollFailure::setupBulkIndexByScrollFailureDeserializer
+    );
 
-	protected static void setupBulkIndexByScrollFailureDeserializer(
-			ObjectDeserializer<BulkIndexByScrollFailure.Builder> op) {
+    protected static void setupBulkIndexByScrollFailureDeserializer(ObjectDeserializer<BulkIndexByScrollFailure.Builder> op) {
 
-		op.add(Builder::cause, ErrorCause._DESERIALIZER, "cause");
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+        op.add(Builder::cause, ErrorCause._DESERIALIZER, "cause");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+        op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
+        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
-	}
+    }
 
 }

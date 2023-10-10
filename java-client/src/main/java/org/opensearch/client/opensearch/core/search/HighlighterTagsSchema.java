@@ -37,20 +37,21 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum HighlighterTagsSchema implements JsonEnum {
-	Styled("styled"),
+    Styled("styled"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	HighlighterTagsSchema(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    HighlighterTagsSchema(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<HighlighterTagsSchema> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			HighlighterTagsSchema.values());
+    public static final JsonEnum.Deserializer<HighlighterTagsSchema> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        HighlighterTagsSchema.values()
+    );
 }

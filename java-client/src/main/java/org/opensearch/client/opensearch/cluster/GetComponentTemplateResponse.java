@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.cluster;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,126 +44,121 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: cluster.get_component_template.Response
 
 @JsonpDeserializable
 public class GetComponentTemplateResponse implements JsonpSerializable {
-	private final List<ComponentTemplate> componentTemplates;
+    private final List<ComponentTemplate> componentTemplates;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetComponentTemplateResponse(Builder builder) {
+    private GetComponentTemplateResponse(Builder builder) {
 
-		this.componentTemplates = ApiTypeHelper.unmodifiableRequired(builder.componentTemplates, this,
-				"componentTemplates");
+        this.componentTemplates = ApiTypeHelper.unmodifiableRequired(builder.componentTemplates, this, "componentTemplates");
 
-	}
+    }
 
-	public static GetComponentTemplateResponse of(Function<Builder, ObjectBuilder<GetComponentTemplateResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetComponentTemplateResponse of(Function<Builder, ObjectBuilder<GetComponentTemplateResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code component_templates}
-	 */
-	public final List<ComponentTemplate> componentTemplates() {
-		return this.componentTemplates;
-	}
+    /**
+     * Required - API name: {@code component_templates}
+     */
+    public final List<ComponentTemplate> componentTemplates() {
+        return this.componentTemplates;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.componentTemplates)) {
-			generator.writeKey("component_templates");
-			generator.writeStartArray();
-			for (ComponentTemplate item0 : this.componentTemplates) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.componentTemplates)) {
+            generator.writeKey("component_templates");
+            generator.writeStartArray();
+            for (ComponentTemplate item0 : this.componentTemplates) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetComponentTemplateResponse}.
-	 */
+    /**
+     * Builder for {@link GetComponentTemplateResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetComponentTemplateResponse> {
-		private List<ComponentTemplate> componentTemplates;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetComponentTemplateResponse> {
+        private List<ComponentTemplate> componentTemplates;
 
-		/**
-		 * Required - API name: {@code component_templates}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>componentTemplates</code>.
-		 */
-		public final Builder componentTemplates(List<ComponentTemplate> list) {
-			this.componentTemplates = _listAddAll(this.componentTemplates, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code component_templates}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>componentTemplates</code>.
+         */
+        public final Builder componentTemplates(List<ComponentTemplate> list) {
+            this.componentTemplates = _listAddAll(this.componentTemplates, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code component_templates}
-		 * <p>
-		 * Adds one or more values to <code>componentTemplates</code>.
-		 */
-		public final Builder componentTemplates(ComponentTemplate value, ComponentTemplate... values) {
-			this.componentTemplates = _listAdd(this.componentTemplates, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code component_templates}
+         * <p>
+         * Adds one or more values to <code>componentTemplates</code>.
+         */
+        public final Builder componentTemplates(ComponentTemplate value, ComponentTemplate... values) {
+            this.componentTemplates = _listAdd(this.componentTemplates, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code component_templates}
-		 * <p>
-		 * Adds a value to <code>componentTemplates</code> using a builder lambda.
-		 */
-		public final Builder componentTemplates(
-				Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>> fn) {
-			return componentTemplates(fn.apply(new ComponentTemplate.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code component_templates}
+         * <p>
+         * Adds a value to <code>componentTemplates</code> using a builder lambda.
+         */
+        public final Builder componentTemplates(Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>> fn) {
+            return componentTemplates(fn.apply(new ComponentTemplate.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link GetComponentTemplateResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetComponentTemplateResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GetComponentTemplateResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetComponentTemplateResponse build() {
+            _checkSingleUse();
 
-			return new GetComponentTemplateResponse(this);
-		}
-	}
+            return new GetComponentTemplateResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GetComponentTemplateResponse}
-	 */
-	public static final JsonpDeserializer<GetComponentTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetComponentTemplateResponse::setupGetComponentTemplateResponseDeserializer);
+    /**
+     * Json deserializer for {@link GetComponentTemplateResponse}
+     */
+    public static final JsonpDeserializer<GetComponentTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GetComponentTemplateResponse::setupGetComponentTemplateResponseDeserializer
+    );
 
-	protected static void setupGetComponentTemplateResponseDeserializer(
-			ObjectDeserializer<GetComponentTemplateResponse.Builder> op) {
+    protected static void setupGetComponentTemplateResponseDeserializer(ObjectDeserializer<GetComponentTemplateResponse.Builder> op) {
 
-		op.add(Builder::componentTemplates, JsonpDeserializer.arrayDeserializer(ComponentTemplate._DESERIALIZER),
-				"component_templates");
+        op.add(Builder::componentTemplates, JsonpDeserializer.arrayDeserializer(ComponentTemplate._DESERIALIZER), "component_templates");
 
-	}
+    }
 
 }

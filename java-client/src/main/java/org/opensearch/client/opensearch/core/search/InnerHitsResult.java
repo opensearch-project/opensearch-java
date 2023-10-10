@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,101 +44,99 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _global.search._types.InnerHitsResult
 
-
 @JsonpDeserializable
 public class InnerHitsResult implements JsonpSerializable {
-	private final HitsMetadata<JsonData> hits;
+    private final HitsMetadata<JsonData> hits;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private InnerHitsResult(Builder builder) {
+    private InnerHitsResult(Builder builder) {
 
-		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+        this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 
-	}
+    }
 
-	public static InnerHitsResult of(Function<Builder, ObjectBuilder<InnerHitsResult>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static InnerHitsResult of(Function<Builder, ObjectBuilder<InnerHitsResult>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code hits}
-	 */
-	public final HitsMetadata<JsonData> hits() {
-		return this.hits;
-	}
+    /**
+     * Required - API name: {@code hits}
+     */
+    public final HitsMetadata<JsonData> hits() {
+        return this.hits;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("hits");
-		this.hits.serialize(generator, mapper);
+        generator.writeKey("hits");
+        this.hits.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link InnerHitsResult}.
-	 */
+    /**
+     * Builder for {@link InnerHitsResult}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InnerHitsResult> {
-		private HitsMetadata<JsonData> hits;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InnerHitsResult> {
+        private HitsMetadata<JsonData> hits;
 
-		/**
-		 * Required - API name: {@code hits}
-		 */
-		public final Builder hits(HitsMetadata<JsonData> value) {
-			this.hits = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code hits}
+         */
+        public final Builder hits(HitsMetadata<JsonData> value) {
+            this.hits = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code hits}
-		 */
-		public final Builder hits(Function<HitsMetadata.Builder<JsonData>, ObjectBuilder<HitsMetadata<JsonData>>> fn) {
-			return this.hits(fn.apply(new HitsMetadata.Builder<JsonData>()).build());
-		}
+        /**
+         * Required - API name: {@code hits}
+         */
+        public final Builder hits(Function<HitsMetadata.Builder<JsonData>, ObjectBuilder<HitsMetadata<JsonData>>> fn) {
+            return this.hits(fn.apply(new HitsMetadata.Builder<JsonData>()).build());
+        }
 
-		/**
-		 * Builds a {@link InnerHitsResult}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public InnerHitsResult build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link InnerHitsResult}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public InnerHitsResult build() {
+            _checkSingleUse();
 
-			return new InnerHitsResult(this);
-		}
-	}
+            return new InnerHitsResult(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link InnerHitsResult}
-	 */
-	public static final JsonpDeserializer<InnerHitsResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InnerHitsResult::setupInnerHitsResultDeserializer);
+    /**
+     * Json deserializer for {@link InnerHitsResult}
+     */
+    public static final JsonpDeserializer<InnerHitsResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        InnerHitsResult::setupInnerHitsResultDeserializer
+    );
 
-	protected static void setupInnerHitsResultDeserializer(ObjectDeserializer<InnerHitsResult.Builder> op) {
+    protected static void setupInnerHitsResultDeserializer(ObjectDeserializer<InnerHitsResult.Builder> op) {
 
-		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(JsonData._DESERIALIZER), "hits");
+        op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(JsonData._DESERIALIZER), "hits");
 
-	}
+    }
 
 }

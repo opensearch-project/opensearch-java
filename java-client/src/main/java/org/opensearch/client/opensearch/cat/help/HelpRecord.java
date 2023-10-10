@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.cat.help;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,93 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: cat.help.HelpRecord
 
-
 @JsonpDeserializable
 public class HelpRecord implements JsonpSerializable {
-	private final String endpoint;
+    private final String endpoint;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private HelpRecord(Builder builder) {
+    private HelpRecord(Builder builder) {
 
-		this.endpoint = ApiTypeHelper.requireNonNull(builder.endpoint, this, "endpoint");
+        this.endpoint = ApiTypeHelper.requireNonNull(builder.endpoint, this, "endpoint");
 
-	}
+    }
 
-	public static HelpRecord of(Function<Builder, ObjectBuilder<HelpRecord>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static HelpRecord of(Function<Builder, ObjectBuilder<HelpRecord>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code endpoint}
-	 */
-	public final String endpoint() {
-		return this.endpoint;
-	}
+    /**
+     * Required - API name: {@code endpoint}
+     */
+    public final String endpoint() {
+        return this.endpoint;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("endpoint");
-		generator.write(this.endpoint);
+        generator.writeKey("endpoint");
+        generator.write(this.endpoint);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link HelpRecord}.
-	 */
+    /**
+     * Builder for {@link HelpRecord}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HelpRecord> {
-		private String endpoint;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HelpRecord> {
+        private String endpoint;
 
-		/**
-		 * Required - API name: {@code endpoint}
-		 */
-		public final Builder endpoint(String value) {
-			this.endpoint = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code endpoint}
+         */
+        public final Builder endpoint(String value) {
+            this.endpoint = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link HelpRecord}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public HelpRecord build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link HelpRecord}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public HelpRecord build() {
+            _checkSingleUse();
 
-			return new HelpRecord(this);
-		}
-	}
+            return new HelpRecord(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link HelpRecord}
-	 */
-	public static final JsonpDeserializer<HelpRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			HelpRecord::setupHelpRecordDeserializer);
+    /**
+     * Json deserializer for {@link HelpRecord}
+     */
+    public static final JsonpDeserializer<HelpRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        HelpRecord::setupHelpRecordDeserializer
+    );
 
-	protected static void setupHelpRecordDeserializer(ObjectDeserializer<HelpRecord.Builder> op) {
+    protected static void setupHelpRecordDeserializer(ObjectDeserializer<HelpRecord.Builder> op) {
 
-		op.add(Builder::endpoint, JsonpDeserializer.stringDeserializer(), "endpoint");
+        op.add(Builder::endpoint, JsonpDeserializer.stringDeserializer(), "endpoint");
 
-	}
+    }
 
 }

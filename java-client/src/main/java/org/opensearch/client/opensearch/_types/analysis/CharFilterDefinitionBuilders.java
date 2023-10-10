@@ -36,47 +36,46 @@ package org.opensearch.client.opensearch._types.analysis;
  * Builders for {@link CharFilterDefinition} variants.
  */
 public class CharFilterDefinitionBuilders {
-	private CharFilterDefinitionBuilders() {
-	}
+    private CharFilterDefinitionBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link HtmlStripCharFilter html_strip}
-	 * {@code CharFilterDefinition} variant.
-	 */
-	public static HtmlStripCharFilter.Builder htmlStrip() {
-		return new HtmlStripCharFilter.Builder();
-	}
+    /**
+     * Creates a builder for the {@link HtmlStripCharFilter html_strip}
+     * {@code CharFilterDefinition} variant.
+     */
+    public static HtmlStripCharFilter.Builder htmlStrip() {
+        return new HtmlStripCharFilter.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link IcuNormalizationCharFilter icu_normalizer}
-	 * {@code CharFilterDefinition} variant.
-	 */
-	public static IcuNormalizationCharFilter.Builder icuNormalizer() {
-		return new IcuNormalizationCharFilter.Builder();
-	}
+    /**
+     * Creates a builder for the {@link IcuNormalizationCharFilter icu_normalizer}
+     * {@code CharFilterDefinition} variant.
+     */
+    public static IcuNormalizationCharFilter.Builder icuNormalizer() {
+        return new IcuNormalizationCharFilter.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link KuromojiIterationMarkCharFilter
-	 * kuromoji_iteration_mark} {@code CharFilterDefinition} variant.
-	 */
-	public static KuromojiIterationMarkCharFilter.Builder kuromojiIterationMark() {
-		return new KuromojiIterationMarkCharFilter.Builder();
-	}
+    /**
+     * Creates a builder for the {@link KuromojiIterationMarkCharFilter
+     * kuromoji_iteration_mark} {@code CharFilterDefinition} variant.
+     */
+    public static KuromojiIterationMarkCharFilter.Builder kuromojiIterationMark() {
+        return new KuromojiIterationMarkCharFilter.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link MappingCharFilter mapping}
-	 * {@code CharFilterDefinition} variant.
-	 */
-	public static MappingCharFilter.Builder mapping() {
-		return new MappingCharFilter.Builder();
-	}
+    /**
+     * Creates a builder for the {@link MappingCharFilter mapping}
+     * {@code CharFilterDefinition} variant.
+     */
+    public static MappingCharFilter.Builder mapping() {
+        return new MappingCharFilter.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link PatternReplaceCharFilter pattern_replace}
-	 * {@code CharFilterDefinition} variant.
-	 */
-	public static PatternReplaceCharFilter.Builder patternReplace() {
-		return new PatternReplaceCharFilter.Builder();
-	}
+    /**
+     * Creates a builder for the {@link PatternReplaceCharFilter pattern_replace}
+     * {@code CharFilterDefinition} variant.
+     */
+    public static PatternReplaceCharFilter.Builder patternReplace() {
+        return new PatternReplaceCharFilter.Builder();
+    }
 
 }

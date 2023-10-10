@@ -32,76 +32,76 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.PercentilesBucketAggregate
 
 @JsonpDeserializable
 public class PercentilesBucketAggregate extends PercentilesAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PercentilesBucketAggregate(Builder builder) {
-		super(builder);
+    private PercentilesBucketAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static PercentilesBucketAggregate of(Function<Builder, ObjectBuilder<PercentilesBucketAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PercentilesBucketAggregate of(Function<Builder, ObjectBuilder<PercentilesBucketAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.PercentilesBucket;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.PercentilesBucket;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PercentilesBucketAggregate}.
-	 */
+    /**
+     * Builder for {@link PercentilesBucketAggregate}.
+     */
 
-	public static class Builder extends PercentilesAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PercentilesBucketAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends PercentilesAggregateBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<PercentilesBucketAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PercentilesBucketAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PercentilesBucketAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PercentilesBucketAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PercentilesBucketAggregate build() {
+            _checkSingleUse();
 
-			return new PercentilesBucketAggregate(this);
-		}
-	}
+            return new PercentilesBucketAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PercentilesBucketAggregate}
-	 */
-	public static final JsonpDeserializer<PercentilesBucketAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PercentilesBucketAggregate::setupPercentilesBucketAggregateDeserializer);
+    /**
+     * Json deserializer for {@link PercentilesBucketAggregate}
+     */
+    public static final JsonpDeserializer<PercentilesBucketAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PercentilesBucketAggregate::setupPercentilesBucketAggregateDeserializer
+    );
 
-	protected static void setupPercentilesBucketAggregateDeserializer(
-			ObjectDeserializer<PercentilesBucketAggregate.Builder> op) {
-		PercentilesAggregateBase.setupPercentilesAggregateBaseDeserializer(op);
+    protected static void setupPercentilesBucketAggregateDeserializer(ObjectDeserializer<PercentilesBucketAggregate.Builder> op) {
+        PercentilesAggregateBase.setupPercentilesAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

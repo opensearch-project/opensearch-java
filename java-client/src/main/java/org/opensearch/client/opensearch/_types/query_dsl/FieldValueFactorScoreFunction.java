@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,190 +42,185 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FieldValueFactorScoreFunction
 
-
 @JsonpDeserializable
 public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
-	private final String field;
+    private final String field;
 
-	@Nullable
-	private final Double factor;
+    @Nullable
+    private final Double factor;
 
-	@Nullable
-	private final Double missing;
+    @Nullable
+    private final Double missing;
 
-	@Nullable
-	private final FieldValueFactorModifier modifier;
+    @Nullable
+    private final FieldValueFactorModifier modifier;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FieldValueFactorScoreFunction(Builder builder) {
-		super(builder);
+    private FieldValueFactorScoreFunction(Builder builder) {
+        super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.factor = builder.factor;
-		this.missing = builder.missing;
-		this.modifier = builder.modifier;
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.factor = builder.factor;
+        this.missing = builder.missing;
+        this.modifier = builder.modifier;
 
-	}
+    }
 
-	public static FieldValueFactorScoreFunction of(Function<Builder, ObjectBuilder<FieldValueFactorScoreFunction>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FieldValueFactorScoreFunction of(Function<Builder, ObjectBuilder<FieldValueFactorScoreFunction>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * FunctionScore variant kind.
-	 */
-	@Override
-	public FunctionScore.Kind _functionScoreKind() {
-		return FunctionScore.Kind.FieldValueFactor;
-	}
+    /**
+     * FunctionScore variant kind.
+     */
+    @Override
+    public FunctionScore.Kind _functionScoreKind() {
+        return FunctionScore.Kind.FieldValueFactor;
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * API name: {@code factor}
-	 */
-	@Nullable
-	public final Double factor() {
-		return this.factor;
-	}
+    /**
+     * API name: {@code factor}
+     */
+    @Nullable
+    public final Double factor() {
+        return this.factor;
+    }
 
-	/**
-	 * API name: {@code missing}
-	 */
-	@Nullable
-	public final Double missing() {
-		return this.missing;
-	}
+    /**
+     * API name: {@code missing}
+     */
+    @Nullable
+    public final Double missing() {
+        return this.missing;
+    }
 
-	/**
-	 * API name: {@code modifier}
-	 */
-	@Nullable
-	public final FieldValueFactorModifier modifier() {
-		return this.modifier;
-	}
+    /**
+     * API name: {@code modifier}
+     */
+    @Nullable
+    public final FieldValueFactorModifier modifier() {
+        return this.modifier;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("field");
-		generator.write(this.field);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-		if (this.factor != null) {
-			generator.writeKey("factor");
-			generator.write(this.factor);
+        if (this.factor != null) {
+            generator.writeKey("factor");
+            generator.write(this.factor);
 
-		}
-		if (this.missing != null) {
-			generator.writeKey("missing");
-			generator.write(this.missing);
+        }
+        if (this.missing != null) {
+            generator.writeKey("missing");
+            generator.write(this.missing);
 
-		}
-		if (this.modifier != null) {
-			generator.writeKey("modifier");
-			this.modifier.serialize(generator, mapper);
-		}
+        }
+        if (this.modifier != null) {
+            generator.writeKey("modifier");
+            this.modifier.serialize(generator, mapper);
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FieldValueFactorScoreFunction}.
-	 */
+    /**
+     * Builder for {@link FieldValueFactorScoreFunction}.
+     */
 
-	public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<FieldValueFactorScoreFunction> {
-		private String field;
+    public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder> implements ObjectBuilder<FieldValueFactorScoreFunction> {
+        private String field;
 
-		@Nullable
-		private Double factor;
+        @Nullable
+        private Double factor;
 
-		@Nullable
-		private Double missing;
+        @Nullable
+        private Double missing;
 
-		@Nullable
-		private FieldValueFactorModifier modifier;
+        @Nullable
+        private FieldValueFactorModifier modifier;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code factor}
-		 */
-		public final Builder factor(@Nullable Double value) {
-			this.factor = value;
-			return this;
-		}
+        /**
+         * API name: {@code factor}
+         */
+        public final Builder factor(@Nullable Double value) {
+            this.factor = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code missing}
-		 */
-		public final Builder missing(@Nullable Double value) {
-			this.missing = value;
-			return this;
-		}
+        /**
+         * API name: {@code missing}
+         */
+        public final Builder missing(@Nullable Double value) {
+            this.missing = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code modifier}
-		 */
-		public final Builder modifier(@Nullable FieldValueFactorModifier value) {
-			this.modifier = value;
-			return this;
-		}
+        /**
+         * API name: {@code modifier}
+         */
+        public final Builder modifier(@Nullable FieldValueFactorModifier value) {
+            this.modifier = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FieldValueFactorScoreFunction}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FieldValueFactorScoreFunction build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FieldValueFactorScoreFunction}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FieldValueFactorScoreFunction build() {
+            _checkSingleUse();
 
-			return new FieldValueFactorScoreFunction(this);
-		}
-	}
+            return new FieldValueFactorScoreFunction(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FieldValueFactorScoreFunction}
-	 */
-	public static final JsonpDeserializer<FieldValueFactorScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FieldValueFactorScoreFunction::setupFieldValueFactorScoreFunctionDeserializer);
+    /**
+     * Json deserializer for {@link FieldValueFactorScoreFunction}
+     */
+    public static final JsonpDeserializer<FieldValueFactorScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FieldValueFactorScoreFunction::setupFieldValueFactorScoreFunctionDeserializer
+    );
 
-	protected static void setupFieldValueFactorScoreFunctionDeserializer(
-			ObjectDeserializer<FieldValueFactorScoreFunction.Builder> op) {
-		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::factor, JsonpDeserializer.doubleDeserializer(), "factor");
-		op.add(Builder::missing, JsonpDeserializer.doubleDeserializer(), "missing");
-		op.add(Builder::modifier, FieldValueFactorModifier._DESERIALIZER, "modifier");
+    protected static void setupFieldValueFactorScoreFunctionDeserializer(ObjectDeserializer<FieldValueFactorScoreFunction.Builder> op) {
+        ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::factor, JsonpDeserializer.doubleDeserializer(), "factor");
+        op.add(Builder::missing, JsonpDeserializer.doubleDeserializer(), "missing");
+        op.add(Builder::modifier, FieldValueFactorModifier._DESERIALIZER, "modifier");
 
-	}
+    }
 
 }

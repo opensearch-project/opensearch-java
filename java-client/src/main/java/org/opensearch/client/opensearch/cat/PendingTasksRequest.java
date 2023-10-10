@@ -32,47 +32,49 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-
-import java.util.HashMap;
 
 // typedef: cat.pending_tasks.Request
 
 /**
  * Returns a concise representation of the cluster pending tasks.
- * 
+ *
  */
 
 public class PendingTasksRequest extends CatRequestBase {
-	public PendingTasksRequest() {
-	}
+    public PendingTasksRequest() {}
 
-	/**
-	 * Singleton instance for {@link PendingTasksRequest}.
-	 */
-	public static final PendingTasksRequest _INSTANCE = new PendingTasksRequest();
+    /**
+     * Singleton instance for {@link PendingTasksRequest}.
+     */
+    public static final PendingTasksRequest _INSTANCE = new PendingTasksRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.pending_tasks}".
-	 */
-	public static final Endpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.pending_tasks}".
+     */
+    public static final Endpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_cat/pending_tasks";
+        // Request path
+        request -> {
+            return "/_cat/pending_tasks";
 
-			},
+        },
 
-			// Request parameters
-			request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, PendingTasksResponse._DESERIALIZER);
+        // Request parameters
+        request -> new HashMap<>(request.queryParameters()),
+        SimpleEndpoint.emptyMap(),
+        false,
+        PendingTasksResponse._DESERIALIZER
+    );
 }

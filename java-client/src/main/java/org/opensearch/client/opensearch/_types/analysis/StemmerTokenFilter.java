@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,102 +41,100 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.analysis.StemmerTokenFilter
 
 @JsonpDeserializable
 public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final String language;
+    private final String language;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private StemmerTokenFilter(Builder builder) {
-		super(builder);
+    private StemmerTokenFilter(Builder builder) {
+        super(builder);
 
-		this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
+        this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
 
-	}
+    }
 
-	public static StemmerTokenFilter of(Function<Builder, ObjectBuilder<StemmerTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StemmerTokenFilter of(Function<Builder, ObjectBuilder<StemmerTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.Stemmer;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.Stemmer;
+    }
 
-	/**
-	 * Required - API name: {@code language}
-	 */
-	public final String language() {
-		return this.language;
-	}
+    /**
+     * Required - API name: {@code language}
+     */
+    public final String language() {
+        return this.language;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "stemmer");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("language");
-		generator.write(this.language);
+        generator.write("type", "stemmer");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("language");
+        generator.write(this.language);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StemmerTokenFilter}.
-	 */
+    /**
+     * Builder for {@link StemmerTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<StemmerTokenFilter> {
-		private String language;
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<StemmerTokenFilter> {
+        private String language;
 
-		/**
-		 * Required - API name: {@code language}
-		 */
-		public final Builder language(String value) {
-			this.language = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code language}
+         */
+        public final Builder language(String value) {
+            this.language = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StemmerTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StemmerTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link StemmerTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StemmerTokenFilter build() {
+            _checkSingleUse();
 
-			return new StemmerTokenFilter(this);
-		}
-	}
+            return new StemmerTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link StemmerTokenFilter}
-	 */
-	public static final JsonpDeserializer<StemmerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StemmerTokenFilter::setupStemmerTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link StemmerTokenFilter}
+     */
+    public static final JsonpDeserializer<StemmerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StemmerTokenFilter::setupStemmerTokenFilterDeserializer
+    );
 
-	protected static void setupStemmerTokenFilterDeserializer(ObjectDeserializer<StemmerTokenFilter.Builder> op) {
-		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language");
+    protected static void setupStemmerTokenFilterDeserializer(ObjectDeserializer<StemmerTokenFilter.Builder> op) {
+        TokenFilterBase.setupTokenFilterBaseDeserializer(op);
+        op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

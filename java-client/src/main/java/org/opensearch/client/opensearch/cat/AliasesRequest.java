@@ -32,6 +32,12 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.transport.Endpoint;
@@ -39,188 +45,182 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 // typedef: cat.aliases.Request
 
 /**
  * Shows information about currently configured aliases to indices including
  * filter and routing infos.
- * 
+ *
  */
 
 public class AliasesRequest extends CatRequestBase {
-	private final List<ExpandWildcard> expandWildcards;
+    private final List<ExpandWildcard> expandWildcards;
 
-	private final List<String> name;
+    private final List<String> name;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private AliasesRequest(Builder builder) {
-		super(builder);
-		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
-		this.name = ApiTypeHelper.unmodifiable(builder.name);
+    private AliasesRequest(Builder builder) {
+        super(builder);
+        this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+        this.name = ApiTypeHelper.unmodifiable(builder.name);
 
-	}
+    }
 
-	public static AliasesRequest of(Function<Builder, ObjectBuilder<AliasesRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static AliasesRequest of(Function<Builder, ObjectBuilder<AliasesRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
-	 * <p>
-	 * API name: {@code expand_wildcards}
-	 */
-	public final List<ExpandWildcard> expandWildcards() {
-		return this.expandWildcards;
-	}
+    /**
+     * Whether to expand wildcard expression to concrete indices that are open,
+     * closed or both.
+     * <p>
+     * API name: {@code expand_wildcards}
+     */
+    public final List<ExpandWildcard> expandWildcards() {
+        return this.expandWildcards;
+    }
 
-	/**
-	 * A comma-separated list of alias names to return
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public final List<String> name() {
-		return this.name;
-	}
+    /**
+     * A comma-separated list of alias names to return
+     * <p>
+     * API name: {@code name}
+     */
+    public final List<String> name() {
+        return this.name;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link AliasesRequest}.
-	 */
+    /**
+     * Builder for {@link AliasesRequest}.
+     */
 
-	public static class Builder extends CatRequestBaseBuilder<AliasesRequest.Builder> {
-		@Nullable
-		private List<ExpandWildcard> expandWildcards;
+    public static class Builder extends CatRequestBaseBuilder<AliasesRequest.Builder> {
+        @Nullable
+        private List<ExpandWildcard> expandWildcards;
 
-		@Nullable
-		private List<String> name;
+        @Nullable
+        private List<String> name;
 
-		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
-		 * <p>
-		 * API name: {@code expand_wildcards}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-		 */
-		public final Builder expandWildcards(List<ExpandWildcard> list) {
-			this.expandWildcards = _listAddAll(this.expandWildcards, list);
-			return this;
-		}
+        /**
+         * Whether to expand wildcard expression to concrete indices that are open,
+         * closed or both.
+         * <p>
+         * API name: {@code expand_wildcards}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+         */
+        public final Builder expandWildcards(List<ExpandWildcard> list) {
+            this.expandWildcards = _listAddAll(this.expandWildcards, list);
+            return this;
+        }
 
-		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
-		 * <p>
-		 * API name: {@code expand_wildcards}
-		 * <p>
-		 * Adds one or more values to <code>expandWildcards</code>.
-		 */
-		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
-			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
-			return this;
-		}
+        /**
+         * Whether to expand wildcard expression to concrete indices that are open,
+         * closed or both.
+         * <p>
+         * API name: {@code expand_wildcards}
+         * <p>
+         * Adds one or more values to <code>expandWildcards</code>.
+         */
+        public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+            this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of alias names to return
-		 * <p>
-		 * API name: {@code name}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>name</code>.
-		 */
-		public final Builder name(List<String> list) {
-			this.name = _listAddAll(this.name, list);
-			return this;
-		}
+        /**
+         * A comma-separated list of alias names to return
+         * <p>
+         * API name: {@code name}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>name</code>.
+         */
+        public final Builder name(List<String> list) {
+            this.name = _listAddAll(this.name, list);
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of alias names to return
-		 * <p>
-		 * API name: {@code name}
-		 * <p>
-		 * Adds one or more values to <code>name</code>.
-		 */
-		public final Builder name(String value, String... values) {
-			this.name = _listAdd(this.name, value, values);
-			return this;
-		}
+        /**
+         * A comma-separated list of alias names to return
+         * <p>
+         * API name: {@code name}
+         * <p>
+         * Adds one or more values to <code>name</code>.
+         */
+        public final Builder name(String value, String... values) {
+            this.name = _listAdd(this.name, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link AliasesRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public AliasesRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link AliasesRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public AliasesRequest build() {
+            _checkSingleUse();
 
-			return new AliasesRequest(this);
-		}
+            return new AliasesRequest(this);
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
-	}
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.aliases}".
-	 */
-	public static final Endpoint<AliasesRequest, AliasesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.aliases}".
+     */
+    public static final Endpoint<AliasesRequest, AliasesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _name = 1 << 0;
+        // Request path
+        request -> {
+            final int _name = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.name()))
-					propsSet |= _name;
+            if (ApiTypeHelper.isDefined(request.name())) propsSet |= _name;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/aliases");
-					return buf.toString();
-				}
-				if (propsSet == (_name)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/aliases");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/aliases");
+                return buf.toString();
+            }
+            if (propsSet == (_name)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/aliases");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>(request.queryParameters());
-				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream()
-									.map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>(request.queryParameters());
+            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, AliasesResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        AliasesResponse._DESERIALIZER
+    );
 }

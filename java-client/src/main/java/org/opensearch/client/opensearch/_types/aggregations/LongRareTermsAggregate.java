@@ -32,13 +32,12 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.LongRareTermsAggregate
 
@@ -49,65 +48,66 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class LongRareTermsAggregate extends MultiBucketAggregateBase<LongRareTermsBucket> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private LongRareTermsAggregate(Builder builder) {
-		super(builder);
+    private LongRareTermsAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static LongRareTermsAggregate of(Function<Builder, ObjectBuilder<LongRareTermsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static LongRareTermsAggregate of(Function<Builder, ObjectBuilder<LongRareTermsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Lrareterms;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Lrareterms;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link LongRareTermsAggregate}.
-	 */
+    /**
+     * Builder for {@link LongRareTermsAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<LongRareTermsBucket, Builder>
-			implements
-				ObjectBuilder<LongRareTermsAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<LongRareTermsBucket, Builder>
+        implements
+            ObjectBuilder<LongRareTermsAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link LongRareTermsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public LongRareTermsAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link LongRareTermsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public LongRareTermsAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new LongRareTermsAggregate(this);
-		}
-	}
+            return new LongRareTermsAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link LongRareTermsAggregate}
-	 */
-	public static final JsonpDeserializer<LongRareTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LongRareTermsAggregate::setupLongRareTermsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link LongRareTermsAggregate}
+     */
+    public static final JsonpDeserializer<LongRareTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        LongRareTermsAggregate::setupLongRareTermsAggregateDeserializer
+    );
 
-	protected static void setupLongRareTermsAggregateDeserializer(
-			ObjectDeserializer<LongRareTermsAggregate.Builder> op) {
-		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, LongRareTermsBucket._DESERIALIZER);
+    protected static void setupLongRareTermsAggregateDeserializer(ObjectDeserializer<LongRareTermsAggregate.Builder> op) {
+        MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, LongRareTermsBucket._DESERIALIZER);
 
-	}
+    }
 
 }

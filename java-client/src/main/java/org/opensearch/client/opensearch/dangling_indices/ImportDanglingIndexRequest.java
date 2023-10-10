@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.dangling_indices;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -41,258 +45,256 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
-
 // typedef: dangling_indices.import_dangling_index.Request
 
 /**
  * Imports the specified dangling index
- * 
+ *
  */
 
 public class ImportDanglingIndexRequest extends RequestBase {
-	private final boolean acceptDataLoss;
+    private final boolean acceptDataLoss;
 
-	private final String indexUuid;
+    private final String indexUuid;
 
-	@Deprecated
-	@Nullable
-	private final Time masterTimeout;
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
 
-	@Nullable
-	private final Time clusterManagerTimeout;
+    @Nullable
+    private final Time clusterManagerTimeout;
 
-	@Nullable
-	private final Time timeout;
+    @Nullable
+    private final Time timeout;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ImportDanglingIndexRequest(Builder builder) {
+    private ImportDanglingIndexRequest(Builder builder) {
 
-		this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
-		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
-		this.masterTimeout = builder.masterTimeout;
-		this.clusterManagerTimeout = builder.clusterManagerTimeout;
-		this.timeout = builder.timeout;
+        this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
+        this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
+        this.masterTimeout = builder.masterTimeout;
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.timeout = builder.timeout;
 
-	}
+    }
 
-	public static ImportDanglingIndexRequest of(Function<Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ImportDanglingIndexRequest of(Function<Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Must be set to true in order to import the dangling index
-	 * <p>
-	 * API name: {@code accept_data_loss}
-	 */
-	public final boolean acceptDataLoss() {
-		return this.acceptDataLoss;
-	}
+    /**
+     * Required - Must be set to true in order to import the dangling index
+     * <p>
+     * API name: {@code accept_data_loss}
+     */
+    public final boolean acceptDataLoss() {
+        return this.acceptDataLoss;
+    }
 
-	/**
-	 * Required - The UUID of the dangling index
-	 * <p>
-	 * API name: {@code index_uuid}
-	 */
-	public final String indexUuid() {
-		return this.indexUuid;
-	}
+    /**
+     * Required - The UUID of the dangling index
+     * <p>
+     * API name: {@code index_uuid}
+     */
+    public final String indexUuid() {
+        return this.indexUuid;
+    }
 
-	/**
-	 * Specify timeout for connection to master
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Deprecated
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
+    /**
+     * Specify timeout for connection to master
+     * <p>
+     * API name: {@code master_timeout}
+     */
+    @Deprecated
+    @Nullable
+    public final Time masterTimeout() {
+        return this.masterTimeout;
+    }
 
-	/**
-	 * Specify timeout for connection to cluster-manager
-	 * <p>
-	 * API name: {@code cluster_manager_timeout}
-	 */
-	@Nullable
-	public final Time clusterManagerTimeout() {
-		return this.clusterManagerTimeout;
-	}
+    /**
+     * Specify timeout for connection to cluster-manager
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
 
-	/**
-	 * Explicit operation timeout
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public final Time timeout() {
-		return this.timeout;
-	}
+    /**
+     * Explicit operation timeout
+     * <p>
+     * API name: {@code timeout}
+     */
+    @Nullable
+    public final Time timeout() {
+        return this.timeout;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ImportDanglingIndexRequest}.
-	 */
+    /**
+     * Builder for {@link ImportDanglingIndexRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ImportDanglingIndexRequest> {
-		private Boolean acceptDataLoss;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ImportDanglingIndexRequest> {
+        private Boolean acceptDataLoss;
 
-		private String indexUuid;
+        private String indexUuid;
 
-		@Deprecated
-		@Nullable
-		private Time masterTimeout;
+        @Deprecated
+        @Nullable
+        private Time masterTimeout;
 
-		@Nullable
-		private Time clusterManagerTimeout;
+        @Nullable
+        private Time clusterManagerTimeout;
 
-		@Nullable
-		private Time timeout;
+        @Nullable
+        private Time timeout;
 
-		/**
-		 * Required - Must be set to true in order to import the dangling index
-		 * <p>
-		 * API name: {@code accept_data_loss}
-		 */
-		public final Builder acceptDataLoss(boolean value) {
-			this.acceptDataLoss = value;
-			return this;
-		}
+        /**
+         * Required - Must be set to true in order to import the dangling index
+         * <p>
+         * API name: {@code accept_data_loss}
+         */
+        public final Builder acceptDataLoss(boolean value) {
+            this.acceptDataLoss = value;
+            return this;
+        }
 
-		/**
-		 * Required - The UUID of the dangling index
-		 * <p>
-		 * API name: {@code index_uuid}
-		 */
-		public final Builder indexUuid(String value) {
-			this.indexUuid = value;
-			return this;
-		}
+        /**
+         * Required - The UUID of the dangling index
+         * <p>
+         * API name: {@code index_uuid}
+         */
+        public final Builder indexUuid(String value) {
+            this.indexUuid = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
+        /**
+         * Specify timeout for connection to master
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Specify timeout for connection to master
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.masterTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Specify timeout for connection to cluster-manager
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(@Nullable Time value) {
-			this.clusterManagerTimeout = value;
-			return this;
-		}
+        /**
+         * Specify timeout for connection to cluster-manager
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to cluster-manager
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Specify timeout for connection to cluster-manager
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable Time value) {
-			this.timeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.timeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link ImportDanglingIndexRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ImportDanglingIndexRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ImportDanglingIndexRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ImportDanglingIndexRequest build() {
+            _checkSingleUse();
 
-			return new ImportDanglingIndexRequest(this);
-		}
-	}
+            return new ImportDanglingIndexRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code dangling_indices.import_dangling_index}".
-	 */
-	public static final Endpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> _ENDPOINT =
-			new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code dangling_indices.import_dangling_index}".
+     */
+    public static final Endpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "POST";
+        // Request method
+        request -> {
+            return "POST";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _indexUuid = 1 << 0;
+        // Request path
+        request -> {
+            final int _indexUuid = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				propsSet |= _indexUuid;
+            propsSet |= _indexUuid;
 
-				if (propsSet == (_indexUuid)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_dangling");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.indexUuid, buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == (_indexUuid)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_dangling");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.indexUuid, buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.clusterManagerTimeout != null) {
-					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-				}
-				params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
+            if (request.clusterManagerTimeout != null) {
+                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
+            }
+            params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ImportDanglingIndexResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        ImportDanglingIndexResponse._DESERIALIZER
+    );
 }

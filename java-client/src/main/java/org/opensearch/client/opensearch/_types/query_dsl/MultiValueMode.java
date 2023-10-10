@@ -35,29 +35,27 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum MultiValueMode implements JsonEnum {
-	Min("min"),
+    Min("min"),
 
-	Max("max"),
+    Max("max"),
 
-	Avg("avg"),
+    Avg("avg"),
 
-	Sum("sum"),
+    Sum("sum"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	MultiValueMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    MultiValueMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<MultiValueMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			MultiValueMode.values());
+    public static final JsonEnum.Deserializer<MultiValueMode> _DESERIALIZER = new JsonEnum.Deserializer<>(MultiValueMode.values());
 }

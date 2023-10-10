@@ -38,23 +38,22 @@ import org.opensearch.client.opensearch._types.ErrorResponse;
  * Builders for {@link MultiSearchResponseItem} variants.
  */
 public class MultiSearchResponseItemBuilders {
-	private MultiSearchResponseItemBuilders() {
-	}
+    private MultiSearchResponseItemBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link MultiSearchItem result}
-	 * {@code MultiSearchResponseItem} variant.
-	 */
-	public static <TDocument> MultiSearchItem.Builder<TDocument> result() {
-		return new MultiSearchItem.Builder<TDocument>();
-	}
+    /**
+     * Creates a builder for the {@link MultiSearchItem result}
+     * {@code MultiSearchResponseItem} variant.
+     */
+    public static <TDocument> MultiSearchItem.Builder<TDocument> result() {
+        return new MultiSearchItem.Builder<TDocument>();
+    }
 
-	/**
-	 * Creates a builder for the {@link ErrorResponse failure}
-	 * {@code MultiSearchResponseItem} variant.
-	 */
-	public static <TDocument> ErrorResponse.Builder failure() {
-		return new ErrorResponse.Builder();
-	}
+    /**
+     * Creates a builder for the {@link ErrorResponse failure}
+     * {@code MultiSearchResponseItem} variant.
+     */
+    public static <TDocument> ErrorResponse.Builder failure() {
+        return new ErrorResponse.Builder();
+    }
 
 }

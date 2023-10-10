@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,115 +44,113 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: ingest.processor_grok.Response
 
 @JsonpDeserializable
 public class ProcessorGrokResponse implements JsonpSerializable {
-	private final Map<String, String> patterns;
+    private final Map<String, String> patterns;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ProcessorGrokResponse(Builder builder) {
+    private ProcessorGrokResponse(Builder builder) {
 
-		this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
+        this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
 
-	}
+    }
 
-	public static ProcessorGrokResponse of(Function<Builder, ObjectBuilder<ProcessorGrokResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ProcessorGrokResponse of(Function<Builder, ObjectBuilder<ProcessorGrokResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code patterns}
-	 */
-	public final Map<String, String> patterns() {
-		return this.patterns;
-	}
+    /**
+     * Required - API name: {@code patterns}
+     */
+    public final Map<String, String> patterns() {
+        return this.patterns;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.patterns)) {
-			generator.writeKey("patterns");
-			generator.writeStartObject();
-			for (Map.Entry<String, String> item0 : this.patterns.entrySet()) {
-				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+        if (ApiTypeHelper.isDefined(this.patterns)) {
+            generator.writeKey("patterns");
+            generator.writeStartObject();
+            for (Map.Entry<String, String> item0 : this.patterns.entrySet()) {
+                generator.writeKey(item0.getKey());
+                generator.write(item0.getValue());
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ProcessorGrokResponse}.
-	 */
+    /**
+     * Builder for {@link ProcessorGrokResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ProcessorGrokResponse> {
-		private Map<String, String> patterns;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ProcessorGrokResponse> {
+        private Map<String, String> patterns;
 
-		/**
-		 * Required - API name: {@code patterns}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>patterns</code>.
-		 */
-		public final Builder patterns(Map<String, String> map) {
-			this.patterns = _mapPutAll(this.patterns, map);
-			return this;
-		}
+        /**
+         * Required - API name: {@code patterns}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>patterns</code>.
+         */
+        public final Builder patterns(Map<String, String> map) {
+            this.patterns = _mapPutAll(this.patterns, map);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code patterns}
-		 * <p>
-		 * Adds an entry to <code>patterns</code>.
-		 */
-		public final Builder patterns(String key, String value) {
-			this.patterns = _mapPut(this.patterns, key, value);
-			return this;
-		}
+        /**
+         * Required - API name: {@code patterns}
+         * <p>
+         * Adds an entry to <code>patterns</code>.
+         */
+        public final Builder patterns(String key, String value) {
+            this.patterns = _mapPut(this.patterns, key, value);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ProcessorGrokResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ProcessorGrokResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ProcessorGrokResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ProcessorGrokResponse build() {
+            _checkSingleUse();
 
-			return new ProcessorGrokResponse(this);
-		}
-	}
+            return new ProcessorGrokResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ProcessorGrokResponse}
-	 */
-	public static final JsonpDeserializer<ProcessorGrokResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ProcessorGrokResponse::setupProcessorGrokResponseDeserializer);
+    /**
+     * Json deserializer for {@link ProcessorGrokResponse}
+     */
+    public static final JsonpDeserializer<ProcessorGrokResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ProcessorGrokResponse::setupProcessorGrokResponseDeserializer
+    );
 
-	protected static void setupProcessorGrokResponseDeserializer(ObjectDeserializer<ProcessorGrokResponse.Builder> op) {
+    protected static void setupProcessorGrokResponseDeserializer(ObjectDeserializer<ProcessorGrokResponse.Builder> op) {
 
-		op.add(Builder::patterns, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
-				"patterns");
+        op.add(Builder::patterns, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "patterns");
 
-	}
+    }
 
 }

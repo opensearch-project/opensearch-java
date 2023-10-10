@@ -32,52 +32,53 @@
 
 package org.opensearch.client.opensearch.dangling_indices;
 
+import java.util.Collections;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
-import java.util.Collections;
-
 // typedef: dangling_indices.list_dangling_indices.Request
 
 /**
  * Returns all dangling indices.
- * 
+ *
  */
 
 public class ListDanglingIndicesRequest extends RequestBase {
-	public ListDanglingIndicesRequest() {
-	}
+    public ListDanglingIndicesRequest() {}
 
-	/**
-	 * Singleton instance for {@link ListDanglingIndicesRequest}.
-	 */
-	public static final ListDanglingIndicesRequest _INSTANCE = new ListDanglingIndicesRequest();
+    /**
+     * Singleton instance for {@link ListDanglingIndicesRequest}.
+     */
+    public static final ListDanglingIndicesRequest _INSTANCE = new ListDanglingIndicesRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code dangling_indices.list_dangling_indices}".
-	 */
-	public static final Endpoint<ListDanglingIndicesRequest, ListDanglingIndicesResponse, ErrorResponse> _ENDPOINT =
-			new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code dangling_indices.list_dangling_indices}".
+     */
+    public static final Endpoint<ListDanglingIndicesRequest, ListDanglingIndicesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_dangling";
+        // Request path
+        request -> {
+            return "/_dangling";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, ListDanglingIndicesResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        ListDanglingIndicesResponse._DESERIALIZER
+    );
 }

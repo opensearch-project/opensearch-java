@@ -32,73 +32,72 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch.indices.get_field_mapping.TypeFieldMappings;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.indices.get_field_mapping.TypeFieldMappings;
 import org.opensearch.client.transport.endpoints.DictionaryResponse;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.get_field_mapping.Response
 
 @JsonpDeserializable
 public class GetFieldMappingResponse extends DictionaryResponse<String, TypeFieldMappings> {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetFieldMappingResponse(Builder builder) {
-		super(builder);
+    private GetFieldMappingResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static GetFieldMappingResponse of(Function<Builder, ObjectBuilder<GetFieldMappingResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetFieldMappingResponse of(Function<Builder, ObjectBuilder<GetFieldMappingResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetFieldMappingResponse}.
-	 */
+    /**
+     * Builder for {@link GetFieldMappingResponse}.
+     */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, TypeFieldMappings, Builder>
-			implements
-				ObjectBuilder<GetFieldMappingResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends DictionaryResponse.AbstractBuilder<String, TypeFieldMappings, Builder>
+        implements
+            ObjectBuilder<GetFieldMappingResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetFieldMappingResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetFieldMappingResponse build() {
-			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
+        /**
+         * Builds a {@link GetFieldMappingResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetFieldMappingResponse build() {
+            _checkSingleUse();
+            super.tKeySerializer(null);
+            super.tValueSerializer(null);
 
-			return new GetFieldMappingResponse(this);
-		}
-	}
+            return new GetFieldMappingResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GetFieldMappingResponse}
-	 */
-	public static final JsonpDeserializer<GetFieldMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetFieldMappingResponse::setupGetFieldMappingResponseDeserializer);
+    /**
+     * Json deserializer for {@link GetFieldMappingResponse}
+     */
+    public static final JsonpDeserializer<GetFieldMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GetFieldMappingResponse::setupGetFieldMappingResponseDeserializer
+    );
 
-	protected static void setupGetFieldMappingResponseDeserializer(
-			ObjectDeserializer<GetFieldMappingResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				TypeFieldMappings._DESERIALIZER);
+    protected static void setupGetFieldMappingResponseDeserializer(ObjectDeserializer<GetFieldMappingResponse.Builder> op) {
+        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), TypeFieldMappings._DESERIALIZER);
 
-	}
+    }
 
 }

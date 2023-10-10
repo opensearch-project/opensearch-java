@@ -32,113 +32,113 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.NestedAggregation
 
 @JsonpDeserializable
 public class NestedAggregation extends BucketAggregationBase implements AggregationVariant {
-	@Nullable
-	private final String path;
+    @Nullable
+    private final String path;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NestedAggregation(Builder builder) {
-		super(builder);
+    private NestedAggregation(Builder builder) {
+        super(builder);
 
-		this.path = builder.path;
+        this.path = builder.path;
 
-	}
+    }
 
-	public static NestedAggregation of(Function<Builder, ObjectBuilder<NestedAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NestedAggregation of(Function<Builder, ObjectBuilder<NestedAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Nested;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.Nested;
+    }
 
-	/**
-	 * API name: {@code path}
-	 */
-	@Nullable
-	public final String path() {
-		return this.path;
-	}
+    /**
+     * API name: {@code path}
+     */
+    @Nullable
+    public final String path() {
+        return this.path;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.path != null) {
-			generator.writeKey("path");
-			generator.write(this.path);
+        super.serializeInternal(generator, mapper);
+        if (this.path != null) {
+            generator.writeKey("path");
+            generator.write(this.path);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NestedAggregation}.
-	 */
+    /**
+     * Builder for {@link NestedAggregation}.
+     */
 
-	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<NestedAggregation> {
-		@Nullable
-		private String path;
+    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<NestedAggregation> {
+        @Nullable
+        private String path;
 
-		/**
-		 * API name: {@code path}
-		 */
-		public final Builder path(@Nullable String value) {
-			this.path = value;
-			return this;
-		}
+        /**
+         * API name: {@code path}
+         */
+        public final Builder path(@Nullable String value) {
+            this.path = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NestedAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NestedAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NestedAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NestedAggregation build() {
+            _checkSingleUse();
 
-			return new NestedAggregation(this);
-		}
-	}
+            return new NestedAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NestedAggregation}
-	 */
-	public static final JsonpDeserializer<NestedAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NestedAggregation::setupNestedAggregationDeserializer);
+    /**
+     * Json deserializer for {@link NestedAggregation}
+     */
+    public static final JsonpDeserializer<NestedAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NestedAggregation::setupNestedAggregationDeserializer
+    );
 
-	protected static void setupNestedAggregationDeserializer(ObjectDeserializer<NestedAggregation.Builder> op) {
-		setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+    protected static void setupNestedAggregationDeserializer(ObjectDeserializer<NestedAggregation.Builder> op) {
+        setupBucketAggregationBaseDeserializer(op);
+        op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 
-	}
+    }
 
 }

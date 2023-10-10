@@ -35,27 +35,27 @@ package org.opensearch.client.opensearch._types.aggregations;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum SamplerAggregationExecutionHint implements JsonEnum {
-	Map("map"),
+    Map("map"),
 
-	GlobalOrdinals("global_ordinals"),
+    GlobalOrdinals("global_ordinals"),
 
-	BytesHash("bytes_hash"),
+    BytesHash("bytes_hash"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	SamplerAggregationExecutionHint(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    SamplerAggregationExecutionHint(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<SamplerAggregationExecutionHint> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SamplerAggregationExecutionHint.values());
+    public static final JsonEnum.Deserializer<SamplerAggregationExecutionHint> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        SamplerAggregationExecutionHint.values()
+    );
 }

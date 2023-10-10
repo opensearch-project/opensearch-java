@@ -32,6 +32,12 @@
 
 package org.opensearch.client.opensearch.snapshot;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -41,250 +47,247 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import javax.annotation.Nullable;
-
 // typedef: snapshot.delete_repository.Request
 
 /**
  * Deletes a repository.
- * 
+ *
  */
 
 public class DeleteRepositoryRequest extends RequestBase {
-	@Deprecated
-	@Nullable
-	private final Time masterTimeout;
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
 
-	@Nullable
-	private final Time clusterManagerTimeout;
+    @Nullable
+    private final Time clusterManagerTimeout;
 
-	private final List<String> name;
+    private final List<String> name;
 
-	@Nullable
-	private final Time timeout;
+    @Nullable
+    private final Time timeout;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DeleteRepositoryRequest(Builder builder) {
+    private DeleteRepositoryRequest(Builder builder) {
 
-		this.masterTimeout = builder.masterTimeout;
-		this.clusterManagerTimeout = builder.clusterManagerTimeout;
-		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
-		this.timeout = builder.timeout;
+        this.masterTimeout = builder.masterTimeout;
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
+        this.timeout = builder.timeout;
 
-	}
+    }
 
-	public static DeleteRepositoryRequest of(Function<Builder, ObjectBuilder<DeleteRepositoryRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DeleteRepositoryRequest of(Function<Builder, ObjectBuilder<DeleteRepositoryRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Explicit operation timeout for connection to master node
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
+    /**
+     * Explicit operation timeout for connection to master node
+     * <p>
+     * API name: {@code master_timeout}
+     */
+    @Nullable
+    public final Time masterTimeout() {
+        return this.masterTimeout;
+    }
 
-	/**
-	 * Explicit operation timeout for connection to cluster-manager node
-	 * <p>
-	 * API name: {@code cluster_manager_timeout}
-	 */
-	@Nullable
-	public final Time clusterManagerTimeout() {
-		return this.clusterManagerTimeout;
-	}
+    /**
+     * Explicit operation timeout for connection to cluster-manager node
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
 
-	/**
-	 * Required - Name of the snapshot repository to unregister. Wildcard
-	 * (<code>*</code>) patterns are supported.
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	public final List<String> name() {
-		return this.name;
-	}
+    /**
+     * Required - Name of the snapshot repository to unregister. Wildcard
+     * (<code>*</code>) patterns are supported.
+     * <p>
+     * API name: {@code repository}
+     */
+    public final List<String> name() {
+        return this.name;
+    }
 
-	/**
-	 * Explicit operation timeout
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public final Time timeout() {
-		return this.timeout;
-	}
+    /**
+     * Explicit operation timeout
+     * <p>
+     * API name: {@code timeout}
+     */
+    @Nullable
+    public final Time timeout() {
+        return this.timeout;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DeleteRepositoryRequest}.
-	 */
+    /**
+     * Builder for {@link DeleteRepositoryRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRepositoryRequest> {
-		@Deprecated
-		@Nullable
-		private Time masterTimeout;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRepositoryRequest> {
+        @Deprecated
+        @Nullable
+        private Time masterTimeout;
 
-		@Nullable
-		private Time clusterManagerTimeout;
+        @Nullable
+        private Time clusterManagerTimeout;
 
-		private List<String> name;
+        private List<String> name;
 
-		@Nullable
-		private Time timeout;
+        @Nullable
+        private Time timeout;
 
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout for connection to master node
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout for connection to master node
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.masterTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Explicit operation timeout for connection to cluster-manager node
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(@Nullable Time value) {
-			this.clusterManagerTimeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout for connection to cluster-manager node
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Required - Name of the snapshot repository to unregister. Wildcard
-		 * (<code>*</code>) patterns are supported.
-		 * <p>
-		 * API name: {@code repository}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>name</code>.
-		 */
-		public final Builder name(List<String> list) {
-			this.name = _listAddAll(this.name, list);
-			return this;
-		}
+        /**
+         * Required - Name of the snapshot repository to unregister. Wildcard
+         * (<code>*</code>) patterns are supported.
+         * <p>
+         * API name: {@code repository}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>name</code>.
+         */
+        public final Builder name(List<String> list) {
+            this.name = _listAddAll(this.name, list);
+            return this;
+        }
 
-		/**
-		 * Required - Name of the snapshot repository to unregister. Wildcard
-		 * (<code>*</code>) patterns are supported.
-		 * <p>
-		 * API name: {@code repository}
-		 * <p>
-		 * Adds one or more values to <code>name</code>.
-		 */
-		public final Builder name(String value, String... values) {
-			this.name = _listAdd(this.name, value, values);
-			return this;
-		}
+        /**
+         * Required - Name of the snapshot repository to unregister. Wildcard
+         * (<code>*</code>) patterns are supported.
+         * <p>
+         * API name: {@code repository}
+         * <p>
+         * Adds one or more values to <code>name</code>.
+         */
+        public final Builder name(String value, String... values) {
+            this.name = _listAdd(this.name, value, values);
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable Time value) {
-			this.timeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.timeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link DeleteRepositoryRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeleteRepositoryRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DeleteRepositoryRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DeleteRepositoryRequest build() {
+            _checkSingleUse();
 
-			return new DeleteRepositoryRequest(this);
-		}
-	}
+            return new DeleteRepositoryRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code snapshot.delete_repository}".
-	 */
-	public static final Endpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code snapshot.delete_repository}".
+     */
+    public static final Endpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "DELETE";
+        // Request method
+        request -> {
+            return "DELETE";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _name = 1 << 0;
+        // Request path
+        request -> {
+            final int _name = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				propsSet |= _name;
+            propsSet |= _name;
 
-				if (propsSet == (_name)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_snapshot");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == (_name)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_snapshot");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.clusterManagerTimeout != null) {
-					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
+            if (request.clusterManagerTimeout != null) {
+                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
+            }
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteRepositoryResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        DeleteRepositoryResponse._DESERIALIZER
+    );
 }

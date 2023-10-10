@@ -35,33 +35,31 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum TextQueryType implements JsonEnum {
-	BestFields("best_fields"),
+    BestFields("best_fields"),
 
-	MostFields("most_fields"),
+    MostFields("most_fields"),
 
-	CrossFields("cross_fields"),
+    CrossFields("cross_fields"),
 
-	Phrase("phrase"),
+    Phrase("phrase"),
 
-	PhrasePrefix("phrase_prefix"),
+    PhrasePrefix("phrase_prefix"),
 
-	BoolPrefix("bool_prefix"),
+    BoolPrefix("bool_prefix"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	TextQueryType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    TextQueryType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<TextQueryType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			TextQueryType.values());
+    public static final JsonEnum.Deserializer<TextQueryType> _DESERIALIZER = new JsonEnum.Deserializer<>(TextQueryType.values());
 }

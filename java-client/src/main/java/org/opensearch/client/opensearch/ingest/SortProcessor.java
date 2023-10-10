@@ -32,154 +32,155 @@
 
 package org.opensearch.client.opensearch.ingest;
 
-import org.opensearch.client.opensearch._types.SortOrder;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: ingest._types.SortProcessor
 
-
 @JsonpDeserializable
 public class SortProcessor extends ProcessorBase implements ProcessorVariant {
-	private final String field;
+    private final String field;
 
-	private final SortOrder order;
+    private final SortOrder order;
 
-	private final String targetField;
+    private final String targetField;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SortProcessor(Builder builder) {
-		super(builder);
+    private SortProcessor(Builder builder) {
+        super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.order = ApiTypeHelper.requireNonNull(builder.order, this, "order");
-		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.order = ApiTypeHelper.requireNonNull(builder.order, this, "order");
+        this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
-	}
+    }
 
-	public static SortProcessor of(Function<Builder, ObjectBuilder<SortProcessor>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SortProcessor of(Function<Builder, ObjectBuilder<SortProcessor>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Processor variant kind.
-	 */
-	@Override
-	public Processor.Kind _processorKind() {
-		return Processor.Kind.Sort;
-	}
+    /**
+     * Processor variant kind.
+     */
+    @Override
+    public Processor.Kind _processorKind() {
+        return Processor.Kind.Sort;
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * Required - API name: {@code order}
-	 */
-	public final SortOrder order() {
-		return this.order;
-	}
+    /**
+     * Required - API name: {@code order}
+     */
+    public final SortOrder order() {
+        return this.order;
+    }
 
-	/**
-	 * Required - API name: {@code target_field}
-	 */
-	public final String targetField() {
-		return this.targetField;
-	}
+    /**
+     * Required - API name: {@code target_field}
+     */
+    public final String targetField() {
+        return this.targetField;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("field");
-		generator.write(this.field);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-		generator.writeKey("order");
-		this.order.serialize(generator, mapper);
-		generator.writeKey("target_field");
-		generator.write(this.targetField);
+        generator.writeKey("order");
+        this.order.serialize(generator, mapper);
+        generator.writeKey("target_field");
+        generator.write(this.targetField);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SortProcessor}.
-	 */
+    /**
+     * Builder for {@link SortProcessor}.
+     */
 
-	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<SortProcessor> {
-		private String field;
+    public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<SortProcessor> {
+        private String field;
 
-		private SortOrder order;
+        private SortOrder order;
 
-		private String targetField;
+        private String targetField;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code order}
-		 */
-		public final Builder order(SortOrder value) {
-			this.order = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code order}
+         */
+        public final Builder order(SortOrder value) {
+            this.order = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code target_field}
-		 */
-		public final Builder targetField(String value) {
-			this.targetField = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code target_field}
+         */
+        public final Builder targetField(String value) {
+            this.targetField = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SortProcessor}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SortProcessor build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SortProcessor}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SortProcessor build() {
+            _checkSingleUse();
 
-			return new SortProcessor(this);
-		}
-	}
+            return new SortProcessor(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SortProcessor}
-	 */
-	public static final JsonpDeserializer<SortProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SortProcessor::setupSortProcessorDeserializer);
+    /**
+     * Json deserializer for {@link SortProcessor}
+     */
+    public static final JsonpDeserializer<SortProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SortProcessor::setupSortProcessorDeserializer
+    );
 
-	protected static void setupSortProcessorDeserializer(ObjectDeserializer<SortProcessor.Builder> op) {
-		setupProcessorBaseDeserializer(op);
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::order, SortOrder._DESERIALIZER, "order");
-		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+    protected static void setupSortProcessorDeserializer(ObjectDeserializer<SortProcessor.Builder> op) {
+        setupProcessorBaseDeserializer(op);
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::order, SortOrder._DESERIALIZER, "order");
+        op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
-	}
+    }
 
 }

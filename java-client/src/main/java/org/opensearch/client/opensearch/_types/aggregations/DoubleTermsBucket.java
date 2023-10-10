@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,123 +42,120 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DoubleTermsBucket
 
 @JsonpDeserializable
 public class DoubleTermsBucket extends TermsBucketBase {
-	private final double key;
+    private final double key;
 
-	@Nullable
-	private final String keyAsString;
+    @Nullable
+    private final String keyAsString;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DoubleTermsBucket(Builder builder) {
-		super(builder);
+    private DoubleTermsBucket(Builder builder) {
+        super(builder);
 
-		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
-		this.keyAsString = builder.keyAsString;
+        this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+        this.keyAsString = builder.keyAsString;
 
-	}
+    }
 
-	public static DoubleTermsBucket of(Function<Builder, ObjectBuilder<DoubleTermsBucket>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DoubleTermsBucket of(Function<Builder, ObjectBuilder<DoubleTermsBucket>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code key}
-	 */
-	public final double key() {
-		return this.key;
-	}
+    /**
+     * Required - API name: {@code key}
+     */
+    public final double key() {
+        return this.key;
+    }
 
-	/**
-	 * API name: {@code key_as_string}
-	 */
-	@Nullable
-	public final String keyAsString() {
-		return this.keyAsString;
-	}
+    /**
+     * API name: {@code key_as_string}
+     */
+    @Nullable
+    public final String keyAsString() {
+        return this.keyAsString;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("key");
-		generator.write(this.key);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("key");
+        generator.write(this.key);
 
-		if (this.keyAsString != null) {
-			generator.writeKey("key_as_string");
-			generator.write(this.keyAsString);
+        if (this.keyAsString != null) {
+            generator.writeKey("key_as_string");
+            generator.write(this.keyAsString);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DoubleTermsBucket}.
-	 */
+    /**
+     * Builder for {@link DoubleTermsBucket}.
+     */
 
-	public static class Builder extends TermsBucketBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DoubleTermsBucket> {
-		private Double key;
+    public static class Builder extends TermsBucketBase.AbstractBuilder<Builder> implements ObjectBuilder<DoubleTermsBucket> {
+        private Double key;
 
-		@Nullable
-		private String keyAsString;
+        @Nullable
+        private String keyAsString;
 
-		/**
-		 * Required - API name: {@code key}
-		 */
-		public final Builder key(double value) {
-			this.key = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code key}
+         */
+        public final Builder key(double value) {
+            this.key = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code key_as_string}
-		 */
-		public final Builder keyAsString(@Nullable String value) {
-			this.keyAsString = value;
-			return this;
-		}
+        /**
+         * API name: {@code key_as_string}
+         */
+        public final Builder keyAsString(@Nullable String value) {
+            this.keyAsString = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DoubleTermsBucket}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DoubleTermsBucket build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DoubleTermsBucket}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DoubleTermsBucket build() {
+            _checkSingleUse();
 
-			return new DoubleTermsBucket(this);
-		}
-	}
+            return new DoubleTermsBucket(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DoubleTermsBucket}
-	 */
-	public static final JsonpDeserializer<DoubleTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DoubleTermsBucket::setupDoubleTermsBucketDeserializer);
+    /**
+     * Json deserializer for {@link DoubleTermsBucket}
+     */
+    public static final JsonpDeserializer<DoubleTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DoubleTermsBucket::setupDoubleTermsBucketDeserializer
+    );
 
-	protected static void setupDoubleTermsBucketDeserializer(ObjectDeserializer<DoubleTermsBucket.Builder> op) {
-		setupTermsBucketBaseDeserializer(op);
-		op.add(Builder::key, JsonpDeserializer.doubleDeserializer(), "key");
-		op.add(Builder::keyAsString, JsonpDeserializer.stringDeserializer(), "key_as_string");
+    protected static void setupDoubleTermsBucketDeserializer(ObjectDeserializer<DoubleTermsBucket.Builder> op) {
+        setupTermsBucketBaseDeserializer(op);
+        op.add(Builder::key, JsonpDeserializer.doubleDeserializer(), "key");
+        op.add(Builder::keyAsString, JsonpDeserializer.stringDeserializer(), "key_as_string");
 
-	}
+    }
 
 }

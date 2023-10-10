@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,116 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.Retries
 
 @JsonpDeserializable
 public class Retries implements JsonpSerializable {
-	private final long bulk;
+    private final long bulk;
 
-	private final long search;
+    private final long search;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private Retries(Builder builder) {
+    private Retries(Builder builder) {
 
-		this.bulk = ApiTypeHelper.requireNonNull(builder.bulk, this, "bulk");
-		this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search");
+        this.bulk = ApiTypeHelper.requireNonNull(builder.bulk, this, "bulk");
+        this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search");
 
-	}
+    }
 
-	public static Retries of(Function<Builder, ObjectBuilder<Retries>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Retries of(Function<Builder, ObjectBuilder<Retries>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code bulk}
-	 */
-	public final long bulk() {
-		return this.bulk;
-	}
+    /**
+     * Required - API name: {@code bulk}
+     */
+    public final long bulk() {
+        return this.bulk;
+    }
 
-	/**
-	 * Required - API name: {@code search}
-	 */
-	public final long search() {
-		return this.search;
-	}
+    /**
+     * Required - API name: {@code search}
+     */
+    public final long search() {
+        return this.search;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("bulk");
-		generator.write(this.bulk);
+        generator.writeKey("bulk");
+        generator.write(this.bulk);
 
-		generator.writeKey("search");
-		generator.write(this.search);
+        generator.writeKey("search");
+        generator.write(this.search);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link Retries}.
-	 */
+    /**
+     * Builder for {@link Retries}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Retries> {
-		private Long bulk;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Retries> {
+        private Long bulk;
 
-		private Long search;
+        private Long search;
 
-		/**
-		 * Required - API name: {@code bulk}
-		 */
-		public final Builder bulk(long value) {
-			this.bulk = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code bulk}
+         */
+        public final Builder bulk(long value) {
+            this.bulk = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code search}
-		 */
-		public final Builder search(long value) {
-			this.search = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code search}
+         */
+        public final Builder search(long value) {
+            this.search = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link Retries}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public Retries build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link Retries}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public Retries build() {
+            _checkSingleUse();
 
-			return new Retries(this);
-		}
-	}
+            return new Retries(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link Retries}
-	 */
-	public static final JsonpDeserializer<Retries> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Retries::setupRetriesDeserializer);
+    /**
+     * Json deserializer for {@link Retries}
+     */
+    public static final JsonpDeserializer<Retries> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        Retries::setupRetriesDeserializer
+    );
 
-	protected static void setupRetriesDeserializer(ObjectDeserializer<Retries.Builder> op) {
+    protected static void setupRetriesDeserializer(ObjectDeserializer<Retries.Builder> op) {
 
-		op.add(Builder::bulk, JsonpDeserializer.longDeserializer(), "bulk");
-		op.add(Builder::search, JsonpDeserializer.longDeserializer(), "search");
+        op.add(Builder::bulk, JsonpDeserializer.longDeserializer(), "bulk");
+        op.add(Builder::search, JsonpDeserializer.longDeserializer(), "search");
 
-	}
+    }
 
 }

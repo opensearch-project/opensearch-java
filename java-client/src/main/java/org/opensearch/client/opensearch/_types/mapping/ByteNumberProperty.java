@@ -32,116 +32,115 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ByteNumberProperty
 
-
 @JsonpDeserializable
 public class ByteNumberProperty extends StandardNumberProperty implements PropertyVariant {
-	@Nullable
-	private final Number nullValue;
+    @Nullable
+    private final Number nullValue;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ByteNumberProperty(Builder builder) {
-		super(builder);
+    private ByteNumberProperty(Builder builder) {
+        super(builder);
 
-		this.nullValue = builder.nullValue;
+        this.nullValue = builder.nullValue;
 
-	}
+    }
 
-	public static ByteNumberProperty of(Function<Builder, ObjectBuilder<ByteNumberProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ByteNumberProperty of(Function<Builder, ObjectBuilder<ByteNumberProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Byte;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Byte;
+    }
 
-	/**
-	 * API name: {@code null_value}
-	 */
-	@Nullable
-	public final Number nullValue() {
-		return this.nullValue;
-	}
+    /**
+     * API name: {@code null_value}
+     */
+    @Nullable
+    public final Number nullValue() {
+        return this.nullValue;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "byte");
-		super.serializeInternal(generator, mapper);
-		if (this.nullValue != null) {
-			generator.writeKey("null_value");
-			generator.write(this.nullValue.doubleValue());
+        generator.write("type", "byte");
+        super.serializeInternal(generator, mapper);
+        if (this.nullValue != null) {
+            generator.writeKey("null_value");
+            generator.write(this.nullValue.doubleValue());
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ByteNumberProperty}.
-	 */
+    /**
+     * Builder for {@link ByteNumberProperty}.
+     */
 
-	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ByteNumberProperty> {
-		@Nullable
-		private Number nullValue;
+    public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder> implements ObjectBuilder<ByteNumberProperty> {
+        @Nullable
+        private Number nullValue;
 
-		/**
-		 * API name: {@code null_value}
-		 */
-		public final Builder nullValue(@Nullable Number value) {
-			this.nullValue = value;
-			return this;
-		}
+        /**
+         * API name: {@code null_value}
+         */
+        public final Builder nullValue(@Nullable Number value) {
+            this.nullValue = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ByteNumberProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ByteNumberProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ByteNumberProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ByteNumberProperty build() {
+            _checkSingleUse();
 
-			return new ByteNumberProperty(this);
-		}
-	}
+            return new ByteNumberProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ByteNumberProperty}
-	 */
-	public static final JsonpDeserializer<ByteNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ByteNumberProperty::setupByteNumberPropertyDeserializer);
+    /**
+     * Json deserializer for {@link ByteNumberProperty}
+     */
+    public static final JsonpDeserializer<ByteNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ByteNumberProperty::setupByteNumberPropertyDeserializer
+    );
 
-	protected static void setupByteNumberPropertyDeserializer(ObjectDeserializer<ByteNumberProperty.Builder> op) {
-		setupStandardNumberPropertyDeserializer(op);
-		op.add(Builder::nullValue, JsonpDeserializer.numberDeserializer(), "null_value");
+    protected static void setupByteNumberPropertyDeserializer(ObjectDeserializer<ByteNumberProperty.Builder> op) {
+        setupStandardNumberPropertyDeserializer(op);
+        op.add(Builder::nullValue, JsonpDeserializer.numberDeserializer(), "null_value");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

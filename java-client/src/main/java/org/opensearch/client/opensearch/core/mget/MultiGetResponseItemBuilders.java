@@ -38,23 +38,22 @@ import org.opensearch.client.opensearch.core.get.GetResult;
  * Builders for {@link MultiGetResponseItem} variants.
  */
 public class MultiGetResponseItemBuilders {
-	private MultiGetResponseItemBuilders() {
-	}
+    private MultiGetResponseItemBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link GetResult result}
-	 * {@code MultiGetResponseItem} variant.
-	 */
-	public static <TDocument> GetResult.Builder<TDocument> result() {
-		return new GetResult.Builder<TDocument>();
-	}
+    /**
+     * Creates a builder for the {@link GetResult result}
+     * {@code MultiGetResponseItem} variant.
+     */
+    public static <TDocument> GetResult.Builder<TDocument> result() {
+        return new GetResult.Builder<TDocument>();
+    }
 
-	/**
-	 * Creates a builder for the {@link MultiGetError failure}
-	 * {@code MultiGetResponseItem} variant.
-	 */
-	public static <TDocument> MultiGetError.Builder failure() {
-		return new MultiGetError.Builder();
-	}
+    /**
+     * Creates a builder for the {@link MultiGetError failure}
+     * {@code MultiGetResponseItem} variant.
+     */
+    public static <TDocument> MultiGetError.Builder failure() {
+        return new MultiGetError.Builder();
+    }
 
 }

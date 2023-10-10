@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,122 +44,121 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.FieldMemoryUsage
 
 @JsonpDeserializable
 public class FieldMemoryUsage implements JsonpSerializable {
-	@Nullable
-	private final String memorySize;
+    @Nullable
+    private final String memorySize;
 
-	private final long memorySizeInBytes;
+    private final long memorySizeInBytes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FieldMemoryUsage(Builder builder) {
+    private FieldMemoryUsage(Builder builder) {
 
-		this.memorySize = builder.memorySize;
-		this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
+        this.memorySize = builder.memorySize;
+        this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
 
-	}
+    }
 
-	public static FieldMemoryUsage of(Function<Builder, ObjectBuilder<FieldMemoryUsage>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FieldMemoryUsage of(Function<Builder, ObjectBuilder<FieldMemoryUsage>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code memory_size}
-	 */
-	@Nullable
-	public final String memorySize() {
-		return this.memorySize;
-	}
+    /**
+     * API name: {@code memory_size}
+     */
+    @Nullable
+    public final String memorySize() {
+        return this.memorySize;
+    }
 
-	/**
-	 * Required - API name: {@code memory_size_in_bytes}
-	 */
-	public final long memorySizeInBytes() {
-		return this.memorySizeInBytes;
-	}
+    /**
+     * Required - API name: {@code memory_size_in_bytes}
+     */
+    public final long memorySizeInBytes() {
+        return this.memorySizeInBytes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.memorySize != null) {
-			generator.writeKey("memory_size");
-			generator.write(this.memorySize);
+        if (this.memorySize != null) {
+            generator.writeKey("memory_size");
+            generator.write(this.memorySize);
 
-		}
-		generator.writeKey("memory_size_in_bytes");
-		generator.write(this.memorySizeInBytes);
+        }
+        generator.writeKey("memory_size_in_bytes");
+        generator.write(this.memorySizeInBytes);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FieldMemoryUsage}.
-	 */
+    /**
+     * Builder for {@link FieldMemoryUsage}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldMemoryUsage> {
-		@Nullable
-		private String memorySize;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldMemoryUsage> {
+        @Nullable
+        private String memorySize;
 
-		private Long memorySizeInBytes;
+        private Long memorySizeInBytes;
 
-		/**
-		 * API name: {@code memory_size}
-		 */
-		public final Builder memorySize(@Nullable String value) {
-			this.memorySize = value;
-			return this;
-		}
+        /**
+         * API name: {@code memory_size}
+         */
+        public final Builder memorySize(@Nullable String value) {
+            this.memorySize = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code memory_size_in_bytes}
-		 */
-		public final Builder memorySizeInBytes(long value) {
-			this.memorySizeInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code memory_size_in_bytes}
+         */
+        public final Builder memorySizeInBytes(long value) {
+            this.memorySizeInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FieldMemoryUsage}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FieldMemoryUsage build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FieldMemoryUsage}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FieldMemoryUsage build() {
+            _checkSingleUse();
 
-			return new FieldMemoryUsage(this);
-		}
-	}
+            return new FieldMemoryUsage(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FieldMemoryUsage}
-	 */
-	public static final JsonpDeserializer<FieldMemoryUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldMemoryUsage::setupFieldMemoryUsageDeserializer);
+    /**
+     * Json deserializer for {@link FieldMemoryUsage}
+     */
+    public static final JsonpDeserializer<FieldMemoryUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FieldMemoryUsage::setupFieldMemoryUsageDeserializer
+    );
 
-	protected static void setupFieldMemoryUsageDeserializer(ObjectDeserializer<FieldMemoryUsage.Builder> op) {
+    protected static void setupFieldMemoryUsageDeserializer(ObjectDeserializer<FieldMemoryUsage.Builder> op) {
 
-		op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
-		op.add(Builder::memorySizeInBytes, JsonpDeserializer.longDeserializer(), "memory_size_in_bytes");
+        op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
+        op.add(Builder::memorySizeInBytes, JsonpDeserializer.longDeserializer(), "memory_size_in_bytes");
 
-	}
+    }
 
 }

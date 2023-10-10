@@ -35,41 +35,39 @@ package org.opensearch.client.opensearch._types.aggregations;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum ValueType implements JsonEnum {
-	String("string"),
+    String("string"),
 
-	Long("long"),
+    Long("long"),
 
-	Double("double"),
+    Double("double"),
 
-	Number("number"),
+    Number("number"),
 
-	Date("date"),
+    Date("date"),
 
-	DateNanos("date_nanos"),
+    DateNanos("date_nanos"),
 
-	Ip("ip"),
+    Ip("ip"),
 
-	Numeric("numeric"),
+    Numeric("numeric"),
 
-	GeoPoint("geo_point"),
+    GeoPoint("geo_point"),
 
-	Boolean("boolean"),
+    Boolean("boolean"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ValueType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ValueType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ValueType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ValueType.values());
+    public static final JsonEnum.Deserializer<ValueType> _DESERIALIZER = new JsonEnum.Deserializer<>(ValueType.values());
 }

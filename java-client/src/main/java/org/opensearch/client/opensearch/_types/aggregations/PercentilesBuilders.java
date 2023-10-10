@@ -38,10 +38,9 @@ package org.opensearch.client.opensearch._types.aggregations;
  * Variants <code>array</code>, <code>keyed</code> are not available here as
  * they don't have a dedicated class. Use {@link Percentiles}'s builder for
  * these.
- * 
+ *
  */
 public class PercentilesBuilders {
-	private PercentilesBuilders() {
-	}
+    private PercentilesBuilders() {}
 
 }

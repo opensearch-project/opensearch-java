@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,92 +42,85 @@ import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import javax.annotation.Nullable;
 
 // typedef: _types.ScriptBase
 
-
 public abstract class ScriptBase implements JsonpSerializable {
-	private final Map<String, JsonData> params;
+    private final Map<String, JsonData> params;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected ScriptBase(AbstractBuilder<?> builder) {
+    protected ScriptBase(AbstractBuilder<?> builder) {
 
-		this.params = ApiTypeHelper.unmodifiable(builder.params);
+        this.params = ApiTypeHelper.unmodifiable(builder.params);
 
-	}
+    }
 
-	/**
-	 * API name: {@code params}
-	 */
-	public final Map<String, JsonData> params() {
-		return this.params;
-	}
+    /**
+     * API name: {@code params}
+     */
+    public final Map<String, JsonData> params() {
+        return this.params;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.params)) {
-			generator.writeKey("params");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.params)) {
+            generator.writeKey("params");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ObjectBuilderBase {
-		@Nullable
-		private Map<String, JsonData> params;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+        @Nullable
+        private Map<String, JsonData> params;
 
-		/**
-		 * API name: {@code params}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>params</code>.
-		 */
-		public final BuilderT params(Map<String, JsonData> map) {
-			this.params = _mapPutAll(this.params, map);
-			return self();
-		}
+        /**
+         * API name: {@code params}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>params</code>.
+         */
+        public final BuilderT params(Map<String, JsonData> map) {
+            this.params = _mapPutAll(this.params, map);
+            return self();
+        }
 
-		/**
-		 * API name: {@code params}
-		 * <p>
-		 * Adds an entry to <code>params</code>.
-		 */
-		public final BuilderT params(String key, JsonData value) {
-			this.params = _mapPut(this.params, key, value);
-			return self();
-		}
+        /**
+         * API name: {@code params}
+         * <p>
+         * Adds an entry to <code>params</code>.
+         */
+        public final BuilderT params(String key, JsonData value) {
+            this.params = _mapPut(this.params, key, value);
+            return self();
+        }
 
-		protected abstract BuilderT self();
+        protected abstract BuilderT self();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupScriptBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupScriptBaseDeserializer(ObjectDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
+        op.add(AbstractBuilder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 
-	}
+    }
 
 }

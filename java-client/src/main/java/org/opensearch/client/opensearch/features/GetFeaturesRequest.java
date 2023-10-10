@@ -32,52 +32,54 @@
 
 package org.opensearch.client.opensearch.features;
 
+import java.util.Collections;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-
-import java.util.Collections;
 
 // typedef: features.get_features.Request
 
 /**
  * Gets a list of features which can be included in snapshots using the
  * feature_states field when creating a snapshot
- * 
+ *
  */
 
 public class GetFeaturesRequest extends RequestBase {
-	public GetFeaturesRequest() {
-	}
+    public GetFeaturesRequest() {}
 
-	/**
-	 * Singleton instance for {@link GetFeaturesRequest}.
-	 */
-	public static final GetFeaturesRequest _INSTANCE = new GetFeaturesRequest();
+    /**
+     * Singleton instance for {@link GetFeaturesRequest}.
+     */
+    public static final GetFeaturesRequest _INSTANCE = new GetFeaturesRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code features.get_features}".
-	 */
-	public static final Endpoint<GetFeaturesRequest, GetFeaturesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code features.get_features}".
+     */
+    public static final Endpoint<GetFeaturesRequest, GetFeaturesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_features";
+        // Request path
+        request -> {
+            return "/_features";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetFeaturesResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        GetFeaturesResponse._DESERIALIZER
+    );
 }

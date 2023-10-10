@@ -32,123 +32,119 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
-import org.opensearch.client.opensearch._types.EmptyObject;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.EmptyObject;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.LinearMovingAverageAggregation
 
-
 @JsonpDeserializable
-public class LinearMovingAverageAggregation extends MovingAverageAggregationBase
-		implements
-			MovingAverageAggregationVariant {
-	private final EmptyObject settings;
+public class LinearMovingAverageAggregation extends MovingAverageAggregationBase implements MovingAverageAggregationVariant {
+    private final EmptyObject settings;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private LinearMovingAverageAggregation(Builder builder) {
-		super(builder);
+    private LinearMovingAverageAggregation(Builder builder) {
+        super(builder);
 
-		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
+        this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
-	}
+    }
 
-	public static LinearMovingAverageAggregation of(
-			Function<Builder, ObjectBuilder<LinearMovingAverageAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static LinearMovingAverageAggregation of(Function<Builder, ObjectBuilder<LinearMovingAverageAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * MovingAverageAggregation variant kind.
-	 */
-	@Override
-	public MovingAverageAggregation.Kind _movingAverageAggregationKind() {
-		return MovingAverageAggregation.Kind.Linear;
-	}
+    /**
+     * MovingAverageAggregation variant kind.
+     */
+    @Override
+    public MovingAverageAggregation.Kind _movingAverageAggregationKind() {
+        return MovingAverageAggregation.Kind.Linear;
+    }
 
-	/**
-	 * Required - API name: {@code settings}
-	 */
-	public final EmptyObject settings() {
-		return this.settings;
-	}
+    /**
+     * Required - API name: {@code settings}
+     */
+    public final EmptyObject settings() {
+        return this.settings;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("model", "linear");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("settings");
-		this.settings.serialize(generator, mapper);
+        generator.write("model", "linear");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("settings");
+        this.settings.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link LinearMovingAverageAggregation}.
-	 */
+    /**
+     * Builder for {@link LinearMovingAverageAggregation}.
+     */
 
-	public static class Builder extends MovingAverageAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<LinearMovingAverageAggregation> {
-		private EmptyObject settings;
+    public static class Builder extends MovingAverageAggregationBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<LinearMovingAverageAggregation> {
+        private EmptyObject settings;
 
-		/**
-		 * Required - API name: {@code settings}
-		 */
-		public final Builder settings(EmptyObject value) {
-			this.settings = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code settings}
+         */
+        public final Builder settings(EmptyObject value) {
+            this.settings = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code settings}
-		 */
-		public final Builder settings(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
-			return this.settings(fn.apply(new EmptyObject.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code settings}
+         */
+        public final Builder settings(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
+            return this.settings(fn.apply(new EmptyObject.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link LinearMovingAverageAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public LinearMovingAverageAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link LinearMovingAverageAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public LinearMovingAverageAggregation build() {
+            _checkSingleUse();
 
-			return new LinearMovingAverageAggregation(this);
-		}
-	}
+            return new LinearMovingAverageAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link LinearMovingAverageAggregation}
-	 */
-	public static final JsonpDeserializer<LinearMovingAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LinearMovingAverageAggregation::setupLinearMovingAverageAggregationDeserializer);
+    /**
+     * Json deserializer for {@link LinearMovingAverageAggregation}
+     */
+    public static final JsonpDeserializer<LinearMovingAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        LinearMovingAverageAggregation::setupLinearMovingAverageAggregationDeserializer
+    );
 
-	protected static void setupLinearMovingAverageAggregationDeserializer(
-			ObjectDeserializer<LinearMovingAverageAggregation.Builder> op) {
-		MovingAverageAggregationBase.setupMovingAverageAggregationBaseDeserializer(op);
-		op.add(Builder::settings, EmptyObject._DESERIALIZER, "settings");
+    protected static void setupLinearMovingAverageAggregationDeserializer(ObjectDeserializer<LinearMovingAverageAggregation.Builder> op) {
+        MovingAverageAggregationBase.setupMovingAverageAggregationBaseDeserializer(op);
+        op.add(Builder::settings, EmptyObject._DESERIALIZER, "settings");
 
-		op.ignore("model");
-	}
+        op.ignore("model");
+    }
 
 }

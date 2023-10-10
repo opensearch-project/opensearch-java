@@ -32,86 +32,84 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.analysis.PorterStemTokenFilter
 
-
 @JsonpDeserializable
 public class PorterStemTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PorterStemTokenFilter(Builder builder) {
-		super(builder);
+    private PorterStemTokenFilter(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static PorterStemTokenFilter of(Function<Builder, ObjectBuilder<PorterStemTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PorterStemTokenFilter of(Function<Builder, ObjectBuilder<PorterStemTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.PorterStem;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.PorterStem;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "porter_stem");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "porter_stem");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PorterStemTokenFilter}.
-	 */
+    /**
+     * Builder for {@link PorterStemTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PorterStemTokenFilter> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<PorterStemTokenFilter> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PorterStemTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PorterStemTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PorterStemTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PorterStemTokenFilter build() {
+            _checkSingleUse();
 
-			return new PorterStemTokenFilter(this);
-		}
-	}
+            return new PorterStemTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PorterStemTokenFilter}
-	 */
-	public static final JsonpDeserializer<PorterStemTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PorterStemTokenFilter::setupPorterStemTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link PorterStemTokenFilter}
+     */
+    public static final JsonpDeserializer<PorterStemTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PorterStemTokenFilter::setupPorterStemTokenFilterDeserializer
+    );
 
-	protected static void setupPorterStemTokenFilterDeserializer(ObjectDeserializer<PorterStemTokenFilter.Builder> op) {
-		setupTokenFilterBaseDeserializer(op);
+    protected static void setupPorterStemTokenFilterDeserializer(ObjectDeserializer<PorterStemTokenFilter.Builder> op) {
+        setupTokenFilterBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

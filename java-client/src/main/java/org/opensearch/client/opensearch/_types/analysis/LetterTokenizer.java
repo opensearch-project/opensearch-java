@@ -32,86 +32,84 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.analysis.LetterTokenizer
 
-
 @JsonpDeserializable
 public class LetterTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private LetterTokenizer(Builder builder) {
-		super(builder);
+    private LetterTokenizer(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static LetterTokenizer of(Function<Builder, ObjectBuilder<LetterTokenizer>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static LetterTokenizer of(Function<Builder, ObjectBuilder<LetterTokenizer>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenizerDefinition variant kind.
-	 */
-	@Override
-	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
-		return TokenizerDefinition.Kind.Letter;
-	}
+    /**
+     * TokenizerDefinition variant kind.
+     */
+    @Override
+    public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+        return TokenizerDefinition.Kind.Letter;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "letter");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "letter");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link LetterTokenizer}.
-	 */
+    /**
+     * Builder for {@link LetterTokenizer}.
+     */
 
-	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<LetterTokenizer> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<LetterTokenizer> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link LetterTokenizer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public LetterTokenizer build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link LetterTokenizer}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public LetterTokenizer build() {
+            _checkSingleUse();
 
-			return new LetterTokenizer(this);
-		}
-	}
+            return new LetterTokenizer(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link LetterTokenizer}
-	 */
-	public static final JsonpDeserializer<LetterTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			LetterTokenizer::setupLetterTokenizerDeserializer);
+    /**
+     * Json deserializer for {@link LetterTokenizer}
+     */
+    public static final JsonpDeserializer<LetterTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        LetterTokenizer::setupLetterTokenizerDeserializer
+    );
 
-	protected static void setupLetterTokenizerDeserializer(ObjectDeserializer<LetterTokenizer.Builder> op) {
-		TokenizerBase.setupTokenizerBaseDeserializer(op);
+    protected static void setupLetterTokenizerDeserializer(ObjectDeserializer<LetterTokenizer.Builder> op) {
+        TokenizerBase.setupTokenizerBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

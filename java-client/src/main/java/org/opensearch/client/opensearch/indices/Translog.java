@@ -9,6 +9,8 @@
 package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -18,10 +20,6 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-
-import javax.annotation.Nullable;
-import java.util.function.Function;
-
 
 @JsonpDeserializable
 public class Translog implements JsonpSerializable {
@@ -156,8 +154,10 @@ public class Translog implements JsonpSerializable {
     /**
      * Json deserializer for {@link Translog}
      */
-    public static final JsonpDeserializer<Translog> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-            Translog::setupTranslogDeserializer);
+    public static final JsonpDeserializer<Translog> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        Translog::setupTranslogDeserializer
+    );
 
     protected static void setupTranslogDeserializer(ObjectDeserializer<Translog.Builder> op) {
 

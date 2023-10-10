@@ -37,10 +37,10 @@ package org.opensearch.client.opensearch.indices.update_aliases;
  */
 public interface ActionVariant {
 
-	Action.Kind _actionKind();
+    Action.Kind _actionKind();
 
-	default Action _toAction() {
-		return new Action(this);
-	}
+    default Action _toAction() {
+        return new Action(this);
+    }
 
 }

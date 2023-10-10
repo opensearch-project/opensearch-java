@@ -35,25 +35,23 @@ package org.opensearch.client.opensearch.core.search;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum SuggestSort implements JsonEnum {
-	Score("score"),
+    Score("score"),
 
-	Frequency("frequency"),
+    Frequency("frequency"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	SuggestSort(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    SuggestSort(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<SuggestSort> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SuggestSort.values());
+    public static final JsonEnum.Deserializer<SuggestSort> _DESERIALIZER = new JsonEnum.Deserializer<>(SuggestSort.values());
 }

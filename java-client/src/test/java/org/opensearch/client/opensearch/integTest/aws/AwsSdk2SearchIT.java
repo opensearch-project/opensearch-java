@@ -8,8 +8,10 @@
 
 package org.opensearch.client.opensearch.integTest.aws;
 
-import org.junit.Test;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import org.junit.Assert;
+import org.junit.Test;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
@@ -18,9 +20,6 @@ import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
-
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
 
@@ -54,7 +53,7 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         addDoc(client, "id2", doc2);
         SimplePojo doc3 = getLongDoc("Long Document 3", 1000000);
         addDoc(client, "id3", doc3);
-        
+
         // wait for the document to index
         Thread.sleep(1000);
 
@@ -82,8 +81,7 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         SimplePojo doc2 = new SimplePojo("Document 2", "The text of document 2");
         CompletableFuture<IndexResponse> add2 = addDoc(client, "id2", doc2);
         SimplePojo doc3 = getLongDoc("Long Document 3", 1000000);
-        CompletableFuture<IndexResponse> add3 = CompletableFuture.allOf(add1, add2).thenCompose(
-                unused -> addDoc(client, "id3", doc3));
+        CompletableFuture<IndexResponse> add3 = CompletableFuture.allOf(add1, add2).thenCompose(unused -> addDoc(client, "id3", doc3));
 
         // wait for the document to index
         Thread.sleep(1000);
@@ -92,11 +90,7 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
             CompletableFuture<SearchResponse<SimplePojo>> r1 = query(client, "NotPresent", null);
             CompletableFuture<SearchResponse<SimplePojo>> r2 = query(client, "Document", null);
             CompletableFuture<SearchResponse<SimplePojo>> r3 = query(client, "1", null);
-            return CompletableFuture.allOf(r1, r2, r3).thenApply(u2 -> List.of(
-                    r1.getNow(null),
-                    r2.getNow(null),
-                    r3.getNow(null))
-            );
+            return CompletableFuture.allOf(r1, r2, r3).thenApply(u2 -> List.of(r1.getNow(null), r2.getNow(null), r3.getNow(null)));
         }).get();
 
         SearchResponse<SimplePojo> response = results.get(0);
@@ -110,22 +104,13 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         Assert.assertEquals(doc1, response.hits().hits().get(0).source());
     }
 
-
     private void addDoc(OpenSearchClient client, String id, SimplePojo doc) throws Exception {
-        IndexRequest.Builder<SimplePojo> req = new IndexRequest.Builder<SimplePojo>()
-                .index(TEST_INDEX)
-                .document(doc)
-                .id(id);
+        IndexRequest.Builder<SimplePojo> req = new IndexRequest.Builder<SimplePojo>().index(TEST_INDEX).document(doc).id(id);
         client.index(req.build());
     }
 
-    private CompletableFuture<IndexResponse> addDoc(
-            OpenSearchAsyncClient client, String id, SimplePojo doc
-    ) {
-        IndexRequest.Builder<SimplePojo> req = new IndexRequest.Builder<SimplePojo>()
-                .index(TEST_INDEX)
-                .document(doc)
-                .id(id);
+    private CompletableFuture<IndexResponse> addDoc(OpenSearchAsyncClient client, String id, SimplePojo doc) {
+        IndexRequest.Builder<SimplePojo> req = new IndexRequest.Builder<SimplePojo>().index(TEST_INDEX).document(doc).id(id);
         try {
             return client.index(req.build());
         } catch (Exception e) {
@@ -140,9 +125,7 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         // attempt to create the same index a second time
         OpenSearchIndicesClient client = getIndexesClient(false, null, null);
         var req = new CreateIndexRequest.Builder().index(TEST_INDEX);
-        Exception exception = Assert.assertThrows(OpenSearchException.class, () -> {
-            client.create(req.build());
-        });
+        Exception exception = Assert.assertThrows(OpenSearchException.class, () -> { client.create(req.build()); });
         // error message contains the actual error, not a generic [http_exception]
         Assert.assertTrue(exception.getMessage().contains("[resource_already_exists_exception]"));
     }

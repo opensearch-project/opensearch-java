@@ -32,86 +32,84 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.mapping.BinaryProperty
 
-
 @JsonpDeserializable
 public class BinaryProperty extends DocValuesPropertyBase implements PropertyVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private BinaryProperty(Builder builder) {
-		super(builder);
+    private BinaryProperty(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static BinaryProperty of(Function<Builder, ObjectBuilder<BinaryProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static BinaryProperty of(Function<Builder, ObjectBuilder<BinaryProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Binary;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Binary;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "binary");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "binary");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link BinaryProperty}.
-	 */
+    /**
+     * Builder for {@link BinaryProperty}.
+     */
 
-	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<BinaryProperty> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<BinaryProperty> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link BinaryProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public BinaryProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link BinaryProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public BinaryProperty build() {
+            _checkSingleUse();
 
-			return new BinaryProperty(this);
-		}
-	}
+            return new BinaryProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link BinaryProperty}
-	 */
-	public static final JsonpDeserializer<BinaryProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BinaryProperty::setupBinaryPropertyDeserializer);
+    /**
+     * Json deserializer for {@link BinaryProperty}
+     */
+    public static final JsonpDeserializer<BinaryProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        BinaryProperty::setupBinaryPropertyDeserializer
+    );
 
-	protected static void setupBinaryPropertyDeserializer(ObjectDeserializer<BinaryProperty.Builder> op) {
-		setupDocValuesPropertyBaseDeserializer(op);
+    protected static void setupBinaryPropertyDeserializer(ObjectDeserializer<BinaryProperty.Builder> op) {
+        setupDocValuesPropertyBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

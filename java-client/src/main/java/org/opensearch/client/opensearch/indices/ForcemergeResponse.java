@@ -32,68 +32,67 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.ShardsOperationResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.ShardsOperationResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.forcemerge.Response
 
 @JsonpDeserializable
 public class ForcemergeResponse extends ShardsOperationResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ForcemergeResponse(Builder builder) {
-		super(builder);
+    private ForcemergeResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static ForcemergeResponse of(Function<Builder, ObjectBuilder<ForcemergeResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ForcemergeResponse of(Function<Builder, ObjectBuilder<ForcemergeResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ForcemergeResponse}.
-	 */
+    /**
+     * Builder for {@link ForcemergeResponse}.
+     */
 
-	public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ForcemergeResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<ForcemergeResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ForcemergeResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ForcemergeResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ForcemergeResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ForcemergeResponse build() {
+            _checkSingleUse();
 
-			return new ForcemergeResponse(this);
-		}
-	}
+            return new ForcemergeResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ForcemergeResponse}
-	 */
-	public static final JsonpDeserializer<ForcemergeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ForcemergeResponse::setupForcemergeResponseDeserializer);
+    /**
+     * Json deserializer for {@link ForcemergeResponse}
+     */
+    public static final JsonpDeserializer<ForcemergeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ForcemergeResponse::setupForcemergeResponseDeserializer
+    );
 
-	protected static void setupForcemergeResponseDeserializer(ObjectDeserializer<ForcemergeResponse.Builder> op) {
-		ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
+    protected static void setupForcemergeResponseDeserializer(ObjectDeserializer<ForcemergeResponse.Builder> op) {
+        ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

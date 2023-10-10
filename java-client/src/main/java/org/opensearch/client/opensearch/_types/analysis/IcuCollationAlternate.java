@@ -37,22 +37,23 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum IcuCollationAlternate implements JsonEnum {
-	Shifted("shifted"),
+    Shifted("shifted"),
 
-	NonIgnorable("non-ignorable"),
+    NonIgnorable("non-ignorable"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	IcuCollationAlternate(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    IcuCollationAlternate(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<IcuCollationAlternate> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IcuCollationAlternate.values());
+    public static final JsonEnum.Deserializer<IcuCollationAlternate> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IcuCollationAlternate.values()
+    );
 }

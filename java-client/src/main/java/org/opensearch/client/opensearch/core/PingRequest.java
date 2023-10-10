@@ -32,14 +32,13 @@
 
 package org.opensearch.client.opensearch.core;
 
+import java.util.Collections;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.BooleanEndpoint;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-
-import java.util.Collections;
 
 // typedef: _global.ping.Request
 
@@ -49,37 +48,40 @@ import java.util.Collections;
  */
 
 public class PingRequest extends RequestBase {
-	public PingRequest() {
-	}
+    public PingRequest() {}
 
-	/**
-	 * Singleton instance for {@link PingRequest}.
-	 */
-	public static final PingRequest _INSTANCE = new PingRequest();
+    /**
+     * Singleton instance for {@link PingRequest}.
+     */
+    public static final PingRequest _INSTANCE = new PingRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code ping}".
-	 */
-	public static final Endpoint<PingRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
-			"opensearch/ping",
+    /**
+     * Endpoint "{@code ping}".
+     */
+    public static final Endpoint<PingRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+        "opensearch/ping",
 
-			// Request method
-			request -> {
-				return "HEAD";
+        // Request method
+        request -> {
+            return "HEAD";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/";
+        // Request path
+        request -> {
+            return "/";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, null);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        null
+    );
 }

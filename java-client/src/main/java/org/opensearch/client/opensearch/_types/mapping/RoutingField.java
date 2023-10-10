@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,93 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.mapping.RoutingField
 
-
 @JsonpDeserializable
 public class RoutingField implements JsonpSerializable {
-	private final boolean required;
+    private final boolean required;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RoutingField(Builder builder) {
+    private RoutingField(Builder builder) {
 
-		this.required = ApiTypeHelper.requireNonNull(builder.required, this, "required");
+        this.required = ApiTypeHelper.requireNonNull(builder.required, this, "required");
 
-	}
+    }
 
-	public static RoutingField of(Function<Builder, ObjectBuilder<RoutingField>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RoutingField of(Function<Builder, ObjectBuilder<RoutingField>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code required}
-	 */
-	public final boolean required() {
-		return this.required;
-	}
+    /**
+     * Required - API name: {@code required}
+     */
+    public final boolean required() {
+        return this.required;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("required");
-		generator.write(this.required);
+        generator.writeKey("required");
+        generator.write(this.required);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RoutingField}.
-	 */
+    /**
+     * Builder for {@link RoutingField}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoutingField> {
-		private Boolean required;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoutingField> {
+        private Boolean required;
 
-		/**
-		 * Required - API name: {@code required}
-		 */
-		public final Builder required(boolean value) {
-			this.required = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code required}
+         */
+        public final Builder required(boolean value) {
+            this.required = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RoutingField}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RoutingField build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RoutingField}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RoutingField build() {
+            _checkSingleUse();
 
-			return new RoutingField(this);
-		}
-	}
+            return new RoutingField(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RoutingField}
-	 */
-	public static final JsonpDeserializer<RoutingField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RoutingField::setupRoutingFieldDeserializer);
+    /**
+     * Json deserializer for {@link RoutingField}
+     */
+    public static final JsonpDeserializer<RoutingField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RoutingField::setupRoutingFieldDeserializer
+    );
 
-	protected static void setupRoutingFieldDeserializer(ObjectDeserializer<RoutingField.Builder> op) {
+    protected static void setupRoutingFieldDeserializer(ObjectDeserializer<RoutingField.Builder> op) {
 
-		op.add(Builder::required, JsonpDeserializer.booleanDeserializer(), "required");
+        op.add(Builder::required, JsonpDeserializer.booleanDeserializer(), "required");
 
-	}
+    }
 
 }

@@ -32,77 +32,76 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.TDigestPercentilesAggregate
-
 
 @JsonpDeserializable
 public class TDigestPercentilesAggregate extends PercentilesAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TDigestPercentilesAggregate(Builder builder) {
-		super(builder);
+    private TDigestPercentilesAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static TDigestPercentilesAggregate of(Function<Builder, ObjectBuilder<TDigestPercentilesAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TDigestPercentilesAggregate of(Function<Builder, ObjectBuilder<TDigestPercentilesAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.TdigestPercentiles;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.TdigestPercentiles;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TDigestPercentilesAggregate}.
-	 */
+    /**
+     * Builder for {@link TDigestPercentilesAggregate}.
+     */
 
-	public static class Builder extends PercentilesAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<TDigestPercentilesAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends PercentilesAggregateBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<TDigestPercentilesAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TDigestPercentilesAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TDigestPercentilesAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TDigestPercentilesAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TDigestPercentilesAggregate build() {
+            _checkSingleUse();
 
-			return new TDigestPercentilesAggregate(this);
-		}
-	}
+            return new TDigestPercentilesAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TDigestPercentilesAggregate}
-	 */
-	public static final JsonpDeserializer<TDigestPercentilesAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TDigestPercentilesAggregate::setupTDigestPercentilesAggregateDeserializer);
+    /**
+     * Json deserializer for {@link TDigestPercentilesAggregate}
+     */
+    public static final JsonpDeserializer<TDigestPercentilesAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TDigestPercentilesAggregate::setupTDigestPercentilesAggregateDeserializer
+    );
 
-	protected static void setupTDigestPercentilesAggregateDeserializer(
-			ObjectDeserializer<TDigestPercentilesAggregate.Builder> op) {
-		setupPercentilesAggregateBaseDeserializer(op);
+    protected static void setupTDigestPercentilesAggregateDeserializer(ObjectDeserializer<TDigestPercentilesAggregate.Builder> op) {
+        setupPercentilesAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

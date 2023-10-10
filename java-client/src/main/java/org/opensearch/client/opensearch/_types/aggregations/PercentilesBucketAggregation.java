@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,125 +43,121 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesBucketAggregation
 
 @JsonpDeserializable
 public class PercentilesBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
-	private final List<Double> percents;
+    private final List<Double> percents;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PercentilesBucketAggregation(Builder builder) {
-		super(builder);
+    private PercentilesBucketAggregation(Builder builder) {
+        super(builder);
 
-		this.percents = ApiTypeHelper.unmodifiable(builder.percents);
+        this.percents = ApiTypeHelper.unmodifiable(builder.percents);
 
-	}
+    }
 
-	public static PercentilesBucketAggregation of(Function<Builder, ObjectBuilder<PercentilesBucketAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PercentilesBucketAggregation of(Function<Builder, ObjectBuilder<PercentilesBucketAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.PercentilesBucket;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.PercentilesBucket;
+    }
 
-	/**
-	 * API name: {@code percents}
-	 */
-	public final List<Double> percents() {
-		return this.percents;
-	}
+    /**
+     * API name: {@code percents}
+     */
+    public final List<Double> percents() {
+        return this.percents;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.percents)) {
-			generator.writeKey("percents");
-			generator.writeStartArray();
-			for (Double item0 : this.percents) {
-				generator.write(item0);
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.percents)) {
+            generator.writeKey("percents");
+            generator.writeStartArray();
+            for (Double item0 : this.percents) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PercentilesBucketAggregation}.
-	 */
+    /**
+     * Builder for {@link PercentilesBucketAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PercentilesBucketAggregation> {
-		@Nullable
-		private List<Double> percents;
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<PercentilesBucketAggregation> {
+        @Nullable
+        private List<Double> percents;
 
-		/**
-		 * API name: {@code percents}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>percents</code>.
-		 */
-		public final Builder percents(List<Double> list) {
-			this.percents = _listAddAll(this.percents, list);
-			return this;
-		}
+        /**
+         * API name: {@code percents}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>percents</code>.
+         */
+        public final Builder percents(List<Double> list) {
+            this.percents = _listAddAll(this.percents, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code percents}
-		 * <p>
-		 * Adds one or more values to <code>percents</code>.
-		 */
-		public final Builder percents(Double value, Double... values) {
-			this.percents = _listAdd(this.percents, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code percents}
+         * <p>
+         * Adds one or more values to <code>percents</code>.
+         */
+        public final Builder percents(Double value, Double... values) {
+            this.percents = _listAdd(this.percents, value, values);
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PercentilesBucketAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PercentilesBucketAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PercentilesBucketAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PercentilesBucketAggregation build() {
+            _checkSingleUse();
 
-			return new PercentilesBucketAggregation(this);
-		}
-	}
+            return new PercentilesBucketAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PercentilesBucketAggregation}
-	 */
-	public static final JsonpDeserializer<PercentilesBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PercentilesBucketAggregation::setupPercentilesBucketAggregationDeserializer);
+    /**
+     * Json deserializer for {@link PercentilesBucketAggregation}
+     */
+    public static final JsonpDeserializer<PercentilesBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PercentilesBucketAggregation::setupPercentilesBucketAggregationDeserializer
+    );
 
-	protected static void setupPercentilesBucketAggregationDeserializer(
-			ObjectDeserializer<PercentilesBucketAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
-		op.add(Builder::percents, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()),
-				"percents");
+    protected static void setupPercentilesBucketAggregationDeserializer(ObjectDeserializer<PercentilesBucketAggregation.Builder> op) {
+        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+        op.add(Builder::percents, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "percents");
 
-	}
+    }
 
 }

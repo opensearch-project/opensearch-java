@@ -32,169 +32,170 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
-import org.opensearch.client.opensearch._types.Script;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RuntimeField
 
-
 @JsonpDeserializable
 public class RuntimeField implements JsonpSerializable {
-	@Nullable
-	private final String format;
+    @Nullable
+    private final String format;
 
-	@Nullable
-	private final Script script;
+    @Nullable
+    private final Script script;
 
-	private final RuntimeFieldType type;
+    private final RuntimeFieldType type;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RuntimeField(Builder builder) {
+    private RuntimeField(Builder builder) {
 
-		this.format = builder.format;
-		this.script = builder.script;
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+        this.format = builder.format;
+        this.script = builder.script;
+        this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
-	}
+    }
 
-	public static RuntimeField of(Function<Builder, ObjectBuilder<RuntimeField>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RuntimeField of(Function<Builder, ObjectBuilder<RuntimeField>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code format}
-	 */
-	@Nullable
-	public final String format() {
-		return this.format;
-	}
+    /**
+     * API name: {@code format}
+     */
+    @Nullable
+    public final String format() {
+        return this.format;
+    }
 
-	/**
-	 * API name: {@code script}
-	 */
-	@Nullable
-	public final Script script() {
-		return this.script;
-	}
+    /**
+     * API name: {@code script}
+     */
+    @Nullable
+    public final Script script() {
+        return this.script;
+    }
 
-	/**
-	 * Required - API name: {@code type}
-	 */
-	public final RuntimeFieldType type() {
-		return this.type;
-	}
+    /**
+     * Required - API name: {@code type}
+     */
+    public final RuntimeFieldType type() {
+        return this.type;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.format != null) {
-			generator.writeKey("format");
-			generator.write(this.format);
+        if (this.format != null) {
+            generator.writeKey("format");
+            generator.write(this.format);
 
-		}
-		if (this.script != null) {
-			generator.writeKey("script");
-			this.script.serialize(generator, mapper);
+        }
+        if (this.script != null) {
+            generator.writeKey("script");
+            this.script.serialize(generator, mapper);
 
-		}
-		generator.writeKey("type");
-		this.type.serialize(generator, mapper);
+        }
+        generator.writeKey("type");
+        this.type.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RuntimeField}.
-	 */
+    /**
+     * Builder for {@link RuntimeField}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RuntimeField> {
-		@Nullable
-		private String format;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RuntimeField> {
+        @Nullable
+        private String format;
 
-		@Nullable
-		private Script script;
+        @Nullable
+        private Script script;
 
-		private RuntimeFieldType type;
+        private RuntimeFieldType type;
 
-		/**
-		 * API name: {@code format}
-		 */
-		public final Builder format(@Nullable String value) {
-			this.format = value;
-			return this;
-		}
+        /**
+         * API name: {@code format}
+         */
+        public final Builder format(@Nullable String value) {
+            this.format = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code script}
-		 */
-		public final Builder script(@Nullable Script value) {
-			this.script = value;
-			return this;
-		}
+        /**
+         * API name: {@code script}
+         */
+        public final Builder script(@Nullable Script value) {
+            this.script = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code script}
-		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
-		}
+        /**
+         * API name: {@code script}
+         */
+        public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+            return this.script(fn.apply(new Script.Builder()).build());
+        }
 
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public final Builder type(RuntimeFieldType value) {
-			this.type = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code type}
+         */
+        public final Builder type(RuntimeFieldType value) {
+            this.type = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RuntimeField}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RuntimeField build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RuntimeField}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RuntimeField build() {
+            _checkSingleUse();
 
-			return new RuntimeField(this);
-		}
-	}
+            return new RuntimeField(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RuntimeField}
-	 */
-	public static final JsonpDeserializer<RuntimeField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RuntimeField::setupRuntimeFieldDeserializer);
+    /**
+     * Json deserializer for {@link RuntimeField}
+     */
+    public static final JsonpDeserializer<RuntimeField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RuntimeField::setupRuntimeFieldDeserializer
+    );
 
-	protected static void setupRuntimeFieldDeserializer(ObjectDeserializer<RuntimeField.Builder> op) {
+    protected static void setupRuntimeFieldDeserializer(ObjectDeserializer<RuntimeField.Builder> op) {
 
-		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::script, Script._DESERIALIZER, "script");
-		op.add(Builder::type, RuntimeFieldType._DESERIALIZER, "type");
+        op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+        op.add(Builder::script, Script._DESERIALIZER, "script");
+        op.add(Builder::type, RuntimeFieldType._DESERIALIZER, "type");
 
-	}
+    }
 
 }

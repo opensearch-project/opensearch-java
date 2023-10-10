@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,137 +42,135 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.SpanOrQuery
 
-
 @JsonpDeserializable
 public class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
-	private final List<SpanQuery> clauses;
+    private final List<SpanQuery> clauses;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SpanOrQuery(Builder builder) {
-		super(builder);
+    private SpanOrQuery(Builder builder) {
+        super(builder);
 
-		this.clauses = ApiTypeHelper.unmodifiableRequired(builder.clauses, this, "clauses");
+        this.clauses = ApiTypeHelper.unmodifiableRequired(builder.clauses, this, "clauses");
 
-	}
+    }
 
-	public static SpanOrQuery of(Function<Builder, ObjectBuilder<SpanOrQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SpanOrQuery of(Function<Builder, ObjectBuilder<SpanOrQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * SpanQuery variant kind.
-	 */
-	@Override
-	public SpanQuery.Kind _spanQueryKind() {
-		return SpanQuery.Kind.SpanOr;
-	}
+    /**
+     * SpanQuery variant kind.
+     */
+    @Override
+    public SpanQuery.Kind _spanQueryKind() {
+        return SpanQuery.Kind.SpanOr;
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.SpanOr;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.SpanOr;
+    }
 
-	/**
-	 * Required - API name: {@code clauses}
-	 */
-	public final List<SpanQuery> clauses() {
-		return this.clauses;
-	}
+    /**
+     * Required - API name: {@code clauses}
+     */
+    public final List<SpanQuery> clauses() {
+        return this.clauses;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.clauses)) {
-			generator.writeKey("clauses");
-			generator.writeStartArray();
-			for (SpanQuery item0 : this.clauses) {
-				item0.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.clauses)) {
+            generator.writeKey("clauses");
+            generator.writeStartArray();
+            for (SpanQuery item0 : this.clauses) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SpanOrQuery}.
-	 */
+    /**
+     * Builder for {@link SpanOrQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanOrQuery> {
-		private List<SpanQuery> clauses;
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanOrQuery> {
+        private List<SpanQuery> clauses;
 
-		/**
-		 * Required - API name: {@code clauses}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>clauses</code>.
-		 */
-		public final Builder clauses(List<SpanQuery> list) {
-			this.clauses = _listAddAll(this.clauses, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code clauses}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>clauses</code>.
+         */
+        public final Builder clauses(List<SpanQuery> list) {
+            this.clauses = _listAddAll(this.clauses, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code clauses}
-		 * <p>
-		 * Adds one or more values to <code>clauses</code>.
-		 */
-		public final Builder clauses(SpanQuery value, SpanQuery... values) {
-			this.clauses = _listAdd(this.clauses, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code clauses}
+         * <p>
+         * Adds one or more values to <code>clauses</code>.
+         */
+        public final Builder clauses(SpanQuery value, SpanQuery... values) {
+            this.clauses = _listAdd(this.clauses, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code clauses}
-		 * <p>
-		 * Adds a value to <code>clauses</code> using a builder lambda.
-		 */
-		public final Builder clauses(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
-			return clauses(fn.apply(new SpanQuery.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code clauses}
+         * <p>
+         * Adds a value to <code>clauses</code> using a builder lambda.
+         */
+        public final Builder clauses(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+            return clauses(fn.apply(new SpanQuery.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SpanOrQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SpanOrQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SpanOrQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SpanOrQuery build() {
+            _checkSingleUse();
 
-			return new SpanOrQuery(this);
-		}
-	}
+            return new SpanOrQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SpanOrQuery}
-	 */
-	public static final JsonpDeserializer<SpanOrQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SpanOrQuery::setupSpanOrQueryDeserializer);
+    /**
+     * Json deserializer for {@link SpanOrQuery}
+     */
+    public static final JsonpDeserializer<SpanOrQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SpanOrQuery::setupSpanOrQueryDeserializer
+    );
 
-	protected static void setupSpanOrQueryDeserializer(ObjectDeserializer<SpanOrQuery.Builder> op) {
-		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::clauses, JsonpDeserializer.arrayDeserializer(SpanQuery._DESERIALIZER), "clauses");
+    protected static void setupSpanOrQueryDeserializer(ObjectDeserializer<SpanOrQuery.Builder> op) {
+        QueryBase.setupQueryBaseDeserializer(op);
+        op.add(Builder::clauses, JsonpDeserializer.arrayDeserializer(SpanQuery._DESERIALIZER), "clauses");
 
-	}
+    }
 
 }

@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,95 +43,91 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices._types.DataStream
 
-
 @JsonpDeserializable
 public class DataStream implements JsonpSerializable {
-	@Nullable
-	private final Boolean hidden;
+    @Nullable
+    private final Boolean hidden;
 
-	@Nullable
-	private final DataStreamTimestampField timestampField;
+    @Nullable
+    private final DataStreamTimestampField timestampField;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DataStream(Builder builder) {
+    private DataStream(Builder builder) {
 
-		this.hidden = builder.hidden;
-		this.timestampField = builder.timestampField;
+        this.hidden = builder.hidden;
+        this.timestampField = builder.timestampField;
 
-	}
+    }
 
-	public static DataStream of(Function<Builder, ObjectBuilder<DataStream>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DataStream of(Function<Builder, ObjectBuilder<DataStream>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code hidden}
-	 */
-	@Nullable
-	public final Boolean hidden() {
-		return this.hidden;
-	}
+    /**
+     * API name: {@code hidden}
+     */
+    @Nullable
+    public final Boolean hidden() {
+        return this.hidden;
+    }
 
-	/**
-	 * API name: {@code timestamp_field}
-	 */
-	@Nullable
-	public final DataStreamTimestampField timestampField() {
-		return this.timestampField;
-	}
+    /**
+     * API name: {@code timestamp_field}
+     */
+    @Nullable
+    public final DataStreamTimestampField timestampField() {
+        return this.timestampField;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.hidden != null) {
-			generator.writeKey("hidden");
-			generator.write(this.hidden);
-		}
+        if (this.hidden != null) {
+            generator.writeKey("hidden");
+            generator.write(this.hidden);
+        }
 
-		if (this.timestampField != null) {
-			generator.writeKey("timestamp_field");
-			this.timestampField.serialize(generator, mapper);
-		}
+        if (this.timestampField != null) {
+            generator.writeKey("timestamp_field");
+            this.timestampField.serialize(generator, mapper);
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DataStream}.
-	 */
+    /**
+     * Builder for {@link DataStream}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStream> {
-		@Nullable
-		private Boolean hidden;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStream> {
+        @Nullable
+        private Boolean hidden;
 
-		@Nullable
-		private DataStreamTimestampField timestampField;
+        @Nullable
+        private DataStreamTimestampField timestampField;
 
-		/**
-		 * API name: {@code hidden}
-		 */
-		public final Builder hidden(@Nullable Boolean value) {
-			this.hidden = value;
-			return this;
-		}
+        /**
+         * API name: {@code hidden}
+         */
+        public final Builder hidden(@Nullable Boolean value) {
+            this.hidden = value;
+            return this;
+        }
 
-		/**
+        /**
          * API name: {@code timestamp_field}
          */
         public final Builder timestampField(@Nullable DataStreamTimestampField value) {
@@ -143,32 +142,34 @@ public class DataStream implements JsonpSerializable {
             return this.timestampField(fn.apply(new DataStreamTimestampField.Builder()).build());
         }
 
-		/**
-		 * Builds a {@link DataStream}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DataStream build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DataStream}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DataStream build() {
+            _checkSingleUse();
 
-			return new DataStream(this);
-		}
-	}
+            return new DataStream(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DataStream}
-	 */
-	public static final JsonpDeserializer<DataStream> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DataStream::setupDataStreamDeserializer);
+    /**
+     * Json deserializer for {@link DataStream}
+     */
+    public static final JsonpDeserializer<DataStream> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DataStream::setupDataStreamDeserializer
+    );
 
-	protected static void setupDataStreamDeserializer(ObjectDeserializer<DataStream.Builder> op) {
+    protected static void setupDataStreamDeserializer(ObjectDeserializer<DataStream.Builder> op) {
 
-		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
-		op.add(Builder::timestampField, DataStreamTimestampField._DESERIALIZER, "timestamp_field");
+        op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
+        op.add(Builder::timestampField, DataStreamTimestampField._DESERIALIZER, "timestamp_field");
 
-	}
+    }
 
 }

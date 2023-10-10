@@ -32,6 +32,14 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 import org.opensearch.Version;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
@@ -86,15 +94,6 @@ import org.opensearch.client.opensearch.indices.Translog;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-
 public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
     @Test
@@ -129,15 +128,19 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
     @Test
     public void testIndexSettings() throws Exception {
         var createResponse = javaClient().indices()
-                .create(r -> r.index("test-settings")
-                        .settings(s -> s
-                                .translog(Translog.of(tl -> tl.syncInterval(Time.of(t -> t.time("10s")))))
-                                .mapping(m -> m
-                                        .fieldNameLength(f -> f.limit(300L))
-                                        .totalFields(f -> f.limit(30L))
-                                        .nestedFields(f -> f.limit(10L))
-                                        .depth(f -> f.limit(3L))
-                                        .nestedObjects(f -> f.limit(9L)))));
+            .create(
+                r -> r.index("test-settings")
+                    .settings(
+                        s -> s.translog(Translog.of(tl -> tl.syncInterval(Time.of(t -> t.time("10s")))))
+                            .mapping(
+                                m -> m.fieldNameLength(f -> f.limit(300L))
+                                    .totalFields(f -> f.limit(30L))
+                                    .nestedFields(f -> f.limit(10L))
+                                    .depth(f -> f.limit(3L))
+                                    .nestedObjects(f -> f.limit(9L))
+                            )
+                    )
+            );
         assertTrue(createResponse.acknowledged());
         assertTrue(createResponse.shardsAcknowledged());
 
@@ -163,16 +166,20 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         assertNotNull(createdMappingSettings.nestedObjects());
         assertEquals(9L, (Object) createdMappingSettings.nestedObjects().limit());
 
-        var putSettingsResponse = javaClient().indices().putSettings(r -> r
-                .index("test-settings")
-                .settings(s -> s
-                        .translog(Translog.of(tl -> tl.syncInterval(Time.of(t -> t.time("5s")))))
-                        .mapping(m -> m
-                                .fieldNameLength(f -> f.limit(400L))
-                                .totalFields(f -> f.limit(130L))
-                                .nestedFields(f -> f.limit(110L))
-                                .depth(f -> f.limit(13L))
-                                .nestedObjects(f -> f.limit(19L)))));
+        var putSettingsResponse = javaClient().indices()
+            .putSettings(
+                r -> r.index("test-settings")
+                    .settings(
+                        s -> s.translog(Translog.of(tl -> tl.syncInterval(Time.of(t -> t.time("5s")))))
+                            .mapping(
+                                m -> m.fieldNameLength(f -> f.limit(400L))
+                                    .totalFields(f -> f.limit(130L))
+                                    .nestedFields(f -> f.limit(110L))
+                                    .depth(f -> f.limit(13L))
+                                    .nestedObjects(f -> f.limit(19L))
+                            )
+                    )
+            );
         assertTrue(putSettingsResponse.acknowledged());
 
         var updatedSettings = javaClient().indices().getSettings(r -> r.index("test-settings"));
@@ -204,9 +211,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         String index = "ingest-test";
 
         // Create an index
-        CreateIndexResponse createIndexResponse = javaClient().indices().create(b -> b
-                .index(index)
-        );
+        CreateIndexResponse createIndexResponse = javaClient().indices().create(b -> b.index(index));
 
         assertEquals(index, createIndexResponse.index());
 
@@ -219,8 +224,8 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         appData.setIntValue(1337);
         appData.setMsg("foo");
 
-        String docId = javaClient().index(b -> b
-                .index(index)
+        String docId = javaClient().index(
+            b -> b.index(index)
                 .id("my/Id") // test with url-unsafe string
                 .document(appData)
                 .refresh(Refresh.True) // Make it visible for search
@@ -230,36 +235,22 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
         // Check auto-created mapping
         GetMappingResponse mapping = javaClient().indices().getMapping(b -> b.index(index));
-        assertEquals(
-                Property.Kind.Long,
-                mapping.get("ingest-test").mappings().properties().get("intValue")._kind()
-        );
+        assertEquals(Property.Kind.Long, mapping.get("ingest-test").mappings().properties().get("intValue")._kind());
 
         // Query by id
-        AppData esData = javaClient().get(b -> b
-                        .index(index)
-                        .id(docId)
-                , AppData.class
-        ).source();
+        AppData esData = javaClient().get(b -> b.index(index).id(docId), AppData.class).source();
 
         assertEquals(1337, esData.getIntValue());
         assertEquals("foo", esData.getMsg());
 
         // Query by id a non-existing document
-        final GetResponse<AppData> notExists = javaClient().get(b -> b
-                        .index(index)
-                        .id("some-random-id")
-                , AppData.class
-        );
+        final GetResponse<AppData> notExists = javaClient().get(b -> b.index(index).id("some-random-id"), AppData.class);
 
         assertFalse(notExists.found());
         assertNull(notExists.source());
 
         // Search
-        SearchResponse<AppData> search = javaClient().search(b -> b
-                        .index(index)
-                , AppData.class
-        );
+        SearchResponse<AppData> search = javaClient().search(b -> b.index(index), AppData.class);
 
         long hits = search.hits().total().value();
         assertEquals(1, hits);
@@ -268,21 +259,14 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         assertEquals(1337, esData.getIntValue());
         assertEquals("foo", esData.getMsg());
 
-        RequestItem item = RequestItem.of(_1 -> _1
-                .header(_2 -> _2.index("test"))
-                .body(_2 -> _2.size(4))
-        );
+        RequestItem item = RequestItem.of(_1 -> _1.header(_2 -> _2.index("test")).body(_2 -> _2.size(4)));
 
         // MSearch: 1st search on an existing index, 2nd one on a non-existing index
-        final MsearchResponse<AppData> msearch = javaClient().msearch(_0 -> _0
-                        .searches(_1 -> _1
-                                .header(_3 -> _3.index(index))
-                                .body(_3 -> _3.query(_4 -> _4.matchAll(_5 -> _5)))
-                        ).searches(_1 -> _1
-                                .header(_3 -> _3.index("non-existing"))
-                                .body(_3 -> _3.query(_4 -> _4.matchAll(_5 -> _5)))
-                        )
-                , AppData.class);
+        final MsearchResponse<AppData> msearch = javaClient().msearch(
+            _0 -> _0.searches(_1 -> _1.header(_3 -> _3.index(index)).body(_3 -> _3.query(_4 -> _4.matchAll(_5 -> _5))))
+                .searches(_1 -> _1.header(_3 -> _3.index("non-existing")).body(_3 -> _3.query(_4 -> _4.matchAll(_5 -> _5)))),
+            AppData.class
+        );
 
         assertEquals(2, msearch.responses().size());
         assertTrue(msearch.responses().get(0).isResult());
@@ -317,19 +301,9 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         appData.setIntValue(42);
         appData.setMsg("Some message");
 
-        BulkResponse bulk = javaClient().bulk(_0 -> _0
-                .operations(_1 -> _1
-                        .create(_2 -> _2
-                                .index("foo")
-                                .id("abc")
-                                .document(appData)
-                        ))
-                .operations(_1 -> _1
-                        .create(_2 -> _2
-                                .index("foo")
-                                .id("def")
-                                .document(appData)
-                        ))
+        BulkResponse bulk = javaClient().bulk(
+            _0 -> _0.operations(_1 -> _1.create(_2 -> _2.index("foo").id("abc").document(appData)))
+                .operations(_1 -> _1.create(_2 -> _2.index("foo").id("def").document(appData)))
         );
 
         assertFalse(bulk.errors());
@@ -353,19 +327,12 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         appData.setIntValue(1337);
         appData.setMsg("foo");
 
-        javaClient().index(b -> b
-                .index(index)
-                .id("myId")
-                .document(appData)
-                .refresh(Refresh.True) // Make it visible for search
+        javaClient().index(
+            b -> b.index(index).id("myId").document(appData).refresh(Refresh.True) // Make it visible for search
         ).id();
 
         // Search
-        SearchResponse<AppData> search = javaClient().search(b -> b
-                        .index(index)
-                        .trackTotalHits(t -> t.enabled(false))
-                , AppData.class
-        );
+        SearchResponse<AppData> search = javaClient().search(b -> b.index(index).trackTotalHits(t -> t.enabled(false)), AppData.class);
 
         List<Hit<AppData>> hits = search.hits().hits();
         AppData appDataResult = search.hits().hits().get(0).source();
@@ -379,12 +346,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         appData.setIntValue(42);
         appData.setMsg("Some message");
 
-        IndexResponse ir = javaClient().index(_0 -> _0
-                .index("test")
-                .id("1")
-                .document(appData)
-                .refresh(Refresh.WaitFor)
-        );
+        IndexResponse ir = javaClient().index(_0 -> _0.index("test").id("1").document(appData).refresh(Refresh.WaitFor));
 
         assertEquals("1", ir.id());
     }
@@ -395,21 +357,16 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         assertFalse(exists.value());
 
         OpenSearchException ex = assertThrows(OpenSearchException.class, () -> {
-            GetResponse<String> response = javaClient().get(
-                    _0 -> _0.index("doesnotexist").id("reallynot"), String.class
-            );
+            GetResponse<String> response = javaClient().get(_0 -> _0.index("doesnotexist").id("reallynot"), String.class);
         });
 
         assertEquals(404, ex.status());
         assertEquals("index_not_found_exception", ex.error().type());
         assertEquals("doesnotexist", ex.error().metadata().get("index").to(String.class));
 
-
         ExecutionException ee = assertThrows(ExecutionException.class, () -> {
             OpenSearchAsyncClient aClient = new OpenSearchAsyncClient(javaClient()._transport());
-            GetResponse<String> response = aClient.get(
-                    _0 -> _0.index("doesnotexist").id("reallynot"), String.class
-            ).get();
+            GetResponse<String> response = aClient.get(_0 -> _0.index("doesnotexist").id("reallynot"), String.class).get();
         });
 
         ex = ((OpenSearchException) ee.getCause());
@@ -423,8 +380,8 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         // Transports should first try to decode an error, and if they fail because of missing properties for
         // the error type, then try to decode the regular request.
 
-        final ClearScrollResponse clearResponse = javaClient().clearScroll(b -> b.scrollId(
-                "DXF1ZXJ5QW5kRmV0Y2gBAAAAAAAAAD4WYm9laVYtZndUQlNsdDcwakFMNjU1QQ==")
+        final ClearScrollResponse clearResponse = javaClient().clearScroll(
+            b -> b.scrollId("DXF1ZXJ5QW5kRmV0Y2gBAAAAAAAAAD4WYm9laVYtZndUQlNsdDcwakFMNjU1QQ==")
         );
         assertEquals(0, clearResponse.numFreed());
     }
@@ -436,20 +393,15 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         javaClient().create(_1 -> _1.index("products").id("B").document(new Product(15)).refresh(Refresh.True));
         javaClient().create(_1 -> _1.index("products").id("C").document(new Product(25)).refresh(Refresh.True));
 
-        SearchResponse<Product> searchResponse = javaClient().search(_1 -> _1
-                        .index("products")
-                        .size(0)
-                        .aggregations(
-                                "prices", _3 -> _3
-                                        .histogram(_4 -> _4
-                                                .field("price")
-                                                .interval(10.0)
-                                        ).aggregations(
-                                                "average", _5 -> _5
-                                                        .avg(_6 -> _6.field("price"))
-                                        )
-                        )
-                , Product.class
+        SearchResponse<Product> searchResponse = javaClient().search(
+            _1 -> _1.index("products")
+                .size(0)
+                .aggregations(
+                    "prices",
+                    _3 -> _3.histogram(_4 -> _4.field("price").interval(10.0))
+                        .aggregations("average", _5 -> _5.avg(_6 -> _6.field("price")))
+                ),
+            Product.class
         );
 
         HistogramAggregate prices = searchResponse.aggregations().get("prices").histogram();
@@ -471,23 +423,21 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
         List<FieldValue> fieldValues = List.of(FieldValue.of("Blue"));
 
-        SearchRequest searchRequest = SearchRequest.of(_1 -> _1
-                .index("products")
+        SearchRequest searchRequest = SearchRequest.of(
+            _1 -> _1.index("products")
                 .size(0)
                 .aggregations(
-                        "price", _3 -> _3
-                                .aggregations(Map.of("price", TermsAggregation.of(_4 -> _4
-                                                .field("price"))
-                                        ._toAggregation()))
-                                .filter(BoolQuery.of(_5 -> _5
-                                                .filter(List.of(TermsQuery.of(_6 -> _6
-                                                                .field("color.keyword")
-                                                                .terms(_7 -> _7
-                                                                        .value(fieldValues)))
-                                                        ._toQuery())))
-                                        ._toQuery()
+                    "price",
+                    _3 -> _3.aggregations(Map.of("price", TermsAggregation.of(_4 -> _4.field("price"))._toAggregation()))
+                        .filter(
+                            BoolQuery.of(
+                                _5 -> _5.filter(
+                                    List.of(TermsQuery.of(_6 -> _6.field("color.keyword").terms(_7 -> _7.value(fieldValues)))._toQuery())
                                 )
-                ));
+                            )._toQuery()
+                        )
+                )
+        );
         SearchResponse<Product> searchResponse = javaClient().search(searchRequest, Product.class);
 
         Aggregate prices = searchResponse.aggregations().get("price")._get()._toAggregate();
@@ -507,14 +457,23 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         String question = "question";
         String answer = "answer";
 
-        javaClient().indices().create(c -> c.index(index).mappings(m -> m.properties("join", p -> p
-                .join(j -> j.relations(Collections.singletonMap(question, Collections.singletonList(answer)))))));
+        javaClient().indices()
+            .create(
+                c -> c.index(index)
+                    .mappings(
+                        m -> m.properties(
+                            "join",
+                            p -> p.join(j -> j.relations(Collections.singletonMap(question, Collections.singletonList(answer))))
+                        )
+                    )
+            );
         javaClient().index(i -> i.index(index).id("1").document(new Question("exists")).refresh(Refresh.True));
         javaClient().index(i -> i.index(index).id("2").routing("1").document(new Answer("true", "1")).refresh(Refresh.True));
         javaClient().index(i -> i.index(index).id("3").routing("1").document(new Answer("false", "1")).refresh(Refresh.True));
 
-        SearchRequest searchRequest = SearchRequest.of(r -> r.index(index).size(0)
-                .aggregations(answer, a -> a.children(c -> c.type(answer))));
+        SearchRequest searchRequest = SearchRequest.of(
+            r -> r.index(index).size(0).aggregations(answer, a -> a.children(c -> c.type(answer)))
+        );
 
         SearchResponse<Void> searchResponse = javaClient().search(searchRequest, Void.class);
 
@@ -529,18 +488,14 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         Map<String, Property> fields = Collections.singletonMap("keyword", Property.of(p -> p.keyword(k -> k.ignoreAbove(256))));
         Property text = Property.of(p -> p.text(t -> t.fields(fields)));
 
-        javaClient().indices().create(c -> c
-                .index(index)
-                .mappings(m -> m
-                        .properties("id", text)
-                        .properties("name", p -> p
-                                .object(o -> o
-                                        .properties("first", text)
-                                        .properties("last", text)
-                                )
-                        )
-                )
-        );
+        javaClient().indices()
+            .create(
+                c -> c.index(index)
+                    .mappings(
+                        m -> m.properties("id", text)
+                            .properties("name", p -> p.object(o -> o.properties("first", text).properties("last", text)))
+                    )
+            );
 
         GetMappingResponse mr = javaClient().indices().getMapping(mrb -> mrb.index(index));
 
@@ -567,54 +522,28 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
         String index = "test-completion-suggester-failure";
 
-
-        Property intValueProp = new Property.Builder()
-                .long_(v -> v)
-                .build();
-        Property msgCompletionProp = new Property.Builder()
-                .completion(c -> c)
-                .build();
-        javaClient().indices().create(c -> c
-                .index(index)
-                .mappings(m -> m
-                        .properties("intValue", intValueProp)
-                        .properties("msg", msgCompletionProp)));
+        Property intValueProp = new Property.Builder().long_(v -> v).build();
+        Property msgCompletionProp = new Property.Builder().completion(c -> c).build();
+        javaClient().indices()
+            .create(c -> c.index(index).mappings(m -> m.properties("intValue", intValueProp).properties("msg", msgCompletionProp)));
 
         AppData appData = new AppData();
         appData.setIntValue(1337);
         appData.setMsg("foo");
 
-        javaClient().index(b -> b
-                .index(index)
-                .id("1")
-                .document(appData)
-                .refresh(Refresh.True));
+        javaClient().index(b -> b.index(index).id("1").document(appData).refresh(Refresh.True));
 
         appData.setIntValue(1338);
         appData.setMsg("foobar");
 
-        javaClient().index(b -> b
-                .index(index)
-                .id("2")
-                .document(appData)
-                .refresh(Refresh.True));
+        javaClient().index(b -> b.index(index).id("2").document(appData).refresh(Refresh.True));
 
         String suggesterName = "msgSuggester";
 
-        CompletionSuggester completionSuggester = FieldSuggesterBuilders.completion()
-                .field("msg")
-                .size(1)
-                .build();
-        FieldSuggester fieldSuggester = new FieldSuggester.Builder().prefix("xyz")
-                .completion(completionSuggester)
-                .build();
-        Suggester suggester = new Suggester.Builder()
-                .suggesters(Collections.singletonMap(suggesterName, fieldSuggester))
-                .build();
-        SearchRequest searchRequest = new SearchRequest.Builder()
-                .index(index)
-                .suggest(suggester)
-                .build();
+        CompletionSuggester completionSuggester = FieldSuggesterBuilders.completion().field("msg").size(1).build();
+        FieldSuggester fieldSuggester = new FieldSuggester.Builder().prefix("xyz").completion(completionSuggester).build();
+        Suggester suggester = new Suggester.Builder().suggesters(Collections.singletonMap(suggesterName, fieldSuggester)).build();
+        SearchRequest searchRequest = new SearchRequest.Builder().index(index).suggest(suggester).build();
 
         SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
         assertTrue(response.suggest().size() > 0);
@@ -625,271 +554,196 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
     @Test
     public void testPit() throws IOException {
-            InfoResponse info = javaClient().info();
-            String version = info.version().number();
-            if (version.contains("SNAPSHOT")) {
-                    version = version.split("-")[0];
-            }
-            assumeTrue("The PIT is supported in OpenSearch 2.4.0 and later",
-                            Version.fromString(version).onOrAfter(Version.fromString("2.4.0")));
+        InfoResponse info = javaClient().info();
+        String version = info.version().number();
+        if (version.contains("SNAPSHOT")) {
+            version = version.split("-")[0];
+        }
+        assumeTrue(
+            "The PIT is supported in OpenSearch 2.4.0 and later",
+            Version.fromString(version).onOrAfter(Version.fromString("2.4.0"))
+        );
 
-            String index = "test-point-in-time";
+        String index = "test-point-in-time";
 
-            javaClient().indices().create(c -> c
-                            .index(index));
+        javaClient().indices().create(c -> c.index(index));
 
-            AppData appData = new AppData();
-            appData.setIntValue(1337);
-            appData.setMsg("foo");
+        AppData appData = new AppData();
+        appData.setIntValue(1337);
+        appData.setMsg("foo");
 
-            javaClient().index(b -> b
-                            .index(index)
-                            .id("1")
-                            .document(appData)
-                            .refresh(Refresh.True));
-            CreatePitRequest createPitRequest = new CreatePitRequest.Builder()
-                            .targetIndexes(Collections.singletonList(index))
-                            .keepAlive(new Time.Builder().time("100m").build()).build();
+        javaClient().index(b -> b.index(index).id("1").document(appData).refresh(Refresh.True));
+        CreatePitRequest createPitRequest = new CreatePitRequest.Builder().targetIndexes(Collections.singletonList(index))
+            .keepAlive(new Time.Builder().time("100m").build())
+            .build();
 
-            CreatePitResponse createPitResponse = javaClient()
-                            .createPit(createPitRequest);
+        CreatePitResponse createPitResponse = javaClient().createPit(createPitRequest);
 
-            assertNotNull(createPitResponse);
-            assertNotNull(createPitResponse.pitId());
-            assertEquals(createPitResponse.shards().total(),
-                            createPitResponse.shards().successful());
+        assertNotNull(createPitResponse);
+        assertNotNull(createPitResponse.pitId());
+        assertEquals(createPitResponse.shards().total(), createPitResponse.shards().successful());
 
-            ListAllPitResponse listAllPitResponse = javaClient().listAllPit();
+        ListAllPitResponse listAllPitResponse = javaClient().listAllPit();
 
-            assertNotNull(listAllPitResponse);
-            assertNotNull(listAllPitResponse.pits());
-            assertEquals(listAllPitResponse.pits().get(0).pitId(), createPitResponse.pitId());
-            assertEquals(listAllPitResponse.pits().get(0).keepAlive(), Long.valueOf(6000000L));
+        assertNotNull(listAllPitResponse);
+        assertNotNull(listAllPitResponse.pits());
+        assertEquals(listAllPitResponse.pits().get(0).pitId(), createPitResponse.pitId());
+        assertEquals(listAllPitResponse.pits().get(0).keepAlive(), Long.valueOf(6000000L));
 
-            DeletePitRequest deletePitRequest = new DeletePitRequest.Builder()
-                            .pitId(Collections.singletonList(createPitResponse.pitId())).build();
+        DeletePitRequest deletePitRequest = new DeletePitRequest.Builder().pitId(Collections.singletonList(createPitResponse.pitId()))
+            .build();
 
-            DeletePitResponse deletePitResponse = javaClient()
-                            .deletePit(deletePitRequest);
+        DeletePitResponse deletePitResponse = javaClient().deletePit(deletePitRequest);
 
-            assertNotNull(deletePitResponse);
-            assertNotNull(deletePitResponse.pits());
-            assertEquals(deletePitResponse.pits().get(0).pitId(), createPitResponse.pitId());
-            assertTrue(deletePitResponse.pits().get(0).successful());
+        assertNotNull(deletePitResponse);
+        assertNotNull(deletePitResponse.pits());
+        assertEquals(deletePitResponse.pits().get(0).pitId(), createPitResponse.pitId());
+        assertTrue(deletePitResponse.pits().get(0).successful());
     }
 
     public void testCompletionSuggester() throws IOException {
 
-            String index = "test-completion-suggester";
+        String index = "test-completion-suggester";
 
-            Property intValueProp = new Property.Builder()
-                            .long_(v -> v)
-                            .build();
-            Property msgCompletionProp = new Property.Builder()
-                            .completion(c -> c)
-                            .build();
-            javaClient().indices().create(c -> c
-                            .index(index)
-                            .mappings(m -> m
-                                            .properties("intValue", intValueProp)
-                                            .properties("msg", msgCompletionProp)));
+        Property intValueProp = new Property.Builder().long_(v -> v).build();
+        Property msgCompletionProp = new Property.Builder().completion(c -> c).build();
+        javaClient().indices()
+            .create(c -> c.index(index).mappings(m -> m.properties("intValue", intValueProp).properties("msg", msgCompletionProp)));
 
-            AppData appData = new AppData();
-            appData.setIntValue(1337);
-            appData.setMsg("foo");
+        AppData appData = new AppData();
+        appData.setIntValue(1337);
+        appData.setMsg("foo");
 
-            javaClient().index(b -> b
-                            .index(index)
-                            .id("1")
-                            .document(appData)
-                            .refresh(Refresh.True));
+        javaClient().index(b -> b.index(index).id("1").document(appData).refresh(Refresh.True));
 
-            appData.setIntValue(1338);
-            appData.setMsg("foobar");
+        appData.setIntValue(1338);
+        appData.setMsg("foobar");
 
-            javaClient().index(b -> b
-                            .index(index)
-                            .id("2")
-                            .document(appData)
-                            .refresh(Refresh.True));
+        javaClient().index(b -> b.index(index).id("2").document(appData).refresh(Refresh.True));
 
-            String suggesterName = "msgSuggester";
+        String suggesterName = "msgSuggester";
 
-            CompletionSuggester completionSuggester = FieldSuggesterBuilders.completion()
-                            .field("msg")
-                            .size(1)
-                            .build();
-            FieldSuggester fieldSuggester = new FieldSuggester.Builder().prefix("foo")
-                            .completion(completionSuggester)
-                            .build();
-            Suggester suggester = new Suggester.Builder()
-                            .suggesters(Collections.singletonMap(suggesterName, fieldSuggester))
-                            .build();
-            SearchRequest searchRequest = new SearchRequest.Builder()
-                            .index(index)
-                            .suggest(suggester)
-                            .build();
+        CompletionSuggester completionSuggester = FieldSuggesterBuilders.completion().field("msg").size(1).build();
+        FieldSuggester fieldSuggester = new FieldSuggester.Builder().prefix("foo").completion(completionSuggester).build();
+        Suggester suggester = new Suggester.Builder().suggesters(Collections.singletonMap(suggesterName, fieldSuggester)).build();
+        SearchRequest searchRequest = new SearchRequest.Builder().index(index).suggest(suggester).build();
 
-            SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
-            assertTrue(response.suggest().size() > 0);
-            assertTrue(response.suggest().keySet().contains(suggesterName));
-            assertNotNull(response.suggest().get(suggesterName));
-            assertNotNull(response.suggest().get(suggesterName).get(0).completion().options());
-            assertTrue(response.suggest().get(suggesterName).get(0).isCompletion());
-            assertNotNull(response.suggest().get(suggesterName).get(0).completion().options());
-            assertEquals(response.suggest().get(suggesterName).get(0).completion().options().get(0)
-                            .text(), "foo");
+        SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
+        assertTrue(response.suggest().size() > 0);
+        assertTrue(response.suggest().keySet().contains(suggesterName));
+        assertNotNull(response.suggest().get(suggesterName));
+        assertNotNull(response.suggest().get(suggesterName).get(0).completion().options());
+        assertTrue(response.suggest().get(suggesterName).get(0).isCompletion());
+        assertNotNull(response.suggest().get(suggesterName).get(0).completion().options());
+        assertEquals(response.suggest().get(suggesterName).get(0).completion().options().get(0).text(), "foo");
     }
 
     @Test
     public void testTermSuggester() throws IOException {
 
-            String index = "test-term-suggester";
+        String index = "test-term-suggester";
 
-            // term suggester does not require a special mapping
-            javaClient().indices().create(c -> c
-                            .index(index));
+        // term suggester does not require a special mapping
+        javaClient().indices().create(c -> c.index(index));
 
-            AppData appData = new AppData();
-            appData.setIntValue(1337);
-            appData.setMsg("foo");
+        AppData appData = new AppData();
+        appData.setIntValue(1337);
+        appData.setMsg("foo");
 
-            javaClient().index(b -> b
-                            .index(index)
-                            .id("1")
-                            .document(appData)
-                            .refresh(Refresh.True));
+        javaClient().index(b -> b.index(index).id("1").document(appData).refresh(Refresh.True));
 
-            appData.setIntValue(1338);
-            appData.setMsg("foobar");
+        appData.setIntValue(1338);
+        appData.setMsg("foobar");
 
-            javaClient().index(b -> b
-                            .index(index)
-                            .id("2")
-                            .document(appData)
-                            .refresh(Refresh.True));
+        javaClient().index(b -> b.index(index).id("2").document(appData).refresh(Refresh.True));
 
-            String suggesterName = "msgSuggester";
+        String suggesterName = "msgSuggester";
 
-            TermSuggester termSuggester = FieldSuggesterBuilders.term()
-                            .field("msg")
-                            .size(1)
-                            .build();
-            FieldSuggester fieldSuggester = new FieldSuggester.Builder().text("fool")
-                            .term(termSuggester)
-                            .build();
-            Suggester suggester = new Suggester.Builder()
-                            .suggesters(Collections.singletonMap(suggesterName, fieldSuggester))
-                            .build();
-            SearchRequest searchRequest = new SearchRequest.Builder()
-                            .index(index)
-                            .suggest(suggester)
-                            .build();
+        TermSuggester termSuggester = FieldSuggesterBuilders.term().field("msg").size(1).build();
+        FieldSuggester fieldSuggester = new FieldSuggester.Builder().text("fool").term(termSuggester).build();
+        Suggester suggester = new Suggester.Builder().suggesters(Collections.singletonMap(suggesterName, fieldSuggester)).build();
+        SearchRequest searchRequest = new SearchRequest.Builder().index(index).suggest(suggester).build();
 
-            SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
-            assertTrue(response.suggest().size() > 0);
-            assertTrue(response.suggest().keySet().contains(suggesterName));
-            assertNotNull(response.suggest().get(suggesterName));
-            assertTrue(response.suggest().get(suggesterName).get(0).isTerm());
-            assertNotNull(response.suggest().get(suggesterName).get(0).term().options());
-            assertEquals(response.suggest().get(suggesterName).get(0).term().options().get(0)
-                            .text(), "foo");
+        SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
+        assertTrue(response.suggest().size() > 0);
+        assertTrue(response.suggest().keySet().contains(suggesterName));
+        assertNotNull(response.suggest().get(suggesterName));
+        assertTrue(response.suggest().get(suggesterName).get(0).isTerm());
+        assertNotNull(response.suggest().get(suggesterName).get(0).term().options());
+        assertEquals(response.suggest().get(suggesterName).get(0).term().options().get(0).text(), "foo");
     }
 
-		@Test
-		public void testPhraseSuggester() throws IOException {
+    @Test
+    public void testPhraseSuggester() throws IOException {
 
-			String index = "test-phrase-suggester";
+        String index = "test-phrase-suggester";
 
-                        ShingleTokenFilter shingleTokenFilter = new ShingleTokenFilter.Builder().minShingleSize("2")
-                                        .maxShingleSize("3")
-                                        .build();
+        ShingleTokenFilter shingleTokenFilter = new ShingleTokenFilter.Builder().minShingleSize("2").maxShingleSize("3").build();
 
-                        Analyzer analyzer = new Analyzer.Builder()
-                                        .custom(new CustomAnalyzer.Builder().tokenizer("standard")
-                                                        .filter(Arrays.asList("lowercase","shingle")).build())
-                                        .build();
+        Analyzer analyzer = new Analyzer.Builder().custom(
+            new CustomAnalyzer.Builder().tokenizer("standard").filter(Arrays.asList("lowercase", "shingle")).build()
+        ).build();
 
-                        TokenFilter tokenFilter = new TokenFilter.Builder()
-                                        .definition(new TokenFilterDefinition.Builder()
-                                                        .shingle(shingleTokenFilter).build())
-                                        .build();
+        TokenFilter tokenFilter = new TokenFilter.Builder().definition(
+            new TokenFilterDefinition.Builder().shingle(shingleTokenFilter).build()
+        ).build();
 
-                        IndexSettingsAnalysis indexSettingsAnalysis = new IndexSettingsAnalysis.Builder()
-                                        .analyzer("trigram", analyzer)
-                                        .filter("shingle", tokenFilter)
-                                        .build();
+        IndexSettingsAnalysis indexSettingsAnalysis = new IndexSettingsAnalysis.Builder().analyzer("trigram", analyzer)
+            .filter("shingle", tokenFilter)
+            .build();
 
-                        IndexSettings settings = new IndexSettings.Builder().analysis(indexSettingsAnalysis).build();
+        IndexSettings settings = new IndexSettings.Builder().analysis(indexSettingsAnalysis).build();
 
-                        TypeMapping mapping = new TypeMapping.Builder().properties("msg", new Property.Builder()
-                                        .text(new TextProperty.Builder().fields("trigram", new Property.Builder()
-                                                        .text(new TextProperty.Builder().analyzer("trigram").build())
-                                                        .build()).build())
-                                        .build()).build();
+        TypeMapping mapping = new TypeMapping.Builder().properties(
+            "msg",
+            new Property.Builder().text(
+                new TextProperty.Builder().fields(
+                    "trigram",
+                    new Property.Builder().text(new TextProperty.Builder().analyzer("trigram").build()).build()
+                ).build()
+            ).build()
+        ).build();
 
+        javaClient().indices().create(c -> c.index(index).settings(settings).mappings(mapping));
 
-			javaClient().indices().create(c -> c
-					.index(index)
-					.settings(settings)
-					.mappings(mapping));
+        AppData appData = new AppData();
+        appData.setIntValue(1337);
+        appData.setMsg("Design Patterns");
 
-			AppData appData = new AppData();
-			appData.setIntValue(1337);
-			appData.setMsg("Design Patterns");
+        javaClient().index(b -> b.index(index).id("1").document(appData).refresh(Refresh.True));
 
-			javaClient().index(b -> b
-					.index(index)
-					.id("1")
-					.document(appData)
-					.refresh(Refresh.True));
+        appData.setIntValue(1338);
+        appData.setMsg("Software Architecture Patterns Explained");
 
-			appData.setIntValue(1338);
-			appData.setMsg("Software Architecture Patterns Explained");
+        javaClient().index(b -> b.index(index).id("2").document(appData).refresh(Refresh.True));
 
-			javaClient().index(b -> b
-					.index(index)
-					.id("2")
-					.document(appData)
-					.refresh(Refresh.True));
+        String suggesterName = "msgSuggester";
 
-			String suggesterName = "msgSuggester";
+        PhraseSuggester phraseSuggester = FieldSuggesterBuilders.phrase().field("msg.trigram").build();
+        FieldSuggester fieldSuggester = new FieldSuggester.Builder().text("design paterns").phrase(phraseSuggester).build();
+        Suggester suggester = new Suggester.Builder().suggesters(Collections.singletonMap(suggesterName, fieldSuggester)).build();
+        SearchRequest searchRequest = new SearchRequest.Builder().index(index).suggest(suggester).build();
 
-			PhraseSuggester phraseSuggester = FieldSuggesterBuilders.phrase()
-					.field("msg.trigram")
-					.build();
-			FieldSuggester fieldSuggester = new FieldSuggester.Builder().text("design paterns")
-					.phrase(phraseSuggester)
-					.build();
-			Suggester suggester = new Suggester.Builder()
-					.suggesters(Collections.singletonMap(suggesterName, fieldSuggester))
-					.build();
-			SearchRequest searchRequest = new SearchRequest.Builder()
-					.index(index)
-					.suggest(suggester)
-					.build();
+        SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
+        assertTrue(response.suggest().size() > 0);
+        assertTrue(response.suggest().keySet().contains(suggesterName));
+        assertNotNull(response.suggest().get(suggesterName));
+        assertNotNull(response.suggest().get(suggesterName).get(0));
+        assertTrue(response.suggest().get(suggesterName).get(0).isPhrase());
+        assertNotNull(response.suggest().get(suggesterName).get(0).phrase().options());
+        assertEquals(response.suggest().get(suggesterName).get(0).phrase().options().get(0).text(), "design patterns");
+    }
 
-			SearchResponse<AppData> response = javaClient().search(searchRequest, AppData.class);
-			assertTrue(response.suggest().size() > 0);
-			assertTrue(response.suggest().keySet().contains(suggesterName));
-			assertNotNull(response.suggest().get(suggesterName));
-			assertNotNull(response.suggest().get(suggesterName).get(0));
-			assertTrue(response.suggest().get(suggesterName).get(0).isPhrase());
-			assertNotNull(response.suggest().get(suggesterName).get(0).phrase().options());
-			assertEquals(response.suggest().get(suggesterName).get(0).phrase().options().get(0)
-					.text(), "design patterns");
-		}
-
-//    @Test
-//    public void testValueBodyResponse() throws Exception {
-//        DiskUsageResponse resp = highLevelClient().indices().diskUsage(b -> b
-//                .index("*")
-//                .allowNoIndices(true)
-//                .runExpensiveTasks(true)
-//        );
-//
-//        assertNotNull(resp.valueBody().toJson().asJsonObject().get("_shards"));
-//    }
+    // @Test
+    // public void testValueBodyResponse() throws Exception {
+    // DiskUsageResponse resp = highLevelClient().indices().diskUsage(b -> b
+    // .index("*")
+    // .allowNoIndices(true)
+    // .runExpensiveTasks(true)
+    // );
+    //
+    // assertNotNull(resp.valueBody().toJson().asJsonObject().get("_shards"));
+    // }
 
     public static class AppData {
 
@@ -918,8 +772,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         public double price;
         public String color;
 
-        public Product() {
-        }
+        public Product() {}
 
         public Product(double price) {
             this.price = price;
@@ -944,8 +797,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         public String name;
         public String parent;
 
-        Join() {
-        }
+        Join() {}
 
         Join(String name) {
             this.name = name;
@@ -962,8 +814,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         public String title;
         public Join join;
 
-        Question() {
-        }
+        Question() {}
 
         Question(String title) {
             this.title = title;
@@ -976,8 +827,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         public String body;
         public Join join;
 
-        Answer() {
-        }
+        Answer() {}
 
         Answer(String body) {
             this.body = body;

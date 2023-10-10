@@ -38,26 +38,25 @@ package org.opensearch.client.opensearch._types;
  * Variants <code>coords</code>, <code>text</code> are not available here as
  * they don't have a dedicated class. Use {@link GeoLocation}'s builder for
  * these.
- * 
+ *
  */
 public class GeoLocationBuilders {
-	private GeoLocationBuilders() {
-	}
+    private GeoLocationBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link GeoHashLocation geohash} {@code GeoLocation}
-	 * variant.
-	 */
-	public static GeoHashLocation.Builder geohash() {
-		return new GeoHashLocation.Builder();
-	}
+    /**
+     * Creates a builder for the {@link GeoHashLocation geohash} {@code GeoLocation}
+     * variant.
+     */
+    public static GeoHashLocation.Builder geohash() {
+        return new GeoHashLocation.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link LatLonGeoLocation latlon}
-	 * {@code GeoLocation} variant.
-	 */
-	public static LatLonGeoLocation.Builder latlon() {
-		return new LatLonGeoLocation.Builder();
-	}
+    /**
+     * Creates a builder for the {@link LatLonGeoLocation latlon}
+     * {@code GeoLocation} variant.
+     */
+    public static LatLonGeoLocation.Builder latlon() {
+        return new LatLonGeoLocation.Builder();
+    }
 
 }

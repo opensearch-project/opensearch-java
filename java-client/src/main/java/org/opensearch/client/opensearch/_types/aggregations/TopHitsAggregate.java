@@ -32,118 +32,116 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
-import org.opensearch.client.opensearch.core.search.HitsMetadata;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.core.search.HitsMetadata;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.TopHitsAggregate
 
-
 @JsonpDeserializable
 public class TopHitsAggregate extends AggregateBase implements AggregateVariant {
-	private final HitsMetadata<JsonData> hits;
+    private final HitsMetadata<JsonData> hits;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TopHitsAggregate(Builder builder) {
-		super(builder);
+    private TopHitsAggregate(Builder builder) {
+        super(builder);
 
-		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+        this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 
-	}
+    }
 
-	public static TopHitsAggregate of(Function<Builder, ObjectBuilder<TopHitsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TopHitsAggregate of(Function<Builder, ObjectBuilder<TopHitsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.TopHits;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.TopHits;
+    }
 
-	/**
-	 * Required - API name: {@code hits}
-	 */
-	public final HitsMetadata<JsonData> hits() {
-		return this.hits;
-	}
+    /**
+     * Required - API name: {@code hits}
+     */
+    public final HitsMetadata<JsonData> hits() {
+        return this.hits;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("hits");
-		this.hits.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("hits");
+        this.hits.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TopHitsAggregate}.
-	 */
+    /**
+     * Builder for {@link TopHitsAggregate}.
+     */
 
-	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<TopHitsAggregate> {
-		private HitsMetadata<JsonData> hits;
+    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<TopHitsAggregate> {
+        private HitsMetadata<JsonData> hits;
 
-		/**
-		 * Required - API name: {@code hits}
-		 */
-		public final Builder hits(HitsMetadata<JsonData> value) {
-			this.hits = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code hits}
+         */
+        public final Builder hits(HitsMetadata<JsonData> value) {
+            this.hits = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code hits}
-		 */
-		public final Builder hits(Function<HitsMetadata.Builder<JsonData>, ObjectBuilder<HitsMetadata<JsonData>>> fn) {
-			return this.hits(fn.apply(new HitsMetadata.Builder<JsonData>()).build());
-		}
+        /**
+         * Required - API name: {@code hits}
+         */
+        public final Builder hits(Function<HitsMetadata.Builder<JsonData>, ObjectBuilder<HitsMetadata<JsonData>>> fn) {
+            return this.hits(fn.apply(new HitsMetadata.Builder<JsonData>()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TopHitsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TopHitsAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TopHitsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TopHitsAggregate build() {
+            _checkSingleUse();
 
-			return new TopHitsAggregate(this);
-		}
-	}
+            return new TopHitsAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TopHitsAggregate}
-	 */
-	public static final JsonpDeserializer<TopHitsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TopHitsAggregate::setupTopHitsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link TopHitsAggregate}
+     */
+    public static final JsonpDeserializer<TopHitsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TopHitsAggregate::setupTopHitsAggregateDeserializer
+    );
 
-	protected static void setupTopHitsAggregateDeserializer(ObjectDeserializer<TopHitsAggregate.Builder> op) {
-		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(JsonData._DESERIALIZER), "hits");
+    protected static void setupTopHitsAggregateDeserializer(ObjectDeserializer<TopHitsAggregate.Builder> op) {
+        AggregateBase.setupAggregateBaseDeserializer(op);
+        op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(JsonData._DESERIALIZER), "hits");
 
-	}
+    }
 
 }

@@ -32,113 +32,116 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
 
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-
 // typedef: cat.health.Request
 
 /**
  * Returns a concise representation of the cluster health.
- * 
+ *
  */
 
 public class HealthRequest extends CatRequestBase {
-	@Nullable
-	private final Boolean ts;
+    @Nullable
+    private final Boolean ts;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private HealthRequest(Builder builder) {
-		super(builder);
-		this.ts = builder.ts;
+    private HealthRequest(Builder builder) {
+        super(builder);
+        this.ts = builder.ts;
 
-	}
+    }
 
-	public static HealthRequest of(Function<Builder, ObjectBuilder<HealthRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static HealthRequest of(Function<Builder, ObjectBuilder<HealthRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Set to false to disable timestamping
-	 * <p>
-	 * API name: {@code ts}
-	 */
-	@Nullable
-	public final Boolean ts() {
-		return this.ts;
-	}
+    /**
+     * Set to false to disable timestamping
+     * <p>
+     * API name: {@code ts}
+     */
+    @Nullable
+    public final Boolean ts() {
+        return this.ts;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link HealthRequest}.
-	 */
+    /**
+     * Builder for {@link HealthRequest}.
+     */
 
-	public static class Builder extends CatRequestBaseBuilder<HealthRequest.Builder> {
-		@Nullable
-		private Boolean ts;
+    public static class Builder extends CatRequestBaseBuilder<HealthRequest.Builder> {
+        @Nullable
+        private Boolean ts;
 
-		/**
-		 * Set to false to disable timestamping
-		 * <p>
-		 * API name: {@code ts}
-		 */
-		public final Builder ts(@Nullable Boolean value) {
-			this.ts = value;
-			return this;
-		}
+        /**
+         * Set to false to disable timestamping
+         * <p>
+         * API name: {@code ts}
+         */
+        public final Builder ts(@Nullable Boolean value) {
+            this.ts = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link HealthRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public HealthRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link HealthRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public HealthRequest build() {
+            _checkSingleUse();
 
-			return new HealthRequest(this);
-		}
+            return new HealthRequest(this);
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
-	}
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.health}".
-	 */
-	public static final Endpoint<HealthRequest, HealthResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.health}".
+     */
+    public static final Endpoint<HealthRequest, HealthResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_cat/health";
+        // Request path
+        request -> {
+            return "/_cat/health";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>(request.queryParameters());
-				if (request.ts != null) {
-					params.put("ts", String.valueOf(request.ts));
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>(request.queryParameters());
+            if (request.ts != null) {
+                params.put("ts", String.valueOf(request.ts));
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, HealthResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        HealthResponse._DESERIALIZER
+    );
 }

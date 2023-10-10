@@ -36,23 +36,22 @@ package org.opensearch.client.opensearch._types.analysis;
  * Builders for {@link Normalizer} variants.
  */
 public class NormalizerBuilders {
-	private NormalizerBuilders() {
-	}
+    private NormalizerBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link CustomNormalizer custom} {@code Normalizer}
-	 * variant.
-	 */
-	public static CustomNormalizer.Builder custom() {
-		return new CustomNormalizer.Builder();
-	}
+    /**
+     * Creates a builder for the {@link CustomNormalizer custom} {@code Normalizer}
+     * variant.
+     */
+    public static CustomNormalizer.Builder custom() {
+        return new CustomNormalizer.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link LowercaseNormalizer lowercase}
-	 * {@code Normalizer} variant.
-	 */
-	public static LowercaseNormalizer.Builder lowercase() {
-		return new LowercaseNormalizer.Builder();
-	}
+    /**
+     * Creates a builder for the {@link LowercaseNormalizer lowercase}
+     * {@code Normalizer} variant.
+     */
+    public static LowercaseNormalizer.Builder lowercase() {
+        return new LowercaseNormalizer.Builder();
+    }
 
 }

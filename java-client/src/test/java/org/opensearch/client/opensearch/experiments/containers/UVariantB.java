@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.experiments.containers;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,9 +41,6 @@ import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import javax.annotation.Nullable;
 
 @JsonpDeserializable
 public class UVariantB implements SomeUnionVariant, JsonpSerializable {
@@ -54,7 +53,7 @@ public class UVariantB implements SomeUnionVariant, JsonpSerializable {
     }
 
     @Nullable
-    public Integer number () {
+    public Integer number() {
         return this.number;
     }
 

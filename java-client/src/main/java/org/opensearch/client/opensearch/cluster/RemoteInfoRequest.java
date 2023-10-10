@@ -32,12 +32,11 @@
 
 package org.opensearch.client.opensearch.cluster;
 
+import java.util.Collections;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-
-import java.util.Collections;
 
 // typedef: cluster.remote_info.Request
 
@@ -45,40 +44,43 @@ import java.util.Collections;
  * The cluster remote info API allows you to retrieve all of the configured
  * remote cluster information. It returns connection and endpoint information
  * keyed by the configured remote cluster alias.
- * 
+ *
  */
 
 public class RemoteInfoRequest extends RequestBase {
-	public RemoteInfoRequest() {
-	}
+    public RemoteInfoRequest() {}
 
-	/**
-	 * Singleton instance for {@link RemoteInfoRequest}.
-	 */
-	public static final RemoteInfoRequest _INSTANCE = new RemoteInfoRequest();
+    /**
+     * Singleton instance for {@link RemoteInfoRequest}.
+     */
+    public static final RemoteInfoRequest _INSTANCE = new RemoteInfoRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cluster.remote_info}".
-	 */
-	public static final Endpoint<RemoteInfoRequest, RemoteInfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cluster.remote_info}".
+     */
+    public static final Endpoint<RemoteInfoRequest, RemoteInfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_remote/info";
+        // Request path
+        request -> {
+            return "/_remote/info";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, RemoteInfoResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        RemoteInfoResponse._DESERIALIZER
+    );
 }

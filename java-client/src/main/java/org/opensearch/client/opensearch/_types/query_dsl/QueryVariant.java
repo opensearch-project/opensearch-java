@@ -37,10 +37,10 @@ package org.opensearch.client.opensearch._types.query_dsl;
  */
 public interface QueryVariant {
 
-	Query.Kind _queryKind();
+    Query.Kind _queryKind();
 
-	default Query _toQuery() {
-		return new Query(this);
-	}
+    default Query _toQuery() {
+        return new Query(this);
+    }
 
 }

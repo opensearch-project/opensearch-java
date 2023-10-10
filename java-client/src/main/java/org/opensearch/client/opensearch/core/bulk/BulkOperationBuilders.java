@@ -36,39 +36,38 @@ package org.opensearch.client.opensearch.core.bulk;
  * Builders for {@link BulkOperation} variants.
  */
 public class BulkOperationBuilders {
-	private BulkOperationBuilders() {
-	}
+    private BulkOperationBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link IndexOperation index} {@code BulkOperation}
-	 * variant.
-	 */
-	public static IndexOperation.Builder index() {
-		return new IndexOperation.Builder();
-	}
+    /**
+     * Creates a builder for the {@link IndexOperation index} {@code BulkOperation}
+     * variant.
+     */
+    public static IndexOperation.Builder index() {
+        return new IndexOperation.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link CreateOperation create}
-	 * {@code BulkOperation} variant.
-	 */
-	public static CreateOperation.Builder create() {
-		return new CreateOperation.Builder();
-	}
+    /**
+     * Creates a builder for the {@link CreateOperation create}
+     * {@code BulkOperation} variant.
+     */
+    public static CreateOperation.Builder create() {
+        return new CreateOperation.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link UpdateOperation update}
-	 * {@code BulkOperation} variant.
-	 */
-	public static UpdateOperation.Builder update() {
-		return new UpdateOperation.Builder();
-	}
+    /**
+     * Creates a builder for the {@link UpdateOperation update}
+     * {@code BulkOperation} variant.
+     */
+    public static UpdateOperation.Builder update() {
+        return new UpdateOperation.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link DeleteOperation delete}
-	 * {@code BulkOperation} variant.
-	 */
-	public static DeleteOperation.Builder delete() {
-		return new DeleteOperation.Builder();
-	}
+    /**
+     * Creates a builder for the {@link DeleteOperation delete}
+     * {@code BulkOperation} variant.
+     */
+    public static DeleteOperation.Builder delete() {
+        return new DeleteOperation.Builder();
+    }
 
 }

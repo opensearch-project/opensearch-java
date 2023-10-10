@@ -37,26 +37,25 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum ShutdownStatus implements JsonEnum {
-	NotStarted("not_started"),
+    NotStarted("not_started"),
 
-	InProgress("in_progress"),
+    InProgress("in_progress"),
 
-	Stalled("stalled"),
+    Stalled("stalled"),
 
-	Complete("complete"),
+    Complete("complete"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ShutdownStatus(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ShutdownStatus(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ShutdownStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ShutdownStatus.values());
+    public static final JsonEnum.Deserializer<ShutdownStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(ShutdownStatus.values());
 }

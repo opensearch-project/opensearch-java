@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.snapshot;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,138 +44,136 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: snapshot._types.InfoFeatureState
 
 @JsonpDeserializable
 public class InfoFeatureState implements JsonpSerializable {
-	private final String featureName;
+    private final String featureName;
 
-	private final List<String> indices;
+    private final List<String> indices;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private InfoFeatureState(Builder builder) {
+    private InfoFeatureState(Builder builder) {
 
-		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
-		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+        this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+        this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
-	}
+    }
 
-	public static InfoFeatureState of(Function<Builder, ObjectBuilder<InfoFeatureState>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static InfoFeatureState of(Function<Builder, ObjectBuilder<InfoFeatureState>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code feature_name}
-	 */
-	public final String featureName() {
-		return this.featureName;
-	}
+    /**
+     * Required - API name: {@code feature_name}
+     */
+    public final String featureName() {
+        return this.featureName;
+    }
 
-	/**
-	 * Required - API name: {@code indices}
-	 */
-	public final List<String> indices() {
-		return this.indices;
-	}
+    /**
+     * Required - API name: {@code indices}
+     */
+    public final List<String> indices() {
+        return this.indices;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("feature_name");
-		generator.write(this.featureName);
+        generator.writeKey("feature_name");
+        generator.write(this.featureName);
 
-		if (ApiTypeHelper.isDefined(this.indices)) {
-			generator.writeKey("indices");
-			generator.writeStartArray();
-			for (String item0 : this.indices) {
-				generator.write(item0);
+        if (ApiTypeHelper.isDefined(this.indices)) {
+            generator.writeKey("indices");
+            generator.writeStartArray();
+            for (String item0 : this.indices) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link InfoFeatureState}.
-	 */
+    /**
+     * Builder for {@link InfoFeatureState}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InfoFeatureState> {
-		private String featureName;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InfoFeatureState> {
+        private String featureName;
 
-		private List<String> indices;
+        private List<String> indices;
 
-		/**
-		 * Required - API name: {@code feature_name}
-		 */
-		public final Builder featureName(String value) {
-			this.featureName = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code feature_name}
+         */
+        public final Builder featureName(String value) {
+            this.featureName = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code indices}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indices</code>.
-		 */
-		public final Builder indices(List<String> list) {
-			this.indices = _listAddAll(this.indices, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code indices}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>indices</code>.
+         */
+        public final Builder indices(List<String> list) {
+            this.indices = _listAddAll(this.indices, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code indices}
-		 * <p>
-		 * Adds one or more values to <code>indices</code>.
-		 */
-		public final Builder indices(String value, String... values) {
-			this.indices = _listAdd(this.indices, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code indices}
+         * <p>
+         * Adds one or more values to <code>indices</code>.
+         */
+        public final Builder indices(String value, String... values) {
+            this.indices = _listAdd(this.indices, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link InfoFeatureState}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public InfoFeatureState build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link InfoFeatureState}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public InfoFeatureState build() {
+            _checkSingleUse();
 
-			return new InfoFeatureState(this);
-		}
-	}
+            return new InfoFeatureState(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link InfoFeatureState}
-	 */
-	public static final JsonpDeserializer<InfoFeatureState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InfoFeatureState::setupInfoFeatureStateDeserializer);
+    /**
+     * Json deserializer for {@link InfoFeatureState}
+     */
+    public static final JsonpDeserializer<InfoFeatureState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        InfoFeatureState::setupInfoFeatureStateDeserializer
+    );
 
-	protected static void setupInfoFeatureStateDeserializer(ObjectDeserializer<InfoFeatureState.Builder> op) {
+    protected static void setupInfoFeatureStateDeserializer(ObjectDeserializer<InfoFeatureState.Builder> op) {
 
-		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"indices");
+        op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");
+        op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices");
 
-	}
+    }
 
 }

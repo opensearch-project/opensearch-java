@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,132 +42,128 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: ingest._types.DotExpanderProcessor
 
-
 @JsonpDeserializable
 public class DotExpanderProcessor extends ProcessorBase implements ProcessorVariant {
-	private final String field;
+    private final String field;
 
-	@Nullable
-	private final String path;
+    @Nullable
+    private final String path;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DotExpanderProcessor(Builder builder) {
-		super(builder);
+    private DotExpanderProcessor(Builder builder) {
+        super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.path = builder.path;
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.path = builder.path;
 
-	}
+    }
 
-	public static DotExpanderProcessor of(Function<Builder, ObjectBuilder<DotExpanderProcessor>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DotExpanderProcessor of(Function<Builder, ObjectBuilder<DotExpanderProcessor>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Processor variant kind.
-	 */
-	@Override
-	public Processor.Kind _processorKind() {
-		return Processor.Kind.DotExpander;
-	}
+    /**
+     * Processor variant kind.
+     */
+    @Override
+    public Processor.Kind _processorKind() {
+        return Processor.Kind.DotExpander;
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * API name: {@code path}
-	 */
-	@Nullable
-	public final String path() {
-		return this.path;
-	}
+    /**
+     * API name: {@code path}
+     */
+    @Nullable
+    public final String path() {
+        return this.path;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("field");
-		generator.write(this.field);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-		if (this.path != null) {
-			generator.writeKey("path");
-			generator.write(this.path);
+        if (this.path != null) {
+            generator.writeKey("path");
+            generator.write(this.path);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DotExpanderProcessor}.
-	 */
+    /**
+     * Builder for {@link DotExpanderProcessor}.
+     */
 
-	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DotExpanderProcessor> {
-		private String field;
+    public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<DotExpanderProcessor> {
+        private String field;
 
-		@Nullable
-		private String path;
+        @Nullable
+        private String path;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code path}
-		 */
-		public final Builder path(@Nullable String value) {
-			this.path = value;
-			return this;
-		}
+        /**
+         * API name: {@code path}
+         */
+        public final Builder path(@Nullable String value) {
+            this.path = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DotExpanderProcessor}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DotExpanderProcessor build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DotExpanderProcessor}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DotExpanderProcessor build() {
+            _checkSingleUse();
 
-			return new DotExpanderProcessor(this);
-		}
-	}
+            return new DotExpanderProcessor(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DotExpanderProcessor}
-	 */
-	public static final JsonpDeserializer<DotExpanderProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DotExpanderProcessor::setupDotExpanderProcessorDeserializer);
+    /**
+     * Json deserializer for {@link DotExpanderProcessor}
+     */
+    public static final JsonpDeserializer<DotExpanderProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DotExpanderProcessor::setupDotExpanderProcessorDeserializer
+    );
 
-	protected static void setupDotExpanderProcessorDeserializer(ObjectDeserializer<DotExpanderProcessor.Builder> op) {
-		setupProcessorBaseDeserializer(op);
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+    protected static void setupDotExpanderProcessorDeserializer(ObjectDeserializer<DotExpanderProcessor.Builder> op) {
+        setupProcessorBaseDeserializer(op);
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 
-	}
+    }
 
 }

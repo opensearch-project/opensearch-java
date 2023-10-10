@@ -32,69 +32,67 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.delete_template.Response
 
 @JsonpDeserializable
 public class DeleteTemplateResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DeleteTemplateResponse(Builder builder) {
-		super(builder);
+    private DeleteTemplateResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DeleteTemplateResponse of(Function<Builder, ObjectBuilder<DeleteTemplateResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DeleteTemplateResponse of(Function<Builder, ObjectBuilder<DeleteTemplateResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DeleteTemplateResponse}.
-	 */
+    /**
+     * Builder for {@link DeleteTemplateResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DeleteTemplateResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteTemplateResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DeleteTemplateResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeleteTemplateResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DeleteTemplateResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DeleteTemplateResponse build() {
+            _checkSingleUse();
 
-			return new DeleteTemplateResponse(this);
-		}
-	}
+            return new DeleteTemplateResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DeleteTemplateResponse}
-	 */
-	public static final JsonpDeserializer<DeleteTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteTemplateResponse::setupDeleteTemplateResponseDeserializer);
+    /**
+     * Json deserializer for {@link DeleteTemplateResponse}
+     */
+    public static final JsonpDeserializer<DeleteTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeleteTemplateResponse::setupDeleteTemplateResponseDeserializer
+    );
 
-	protected static void setupDeleteTemplateResponseDeserializer(
-			ObjectDeserializer<DeleteTemplateResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupDeleteTemplateResponseDeserializer(ObjectDeserializer<DeleteTemplateResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

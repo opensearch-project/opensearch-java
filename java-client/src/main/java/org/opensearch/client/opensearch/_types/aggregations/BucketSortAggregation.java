@@ -32,226 +32,226 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
-import org.opensearch.client.opensearch._types.SortOptions;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketSortAggregation
 
 @JsonpDeserializable
 public class BucketSortAggregation extends AggregationBase implements AggregationVariant {
-	@Nullable
-	private final Integer from;
+    @Nullable
+    private final Integer from;
 
-	@Nullable
-	private final GapPolicy gapPolicy;
+    @Nullable
+    private final GapPolicy gapPolicy;
 
-	@Nullable
-	private final Integer size;
+    @Nullable
+    private final Integer size;
 
-	private final List<SortOptions> sort;
+    private final List<SortOptions> sort;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private BucketSortAggregation(Builder builder) {
-		super(builder);
+    private BucketSortAggregation(Builder builder) {
+        super(builder);
 
-		this.from = builder.from;
-		this.gapPolicy = builder.gapPolicy;
-		this.size = builder.size;
-		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
+        this.from = builder.from;
+        this.gapPolicy = builder.gapPolicy;
+        this.size = builder.size;
+        this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 
-	}
+    }
 
-	public static BucketSortAggregation of(Function<Builder, ObjectBuilder<BucketSortAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static BucketSortAggregation of(Function<Builder, ObjectBuilder<BucketSortAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.BucketSort;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.BucketSort;
+    }
 
-	/**
-	 * API name: {@code from}
-	 */
-	@Nullable
-	public final Integer from() {
-		return this.from;
-	}
+    /**
+     * API name: {@code from}
+     */
+    @Nullable
+    public final Integer from() {
+        return this.from;
+    }
 
-	/**
-	 * API name: {@code gap_policy}
-	 */
-	@Nullable
-	public final GapPolicy gapPolicy() {
-		return this.gapPolicy;
-	}
+    /**
+     * API name: {@code gap_policy}
+     */
+    @Nullable
+    public final GapPolicy gapPolicy() {
+        return this.gapPolicy;
+    }
 
-	/**
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public final Integer size() {
-		return this.size;
-	}
+    /**
+     * API name: {@code size}
+     */
+    @Nullable
+    public final Integer size() {
+        return this.size;
+    }
 
-	/**
-	 * API name: {@code sort}
-	 */
-	public final List<SortOptions> sort() {
-		return this.sort;
-	}
+    /**
+     * API name: {@code sort}
+     */
+    public final List<SortOptions> sort() {
+        return this.sort;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.from != null) {
-			generator.writeKey("from");
-			generator.write(this.from);
+        super.serializeInternal(generator, mapper);
+        if (this.from != null) {
+            generator.writeKey("from");
+            generator.write(this.from);
 
-		}
-		if (this.gapPolicy != null) {
-			generator.writeKey("gap_policy");
-			this.gapPolicy.serialize(generator, mapper);
-		}
-		if (this.size != null) {
-			generator.writeKey("size");
-			generator.write(this.size);
+        }
+        if (this.gapPolicy != null) {
+            generator.writeKey("gap_policy");
+            this.gapPolicy.serialize(generator, mapper);
+        }
+        if (this.size != null) {
+            generator.writeKey("size");
+            generator.write(this.size);
 
-		}
-		if (ApiTypeHelper.isDefined(this.sort)) {
-			generator.writeKey("sort");
-			generator.writeStartArray();
-			for (SortOptions item0 : this.sort) {
-				item0.serialize(generator, mapper);
+        }
+        if (ApiTypeHelper.isDefined(this.sort)) {
+            generator.writeKey("sort");
+            generator.writeStartArray();
+            for (SortOptions item0 : this.sort) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link BucketSortAggregation}.
-	 */
+    /**
+     * Builder for {@link BucketSortAggregation}.
+     */
 
-	public static class Builder extends AggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<BucketSortAggregation> {
-		@Nullable
-		private Integer from;
+    public static class Builder extends AggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<BucketSortAggregation> {
+        @Nullable
+        private Integer from;
 
-		@Nullable
-		private GapPolicy gapPolicy;
+        @Nullable
+        private GapPolicy gapPolicy;
 
-		@Nullable
-		private Integer size;
+        @Nullable
+        private Integer size;
 
-		@Nullable
-		private List<SortOptions> sort;
+        @Nullable
+        private List<SortOptions> sort;
 
-		/**
-		 * API name: {@code from}
-		 */
-		public final Builder from(@Nullable Integer value) {
-			this.from = value;
-			return this;
-		}
+        /**
+         * API name: {@code from}
+         */
+        public final Builder from(@Nullable Integer value) {
+            this.from = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code gap_policy}
-		 */
-		public final Builder gapPolicy(@Nullable GapPolicy value) {
-			this.gapPolicy = value;
-			return this;
-		}
+        /**
+         * API name: {@code gap_policy}
+         */
+        public final Builder gapPolicy(@Nullable GapPolicy value) {
+            this.gapPolicy = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code size}
-		 */
-		public final Builder size(@Nullable Integer value) {
-			this.size = value;
-			return this;
-		}
+        /**
+         * API name: {@code size}
+         */
+        public final Builder size(@Nullable Integer value) {
+            this.size = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code sort}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sort</code>.
-		 */
-		public final Builder sort(List<SortOptions> list) {
-			this.sort = _listAddAll(this.sort, list);
-			return this;
-		}
+        /**
+         * API name: {@code sort}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>sort</code>.
+         */
+        public final Builder sort(List<SortOptions> list) {
+            this.sort = _listAddAll(this.sort, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code sort}
-		 * <p>
-		 * Adds one or more values to <code>sort</code>.
-		 */
-		public final Builder sort(SortOptions value, SortOptions... values) {
-			this.sort = _listAdd(this.sort, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code sort}
+         * <p>
+         * Adds one or more values to <code>sort</code>.
+         */
+        public final Builder sort(SortOptions value, SortOptions... values) {
+            this.sort = _listAdd(this.sort, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code sort}
-		 * <p>
-		 * Adds a value to <code>sort</code> using a builder lambda.
-		 */
-		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
-			return sort(fn.apply(new SortOptions.Builder()).build());
-		}
+        /**
+         * API name: {@code sort}
+         * <p>
+         * Adds a value to <code>sort</code> using a builder lambda.
+         */
+        public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+            return sort(fn.apply(new SortOptions.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link BucketSortAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public BucketSortAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link BucketSortAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public BucketSortAggregation build() {
+            _checkSingleUse();
 
-			return new BucketSortAggregation(this);
-		}
-	}
+            return new BucketSortAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link BucketSortAggregation}
-	 */
-	public static final JsonpDeserializer<BucketSortAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, BucketSortAggregation::setupBucketSortAggregationDeserializer);
+    /**
+     * Json deserializer for {@link BucketSortAggregation}
+     */
+    public static final JsonpDeserializer<BucketSortAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        BucketSortAggregation::setupBucketSortAggregationDeserializer
+    );
 
-	protected static void setupBucketSortAggregationDeserializer(ObjectDeserializer<BucketSortAggregation.Builder> op) {
-		setupAggregationBaseDeserializer(op);
-		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
-		op.add(Builder::gapPolicy, GapPolicy._DESERIALIZER, "gap_policy");
-		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
+    protected static void setupBucketSortAggregationDeserializer(ObjectDeserializer<BucketSortAggregation.Builder> op) {
+        setupAggregationBaseDeserializer(op);
+        op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
+        op.add(Builder::gapPolicy, GapPolicy._DESERIALIZER, "gap_policy");
+        op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
+        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 
-	}
+    }
 
 }

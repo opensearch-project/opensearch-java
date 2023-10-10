@@ -32,28 +32,27 @@
 
 package org.opensearch.client.opensearch.nodes;
 
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch._types.RequestBase;
-import org.opensearch.client.opensearch._types.Time;
-import org.opensearch.client.json.JsonpDeserializable;
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
-import org.opensearch.client.json.ObjectBuilderDeserializer;
-import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.transport.Endpoint;
-import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-import org.opensearch.client.util.ApiTypeHelper;
-import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonpDeserializable;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.ObjectBuilderDeserializer;
+import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.opensearch._types.Time;
+import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: nodes.reload_secure_settings.Request
 
@@ -62,221 +61,223 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSerializable {
-	private final List<String> nodeId;
+    private final List<String> nodeId;
 
-	@Nullable
-	private final String secureSettingsPassword;
+    @Nullable
+    private final String secureSettingsPassword;
 
-	@Nullable
-	private final Time timeout;
+    @Nullable
+    private final Time timeout;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ReloadSecureSettingsRequest(Builder builder) {
+    private ReloadSecureSettingsRequest(Builder builder) {
 
-		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
-		this.secureSettingsPassword = builder.secureSettingsPassword;
-		this.timeout = builder.timeout;
+        this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
+        this.secureSettingsPassword = builder.secureSettingsPassword;
+        this.timeout = builder.timeout;
 
-	}
+    }
 
-	public static ReloadSecureSettingsRequest of(Function<Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ReloadSecureSettingsRequest of(Function<Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * A comma-separated list of node IDs to span the reload/reinit call. Should
-	 * stay empty because reloading usually involves all cluster nodes.
-	 * <p>
-	 * API name: {@code node_id}
-	 */
-	public final List<String> nodeId() {
-		return this.nodeId;
-	}
+    /**
+     * A comma-separated list of node IDs to span the reload/reinit call. Should
+     * stay empty because reloading usually involves all cluster nodes.
+     * <p>
+     * API name: {@code node_id}
+     */
+    public final List<String> nodeId() {
+        return this.nodeId;
+    }
 
-	/**
-	 * API name: {@code secure_settings_password}
-	 */
-	@Nullable
-	public final String secureSettingsPassword() {
-		return this.secureSettingsPassword;
-	}
+    /**
+     * API name: {@code secure_settings_password}
+     */
+    @Nullable
+    public final String secureSettingsPassword() {
+        return this.secureSettingsPassword;
+    }
 
-	/**
-	 * Explicit operation timeout
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public final Time timeout() {
-		return this.timeout;
-	}
+    /**
+     * Explicit operation timeout
+     * <p>
+     * API name: {@code timeout}
+     */
+    @Nullable
+    public final Time timeout() {
+        return this.timeout;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.secureSettingsPassword != null) {
-			generator.writeKey("secure_settings_password");
-			generator.write(this.secureSettingsPassword);
+        if (this.secureSettingsPassword != null) {
+            generator.writeKey("secure_settings_password");
+            generator.write(this.secureSettingsPassword);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ReloadSecureSettingsRequest}.
-	 */
+    /**
+     * Builder for {@link ReloadSecureSettingsRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReloadSecureSettingsRequest> {
-		@Nullable
-		private List<String> nodeId;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReloadSecureSettingsRequest> {
+        @Nullable
+        private List<String> nodeId;
 
-		@Nullable
-		private String secureSettingsPassword;
+        @Nullable
+        private String secureSettingsPassword;
 
-		@Nullable
-		private Time timeout;
+        @Nullable
+        private Time timeout;
 
-		/**
-		 * A comma-separated list of node IDs to span the reload/reinit call. Should
-		 * stay empty because reloading usually involves all cluster nodes.
-		 * <p>
-		 * API name: {@code node_id}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
-		 */
-		public final Builder nodeId(List<String> list) {
-			this.nodeId = _listAddAll(this.nodeId, list);
-			return this;
-		}
+        /**
+         * A comma-separated list of node IDs to span the reload/reinit call. Should
+         * stay empty because reloading usually involves all cluster nodes.
+         * <p>
+         * API name: {@code node_id}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>nodeId</code>.
+         */
+        public final Builder nodeId(List<String> list) {
+            this.nodeId = _listAddAll(this.nodeId, list);
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of node IDs to span the reload/reinit call. Should
-		 * stay empty because reloading usually involves all cluster nodes.
-		 * <p>
-		 * API name: {@code node_id}
-		 * <p>
-		 * Adds one or more values to <code>nodeId</code>.
-		 */
-		public final Builder nodeId(String value, String... values) {
-			this.nodeId = _listAdd(this.nodeId, value, values);
-			return this;
-		}
+        /**
+         * A comma-separated list of node IDs to span the reload/reinit call. Should
+         * stay empty because reloading usually involves all cluster nodes.
+         * <p>
+         * API name: {@code node_id}
+         * <p>
+         * Adds one or more values to <code>nodeId</code>.
+         */
+        public final Builder nodeId(String value, String... values) {
+            this.nodeId = _listAdd(this.nodeId, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code secure_settings_password}
-		 */
-		public final Builder secureSettingsPassword(@Nullable String value) {
-			this.secureSettingsPassword = value;
-			return this;
-		}
+        /**
+         * API name: {@code secure_settings_password}
+         */
+        public final Builder secureSettingsPassword(@Nullable String value) {
+            this.secureSettingsPassword = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable Time value) {
-			this.timeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.timeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link ReloadSecureSettingsRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ReloadSecureSettingsRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ReloadSecureSettingsRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ReloadSecureSettingsRequest build() {
+            _checkSingleUse();
 
-			return new ReloadSecureSettingsRequest(this);
-		}
-	}
+            return new ReloadSecureSettingsRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ReloadSecureSettingsRequest}
-	 */
-	public static final JsonpDeserializer<ReloadSecureSettingsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ReloadSecureSettingsRequest::setupReloadSecureSettingsRequestDeserializer);
+    /**
+     * Json deserializer for {@link ReloadSecureSettingsRequest}
+     */
+    public static final JsonpDeserializer<ReloadSecureSettingsRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ReloadSecureSettingsRequest::setupReloadSecureSettingsRequestDeserializer
+    );
 
-	protected static void setupReloadSecureSettingsRequestDeserializer(
-			ObjectDeserializer<ReloadSecureSettingsRequest.Builder> op) {
+    protected static void setupReloadSecureSettingsRequestDeserializer(ObjectDeserializer<ReloadSecureSettingsRequest.Builder> op) {
 
-		op.add(Builder::secureSettingsPassword, JsonpDeserializer.stringDeserializer(), "secure_settings_password");
+        op.add(Builder::secureSettingsPassword, JsonpDeserializer.stringDeserializer(), "secure_settings_password");
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code nodes.reload_secure_settings}".
-	 */
-	public static final Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> _ENDPOINT =
-			new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code nodes.reload_secure_settings}".
+     */
+    public static final Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "POST";
+        // Request method
+        request -> {
+            return "POST";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _nodeId = 1 << 0;
+        // Request path
+        request -> {
+            final int _nodeId = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.nodeId()))
-					propsSet |= _nodeId;
+            if (ApiTypeHelper.isDefined(request.nodeId())) propsSet |= _nodeId;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_nodes");
-					buf.append("/reload_secure_settings");
-					return buf.toString();
-				}
-				if (propsSet == (_nodeId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_nodes");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
-					buf.append("/reload_secure_settings");
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_nodes");
+                buf.append("/reload_secure_settings");
+                return buf.toString();
+            }
+            if (propsSet == (_nodeId)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_nodes");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                buf.append("/reload_secure_settings");
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), true, ReloadSecureSettingsResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        true,
+        ReloadSecureSettingsResponse._DESERIALIZER
+    );
 }

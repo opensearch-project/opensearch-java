@@ -32,90 +32,88 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.analysis.DictionaryDecompounderTokenFilter
 
-
 @JsonpDeserializable
-public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBase
-		implements
-			TokenFilterDefinitionVariant {
-	// ---------------------------------------------------------------------------------------------
+public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBase implements TokenFilterDefinitionVariant {
+    // ---------------------------------------------------------------------------------------------
 
-	private DictionaryDecompounderTokenFilter(Builder builder) {
-		super(builder);
+    private DictionaryDecompounderTokenFilter(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DictionaryDecompounderTokenFilter of(
-			Function<Builder, ObjectBuilder<DictionaryDecompounderTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DictionaryDecompounderTokenFilter of(Function<Builder, ObjectBuilder<DictionaryDecompounderTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.DictionaryDecompounder;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.DictionaryDecompounder;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "dictionary_decompounder");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "dictionary_decompounder");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DictionaryDecompounderTokenFilter}.
-	 */
+    /**
+     * Builder for {@link DictionaryDecompounderTokenFilter}.
+     */
 
-	public static class Builder extends CompoundWordTokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DictionaryDecompounderTokenFilter> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends CompoundWordTokenFilterBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<DictionaryDecompounderTokenFilter> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DictionaryDecompounderTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DictionaryDecompounderTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DictionaryDecompounderTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DictionaryDecompounderTokenFilter build() {
+            _checkSingleUse();
 
-			return new DictionaryDecompounderTokenFilter(this);
-		}
-	}
+            return new DictionaryDecompounderTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DictionaryDecompounderTokenFilter}
-	 */
-	public static final JsonpDeserializer<DictionaryDecompounderTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DictionaryDecompounderTokenFilter::setupDictionaryDecompounderTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link DictionaryDecompounderTokenFilter}
+     */
+    public static final JsonpDeserializer<DictionaryDecompounderTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DictionaryDecompounderTokenFilter::setupDictionaryDecompounderTokenFilterDeserializer
+    );
 
-	protected static void setupDictionaryDecompounderTokenFilterDeserializer(
-			ObjectDeserializer<DictionaryDecompounderTokenFilter.Builder> op) {
-		setupCompoundWordTokenFilterBaseDeserializer(op);
+    protected static void setupDictionaryDecompounderTokenFilterDeserializer(
+        ObjectDeserializer<DictionaryDecompounderTokenFilter.Builder> op
+    ) {
+        setupCompoundWordTokenFilterBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

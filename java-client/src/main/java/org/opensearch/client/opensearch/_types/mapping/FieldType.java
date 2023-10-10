@@ -35,102 +35,99 @@ package org.opensearch.client.opensearch._types.mapping;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum FieldType implements JsonEnum {
-	None("none"),
+    None("none"),
 
-	GeoPoint("geo_point"),
+    GeoPoint("geo_point"),
 
-	GeoShape("geo_shape"),
+    GeoShape("geo_shape"),
 
-	Ip("ip"),
+    Ip("ip"),
 
-	Binary("binary"),
+    Binary("binary"),
 
-	Keyword("keyword"),
+    Keyword("keyword"),
 
-	Text("text"),
+    Text("text"),
 
-	SearchAsYouType("search_as_you_type"),
+    SearchAsYouType("search_as_you_type"),
 
-	Date("date"),
+    Date("date"),
 
-	DateNanos("date_nanos"),
+    DateNanos("date_nanos"),
 
-	Boolean("boolean"),
+    Boolean("boolean"),
 
-	Completion("completion"),
+    Completion("completion"),
 
-	Nested("nested"),
+    Nested("nested"),
 
-	Object("object"),
+    Object("object"),
 
-	Murmur3("murmur3"),
+    Murmur3("murmur3"),
 
-	TokenCount("token_count"),
+    TokenCount("token_count"),
 
-	Percolator("percolator"),
+    Percolator("percolator"),
 
-	Integer("integer"),
+    Integer("integer"),
 
-	Long("long"),
+    Long("long"),
 
-	Short("short"),
+    Short("short"),
 
-	Byte("byte"),
+    Byte("byte"),
 
-	Float("float"),
+    Float("float"),
 
-	HalfFloat("half_float"),
+    HalfFloat("half_float"),
 
-	ScaledFloat("scaled_float"),
+    ScaledFloat("scaled_float"),
 
-	Double("double"),
+    Double("double"),
 
-	IntegerRange("integer_range"),
+    IntegerRange("integer_range"),
 
-	FloatRange("float_range"),
+    FloatRange("float_range"),
 
-	LongRange("long_range"),
+    LongRange("long_range"),
 
-	DoubleRange("double_range"),
+    DoubleRange("double_range"),
 
-	DateRange("date_range"),
+    DateRange("date_range"),
 
-	IpRange("ip_range"),
+    IpRange("ip_range"),
 
-	Alias("alias"),
+    Alias("alias"),
 
-	Join("join"),
+    Join("join"),
 
-	RankFeature("rank_feature"),
+    RankFeature("rank_feature"),
 
-	RankFeatures("rank_features"),
+    RankFeatures("rank_features"),
 
-	Flattened("flattened"),
+    Flattened("flattened"),
 
-	Shape("shape"),
+    Shape("shape"),
 
-	Histogram("histogram"),
+    Histogram("histogram"),
 
-	ConstantKeyword("constant_keyword"),
+    ConstantKeyword("constant_keyword"),
 
-	AggregateMetricDouble("aggregate_metric_double"),
+    AggregateMetricDouble("aggregate_metric_double"),
 
-	KnnVector("knn_vector"),
-	;
+    KnnVector("knn_vector"),;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	FieldType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    FieldType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<FieldType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			FieldType.values());
+    public static final JsonEnum.Deserializer<FieldType> _DESERIALIZER = new JsonEnum.Deserializer<>(FieldType.values());
 }

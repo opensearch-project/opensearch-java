@@ -9,6 +9,8 @@
 package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -17,9 +19,6 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-
-import javax.annotation.Nullable;
-import java.util.function.Function;
 
 // typedef: indices._types.DataStreamTimestampField
 
@@ -103,8 +102,10 @@ public class DataStreamTimestampField implements JsonpSerializable {
     /**
      * Json deserializer for {@link DataStreamTimestampField}
      */
-    public static final JsonpDeserializer<DataStreamTimestampField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-            DataStreamTimestampField::setupDataStreamTimestampFieldDeserializer);
+    public static final JsonpDeserializer<DataStreamTimestampField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DataStreamTimestampField::setupDataStreamTimestampFieldDeserializer
+    );
 
     protected static void setupDataStreamTimestampFieldDeserializer(ObjectDeserializer<Builder> op) {
 

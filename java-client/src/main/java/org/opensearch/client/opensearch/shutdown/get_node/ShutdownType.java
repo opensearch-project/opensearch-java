@@ -37,22 +37,21 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum ShutdownType implements JsonEnum {
-	Remove("remove"),
+    Remove("remove"),
 
-	Restart("restart"),
+    Restart("restart"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ShutdownType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ShutdownType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ShutdownType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ShutdownType.values());
+    public static final JsonEnum.Deserializer<ShutdownType> _DESERIALIZER = new JsonEnum.Deserializer<>(ShutdownType.values());
 }

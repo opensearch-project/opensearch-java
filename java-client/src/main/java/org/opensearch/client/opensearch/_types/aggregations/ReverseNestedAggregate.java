@@ -32,77 +32,76 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.ReverseNestedAggregate
-
 
 @JsonpDeserializable
 public class ReverseNestedAggregate extends SingleBucketAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ReverseNestedAggregate(Builder builder) {
-		super(builder);
+    private ReverseNestedAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static ReverseNestedAggregate of(Function<Builder, ObjectBuilder<ReverseNestedAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ReverseNestedAggregate of(Function<Builder, ObjectBuilder<ReverseNestedAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.ReverseNested;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.ReverseNested;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ReverseNestedAggregate}.
-	 */
+    /**
+     * Builder for {@link ReverseNestedAggregate}.
+     */
 
-	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ReverseNestedAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<ReverseNestedAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ReverseNestedAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ReverseNestedAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ReverseNestedAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ReverseNestedAggregate build() {
+            _checkSingleUse();
 
-			return new ReverseNestedAggregate(this);
-		}
-	}
+            return new ReverseNestedAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ReverseNestedAggregate}
-	 */
-	public static final JsonpDeserializer<ReverseNestedAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ReverseNestedAggregate::setupReverseNestedAggregateDeserializer);
+    /**
+     * Json deserializer for {@link ReverseNestedAggregate}
+     */
+    public static final JsonpDeserializer<ReverseNestedAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ReverseNestedAggregate::setupReverseNestedAggregateDeserializer
+    );
 
-	protected static void setupReverseNestedAggregateDeserializer(
-			ObjectDeserializer<ReverseNestedAggregate.Builder> op) {
-		setupSingleBucketAggregateBaseDeserializer(op);
+    protected static void setupReverseNestedAggregateDeserializer(ObjectDeserializer<ReverseNestedAggregate.Builder> op) {
+        setupSingleBucketAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

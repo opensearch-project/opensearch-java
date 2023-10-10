@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,93 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.TopMetricsValue
 
-
 @JsonpDeserializable
 public class TopMetricsValue implements JsonpSerializable {
-	private final String field;
+    private final String field;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TopMetricsValue(Builder builder) {
+    private TopMetricsValue(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-	}
+    }
 
-	public static TopMetricsValue of(Function<Builder, ObjectBuilder<TopMetricsValue>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TopMetricsValue of(Function<Builder, ObjectBuilder<TopMetricsValue>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("field");
-		generator.write(this.field);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TopMetricsValue}.
-	 */
+    /**
+     * Builder for {@link TopMetricsValue}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopMetricsValue> {
-		private String field;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopMetricsValue> {
+        private String field;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TopMetricsValue}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TopMetricsValue build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TopMetricsValue}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TopMetricsValue build() {
+            _checkSingleUse();
 
-			return new TopMetricsValue(this);
-		}
-	}
+            return new TopMetricsValue(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TopMetricsValue}
-	 */
-	public static final JsonpDeserializer<TopMetricsValue> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TopMetricsValue::setupTopMetricsValueDeserializer);
+    /**
+     * Json deserializer for {@link TopMetricsValue}
+     */
+    public static final JsonpDeserializer<TopMetricsValue> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TopMetricsValue::setupTopMetricsValueDeserializer
+    );
 
-	protected static void setupTopMetricsValueDeserializer(ObjectDeserializer<TopMetricsValue.Builder> op) {
+    protected static void setupTopMetricsValueDeserializer(ObjectDeserializer<TopMetricsValue.Builder> op) {
 
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 
-	}
+    }
 
 }

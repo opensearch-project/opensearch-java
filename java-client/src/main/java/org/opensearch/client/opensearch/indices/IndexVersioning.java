@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,93 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: indices._types.IndexVersioning
 
-
 @JsonpDeserializable
 public class IndexVersioning implements JsonpSerializable {
-	private final String created;
+    private final String created;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndexVersioning(Builder builder) {
+    private IndexVersioning(Builder builder) {
 
-		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+        this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
 
-	}
+    }
 
-	public static IndexVersioning of(Function<Builder, ObjectBuilder<IndexVersioning>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndexVersioning of(Function<Builder, ObjectBuilder<IndexVersioning>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code created}
-	 */
-	public final String created() {
-		return this.created;
-	}
+    /**
+     * Required - API name: {@code created}
+     */
+    public final String created() {
+        return this.created;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("created");
-		generator.write(this.created);
+        generator.writeKey("created");
+        generator.write(this.created);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndexVersioning}.
-	 */
+    /**
+     * Builder for {@link IndexVersioning}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexVersioning> {
-		private String created;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexVersioning> {
+        private String created;
 
-		/**
-		 * Required - API name: {@code created}
-		 */
-		public final Builder created(String value) {
-			this.created = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code created}
+         */
+        public final Builder created(String value) {
+            this.created = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IndexVersioning}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndexVersioning build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndexVersioning}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndexVersioning build() {
+            _checkSingleUse();
 
-			return new IndexVersioning(this);
-		}
-	}
+            return new IndexVersioning(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IndexVersioning}
-	 */
-	public static final JsonpDeserializer<IndexVersioning> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexVersioning::setupIndexVersioningDeserializer);
+    /**
+     * Json deserializer for {@link IndexVersioning}
+     */
+    public static final JsonpDeserializer<IndexVersioning> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IndexVersioning::setupIndexVersioningDeserializer
+    );
 
-	protected static void setupIndexVersioningDeserializer(ObjectDeserializer<IndexVersioning.Builder> op) {
+    protected static void setupIndexVersioningDeserializer(ObjectDeserializer<IndexVersioning.Builder> op) {
 
-		op.add(Builder::created, JsonpDeserializer.stringDeserializer(), "created");
+        op.add(Builder::created, JsonpDeserializer.stringDeserializer(), "created");
 
-	}
+    }
 
 }

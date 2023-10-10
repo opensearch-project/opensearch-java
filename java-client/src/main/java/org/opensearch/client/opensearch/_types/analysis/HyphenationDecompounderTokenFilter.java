@@ -32,91 +32,88 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.analysis.HyphenationDecompounderTokenFilter
 
-
 @JsonpDeserializable
-public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase
-		implements
-			TokenFilterDefinitionVariant {
-	// ---------------------------------------------------------------------------------------------
+public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase implements TokenFilterDefinitionVariant {
+    // ---------------------------------------------------------------------------------------------
 
-	private HyphenationDecompounderTokenFilter(Builder builder) {
-		super(builder);
+    private HyphenationDecompounderTokenFilter(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static HyphenationDecompounderTokenFilter of(
-			Function<Builder, ObjectBuilder<HyphenationDecompounderTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static HyphenationDecompounderTokenFilter of(Function<Builder, ObjectBuilder<HyphenationDecompounderTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.HyphenationDecompounder;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.HyphenationDecompounder;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "hyphenation_decompounder");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "hyphenation_decompounder");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link HyphenationDecompounderTokenFilter}.
-	 */
+    /**
+     * Builder for {@link HyphenationDecompounderTokenFilter}.
+     */
 
-	public static class Builder extends CompoundWordTokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<HyphenationDecompounderTokenFilter> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends CompoundWordTokenFilterBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<HyphenationDecompounderTokenFilter> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link HyphenationDecompounderTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public HyphenationDecompounderTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link HyphenationDecompounderTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public HyphenationDecompounderTokenFilter build() {
+            _checkSingleUse();
 
-			return new HyphenationDecompounderTokenFilter(this);
-		}
-	}
+            return new HyphenationDecompounderTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link HyphenationDecompounderTokenFilter}
-	 */
-	public static final JsonpDeserializer<HyphenationDecompounderTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new,
-					HyphenationDecompounderTokenFilter::setupHyphenationDecompounderTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link HyphenationDecompounderTokenFilter}
+     */
+    public static final JsonpDeserializer<HyphenationDecompounderTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        HyphenationDecompounderTokenFilter::setupHyphenationDecompounderTokenFilterDeserializer
+    );
 
-	protected static void setupHyphenationDecompounderTokenFilterDeserializer(
-			ObjectDeserializer<HyphenationDecompounderTokenFilter.Builder> op) {
-		setupCompoundWordTokenFilterBaseDeserializer(op);
+    protected static void setupHyphenationDecompounderTokenFilterDeserializer(
+        ObjectDeserializer<HyphenationDecompounderTokenFilter.Builder> op
+    ) {
+        setupCompoundWordTokenFilterBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

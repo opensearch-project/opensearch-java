@@ -11,6 +11,15 @@ package org.opensearch.client.opensearch.integTest;
 import jakarta.json.stream.JsonParser;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
+import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.mapping.Property;
@@ -31,13 +40,6 @@ import org.opensearch.client.opensearch.indices.IndexState;
 import org.opensearch.client.opensearch.indices.PutIndexTemplateResponse;
 import org.opensearch.client.opensearch.indices.get_index_template.IndexTemplate;
 import org.opensearch.common.settings.Settings;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCase {
     public void testIndicesExists() throws IOException {
@@ -65,9 +67,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
             } catch (OpenSearchException ex) {
                 assertNotNull(ex);
                 assertEquals(ex.status(), 404);
-                assertEquals(ex.getMessage(),
-                        "Request failed: [index_not_found_exception] " +
-                                "no such index [non_existent_index]");
+                assertEquals(ex.getMessage(), "Request failed: [index_not_found_exception] " + "no such index [non_existent_index]");
             }
         }
 
@@ -109,8 +109,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
 
         String nonExistentIndex = "index_that_doesnt_exist";
 
-        GetIndicesSettingsRequest getIndicesSettingsRequest = new GetIndicesSettingsRequest.Builder()
-                .index(nonExistentIndex).build();
+        GetIndicesSettingsRequest getIndicesSettingsRequest = new GetIndicesSettingsRequest.Builder().index(nonExistentIndex).build();
 
         try {
             javaClient().indices().getSettings(getIndicesSettingsRequest);
@@ -118,9 +117,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         } catch (OpenSearchException ex) {
             assertNotNull(ex);
             assertEquals(ex.status(), 404);
-            assertEquals(ex.getMessage(),
-                    "Request failed: [index_not_found_exception] " +
-                            "no such index [index_that_doesnt_exist]");
+            assertEquals(ex.getMessage(), "Request failed: [index_not_found_exception] " + "no such index [index_that_doesnt_exist]");
         }
     }
 
@@ -132,21 +129,19 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
 
         // create an index template before creating data streams
         PutIndexTemplateResponse putIndexTemplateResponse = javaClient().indices()
-                .putIndexTemplate(b -> b.name(dataStreamIndexTemplateName)
-                                        .dataStream(new DataStream.Builder()
-                                                .timestampField(bd -> bd.name(timestampFieldName))
-                                                .build())
-                                        .indexPatterns(namePattern));
+            .putIndexTemplate(
+                b -> b.name(dataStreamIndexTemplateName)
+                    .dataStream(new DataStream.Builder().timestampField(bd -> bd.name(timestampFieldName)).build())
+                    .indexPatterns(namePattern)
+            );
         assertTrue(putIndexTemplateResponse.acknowledged());
 
         // create data streams follow the index pattern
-        CreateDataStreamResponse createDataStreamResponse1 = javaClient().indices()
-                .createDataStream(b -> b.name(dataStreamName));
+        CreateDataStreamResponse createDataStreamResponse1 = javaClient().indices().createDataStream(b -> b.name(dataStreamName));
         assertTrue(createDataStreamResponse1.acknowledged());
 
         // get data stream
-        GetDataStreamResponse getDataStreamResponse = javaClient().indices()
-                .getDataStream(b -> b.name(dataStreamName));
+        GetDataStreamResponse getDataStreamResponse = javaClient().indices().getDataStream(b -> b.name(dataStreamName));
         assertEquals(1, getDataStreamResponse.dataStreams().size());
         assertEquals(dataStreamName, getDataStreamResponse.dataStreams().get(0).name());
         assertEquals(timestampFieldName, getDataStreamResponse.dataStreams().get(0).timestampField().name());
@@ -158,8 +153,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         assertEquals(1, getAllDataStreamsResponse.dataStreams().size());
 
         // get one data stream stats
-        DataStreamsStatsResponse dataStreamStatsResponse = javaClient().indices()
-                .dataStreamsStats(b -> b.name(dataStreamName).human(true));
+        DataStreamsStatsResponse dataStreamStatsResponse = javaClient().indices().dataStreamsStats(b -> b.name(dataStreamName).human(true));
         assertNotNull(dataStreamStatsResponse.shards());
         assertEquals(1, dataStreamStatsResponse.dataStreamCount());
         assertEquals(1, dataStreamStatsResponse.backingIndices());
@@ -172,8 +166,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         assertNotNull(dataStreamStatsResponse.dataStreams().get(0).storeSize());
 
         // get all data streams stats
-        DataStreamsStatsResponse allDataStreamsStatsResponse = javaClient().indices()
-                .dataStreamsStats(b -> b.human(true));
+        DataStreamsStatsResponse allDataStreamsStatsResponse = javaClient().indices().dataStreamsStats(b -> b.human(true));
         assertNotNull(allDataStreamsStatsResponse.shards());
         assertEquals(1, allDataStreamsStatsResponse.dataStreamCount());
         assertEquals(1, allDataStreamsStatsResponse.backingIndices());
@@ -186,8 +179,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         assertNotNull(allDataStreamsStatsResponse.dataStreams().get(0).storeSize());
 
         // delete data stream
-        DeleteDataStreamResponse deleteDataStreamResponse = javaClient().indices()
-                .deleteDataStream(b -> b.name(namePattern));
+        DeleteDataStreamResponse deleteDataStreamResponse = javaClient().indices().deleteDataStream(b -> b.name(namePattern));
         assertTrue(deleteDataStreamResponse.acknowledged());
 
         // verify data stream is deleted
@@ -209,9 +201,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         } catch (OpenSearchException ex) {
             assertNotNull(ex);
             assertEquals(ex.status(), 404);
-            assertEquals(ex.getMessage(),
-                    "Request failed: [string_error] " +
-                            "alias [alias_not_exists] missing");
+            assertEquals(ex.getMessage(), "Request failed: [string_error] " + "alias [alias_not_exists] missing");
         }
     }
 

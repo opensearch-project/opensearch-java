@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,179 +42,175 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: ingest._types.ConvertProcessor
 
-
 @JsonpDeserializable
 public class ConvertProcessor extends ProcessorBase implements ProcessorVariant {
-	private final String field;
+    private final String field;
 
-	@Nullable
-	private final Boolean ignoreMissing;
+    @Nullable
+    private final Boolean ignoreMissing;
 
-	private final String targetField;
+    private final String targetField;
 
-	private final ConvertType type;
+    private final ConvertType type;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ConvertProcessor(Builder builder) {
-		super(builder);
+    private ConvertProcessor(Builder builder) {
+        super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.ignoreMissing = builder.ignoreMissing;
-		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.ignoreMissing = builder.ignoreMissing;
+        this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+        this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
-	}
+    }
 
-	public static ConvertProcessor of(Function<Builder, ObjectBuilder<ConvertProcessor>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ConvertProcessor of(Function<Builder, ObjectBuilder<ConvertProcessor>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Processor variant kind.
-	 */
-	@Override
-	public Processor.Kind _processorKind() {
-		return Processor.Kind.Convert;
-	}
+    /**
+     * Processor variant kind.
+     */
+    @Override
+    public Processor.Kind _processorKind() {
+        return Processor.Kind.Convert;
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * API name: {@code ignore_missing}
-	 */
-	@Nullable
-	public final Boolean ignoreMissing() {
-		return this.ignoreMissing;
-	}
+    /**
+     * API name: {@code ignore_missing}
+     */
+    @Nullable
+    public final Boolean ignoreMissing() {
+        return this.ignoreMissing;
+    }
 
-	/**
-	 * Required - API name: {@code target_field}
-	 */
-	public final String targetField() {
-		return this.targetField;
-	}
+    /**
+     * Required - API name: {@code target_field}
+     */
+    public final String targetField() {
+        return this.targetField;
+    }
 
-	/**
-	 * Required - API name: {@code type}
-	 */
-	public final ConvertType type() {
-		return this.type;
-	}
+    /**
+     * Required - API name: {@code type}
+     */
+    public final ConvertType type() {
+        return this.type;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("field");
-		generator.write(this.field);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-		if (this.ignoreMissing != null) {
-			generator.writeKey("ignore_missing");
-			generator.write(this.ignoreMissing);
+        if (this.ignoreMissing != null) {
+            generator.writeKey("ignore_missing");
+            generator.write(this.ignoreMissing);
 
-		}
-		generator.writeKey("target_field");
-		generator.write(this.targetField);
+        }
+        generator.writeKey("target_field");
+        generator.write(this.targetField);
 
-		generator.writeKey("type");
-		this.type.serialize(generator, mapper);
+        generator.writeKey("type");
+        this.type.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ConvertProcessor}.
-	 */
+    /**
+     * Builder for {@link ConvertProcessor}.
+     */
 
-	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ConvertProcessor> {
-		private String field;
+    public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<ConvertProcessor> {
+        private String field;
 
-		@Nullable
-		private Boolean ignoreMissing;
+        @Nullable
+        private Boolean ignoreMissing;
 
-		private String targetField;
+        private String targetField;
 
-		private ConvertType type;
+        private ConvertType type;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code ignore_missing}
-		 */
-		public final Builder ignoreMissing(@Nullable Boolean value) {
-			this.ignoreMissing = value;
-			return this;
-		}
+        /**
+         * API name: {@code ignore_missing}
+         */
+        public final Builder ignoreMissing(@Nullable Boolean value) {
+            this.ignoreMissing = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code target_field}
-		 */
-		public final Builder targetField(String value) {
-			this.targetField = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code target_field}
+         */
+        public final Builder targetField(String value) {
+            this.targetField = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public final Builder type(ConvertType value) {
-			this.type = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code type}
+         */
+        public final Builder type(ConvertType value) {
+            this.type = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ConvertProcessor}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ConvertProcessor build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ConvertProcessor}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ConvertProcessor build() {
+            _checkSingleUse();
 
-			return new ConvertProcessor(this);
-		}
-	}
+            return new ConvertProcessor(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ConvertProcessor}
-	 */
-	public static final JsonpDeserializer<ConvertProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ConvertProcessor::setupConvertProcessorDeserializer);
+    /**
+     * Json deserializer for {@link ConvertProcessor}
+     */
+    public static final JsonpDeserializer<ConvertProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ConvertProcessor::setupConvertProcessorDeserializer
+    );
 
-	protected static void setupConvertProcessorDeserializer(ObjectDeserializer<ConvertProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseDeserializer(op);
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
-		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
-		op.add(Builder::type, ConvertType._DESERIALIZER, "type");
+    protected static void setupConvertProcessorDeserializer(ObjectDeserializer<ConvertProcessor.Builder> op) {
+        ProcessorBase.setupProcessorBaseDeserializer(op);
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+        op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+        op.add(Builder::type, ConvertType._DESERIALIZER, "type");
 
-	}
+    }
 
 }

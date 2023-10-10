@@ -32,67 +32,66 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.AdjacencyMatrixBucket
 
 @JsonpDeserializable
 public class AdjacencyMatrixBucket extends MultiBucketBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private AdjacencyMatrixBucket(Builder builder) {
-		super(builder);
+    private AdjacencyMatrixBucket(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static AdjacencyMatrixBucket of(Function<Builder, ObjectBuilder<AdjacencyMatrixBucket>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static AdjacencyMatrixBucket of(Function<Builder, ObjectBuilder<AdjacencyMatrixBucket>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link AdjacencyMatrixBucket}.
-	 */
+    /**
+     * Builder for {@link AdjacencyMatrixBucket}.
+     */
 
-	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<AdjacencyMatrixBucket> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketBase.AbstractBuilder<Builder> implements ObjectBuilder<AdjacencyMatrixBucket> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link AdjacencyMatrixBucket}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public AdjacencyMatrixBucket build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link AdjacencyMatrixBucket}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public AdjacencyMatrixBucket build() {
+            _checkSingleUse();
 
-			return new AdjacencyMatrixBucket(this);
-		}
-	}
+            return new AdjacencyMatrixBucket(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link AdjacencyMatrixBucket}
-	 */
-	public static final JsonpDeserializer<AdjacencyMatrixBucket> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AdjacencyMatrixBucket::setupAdjacencyMatrixBucketDeserializer);
+    /**
+     * Json deserializer for {@link AdjacencyMatrixBucket}
+     */
+    public static final JsonpDeserializer<AdjacencyMatrixBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        AdjacencyMatrixBucket::setupAdjacencyMatrixBucketDeserializer
+    );
 
-	protected static void setupAdjacencyMatrixBucketDeserializer(ObjectDeserializer<AdjacencyMatrixBucket.Builder> op) {
-		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
+    protected static void setupAdjacencyMatrixBucketDeserializer(ObjectDeserializer<AdjacencyMatrixBucket.Builder> op) {
+        MultiBucketBase.setupMultiBucketBaseDeserializer(op);
 
-	}
+    }
 
 }

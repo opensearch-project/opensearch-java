@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,104 +41,100 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.analysis.IcuNormalizationTokenFilter
 
 @JsonpDeserializable
 public class IcuNormalizationTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final IcuNormalizationType name;
+    private final IcuNormalizationType name;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IcuNormalizationTokenFilter(Builder builder) {
-		super(builder);
+    private IcuNormalizationTokenFilter(Builder builder) {
+        super(builder);
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
-	}
+    }
 
-	public static IcuNormalizationTokenFilter of(Function<Builder, ObjectBuilder<IcuNormalizationTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IcuNormalizationTokenFilter of(Function<Builder, ObjectBuilder<IcuNormalizationTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.IcuNormalizer;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.IcuNormalizer;
+    }
 
-	/**
-	 * Required - API name: {@code name}
-	 */
-	public final IcuNormalizationType name() {
-		return this.name;
-	}
+    /**
+     * Required - API name: {@code name}
+     */
+    public final IcuNormalizationType name() {
+        return this.name;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "icu_normalizer");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("name");
-		this.name.serialize(generator, mapper);
+        generator.write("type", "icu_normalizer");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("name");
+        this.name.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IcuNormalizationTokenFilter}.
-	 */
+    /**
+     * Builder for {@link IcuNormalizationTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<IcuNormalizationTokenFilter> {
-		private IcuNormalizationType name;
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<IcuNormalizationTokenFilter> {
+        private IcuNormalizationType name;
 
-		/**
-		 * Required - API name: {@code name}
-		 */
-		public final Builder name(IcuNormalizationType value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code name}
+         */
+        public final Builder name(IcuNormalizationType value) {
+            this.name = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IcuNormalizationTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IcuNormalizationTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IcuNormalizationTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IcuNormalizationTokenFilter build() {
+            _checkSingleUse();
 
-			return new IcuNormalizationTokenFilter(this);
-		}
-	}
+            return new IcuNormalizationTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IcuNormalizationTokenFilter}
-	 */
-	public static final JsonpDeserializer<IcuNormalizationTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IcuNormalizationTokenFilter::setupIcuNormalizationTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link IcuNormalizationTokenFilter}
+     */
+    public static final JsonpDeserializer<IcuNormalizationTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IcuNormalizationTokenFilter::setupIcuNormalizationTokenFilterDeserializer
+    );
 
-	protected static void setupIcuNormalizationTokenFilterDeserializer(
-			ObjectDeserializer<IcuNormalizationTokenFilter.Builder> op) {
-		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::name, IcuNormalizationType._DESERIALIZER, "name");
+    protected static void setupIcuNormalizationTokenFilterDeserializer(ObjectDeserializer<IcuNormalizationTokenFilter.Builder> op) {
+        TokenFilterBase.setupTokenFilterBaseDeserializer(op);
+        op.add(Builder::name, IcuNormalizationType._DESERIALIZER, "name");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

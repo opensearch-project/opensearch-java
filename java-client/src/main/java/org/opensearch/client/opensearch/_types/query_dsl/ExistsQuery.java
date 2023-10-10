@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,99 +41,98 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.ExistsQuery
 
-
 @JsonpDeserializable
 public class ExistsQuery extends QueryBase implements QueryVariant {
-	private final String field;
+    private final String field;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ExistsQuery(Builder builder) {
-		super(builder);
+    private ExistsQuery(Builder builder) {
+        super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-	}
+    }
 
-	public static ExistsQuery of(Function<Builder, ObjectBuilder<ExistsQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ExistsQuery of(Function<Builder, ObjectBuilder<ExistsQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.Exists;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.Exists;
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("field");
-		generator.write(this.field);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ExistsQuery}.
-	 */
+    /**
+     * Builder for {@link ExistsQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ExistsQuery> {
-		private String field;
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ExistsQuery> {
+        private String field;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ExistsQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ExistsQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ExistsQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ExistsQuery build() {
+            _checkSingleUse();
 
-			return new ExistsQuery(this);
-		}
-	}
+            return new ExistsQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ExistsQuery}
-	 */
-	public static final JsonpDeserializer<ExistsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ExistsQuery::setupExistsQueryDeserializer);
+    /**
+     * Json deserializer for {@link ExistsQuery}
+     */
+    public static final JsonpDeserializer<ExistsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ExistsQuery::setupExistsQueryDeserializer
+    );
 
-	protected static void setupExistsQueryDeserializer(ObjectDeserializer<ExistsQuery.Builder> op) {
-		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+    protected static void setupExistsQueryDeserializer(ObjectDeserializer<ExistsQuery.Builder> op) {
+        QueryBase.setupQueryBaseDeserializer(op);
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 
-	}
+    }
 
 }

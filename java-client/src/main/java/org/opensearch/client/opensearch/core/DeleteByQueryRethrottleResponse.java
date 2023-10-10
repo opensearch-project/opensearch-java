@@ -32,70 +32,67 @@
 
 package org.opensearch.client.opensearch.core;
 
-import org.opensearch.client.opensearch.tasks.ListResponse;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.tasks.ListResponse;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _global.delete_by_query_rethrottle.Response
 
 @JsonpDeserializable
 public class DeleteByQueryRethrottleResponse extends ListResponse {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DeleteByQueryRethrottleResponse(Builder builder) {
-		super(builder);
+    private DeleteByQueryRethrottleResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DeleteByQueryRethrottleResponse of(
-			Function<Builder, ObjectBuilder<DeleteByQueryRethrottleResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DeleteByQueryRethrottleResponse of(Function<Builder, ObjectBuilder<DeleteByQueryRethrottleResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DeleteByQueryRethrottleResponse}.
-	 */
+    /**
+     * Builder for {@link DeleteByQueryRethrottleResponse}.
+     */
 
-	public static class Builder extends ListResponse.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DeleteByQueryRethrottleResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends ListResponse.AbstractBuilder<Builder> implements ObjectBuilder<DeleteByQueryRethrottleResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DeleteByQueryRethrottleResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeleteByQueryRethrottleResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DeleteByQueryRethrottleResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DeleteByQueryRethrottleResponse build() {
+            _checkSingleUse();
 
-			return new DeleteByQueryRethrottleResponse(this);
-		}
-	}
+            return new DeleteByQueryRethrottleResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DeleteByQueryRethrottleResponse}
-	 */
-	public static final JsonpDeserializer<DeleteByQueryRethrottleResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteByQueryRethrottleResponse::setupDeleteByQueryRethrottleResponseDeserializer);
+    /**
+     * Json deserializer for {@link DeleteByQueryRethrottleResponse}
+     */
+    public static final JsonpDeserializer<DeleteByQueryRethrottleResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeleteByQueryRethrottleResponse::setupDeleteByQueryRethrottleResponseDeserializer
+    );
 
-	protected static void setupDeleteByQueryRethrottleResponseDeserializer(
-			ObjectDeserializer<DeleteByQueryRethrottleResponse.Builder> op) {
-		ListResponse.setupListResponseDeserializer(op);
+    protected static void setupDeleteByQueryRethrottleResponseDeserializer(ObjectDeserializer<DeleteByQueryRethrottleResponse.Builder> op) {
+        ListResponse.setupListResponseDeserializer(op);
 
-	}
+    }
 
 }

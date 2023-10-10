@@ -32,118 +32,119 @@
 
 package org.opensearch.client.opensearch.core.rank_eval;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricPrecision
 
 /**
  * Precision at K (P@k)
- * 
+ *
  */
 @JsonpDeserializable
 public class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
-	@Nullable
-	private final Boolean ignoreUnlabeled;
+    @Nullable
+    private final Boolean ignoreUnlabeled;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RankEvalMetricPrecision(Builder builder) {
-		super(builder);
+    private RankEvalMetricPrecision(Builder builder) {
+        super(builder);
 
-		this.ignoreUnlabeled = builder.ignoreUnlabeled;
+        this.ignoreUnlabeled = builder.ignoreUnlabeled;
 
-	}
+    }
 
-	public static RankEvalMetricPrecision of(Function<Builder, ObjectBuilder<RankEvalMetricPrecision>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RankEvalMetricPrecision of(Function<Builder, ObjectBuilder<RankEvalMetricPrecision>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Controls how unlabeled documents in the search results are counted. If set to
-	 * true, unlabeled documents are ignored and neither count as relevant or
-	 * irrelevant. Set to false (the default), they are treated as irrelevant.
-	 * <p>
-	 * API name: {@code ignore_unlabeled}
-	 */
-	@Nullable
-	public final Boolean ignoreUnlabeled() {
-		return this.ignoreUnlabeled;
-	}
+    /**
+     * Controls how unlabeled documents in the search results are counted. If set to
+     * true, unlabeled documents are ignored and neither count as relevant or
+     * irrelevant. Set to false (the default), they are treated as irrelevant.
+     * <p>
+     * API name: {@code ignore_unlabeled}
+     */
+    @Nullable
+    public final Boolean ignoreUnlabeled() {
+        return this.ignoreUnlabeled;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.ignoreUnlabeled != null) {
-			generator.writeKey("ignore_unlabeled");
-			generator.write(this.ignoreUnlabeled);
+        super.serializeInternal(generator, mapper);
+        if (this.ignoreUnlabeled != null) {
+            generator.writeKey("ignore_unlabeled");
+            generator.write(this.ignoreUnlabeled);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RankEvalMetricPrecision}.
-	 */
+    /**
+     * Builder for {@link RankEvalMetricPrecision}.
+     */
 
-	public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RankEvalMetricPrecision> {
-		@Nullable
-		private Boolean ignoreUnlabeled;
+    public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<RankEvalMetricPrecision> {
+        @Nullable
+        private Boolean ignoreUnlabeled;
 
-		/**
-		 * Controls how unlabeled documents in the search results are counted. If set to
-		 * true, unlabeled documents are ignored and neither count as relevant or
-		 * irrelevant. Set to false (the default), they are treated as irrelevant.
-		 * <p>
-		 * API name: {@code ignore_unlabeled}
-		 */
-		public final Builder ignoreUnlabeled(@Nullable Boolean value) {
-			this.ignoreUnlabeled = value;
-			return this;
-		}
+        /**
+         * Controls how unlabeled documents in the search results are counted. If set to
+         * true, unlabeled documents are ignored and neither count as relevant or
+         * irrelevant. Set to false (the default), they are treated as irrelevant.
+         * <p>
+         * API name: {@code ignore_unlabeled}
+         */
+        public final Builder ignoreUnlabeled(@Nullable Boolean value) {
+            this.ignoreUnlabeled = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RankEvalMetricPrecision}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RankEvalMetricPrecision build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RankEvalMetricPrecision}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RankEvalMetricPrecision build() {
+            _checkSingleUse();
 
-			return new RankEvalMetricPrecision(this);
-		}
-	}
+            return new RankEvalMetricPrecision(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RankEvalMetricPrecision}
-	 */
-	public static final JsonpDeserializer<RankEvalMetricPrecision> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankEvalMetricPrecision::setupRankEvalMetricPrecisionDeserializer);
+    /**
+     * Json deserializer for {@link RankEvalMetricPrecision}
+     */
+    public static final JsonpDeserializer<RankEvalMetricPrecision> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RankEvalMetricPrecision::setupRankEvalMetricPrecisionDeserializer
+    );
 
-	protected static void setupRankEvalMetricPrecisionDeserializer(
-			ObjectDeserializer<RankEvalMetricPrecision.Builder> op) {
-		RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
-		op.add(Builder::ignoreUnlabeled, JsonpDeserializer.booleanDeserializer(), "ignore_unlabeled");
+    protected static void setupRankEvalMetricPrecisionDeserializer(ObjectDeserializer<RankEvalMetricPrecision.Builder> op) {
+        RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
+        op.add(Builder::ignoreUnlabeled, JsonpDeserializer.booleanDeserializer(), "ignore_unlabeled");
 
-	}
+    }
 
 }

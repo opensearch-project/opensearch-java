@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.cluster.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,140 +43,140 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: cluster.stats.NodePackagingType
 
 @JsonpDeserializable
 public class NodePackagingType implements JsonpSerializable {
-	private final int count;
+    private final int count;
 
-	private final String flavor;
+    private final String flavor;
 
-	private final String type;
+    private final String type;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodePackagingType(Builder builder) {
+    private NodePackagingType(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.flavor = ApiTypeHelper.requireNonNull(builder.flavor, this, "flavor");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+        this.flavor = ApiTypeHelper.requireNonNull(builder.flavor, this, "flavor");
+        this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
-	}
+    }
 
-	public static NodePackagingType of(Function<Builder, ObjectBuilder<NodePackagingType>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodePackagingType of(Function<Builder, ObjectBuilder<NodePackagingType>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code count}
-	 */
-	public final int count() {
-		return this.count;
-	}
+    /**
+     * Required - API name: {@code count}
+     */
+    public final int count() {
+        return this.count;
+    }
 
-	/**
-	 * Required - API name: {@code flavor}
-	 */
-	public final String flavor() {
-		return this.flavor;
-	}
+    /**
+     * Required - API name: {@code flavor}
+     */
+    public final String flavor() {
+        return this.flavor;
+    }
 
-	/**
-	 * Required - API name: {@code type}
-	 */
-	public final String type() {
-		return this.type;
-	}
+    /**
+     * Required - API name: {@code type}
+     */
+    public final String type() {
+        return this.type;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("count");
-		generator.write(this.count);
+        generator.writeKey("count");
+        generator.write(this.count);
 
-		generator.writeKey("flavor");
-		generator.write(this.flavor);
+        generator.writeKey("flavor");
+        generator.write(this.flavor);
 
-		generator.writeKey("type");
-		generator.write(this.type);
+        generator.writeKey("type");
+        generator.write(this.type);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodePackagingType}.
-	 */
+    /**
+     * Builder for {@link NodePackagingType}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodePackagingType> {
-		private Integer count;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodePackagingType> {
+        private Integer count;
 
-		private String flavor;
+        private String flavor;
 
-		private String type;
+        private String type;
 
-		/**
-		 * Required - API name: {@code count}
-		 */
-		public final Builder count(int value) {
-			this.count = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code count}
+         */
+        public final Builder count(int value) {
+            this.count = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code flavor}
-		 */
-		public final Builder flavor(String value) {
-			this.flavor = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code flavor}
+         */
+        public final Builder flavor(String value) {
+            this.flavor = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public final Builder type(String value) {
-			this.type = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code type}
+         */
+        public final Builder type(String value) {
+            this.type = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodePackagingType}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodePackagingType build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodePackagingType}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodePackagingType build() {
+            _checkSingleUse();
 
-			return new NodePackagingType(this);
-		}
-	}
+            return new NodePackagingType(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodePackagingType}
-	 */
-	public static final JsonpDeserializer<NodePackagingType> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodePackagingType::setupNodePackagingTypeDeserializer);
+    /**
+     * Json deserializer for {@link NodePackagingType}
+     */
+    public static final JsonpDeserializer<NodePackagingType> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodePackagingType::setupNodePackagingTypeDeserializer
+    );
 
-	protected static void setupNodePackagingTypeDeserializer(ObjectDeserializer<NodePackagingType.Builder> op) {
+    protected static void setupNodePackagingTypeDeserializer(ObjectDeserializer<NodePackagingType.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
-		op.add(Builder::flavor, JsonpDeserializer.stringDeserializer(), "flavor");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+        op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+        op.add(Builder::flavor, JsonpDeserializer.stringDeserializer(), "flavor");
+        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
-	}
+    }
 
 }

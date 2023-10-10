@@ -32,14 +32,6 @@
 
 package org.opensearch.client.documentation;
 
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
-import org.opensearch.client.transport.OpenSearchTransport;
-import org.opensearch.client.transport.Endpoint;
-import org.opensearch.client.transport.TransportException;
-import org.opensearch.client.transport.TransportOptions;
-
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
@@ -47,6 +39,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
+import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.TransportException;
+import org.opensearch.client.transport.TransportOptions;
 
 /**
  * A transport implementation that always fails. Used for simple doc sections where we just want to check compilation.
@@ -87,8 +86,11 @@ public class FailingTransport implements OpenSearchTransport {
     }
 
     @Override
-    public <RequestT, ResponseT, ErrorT> CompletableFuture<ResponseT> performRequestAsync(RequestT request, Endpoint<RequestT, ResponseT,
-        ErrorT> endpoint, @Nullable TransportOptions options) {
+    public <RequestT, ResponseT, ErrorT> CompletableFuture<ResponseT> performRequestAsync(
+        RequestT request,
+        Endpoint<RequestT, ResponseT, ErrorT> endpoint,
+        @Nullable TransportOptions options
+    ) {
         CompletableFuture<ResponseT> future = new CompletableFuture<>();
         future.completeExceptionally(new TransportException("Not implemented"));
         return future;
@@ -105,6 +107,5 @@ public class FailingTransport implements OpenSearchTransport {
     }
 
     @Override
-    public void close() throws IOException {
-    }
+    public void close() throws IOException {}
 }

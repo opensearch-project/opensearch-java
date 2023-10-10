@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,94 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.RankFeatureFunctionLogarithm
 
-
 @JsonpDeserializable
 public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements JsonpSerializable {
-	private final float scalingFactor;
+    private final float scalingFactor;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RankFeatureFunctionLogarithm(Builder builder) {
+    private RankFeatureFunctionLogarithm(Builder builder) {
 
-		this.scalingFactor = ApiTypeHelper.requireNonNull(builder.scalingFactor, this, "scalingFactor");
+        this.scalingFactor = ApiTypeHelper.requireNonNull(builder.scalingFactor, this, "scalingFactor");
 
-	}
+    }
 
-	public static RankFeatureFunctionLogarithm of(Function<Builder, ObjectBuilder<RankFeatureFunctionLogarithm>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RankFeatureFunctionLogarithm of(Function<Builder, ObjectBuilder<RankFeatureFunctionLogarithm>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code scaling_factor}
-	 */
-	public final float scalingFactor() {
-		return this.scalingFactor;
-	}
+    /**
+     * Required - API name: {@code scaling_factor}
+     */
+    public final float scalingFactor() {
+        return this.scalingFactor;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("scaling_factor");
-		generator.write(this.scalingFactor);
+        generator.writeKey("scaling_factor");
+        generator.write(this.scalingFactor);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RankFeatureFunctionLogarithm}.
-	 */
+    /**
+     * Builder for {@link RankFeatureFunctionLogarithm}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionLogarithm> {
-		private Float scalingFactor;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionLogarithm> {
+        private Float scalingFactor;
 
-		/**
-		 * Required - API name: {@code scaling_factor}
-		 */
-		public final Builder scalingFactor(float value) {
-			this.scalingFactor = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code scaling_factor}
+         */
+        public final Builder scalingFactor(float value) {
+            this.scalingFactor = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RankFeatureFunctionLogarithm}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RankFeatureFunctionLogarithm build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RankFeatureFunctionLogarithm}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RankFeatureFunctionLogarithm build() {
+            _checkSingleUse();
 
-			return new RankFeatureFunctionLogarithm(this);
-		}
-	}
+            return new RankFeatureFunctionLogarithm(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RankFeatureFunctionLogarithm}
-	 */
-	public static final JsonpDeserializer<RankFeatureFunctionLogarithm> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankFeatureFunctionLogarithm::setupRankFeatureFunctionLogarithmDeserializer);
+    /**
+     * Json deserializer for {@link RankFeatureFunctionLogarithm}
+     */
+    public static final JsonpDeserializer<RankFeatureFunctionLogarithm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RankFeatureFunctionLogarithm::setupRankFeatureFunctionLogarithmDeserializer
+    );
 
-	protected static void setupRankFeatureFunctionLogarithmDeserializer(
-			ObjectDeserializer<RankFeatureFunctionLogarithm.Builder> op) {
+    protected static void setupRankFeatureFunctionLogarithmDeserializer(ObjectDeserializer<RankFeatureFunctionLogarithm.Builder> op) {
 
-		op.add(Builder::scalingFactor, JsonpDeserializer.floatDeserializer(), "scaling_factor");
+        op.add(Builder::scalingFactor, JsonpDeserializer.floatDeserializer(), "scaling_factor");
 
-	}
+    }
 
 }

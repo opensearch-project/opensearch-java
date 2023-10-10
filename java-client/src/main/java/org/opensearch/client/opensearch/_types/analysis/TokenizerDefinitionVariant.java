@@ -39,10 +39,10 @@ import org.opensearch.client.json.JsonpSerializable;
  */
 public interface TokenizerDefinitionVariant extends JsonpSerializable {
 
-	TokenizerDefinition.Kind _tokenizerDefinitionKind();
+    TokenizerDefinition.Kind _tokenizerDefinitionKind();
 
-	default TokenizerDefinition _toTokenizerDefinition() {
-		return new TokenizerDefinition(this);
-	}
+    default TokenizerDefinition _toTokenizerDefinition() {
+        return new TokenizerDefinition(this);
+    }
 
 }

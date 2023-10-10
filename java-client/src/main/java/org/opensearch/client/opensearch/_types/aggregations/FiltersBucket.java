@@ -32,67 +32,66 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.FiltersBucket
 
 @JsonpDeserializable
 public class FiltersBucket extends MultiBucketBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FiltersBucket(Builder builder) {
-		super(builder);
+    private FiltersBucket(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static FiltersBucket of(Function<Builder, ObjectBuilder<FiltersBucket>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FiltersBucket of(Function<Builder, ObjectBuilder<FiltersBucket>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FiltersBucket}.
-	 */
+    /**
+     * Builder for {@link FiltersBucket}.
+     */
 
-	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<FiltersBucket> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketBase.AbstractBuilder<Builder> implements ObjectBuilder<FiltersBucket> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FiltersBucket}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FiltersBucket build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FiltersBucket}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FiltersBucket build() {
+            _checkSingleUse();
 
-			return new FiltersBucket(this);
-		}
-	}
+            return new FiltersBucket(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FiltersBucket}
-	 */
-	public static final JsonpDeserializer<FiltersBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FiltersBucket::setupFiltersBucketDeserializer);
+    /**
+     * Json deserializer for {@link FiltersBucket}
+     */
+    public static final JsonpDeserializer<FiltersBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FiltersBucket::setupFiltersBucketDeserializer
+    );
 
-	protected static void setupFiltersBucketDeserializer(ObjectDeserializer<FiltersBucket.Builder> op) {
-		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
+    protected static void setupFiltersBucketDeserializer(ObjectDeserializer<FiltersBucket.Builder> op) {
+        MultiBucketBase.setupMultiBucketBaseDeserializer(op);
 
-	}
+    }
 
 }

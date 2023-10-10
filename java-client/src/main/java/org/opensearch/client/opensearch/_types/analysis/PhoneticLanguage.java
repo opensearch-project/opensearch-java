@@ -35,45 +35,43 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum PhoneticLanguage implements JsonEnum {
-	Any("any"),
+    Any("any"),
 
-	Common("common"),
+    Common("common"),
 
-	Cyrillic("cyrillic"),
+    Cyrillic("cyrillic"),
 
-	English("english"),
+    English("english"),
 
-	French("french"),
+    French("french"),
 
-	German("german"),
+    German("german"),
 
-	Hebrew("hebrew"),
+    Hebrew("hebrew"),
 
-	Hungarian("hungarian"),
+    Hungarian("hungarian"),
 
-	Polish("polish"),
+    Polish("polish"),
 
-	Romanian("romanian"),
+    Romanian("romanian"),
 
-	Russian("russian"),
+    Russian("russian"),
 
-	Spanish("spanish"),
+    Spanish("spanish"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	PhoneticLanguage(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    PhoneticLanguage(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<PhoneticLanguage> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			PhoneticLanguage.values());
+    public static final JsonEnum.Deserializer<PhoneticLanguage> _DESERIALIZER = new JsonEnum.Deserializer<>(PhoneticLanguage.values());
 }

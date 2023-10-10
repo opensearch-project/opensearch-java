@@ -37,10 +37,10 @@ package org.opensearch.client.opensearch._types.query_dsl;
  */
 public interface FunctionScoreVariant {
 
-	FunctionScore.Kind _functionScoreKind();
+    FunctionScore.Kind _functionScoreKind();
 
-	default FunctionScore _toFunctionScore() {
-		return new FunctionScore(this);
-	}
+    default FunctionScore _toFunctionScore() {
+        return new FunctionScore(this);
+    }
 
 }

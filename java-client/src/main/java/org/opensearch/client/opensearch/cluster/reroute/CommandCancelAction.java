@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.cluster.reroute;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,172 +44,170 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandCancelAction
 
-
 @JsonpDeserializable
 public class CommandCancelAction implements JsonpSerializable {
-	private final String index;
+    private final String index;
 
-	private final int shard;
+    private final int shard;
 
-	private final String node;
+    private final String node;
 
-	@Nullable
-	private final Boolean allowPrimary;
+    @Nullable
+    private final Boolean allowPrimary;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CommandCancelAction(Builder builder) {
+    private CommandCancelAction(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
-		this.allowPrimary = builder.allowPrimary;
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+        this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+        this.allowPrimary = builder.allowPrimary;
 
-	}
+    }
 
-	public static CommandCancelAction of(Function<Builder, ObjectBuilder<CommandCancelAction>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CommandCancelAction of(Function<Builder, ObjectBuilder<CommandCancelAction>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code index}
-	 */
-	public final String index() {
-		return this.index;
-	}
+    /**
+     * Required - API name: {@code index}
+     */
+    public final String index() {
+        return this.index;
+    }
 
-	/**
-	 * Required - API name: {@code shard}
-	 */
-	public final int shard() {
-		return this.shard;
-	}
+    /**
+     * Required - API name: {@code shard}
+     */
+    public final int shard() {
+        return this.shard;
+    }
 
-	/**
-	 * Required - API name: {@code node}
-	 */
-	public final String node() {
-		return this.node;
-	}
+    /**
+     * Required - API name: {@code node}
+     */
+    public final String node() {
+        return this.node;
+    }
 
-	/**
-	 * API name: {@code allow_primary}
-	 */
-	@Nullable
-	public final Boolean allowPrimary() {
-		return this.allowPrimary;
-	}
+    /**
+     * API name: {@code allow_primary}
+     */
+    @Nullable
+    public final Boolean allowPrimary() {
+        return this.allowPrimary;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index");
-		generator.write(this.index);
+        generator.writeKey("index");
+        generator.write(this.index);
 
-		generator.writeKey("shard");
-		generator.write(this.shard);
+        generator.writeKey("shard");
+        generator.write(this.shard);
 
-		generator.writeKey("node");
-		generator.write(this.node);
+        generator.writeKey("node");
+        generator.write(this.node);
 
-		if (this.allowPrimary != null) {
-			generator.writeKey("allow_primary");
-			generator.write(this.allowPrimary);
+        if (this.allowPrimary != null) {
+            generator.writeKey("allow_primary");
+            generator.write(this.allowPrimary);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CommandCancelAction}.
-	 */
+    /**
+     * Builder for {@link CommandCancelAction}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CommandCancelAction> {
-		private String index;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CommandCancelAction> {
+        private String index;
 
-		private Integer shard;
+        private Integer shard;
 
-		private String node;
+        private String node;
 
-		@Nullable
-		private Boolean allowPrimary;
+        @Nullable
+        private Boolean allowPrimary;
 
-		/**
-		 * Required - API name: {@code index}
-		 */
-		public final Builder index(String value) {
-			this.index = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code index}
+         */
+        public final Builder index(String value) {
+            this.index = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code shard}
-		 */
-		public final Builder shard(int value) {
-			this.shard = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code shard}
+         */
+        public final Builder shard(int value) {
+            this.shard = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code node}
-		 */
-		public final Builder node(String value) {
-			this.node = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code node}
+         */
+        public final Builder node(String value) {
+            this.node = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code allow_primary}
-		 */
-		public final Builder allowPrimary(@Nullable Boolean value) {
-			this.allowPrimary = value;
-			return this;
-		}
+        /**
+         * API name: {@code allow_primary}
+         */
+        public final Builder allowPrimary(@Nullable Boolean value) {
+            this.allowPrimary = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CommandCancelAction}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CommandCancelAction build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CommandCancelAction}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CommandCancelAction build() {
+            _checkSingleUse();
 
-			return new CommandCancelAction(this);
-		}
-	}
+            return new CommandCancelAction(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CommandCancelAction}
-	 */
-	public static final JsonpDeserializer<CommandCancelAction> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CommandCancelAction::setupCommandCancelActionDeserializer);
+    /**
+     * Json deserializer for {@link CommandCancelAction}
+     */
+    public static final JsonpDeserializer<CommandCancelAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CommandCancelAction::setupCommandCancelActionDeserializer
+    );
 
-	protected static void setupCommandCancelActionDeserializer(ObjectDeserializer<CommandCancelAction.Builder> op) {
+    protected static void setupCommandCancelActionDeserializer(ObjectDeserializer<CommandCancelAction.Builder> op) {
 
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
-		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
-		op.add(Builder::allowPrimary, JsonpDeserializer.booleanDeserializer(), "allow_primary");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+        op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
+        op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+        op.add(Builder::allowPrimary, JsonpDeserializer.booleanDeserializer(), "allow_primary");
 
-	}
+    }
 
 }

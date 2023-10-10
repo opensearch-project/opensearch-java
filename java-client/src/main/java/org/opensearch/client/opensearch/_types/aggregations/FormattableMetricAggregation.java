@@ -32,69 +32,68 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
-import jakarta.json.stream.JsonGenerator;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.FormattableMetricAggregation
 
-
 public abstract class FormattableMetricAggregation extends MetricAggregationBase {
-	@Nullable
-	private final String format;
+    @Nullable
+    private final String format;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected FormattableMetricAggregation(AbstractBuilder<?> builder) {
-		super(builder);
+    protected FormattableMetricAggregation(AbstractBuilder<?> builder) {
+        super(builder);
 
-		this.format = builder.format;
+        this.format = builder.format;
 
-	}
+    }
 
-	/**
-	 * API name: {@code format}
-	 */
-	@Nullable
-	public final String format() {
-		return this.format;
-	}
+    /**
+     * API name: {@code format}
+     */
+    @Nullable
+    public final String format() {
+        return this.format;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.format != null) {
-			generator.writeKey("format");
-			generator.write(this.format);
+        super.serializeInternal(generator, mapper);
+        if (this.format != null) {
+            generator.writeKey("format");
+            generator.write(this.format);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				MetricAggregationBase.AbstractBuilder<BuilderT> {
-		@Nullable
-		private String format;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends
+        MetricAggregationBase.AbstractBuilder<BuilderT> {
+        @Nullable
+        private String format;
 
-		/**
-		 * API name: {@code format}
-		 */
-		public final BuilderT format(@Nullable String value) {
-			this.format = value;
-			return self();
-		}
+        /**
+         * API name: {@code format}
+         */
+        public final BuilderT format(@Nullable String value) {
+            this.format = value;
+            return self();
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupFormattableMetricAggregationDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
-		op.add(AbstractBuilder::format, JsonpDeserializer.stringDeserializer(), "format");
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupFormattableMetricAggregationDeserializer(
+        ObjectDeserializer<BuilderT> op
+    ) {
+        MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
+        op.add(AbstractBuilder::format, JsonpDeserializer.stringDeserializer(), "format");
 
-	}
+    }
 
 }

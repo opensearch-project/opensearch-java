@@ -32,293 +32,298 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch._types.RequestBase;
-import org.opensearch.client.opensearch._types.Time;
-import org.opensearch.client.opensearch.indices.update_aliases.Action;
+import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.opensearch._types.Time;
+import org.opensearch.client.opensearch.indices.update_aliases.Action;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.Request
 
 /**
  * Updates index aliases.
- * 
+ *
  */
 @JsonpDeserializable
 public class UpdateAliasesRequest extends RequestBase implements JsonpSerializable {
-	private final List<Action> actions;
+    private final List<Action> actions;
 
-	@Deprecated
-	@Nullable
-	private final Time masterTimeout;
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
 
-	@Nullable
-	private final Time clusterManagerTimeout;
+    @Nullable
+    private final Time clusterManagerTimeout;
 
-	@Nullable
-	private final Time timeout;
+    @Nullable
+    private final Time timeout;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private UpdateAliasesRequest(Builder builder) {
+    private UpdateAliasesRequest(Builder builder) {
 
-		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
-		this.masterTimeout = builder.masterTimeout;
-		this.clusterManagerTimeout = builder.clusterManagerTimeout;
-		this.timeout = builder.timeout;
+        this.actions = ApiTypeHelper.unmodifiable(builder.actions);
+        this.masterTimeout = builder.masterTimeout;
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.timeout = builder.timeout;
 
-	}
+    }
 
-	public static UpdateAliasesRequest of(Function<Builder, ObjectBuilder<UpdateAliasesRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static UpdateAliasesRequest of(Function<Builder, ObjectBuilder<UpdateAliasesRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code actions}
-	 */
-	public final List<Action> actions() {
-		return this.actions;
-	}
+    /**
+     * API name: {@code actions}
+     */
+    public final List<Action> actions() {
+        return this.actions;
+    }
 
-	/**
-	 * Specify timeout for connection to master
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Deprecated
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
+    /**
+     * Specify timeout for connection to master
+     * <p>
+     * API name: {@code master_timeout}
+     */
+    @Deprecated
+    @Nullable
+    public final Time masterTimeout() {
+        return this.masterTimeout;
+    }
 
-	/**
-	 * Specify timeout for connection to cluster-manager
-	 * <p>
-	 * API name: {@code cluster_manager_timeout}
-	 */
-	@Nullable
-	public final Time clusterManagerTimeout() {
-		return this.clusterManagerTimeout;
-	}
+    /**
+     * Specify timeout for connection to cluster-manager
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
 
-	/**
-	 * Request timeout
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public final Time timeout() {
-		return this.timeout;
-	}
+    /**
+     * Request timeout
+     * <p>
+     * API name: {@code timeout}
+     */
+    @Nullable
+    public final Time timeout() {
+        return this.timeout;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.actions)) {
-			generator.writeKey("actions");
-			generator.writeStartArray();
-			for (Action item0 : this.actions) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.actions)) {
+            generator.writeKey("actions");
+            generator.writeStartArray();
+            for (Action item0 : this.actions) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link UpdateAliasesRequest}.
-	 */
+    /**
+     * Builder for {@link UpdateAliasesRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateAliasesRequest> {
-		@Nullable
-		private List<Action> actions;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateAliasesRequest> {
+        @Nullable
+        private List<Action> actions;
 
-		@Deprecated
-		@Nullable
-		private Time masterTimeout;
+        @Deprecated
+        @Nullable
+        private Time masterTimeout;
 
-		@Nullable
-		private Time clusterManagerTimeout;
+        @Nullable
+        private Time clusterManagerTimeout;
 
-		@Nullable
-		private Time timeout;
+        @Nullable
+        private Time timeout;
 
-		/**
-		 * API name: {@code actions}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>actions</code>.
-		 */
-		public final Builder actions(List<Action> list) {
-			this.actions = _listAddAll(this.actions, list);
-			return this;
-		}
+        /**
+         * API name: {@code actions}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>actions</code>.
+         */
+        public final Builder actions(List<Action> list) {
+            this.actions = _listAddAll(this.actions, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code actions}
-		 * <p>
-		 * Adds one or more values to <code>actions</code>.
-		 */
-		public final Builder actions(Action value, Action... values) {
-			this.actions = _listAdd(this.actions, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code actions}
+         * <p>
+         * Adds one or more values to <code>actions</code>.
+         */
+        public final Builder actions(Action value, Action... values) {
+            this.actions = _listAdd(this.actions, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code actions}
-		 * <p>
-		 * Adds a value to <code>actions</code> using a builder lambda.
-		 */
-		public final Builder actions(Function<Action.Builder, ObjectBuilder<Action>> fn) {
-			return actions(fn.apply(new Action.Builder()).build());
-		}
+        /**
+         * API name: {@code actions}
+         * <p>
+         * Adds a value to <code>actions</code> using a builder lambda.
+         */
+        public final Builder actions(Function<Action.Builder, ObjectBuilder<Action>> fn) {
+            return actions(fn.apply(new Action.Builder()).build());
+        }
 
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
+        /**
+         * Specify timeout for connection to master
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Specify timeout for connection to master
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.masterTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Specify timeout for connection to cluster-manager
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(@Nullable Time value) {
-			this.clusterManagerTimeout = value;
-			return this;
-		}
+        /**
+         * Specify timeout for connection to cluster-manager
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to cluster-manager
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Specify timeout for connection to cluster-manager
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Request timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable Time value) {
-			this.timeout = value;
-			return this;
-		}
+        /**
+         * Request timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
+            return this;
+        }
 
-		/**
-		 * Request timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Request timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.timeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link UpdateAliasesRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public UpdateAliasesRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link UpdateAliasesRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public UpdateAliasesRequest build() {
+            _checkSingleUse();
 
-			return new UpdateAliasesRequest(this);
-		}
-	}
+            return new UpdateAliasesRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link UpdateAliasesRequest}
-	 */
-	public static final JsonpDeserializer<UpdateAliasesRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateAliasesRequest::setupUpdateAliasesRequestDeserializer);
+    /**
+     * Json deserializer for {@link UpdateAliasesRequest}
+     */
+    public static final JsonpDeserializer<UpdateAliasesRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        UpdateAliasesRequest::setupUpdateAliasesRequestDeserializer
+    );
 
-	protected static void setupUpdateAliasesRequestDeserializer(ObjectDeserializer<UpdateAliasesRequest.Builder> op) {
+    protected static void setupUpdateAliasesRequestDeserializer(ObjectDeserializer<UpdateAliasesRequest.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(Action._DESERIALIZER), "actions");
+        op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(Action._DESERIALIZER), "actions");
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code indices.update_aliases}".
-	 */
-	public static final Endpoint<UpdateAliasesRequest, UpdateAliasesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code indices.update_aliases}".
+     */
+    public static final Endpoint<UpdateAliasesRequest, UpdateAliasesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "POST";
+        // Request method
+        request -> {
+            return "POST";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_aliases";
+        // Request path
+        request -> {
+            return "/_aliases";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.clusterManagerTimeout != null) {
-					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
+            if (request.clusterManagerTimeout != null) {
+                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
+            }
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), true, UpdateAliasesResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        true,
+        UpdateAliasesResponse._DESERIALIZER
+    );
 }

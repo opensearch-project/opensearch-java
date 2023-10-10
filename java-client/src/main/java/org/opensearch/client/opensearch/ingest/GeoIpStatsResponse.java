@@ -32,181 +32,181 @@
 
 package org.opensearch.client.opensearch.ingest;
 
-import org.opensearch.client.opensearch.ingest.geo_ip_stats.GeoIpDownloadStatistics;
-import org.opensearch.client.opensearch.ingest.geo_ip_stats.GeoIpNodeDatabases;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.ingest.geo_ip_stats.GeoIpDownloadStatistics;
+import org.opensearch.client.opensearch.ingest.geo_ip_stats.GeoIpNodeDatabases;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: ingest.geo_ip_stats.Response
 
 @JsonpDeserializable
 public class GeoIpStatsResponse implements JsonpSerializable {
-	private final GeoIpDownloadStatistics stats;
+    private final GeoIpDownloadStatistics stats;
 
-	private final Map<String, GeoIpNodeDatabases> nodes;
+    private final Map<String, GeoIpNodeDatabases> nodes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GeoIpStatsResponse(Builder builder) {
+    private GeoIpStatsResponse(Builder builder) {
 
-		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
-		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+        this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
+        this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
-	}
+    }
 
-	public static GeoIpStatsResponse of(Function<Builder, ObjectBuilder<GeoIpStatsResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GeoIpStatsResponse of(Function<Builder, ObjectBuilder<GeoIpStatsResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Download statistics for all GeoIP2 databases.
-	 * <p>
-	 * API name: {@code stats}
-	 */
-	public final GeoIpDownloadStatistics stats() {
-		return this.stats;
-	}
+    /**
+     * Required - Download statistics for all GeoIP2 databases.
+     * <p>
+     * API name: {@code stats}
+     */
+    public final GeoIpDownloadStatistics stats() {
+        return this.stats;
+    }
 
-	/**
-	 * Required - Downloaded GeoIP2 databases for each node.
-	 * <p>
-	 * API name: {@code nodes}
-	 */
-	public final Map<String, GeoIpNodeDatabases> nodes() {
-		return this.nodes;
-	}
+    /**
+     * Required - Downloaded GeoIP2 databases for each node.
+     * <p>
+     * API name: {@code nodes}
+     */
+    public final Map<String, GeoIpNodeDatabases> nodes() {
+        return this.nodes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("stats");
-		this.stats.serialize(generator, mapper);
+        generator.writeKey("stats");
+        this.stats.serialize(generator, mapper);
 
-		if (ApiTypeHelper.isDefined(this.nodes)) {
-			generator.writeKey("nodes");
-			generator.writeStartObject();
-			for (Map.Entry<String, GeoIpNodeDatabases> item0 : this.nodes.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.nodes)) {
+            generator.writeKey("nodes");
+            generator.writeStartObject();
+            for (Map.Entry<String, GeoIpNodeDatabases> item0 : this.nodes.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GeoIpStatsResponse}.
-	 */
+    /**
+     * Builder for {@link GeoIpStatsResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoIpStatsResponse> {
-		private GeoIpDownloadStatistics stats;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoIpStatsResponse> {
+        private GeoIpDownloadStatistics stats;
 
-		private Map<String, GeoIpNodeDatabases> nodes;
+        private Map<String, GeoIpNodeDatabases> nodes;
 
-		/**
-		 * Required - Download statistics for all GeoIP2 databases.
-		 * <p>
-		 * API name: {@code stats}
-		 */
-		public final Builder stats(GeoIpDownloadStatistics value) {
-			this.stats = value;
-			return this;
-		}
+        /**
+         * Required - Download statistics for all GeoIP2 databases.
+         * <p>
+         * API name: {@code stats}
+         */
+        public final Builder stats(GeoIpDownloadStatistics value) {
+            this.stats = value;
+            return this;
+        }
 
-		/**
-		 * Required - Download statistics for all GeoIP2 databases.
-		 * <p>
-		 * API name: {@code stats}
-		 */
-		public final Builder stats(
-				Function<GeoIpDownloadStatistics.Builder, ObjectBuilder<GeoIpDownloadStatistics>> fn) {
-			return this.stats(fn.apply(new GeoIpDownloadStatistics.Builder()).build());
-		}
+        /**
+         * Required - Download statistics for all GeoIP2 databases.
+         * <p>
+         * API name: {@code stats}
+         */
+        public final Builder stats(Function<GeoIpDownloadStatistics.Builder, ObjectBuilder<GeoIpDownloadStatistics>> fn) {
+            return this.stats(fn.apply(new GeoIpDownloadStatistics.Builder()).build());
+        }
 
-		/**
-		 * Required - Downloaded GeoIP2 databases for each node.
-		 * <p>
-		 * API name: {@code nodes}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>nodes</code>.
-		 */
-		public final Builder nodes(Map<String, GeoIpNodeDatabases> map) {
-			this.nodes = _mapPutAll(this.nodes, map);
-			return this;
-		}
+        /**
+         * Required - Downloaded GeoIP2 databases for each node.
+         * <p>
+         * API name: {@code nodes}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>nodes</code>.
+         */
+        public final Builder nodes(Map<String, GeoIpNodeDatabases> map) {
+            this.nodes = _mapPutAll(this.nodes, map);
+            return this;
+        }
 
-		/**
-		 * Required - Downloaded GeoIP2 databases for each node.
-		 * <p>
-		 * API name: {@code nodes}
-		 * <p>
-		 * Adds an entry to <code>nodes</code>.
-		 */
-		public final Builder nodes(String key, GeoIpNodeDatabases value) {
-			this.nodes = _mapPut(this.nodes, key, value);
-			return this;
-		}
+        /**
+         * Required - Downloaded GeoIP2 databases for each node.
+         * <p>
+         * API name: {@code nodes}
+         * <p>
+         * Adds an entry to <code>nodes</code>.
+         */
+        public final Builder nodes(String key, GeoIpNodeDatabases value) {
+            this.nodes = _mapPut(this.nodes, key, value);
+            return this;
+        }
 
-		/**
-		 * Required - Downloaded GeoIP2 databases for each node.
-		 * <p>
-		 * API name: {@code nodes}
-		 * <p>
-		 * Adds an entry to <code>nodes</code> using a builder lambda.
-		 */
-		public final Builder nodes(String key,
-				Function<GeoIpNodeDatabases.Builder, ObjectBuilder<GeoIpNodeDatabases>> fn) {
-			return nodes(key, fn.apply(new GeoIpNodeDatabases.Builder()).build());
-		}
+        /**
+         * Required - Downloaded GeoIP2 databases for each node.
+         * <p>
+         * API name: {@code nodes}
+         * <p>
+         * Adds an entry to <code>nodes</code> using a builder lambda.
+         */
+        public final Builder nodes(String key, Function<GeoIpNodeDatabases.Builder, ObjectBuilder<GeoIpNodeDatabases>> fn) {
+            return nodes(key, fn.apply(new GeoIpNodeDatabases.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link GeoIpStatsResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GeoIpStatsResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GeoIpStatsResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GeoIpStatsResponse build() {
+            _checkSingleUse();
 
-			return new GeoIpStatsResponse(this);
-		}
-	}
+            return new GeoIpStatsResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GeoIpStatsResponse}
-	 */
-	public static final JsonpDeserializer<GeoIpStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoIpStatsResponse::setupGeoIpStatsResponseDeserializer);
+    /**
+     * Json deserializer for {@link GeoIpStatsResponse}
+     */
+    public static final JsonpDeserializer<GeoIpStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GeoIpStatsResponse::setupGeoIpStatsResponseDeserializer
+    );
 
-	protected static void setupGeoIpStatsResponseDeserializer(ObjectDeserializer<GeoIpStatsResponse.Builder> op) {
+    protected static void setupGeoIpStatsResponseDeserializer(ObjectDeserializer<GeoIpStatsResponse.Builder> op) {
 
-		op.add(Builder::stats, GeoIpDownloadStatistics._DESERIALIZER, "stats");
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(GeoIpNodeDatabases._DESERIALIZER), "nodes");
+        op.add(Builder::stats, GeoIpDownloadStatistics._DESERIALIZER, "stats");
+        op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(GeoIpNodeDatabases._DESERIALIZER), "nodes");
 
-	}
+    }
 
 }

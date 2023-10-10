@@ -32,19 +32,18 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.Bytes;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 // typedef: cat.fielddata.Request
 
@@ -55,156 +54,158 @@ import java.util.stream.Collectors;
  */
 
 public class FielddataRequest extends CatRequestBase {
-	@Nullable
-	private final Bytes bytes;
+    @Nullable
+    private final Bytes bytes;
 
-	private final List<String> fields;
+    private final List<String> fields;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FielddataRequest(Builder builder) {
-		super(builder);
-		this.bytes = builder.bytes;
-		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+    private FielddataRequest(Builder builder) {
+        super(builder);
+        this.bytes = builder.bytes;
+        this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 
-	}
+    }
 
-	public static FielddataRequest of(Function<Builder, ObjectBuilder<FielddataRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FielddataRequest of(Function<Builder, ObjectBuilder<FielddataRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * The unit in which to display byte values
-	 * <p>
-	 * API name: {@code bytes}
-	 */
-	@Nullable
-	public final Bytes bytes() {
-		return this.bytes;
-	}
+    /**
+     * The unit in which to display byte values
+     * <p>
+     * API name: {@code bytes}
+     */
+    @Nullable
+    public final Bytes bytes() {
+        return this.bytes;
+    }
 
-	/**
-	 * A comma-separated list of fields to return the fielddata size
-	 * <p>
-	 * API name: {@code fields}
-	 */
-	public final List<String> fields() {
-		return this.fields;
-	}
+    /**
+     * A comma-separated list of fields to return the fielddata size
+     * <p>
+     * API name: {@code fields}
+     */
+    public final List<String> fields() {
+        return this.fields;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FielddataRequest}.
-	 */
+    /**
+     * Builder for {@link FielddataRequest}.
+     */
 
-	public static class Builder extends CatRequestBaseBuilder<FielddataRequest.Builder> {
-		@Nullable
-		private Bytes bytes;
+    public static class Builder extends CatRequestBaseBuilder<FielddataRequest.Builder> {
+        @Nullable
+        private Bytes bytes;
 
-		@Nullable
-		private List<String> fields;
+        @Nullable
+        private List<String> fields;
 
-		/**
-		 * The unit in which to display byte values
-		 * <p>
-		 * API name: {@code bytes}
-		 */
-		public final Builder bytes(@Nullable Bytes value) {
-			this.bytes = value;
-			return this;
-		}
+        /**
+         * The unit in which to display byte values
+         * <p>
+         * API name: {@code bytes}
+         */
+        public final Builder bytes(@Nullable Bytes value) {
+            this.bytes = value;
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of fields to return the fielddata size
-		 * <p>
-		 * API name: {@code fields}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>fields</code>.
-		 */
-		public final Builder fields(List<String> list) {
-			this.fields = _listAddAll(this.fields, list);
-			return this;
-		}
+        /**
+         * A comma-separated list of fields to return the fielddata size
+         * <p>
+         * API name: {@code fields}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>fields</code>.
+         */
+        public final Builder fields(List<String> list) {
+            this.fields = _listAddAll(this.fields, list);
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of fields to return the fielddata size
-		 * <p>
-		 * API name: {@code fields}
-		 * <p>
-		 * Adds one or more values to <code>fields</code>.
-		 */
-		public final Builder fields(String value, String... values) {
-			this.fields = _listAdd(this.fields, value, values);
-			return this;
-		}
+        /**
+         * A comma-separated list of fields to return the fielddata size
+         * <p>
+         * API name: {@code fields}
+         * <p>
+         * Adds one or more values to <code>fields</code>.
+         */
+        public final Builder fields(String value, String... values) {
+            this.fields = _listAdd(this.fields, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FielddataRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FielddataRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FielddataRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FielddataRequest build() {
+            _checkSingleUse();
 
-			return new FielddataRequest(this);
-		}
+            return new FielddataRequest(this);
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
-	}
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.fielddata}".
-	 */
-	public static final Endpoint<FielddataRequest, FielddataResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.fielddata}".
+     */
+    public static final Endpoint<FielddataRequest, FielddataResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _fields = 1 << 0;
+        // Request path
+        request -> {
+            final int _fields = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.fields()))
-					propsSet |= _fields;
+            if (ApiTypeHelper.isDefined(request.fields())) propsSet |= _fields;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/fielddata");
-					return buf.toString();
-				}
-				if (propsSet == (_fields)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/fielddata");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/fielddata");
+                return buf.toString();
+            }
+            if (propsSet == (_fields)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/fielddata");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>(request.queryParameters());
-				if (request.bytes != null) {
-					params.put("bytes", request.bytes.jsonValue());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>(request.queryParameters());
+            if (request.bytes != null) {
+                params.put("bytes", request.bytes.jsonValue());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, FielddataResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        FielddataResponse._DESERIALIZER
+    );
 }

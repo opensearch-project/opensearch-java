@@ -32,76 +32,77 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.GeoTileGridAggregate
 
 @JsonpDeserializable
 public class GeoTileGridAggregate extends MultiBucketAggregateBase<GeoTileGridBucket> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GeoTileGridAggregate(Builder builder) {
-		super(builder);
+    private GeoTileGridAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static GeoTileGridAggregate of(Function<Builder, ObjectBuilder<GeoTileGridAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GeoTileGridAggregate of(Function<Builder, ObjectBuilder<GeoTileGridAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.GeotileGrid;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.GeotileGrid;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GeoTileGridAggregate}.
-	 */
+    /**
+     * Builder for {@link GeoTileGridAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<GeoTileGridBucket, Builder>
-			implements
-				ObjectBuilder<GeoTileGridAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<GeoTileGridBucket, Builder>
+        implements
+            ObjectBuilder<GeoTileGridAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GeoTileGridAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GeoTileGridAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link GeoTileGridAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GeoTileGridAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new GeoTileGridAggregate(this);
-		}
-	}
+            return new GeoTileGridAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GeoTileGridAggregate}
-	 */
-	public static final JsonpDeserializer<GeoTileGridAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoTileGridAggregate::setupGeoTileGridAggregateDeserializer);
+    /**
+     * Json deserializer for {@link GeoTileGridAggregate}
+     */
+    public static final JsonpDeserializer<GeoTileGridAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GeoTileGridAggregate::setupGeoTileGridAggregateDeserializer
+    );
 
-	protected static void setupGeoTileGridAggregateDeserializer(ObjectDeserializer<GeoTileGridAggregate.Builder> op) {
-		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, GeoTileGridBucket._DESERIALIZER);
+    protected static void setupGeoTileGridAggregateDeserializer(ObjectDeserializer<GeoTileGridAggregate.Builder> op) {
+        MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, GeoTileGridBucket._DESERIALIZER);
 
-	}
+    }
 
 }

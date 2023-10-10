@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,107 +43,105 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.ScoreSort
 
 @JsonpDeserializable
 public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
-	@Nullable
-	private final SortOrder order;
+    @Nullable
+    private final SortOrder order;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ScoreSort(Builder builder) {
+    private ScoreSort(Builder builder) {
 
-		this.order = builder.order;
+        this.order = builder.order;
 
-	}
+    }
 
-	public static ScoreSort of(Function<Builder, ObjectBuilder<ScoreSort>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ScoreSort of(Function<Builder, ObjectBuilder<ScoreSort>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * SortOptions variant kind.
-	 */
-	@Override
-	public SortOptions.Kind _sortOptionsKind() {
-		return SortOptions.Kind.Doc;
-	}
+    /**
+     * SortOptions variant kind.
+     */
+    @Override
+    public SortOptions.Kind _sortOptionsKind() {
+        return SortOptions.Kind.Doc;
+    }
 
-	/**
-	 * API name: {@code order}
-	 */
-	@Nullable
-	public final SortOrder order() {
-		return this.order;
-	}
+    /**
+     * API name: {@code order}
+     */
+    @Nullable
+    public final SortOrder order() {
+        return this.order;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.order != null) {
-			generator.writeKey("order");
-			this.order.serialize(generator, mapper);
-		}
+        if (this.order != null) {
+            generator.writeKey("order");
+            this.order.serialize(generator, mapper);
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ScoreSort}.
-	 */
+    /**
+     * Builder for {@link ScoreSort}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScoreSort> {
-		@Nullable
-		private SortOrder order;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScoreSort> {
+        @Nullable
+        private SortOrder order;
 
-		/**
-		 * API name: {@code order}
-		 */
-		public final Builder order(@Nullable SortOrder value) {
-			this.order = value;
-			return this;
-		}
+        /**
+         * API name: {@code order}
+         */
+        public final Builder order(@Nullable SortOrder value) {
+            this.order = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ScoreSort}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ScoreSort build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ScoreSort}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ScoreSort build() {
+            _checkSingleUse();
 
-			return new ScoreSort(this);
-		}
-	}
+            return new ScoreSort(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ScoreSort}
-	 */
-	public static final JsonpDeserializer<ScoreSort> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ScoreSort::setupScoreSortDeserializer);
+    /**
+     * Json deserializer for {@link ScoreSort}
+     */
+    public static final JsonpDeserializer<ScoreSort> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ScoreSort::setupScoreSortDeserializer
+    );
 
-	protected static void setupScoreSortDeserializer(ObjectDeserializer<ScoreSort.Builder> op) {
+    protected static void setupScoreSortDeserializer(ObjectDeserializer<ScoreSort.Builder> op) {
 
-		op.add(Builder::order, SortOrder._DESERIALIZER, "order");
+        op.add(Builder::order, SortOrder._DESERIALIZER, "order");
 
-	}
+    }
 
 }

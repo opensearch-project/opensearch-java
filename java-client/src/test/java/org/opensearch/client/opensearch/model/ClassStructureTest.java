@@ -32,6 +32,16 @@
 
 package org.opensearch.client.opensearch.model;
 
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
+import org.junit.Test;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.ErrorCause;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
@@ -47,20 +57,9 @@ import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.search.HitsMetadata;
 import org.opensearch.client.opensearch.core.search.TotalHits;
 import org.opensearch.client.opensearch.core.search.TotalHitsRelation;
-import org.opensearch.client.json.JsonData;
-import org.opensearch.client.util.MissingRequiredPropertyException;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.MissingRequiredPropertyException;
 import org.opensearch.client.util.ObjectBuilder;
-import org.junit.Test;
-
-import javax.annotation.Nullable;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Tests that verify common features of generated classes.
@@ -82,8 +81,7 @@ public class ClassStructureTest extends ModelTestCase {
         // Builder setter for optional primitive should use the boxed type and be @Nullable
         {
             Method searchBuilderSize = SearchRequest.Builder.class.getMethod("size", Integer.class);
-            assertTrue(Arrays.stream(searchBuilderSize.getParameterAnnotations()[0])
-                .anyMatch(a -> a.annotationType() == Nullable.class));
+            assertTrue(Arrays.stream(searchBuilderSize.getParameterAnnotations()[0]).anyMatch(a -> a.annotationType() == Nullable.class));
         }
 
         // Required primitive should use the primitive type and not be @Nullable
@@ -96,8 +94,9 @@ public class ClassStructureTest extends ModelTestCase {
         // Builder setter for required primitive should use the primitive type and not be @Nullable
         {
             Method totalHitsBuilderValue = TotalHits.Builder.class.getMethod("value", long.class);
-            assertFalse(Arrays.stream(totalHitsBuilderValue.getParameterAnnotations()[0])
-                .anyMatch(a -> a.annotationType() == Nullable.class));
+            assertFalse(
+                Arrays.stream(totalHitsBuilderValue.getParameterAnnotations()[0]).anyMatch(a -> a.annotationType() == Nullable.class)
+            );
         }
 
         // Not setting a required primitive should throw an exception
@@ -113,10 +112,7 @@ public class ClassStructureTest extends ModelTestCase {
     public void testDataClassInheritedFieldAssignment() {
         // 1 ancestor
         {
-            CardinalityAggregate card = CardinalityAggregate.of(b -> b
-                .meta(Collections.singletonMap("foo", JsonData.of("bar")))
-                .value(1)
-            );
+            CardinalityAggregate card = CardinalityAggregate.of(b -> b.meta(Collections.singletonMap("foo", JsonData.of("bar"))).value(1));
 
             assertAncestorCount(1, card);
             assertEquals("bar", card.meta().get("foo").to(String.class));
@@ -125,9 +121,9 @@ public class ClassStructureTest extends ModelTestCase {
 
         // 3 ancestors
         {
-            DateRangeAggregate date = DateRangeAggregate.of(_1 -> _1
-                .meta(Collections.singletonMap("foo", JsonData.of("bar")))
-                .buckets(Buckets.of(b -> b.array(Collections.singletonList(RangeBucket.of(_2 -> _2.docCount(1))))))
+            DateRangeAggregate date = DateRangeAggregate.of(
+                _1 -> _1.meta(Collections.singletonMap("foo", JsonData.of("bar")))
+                    .buckets(Buckets.of(b -> b.array(Collections.singletonList(RangeBucket.of(_2 -> _2.docCount(1))))))
             );
 
             assertAncestorCount(3, date);
@@ -141,11 +137,7 @@ public class ClassStructureTest extends ModelTestCase {
      */
     @Test
     public void testUnionInheritedFieldAssignment() {
-        IntervalsQuery iq = IntervalsQuery.of(_1 -> _1
-            .boost(2.0f)
-            .field("foo")
-            .allOf(b -> b.intervals(Collections.emptyList()))
-        );
+        IntervalsQuery iq = IntervalsQuery.of(_1 -> _1.boost(2.0f).field("foo").allOf(b -> b.intervals(Collections.emptyList())));
         assertAncestorCount(1, iq);
         assertEquals(2.0f, iq.boost(), 0.01);
         assertEquals("{\"foo\":{\"boost\":2.0,\"all_of\":{\"intervals\":[]}}}", toJson(iq));
@@ -155,8 +147,10 @@ public class ClassStructureTest extends ModelTestCase {
     public void testUndefinedCollections() {
         // Not setting a required list should throw an exception
         {
-            MissingRequiredPropertyException ex = assertThrows(MissingRequiredPropertyException.class,
-                () -> HitsMetadata.of(_1 -> _1.total(_2 -> _2.value(0).relation(TotalHitsRelation.Eq))));
+            MissingRequiredPropertyException ex = assertThrows(
+                MissingRequiredPropertyException.class,
+                () -> HitsMetadata.of(_1 -> _1.total(_2 -> _2.value(0).relation(TotalHitsRelation.Eq)))
+            );
             assertTrue(ex.getMessage().contains(".hits"));
         }
 
@@ -189,10 +183,7 @@ public class ClassStructureTest extends ModelTestCase {
 
         // Setting an empty map defines it
         {
-            CardinalityAggregate card = CardinalityAggregate.of(b -> b
-                .value(1)
-                .meta(Collections.emptyMap())
-            );
+            CardinalityAggregate card = CardinalityAggregate.of(b -> b.value(1).meta(Collections.emptyMap()));
             assertNotNull(card.meta());
             assertEquals(0, card.meta().size());
             assertTrue(ApiTypeHelper.isDefined(card.meta()));
@@ -206,47 +197,35 @@ public class ClassStructureTest extends ModelTestCase {
 
         {
             // Appending doesn't modify the original collection
-            SearchRequest search = SearchRequest.of(b -> b
-                .storedFields(fields)
-                .storedFields("c")
-                .storedFields("d", "e", "f")
-            );
+            SearchRequest search = SearchRequest.of(b -> b.storedFields(fields).storedFields("c").storedFields("d", "e", "f"));
             assertEquals(Arrays.asList("a", "b"), fields);
             assertEquals(Arrays.asList("a", "b", "c", "d", "e", "f"), search.storedFields());
         }
 
         {
             // Appending doesn't modify the original collection (appending the same list twice)
-            SearchRequest search = SearchRequest.of(b -> b
-                .storedFields(fields)
-                .storedFields(fields)
-            );
+            SearchRequest search = SearchRequest.of(b -> b.storedFields(fields).storedFields(fields));
             assertEquals(Arrays.asList("a", "b"), fields);
             assertEquals(Arrays.asList("a", "b", "a", "b"), search.storedFields());
         }
 
-
         {
             // List cannot be null
             List<String> nullFields = null;
-            assertThrows(NullPointerException.class, () -> {
-                SearchRequest.of(b -> b
-                    .storedFields(nullFields)
-                );
-            });
+            assertThrows(NullPointerException.class, () -> { SearchRequest.of(b -> b.storedFields(nullFields)); });
         }
 
         {
             // Combine value and builder
             FieldAndFormat fieldA = FieldAndFormat.of(f -> f.field("a"));
-            SearchRequest search = SearchRequest.of(b -> b
-                .docvalueFields(fieldA)
-                .docvalueFields(f -> f.field("b"))
-                .docvalueFields(f -> f.field("c"))
+            SearchRequest search = SearchRequest.of(
+                b -> b.docvalueFields(fieldA).docvalueFields(f -> f.field("b")).docvalueFields(f -> f.field("c"))
             );
 
-            assertEquals(Arrays.asList("a", "b", "c"), search.docvalueFields().stream()
-                .map(FieldAndFormat::field).collect(Collectors.toList()));
+            assertEquals(
+                Arrays.asList("a", "b", "c"),
+                search.docvalueFields().stream().map(FieldAndFormat::field).collect(Collectors.toList())
+            );
         }
     }
 
@@ -262,10 +241,10 @@ public class ClassStructureTest extends ModelTestCase {
 
         {
             // Appending doesn't modify the original collection
-            SearchRequest search = SearchRequest.of(b -> b
-                .aggregations(aggs)
-                .aggregations("aggC", countC._toAggregation())
-                .aggregations("aggD", a -> a.valueCount(c -> c.field("d")))
+            SearchRequest search = SearchRequest.of(
+                b -> b.aggregations(aggs)
+                    .aggregations("aggC", countC._toAggregation())
+                    .aggregations("aggD", a -> a.valueCount(c -> c.field("d")))
             );
 
             // Original map wasn't modified
@@ -315,7 +294,7 @@ public class ClassStructureTest extends ModelTestCase {
 
         // Missing id property throws an exception
         MissingRequiredPropertyException ex = assertThrows(MissingRequiredPropertyException.class, () -> {
-                GetRequest r1 = GetRequest.of(b -> b.index("foo"));
+            GetRequest r1 = GetRequest.of(b -> b.index("foo"));
         });
         assertEquals("id", ex.getPropertyName());
 
@@ -326,15 +305,13 @@ public class ClassStructureTest extends ModelTestCase {
         }
 
         // Checks are enabled again after the try block
-        ex = assertThrows(MissingRequiredPropertyException.class, () -> {
-            GetRequest r1 = GetRequest.of(b -> b.index("foo"));
-        });
+        ex = assertThrows(MissingRequiredPropertyException.class, () -> { GetRequest r1 = GetRequest.of(b -> b.index("foo")); });
         assertEquals("id", ex.getPropertyName());
     }
 
     private void assertAncestorCount(int count, Object obj) {
         Class<?> clazz = obj.getClass();
-        while(count-- >= 0) {
+        while (count-- >= 0) {
             clazz = clazz.getSuperclass();
         }
         assertEquals(Object.class, clazz);

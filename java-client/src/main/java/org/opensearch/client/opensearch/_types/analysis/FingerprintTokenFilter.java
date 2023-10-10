@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,127 +41,124 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.analysis.FingerprintTokenFilter
 
 @JsonpDeserializable
 public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final int maxOutputSize;
+    private final int maxOutputSize;
 
-	private final String separator;
+    private final String separator;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FingerprintTokenFilter(Builder builder) {
-		super(builder);
+    private FingerprintTokenFilter(Builder builder) {
+        super(builder);
 
-		this.maxOutputSize = ApiTypeHelper.requireNonNull(builder.maxOutputSize, this, "maxOutputSize");
-		this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
+        this.maxOutputSize = ApiTypeHelper.requireNonNull(builder.maxOutputSize, this, "maxOutputSize");
+        this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
 
-	}
+    }
 
-	public static FingerprintTokenFilter of(Function<Builder, ObjectBuilder<FingerprintTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FingerprintTokenFilter of(Function<Builder, ObjectBuilder<FingerprintTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.Fingerprint;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.Fingerprint;
+    }
 
-	/**
-	 * Required - API name: {@code max_output_size}
-	 */
-	public final int maxOutputSize() {
-		return this.maxOutputSize;
-	}
+    /**
+     * Required - API name: {@code max_output_size}
+     */
+    public final int maxOutputSize() {
+        return this.maxOutputSize;
+    }
 
-	/**
-	 * Required - API name: {@code separator}
-	 */
-	public final String separator() {
-		return this.separator;
-	}
+    /**
+     * Required - API name: {@code separator}
+     */
+    public final String separator() {
+        return this.separator;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "fingerprint");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("max_output_size");
-		generator.write(this.maxOutputSize);
+        generator.write("type", "fingerprint");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("max_output_size");
+        generator.write(this.maxOutputSize);
 
-		generator.writeKey("separator");
-		generator.write(this.separator);
+        generator.writeKey("separator");
+        generator.write(this.separator);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FingerprintTokenFilter}.
-	 */
+    /**
+     * Builder for {@link FingerprintTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<FingerprintTokenFilter> {
-		private Integer maxOutputSize;
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<FingerprintTokenFilter> {
+        private Integer maxOutputSize;
 
-		private String separator;
+        private String separator;
 
-		/**
-		 * Required - API name: {@code max_output_size}
-		 */
-		public final Builder maxOutputSize(int value) {
-			this.maxOutputSize = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code max_output_size}
+         */
+        public final Builder maxOutputSize(int value) {
+            this.maxOutputSize = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code separator}
-		 */
-		public final Builder separator(String value) {
-			this.separator = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code separator}
+         */
+        public final Builder separator(String value) {
+            this.separator = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FingerprintTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FingerprintTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FingerprintTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FingerprintTokenFilter build() {
+            _checkSingleUse();
 
-			return new FingerprintTokenFilter(this);
-		}
-	}
+            return new FingerprintTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FingerprintTokenFilter}
-	 */
-	public static final JsonpDeserializer<FingerprintTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FingerprintTokenFilter::setupFingerprintTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link FingerprintTokenFilter}
+     */
+    public static final JsonpDeserializer<FingerprintTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FingerprintTokenFilter::setupFingerprintTokenFilterDeserializer
+    );
 
-	protected static void setupFingerprintTokenFilterDeserializer(
-			ObjectDeserializer<FingerprintTokenFilter.Builder> op) {
-		setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::maxOutputSize, JsonpDeserializer.integerDeserializer(), "max_output_size");
-		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
+    protected static void setupFingerprintTokenFilterDeserializer(ObjectDeserializer<FingerprintTokenFilter.Builder> op) {
+        setupTokenFilterBaseDeserializer(op);
+        op.add(Builder::maxOutputSize, JsonpDeserializer.integerDeserializer(), "max_output_size");
+        op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

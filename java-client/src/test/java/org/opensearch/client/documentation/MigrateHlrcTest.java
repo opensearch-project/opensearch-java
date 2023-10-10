@@ -32,21 +32,20 @@
 
 package org.opensearch.client.documentation;
 
-import org.opensearch.client.opensearch.OpenSearchClient;
-import org.opensearch.client.json.jackson.JacksonJsonpMapper;
-import org.opensearch.client.transport.OpenSearchTransport;
-import org.opensearch.client.transport.rest_client.RestClientTransport;
-import org.opensearch.client.RestClient;
-import org.opensearch.client.RestClientBuilder;
 import org.apache.hc.core5.http.HttpHost;
 import org.junit.Test;
+import org.opensearch.client.RestClient;
+import org.opensearch.client.RestClientBuilder;
+import org.opensearch.client.json.jackson.JacksonJsonpMapper;
+import org.opensearch.client.opensearch.OpenSearchClient;
+import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.rest_client.RestClientTransport;
 
 public class MigrateHlrcTest {
 
     // Fake HLRC -- we don't want to import it for just one example
     public static class RestHighLevelClient {
-        public RestHighLevelClient(RestClientBuilder builder) {
-        }
+        public RestHighLevelClient(RestClientBuilder builder) {}
 
         public RestClient getLowLevelClient() {
             return null;

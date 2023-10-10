@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,142 +43,140 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes._types.NodeBufferPool
 
-
 @JsonpDeserializable
 public class NodeBufferPool implements JsonpSerializable {
-	private final long count;
+    private final long count;
 
-	private final long totalCapacityInBytes;
+    private final long totalCapacityInBytes;
 
-	private final long usedInBytes;
+    private final long usedInBytes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeBufferPool(Builder builder) {
+    private NodeBufferPool(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.totalCapacityInBytes = ApiTypeHelper.requireNonNull(builder.totalCapacityInBytes, this,
-				"totalCapacityInBytes");
-		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+        this.totalCapacityInBytes = ApiTypeHelper.requireNonNull(builder.totalCapacityInBytes, this, "totalCapacityInBytes");
+        this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
 
-	}
+    }
 
-	public static NodeBufferPool of(Function<Builder, ObjectBuilder<NodeBufferPool>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeBufferPool of(Function<Builder, ObjectBuilder<NodeBufferPool>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code count}
-	 */
-	public final long count() {
-		return this.count;
-	}
+    /**
+     * Required - API name: {@code count}
+     */
+    public final long count() {
+        return this.count;
+    }
 
-	/**
-	 * Required - API name: {@code total_capacity_in_bytes}
-	 */
-	public final long totalCapacityInBytes() {
-		return this.totalCapacityInBytes;
-	}
+    /**
+     * Required - API name: {@code total_capacity_in_bytes}
+     */
+    public final long totalCapacityInBytes() {
+        return this.totalCapacityInBytes;
+    }
 
-	/**
-	 * Required - API name: {@code used_in_bytes}
-	 */
-	public final long usedInBytes() {
-		return this.usedInBytes;
-	}
+    /**
+     * Required - API name: {@code used_in_bytes}
+     */
+    public final long usedInBytes() {
+        return this.usedInBytes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("count");
-		generator.write(this.count);
+        generator.writeKey("count");
+        generator.write(this.count);
 
-		generator.writeKey("total_capacity_in_bytes");
-		generator.write(this.totalCapacityInBytes);
+        generator.writeKey("total_capacity_in_bytes");
+        generator.write(this.totalCapacityInBytes);
 
-		generator.writeKey("used_in_bytes");
-		generator.write(this.usedInBytes);
+        generator.writeKey("used_in_bytes");
+        generator.write(this.usedInBytes);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeBufferPool}.
-	 */
+    /**
+     * Builder for {@link NodeBufferPool}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeBufferPool> {
-		private Long count;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeBufferPool> {
+        private Long count;
 
-		private Long totalCapacityInBytes;
+        private Long totalCapacityInBytes;
 
-		private Long usedInBytes;
+        private Long usedInBytes;
 
-		/**
-		 * Required - API name: {@code count}
-		 */
-		public final Builder count(long value) {
-			this.count = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code count}
+         */
+        public final Builder count(long value) {
+            this.count = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total_capacity_in_bytes}
-		 */
-		public final Builder totalCapacityInBytes(long value) {
-			this.totalCapacityInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total_capacity_in_bytes}
+         */
+        public final Builder totalCapacityInBytes(long value) {
+            this.totalCapacityInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code used_in_bytes}
-		 */
-		public final Builder usedInBytes(long value) {
-			this.usedInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code used_in_bytes}
+         */
+        public final Builder usedInBytes(long value) {
+            this.usedInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeBufferPool}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeBufferPool build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeBufferPool}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeBufferPool build() {
+            _checkSingleUse();
 
-			return new NodeBufferPool(this);
-		}
-	}
+            return new NodeBufferPool(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeBufferPool}
-	 */
-	public static final JsonpDeserializer<NodeBufferPool> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeBufferPool::setupNodeBufferPoolDeserializer);
+    /**
+     * Json deserializer for {@link NodeBufferPool}
+     */
+    public static final JsonpDeserializer<NodeBufferPool> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeBufferPool::setupNodeBufferPoolDeserializer
+    );
 
-	protected static void setupNodeBufferPoolDeserializer(ObjectDeserializer<NodeBufferPool.Builder> op) {
+    protected static void setupNodeBufferPoolDeserializer(ObjectDeserializer<NodeBufferPool.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(Builder::totalCapacityInBytes, JsonpDeserializer.longDeserializer(), "total_capacity_in_bytes");
-		op.add(Builder::usedInBytes, JsonpDeserializer.longDeserializer(), "used_in_bytes");
+        op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+        op.add(Builder::totalCapacityInBytes, JsonpDeserializer.longDeserializer(), "total_capacity_in_bytes");
+        op.add(Builder::usedInBytes, JsonpDeserializer.longDeserializer(), "used_in_bytes");
 
-	}
+    }
 
 }

@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,118 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes._types.GarbageCollectorTotal
 
-
 @JsonpDeserializable
 public class GarbageCollectorTotal implements JsonpSerializable {
-	private final long collectionCount;
+    private final long collectionCount;
 
-	private final long collectionTimeInMillis;
+    private final long collectionTimeInMillis;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GarbageCollectorTotal(Builder builder) {
+    private GarbageCollectorTotal(Builder builder) {
 
-		this.collectionCount = ApiTypeHelper.requireNonNull(builder.collectionCount, this, "collectionCount");
-		this.collectionTimeInMillis = ApiTypeHelper.requireNonNull(builder.collectionTimeInMillis, this,
-				"collectionTimeInMillis");
+        this.collectionCount = ApiTypeHelper.requireNonNull(builder.collectionCount, this, "collectionCount");
+        this.collectionTimeInMillis = ApiTypeHelper.requireNonNull(builder.collectionTimeInMillis, this, "collectionTimeInMillis");
 
-	}
+    }
 
-	public static GarbageCollectorTotal of(Function<Builder, ObjectBuilder<GarbageCollectorTotal>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GarbageCollectorTotal of(Function<Builder, ObjectBuilder<GarbageCollectorTotal>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code collection_count}
-	 */
-	public final long collectionCount() {
-		return this.collectionCount;
-	}
+    /**
+     * Required - API name: {@code collection_count}
+     */
+    public final long collectionCount() {
+        return this.collectionCount;
+    }
 
-	/**
-	 * Required - API name: {@code collection_time_in_millis}
-	 */
-	public final long collectionTimeInMillis() {
-		return this.collectionTimeInMillis;
-	}
+    /**
+     * Required - API name: {@code collection_time_in_millis}
+     */
+    public final long collectionTimeInMillis() {
+        return this.collectionTimeInMillis;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("collection_count");
-		generator.write(this.collectionCount);
+        generator.writeKey("collection_count");
+        generator.write(this.collectionCount);
 
-		generator.writeKey("collection_time_in_millis");
-		generator.write(this.collectionTimeInMillis);
+        generator.writeKey("collection_time_in_millis");
+        generator.write(this.collectionTimeInMillis);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GarbageCollectorTotal}.
-	 */
+    /**
+     * Builder for {@link GarbageCollectorTotal}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GarbageCollectorTotal> {
-		private Long collectionCount;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GarbageCollectorTotal> {
+        private Long collectionCount;
 
-		private Long collectionTimeInMillis;
+        private Long collectionTimeInMillis;
 
-		/**
-		 * Required - API name: {@code collection_count}
-		 */
-		public final Builder collectionCount(long value) {
-			this.collectionCount = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code collection_count}
+         */
+        public final Builder collectionCount(long value) {
+            this.collectionCount = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code collection_time_in_millis}
-		 */
-		public final Builder collectionTimeInMillis(long value) {
-			this.collectionTimeInMillis = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code collection_time_in_millis}
+         */
+        public final Builder collectionTimeInMillis(long value) {
+            this.collectionTimeInMillis = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GarbageCollectorTotal}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GarbageCollectorTotal build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GarbageCollectorTotal}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GarbageCollectorTotal build() {
+            _checkSingleUse();
 
-			return new GarbageCollectorTotal(this);
-		}
-	}
+            return new GarbageCollectorTotal(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GarbageCollectorTotal}
-	 */
-	public static final JsonpDeserializer<GarbageCollectorTotal> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GarbageCollectorTotal::setupGarbageCollectorTotalDeserializer);
+    /**
+     * Json deserializer for {@link GarbageCollectorTotal}
+     */
+    public static final JsonpDeserializer<GarbageCollectorTotal> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GarbageCollectorTotal::setupGarbageCollectorTotalDeserializer
+    );
 
-	protected static void setupGarbageCollectorTotalDeserializer(ObjectDeserializer<GarbageCollectorTotal.Builder> op) {
+    protected static void setupGarbageCollectorTotalDeserializer(ObjectDeserializer<GarbageCollectorTotal.Builder> op) {
 
-		op.add(Builder::collectionCount, JsonpDeserializer.longDeserializer(), "collection_count");
-		op.add(Builder::collectionTimeInMillis, JsonpDeserializer.longDeserializer(), "collection_time_in_millis");
+        op.add(Builder::collectionCount, JsonpDeserializer.longDeserializer(), "collection_count");
+        op.add(Builder::collectionTimeInMillis, JsonpDeserializer.longDeserializer(), "collection_time_in_millis");
 
-	}
+    }
 
 }

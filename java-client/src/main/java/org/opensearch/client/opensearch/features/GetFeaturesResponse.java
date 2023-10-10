@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.features;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,122 +44,121 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: features.get_features.Response
 
 @JsonpDeserializable
 public class GetFeaturesResponse implements JsonpSerializable {
-	private final List<Feature> features;
+    private final List<Feature> features;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetFeaturesResponse(Builder builder) {
+    private GetFeaturesResponse(Builder builder) {
 
-		this.features = ApiTypeHelper.unmodifiableRequired(builder.features, this, "features");
+        this.features = ApiTypeHelper.unmodifiableRequired(builder.features, this, "features");
 
-	}
+    }
 
-	public static GetFeaturesResponse of(Function<Builder, ObjectBuilder<GetFeaturesResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetFeaturesResponse of(Function<Builder, ObjectBuilder<GetFeaturesResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code features}
-	 */
-	public final List<Feature> features() {
-		return this.features;
-	}
+    /**
+     * Required - API name: {@code features}
+     */
+    public final List<Feature> features() {
+        return this.features;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.features)) {
-			generator.writeKey("features");
-			generator.writeStartArray();
-			for (Feature item0 : this.features) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.features)) {
+            generator.writeKey("features");
+            generator.writeStartArray();
+            for (Feature item0 : this.features) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetFeaturesResponse}.
-	 */
+    /**
+     * Builder for {@link GetFeaturesResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetFeaturesResponse> {
-		private List<Feature> features;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetFeaturesResponse> {
+        private List<Feature> features;
 
-		/**
-		 * Required - API name: {@code features}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>features</code>.
-		 */
-		public final Builder features(List<Feature> list) {
-			this.features = _listAddAll(this.features, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code features}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>features</code>.
+         */
+        public final Builder features(List<Feature> list) {
+            this.features = _listAddAll(this.features, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code features}
-		 * <p>
-		 * Adds one or more values to <code>features</code>.
-		 */
-		public final Builder features(Feature value, Feature... values) {
-			this.features = _listAdd(this.features, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code features}
+         * <p>
+         * Adds one or more values to <code>features</code>.
+         */
+        public final Builder features(Feature value, Feature... values) {
+            this.features = _listAdd(this.features, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code features}
-		 * <p>
-		 * Adds a value to <code>features</code> using a builder lambda.
-		 */
-		public final Builder features(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
-			return features(fn.apply(new Feature.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code features}
+         * <p>
+         * Adds a value to <code>features</code> using a builder lambda.
+         */
+        public final Builder features(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+            return features(fn.apply(new Feature.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link GetFeaturesResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetFeaturesResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GetFeaturesResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetFeaturesResponse build() {
+            _checkSingleUse();
 
-			return new GetFeaturesResponse(this);
-		}
-	}
+            return new GetFeaturesResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GetFeaturesResponse}
-	 */
-	public static final JsonpDeserializer<GetFeaturesResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetFeaturesResponse::setupGetFeaturesResponseDeserializer);
+    /**
+     * Json deserializer for {@link GetFeaturesResponse}
+     */
+    public static final JsonpDeserializer<GetFeaturesResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GetFeaturesResponse::setupGetFeaturesResponseDeserializer
+    );
 
-	protected static void setupGetFeaturesResponseDeserializer(ObjectDeserializer<GetFeaturesResponse.Builder> op) {
+    protected static void setupGetFeaturesResponseDeserializer(ObjectDeserializer<GetFeaturesResponse.Builder> op) {
 
-		op.add(Builder::features, JsonpDeserializer.arrayDeserializer(Feature._DESERIALIZER), "features");
+        op.add(Builder::features, JsonpDeserializer.arrayDeserializer(Feature._DESERIALIZER), "features");
 
-	}
+    }
 
 }

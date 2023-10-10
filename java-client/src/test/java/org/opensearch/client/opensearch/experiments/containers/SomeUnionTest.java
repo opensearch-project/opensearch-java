@@ -38,10 +38,7 @@ import org.opensearch.client.opensearch.model.ModelTestCase;
 
 public class SomeUnionTest extends ModelTestCase {
 
-    SomeUnion su = new SomeUnion.Builder()
-        .variantA(a_ -> a_
-            .name("a-name")
-        ).build();
+    SomeUnion su = new SomeUnion.Builder().variantA(a_ -> a_.name("a-name")).build();
 
     String json = "{\"type\":\"variant_a\",\"name\":\"a-name\"}";
 
@@ -72,9 +69,7 @@ public class SomeUnionTest extends ModelTestCase {
     public void testMissingVariantDeserialization() {
         String json = "{}";
 
-        JsonParsingException e = assertThrows(JsonParsingException.class, () -> {
-            fromJson(json, SomeUnion._DESERIALIZER);
-        });
+        JsonParsingException e = assertThrows(JsonParsingException.class, () -> { fromJson(json, SomeUnion._DESERIALIZER); });
 
         assertEquals("Property 'type' not found", e.getMessage());
     }

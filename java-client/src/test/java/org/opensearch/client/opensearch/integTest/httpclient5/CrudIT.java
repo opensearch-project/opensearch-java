@@ -10,5 +10,4 @@ package org.opensearch.client.opensearch.integTest.httpclient5;
 
 import org.opensearch.client.opensearch.integTest.AbstractCrudIT;
 
-public class CrudIT extends AbstractCrudIT implements HttpClient5TransportSupport {
-}
+public class CrudIT extends AbstractCrudIT implements HttpClient5TransportSupport {}

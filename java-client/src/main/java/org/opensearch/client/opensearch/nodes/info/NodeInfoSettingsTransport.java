@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,132 +44,129 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsTransport
 
 @JsonpDeserializable
 public class NodeInfoSettingsTransport implements JsonpSerializable {
-	private final NodeInfoSettingsTransportType type;
+    private final NodeInfoSettingsTransportType type;
 
-	@Nullable
-	private final String typeDefault;
+    @Nullable
+    private final String typeDefault;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoSettingsTransport(Builder builder) {
+    private NodeInfoSettingsTransport(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-		this.typeDefault = builder.typeDefault;
+        this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+        this.typeDefault = builder.typeDefault;
 
-	}
+    }
 
-	public static NodeInfoSettingsTransport of(Function<Builder, ObjectBuilder<NodeInfoSettingsTransport>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoSettingsTransport of(Function<Builder, ObjectBuilder<NodeInfoSettingsTransport>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code type}
-	 */
-	public final NodeInfoSettingsTransportType type() {
-		return this.type;
-	}
+    /**
+     * Required - API name: {@code type}
+     */
+    public final NodeInfoSettingsTransportType type() {
+        return this.type;
+    }
 
-	/**
-	 * API name: {@code type.default}
-	 */
-	@Nullable
-	public final String typeDefault() {
-		return this.typeDefault;
-	}
+    /**
+     * API name: {@code type.default}
+     */
+    @Nullable
+    public final String typeDefault() {
+        return this.typeDefault;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("type");
-		this.type.serialize(generator, mapper);
+        generator.writeKey("type");
+        this.type.serialize(generator, mapper);
 
-		if (this.typeDefault != null) {
-			generator.writeKey("type.default");
-			generator.write(this.typeDefault);
+        if (this.typeDefault != null) {
+            generator.writeKey("type.default");
+            generator.write(this.typeDefault);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoSettingsTransport}.
-	 */
+    /**
+     * Builder for {@link NodeInfoSettingsTransport}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsTransport> {
-		private NodeInfoSettingsTransportType type;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsTransport> {
+        private NodeInfoSettingsTransportType type;
 
-		@Nullable
-		private String typeDefault;
+        @Nullable
+        private String typeDefault;
 
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public final Builder type(NodeInfoSettingsTransportType value) {
-			this.type = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code type}
+         */
+        public final Builder type(NodeInfoSettingsTransportType value) {
+            this.type = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public final Builder type(
-				Function<NodeInfoSettingsTransportType.Builder, ObjectBuilder<NodeInfoSettingsTransportType>> fn) {
-			return this.type(fn.apply(new NodeInfoSettingsTransportType.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code type}
+         */
+        public final Builder type(Function<NodeInfoSettingsTransportType.Builder, ObjectBuilder<NodeInfoSettingsTransportType>> fn) {
+            return this.type(fn.apply(new NodeInfoSettingsTransportType.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code type.default}
-		 */
-		public final Builder typeDefault(@Nullable String value) {
-			this.typeDefault = value;
-			return this;
-		}
+        /**
+         * API name: {@code type.default}
+         */
+        public final Builder typeDefault(@Nullable String value) {
+            this.typeDefault = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeInfoSettingsTransport}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoSettingsTransport build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoSettingsTransport}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoSettingsTransport build() {
+            _checkSingleUse();
 
-			return new NodeInfoSettingsTransport(this);
-		}
-	}
+            return new NodeInfoSettingsTransport(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoSettingsTransport}
-	 */
-	public static final JsonpDeserializer<NodeInfoSettingsTransport> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoSettingsTransport::setupNodeInfoSettingsTransportDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoSettingsTransport}
+     */
+    public static final JsonpDeserializer<NodeInfoSettingsTransport> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoSettingsTransport::setupNodeInfoSettingsTransportDeserializer
+    );
 
-	protected static void setupNodeInfoSettingsTransportDeserializer(
-			ObjectDeserializer<NodeInfoSettingsTransport.Builder> op) {
+    protected static void setupNodeInfoSettingsTransportDeserializer(ObjectDeserializer<NodeInfoSettingsTransport.Builder> op) {
 
-		op.add(Builder::type, NodeInfoSettingsTransportType._DESERIALIZER, "type");
-		op.add(Builder::typeDefault, JsonpDeserializer.stringDeserializer(), "type.default");
+        op.add(Builder::type, NodeInfoSettingsTransportType._DESERIALIZER, "type");
+        op.add(Builder::typeDefault, JsonpDeserializer.stringDeserializer(), "type.default");
 
-	}
+    }
 
 }

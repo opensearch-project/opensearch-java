@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.cluster;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -40,189 +44,188 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
-
 // typedef: cluster.pending_tasks.Request
 
 /**
  * Returns a list of any cluster-level changes (e.g. create index, update
  * mapping, allocate or fail shard) which have not yet been executed.
- * 
+ *
  */
 
 public class PendingTasksRequest extends RequestBase {
-	@Nullable
-	private final Boolean local;
+    @Nullable
+    private final Boolean local;
 
-	@Deprecated
-	@Nullable
-	private final Time masterTimeout;
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
 
-	@Nullable
-	private final Time clusterManagerTimeout;
+    @Nullable
+    private final Time clusterManagerTimeout;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PendingTasksRequest(Builder builder) {
+    private PendingTasksRequest(Builder builder) {
 
-		this.local = builder.local;
-		this.masterTimeout = builder.masterTimeout;
-		this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.local = builder.local;
+        this.masterTimeout = builder.masterTimeout;
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
 
-	}
+    }
 
-	public static PendingTasksRequest of(Function<Builder, ObjectBuilder<PendingTasksRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PendingTasksRequest of(Function<Builder, ObjectBuilder<PendingTasksRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Return local information, do not retrieve the state from cluster-manager node
-	 * (default: false)
-	 * <p>
-	 * API name: {@code local}
-	 */
-	@Nullable
-	public final Boolean local() {
-		return this.local;
-	}
+    /**
+     * Return local information, do not retrieve the state from cluster-manager node
+     * (default: false)
+     * <p>
+     * API name: {@code local}
+     */
+    @Nullable
+    public final Boolean local() {
+        return this.local;
+    }
 
-	/**
-	 * Specify timeout for connection to master
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Deprecated
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
+    /**
+     * Specify timeout for connection to master
+     * <p>
+     * API name: {@code master_timeout}
+     */
+    @Deprecated
+    @Nullable
+    public final Time masterTimeout() {
+        return this.masterTimeout;
+    }
 
-	/**
-	 * Specify timeout for connection to cluster-manager
-	 * <p>
-	 * API name: {@code cluster_manager_timeout}
-	 */
-	@Nullable
-	public final Time clusterManagerTimeout() {
-		return this.clusterManagerTimeout;
-	}
+    /**
+     * Specify timeout for connection to cluster-manager
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PendingTasksRequest}.
-	 */
+    /**
+     * Builder for {@link PendingTasksRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksRequest> {
-		@Nullable
-		private Boolean local;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksRequest> {
+        @Nullable
+        private Boolean local;
 
-		@Deprecated
-		@Nullable
-		private Time masterTimeout;
+        @Deprecated
+        @Nullable
+        private Time masterTimeout;
 
-		@Nullable
-		private Time clusterManagerTimeout;
+        @Nullable
+        private Time clusterManagerTimeout;
 
-		/**
-		 * Return local information, do not retrieve the state from cluster-manager node
-		 * (default: false)
-		 * <p>
-		 * API name: {@code local}
-		 */
-		public final Builder local(@Nullable Boolean value) {
-			this.local = value;
-			return this;
-		}
+        /**
+         * Return local information, do not retrieve the state from cluster-manager node
+         * (default: false)
+         * <p>
+         * API name: {@code local}
+         */
+        public final Builder local(@Nullable Boolean value) {
+            this.local = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
+        /**
+         * Specify timeout for connection to master
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Specify timeout for connection to master
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.masterTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Specify timeout for connection to cluster-manager
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(@Nullable Time value) {
-			this.clusterManagerTimeout = value;
-			return this;
-		}
+        /**
+         * Specify timeout for connection to cluster-manager
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to cluster-manager
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Specify timeout for connection to cluster-manager
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link PendingTasksRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PendingTasksRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PendingTasksRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PendingTasksRequest build() {
+            _checkSingleUse();
 
-			return new PendingTasksRequest(this);
-		}
-	}
+            return new PendingTasksRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cluster.pending_tasks}".
-	 */
-	public static final Endpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cluster.pending_tasks}".
+     */
+    public static final Endpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_cluster/pending_tasks";
+        // Request path
+        request -> {
+            return "/_cluster/pending_tasks";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.clusterManagerTimeout != null) {
-					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-				}
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
+            if (request.clusterManagerTimeout != null) {
+                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
+            }
+            if (request.local != null) {
+                params.put("local", String.valueOf(request.local));
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, PendingTasksResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        PendingTasksResponse._DESERIALIZER
+    );
 }

@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,149 +42,143 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: _types.analysis.MultiplexerTokenFilter
 
-
 @JsonpDeserializable
 public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final List<String> filters;
+    private final List<String> filters;
 
-	private final boolean preserveOriginal;
+    private final boolean preserveOriginal;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MultiplexerTokenFilter(Builder builder) {
-		super(builder);
+    private MultiplexerTokenFilter(Builder builder) {
+        super(builder);
 
-		this.filters = ApiTypeHelper.unmodifiableRequired(builder.filters, this, "filters");
-		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
+        this.filters = ApiTypeHelper.unmodifiableRequired(builder.filters, this, "filters");
+        this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
 
-	}
+    }
 
-	public static MultiplexerTokenFilter of(Function<Builder, ObjectBuilder<MultiplexerTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MultiplexerTokenFilter of(Function<Builder, ObjectBuilder<MultiplexerTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.Multiplexer;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.Multiplexer;
+    }
 
-	/**
-	 * Required - API name: {@code filters}
-	 */
-	public final List<String> filters() {
-		return this.filters;
-	}
+    /**
+     * Required - API name: {@code filters}
+     */
+    public final List<String> filters() {
+        return this.filters;
+    }
 
-	/**
-	 * Required - API name: {@code preserve_original}
-	 */
-	public final boolean preserveOriginal() {
-		return this.preserveOriginal;
-	}
+    /**
+     * Required - API name: {@code preserve_original}
+     */
+    public final boolean preserveOriginal() {
+        return this.preserveOriginal;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "multiplexer");
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.filters)) {
-			generator.writeKey("filters");
-			generator.writeStartArray();
-			for (String item0 : this.filters) {
-				generator.write(item0);
+        generator.write("type", "multiplexer");
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.filters)) {
+            generator.writeKey("filters");
+            generator.writeStartArray();
+            for (String item0 : this.filters) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		generator.writeKey("preserve_original");
-		generator.write(this.preserveOriginal);
+        }
+        generator.writeKey("preserve_original");
+        generator.write(this.preserveOriginal);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MultiplexerTokenFilter}.
-	 */
+    /**
+     * Builder for {@link MultiplexerTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<MultiplexerTokenFilter> {
-		private List<String> filters;
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<MultiplexerTokenFilter> {
+        private List<String> filters;
 
-		private Boolean preserveOriginal;
+        private Boolean preserveOriginal;
 
-		/**
-		 * Required - API name: {@code filters}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>filters</code>.
-		 */
-		public final Builder filters(List<String> list) {
-			this.filters = _listAddAll(this.filters, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code filters}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>filters</code>.
+         */
+        public final Builder filters(List<String> list) {
+            this.filters = _listAddAll(this.filters, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code filters}
-		 * <p>
-		 * Adds one or more values to <code>filters</code>.
-		 */
-		public final Builder filters(String value, String... values) {
-			this.filters = _listAdd(this.filters, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code filters}
+         * <p>
+         * Adds one or more values to <code>filters</code>.
+         */
+        public final Builder filters(String value, String... values) {
+            this.filters = _listAdd(this.filters, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code preserve_original}
-		 */
-		public final Builder preserveOriginal(boolean value) {
-			this.preserveOriginal = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code preserve_original}
+         */
+        public final Builder preserveOriginal(boolean value) {
+            this.preserveOriginal = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MultiplexerTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MultiplexerTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MultiplexerTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MultiplexerTokenFilter build() {
+            _checkSingleUse();
 
-			return new MultiplexerTokenFilter(this);
-		}
-	}
+            return new MultiplexerTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MultiplexerTokenFilter}
-	 */
-	public static final JsonpDeserializer<MultiplexerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MultiplexerTokenFilter::setupMultiplexerTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link MultiplexerTokenFilter}
+     */
+    public static final JsonpDeserializer<MultiplexerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MultiplexerTokenFilter::setupMultiplexerTokenFilterDeserializer
+    );
 
-	protected static void setupMultiplexerTokenFilterDeserializer(
-			ObjectDeserializer<MultiplexerTokenFilter.Builder> op) {
-		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::filters, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"filters");
-		op.add(Builder::preserveOriginal, JsonpDeserializer.booleanDeserializer(), "preserve_original");
+    protected static void setupMultiplexerTokenFilterDeserializer(ObjectDeserializer<MultiplexerTokenFilter.Builder> op) {
+        TokenFilterBase.setupTokenFilterBaseDeserializer(op);
+        op.add(Builder::filters, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "filters");
+        op.add(Builder::preserveOriginal, JsonpDeserializer.booleanDeserializer(), "preserve_original");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

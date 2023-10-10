@@ -37,26 +37,27 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum IndicesBlockOptions implements JsonEnum {
-	Metadata("metadata"),
+    Metadata("metadata"),
 
-	Read("read"),
+    Read("read"),
 
-	ReadOnly("read_only"),
+    ReadOnly("read_only"),
 
-	Write("write"),
+    Write("write"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	IndicesBlockOptions(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    IndicesBlockOptions(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<IndicesBlockOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IndicesBlockOptions.values());
+    public static final JsonEnum.Deserializer<IndicesBlockOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IndicesBlockOptions.values()
+    );
 }

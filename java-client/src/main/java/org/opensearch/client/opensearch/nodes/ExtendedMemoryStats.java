@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,116 +41,114 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes._types.ExtendedMemoryStats
 
 @JsonpDeserializable
 public class ExtendedMemoryStats extends MemoryStats {
-	private final int freePercent;
+    private final int freePercent;
 
-	private final int usedPercent;
+    private final int usedPercent;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ExtendedMemoryStats(Builder builder) {
-		super(builder);
+    private ExtendedMemoryStats(Builder builder) {
+        super(builder);
 
-		this.freePercent = ApiTypeHelper.requireNonNull(builder.freePercent, this, "freePercent");
-		this.usedPercent = ApiTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent");
+        this.freePercent = ApiTypeHelper.requireNonNull(builder.freePercent, this, "freePercent");
+        this.usedPercent = ApiTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent");
 
-	}
+    }
 
-	public static ExtendedMemoryStats of(Function<Builder, ObjectBuilder<ExtendedMemoryStats>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ExtendedMemoryStats of(Function<Builder, ObjectBuilder<ExtendedMemoryStats>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code free_percent}
-	 */
-	public final int freePercent() {
-		return this.freePercent;
-	}
+    /**
+     * Required - API name: {@code free_percent}
+     */
+    public final int freePercent() {
+        return this.freePercent;
+    }
 
-	/**
-	 * Required - API name: {@code used_percent}
-	 */
-	public final int usedPercent() {
-		return this.usedPercent;
-	}
+    /**
+     * Required - API name: {@code used_percent}
+     */
+    public final int usedPercent() {
+        return this.usedPercent;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("free_percent");
-		generator.write(this.freePercent);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("free_percent");
+        generator.write(this.freePercent);
 
-		generator.writeKey("used_percent");
-		generator.write(this.usedPercent);
+        generator.writeKey("used_percent");
+        generator.write(this.usedPercent);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ExtendedMemoryStats}.
-	 */
+    /**
+     * Builder for {@link ExtendedMemoryStats}.
+     */
 
-	public static class Builder extends MemoryStats.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ExtendedMemoryStats> {
-		private Integer freePercent;
+    public static class Builder extends MemoryStats.AbstractBuilder<Builder> implements ObjectBuilder<ExtendedMemoryStats> {
+        private Integer freePercent;
 
-		private Integer usedPercent;
+        private Integer usedPercent;
 
-		/**
-		 * Required - API name: {@code free_percent}
-		 */
-		public final Builder freePercent(int value) {
-			this.freePercent = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code free_percent}
+         */
+        public final Builder freePercent(int value) {
+            this.freePercent = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code used_percent}
-		 */
-		public final Builder usedPercent(int value) {
-			this.usedPercent = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code used_percent}
+         */
+        public final Builder usedPercent(int value) {
+            this.usedPercent = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ExtendedMemoryStats}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ExtendedMemoryStats build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ExtendedMemoryStats}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ExtendedMemoryStats build() {
+            _checkSingleUse();
 
-			return new ExtendedMemoryStats(this);
-		}
-	}
+            return new ExtendedMemoryStats(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ExtendedMemoryStats}
-	 */
-	public static final JsonpDeserializer<ExtendedMemoryStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExtendedMemoryStats::setupExtendedMemoryStatsDeserializer);
+    /**
+     * Json deserializer for {@link ExtendedMemoryStats}
+     */
+    public static final JsonpDeserializer<ExtendedMemoryStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ExtendedMemoryStats::setupExtendedMemoryStatsDeserializer
+    );
 
-	protected static void setupExtendedMemoryStatsDeserializer(ObjectDeserializer<ExtendedMemoryStats.Builder> op) {
-		setupMemoryStatsDeserializer(op);
-		op.add(Builder::freePercent, JsonpDeserializer.integerDeserializer(), "free_percent");
-		op.add(Builder::usedPercent, JsonpDeserializer.integerDeserializer(), "used_percent");
+    protected static void setupExtendedMemoryStatsDeserializer(ObjectDeserializer<ExtendedMemoryStats.Builder> op) {
+        setupMemoryStatsDeserializer(op);
+        op.add(Builder::freePercent, JsonpDeserializer.integerDeserializer(), "free_percent");
+        op.add(Builder::usedPercent, JsonpDeserializer.integerDeserializer(), "used_percent");
 
-	}
+    }
 
 }

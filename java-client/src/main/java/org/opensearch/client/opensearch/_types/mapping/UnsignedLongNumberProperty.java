@@ -32,117 +32,115 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.UnsignedLongNumberProperty
 
-
 @JsonpDeserializable
 public class UnsignedLongNumberProperty extends NumberPropertyBase implements PropertyVariant {
-	@Nullable
-	private final Number nullValue;
+    @Nullable
+    private final Number nullValue;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private UnsignedLongNumberProperty(Builder builder) {
-		super(builder);
+    private UnsignedLongNumberProperty(Builder builder) {
+        super(builder);
 
-		this.nullValue = builder.nullValue;
+        this.nullValue = builder.nullValue;
 
-	}
+    }
 
-	public static UnsignedLongNumberProperty of(Function<Builder, ObjectBuilder<UnsignedLongNumberProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static UnsignedLongNumberProperty of(Function<Builder, ObjectBuilder<UnsignedLongNumberProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.UnsignedLong;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.UnsignedLong;
+    }
 
-	/**
-	 * API name: {@code null_value}
-	 */
-	@Nullable
-	public final Number nullValue() {
-		return this.nullValue;
-	}
+    /**
+     * API name: {@code null_value}
+     */
+    @Nullable
+    public final Number nullValue() {
+        return this.nullValue;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "unsigned_long");
-		super.serializeInternal(generator, mapper);
-		if (this.nullValue != null) {
-			generator.writeKey("null_value");
-			generator.write(this.nullValue.doubleValue());
+        generator.write("type", "unsigned_long");
+        super.serializeInternal(generator, mapper);
+        if (this.nullValue != null) {
+            generator.writeKey("null_value");
+            generator.write(this.nullValue.doubleValue());
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link UnsignedLongNumberProperty}.
-	 */
+    /**
+     * Builder for {@link UnsignedLongNumberProperty}.
+     */
 
-	public static class Builder extends NumberPropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<UnsignedLongNumberProperty> {
-		@Nullable
-		private Number nullValue;
+    public static class Builder extends NumberPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<UnsignedLongNumberProperty> {
+        @Nullable
+        private Number nullValue;
 
-		/**
-		 * API name: {@code null_value}
-		 */
-		public final Builder nullValue(@Nullable Number value) {
-			this.nullValue = value;
-			return this;
-		}
+        /**
+         * API name: {@code null_value}
+         */
+        public final Builder nullValue(@Nullable Number value) {
+            this.nullValue = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link UnsignedLongNumberProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public UnsignedLongNumberProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link UnsignedLongNumberProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public UnsignedLongNumberProperty build() {
+            _checkSingleUse();
 
-			return new UnsignedLongNumberProperty(this);
-		}
-	}
+            return new UnsignedLongNumberProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link UnsignedLongNumberProperty}
-	 */
-	public static final JsonpDeserializer<UnsignedLongNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UnsignedLongNumberProperty::setupUnsignedLongNumberPropertyDeserializer);
+    /**
+     * Json deserializer for {@link UnsignedLongNumberProperty}
+     */
+    public static final JsonpDeserializer<UnsignedLongNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        UnsignedLongNumberProperty::setupUnsignedLongNumberPropertyDeserializer
+    );
 
-	protected static void setupUnsignedLongNumberPropertyDeserializer(
-			ObjectDeserializer<UnsignedLongNumberProperty.Builder> op) {
-		setupNumberPropertyBaseDeserializer(op);
-		op.add(Builder::nullValue, JsonpDeserializer.numberDeserializer(), "null_value");
+    protected static void setupUnsignedLongNumberPropertyDeserializer(ObjectDeserializer<UnsignedLongNumberProperty.Builder> op) {
+        setupNumberPropertyBaseDeserializer(op);
+        op.add(Builder::nullValue, JsonpDeserializer.numberDeserializer(), "null_value");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

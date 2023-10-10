@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,158 +43,156 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.IpRangeAggregationRange
 
 @JsonpDeserializable
 public class IpRangeAggregationRange implements JsonpSerializable {
-	@Nullable
-	private final String from;
+    @Nullable
+    private final String from;
 
-	@Nullable
-	private final String mask;
+    @Nullable
+    private final String mask;
 
-	@Nullable
-	private final String to;
+    @Nullable
+    private final String to;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IpRangeAggregationRange(Builder builder) {
+    private IpRangeAggregationRange(Builder builder) {
 
-		this.from = builder.from;
-		this.mask = builder.mask;
-		this.to = builder.to;
+        this.from = builder.from;
+        this.mask = builder.mask;
+        this.to = builder.to;
 
-	}
+    }
 
-	public static IpRangeAggregationRange of(Function<Builder, ObjectBuilder<IpRangeAggregationRange>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IpRangeAggregationRange of(Function<Builder, ObjectBuilder<IpRangeAggregationRange>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code from}
-	 */
-	@Nullable
-	public final String from() {
-		return this.from;
-	}
+    /**
+     * API name: {@code from}
+     */
+    @Nullable
+    public final String from() {
+        return this.from;
+    }
 
-	/**
-	 * API name: {@code mask}
-	 */
-	@Nullable
-	public final String mask() {
-		return this.mask;
-	}
+    /**
+     * API name: {@code mask}
+     */
+    @Nullable
+    public final String mask() {
+        return this.mask;
+    }
 
-	/**
-	 * API name: {@code to}
-	 */
-	@Nullable
-	public final String to() {
-		return this.to;
-	}
+    /**
+     * API name: {@code to}
+     */
+    @Nullable
+    public final String to() {
+        return this.to;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.from != null) {
-			generator.writeKey("from");
-			generator.write(this.from);
+        if (this.from != null) {
+            generator.writeKey("from");
+            generator.write(this.from);
 
-		}
-		if (this.mask != null) {
-			generator.writeKey("mask");
-			generator.write(this.mask);
+        }
+        if (this.mask != null) {
+            generator.writeKey("mask");
+            generator.write(this.mask);
 
-		}
-		if (this.to != null) {
-			generator.writeKey("to");
-			generator.write(this.to);
+        }
+        if (this.to != null) {
+            generator.writeKey("to");
+            generator.write(this.to);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IpRangeAggregationRange}.
-	 */
+    /**
+     * Builder for {@link IpRangeAggregationRange}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IpRangeAggregationRange> {
-		@Nullable
-		private String from;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IpRangeAggregationRange> {
+        @Nullable
+        private String from;
 
-		@Nullable
-		private String mask;
+        @Nullable
+        private String mask;
 
-		@Nullable
-		private String to;
+        @Nullable
+        private String to;
 
-		/**
-		 * API name: {@code from}
-		 */
-		public final Builder from(@Nullable String value) {
-			this.from = value;
-			return this;
-		}
+        /**
+         * API name: {@code from}
+         */
+        public final Builder from(@Nullable String value) {
+            this.from = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code mask}
-		 */
-		public final Builder mask(@Nullable String value) {
-			this.mask = value;
-			return this;
-		}
+        /**
+         * API name: {@code mask}
+         */
+        public final Builder mask(@Nullable String value) {
+            this.mask = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code to}
-		 */
-		public final Builder to(@Nullable String value) {
-			this.to = value;
-			return this;
-		}
+        /**
+         * API name: {@code to}
+         */
+        public final Builder to(@Nullable String value) {
+            this.to = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IpRangeAggregationRange}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IpRangeAggregationRange build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IpRangeAggregationRange}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IpRangeAggregationRange build() {
+            _checkSingleUse();
 
-			return new IpRangeAggregationRange(this);
-		}
-	}
+            return new IpRangeAggregationRange(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IpRangeAggregationRange}
-	 */
-	public static final JsonpDeserializer<IpRangeAggregationRange> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IpRangeAggregationRange::setupIpRangeAggregationRangeDeserializer);
+    /**
+     * Json deserializer for {@link IpRangeAggregationRange}
+     */
+    public static final JsonpDeserializer<IpRangeAggregationRange> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IpRangeAggregationRange::setupIpRangeAggregationRangeDeserializer
+    );
 
-	protected static void setupIpRangeAggregationRangeDeserializer(
-			ObjectDeserializer<IpRangeAggregationRange.Builder> op) {
+    protected static void setupIpRangeAggregationRangeDeserializer(ObjectDeserializer<IpRangeAggregationRange.Builder> op) {
 
-		op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
-		op.add(Builder::mask, JsonpDeserializer.stringDeserializer(), "mask");
-		op.add(Builder::to, JsonpDeserializer.stringDeserializer(), "to");
+        op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
+        op.add(Builder::mask, JsonpDeserializer.stringDeserializer(), "mask");
+        op.add(Builder::to, JsonpDeserializer.stringDeserializer(), "to");
 
-	}
+    }
 
 }

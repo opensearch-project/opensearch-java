@@ -39,27 +39,26 @@ import org.opensearch.client.json.ObjectDeserializer;
 /**
  * Base type for bucket aggregations. These aggregations also accept
  * sub-aggregations.
- * 
+ *
  */
 
 public abstract class BucketAggregationBase extends AggregationBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected BucketAggregationBase(AbstractBuilder<?> builder) {
-		super(builder);
+    protected BucketAggregationBase(AbstractBuilder<?> builder) {
+        super(builder);
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				AggregationBase.AbstractBuilder<BuilderT> {
-	}
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregationBase.AbstractBuilder<
+        BuilderT> {}
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBucketAggregationBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		AggregationBase.setupAggregationBaseDeserializer(op);
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBucketAggregationBaseDeserializer(
+        ObjectDeserializer<BuilderT> op
+    ) {
+        AggregationBase.setupAggregationBaseDeserializer(op);
 
-	}
+    }
 
 }

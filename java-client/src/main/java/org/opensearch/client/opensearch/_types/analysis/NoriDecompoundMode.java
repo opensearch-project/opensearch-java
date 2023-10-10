@@ -35,27 +35,25 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum NoriDecompoundMode implements JsonEnum {
-	Discard("discard"),
+    Discard("discard"),
 
-	None("none"),
+    None("none"),
 
-	Mixed("mixed"),
+    Mixed("mixed"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	NoriDecompoundMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    NoriDecompoundMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<NoriDecompoundMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			NoriDecompoundMode.values());
+    public static final JsonEnum.Deserializer<NoriDecompoundMode> _DESERIALIZER = new JsonEnum.Deserializer<>(NoriDecompoundMode.values());
 }

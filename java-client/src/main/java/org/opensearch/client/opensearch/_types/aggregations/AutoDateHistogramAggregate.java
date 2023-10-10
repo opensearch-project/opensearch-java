@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,104 +41,101 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.AutoDateHistogramAggregate
 
 @JsonpDeserializable
-public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHistogramBucket>
-		implements
-			AggregateVariant {
-	private final String interval;
+public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHistogramBucket> implements AggregateVariant {
+    private final String interval;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private AutoDateHistogramAggregate(Builder builder) {
-		super(builder);
+    private AutoDateHistogramAggregate(Builder builder) {
+        super(builder);
 
-		this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
+        this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
 
-	}
+    }
 
-	public static AutoDateHistogramAggregate of(Function<Builder, ObjectBuilder<AutoDateHistogramAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static AutoDateHistogramAggregate of(Function<Builder, ObjectBuilder<AutoDateHistogramAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.AutoDateHistogram;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.AutoDateHistogram;
+    }
 
-	/**
-	 * Required - API name: {@code interval}
-	 */
-	public final String interval() {
-		return this.interval;
-	}
+    /**
+     * Required - API name: {@code interval}
+     */
+    public final String interval() {
+        return this.interval;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("interval");
-		generator.write(this.interval);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("interval");
+        generator.write(this.interval);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link AutoDateHistogramAggregate}.
-	 */
+    /**
+     * Builder for {@link AutoDateHistogramAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<DateHistogramBucket, Builder>
-			implements
-				ObjectBuilder<AutoDateHistogramAggregate> {
-		private String interval;
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<DateHistogramBucket, Builder>
+        implements
+            ObjectBuilder<AutoDateHistogramAggregate> {
+        private String interval;
 
-		/**
-		 * Required - API name: {@code interval}
-		 */
-		public final Builder interval(String value) {
-			this.interval = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code interval}
+         */
+        public final Builder interval(String value) {
+            this.interval = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link AutoDateHistogramAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public AutoDateHistogramAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link AutoDateHistogramAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public AutoDateHistogramAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new AutoDateHistogramAggregate(this);
-		}
-	}
+            return new AutoDateHistogramAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link AutoDateHistogramAggregate}
-	 */
-	public static final JsonpDeserializer<AutoDateHistogramAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AutoDateHistogramAggregate::setupAutoDateHistogramAggregateDeserializer);
+    /**
+     * Json deserializer for {@link AutoDateHistogramAggregate}
+     */
+    public static final JsonpDeserializer<AutoDateHistogramAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        AutoDateHistogramAggregate::setupAutoDateHistogramAggregateDeserializer
+    );
 
-	protected static void setupAutoDateHistogramAggregateDeserializer(
-			ObjectDeserializer<AutoDateHistogramAggregate.Builder> op) {
-		setupMultiBucketAggregateBaseDeserializer(op, DateHistogramBucket._DESERIALIZER);
-		op.add(Builder::interval, JsonpDeserializer.stringDeserializer(), "interval");
+    protected static void setupAutoDateHistogramAggregateDeserializer(ObjectDeserializer<AutoDateHistogramAggregate.Builder> op) {
+        setupMultiBucketAggregateBaseDeserializer(op, DateHistogramBucket._DESERIALIZER);
+        op.add(Builder::interval, JsonpDeserializer.stringDeserializer(), "interval");
 
-	}
+    }
 
 }
