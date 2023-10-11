@@ -32,24 +32,17 @@
 
 package org.opensearch.client.transport.rest_client;
 
-import org.apache.http.HttpStatus;
-import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.NdJsonpSerializable;
-import org.opensearch.client.transport.JsonEndpoint;
-import org.opensearch.client.transport.TransportException;
-import org.opensearch.client.transport.endpoints.BooleanEndpoint;
-import org.opensearch.client.transport.endpoints.BooleanResponse;
-import org.opensearch.client.transport.OpenSearchTransport;
-import org.opensearch.client.transport.Endpoint;
-import org.opensearch.client.transport.TransportOptions;
-import org.opensearch.client.util.ApiTypeHelper;
-import org.opensearch.client.util.MissingRequiredPropertyException;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import javax.annotation.Nullable;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpStatus;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
@@ -60,6 +53,20 @@ import org.opensearch.client.Response;
 import org.opensearch.client.ResponseException;
 import org.opensearch.client.ResponseListener;
 import org.opensearch.client.RestClient;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.NdJsonpSerializable;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.JsonEndpoint;
+import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.TransportException;
+import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.transport.endpoints.BooleanEndpoint;
+import org.opensearch.client.transport.endpoints.BooleanResponse;
+import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.MissingRequiredPropertyException;
 
 public class RestClientTransport implements OpenSearchTransport {
 

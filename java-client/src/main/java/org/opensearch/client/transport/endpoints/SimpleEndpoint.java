@@ -35,10 +35,10 @@ package org.opensearch.client.transport.endpoints;
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.JsonEndpoint;
-import org.apache.http.client.utils.URLEncodedUtils;
 
 public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<RequestT, ResponseT, ErrorResponse> {
 

@@ -33,16 +33,6 @@
 package org.opensearch.client.transport;
 
 import com.sun.net.httpserver.HttpServer;
-import org.apache.http.HttpHost;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.opensearch.client.ResponseException;
-import org.opensearch.client.RestClient;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
@@ -52,6 +42,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+import org.apache.http.HttpHost;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.opensearch.client.ResponseException;
+import org.opensearch.client.RestClient;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.transport.rest_client.RestClientTransport;
@@ -95,8 +94,7 @@ public class RequestOptionsTest extends Assert {
 
         httpServer.start();
         InetSocketAddress address = httpServer.getAddress();
-        restClient = RestClient.builder(new HttpHost(address.getHostString(), address.getPort(), "http"))
-            .build();
+        restClient = RestClient.builder(new HttpHost(address.getHostString(), address.getPort(), "http")).build();
     }
 
     @After
