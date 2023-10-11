@@ -106,6 +106,7 @@ public abstract class AbstractSearchTemplateRequestIT extends OpenSearchJavaClie
         assertEquals(1, searchResponse.responses().size());
         var response = searchResponse.responses().get(0);
         assertTrue(response.isResult());
+        assertNull(response.result().status());
         assertEquals(4, response.result().hits().hits().size());
     }
 
