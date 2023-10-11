@@ -85,6 +85,30 @@ public abstract class AbstractSearchTemplateRequestIT extends OpenSearchJavaClie
 
     }
 
+    @Test
+    public void testMultiSearchTemplate() throws Exception {
+        var index = "test-msearch-template";
+        createDocuments(index);
+
+        var searchResponse = javaClient().msearchTemplate(
+            request -> request.searchTemplates(
+                r -> r.header(h -> h.index(index))
+                    .body(
+                        t -> t.id(TEST_SEARCH_TEMPLATE)
+                            .params("title", JsonData.of("Document"))
+                            .params("suggs", JsonData.of(false))
+                            .params("aggs", JsonData.of(false))
+                    )
+            ),
+            SimpleDoc.class
+        );
+
+        assertEquals(1, searchResponse.responses().size());
+        var response = searchResponse.responses().get(0);
+        assertTrue(response.isResult());
+        assertEquals(4, response.result().hits().hits().size());
+    }
+
     private SearchTemplateResponse<SimpleDoc> sendTemplateRequest(String index, String title, boolean suggs, boolean aggs)
         throws IOException {
         return javaClient().searchTemplate(
