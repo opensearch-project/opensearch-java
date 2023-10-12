@@ -186,7 +186,7 @@ public class JacksonJsonpParserTest extends ModelTestCase {
 
         assertEquals(2, response.responses().size());
         assertEquals(404, response.responses().get(0).failure().status());
-        assertEquals(200, response.responses().get(1).result().status());
+        assertEquals((Integer) 200, response.responses().get(1).result().status());
     }
 
     public static class AttributedJacksonJsonpMapper extends JacksonJsonpMapper {
