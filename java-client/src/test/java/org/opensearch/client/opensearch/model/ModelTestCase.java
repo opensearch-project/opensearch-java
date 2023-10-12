@@ -32,19 +32,18 @@
 
 package org.opensearch.client.opensearch.model;
 
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.jackson.JacksonJsonpMapper;
-import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-import org.junit.Assert;
-
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.util.Random;
+import org.junit.Assert;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.jackson.JacksonJsonpMapper;
+import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 
 /**
  * Base class for tests that encode/decode json
@@ -110,7 +109,7 @@ public abstract class ModelTestCase extends Assert {
     @SuppressWarnings("unchecked")
     protected <T> T checkJsonRoundtrip(T value, String expectedJson) {
         assertEquals(expectedJson, toJson(value));
-        return fromJson(expectedJson, (Class<T>)value.getClass());
+        return fromJson(expectedJson, (Class<T>) value.getClass());
     }
 
     protected <T> T fromJson(String json, JsonpDeserializer<T> deserializer) {

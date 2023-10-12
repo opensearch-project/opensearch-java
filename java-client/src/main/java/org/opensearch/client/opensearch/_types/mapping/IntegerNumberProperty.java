@@ -32,116 +32,115 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.IntegerNumberProperty
 
-
 @JsonpDeserializable
 public class IntegerNumberProperty extends StandardNumberProperty implements PropertyVariant {
-	@Nullable
-	private final Integer nullValue;
+    @Nullable
+    private final Integer nullValue;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IntegerNumberProperty(Builder builder) {
-		super(builder);
+    private IntegerNumberProperty(Builder builder) {
+        super(builder);
 
-		this.nullValue = builder.nullValue;
+        this.nullValue = builder.nullValue;
 
-	}
+    }
 
-	public static IntegerNumberProperty of(Function<Builder, ObjectBuilder<IntegerNumberProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IntegerNumberProperty of(Function<Builder, ObjectBuilder<IntegerNumberProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Integer;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Integer;
+    }
 
-	/**
-	 * API name: {@code null_value}
-	 */
-	@Nullable
-	public final Integer nullValue() {
-		return this.nullValue;
-	}
+    /**
+     * API name: {@code null_value}
+     */
+    @Nullable
+    public final Integer nullValue() {
+        return this.nullValue;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "integer");
-		super.serializeInternal(generator, mapper);
-		if (this.nullValue != null) {
-			generator.writeKey("null_value");
-			generator.write(this.nullValue);
+        generator.write("type", "integer");
+        super.serializeInternal(generator, mapper);
+        if (this.nullValue != null) {
+            generator.writeKey("null_value");
+            generator.write(this.nullValue);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IntegerNumberProperty}.
-	 */
+    /**
+     * Builder for {@link IntegerNumberProperty}.
+     */
 
-	public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<IntegerNumberProperty> {
-		@Nullable
-		private Integer nullValue;
+    public static class Builder extends StandardNumberProperty.AbstractBuilder<Builder> implements ObjectBuilder<IntegerNumberProperty> {
+        @Nullable
+        private Integer nullValue;
 
-		/**
-		 * API name: {@code null_value}
-		 */
-		public final Builder nullValue(@Nullable Integer value) {
-			this.nullValue = value;
-			return this;
-		}
+        /**
+         * API name: {@code null_value}
+         */
+        public final Builder nullValue(@Nullable Integer value) {
+            this.nullValue = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IntegerNumberProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IntegerNumberProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IntegerNumberProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IntegerNumberProperty build() {
+            _checkSingleUse();
 
-			return new IntegerNumberProperty(this);
-		}
-	}
+            return new IntegerNumberProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IntegerNumberProperty}
-	 */
-	public static final JsonpDeserializer<IntegerNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IntegerNumberProperty::setupIntegerNumberPropertyDeserializer);
+    /**
+     * Json deserializer for {@link IntegerNumberProperty}
+     */
+    public static final JsonpDeserializer<IntegerNumberProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IntegerNumberProperty::setupIntegerNumberPropertyDeserializer
+    );
 
-	protected static void setupIntegerNumberPropertyDeserializer(ObjectDeserializer<IntegerNumberProperty.Builder> op) {
-		StandardNumberProperty.setupStandardNumberPropertyDeserializer(op);
-		op.add(Builder::nullValue, JsonpDeserializer.integerDeserializer(), "null_value");
+    protected static void setupIntegerNumberPropertyDeserializer(ObjectDeserializer<IntegerNumberProperty.Builder> op) {
+        StandardNumberProperty.setupStandardNumberPropertyDeserializer(op);
+        op.add(Builder::nullValue, JsonpDeserializer.integerDeserializer(), "null_value");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

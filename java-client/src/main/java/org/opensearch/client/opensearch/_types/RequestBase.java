@@ -36,16 +36,12 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.RequestBase
 
-
 public abstract class RequestBase {
-	public RequestBase() {
-	}
+    public RequestBase() {}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ObjectBuilderBase {
-		protected abstract BuilderT self();
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+        protected abstract BuilderT self();
 
-	}
+    }
 
 }

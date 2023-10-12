@@ -35,25 +35,25 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum IcuTransformDirection implements JsonEnum {
-	Forward("forward"),
+    Forward("forward"),
 
-	Reverse("reverse"),
+    Reverse("reverse"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	IcuTransformDirection(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    IcuTransformDirection(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<IcuTransformDirection> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IcuTransformDirection.values());
+    public static final JsonEnum.Deserializer<IcuTransformDirection> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IcuTransformDirection.values()
+    );
 }

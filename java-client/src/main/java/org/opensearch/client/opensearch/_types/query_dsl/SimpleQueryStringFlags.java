@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,8 +44,6 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.SimpleQueryStringFlags
 
@@ -54,130 +54,133 @@ import java.util.function.Function;
 @JsonpDeserializable
 public class SimpleQueryStringFlags implements TaggedUnion<SimpleQueryStringFlags.Kind, Object>, JsonpSerializable {
 
-	public enum Kind {
-		Single, Multiple
+    public enum Kind {
+        Single,
+        Multiple
 
-	}
+    }
 
-	private final Kind _kind;
-	private final Object _value;
+    private final Kind _kind;
+    private final Object _value;
 
-	@Override
-	public final Kind _kind() {
-		return _kind;
-	}
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
 
-	@Override
-	public final Object _get() {
-		return _value;
-	}
+    @Override
+    public final Object _get() {
+        return _value;
+    }
 
-	private SimpleQueryStringFlags(Kind kind, Object value) {
-		this._kind = kind;
-		this._value = value;
-	}
+    private SimpleQueryStringFlags(Kind kind, Object value) {
+        this._kind = kind;
+        this._value = value;
+    }
 
-	public String _toJsonString() {
-		switch (_kind) {
-			case Single :
-				return this.single().jsonValue();
-			case Multiple :
-				return this.multiple();
+    public String _toJsonString() {
+        switch (_kind) {
+            case Single:
+                return this.single().jsonValue();
+            case Multiple:
+                return this.multiple();
 
-			default :
-				throw new IllegalStateException("Unknown kind " + _kind);
-		}
-	}
+            default:
+                throw new IllegalStateException("Unknown kind " + _kind);
+        }
+    }
 
-	private SimpleQueryStringFlags(Builder builder) {
+    private SimpleQueryStringFlags(Builder builder) {
 
-		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-	}
+    }
 
-	public static SimpleQueryStringFlags of(Function<Builder, ObjectBuilder<SimpleQueryStringFlags>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SimpleQueryStringFlags of(Function<Builder, ObjectBuilder<SimpleQueryStringFlags>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Is this variant instance of kind {@code single}?
-	 */
-	public boolean isSingle() {
-		return _kind == Kind.Single;
-	}
+    /**
+     * Is this variant instance of kind {@code single}?
+     */
+    public boolean isSingle() {
+        return _kind == Kind.Single;
+    }
 
-	/**
-	 * Get the {@code single} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code single} kind.
-	 */
-	public SimpleQueryStringFlag single() {
-		return TaggedUnionUtils.get(this, Kind.Single);
-	}
+    /**
+     * Get the {@code single} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code single} kind.
+     */
+    public SimpleQueryStringFlag single() {
+        return TaggedUnionUtils.get(this, Kind.Single);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code multiple}?
-	 */
-	public boolean isMultiple() {
-		return _kind == Kind.Multiple;
-	}
+    /**
+     * Is this variant instance of kind {@code multiple}?
+     */
+    public boolean isMultiple() {
+        return _kind == Kind.Multiple;
+    }
 
-	/**
-	 * Get the {@code multiple} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code multiple} kind.
-	 */
-	public String multiple() {
-		return TaggedUnionUtils.get(this, Kind.Multiple);
-	}
+    /**
+     * Get the {@code multiple} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code multiple} kind.
+     */
+    public String multiple() {
+        return TaggedUnionUtils.get(this, Kind.Multiple);
+    }
 
-	@Override
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_kind) {
-				case Multiple :
-					generator.write(((String) this._value));
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        if (_value instanceof JsonpSerializable) {
+            ((JsonpSerializable) _value).serialize(generator, mapper);
+        } else {
+            switch (_kind) {
+                case Multiple:
+                    generator.write(((String) this._value));
 
-					break;
-			}
-		}
+                    break;
+            }
+        }
 
-	}
+    }
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimpleQueryStringFlags> {
-		private Kind _kind;
-		private Object _value;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimpleQueryStringFlags> {
+        private Kind _kind;
+        private Object _value;
 
-		public ObjectBuilder<SimpleQueryStringFlags> single(SimpleQueryStringFlag v) {
-			this._kind = Kind.Single;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<SimpleQueryStringFlags> single(SimpleQueryStringFlag v) {
+            this._kind = Kind.Single;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<SimpleQueryStringFlags> multiple(String v) {
-			this._kind = Kind.Multiple;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<SimpleQueryStringFlags> multiple(String v) {
+            this._kind = Kind.Multiple;
+            this._value = v;
+            return this;
+        }
 
-		public SimpleQueryStringFlags build() {
-			_checkSingleUse();
-			return new SimpleQueryStringFlags(this);
-		}
+        public SimpleQueryStringFlags build() {
+            _checkSingleUse();
+            return new SimpleQueryStringFlags(this);
+        }
 
-	}
+    }
 
-	private static JsonpDeserializer<SimpleQueryStringFlags> buildSimpleQueryStringFlagsDeserializer() {
-		return new UnionDeserializer.Builder<SimpleQueryStringFlags, Kind, Object>(SimpleQueryStringFlags::new, true)
-				.addMember(Kind.Single, SimpleQueryStringFlag._DESERIALIZER)
-				.addMember(Kind.Multiple, JsonpDeserializer.stringDeserializer()).build();
-	}
+    private static JsonpDeserializer<SimpleQueryStringFlags> buildSimpleQueryStringFlagsDeserializer() {
+        return new UnionDeserializer.Builder<SimpleQueryStringFlags, Kind, Object>(SimpleQueryStringFlags::new, true).addMember(
+            Kind.Single,
+            SimpleQueryStringFlag._DESERIALIZER
+        ).addMember(Kind.Multiple, JsonpDeserializer.stringDeserializer()).build();
+    }
 
-	public static final JsonpDeserializer<SimpleQueryStringFlags> _DESERIALIZER = JsonpDeserializer
-			.lazy(SimpleQueryStringFlags::buildSimpleQueryStringFlagsDeserializer);
+    public static final JsonpDeserializer<SimpleQueryStringFlags> _DESERIALIZER = JsonpDeserializer.lazy(
+        SimpleQueryStringFlags::buildSimpleQueryStringFlagsDeserializer
+    );
 }

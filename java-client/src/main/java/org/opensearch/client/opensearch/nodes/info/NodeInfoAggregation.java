@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,113 +44,112 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoAggregation
 
 @JsonpDeserializable
 public class NodeInfoAggregation implements JsonpSerializable {
-	private final List<String> types;
+    private final List<String> types;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoAggregation(Builder builder) {
+    private NodeInfoAggregation(Builder builder) {
 
-		this.types = ApiTypeHelper.unmodifiableRequired(builder.types, this, "types");
+        this.types = ApiTypeHelper.unmodifiableRequired(builder.types, this, "types");
 
-	}
+    }
 
-	public static NodeInfoAggregation of(Function<Builder, ObjectBuilder<NodeInfoAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoAggregation of(Function<Builder, ObjectBuilder<NodeInfoAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code types}
-	 */
-	public final List<String> types() {
-		return this.types;
-	}
+    /**
+     * Required - API name: {@code types}
+     */
+    public final List<String> types() {
+        return this.types;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.types)) {
-			generator.writeKey("types");
-			generator.writeStartArray();
-			for (String item0 : this.types) {
-				generator.write(item0);
+        if (ApiTypeHelper.isDefined(this.types)) {
+            generator.writeKey("types");
+            generator.writeStartArray();
+            for (String item0 : this.types) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoAggregation}.
-	 */
+    /**
+     * Builder for {@link NodeInfoAggregation}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoAggregation> {
-		private List<String> types;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoAggregation> {
+        private List<String> types;
 
-		/**
-		 * Required - API name: {@code types}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>types</code>.
-		 */
-		public final Builder types(List<String> list) {
-			this.types = _listAddAll(this.types, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code types}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>types</code>.
+         */
+        public final Builder types(List<String> list) {
+            this.types = _listAddAll(this.types, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code types}
-		 * <p>
-		 * Adds one or more values to <code>types</code>.
-		 */
-		public final Builder types(String value, String... values) {
-			this.types = _listAdd(this.types, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code types}
+         * <p>
+         * Adds one or more values to <code>types</code>.
+         */
+        public final Builder types(String value, String... values) {
+            this.types = _listAdd(this.types, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeInfoAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoAggregation build() {
+            _checkSingleUse();
 
-			return new NodeInfoAggregation(this);
-		}
-	}
+            return new NodeInfoAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoAggregation}
-	 */
-	public static final JsonpDeserializer<NodeInfoAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoAggregation::setupNodeInfoAggregationDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoAggregation}
+     */
+    public static final JsonpDeserializer<NodeInfoAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoAggregation::setupNodeInfoAggregationDeserializer
+    );
 
-	protected static void setupNodeInfoAggregationDeserializer(ObjectDeserializer<NodeInfoAggregation.Builder> op) {
+    protected static void setupNodeInfoAggregationDeserializer(ObjectDeserializer<NodeInfoAggregation.Builder> op) {
 
-		op.add(Builder::types, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "types");
+        op.add(Builder::types, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "types");
 
-	}
+    }
 
 }

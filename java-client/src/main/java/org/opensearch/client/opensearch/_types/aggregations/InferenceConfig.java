@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,158 +43,155 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceConfigContainer
 
-
 @JsonpDeserializable
 public class InferenceConfig implements JsonpSerializable {
-	@Nullable
-	private final RegressionInferenceOptions regression;
+    @Nullable
+    private final RegressionInferenceOptions regression;
 
-	@Nullable
-	private final ClassificationInferenceOptions classification;
+    @Nullable
+    private final ClassificationInferenceOptions classification;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private InferenceConfig(Builder builder) {
+    private InferenceConfig(Builder builder) {
 
-		this.regression = builder.regression;
-		this.classification = builder.classification;
+        this.regression = builder.regression;
+        this.classification = builder.classification;
 
-	}
+    }
 
-	public static InferenceConfig of(Function<Builder, ObjectBuilder<InferenceConfig>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static InferenceConfig of(Function<Builder, ObjectBuilder<InferenceConfig>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Regression configuration for inference.
-	 * <p>
-	 * API name: {@code regression}
-	 */
-	@Nullable
-	public final RegressionInferenceOptions regression() {
-		return this.regression;
-	}
+    /**
+     * Regression configuration for inference.
+     * <p>
+     * API name: {@code regression}
+     */
+    @Nullable
+    public final RegressionInferenceOptions regression() {
+        return this.regression;
+    }
 
-	/**
-	 * Classification configuration for inference.
-	 * <p>
-	 * API name: {@code classification}
-	 */
-	@Nullable
-	public final ClassificationInferenceOptions classification() {
-		return this.classification;
-	}
+    /**
+     * Classification configuration for inference.
+     * <p>
+     * API name: {@code classification}
+     */
+    @Nullable
+    public final ClassificationInferenceOptions classification() {
+        return this.classification;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.regression != null) {
-			generator.writeKey("regression");
-			this.regression.serialize(generator, mapper);
+        if (this.regression != null) {
+            generator.writeKey("regression");
+            this.regression.serialize(generator, mapper);
 
-		}
-		if (this.classification != null) {
-			generator.writeKey("classification");
-			this.classification.serialize(generator, mapper);
+        }
+        if (this.classification != null) {
+            generator.writeKey("classification");
+            this.classification.serialize(generator, mapper);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link InferenceConfig}.
-	 */
+    /**
+     * Builder for {@link InferenceConfig}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceConfig> {
-		@Nullable
-		private RegressionInferenceOptions regression;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceConfig> {
+        @Nullable
+        private RegressionInferenceOptions regression;
 
-		@Nullable
-		private ClassificationInferenceOptions classification;
+        @Nullable
+        private ClassificationInferenceOptions classification;
 
-		/**
-		 * Regression configuration for inference.
-		 * <p>
-		 * API name: {@code regression}
-		 */
-		public final Builder regression(@Nullable RegressionInferenceOptions value) {
-			this.regression = value;
-			return this;
-		}
+        /**
+         * Regression configuration for inference.
+         * <p>
+         * API name: {@code regression}
+         */
+        public final Builder regression(@Nullable RegressionInferenceOptions value) {
+            this.regression = value;
+            return this;
+        }
 
-		/**
-		 * Regression configuration for inference.
-		 * <p>
-		 * API name: {@code regression}
-		 */
-		public final Builder regression(
-				Function<RegressionInferenceOptions.Builder, ObjectBuilder<RegressionInferenceOptions>> fn) {
-			return this.regression(fn.apply(new RegressionInferenceOptions.Builder()).build());
-		}
+        /**
+         * Regression configuration for inference.
+         * <p>
+         * API name: {@code regression}
+         */
+        public final Builder regression(Function<RegressionInferenceOptions.Builder, ObjectBuilder<RegressionInferenceOptions>> fn) {
+            return this.regression(fn.apply(new RegressionInferenceOptions.Builder()).build());
+        }
 
-		/**
-		 * Classification configuration for inference.
-		 * <p>
-		 * API name: {@code classification}
-		 */
-		public final Builder classification(@Nullable ClassificationInferenceOptions value) {
-			this.classification = value;
-			return this;
-		}
+        /**
+         * Classification configuration for inference.
+         * <p>
+         * API name: {@code classification}
+         */
+        public final Builder classification(@Nullable ClassificationInferenceOptions value) {
+            this.classification = value;
+            return this;
+        }
 
-		/**
-		 * Classification configuration for inference.
-		 * <p>
-		 * API name: {@code classification}
-		 */
-		public final Builder classification(
-				Function<ClassificationInferenceOptions.Builder, ObjectBuilder<ClassificationInferenceOptions>> fn) {
-			return this.classification(fn.apply(new ClassificationInferenceOptions.Builder()).build());
-		}
+        /**
+         * Classification configuration for inference.
+         * <p>
+         * API name: {@code classification}
+         */
+        public final Builder classification(
+            Function<ClassificationInferenceOptions.Builder, ObjectBuilder<ClassificationInferenceOptions>> fn
+        ) {
+            return this.classification(fn.apply(new ClassificationInferenceOptions.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link InferenceConfig}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public InferenceConfig build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link InferenceConfig}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public InferenceConfig build() {
+            _checkSingleUse();
 
-			return new InferenceConfig(this);
-		}
-	}
+            return new InferenceConfig(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link InferenceConfig}
-	 */
-	public static final JsonpDeserializer<InferenceConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InferenceConfig::setupInferenceConfigDeserializer);
+    /**
+     * Json deserializer for {@link InferenceConfig}
+     */
+    public static final JsonpDeserializer<InferenceConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        InferenceConfig::setupInferenceConfigDeserializer
+    );
 
-	protected static void setupInferenceConfigDeserializer(ObjectDeserializer<InferenceConfig.Builder> op) {
+    protected static void setupInferenceConfigDeserializer(ObjectDeserializer<InferenceConfig.Builder> op) {
 
-		op.add(Builder::regression, RegressionInferenceOptions._DESERIALIZER, "regression");
-		op.add(Builder::classification, ClassificationInferenceOptions._DESERIALIZER, "classification");
+        op.add(Builder::regression, RegressionInferenceOptions._DESERIALIZER, "regression");
+        op.add(Builder::classification, ClassificationInferenceOptions._DESERIALIZER, "classification");
 
-	}
+    }
 
 }

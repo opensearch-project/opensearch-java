@@ -37,10 +37,10 @@ package org.opensearch.client.opensearch.core.bulk;
  */
 public interface BulkOperationVariant {
 
-	BulkOperation.Kind _bulkOperationKind();
+    BulkOperation.Kind _bulkOperationKind();
 
-	default BulkOperation _toBulkOperation() {
-		return new BulkOperation(this);
-	}
+    default BulkOperation _toBulkOperation() {
+        return new BulkOperation(this);
+    }
 
 }

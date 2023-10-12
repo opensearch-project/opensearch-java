@@ -32,19 +32,18 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.Bytes;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 // typedef: cat.recovery.Request
 
@@ -220,51 +219,55 @@ public class RecoveryRequest extends CatRequestBase {
      */
     public static final Endpoint<RecoveryRequest, RecoveryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-            // Request method
-            request -> {
-                return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-            },
+        },
 
-            // Request path
-            request -> {
-                final int _index = 1 << 0;
+        // Request path
+        request -> {
+            final int _index = 1 << 0;
 
-                int propsSet = 0;
+            int propsSet = 0;
 
-                if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
+            if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
 
-                if (propsSet == 0) {
-                    StringBuilder buf = new StringBuilder();
-                    buf.append("/_cat");
-                    buf.append("/recovery");
-                    return buf.toString();
-                }
-                if (propsSet == (_index)) {
-                    StringBuilder buf = new StringBuilder();
-                    buf.append("/_cat");
-                    buf.append("/recovery");
-                    buf.append("/");
-                    SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-                    return buf.toString();
-                }
-                throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/recovery");
+                return buf.toString();
+            }
+            if (propsSet == (_index)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/recovery");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-            },
+        },
 
-            // Request parameters
-            request -> {
-                Map<String, String> params =  new HashMap<>(request.queryParameters());
-                if (request.detailed != null) {
-                    params.put("detailed", String.valueOf(request.detailed));
-                }
-                if (request.activeOnly != null) {
-                    params.put("active_only", String.valueOf(request.activeOnly));
-                }
-                if (request.bytes != null) {
-                    params.put("bytes", request.bytes.jsonValue());
-                }
-                return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>(request.queryParameters());
+            if (request.detailed != null) {
+                params.put("detailed", String.valueOf(request.detailed));
+            }
+            if (request.activeOnly != null) {
+                params.put("active_only", String.valueOf(request.activeOnly));
+            }
+            if (request.bytes != null) {
+                params.put("bytes", request.bytes.jsonValue());
+            }
+            return params;
 
-            }, SimpleEndpoint.emptyMap(), false, RecoveryResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        RecoveryResponse._DESERIALIZER
+    );
 }

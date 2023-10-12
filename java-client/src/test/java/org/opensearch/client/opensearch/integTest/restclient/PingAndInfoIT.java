@@ -9,7 +9,6 @@
 package org.opensearch.client.opensearch.integTest.restclient;
 
 import java.io.IOException;
-
 import org.apache.http.HttpHost;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.integTest.AbstractPingAndInfoIT;

@@ -32,76 +32,76 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.ValueCountAggregation
-
 
 @JsonpDeserializable
 public class ValueCountAggregation extends FormattableMetricAggregation implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ValueCountAggregation(Builder builder) {
-		super(builder);
+    private ValueCountAggregation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static ValueCountAggregation of(Function<Builder, ObjectBuilder<ValueCountAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ValueCountAggregation of(Function<Builder, ObjectBuilder<ValueCountAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.ValueCount;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.ValueCount;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ValueCountAggregation}.
-	 */
+    /**
+     * Builder for {@link ValueCountAggregation}.
+     */
 
-	public static class Builder extends FormattableMetricAggregation.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ValueCountAggregation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends FormattableMetricAggregation.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<ValueCountAggregation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ValueCountAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ValueCountAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ValueCountAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ValueCountAggregation build() {
+            _checkSingleUse();
 
-			return new ValueCountAggregation(this);
-		}
-	}
+            return new ValueCountAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ValueCountAggregation}
-	 */
-	public static final JsonpDeserializer<ValueCountAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ValueCountAggregation::setupValueCountAggregationDeserializer);
+    /**
+     * Json deserializer for {@link ValueCountAggregation}
+     */
+    public static final JsonpDeserializer<ValueCountAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ValueCountAggregation::setupValueCountAggregationDeserializer
+    );
 
-	protected static void setupValueCountAggregationDeserializer(ObjectDeserializer<ValueCountAggregation.Builder> op) {
-		FormattableMetricAggregation.setupFormattableMetricAggregationDeserializer(op);
+    protected static void setupValueCountAggregationDeserializer(ObjectDeserializer<ValueCountAggregation.Builder> op) {
+        FormattableMetricAggregation.setupFormattableMetricAggregationDeserializer(op);
 
-	}
+    }
 
 }

@@ -37,27 +37,27 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum SortMode implements JsonEnum {
-	Min("min"),
+    Min("min"),
 
-	Max("max"),
+    Max("max"),
 
-	Sum("sum"),
+    Sum("sum"),
 
-	Avg("avg"),
+    Avg("avg"),
 
-	Median("median"),
+    Median("median"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	SortMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    SortMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<SortMode> _DESERIALIZER = new JsonEnum.Deserializer<>(SortMode.values());
+    public static final JsonEnum.Deserializer<SortMode> _DESERIALIZER = new JsonEnum.Deserializer<>(SortMode.values());
 }

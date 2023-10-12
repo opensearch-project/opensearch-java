@@ -32,135 +32,130 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SuggesterBase
 
-
-
 public abstract class SuggesterBase implements JsonpSerializable {
-	private final String field;
+    private final String field;
 
-	@Nullable
-	private final String analyzer;
+    @Nullable
+    private final String analyzer;
 
-	@Nullable
-	private final Integer size;
+    @Nullable
+    private final Integer size;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected SuggesterBase(AbstractBuilder<?> builder) {
+    protected SuggesterBase(AbstractBuilder<?> builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.analyzer = builder.analyzer;
-		this.size = builder.size;
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.analyzer = builder.analyzer;
+        this.size = builder.size;
 
-	}
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * API name: {@code analyzer}
-	 */
-	@Nullable
-	public final String analyzer() {
-		return this.analyzer;
-	}
+    /**
+     * API name: {@code analyzer}
+     */
+    @Nullable
+    public final String analyzer() {
+        return this.analyzer;
+    }
 
-	/**
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public final Integer size() {
-		return this.size;
-	}
+    /**
+     * API name: {@code size}
+     */
+    @Nullable
+    public final Integer size() {
+        return this.size;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("field");
-		generator.write(this.field);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-		if (this.analyzer != null) {
-			generator.writeKey("analyzer");
-			generator.write(this.analyzer);
+        if (this.analyzer != null) {
+            generator.writeKey("analyzer");
+            generator.write(this.analyzer);
 
-		}
-		if (this.size != null) {
-			generator.writeKey("size");
-			generator.write(this.size);
+        }
+        if (this.size != null) {
+            generator.writeKey("size");
+            generator.write(this.size);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ObjectBuilderBase {
-		private String field;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+        private String field;
 
-		@Nullable
-		private String analyzer;
+        @Nullable
+        private String analyzer;
 
-		@Nullable
-		private Integer size;
+        @Nullable
+        private Integer size;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final BuilderT field(String value) {
-			this.field = value;
-			return self();
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final BuilderT field(String value) {
+            this.field = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code analyzer}
-		 */
-		public final BuilderT analyzer(@Nullable String value) {
-			this.analyzer = value;
-			return self();
-		}
+        /**
+         * API name: {@code analyzer}
+         */
+        public final BuilderT analyzer(@Nullable String value) {
+            this.analyzer = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code size}
-		 */
-		public final BuilderT size(@Nullable Integer value) {
-			this.size = value;
-			return self();
-		}
+        /**
+         * API name: {@code size}
+         */
+        public final BuilderT size(@Nullable Integer value) {
+            this.size = value;
+            return self();
+        }
 
-		protected abstract BuilderT self();
+        protected abstract BuilderT self();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSuggesterBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSuggesterBaseDeserializer(ObjectDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(AbstractBuilder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
-		op.add(AbstractBuilder::size, JsonpDeserializer.integerDeserializer(), "size");
+        op.add(AbstractBuilder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(AbstractBuilder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
+        op.add(AbstractBuilder::size, JsonpDeserializer.integerDeserializer(), "size");
 
-	}
+    }
 
 }

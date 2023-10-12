@@ -8,18 +8,17 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import org.junit.Test;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.search.Highlight;
 import org.opensearch.client.opensearch.core.search.Hit;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public abstract class AbstractHighlightIT extends OpenSearchJavaClientTestCase {
 
@@ -28,8 +27,7 @@ public abstract class AbstractHighlightIT extends OpenSearchJavaClientTestCase {
         String index = "queries_highlight";
         createTestDocuments(index);
 
-        List<Map<String, List<String>>> highlights = highlightQuery("spread",
-                h -> h.fields("content", b -> b));
+        List<Map<String, List<String>>> highlights = highlightQuery("spread", h -> h.fields("content", b -> b));
 
         assertEquals(2, highlights.size());
         for (Map<String, List<String>> hit : highlights) {
@@ -44,8 +42,10 @@ public abstract class AbstractHighlightIT extends OpenSearchJavaClientTestCase {
         String index = "queries_highlight";
         createTestDocuments(index);
 
-        List<Map<String, List<String>>> highlights = highlightQuery("real decades",
-                h -> h.fields("title", b -> b).fields("content", b -> b));
+        List<Map<String, List<String>>> highlights = highlightQuery(
+            "real decades",
+            h -> h.fields("title", b -> b).fields("content", b -> b)
+        );
 
         assertEquals(3, highlights.size());
         for (Map<String, List<String>> hit : highlights) {
@@ -62,8 +62,10 @@ public abstract class AbstractHighlightIT extends OpenSearchJavaClientTestCase {
         String index = "queries_highlight";
         createTestDocuments(index);
 
-        List<Map<String, List<String>>> highlights = highlightQuery("spread",
-                h -> h.preTags("<b>").postTags("</b>").fields("content", b -> b));
+        List<Map<String, List<String>>> highlights = highlightQuery(
+            "spread",
+            h -> h.preTags("<b>").postTags("</b>").fields("content", b -> b)
+        );
 
         assertEquals(2, highlights.size());
         for (Map<String, List<String>> hit : highlights) {
@@ -88,8 +90,7 @@ public abstract class AbstractHighlightIT extends OpenSearchJavaClientTestCase {
         if (major >= 2 && minor >= 2) {
             String index = "queries_highlight";
             createTestDocuments(index);
-            List<Map<String, List<String>>> highlights = highlightQuery("real",
-                    h -> h.maxAnalyzerOffset("5").fields("title", b -> b));
+            List<Map<String, List<String>>> highlights = highlightQuery("real", h -> h.maxAnalyzerOffset("5").fields("title", b -> b));
 
             assertEquals(3, highlights.size());
             assertEquals(0, highlights.get(0).size());
@@ -101,29 +102,40 @@ public abstract class AbstractHighlightIT extends OpenSearchJavaClientTestCase {
         }
     }
 
-    private List<Map<String, List<String>>> highlightQuery(String query,
-                                                           Function<Highlight.Builder, ObjectBuilder<Highlight>> fn)
-            throws IOException {
-        SearchResponse<Article> response = javaClient()
-                .search(s -> s
-                        .query(q -> q
-                                .simpleQueryString(sqs -> sqs
-                                        .fields("title", "content", "author")
-                                        .query(query)))
-                        .highlight(fn), Article.class);
+    private List<Map<String, List<String>>> highlightQuery(String query, Function<Highlight.Builder, ObjectBuilder<Highlight>> fn)
+        throws IOException {
+        SearchResponse<Article> response = javaClient().search(
+            s -> s.query(q -> q.simpleQueryString(sqs -> sqs.fields("title", "content", "author").query(query))).highlight(fn),
+            Article.class
+        );
         return response.hits().hits().stream().map(Hit::highlight).collect(Collectors.toList());
     }
 
     private void createTestDocuments(String index) throws IOException {
-        javaClient().create(_1 -> _1.index(index).id("1").document(createArticle(
-                        "Superheroes are Real", "Meet these man avoid the fire spread during last decades.", "John Doe"))
-                .refresh(Refresh.True));
-        javaClient().create(_1 -> _1.index(index).id("2").document(createArticle(
-                        "Real Slow Ideas", "Why some innovations spread quick while others take decades to catch hold.", "John Foo"))
-                .refresh(Refresh.True));
-        javaClient().create(_1 -> _1.index(index).id("3").document(createArticle(
-                        "Real Two Degrees", "How the world failed on climate change during the decades.", "Anne Doe"))
-                .refresh(Refresh.True));
+        javaClient().create(
+            _1 -> _1.index(index)
+                .id("1")
+                .document(createArticle("Superheroes are Real", "Meet these man avoid the fire spread during last decades.", "John Doe"))
+                .refresh(Refresh.True)
+        );
+        javaClient().create(
+            _1 -> _1.index(index)
+                .id("2")
+                .document(
+                    createArticle(
+                        "Real Slow Ideas",
+                        "Why some innovations spread quick while others take decades to catch hold.",
+                        "John Foo"
+                    )
+                )
+                .refresh(Refresh.True)
+        );
+        javaClient().create(
+            _1 -> _1.index(index)
+                .id("3")
+                .document(createArticle("Real Two Degrees", "How the world failed on climate change during the decades.", "Anne Doe"))
+                .refresh(Refresh.True)
+        );
     }
 
     private Article createArticle(String title, String content, String author) {
@@ -135,8 +147,7 @@ public abstract class AbstractHighlightIT extends OpenSearchJavaClientTestCase {
         public String content;
         public String author;
 
-        public Article() {
-        }
+        public Article() {}
 
         public Article(String title, String content, String author) {
             this.title = title;

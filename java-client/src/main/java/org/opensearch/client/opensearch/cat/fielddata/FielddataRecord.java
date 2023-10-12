@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.cat.fielddata;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,269 +43,267 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.FielddataRecord
 
-
 @JsonpDeserializable
 public class FielddataRecord implements JsonpSerializable {
-	@Nullable
-	private final String id;
+    @Nullable
+    private final String id;
 
-	@Nullable
-	private final String host;
+    @Nullable
+    private final String host;
 
-	@Nullable
-	private final String ip;
+    @Nullable
+    private final String ip;
 
-	@Nullable
-	private final String node;
+    @Nullable
+    private final String node;
 
-	@Nullable
-	private final String field;
+    @Nullable
+    private final String field;
 
-	@Nullable
-	private final String size;
+    @Nullable
+    private final String size;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FielddataRecord(Builder builder) {
+    private FielddataRecord(Builder builder) {
 
-		this.id = builder.id;
-		this.host = builder.host;
-		this.ip = builder.ip;
-		this.node = builder.node;
-		this.field = builder.field;
-		this.size = builder.size;
+        this.id = builder.id;
+        this.host = builder.host;
+        this.ip = builder.ip;
+        this.node = builder.node;
+        this.field = builder.field;
+        this.size = builder.size;
 
-	}
+    }
 
-	public static FielddataRecord of(Function<Builder, ObjectBuilder<FielddataRecord>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FielddataRecord of(Function<Builder, ObjectBuilder<FielddataRecord>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * node id
-	 * <p>
-	 * API name: {@code id}
-	 */
-	@Nullable
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * node id
+     * <p>
+     * API name: {@code id}
+     */
+    @Nullable
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * host name
-	 * <p>
-	 * API name: {@code host}
-	 */
-	@Nullable
-	public final String host() {
-		return this.host;
-	}
+    /**
+     * host name
+     * <p>
+     * API name: {@code host}
+     */
+    @Nullable
+    public final String host() {
+        return this.host;
+    }
 
-	/**
-	 * ip address
-	 * <p>
-	 * API name: {@code ip}
-	 */
-	@Nullable
-	public final String ip() {
-		return this.ip;
-	}
+    /**
+     * ip address
+     * <p>
+     * API name: {@code ip}
+     */
+    @Nullable
+    public final String ip() {
+        return this.ip;
+    }
 
-	/**
-	 * node name
-	 * <p>
-	 * API name: {@code node}
-	 */
-	@Nullable
-	public final String node() {
-		return this.node;
-	}
+    /**
+     * node name
+     * <p>
+     * API name: {@code node}
+     */
+    @Nullable
+    public final String node() {
+        return this.node;
+    }
 
-	/**
-	 * field name
-	 * <p>
-	 * API name: {@code field}
-	 */
-	@Nullable
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * field name
+     * <p>
+     * API name: {@code field}
+     */
+    @Nullable
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * field data usage
-	 * <p>
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public final String size() {
-		return this.size;
-	}
+    /**
+     * field data usage
+     * <p>
+     * API name: {@code size}
+     */
+    @Nullable
+    public final String size() {
+        return this.size;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.id != null) {
-			generator.writeKey("id");
-			generator.write(this.id);
+        if (this.id != null) {
+            generator.writeKey("id");
+            generator.write(this.id);
 
-		}
-		if (this.host != null) {
-			generator.writeKey("host");
-			generator.write(this.host);
+        }
+        if (this.host != null) {
+            generator.writeKey("host");
+            generator.write(this.host);
 
-		}
-		if (this.ip != null) {
-			generator.writeKey("ip");
-			generator.write(this.ip);
+        }
+        if (this.ip != null) {
+            generator.writeKey("ip");
+            generator.write(this.ip);
 
-		}
-		if (this.node != null) {
-			generator.writeKey("node");
-			generator.write(this.node);
+        }
+        if (this.node != null) {
+            generator.writeKey("node");
+            generator.write(this.node);
 
-		}
-		if (this.field != null) {
-			generator.writeKey("field");
-			generator.write(this.field);
+        }
+        if (this.field != null) {
+            generator.writeKey("field");
+            generator.write(this.field);
 
-		}
-		if (this.size != null) {
-			generator.writeKey("size");
-			generator.write(this.size);
+        }
+        if (this.size != null) {
+            generator.writeKey("size");
+            generator.write(this.size);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FielddataRecord}.
-	 */
+    /**
+     * Builder for {@link FielddataRecord}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataRecord> {
-		@Nullable
-		private String id;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataRecord> {
+        @Nullable
+        private String id;
 
-		@Nullable
-		private String host;
+        @Nullable
+        private String host;
 
-		@Nullable
-		private String ip;
+        @Nullable
+        private String ip;
 
-		@Nullable
-		private String node;
+        @Nullable
+        private String node;
 
-		@Nullable
-		private String field;
+        @Nullable
+        private String field;
 
-		@Nullable
-		private String size;
+        @Nullable
+        private String size;
 
-		/**
-		 * node id
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public final Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * node id
+         * <p>
+         * API name: {@code id}
+         */
+        public final Builder id(@Nullable String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * host name
-		 * <p>
-		 * API name: {@code host}
-		 */
-		public final Builder host(@Nullable String value) {
-			this.host = value;
-			return this;
-		}
+        /**
+         * host name
+         * <p>
+         * API name: {@code host}
+         */
+        public final Builder host(@Nullable String value) {
+            this.host = value;
+            return this;
+        }
 
-		/**
-		 * ip address
-		 * <p>
-		 * API name: {@code ip}
-		 */
-		public final Builder ip(@Nullable String value) {
-			this.ip = value;
-			return this;
-		}
+        /**
+         * ip address
+         * <p>
+         * API name: {@code ip}
+         */
+        public final Builder ip(@Nullable String value) {
+            this.ip = value;
+            return this;
+        }
 
-		/**
-		 * node name
-		 * <p>
-		 * API name: {@code node}
-		 */
-		public final Builder node(@Nullable String value) {
-			this.node = value;
-			return this;
-		}
+        /**
+         * node name
+         * <p>
+         * API name: {@code node}
+         */
+        public final Builder node(@Nullable String value) {
+            this.node = value;
+            return this;
+        }
 
-		/**
-		 * field name
-		 * <p>
-		 * API name: {@code field}
-		 */
-		public final Builder field(@Nullable String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * field name
+         * <p>
+         * API name: {@code field}
+         */
+        public final Builder field(@Nullable String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * field data usage
-		 * <p>
-		 * API name: {@code size}
-		 */
-		public final Builder size(@Nullable String value) {
-			this.size = value;
-			return this;
-		}
+        /**
+         * field data usage
+         * <p>
+         * API name: {@code size}
+         */
+        public final Builder size(@Nullable String value) {
+            this.size = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FielddataRecord}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FielddataRecord build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FielddataRecord}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FielddataRecord build() {
+            _checkSingleUse();
 
-			return new FielddataRecord(this);
-		}
-	}
+            return new FielddataRecord(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FielddataRecord}
-	 */
-	public static final JsonpDeserializer<FielddataRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FielddataRecord::setupFielddataRecordDeserializer);
+    /**
+     * Json deserializer for {@link FielddataRecord}
+     */
+    public static final JsonpDeserializer<FielddataRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FielddataRecord::setupFielddataRecordDeserializer
+    );
 
-	protected static void setupFielddataRecordDeserializer(ObjectDeserializer<FielddataRecord.Builder> op) {
+    protected static void setupFielddataRecordDeserializer(ObjectDeserializer<FielddataRecord.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host", "h");
-		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
-		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node", "n");
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field", "f");
-		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+        op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host", "h");
+        op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
+        op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node", "n");
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field", "f");
+        op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
 
-	}
+    }
 
 }

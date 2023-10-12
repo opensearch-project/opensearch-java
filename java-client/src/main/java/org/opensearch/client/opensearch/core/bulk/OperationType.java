@@ -35,29 +35,27 @@ package org.opensearch.client.opensearch.core.bulk;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum OperationType implements JsonEnum {
-	Index("index"),
+    Index("index"),
 
-	Create("create"),
+    Create("create"),
 
-	Update("update"),
+    Update("update"),
 
-	Delete("delete"),
+    Delete("delete"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	OperationType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    OperationType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<OperationType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			OperationType.values());
+    public static final JsonEnum.Deserializer<OperationType> _DESERIALIZER = new JsonEnum.Deserializer<>(OperationType.values());
 }

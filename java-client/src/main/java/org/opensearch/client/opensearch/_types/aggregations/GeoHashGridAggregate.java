@@ -32,76 +32,77 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.GeoHashGridAggregate
 
 @JsonpDeserializable
 public class GeoHashGridAggregate extends MultiBucketAggregateBase<GeoHashGridBucket> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GeoHashGridAggregate(Builder builder) {
-		super(builder);
+    private GeoHashGridAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static GeoHashGridAggregate of(Function<Builder, ObjectBuilder<GeoHashGridAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GeoHashGridAggregate of(Function<Builder, ObjectBuilder<GeoHashGridAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.GeohashGrid;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.GeohashGrid;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GeoHashGridAggregate}.
-	 */
+    /**
+     * Builder for {@link GeoHashGridAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<GeoHashGridBucket, Builder>
-			implements
-				ObjectBuilder<GeoHashGridAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<GeoHashGridBucket, Builder>
+        implements
+            ObjectBuilder<GeoHashGridAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GeoHashGridAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GeoHashGridAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link GeoHashGridAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GeoHashGridAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new GeoHashGridAggregate(this);
-		}
-	}
+            return new GeoHashGridAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GeoHashGridAggregate}
-	 */
-	public static final JsonpDeserializer<GeoHashGridAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoHashGridAggregate::setupGeoHashGridAggregateDeserializer);
+    /**
+     * Json deserializer for {@link GeoHashGridAggregate}
+     */
+    public static final JsonpDeserializer<GeoHashGridAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GeoHashGridAggregate::setupGeoHashGridAggregateDeserializer
+    );
 
-	protected static void setupGeoHashGridAggregateDeserializer(ObjectDeserializer<GeoHashGridAggregate.Builder> op) {
-		setupMultiBucketAggregateBaseDeserializer(op, GeoHashGridBucket._DESERIALIZER);
+    protected static void setupGeoHashGridAggregateDeserializer(ObjectDeserializer<GeoHashGridAggregate.Builder> op) {
+        setupMultiBucketAggregateBaseDeserializer(op, GeoHashGridBucket._DESERIALIZER);
 
-	}
+    }
 
 }

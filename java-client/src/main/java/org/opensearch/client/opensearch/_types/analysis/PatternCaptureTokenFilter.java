@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,148 +42,143 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: _types.analysis.PatternCaptureTokenFilter
 
 @JsonpDeserializable
 public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final List<String> patterns;
+    private final List<String> patterns;
 
-	private final boolean preserveOriginal;
+    private final boolean preserveOriginal;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PatternCaptureTokenFilter(Builder builder) {
-		super(builder);
+    private PatternCaptureTokenFilter(Builder builder) {
+        super(builder);
 
-		this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
-		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
+        this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
+        this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
 
-	}
+    }
 
-	public static PatternCaptureTokenFilter of(Function<Builder, ObjectBuilder<PatternCaptureTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PatternCaptureTokenFilter of(Function<Builder, ObjectBuilder<PatternCaptureTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.PatternCapture;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.PatternCapture;
+    }
 
-	/**
-	 * Required - API name: {@code patterns}
-	 */
-	public final List<String> patterns() {
-		return this.patterns;
-	}
+    /**
+     * Required - API name: {@code patterns}
+     */
+    public final List<String> patterns() {
+        return this.patterns;
+    }
 
-	/**
-	 * Required - API name: {@code preserve_original}
-	 */
-	public final boolean preserveOriginal() {
-		return this.preserveOriginal;
-	}
+    /**
+     * Required - API name: {@code preserve_original}
+     */
+    public final boolean preserveOriginal() {
+        return this.preserveOriginal;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "pattern_capture");
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.patterns)) {
-			generator.writeKey("patterns");
-			generator.writeStartArray();
-			for (String item0 : this.patterns) {
-				generator.write(item0);
+        generator.write("type", "pattern_capture");
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.patterns)) {
+            generator.writeKey("patterns");
+            generator.writeStartArray();
+            for (String item0 : this.patterns) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		generator.writeKey("preserve_original");
-		generator.write(this.preserveOriginal);
+        }
+        generator.writeKey("preserve_original");
+        generator.write(this.preserveOriginal);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PatternCaptureTokenFilter}.
-	 */
+    /**
+     * Builder for {@link PatternCaptureTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PatternCaptureTokenFilter> {
-		private List<String> patterns;
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<PatternCaptureTokenFilter> {
+        private List<String> patterns;
 
-		private Boolean preserveOriginal;
+        private Boolean preserveOriginal;
 
-		/**
-		 * Required - API name: {@code patterns}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>patterns</code>.
-		 */
-		public final Builder patterns(List<String> list) {
-			this.patterns = _listAddAll(this.patterns, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code patterns}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>patterns</code>.
+         */
+        public final Builder patterns(List<String> list) {
+            this.patterns = _listAddAll(this.patterns, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code patterns}
-		 * <p>
-		 * Adds one or more values to <code>patterns</code>.
-		 */
-		public final Builder patterns(String value, String... values) {
-			this.patterns = _listAdd(this.patterns, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code patterns}
+         * <p>
+         * Adds one or more values to <code>patterns</code>.
+         */
+        public final Builder patterns(String value, String... values) {
+            this.patterns = _listAdd(this.patterns, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code preserve_original}
-		 */
-		public final Builder preserveOriginal(boolean value) {
-			this.preserveOriginal = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code preserve_original}
+         */
+        public final Builder preserveOriginal(boolean value) {
+            this.preserveOriginal = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PatternCaptureTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PatternCaptureTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PatternCaptureTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PatternCaptureTokenFilter build() {
+            _checkSingleUse();
 
-			return new PatternCaptureTokenFilter(this);
-		}
-	}
+            return new PatternCaptureTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PatternCaptureTokenFilter}
-	 */
-	public static final JsonpDeserializer<PatternCaptureTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PatternCaptureTokenFilter::setupPatternCaptureTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link PatternCaptureTokenFilter}
+     */
+    public static final JsonpDeserializer<PatternCaptureTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PatternCaptureTokenFilter::setupPatternCaptureTokenFilterDeserializer
+    );
 
-	protected static void setupPatternCaptureTokenFilterDeserializer(
-			ObjectDeserializer<PatternCaptureTokenFilter.Builder> op) {
-		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::patterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"patterns");
-		op.add(Builder::preserveOriginal, JsonpDeserializer.booleanDeserializer(), "preserve_original");
+    protected static void setupPatternCaptureTokenFilterDeserializer(ObjectDeserializer<PatternCaptureTokenFilter.Builder> op) {
+        TokenFilterBase.setupTokenFilterBaseDeserializer(op);
+        op.add(Builder::patterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "patterns");
+        op.add(Builder::preserveOriginal, JsonpDeserializer.booleanDeserializer(), "preserve_original");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

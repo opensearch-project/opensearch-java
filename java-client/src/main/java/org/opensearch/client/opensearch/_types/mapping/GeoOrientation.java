@@ -35,31 +35,29 @@ package org.opensearch.client.opensearch._types.mapping;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum GeoOrientation implements JsonEnum {
-	Right("right", "RIGHT", "counterclockwise", "ccw"),
+    Right("right", "RIGHT", "counterclockwise", "ccw"),
 
-	Left("left", "LEFT", "clockwise", "cw"),
+    Left("left", "LEFT", "clockwise", "cw"),
 
-	;
+    ;
 
-	private final String jsonValue;
-	private final String[] aliases;
+    private final String jsonValue;
+    private final String[] aliases;
 
-	GeoOrientation(String jsonValue, String... aliases) {
-		this.jsonValue = jsonValue;
-		this.aliases = aliases;
-	}
+    GeoOrientation(String jsonValue, String... aliases) {
+        this.jsonValue = jsonValue;
+        this.aliases = aliases;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public String[] aliases() {
-		return this.aliases;
-	}
+    public String[] aliases() {
+        return this.aliases;
+    }
 
-	public static final JsonEnum.Deserializer<GeoOrientation> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			GeoOrientation.values());
+    public static final JsonEnum.Deserializer<GeoOrientation> _DESERIALIZER = new JsonEnum.Deserializer<>(GeoOrientation.values());
 }

@@ -36,46 +36,45 @@ package org.opensearch.client.opensearch._types;
  * Builders for {@link SortOptions} variants.
  */
 public class SortOptionsBuilders {
-	private SortOptionsBuilders() {
-	}
+    private SortOptionsBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link ScoreSort _score} {@code SortOptions}
-	 * variant.
-	 */
-	public static ScoreSort.Builder score() {
-		return new ScoreSort.Builder();
-	}
+    /**
+     * Creates a builder for the {@link ScoreSort _score} {@code SortOptions}
+     * variant.
+     */
+    public static ScoreSort.Builder score() {
+        return new ScoreSort.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link ScoreSort _doc} {@code SortOptions} variant.
-	 */
-	public static ScoreSort.Builder doc() {
-		return new ScoreSort.Builder();
-	}
+    /**
+     * Creates a builder for the {@link ScoreSort _doc} {@code SortOptions} variant.
+     */
+    public static ScoreSort.Builder doc() {
+        return new ScoreSort.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link GeoDistanceSort _geo_distance}
-	 * {@code SortOptions} variant.
-	 */
-	public static GeoDistanceSort.Builder geoDistance() {
-		return new GeoDistanceSort.Builder();
-	}
+    /**
+     * Creates a builder for the {@link GeoDistanceSort _geo_distance}
+     * {@code SortOptions} variant.
+     */
+    public static GeoDistanceSort.Builder geoDistance() {
+        return new GeoDistanceSort.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link ScriptSort _script} {@code SortOptions}
-	 * variant.
-	 */
-	public static ScriptSort.Builder script() {
-		return new ScriptSort.Builder();
-	}
+    /**
+     * Creates a builder for the {@link ScriptSort _script} {@code SortOptions}
+     * variant.
+     */
+    public static ScriptSort.Builder script() {
+        return new ScriptSort.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link FieldSort field} {@code SortOptions}
-	 * variant.
-	 */
-	public static FieldSort.Builder field() {
-		return new FieldSort.Builder();
-	}
+    /**
+     * Creates a builder for the {@link FieldSort field} {@code SortOptions}
+     * variant.
+     */
+    public static FieldSort.Builder field() {
+        return new FieldSort.Builder();
+    }
 
 }

@@ -32,76 +32,76 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.AverageBucketAggregation
 
 @JsonpDeserializable
 public class AverageBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private AverageBucketAggregation(Builder builder) {
-		super(builder);
+    private AverageBucketAggregation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static AverageBucketAggregation of(Function<Builder, ObjectBuilder<AverageBucketAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static AverageBucketAggregation of(Function<Builder, ObjectBuilder<AverageBucketAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.AvgBucket;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.AvgBucket;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link AverageBucketAggregation}.
-	 */
+    /**
+     * Builder for {@link AverageBucketAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<AverageBucketAggregation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<AverageBucketAggregation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link AverageBucketAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public AverageBucketAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link AverageBucketAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public AverageBucketAggregation build() {
+            _checkSingleUse();
 
-			return new AverageBucketAggregation(this);
-		}
-	}
+            return new AverageBucketAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link AverageBucketAggregation}
-	 */
-	public static final JsonpDeserializer<AverageBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AverageBucketAggregation::setupAverageBucketAggregationDeserializer);
+    /**
+     * Json deserializer for {@link AverageBucketAggregation}
+     */
+    public static final JsonpDeserializer<AverageBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        AverageBucketAggregation::setupAverageBucketAggregationDeserializer
+    );
 
-	protected static void setupAverageBucketAggregationDeserializer(
-			ObjectDeserializer<AverageBucketAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+    protected static void setupAverageBucketAggregationDeserializer(ObjectDeserializer<AverageBucketAggregation.Builder> op) {
+        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
-	}
+    }
 
 }

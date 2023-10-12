@@ -10,6 +10,4 @@ package org.opensearch.client.opensearch.integTest.httpclient5;
 
 import org.opensearch.client.opensearch.integTest.AbstractPingAndInfoIT;
 
-public class PingAndInfoIT extends AbstractPingAndInfoIT implements HttpClient5TransportSupport {
-}
-
+public class PingAndInfoIT extends AbstractPingAndInfoIT implements HttpClient5TransportSupport {}

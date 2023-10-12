@@ -32,11 +32,10 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-
-import java.util.HashMap;
 
 // typedef: cat.nodeattrs.Request
 
@@ -45,8 +44,7 @@ import java.util.HashMap;
  */
 
 public class NodeattrsRequest extends CatRequestBase {
-    public NodeattrsRequest() {
-    }
+    public NodeattrsRequest() {}
 
     /**
      * Singleton instance for {@link NodeattrsRequest}.
@@ -60,18 +58,22 @@ public class NodeattrsRequest extends CatRequestBase {
      */
     public static final Endpoint<NodeattrsRequest, NodeattrsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-            // Request method
-            request -> {
-                return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-            },
+        },
 
-            // Request path
-            request -> {
-                return "/_cat/nodeattrs";
+        // Request path
+        request -> {
+            return "/_cat/nodeattrs";
 
-            },
+        },
 
-            // Request parameters
-            request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, NodeattrsResponse._DESERIALIZER);
+        // Request parameters
+        request -> new HashMap<>(request.queryParameters()),
+        SimpleEndpoint.emptyMap(),
+        false,
+        NodeattrsResponse._DESERIALIZER
+    );
 }

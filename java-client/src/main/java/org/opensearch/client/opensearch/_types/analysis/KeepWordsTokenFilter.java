@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,185 +43,179 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeepWordsTokenFilter
 
-
 @JsonpDeserializable
 public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final List<String> keepWords;
+    private final List<String> keepWords;
 
-	@Nullable
-	private final Boolean keepWordsCase;
+    @Nullable
+    private final Boolean keepWordsCase;
 
-	@Nullable
-	private final String keepWordsPath;
+    @Nullable
+    private final String keepWordsPath;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private KeepWordsTokenFilter(Builder builder) {
-		super(builder);
+    private KeepWordsTokenFilter(Builder builder) {
+        super(builder);
 
-		this.keepWords = ApiTypeHelper.unmodifiable(builder.keepWords);
-		this.keepWordsCase = builder.keepWordsCase;
-		this.keepWordsPath = builder.keepWordsPath;
+        this.keepWords = ApiTypeHelper.unmodifiable(builder.keepWords);
+        this.keepWordsCase = builder.keepWordsCase;
+        this.keepWordsPath = builder.keepWordsPath;
 
-	}
+    }
 
-	public static KeepWordsTokenFilter of(Function<Builder, ObjectBuilder<KeepWordsTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static KeepWordsTokenFilter of(Function<Builder, ObjectBuilder<KeepWordsTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.Keep;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.Keep;
+    }
 
-	/**
-	 * API name: {@code keep_words}
-	 */
-	public final List<String> keepWords() {
-		return this.keepWords;
-	}
+    /**
+     * API name: {@code keep_words}
+     */
+    public final List<String> keepWords() {
+        return this.keepWords;
+    }
 
-	/**
-	 * API name: {@code keep_words_case}
-	 */
-	@Nullable
-	public final Boolean keepWordsCase() {
-		return this.keepWordsCase;
-	}
+    /**
+     * API name: {@code keep_words_case}
+     */
+    @Nullable
+    public final Boolean keepWordsCase() {
+        return this.keepWordsCase;
+    }
 
-	/**
-	 * API name: {@code keep_words_path}
-	 */
-	@Nullable
-	public final String keepWordsPath() {
-		return this.keepWordsPath;
-	}
+    /**
+     * API name: {@code keep_words_path}
+     */
+    @Nullable
+    public final String keepWordsPath() {
+        return this.keepWordsPath;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "keep");
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.keepWords)) {
-			generator.writeKey("keep_words");
-			generator.writeStartArray();
-			for (String item0 : this.keepWords) {
-				generator.write(item0);
+        generator.write("type", "keep");
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.keepWords)) {
+            generator.writeKey("keep_words");
+            generator.writeStartArray();
+            for (String item0 : this.keepWords) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.keepWordsCase != null) {
-			generator.writeKey("keep_words_case");
-			generator.write(this.keepWordsCase);
+        }
+        if (this.keepWordsCase != null) {
+            generator.writeKey("keep_words_case");
+            generator.write(this.keepWordsCase);
 
-		}
-		if (this.keepWordsPath != null) {
-			generator.writeKey("keep_words_path");
-			generator.write(this.keepWordsPath);
+        }
+        if (this.keepWordsPath != null) {
+            generator.writeKey("keep_words_path");
+            generator.write(this.keepWordsPath);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link KeepWordsTokenFilter}.
-	 */
+    /**
+     * Builder for {@link KeepWordsTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<KeepWordsTokenFilter> {
-		@Nullable
-		private List<String> keepWords;
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<KeepWordsTokenFilter> {
+        @Nullable
+        private List<String> keepWords;
 
-		@Nullable
-		private Boolean keepWordsCase;
+        @Nullable
+        private Boolean keepWordsCase;
 
-		@Nullable
-		private String keepWordsPath;
+        @Nullable
+        private String keepWordsPath;
 
-		/**
-		 * API name: {@code keep_words}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>keepWords</code>.
-		 */
-		public final Builder keepWords(List<String> list) {
-			this.keepWords = _listAddAll(this.keepWords, list);
-			return this;
-		}
+        /**
+         * API name: {@code keep_words}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>keepWords</code>.
+         */
+        public final Builder keepWords(List<String> list) {
+            this.keepWords = _listAddAll(this.keepWords, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code keep_words}
-		 * <p>
-		 * Adds one or more values to <code>keepWords</code>.
-		 */
-		public final Builder keepWords(String value, String... values) {
-			this.keepWords = _listAdd(this.keepWords, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code keep_words}
+         * <p>
+         * Adds one or more values to <code>keepWords</code>.
+         */
+        public final Builder keepWords(String value, String... values) {
+            this.keepWords = _listAdd(this.keepWords, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code keep_words_case}
-		 */
-		public final Builder keepWordsCase(@Nullable Boolean value) {
-			this.keepWordsCase = value;
-			return this;
-		}
+        /**
+         * API name: {@code keep_words_case}
+         */
+        public final Builder keepWordsCase(@Nullable Boolean value) {
+            this.keepWordsCase = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code keep_words_path}
-		 */
-		public final Builder keepWordsPath(@Nullable String value) {
-			this.keepWordsPath = value;
-			return this;
-		}
+        /**
+         * API name: {@code keep_words_path}
+         */
+        public final Builder keepWordsPath(@Nullable String value) {
+            this.keepWordsPath = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link KeepWordsTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public KeepWordsTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link KeepWordsTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public KeepWordsTokenFilter build() {
+            _checkSingleUse();
 
-			return new KeepWordsTokenFilter(this);
-		}
-	}
+            return new KeepWordsTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link KeepWordsTokenFilter}
-	 */
-	public static final JsonpDeserializer<KeepWordsTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, KeepWordsTokenFilter::setupKeepWordsTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link KeepWordsTokenFilter}
+     */
+    public static final JsonpDeserializer<KeepWordsTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        KeepWordsTokenFilter::setupKeepWordsTokenFilterDeserializer
+    );
 
-	protected static void setupKeepWordsTokenFilterDeserializer(ObjectDeserializer<KeepWordsTokenFilter.Builder> op) {
-		setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::keepWords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"keep_words");
-		op.add(Builder::keepWordsCase, JsonpDeserializer.booleanDeserializer(), "keep_words_case");
-		op.add(Builder::keepWordsPath, JsonpDeserializer.stringDeserializer(), "keep_words_path");
+    protected static void setupKeepWordsTokenFilterDeserializer(ObjectDeserializer<KeepWordsTokenFilter.Builder> op) {
+        setupTokenFilterBaseDeserializer(op);
+        op.add(Builder::keepWords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "keep_words");
+        op.add(Builder::keepWordsCase, JsonpDeserializer.booleanDeserializer(), "keep_words_case");
+        op.add(Builder::keepWordsPath, JsonpDeserializer.stringDeserializer(), "keep_words_path");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

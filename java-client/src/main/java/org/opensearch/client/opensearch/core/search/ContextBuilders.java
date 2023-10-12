@@ -39,18 +39,17 @@ import org.opensearch.client.opensearch._types.GeoLocation;
  * <p>
  * Variants <code>category</code> are not available here as they don't have a
  * dedicated class. Use {@link Context}'s builder for these.
- * 
+ *
  */
 public class ContextBuilders {
-	private ContextBuilders() {
-	}
+    private ContextBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link GeoLocation location} {@code Context}
-	 * variant.
-	 */
-	public static GeoLocation.Builder location() {
-		return new GeoLocation.Builder();
-	}
+    /**
+     * Creates a builder for the {@link GeoLocation location} {@code Context}
+     * variant.
+     */
+    public static GeoLocation.Builder location() {
+        return new GeoLocation.Builder();
+    }
 
 }

@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,93 +41,90 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.StringRareTermsBucket
 
-
 @JsonpDeserializable
 public class StringRareTermsBucket extends MultiBucketBase {
-	private final String key;
+    private final String key;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private StringRareTermsBucket(Builder builder) {
-		super(builder);
+    private StringRareTermsBucket(Builder builder) {
+        super(builder);
 
-		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+        this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
 
-	}
+    }
 
-	public static StringRareTermsBucket of(Function<Builder, ObjectBuilder<StringRareTermsBucket>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StringRareTermsBucket of(Function<Builder, ObjectBuilder<StringRareTermsBucket>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code key}
-	 */
-	public final String key() {
-		return this.key;
-	}
+    /**
+     * Required - API name: {@code key}
+     */
+    public final String key() {
+        return this.key;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("key");
-		generator.write(this.key);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("key");
+        generator.write(this.key);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StringRareTermsBucket}.
-	 */
+    /**
+     * Builder for {@link StringRareTermsBucket}.
+     */
 
-	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<StringRareTermsBucket> {
-		private String key;
+    public static class Builder extends MultiBucketBase.AbstractBuilder<Builder> implements ObjectBuilder<StringRareTermsBucket> {
+        private String key;
 
-		/**
-		 * Required - API name: {@code key}
-		 */
-		public final Builder key(String value) {
-			this.key = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code key}
+         */
+        public final Builder key(String value) {
+            this.key = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StringRareTermsBucket}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StringRareTermsBucket build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link StringRareTermsBucket}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StringRareTermsBucket build() {
+            _checkSingleUse();
 
-			return new StringRareTermsBucket(this);
-		}
-	}
+            return new StringRareTermsBucket(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link StringRareTermsBucket}
-	 */
-	public static final JsonpDeserializer<StringRareTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StringRareTermsBucket::setupStringRareTermsBucketDeserializer);
+    /**
+     * Json deserializer for {@link StringRareTermsBucket}
+     */
+    public static final JsonpDeserializer<StringRareTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StringRareTermsBucket::setupStringRareTermsBucketDeserializer
+    );
 
-	protected static void setupStringRareTermsBucketDeserializer(ObjectDeserializer<StringRareTermsBucket.Builder> op) {
-		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
+    protected static void setupStringRareTermsBucketDeserializer(ObjectDeserializer<StringRareTermsBucket.Builder> op) {
+        MultiBucketBase.setupMultiBucketBaseDeserializer(op);
+        op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
 
-	}
+    }
 
 }

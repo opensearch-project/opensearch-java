@@ -32,225 +32,226 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
-import org.opensearch.client.opensearch._types.GeoDistanceType;
-import org.opensearch.client.opensearch._types.GeoLocation;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.GeoDistanceType;
+import org.opensearch.client.opensearch._types.GeoLocation;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoDistanceQuery
 
-
 @JsonpDeserializable
 public class GeoDistanceQuery extends QueryBase implements QueryVariant {
-	private final String field;
+    private final String field;
 
-	private final GeoLocation location;
+    private final GeoLocation location;
 
-	@Nullable
-	private final String distance;
+    @Nullable
+    private final String distance;
 
-	@Nullable
-	private final GeoDistanceType distanceType;
+    @Nullable
+    private final GeoDistanceType distanceType;
 
-	@Nullable
-	private final GeoValidationMethod validationMethod;
+    @Nullable
+    private final GeoValidationMethod validationMethod;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GeoDistanceQuery(Builder builder) {
-		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.location = ApiTypeHelper.requireNonNull(builder.location, this, "location");
+    private GeoDistanceQuery(Builder builder) {
+        super(builder);
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.location = ApiTypeHelper.requireNonNull(builder.location, this, "location");
 
-		this.distance = builder.distance;
-		this.distanceType = builder.distanceType;
-		this.validationMethod = builder.validationMethod;
+        this.distance = builder.distance;
+        this.distanceType = builder.distanceType;
+        this.validationMethod = builder.validationMethod;
 
-	}
+    }
 
-	public static GeoDistanceQuery of(Function<Builder, ObjectBuilder<GeoDistanceQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GeoDistanceQuery of(Function<Builder, ObjectBuilder<GeoDistanceQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.GeoDistance;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.GeoDistance;
+    }
 
-	/**
-	 * Required -
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required -
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * Required -
-	 */
-	public final GeoLocation location() {
-		return this.location;
-	}
+    /**
+     * Required -
+     */
+    public final GeoLocation location() {
+        return this.location;
+    }
 
-	/**
-	 * API name: {@code distance}
-	 */
-	@Nullable
-	public final String distance() {
-		return this.distance;
-	}
+    /**
+     * API name: {@code distance}
+     */
+    @Nullable
+    public final String distance() {
+        return this.distance;
+    }
 
-	/**
-	 * API name: {@code distance_type}
-	 */
-	@Nullable
-	public final GeoDistanceType distanceType() {
-		return this.distanceType;
-	}
+    /**
+     * API name: {@code distance_type}
+     */
+    @Nullable
+    public final GeoDistanceType distanceType() {
+        return this.distanceType;
+    }
 
-	/**
-	 * API name: {@code validation_method}
-	 */
-	@Nullable
-	public final GeoValidationMethod validationMethod() {
-		return this.validationMethod;
-	}
+    /**
+     * API name: {@code validation_method}
+     */
+    @Nullable
+    public final GeoValidationMethod validationMethod() {
+        return this.validationMethod;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeKey(this.field);
-		this.location.serialize(generator, mapper);
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey(this.field);
+        this.location.serialize(generator, mapper);
 
-		super.serializeInternal(generator, mapper);
-		if (this.distance != null) {
-			generator.writeKey("distance");
-			generator.write(this.distance);
+        super.serializeInternal(generator, mapper);
+        if (this.distance != null) {
+            generator.writeKey("distance");
+            generator.write(this.distance);
 
-		}
-		if (this.distanceType != null) {
-			generator.writeKey("distance_type");
-			this.distanceType.serialize(generator, mapper);
-		}
-		if (this.validationMethod != null) {
-			generator.writeKey("validation_method");
-			this.validationMethod.serialize(generator, mapper);
-		}
+        }
+        if (this.distanceType != null) {
+            generator.writeKey("distance_type");
+            this.distanceType.serialize(generator, mapper);
+        }
+        if (this.validationMethod != null) {
+            generator.writeKey("validation_method");
+            this.validationMethod.serialize(generator, mapper);
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GeoDistanceQuery}.
-	 */
+    /**
+     * Builder for {@link GeoDistanceQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoDistanceQuery> {
-		private String field;
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoDistanceQuery> {
+        private String field;
 
-		private GeoLocation location;
+        private GeoLocation location;
 
-		/**
-		 * Required -
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required -
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * Required -
-		 */
-		public final Builder location(GeoLocation value) {
-			this.location = value;
-			return this;
-		}
+        /**
+         * Required -
+         */
+        public final Builder location(GeoLocation value) {
+            this.location = value;
+            return this;
+        }
 
-		/**
-		 * Required -
-		 */
-		public final Builder location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
-			return this.location(fn.apply(new GeoLocation.Builder()).build());
-		}
+        /**
+         * Required -
+         */
+        public final Builder location(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+            return this.location(fn.apply(new GeoLocation.Builder()).build());
+        }
 
-		@Nullable
-		private String distance;
+        @Nullable
+        private String distance;
 
-		@Nullable
-		private GeoDistanceType distanceType;
+        @Nullable
+        private GeoDistanceType distanceType;
 
-		@Nullable
-		private GeoValidationMethod validationMethod;
+        @Nullable
+        private GeoValidationMethod validationMethod;
 
-		/**
-		 * API name: {@code distance}
-		 */
-		public final Builder distance(@Nullable String value) {
-			this.distance = value;
-			return this;
-		}
+        /**
+         * API name: {@code distance}
+         */
+        public final Builder distance(@Nullable String value) {
+            this.distance = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code distance_type}
-		 */
-		public final Builder distanceType(@Nullable GeoDistanceType value) {
-			this.distanceType = value;
-			return this;
-		}
+        /**
+         * API name: {@code distance_type}
+         */
+        public final Builder distanceType(@Nullable GeoDistanceType value) {
+            this.distanceType = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code validation_method}
-		 */
-		public final Builder validationMethod(@Nullable GeoValidationMethod value) {
-			this.validationMethod = value;
-			return this;
-		}
+        /**
+         * API name: {@code validation_method}
+         */
+        public final Builder validationMethod(@Nullable GeoValidationMethod value) {
+            this.validationMethod = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GeoDistanceQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GeoDistanceQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GeoDistanceQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GeoDistanceQuery build() {
+            _checkSingleUse();
 
-			return new GeoDistanceQuery(this);
-		}
-	}
+            return new GeoDistanceQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GeoDistanceQuery}
-	 */
-	public static final JsonpDeserializer<GeoDistanceQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoDistanceQuery::setupGeoDistanceQueryDeserializer);
+    /**
+     * Json deserializer for {@link GeoDistanceQuery}
+     */
+    public static final JsonpDeserializer<GeoDistanceQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GeoDistanceQuery::setupGeoDistanceQueryDeserializer
+    );
 
-	protected static void setupGeoDistanceQueryDeserializer(ObjectDeserializer<GeoDistanceQuery.Builder> op) {
-		setupQueryBaseDeserializer(op);
-		op.add(Builder::distance, JsonpDeserializer.stringDeserializer(), "distance");
-		op.add(Builder::distanceType, GeoDistanceType._DESERIALIZER, "distance_type");
-		op.add(Builder::validationMethod, GeoValidationMethod._DESERIALIZER, "validation_method");
+    protected static void setupGeoDistanceQueryDeserializer(ObjectDeserializer<GeoDistanceQuery.Builder> op) {
+        setupQueryBaseDeserializer(op);
+        op.add(Builder::distance, JsonpDeserializer.stringDeserializer(), "distance");
+        op.add(Builder::distanceType, GeoDistanceType._DESERIALIZER, "distance_type");
+        op.add(Builder::validationMethod, GeoValidationMethod._DESERIALIZER, "validation_method");
 
-		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			builder.field(name);
-			builder.location(GeoLocation._DESERIALIZER.deserialize(parser, mapper));
-		});
+        op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+            builder.field(name);
+            builder.location(GeoLocation._DESERIALIZER.deserialize(parser, mapper));
+        });
 
-	}
+    }
 
 }

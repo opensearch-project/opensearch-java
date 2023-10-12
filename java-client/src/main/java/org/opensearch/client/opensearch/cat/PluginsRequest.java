@@ -32,11 +32,10 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-
-import java.util.HashMap;
 
 // typedef: cat.plugins.Request
 
@@ -46,33 +45,36 @@ import java.util.HashMap;
  */
 
 public class PluginsRequest extends CatRequestBase {
-	public PluginsRequest() {
-	}
+    public PluginsRequest() {}
 
-	/**
-	 * Singleton instance for {@link PluginsRequest}.
-	 */
-	public static final PluginsRequest _INSTANCE = new PluginsRequest();
+    /**
+     * Singleton instance for {@link PluginsRequest}.
+     */
+    public static final PluginsRequest _INSTANCE = new PluginsRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.plugins}".
-	 */
-	public static final Endpoint<PluginsRequest, PluginsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.plugins}".
+     */
+    public static final Endpoint<PluginsRequest, PluginsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_cat/plugins";
+        // Request path
+        request -> {
+            return "/_cat/plugins";
 
-			},
+        },
 
-			// Request parameters
-			request ->  new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, PluginsResponse._DESERIALIZER);
+        // Request parameters
+        request -> new HashMap<>(request.queryParameters()),
+        SimpleEndpoint.emptyMap(),
+        false,
+        PluginsResponse._DESERIALIZER
+    );
 }

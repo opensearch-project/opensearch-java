@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,123 +42,119 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.TopMetricsBucket
 
-
 @JsonpDeserializable
 public class TopMetricsBucket extends MultiBucketBase {
-	private final List<TopMetrics> top;
+    private final List<TopMetrics> top;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TopMetricsBucket(Builder builder) {
-		super(builder);
+    private TopMetricsBucket(Builder builder) {
+        super(builder);
 
-		this.top = ApiTypeHelper.unmodifiableRequired(builder.top, this, "top");
+        this.top = ApiTypeHelper.unmodifiableRequired(builder.top, this, "top");
 
-	}
+    }
 
-	public static TopMetricsBucket of(Function<Builder, ObjectBuilder<TopMetricsBucket>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TopMetricsBucket of(Function<Builder, ObjectBuilder<TopMetricsBucket>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code top}
-	 */
-	public final List<TopMetrics> top() {
-		return this.top;
-	}
+    /**
+     * Required - API name: {@code top}
+     */
+    public final List<TopMetrics> top() {
+        return this.top;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.top)) {
-			generator.writeKey("top");
-			generator.writeStartArray();
-			for (TopMetrics item0 : this.top) {
-				item0.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.top)) {
+            generator.writeKey("top");
+            generator.writeStartArray();
+            for (TopMetrics item0 : this.top) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TopMetricsBucket}.
-	 */
+    /**
+     * Builder for {@link TopMetricsBucket}.
+     */
 
-	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<TopMetricsBucket> {
-		private List<TopMetrics> top;
+    public static class Builder extends MultiBucketBase.AbstractBuilder<Builder> implements ObjectBuilder<TopMetricsBucket> {
+        private List<TopMetrics> top;
 
-		/**
-		 * Required - API name: {@code top}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>top</code>.
-		 */
-		public final Builder top(List<TopMetrics> list) {
-			this.top = _listAddAll(this.top, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code top}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>top</code>.
+         */
+        public final Builder top(List<TopMetrics> list) {
+            this.top = _listAddAll(this.top, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code top}
-		 * <p>
-		 * Adds one or more values to <code>top</code>.
-		 */
-		public final Builder top(TopMetrics value, TopMetrics... values) {
-			this.top = _listAdd(this.top, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code top}
+         * <p>
+         * Adds one or more values to <code>top</code>.
+         */
+        public final Builder top(TopMetrics value, TopMetrics... values) {
+            this.top = _listAdd(this.top, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code top}
-		 * <p>
-		 * Adds a value to <code>top</code> using a builder lambda.
-		 */
-		public final Builder top(Function<TopMetrics.Builder, ObjectBuilder<TopMetrics>> fn) {
-			return top(fn.apply(new TopMetrics.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code top}
+         * <p>
+         * Adds a value to <code>top</code> using a builder lambda.
+         */
+        public final Builder top(Function<TopMetrics.Builder, ObjectBuilder<TopMetrics>> fn) {
+            return top(fn.apply(new TopMetrics.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TopMetricsBucket}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TopMetricsBucket build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TopMetricsBucket}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TopMetricsBucket build() {
+            _checkSingleUse();
 
-			return new TopMetricsBucket(this);
-		}
-	}
+            return new TopMetricsBucket(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TopMetricsBucket}
-	 */
-	public static final JsonpDeserializer<TopMetricsBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TopMetricsBucket::setupTopMetricsBucketDeserializer);
+    /**
+     * Json deserializer for {@link TopMetricsBucket}
+     */
+    public static final JsonpDeserializer<TopMetricsBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TopMetricsBucket::setupTopMetricsBucketDeserializer
+    );
 
-	protected static void setupTopMetricsBucketDeserializer(ObjectDeserializer<TopMetricsBucket.Builder> op) {
-		setupMultiBucketBaseDeserializer(op);
-		op.add(Builder::top, JsonpDeserializer.arrayDeserializer(TopMetrics._DESERIALIZER), "top");
+    protected static void setupTopMetricsBucketDeserializer(ObjectDeserializer<TopMetricsBucket.Builder> op) {
+        setupMultiBucketBaseDeserializer(op);
+        op.add(Builder::top, JsonpDeserializer.arrayDeserializer(TopMetrics._DESERIALIZER), "top");
 
-	}
+    }
 
 }

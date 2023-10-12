@@ -32,68 +32,67 @@
 
 package org.opensearch.client.opensearch.ingest;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: ingest.put_pipeline.Response
 
 @JsonpDeserializable
 public class PutPipelineResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PutPipelineResponse(Builder builder) {
-		super(builder);
+    private PutPipelineResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static PutPipelineResponse of(Function<Builder, ObjectBuilder<PutPipelineResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PutPipelineResponse of(Function<Builder, ObjectBuilder<PutPipelineResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PutPipelineResponse}.
-	 */
+    /**
+     * Builder for {@link PutPipelineResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PutPipelineResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<PutPipelineResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PutPipelineResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PutPipelineResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PutPipelineResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PutPipelineResponse build() {
+            _checkSingleUse();
 
-			return new PutPipelineResponse(this);
-		}
-	}
+            return new PutPipelineResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PutPipelineResponse}
-	 */
-	public static final JsonpDeserializer<PutPipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutPipelineResponse::setupPutPipelineResponseDeserializer);
+    /**
+     * Json deserializer for {@link PutPipelineResponse}
+     */
+    public static final JsonpDeserializer<PutPipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PutPipelineResponse::setupPutPipelineResponseDeserializer
+    );
 
-	protected static void setupPutPipelineResponseDeserializer(ObjectDeserializer<PutPipelineResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupPutPipelineResponseDeserializer(ObjectDeserializer<PutPipelineResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

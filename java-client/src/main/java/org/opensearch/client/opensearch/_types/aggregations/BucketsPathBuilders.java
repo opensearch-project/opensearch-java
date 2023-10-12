@@ -38,10 +38,9 @@ package org.opensearch.client.opensearch._types.aggregations;
  * Variants <code>array</code>, <code>dict</code>, <code>single</code> are not
  * available here as they don't have a dedicated class. Use
  * {@link BucketsPath}'s builder for these.
- * 
+ *
  */
 public class BucketsPathBuilders {
-	private BucketsPathBuilders() {
-	}
+    private BucketsPathBuilders() {}
 
 }

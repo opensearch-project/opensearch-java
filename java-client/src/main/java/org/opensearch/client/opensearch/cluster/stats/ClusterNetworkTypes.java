@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.cluster.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,160 +44,161 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterNetworkTypes
 
 @JsonpDeserializable
 public class ClusterNetworkTypes implements JsonpSerializable {
-	private final Map<String, Integer> httpTypes;
+    private final Map<String, Integer> httpTypes;
 
-	private final Map<String, Integer> transportTypes;
+    private final Map<String, Integer> transportTypes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ClusterNetworkTypes(Builder builder) {
+    private ClusterNetworkTypes(Builder builder) {
 
-		this.httpTypes = ApiTypeHelper.unmodifiableRequired(builder.httpTypes, this, "httpTypes");
-		this.transportTypes = ApiTypeHelper.unmodifiableRequired(builder.transportTypes, this, "transportTypes");
+        this.httpTypes = ApiTypeHelper.unmodifiableRequired(builder.httpTypes, this, "httpTypes");
+        this.transportTypes = ApiTypeHelper.unmodifiableRequired(builder.transportTypes, this, "transportTypes");
 
-	}
+    }
 
-	public static ClusterNetworkTypes of(Function<Builder, ObjectBuilder<ClusterNetworkTypes>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ClusterNetworkTypes of(Function<Builder, ObjectBuilder<ClusterNetworkTypes>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code http_types}
-	 */
-	public final Map<String, Integer> httpTypes() {
-		return this.httpTypes;
-	}
+    /**
+     * Required - API name: {@code http_types}
+     */
+    public final Map<String, Integer> httpTypes() {
+        return this.httpTypes;
+    }
 
-	/**
-	 * Required - API name: {@code transport_types}
-	 */
-	public final Map<String, Integer> transportTypes() {
-		return this.transportTypes;
-	}
+    /**
+     * Required - API name: {@code transport_types}
+     */
+    public final Map<String, Integer> transportTypes() {
+        return this.transportTypes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.httpTypes)) {
-			generator.writeKey("http_types");
-			generator.writeStartObject();
-			for (Map.Entry<String, Integer> item0 : this.httpTypes.entrySet()) {
-				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+        if (ApiTypeHelper.isDefined(this.httpTypes)) {
+            generator.writeKey("http_types");
+            generator.writeStartObject();
+            for (Map.Entry<String, Integer> item0 : this.httpTypes.entrySet()) {
+                generator.writeKey(item0.getKey());
+                generator.write(item0.getValue());
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (ApiTypeHelper.isDefined(this.transportTypes)) {
-			generator.writeKey("transport_types");
-			generator.writeStartObject();
-			for (Map.Entry<String, Integer> item0 : this.transportTypes.entrySet()) {
-				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+        }
+        if (ApiTypeHelper.isDefined(this.transportTypes)) {
+            generator.writeKey("transport_types");
+            generator.writeStartObject();
+            for (Map.Entry<String, Integer> item0 : this.transportTypes.entrySet()) {
+                generator.writeKey(item0.getKey());
+                generator.write(item0.getValue());
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ClusterNetworkTypes}.
-	 */
+    /**
+     * Builder for {@link ClusterNetworkTypes}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterNetworkTypes> {
-		private Map<String, Integer> httpTypes;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterNetworkTypes> {
+        private Map<String, Integer> httpTypes;
 
-		private Map<String, Integer> transportTypes;
+        private Map<String, Integer> transportTypes;
 
-		/**
-		 * Required - API name: {@code http_types}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>httpTypes</code>.
-		 */
-		public final Builder httpTypes(Map<String, Integer> map) {
-			this.httpTypes = _mapPutAll(this.httpTypes, map);
-			return this;
-		}
+        /**
+         * Required - API name: {@code http_types}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>httpTypes</code>.
+         */
+        public final Builder httpTypes(Map<String, Integer> map) {
+            this.httpTypes = _mapPutAll(this.httpTypes, map);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code http_types}
-		 * <p>
-		 * Adds an entry to <code>httpTypes</code>.
-		 */
-		public final Builder httpTypes(String key, Integer value) {
-			this.httpTypes = _mapPut(this.httpTypes, key, value);
-			return this;
-		}
+        /**
+         * Required - API name: {@code http_types}
+         * <p>
+         * Adds an entry to <code>httpTypes</code>.
+         */
+        public final Builder httpTypes(String key, Integer value) {
+            this.httpTypes = _mapPut(this.httpTypes, key, value);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code transport_types}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>transportTypes</code>.
-		 */
-		public final Builder transportTypes(Map<String, Integer> map) {
-			this.transportTypes = _mapPutAll(this.transportTypes, map);
-			return this;
-		}
+        /**
+         * Required - API name: {@code transport_types}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>transportTypes</code>.
+         */
+        public final Builder transportTypes(Map<String, Integer> map) {
+            this.transportTypes = _mapPutAll(this.transportTypes, map);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code transport_types}
-		 * <p>
-		 * Adds an entry to <code>transportTypes</code>.
-		 */
-		public final Builder transportTypes(String key, Integer value) {
-			this.transportTypes = _mapPut(this.transportTypes, key, value);
-			return this;
-		}
+        /**
+         * Required - API name: {@code transport_types}
+         * <p>
+         * Adds an entry to <code>transportTypes</code>.
+         */
+        public final Builder transportTypes(String key, Integer value) {
+            this.transportTypes = _mapPut(this.transportTypes, key, value);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ClusterNetworkTypes}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ClusterNetworkTypes build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ClusterNetworkTypes}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ClusterNetworkTypes build() {
+            _checkSingleUse();
 
-			return new ClusterNetworkTypes(this);
-		}
-	}
+            return new ClusterNetworkTypes(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ClusterNetworkTypes}
-	 */
-	public static final JsonpDeserializer<ClusterNetworkTypes> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterNetworkTypes::setupClusterNetworkTypesDeserializer);
+    /**
+     * Json deserializer for {@link ClusterNetworkTypes}
+     */
+    public static final JsonpDeserializer<ClusterNetworkTypes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ClusterNetworkTypes::setupClusterNetworkTypesDeserializer
+    );
 
-	protected static void setupClusterNetworkTypesDeserializer(ObjectDeserializer<ClusterNetworkTypes.Builder> op) {
+    protected static void setupClusterNetworkTypesDeserializer(ObjectDeserializer<ClusterNetworkTypes.Builder> op) {
 
-		op.add(Builder::httpTypes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
-				"http_types");
-		op.add(Builder::transportTypes,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()), "transport_types");
+        op.add(Builder::httpTypes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()), "http_types");
+        op.add(
+            Builder::transportTypes,
+            JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
+            "transport_types"
+        );
 
-	}
+    }
 
 }

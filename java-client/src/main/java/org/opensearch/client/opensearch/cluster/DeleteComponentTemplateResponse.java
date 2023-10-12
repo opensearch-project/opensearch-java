@@ -32,70 +32,69 @@
 
 package org.opensearch.client.opensearch.cluster;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: cluster.delete_component_template.Response
 
 @JsonpDeserializable
 public class DeleteComponentTemplateResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DeleteComponentTemplateResponse(Builder builder) {
-		super(builder);
+    private DeleteComponentTemplateResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DeleteComponentTemplateResponse of(
-			Function<Builder, ObjectBuilder<DeleteComponentTemplateResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DeleteComponentTemplateResponse of(Function<Builder, ObjectBuilder<DeleteComponentTemplateResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DeleteComponentTemplateResponse}.
-	 */
+    /**
+     * Builder for {@link DeleteComponentTemplateResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DeleteComponentTemplateResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<DeleteComponentTemplateResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DeleteComponentTemplateResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeleteComponentTemplateResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DeleteComponentTemplateResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DeleteComponentTemplateResponse build() {
+            _checkSingleUse();
 
-			return new DeleteComponentTemplateResponse(this);
-		}
-	}
+            return new DeleteComponentTemplateResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DeleteComponentTemplateResponse}
-	 */
-	public static final JsonpDeserializer<DeleteComponentTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteComponentTemplateResponse::setupDeleteComponentTemplateResponseDeserializer);
+    /**
+     * Json deserializer for {@link DeleteComponentTemplateResponse}
+     */
+    public static final JsonpDeserializer<DeleteComponentTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeleteComponentTemplateResponse::setupDeleteComponentTemplateResponseDeserializer
+    );
 
-	protected static void setupDeleteComponentTemplateResponseDeserializer(
-			ObjectDeserializer<DeleteComponentTemplateResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupDeleteComponentTemplateResponseDeserializer(ObjectDeserializer<DeleteComponentTemplateResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

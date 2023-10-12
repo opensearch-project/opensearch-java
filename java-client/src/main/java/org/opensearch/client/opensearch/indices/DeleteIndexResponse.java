@@ -32,68 +32,67 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.IndicesResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.IndicesResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.delete.Response
 
 @JsonpDeserializable
 public class DeleteIndexResponse extends IndicesResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DeleteIndexResponse(Builder builder) {
-		super(builder);
+    private DeleteIndexResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DeleteIndexResponse of(Function<Builder, ObjectBuilder<DeleteIndexResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DeleteIndexResponse of(Function<Builder, ObjectBuilder<DeleteIndexResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DeleteIndexResponse}.
-	 */
+    /**
+     * Builder for {@link DeleteIndexResponse}.
+     */
 
-	public static class Builder extends IndicesResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DeleteIndexResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends IndicesResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteIndexResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DeleteIndexResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeleteIndexResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DeleteIndexResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DeleteIndexResponse build() {
+            _checkSingleUse();
 
-			return new DeleteIndexResponse(this);
-		}
-	}
+            return new DeleteIndexResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DeleteIndexResponse}
-	 */
-	public static final JsonpDeserializer<DeleteIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteIndexResponse::setupDeleteIndexResponseDeserializer);
+    /**
+     * Json deserializer for {@link DeleteIndexResponse}
+     */
+    public static final JsonpDeserializer<DeleteIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeleteIndexResponse::setupDeleteIndexResponseDeserializer
+    );
 
-	protected static void setupDeleteIndexResponseDeserializer(ObjectDeserializer<DeleteIndexResponse.Builder> op) {
-		IndicesResponseBase.setupIndicesResponseBaseDeserializer(op);
+    protected static void setupDeleteIndexResponseDeserializer(ObjectDeserializer<DeleteIndexResponse.Builder> op) {
+        IndicesResponseBase.setupIndicesResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

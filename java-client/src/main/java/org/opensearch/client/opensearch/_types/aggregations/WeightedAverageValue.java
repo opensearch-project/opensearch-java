@@ -32,174 +32,175 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
-import org.opensearch.client.opensearch._types.Script;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.WeightedAverageValue
 
-
 @JsonpDeserializable
 public class WeightedAverageValue implements JsonpSerializable {
-	@Nullable
-	private final String field;
+    @Nullable
+    private final String field;
 
-	@Nullable
-	private final Double missing;
+    @Nullable
+    private final Double missing;
 
-	@Nullable
-	private final Script script;
+    @Nullable
+    private final Script script;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private WeightedAverageValue(Builder builder) {
+    private WeightedAverageValue(Builder builder) {
 
-		this.field = builder.field;
-		this.missing = builder.missing;
-		this.script = builder.script;
+        this.field = builder.field;
+        this.missing = builder.missing;
+        this.script = builder.script;
 
-	}
+    }
 
-	public static WeightedAverageValue of(Function<Builder, ObjectBuilder<WeightedAverageValue>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static WeightedAverageValue of(Function<Builder, ObjectBuilder<WeightedAverageValue>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code field}
-	 */
-	@Nullable
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * API name: {@code field}
+     */
+    @Nullable
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * API name: {@code missing}
-	 */
-	@Nullable
-	public final Double missing() {
-		return this.missing;
-	}
+    /**
+     * API name: {@code missing}
+     */
+    @Nullable
+    public final Double missing() {
+        return this.missing;
+    }
 
-	/**
-	 * API name: {@code script}
-	 */
-	@Nullable
-	public final Script script() {
-		return this.script;
-	}
+    /**
+     * API name: {@code script}
+     */
+    @Nullable
+    public final Script script() {
+        return this.script;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.field != null) {
-			generator.writeKey("field");
-			generator.write(this.field);
+        if (this.field != null) {
+            generator.writeKey("field");
+            generator.write(this.field);
 
-		}
-		if (this.missing != null) {
-			generator.writeKey("missing");
-			generator.write(this.missing);
+        }
+        if (this.missing != null) {
+            generator.writeKey("missing");
+            generator.write(this.missing);
 
-		}
-		if (this.script != null) {
-			generator.writeKey("script");
-			this.script.serialize(generator, mapper);
+        }
+        if (this.script != null) {
+            generator.writeKey("script");
+            this.script.serialize(generator, mapper);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link WeightedAverageValue}.
-	 */
+    /**
+     * Builder for {@link WeightedAverageValue}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WeightedAverageValue> {
-		@Nullable
-		private String field;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WeightedAverageValue> {
+        @Nullable
+        private String field;
 
-		@Nullable
-		private Double missing;
+        @Nullable
+        private Double missing;
 
-		@Nullable
-		private Script script;
+        @Nullable
+        private Script script;
 
-		/**
-		 * API name: {@code field}
-		 */
-		public final Builder field(@Nullable String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * API name: {@code field}
+         */
+        public final Builder field(@Nullable String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code missing}
-		 */
-		public final Builder missing(@Nullable Double value) {
-			this.missing = value;
-			return this;
-		}
+        /**
+         * API name: {@code missing}
+         */
+        public final Builder missing(@Nullable Double value) {
+            this.missing = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code script}
-		 */
-		public final Builder script(@Nullable Script value) {
-			this.script = value;
-			return this;
-		}
+        /**
+         * API name: {@code script}
+         */
+        public final Builder script(@Nullable Script value) {
+            this.script = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code script}
-		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
-		}
+        /**
+         * API name: {@code script}
+         */
+        public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+            return this.script(fn.apply(new Script.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link WeightedAverageValue}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public WeightedAverageValue build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link WeightedAverageValue}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public WeightedAverageValue build() {
+            _checkSingleUse();
 
-			return new WeightedAverageValue(this);
-		}
-	}
+            return new WeightedAverageValue(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link WeightedAverageValue}
-	 */
-	public static final JsonpDeserializer<WeightedAverageValue> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, WeightedAverageValue::setupWeightedAverageValueDeserializer);
+    /**
+     * Json deserializer for {@link WeightedAverageValue}
+     */
+    public static final JsonpDeserializer<WeightedAverageValue> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        WeightedAverageValue::setupWeightedAverageValueDeserializer
+    );
 
-	protected static void setupWeightedAverageValueDeserializer(ObjectDeserializer<WeightedAverageValue.Builder> op) {
+    protected static void setupWeightedAverageValueDeserializer(ObjectDeserializer<WeightedAverageValue.Builder> op) {
 
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::missing, JsonpDeserializer.doubleDeserializer(), "missing");
-		op.add(Builder::script, Script._DESERIALIZER, "script");
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::missing, JsonpDeserializer.doubleDeserializer(), "missing");
+        op.add(Builder::script, Script._DESERIALIZER, "script");
 
-	}
+    }
 
 }

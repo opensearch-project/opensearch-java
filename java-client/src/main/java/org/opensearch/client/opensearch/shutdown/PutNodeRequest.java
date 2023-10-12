@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.shutdown;
 
+import java.util.Collections;
+import java.util.function.Function;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -40,109 +42,110 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.Collections;
-import java.util.function.Function;
-
 // typedef: shutdown.put_node.Request
 
 /**
  * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
  * Direct use is not supported.
- * 
+ *
  */
 
 public class PutNodeRequest extends RequestBase {
-	private final String nodeId;
+    private final String nodeId;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PutNodeRequest(Builder builder) {
+    private PutNodeRequest(Builder builder) {
 
-		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+        this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
 
-	}
+    }
 
-	public static PutNodeRequest of(Function<Builder, ObjectBuilder<PutNodeRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PutNodeRequest of(Function<Builder, ObjectBuilder<PutNodeRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - The node id of node to be shut down
-	 * <p>
-	 * API name: {@code node_id}
-	 */
-	public final String nodeId() {
-		return this.nodeId;
-	}
+    /**
+     * Required - The node id of node to be shut down
+     * <p>
+     * API name: {@code node_id}
+     */
+    public final String nodeId() {
+        return this.nodeId;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PutNodeRequest}.
-	 */
+    /**
+     * Builder for {@link PutNodeRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutNodeRequest> {
-		private String nodeId;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutNodeRequest> {
+        private String nodeId;
 
-		/**
-		 * Required - The node id of node to be shut down
-		 * <p>
-		 * API name: {@code node_id}
-		 */
-		public final Builder nodeId(String value) {
-			this.nodeId = value;
-			return this;
-		}
+        /**
+         * Required - The node id of node to be shut down
+         * <p>
+         * API name: {@code node_id}
+         */
+        public final Builder nodeId(String value) {
+            this.nodeId = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PutNodeRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PutNodeRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PutNodeRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PutNodeRequest build() {
+            _checkSingleUse();
 
-			return new PutNodeRequest(this);
-		}
-	}
+            return new PutNodeRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code shutdown.put_node}".
-	 */
-	public static final Endpoint<PutNodeRequest, PutNodeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code shutdown.put_node}".
+     */
+    public static final Endpoint<PutNodeRequest, PutNodeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "PUT";
+        // Request method
+        request -> {
+            return "PUT";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _nodeId = 1 << 0;
+        // Request path
+        request -> {
+            final int _nodeId = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				propsSet |= _nodeId;
+            propsSet |= _nodeId;
 
-				if (propsSet == (_nodeId)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_nodes");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.nodeId, buf);
-					buf.append("/shutdown");
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == (_nodeId)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_nodes");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.nodeId, buf);
+                buf.append("/shutdown");
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, PutNodeResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        PutNodeResponse._DESERIALIZER
+    );
 }

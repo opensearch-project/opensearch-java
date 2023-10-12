@@ -32,98 +32,94 @@
 
 package org.opensearch.client.opensearch.core.bulk;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
-import jakarta.json.stream.JsonGenerator;
-import javax.annotation.Nullable;
 
 // typedef: _global.bulk.WriteOperation
 
-
-
 public abstract class WriteOperation extends BulkOperationBase {
 
-	@Nullable
-	private final String pipeline;
+    @Nullable
+    private final String pipeline;
 
-	@Nullable
-	private final Boolean requireAlias;
+    @Nullable
+    private final Boolean requireAlias;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected WriteOperation(AbstractBuilder<?> builder) {
-		super(builder);
+    protected WriteOperation(AbstractBuilder<?> builder) {
+        super(builder);
 
-		this.pipeline = builder.pipeline;
-		this.requireAlias = builder.requireAlias;
+        this.pipeline = builder.pipeline;
+        this.requireAlias = builder.requireAlias;
 
-	}
+    }
 
-	@Nullable
-	public final String pipeline() {
-		return this.pipeline;
-	}
+    @Nullable
+    public final String pipeline() {
+        return this.pipeline;
+    }
 
-	/**
-	 * API name: {@code require_alias}
-	 */
-	@Nullable
-	public final Boolean requireAlias() {
-		return this.requireAlias;
-	}
+    /**
+     * API name: {@code require_alias}
+     */
+    @Nullable
+    public final Boolean requireAlias() {
+        return this.requireAlias;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.pipeline != null) {
-			generator.writeKey("pipeline");
-			generator.write(this.pipeline);
+        super.serializeInternal(generator, mapper);
+        if (this.pipeline != null) {
+            generator.writeKey("pipeline");
+            generator.write(this.pipeline);
 
-		}
-		if (this.requireAlias != null) {
-			generator.writeKey("require_alias");
-			generator.write(this.requireAlias);
+        }
+        if (this.requireAlias != null) {
+            generator.writeKey("require_alias");
+            generator.write(this.requireAlias);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				BulkOperationBase.AbstractBuilder<BuilderT> {
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends BulkOperationBase.AbstractBuilder<
+        BuilderT> {
 
-		@Nullable
-		private String pipeline;
+        @Nullable
+        private String pipeline;
 
-		@Nullable
-		private Boolean requireAlias;
+        @Nullable
+        private Boolean requireAlias;
 
-		/**
-		 * API name: {@code pipeline}
-		 */
-		public final BuilderT pipeline(@Nullable String value) {
-			this.pipeline = value;
-			return self();
-		}
+        /**
+         * API name: {@code pipeline}
+         */
+        public final BuilderT pipeline(@Nullable String value) {
+            this.pipeline = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code require_alias}
-		 */
-		public final BuilderT requireAlias(@Nullable Boolean value) {
-			this.requireAlias = value;
-			return self();
-		}
+        /**
+         * API name: {@code require_alias}
+         */
+        public final BuilderT requireAlias(@Nullable Boolean value) {
+            this.requireAlias = value;
+            return self();
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWriteOperationDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		BulkOperationBase.setupBulkOperationBaseDeserializer(op);
-		op.add(AbstractBuilder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
-		op.add(AbstractBuilder::requireAlias, JsonpDeserializer.booleanDeserializer(), "require_alias");
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWriteOperationDeserializer(ObjectDeserializer<BuilderT> op) {
+        BulkOperationBase.setupBulkOperationBaseDeserializer(op);
+        op.add(AbstractBuilder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
+        op.add(AbstractBuilder::requireAlias, JsonpDeserializer.booleanDeserializer(), "require_alias");
 
-	}
+    }
 
 }

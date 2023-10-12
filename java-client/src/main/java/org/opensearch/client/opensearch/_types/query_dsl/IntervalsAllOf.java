@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,234 +45,231 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsAllOf
 
-
 @JsonpDeserializable
 public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
-	private final List<Intervals> intervals;
+    private final List<Intervals> intervals;
 
-	@Nullable
-	private final Integer maxGaps;
+    @Nullable
+    private final Integer maxGaps;
 
-	@Nullable
-	private final Boolean ordered;
+    @Nullable
+    private final Boolean ordered;
 
-	@Nullable
-	private final IntervalsFilter filter;
+    @Nullable
+    private final IntervalsFilter filter;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IntervalsAllOf(Builder builder) {
+    private IntervalsAllOf(Builder builder) {
 
-		this.intervals = ApiTypeHelper.unmodifiableRequired(builder.intervals, this, "intervals");
-		this.maxGaps = builder.maxGaps;
-		this.ordered = builder.ordered;
-		this.filter = builder.filter;
+        this.intervals = ApiTypeHelper.unmodifiableRequired(builder.intervals, this, "intervals");
+        this.maxGaps = builder.maxGaps;
+        this.ordered = builder.ordered;
+        this.filter = builder.filter;
 
-	}
+    }
 
-	public static IntervalsAllOf of(Function<Builder, ObjectBuilder<IntervalsAllOf>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IntervalsAllOf of(Function<Builder, ObjectBuilder<IntervalsAllOf>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * IntervalsQuery variant kind.
-	 */
-	@Override
-	public IntervalsQuery.Kind _intervalsQueryKind() {
-		return IntervalsQuery.Kind.AllOf;
-	}
+    /**
+     * IntervalsQuery variant kind.
+     */
+    @Override
+    public IntervalsQuery.Kind _intervalsQueryKind() {
+        return IntervalsQuery.Kind.AllOf;
+    }
 
-	/**
-	 * Intervals variant kind.
-	 */
-	@Override
-	public Intervals.Kind _intervalsKind() {
-		return Intervals.Kind.AllOf;
-	}
+    /**
+     * Intervals variant kind.
+     */
+    @Override
+    public Intervals.Kind _intervalsKind() {
+        return Intervals.Kind.AllOf;
+    }
 
-	/**
-	 * Required - API name: {@code intervals}
-	 */
-	public final List<Intervals> intervals() {
-		return this.intervals;
-	}
+    /**
+     * Required - API name: {@code intervals}
+     */
+    public final List<Intervals> intervals() {
+        return this.intervals;
+    }
 
-	/**
-	 * API name: {@code max_gaps}
-	 */
-	@Nullable
-	public final Integer maxGaps() {
-		return this.maxGaps;
-	}
+    /**
+     * API name: {@code max_gaps}
+     */
+    @Nullable
+    public final Integer maxGaps() {
+        return this.maxGaps;
+    }
 
-	/**
-	 * API name: {@code ordered}
-	 */
-	@Nullable
-	public final Boolean ordered() {
-		return this.ordered;
-	}
+    /**
+     * API name: {@code ordered}
+     */
+    @Nullable
+    public final Boolean ordered() {
+        return this.ordered;
+    }
 
-	/**
-	 * API name: {@code filter}
-	 */
-	@Nullable
-	public final IntervalsFilter filter() {
-		return this.filter;
-	}
+    /**
+     * API name: {@code filter}
+     */
+    @Nullable
+    public final IntervalsFilter filter() {
+        return this.filter;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.intervals)) {
-			generator.writeKey("intervals");
-			generator.writeStartArray();
-			for (Intervals item0 : this.intervals) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.intervals)) {
+            generator.writeKey("intervals");
+            generator.writeStartArray();
+            for (Intervals item0 : this.intervals) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.maxGaps != null) {
-			generator.writeKey("max_gaps");
-			generator.write(this.maxGaps);
+        }
+        if (this.maxGaps != null) {
+            generator.writeKey("max_gaps");
+            generator.write(this.maxGaps);
 
-		}
-		if (this.ordered != null) {
-			generator.writeKey("ordered");
-			generator.write(this.ordered);
+        }
+        if (this.ordered != null) {
+            generator.writeKey("ordered");
+            generator.write(this.ordered);
 
-		}
-		if (this.filter != null) {
-			generator.writeKey("filter");
-			this.filter.serialize(generator, mapper);
+        }
+        if (this.filter != null) {
+            generator.writeKey("filter");
+            this.filter.serialize(generator, mapper);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IntervalsAllOf}.
-	 */
+    /**
+     * Builder for {@link IntervalsAllOf}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsAllOf> {
-		private List<Intervals> intervals;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsAllOf> {
+        private List<Intervals> intervals;
 
-		@Nullable
-		private Integer maxGaps;
+        @Nullable
+        private Integer maxGaps;
 
-		@Nullable
-		private Boolean ordered;
+        @Nullable
+        private Boolean ordered;
 
-		@Nullable
-		private IntervalsFilter filter;
+        @Nullable
+        private IntervalsFilter filter;
 
-		/**
-		 * Required - API name: {@code intervals}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>intervals</code>.
-		 */
-		public final Builder intervals(List<Intervals> list) {
-			this.intervals = _listAddAll(this.intervals, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code intervals}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>intervals</code>.
+         */
+        public final Builder intervals(List<Intervals> list) {
+            this.intervals = _listAddAll(this.intervals, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code intervals}
-		 * <p>
-		 * Adds one or more values to <code>intervals</code>.
-		 */
-		public final Builder intervals(Intervals value, Intervals... values) {
-			this.intervals = _listAdd(this.intervals, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code intervals}
+         * <p>
+         * Adds one or more values to <code>intervals</code>.
+         */
+        public final Builder intervals(Intervals value, Intervals... values) {
+            this.intervals = _listAdd(this.intervals, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code intervals}
-		 * <p>
-		 * Adds a value to <code>intervals</code> using a builder lambda.
-		 */
-		public final Builder intervals(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
-			return intervals(fn.apply(new Intervals.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code intervals}
+         * <p>
+         * Adds a value to <code>intervals</code> using a builder lambda.
+         */
+        public final Builder intervals(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+            return intervals(fn.apply(new Intervals.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code max_gaps}
-		 */
-		public final Builder maxGaps(@Nullable Integer value) {
-			this.maxGaps = value;
-			return this;
-		}
+        /**
+         * API name: {@code max_gaps}
+         */
+        public final Builder maxGaps(@Nullable Integer value) {
+            this.maxGaps = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code ordered}
-		 */
-		public final Builder ordered(@Nullable Boolean value) {
-			this.ordered = value;
-			return this;
-		}
+        /**
+         * API name: {@code ordered}
+         */
+        public final Builder ordered(@Nullable Boolean value) {
+            this.ordered = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code filter}
-		 */
-		public final Builder filter(@Nullable IntervalsFilter value) {
-			this.filter = value;
-			return this;
-		}
+        /**
+         * API name: {@code filter}
+         */
+        public final Builder filter(@Nullable IntervalsFilter value) {
+            this.filter = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code filter}
-		 */
-		public final Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {
-			return this.filter(fn.apply(new IntervalsFilter.Builder()).build());
-		}
+        /**
+         * API name: {@code filter}
+         */
+        public final Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {
+            return this.filter(fn.apply(new IntervalsFilter.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link IntervalsAllOf}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IntervalsAllOf build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IntervalsAllOf}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IntervalsAllOf build() {
+            _checkSingleUse();
 
-			return new IntervalsAllOf(this);
-		}
-	}
+            return new IntervalsAllOf(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IntervalsAllOf}
-	 */
-	public static final JsonpDeserializer<IntervalsAllOf> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IntervalsAllOf::setupIntervalsAllOfDeserializer);
+    /**
+     * Json deserializer for {@link IntervalsAllOf}
+     */
+    public static final JsonpDeserializer<IntervalsAllOf> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IntervalsAllOf::setupIntervalsAllOfDeserializer
+    );
 
-	protected static void setupIntervalsAllOfDeserializer(ObjectDeserializer<IntervalsAllOf.Builder> op) {
+    protected static void setupIntervalsAllOfDeserializer(ObjectDeserializer<IntervalsAllOf.Builder> op) {
 
-		op.add(Builder::intervals, JsonpDeserializer.arrayDeserializer(Intervals._DESERIALIZER), "intervals");
-		op.add(Builder::maxGaps, JsonpDeserializer.integerDeserializer(), "max_gaps");
-		op.add(Builder::ordered, JsonpDeserializer.booleanDeserializer(), "ordered");
-		op.add(Builder::filter, IntervalsFilter._DESERIALIZER, "filter");
+        op.add(Builder::intervals, JsonpDeserializer.arrayDeserializer(Intervals._DESERIALIZER), "intervals");
+        op.add(Builder::maxGaps, JsonpDeserializer.integerDeserializer(), "max_gaps");
+        op.add(Builder::ordered, JsonpDeserializer.booleanDeserializer(), "ordered");
+        op.add(Builder::filter, IntervalsFilter._DESERIALIZER, "filter");
 
-	}
+    }
 
 }

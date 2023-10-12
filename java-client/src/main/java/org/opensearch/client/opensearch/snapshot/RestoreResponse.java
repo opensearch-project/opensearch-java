@@ -32,110 +32,111 @@
 
 package org.opensearch.client.opensearch.snapshot;
 
-import org.opensearch.client.opensearch.snapshot.restore.SnapshotRestore;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.snapshot.restore.SnapshotRestore;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: snapshot.restore.Response
 
 @JsonpDeserializable
 public class RestoreResponse implements JsonpSerializable {
-	private final SnapshotRestore snapshot;
+    private final SnapshotRestore snapshot;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RestoreResponse(Builder builder) {
+    private RestoreResponse(Builder builder) {
 
-		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+        this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 
-	}
+    }
 
-	public static RestoreResponse of(Function<Builder, ObjectBuilder<RestoreResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RestoreResponse of(Function<Builder, ObjectBuilder<RestoreResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code snapshot}
-	 */
-	public final SnapshotRestore snapshot() {
-		return this.snapshot;
-	}
+    /**
+     * Required - API name: {@code snapshot}
+     */
+    public final SnapshotRestore snapshot() {
+        return this.snapshot;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("snapshot");
-		this.snapshot.serialize(generator, mapper);
+        generator.writeKey("snapshot");
+        this.snapshot.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RestoreResponse}.
-	 */
+    /**
+     * Builder for {@link RestoreResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RestoreResponse> {
-		private SnapshotRestore snapshot;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RestoreResponse> {
+        private SnapshotRestore snapshot;
 
-		/**
-		 * Required - API name: {@code snapshot}
-		 */
-		public final Builder snapshot(SnapshotRestore value) {
-			this.snapshot = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code snapshot}
+         */
+        public final Builder snapshot(SnapshotRestore value) {
+            this.snapshot = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code snapshot}
-		 */
-		public final Builder snapshot(Function<SnapshotRestore.Builder, ObjectBuilder<SnapshotRestore>> fn) {
-			return this.snapshot(fn.apply(new SnapshotRestore.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code snapshot}
+         */
+        public final Builder snapshot(Function<SnapshotRestore.Builder, ObjectBuilder<SnapshotRestore>> fn) {
+            return this.snapshot(fn.apply(new SnapshotRestore.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link RestoreResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RestoreResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RestoreResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RestoreResponse build() {
+            _checkSingleUse();
 
-			return new RestoreResponse(this);
-		}
-	}
+            return new RestoreResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RestoreResponse}
-	 */
-	public static final JsonpDeserializer<RestoreResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RestoreResponse::setupRestoreResponseDeserializer);
+    /**
+     * Json deserializer for {@link RestoreResponse}
+     */
+    public static final JsonpDeserializer<RestoreResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RestoreResponse::setupRestoreResponseDeserializer
+    );
 
-	protected static void setupRestoreResponseDeserializer(ObjectDeserializer<RestoreResponse.Builder> op) {
+    protected static void setupRestoreResponseDeserializer(ObjectDeserializer<RestoreResponse.Builder> op) {
 
-		op.add(Builder::snapshot, SnapshotRestore._DESERIALIZER, "snapshot");
+        op.add(Builder::snapshot, SnapshotRestore._DESERIALIZER, "snapshot");
 
-	}
+    }
 
 }

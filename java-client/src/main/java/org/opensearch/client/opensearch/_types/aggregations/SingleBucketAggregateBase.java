@@ -32,95 +32,92 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
-import jakarta.json.stream.JsonGenerator;
 import org.opensearch.client.util.ObjectBuilder;
-
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.SingleBucketAggregateBase
 
-
-
 public abstract class SingleBucketAggregateBase extends AggregateBase {
-	private final Map<String, Aggregate> aggregations;
-	private final long docCount;
+    private final Map<String, Aggregate> aggregations;
+    private final long docCount;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected SingleBucketAggregateBase(AbstractBuilder<?> builder) {
-		super(builder);
-		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
+    protected SingleBucketAggregateBase(AbstractBuilder<?> builder) {
+        super(builder);
+        this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 
-		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
+        this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
 
-	}
+    }
 
-	public final Map<String, Aggregate> aggregations() {
-		return this.aggregations;
-	}
+    public final Map<String, Aggregate> aggregations() {
+        return this.aggregations;
+    }
 
-	/**
-	 * Required - API name: {@code doc_count}
-	 */
-	public final long docCount() {
-		return this.docCount;
-	}
+    /**
+     * Required - API name: {@code doc_count}
+     */
+    public final long docCount() {
+        return this.docCount;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("doc_count");
-		generator.write(this.docCount);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("doc_count");
+        generator.write(this.docCount);
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				AggregateBase.AbstractBuilder<BuilderT> {
-		@Nullable
-		protected Map<String, Aggregate> aggregations = new HashMap<>();
-		private Long docCount;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregateBase.AbstractBuilder<
+        BuilderT> {
+        @Nullable
+        protected Map<String, Aggregate> aggregations = new HashMap<>();
+        private Long docCount;
 
-		public final BuilderT aggregations(Map<String, Aggregate> aggregateMap) {
-			this.aggregations = _mapPutAll(this.aggregations, aggregateMap);
-			return self();
-		}
+        public final BuilderT aggregations(Map<String, Aggregate> aggregateMap) {
+            this.aggregations = _mapPutAll(this.aggregations, aggregateMap);
+            return self();
+        }
 
-		public final BuilderT aggregations(String key, Aggregate value) {
-			this.aggregations = _mapPut(this.aggregations, key, value);
-			return self();
-		}
+        public final BuilderT aggregations(String key, Aggregate value) {
+            this.aggregations = _mapPut(this.aggregations, key, value);
+            return self();
+        }
 
-		public final BuilderT aggregations(String key, Function<Aggregate.Builder, ObjectBuilder<Aggregate>> function) {
-			return aggregations(key, function.apply(new Aggregate.Builder()).build());
-		}
+        public final BuilderT aggregations(String key, Function<Aggregate.Builder, ObjectBuilder<Aggregate>> function) {
+            return aggregations(key, function.apply(new Aggregate.Builder()).build());
+        }
 
-		public final BuilderT docCount(long value) {
-			this.docCount = value;
-			return self();
-		}
+        public final BuilderT docCount(long value) {
+            this.docCount = value;
+            return self();
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSingleBucketAggregateBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(AbstractBuilder::docCount, JsonpDeserializer.longDeserializer(), "doc_count");
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSingleBucketAggregateBaseDeserializer(
+        ObjectDeserializer<BuilderT> op
+    ) {
+        AggregateBase.setupAggregateBaseDeserializer(op);
+        op.add(AbstractBuilder::docCount, JsonpDeserializer.longDeserializer(), "doc_count");
 
-		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			if (builder.aggregations == null) {
-				builder.aggregations = new HashMap<>();
-			}
-			Aggregate._TYPED_KEYS_DESERIALIZER.deserializeEntry(name, parser, mapper, builder.aggregations);
-		});
-	}
+        op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+            if (builder.aggregations == null) {
+                builder.aggregations = new HashMap<>();
+            }
+            Aggregate._TYPED_KEYS_DESERIALIZER.deserializeEntry(name, parser, mapper, builder.aggregations);
+        });
+    }
 
 }

@@ -37,42 +37,41 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum PhoneticEncoder implements JsonEnum {
-	Metaphone("metaphone"),
+    Metaphone("metaphone"),
 
-	DoubleMetaphone("double_metaphone"),
+    DoubleMetaphone("double_metaphone"),
 
-	Soundex("soundex"),
+    Soundex("soundex"),
 
-	RefinedSoundex("refined_soundex"),
+    RefinedSoundex("refined_soundex"),
 
-	Caverphone1("caverphone1"),
+    Caverphone1("caverphone1"),
 
-	Caverphone2("caverphone2"),
+    Caverphone2("caverphone2"),
 
-	Cologne("cologne"),
+    Cologne("cologne"),
 
-	Nysiis("nysiis"),
+    Nysiis("nysiis"),
 
-	Koelnerphonetik("koelnerphonetik"),
+    Koelnerphonetik("koelnerphonetik"),
 
-	Haasephonetik("haasephonetik"),
+    Haasephonetik("haasephonetik"),
 
-	BeiderMorse("beider_morse"),
+    BeiderMorse("beider_morse"),
 
-	DaitchMokotoff("daitch_mokotoff"),
+    DaitchMokotoff("daitch_mokotoff"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	PhoneticEncoder(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    PhoneticEncoder(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<PhoneticEncoder> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			PhoneticEncoder.values());
+    public static final JsonEnum.Deserializer<PhoneticEncoder> _DESERIALIZER = new JsonEnum.Deserializer<>(PhoneticEncoder.values());
 }

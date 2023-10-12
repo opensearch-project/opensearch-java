@@ -32,74 +32,73 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.ChildrenAggregate
 
 @JsonpDeserializable
 public class ChildrenAggregate extends SingleBucketAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ChildrenAggregate(Builder builder) {
-		super(builder);
+    private ChildrenAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static ChildrenAggregate of(Function<Builder, ObjectBuilder<ChildrenAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ChildrenAggregate of(Function<Builder, ObjectBuilder<ChildrenAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Children;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Children;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ChildrenAggregate}.
-	 */
+    /**
+     * Builder for {@link ChildrenAggregate}.
+     */
 
-	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ChildrenAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<ChildrenAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ChildrenAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ChildrenAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ChildrenAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ChildrenAggregate build() {
+            _checkSingleUse();
 
-			return new ChildrenAggregate(this);
-		}
-	}
+            return new ChildrenAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ChildrenAggregate}
-	 */
-	public static final JsonpDeserializer<ChildrenAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ChildrenAggregate::setupChildrenAggregateDeserializer);
+    /**
+     * Json deserializer for {@link ChildrenAggregate}
+     */
+    public static final JsonpDeserializer<ChildrenAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ChildrenAggregate::setupChildrenAggregateDeserializer
+    );
 
-	protected static void setupChildrenAggregateDeserializer(ObjectDeserializer<ChildrenAggregate.Builder> op) {
-		SingleBucketAggregateBase.setupSingleBucketAggregateBaseDeserializer(op);
-	}
+    protected static void setupChildrenAggregateDeserializer(ObjectDeserializer<ChildrenAggregate.Builder> op) {
+        SingleBucketAggregateBase.setupSingleBucketAggregateBaseDeserializer(op);
+    }
 
 }

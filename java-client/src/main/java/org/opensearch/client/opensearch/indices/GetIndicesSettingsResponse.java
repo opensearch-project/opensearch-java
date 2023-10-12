@@ -32,6 +32,7 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -39,65 +40,63 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.transport.endpoints.DictionaryResponse;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: indices.get_settings.Response
 
 @JsonpDeserializable
 public class GetIndicesSettingsResponse extends DictionaryResponse<String, IndexState> {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetIndicesSettingsResponse(Builder builder) {
-		super(builder);
+    private GetIndicesSettingsResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static GetIndicesSettingsResponse of(Function<Builder, ObjectBuilder<GetIndicesSettingsResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetIndicesSettingsResponse of(Function<Builder, ObjectBuilder<GetIndicesSettingsResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetIndicesSettingsResponse}.
-	 */
+    /**
+     * Builder for {@link GetIndicesSettingsResponse}.
+     */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
-			implements
-				ObjectBuilder<GetIndicesSettingsResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
+        implements
+            ObjectBuilder<GetIndicesSettingsResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetIndicesSettingsResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetIndicesSettingsResponse build() {
-			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
+        /**
+         * Builds a {@link GetIndicesSettingsResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetIndicesSettingsResponse build() {
+            _checkSingleUse();
+            super.tKeySerializer(null);
+            super.tValueSerializer(null);
 
-			return new GetIndicesSettingsResponse(this);
-		}
-	}
+            return new GetIndicesSettingsResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GetIndicesSettingsResponse}
-	 */
-	public static final JsonpDeserializer<GetIndicesSettingsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetIndicesSettingsResponse::setupGetIndicesSettingsResponseDeserializer);
+    /**
+     * Json deserializer for {@link GetIndicesSettingsResponse}
+     */
+    public static final JsonpDeserializer<GetIndicesSettingsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GetIndicesSettingsResponse::setupGetIndicesSettingsResponseDeserializer
+    );
 
-	protected static void setupGetIndicesSettingsResponseDeserializer(
-			ObjectDeserializer<GetIndicesSettingsResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				IndexState._DESERIALIZER);
+    protected static void setupGetIndicesSettingsResponseDeserializer(ObjectDeserializer<GetIndicesSettingsResponse.Builder> op) {
+        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), IndexState._DESERIALIZER);
 
-	}
+    }
 
 }

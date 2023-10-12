@@ -32,12 +32,11 @@
 
 package org.opensearch.client;
 
-import org.opensearch.client.transport.TransportOptions;
-import org.opensearch.client.transport.Transport;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapperBase;
-
-import javax.annotation.Nullable;
+import org.opensearch.client.transport.Transport;
+import org.opensearch.client.transport.TransportOptions;
 
 public abstract class ApiClient<T extends Transport, Self extends ApiClient<T, Self>> {
 

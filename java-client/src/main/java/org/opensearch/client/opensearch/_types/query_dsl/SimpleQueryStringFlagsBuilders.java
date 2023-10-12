@@ -38,10 +38,9 @@ package org.opensearch.client.opensearch._types.query_dsl;
  * Variants <code>single</code>, <code>multiple</code> are not available here as
  * they don't have a dedicated class. Use {@link SimpleQueryStringFlags}'s
  * builder for these.
- * 
+ *
  */
 public class SimpleQueryStringFlagsBuilders {
-	private SimpleQueryStringFlagsBuilders() {
-	}
+    private SimpleQueryStringFlagsBuilders() {}
 
 }

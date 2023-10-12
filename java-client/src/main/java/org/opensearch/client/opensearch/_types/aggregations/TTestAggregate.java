@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,135 +43,131 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TTestAggregate
 
-
 @JsonpDeserializable
 public class TTestAggregate extends AggregateBase implements AggregateVariant {
-	private final double value;
+    private final double value;
 
-	@Nullable
-	private final String valueAsString;
+    @Nullable
+    private final String valueAsString;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TTestAggregate(Builder builder) {
-		super(builder);
+    private TTestAggregate(Builder builder) {
+        super(builder);
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
-		this.valueAsString = builder.valueAsString;
+        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+        this.valueAsString = builder.valueAsString;
 
-	}
+    }
 
-	public static TTestAggregate of(Function<Builder, ObjectBuilder<TTestAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TTestAggregate of(Function<Builder, ObjectBuilder<TTestAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.TTest;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.TTest;
+    }
 
-	/**
-	 * Required - API name: {@code value}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
-	 */
-	public final double value() {
-		return this.value;
-	}
+    /**
+     * Required - API name: {@code value}
+     * <p>
+     * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+     */
+    public final double value() {
+        return this.value;
+    }
 
-	/**
-	 * API name: {@code value_as_string}
-	 */
-	@Nullable
-	public final String valueAsString() {
-		return this.valueAsString;
-	}
+    /**
+     * API name: {@code value_as_string}
+     */
+    @Nullable
+    public final String valueAsString() {
+        return this.valueAsString;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("value");
-		JsonpUtils.serializeDoubleOrNull(generator, this.value, 0);
-		if (this.valueAsString != null) {
-			generator.writeKey("value_as_string");
-			generator.write(this.valueAsString);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("value");
+        JsonpUtils.serializeDoubleOrNull(generator, this.value, 0);
+        if (this.valueAsString != null) {
+            generator.writeKey("value_as_string");
+            generator.write(this.valueAsString);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TTestAggregate}.
-	 */
+    /**
+     * Builder for {@link TTestAggregate}.
+     */
 
-	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<TTestAggregate> {
-		private Double value;
+    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<TTestAggregate> {
+        private Double value;
 
-		@Nullable
-		private String valueAsString;
+        @Nullable
+        private String valueAsString;
 
-		/**
-		 * Required - API name: {@code value}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
-		 */
-		public final Builder value(double value) {
-			this.value = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code value}
+         * <p>
+         * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+         */
+        public final Builder value(double value) {
+            this.value = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code value_as_string}
-		 */
-		public final Builder valueAsString(@Nullable String value) {
-			this.valueAsString = value;
-			return this;
-		}
+        /**
+         * API name: {@code value_as_string}
+         */
+        public final Builder valueAsString(@Nullable String value) {
+            this.valueAsString = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TTestAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TTestAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TTestAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TTestAggregate build() {
+            _checkSingleUse();
 
-			return new TTestAggregate(this);
-		}
-	}
+            return new TTestAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TTestAggregate}
-	 */
-	public static final JsonpDeserializer<TTestAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TTestAggregate::setupTTestAggregateDeserializer);
+    /**
+     * Json deserializer for {@link TTestAggregate}
+     */
+    public static final JsonpDeserializer<TTestAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TTestAggregate::setupTTestAggregateDeserializer
+    );
 
-	protected static void setupTTestAggregateDeserializer(ObjectDeserializer<TTestAggregate.Builder> op) {
-		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.doubleOrNullDeserializer(0), "value");
-		op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
+    protected static void setupTTestAggregateDeserializer(ObjectDeserializer<TTestAggregate.Builder> op) {
+        AggregateBase.setupAggregateBaseDeserializer(op);
+        op.add(Builder::value, JsonpDeserializer.doubleOrNullDeserializer(0), "value");
+        op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
 
-	}
+    }
 
 }

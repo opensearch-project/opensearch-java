@@ -32,115 +32,115 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
-import org.opensearch.client.opensearch._types.Script;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.ScriptQuery
 
-
 @JsonpDeserializable
 public class ScriptQuery extends QueryBase implements QueryVariant {
-	private final Script script;
+    private final Script script;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ScriptQuery(Builder builder) {
-		super(builder);
+    private ScriptQuery(Builder builder) {
+        super(builder);
 
-		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
+        this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
-	}
+    }
 
-	public static ScriptQuery of(Function<Builder, ObjectBuilder<ScriptQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ScriptQuery of(Function<Builder, ObjectBuilder<ScriptQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.Script;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.Script;
+    }
 
-	/**
-	 * Required - API name: {@code script}
-	 */
-	public final Script script() {
-		return this.script;
-	}
+    /**
+     * Required - API name: {@code script}
+     */
+    public final Script script() {
+        return this.script;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("script");
-		this.script.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("script");
+        this.script.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ScriptQuery}.
-	 */
+    /**
+     * Builder for {@link ScriptQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptQuery> {
-		private Script script;
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptQuery> {
+        private Script script;
 
-		/**
-		 * Required - API name: {@code script}
-		 */
-		public final Builder script(Script value) {
-			this.script = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code script}
+         */
+        public final Builder script(Script value) {
+            this.script = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code script}
-		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code script}
+         */
+        public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+            return this.script(fn.apply(new Script.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ScriptQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ScriptQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ScriptQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ScriptQuery build() {
+            _checkSingleUse();
 
-			return new ScriptQuery(this);
-		}
-	}
+            return new ScriptQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ScriptQuery}
-	 */
-	public static final JsonpDeserializer<ScriptQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ScriptQuery::setupScriptQueryDeserializer);
+    /**
+     * Json deserializer for {@link ScriptQuery}
+     */
+    public static final JsonpDeserializer<ScriptQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ScriptQuery::setupScriptQueryDeserializer
+    );
 
-	protected static void setupScriptQueryDeserializer(ObjectDeserializer<ScriptQuery.Builder> op) {
-		setupQueryBaseDeserializer(op);
-		op.add(Builder::script, Script._DESERIALIZER, "script");
+    protected static void setupScriptQueryDeserializer(ObjectDeserializer<ScriptQuery.Builder> op) {
+        setupQueryBaseDeserializer(op);
+        op.add(Builder::script, Script._DESERIALIZER, "script");
 
-	}
+    }
 
 }

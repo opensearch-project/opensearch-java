@@ -32,76 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.MaxAggregate
-
 
 @JsonpDeserializable
 public class MaxAggregate extends SingleMetricAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MaxAggregate(Builder builder) {
-		super(builder);
+    private MaxAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static MaxAggregate of(Function<Builder, ObjectBuilder<MaxAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MaxAggregate of(Function<Builder, ObjectBuilder<MaxAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Max;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Max;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MaxAggregate}.
-	 */
+    /**
+     * Builder for {@link MaxAggregate}.
+     */
 
-	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<MaxAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<MaxAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MaxAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MaxAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MaxAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MaxAggregate build() {
+            _checkSingleUse();
 
-			return new MaxAggregate(this);
-		}
-	}
+            return new MaxAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MaxAggregate}
-	 */
-	public static final JsonpDeserializer<MaxAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MaxAggregate::setupMaxAggregateDeserializer);
+    /**
+     * Json deserializer for {@link MaxAggregate}
+     */
+    public static final JsonpDeserializer<MaxAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MaxAggregate::setupMaxAggregateDeserializer
+    );
 
-	protected static void setupMaxAggregateDeserializer(ObjectDeserializer<MaxAggregate.Builder> op) {
-		setupSingleMetricAggregateBaseDeserializer(op);
+    protected static void setupMaxAggregateDeserializer(ObjectDeserializer<MaxAggregate.Builder> op) {
+        setupSingleMetricAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

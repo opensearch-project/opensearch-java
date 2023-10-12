@@ -8,8 +8,8 @@
 
 package org.opensearch.client.opensearch.core.pit;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
-
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -18,8 +18,6 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-
-import jakarta.json.stream.JsonGenerator;
 
 @JsonpDeserializable
 public class DeletePitRecord implements JsonpSerializable {
@@ -114,11 +112,11 @@ public class DeletePitRecord implements JsonpSerializable {
      * Json deserializer for {@link DeletePitRecord}
      */
     public static final JsonpDeserializer<DeletePitRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-            Builder::new,
-            DeletePitRecord::setupDeletePitRecordDeserializer);
+        Builder::new,
+        DeletePitRecord::setupDeletePitRecordDeserializer
+    );
 
-    protected static void setupDeletePitRecordDeserializer(
-            ObjectDeserializer<DeletePitRecord.Builder> op) {
+    protected static void setupDeletePitRecordDeserializer(ObjectDeserializer<DeletePitRecord.Builder> op) {
 
         op.add(Builder::pitId, JsonpDeserializer.stringDeserializer(), "pit_id");
         op.add(Builder::successful, JsonpDeserializer.booleanDeserializer(), "successful");

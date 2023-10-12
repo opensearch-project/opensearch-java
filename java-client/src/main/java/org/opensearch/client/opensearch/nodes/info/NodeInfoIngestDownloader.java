@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,93 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoIngestDownloader
 
 @JsonpDeserializable
 public class NodeInfoIngestDownloader implements JsonpSerializable {
-	private final String enabled;
+    private final String enabled;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoIngestDownloader(Builder builder) {
+    private NodeInfoIngestDownloader(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
-	}
+    }
 
-	public static NodeInfoIngestDownloader of(Function<Builder, ObjectBuilder<NodeInfoIngestDownloader>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoIngestDownloader of(Function<Builder, ObjectBuilder<NodeInfoIngestDownloader>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code enabled}
-	 */
-	public final String enabled() {
-		return this.enabled;
-	}
+    /**
+     * Required - API name: {@code enabled}
+     */
+    public final String enabled() {
+        return this.enabled;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("enabled");
-		generator.write(this.enabled);
+        generator.writeKey("enabled");
+        generator.write(this.enabled);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoIngestDownloader}.
-	 */
+    /**
+     * Builder for {@link NodeInfoIngestDownloader}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoIngestDownloader> {
-		private String enabled;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoIngestDownloader> {
+        private String enabled;
 
-		/**
-		 * Required - API name: {@code enabled}
-		 */
-		public final Builder enabled(String value) {
-			this.enabled = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code enabled}
+         */
+        public final Builder enabled(String value) {
+            this.enabled = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeInfoIngestDownloader}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoIngestDownloader build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoIngestDownloader}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoIngestDownloader build() {
+            _checkSingleUse();
 
-			return new NodeInfoIngestDownloader(this);
-		}
-	}
+            return new NodeInfoIngestDownloader(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoIngestDownloader}
-	 */
-	public static final JsonpDeserializer<NodeInfoIngestDownloader> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoIngestDownloader::setupNodeInfoIngestDownloaderDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoIngestDownloader}
+     */
+    public static final JsonpDeserializer<NodeInfoIngestDownloader> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoIngestDownloader::setupNodeInfoIngestDownloaderDeserializer
+    );
 
-	protected static void setupNodeInfoIngestDownloaderDeserializer(
-			ObjectDeserializer<NodeInfoIngestDownloader.Builder> op) {
+    protected static void setupNodeInfoIngestDownloaderDeserializer(ObjectDeserializer<NodeInfoIngestDownloader.Builder> op) {
 
-		op.add(Builder::enabled, JsonpDeserializer.stringDeserializer(), "enabled");
+        op.add(Builder::enabled, JsonpDeserializer.stringDeserializer(), "enabled");
 
-	}
+    }
 
 }

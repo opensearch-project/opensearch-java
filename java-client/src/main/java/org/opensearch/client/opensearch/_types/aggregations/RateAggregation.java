@@ -32,142 +32,140 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RateAggregation
 
-
 @JsonpDeserializable
 public class RateAggregation extends FormatMetricAggregationBase implements AggregationVariant {
-	@Nullable
-	private final CalendarInterval unit;
+    @Nullable
+    private final CalendarInterval unit;
 
-	@Nullable
-	private final RateMode mode;
+    @Nullable
+    private final RateMode mode;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RateAggregation(Builder builder) {
-		super(builder);
+    private RateAggregation(Builder builder) {
+        super(builder);
 
-		this.unit = builder.unit;
-		this.mode = builder.mode;
+        this.unit = builder.unit;
+        this.mode = builder.mode;
 
-	}
+    }
 
-	public static RateAggregation of(Function<Builder, ObjectBuilder<RateAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RateAggregation of(Function<Builder, ObjectBuilder<RateAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Rate;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.Rate;
+    }
 
-	/**
-	 * API name: {@code unit}
-	 */
-	@Nullable
-	public final CalendarInterval unit() {
-		return this.unit;
-	}
+    /**
+     * API name: {@code unit}
+     */
+    @Nullable
+    public final CalendarInterval unit() {
+        return this.unit;
+    }
 
-	/**
-	 * API name: {@code mode}
-	 */
-	@Nullable
-	public final RateMode mode() {
-		return this.mode;
-	}
+    /**
+     * API name: {@code mode}
+     */
+    @Nullable
+    public final RateMode mode() {
+        return this.mode;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.unit != null) {
-			generator.writeKey("unit");
-			this.unit.serialize(generator, mapper);
-		}
-		if (this.mode != null) {
-			generator.writeKey("mode");
-			this.mode.serialize(generator, mapper);
-		}
+        super.serializeInternal(generator, mapper);
+        if (this.unit != null) {
+            generator.writeKey("unit");
+            this.unit.serialize(generator, mapper);
+        }
+        if (this.mode != null) {
+            generator.writeKey("mode");
+            this.mode.serialize(generator, mapper);
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RateAggregation}.
-	 */
+    /**
+     * Builder for {@link RateAggregation}.
+     */
 
-	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RateAggregation> {
-		@Nullable
-		private CalendarInterval unit;
+    public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<RateAggregation> {
+        @Nullable
+        private CalendarInterval unit;
 
-		@Nullable
-		private RateMode mode;
+        @Nullable
+        private RateMode mode;
 
-		/**
-		 * API name: {@code unit}
-		 */
-		public final Builder unit(@Nullable CalendarInterval value) {
-			this.unit = value;
-			return this;
-		}
+        /**
+         * API name: {@code unit}
+         */
+        public final Builder unit(@Nullable CalendarInterval value) {
+            this.unit = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code mode}
-		 */
-		public final Builder mode(@Nullable RateMode value) {
-			this.mode = value;
-			return this;
-		}
+        /**
+         * API name: {@code mode}
+         */
+        public final Builder mode(@Nullable RateMode value) {
+            this.mode = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RateAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RateAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RateAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RateAggregation build() {
+            _checkSingleUse();
 
-			return new RateAggregation(this);
-		}
-	}
+            return new RateAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RateAggregation}
-	 */
-	public static final JsonpDeserializer<RateAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RateAggregation::setupRateAggregationDeserializer);
+    /**
+     * Json deserializer for {@link RateAggregation}
+     */
+    public static final JsonpDeserializer<RateAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RateAggregation::setupRateAggregationDeserializer
+    );
 
-	protected static void setupRateAggregationDeserializer(ObjectDeserializer<RateAggregation.Builder> op) {
-		setupFormatMetricAggregationBaseDeserializer(op);
-		op.add(Builder::unit, CalendarInterval._DESERIALIZER, "unit");
-		op.add(Builder::mode, RateMode._DESERIALIZER, "mode");
+    protected static void setupRateAggregationDeserializer(ObjectDeserializer<RateAggregation.Builder> op) {
+        setupFormatMetricAggregationBaseDeserializer(op);
+        op.add(Builder::unit, CalendarInterval._DESERIALIZER, "unit");
+        op.add(Builder::mode, RateMode._DESERIALIZER, "mode");
 
-	}
+    }
 
 }

@@ -35,41 +35,39 @@ package org.opensearch.client.opensearch.ingest;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum UserAgentProperty implements JsonEnum {
-	Name("NAME"),
+    Name("NAME"),
 
-	Major("MAJOR"),
+    Major("MAJOR"),
 
-	Minor("MINOR"),
+    Minor("MINOR"),
 
-	Patch("PATCH"),
+    Patch("PATCH"),
 
-	Os("OS"),
+    Os("OS"),
 
-	OsName("OS_NAME"),
+    OsName("OS_NAME"),
 
-	OsMajor("OS_MAJOR"),
+    OsMajor("OS_MAJOR"),
 
-	OsMinor("OS_MINOR"),
+    OsMinor("OS_MINOR"),
 
-	Device("DEVICE"),
+    Device("DEVICE"),
 
-	Build("BUILD"),
+    Build("BUILD"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	UserAgentProperty(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    UserAgentProperty(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<UserAgentProperty> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			UserAgentProperty.values());
+    public static final JsonEnum.Deserializer<UserAgentProperty> _DESERIALIZER = new JsonEnum.Deserializer<>(UserAgentProperty.values());
 }

@@ -8,11 +8,10 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
-
 import javax.annotation.Nullable;
-
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -23,8 +22,6 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-
-import jakarta.json.stream.JsonGenerator;
 
 // typedef: _types.mapping.KnnVectorMethod
 
@@ -102,15 +99,16 @@ public class KnnVectorMethod implements JsonpSerializable {
     /**
      * Json deserializer for {@link KnnVectorMethod}
      */
-    public static final JsonpDeserializer<KnnVectorMethod> _DESERIALIZER = ObjectBuilderDeserializer
-            .lazy(Builder::new, KnnVectorMethod::setupKnnVectorMethodDeserializer);
+    public static final JsonpDeserializer<KnnVectorMethod> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        KnnVectorMethod::setupKnnVectorMethodDeserializer
+    );
 
     public static KnnVectorMethod of(Function<Builder, ObjectBuilder<KnnVectorMethod>> fn) {
         return fn.apply(new Builder()).build();
     }
 
-    protected static void setupKnnVectorMethodDeserializer(
-            ObjectDeserializer<KnnVectorMethod.Builder> op) {
+    protected static void setupKnnVectorMethodDeserializer(ObjectDeserializer<KnnVectorMethod.Builder> op) {
 
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::spaceType, JsonpDeserializer.stringDeserializer(), "space_type");

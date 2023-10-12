@@ -38,23 +38,22 @@ import org.opensearch.client.opensearch.nodes.Stats;
  * Builders for {@link NodeReloadResult} variants.
  */
 public class NodeReloadResultBuilders {
-	private NodeReloadResultBuilders() {
-	}
+    private NodeReloadResultBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link Stats stats} {@code NodeReloadResult}
-	 * variant.
-	 */
-	public static Stats.Builder stats() {
-		return new Stats.Builder();
-	}
+    /**
+     * Creates a builder for the {@link Stats stats} {@code NodeReloadResult}
+     * variant.
+     */
+    public static Stats.Builder stats() {
+        return new Stats.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link NodeReloadError error}
-	 * {@code NodeReloadResult} variant.
-	 */
-	public static NodeReloadError.Builder error() {
-		return new NodeReloadError.Builder();
-	}
+    /**
+     * Creates a builder for the {@link NodeReloadError error}
+     * {@code NodeReloadResult} variant.
+     */
+    public static NodeReloadError.Builder error() {
+        return new NodeReloadError.Builder();
+    }
 
 }

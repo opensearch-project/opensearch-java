@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.indices.recovery;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,219 +44,217 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices.recovery.TranslogStatus
 
-
 @JsonpDeserializable
 public class TranslogStatus implements JsonpSerializable {
-	private final String percent;
+    private final String percent;
 
-	private final long recovered;
+    private final long recovered;
 
-	private final long total;
+    private final long total;
 
-	private final long totalOnStart;
+    private final long totalOnStart;
 
-	@Nullable
-	private final String totalTime;
+    @Nullable
+    private final String totalTime;
 
-	private final String totalTimeInMillis;
+    private final String totalTimeInMillis;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TranslogStatus(Builder builder) {
+    private TranslogStatus(Builder builder) {
 
-		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
-		this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.totalOnStart = ApiTypeHelper.requireNonNull(builder.totalOnStart, this, "totalOnStart");
-		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+        this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+        this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.totalOnStart = ApiTypeHelper.requireNonNull(builder.totalOnStart, this, "totalOnStart");
+        this.totalTime = builder.totalTime;
+        this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
-	}
+    }
 
-	public static TranslogStatus of(Function<Builder, ObjectBuilder<TranslogStatus>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TranslogStatus of(Function<Builder, ObjectBuilder<TranslogStatus>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code percent}
-	 */
-	public final String percent() {
-		return this.percent;
-	}
+    /**
+     * Required - API name: {@code percent}
+     */
+    public final String percent() {
+        return this.percent;
+    }
 
-	/**
-	 * Required - API name: {@code recovered}
-	 */
-	public final long recovered() {
-		return this.recovered;
-	}
+    /**
+     * Required - API name: {@code recovered}
+     */
+    public final long recovered() {
+        return this.recovered;
+    }
 
-	/**
-	 * Required - API name: {@code total}
-	 */
-	public final long total() {
-		return this.total;
-	}
+    /**
+     * Required - API name: {@code total}
+     */
+    public final long total() {
+        return this.total;
+    }
 
-	/**
-	 * Required - API name: {@code total_on_start}
-	 */
-	public final long totalOnStart() {
-		return this.totalOnStart;
-	}
+    /**
+     * Required - API name: {@code total_on_start}
+     */
+    public final long totalOnStart() {
+        return this.totalOnStart;
+    }
 
-	/**
-	 * API name: {@code total_time}
-	 */
-	@Nullable
-	public final String totalTime() {
-		return this.totalTime;
-	}
+    /**
+     * API name: {@code total_time}
+     */
+    @Nullable
+    public final String totalTime() {
+        return this.totalTime;
+    }
 
-	/**
-	 * Required - API name: {@code total_time_in_millis}
-	 */
-	public final String totalTimeInMillis() {
-		return this.totalTimeInMillis;
-	}
+    /**
+     * Required - API name: {@code total_time_in_millis}
+     */
+    public final String totalTimeInMillis() {
+        return this.totalTimeInMillis;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("percent");
-		generator.write(this.percent);
+        generator.writeKey("percent");
+        generator.write(this.percent);
 
-		generator.writeKey("recovered");
-		generator.write(this.recovered);
+        generator.writeKey("recovered");
+        generator.write(this.recovered);
 
-		generator.writeKey("total");
-		generator.write(this.total);
+        generator.writeKey("total");
+        generator.write(this.total);
 
-		generator.writeKey("total_on_start");
-		generator.write(this.totalOnStart);
+        generator.writeKey("total_on_start");
+        generator.write(this.totalOnStart);
 
-		if (this.totalTime != null) {
-			generator.writeKey("total_time");
-			generator.write(this.totalTime);
+        if (this.totalTime != null) {
+            generator.writeKey("total_time");
+            generator.write(this.totalTime);
 
-		}
-		generator.writeKey("total_time_in_millis");
-		generator.write(this.totalTimeInMillis);
+        }
+        generator.writeKey("total_time_in_millis");
+        generator.write(this.totalTimeInMillis);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TranslogStatus}.
-	 */
+    /**
+     * Builder for {@link TranslogStatus}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslogStatus> {
-		private String percent;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslogStatus> {
+        private String percent;
 
-		private Long recovered;
+        private Long recovered;
 
-		private Long total;
+        private Long total;
 
-		private Long totalOnStart;
+        private Long totalOnStart;
 
-		@Nullable
-		private String totalTime;
+        @Nullable
+        private String totalTime;
 
-		private String totalTimeInMillis;
+        private String totalTimeInMillis;
 
-		/**
-		 * Required - API name: {@code percent}
-		 */
-		public final Builder percent(String value) {
-			this.percent = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code percent}
+         */
+        public final Builder percent(String value) {
+            this.percent = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code recovered}
-		 */
-		public final Builder recovered(long value) {
-			this.recovered = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code recovered}
+         */
+        public final Builder recovered(long value) {
+            this.recovered = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total}
-		 */
-		public final Builder total(long value) {
-			this.total = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total}
+         */
+        public final Builder total(long value) {
+            this.total = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total_on_start}
-		 */
-		public final Builder totalOnStart(long value) {
-			this.totalOnStart = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total_on_start}
+         */
+        public final Builder totalOnStart(long value) {
+            this.totalOnStart = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code total_time}
-		 */
-		public final Builder totalTime(@Nullable String value) {
-			this.totalTime = value;
-			return this;
-		}
+        /**
+         * API name: {@code total_time}
+         */
+        public final Builder totalTime(@Nullable String value) {
+            this.totalTime = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total_time_in_millis}
-		 */
-		public final Builder totalTimeInMillis(String value) {
-			this.totalTimeInMillis = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total_time_in_millis}
+         */
+        public final Builder totalTimeInMillis(String value) {
+            this.totalTimeInMillis = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TranslogStatus}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TranslogStatus build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TranslogStatus}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TranslogStatus build() {
+            _checkSingleUse();
 
-			return new TranslogStatus(this);
-		}
-	}
+            return new TranslogStatus(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TranslogStatus}
-	 */
-	public static final JsonpDeserializer<TranslogStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TranslogStatus::setupTranslogStatusDeserializer);
+    /**
+     * Json deserializer for {@link TranslogStatus}
+     */
+    public static final JsonpDeserializer<TranslogStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TranslogStatus::setupTranslogStatusDeserializer
+    );
 
-	protected static void setupTranslogStatusDeserializer(ObjectDeserializer<TranslogStatus.Builder> op) {
+    protected static void setupTranslogStatusDeserializer(ObjectDeserializer<TranslogStatus.Builder> op) {
 
-		op.add(Builder::percent, JsonpDeserializer.stringDeserializer(), "percent");
-		op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");
-		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
-		op.add(Builder::totalOnStart, JsonpDeserializer.longDeserializer(), "total_on_start");
-		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpDeserializer.stringDeserializer(), "total_time_in_millis");
+        op.add(Builder::percent, JsonpDeserializer.stringDeserializer(), "percent");
+        op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");
+        op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
+        op.add(Builder::totalOnStart, JsonpDeserializer.longDeserializer(), "total_on_start");
+        op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+        op.add(Builder::totalTimeInMillis, JsonpDeserializer.stringDeserializer(), "total_time_in_millis");
 
-	}
+    }
 
 }

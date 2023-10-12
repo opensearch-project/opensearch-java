@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -44,193 +46,194 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _global.search._types.SmoothingModelContainer
-
 
 @JsonpDeserializable
 public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>, JsonpSerializable {
 
-	/**
-	 * {@link SmoothingModel} variant kinds.
-	 */
-	/**
-	 * {@link SmoothingModel} variant kinds.
-	 */
+    /**
+     * {@link SmoothingModel} variant kinds.
+     */
+    /**
+     * {@link SmoothingModel} variant kinds.
+     */
 
-	public enum Kind implements JsonEnum {
-		Laplace("laplace"),
+    public enum Kind implements JsonEnum {
+        Laplace("laplace"),
 
-		LinearInterpolation("linear_interpolation"),
+        LinearInterpolation("linear_interpolation"),
 
-		StupidBackoff("stupid_backoff"),
+        StupidBackoff("stupid_backoff"),
 
-		;
+        ;
 
-		private final String jsonValue;
+        private final String jsonValue;
 
-		Kind(String jsonValue) {
-			this.jsonValue = jsonValue;
-		}
+        Kind(String jsonValue) {
+            this.jsonValue = jsonValue;
+        }
 
-		public String jsonValue() {
-			return this.jsonValue;
-		}
+        public String jsonValue() {
+            return this.jsonValue;
+        }
 
-	}
+    }
 
-	private final Kind _kind;
-	private final Object _value;
+    private final Kind _kind;
+    private final Object _value;
 
-	@Override
-	public final Kind _kind() {
-		return _kind;
-	}
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
 
-	@Override
-	public final Object _get() {
-		return _value;
-	}
+    @Override
+    public final Object _get() {
+        return _value;
+    }
 
-	public SmoothingModel(SmoothingModelVariant value) {
+    public SmoothingModel(SmoothingModelVariant value) {
 
-		this._kind = ApiTypeHelper.requireNonNull(value._smoothingModelKind(), this, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+        this._kind = ApiTypeHelper.requireNonNull(value._smoothingModelKind(), this, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
+    }
 
-	private SmoothingModel(Builder builder) {
+    private SmoothingModel(Builder builder) {
 
-		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-	}
+    }
 
-	public static SmoothingModel of(Function<Builder, ObjectBuilder<SmoothingModel>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SmoothingModel of(Function<Builder, ObjectBuilder<SmoothingModel>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Is this variant instance of kind {@code laplace}?
-	 */
-	public boolean isLaplace() {
-		return _kind == Kind.Laplace;
-	}
+    /**
+     * Is this variant instance of kind {@code laplace}?
+     */
+    public boolean isLaplace() {
+        return _kind == Kind.Laplace;
+    }
 
-	/**
-	 * Get the {@code laplace} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code laplace} kind.
-	 */
-	public LaplaceSmoothingModel laplace() {
-		return TaggedUnionUtils.get(this, Kind.Laplace);
-	}
+    /**
+     * Get the {@code laplace} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code laplace} kind.
+     */
+    public LaplaceSmoothingModel laplace() {
+        return TaggedUnionUtils.get(this, Kind.Laplace);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code linear_interpolation}?
-	 */
-	public boolean isLinearInterpolation() {
-		return _kind == Kind.LinearInterpolation;
-	}
+    /**
+     * Is this variant instance of kind {@code linear_interpolation}?
+     */
+    public boolean isLinearInterpolation() {
+        return _kind == Kind.LinearInterpolation;
+    }
 
-	/**
-	 * Get the {@code linear_interpolation} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code linear_interpolation}
-	 *             kind.
-	 */
-	public LinearInterpolationSmoothingModel linearInterpolation() {
-		return TaggedUnionUtils.get(this, Kind.LinearInterpolation);
-	}
+    /**
+     * Get the {@code linear_interpolation} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code linear_interpolation}
+     *             kind.
+     */
+    public LinearInterpolationSmoothingModel linearInterpolation() {
+        return TaggedUnionUtils.get(this, Kind.LinearInterpolation);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code stupid_backoff}?
-	 */
-	public boolean isStupidBackoff() {
-		return _kind == Kind.StupidBackoff;
-	}
+    /**
+     * Is this variant instance of kind {@code stupid_backoff}?
+     */
+    public boolean isStupidBackoff() {
+        return _kind == Kind.StupidBackoff;
+    }
 
-	/**
-	 * Get the {@code stupid_backoff} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code stupid_backoff} kind.
-	 */
-	public StupidBackoffSmoothingModel stupidBackoff() {
-		return TaggedUnionUtils.get(this, Kind.StupidBackoff);
-	}
+    /**
+     * Get the {@code stupid_backoff} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code stupid_backoff} kind.
+     */
+    public StupidBackoffSmoothingModel stupidBackoff() {
+        return TaggedUnionUtils.get(this, Kind.StupidBackoff);
+    }
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+    @Override
+    @SuppressWarnings("unchecked")
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeStartObject();
+        generator.writeStartObject();
 
-		generator.writeKey(_kind.jsonValue());
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		}
+        generator.writeKey(_kind.jsonValue());
+        if (_value instanceof JsonpSerializable) {
+            ((JsonpSerializable) _value).serialize(generator, mapper);
+        }
 
-		generator.writeEnd();
+        generator.writeEnd();
 
-	}
+    }
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SmoothingModel> {
-		private Kind _kind;
-		private Object _value;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SmoothingModel> {
+        private Kind _kind;
+        private Object _value;
 
-		public ObjectBuilder<SmoothingModel> laplace(LaplaceSmoothingModel v) {
-			this._kind = Kind.Laplace;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<SmoothingModel> laplace(LaplaceSmoothingModel v) {
+            this._kind = Kind.Laplace;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<SmoothingModel> laplace(
-				Function<LaplaceSmoothingModel.Builder, ObjectBuilder<LaplaceSmoothingModel>> fn) {
-			return this.laplace(fn.apply(new LaplaceSmoothingModel.Builder()).build());
-		}
+        public ObjectBuilder<SmoothingModel> laplace(Function<LaplaceSmoothingModel.Builder, ObjectBuilder<LaplaceSmoothingModel>> fn) {
+            return this.laplace(fn.apply(new LaplaceSmoothingModel.Builder()).build());
+        }
 
-		public ObjectBuilder<SmoothingModel> linearInterpolation(LinearInterpolationSmoothingModel v) {
-			this._kind = Kind.LinearInterpolation;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<SmoothingModel> linearInterpolation(LinearInterpolationSmoothingModel v) {
+            this._kind = Kind.LinearInterpolation;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<SmoothingModel> linearInterpolation(
-				Function<LinearInterpolationSmoothingModel.Builder, ObjectBuilder<LinearInterpolationSmoothingModel>> fn) {
-			return this.linearInterpolation(fn.apply(new LinearInterpolationSmoothingModel.Builder()).build());
-		}
+        public ObjectBuilder<SmoothingModel> linearInterpolation(
+            Function<LinearInterpolationSmoothingModel.Builder, ObjectBuilder<LinearInterpolationSmoothingModel>> fn
+        ) {
+            return this.linearInterpolation(fn.apply(new LinearInterpolationSmoothingModel.Builder()).build());
+        }
 
-		public ObjectBuilder<SmoothingModel> stupidBackoff(StupidBackoffSmoothingModel v) {
-			this._kind = Kind.StupidBackoff;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<SmoothingModel> stupidBackoff(StupidBackoffSmoothingModel v) {
+            this._kind = Kind.StupidBackoff;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<SmoothingModel> stupidBackoff(
-				Function<StupidBackoffSmoothingModel.Builder, ObjectBuilder<StupidBackoffSmoothingModel>> fn) {
-			return this.stupidBackoff(fn.apply(new StupidBackoffSmoothingModel.Builder()).build());
-		}
+        public ObjectBuilder<SmoothingModel> stupidBackoff(
+            Function<StupidBackoffSmoothingModel.Builder, ObjectBuilder<StupidBackoffSmoothingModel>> fn
+        ) {
+            return this.stupidBackoff(fn.apply(new StupidBackoffSmoothingModel.Builder()).build());
+        }
 
-		public SmoothingModel build() {
-			_checkSingleUse();
-			return new SmoothingModel(this);
-		}
+        public SmoothingModel build() {
+            _checkSingleUse();
+            return new SmoothingModel(this);
+        }
 
-	}
+    }
 
-	protected static void setupSmoothingModelDeserializer(ObjectDeserializer<Builder> op) {
+    protected static void setupSmoothingModelDeserializer(ObjectDeserializer<Builder> op) {
 
-		op.add(Builder::laplace, LaplaceSmoothingModel._DESERIALIZER, "laplace");
-		op.add(Builder::linearInterpolation, LinearInterpolationSmoothingModel._DESERIALIZER, "linear_interpolation");
-		op.add(Builder::stupidBackoff, StupidBackoffSmoothingModel._DESERIALIZER, "stupid_backoff");
+        op.add(Builder::laplace, LaplaceSmoothingModel._DESERIALIZER, "laplace");
+        op.add(Builder::linearInterpolation, LinearInterpolationSmoothingModel._DESERIALIZER, "linear_interpolation");
+        op.add(Builder::stupidBackoff, StupidBackoffSmoothingModel._DESERIALIZER, "stupid_backoff");
 
-	}
+    }
 
-	public static final JsonpDeserializer<SmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SmoothingModel::setupSmoothingModelDeserializer, Builder::build);
+    public static final JsonpDeserializer<SmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SmoothingModel::setupSmoothingModelDeserializer,
+        Builder::build
+    );
 }

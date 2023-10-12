@@ -37,20 +37,21 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum WaitForActiveShardOptions implements JsonEnum {
-	All("all"),
+    All("all"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	WaitForActiveShardOptions(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    WaitForActiveShardOptions(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<WaitForActiveShardOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			WaitForActiveShardOptions.values());
+    public static final JsonEnum.Deserializer<WaitForActiveShardOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        WaitForActiveShardOptions.values()
+    );
 }

@@ -32,68 +32,67 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.put_alias.Response
 
 @JsonpDeserializable
 public class PutAliasResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PutAliasResponse(Builder builder) {
-		super(builder);
+    private PutAliasResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static PutAliasResponse of(Function<Builder, ObjectBuilder<PutAliasResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PutAliasResponse of(Function<Builder, ObjectBuilder<PutAliasResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PutAliasResponse}.
-	 */
+    /**
+     * Builder for {@link PutAliasResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PutAliasResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<PutAliasResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PutAliasResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PutAliasResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PutAliasResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PutAliasResponse build() {
+            _checkSingleUse();
 
-			return new PutAliasResponse(this);
-		}
-	}
+            return new PutAliasResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PutAliasResponse}
-	 */
-	public static final JsonpDeserializer<PutAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutAliasResponse::setupPutAliasResponseDeserializer);
+    /**
+     * Json deserializer for {@link PutAliasResponse}
+     */
+    public static final JsonpDeserializer<PutAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PutAliasResponse::setupPutAliasResponseDeserializer
+    );
 
-	protected static void setupPutAliasResponseDeserializer(ObjectDeserializer<PutAliasResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupPutAliasResponseDeserializer(ObjectDeserializer<PutAliasResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

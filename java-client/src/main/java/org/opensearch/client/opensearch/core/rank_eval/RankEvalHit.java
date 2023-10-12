@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.core.rank_eval;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,142 +43,140 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalHit
 
-
 @JsonpDeserializable
 public class RankEvalHit implements JsonpSerializable {
-	private final String id;
+    private final String id;
 
-	private final String index;
+    private final String index;
 
-	private final double score;
+    private final double score;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RankEvalHit(Builder builder) {
+    private RankEvalHit(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
 
-	}
+    }
 
-	public static RankEvalHit of(Function<Builder, ObjectBuilder<RankEvalHit>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RankEvalHit of(Function<Builder, ObjectBuilder<RankEvalHit>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code _id}
-	 */
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * Required - API name: {@code _id}
+     */
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * Required - API name: {@code _index}
-	 */
-	public final String index() {
-		return this.index;
-	}
+    /**
+     * Required - API name: {@code _index}
+     */
+    public final String index() {
+        return this.index;
+    }
 
-	/**
-	 * Required - API name: {@code _score}
-	 */
-	public final double score() {
-		return this.score;
-	}
+    /**
+     * Required - API name: {@code _score}
+     */
+    public final double score() {
+        return this.score;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("_id");
-		generator.write(this.id);
+        generator.writeKey("_id");
+        generator.write(this.id);
 
-		generator.writeKey("_index");
-		generator.write(this.index);
+        generator.writeKey("_index");
+        generator.write(this.index);
 
-		generator.writeKey("_score");
-		generator.write(this.score);
+        generator.writeKey("_score");
+        generator.write(this.score);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RankEvalHit}.
-	 */
+    /**
+     * Builder for {@link RankEvalHit}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalHit> {
-		private String id;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalHit> {
+        private String id;
 
-		private String index;
+        private String index;
 
-		private Double score;
+        private Double score;
 
-		/**
-		 * Required - API name: {@code _id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code _id}
+         */
+        public final Builder id(String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code _index}
-		 */
-		public final Builder index(String value) {
-			this.index = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code _index}
+         */
+        public final Builder index(String value) {
+            this.index = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code _score}
-		 */
-		public final Builder score(double value) {
-			this.score = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code _score}
+         */
+        public final Builder score(double value) {
+            this.score = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RankEvalHit}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RankEvalHit build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RankEvalHit}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RankEvalHit build() {
+            _checkSingleUse();
 
-			return new RankEvalHit(this);
-		}
-	}
+            return new RankEvalHit(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RankEvalHit}
-	 */
-	public static final JsonpDeserializer<RankEvalHit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RankEvalHit::setupRankEvalHitDeserializer);
+    /**
+     * Json deserializer for {@link RankEvalHit}
+     */
+    public static final JsonpDeserializer<RankEvalHit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RankEvalHit::setupRankEvalHitDeserializer
+    );
 
-	protected static void setupRankEvalHitDeserializer(ObjectDeserializer<RankEvalHit.Builder> op) {
+    protected static void setupRankEvalHitDeserializer(ObjectDeserializer<RankEvalHit.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "_score");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+        op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "_score");
 
-	}
+    }
 
 }

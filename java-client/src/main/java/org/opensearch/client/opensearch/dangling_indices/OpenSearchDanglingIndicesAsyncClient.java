@@ -32,115 +32,116 @@
 
 package org.opensearch.client.opensearch.dangling_indices;
 
-import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.OpenSearchTransport;
-import org.opensearch.client.transport.JsonEndpoint;
-import org.opensearch.client.transport.TransportOptions;
-import org.opensearch.client.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.transport.JsonEndpoint;
+import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.util.ObjectBuilder;
 
 /**
  * Client for the dangling_indices namespace.
  */
-public class OpenSearchDanglingIndicesAsyncClient
-		extends
-			ApiClient<OpenSearchTransport, OpenSearchDanglingIndicesAsyncClient> {
+public class OpenSearchDanglingIndicesAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchDanglingIndicesAsyncClient> {
 
-	public OpenSearchDanglingIndicesAsyncClient(OpenSearchTransport transport) {
-		super(transport, null);
-	}
+    public OpenSearchDanglingIndicesAsyncClient(OpenSearchTransport transport) {
+        super(transport, null);
+    }
 
-	public OpenSearchDanglingIndicesAsyncClient(OpenSearchTransport transport,
-                                                @Nullable TransportOptions transportOptions) {
-		super(transport, transportOptions);
-	}
+    public OpenSearchDanglingIndicesAsyncClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+        super(transport, transportOptions);
+    }
 
-	@Override
-	public OpenSearchDanglingIndicesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpenSearchDanglingIndicesAsyncClient(this.transport, transportOptions);
-	}
+    @Override
+    public OpenSearchDanglingIndicesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchDanglingIndicesAsyncClient(this.transport, transportOptions);
+    }
 
-	// ----- Endpoint: dangling_indices.delete_dangling_index
+    // ----- Endpoint: dangling_indices.delete_dangling_index
 
-	/**
-	 * Deletes the specified dangling index
-	 * 
-	 */
+    /**
+     * Deletes the specified dangling index
+     *
+     */
 
-	public CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(DeleteDanglingIndexRequest request)
-			throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse>)
-						DeleteDanglingIndexRequest._ENDPOINT;
+    public CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(DeleteDanglingIndexRequest request) throws IOException,
+        OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            DeleteDanglingIndexRequest,
+            DeleteDanglingIndexResponse,
+            ErrorResponse>) DeleteDanglingIndexRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Deletes the specified dangling index
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link DeleteDanglingIndexRequest}
-	 *
-	 */
+    /**
+     * Deletes the specified dangling index
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link DeleteDanglingIndexRequest}
+     *
+     */
 
-	public final CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(
-			Function<DeleteDanglingIndexRequest.Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn)
-			throws IOException, OpenSearchException {
-		return deleteDanglingIndex(fn.apply(new DeleteDanglingIndexRequest.Builder()).build());
-	}
+    public final CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(
+        Function<DeleteDanglingIndexRequest.Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteDanglingIndex(fn.apply(new DeleteDanglingIndexRequest.Builder()).build());
+    }
 
-	// ----- Endpoint: dangling_indices.import_dangling_index
+    // ----- Endpoint: dangling_indices.import_dangling_index
 
-	/**
-	 * Imports the specified dangling index
-	 * 
-	 *
-	 */
+    /**
+     * Imports the specified dangling index
+     *
+     *
+     */
 
-	public CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(ImportDanglingIndexRequest request)
-			throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse>)
-						ImportDanglingIndexRequest._ENDPOINT;
+    public CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(ImportDanglingIndexRequest request) throws IOException,
+        OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            ImportDanglingIndexRequest,
+            ImportDanglingIndexResponse,
+            ErrorResponse>) ImportDanglingIndexRequest._ENDPOINT;
 
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Imports the specified dangling index
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link ImportDanglingIndexRequest}
-	 *
-	 */
+    /**
+     * Imports the specified dangling index
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link ImportDanglingIndexRequest}
+     *
+     */
 
-	public final CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(
-			Function<ImportDanglingIndexRequest.Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn)
-			throws IOException, OpenSearchException {
-		return importDanglingIndex(fn.apply(new ImportDanglingIndexRequest.Builder()).build());
-	}
+    public final CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(
+        Function<ImportDanglingIndexRequest.Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return importDanglingIndex(fn.apply(new ImportDanglingIndexRequest.Builder()).build());
+    }
 
-	// ----- Endpoint: dangling_indices.list_dangling_indices
+    // ----- Endpoint: dangling_indices.list_dangling_indices
 
-	/**
-	 * Returns all dangling indices.
-	 * 
-	 *
-	 */
-	public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices()
-			throws IOException, OpenSearchException {
-		return this.transport.performRequestAsync(ListDanglingIndicesRequest._INSTANCE,
-				ListDanglingIndicesRequest._ENDPOINT, this.transportOptions);
-	}
+    /**
+     * Returns all dangling indices.
+     *
+     *
+     */
+    public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices() throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(
+            ListDanglingIndicesRequest._INSTANCE,
+            ListDanglingIndicesRequest._ENDPOINT,
+            this.transportOptions
+        );
+    }
 
 }

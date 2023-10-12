@@ -32,13 +32,12 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.SumAggregate
 
@@ -49,63 +48,63 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class SumAggregate extends SingleMetricAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SumAggregate(Builder builder) {
-		super(builder);
+    private SumAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static SumAggregate of(Function<Builder, ObjectBuilder<SumAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SumAggregate of(Function<Builder, ObjectBuilder<SumAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Sum;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Sum;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SumAggregate}.
-	 */
+    /**
+     * Builder for {@link SumAggregate}.
+     */
 
-	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<SumAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<SumAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SumAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SumAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SumAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SumAggregate build() {
+            _checkSingleUse();
 
-			return new SumAggregate(this);
-		}
-	}
+            return new SumAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SumAggregate}
-	 */
-	public static final JsonpDeserializer<SumAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SumAggregate::setupSumAggregateDeserializer);
+    /**
+     * Json deserializer for {@link SumAggregate}
+     */
+    public static final JsonpDeserializer<SumAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SumAggregate::setupSumAggregateDeserializer
+    );
 
-	protected static void setupSumAggregateDeserializer(ObjectDeserializer<SumAggregate.Builder> op) {
-		setupSingleMetricAggregateBaseDeserializer(op);
+    protected static void setupSumAggregateDeserializer(ObjectDeserializer<SumAggregate.Builder> op) {
+        setupSingleMetricAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

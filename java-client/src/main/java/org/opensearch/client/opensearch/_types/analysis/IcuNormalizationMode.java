@@ -35,25 +35,25 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum IcuNormalizationMode implements JsonEnum {
-	Decompose("decompose"),
+    Decompose("decompose"),
 
-	Compose("compose"),
+    Compose("compose"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	IcuNormalizationMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    IcuNormalizationMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<IcuNormalizationMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IcuNormalizationMode.values());
+    public static final JsonEnum.Deserializer<IcuNormalizationMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IcuNormalizationMode.values()
+    );
 }

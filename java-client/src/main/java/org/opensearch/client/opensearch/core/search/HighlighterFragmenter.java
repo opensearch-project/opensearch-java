@@ -37,22 +37,23 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum HighlighterFragmenter implements JsonEnum {
-	Simple("simple"),
+    Simple("simple"),
 
-	Span("span"),
+    Span("span"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	HighlighterFragmenter(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    HighlighterFragmenter(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<HighlighterFragmenter> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			HighlighterFragmenter.values());
+    public static final JsonEnum.Deserializer<HighlighterFragmenter> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        HighlighterFragmenter.values()
+    );
 }

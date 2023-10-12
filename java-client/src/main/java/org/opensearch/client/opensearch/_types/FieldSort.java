@@ -32,322 +32,323 @@
 
 package org.opensearch.client.opensearch._types;
 
-import org.opensearch.client.opensearch._types.mapping.FieldType;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.mapping.FieldType;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.FieldSort
 
 @JsonpDeserializable
 public class FieldSort implements JsonpSerializable {
-	// Single key dictionary
-	private final String field;
+    // Single key dictionary
+    private final String field;
 
-	@Nullable
-	private final FieldValue missing;
+    @Nullable
+    private final FieldValue missing;
 
-	@Nullable
-	private final SortMode mode;
+    @Nullable
+    private final SortMode mode;
 
-	@Nullable
-	private final NestedSortValue nested;
+    @Nullable
+    private final NestedSortValue nested;
 
-	@Nullable
-	private final SortOrder order;
+    @Nullable
+    private final SortOrder order;
 
-	@Nullable
-	private final FieldType unmappedType;
+    @Nullable
+    private final FieldType unmappedType;
 
-	@Nullable
-	private final FieldSortNumericType numericType;
+    @Nullable
+    private final FieldSortNumericType numericType;
 
-	@Nullable
-	private final String format;
+    @Nullable
+    private final String format;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FieldSort(Builder builder) {
+    private FieldSort(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-		this.missing = builder.missing;
-		this.mode = builder.mode;
-		this.nested = builder.nested;
-		this.order = builder.order;
-		this.unmappedType = builder.unmappedType;
-		this.numericType = builder.numericType;
-		this.format = builder.format;
+        this.missing = builder.missing;
+        this.mode = builder.mode;
+        this.nested = builder.nested;
+        this.order = builder.order;
+        this.unmappedType = builder.unmappedType;
+        this.numericType = builder.numericType;
+        this.format = builder.format;
 
-	}
+    }
 
-	public static FieldSort of(Function<Builder, ObjectBuilder<FieldSort>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FieldSort of(Function<Builder, ObjectBuilder<FieldSort>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - The target field
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - The target field
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * API name: {@code missing}
-	 */
-	@Nullable
-	public final FieldValue missing() {
-		return this.missing;
-	}
+    /**
+     * API name: {@code missing}
+     */
+    @Nullable
+    public final FieldValue missing() {
+        return this.missing;
+    }
 
-	/**
-	 * API name: {@code mode}
-	 */
-	@Nullable
-	public final SortMode mode() {
-		return this.mode;
-	}
+    /**
+     * API name: {@code mode}
+     */
+    @Nullable
+    public final SortMode mode() {
+        return this.mode;
+    }
 
-	/**
-	 * API name: {@code nested}
-	 */
-	@Nullable
-	public final NestedSortValue nested() {
-		return this.nested;
-	}
+    /**
+     * API name: {@code nested}
+     */
+    @Nullable
+    public final NestedSortValue nested() {
+        return this.nested;
+    }
 
-	/**
-	 * API name: {@code order}
-	 */
-	@Nullable
-	public final SortOrder order() {
-		return this.order;
-	}
+    /**
+     * API name: {@code order}
+     */
+    @Nullable
+    public final SortOrder order() {
+        return this.order;
+    }
 
-	/**
-	 * API name: {@code unmapped_type}
-	 */
-	@Nullable
-	public final FieldType unmappedType() {
-		return this.unmappedType;
-	}
+    /**
+     * API name: {@code unmapped_type}
+     */
+    @Nullable
+    public final FieldType unmappedType() {
+        return this.unmappedType;
+    }
 
-	/**
-	 * API name: {@code numeric_type}
-	 */
-	@Nullable
-	public final FieldSortNumericType numericType() {
-		return this.numericType;
-	}
+    /**
+     * API name: {@code numeric_type}
+     */
+    @Nullable
+    public final FieldSortNumericType numericType() {
+        return this.numericType;
+    }
 
-	/**
-	 * API name: {@code format}
-	 */
-	@Nullable
-	public final String format() {
-		return this.format;
-	}
+    /**
+     * API name: {@code format}
+     */
+    @Nullable
+    public final String format() {
+        return this.format;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(this.field);
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject(this.field);
 
-		if (this.missing != null) {
-			generator.writeKey("missing");
-			this.missing.serialize(generator, mapper);
+        if (this.missing != null) {
+            generator.writeKey("missing");
+            this.missing.serialize(generator, mapper);
 
-		}
-		if (this.mode != null) {
-			generator.writeKey("mode");
-			this.mode.serialize(generator, mapper);
-		}
-		if (this.nested != null) {
-			generator.writeKey("nested");
-			this.nested.serialize(generator, mapper);
+        }
+        if (this.mode != null) {
+            generator.writeKey("mode");
+            this.mode.serialize(generator, mapper);
+        }
+        if (this.nested != null) {
+            generator.writeKey("nested");
+            this.nested.serialize(generator, mapper);
 
-		}
-		if (this.order != null) {
-			generator.writeKey("order");
-			this.order.serialize(generator, mapper);
-		}
-		if (this.unmappedType != null) {
-			generator.writeKey("unmapped_type");
-			this.unmappedType.serialize(generator, mapper);
-		}
-		if (this.numericType != null) {
-			generator.writeKey("numeric_type");
-			this.numericType.serialize(generator, mapper);
-		}
-		if (this.format != null) {
-			generator.writeKey("format");
-			generator.write(this.format);
+        }
+        if (this.order != null) {
+            generator.writeKey("order");
+            this.order.serialize(generator, mapper);
+        }
+        if (this.unmappedType != null) {
+            generator.writeKey("unmapped_type");
+            this.unmappedType.serialize(generator, mapper);
+        }
+        if (this.numericType != null) {
+            generator.writeKey("numeric_type");
+            this.numericType.serialize(generator, mapper);
+        }
+        if (this.format != null) {
+            generator.writeKey("format");
+            generator.write(this.format);
 
-		}
+        }
 
-		generator.writeEnd();
+        generator.writeEnd();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FieldSort}.
-	 */
+    /**
+     * Builder for {@link FieldSort}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSort> {
-		private String field;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSort> {
+        private String field;
 
-		/**
-		 * Required - The target field
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - The target field
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		@Nullable
-		private FieldValue missing;
+        @Nullable
+        private FieldValue missing;
 
-		@Nullable
-		private SortMode mode;
+        @Nullable
+        private SortMode mode;
 
-		@Nullable
-		private NestedSortValue nested;
+        @Nullable
+        private NestedSortValue nested;
 
-		@Nullable
-		private SortOrder order;
+        @Nullable
+        private SortOrder order;
 
-		@Nullable
-		private FieldType unmappedType;
+        @Nullable
+        private FieldType unmappedType;
 
-		@Nullable
-		private FieldSortNumericType numericType;
+        @Nullable
+        private FieldSortNumericType numericType;
 
-		@Nullable
-		private String format;
+        @Nullable
+        private String format;
 
-		/**
-		 * API name: {@code missing}
-		 */
-		public final Builder missing(@Nullable FieldValue value) {
-			this.missing = value;
-			return this;
-		}
+        /**
+         * API name: {@code missing}
+         */
+        public final Builder missing(@Nullable FieldValue value) {
+            this.missing = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code missing}
-		 */
-		public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
-			return this.missing(fn.apply(new FieldValue.Builder()).build());
-		}
+        /**
+         * API name: {@code missing}
+         */
+        public final Builder missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+            return this.missing(fn.apply(new FieldValue.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code mode}
-		 */
-		public final Builder mode(@Nullable SortMode value) {
-			this.mode = value;
-			return this;
-		}
+        /**
+         * API name: {@code mode}
+         */
+        public final Builder mode(@Nullable SortMode value) {
+            this.mode = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code nested}
-		 */
-		public final Builder nested(@Nullable NestedSortValue value) {
-			this.nested = value;
-			return this;
-		}
+        /**
+         * API name: {@code nested}
+         */
+        public final Builder nested(@Nullable NestedSortValue value) {
+            this.nested = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code nested}
-		 */
-		public final Builder nested(Function<NestedSortValue.Builder, ObjectBuilder<NestedSortValue>> fn) {
-			return this.nested(fn.apply(new NestedSortValue.Builder()).build());
-		}
+        /**
+         * API name: {@code nested}
+         */
+        public final Builder nested(Function<NestedSortValue.Builder, ObjectBuilder<NestedSortValue>> fn) {
+            return this.nested(fn.apply(new NestedSortValue.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code order}
-		 */
-		public final Builder order(@Nullable SortOrder value) {
-			this.order = value;
-			return this;
-		}
+        /**
+         * API name: {@code order}
+         */
+        public final Builder order(@Nullable SortOrder value) {
+            this.order = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code unmapped_type}
-		 */
-		public final Builder unmappedType(@Nullable FieldType value) {
-			this.unmappedType = value;
-			return this;
-		}
+        /**
+         * API name: {@code unmapped_type}
+         */
+        public final Builder unmappedType(@Nullable FieldType value) {
+            this.unmappedType = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code numeric_type}
-		 */
-		public final Builder numericType(@Nullable FieldSortNumericType value) {
-			this.numericType = value;
-			return this;
-		}
+        /**
+         * API name: {@code numeric_type}
+         */
+        public final Builder numericType(@Nullable FieldSortNumericType value) {
+            this.numericType = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code format}
-		 */
-		public final Builder format(@Nullable String value) {
-			this.format = value;
-			return this;
-		}
+        /**
+         * API name: {@code format}
+         */
+        public final Builder format(@Nullable String value) {
+            this.format = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FieldSort}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FieldSort build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FieldSort}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FieldSort build() {
+            _checkSingleUse();
 
-			return new FieldSort(this);
-		}
-	}
+            return new FieldSort(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FieldSort}
-	 */
-	public static final JsonpDeserializer<FieldSort> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldSort::setupFieldSortDeserializer);
+    /**
+     * Json deserializer for {@link FieldSort}
+     */
+    public static final JsonpDeserializer<FieldSort> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FieldSort::setupFieldSortDeserializer
+    );
 
-	protected static void setupFieldSortDeserializer(ObjectDeserializer<FieldSort.Builder> op) {
+    protected static void setupFieldSortDeserializer(ObjectDeserializer<FieldSort.Builder> op) {
 
-		op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
-		op.add(Builder::mode, SortMode._DESERIALIZER, "mode");
-		op.add(Builder::nested, NestedSortValue._DESERIALIZER, "nested");
-		op.add(Builder::order, SortOrder._DESERIALIZER, "order");
-		op.add(Builder::unmappedType, FieldType._DESERIALIZER, "unmapped_type");
-		op.add(Builder::numericType, FieldSortNumericType._DESERIALIZER, "numeric_type");
-		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+        op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
+        op.add(Builder::mode, SortMode._DESERIALIZER, "mode");
+        op.add(Builder::nested, NestedSortValue._DESERIALIZER, "nested");
+        op.add(Builder::order, SortOrder._DESERIALIZER, "order");
+        op.add(Builder::unmappedType, FieldType._DESERIALIZER, "unmapped_type");
+        op.add(Builder::numericType, FieldSortNumericType._DESERIALIZER, "numeric_type");
+        op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 
-		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
-		op.shortcutProperty("order");
+        op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+        op.shortcutProperty("order");
 
-	}
+    }
 
 }

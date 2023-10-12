@@ -8,14 +8,13 @@
 
 package org.opensearch.client.opensearch.integTest.restclient;
 
+import java.io.IOException;
 import org.apache.http.HttpHost;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.integTest.AbstractAggregationRequestIT;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.rest_client.RestClientTransport;
 import org.opensearch.common.settings.Settings;
-
-import java.io.IOException;
 
 public class AggregationRequestIT extends AbstractAggregationRequestIT {
     @Override

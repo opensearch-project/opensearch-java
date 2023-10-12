@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,93 +41,90 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.GeoTileGridBucket
 
-
 @JsonpDeserializable
 public class GeoTileGridBucket extends MultiBucketBase {
-	private final String key;
+    private final String key;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GeoTileGridBucket(Builder builder) {
-		super(builder);
+    private GeoTileGridBucket(Builder builder) {
+        super(builder);
 
-		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+        this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
 
-	}
+    }
 
-	public static GeoTileGridBucket of(Function<Builder, ObjectBuilder<GeoTileGridBucket>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GeoTileGridBucket of(Function<Builder, ObjectBuilder<GeoTileGridBucket>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code key}
-	 */
-	public final String key() {
-		return this.key;
-	}
+    /**
+     * Required - API name: {@code key}
+     */
+    public final String key() {
+        return this.key;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("key");
-		generator.write(this.key);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("key");
+        generator.write(this.key);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GeoTileGridBucket}.
-	 */
+    /**
+     * Builder for {@link GeoTileGridBucket}.
+     */
 
-	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<GeoTileGridBucket> {
-		private String key;
+    public static class Builder extends MultiBucketBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoTileGridBucket> {
+        private String key;
 
-		/**
-		 * Required - API name: {@code key}
-		 */
-		public final Builder key(String value) {
-			this.key = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code key}
+         */
+        public final Builder key(String value) {
+            this.key = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GeoTileGridBucket}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GeoTileGridBucket build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GeoTileGridBucket}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GeoTileGridBucket build() {
+            _checkSingleUse();
 
-			return new GeoTileGridBucket(this);
-		}
-	}
+            return new GeoTileGridBucket(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GeoTileGridBucket}
-	 */
-	public static final JsonpDeserializer<GeoTileGridBucket> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoTileGridBucket::setupGeoTileGridBucketDeserializer);
+    /**
+     * Json deserializer for {@link GeoTileGridBucket}
+     */
+    public static final JsonpDeserializer<GeoTileGridBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GeoTileGridBucket::setupGeoTileGridBucketDeserializer
+    );
 
-	protected static void setupGeoTileGridBucketDeserializer(ObjectDeserializer<GeoTileGridBucket.Builder> op) {
-		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
+    protected static void setupGeoTileGridBucketDeserializer(ObjectDeserializer<GeoTileGridBucket.Builder> op) {
+        MultiBucketBase.setupMultiBucketBaseDeserializer(op);
+        op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
 
-	}
+    }
 
 }

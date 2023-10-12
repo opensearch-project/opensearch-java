@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,116 +43,115 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _global.search._types.TotalHits
 
-
 @JsonpDeserializable
 public class TotalHits implements JsonpSerializable {
-	private final TotalHitsRelation relation;
+    private final TotalHitsRelation relation;
 
-	private final long value;
+    private final long value;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TotalHits(Builder builder) {
+    private TotalHits(Builder builder) {
 
-		this.relation = ApiTypeHelper.requireNonNull(builder.relation, this, "relation");
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+        this.relation = ApiTypeHelper.requireNonNull(builder.relation, this, "relation");
+        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
-	}
+    }
 
-	public static TotalHits of(Function<Builder, ObjectBuilder<TotalHits>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TotalHits of(Function<Builder, ObjectBuilder<TotalHits>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code relation}
-	 */
-	public final TotalHitsRelation relation() {
-		return this.relation;
-	}
+    /**
+     * Required - API name: {@code relation}
+     */
+    public final TotalHitsRelation relation() {
+        return this.relation;
+    }
 
-	/**
-	 * Required - API name: {@code value}
-	 */
-	public final long value() {
-		return this.value;
-	}
+    /**
+     * Required - API name: {@code value}
+     */
+    public final long value() {
+        return this.value;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("relation");
-		this.relation.serialize(generator, mapper);
-		generator.writeKey("value");
-		generator.write(this.value);
+        generator.writeKey("relation");
+        this.relation.serialize(generator, mapper);
+        generator.writeKey("value");
+        generator.write(this.value);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TotalHits}.
-	 */
+    /**
+     * Builder for {@link TotalHits}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TotalHits> {
-		private TotalHitsRelation relation;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TotalHits> {
+        private TotalHitsRelation relation;
 
-		private Long value;
+        private Long value;
 
-		/**
-		 * Required - API name: {@code relation}
-		 */
-		public final Builder relation(TotalHitsRelation value) {
-			this.relation = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code relation}
+         */
+        public final Builder relation(TotalHitsRelation value) {
+            this.relation = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code value}
-		 */
-		public final Builder value(long value) {
-			this.value = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code value}
+         */
+        public final Builder value(long value) {
+            this.value = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TotalHits}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TotalHits build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TotalHits}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TotalHits build() {
+            _checkSingleUse();
 
-			return new TotalHits(this);
-		}
-	}
+            return new TotalHits(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TotalHits}
-	 */
-	public static final JsonpDeserializer<TotalHits> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TotalHits::setupTotalHitsDeserializer);
+    /**
+     * Json deserializer for {@link TotalHits}
+     */
+    public static final JsonpDeserializer<TotalHits> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TotalHits::setupTotalHitsDeserializer
+    );
 
-	protected static void setupTotalHitsDeserializer(ObjectDeserializer<TotalHits.Builder> op) {
+    protected static void setupTotalHitsDeserializer(ObjectDeserializer<TotalHits.Builder> op) {
 
-		op.add(Builder::relation, TotalHitsRelation._DESERIALIZER, "relation");
-		op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");
+        op.add(Builder::relation, TotalHitsRelation._DESERIALIZER, "relation");
+        op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");
 
-	}
+    }
 
 }

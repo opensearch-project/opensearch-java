@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,216 +43,214 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettingBlocks
 
-
 @JsonpDeserializable
 public class IndexSettingBlocks implements JsonpSerializable {
-	@Nullable
-	private final Boolean readOnly;
+    @Nullable
+    private final Boolean readOnly;
 
-	@Nullable
-	private final Boolean readOnlyAllowDelete;
+    @Nullable
+    private final Boolean readOnlyAllowDelete;
 
-	@Nullable
-	private final Boolean read;
+    @Nullable
+    private final Boolean read;
 
-	@Nullable
-	private final Boolean write;
+    @Nullable
+    private final Boolean write;
 
-	@Nullable
-	private final Boolean metadata;
+    @Nullable
+    private final Boolean metadata;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndexSettingBlocks(Builder builder) {
+    private IndexSettingBlocks(Builder builder) {
 
-		this.readOnly = builder.readOnly;
-		this.readOnlyAllowDelete = builder.readOnlyAllowDelete;
-		this.read = builder.read;
-		this.write = builder.write;
-		this.metadata = builder.metadata;
+        this.readOnly = builder.readOnly;
+        this.readOnlyAllowDelete = builder.readOnlyAllowDelete;
+        this.read = builder.read;
+        this.write = builder.write;
+        this.metadata = builder.metadata;
 
-	}
+    }
 
-	public static IndexSettingBlocks of(Function<Builder, ObjectBuilder<IndexSettingBlocks>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndexSettingBlocks of(Function<Builder, ObjectBuilder<IndexSettingBlocks>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code read_only}
-	 */
-	@Nullable
-	public final Boolean readOnly() {
-		return this.readOnly;
-	}
+    /**
+     * API name: {@code read_only}
+     */
+    @Nullable
+    public final Boolean readOnly() {
+        return this.readOnly;
+    }
 
-	/**
-	 * API name: {@code read_only_allow_delete}
-	 */
-	@Nullable
-	public final Boolean readOnlyAllowDelete() {
-		return this.readOnlyAllowDelete;
-	}
+    /**
+     * API name: {@code read_only_allow_delete}
+     */
+    @Nullable
+    public final Boolean readOnlyAllowDelete() {
+        return this.readOnlyAllowDelete;
+    }
 
-	/**
-	 * API name: {@code read}
-	 */
-	@Nullable
-	public final Boolean read() {
-		return this.read;
-	}
+    /**
+     * API name: {@code read}
+     */
+    @Nullable
+    public final Boolean read() {
+        return this.read;
+    }
 
-	/**
-	 * API name: {@code write}
-	 */
-	@Nullable
-	public final Boolean write() {
-		return this.write;
-	}
+    /**
+     * API name: {@code write}
+     */
+    @Nullable
+    public final Boolean write() {
+        return this.write;
+    }
 
-	/**
-	 * API name: {@code metadata}
-	 */
-	@Nullable
-	public final Boolean metadata() {
-		return this.metadata;
-	}
+    /**
+     * API name: {@code metadata}
+     */
+    @Nullable
+    public final Boolean metadata() {
+        return this.metadata;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.readOnly != null) {
-			generator.writeKey("read_only");
-			generator.write(this.readOnly);
+        if (this.readOnly != null) {
+            generator.writeKey("read_only");
+            generator.write(this.readOnly);
 
-		}
-		if (this.readOnlyAllowDelete != null) {
-			generator.writeKey("read_only_allow_delete");
-			generator.write(this.readOnlyAllowDelete);
+        }
+        if (this.readOnlyAllowDelete != null) {
+            generator.writeKey("read_only_allow_delete");
+            generator.write(this.readOnlyAllowDelete);
 
-		}
-		if (this.read != null) {
-			generator.writeKey("read");
-			generator.write(this.read);
+        }
+        if (this.read != null) {
+            generator.writeKey("read");
+            generator.write(this.read);
 
-		}
-		if (this.write != null) {
-			generator.writeKey("write");
-			generator.write(this.write);
+        }
+        if (this.write != null) {
+            generator.writeKey("write");
+            generator.write(this.write);
 
-		}
-		if (this.metadata != null) {
-			generator.writeKey("metadata");
-			generator.write(this.metadata);
+        }
+        if (this.metadata != null) {
+            generator.writeKey("metadata");
+            generator.write(this.metadata);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndexSettingBlocks}.
-	 */
+    /**
+     * Builder for {@link IndexSettingBlocks}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettingBlocks> {
-		@Nullable
-		private Boolean readOnly;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettingBlocks> {
+        @Nullable
+        private Boolean readOnly;
 
-		@Nullable
-		private Boolean readOnlyAllowDelete;
+        @Nullable
+        private Boolean readOnlyAllowDelete;
 
-		@Nullable
-		private Boolean read;
+        @Nullable
+        private Boolean read;
 
-		@Nullable
-		private Boolean write;
+        @Nullable
+        private Boolean write;
 
-		@Nullable
-		private Boolean metadata;
+        @Nullable
+        private Boolean metadata;
 
-		/**
-		 * API name: {@code read_only}
-		 */
-		public final Builder readOnly(@Nullable Boolean value) {
-			this.readOnly = value;
-			return this;
-		}
+        /**
+         * API name: {@code read_only}
+         */
+        public final Builder readOnly(@Nullable Boolean value) {
+            this.readOnly = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code read_only_allow_delete}
-		 */
-		public final Builder readOnlyAllowDelete(@Nullable Boolean value) {
-			this.readOnlyAllowDelete = value;
-			return this;
-		}
+        /**
+         * API name: {@code read_only_allow_delete}
+         */
+        public final Builder readOnlyAllowDelete(@Nullable Boolean value) {
+            this.readOnlyAllowDelete = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code read}
-		 */
-		public final Builder read(@Nullable Boolean value) {
-			this.read = value;
-			return this;
-		}
+        /**
+         * API name: {@code read}
+         */
+        public final Builder read(@Nullable Boolean value) {
+            this.read = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code write}
-		 */
-		public final Builder write(@Nullable Boolean value) {
-			this.write = value;
-			return this;
-		}
+        /**
+         * API name: {@code write}
+         */
+        public final Builder write(@Nullable Boolean value) {
+            this.write = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code metadata}
-		 */
-		public final Builder metadata(@Nullable Boolean value) {
-			this.metadata = value;
-			return this;
-		}
+        /**
+         * API name: {@code metadata}
+         */
+        public final Builder metadata(@Nullable Boolean value) {
+            this.metadata = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IndexSettingBlocks}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndexSettingBlocks build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndexSettingBlocks}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndexSettingBlocks build() {
+            _checkSingleUse();
 
-			return new IndexSettingBlocks(this);
-		}
-	}
+            return new IndexSettingBlocks(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IndexSettingBlocks}
-	 */
-	public static final JsonpDeserializer<IndexSettingBlocks> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexSettingBlocks::setupIndexSettingBlocksDeserializer);
+    /**
+     * Json deserializer for {@link IndexSettingBlocks}
+     */
+    public static final JsonpDeserializer<IndexSettingBlocks> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IndexSettingBlocks::setupIndexSettingBlocksDeserializer
+    );
 
-	protected static void setupIndexSettingBlocksDeserializer(ObjectDeserializer<IndexSettingBlocks.Builder> op) {
+    protected static void setupIndexSettingBlocksDeserializer(ObjectDeserializer<IndexSettingBlocks.Builder> op) {
 
-		op.add(Builder::readOnly, JsonpDeserializer.booleanDeserializer(), "read_only");
-		op.add(Builder::readOnlyAllowDelete, JsonpDeserializer.booleanDeserializer(), "read_only_allow_delete");
-		op.add(Builder::read, JsonpDeserializer.booleanDeserializer(), "read");
-		op.add(Builder::write, JsonpDeserializer.booleanDeserializer(), "write");
-		op.add(Builder::metadata, JsonpDeserializer.booleanDeserializer(), "metadata");
+        op.add(Builder::readOnly, JsonpDeserializer.booleanDeserializer(), "read_only");
+        op.add(Builder::readOnlyAllowDelete, JsonpDeserializer.booleanDeserializer(), "read_only_allow_delete");
+        op.add(Builder::read, JsonpDeserializer.booleanDeserializer(), "read");
+        op.add(Builder::write, JsonpDeserializer.booleanDeserializer(), "write");
+        op.add(Builder::metadata, JsonpDeserializer.booleanDeserializer(), "metadata");
 
-	}
+    }
 
 }

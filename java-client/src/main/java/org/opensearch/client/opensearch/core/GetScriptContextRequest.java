@@ -32,51 +32,53 @@
 
 package org.opensearch.client.opensearch.core;
 
+import java.util.Collections;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
-import java.util.Collections;
-
 // typedef: _global.get_script_context.Request
 
 /**
  * Returns all script contexts.
- * 
+ *
  */
 
 public class GetScriptContextRequest extends RequestBase {
-	public GetScriptContextRequest() {
-	}
+    public GetScriptContextRequest() {}
 
-	/**
-	 * Singleton instance for {@link GetScriptContextRequest}.
-	 */
-	public static final GetScriptContextRequest _INSTANCE = new GetScriptContextRequest();
+    /**
+     * Singleton instance for {@link GetScriptContextRequest}.
+     */
+    public static final GetScriptContextRequest _INSTANCE = new GetScriptContextRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code get_script_context}".
-	 */
-	public static final Endpoint<GetScriptContextRequest, GetScriptContextResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code get_script_context}".
+     */
+    public static final Endpoint<GetScriptContextRequest, GetScriptContextResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_script_context";
+        // Request path
+        request -> {
+            return "/_script_context";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetScriptContextResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        GetScriptContextResponse._DESERIALIZER
+    );
 }

@@ -32,104 +32,103 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
-import jakarta.json.stream.JsonGenerator;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SingleMetricAggregateBase
 
-
 public abstract class SingleMetricAggregateBase extends AggregateBase {
-	private final double value;
+    private final double value;
 
-	@Nullable
-	private final String valueAsString;
+    @Nullable
+    private final String valueAsString;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected SingleMetricAggregateBase(AbstractBuilder<?> builder) {
-		super(builder);
+    protected SingleMetricAggregateBase(AbstractBuilder<?> builder) {
+        super(builder);
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
-		this.valueAsString = builder.valueAsString;
+        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+        this.valueAsString = builder.valueAsString;
 
-	}
+    }
 
-	/**
-	 * Required - The metric value. A missing value generally means that there was
-	 * no data to aggregate, unless specified otherwise.
-	 * <p>
-	 * API name: {@code value}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
-	 */
-	public final double value() {
-		return this.value;
-	}
+    /**
+     * Required - The metric value. A missing value generally means that there was
+     * no data to aggregate, unless specified otherwise.
+     * <p>
+     * API name: {@code value}
+     * <p>
+     * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+     */
+    public final double value() {
+        return this.value;
+    }
 
-	/**
-	 * API name: {@code value_as_string}
-	 */
-	@Nullable
-	public final String valueAsString() {
-		return this.valueAsString;
-	}
+    /**
+     * API name: {@code value_as_string}
+     */
+    @Nullable
+    public final String valueAsString() {
+        return this.valueAsString;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("value");
-		JsonpUtils.serializeDoubleOrNull(generator, this.value, 0);
-		if (this.valueAsString != null) {
-			generator.writeKey("value_as_string");
-			generator.write(this.valueAsString);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("value");
+        JsonpUtils.serializeDoubleOrNull(generator, this.value, 0);
+        if (this.valueAsString != null) {
+            generator.writeKey("value_as_string");
+            generator.write(this.valueAsString);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				AggregateBase.AbstractBuilder<BuilderT> {
-		private Double value;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregateBase.AbstractBuilder<
+        BuilderT> {
+        private Double value;
 
-		@Nullable
-		private String valueAsString;
+        @Nullable
+        private String valueAsString;
 
-		/**
-		 * Required - The metric value. A missing value generally means that there was
-		 * no data to aggregate, unless specified otherwise.
-		 * <p>
-		 * API name: {@code value}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
-		 */
-		public final BuilderT value(double value) {
-			this.value = value;
-			return self();
-		}
+        /**
+         * Required - The metric value. A missing value generally means that there was
+         * no data to aggregate, unless specified otherwise.
+         * <p>
+         * API name: {@code value}
+         * <p>
+         * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+         */
+        public final BuilderT value(double value) {
+            this.value = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code value_as_string}
-		 */
-		public final BuilderT valueAsString(@Nullable String value) {
-			this.valueAsString = value;
-			return self();
-		}
+        /**
+         * API name: {@code value_as_string}
+         */
+        public final BuilderT valueAsString(@Nullable String value) {
+            this.valueAsString = value;
+            return self();
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSingleMetricAggregateBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		AggregateBase.setupAggregateBaseDeserializer(op);
-		op.add(AbstractBuilder::value, JsonpDeserializer.doubleOrNullDeserializer(0), "value");
-		op.add(AbstractBuilder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSingleMetricAggregateBaseDeserializer(
+        ObjectDeserializer<BuilderT> op
+    ) {
+        AggregateBase.setupAggregateBaseDeserializer(op);
+        op.add(AbstractBuilder::value, JsonpDeserializer.doubleOrNullDeserializer(0), "value");
+        op.add(AbstractBuilder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
 
-	}
+    }
 
 }

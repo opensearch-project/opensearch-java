@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,211 +45,209 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.NodeStatistics
 
 @JsonpDeserializable
 public class NodeStatistics implements JsonpSerializable {
-	private final List<ErrorCause> failures;
+    private final List<ErrorCause> failures;
 
-	private final int total;
+    private final int total;
 
-	private final int successful;
+    private final int successful;
 
-	private final int failed;
+    private final int failed;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeStatistics(Builder builder) {
+    private NodeStatistics(Builder builder) {
 
-		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
-		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+        this.failures = ApiTypeHelper.unmodifiable(builder.failures);
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
+        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
 
-	}
+    }
 
-	public static NodeStatistics of(Function<Builder, ObjectBuilder<NodeStatistics>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeStatistics of(Function<Builder, ObjectBuilder<NodeStatistics>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code failures}
-	 */
-	public final List<ErrorCause> failures() {
-		return this.failures;
-	}
+    /**
+     * API name: {@code failures}
+     */
+    public final List<ErrorCause> failures() {
+        return this.failures;
+    }
 
-	/**
-	 * Required - Total number of nodes selected by the request.
-	 * <p>
-	 * API name: {@code total}
-	 */
-	public final int total() {
-		return this.total;
-	}
+    /**
+     * Required - Total number of nodes selected by the request.
+     * <p>
+     * API name: {@code total}
+     */
+    public final int total() {
+        return this.total;
+    }
 
-	/**
-	 * Required - Number of nodes that responded successfully to the request.
-	 * <p>
-	 * API name: {@code successful}
-	 */
-	public final int successful() {
-		return this.successful;
-	}
+    /**
+     * Required - Number of nodes that responded successfully to the request.
+     * <p>
+     * API name: {@code successful}
+     */
+    public final int successful() {
+        return this.successful;
+    }
 
-	/**
-	 * Required - Number of nodes that rejected the request or failed to respond. If
-	 * this value is not 0, a reason for the rejection or failure is included in the
-	 * response.
-	 * <p>
-	 * API name: {@code failed}
-	 */
-	public final int failed() {
-		return this.failed;
-	}
+    /**
+     * Required - Number of nodes that rejected the request or failed to respond. If
+     * this value is not 0, a reason for the rejection or failure is included in the
+     * response.
+     * <p>
+     * API name: {@code failed}
+     */
+    public final int failed() {
+        return this.failed;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.failures)) {
-			generator.writeKey("failures");
-			generator.writeStartArray();
-			for (ErrorCause item0 : this.failures) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.failures)) {
+            generator.writeKey("failures");
+            generator.writeStartArray();
+            for (ErrorCause item0 : this.failures) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		generator.writeKey("total");
-		generator.write(this.total);
+        }
+        generator.writeKey("total");
+        generator.write(this.total);
 
-		generator.writeKey("successful");
-		generator.write(this.successful);
+        generator.writeKey("successful");
+        generator.write(this.successful);
 
-		generator.writeKey("failed");
-		generator.write(this.failed);
+        generator.writeKey("failed");
+        generator.write(this.failed);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeStatistics}.
-	 */
+    /**
+     * Builder for {@link NodeStatistics}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeStatistics> {
-		@Nullable
-		private List<ErrorCause> failures;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeStatistics> {
+        @Nullable
+        private List<ErrorCause> failures;
 
-		private Integer total;
+        private Integer total;
 
-		private Integer successful;
+        private Integer successful;
 
-		private Integer failed;
+        private Integer failed;
 
-		/**
-		 * API name: {@code failures}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>failures</code>.
-		 */
-		public final Builder failures(List<ErrorCause> list) {
-			this.failures = _listAddAll(this.failures, list);
-			return this;
-		}
+        /**
+         * API name: {@code failures}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>failures</code>.
+         */
+        public final Builder failures(List<ErrorCause> list) {
+            this.failures = _listAddAll(this.failures, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code failures}
-		 * <p>
-		 * Adds one or more values to <code>failures</code>.
-		 */
-		public final Builder failures(ErrorCause value, ErrorCause... values) {
-			this.failures = _listAdd(this.failures, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code failures}
+         * <p>
+         * Adds one or more values to <code>failures</code>.
+         */
+        public final Builder failures(ErrorCause value, ErrorCause... values) {
+            this.failures = _listAdd(this.failures, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code failures}
-		 * <p>
-		 * Adds a value to <code>failures</code> using a builder lambda.
-		 */
-		public final Builder failures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return failures(fn.apply(new ErrorCause.Builder()).build());
-		}
+        /**
+         * API name: {@code failures}
+         * <p>
+         * Adds a value to <code>failures</code> using a builder lambda.
+         */
+        public final Builder failures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+            return failures(fn.apply(new ErrorCause.Builder()).build());
+        }
 
-		/**
-		 * Required - Total number of nodes selected by the request.
-		 * <p>
-		 * API name: {@code total}
-		 */
-		public final Builder total(int value) {
-			this.total = value;
-			return this;
-		}
+        /**
+         * Required - Total number of nodes selected by the request.
+         * <p>
+         * API name: {@code total}
+         */
+        public final Builder total(int value) {
+            this.total = value;
+            return this;
+        }
 
-		/**
-		 * Required - Number of nodes that responded successfully to the request.
-		 * <p>
-		 * API name: {@code successful}
-		 */
-		public final Builder successful(int value) {
-			this.successful = value;
-			return this;
-		}
+        /**
+         * Required - Number of nodes that responded successfully to the request.
+         * <p>
+         * API name: {@code successful}
+         */
+        public final Builder successful(int value) {
+            this.successful = value;
+            return this;
+        }
 
-		/**
-		 * Required - Number of nodes that rejected the request or failed to respond. If
-		 * this value is not 0, a reason for the rejection or failure is included in the
-		 * response.
-		 * <p>
-		 * API name: {@code failed}
-		 */
-		public final Builder failed(int value) {
-			this.failed = value;
-			return this;
-		}
+        /**
+         * Required - Number of nodes that rejected the request or failed to respond. If
+         * this value is not 0, a reason for the rejection or failure is included in the
+         * response.
+         * <p>
+         * API name: {@code failed}
+         */
+        public final Builder failed(int value) {
+            this.failed = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeStatistics}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeStatistics build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeStatistics}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeStatistics build() {
+            _checkSingleUse();
 
-			return new NodeStatistics(this);
-		}
-	}
+            return new NodeStatistics(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeStatistics}
-	 */
-	public static final JsonpDeserializer<NodeStatistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeStatistics::setupNodeStatisticsDeserializer);
+    /**
+     * Json deserializer for {@link NodeStatistics}
+     */
+    public static final JsonpDeserializer<NodeStatistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeStatistics::setupNodeStatisticsDeserializer
+    );
 
-	protected static void setupNodeStatisticsDeserializer(ObjectDeserializer<NodeStatistics.Builder> op) {
+    protected static void setupNodeStatisticsDeserializer(ObjectDeserializer<NodeStatistics.Builder> op) {
 
-		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "failures");
-		op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
-		op.add(Builder::successful, JsonpDeserializer.integerDeserializer(), "successful");
-		op.add(Builder::failed, JsonpDeserializer.integerDeserializer(), "failed");
+        op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "failures");
+        op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
+        op.add(Builder::successful, JsonpDeserializer.integerDeserializer(), "successful");
+        op.add(Builder::failed, JsonpDeserializer.integerDeserializer(), "failed");
 
-	}
+    }
 
 }

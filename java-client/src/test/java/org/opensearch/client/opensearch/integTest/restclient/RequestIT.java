@@ -8,9 +8,11 @@
 
 package org.opensearch.client.opensearch.integTest.restclient;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+
 import java.io.IOException;
 import java.util.Optional;
-
+import javax.net.ssl.SSLContext;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -33,10 +35,6 @@ import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.rest_client.RestClientTransport;
 import org.opensearch.common.settings.Settings;
 
-import javax.net.ssl.SSLContext;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-
 public class RequestIT extends AbstractRequestIT {
     @Override
     public OpenSearchTransport buildTransport(Settings settings, HttpHost[] hosts) throws IOException {
@@ -49,32 +47,29 @@ public class RequestIT extends AbstractRequestIT {
         Assume.assumeThat(isHttps(), equalTo(true));
 
         final String userName = Optional.ofNullable(System.getProperty("user")).orElse("admin");
-        final String wrongPassword = Optional.ofNullable(System.getProperty("password")).orElse("admin")
-                + "wrong";
+        final String wrongPassword = Optional.ofNullable(System.getProperty("password")).orElse("admin") + "wrong";
 
         final BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-        credentialsProvider.setCredentials(new AuthScope(getClusterHosts().get(0)),
-                new UsernamePasswordCredentials(userName, wrongPassword));
+        credentialsProvider.setCredentials(
+            new AuthScope(getClusterHosts().get(0)),
+            new UsernamePasswordCredentials(userName, wrongPassword)
+        );
 
-        final RestClient restClient = RestClient
-                .builder(getClusterHosts().toArray(new HttpHost[0]))
-                .setHttpClientConfigCallback(httpClientBuilder -> {
-                    try {
-                        final TrustStrategy trustStrategy = new TrustAllStrategy();
-                        final SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(
-                                null, trustStrategy).build();
-                        return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider)
-                                .setSSLContext(sslContext);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                })
-                .build();
+        final RestClient restClient = RestClient.builder(getClusterHosts().toArray(new HttpHost[0]))
+            .setHttpClientConfigCallback(httpClientBuilder -> {
+                try {
+                    final TrustStrategy trustStrategy = new TrustAllStrategy();
+                    final SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(null, trustStrategy).build();
+                    return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider).setSSLContext(sslContext);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            })
+            .build();
 
         final RestClientTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
         final OpenSearchClient client = new OpenSearchClient(transport);
-        final TransportException transportException = assertThrows(TransportException.class,
-                () -> client.cluster().getSettings());
+        final TransportException transportException = assertThrows(TransportException.class, () -> client.cluster().getSettings());
         assertEquals("Unauthorized access", transportException.getMessage());
         restClient.close();
     }
@@ -83,15 +78,15 @@ public class RequestIT extends AbstractRequestIT {
     public void testForbidden() throws Exception {
         final OpenSearchClient openSearchClient = javaClient();
         final String testIndex = "test-index";
-        final CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder()
-                .index(testIndex)
-                .settings(new IndexSettings.Builder()
-                        .blocksRead(true).build())
-                .build();
+        final CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(testIndex)
+            .settings(new IndexSettings.Builder().blocksRead(true).build())
+            .build();
         openSearchClient.indices().create(createIndexRequest);
         final SearchRequest searchRequest = new SearchRequest.Builder().index(testIndex).build();
-        final TransportException transportException = assertThrows(TransportException.class,
-                () -> openSearchClient.search(searchRequest, JsonData.class));
+        final TransportException transportException = assertThrows(
+            TransportException.class,
+            () -> openSearchClient.search(searchRequest, JsonData.class)
+        );
         assertEquals("Forbidden access", transportException.getMessage());
     }
 }

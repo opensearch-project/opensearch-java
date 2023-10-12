@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,121 +42,114 @@ import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.Aggregation
 
-
 public abstract class AggregationBase implements JsonpSerializable {
-	private final Map<String, JsonData> meta;
+    private final Map<String, JsonData> meta;
 
-	@Nullable
-	private final String name;
+    @Nullable
+    private final String name;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected AggregationBase(AbstractBuilder<?> builder) {
+    protected AggregationBase(AbstractBuilder<?> builder) {
 
-		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
-		this.name = builder.name;
+        this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+        this.name = builder.name;
 
-	}
+    }
 
-	/**
-	 * API name: {@code meta}
-	 */
-	public final Map<String, JsonData> meta() {
-		return this.meta;
-	}
+    /**
+     * API name: {@code meta}
+     */
+    public final Map<String, JsonData> meta() {
+        return this.meta;
+    }
 
-	/**
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * API name: {@code name}
+     */
+    @Nullable
+    public final String name() {
+        return this.name;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.meta)) {
-			generator.writeKey("meta");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.meta)) {
+            generator.writeKey("meta");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.name != null) {
-			generator.writeKey("name");
-			generator.write(this.name);
+        }
+        if (this.name != null) {
+            generator.writeKey("name");
+            generator.write(this.name);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ObjectBuilderBase {
-		@Nullable
-		private Map<String, JsonData> meta;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+        @Nullable
+        private Map<String, JsonData> meta;
 
-		@Nullable
-		private String name;
+        @Nullable
+        private String name;
 
-		/**
-		 * API name: {@code meta}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>meta</code>.
-		 */
-		public final BuilderT meta(Map<String, JsonData> map) {
-			this.meta = _mapPutAll(this.meta, map);
-			return self();
-		}
+        /**
+         * API name: {@code meta}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>meta</code>.
+         */
+        public final BuilderT meta(Map<String, JsonData> map) {
+            this.meta = _mapPutAll(this.meta, map);
+            return self();
+        }
 
-		/**
-		 * API name: {@code meta}
-		 * <p>
-		 * Adds an entry to <code>meta</code>.
-		 */
-		public final BuilderT meta(String key, JsonData value) {
-			this.meta = _mapPut(this.meta, key, value);
-			return self();
-		}
+        /**
+         * API name: {@code meta}
+         * <p>
+         * Adds an entry to <code>meta</code>.
+         */
+        public final BuilderT meta(String key, JsonData value) {
+            this.meta = _mapPut(this.meta, key, value);
+            return self();
+        }
 
-		/**
-		 * API name: {@code name}
-		 */
-		public final BuilderT name(@Nullable String value) {
-			this.name = value;
-			return self();
-		}
+        /**
+         * API name: {@code name}
+         */
+        public final BuilderT name(@Nullable String value) {
+            this.name = value;
+            return self();
+        }
 
-		protected abstract BuilderT self();
+        protected abstract BuilderT self();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAggregationBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAggregationBaseDeserializer(ObjectDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
-		op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(AbstractBuilder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
+        op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "name");
 
-	}
+    }
 
 }

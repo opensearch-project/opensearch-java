@@ -32,72 +32,72 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch.indices.get_alias.IndexAliases;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.indices.get_alias.IndexAliases;
 import org.opensearch.client.transport.endpoints.DictionaryResponse;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.get_alias.Response
 
 @JsonpDeserializable
 public class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetAliasResponse(Builder builder) {
-		super(builder);
+    private GetAliasResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static GetAliasResponse of(Function<Builder, ObjectBuilder<GetAliasResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetAliasResponse of(Function<Builder, ObjectBuilder<GetAliasResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetAliasResponse}.
-	 */
+    /**
+     * Builder for {@link GetAliasResponse}.
+     */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexAliases, Builder>
-			implements
-				ObjectBuilder<GetAliasResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexAliases, Builder>
+        implements
+            ObjectBuilder<GetAliasResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetAliasResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetAliasResponse build() {
-			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
+        /**
+         * Builds a {@link GetAliasResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetAliasResponse build() {
+            _checkSingleUse();
+            super.tKeySerializer(null);
+            super.tValueSerializer(null);
 
-			return new GetAliasResponse(this);
-		}
-	}
+            return new GetAliasResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GetAliasResponse}
-	 */
-	public static final JsonpDeserializer<GetAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetAliasResponse::setupGetAliasResponseDeserializer);
+    /**
+     * Json deserializer for {@link GetAliasResponse}
+     */
+    public static final JsonpDeserializer<GetAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GetAliasResponse::setupGetAliasResponseDeserializer
+    );
 
-	protected static void setupGetAliasResponseDeserializer(ObjectDeserializer<GetAliasResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				IndexAliases._DESERIALIZER);
+    protected static void setupGetAliasResponseDeserializer(ObjectDeserializer<GetAliasResponse.Builder> op) {
+        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), IndexAliases._DESERIALIZER);
 
-	}
+    }
 
 }

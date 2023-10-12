@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -40,149 +42,146 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.DistanceFeatureQuery
 
-
 @JsonpDeserializable
 public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
-	private final JsonData origin;
+    private final JsonData origin;
 
-	private final JsonData pivot;
+    private final JsonData pivot;
 
-	private final String field;
+    private final String field;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DistanceFeatureQuery(Builder builder) {
-		super(builder);
+    private DistanceFeatureQuery(Builder builder) {
+        super(builder);
 
-		this.origin = ApiTypeHelper.requireNonNull(builder.origin, this, "origin");
-		this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot");
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.origin = ApiTypeHelper.requireNonNull(builder.origin, this, "origin");
+        this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot");
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-	}
+    }
 
-	public static DistanceFeatureQuery of(Function<Builder, ObjectBuilder<DistanceFeatureQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DistanceFeatureQuery of(Function<Builder, ObjectBuilder<DistanceFeatureQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.DistanceFeature;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.DistanceFeature;
+    }
 
-	/**
-	 * Required - API name: {@code origin}
-	 */
-	public final JsonData origin() {
-		return this.origin;
-	}
+    /**
+     * Required - API name: {@code origin}
+     */
+    public final JsonData origin() {
+        return this.origin;
+    }
 
-	/**
-	 * Required - API name: {@code pivot}
-	 */
-	public final JsonData pivot() {
-		return this.pivot;
-	}
+    /**
+     * Required - API name: {@code pivot}
+     */
+    public final JsonData pivot() {
+        return this.pivot;
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("origin");
-		this.origin.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("origin");
+        this.origin.serialize(generator, mapper);
 
-		generator.writeKey("pivot");
-		this.pivot.serialize(generator, mapper);
+        generator.writeKey("pivot");
+        this.pivot.serialize(generator, mapper);
 
-		generator.writeKey("field");
-		generator.write(this.field);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DistanceFeatureQuery}.
-	 */
+    /**
+     * Builder for {@link DistanceFeatureQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DistanceFeatureQuery> {
-		private JsonData origin;
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<DistanceFeatureQuery> {
+        private JsonData origin;
 
-		private JsonData pivot;
+        private JsonData pivot;
 
-		private String field;
+        private String field;
 
-		/**
-		 * Required - API name: {@code origin}
-		 */
-		public final Builder origin(JsonData value) {
-			this.origin = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code origin}
+         */
+        public final Builder origin(JsonData value) {
+            this.origin = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code pivot}
-		 */
-		public final Builder pivot(JsonData value) {
-			this.pivot = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code pivot}
+         */
+        public final Builder pivot(JsonData value) {
+            this.pivot = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DistanceFeatureQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DistanceFeatureQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DistanceFeatureQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DistanceFeatureQuery build() {
+            _checkSingleUse();
 
-			return new DistanceFeatureQuery(this);
-		}
-	}
+            return new DistanceFeatureQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DistanceFeatureQuery}
-	 */
-	public static final JsonpDeserializer<DistanceFeatureQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DistanceFeatureQuery::setupDistanceFeatureQueryDeserializer);
+    /**
+     * Json deserializer for {@link DistanceFeatureQuery}
+     */
+    public static final JsonpDeserializer<DistanceFeatureQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DistanceFeatureQuery::setupDistanceFeatureQueryDeserializer
+    );
 
-	protected static void setupDistanceFeatureQueryDeserializer(ObjectDeserializer<DistanceFeatureQuery.Builder> op) {
-		setupQueryBaseDeserializer(op);
-		op.add(Builder::origin, JsonData._DESERIALIZER, "origin");
-		op.add(Builder::pivot, JsonData._DESERIALIZER, "pivot");
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+    protected static void setupDistanceFeatureQueryDeserializer(ObjectDeserializer<DistanceFeatureQuery.Builder> op) {
+        setupQueryBaseDeserializer(op);
+        op.add(Builder::origin, JsonData._DESERIALIZER, "origin");
+        op.add(Builder::pivot, JsonData._DESERIALIZER, "pivot");
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 
-	}
+    }
 
 }

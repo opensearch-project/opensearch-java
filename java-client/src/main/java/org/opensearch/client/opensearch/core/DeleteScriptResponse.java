@@ -32,68 +32,67 @@
 
 package org.opensearch.client.opensearch.core;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _global.delete_script.Response
 
 @JsonpDeserializable
 public class DeleteScriptResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DeleteScriptResponse(Builder builder) {
-		super(builder);
+    private DeleteScriptResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DeleteScriptResponse of(Function<Builder, ObjectBuilder<DeleteScriptResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DeleteScriptResponse of(Function<Builder, ObjectBuilder<DeleteScriptResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DeleteScriptResponse}.
-	 */
+    /**
+     * Builder for {@link DeleteScriptResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DeleteScriptResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteScriptResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DeleteScriptResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeleteScriptResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DeleteScriptResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DeleteScriptResponse build() {
+            _checkSingleUse();
 
-			return new DeleteScriptResponse(this);
-		}
-	}
+            return new DeleteScriptResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DeleteScriptResponse}
-	 */
-	public static final JsonpDeserializer<DeleteScriptResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteScriptResponse::setupDeleteScriptResponseDeserializer);
+    /**
+     * Json deserializer for {@link DeleteScriptResponse}
+     */
+    public static final JsonpDeserializer<DeleteScriptResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeleteScriptResponse::setupDeleteScriptResponseDeserializer
+    );
 
-	protected static void setupDeleteScriptResponseDeserializer(ObjectDeserializer<DeleteScriptResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupDeleteScriptResponseDeserializer(ObjectDeserializer<DeleteScriptResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

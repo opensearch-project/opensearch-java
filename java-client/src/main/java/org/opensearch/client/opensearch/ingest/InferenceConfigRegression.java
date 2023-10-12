@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,94 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: ingest._types.InferenceConfigRegression
 
-
 @JsonpDeserializable
 public class InferenceConfigRegression implements JsonpSerializable {
-	private final String resultsField;
+    private final String resultsField;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private InferenceConfigRegression(Builder builder) {
+    private InferenceConfigRegression(Builder builder) {
 
-		this.resultsField = ApiTypeHelper.requireNonNull(builder.resultsField, this, "resultsField");
+        this.resultsField = ApiTypeHelper.requireNonNull(builder.resultsField, this, "resultsField");
 
-	}
+    }
 
-	public static InferenceConfigRegression of(Function<Builder, ObjectBuilder<InferenceConfigRegression>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static InferenceConfigRegression of(Function<Builder, ObjectBuilder<InferenceConfigRegression>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code results_field}
-	 */
-	public final String resultsField() {
-		return this.resultsField;
-	}
+    /**
+     * Required - API name: {@code results_field}
+     */
+    public final String resultsField() {
+        return this.resultsField;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("results_field");
-		generator.write(this.resultsField);
+        generator.writeKey("results_field");
+        generator.write(this.resultsField);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link InferenceConfigRegression}.
-	 */
+    /**
+     * Builder for {@link InferenceConfigRegression}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceConfigRegression> {
-		private String resultsField;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceConfigRegression> {
+        private String resultsField;
 
-		/**
-		 * Required - API name: {@code results_field}
-		 */
-		public final Builder resultsField(String value) {
-			this.resultsField = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code results_field}
+         */
+        public final Builder resultsField(String value) {
+            this.resultsField = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link InferenceConfigRegression}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public InferenceConfigRegression build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link InferenceConfigRegression}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public InferenceConfigRegression build() {
+            _checkSingleUse();
 
-			return new InferenceConfigRegression(this);
-		}
-	}
+            return new InferenceConfigRegression(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link InferenceConfigRegression}
-	 */
-	public static final JsonpDeserializer<InferenceConfigRegression> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InferenceConfigRegression::setupInferenceConfigRegressionDeserializer);
+    /**
+     * Json deserializer for {@link InferenceConfigRegression}
+     */
+    public static final JsonpDeserializer<InferenceConfigRegression> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        InferenceConfigRegression::setupInferenceConfigRegressionDeserializer
+    );
 
-	protected static void setupInferenceConfigRegressionDeserializer(
-			ObjectDeserializer<InferenceConfigRegression.Builder> op) {
+    protected static void setupInferenceConfigRegressionDeserializer(ObjectDeserializer<InferenceConfigRegression.Builder> op) {
 
-		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
+        op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
 
-	}
+    }
 
 }

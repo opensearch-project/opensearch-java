@@ -38,10 +38,9 @@ package org.opensearch.client.opensearch._types;
  * Variants <code>option</code>, <code>count</code> are not available here as
  * they don't have a dedicated class. Use {@link WaitForActiveShards}'s builder
  * for these.
- * 
+ *
  */
 public class WaitForActiveShardsBuilders {
-	private WaitForActiveShardsBuilders() {
-	}
+    private WaitForActiveShardsBuilders() {}
 
 }

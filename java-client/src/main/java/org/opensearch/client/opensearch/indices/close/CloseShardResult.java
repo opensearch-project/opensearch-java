@@ -32,132 +32,134 @@
 
 package org.opensearch.client.opensearch.indices.close;
 
-import org.opensearch.client.opensearch._types.ShardFailure;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.ShardFailure;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: indices.close.CloseShardResult
 
 @JsonpDeserializable
 public class CloseShardResult implements JsonpSerializable {
-	private final List<ShardFailure> failures;
+    private final List<ShardFailure> failures;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CloseShardResult(Builder builder) {
+    private CloseShardResult(Builder builder) {
 
-		this.failures = ApiTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
+        this.failures = ApiTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
 
-	}
+    }
 
-	public static CloseShardResult of(Function<Builder, ObjectBuilder<CloseShardResult>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CloseShardResult of(Function<Builder, ObjectBuilder<CloseShardResult>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code failures}
-	 */
-	public final List<ShardFailure> failures() {
-		return this.failures;
-	}
+    /**
+     * Required - API name: {@code failures}
+     */
+    public final List<ShardFailure> failures() {
+        return this.failures;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.failures)) {
-			generator.writeKey("failures");
-			generator.writeStartArray();
-			for (ShardFailure item0 : this.failures) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.failures)) {
+            generator.writeKey("failures");
+            generator.writeStartArray();
+            for (ShardFailure item0 : this.failures) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CloseShardResult}.
-	 */
+    /**
+     * Builder for {@link CloseShardResult}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloseShardResult> {
-		private List<ShardFailure> failures;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloseShardResult> {
+        private List<ShardFailure> failures;
 
-		/**
-		 * Required - API name: {@code failures}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>failures</code>.
-		 */
-		public final Builder failures(List<ShardFailure> list) {
-			this.failures = _listAddAll(this.failures, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code failures}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>failures</code>.
+         */
+        public final Builder failures(List<ShardFailure> list) {
+            this.failures = _listAddAll(this.failures, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code failures}
-		 * <p>
-		 * Adds one or more values to <code>failures</code>.
-		 */
-		public final Builder failures(ShardFailure value, ShardFailure... values) {
-			this.failures = _listAdd(this.failures, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code failures}
+         * <p>
+         * Adds one or more values to <code>failures</code>.
+         */
+        public final Builder failures(ShardFailure value, ShardFailure... values) {
+            this.failures = _listAdd(this.failures, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code failures}
-		 * <p>
-		 * Adds a value to <code>failures</code> using a builder lambda.
-		 */
-		public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
-			return failures(fn.apply(new ShardFailure.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code failures}
+         * <p>
+         * Adds a value to <code>failures</code> using a builder lambda.
+         */
+        public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
+            return failures(fn.apply(new ShardFailure.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link CloseShardResult}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CloseShardResult build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CloseShardResult}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CloseShardResult build() {
+            _checkSingleUse();
 
-			return new CloseShardResult(this);
-		}
-	}
+            return new CloseShardResult(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CloseShardResult}
-	 */
-	public static final JsonpDeserializer<CloseShardResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CloseShardResult::setupCloseShardResultDeserializer);
+    /**
+     * Json deserializer for {@link CloseShardResult}
+     */
+    public static final JsonpDeserializer<CloseShardResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CloseShardResult::setupCloseShardResultDeserializer
+    );
 
-	protected static void setupCloseShardResultDeserializer(ObjectDeserializer<CloseShardResult.Builder> op) {
+    protected static void setupCloseShardResultDeserializer(ObjectDeserializer<CloseShardResult.Builder> op) {
 
-		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure._DESERIALIZER), "failures");
+        op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure._DESERIALIZER), "failures");
 
-	}
+    }
 
 }

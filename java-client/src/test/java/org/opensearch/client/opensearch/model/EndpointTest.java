@@ -32,10 +32,10 @@
 
 package org.opensearch.client.opensearch.model;
 
-import org.opensearch.client.opensearch._types.ExpandWildcard;
-import org.opensearch.client.opensearch.indices.RefreshRequest;
 import org.junit.Assert;
 import org.junit.Test;
+import org.opensearch.client.opensearch._types.ExpandWildcard;
+import org.opensearch.client.opensearch.indices.RefreshRequest;
 
 public class EndpointTest extends Assert {
 

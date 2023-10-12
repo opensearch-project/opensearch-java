@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -40,103 +42,98 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.ScriptedMetricAggregate
 
-
 @JsonpDeserializable
 public class ScriptedMetricAggregate extends AggregateBase implements AggregateVariant {
-	private final JsonData value;
+    private final JsonData value;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ScriptedMetricAggregate(Builder builder) {
-		super(builder);
+    private ScriptedMetricAggregate(Builder builder) {
+        super(builder);
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
-	}
+    }
 
-	public static ScriptedMetricAggregate of(Function<Builder, ObjectBuilder<ScriptedMetricAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ScriptedMetricAggregate of(Function<Builder, ObjectBuilder<ScriptedMetricAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.ScriptedMetric;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.ScriptedMetric;
+    }
 
-	/**
-	 * Required - API name: {@code value}
-	 */
-	public final JsonData value() {
-		return this.value;
-	}
+    /**
+     * Required - API name: {@code value}
+     */
+    public final JsonData value() {
+        return this.value;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("value");
-		this.value.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("value");
+        this.value.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ScriptedMetricAggregate}.
-	 */
+    /**
+     * Builder for {@link ScriptedMetricAggregate}.
+     */
 
-	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ScriptedMetricAggregate> {
-		private JsonData value;
+    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptedMetricAggregate> {
+        private JsonData value;
 
-		/**
-		 * Required - API name: {@code value}
-		 */
-		public final Builder value(JsonData value) {
-			this.value = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code value}
+         */
+        public final Builder value(JsonData value) {
+            this.value = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ScriptedMetricAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ScriptedMetricAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ScriptedMetricAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ScriptedMetricAggregate build() {
+            _checkSingleUse();
 
-			return new ScriptedMetricAggregate(this);
-		}
-	}
+            return new ScriptedMetricAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ScriptedMetricAggregate}
-	 */
-	public static final JsonpDeserializer<ScriptedMetricAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ScriptedMetricAggregate::setupScriptedMetricAggregateDeserializer);
+    /**
+     * Json deserializer for {@link ScriptedMetricAggregate}
+     */
+    public static final JsonpDeserializer<ScriptedMetricAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ScriptedMetricAggregate::setupScriptedMetricAggregateDeserializer
+    );
 
-	protected static void setupScriptedMetricAggregateDeserializer(
-			ObjectDeserializer<ScriptedMetricAggregate.Builder> op) {
-		setupAggregateBaseDeserializer(op);
-		op.add(Builder::value, JsonData._DESERIALIZER, "value");
+    protected static void setupScriptedMetricAggregateDeserializer(ObjectDeserializer<ScriptedMetricAggregate.Builder> op) {
+        setupAggregateBaseDeserializer(op);
+        op.add(Builder::value, JsonData._DESERIALIZER, "value");
 
-	}
+    }
 
 }

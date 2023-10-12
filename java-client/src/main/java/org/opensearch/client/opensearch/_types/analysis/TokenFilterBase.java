@@ -32,80 +32,76 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.TokenFilterBase
 
-
 public abstract class TokenFilterBase implements JsonpSerializable {
-	@Nullable
-	private final String version;
+    @Nullable
+    private final String version;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected TokenFilterBase(AbstractBuilder<?> builder) {
+    protected TokenFilterBase(AbstractBuilder<?> builder) {
 
-		this.version = builder.version;
+        this.version = builder.version;
 
-	}
+    }
 
-	/**
-	 * API name: {@code version}
-	 */
-	@Nullable
-	public final String version() {
-		return this.version;
-	}
+    /**
+     * API name: {@code version}
+     */
+    @Nullable
+    public final String version() {
+        return this.version;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.version != null) {
-			generator.writeKey("version");
-			generator.write(this.version);
+        if (this.version != null) {
+            generator.writeKey("version");
+            generator.write(this.version);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ObjectBuilderBase {
-		@Nullable
-		private String version;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+        @Nullable
+        private String version;
 
-		/**
-		 * API name: {@code version}
-		 */
-		public final BuilderT version(@Nullable String value) {
-			this.version = value;
-			return self();
-		}
+        /**
+         * API name: {@code version}
+         */
+        public final BuilderT version(@Nullable String value) {
+            this.version = value;
+            return self();
+        }
 
-		protected abstract BuilderT self();
+        protected abstract BuilderT self();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupTokenFilterBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupTokenFilterBaseDeserializer(ObjectDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::version, JsonpDeserializer.stringDeserializer(), "version");
+        op.add(AbstractBuilder::version, JsonpDeserializer.stringDeserializer(), "version");
 
-	}
+    }
 
 }

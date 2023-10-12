@@ -32,69 +32,67 @@
 
 package org.opensearch.client.opensearch.snapshot;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: snapshot.delete.Response
 
 @JsonpDeserializable
 public class DeleteSnapshotResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DeleteSnapshotResponse(Builder builder) {
-		super(builder);
+    private DeleteSnapshotResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DeleteSnapshotResponse of(Function<Builder, ObjectBuilder<DeleteSnapshotResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DeleteSnapshotResponse of(Function<Builder, ObjectBuilder<DeleteSnapshotResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DeleteSnapshotResponse}.
-	 */
+    /**
+     * Builder for {@link DeleteSnapshotResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DeleteSnapshotResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteSnapshotResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DeleteSnapshotResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeleteSnapshotResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DeleteSnapshotResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DeleteSnapshotResponse build() {
+            _checkSingleUse();
 
-			return new DeleteSnapshotResponse(this);
-		}
-	}
+            return new DeleteSnapshotResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DeleteSnapshotResponse}
-	 */
-	public static final JsonpDeserializer<DeleteSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteSnapshotResponse::setupDeleteSnapshotResponseDeserializer);
+    /**
+     * Json deserializer for {@link DeleteSnapshotResponse}
+     */
+    public static final JsonpDeserializer<DeleteSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeleteSnapshotResponse::setupDeleteSnapshotResponseDeserializer
+    );
 
-	protected static void setupDeleteSnapshotResponseDeserializer(
-			ObjectDeserializer<DeleteSnapshotResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupDeleteSnapshotResponseDeserializer(ObjectDeserializer<DeleteSnapshotResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

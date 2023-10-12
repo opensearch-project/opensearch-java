@@ -32,95 +32,93 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
-import jakarta.json.stream.JsonGenerator;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsAggregateBase
 
-
-
 public abstract class TermsAggregateBase<TBucket> extends MultiBucketAggregateBase<TBucket> {
-	@Nullable
-	private final Long docCountErrorUpperBound;
+    @Nullable
+    private final Long docCountErrorUpperBound;
 
-	private final long sumOtherDocCount;
+    private final long sumOtherDocCount;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected TermsAggregateBase(AbstractBuilder<TBucket, ?> builder) {
-		super(builder);
+    protected TermsAggregateBase(AbstractBuilder<TBucket, ?> builder) {
+        super(builder);
 
-		this.docCountErrorUpperBound = builder.docCountErrorUpperBound;
-		this.sumOtherDocCount = ApiTypeHelper.requireNonNull(builder.sumOtherDocCount, this, "sumOtherDocCount");
+        this.docCountErrorUpperBound = builder.docCountErrorUpperBound;
+        this.sumOtherDocCount = ApiTypeHelper.requireNonNull(builder.sumOtherDocCount, this, "sumOtherDocCount");
 
-	}
+    }
 
-	/**
-	 * API name: {@code doc_count_error_upper_bound}
-	 */
-	@Nullable
-	public final Long docCountErrorUpperBound() {
-		return this.docCountErrorUpperBound;
-	}
+    /**
+     * API name: {@code doc_count_error_upper_bound}
+     */
+    @Nullable
+    public final Long docCountErrorUpperBound() {
+        return this.docCountErrorUpperBound;
+    }
 
-	/**
-	 * Required - API name: {@code sum_other_doc_count}
-	 */
-	public final long sumOtherDocCount() {
-		return this.sumOtherDocCount;
-	}
+    /**
+     * Required - API name: {@code sum_other_doc_count}
+     */
+    public final long sumOtherDocCount() {
+        return this.sumOtherDocCount;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.docCountErrorUpperBound != null) {
-			generator.writeKey("doc_count_error_upper_bound");
-			generator.write(this.docCountErrorUpperBound);
+        super.serializeInternal(generator, mapper);
+        if (this.docCountErrorUpperBound != null) {
+            generator.writeKey("doc_count_error_upper_bound");
+            generator.write(this.docCountErrorUpperBound);
 
-		}
-		generator.writeKey("sum_other_doc_count");
-		generator.write(this.sumOtherDocCount);
+        }
+        generator.writeKey("sum_other_doc_count");
+        generator.write(this.sumOtherDocCount);
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>>
-			extends
-				MultiBucketAggregateBase.AbstractBuilder<TBucket, BuilderT> {
-		@Nullable
-		private Long docCountErrorUpperBound;
+    protected abstract static class AbstractBuilder<TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>> extends
+        MultiBucketAggregateBase.AbstractBuilder<TBucket, BuilderT> {
+        @Nullable
+        private Long docCountErrorUpperBound;
 
-		private Long sumOtherDocCount;
+        private Long sumOtherDocCount;
 
-		/**
-		 * API name: {@code doc_count_error_upper_bound}
-		 */
-		public final BuilderT docCountErrorUpperBound(@Nullable Long value) {
-			this.docCountErrorUpperBound = value;
-			return self();
-		}
+        /**
+         * API name: {@code doc_count_error_upper_bound}
+         */
+        public final BuilderT docCountErrorUpperBound(@Nullable Long value) {
+            this.docCountErrorUpperBound = value;
+            return self();
+        }
 
-		/**
-		 * Required - API name: {@code sum_other_doc_count}
-		 */
-		public final BuilderT sumOtherDocCount(long value) {
-			this.sumOtherDocCount = value;
-			return self();
-		}
+        /**
+         * Required - API name: {@code sum_other_doc_count}
+         */
+        public final BuilderT sumOtherDocCount(long value) {
+            this.sumOtherDocCount = value;
+            return self();
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>> void setupTermsAggregateBaseDeserializer(
-			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TBucket> tBucketDeserializer) {
-		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, tBucketDeserializer);
-		op.add(AbstractBuilder::docCountErrorUpperBound, JsonpDeserializer.longDeserializer(),
-				"doc_count_error_upper_bound");
-		op.add(AbstractBuilder::sumOtherDocCount, JsonpDeserializer.longDeserializer(), "sum_other_doc_count");
+    // ---------------------------------------------------------------------------------------------
+    protected static <TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>> void setupTermsAggregateBaseDeserializer(
+        ObjectDeserializer<BuilderT> op,
+        JsonpDeserializer<TBucket> tBucketDeserializer
+    ) {
+        MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, tBucketDeserializer);
+        op.add(AbstractBuilder::docCountErrorUpperBound, JsonpDeserializer.longDeserializer(), "doc_count_error_upper_bound");
+        op.add(AbstractBuilder::sumOtherDocCount, JsonpDeserializer.longDeserializer(), "sum_other_doc_count");
 
-	}
+    }
 
 }

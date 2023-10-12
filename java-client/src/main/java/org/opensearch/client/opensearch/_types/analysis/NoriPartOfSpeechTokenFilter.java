@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,126 +42,120 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: _types.analysis.NoriPartOfSpeechTokenFilter
 
-
 @JsonpDeserializable
 public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final List<String> stoptags;
+    private final List<String> stoptags;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NoriPartOfSpeechTokenFilter(Builder builder) {
-		super(builder);
+    private NoriPartOfSpeechTokenFilter(Builder builder) {
+        super(builder);
 
-		this.stoptags = ApiTypeHelper.unmodifiableRequired(builder.stoptags, this, "stoptags");
+        this.stoptags = ApiTypeHelper.unmodifiableRequired(builder.stoptags, this, "stoptags");
 
-	}
+    }
 
-	public static NoriPartOfSpeechTokenFilter of(Function<Builder, ObjectBuilder<NoriPartOfSpeechTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NoriPartOfSpeechTokenFilter of(Function<Builder, ObjectBuilder<NoriPartOfSpeechTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.NoriPartOfSpeech;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.NoriPartOfSpeech;
+    }
 
-	/**
-	 * Required - API name: {@code stoptags}
-	 */
-	public final List<String> stoptags() {
-		return this.stoptags;
-	}
+    /**
+     * Required - API name: {@code stoptags}
+     */
+    public final List<String> stoptags() {
+        return this.stoptags;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "nori_part_of_speech");
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.stoptags)) {
-			generator.writeKey("stoptags");
-			generator.writeStartArray();
-			for (String item0 : this.stoptags) {
-				generator.write(item0);
+        generator.write("type", "nori_part_of_speech");
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.stoptags)) {
+            generator.writeKey("stoptags");
+            generator.writeStartArray();
+            for (String item0 : this.stoptags) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NoriPartOfSpeechTokenFilter}.
-	 */
+    /**
+     * Builder for {@link NoriPartOfSpeechTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<NoriPartOfSpeechTokenFilter> {
-		private List<String> stoptags;
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<NoriPartOfSpeechTokenFilter> {
+        private List<String> stoptags;
 
-		/**
-		 * Required - API name: {@code stoptags}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>stoptags</code>.
-		 */
-		public final Builder stoptags(List<String> list) {
-			this.stoptags = _listAddAll(this.stoptags, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code stoptags}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>stoptags</code>.
+         */
+        public final Builder stoptags(List<String> list) {
+            this.stoptags = _listAddAll(this.stoptags, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code stoptags}
-		 * <p>
-		 * Adds one or more values to <code>stoptags</code>.
-		 */
-		public final Builder stoptags(String value, String... values) {
-			this.stoptags = _listAdd(this.stoptags, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code stoptags}
+         * <p>
+         * Adds one or more values to <code>stoptags</code>.
+         */
+        public final Builder stoptags(String value, String... values) {
+            this.stoptags = _listAdd(this.stoptags, value, values);
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NoriPartOfSpeechTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NoriPartOfSpeechTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NoriPartOfSpeechTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NoriPartOfSpeechTokenFilter build() {
+            _checkSingleUse();
 
-			return new NoriPartOfSpeechTokenFilter(this);
-		}
-	}
+            return new NoriPartOfSpeechTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NoriPartOfSpeechTokenFilter}
-	 */
-	public static final JsonpDeserializer<NoriPartOfSpeechTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NoriPartOfSpeechTokenFilter::setupNoriPartOfSpeechTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link NoriPartOfSpeechTokenFilter}
+     */
+    public static final JsonpDeserializer<NoriPartOfSpeechTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NoriPartOfSpeechTokenFilter::setupNoriPartOfSpeechTokenFilterDeserializer
+    );
 
-	protected static void setupNoriPartOfSpeechTokenFilterDeserializer(
-			ObjectDeserializer<NoriPartOfSpeechTokenFilter.Builder> op) {
-		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::stoptags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"stoptags");
+    protected static void setupNoriPartOfSpeechTokenFilterDeserializer(ObjectDeserializer<NoriPartOfSpeechTokenFilter.Builder> op) {
+        TokenFilterBase.setupTokenFilterBaseDeserializer(op);
+        op.add(Builder::stoptags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stoptags");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

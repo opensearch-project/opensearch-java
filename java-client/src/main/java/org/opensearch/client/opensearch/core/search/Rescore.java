@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,131 +44,129 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Rescore
 
-
 @JsonpDeserializable
 public class Rescore implements JsonpSerializable {
-	private final RescoreQuery query;
+    private final RescoreQuery query;
 
-	@Nullable
-	private final Integer windowSize;
+    @Nullable
+    private final Integer windowSize;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private Rescore(Builder builder) {
+    private Rescore(Builder builder) {
 
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
-		this.windowSize = builder.windowSize;
+        this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+        this.windowSize = builder.windowSize;
 
-	}
+    }
 
-	public static Rescore of(Function<Builder, ObjectBuilder<Rescore>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Rescore of(Function<Builder, ObjectBuilder<Rescore>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code query}
-	 */
-	public final RescoreQuery query() {
-		return this.query;
-	}
+    /**
+     * Required - API name: {@code query}
+     */
+    public final RescoreQuery query() {
+        return this.query;
+    }
 
-	/**
-	 * API name: {@code window_size}
-	 */
-	@Nullable
-	public final Integer windowSize() {
-		return this.windowSize;
-	}
+    /**
+     * API name: {@code window_size}
+     */
+    @Nullable
+    public final Integer windowSize() {
+        return this.windowSize;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("query");
-		this.query.serialize(generator, mapper);
+        generator.writeKey("query");
+        this.query.serialize(generator, mapper);
 
-		if (this.windowSize != null) {
-			generator.writeKey("window_size");
-			generator.write(this.windowSize);
+        if (this.windowSize != null) {
+            generator.writeKey("window_size");
+            generator.write(this.windowSize);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link Rescore}.
-	 */
+    /**
+     * Builder for {@link Rescore}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Rescore> {
-		private RescoreQuery query;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Rescore> {
+        private RescoreQuery query;
 
-		@Nullable
-		private Integer windowSize;
+        @Nullable
+        private Integer windowSize;
 
-		/**
-		 * Required - API name: {@code query}
-		 */
-		public final Builder query(RescoreQuery value) {
-			this.query = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code query}
+         */
+        public final Builder query(RescoreQuery value) {
+            this.query = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code query}
-		 */
-		public final Builder query(Function<RescoreQuery.Builder, ObjectBuilder<RescoreQuery>> fn) {
-			return this.query(fn.apply(new RescoreQuery.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code query}
+         */
+        public final Builder query(Function<RescoreQuery.Builder, ObjectBuilder<RescoreQuery>> fn) {
+            return this.query(fn.apply(new RescoreQuery.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code window_size}
-		 */
-		public final Builder windowSize(@Nullable Integer value) {
-			this.windowSize = value;
-			return this;
-		}
+        /**
+         * API name: {@code window_size}
+         */
+        public final Builder windowSize(@Nullable Integer value) {
+            this.windowSize = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link Rescore}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public Rescore build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link Rescore}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public Rescore build() {
+            _checkSingleUse();
 
-			return new Rescore(this);
-		}
-	}
+            return new Rescore(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link Rescore}
-	 */
-	public static final JsonpDeserializer<Rescore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Rescore::setupRescoreDeserializer);
+    /**
+     * Json deserializer for {@link Rescore}
+     */
+    public static final JsonpDeserializer<Rescore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        Rescore::setupRescoreDeserializer
+    );
 
-	protected static void setupRescoreDeserializer(ObjectDeserializer<Rescore.Builder> op) {
+    protected static void setupRescoreDeserializer(ObjectDeserializer<Rescore.Builder> op) {
 
-		op.add(Builder::query, RescoreQuery._DESERIALIZER, "query");
-		op.add(Builder::windowSize, JsonpDeserializer.integerDeserializer(), "window_size");
+        op.add(Builder::query, RescoreQuery._DESERIALIZER, "query");
+        op.add(Builder::windowSize, JsonpDeserializer.integerDeserializer(), "window_size");
 
-	}
+    }
 
 }

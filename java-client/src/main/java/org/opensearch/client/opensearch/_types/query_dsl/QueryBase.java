@@ -32,110 +32,105 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryBase
 
-
-
 public abstract class QueryBase implements JsonpSerializable {
-	@Nullable
-	private final Float boost;
+    @Nullable
+    private final Float boost;
 
-	@Nullable
-	private final String queryName;
+    @Nullable
+    private final String queryName;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected QueryBase(AbstractBuilder<?> builder) {
+    protected QueryBase(AbstractBuilder<?> builder) {
 
-		this.boost = builder.boost;
-		this.queryName = builder.queryName;
+        this.boost = builder.boost;
+        this.queryName = builder.queryName;
 
-	}
+    }
 
-	/**
-	 * API name: {@code boost}
-	 */
-	@Nullable
-	public final Float boost() {
-		return this.boost;
-	}
+    /**
+     * API name: {@code boost}
+     */
+    @Nullable
+    public final Float boost() {
+        return this.boost;
+    }
 
-	/**
-	 * API name: {@code _name}
-	 */
-	@Nullable
-	public final String queryName() {
-		return this.queryName;
-	}
+    /**
+     * API name: {@code _name}
+     */
+    @Nullable
+    public final String queryName() {
+        return this.queryName;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.boost != null) {
-			generator.writeKey("boost");
-			generator.write(this.boost);
+        if (this.boost != null) {
+            generator.writeKey("boost");
+            generator.write(this.boost);
 
-		}
-		if (this.queryName != null) {
-			generator.writeKey("_name");
-			generator.write(this.queryName);
+        }
+        if (this.queryName != null) {
+            generator.writeKey("_name");
+            generator.write(this.queryName);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ObjectBuilderBase {
-		@Nullable
-		private Float boost;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+        @Nullable
+        private Float boost;
 
-		@Nullable
-		private String queryName;
+        @Nullable
+        private String queryName;
 
-		/**
-		 * API name: {@code boost}
-		 */
-		public final BuilderT boost(@Nullable Float value) {
-			this.boost = value;
-			return self();
-		}
+        /**
+         * API name: {@code boost}
+         */
+        public final BuilderT boost(@Nullable Float value) {
+            this.boost = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code _name}
-		 */
-		public final BuilderT queryName(@Nullable String value) {
-			this.queryName = value;
-			return self();
-		}
+        /**
+         * API name: {@code _name}
+         */
+        public final BuilderT queryName(@Nullable String value) {
+            this.queryName = value;
+            return self();
+        }
 
-		protected abstract BuilderT self();
+        protected abstract BuilderT self();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupQueryBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupQueryBaseDeserializer(ObjectDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::boost, JsonpDeserializer.floatDeserializer(), "boost");
-		op.add(AbstractBuilder::queryName, JsonpDeserializer.stringDeserializer(), "_name");
+        op.add(AbstractBuilder::boost, JsonpDeserializer.floatDeserializer(), "boost");
+        op.add(AbstractBuilder::queryName, JsonpDeserializer.stringDeserializer(), "_name");
 
-	}
+    }
 
 }

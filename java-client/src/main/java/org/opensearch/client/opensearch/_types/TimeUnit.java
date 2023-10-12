@@ -37,31 +37,31 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum TimeUnit implements JsonEnum {
-	Nanoseconds("nanos"),
+    Nanoseconds("nanos"),
 
-	Microseconds("micros"),
+    Microseconds("micros"),
 
-	Milliseconds("ms"),
+    Milliseconds("ms"),
 
-	Seconds("s"),
+    Seconds("s"),
 
-	Minutes("m"),
+    Minutes("m"),
 
-	Hours("h"),
+    Hours("h"),
 
-	Days("d"),
+    Days("d"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	TimeUnit(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    TimeUnit(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<TimeUnit> _DESERIALIZER = new JsonEnum.Deserializer<>(TimeUnit.values());
+    public static final JsonEnum.Deserializer<TimeUnit> _DESERIALIZER = new JsonEnum.Deserializer<>(TimeUnit.values());
 }

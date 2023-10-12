@@ -35,27 +35,25 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum RangeRelation implements JsonEnum {
-	Within("within"),
+    Within("within"),
 
-	Contains("contains"),
+    Contains("contains"),
 
-	Intersects("intersects"),
+    Intersects("intersects"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	RangeRelation(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    RangeRelation(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<RangeRelation> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			RangeRelation.values());
+    public static final JsonEnum.Deserializer<RangeRelation> _DESERIALIZER = new JsonEnum.Deserializer<>(RangeRelation.values());
 }

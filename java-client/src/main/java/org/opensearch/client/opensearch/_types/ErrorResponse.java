@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,147 +44,146 @@ import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.ErrorResponseBase
 
 /**
  * The response returned by Elasticsearch when request execution did not
  * succeed.
- * 
+ *
  */
 @JsonpDeserializable
 public class ErrorResponse implements JsonpSerializable {
 
-	private enum Kind {
-		OBJECT,
-		STRING
-	}
-	private final ErrorCause error;
+    private enum Kind {
+        OBJECT,
+        STRING
+    }
 
-	private final int status;
+    private final ErrorCause error;
 
-	// ---------------------------------------------------------------------------------------------
+    private final int status;
 
-	private ErrorResponse(Builder builder) {
+    // ---------------------------------------------------------------------------------------------
 
-		this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+    private ErrorResponse(Builder builder) {
 
-	}
+        this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
+        this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
-	public static ErrorResponse of(Function<Builder, ObjectBuilder<ErrorResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    }
 
-	/**
-	 * Required - API name: {@code error}
-	 */
-	public final ErrorCause error() {
-		return this.error;
-	}
+    public static ErrorResponse of(Function<Builder, ObjectBuilder<ErrorResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code status}
-	 */
-	public final int status() {
-		return this.status;
-	}
+    /**
+     * Required - API name: {@code error}
+     */
+    public final ErrorCause error() {
+        return this.error;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Required - API name: {@code status}
+     */
+    public final int status() {
+        return this.status;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-		generator.writeKey("error");
-		this.error.serialize(generator, mapper);
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("status");
-		generator.write(this.status);
+        generator.writeKey("error");
+        this.error.serialize(generator, mapper);
 
-	}
+        generator.writeKey("status");
+        generator.write(this.status);
 
-	// ---------------------------------------------------------------------------------------------
+    }
 
-	/**
-	 * Builder for {@link ErrorResponse}.
-	 */
+    // ---------------------------------------------------------------------------------------------
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorResponse> {
-		private ErrorCause error;
+    /**
+     * Builder for {@link ErrorResponse}.
+     */
 
-		private Integer status;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorResponse> {
+        private ErrorCause error;
 
-		/**
-		 * Required - API name: {@code error}
-		 */
-		public final Builder error(ErrorCause value) {
-			this.error = value;
-			return this;
-		}
+        private Integer status;
 
-		/**
-		 * Required - API name: {@code error}
-		 */
-		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.error(fn.apply(new ErrorCause.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code error}
+         */
+        public final Builder error(ErrorCause value) {
+            this.error = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code status}
-		 */
-		public final Builder status(int value) {
-			this.status = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code error}
+         */
+        public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+            return this.error(fn.apply(new ErrorCause.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link ErrorResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ErrorResponse build() {
-			_checkSingleUse();
+        /**
+         * Required - API name: {@code status}
+         */
+        public final Builder status(int value) {
+            this.status = value;
+            return this;
+        }
 
-			return new ErrorResponse(this);
-		}
-	}
+        /**
+         * Builds a {@link ErrorResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ErrorResponse build() {
+            _checkSingleUse();
 
-	// ---------------------------------------------------------------------------------------------
+            return new ErrorResponse(this);
+        }
+    }
 
-	/**
-	 * Json deserializer for {@link ErrorResponse}
-	 */
-	public static final JsonpDeserializer<ErrorResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ErrorResponse::setupErrorResponseDeserializer);
+    // ---------------------------------------------------------------------------------------------
 
-	protected static void setupErrorResponseDeserializer(ObjectDeserializer<ErrorResponse.Builder> op) {
+    /**
+     * Json deserializer for {@link ErrorResponse}
+     */
+    public static final JsonpDeserializer<ErrorResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ErrorResponse::setupErrorResponseDeserializer
+    );
 
-		op.add(Builder::error, buildErrorCauseDeserializers(), "error");
-		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
+    protected static void setupErrorResponseDeserializer(ObjectDeserializer<ErrorResponse.Builder> op) {
 
-	}
+        op.add(Builder::error, buildErrorCauseDeserializers(), "error");
+        op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
 
-	protected static JsonpDeserializer<ErrorCause> buildErrorCauseDeserializers() {
-		return new UnionDeserializer.Builder<>(ErrorResponse::getErrorCause, false)
-				.addMember(Kind.OBJECT, ErrorCause._DESERIALIZER)
-				.addMember(Kind.STRING, JsonpDeserializer.stringDeserializer())
-				.build();
-	}
+    }
 
-	private static ErrorCause getErrorCause(Kind kind, Object errorCause) {
-		return Kind.STRING.equals(kind) ?
-				ErrorCause.of(builder -> builder.type("string_error").reason((String) errorCause)) :
-				(ErrorCause) errorCause;
-	}
+    protected static JsonpDeserializer<ErrorCause> buildErrorCauseDeserializers() {
+        return new UnionDeserializer.Builder<>(ErrorResponse::getErrorCause, false).addMember(Kind.OBJECT, ErrorCause._DESERIALIZER)
+            .addMember(Kind.STRING, JsonpDeserializer.stringDeserializer())
+            .build();
+    }
+
+    private static ErrorCause getErrorCause(Kind kind, Object errorCause) {
+        return Kind.STRING.equals(kind)
+            ? ErrorCause.of(builder -> builder.type("string_error").reason((String) errorCause))
+            : (ErrorCause) errorCause;
+    }
 
 }

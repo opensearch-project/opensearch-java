@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,130 +43,127 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationInclude
 
-
 @JsonpDeserializable
 public class IndexRoutingAllocationInclude implements JsonpSerializable {
-	@Nullable
-	private final String tierPreference;
+    @Nullable
+    private final String tierPreference;
 
-	@Nullable
-	private final String id;
+    @Nullable
+    private final String id;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndexRoutingAllocationInclude(Builder builder) {
+    private IndexRoutingAllocationInclude(Builder builder) {
 
-		this.tierPreference = builder.tierPreference;
-		this.id = builder.id;
+        this.tierPreference = builder.tierPreference;
+        this.id = builder.id;
 
-	}
+    }
 
-	public static IndexRoutingAllocationInclude of(Function<Builder, ObjectBuilder<IndexRoutingAllocationInclude>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndexRoutingAllocationInclude of(Function<Builder, ObjectBuilder<IndexRoutingAllocationInclude>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code _tier_preference}
-	 */
-	@Nullable
-	public final String tierPreference() {
-		return this.tierPreference;
-	}
+    /**
+     * API name: {@code _tier_preference}
+     */
+    @Nullable
+    public final String tierPreference() {
+        return this.tierPreference;
+    }
 
-	/**
-	 * API name: {@code _id}
-	 */
-	@Nullable
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * API name: {@code _id}
+     */
+    @Nullable
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.tierPreference != null) {
-			generator.writeKey("_tier_preference");
-			generator.write(this.tierPreference);
+        if (this.tierPreference != null) {
+            generator.writeKey("_tier_preference");
+            generator.write(this.tierPreference);
 
-		}
-		if (this.id != null) {
-			generator.writeKey("_id");
-			generator.write(this.id);
+        }
+        if (this.id != null) {
+            generator.writeKey("_id");
+            generator.write(this.id);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndexRoutingAllocationInclude}.
-	 */
+    /**
+     * Builder for {@link IndexRoutingAllocationInclude}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocationInclude> {
-		@Nullable
-		private String tierPreference;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocationInclude> {
+        @Nullable
+        private String tierPreference;
 
-		@Nullable
-		private String id;
+        @Nullable
+        private String id;
 
-		/**
-		 * API name: {@code _tier_preference}
-		 */
-		public final Builder tierPreference(@Nullable String value) {
-			this.tierPreference = value;
-			return this;
-		}
+        /**
+         * API name: {@code _tier_preference}
+         */
+        public final Builder tierPreference(@Nullable String value) {
+            this.tierPreference = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code _id}
-		 */
-		public final Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * API name: {@code _id}
+         */
+        public final Builder id(@Nullable String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IndexRoutingAllocationInclude}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndexRoutingAllocationInclude build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndexRoutingAllocationInclude}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndexRoutingAllocationInclude build() {
+            _checkSingleUse();
 
-			return new IndexRoutingAllocationInclude(this);
-		}
-	}
+            return new IndexRoutingAllocationInclude(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IndexRoutingAllocationInclude}
-	 */
-	public static final JsonpDeserializer<IndexRoutingAllocationInclude> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexRoutingAllocationInclude::setupIndexRoutingAllocationIncludeDeserializer);
+    /**
+     * Json deserializer for {@link IndexRoutingAllocationInclude}
+     */
+    public static final JsonpDeserializer<IndexRoutingAllocationInclude> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IndexRoutingAllocationInclude::setupIndexRoutingAllocationIncludeDeserializer
+    );
 
-	protected static void setupIndexRoutingAllocationIncludeDeserializer(
-			ObjectDeserializer<IndexRoutingAllocationInclude.Builder> op) {
+    protected static void setupIndexRoutingAllocationIncludeDeserializer(ObjectDeserializer<IndexRoutingAllocationInclude.Builder> op) {
 
-		op.add(Builder::tierPreference, JsonpDeserializer.stringDeserializer(), "_tier_preference");
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+        op.add(Builder::tierPreference, JsonpDeserializer.stringDeserializer(), "_tier_preference");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 
-	}
+    }
 
 }

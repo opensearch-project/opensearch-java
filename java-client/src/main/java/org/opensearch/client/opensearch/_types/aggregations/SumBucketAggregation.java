@@ -32,76 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.SumBucketAggregation
-
 
 @JsonpDeserializable
 public class SumBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SumBucketAggregation(Builder builder) {
-		super(builder);
+    private SumBucketAggregation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static SumBucketAggregation of(Function<Builder, ObjectBuilder<SumBucketAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SumBucketAggregation of(Function<Builder, ObjectBuilder<SumBucketAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.SumBucket;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.SumBucket;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SumBucketAggregation}.
-	 */
+    /**
+     * Builder for {@link SumBucketAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<SumBucketAggregation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<SumBucketAggregation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SumBucketAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SumBucketAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SumBucketAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SumBucketAggregation build() {
+            _checkSingleUse();
 
-			return new SumBucketAggregation(this);
-		}
-	}
+            return new SumBucketAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SumBucketAggregation}
-	 */
-	public static final JsonpDeserializer<SumBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SumBucketAggregation::setupSumBucketAggregationDeserializer);
+    /**
+     * Json deserializer for {@link SumBucketAggregation}
+     */
+    public static final JsonpDeserializer<SumBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SumBucketAggregation::setupSumBucketAggregationDeserializer
+    );
 
-	protected static void setupSumBucketAggregationDeserializer(ObjectDeserializer<SumBucketAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+    protected static void setupSumBucketAggregationDeserializer(ObjectDeserializer<SumBucketAggregation.Builder> op) {
+        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
-	}
+    }
 
 }

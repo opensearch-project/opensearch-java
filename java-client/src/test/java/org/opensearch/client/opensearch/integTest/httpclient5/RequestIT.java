@@ -10,5 +10,4 @@ package org.opensearch.client.opensearch.integTest.httpclient5;
 
 import org.opensearch.client.opensearch.integTest.AbstractRequestIT;
 
-public class RequestIT extends AbstractRequestIT implements HttpClient5TransportSupport {
-}
+public class RequestIT extends AbstractRequestIT implements HttpClient5TransportSupport {}

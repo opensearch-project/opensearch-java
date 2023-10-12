@@ -10,5 +10,4 @@ package org.opensearch.client.opensearch.integTest.httpclient5;
 
 import org.opensearch.client.opensearch.integTest.AbstractMultiSearchRequestIT;
 
-public class MultiSearchRequestIT extends AbstractMultiSearchRequestIT implements HttpClient5TransportSupport {
-}
+public class MultiSearchRequestIT extends AbstractMultiSearchRequestIT implements HttpClient5TransportSupport {}

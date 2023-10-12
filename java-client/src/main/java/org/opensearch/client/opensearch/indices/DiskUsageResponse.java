@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -40,84 +42,84 @@ import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: indices.disk_usage.Response
 
 @JsonpDeserializable
 public class DiskUsageResponse implements JsonpSerializable {
-	private final JsonData valueBody;
+    private final JsonData valueBody;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DiskUsageResponse(Builder builder) {
+    private DiskUsageResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+        this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
-	}
+    }
 
-	public static DiskUsageResponse of(Function<Builder, ObjectBuilder<DiskUsageResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DiskUsageResponse of(Function<Builder, ObjectBuilder<DiskUsageResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
-	 */
-	public final JsonData valueBody() {
-		return this.valueBody;
-	}
+    /**
+     * Required - Response value.
+     * <p>
+     * API name: {@code _value_body}
+     */
+    public final JsonData valueBody() {
+        return this.valueBody;
+    }
 
-	/**
-	 * Serialize this value to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.valueBody.serialize(generator, mapper);
+    /**
+     * Serialize this value to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        this.valueBody.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DiskUsageResponse}.
-	 */
+    /**
+     * Builder for {@link DiskUsageResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DiskUsageResponse> {
-		private JsonData valueBody;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DiskUsageResponse> {
+        private JsonData valueBody;
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 */
-		public final Builder valueBody(JsonData value) {
-			this.valueBody = value;
-			return this;
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         */
+        public final Builder valueBody(JsonData value) {
+            this.valueBody = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DiskUsageResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DiskUsageResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DiskUsageResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DiskUsageResponse build() {
+            _checkSingleUse();
 
-			return new DiskUsageResponse(this);
-		}
-	}
+            return new DiskUsageResponse(this);
+        }
+    }
 
-	public static final JsonpDeserializer<DiskUsageResponse> _DESERIALIZER = createDiskUsageResponseDeserializer();
-	protected static JsonpDeserializer<DiskUsageResponse> createDiskUsageResponseDeserializer() {
+    public static final JsonpDeserializer<DiskUsageResponse> _DESERIALIZER = createDiskUsageResponseDeserializer();
 
-		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
+    protected static JsonpDeserializer<DiskUsageResponse> createDiskUsageResponseDeserializer() {
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
-	}
+        JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
+
+        return JsonpDeserializer.of(
+            valueDeserializer.acceptedEvents(),
+            (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
+        );
+    }
 
 }

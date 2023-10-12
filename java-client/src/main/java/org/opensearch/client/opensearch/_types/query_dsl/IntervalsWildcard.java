@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,169 +44,167 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsWildcard
 
-
 @JsonpDeserializable
 public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
-	@Nullable
-	private final String analyzer;
+    @Nullable
+    private final String analyzer;
 
-	private final String pattern;
+    private final String pattern;
 
-	@Nullable
-	private final String useField;
+    @Nullable
+    private final String useField;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IntervalsWildcard(Builder builder) {
+    private IntervalsWildcard(Builder builder) {
 
-		this.analyzer = builder.analyzer;
-		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
-		this.useField = builder.useField;
+        this.analyzer = builder.analyzer;
+        this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+        this.useField = builder.useField;
 
-	}
+    }
 
-	public static IntervalsWildcard of(Function<Builder, ObjectBuilder<IntervalsWildcard>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IntervalsWildcard of(Function<Builder, ObjectBuilder<IntervalsWildcard>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * IntervalsQuery variant kind.
-	 */
-	@Override
-	public IntervalsQuery.Kind _intervalsQueryKind() {
-		return IntervalsQuery.Kind.Wildcard;
-	}
+    /**
+     * IntervalsQuery variant kind.
+     */
+    @Override
+    public IntervalsQuery.Kind _intervalsQueryKind() {
+        return IntervalsQuery.Kind.Wildcard;
+    }
 
-	/**
-	 * Intervals variant kind.
-	 */
-	@Override
-	public Intervals.Kind _intervalsKind() {
-		return Intervals.Kind.Wildcard;
-	}
+    /**
+     * Intervals variant kind.
+     */
+    @Override
+    public Intervals.Kind _intervalsKind() {
+        return Intervals.Kind.Wildcard;
+    }
 
-	/**
-	 * API name: {@code analyzer}
-	 */
-	@Nullable
-	public final String analyzer() {
-		return this.analyzer;
-	}
+    /**
+     * API name: {@code analyzer}
+     */
+    @Nullable
+    public final String analyzer() {
+        return this.analyzer;
+    }
 
-	/**
-	 * Required - API name: {@code pattern}
-	 */
-	public final String pattern() {
-		return this.pattern;
-	}
+    /**
+     * Required - API name: {@code pattern}
+     */
+    public final String pattern() {
+        return this.pattern;
+    }
 
-	/**
-	 * API name: {@code use_field}
-	 */
-	@Nullable
-	public final String useField() {
-		return this.useField;
-	}
+    /**
+     * API name: {@code use_field}
+     */
+    @Nullable
+    public final String useField() {
+        return this.useField;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.analyzer != null) {
-			generator.writeKey("analyzer");
-			generator.write(this.analyzer);
+        if (this.analyzer != null) {
+            generator.writeKey("analyzer");
+            generator.write(this.analyzer);
 
-		}
-		generator.writeKey("pattern");
-		generator.write(this.pattern);
+        }
+        generator.writeKey("pattern");
+        generator.write(this.pattern);
 
-		if (this.useField != null) {
-			generator.writeKey("use_field");
-			generator.write(this.useField);
+        if (this.useField != null) {
+            generator.writeKey("use_field");
+            generator.write(this.useField);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IntervalsWildcard}.
-	 */
+    /**
+     * Builder for {@link IntervalsWildcard}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsWildcard> {
-		@Nullable
-		private String analyzer;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsWildcard> {
+        @Nullable
+        private String analyzer;
 
-		private String pattern;
+        private String pattern;
 
-		@Nullable
-		private String useField;
+        @Nullable
+        private String useField;
 
-		/**
-		 * API name: {@code analyzer}
-		 */
-		public final Builder analyzer(@Nullable String value) {
-			this.analyzer = value;
-			return this;
-		}
+        /**
+         * API name: {@code analyzer}
+         */
+        public final Builder analyzer(@Nullable String value) {
+            this.analyzer = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code pattern}
-		 */
-		public final Builder pattern(String value) {
-			this.pattern = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code pattern}
+         */
+        public final Builder pattern(String value) {
+            this.pattern = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code use_field}
-		 */
-		public final Builder useField(@Nullable String value) {
-			this.useField = value;
-			return this;
-		}
+        /**
+         * API name: {@code use_field}
+         */
+        public final Builder useField(@Nullable String value) {
+            this.useField = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IntervalsWildcard}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IntervalsWildcard build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IntervalsWildcard}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IntervalsWildcard build() {
+            _checkSingleUse();
 
-			return new IntervalsWildcard(this);
-		}
-	}
+            return new IntervalsWildcard(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IntervalsWildcard}
-	 */
-	public static final JsonpDeserializer<IntervalsWildcard> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IntervalsWildcard::setupIntervalsWildcardDeserializer);
+    /**
+     * Json deserializer for {@link IntervalsWildcard}
+     */
+    public static final JsonpDeserializer<IntervalsWildcard> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IntervalsWildcard::setupIntervalsWildcardDeserializer
+    );
 
-	protected static void setupIntervalsWildcardDeserializer(ObjectDeserializer<IntervalsWildcard.Builder> op) {
+    protected static void setupIntervalsWildcardDeserializer(ObjectDeserializer<IntervalsWildcard.Builder> op) {
 
-		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
-		op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
-		op.add(Builder::useField, JsonpDeserializer.stringDeserializer(), "use_field");
+        op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
+        op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
+        op.add(Builder::useField, JsonpDeserializer.stringDeserializer(), "use_field");
 
-	}
+    }
 
 }

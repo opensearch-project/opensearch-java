@@ -36,17 +36,16 @@ import org.opensearch.client.json.JsonpDeserializer;
 
 // typedef: cluster.post_voting_config_exclusions.Response
 
-
 public class PostVotingConfigExclusionsResponse {
-	public PostVotingConfigExclusionsResponse() {
-	}
+    public PostVotingConfigExclusionsResponse() {}
 
-	/**
-	 * Singleton instance for {@link PostVotingConfigExclusionsResponse}.
-	 */
-	public static final PostVotingConfigExclusionsResponse _INSTANCE = new PostVotingConfigExclusionsResponse();
+    /**
+     * Singleton instance for {@link PostVotingConfigExclusionsResponse}.
+     */
+    public static final PostVotingConfigExclusionsResponse _INSTANCE = new PostVotingConfigExclusionsResponse();
 
-	public static final JsonpDeserializer<PostVotingConfigExclusionsResponse> _DESERIALIZER = JsonpDeserializer
-			.fixedValue(PostVotingConfigExclusionsResponse._INSTANCE);
+    public static final JsonpDeserializer<PostVotingConfigExclusionsResponse> _DESERIALIZER = JsonpDeserializer.fixedValue(
+        PostVotingConfigExclusionsResponse._INSTANCE
+    );
 
 }

@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,100 +43,98 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TDigest
 
-
 @JsonpDeserializable
 public class TDigest implements JsonpSerializable {
-	@Nullable
-	private final Integer compression;
+    @Nullable
+    private final Integer compression;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TDigest(Builder builder) {
+    private TDigest(Builder builder) {
 
-		this.compression = builder.compression;
+        this.compression = builder.compression;
 
-	}
+    }
 
-	public static TDigest of(Function<Builder, ObjectBuilder<TDigest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TDigest of(Function<Builder, ObjectBuilder<TDigest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code compression}
-	 */
-	@Nullable
-	public final Integer compression() {
-		return this.compression;
-	}
+    /**
+     * API name: {@code compression}
+     */
+    @Nullable
+    public final Integer compression() {
+        return this.compression;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.compression != null) {
-			generator.writeKey("compression");
-			generator.write(this.compression);
+        if (this.compression != null) {
+            generator.writeKey("compression");
+            generator.write(this.compression);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TDigest}.
-	 */
+    /**
+     * Builder for {@link TDigest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TDigest> {
-		@Nullable
-		private Integer compression;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TDigest> {
+        @Nullable
+        private Integer compression;
 
-		/**
-		 * API name: {@code compression}
-		 */
-		public final Builder compression(@Nullable Integer value) {
-			this.compression = value;
-			return this;
-		}
+        /**
+         * API name: {@code compression}
+         */
+        public final Builder compression(@Nullable Integer value) {
+            this.compression = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TDigest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TDigest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TDigest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TDigest build() {
+            _checkSingleUse();
 
-			return new TDigest(this);
-		}
-	}
+            return new TDigest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TDigest}
-	 */
-	public static final JsonpDeserializer<TDigest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TDigest::setupTDigestDeserializer);
+    /**
+     * Json deserializer for {@link TDigest}
+     */
+    public static final JsonpDeserializer<TDigest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TDigest::setupTDigestDeserializer
+    );
 
-	protected static void setupTDigestDeserializer(ObjectDeserializer<TDigest.Builder> op) {
+    protected static void setupTDigestDeserializer(ObjectDeserializer<TDigest.Builder> op) {
 
-		op.add(Builder::compression, JsonpDeserializer.integerDeserializer(), "compression");
+        op.add(Builder::compression, JsonpDeserializer.integerDeserializer(), "compression");
 
-	}
+    }
 
 }

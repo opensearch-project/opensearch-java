@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,146 +44,145 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.SlicedScroll
 
 @JsonpDeserializable
 public class SlicedScroll implements JsonpSerializable {
-	@Nullable
-	private final String field;
+    @Nullable
+    private final String field;
 
-	private final int id;
+    private final int id;
 
-	private final int max;
+    private final int max;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SlicedScroll(Builder builder) {
+    private SlicedScroll(Builder builder) {
 
-		this.field = builder.field;
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+        this.field = builder.field;
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
 
-	}
+    }
 
-	public static SlicedScroll of(Function<Builder, ObjectBuilder<SlicedScroll>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SlicedScroll of(Function<Builder, ObjectBuilder<SlicedScroll>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code field}
-	 */
-	@Nullable
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * API name: {@code field}
+     */
+    @Nullable
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * Required - API name: {@code id}
-	 */
-	public final int id() {
-		return this.id;
-	}
+    /**
+     * Required - API name: {@code id}
+     */
+    public final int id() {
+        return this.id;
+    }
 
-	/**
-	 * Required - API name: {@code max}
-	 */
-	public final int max() {
-		return this.max;
-	}
+    /**
+     * Required - API name: {@code max}
+     */
+    public final int max() {
+        return this.max;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.field != null) {
-			generator.writeKey("field");
-			generator.write(this.field);
+        if (this.field != null) {
+            generator.writeKey("field");
+            generator.write(this.field);
 
-		}
-		generator.writeKey("id");
-		generator.write(this.id);
+        }
+        generator.writeKey("id");
+        generator.write(this.id);
 
-		generator.writeKey("max");
-		generator.write(this.max);
+        generator.writeKey("max");
+        generator.write(this.max);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SlicedScroll}.
-	 */
+    /**
+     * Builder for {@link SlicedScroll}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlicedScroll> {
-		@Nullable
-		private String field;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlicedScroll> {
+        @Nullable
+        private String field;
 
-		private Integer id;
+        private Integer id;
 
-		private Integer max;
+        private Integer max;
 
-		/**
-		 * API name: {@code field}
-		 */
-		public final Builder field(@Nullable String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * API name: {@code field}
+         */
+        public final Builder field(@Nullable String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code id}
-		 */
-		public final Builder id(int value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code id}
+         */
+        public final Builder id(int value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code max}
-		 */
-		public final Builder max(int value) {
-			this.max = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code max}
+         */
+        public final Builder max(int value) {
+            this.max = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SlicedScroll}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SlicedScroll build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SlicedScroll}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SlicedScroll build() {
+            _checkSingleUse();
 
-			return new SlicedScroll(this);
-		}
-	}
+            return new SlicedScroll(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SlicedScroll}
-	 */
-	public static final JsonpDeserializer<SlicedScroll> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SlicedScroll::setupSlicedScrollDeserializer);
+    /**
+     * Json deserializer for {@link SlicedScroll}
+     */
+    public static final JsonpDeserializer<SlicedScroll> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SlicedScroll::setupSlicedScrollDeserializer
+    );
 
-	protected static void setupSlicedScrollDeserializer(ObjectDeserializer<SlicedScroll.Builder> op) {
+    protected static void setupSlicedScrollDeserializer(ObjectDeserializer<SlicedScroll.Builder> op) {
 
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::id, JsonpDeserializer.integerDeserializer(), "id");
-		op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::id, JsonpDeserializer.integerDeserializer(), "id");
+        op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
 
-	}
+    }
 
 }

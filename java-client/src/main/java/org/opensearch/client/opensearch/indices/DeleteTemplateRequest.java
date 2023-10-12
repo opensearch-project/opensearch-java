@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -41,232 +45,231 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
-
 // typedef: indices.delete_template.Request
 
 /**
  * Deletes an index template.
- * 
+ *
  */
 
 public class DeleteTemplateRequest extends RequestBase {
-	@Deprecated
-	@Nullable
-	private final Time masterTimeout;
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
 
-	@Nullable
-	private final Time clusterManagerTimeout;
+    @Nullable
+    private final Time clusterManagerTimeout;
 
-	private final String name;
+    private final String name;
 
-	@Nullable
-	private final Time timeout;
+    @Nullable
+    private final Time timeout;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DeleteTemplateRequest(Builder builder) {
+    private DeleteTemplateRequest(Builder builder) {
 
-		this.masterTimeout = builder.masterTimeout;
-		this.clusterManagerTimeout = builder.clusterManagerTimeout;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.timeout = builder.timeout;
+        this.masterTimeout = builder.masterTimeout;
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.timeout = builder.timeout;
 
-	}
+    }
 
-	public static DeleteTemplateRequest of(Function<Builder, ObjectBuilder<DeleteTemplateRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DeleteTemplateRequest of(Function<Builder, ObjectBuilder<DeleteTemplateRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Specify timeout for connection to master
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Deprecated
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
+    /**
+     * Specify timeout for connection to master
+     * <p>
+     * API name: {@code master_timeout}
+     */
+    @Deprecated
+    @Nullable
+    public final Time masterTimeout() {
+        return this.masterTimeout;
+    }
 
-	/**
-	 * Specify timeout for connection to cluster-manager
-	 * <p>
-	 * API name: {@code cluster_manager_timeout}
-	 */
-	@Nullable
-	public final Time clusterManagerTimeout() {
-		return this.clusterManagerTimeout;
-	}
+    /**
+     * Specify timeout for connection to cluster-manager
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
 
-	/**
-	 * Required - The name of the template
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * Required - The name of the template
+     * <p>
+     * API name: {@code name}
+     */
+    public final String name() {
+        return this.name;
+    }
 
-	/**
-	 * Explicit operation timeout
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public final Time timeout() {
-		return this.timeout;
-	}
+    /**
+     * Explicit operation timeout
+     * <p>
+     * API name: {@code timeout}
+     */
+    @Nullable
+    public final Time timeout() {
+        return this.timeout;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DeleteTemplateRequest}.
-	 */
+    /**
+     * Builder for {@link DeleteTemplateRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTemplateRequest> {
-		@Deprecated
-		@Nullable
-		private Time masterTimeout;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTemplateRequest> {
+        @Deprecated
+        @Nullable
+        private Time masterTimeout;
 
-		@Nullable
-		private Time clusterManagerTimeout;
+        @Nullable
+        private Time clusterManagerTimeout;
 
-		private String name;
+        private String name;
 
-		@Nullable
-		private Time timeout;
+        @Nullable
+        private Time timeout;
 
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
+        /**
+         * Specify timeout for connection to master
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Specify timeout for connection to master
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.masterTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Specify timeout for connection to cluster-manager
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(@Nullable Time value) {
-			this.clusterManagerTimeout = value;
-			return this;
-		}
+        /**
+         * Specify timeout for connection to cluster-manager
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to cluster-manager
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Specify timeout for connection to cluster-manager
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Required - The name of the template
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * Required - The name of the template
+         * <p>
+         * API name: {@code name}
+         */
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable Time value) {
-			this.timeout = value;
-			return this;
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
+            return this;
+        }
 
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.timeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link DeleteTemplateRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeleteTemplateRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DeleteTemplateRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DeleteTemplateRequest build() {
+            _checkSingleUse();
 
-			return new DeleteTemplateRequest(this);
-		}
-	}
+            return new DeleteTemplateRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code indices.delete_template}".
-	 */
-	public static final Endpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code indices.delete_template}".
+     */
+    public static final Endpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "DELETE";
+        // Request method
+        request -> {
+            return "DELETE";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _name = 1 << 0;
+        // Request path
+        request -> {
+            final int _name = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				propsSet |= _name;
+            propsSet |= _name;
 
-				if (propsSet == (_name)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_template");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == (_name)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_template");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.name, buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.clusterManagerTimeout != null) {
-					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
+            if (request.clusterManagerTimeout != null) {
+                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
+            }
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteTemplateResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        DeleteTemplateResponse._DESERIALIZER
+    );
 }

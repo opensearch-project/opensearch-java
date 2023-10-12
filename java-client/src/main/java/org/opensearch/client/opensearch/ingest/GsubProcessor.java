@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,207 +42,205 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: ingest._types.GsubProcessor
 
-
 @JsonpDeserializable
 public class GsubProcessor extends ProcessorBase implements ProcessorVariant {
-	private final String field;
+    private final String field;
 
-	@Nullable
-	private final Boolean ignoreMissing;
+    @Nullable
+    private final Boolean ignoreMissing;
 
-	private final String pattern;
+    private final String pattern;
 
-	private final String replacement;
+    private final String replacement;
 
-	@Nullable
-	private final String targetField;
+    @Nullable
+    private final String targetField;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GsubProcessor(Builder builder) {
-		super(builder);
+    private GsubProcessor(Builder builder) {
+        super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.ignoreMissing = builder.ignoreMissing;
-		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
-		this.replacement = ApiTypeHelper.requireNonNull(builder.replacement, this, "replacement");
-		this.targetField = builder.targetField;
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.ignoreMissing = builder.ignoreMissing;
+        this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+        this.replacement = ApiTypeHelper.requireNonNull(builder.replacement, this, "replacement");
+        this.targetField = builder.targetField;
 
-	}
+    }
 
-	public static GsubProcessor of(Function<Builder, ObjectBuilder<GsubProcessor>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GsubProcessor of(Function<Builder, ObjectBuilder<GsubProcessor>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Processor variant kind.
-	 */
-	@Override
-	public Processor.Kind _processorKind() {
-		return Processor.Kind.Gsub;
-	}
+    /**
+     * Processor variant kind.
+     */
+    @Override
+    public Processor.Kind _processorKind() {
+        return Processor.Kind.Gsub;
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * API name: {@code ignore_missing}
-	 */
-	@Nullable
-	public final Boolean ignoreMissing() {
-		return this.ignoreMissing;
-	}
+    /**
+     * API name: {@code ignore_missing}
+     */
+    @Nullable
+    public final Boolean ignoreMissing() {
+        return this.ignoreMissing;
+    }
 
-	/**
-	 * Required - API name: {@code pattern}
-	 */
-	public final String pattern() {
-		return this.pattern;
-	}
+    /**
+     * Required - API name: {@code pattern}
+     */
+    public final String pattern() {
+        return this.pattern;
+    }
 
-	/**
-	 * Required - API name: {@code replacement}
-	 */
-	public final String replacement() {
-		return this.replacement;
-	}
+    /**
+     * Required - API name: {@code replacement}
+     */
+    public final String replacement() {
+        return this.replacement;
+    }
 
-	/**
-	 * API name: {@code target_field}
-	 */
-	@Nullable
-	public final String targetField() {
-		return this.targetField;
-	}
+    /**
+     * API name: {@code target_field}
+     */
+    @Nullable
+    public final String targetField() {
+        return this.targetField;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("field");
-		generator.write(this.field);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-		if (this.ignoreMissing != null) {
-			generator.writeKey("ignore_missing");
-			generator.write(this.ignoreMissing);
+        if (this.ignoreMissing != null) {
+            generator.writeKey("ignore_missing");
+            generator.write(this.ignoreMissing);
 
-		}
-		generator.writeKey("pattern");
-		generator.write(this.pattern);
+        }
+        generator.writeKey("pattern");
+        generator.write(this.pattern);
 
-		generator.writeKey("replacement");
-		generator.write(this.replacement);
+        generator.writeKey("replacement");
+        generator.write(this.replacement);
 
-		if (this.targetField != null) {
-			generator.writeKey("target_field");
-			generator.write(this.targetField);
+        if (this.targetField != null) {
+            generator.writeKey("target_field");
+            generator.write(this.targetField);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GsubProcessor}.
-	 */
+    /**
+     * Builder for {@link GsubProcessor}.
+     */
 
-	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<GsubProcessor> {
-		private String field;
+    public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<GsubProcessor> {
+        private String field;
 
-		@Nullable
-		private Boolean ignoreMissing;
+        @Nullable
+        private Boolean ignoreMissing;
 
-		private String pattern;
+        private String pattern;
 
-		private String replacement;
+        private String replacement;
 
-		@Nullable
-		private String targetField;
+        @Nullable
+        private String targetField;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code ignore_missing}
-		 */
-		public final Builder ignoreMissing(@Nullable Boolean value) {
-			this.ignoreMissing = value;
-			return this;
-		}
+        /**
+         * API name: {@code ignore_missing}
+         */
+        public final Builder ignoreMissing(@Nullable Boolean value) {
+            this.ignoreMissing = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code pattern}
-		 */
-		public final Builder pattern(String value) {
-			this.pattern = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code pattern}
+         */
+        public final Builder pattern(String value) {
+            this.pattern = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code replacement}
-		 */
-		public final Builder replacement(String value) {
-			this.replacement = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code replacement}
+         */
+        public final Builder replacement(String value) {
+            this.replacement = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code target_field}
-		 */
-		public final Builder targetField(@Nullable String value) {
-			this.targetField = value;
-			return this;
-		}
+        /**
+         * API name: {@code target_field}
+         */
+        public final Builder targetField(@Nullable String value) {
+            this.targetField = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GsubProcessor}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GsubProcessor build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GsubProcessor}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GsubProcessor build() {
+            _checkSingleUse();
 
-			return new GsubProcessor(this);
-		}
-	}
+            return new GsubProcessor(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GsubProcessor}
-	 */
-	public static final JsonpDeserializer<GsubProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GsubProcessor::setupGsubProcessorDeserializer);
+    /**
+     * Json deserializer for {@link GsubProcessor}
+     */
+    public static final JsonpDeserializer<GsubProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GsubProcessor::setupGsubProcessorDeserializer
+    );
 
-	protected static void setupGsubProcessorDeserializer(ObjectDeserializer<GsubProcessor.Builder> op) {
-		setupProcessorBaseDeserializer(op);
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
-		op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
-		op.add(Builder::replacement, JsonpDeserializer.stringDeserializer(), "replacement");
-		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+    protected static void setupGsubProcessorDeserializer(ObjectDeserializer<GsubProcessor.Builder> op) {
+        setupProcessorBaseDeserializer(op);
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+        op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
+        op.add(Builder::replacement, JsonpDeserializer.stringDeserializer(), "replacement");
+        op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
-	}
+    }
 
 }

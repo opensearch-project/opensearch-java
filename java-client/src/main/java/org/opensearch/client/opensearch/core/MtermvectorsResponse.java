@@ -32,133 +32,134 @@
 
 package org.opensearch.client.opensearch.core;
 
-import org.opensearch.client.opensearch.core.mtermvectors.MultiTermVectorsResult;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.core.mtermvectors.MultiTermVectorsResult;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: _global.mtermvectors.Response
 
 @JsonpDeserializable
 public class MtermvectorsResponse implements JsonpSerializable {
-	private final List<MultiTermVectorsResult> docs;
+    private final List<MultiTermVectorsResult> docs;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MtermvectorsResponse(Builder builder) {
+    private MtermvectorsResponse(Builder builder) {
 
-		this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
+        this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 
-	}
+    }
 
-	public static MtermvectorsResponse of(Function<Builder, ObjectBuilder<MtermvectorsResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MtermvectorsResponse of(Function<Builder, ObjectBuilder<MtermvectorsResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code docs}
-	 */
-	public final List<MultiTermVectorsResult> docs() {
-		return this.docs;
-	}
+    /**
+     * Required - API name: {@code docs}
+     */
+    public final List<MultiTermVectorsResult> docs() {
+        return this.docs;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.docs)) {
-			generator.writeKey("docs");
-			generator.writeStartArray();
-			for (MultiTermVectorsResult item0 : this.docs) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.docs)) {
+            generator.writeKey("docs");
+            generator.writeStartArray();
+            for (MultiTermVectorsResult item0 : this.docs) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MtermvectorsResponse}.
-	 */
+    /**
+     * Builder for {@link MtermvectorsResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MtermvectorsResponse> {
-		private List<MultiTermVectorsResult> docs;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MtermvectorsResponse> {
+        private List<MultiTermVectorsResult> docs;
 
-		/**
-		 * Required - API name: {@code docs}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>docs</code>.
-		 */
-		public final Builder docs(List<MultiTermVectorsResult> list) {
-			this.docs = _listAddAll(this.docs, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code docs}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>docs</code>.
+         */
+        public final Builder docs(List<MultiTermVectorsResult> list) {
+            this.docs = _listAddAll(this.docs, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code docs}
-		 * <p>
-		 * Adds one or more values to <code>docs</code>.
-		 */
-		public final Builder docs(MultiTermVectorsResult value, MultiTermVectorsResult... values) {
-			this.docs = _listAdd(this.docs, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code docs}
+         * <p>
+         * Adds one or more values to <code>docs</code>.
+         */
+        public final Builder docs(MultiTermVectorsResult value, MultiTermVectorsResult... values) {
+            this.docs = _listAdd(this.docs, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code docs}
-		 * <p>
-		 * Adds a value to <code>docs</code> using a builder lambda.
-		 */
-		public final Builder docs(Function<MultiTermVectorsResult.Builder, ObjectBuilder<MultiTermVectorsResult>> fn) {
-			return docs(fn.apply(new MultiTermVectorsResult.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code docs}
+         * <p>
+         * Adds a value to <code>docs</code> using a builder lambda.
+         */
+        public final Builder docs(Function<MultiTermVectorsResult.Builder, ObjectBuilder<MultiTermVectorsResult>> fn) {
+            return docs(fn.apply(new MultiTermVectorsResult.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link MtermvectorsResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MtermvectorsResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MtermvectorsResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MtermvectorsResponse build() {
+            _checkSingleUse();
 
-			return new MtermvectorsResponse(this);
-		}
-	}
+            return new MtermvectorsResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MtermvectorsResponse}
-	 */
-	public static final JsonpDeserializer<MtermvectorsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MtermvectorsResponse::setupMtermvectorsResponseDeserializer);
+    /**
+     * Json deserializer for {@link MtermvectorsResponse}
+     */
+    public static final JsonpDeserializer<MtermvectorsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MtermvectorsResponse::setupMtermvectorsResponseDeserializer
+    );
 
-	protected static void setupMtermvectorsResponseDeserializer(ObjectDeserializer<MtermvectorsResponse.Builder> op) {
+    protected static void setupMtermvectorsResponseDeserializer(ObjectDeserializer<MtermvectorsResponse.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(MultiTermVectorsResult._DESERIALIZER), "docs");
+        op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(MultiTermVectorsResult._DESERIALIZER), "docs");
 
-	}
+    }
 
 }

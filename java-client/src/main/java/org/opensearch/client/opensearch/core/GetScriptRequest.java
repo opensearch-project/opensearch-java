@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.core;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -41,193 +45,192 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
-
 // typedef: _global.get_script.Request
 
 /**
  * Returns a script.
- * 
+ *
  */
 
 public class GetScriptRequest extends RequestBase {
-	private final String id;
+    private final String id;
 
-	@Deprecated
-	@Nullable
-	private final Time masterTimeout;
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
 
-	@Nullable
-	private final Time clusterManagerTimeout;
+    @Nullable
+    private final Time clusterManagerTimeout;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetScriptRequest(Builder builder) {
+    private GetScriptRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.masterTimeout = builder.masterTimeout;
-		this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.masterTimeout = builder.masterTimeout;
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
 
-	}
+    }
 
-	public static GetScriptRequest of(Function<Builder, ObjectBuilder<GetScriptRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetScriptRequest of(Function<Builder, ObjectBuilder<GetScriptRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Script ID
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * Required - Script ID
+     * <p>
+     * API name: {@code id}
+     */
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * Specify timeout for connection to master
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Deprecated
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
+    /**
+     * Specify timeout for connection to master
+     * <p>
+     * API name: {@code master_timeout}
+     */
+    @Deprecated
+    @Nullable
+    public final Time masterTimeout() {
+        return this.masterTimeout;
+    }
 
-	/**
-	 * Specify timeout for connection to cluster-manager
-	 * <p>
-	 * API name: {@code cluster_manager_timeout}
-	 */
-	@Nullable
-	public final Time clusterManagerTimeout() {
-		return this.clusterManagerTimeout;
-	}
+    /**
+     * Specify timeout for connection to cluster-manager
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetScriptRequest}.
-	 */
+    /**
+     * Builder for {@link GetScriptRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptRequest> {
-		private String id;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptRequest> {
+        private String id;
 
-		@Deprecated
-		@Nullable
-		private Time masterTimeout;
+        @Deprecated
+        @Nullable
+        private Time masterTimeout;
 
-		@Nullable
-		private Time clusterManagerTimeout;
+        @Nullable
+        private Time clusterManagerTimeout;
 
-		/**
-		 * Required - Script ID
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * Required - Script ID
+         * <p>
+         * API name: {@code id}
+         */
+        public final Builder id(String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
+        /**
+         * Specify timeout for connection to master
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		@Deprecated
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Specify timeout for connection to master
+         * <p>
+         * API name: {@code master_timeout}
+         */
+        @Deprecated
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.masterTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Specify timeout for connection to cluster-manager
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(@Nullable Time value) {
-			this.clusterManagerTimeout = value;
-			return this;
-		}
+        /**
+         * Specify timeout for connection to cluster-manager
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
 
-		/**
-		 * Specify timeout for connection to cluster-manager
-		 * <p>
-		 * API name: {@code cluster_manager_timeout}
-		 */
-		public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-		}
+        /**
+         * Specify timeout for connection to cluster-manager
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link GetScriptRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetScriptRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GetScriptRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetScriptRequest build() {
+            _checkSingleUse();
 
-			return new GetScriptRequest(this);
-		}
-	}
+            return new GetScriptRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code get_script}".
-	 */
-	public static final Endpoint<GetScriptRequest, GetScriptResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code get_script}".
+     */
+    public static final Endpoint<GetScriptRequest, GetScriptResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _id = 1 << 0;
+        // Request path
+        request -> {
+            final int _id = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				propsSet |= _id;
+            propsSet |= _id;
 
-				if (propsSet == (_id)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_scripts");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.id, buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == (_id)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_scripts");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.id, buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.clusterManagerTimeout != null) {
-					params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
+            if (request.clusterManagerTimeout != null) {
+                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetScriptResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        GetScriptResponse._DESERIALIZER
+    );
 }

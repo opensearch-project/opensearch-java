@@ -37,36 +37,35 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum DistanceUnit implements JsonEnum {
-	Inches("in"),
+    Inches("in"),
 
-	Feet("ft"),
+    Feet("ft"),
 
-	Yards("yd"),
+    Yards("yd"),
 
-	Miles("mi"),
+    Miles("mi"),
 
-	NauticMiles("nmi"),
+    NauticMiles("nmi"),
 
-	Kilometers("km"),
+    Kilometers("km"),
 
-	Meters("m"),
+    Meters("m"),
 
-	Centimeters("cm"),
+    Centimeters("cm"),
 
-	Millimeters("mm"),
+    Millimeters("mm"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	DistanceUnit(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    DistanceUnit(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<DistanceUnit> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			DistanceUnit.values());
+    public static final JsonEnum.Deserializer<DistanceUnit> _DESERIALIZER = new JsonEnum.Deserializer<>(DistanceUnit.values());
 }

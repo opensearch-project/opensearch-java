@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.cluster.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,165 +43,164 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: cluster.stats.IndicesVersions
 
-
 @JsonpDeserializable
 public class IndicesVersions implements JsonpSerializable {
-	private final int indexCount;
+    private final int indexCount;
 
-	private final int primaryShardCount;
+    private final int primaryShardCount;
 
-	private final long totalPrimaryBytes;
+    private final long totalPrimaryBytes;
 
-	private final String version;
+    private final String version;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndicesVersions(Builder builder) {
+    private IndicesVersions(Builder builder) {
 
-		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
-		this.primaryShardCount = ApiTypeHelper.requireNonNull(builder.primaryShardCount, this, "primaryShardCount");
-		this.totalPrimaryBytes = ApiTypeHelper.requireNonNull(builder.totalPrimaryBytes, this, "totalPrimaryBytes");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+        this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
+        this.primaryShardCount = ApiTypeHelper.requireNonNull(builder.primaryShardCount, this, "primaryShardCount");
+        this.totalPrimaryBytes = ApiTypeHelper.requireNonNull(builder.totalPrimaryBytes, this, "totalPrimaryBytes");
+        this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
-	}
+    }
 
-	public static IndicesVersions of(Function<Builder, ObjectBuilder<IndicesVersions>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndicesVersions of(Function<Builder, ObjectBuilder<IndicesVersions>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code index_count}
-	 */
-	public final int indexCount() {
-		return this.indexCount;
-	}
+    /**
+     * Required - API name: {@code index_count}
+     */
+    public final int indexCount() {
+        return this.indexCount;
+    }
 
-	/**
-	 * Required - API name: {@code primary_shard_count}
-	 */
-	public final int primaryShardCount() {
-		return this.primaryShardCount;
-	}
+    /**
+     * Required - API name: {@code primary_shard_count}
+     */
+    public final int primaryShardCount() {
+        return this.primaryShardCount;
+    }
 
-	/**
-	 * Required - API name: {@code total_primary_bytes}
-	 */
-	public final long totalPrimaryBytes() {
-		return this.totalPrimaryBytes;
-	}
+    /**
+     * Required - API name: {@code total_primary_bytes}
+     */
+    public final long totalPrimaryBytes() {
+        return this.totalPrimaryBytes;
+    }
 
-	/**
-	 * Required - API name: {@code version}
-	 */
-	public final String version() {
-		return this.version;
-	}
+    /**
+     * Required - API name: {@code version}
+     */
+    public final String version() {
+        return this.version;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index_count");
-		generator.write(this.indexCount);
+        generator.writeKey("index_count");
+        generator.write(this.indexCount);
 
-		generator.writeKey("primary_shard_count");
-		generator.write(this.primaryShardCount);
+        generator.writeKey("primary_shard_count");
+        generator.write(this.primaryShardCount);
 
-		generator.writeKey("total_primary_bytes");
-		generator.write(this.totalPrimaryBytes);
+        generator.writeKey("total_primary_bytes");
+        generator.write(this.totalPrimaryBytes);
 
-		generator.writeKey("version");
-		generator.write(this.version);
+        generator.writeKey("version");
+        generator.write(this.version);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndicesVersions}.
-	 */
+    /**
+     * Builder for {@link IndicesVersions}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesVersions> {
-		private Integer indexCount;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesVersions> {
+        private Integer indexCount;
 
-		private Integer primaryShardCount;
+        private Integer primaryShardCount;
 
-		private Long totalPrimaryBytes;
+        private Long totalPrimaryBytes;
 
-		private String version;
+        private String version;
 
-		/**
-		 * Required - API name: {@code index_count}
-		 */
-		public final Builder indexCount(int value) {
-			this.indexCount = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code index_count}
+         */
+        public final Builder indexCount(int value) {
+            this.indexCount = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code primary_shard_count}
-		 */
-		public final Builder primaryShardCount(int value) {
-			this.primaryShardCount = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code primary_shard_count}
+         */
+        public final Builder primaryShardCount(int value) {
+            this.primaryShardCount = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total_primary_bytes}
-		 */
-		public final Builder totalPrimaryBytes(long value) {
-			this.totalPrimaryBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total_primary_bytes}
+         */
+        public final Builder totalPrimaryBytes(long value) {
+            this.totalPrimaryBytes = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code version}
-		 */
-		public final Builder version(String value) {
-			this.version = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code version}
+         */
+        public final Builder version(String value) {
+            this.version = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IndicesVersions}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndicesVersions build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndicesVersions}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndicesVersions build() {
+            _checkSingleUse();
 
-			return new IndicesVersions(this);
-		}
-	}
+            return new IndicesVersions(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IndicesVersions}
-	 */
-	public static final JsonpDeserializer<IndicesVersions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndicesVersions::setupIndicesVersionsDeserializer);
+    /**
+     * Json deserializer for {@link IndicesVersions}
+     */
+    public static final JsonpDeserializer<IndicesVersions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IndicesVersions::setupIndicesVersionsDeserializer
+    );
 
-	protected static void setupIndicesVersionsDeserializer(ObjectDeserializer<IndicesVersions.Builder> op) {
+    protected static void setupIndicesVersionsDeserializer(ObjectDeserializer<IndicesVersions.Builder> op) {
 
-		op.add(Builder::indexCount, JsonpDeserializer.integerDeserializer(), "index_count");
-		op.add(Builder::primaryShardCount, JsonpDeserializer.integerDeserializer(), "primary_shard_count");
-		op.add(Builder::totalPrimaryBytes, JsonpDeserializer.longDeserializer(), "total_primary_bytes");
-		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+        op.add(Builder::indexCount, JsonpDeserializer.integerDeserializer(), "index_count");
+        op.add(Builder::primaryShardCount, JsonpDeserializer.integerDeserializer(), "primary_shard_count");
+        op.add(Builder::totalPrimaryBytes, JsonpDeserializer.longDeserializer(), "total_primary_bytes");
+        op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
-	}
+    }
 
 }

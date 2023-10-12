@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,79 +42,78 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.analysis.LowercaseNormalizer
 
 @JsonpDeserializable
 public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private LowercaseNormalizer(Builder builder) {
+    private LowercaseNormalizer(Builder builder) {
 
-	}
+    }
 
-	public static LowercaseNormalizer of(Function<Builder, ObjectBuilder<LowercaseNormalizer>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static LowercaseNormalizer of(Function<Builder, ObjectBuilder<LowercaseNormalizer>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Normalizer variant kind.
-	 */
-	@Override
-	public Normalizer.Kind _normalizerKind() {
-		return Normalizer.Kind.Lowercase;
-	}
+    /**
+     * Normalizer variant kind.
+     */
+    @Override
+    public Normalizer.Kind _normalizerKind() {
+        return Normalizer.Kind.Lowercase;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "lowercase");
+        generator.write("type", "lowercase");
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link LowercaseNormalizer}.
-	 */
+    /**
+     * Builder for {@link LowercaseNormalizer}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LowercaseNormalizer> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LowercaseNormalizer> {
 
-		/**
-		 * Builds a {@link LowercaseNormalizer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public LowercaseNormalizer build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link LowercaseNormalizer}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public LowercaseNormalizer build() {
+            _checkSingleUse();
 
-			return new LowercaseNormalizer(this);
-		}
-	}
+            return new LowercaseNormalizer(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link LowercaseNormalizer}
-	 */
-	public static final JsonpDeserializer<LowercaseNormalizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LowercaseNormalizer::setupLowercaseNormalizerDeserializer);
+    /**
+     * Json deserializer for {@link LowercaseNormalizer}
+     */
+    public static final JsonpDeserializer<LowercaseNormalizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        LowercaseNormalizer::setupLowercaseNormalizerDeserializer
+    );
 
-	protected static void setupLowercaseNormalizerDeserializer(ObjectDeserializer<LowercaseNormalizer.Builder> op) {
+    protected static void setupLowercaseNormalizerDeserializer(ObjectDeserializer<LowercaseNormalizer.Builder> op) {
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

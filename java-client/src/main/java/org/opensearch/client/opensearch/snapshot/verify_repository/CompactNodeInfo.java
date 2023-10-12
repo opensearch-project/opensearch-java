@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.snapshot.verify_repository;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,92 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: snapshot.verify_repository.CompactNodeInfo
 
 @JsonpDeserializable
 public class CompactNodeInfo implements JsonpSerializable {
-	private final String name;
+    private final String name;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CompactNodeInfo(Builder builder) {
+    private CompactNodeInfo(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
-	}
+    }
 
-	public static CompactNodeInfo of(Function<Builder, ObjectBuilder<CompactNodeInfo>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CompactNodeInfo of(Function<Builder, ObjectBuilder<CompactNodeInfo>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * Required - API name: {@code name}
+     */
+    public final String name() {
+        return this.name;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+        generator.writeKey("name");
+        generator.write(this.name);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CompactNodeInfo}.
-	 */
+    /**
+     * Builder for {@link CompactNodeInfo}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompactNodeInfo> {
-		private String name;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompactNodeInfo> {
+        private String name;
 
-		/**
-		 * Required - API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code name}
+         */
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CompactNodeInfo}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CompactNodeInfo build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CompactNodeInfo}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CompactNodeInfo build() {
+            _checkSingleUse();
 
-			return new CompactNodeInfo(this);
-		}
-	}
+            return new CompactNodeInfo(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CompactNodeInfo}
-	 */
-	public static final JsonpDeserializer<CompactNodeInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CompactNodeInfo::setupCompactNodeInfoDeserializer);
+    /**
+     * Json deserializer for {@link CompactNodeInfo}
+     */
+    public static final JsonpDeserializer<CompactNodeInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CompactNodeInfo::setupCompactNodeInfoDeserializer
+    );
 
-	protected static void setupCompactNodeInfoDeserializer(ObjectDeserializer<CompactNodeInfo.Builder> op) {
+    protected static void setupCompactNodeInfoDeserializer(ObjectDeserializer<CompactNodeInfo.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
-	}
+    }
 
 }

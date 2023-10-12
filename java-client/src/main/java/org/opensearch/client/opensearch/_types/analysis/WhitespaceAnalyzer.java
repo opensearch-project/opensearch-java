@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,110 +43,109 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WhitespaceAnalyzer
 
 @JsonpDeserializable
 public class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializable {
-	@Nullable
-	private final String version;
+    @Nullable
+    private final String version;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private WhitespaceAnalyzer(Builder builder) {
+    private WhitespaceAnalyzer(Builder builder) {
 
-		this.version = builder.version;
+        this.version = builder.version;
 
-	}
+    }
 
-	public static WhitespaceAnalyzer of(Function<Builder, ObjectBuilder<WhitespaceAnalyzer>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static WhitespaceAnalyzer of(Function<Builder, ObjectBuilder<WhitespaceAnalyzer>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Analyzer variant kind.
-	 */
-	@Override
-	public Analyzer.Kind _analyzerKind() {
-		return Analyzer.Kind.Whitespace;
-	}
+    /**
+     * Analyzer variant kind.
+     */
+    @Override
+    public Analyzer.Kind _analyzerKind() {
+        return Analyzer.Kind.Whitespace;
+    }
 
-	/**
-	 * API name: {@code version}
-	 */
-	@Nullable
-	public final String version() {
-		return this.version;
-	}
+    /**
+     * API name: {@code version}
+     */
+    @Nullable
+    public final String version() {
+        return this.version;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "whitespace");
+        generator.write("type", "whitespace");
 
-		if (this.version != null) {
-			generator.writeKey("version");
-			generator.write(this.version);
+        if (this.version != null) {
+            generator.writeKey("version");
+            generator.write(this.version);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link WhitespaceAnalyzer}.
-	 */
+    /**
+     * Builder for {@link WhitespaceAnalyzer}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WhitespaceAnalyzer> {
-		@Nullable
-		private String version;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WhitespaceAnalyzer> {
+        @Nullable
+        private String version;
 
-		/**
-		 * API name: {@code version}
-		 */
-		public final Builder version(@Nullable String value) {
-			this.version = value;
-			return this;
-		}
+        /**
+         * API name: {@code version}
+         */
+        public final Builder version(@Nullable String value) {
+            this.version = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link WhitespaceAnalyzer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public WhitespaceAnalyzer build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link WhitespaceAnalyzer}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public WhitespaceAnalyzer build() {
+            _checkSingleUse();
 
-			return new WhitespaceAnalyzer(this);
-		}
-	}
+            return new WhitespaceAnalyzer(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link WhitespaceAnalyzer}
-	 */
-	public static final JsonpDeserializer<WhitespaceAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, WhitespaceAnalyzer::setupWhitespaceAnalyzerDeserializer);
+    /**
+     * Json deserializer for {@link WhitespaceAnalyzer}
+     */
+    public static final JsonpDeserializer<WhitespaceAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        WhitespaceAnalyzer::setupWhitespaceAnalyzerDeserializer
+    );
 
-	protected static void setupWhitespaceAnalyzerDeserializer(ObjectDeserializer<WhitespaceAnalyzer.Builder> op) {
+    protected static void setupWhitespaceAnalyzerDeserializer(ObjectDeserializer<WhitespaceAnalyzer.Builder> op) {
 
-		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+        op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

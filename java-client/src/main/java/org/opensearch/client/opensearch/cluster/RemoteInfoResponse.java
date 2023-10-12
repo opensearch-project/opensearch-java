@@ -32,72 +32,72 @@
 
 package org.opensearch.client.opensearch.cluster;
 
-import org.opensearch.client.opensearch.cluster.remote_info.ClusterRemoteInfo;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.cluster.remote_info.ClusterRemoteInfo;
 import org.opensearch.client.transport.endpoints.DictionaryResponse;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: cluster.remote_info.Response
 
 @JsonpDeserializable
 public class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemoteInfo> {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RemoteInfoResponse(Builder builder) {
-		super(builder);
+    private RemoteInfoResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static RemoteInfoResponse of(Function<Builder, ObjectBuilder<RemoteInfoResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RemoteInfoResponse of(Function<Builder, ObjectBuilder<RemoteInfoResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RemoteInfoResponse}.
-	 */
+    /**
+     * Builder for {@link RemoteInfoResponse}.
+     */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, ClusterRemoteInfo, Builder>
-			implements
-				ObjectBuilder<RemoteInfoResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends DictionaryResponse.AbstractBuilder<String, ClusterRemoteInfo, Builder>
+        implements
+            ObjectBuilder<RemoteInfoResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RemoteInfoResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RemoteInfoResponse build() {
-			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
+        /**
+         * Builds a {@link RemoteInfoResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RemoteInfoResponse build() {
+            _checkSingleUse();
+            super.tKeySerializer(null);
+            super.tValueSerializer(null);
 
-			return new RemoteInfoResponse(this);
-		}
-	}
+            return new RemoteInfoResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RemoteInfoResponse}
-	 */
-	public static final JsonpDeserializer<RemoteInfoResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RemoteInfoResponse::setupRemoteInfoResponseDeserializer);
+    /**
+     * Json deserializer for {@link RemoteInfoResponse}
+     */
+    public static final JsonpDeserializer<RemoteInfoResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RemoteInfoResponse::setupRemoteInfoResponseDeserializer
+    );
 
-	protected static void setupRemoteInfoResponseDeserializer(ObjectDeserializer<RemoteInfoResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				ClusterRemoteInfo._DESERIALIZER);
+    protected static void setupRemoteInfoResponseDeserializer(ObjectDeserializer<RemoteInfoResponse.Builder> op) {
+        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), ClusterRemoteInfo._DESERIALIZER);
 
-	}
+    }
 
 }

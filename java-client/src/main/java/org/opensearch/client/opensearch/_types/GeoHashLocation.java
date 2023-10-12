@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,92 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.GeoHashLocation
 
 @JsonpDeserializable
 public class GeoHashLocation implements JsonpSerializable {
-	private final String geohash;
+    private final String geohash;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GeoHashLocation(Builder builder) {
+    private GeoHashLocation(Builder builder) {
 
-		this.geohash = ApiTypeHelper.requireNonNull(builder.geohash, this, "geohash");
+        this.geohash = ApiTypeHelper.requireNonNull(builder.geohash, this, "geohash");
 
-	}
+    }
 
-	public static GeoHashLocation of(Function<Builder, ObjectBuilder<GeoHashLocation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GeoHashLocation of(Function<Builder, ObjectBuilder<GeoHashLocation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code geohash}
-	 */
-	public final String geohash() {
-		return this.geohash;
-	}
+    /**
+     * Required - API name: {@code geohash}
+     */
+    public final String geohash() {
+        return this.geohash;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("geohash");
-		generator.write(this.geohash);
+        generator.writeKey("geohash");
+        generator.write(this.geohash);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GeoHashLocation}.
-	 */
+    /**
+     * Builder for {@link GeoHashLocation}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoHashLocation> {
-		private String geohash;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoHashLocation> {
+        private String geohash;
 
-		/**
-		 * Required - API name: {@code geohash}
-		 */
-		public final Builder geohash(String value) {
-			this.geohash = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code geohash}
+         */
+        public final Builder geohash(String value) {
+            this.geohash = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GeoHashLocation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GeoHashLocation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GeoHashLocation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GeoHashLocation build() {
+            _checkSingleUse();
 
-			return new GeoHashLocation(this);
-		}
-	}
+            return new GeoHashLocation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GeoHashLocation}
-	 */
-	public static final JsonpDeserializer<GeoHashLocation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoHashLocation::setupGeoHashLocationDeserializer);
+    /**
+     * Json deserializer for {@link GeoHashLocation}
+     */
+    public static final JsonpDeserializer<GeoHashLocation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GeoHashLocation::setupGeoHashLocationDeserializer
+    );
 
-	protected static void setupGeoHashLocationDeserializer(ObjectDeserializer<GeoHashLocation.Builder> op) {
+    protected static void setupGeoHashLocationDeserializer(ObjectDeserializer<GeoHashLocation.Builder> op) {
 
-		op.add(Builder::geohash, JsonpDeserializer.stringDeserializer(), "geohash");
+        op.add(Builder::geohash, JsonpDeserializer.stringDeserializer(), "geohash");
 
-	}
+    }
 
 }

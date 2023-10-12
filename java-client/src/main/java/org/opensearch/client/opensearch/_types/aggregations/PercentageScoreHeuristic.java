@@ -32,37 +32,38 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
 
 @JsonpDeserializable
 public class PercentageScoreHeuristic implements JsonpSerializable {
 
-	public static final class Builder implements ObjectBuilder<PercentageScoreHeuristic> {
-		@Override
-		public PercentageScoreHeuristic build() {
-			return PercentageScoreHeuristic._INSTANCE;
-		}
-	}
+    public static final class Builder implements ObjectBuilder<PercentageScoreHeuristic> {
+        @Override
+        public PercentageScoreHeuristic build() {
+            return PercentageScoreHeuristic._INSTANCE;
+        }
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        generator.writeEnd();
+    }
 
-	/**
-	 * Singleton instance for empty class {@link PercentageScoreHeuristic}.
-	 */
-	public static final PercentageScoreHeuristic _INSTANCE = new PercentageScoreHeuristic();
+    /**
+     * Singleton instance for empty class {@link PercentageScoreHeuristic}.
+     */
+    public static final PercentageScoreHeuristic _INSTANCE = new PercentageScoreHeuristic();
 
-	public static final JsonpDeserializer<PercentageScoreHeuristic> _DESERIALIZER = JsonpDeserializer
-			.emptyObject(PercentageScoreHeuristic._INSTANCE);
+    public static final JsonpDeserializer<PercentageScoreHeuristic> _DESERIALIZER = JsonpDeserializer.emptyObject(
+        PercentageScoreHeuristic._INSTANCE
+    );
 
 }

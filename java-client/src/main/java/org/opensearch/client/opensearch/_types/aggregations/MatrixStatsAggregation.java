@@ -32,116 +32,113 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
-import org.opensearch.client.opensearch._types.SortMode;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.SortMode;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixStatsAggregation
 
-
 @JsonpDeserializable
 public class MatrixStatsAggregation extends MatrixAggregation implements AggregationVariant {
-	@Nullable
-	private final SortMode mode;
+    @Nullable
+    private final SortMode mode;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MatrixStatsAggregation(Builder builder) {
-		super(builder);
+    private MatrixStatsAggregation(Builder builder) {
+        super(builder);
 
-		this.mode = builder.mode;
+        this.mode = builder.mode;
 
-	}
+    }
 
-	public static MatrixStatsAggregation of(Function<Builder, ObjectBuilder<MatrixStatsAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MatrixStatsAggregation of(Function<Builder, ObjectBuilder<MatrixStatsAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.MatrixStats;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.MatrixStats;
+    }
 
-	/**
-	 * API name: {@code mode}
-	 */
-	@Nullable
-	public final SortMode mode() {
-		return this.mode;
-	}
+    /**
+     * API name: {@code mode}
+     */
+    @Nullable
+    public final SortMode mode() {
+        return this.mode;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.mode != null) {
-			generator.writeKey("mode");
-			this.mode.serialize(generator, mapper);
-		}
+        super.serializeInternal(generator, mapper);
+        if (this.mode != null) {
+            generator.writeKey("mode");
+            this.mode.serialize(generator, mapper);
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MatrixStatsAggregation}.
-	 */
+    /**
+     * Builder for {@link MatrixStatsAggregation}.
+     */
 
-	public static class Builder extends MatrixAggregation.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<MatrixStatsAggregation> {
-		@Nullable
-		private SortMode mode;
+    public static class Builder extends MatrixAggregation.AbstractBuilder<Builder> implements ObjectBuilder<MatrixStatsAggregation> {
+        @Nullable
+        private SortMode mode;
 
-		/**
-		 * API name: {@code mode}
-		 */
-		public final Builder mode(@Nullable SortMode value) {
-			this.mode = value;
-			return this;
-		}
+        /**
+         * API name: {@code mode}
+         */
+        public final Builder mode(@Nullable SortMode value) {
+            this.mode = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MatrixStatsAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MatrixStatsAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MatrixStatsAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MatrixStatsAggregation build() {
+            _checkSingleUse();
 
-			return new MatrixStatsAggregation(this);
-		}
-	}
+            return new MatrixStatsAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MatrixStatsAggregation}
-	 */
-	public static final JsonpDeserializer<MatrixStatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MatrixStatsAggregation::setupMatrixStatsAggregationDeserializer);
+    /**
+     * Json deserializer for {@link MatrixStatsAggregation}
+     */
+    public static final JsonpDeserializer<MatrixStatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MatrixStatsAggregation::setupMatrixStatsAggregationDeserializer
+    );
 
-	protected static void setupMatrixStatsAggregationDeserializer(
-			ObjectDeserializer<MatrixStatsAggregation.Builder> op) {
-		MatrixAggregation.setupMatrixAggregationDeserializer(op);
-		op.add(Builder::mode, SortMode._DESERIALIZER, "mode");
+    protected static void setupMatrixStatsAggregationDeserializer(ObjectDeserializer<MatrixStatsAggregation.Builder> op) {
+        MatrixAggregation.setupMatrixAggregationDeserializer(op);
+        op.add(Builder::mode, SortMode._DESERIALIZER, "mode");
 
-	}
+    }
 
 }

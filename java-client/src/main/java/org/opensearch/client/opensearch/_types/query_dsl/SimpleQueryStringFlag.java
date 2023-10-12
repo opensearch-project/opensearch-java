@@ -35,47 +35,47 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum SimpleQueryStringFlag implements JsonEnum {
-	None("NONE"),
+    None("NONE"),
 
-	And("AND"),
+    And("AND"),
 
-	Or("OR"),
+    Or("OR"),
 
-	Not("NOT"),
+    Not("NOT"),
 
-	Prefix("PREFIX"),
+    Prefix("PREFIX"),
 
-	Phrase("PHRASE"),
+    Phrase("PHRASE"),
 
-	Precedence("PRECEDENCE"),
+    Precedence("PRECEDENCE"),
 
-	Escape("ESCAPE"),
+    Escape("ESCAPE"),
 
-	Whitespace("WHITESPACE"),
+    Whitespace("WHITESPACE"),
 
-	Fuzzy("FUZZY"),
+    Fuzzy("FUZZY"),
 
-	Near("NEAR"),
+    Near("NEAR"),
 
-	Slop("SLOP"),
+    Slop("SLOP"),
 
-	All("ALL"),
+    All("ALL"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	SimpleQueryStringFlag(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    SimpleQueryStringFlag(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<SimpleQueryStringFlag> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SimpleQueryStringFlag.values());
+    public static final JsonEnum.Deserializer<SimpleQueryStringFlag> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        SimpleQueryStringFlag.values()
+    );
 }

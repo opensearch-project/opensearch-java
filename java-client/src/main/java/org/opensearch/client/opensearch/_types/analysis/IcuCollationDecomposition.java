@@ -35,25 +35,25 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum IcuCollationDecomposition implements JsonEnum {
-	No("no"),
+    No("no"),
 
-	Identical("identical"),
+    Identical("identical"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	IcuCollationDecomposition(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    IcuCollationDecomposition(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<IcuCollationDecomposition> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IcuCollationDecomposition.values());
+    public static final JsonEnum.Deserializer<IcuCollationDecomposition> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IcuCollationDecomposition.values()
+    );
 }

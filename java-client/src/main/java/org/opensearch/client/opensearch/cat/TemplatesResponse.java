@@ -32,124 +32,125 @@
 
 package org.opensearch.client.opensearch.cat;
 
-import org.opensearch.client.opensearch.cat.templates.TemplatesRecord;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.opensearch.cat.templates.TemplatesRecord;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: cat.templates.Response
 
 @JsonpDeserializable
 public class TemplatesResponse implements JsonpSerializable {
-	private final List<TemplatesRecord> valueBody;
+    private final List<TemplatesRecord> valueBody;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TemplatesResponse(Builder builder) {
+    private TemplatesResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+        this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
-	}
+    }
 
-	public static TemplatesResponse of(Function<Builder, ObjectBuilder<TemplatesResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TemplatesResponse of(Function<Builder, ObjectBuilder<TemplatesResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
-	 */
-	public final List<TemplatesRecord> valueBody() {
-		return this.valueBody;
-	}
+    /**
+     * Required - Response value.
+     * <p>
+     * API name: {@code _value_body}
+     */
+    public final List<TemplatesRecord> valueBody() {
+        return this.valueBody;
+    }
 
-	/**
-	 * Serialize this value to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartArray();
-		for (TemplatesRecord item0 : this.valueBody) {
-			item0.serialize(generator, mapper);
+    /**
+     * Serialize this value to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartArray();
+        for (TemplatesRecord item0 : this.valueBody) {
+            item0.serialize(generator, mapper);
 
-		}
-		generator.writeEnd();
+        }
+        generator.writeEnd();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TemplatesResponse}.
-	 */
+    /**
+     * Builder for {@link TemplatesResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TemplatesResponse> {
-		private List<TemplatesRecord> valueBody;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TemplatesResponse> {
+        private List<TemplatesRecord> valueBody;
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
-		 */
-		public final Builder valueBody(List<TemplatesRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
-			return this;
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>valueBody</code>.
+         */
+        public final Builder valueBody(List<TemplatesRecord> list) {
+            this.valueBody = _listAddAll(this.valueBody, list);
+            return this;
+        }
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
-		 */
-		public final Builder valueBody(TemplatesRecord value, TemplatesRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
-			return this;
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds one or more values to <code>valueBody</code>.
+         */
+        public final Builder valueBody(TemplatesRecord value, TemplatesRecord... values) {
+            this.valueBody = _listAdd(this.valueBody, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
-		 */
-		public final Builder valueBody(Function<TemplatesRecord.Builder, ObjectBuilder<TemplatesRecord>> fn) {
-			return valueBody(fn.apply(new TemplatesRecord.Builder()).build());
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds a value to <code>valueBody</code> using a builder lambda.
+         */
+        public final Builder valueBody(Function<TemplatesRecord.Builder, ObjectBuilder<TemplatesRecord>> fn) {
+            return valueBody(fn.apply(new TemplatesRecord.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link TemplatesResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TemplatesResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link TemplatesResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TemplatesResponse build() {
+            _checkSingleUse();
 
-			return new TemplatesResponse(this);
-		}
-	}
+            return new TemplatesResponse(this);
+        }
+    }
 
-	public static final JsonpDeserializer<TemplatesResponse> _DESERIALIZER = createTemplatesResponseDeserializer();
-	protected static JsonpDeserializer<TemplatesResponse> createTemplatesResponseDeserializer() {
+    public static final JsonpDeserializer<TemplatesResponse> _DESERIALIZER = createTemplatesResponseDeserializer();
 
-		JsonpDeserializer<List<TemplatesRecord>> valueDeserializer = JsonpDeserializer
-				.arrayDeserializer(TemplatesRecord._DESERIALIZER);
+    protected static JsonpDeserializer<TemplatesResponse> createTemplatesResponseDeserializer() {
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
-	}
+        JsonpDeserializer<List<TemplatesRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(TemplatesRecord._DESERIALIZER);
+
+        return JsonpDeserializer.of(
+            valueDeserializer.acceptedEvents(),
+            (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
+        );
+    }
 
 }

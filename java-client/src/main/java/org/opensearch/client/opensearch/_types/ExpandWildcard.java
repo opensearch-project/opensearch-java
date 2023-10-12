@@ -37,45 +37,44 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum ExpandWildcard implements JsonEnum {
-	/**
-	 * Match any data stream or index, including hidden ones.
-	 */
-	All("all"),
+    /**
+     * Match any data stream or index, including hidden ones.
+     */
+    All("all"),
 
-	/**
-	 * Match open, non-hidden indices. Also matches any non-hidden data stream.
-	 */
-	Open("open"),
+    /**
+     * Match open, non-hidden indices. Also matches any non-hidden data stream.
+     */
+    Open("open"),
 
-	/**
-	 * Match closed, non-hidden indices. Also matches any non-hidden data stream.
-	 * Data streams cannot be closed.
-	 */
-	Closed("closed"),
+    /**
+     * Match closed, non-hidden indices. Also matches any non-hidden data stream.
+     * Data streams cannot be closed.
+     */
+    Closed("closed"),
 
-	/**
-	 * Match hidden data streams and hidden indices. Must be combined with open,
-	 * closed, or both.
-	 */
-	Hidden("hidden"),
+    /**
+     * Match hidden data streams and hidden indices. Must be combined with open,
+     * closed, or both.
+     */
+    Hidden("hidden"),
 
-	/**
-	 * Wildcard expressions are not accepted.
-	 */
-	None("none"),
+    /**
+     * Wildcard expressions are not accepted.
+     */
+    None("none"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ExpandWildcard(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ExpandWildcard(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ExpandWildcard> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ExpandWildcard.values());
+    public static final JsonEnum.Deserializer<ExpandWildcard> _DESERIALIZER = new JsonEnum.Deserializer<>(ExpandWildcard.values());
 }

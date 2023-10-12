@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,92 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoBootstrap
 
 @JsonpDeserializable
 public class NodeInfoBootstrap implements JsonpSerializable {
-	private final String memoryLock;
+    private final String memoryLock;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoBootstrap(Builder builder) {
+    private NodeInfoBootstrap(Builder builder) {
 
-		this.memoryLock = ApiTypeHelper.requireNonNull(builder.memoryLock, this, "memoryLock");
+        this.memoryLock = ApiTypeHelper.requireNonNull(builder.memoryLock, this, "memoryLock");
 
-	}
+    }
 
-	public static NodeInfoBootstrap of(Function<Builder, ObjectBuilder<NodeInfoBootstrap>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoBootstrap of(Function<Builder, ObjectBuilder<NodeInfoBootstrap>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code memory_lock}
-	 */
-	public final String memoryLock() {
-		return this.memoryLock;
-	}
+    /**
+     * Required - API name: {@code memory_lock}
+     */
+    public final String memoryLock() {
+        return this.memoryLock;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("memory_lock");
-		generator.write(this.memoryLock);
+        generator.writeKey("memory_lock");
+        generator.write(this.memoryLock);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoBootstrap}.
-	 */
+    /**
+     * Builder for {@link NodeInfoBootstrap}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoBootstrap> {
-		private String memoryLock;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoBootstrap> {
+        private String memoryLock;
 
-		/**
-		 * Required - API name: {@code memory_lock}
-		 */
-		public final Builder memoryLock(String value) {
-			this.memoryLock = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code memory_lock}
+         */
+        public final Builder memoryLock(String value) {
+            this.memoryLock = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeInfoBootstrap}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoBootstrap build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoBootstrap}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoBootstrap build() {
+            _checkSingleUse();
 
-			return new NodeInfoBootstrap(this);
-		}
-	}
+            return new NodeInfoBootstrap(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoBootstrap}
-	 */
-	public static final JsonpDeserializer<NodeInfoBootstrap> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoBootstrap::setupNodeInfoBootstrapDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoBootstrap}
+     */
+    public static final JsonpDeserializer<NodeInfoBootstrap> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoBootstrap::setupNodeInfoBootstrapDeserializer
+    );
 
-	protected static void setupNodeInfoBootstrapDeserializer(ObjectDeserializer<NodeInfoBootstrap.Builder> op) {
+    protected static void setupNodeInfoBootstrapDeserializer(ObjectDeserializer<NodeInfoBootstrap.Builder> op) {
 
-		op.add(Builder::memoryLock, JsonpDeserializer.stringDeserializer(), "memory_lock");
+        op.add(Builder::memoryLock, JsonpDeserializer.stringDeserializer(), "memory_lock");
 
-	}
+    }
 
 }

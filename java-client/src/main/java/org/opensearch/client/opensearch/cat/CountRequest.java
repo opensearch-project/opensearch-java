@@ -32,17 +32,16 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 // typedef: cat.count.Request
 
@@ -53,121 +52,124 @@ import java.util.stream.Collectors;
  */
 
 public class CountRequest extends CatRequestBase {
-	private final List<String> index;
+    private final List<String> index;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CountRequest(Builder builder) {
-		super(builder);
-		this.index = ApiTypeHelper.unmodifiable(builder.index);
+    private CountRequest(Builder builder) {
+        super(builder);
+        this.index = ApiTypeHelper.unmodifiable(builder.index);
 
-	}
+    }
 
-	public static CountRequest of(Function<Builder, ObjectBuilder<CountRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CountRequest of(Function<Builder, ObjectBuilder<CountRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * A comma-separated list of index names to limit the returned information
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public final List<String> index() {
-		return this.index;
-	}
+    /**
+     * A comma-separated list of index names to limit the returned information
+     * <p>
+     * API name: {@code index}
+     */
+    public final List<String> index() {
+        return this.index;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CountRequest}.
-	 */
+    /**
+     * Builder for {@link CountRequest}.
+     */
 
-	public static class Builder extends CatRequestBaseBuilder<CountRequest.Builder> {
-		@Nullable
-		private List<String> index;
+    public static class Builder extends CatRequestBaseBuilder<CountRequest.Builder> {
+        @Nullable
+        private List<String> index;
 
-		/**
-		 * A comma-separated list of index names to limit the returned information
-		 * <p>
-		 * API name: {@code index}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 */
-		public final Builder index(List<String> list) {
-			this.index = _listAddAll(this.index, list);
-			return this;
-		}
+        /**
+         * A comma-separated list of index names to limit the returned information
+         * <p>
+         * API name: {@code index}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>index</code>.
+         */
+        public final Builder index(List<String> list) {
+            this.index = _listAddAll(this.index, list);
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of index names to limit the returned information
-		 * <p>
-		 * API name: {@code index}
-		 * <p>
-		 * Adds one or more values to <code>index</code>.
-		 */
-		public final Builder index(String value, String... values) {
-			this.index = _listAdd(this.index, value, values);
-			return this;
-		}
+        /**
+         * A comma-separated list of index names to limit the returned information
+         * <p>
+         * API name: {@code index}
+         * <p>
+         * Adds one or more values to <code>index</code>.
+         */
+        public final Builder index(String value, String... values) {
+            this.index = _listAdd(this.index, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CountRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CountRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CountRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CountRequest build() {
+            _checkSingleUse();
 
-			return new CountRequest(this);
-		}
+            return new CountRequest(this);
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
-	}
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.count}".
-	 */
-	public static final Endpoint<CountRequest, CountResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.count}".
+     */
+    public static final Endpoint<CountRequest, CountResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _index = 1 << 0;
+        // Request path
+        request -> {
+            final int _index = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.index()))
-					propsSet |= _index;
+            if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/count");
-					return buf.toString();
-				}
-				if (propsSet == (_index)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/count");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/count");
+                return buf.toString();
+            }
+            if (propsSet == (_index)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/count");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, CountResponse._DESERIALIZER);
+        // Request parameters
+        request -> new HashMap<>(request.queryParameters()),
+        SimpleEndpoint.emptyMap(),
+        false,
+        CountResponse._DESERIALIZER
+    );
 }

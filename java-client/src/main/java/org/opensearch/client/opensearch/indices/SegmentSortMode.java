@@ -35,25 +35,23 @@ package org.opensearch.client.opensearch.indices;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum SegmentSortMode implements JsonEnum {
-	Min("min"),
+    Min("min"),
 
-	Max("max"),
+    Max("max"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	SegmentSortMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    SegmentSortMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<SegmentSortMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SegmentSortMode.values());
+    public static final JsonEnum.Deserializer<SegmentSortMode> _DESERIALIZER = new JsonEnum.Deserializer<>(SegmentSortMode.values());
 }

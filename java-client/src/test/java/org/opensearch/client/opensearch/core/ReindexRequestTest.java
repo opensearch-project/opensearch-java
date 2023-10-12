@@ -8,16 +8,14 @@
 
 package org.opensearch.client.opensearch.core;
 
+import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Map;
 
 public class ReindexRequestTest extends Assert {
     @Test
     public void testEndpointSlicesAuto() {
-        ReindexRequest reindexRequest = ReindexRequest.of(b -> b
-                .slices(0L));
+        ReindexRequest reindexRequest = ReindexRequest.of(b -> b.slices(0L));
         Map<String, String> queryParameters = ReindexRequest._ENDPOINT.queryParameters(reindexRequest);
         assertTrue("Must have a slices query parameter", queryParameters.containsKey("slices"));
         assertEquals("auto", queryParameters.get("slices"));
@@ -25,8 +23,7 @@ public class ReindexRequestTest extends Assert {
 
     @Test
     public void testEndpointSlicesNumber() {
-        ReindexRequest reindexRequest = ReindexRequest.of(b -> b
-                .slices(6L));
+        ReindexRequest reindexRequest = ReindexRequest.of(b -> b.slices(6L));
         Map<String, String> queryParameters = ReindexRequest._ENDPOINT.queryParameters(reindexRequest);
         assertTrue("Must have a slices query parameter", queryParameters.containsKey("slices"));
         assertEquals("6", queryParameters.get("slices"));

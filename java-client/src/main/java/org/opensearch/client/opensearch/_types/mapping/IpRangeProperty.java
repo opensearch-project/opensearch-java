@@ -32,86 +32,84 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.mapping.IpRangeProperty
 
-
 @JsonpDeserializable
 public class IpRangeProperty extends RangePropertyBase implements PropertyVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IpRangeProperty(Builder builder) {
-		super(builder);
+    private IpRangeProperty(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static IpRangeProperty of(Function<Builder, ObjectBuilder<IpRangeProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IpRangeProperty of(Function<Builder, ObjectBuilder<IpRangeProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.IpRange;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.IpRange;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "ip_range");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "ip_range");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IpRangeProperty}.
-	 */
+    /**
+     * Builder for {@link IpRangeProperty}.
+     */
 
-	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<IpRangeProperty> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends RangePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<IpRangeProperty> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IpRangeProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IpRangeProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IpRangeProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IpRangeProperty build() {
+            _checkSingleUse();
 
-			return new IpRangeProperty(this);
-		}
-	}
+            return new IpRangeProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IpRangeProperty}
-	 */
-	public static final JsonpDeserializer<IpRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IpRangeProperty::setupIpRangePropertyDeserializer);
+    /**
+     * Json deserializer for {@link IpRangeProperty}
+     */
+    public static final JsonpDeserializer<IpRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IpRangeProperty::setupIpRangePropertyDeserializer
+    );
 
-	protected static void setupIpRangePropertyDeserializer(ObjectDeserializer<IpRangeProperty.Builder> op) {
-		setupRangePropertyBaseDeserializer(op);
+    protected static void setupIpRangePropertyDeserializer(ObjectDeserializer<IpRangeProperty.Builder> op) {
+        setupRangePropertyBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

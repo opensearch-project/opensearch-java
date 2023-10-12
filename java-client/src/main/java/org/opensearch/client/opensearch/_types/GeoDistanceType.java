@@ -37,22 +37,21 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum GeoDistanceType implements JsonEnum {
-	Arc("arc"),
+    Arc("arc"),
 
-	Plane("plane"),
+    Plane("plane"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	GeoDistanceType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    GeoDistanceType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<GeoDistanceType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			GeoDistanceType.values());
+    public static final JsonEnum.Deserializer<GeoDistanceType> _DESERIALIZER = new JsonEnum.Deserializer<>(GeoDistanceType.values());
 }

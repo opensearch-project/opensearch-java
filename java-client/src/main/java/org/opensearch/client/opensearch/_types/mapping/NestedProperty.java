@@ -32,174 +32,173 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.NestedProperty
 
-
 @JsonpDeserializable
 public class NestedProperty extends CorePropertyBase implements PropertyVariant {
-	@Nullable
-	private final Boolean enabled;
+    @Nullable
+    private final Boolean enabled;
 
-	@Nullable
-	private final Boolean includeInParent;
+    @Nullable
+    private final Boolean includeInParent;
 
-	@Nullable
-	private final Boolean includeInRoot;
+    @Nullable
+    private final Boolean includeInRoot;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NestedProperty(Builder builder) {
-		super(builder);
+    private NestedProperty(Builder builder) {
+        super(builder);
 
-		this.enabled = builder.enabled;
-		this.includeInParent = builder.includeInParent;
-		this.includeInRoot = builder.includeInRoot;
+        this.enabled = builder.enabled;
+        this.includeInParent = builder.includeInParent;
+        this.includeInRoot = builder.includeInRoot;
 
-	}
+    }
 
-	public static NestedProperty of(Function<Builder, ObjectBuilder<NestedProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NestedProperty of(Function<Builder, ObjectBuilder<NestedProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Nested;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Nested;
+    }
 
-	/**
-	 * API name: {@code enabled}
-	 */
-	@Nullable
-	public final Boolean enabled() {
-		return this.enabled;
-	}
+    /**
+     * API name: {@code enabled}
+     */
+    @Nullable
+    public final Boolean enabled() {
+        return this.enabled;
+    }
 
-	/**
-	 * API name: {@code include_in_parent}
-	 */
-	@Nullable
-	public final Boolean includeInParent() {
-		return this.includeInParent;
-	}
+    /**
+     * API name: {@code include_in_parent}
+     */
+    @Nullable
+    public final Boolean includeInParent() {
+        return this.includeInParent;
+    }
 
-	/**
-	 * API name: {@code include_in_root}
-	 */
-	@Nullable
-	public final Boolean includeInRoot() {
-		return this.includeInRoot;
-	}
+    /**
+     * API name: {@code include_in_root}
+     */
+    @Nullable
+    public final Boolean includeInRoot() {
+        return this.includeInRoot;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "nested");
-		super.serializeInternal(generator, mapper);
-		if (this.enabled != null) {
-			generator.writeKey("enabled");
-			generator.write(this.enabled);
+        generator.write("type", "nested");
+        super.serializeInternal(generator, mapper);
+        if (this.enabled != null) {
+            generator.writeKey("enabled");
+            generator.write(this.enabled);
 
-		}
-		if (this.includeInParent != null) {
-			generator.writeKey("include_in_parent");
-			generator.write(this.includeInParent);
+        }
+        if (this.includeInParent != null) {
+            generator.writeKey("include_in_parent");
+            generator.write(this.includeInParent);
 
-		}
-		if (this.includeInRoot != null) {
-			generator.writeKey("include_in_root");
-			generator.write(this.includeInRoot);
+        }
+        if (this.includeInRoot != null) {
+            generator.writeKey("include_in_root");
+            generator.write(this.includeInRoot);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NestedProperty}.
-	 */
+    /**
+     * Builder for {@link NestedProperty}.
+     */
 
-	public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<NestedProperty> {
-		@Nullable
-		private Boolean enabled;
+    public static class Builder extends CorePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<NestedProperty> {
+        @Nullable
+        private Boolean enabled;
 
-		@Nullable
-		private Boolean includeInParent;
+        @Nullable
+        private Boolean includeInParent;
 
-		@Nullable
-		private Boolean includeInRoot;
+        @Nullable
+        private Boolean includeInRoot;
 
-		/**
-		 * API name: {@code enabled}
-		 */
-		public final Builder enabled(@Nullable Boolean value) {
-			this.enabled = value;
-			return this;
-		}
+        /**
+         * API name: {@code enabled}
+         */
+        public final Builder enabled(@Nullable Boolean value) {
+            this.enabled = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code include_in_parent}
-		 */
-		public final Builder includeInParent(@Nullable Boolean value) {
-			this.includeInParent = value;
-			return this;
-		}
+        /**
+         * API name: {@code include_in_parent}
+         */
+        public final Builder includeInParent(@Nullable Boolean value) {
+            this.includeInParent = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code include_in_root}
-		 */
-		public final Builder includeInRoot(@Nullable Boolean value) {
-			this.includeInRoot = value;
-			return this;
-		}
+        /**
+         * API name: {@code include_in_root}
+         */
+        public final Builder includeInRoot(@Nullable Boolean value) {
+            this.includeInRoot = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NestedProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NestedProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NestedProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NestedProperty build() {
+            _checkSingleUse();
 
-			return new NestedProperty(this);
-		}
-	}
+            return new NestedProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NestedProperty}
-	 */
-	public static final JsonpDeserializer<NestedProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NestedProperty::setupNestedPropertyDeserializer);
+    /**
+     * Json deserializer for {@link NestedProperty}
+     */
+    public static final JsonpDeserializer<NestedProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NestedProperty::setupNestedPropertyDeserializer
+    );
 
-	protected static void setupNestedPropertyDeserializer(ObjectDeserializer<NestedProperty.Builder> op) {
-		setupCorePropertyBaseDeserializer(op);
-		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-		op.add(Builder::includeInParent, JsonpDeserializer.booleanDeserializer(), "include_in_parent");
-		op.add(Builder::includeInRoot, JsonpDeserializer.booleanDeserializer(), "include_in_root");
+    protected static void setupNestedPropertyDeserializer(ObjectDeserializer<NestedProperty.Builder> op) {
+        setupCorePropertyBaseDeserializer(op);
+        op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+        op.add(Builder::includeInParent, JsonpDeserializer.booleanDeserializer(), "include_in_parent");
+        op.add(Builder::includeInRoot, JsonpDeserializer.booleanDeserializer(), "include_in_root");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.snapshot;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,153 +44,152 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: snapshot._types.Repository
 
 @JsonpDeserializable
 public class Repository implements JsonpSerializable {
-	private final String type;
+    private final String type;
 
-	@Nullable
-	private final String uuid;
+    @Nullable
+    private final String uuid;
 
-	private final RepositorySettings settings;
+    private final RepositorySettings settings;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private Repository(Builder builder) {
+    private Repository(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-		this.uuid = builder.uuid;
-		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
+        this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+        this.uuid = builder.uuid;
+        this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
-	}
+    }
 
-	public static Repository of(Function<Builder, ObjectBuilder<Repository>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Repository of(Function<Builder, ObjectBuilder<Repository>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code type}
-	 */
-	public final String type() {
-		return this.type;
-	}
+    /**
+     * Required - API name: {@code type}
+     */
+    public final String type() {
+        return this.type;
+    }
 
-	/**
-	 * API name: {@code uuid}
-	 */
-	@Nullable
-	public final String uuid() {
-		return this.uuid;
-	}
+    /**
+     * API name: {@code uuid}
+     */
+    @Nullable
+    public final String uuid() {
+        return this.uuid;
+    }
 
-	/**
-	 * Required - API name: {@code settings}
-	 */
-	public final RepositorySettings settings() {
-		return this.settings;
-	}
+    /**
+     * Required - API name: {@code settings}
+     */
+    public final RepositorySettings settings() {
+        return this.settings;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("type");
-		generator.write(this.type);
+        generator.writeKey("type");
+        generator.write(this.type);
 
-		if (this.uuid != null) {
-			generator.writeKey("uuid");
-			generator.write(this.uuid);
+        if (this.uuid != null) {
+            generator.writeKey("uuid");
+            generator.write(this.uuid);
 
-		}
-		generator.writeKey("settings");
-		this.settings.serialize(generator, mapper);
+        }
+        generator.writeKey("settings");
+        this.settings.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link Repository}.
-	 */
+    /**
+     * Builder for {@link Repository}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Repository> {
-		private String type;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Repository> {
+        private String type;
 
-		@Nullable
-		private String uuid;
+        @Nullable
+        private String uuid;
 
-		private RepositorySettings settings;
+        private RepositorySettings settings;
 
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public final Builder type(String value) {
-			this.type = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code type}
+         */
+        public final Builder type(String value) {
+            this.type = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code uuid}
-		 */
-		public final Builder uuid(@Nullable String value) {
-			this.uuid = value;
-			return this;
-		}
+        /**
+         * API name: {@code uuid}
+         */
+        public final Builder uuid(@Nullable String value) {
+            this.uuid = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code settings}
-		 */
-		public final Builder settings(RepositorySettings value) {
-			this.settings = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code settings}
+         */
+        public final Builder settings(RepositorySettings value) {
+            this.settings = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code settings}
-		 */
-		public final Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
-			return this.settings(fn.apply(new RepositorySettings.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code settings}
+         */
+        public final Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
+            return this.settings(fn.apply(new RepositorySettings.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link Repository}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public Repository build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link Repository}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public Repository build() {
+            _checkSingleUse();
 
-			return new Repository(this);
-		}
-	}
+            return new Repository(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link Repository}
-	 */
-	public static final JsonpDeserializer<Repository> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Repository::setupRepositoryDeserializer);
+    /**
+     * Json deserializer for {@link Repository}
+     */
+    public static final JsonpDeserializer<Repository> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        Repository::setupRepositoryDeserializer
+    );
 
-	protected static void setupRepositoryDeserializer(ObjectDeserializer<Repository.Builder> op) {
+    protected static void setupRepositoryDeserializer(ObjectDeserializer<Repository.Builder> op) {
 
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
-		op.add(Builder::settings, RepositorySettings._DESERIALIZER, "settings");
+        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+        op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
+        op.add(Builder::settings, RepositorySettings._DESERIALIZER, "settings");
 
-	}
+    }
 
 }

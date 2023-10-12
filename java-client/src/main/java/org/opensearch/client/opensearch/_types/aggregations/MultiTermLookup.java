@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,92 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.MultiTermLookup
 
 @JsonpDeserializable
 public class MultiTermLookup implements JsonpSerializable {
-	private final String field;
+    private final String field;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MultiTermLookup(Builder builder) {
+    private MultiTermLookup(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-	}
+    }
 
-	public static MultiTermLookup of(Function<Builder, ObjectBuilder<MultiTermLookup>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MultiTermLookup of(Function<Builder, ObjectBuilder<MultiTermLookup>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("field");
-		generator.write(this.field);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MultiTermLookup}.
-	 */
+    /**
+     * Builder for {@link MultiTermLookup}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MultiTermLookup> {
-		private String field;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MultiTermLookup> {
+        private String field;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MultiTermLookup}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MultiTermLookup build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MultiTermLookup}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MultiTermLookup build() {
+            _checkSingleUse();
 
-			return new MultiTermLookup(this);
-		}
-	}
+            return new MultiTermLookup(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MultiTermLookup}
-	 */
-	public static final JsonpDeserializer<MultiTermLookup> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MultiTermLookup::setupMultiTermLookupDeserializer);
+    /**
+     * Json deserializer for {@link MultiTermLookup}
+     */
+    public static final JsonpDeserializer<MultiTermLookup> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MultiTermLookup::setupMultiTermLookupDeserializer
+    );
 
-	protected static void setupMultiTermLookupDeserializer(ObjectDeserializer<MultiTermLookup.Builder> op) {
+    protected static void setupMultiTermLookupDeserializer(ObjectDeserializer<MultiTermLookup.Builder> op) {
 
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 
-	}
+    }
 
 }

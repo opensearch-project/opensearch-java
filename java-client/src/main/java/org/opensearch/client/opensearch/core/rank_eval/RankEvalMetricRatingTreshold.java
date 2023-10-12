@@ -32,77 +32,74 @@
 
 package org.opensearch.client.opensearch.core.rank_eval;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
-import jakarta.json.stream.JsonGenerator;
-import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricRatingTreshold
 
-
-
 public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
-	@Nullable
-	private final Integer relevantRatingThreshold;
+    @Nullable
+    private final Integer relevantRatingThreshold;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected RankEvalMetricRatingTreshold(AbstractBuilder<?> builder) {
-		super(builder);
+    protected RankEvalMetricRatingTreshold(AbstractBuilder<?> builder) {
+        super(builder);
 
-		this.relevantRatingThreshold = builder.relevantRatingThreshold;
+        this.relevantRatingThreshold = builder.relevantRatingThreshold;
 
-	}
+    }
 
-	/**
-	 * Sets the rating threshold above which documents are considered to be
-	 * &quot;relevant&quot;.
-	 * <p>
-	 * API name: {@code relevant_rating_threshold}
-	 */
-	@Nullable
-	public final Integer relevantRatingThreshold() {
-		return this.relevantRatingThreshold;
-	}
+    /**
+     * Sets the rating threshold above which documents are considered to be
+     * &quot;relevant&quot;.
+     * <p>
+     * API name: {@code relevant_rating_threshold}
+     */
+    @Nullable
+    public final Integer relevantRatingThreshold() {
+        return this.relevantRatingThreshold;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.relevantRatingThreshold != null) {
-			generator.writeKey("relevant_rating_threshold");
-			generator.write(this.relevantRatingThreshold);
+        super.serializeInternal(generator, mapper);
+        if (this.relevantRatingThreshold != null) {
+            generator.writeKey("relevant_rating_threshold");
+            generator.write(this.relevantRatingThreshold);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				RankEvalMetricBase.AbstractBuilder<BuilderT> {
-		@Nullable
-		private Integer relevantRatingThreshold;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends RankEvalMetricBase.AbstractBuilder<
+        BuilderT> {
+        @Nullable
+        private Integer relevantRatingThreshold;
 
-		/**
-		 * Sets the rating threshold above which documents are considered to be
-		 * &quot;relevant&quot;.
-		 * <p>
-		 * API name: {@code relevant_rating_threshold}
-		 */
-		public final BuilderT relevantRatingThreshold(@Nullable Integer value) {
-			this.relevantRatingThreshold = value;
-			return self();
-		}
+        /**
+         * Sets the rating threshold above which documents are considered to be
+         * &quot;relevant&quot;.
+         * <p>
+         * API name: {@code relevant_rating_threshold}
+         */
+        public final BuilderT relevantRatingThreshold(@Nullable Integer value) {
+            this.relevantRatingThreshold = value;
+            return self();
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRankEvalMetricRatingTresholdDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		setupRankEvalMetricBaseDeserializer(op);
-		op.add(AbstractBuilder::relevantRatingThreshold, JsonpDeserializer.integerDeserializer(),
-				"relevant_rating_threshold");
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRankEvalMetricRatingTresholdDeserializer(
+        ObjectDeserializer<BuilderT> op
+    ) {
+        setupRankEvalMetricBaseDeserializer(op);
+        op.add(AbstractBuilder::relevantRatingThreshold, JsonpDeserializer.integerDeserializer(), "relevant_rating_threshold");
 
-	}
+    }
 
 }

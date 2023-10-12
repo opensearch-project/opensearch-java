@@ -37,18 +37,17 @@ package org.opensearch.client.opensearch.watcher;
  * <p>
  * Variants <code>text</code> are not available here as they don't have a
  * dedicated class. Use {@link TimeOfDay}'s builder for these.
- * 
+ *
  */
 public class TimeOfDayBuilders {
-	private TimeOfDayBuilders() {
-	}
+    private TimeOfDayBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link HourAndMinute hour_minute} {@code TimeOfDay}
-	 * variant.
-	 */
-	public static HourAndMinute.Builder hourMinute() {
-		return new HourAndMinute.Builder();
-	}
+    /**
+     * Creates a builder for the {@link HourAndMinute hour_minute} {@code TimeOfDay}
+     * variant.
+     */
+    public static HourAndMinute.Builder hourMinute() {
+        return new HourAndMinute.Builder();
+    }
 
 }
