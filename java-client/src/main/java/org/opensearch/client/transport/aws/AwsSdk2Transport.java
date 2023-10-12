@@ -10,6 +10,23 @@ package org.opensearch.client.transport.aws;
 
 import jakarta.json.JsonObject;
 import jakarta.json.stream.JsonParser;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.zip.GZIPInputStream;
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
@@ -39,25 +56,6 @@ import software.amazon.awssdk.http.async.AsyncExecuteRequest;
 import software.amazon.awssdk.http.async.SdkAsyncHttpClient;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.utils.SdkAutoCloseable;
-
-import javax.annotation.CheckForNull;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.zip.GZIPInputStream;
-
 
 /**
  * Implementation of the OpenSearchTransport interface that sends signed requests using
@@ -92,10 +90,11 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      *                compression options, etc.
      */
     public AwsSdk2Transport(
-            @CheckForNull SdkAsyncHttpClient asyncHttpClient,
-            @Nonnull String host,
-            @Nonnull Region signingRegion,
-            @CheckForNull AwsSdk2TransportOptions options) {
+        @CheckForNull SdkAsyncHttpClient asyncHttpClient,
+        @Nonnull String host,
+        @Nonnull Region signingRegion,
+        @CheckForNull AwsSdk2TransportOptions options
+    ) {
         this(asyncHttpClient, host, "es", signingRegion, options);
     }
 
@@ -110,10 +109,11 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      *                compression options, etc.
      */
     public AwsSdk2Transport(
-            @CheckForNull SdkHttpClient syncHttpClient,
-            @Nonnull String host,
-            @Nonnull Region signingRegion,
-            @CheckForNull AwsSdk2TransportOptions options) {
+        @CheckForNull SdkHttpClient syncHttpClient,
+        @Nonnull String host,
+        @Nonnull Region signingRegion,
+        @CheckForNull AwsSdk2TransportOptions options
+    ) {
         this(syncHttpClient, host, "es", signingRegion, options);
     }
 
@@ -132,11 +132,12 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      *                compression options, etc.
      */
     public AwsSdk2Transport(
-            @CheckForNull SdkAsyncHttpClient asyncHttpClient,
-            @Nonnull String host,
-            @Nonnull String signingServiceName,
-            @Nonnull Region signingRegion,
-            @CheckForNull AwsSdk2TransportOptions options) {
+        @CheckForNull SdkAsyncHttpClient asyncHttpClient,
+        @Nonnull String host,
+        @Nonnull String signingServiceName,
+        @Nonnull Region signingRegion,
+        @CheckForNull AwsSdk2TransportOptions options
+    ) {
         this((SdkAutoCloseable) asyncHttpClient, host, signingServiceName, signingRegion, options);
     }
 
@@ -152,36 +153,36 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      *                compression options, etc.
      */
     public AwsSdk2Transport(
-            @CheckForNull SdkHttpClient syncHttpClient,
-            @Nonnull String host,
-            @Nonnull String signingServiceName,
-            @Nonnull Region signingRegion,
-            @CheckForNull AwsSdk2TransportOptions options) {
+        @CheckForNull SdkHttpClient syncHttpClient,
+        @Nonnull String host,
+        @Nonnull String signingServiceName,
+        @Nonnull Region signingRegion,
+        @CheckForNull AwsSdk2TransportOptions options
+    ) {
         this((SdkAutoCloseable) syncHttpClient, host, signingServiceName, signingRegion, options);
     }
 
     private AwsSdk2Transport(
-            @CheckForNull SdkAutoCloseable httpClient,
-            @Nonnull String host,
-            @Nonnull String signingServiceName,
-            @Nonnull Region signingRegion,
-            @CheckForNull AwsSdk2TransportOptions options) {
+        @CheckForNull SdkAutoCloseable httpClient,
+        @Nonnull String host,
+        @Nonnull String signingServiceName,
+        @Nonnull Region signingRegion,
+        @CheckForNull AwsSdk2TransportOptions options
+    ) {
         Objects.requireNonNull(host, "Target OpenSearch service host must not be null");
         this.httpClient = httpClient;
         this.host = host;
         this.signingServiceName = signingServiceName;
         this.signingRegion = signingRegion;
         this.transportOptions = options != null ? options : AwsSdk2TransportOptions.builder().build();
-        this.defaultMapper = Optional.ofNullable(options)
-                .map(AwsSdk2TransportOptions::mapper)
-                .orElse(new JacksonJsonpMapper());
+        this.defaultMapper = Optional.ofNullable(options).map(AwsSdk2TransportOptions::mapper).orElse(new JacksonJsonpMapper());
     }
 
     @Override
     public <RequestT, ResponseT, ErrorT> ResponseT performRequest(
-            RequestT request,
-            Endpoint<RequestT, ResponseT, ErrorT> endpoint,
-            @Nullable TransportOptions options
+        RequestT request,
+        Endpoint<RequestT, ResponseT, ErrorT> endpoint,
+        @Nullable TransportOptions options
     ) throws IOException {
 
         OpenSearchRequestBodyBuffer requestBody = prepareRequestBody(request, endpoint, options);
@@ -214,9 +215,9 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
     @Override
     public <RequestT, ResponseT, ErrorT> CompletableFuture<ResponseT> performRequestAsync(
-            RequestT request,
-            Endpoint<RequestT, ResponseT, ErrorT> endpoint,
-            @Nullable TransportOptions options
+        RequestT request,
+        Endpoint<RequestT, ResponseT, ErrorT> endpoint,
+        @Nullable TransportOptions options
     ) {
         try {
             OpenSearchRequestBodyBuffer requestBody = prepareRequestBody(request, endpoint, options);
@@ -247,25 +248,24 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     }
 
     @Override
-    public void close() {
-    }
+    public void close() {}
 
     @CheckForNull
     private <RequestT> OpenSearchRequestBodyBuffer prepareRequestBody(
-            RequestT request,
-            Endpoint<RequestT, ?, ?> endpoint,
-            TransportOptions options
+        RequestT request,
+        Endpoint<RequestT, ?, ?> endpoint,
+        TransportOptions options
     ) throws IOException {
         if (endpoint.hasRequestBody()) {
             final JsonpMapper mapper = Optional.ofNullable(options)
-                    .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                    .map(AwsSdk2TransportOptions::mapper)
-                    .orElse(defaultMapper);
+                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
+                .map(AwsSdk2TransportOptions::mapper)
+                .orElse(defaultMapper);
             final int maxUncompressedSize = Optional.ofNullable(options)
-                    .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                    .map(AwsSdk2TransportOptions::requestCompressionSize)
-                    .or(()->Optional.ofNullable(transportOptions.requestCompressionSize()))
-                    .orElse(DEFAULT_REQUEST_COMPRESSION_SIZE);
+                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
+                .map(AwsSdk2TransportOptions::requestCompressionSize)
+                .or(() -> Optional.ofNullable(transportOptions.requestCompressionSize()))
+                .orElse(DEFAULT_REQUEST_COMPRESSION_SIZE);
 
             OpenSearchRequestBodyBuffer buffer = new OpenSearchRequestBodyBuffer(mapper, maxUncompressedSize);
             buffer.addContent(request);
@@ -276,13 +276,12 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     }
 
     private <RequestT> SdkHttpFullRequest prepareRequest(
-            RequestT request,
-            Endpoint<RequestT, ?, ?> endpoint,
-            @CheckForNull TransportOptions options,
-            @CheckForNull OpenSearchRequestBodyBuffer body
+        RequestT request,
+        Endpoint<RequestT, ?, ?> endpoint,
+        @CheckForNull TransportOptions options,
+        @CheckForNull OpenSearchRequestBodyBuffer body
     ) {
-        SdkHttpFullRequest.Builder req = SdkHttpFullRequest.builder()
-                .method(SdkHttpMethod.fromValue(endpoint.method(request)));
+        SdkHttpFullRequest.Builder req = SdkHttpFullRequest.builder().method(SdkHttpMethod.fromValue(endpoint.method(request)));
 
         StringBuilder url = new StringBuilder();
         url.append("https://").append(host);
@@ -323,10 +322,10 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         }
 
         boolean responseCompression = Optional.ofNullable(options)
-                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                .map(AwsSdk2TransportOptions::responseCompression)
-                .or(() -> Optional.ofNullable(transportOptions.responseCompression()))
-                .orElse(Boolean.TRUE);
+            .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
+            .map(AwsSdk2TransportOptions::responseCompression)
+            .or(() -> Optional.ofNullable(transportOptions.responseCompression()))
+            .orElse(Boolean.TRUE);
         if (responseCompression) {
             req.putHeader("Accept-Encoding", "gzip");
         } else {
@@ -334,16 +333,16 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         }
 
         final AwsCredentialsProvider credentials = Optional.ofNullable(options)
-                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                .map(AwsSdk2TransportOptions::credentials)
-                .or(() -> Optional.ofNullable(transportOptions.credentials()))
-                .orElse(DefaultCredentialsProvider.create());
+            .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
+            .map(AwsSdk2TransportOptions::credentials)
+            .or(() -> Optional.ofNullable(transportOptions.credentials()))
+            .orElse(DefaultCredentialsProvider.create());
 
         Aws4SignerParams signerParams = Aws4SignerParams.builder()
-                .awsCredentials(credentials.resolveCredentials())
-                .signingName(this.signingServiceName)
-                .signingRegion(signingRegion)
-                .build();
+            .awsCredentials(credentials.resolveCredentials())
+            .signingName(this.signingServiceName)
+            .signingRegion(signingRegion)
+            .build();
         return Aws4Signer.create().sign(req.build(), signerParams);
     }
 
@@ -375,10 +374,10 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     }
 
     private <ResponseT> ResponseT executeSync(
-            SdkHttpClient syncHttpClient,
-            SdkHttpFullRequest httpRequest,
-            Endpoint<?, ResponseT, ?> endpoint,
-            TransportOptions options
+        SdkHttpClient syncHttpClient,
+        SdkHttpFullRequest httpRequest,
+        Endpoint<?, ResponseT, ?> endpoint,
+        TransportOptions options
     ) throws IOException {
 
         HttpExecuteRequest.Builder executeRequest = HttpExecuteRequest.builder().request(httpRequest);
@@ -399,49 +398,46 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     }
 
     private <ResponseT> CompletableFuture<ResponseT> executeAsync(
-            SdkAsyncHttpClient asyncHttpClient,
-            SdkHttpFullRequest httpRequest,
-            @CheckForNull OpenSearchRequestBodyBuffer requestBody,
-            Endpoint<?, ResponseT, ?> endpoint,
-            TransportOptions options
+        SdkAsyncHttpClient asyncHttpClient,
+        SdkHttpFullRequest httpRequest,
+        @CheckForNull OpenSearchRequestBodyBuffer requestBody,
+        Endpoint<?, ResponseT, ?> endpoint,
+        TransportOptions options
     ) {
         byte[] requestBodyArray = requestBody == null ? NO_BYTES : requestBody.getByteArray();
 
         final AsyncCapturingResponseHandler responseHandler = new AsyncCapturingResponseHandler();
         AsyncExecuteRequest.Builder executeRequest = AsyncExecuteRequest.builder()
-                .request(httpRequest)
-                .requestContentPublisher(new AsyncByteArrayContentPublisher(requestBodyArray))
-                .responseHandler(responseHandler);
+            .request(httpRequest)
+            .requestContentPublisher(new AsyncByteArrayContentPublisher(requestBodyArray))
+            .responseHandler(responseHandler);
         CompletableFuture<Void> executeFuture = asyncHttpClient.execute(executeRequest.build());
-        return executeFuture
-                .thenCompose(_v -> responseHandler.getHeaderPromise())
-                .thenCompose(response -> responseHandler.getBodyPromise().thenCompose(responseBody -> {
-                    CompletableFuture<ResponseT> ret = new CompletableFuture<>();
-                    try {
-                        InputStream bodyStream = new ByteArrayInputStream(responseBody);
-                        ret.complete(parseResponse(response, bodyStream, endpoint, options));
-                    } catch (Throwable e) {
-                        ret.completeExceptionally(e);
-                    }
-                    return ret;
-                }));
+        return executeFuture.thenCompose(_v -> responseHandler.getHeaderPromise())
+            .thenCompose(response -> responseHandler.getBodyPromise().thenCompose(responseBody -> {
+                CompletableFuture<ResponseT> ret = new CompletableFuture<>();
+                try {
+                    InputStream bodyStream = new ByteArrayInputStream(responseBody);
+                    ret.complete(parseResponse(response, bodyStream, endpoint, options));
+                } catch (Throwable e) {
+                    ret.completeExceptionally(e);
+                }
+                return ret;
+            }));
     }
 
     private <ResponseT, ErrorT> ResponseT parseResponse(
-            @Nonnull SdkHttpResponse httpResponse,
-            @CheckForNull InputStream bodyStream,
-            @Nonnull Endpoint<?, ResponseT, ErrorT> endpoint,
-            @CheckForNull TransportOptions options
+        @Nonnull SdkHttpResponse httpResponse,
+        @CheckForNull InputStream bodyStream,
+        @Nonnull Endpoint<?, ResponseT, ErrorT> endpoint,
+        @CheckForNull TransportOptions options
     ) throws IOException {
         final JsonpMapper mapper = Optional.ofNullable(options)
-                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                .map(AwsSdk2TransportOptions::mapper)
-                .orElse(defaultMapper);
+            .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
+            .map(AwsSdk2TransportOptions::mapper)
+            .orElse(defaultMapper);
 
         int statusCode = httpResponse.statusCode();
-        boolean isZipped = httpResponse.firstMatchingHeader("Content-Encoding")
-                .map(enc -> enc.contains("gzip"))
-                .orElse(Boolean.FALSE);
+        boolean isZipped = httpResponse.firstMatchingHeader("Content-Encoding").map(enc -> enc.contains("gzip")).orElse(Boolean.FALSE);
         if (bodyStream != null && isZipped) {
             bodyStream = new GZIPInputStream(bodyStream);
         }
@@ -454,9 +450,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
             if (bodyStream != null) {
                 try (JsonParser parser = mapper.jsonProvider().createParser(bodyStream)) {
-                    JsonObject val = JsonpDeserializer.jsonValueDeserializer()
-                            .deserialize(parser, mapper)
-                            .asJsonObject();
+                    JsonObject val = JsonpDeserializer.jsonValueDeserializer().deserialize(parser, mapper).asJsonObject();
                     String message = null;
                     if (val.get("error") instanceof JsonObject) {
                         message = val.get("error").asJsonObject().getString("reason", null);
@@ -471,7 +465,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
                         cause.reason(message);
                     }
                 } catch (Exception e) {
-                    // OK.  We'll use default message
+                    // OK. We'll use default message
                 }
             }
 
@@ -482,9 +476,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         if (endpoint.isError(statusCode)) {
             JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
             if (errorDeserializer == null || bodyStream == null) {
-                throw new TransportException(
-                        "Request failed with status code '" + statusCode + "'"
-                );
+                throw new TransportException("Request failed with status code '" + statusCode + "'");
             }
             try {
                 try (JsonParser parser = mapper.jsonProvider().createParser(bodyStream)) {

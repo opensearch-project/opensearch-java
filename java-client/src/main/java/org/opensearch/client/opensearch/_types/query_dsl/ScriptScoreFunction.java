@@ -32,117 +32,115 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
-import org.opensearch.client.opensearch._types.Script;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.ScriptScoreFunction
 
-
 @JsonpDeserializable
 public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
-	private final Script script;
+    private final Script script;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ScriptScoreFunction(Builder builder) {
-		super(builder);
+    private ScriptScoreFunction(Builder builder) {
+        super(builder);
 
-		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
+        this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
-	}
+    }
 
-	public static ScriptScoreFunction of(Function<Builder, ObjectBuilder<ScriptScoreFunction>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ScriptScoreFunction of(Function<Builder, ObjectBuilder<ScriptScoreFunction>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * FunctionScore variant kind.
-	 */
-	@Override
-	public FunctionScore.Kind _functionScoreKind() {
-		return FunctionScore.Kind.ScriptScore;
-	}
+    /**
+     * FunctionScore variant kind.
+     */
+    @Override
+    public FunctionScore.Kind _functionScoreKind() {
+        return FunctionScore.Kind.ScriptScore;
+    }
 
-	/**
-	 * Required - API name: {@code script}
-	 */
-	public final Script script() {
-		return this.script;
-	}
+    /**
+     * Required - API name: {@code script}
+     */
+    public final Script script() {
+        return this.script;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("script");
-		this.script.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("script");
+        this.script.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ScriptScoreFunction}.
-	 */
+    /**
+     * Builder for {@link ScriptScoreFunction}.
+     */
 
-	public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ScriptScoreFunction> {
-		private Script script;
+    public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptScoreFunction> {
+        private Script script;
 
-		/**
-		 * Required - API name: {@code script}
-		 */
-		public final Builder script(Script value) {
-			this.script = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code script}
+         */
+        public final Builder script(Script value) {
+            this.script = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code script}
-		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code script}
+         */
+        public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+            return this.script(fn.apply(new Script.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ScriptScoreFunction}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ScriptScoreFunction build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ScriptScoreFunction}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ScriptScoreFunction build() {
+            _checkSingleUse();
 
-			return new ScriptScoreFunction(this);
-		}
-	}
+            return new ScriptScoreFunction(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ScriptScoreFunction}
-	 */
-	public static final JsonpDeserializer<ScriptScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ScriptScoreFunction::setupScriptScoreFunctionDeserializer);
+    /**
+     * Json deserializer for {@link ScriptScoreFunction}
+     */
+    public static final JsonpDeserializer<ScriptScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ScriptScoreFunction::setupScriptScoreFunctionDeserializer
+    );
 
-	protected static void setupScriptScoreFunctionDeserializer(ObjectDeserializer<ScriptScoreFunction.Builder> op) {
-		setupScoreFunctionBaseDeserializer(op);
-		op.add(Builder::script, Script._DESERIALIZER, "script");
+    protected static void setupScriptScoreFunctionDeserializer(ObjectDeserializer<ScriptScoreFunction.Builder> op) {
+        setupScoreFunctionBaseDeserializer(op);
+        op.add(Builder::script, Script._DESERIALIZER, "script");
 
-	}
+    }
 
 }

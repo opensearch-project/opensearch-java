@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,94 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: indices._types.IndexRoutingRebalance
 
-
 @JsonpDeserializable
 public class IndexRoutingRebalance implements JsonpSerializable {
-	private final IndexRoutingRebalanceOptions enable;
+    private final IndexRoutingRebalanceOptions enable;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndexRoutingRebalance(Builder builder) {
+    private IndexRoutingRebalance(Builder builder) {
 
-		this.enable = ApiTypeHelper.requireNonNull(builder.enable, this, "enable");
+        this.enable = ApiTypeHelper.requireNonNull(builder.enable, this, "enable");
 
-	}
+    }
 
-	public static IndexRoutingRebalance of(Function<Builder, ObjectBuilder<IndexRoutingRebalance>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndexRoutingRebalance of(Function<Builder, ObjectBuilder<IndexRoutingRebalance>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code enable}
-	 */
-	public final IndexRoutingRebalanceOptions enable() {
-		return this.enable;
-	}
+    /**
+     * Required - API name: {@code enable}
+     */
+    public final IndexRoutingRebalanceOptions enable() {
+        return this.enable;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("enable");
-		this.enable.serialize(generator, mapper);
+        generator.writeKey("enable");
+        this.enable.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndexRoutingRebalance}.
-	 */
+    /**
+     * Builder for {@link IndexRoutingRebalance}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingRebalance> {
-		private IndexRoutingRebalanceOptions enable;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingRebalance> {
+        private IndexRoutingRebalanceOptions enable;
 
-		/**
-		 * Required - API name: {@code enable}
-		 */
-		public final Builder enable(IndexRoutingRebalanceOptions value) {
-			this.enable = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code enable}
+         */
+        public final Builder enable(IndexRoutingRebalanceOptions value) {
+            this.enable = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IndexRoutingRebalance}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndexRoutingRebalance build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndexRoutingRebalance}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndexRoutingRebalance build() {
+            _checkSingleUse();
 
-			return new IndexRoutingRebalance(this);
-		}
-	}
+            return new IndexRoutingRebalance(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IndexRoutingRebalance}
-	 */
-	public static final JsonpDeserializer<IndexRoutingRebalance> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexRoutingRebalance::setupIndexRoutingRebalanceDeserializer);
+    /**
+     * Json deserializer for {@link IndexRoutingRebalance}
+     */
+    public static final JsonpDeserializer<IndexRoutingRebalance> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IndexRoutingRebalance::setupIndexRoutingRebalanceDeserializer
+    );
 
-	protected static void setupIndexRoutingRebalanceDeserializer(ObjectDeserializer<IndexRoutingRebalance.Builder> op) {
+    protected static void setupIndexRoutingRebalanceDeserializer(ObjectDeserializer<IndexRoutingRebalance.Builder> op) {
 
-		op.add(Builder::enable, IndexRoutingRebalanceOptions._DESERIALIZER, "enable");
+        op.add(Builder::enable, IndexRoutingRebalanceOptions._DESERIALIZER, "enable");
 
-	}
+    }
 
 }

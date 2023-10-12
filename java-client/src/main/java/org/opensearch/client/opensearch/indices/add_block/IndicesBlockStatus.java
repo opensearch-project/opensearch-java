@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.indices.add_block;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,116 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: indices.add_block.IndicesBlockStatus
 
 @JsonpDeserializable
 public class IndicesBlockStatus implements JsonpSerializable {
-	private final String name;
+    private final String name;
 
-	private final boolean blocked;
+    private final boolean blocked;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndicesBlockStatus(Builder builder) {
+    private IndicesBlockStatus(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.blocked = ApiTypeHelper.requireNonNull(builder.blocked, this, "blocked");
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.blocked = ApiTypeHelper.requireNonNull(builder.blocked, this, "blocked");
 
-	}
+    }
 
-	public static IndicesBlockStatus of(Function<Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndicesBlockStatus of(Function<Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * Required - API name: {@code name}
+     */
+    public final String name() {
+        return this.name;
+    }
 
-	/**
-	 * Required - API name: {@code blocked}
-	 */
-	public final boolean blocked() {
-		return this.blocked;
-	}
+    /**
+     * Required - API name: {@code blocked}
+     */
+    public final boolean blocked() {
+        return this.blocked;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+        generator.writeKey("name");
+        generator.write(this.name);
 
-		generator.writeKey("blocked");
-		generator.write(this.blocked);
+        generator.writeKey("blocked");
+        generator.write(this.blocked);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndicesBlockStatus}.
-	 */
+    /**
+     * Builder for {@link IndicesBlockStatus}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesBlockStatus> {
-		private String name;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesBlockStatus> {
+        private String name;
 
-		private Boolean blocked;
+        private Boolean blocked;
 
-		/**
-		 * Required - API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code name}
+         */
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code blocked}
-		 */
-		public final Builder blocked(boolean value) {
-			this.blocked = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code blocked}
+         */
+        public final Builder blocked(boolean value) {
+            this.blocked = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IndicesBlockStatus}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndicesBlockStatus build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndicesBlockStatus}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndicesBlockStatus build() {
+            _checkSingleUse();
 
-			return new IndicesBlockStatus(this);
-		}
-	}
+            return new IndicesBlockStatus(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IndicesBlockStatus}
-	 */
-	public static final JsonpDeserializer<IndicesBlockStatus> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndicesBlockStatus::setupIndicesBlockStatusDeserializer);
+    /**
+     * Json deserializer for {@link IndicesBlockStatus}
+     */
+    public static final JsonpDeserializer<IndicesBlockStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IndicesBlockStatus::setupIndicesBlockStatusDeserializer
+    );
 
-	protected static void setupIndicesBlockStatusDeserializer(ObjectDeserializer<IndicesBlockStatus.Builder> op) {
+    protected static void setupIndicesBlockStatusDeserializer(ObjectDeserializer<IndicesBlockStatus.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::blocked, JsonpDeserializer.booleanDeserializer(), "blocked");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::blocked, JsonpDeserializer.booleanDeserializer(), "blocked");
 
-	}
+    }
 
 }

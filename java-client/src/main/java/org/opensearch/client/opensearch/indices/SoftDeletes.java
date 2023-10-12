@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,93 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: indices._types.SoftDeletes
 
-
 @JsonpDeserializable
 public class SoftDeletes implements JsonpSerializable {
-	private final boolean enabled;
+    private final boolean enabled;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SoftDeletes(Builder builder) {
+    private SoftDeletes(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
-	}
+    }
 
-	public static SoftDeletes of(Function<Builder, ObjectBuilder<SoftDeletes>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SoftDeletes of(Function<Builder, ObjectBuilder<SoftDeletes>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code enabled}
-	 */
-	public final boolean enabled() {
-		return this.enabled;
-	}
+    /**
+     * Required - API name: {@code enabled}
+     */
+    public final boolean enabled() {
+        return this.enabled;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("enabled");
-		generator.write(this.enabled);
+        generator.writeKey("enabled");
+        generator.write(this.enabled);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SoftDeletes}.
-	 */
+    /**
+     * Builder for {@link SoftDeletes}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SoftDeletes> {
-		private Boolean enabled;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SoftDeletes> {
+        private Boolean enabled;
 
-		/**
-		 * Required - API name: {@code enabled}
-		 */
-		public final Builder enabled(boolean value) {
-			this.enabled = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code enabled}
+         */
+        public final Builder enabled(boolean value) {
+            this.enabled = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SoftDeletes}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SoftDeletes build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SoftDeletes}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SoftDeletes build() {
+            _checkSingleUse();
 
-			return new SoftDeletes(this);
-		}
-	}
+            return new SoftDeletes(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SoftDeletes}
-	 */
-	public static final JsonpDeserializer<SoftDeletes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SoftDeletes::setupSoftDeletesDeserializer);
+    /**
+     * Json deserializer for {@link SoftDeletes}
+     */
+    public static final JsonpDeserializer<SoftDeletes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SoftDeletes::setupSoftDeletesDeserializer
+    );
 
-	protected static void setupSoftDeletesDeserializer(ObjectDeserializer<SoftDeletes.Builder> op) {
+    protected static void setupSoftDeletesDeserializer(ObjectDeserializer<SoftDeletes.Builder> op) {
 
-		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+        op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
-	}
+    }
 
 }

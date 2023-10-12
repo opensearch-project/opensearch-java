@@ -8,6 +8,21 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.TreeSet;
+import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.ssl.SSLContextBuilder;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
 import org.opensearch.Version;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestClientBuilder;
@@ -19,24 +34,8 @@ import org.opensearch.client.opensearch.cat.indices.IndicesRecord;
 import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
 import org.opensearch.client.opensearch.nodes.NodesInfoResponse;
 import org.opensearch.client.opensearch.nodes.info.NodeInfo;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.ssl.SSLContextBuilder;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.test.rest.OpenSearchRestTestCase;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.TreeSet;
 
 public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCase implements OpenSearchTransportSupport {
     private static final List<String> systemIndices = List.of(".opensearch-observability", ".opendistro_security", ".plugins-ml-config");
@@ -88,16 +87,14 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
             builder.setHttpClientConfigCallback(httpClientBuilder -> {
                 String userName = Optional.ofNullable(System.getProperty("user")).orElse("admin");
                 String password = Optional.ofNullable(System.getProperty("password")).orElse("admin");
-    
+
                 final BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-                for (final HttpHost host: hosts) {
-                    credentialsProvider.setCredentials(AuthScope.ANY,
-                        new UsernamePasswordCredentials(userName, password));
+                for (final HttpHost host : hosts) {
+                    credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(userName, password));
                 }
 
                 try {
-                    return httpClientBuilder
-                        .setDefaultCredentialsProvider(credentialsProvider)
+                    return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider)
                         // disable the certificate since our testing cluster just uses the default security configuration
                         .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE)
                         .setSSLContext(SSLContextBuilder.create().loadTrustMaterial(null, (chains, authType) -> true).build());
@@ -133,8 +130,7 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
         adminJavaClient().indices().deleteDataStream(b -> b.name("*"));
 
         // wipe all indices
-        final IndicesResponse response = adminJavaClient()
-            .cat()
+        final IndicesResponse response = adminJavaClient().cat()
             .indices(r -> r.headers("index,creation.date").expandWildcards(ExpandWildcard.All));
 
         for (IndicesRecord index : response.valueBody()) {
@@ -150,7 +146,7 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
             if (javaClient != null) {
                 IOUtils.closeQueitly(javaClient._transport());
             }
-            
+
             if (adminJavaClient != null) {
                 IOUtils.closeQueitly(adminJavaClient._transport());
             }
@@ -166,4 +162,4 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
     protected boolean preserveIndicesUponCompletion() {
         return true;
     }
-} 
+}

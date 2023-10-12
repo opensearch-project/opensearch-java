@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,109 +41,105 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.ConstantScoreQuery
 
-
 @JsonpDeserializable
 public class ConstantScoreQuery extends QueryBase implements QueryVariant {
-	private final Query filter;
+    private final Query filter;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ConstantScoreQuery(Builder builder) {
-		super(builder);
+    private ConstantScoreQuery(Builder builder) {
+        super(builder);
 
-		this.filter = ApiTypeHelper.requireNonNull(builder.filter, this, "filter");
+        this.filter = ApiTypeHelper.requireNonNull(builder.filter, this, "filter");
 
-	}
+    }
 
-	public static ConstantScoreQuery of(Function<Builder, ObjectBuilder<ConstantScoreQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ConstantScoreQuery of(Function<Builder, ObjectBuilder<ConstantScoreQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.ConstantScore;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.ConstantScore;
+    }
 
-	/**
-	 * Required - API name: {@code filter}
-	 */
-	public final Query filter() {
-		return this.filter;
-	}
+    /**
+     * Required - API name: {@code filter}
+     */
+    public final Query filter() {
+        return this.filter;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("filter");
-		this.filter.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("filter");
+        this.filter.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ConstantScoreQuery}.
-	 */
+    /**
+     * Builder for {@link ConstantScoreQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ConstantScoreQuery> {
-		private Query filter;
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ConstantScoreQuery> {
+        private Query filter;
 
-		/**
-		 * Required - API name: {@code filter}
-		 */
-		public final Builder filter(Query value) {
-			this.filter = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code filter}
+         */
+        public final Builder filter(Query value) {
+            this.filter = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code filter}
-		 */
-		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filter(fn.apply(new Query.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code filter}
+         */
+        public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+            return this.filter(fn.apply(new Query.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ConstantScoreQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ConstantScoreQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ConstantScoreQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ConstantScoreQuery build() {
+            _checkSingleUse();
 
-			return new ConstantScoreQuery(this);
-		}
-	}
+            return new ConstantScoreQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ConstantScoreQuery}
-	 */
-	public static final JsonpDeserializer<ConstantScoreQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ConstantScoreQuery::setupConstantScoreQueryDeserializer);
+    /**
+     * Json deserializer for {@link ConstantScoreQuery}
+     */
+    public static final JsonpDeserializer<ConstantScoreQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ConstantScoreQuery::setupConstantScoreQueryDeserializer
+    );
 
-	protected static void setupConstantScoreQueryDeserializer(ObjectDeserializer<ConstantScoreQuery.Builder> op) {
-		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::filter, Query._DESERIALIZER, "filter");
+    protected static void setupConstantScoreQueryDeserializer(ObjectDeserializer<ConstantScoreQuery.Builder> op) {
+        QueryBase.setupQueryBaseDeserializer(op);
+        op.add(Builder::filter, Query._DESERIALIZER, "filter");
 
-	}
+    }
 
 }

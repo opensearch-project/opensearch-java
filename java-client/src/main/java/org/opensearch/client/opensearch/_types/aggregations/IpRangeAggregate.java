@@ -32,77 +32,77 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.IpRangeAggregate
-
 
 @JsonpDeserializable
 public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IpRangeAggregate(Builder builder) {
-		super(builder);
+    private IpRangeAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static IpRangeAggregate of(Function<Builder, ObjectBuilder<IpRangeAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IpRangeAggregate of(Function<Builder, ObjectBuilder<IpRangeAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.IpRange;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.IpRange;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IpRangeAggregate}.
-	 */
+    /**
+     * Builder for {@link IpRangeAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<IpRangeBucket, Builder>
-			implements
-				ObjectBuilder<IpRangeAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<IpRangeBucket, Builder>
+        implements
+            ObjectBuilder<IpRangeAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IpRangeAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IpRangeAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link IpRangeAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IpRangeAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new IpRangeAggregate(this);
-		}
-	}
+            return new IpRangeAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IpRangeAggregate}
-	 */
-	public static final JsonpDeserializer<IpRangeAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IpRangeAggregate::setupIpRangeAggregateDeserializer);
+    /**
+     * Json deserializer for {@link IpRangeAggregate}
+     */
+    public static final JsonpDeserializer<IpRangeAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IpRangeAggregate::setupIpRangeAggregateDeserializer
+    );
 
-	protected static void setupIpRangeAggregateDeserializer(ObjectDeserializer<IpRangeAggregate.Builder> op) {
-		setupMultiBucketAggregateBaseDeserializer(op, IpRangeBucket._DESERIALIZER);
+    protected static void setupIpRangeAggregateDeserializer(ObjectDeserializer<IpRangeAggregate.Builder> op) {
+        setupMultiBucketAggregateBaseDeserializer(op, IpRangeBucket._DESERIALIZER);
 
-	}
+    }
 
 }

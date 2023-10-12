@@ -32,13 +32,12 @@
 
 package org.opensearch.client.transport;
 
-import org.opensearch.client.ApiClient;
-import org.opensearch.client.json.JsonpMapper;
-
-import javax.annotation.Nullable;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
+import javax.annotation.Nullable;
+import org.opensearch.client.ApiClient;
+import org.opensearch.client.json.JsonpMapper;
 
 /**
  * The transport layer that allows {@link ApiClient}s to send requests.

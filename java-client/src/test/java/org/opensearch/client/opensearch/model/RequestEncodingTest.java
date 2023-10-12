@@ -32,9 +32,9 @@
 
 package org.opensearch.client.opensearch.model;
 
-import org.opensearch.client.opensearch.core.SearchRequest;
-import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.junit.Test;
+import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.client.opensearch.core.SearchRequest;
 
 public class RequestEncodingTest extends ModelTestCase {
 
@@ -44,16 +44,9 @@ public class RequestEncodingTest extends ModelTestCase {
         // This checks that path parameters ("q") are not serialized as json
         // and variant containers ser/deser
 
-        SearchRequest request = new SearchRequest.Builder()
-            .q("blah")
-            .query(b1 -> b1
-                .type(b2 -> b2
-                    .value("foo"))
-            )
-            .aggregations(
-                "myagg", b2 -> b2
-                    .avg(b3 -> b3.field("foo"))
-            )
+        SearchRequest request = new SearchRequest.Builder().q("blah")
+            .query(b1 -> b1.type(b2 -> b2.value("foo")))
+            .aggregations("myagg", b2 -> b2.avg(b3 -> b3.field("foo")))
             .build();
 
         JsonbJsonpMapper mapper = new JsonbJsonpMapper();

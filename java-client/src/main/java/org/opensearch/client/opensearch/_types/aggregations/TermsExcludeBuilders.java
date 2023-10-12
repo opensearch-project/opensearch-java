@@ -38,10 +38,9 @@ package org.opensearch.client.opensearch._types.aggregations;
  * Variants <code>terms</code>, <code>regexp</code> are not available here as
  * they don't have a dedicated class. Use {@link TermsExclude}'s builder for
  * these.
- * 
+ *
  */
 public class TermsExcludeBuilders {
-	private TermsExcludeBuilders() {
-	}
+    private TermsExcludeBuilders() {}
 
 }

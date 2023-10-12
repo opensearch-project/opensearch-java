@@ -32,10 +32,9 @@
 
 package org.opensearch.client.transport.endpoints;
 
-import org.opensearch.client.json.JsonpDeserializer;
-
 import java.util.Map;
 import java.util.function.Function;
+import org.opensearch.client.json.JsonpDeserializer;
 
 public class BooleanEndpoint<RequestT> extends SimpleEndpoint<RequestT, BooleanResponse> {
 
@@ -43,8 +42,7 @@ public class BooleanEndpoint<RequestT> extends SimpleEndpoint<RequestT, BooleanR
         String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,
-        Function<RequestT,
-            Map<String, String>> queryParameters,
+        Function<RequestT, Map<String, String>> queryParameters,
         Function<RequestT, Map<String, String>> headers,
         boolean hasRequestBody, // always false
         JsonpDeserializer<?> responseParser // always null

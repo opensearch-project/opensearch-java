@@ -32,116 +32,115 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.HistogramProperty
 
-
 @JsonpDeserializable
 public class HistogramProperty extends PropertyBase implements PropertyVariant {
-	@Nullable
-	private final Boolean ignoreMalformed;
+    @Nullable
+    private final Boolean ignoreMalformed;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private HistogramProperty(Builder builder) {
-		super(builder);
+    private HistogramProperty(Builder builder) {
+        super(builder);
 
-		this.ignoreMalformed = builder.ignoreMalformed;
+        this.ignoreMalformed = builder.ignoreMalformed;
 
-	}
+    }
 
-	public static HistogramProperty of(Function<Builder, ObjectBuilder<HistogramProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static HistogramProperty of(Function<Builder, ObjectBuilder<HistogramProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Histogram;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Histogram;
+    }
 
-	/**
-	 * API name: {@code ignore_malformed}
-	 */
-	@Nullable
-	public final Boolean ignoreMalformed() {
-		return this.ignoreMalformed;
-	}
+    /**
+     * API name: {@code ignore_malformed}
+     */
+    @Nullable
+    public final Boolean ignoreMalformed() {
+        return this.ignoreMalformed;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "histogram");
-		super.serializeInternal(generator, mapper);
-		if (this.ignoreMalformed != null) {
-			generator.writeKey("ignore_malformed");
-			generator.write(this.ignoreMalformed);
+        generator.write("type", "histogram");
+        super.serializeInternal(generator, mapper);
+        if (this.ignoreMalformed != null) {
+            generator.writeKey("ignore_malformed");
+            generator.write(this.ignoreMalformed);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link HistogramProperty}.
-	 */
+    /**
+     * Builder for {@link HistogramProperty}.
+     */
 
-	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<HistogramProperty> {
-		@Nullable
-		private Boolean ignoreMalformed;
+    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<HistogramProperty> {
+        @Nullable
+        private Boolean ignoreMalformed;
 
-		/**
-		 * API name: {@code ignore_malformed}
-		 */
-		public final Builder ignoreMalformed(@Nullable Boolean value) {
-			this.ignoreMalformed = value;
-			return this;
-		}
+        /**
+         * API name: {@code ignore_malformed}
+         */
+        public final Builder ignoreMalformed(@Nullable Boolean value) {
+            this.ignoreMalformed = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link HistogramProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public HistogramProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link HistogramProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public HistogramProperty build() {
+            _checkSingleUse();
 
-			return new HistogramProperty(this);
-		}
-	}
+            return new HistogramProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link HistogramProperty}
-	 */
-	public static final JsonpDeserializer<HistogramProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HistogramProperty::setupHistogramPropertyDeserializer);
+    /**
+     * Json deserializer for {@link HistogramProperty}
+     */
+    public static final JsonpDeserializer<HistogramProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        HistogramProperty::setupHistogramPropertyDeserializer
+    );
 
-	protected static void setupHistogramPropertyDeserializer(ObjectDeserializer<HistogramProperty.Builder> op) {
-		PropertyBase.setupPropertyBaseDeserializer(op);
-		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
+    protected static void setupHistogramPropertyDeserializer(ObjectDeserializer<HistogramProperty.Builder> op) {
+        PropertyBase.setupPropertyBaseDeserializer(op);
+        op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

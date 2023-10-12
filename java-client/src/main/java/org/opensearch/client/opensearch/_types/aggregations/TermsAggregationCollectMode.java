@@ -35,25 +35,25 @@ package org.opensearch.client.opensearch._types.aggregations;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum TermsAggregationCollectMode implements JsonEnum {
-	DepthFirst("depth_first"),
+    DepthFirst("depth_first"),
 
-	BreadthFirst("breadth_first"),
+    BreadthFirst("breadth_first"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	TermsAggregationCollectMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    TermsAggregationCollectMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<TermsAggregationCollectMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			TermsAggregationCollectMode.values());
+    public static final JsonEnum.Deserializer<TermsAggregationCollectMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        TermsAggregationCollectMode.values()
+    );
 }

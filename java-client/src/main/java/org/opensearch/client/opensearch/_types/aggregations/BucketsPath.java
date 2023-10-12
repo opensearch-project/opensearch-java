@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,10 +46,6 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.BucketsPath
 
@@ -53,166 +53,170 @@ import java.util.function.Function;
  * Buckets path can be expressed in different ways, and an aggregation may
  * accept some or all of these forms depending on its type. Please refer to each
  * aggregation's documentation to know what buckets path forms they accept.
- * 
+ *
  */
 @JsonpDeserializable
 public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, JsonpSerializable {
 
-	public enum Kind {
-		Array, Dict, Single
+    public enum Kind {
+        Array,
+        Dict,
+        Single
 
-	}
+    }
 
-	private final Kind _kind;
-	private final Object _value;
+    private final Kind _kind;
+    private final Object _value;
 
-	@Override
-	public final Kind _kind() {
-		return _kind;
-	}
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
 
-	@Override
-	public final Object _get() {
-		return _value;
-	}
+    @Override
+    public final Object _get() {
+        return _value;
+    }
 
-	private BucketsPath(Kind kind, Object value) {
-		this._kind = kind;
-		this._value = value;
-	}
+    private BucketsPath(Kind kind, Object value) {
+        this._kind = kind;
+        this._value = value;
+    }
 
-	private BucketsPath(Builder builder) {
+    private BucketsPath(Builder builder) {
 
-		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-	}
+    }
 
-	public static BucketsPath of(Function<Builder, ObjectBuilder<BucketsPath>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static BucketsPath of(Function<Builder, ObjectBuilder<BucketsPath>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Is this variant instance of kind {@code array}?
-	 */
-	public boolean isArray() {
-		return _kind == Kind.Array;
-	}
+    /**
+     * Is this variant instance of kind {@code array}?
+     */
+    public boolean isArray() {
+        return _kind == Kind.Array;
+    }
 
-	/**
-	 * Get the {@code array} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code array} kind.
-	 */
-	public List<String> array() {
-		return TaggedUnionUtils.get(this, Kind.Array);
-	}
+    /**
+     * Get the {@code array} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code array} kind.
+     */
+    public List<String> array() {
+        return TaggedUnionUtils.get(this, Kind.Array);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code dict}?
-	 */
-	public boolean isDict() {
-		return _kind == Kind.Dict;
-	}
+    /**
+     * Is this variant instance of kind {@code dict}?
+     */
+    public boolean isDict() {
+        return _kind == Kind.Dict;
+    }
 
-	/**
-	 * Get the {@code dict} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code dict} kind.
-	 */
-	public Map<String, String> dict() {
-		return TaggedUnionUtils.get(this, Kind.Dict);
-	}
+    /**
+     * Get the {@code dict} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code dict} kind.
+     */
+    public Map<String, String> dict() {
+        return TaggedUnionUtils.get(this, Kind.Dict);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code single}?
-	 */
-	public boolean isSingle() {
-		return _kind == Kind.Single;
-	}
+    /**
+     * Is this variant instance of kind {@code single}?
+     */
+    public boolean isSingle() {
+        return _kind == Kind.Single;
+    }
 
-	/**
-	 * Get the {@code single} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code single} kind.
-	 */
-	public String single() {
-		return TaggedUnionUtils.get(this, Kind.Single);
-	}
+    /**
+     * Get the {@code single} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code single} kind.
+     */
+    public String single() {
+        return TaggedUnionUtils.get(this, Kind.Single);
+    }
 
-	@Override
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_kind) {
-				case Array :
-					generator.writeStartArray();
-					for (String item0 : ((List<String>) this._value)) {
-						generator.write(item0);
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        if (_value instanceof JsonpSerializable) {
+            ((JsonpSerializable) _value).serialize(generator, mapper);
+        } else {
+            switch (_kind) {
+                case Array:
+                    generator.writeStartArray();
+                    for (String item0 : ((List<String>) this._value)) {
+                        generator.write(item0);
 
-					}
-					generator.writeEnd();
+                    }
+                    generator.writeEnd();
 
-					break;
-				case Dict :
-					generator.writeStartObject();
-					for (Map.Entry<String, String> item0 : ((Map<String, String>) this._value).entrySet()) {
-						generator.writeKey(item0.getKey());
-						generator.write(item0.getValue());
+                    break;
+                case Dict:
+                    generator.writeStartObject();
+                    for (Map.Entry<String, String> item0 : ((Map<String, String>) this._value).entrySet()) {
+                        generator.writeKey(item0.getKey());
+                        generator.write(item0.getValue());
 
-					}
-					generator.writeEnd();
+                    }
+                    generator.writeEnd();
 
-					break;
-				case Single :
-					generator.write(((String) this._value));
+                    break;
+                case Single:
+                    generator.write(((String) this._value));
 
-					break;
-			}
-		}
+                    break;
+            }
+        }
 
-	}
+    }
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BucketsPath> {
-		private Kind _kind;
-		private Object _value;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BucketsPath> {
+        private Kind _kind;
+        private Object _value;
 
-		public ObjectBuilder<BucketsPath> array(List<String> v) {
-			this._kind = Kind.Array;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<BucketsPath> array(List<String> v) {
+            this._kind = Kind.Array;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<BucketsPath> dict(Map<String, String> v) {
-			this._kind = Kind.Dict;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<BucketsPath> dict(Map<String, String> v) {
+            this._kind = Kind.Dict;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<BucketsPath> single(String v) {
-			this._kind = Kind.Single;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<BucketsPath> single(String v) {
+            this._kind = Kind.Single;
+            this._value = v;
+            return this;
+        }
 
-		public BucketsPath build() {
-			_checkSingleUse();
-			return new BucketsPath(this);
-		}
+        public BucketsPath build() {
+            _checkSingleUse();
+            return new BucketsPath(this);
+        }
 
-	}
+    }
 
-	private static JsonpDeserializer<BucketsPath> buildBucketsPathDeserializer() {
-		return new UnionDeserializer.Builder<BucketsPath, Kind, Object>(BucketsPath::new, false)
-				.addMember(Kind.Array, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()))
-				.addMember(Kind.Dict, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()))
-				.addMember(Kind.Single, JsonpDeserializer.stringDeserializer()).build();
-	}
+    private static JsonpDeserializer<BucketsPath> buildBucketsPathDeserializer() {
+        return new UnionDeserializer.Builder<BucketsPath, Kind, Object>(BucketsPath::new, false).addMember(
+            Kind.Array,
+            JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())
+        )
+            .addMember(Kind.Dict, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()))
+            .addMember(Kind.Single, JsonpDeserializer.stringDeserializer())
+            .build();
+    }
 
-	public static final JsonpDeserializer<BucketsPath> _DESERIALIZER = JsonpDeserializer
-			.lazy(BucketsPath::buildBucketsPathDeserializer);
+    public static final JsonpDeserializer<BucketsPath> _DESERIALIZER = JsonpDeserializer.lazy(BucketsPath::buildBucketsPathDeserializer);
 }

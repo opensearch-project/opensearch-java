@@ -32,13 +32,12 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.StringTermsAggregate
 
@@ -48,64 +47,66 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class StringTermsAggregate extends TermsAggregateBase<StringTermsBucket> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private StringTermsAggregate(Builder builder) {
-		super(builder);
+    private StringTermsAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static StringTermsAggregate of(Function<Builder, ObjectBuilder<StringTermsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StringTermsAggregate of(Function<Builder, ObjectBuilder<StringTermsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Sterms;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Sterms;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StringTermsAggregate}.
-	 */
+    /**
+     * Builder for {@link StringTermsAggregate}.
+     */
 
-	public static class Builder extends TermsAggregateBase.AbstractBuilder<StringTermsBucket, Builder>
-			implements
-				ObjectBuilder<StringTermsAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends TermsAggregateBase.AbstractBuilder<StringTermsBucket, Builder>
+        implements
+            ObjectBuilder<StringTermsAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StringTermsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StringTermsAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link StringTermsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StringTermsAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new StringTermsAggregate(this);
-		}
-	}
+            return new StringTermsAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link StringTermsAggregate}
-	 */
-	public static final JsonpDeserializer<StringTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StringTermsAggregate::setupStringTermsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link StringTermsAggregate}
+     */
+    public static final JsonpDeserializer<StringTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StringTermsAggregate::setupStringTermsAggregateDeserializer
+    );
 
-	protected static void setupStringTermsAggregateDeserializer(ObjectDeserializer<StringTermsAggregate.Builder> op) {
-		setupTermsAggregateBaseDeserializer(op, StringTermsBucket._DESERIALIZER);
+    protected static void setupStringTermsAggregateDeserializer(ObjectDeserializer<StringTermsAggregate.Builder> op) {
+        setupTermsAggregateBaseDeserializer(op, StringTermsBucket._DESERIALIZER);
 
-	}
+    }
 
 }

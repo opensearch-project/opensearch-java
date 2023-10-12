@@ -32,125 +32,125 @@
 
 package org.opensearch.client.opensearch.cat;
 
-import org.opensearch.client.opensearch.cat.indices.IndicesRecord;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.opensearch.cat.indices.IndicesRecord;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: cat.indices.Response
 
-
 @JsonpDeserializable
 public class IndicesResponse implements JsonpSerializable {
-	private final List<IndicesRecord> valueBody;
+    private final List<IndicesRecord> valueBody;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndicesResponse(Builder builder) {
+    private IndicesResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+        this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
-	}
+    }
 
-	public static IndicesResponse of(Function<Builder, ObjectBuilder<IndicesResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndicesResponse of(Function<Builder, ObjectBuilder<IndicesResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
-	 */
-	public final List<IndicesRecord> valueBody() {
-		return this.valueBody;
-	}
+    /**
+     * Required - Response value.
+     * <p>
+     * API name: {@code _value_body}
+     */
+    public final List<IndicesRecord> valueBody() {
+        return this.valueBody;
+    }
 
-	/**
-	 * Serialize this value to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartArray();
-		for (IndicesRecord item0 : this.valueBody) {
-			item0.serialize(generator, mapper);
+    /**
+     * Serialize this value to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartArray();
+        for (IndicesRecord item0 : this.valueBody) {
+            item0.serialize(generator, mapper);
 
-		}
-		generator.writeEnd();
+        }
+        generator.writeEnd();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndicesResponse}.
-	 */
+    /**
+     * Builder for {@link IndicesResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesResponse> {
-		private List<IndicesRecord> valueBody;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesResponse> {
+        private List<IndicesRecord> valueBody;
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
-		 */
-		public final Builder valueBody(List<IndicesRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
-			return this;
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>valueBody</code>.
+         */
+        public final Builder valueBody(List<IndicesRecord> list) {
+            this.valueBody = _listAddAll(this.valueBody, list);
+            return this;
+        }
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
-		 */
-		public final Builder valueBody(IndicesRecord value, IndicesRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
-			return this;
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds one or more values to <code>valueBody</code>.
+         */
+        public final Builder valueBody(IndicesRecord value, IndicesRecord... values) {
+            this.valueBody = _listAdd(this.valueBody, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
-		 */
-		public final Builder valueBody(Function<IndicesRecord.Builder, ObjectBuilder<IndicesRecord>> fn) {
-			return valueBody(fn.apply(new IndicesRecord.Builder()).build());
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds a value to <code>valueBody</code> using a builder lambda.
+         */
+        public final Builder valueBody(Function<IndicesRecord.Builder, ObjectBuilder<IndicesRecord>> fn) {
+            return valueBody(fn.apply(new IndicesRecord.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link IndicesResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndicesResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndicesResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndicesResponse build() {
+            _checkSingleUse();
 
-			return new IndicesResponse(this);
-		}
-	}
+            return new IndicesResponse(this);
+        }
+    }
 
-	public static final JsonpDeserializer<IndicesResponse> _DESERIALIZER = createIndicesResponseDeserializer();
-	protected static JsonpDeserializer<IndicesResponse> createIndicesResponseDeserializer() {
+    public static final JsonpDeserializer<IndicesResponse> _DESERIALIZER = createIndicesResponseDeserializer();
 
-		JsonpDeserializer<List<IndicesRecord>> valueDeserializer = JsonpDeserializer
-				.arrayDeserializer(IndicesRecord._DESERIALIZER);
+    protected static JsonpDeserializer<IndicesResponse> createIndicesResponseDeserializer() {
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
-	}
+        JsonpDeserializer<List<IndicesRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(IndicesRecord._DESERIALIZER);
+
+        return JsonpDeserializer.of(
+            valueDeserializer.acceptedEvents(),
+            (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
+        );
+    }
 
 }

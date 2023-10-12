@@ -32,47 +32,49 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-
-import java.util.HashMap;
 
 // typedef: cat.repositories.Request
 
 /**
  * Returns information about snapshot repositories registered in the cluster.
- * 
+ *
  */
 
 public class RepositoriesRequest extends CatRequestBase {
-	public RepositoriesRequest() {
-	}
+    public RepositoriesRequest() {}
 
-	/**
-	 * Singleton instance for {@link RepositoriesRequest}.
-	 */
-	public static final RepositoriesRequest _INSTANCE = new RepositoriesRequest();
+    /**
+     * Singleton instance for {@link RepositoriesRequest}.
+     */
+    public static final RepositoriesRequest _INSTANCE = new RepositoriesRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.repositories}".
-	 */
-	public static final Endpoint<RepositoriesRequest, RepositoriesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.repositories}".
+     */
+    public static final Endpoint<RepositoriesRequest, RepositoriesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_cat/repositories";
+        // Request path
+        request -> {
+            return "/_cat/repositories";
 
-			},
+        },
 
-			// Request parameters
-			request -> new HashMap<>(request.queryParameters()), SimpleEndpoint.emptyMap(), false, RepositoriesResponse._DESERIALIZER);
+        // Request parameters
+        request -> new HashMap<>(request.queryParameters()),
+        SimpleEndpoint.emptyMap(),
+        false,
+        RepositoriesResponse._DESERIALIZER
+    );
 }

@@ -41,7 +41,7 @@ import java.lang.annotation.Target;
 /**
  * Indicates that a class has a {@link JsonpDeserializer} as a static field.
  */
-@Target({ElementType.TYPE})
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface JsonpDeserializable {

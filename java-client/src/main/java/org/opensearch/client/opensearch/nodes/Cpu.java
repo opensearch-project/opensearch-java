@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.nodes;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,315 +45,309 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: nodes._types.Cpu
 
 @JsonpDeserializable
 public class Cpu implements JsonpSerializable {
-	private final int percent;
+    private final int percent;
 
-	@Nullable
-	private final String sys;
+    @Nullable
+    private final String sys;
 
-	@Nullable
-	private final Long sysInMillis;
+    @Nullable
+    private final Long sysInMillis;
 
-	@Nullable
-	private final String total;
+    @Nullable
+    private final String total;
 
-	@Nullable
-	private final Long totalInMillis;
+    @Nullable
+    private final Long totalInMillis;
 
-	@Nullable
-	private final String user;
+    @Nullable
+    private final String user;
 
-	@Nullable
-	private final Long userInMillis;
+    @Nullable
+    private final Long userInMillis;
 
-	private final Map<String, Double> loadAverage;
+    private final Map<String, Double> loadAverage;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private Cpu(Builder builder) {
+    private Cpu(Builder builder) {
 
-		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
-		this.sys = builder.sys;
-		this.sysInMillis = builder.sysInMillis;
-		this.total = builder.total;
-		this.totalInMillis = builder.totalInMillis;
-		this.user = builder.user;
-		this.userInMillis = builder.userInMillis;
-		this.loadAverage = ApiTypeHelper.unmodifiable(builder.loadAverage);
+        this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+        this.sys = builder.sys;
+        this.sysInMillis = builder.sysInMillis;
+        this.total = builder.total;
+        this.totalInMillis = builder.totalInMillis;
+        this.user = builder.user;
+        this.userInMillis = builder.userInMillis;
+        this.loadAverage = ApiTypeHelper.unmodifiable(builder.loadAverage);
 
-	}
+    }
 
-	public static Cpu of(Function<Builder, ObjectBuilder<Cpu>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Cpu of(Function<Builder, ObjectBuilder<Cpu>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code percent}
-	 */
-	public final int percent() {
-		return this.percent;
-	}
+    /**
+     * Required - API name: {@code percent}
+     */
+    public final int percent() {
+        return this.percent;
+    }
 
-	/**
-	 * API name: {@code sys}
-	 */
-	@Nullable
-	public final String sys() {
-		return this.sys;
-	}
+    /**
+     * API name: {@code sys}
+     */
+    @Nullable
+    public final String sys() {
+        return this.sys;
+    }
 
-	/**
-	 * API name: {@code sys_in_millis}
-	 */
-	@Nullable
-	public final Long sysInMillis() {
-		return this.sysInMillis;
-	}
+    /**
+     * API name: {@code sys_in_millis}
+     */
+    @Nullable
+    public final Long sysInMillis() {
+        return this.sysInMillis;
+    }
 
-	/**
-	 * API name: {@code total}
-	 */
-	@Nullable
-	public final String total() {
-		return this.total;
-	}
+    /**
+     * API name: {@code total}
+     */
+    @Nullable
+    public final String total() {
+        return this.total;
+    }
 
-	/**
-	 * API name: {@code total_in_millis}
-	 */
-	@Nullable
-	public final Long totalInMillis() {
-		return this.totalInMillis;
-	}
+    /**
+     * API name: {@code total_in_millis}
+     */
+    @Nullable
+    public final Long totalInMillis() {
+        return this.totalInMillis;
+    }
 
-	/**
-	 * API name: {@code user}
-	 */
-	@Nullable
-	public final String user() {
-		return this.user;
-	}
+    /**
+     * API name: {@code user}
+     */
+    @Nullable
+    public final String user() {
+        return this.user;
+    }
 
-	/**
-	 * API name: {@code user_in_millis}
-	 */
-	@Nullable
-	public final Long userInMillis() {
-		return this.userInMillis;
-	}
+    /**
+     * API name: {@code user_in_millis}
+     */
+    @Nullable
+    public final Long userInMillis() {
+        return this.userInMillis;
+    }
 
-	/**
-	 * API name: {@code load_average}
-	 */
-	public final Map<String, Double> loadAverage() {
-		return this.loadAverage;
-	}
+    /**
+     * API name: {@code load_average}
+     */
+    public final Map<String, Double> loadAverage() {
+        return this.loadAverage;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("percent");
-		generator.write(this.percent);
+        generator.writeKey("percent");
+        generator.write(this.percent);
 
-		if (this.sys != null) {
-			generator.writeKey("sys");
-			generator.write(this.sys);
+        if (this.sys != null) {
+            generator.writeKey("sys");
+            generator.write(this.sys);
 
-		}
-		if (this.sysInMillis != null) {
-			generator.writeKey("sys_in_millis");
-			generator.write(this.sysInMillis);
+        }
+        if (this.sysInMillis != null) {
+            generator.writeKey("sys_in_millis");
+            generator.write(this.sysInMillis);
 
-		}
-		if (this.total != null) {
-			generator.writeKey("total");
-			generator.write(this.total);
+        }
+        if (this.total != null) {
+            generator.writeKey("total");
+            generator.write(this.total);
 
-		}
-		if (this.totalInMillis != null) {
-			generator.writeKey("total_in_millis");
-			generator.write(this.totalInMillis);
+        }
+        if (this.totalInMillis != null) {
+            generator.writeKey("total_in_millis");
+            generator.write(this.totalInMillis);
 
-		}
-		if (this.user != null) {
-			generator.writeKey("user");
-			generator.write(this.user);
+        }
+        if (this.user != null) {
+            generator.writeKey("user");
+            generator.write(this.user);
 
-		}
-		if (this.userInMillis != null) {
-			generator.writeKey("user_in_millis");
-			generator.write(this.userInMillis);
+        }
+        if (this.userInMillis != null) {
+            generator.writeKey("user_in_millis");
+            generator.write(this.userInMillis);
 
-		}
-		if (ApiTypeHelper.isDefined(this.loadAverage)) {
-			generator.writeKey("load_average");
-			generator.writeStartObject();
-			for (Map.Entry<String, Double> item0 : this.loadAverage.entrySet()) {
-				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+        }
+        if (ApiTypeHelper.isDefined(this.loadAverage)) {
+            generator.writeKey("load_average");
+            generator.writeStartObject();
+            for (Map.Entry<String, Double> item0 : this.loadAverage.entrySet()) {
+                generator.writeKey(item0.getKey());
+                generator.write(item0.getValue());
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link Cpu}.
-	 */
+    /**
+     * Builder for {@link Cpu}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Cpu> {
-		private Integer percent;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Cpu> {
+        private Integer percent;
 
-		@Nullable
-		private String sys;
+        @Nullable
+        private String sys;
 
-		@Nullable
-		private Long sysInMillis;
+        @Nullable
+        private Long sysInMillis;
 
-		@Nullable
-		private String total;
+        @Nullable
+        private String total;
 
-		@Nullable
-		private Long totalInMillis;
+        @Nullable
+        private Long totalInMillis;
 
-		@Nullable
-		private String user;
+        @Nullable
+        private String user;
 
-		@Nullable
-		private Long userInMillis;
+        @Nullable
+        private Long userInMillis;
 
-		@Nullable
-		private Map<String, Double> loadAverage;
+        @Nullable
+        private Map<String, Double> loadAverage;
 
-		/**
-		 * Required - API name: {@code percent}
-		 */
-		public final Builder percent(int value) {
-			this.percent = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code percent}
+         */
+        public final Builder percent(int value) {
+            this.percent = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code sys}
-		 */
-		public final Builder sys(@Nullable String value) {
-			this.sys = value;
-			return this;
-		}
+        /**
+         * API name: {@code sys}
+         */
+        public final Builder sys(@Nullable String value) {
+            this.sys = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code sys_in_millis}
-		 */
-		public final Builder sysInMillis(@Nullable Long value) {
-			this.sysInMillis = value;
-			return this;
-		}
+        /**
+         * API name: {@code sys_in_millis}
+         */
+        public final Builder sysInMillis(@Nullable Long value) {
+            this.sysInMillis = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code total}
-		 */
-		public final Builder total(@Nullable String value) {
-			this.total = value;
-			return this;
-		}
+        /**
+         * API name: {@code total}
+         */
+        public final Builder total(@Nullable String value) {
+            this.total = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code total_in_millis}
-		 */
-		public final Builder totalInMillis(@Nullable Long value) {
-			this.totalInMillis = value;
-			return this;
-		}
+        /**
+         * API name: {@code total_in_millis}
+         */
+        public final Builder totalInMillis(@Nullable Long value) {
+            this.totalInMillis = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code user}
-		 */
-		public final Builder user(@Nullable String value) {
-			this.user = value;
-			return this;
-		}
+        /**
+         * API name: {@code user}
+         */
+        public final Builder user(@Nullable String value) {
+            this.user = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code user_in_millis}
-		 */
-		public final Builder userInMillis(@Nullable Long value) {
-			this.userInMillis = value;
-			return this;
-		}
+        /**
+         * API name: {@code user_in_millis}
+         */
+        public final Builder userInMillis(@Nullable Long value) {
+            this.userInMillis = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code load_average}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>loadAverage</code>.
-		 */
-		public final Builder loadAverage(Map<String, Double> map) {
-			this.loadAverage = _mapPutAll(this.loadAverage, map);
-			return this;
-		}
+        /**
+         * API name: {@code load_average}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>loadAverage</code>.
+         */
+        public final Builder loadAverage(Map<String, Double> map) {
+            this.loadAverage = _mapPutAll(this.loadAverage, map);
+            return this;
+        }
 
-		/**
-		 * API name: {@code load_average}
-		 * <p>
-		 * Adds an entry to <code>loadAverage</code>.
-		 */
-		public final Builder loadAverage(String key, Double value) {
-			this.loadAverage = _mapPut(this.loadAverage, key, value);
-			return this;
-		}
+        /**
+         * API name: {@code load_average}
+         * <p>
+         * Adds an entry to <code>loadAverage</code>.
+         */
+        public final Builder loadAverage(String key, Double value) {
+            this.loadAverage = _mapPut(this.loadAverage, key, value);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link Cpu}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public Cpu build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link Cpu}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public Cpu build() {
+            _checkSingleUse();
 
-			return new Cpu(this);
-		}
-	}
+            return new Cpu(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link Cpu}
-	 */
-	public static final JsonpDeserializer<Cpu> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Cpu::setupCpuDeserializer);
+    /**
+     * Json deserializer for {@link Cpu}
+     */
+    public static final JsonpDeserializer<Cpu> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new, Cpu::setupCpuDeserializer);
 
-	protected static void setupCpuDeserializer(ObjectDeserializer<Cpu.Builder> op) {
+    protected static void setupCpuDeserializer(ObjectDeserializer<Cpu.Builder> op) {
 
-		op.add(Builder::percent, JsonpDeserializer.integerDeserializer(), "percent");
-		op.add(Builder::sys, JsonpDeserializer.stringDeserializer(), "sys");
-		op.add(Builder::sysInMillis, JsonpDeserializer.longDeserializer(), "sys_in_millis");
-		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
-		op.add(Builder::totalInMillis, JsonpDeserializer.longDeserializer(), "total_in_millis");
-		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
-		op.add(Builder::userInMillis, JsonpDeserializer.longDeserializer(), "user_in_millis");
-		op.add(Builder::loadAverage, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()),
-				"load_average");
+        op.add(Builder::percent, JsonpDeserializer.integerDeserializer(), "percent");
+        op.add(Builder::sys, JsonpDeserializer.stringDeserializer(), "sys");
+        op.add(Builder::sysInMillis, JsonpDeserializer.longDeserializer(), "sys_in_millis");
+        op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
+        op.add(Builder::totalInMillis, JsonpDeserializer.longDeserializer(), "total_in_millis");
+        op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
+        op.add(Builder::userInMillis, JsonpDeserializer.longDeserializer(), "user_in_millis");
+        op.add(Builder::loadAverage, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()), "load_average");
 
-	}
+    }
 
 }

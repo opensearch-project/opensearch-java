@@ -32,37 +32,36 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
 
 @JsonpDeserializable
 public class EmptyTransform implements JsonpSerializable {
 
-	public static final class Builder implements ObjectBuilder<EmptyTransform> {
-		@Override
-		public EmptyTransform build() {
-			return EmptyTransform._INSTANCE;
-		}
-	}
+    public static final class Builder implements ObjectBuilder<EmptyTransform> {
+        @Override
+        public EmptyTransform build() {
+            return EmptyTransform._INSTANCE;
+        }
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        generator.writeEnd();
+    }
 
-	/**
-	 * Singleton instance for empty class {@link EmptyTransform}.
-	 */
-	public static final EmptyTransform _INSTANCE = new EmptyTransform();
+    /**
+     * Singleton instance for empty class {@link EmptyTransform}.
+     */
+    public static final EmptyTransform _INSTANCE = new EmptyTransform();
 
-	public static final JsonpDeserializer<EmptyTransform> _DESERIALIZER = JsonpDeserializer
-			.emptyObject(EmptyTransform._INSTANCE);
+    public static final JsonpDeserializer<EmptyTransform> _DESERIALIZER = JsonpDeserializer.emptyObject(EmptyTransform._INSTANCE);
 
 }

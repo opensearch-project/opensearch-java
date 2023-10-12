@@ -32,6 +32,11 @@
 
 package org.opensearch.client.opensearch.core.search;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,165 +46,160 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Suggester
 
-
 @JsonpDeserializable
 public class Suggester implements JsonpSerializable {
-	private final Map<String, FieldSuggester> suggesters;
+    private final Map<String, FieldSuggester> suggesters;
 
-	@Nullable
-	private final String text;
+    @Nullable
+    private final String text;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private Suggester(Builder builder) {
+    private Suggester(Builder builder) {
 
-		this.suggesters = ApiTypeHelper.unmodifiable(builder.suggesters);
+        this.suggesters = ApiTypeHelper.unmodifiable(builder.suggesters);
 
-		this.text = builder.text;
+        this.text = builder.text;
 
-	}
+    }
 
-	public static Suggester of(Function<Builder, ObjectBuilder<Suggester>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Suggester of(Function<Builder, ObjectBuilder<Suggester>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * The named suggesters
-	 */
-	public final Map<String, FieldSuggester> suggesters() {
-		return this.suggesters;
-	}
+    /**
+     * The named suggesters
+     */
+    public final Map<String, FieldSuggester> suggesters() {
+        return this.suggesters;
+    }
 
-	/**
-	 * Global suggest text, to avoid repetition when the same text is used in
-	 * several suggesters
-	 * <p>
-	 * API name: {@code text}
-	 */
-	@Nullable
-	public final String text() {
-		return this.text;
-	}
+    /**
+     * Global suggest text, to avoid repetition when the same text is used in
+     * several suggesters
+     * <p>
+     * API name: {@code text}
+     */
+    @Nullable
+    public final String text() {
+        return this.text;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		for (Map.Entry<String, FieldSuggester> item0 : this.suggesters.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+        for (Map.Entry<String, FieldSuggester> item0 : this.suggesters.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
 
-		}
+        }
 
-		if (this.text != null) {
-			generator.writeKey("text");
-			generator.write(this.text);
+        if (this.text != null) {
+            generator.writeKey("text");
+            generator.write(this.text);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link Suggester}.
-	 */
+    /**
+     * Builder for {@link Suggester}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Suggester> {
-		@Nullable
-		private Map<String, FieldSuggester> suggesters = new HashMap<>();
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Suggester> {
+        @Nullable
+        private Map<String, FieldSuggester> suggesters = new HashMap<>();
 
-		/**
-		 * The named suggesters
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>suggesters</code>.
-		 */
-		public final Builder suggesters(Map<String, FieldSuggester> map) {
-			this.suggesters = _mapPutAll(this.suggesters, map);
-			return this;
-		}
+        /**
+         * The named suggesters
+         * <p>
+         * Adds all entries of <code>map</code> to <code>suggesters</code>.
+         */
+        public final Builder suggesters(Map<String, FieldSuggester> map) {
+            this.suggesters = _mapPutAll(this.suggesters, map);
+            return this;
+        }
 
-		/**
-		 * The named suggesters
-		 * <p>
-		 * Adds an entry to <code>suggesters</code>.
-		 */
-		public final Builder suggesters(String key, FieldSuggester value) {
-			this.suggesters = _mapPut(this.suggesters, key, value);
-			return this;
-		}
+        /**
+         * The named suggesters
+         * <p>
+         * Adds an entry to <code>suggesters</code>.
+         */
+        public final Builder suggesters(String key, FieldSuggester value) {
+            this.suggesters = _mapPut(this.suggesters, key, value);
+            return this;
+        }
 
-		/**
-		 * The named suggesters
-		 * <p>
-		 * Adds an entry to <code>suggesters</code> using a builder lambda.
-		 */
-		public final Builder suggesters(String key,
-				Function<FieldSuggester.Builder, ObjectBuilder<FieldSuggester>> fn) {
-			return suggesters(key, fn.apply(new FieldSuggester.Builder()).build());
-		}
+        /**
+         * The named suggesters
+         * <p>
+         * Adds an entry to <code>suggesters</code> using a builder lambda.
+         */
+        public final Builder suggesters(String key, Function<FieldSuggester.Builder, ObjectBuilder<FieldSuggester>> fn) {
+            return suggesters(key, fn.apply(new FieldSuggester.Builder()).build());
+        }
 
-		@Nullable
-		private String text;
+        @Nullable
+        private String text;
 
-		/**
-		 * Global suggest text, to avoid repetition when the same text is used in
-		 * several suggesters
-		 * <p>
-		 * API name: {@code text}
-		 */
-		public final Builder text(@Nullable String value) {
-			this.text = value;
-			return this;
-		}
+        /**
+         * Global suggest text, to avoid repetition when the same text is used in
+         * several suggesters
+         * <p>
+         * API name: {@code text}
+         */
+        public final Builder text(@Nullable String value) {
+            this.text = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link Suggester}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public Suggester build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link Suggester}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public Suggester build() {
+            _checkSingleUse();
 
-			return new Suggester(this);
-		}
-	}
+            return new Suggester(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link Suggester}
-	 */
-	public static final JsonpDeserializer<Suggester> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Suggester::setupSuggesterDeserializer);
+    /**
+     * Json deserializer for {@link Suggester}
+     */
+    public static final JsonpDeserializer<Suggester> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        Suggester::setupSuggesterDeserializer
+    );
 
-	protected static void setupSuggesterDeserializer(ObjectDeserializer<Suggester.Builder> op) {
+    protected static void setupSuggesterDeserializer(ObjectDeserializer<Suggester.Builder> op) {
 
-		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
+        op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 
-		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			if (builder.suggesters == null) {
-				builder.suggesters = new HashMap<>();
-			}
-			builder.suggesters.put(name, FieldSuggester._DESERIALIZER.deserialize(parser, mapper));
-		});
+        op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+            if (builder.suggesters == null) {
+                builder.suggesters = new HashMap<>();
+            }
+            builder.suggesters.put(name, FieldSuggester._DESERIALIZER.deserialize(parser, mapper));
+        });
 
-	}
+    }
 
 }

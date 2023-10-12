@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,102 +43,100 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GoogleNormalizedDistanceHeuristic
 
-
 @JsonpDeserializable
 public class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
-	@Nullable
-	private final Boolean backgroundIsSuperset;
+    @Nullable
+    private final Boolean backgroundIsSuperset;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GoogleNormalizedDistanceHeuristic(Builder builder) {
+    private GoogleNormalizedDistanceHeuristic(Builder builder) {
 
-		this.backgroundIsSuperset = builder.backgroundIsSuperset;
+        this.backgroundIsSuperset = builder.backgroundIsSuperset;
 
-	}
+    }
 
-	public static GoogleNormalizedDistanceHeuristic of(
-			Function<Builder, ObjectBuilder<GoogleNormalizedDistanceHeuristic>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GoogleNormalizedDistanceHeuristic of(Function<Builder, ObjectBuilder<GoogleNormalizedDistanceHeuristic>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code background_is_superset}
-	 */
-	@Nullable
-	public final Boolean backgroundIsSuperset() {
-		return this.backgroundIsSuperset;
-	}
+    /**
+     * API name: {@code background_is_superset}
+     */
+    @Nullable
+    public final Boolean backgroundIsSuperset() {
+        return this.backgroundIsSuperset;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.backgroundIsSuperset != null) {
-			generator.writeKey("background_is_superset");
-			generator.write(this.backgroundIsSuperset);
+        if (this.backgroundIsSuperset != null) {
+            generator.writeKey("background_is_superset");
+            generator.write(this.backgroundIsSuperset);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GoogleNormalizedDistanceHeuristic}.
-	 */
+    /**
+     * Builder for {@link GoogleNormalizedDistanceHeuristic}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GoogleNormalizedDistanceHeuristic> {
-		@Nullable
-		private Boolean backgroundIsSuperset;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GoogleNormalizedDistanceHeuristic> {
+        @Nullable
+        private Boolean backgroundIsSuperset;
 
-		/**
-		 * API name: {@code background_is_superset}
-		 */
-		public final Builder backgroundIsSuperset(@Nullable Boolean value) {
-			this.backgroundIsSuperset = value;
-			return this;
-		}
+        /**
+         * API name: {@code background_is_superset}
+         */
+        public final Builder backgroundIsSuperset(@Nullable Boolean value) {
+            this.backgroundIsSuperset = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GoogleNormalizedDistanceHeuristic}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GoogleNormalizedDistanceHeuristic build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GoogleNormalizedDistanceHeuristic}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GoogleNormalizedDistanceHeuristic build() {
+            _checkSingleUse();
 
-			return new GoogleNormalizedDistanceHeuristic(this);
-		}
-	}
+            return new GoogleNormalizedDistanceHeuristic(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GoogleNormalizedDistanceHeuristic}
-	 */
-	public static final JsonpDeserializer<GoogleNormalizedDistanceHeuristic> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GoogleNormalizedDistanceHeuristic::setupGoogleNormalizedDistanceHeuristicDeserializer);
+    /**
+     * Json deserializer for {@link GoogleNormalizedDistanceHeuristic}
+     */
+    public static final JsonpDeserializer<GoogleNormalizedDistanceHeuristic> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GoogleNormalizedDistanceHeuristic::setupGoogleNormalizedDistanceHeuristicDeserializer
+    );
 
-	protected static void setupGoogleNormalizedDistanceHeuristicDeserializer(
-			ObjectDeserializer<GoogleNormalizedDistanceHeuristic.Builder> op) {
+    protected static void setupGoogleNormalizedDistanceHeuristicDeserializer(
+        ObjectDeserializer<GoogleNormalizedDistanceHeuristic.Builder> op
+    ) {
 
-		op.add(Builder::backgroundIsSuperset, JsonpDeserializer.booleanDeserializer(), "background_is_superset");
+        op.add(Builder::backgroundIsSuperset, JsonpDeserializer.booleanDeserializer(), "background_is_superset");
 
-	}
+    }
 
 }

@@ -37,10 +37,10 @@ package org.opensearch.client.opensearch.core.search;
  */
 public interface FieldSuggesterVariant {
 
-	FieldSuggester.Kind _fieldSuggesterKind();
+    FieldSuggester.Kind _fieldSuggesterKind();
 
-	default FieldSuggester _toFieldSuggester() {
-		return new FieldSuggester(this);
-	}
+    default FieldSuggester _toFieldSuggester() {
+        return new FieldSuggester(this);
+    }
 
 }

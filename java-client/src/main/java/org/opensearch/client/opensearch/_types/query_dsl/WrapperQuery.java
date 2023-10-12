@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,12 +41,8 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.WrapperQuery
-
 
 @JsonpDeserializable
 public class WrapperQuery extends QueryBase implements QueryVariant {
@@ -132,8 +130,10 @@ public class WrapperQuery extends QueryBase implements QueryVariant {
     /**
      * Json deserializer for {@link WrapperQuery}
      */
-    public static final JsonpDeserializer<WrapperQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-            WrapperQuery::setupWrapperQueryDeserializer);
+    public static final JsonpDeserializer<WrapperQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        WrapperQuery::setupWrapperQueryDeserializer
+    );
 
     protected static void setupWrapperQueryDeserializer(ObjectDeserializer<WrapperQuery.Builder> op) {
         QueryBase.setupQueryBaseDeserializer(op);

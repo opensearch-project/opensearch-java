@@ -32,6 +32,7 @@
 
 package org.opensearch.client.opensearch.snapshot;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -39,64 +40,63 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.transport.endpoints.DictionaryResponse;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: snapshot.get_repository.Response
 
 @JsonpDeserializable
 public class GetRepositoryResponse extends DictionaryResponse<String, Repository> {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetRepositoryResponse(Builder builder) {
-		super(builder);
+    private GetRepositoryResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static GetRepositoryResponse of(Function<Builder, ObjectBuilder<GetRepositoryResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetRepositoryResponse of(Function<Builder, ObjectBuilder<GetRepositoryResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetRepositoryResponse}.
-	 */
+    /**
+     * Builder for {@link GetRepositoryResponse}.
+     */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Repository, Builder>
-			implements
-				ObjectBuilder<GetRepositoryResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends DictionaryResponse.AbstractBuilder<String, Repository, Builder>
+        implements
+            ObjectBuilder<GetRepositoryResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetRepositoryResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetRepositoryResponse build() {
-			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
+        /**
+         * Builds a {@link GetRepositoryResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetRepositoryResponse build() {
+            _checkSingleUse();
+            super.tKeySerializer(null);
+            super.tValueSerializer(null);
 
-			return new GetRepositoryResponse(this);
-		}
-	}
+            return new GetRepositoryResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GetRepositoryResponse}
-	 */
-	public static final JsonpDeserializer<GetRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetRepositoryResponse::setupGetRepositoryResponseDeserializer);
+    /**
+     * Json deserializer for {@link GetRepositoryResponse}
+     */
+    public static final JsonpDeserializer<GetRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GetRepositoryResponse::setupGetRepositoryResponseDeserializer
+    );
 
-	protected static void setupGetRepositoryResponseDeserializer(ObjectDeserializer<GetRepositoryResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				Repository._DESERIALIZER);
+    protected static void setupGetRepositoryResponseDeserializer(ObjectDeserializer<GetRepositoryResponse.Builder> op) {
+        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), Repository._DESERIALIZER);
 
-	}
+    }
 
 }

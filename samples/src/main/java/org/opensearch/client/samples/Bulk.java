@@ -10,7 +10,6 @@ package org.opensearch.client.samples;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.opensearch._types.Refresh;
@@ -46,51 +45,38 @@ public class Bulk {
 
             if (!client.indices().exists(r -> r.index(indexName)).value()) {
                 LOGGER.info("Creating index {}", indexName);
-                IndexSettings settings = new IndexSettings.Builder()
-                        .numberOfShards("2")
-                        .numberOfReplicas("1")
-                        .build();
-                TypeMapping mapping = new TypeMapping.Builder()
-                        .properties("age", new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build())
-                        .build();
-                CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder()
-                        .index(indexName)
-                        .settings(settings)
-                        .mappings(mapping)
-                        .build();
+                IndexSettings settings = new IndexSettings.Builder().numberOfShards("2").numberOfReplicas("1").build();
+                TypeMapping mapping = new TypeMapping.Builder().properties(
+                    "age",
+                    new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build()
+                ).build();
+                CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(indexName)
+                    .settings(settings)
+                    .mappings(mapping)
+                    .build();
                 client.indices().create(createIndexRequest);
             }
 
             LOGGER.info("Bulk indexing documents");
             ArrayList<BulkOperation> ops = new ArrayList<>();
             IndexData doc1 = new IndexData("Document 1", "The text of document 1");
-            ops.add(new BulkOperation.Builder().index(
-                    IndexOperation.of(io -> io.index(indexName).id("id1").document(doc1))
-            ).build());
+            ops.add(new BulkOperation.Builder().index(IndexOperation.of(io -> io.index(indexName).id("id1").document(doc1))).build());
             IndexData doc2 = new IndexData("Document 2", "The text of document 2");
-            ops.add(new BulkOperation.Builder().index(
-                    IndexOperation.of(io -> io.index(indexName).id("id2").document(doc2))
-            ).build());
+            ops.add(new BulkOperation.Builder().index(IndexOperation.of(io -> io.index(indexName).id("id2").document(doc2))).build());
             IndexData doc3 = new IndexData("Document 3", "The text of document 3");
-            ops.add(new BulkOperation.Builder().index(
-                    IndexOperation.of(io -> io.index(indexName).id("id3").document(doc3))
-            ).build());
+            ops.add(new BulkOperation.Builder().index(IndexOperation.of(io -> io.index(indexName).id("id3").document(doc3))).build());
 
-            BulkRequest.Builder bulkReq = new BulkRequest.Builder()
-                    .index(indexName)
-                    .operations(ops)
-                    .refresh(Refresh.WaitFor);
+            BulkRequest.Builder bulkReq = new BulkRequest.Builder().index(indexName).operations(ops).refresh(Refresh.WaitFor);
             BulkResponse bulkResponse = client.bulk(bulkReq.build());
             LOGGER.info("Bulk response items: {}", bulkResponse.items().size());
 
             Query query = Query.of(qb -> qb.match(mb -> mb.field("title").query(fv -> fv.stringValue("Document"))));
-            final SearchRequest.Builder searchReq = new SearchRequest.Builder()
-                    .allowPartialSearchResults(false)
-                    .index(List.of(indexName))
-                    .size(10)
-                    .source(sc -> sc.fetch(false))
-                    .ignoreThrottled(false)
-                    .query(query);
+            final SearchRequest.Builder searchReq = new SearchRequest.Builder().allowPartialSearchResults(false)
+                .index(List.of(indexName))
+                .size(10)
+                .source(sc -> sc.fetch(false))
+                .ignoreThrottled(false)
+                .query(query);
             SearchResponse<IndexData> searchResponse = client.search(searchReq.build(), IndexData.class);
             LOGGER.info("Found {} documents", searchResponse.hits().hits().size());
 

@@ -37,10 +37,9 @@ package org.opensearch.client.opensearch.core.search;
  * <p>
  * Variants <code>count</code>, <code>enabled</code> are not available here as
  * they don't have a dedicated class. Use {@link TrackHits}'s builder for these.
- * 
+ *
  */
 public class TrackHitsBuilders {
-	private TrackHitsBuilders() {
-	}
+    private TrackHitsBuilders() {}
 
 }

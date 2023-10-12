@@ -8,11 +8,10 @@
 
 package org.opensearch.client.opensearch.core.pit;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
-
 import javax.annotation.Nullable;
-
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
@@ -23,12 +22,9 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import jakarta.json.stream.JsonGenerator;
-
-
 /**
  * Deletes PITs on the OpenSearch cluster
- * 
+ *
  */
 public class DeletePitRequest extends RequestBase implements JsonpSerializable {
 
@@ -94,7 +90,7 @@ public class DeletePitRequest extends RequestBase implements JsonpSerializable {
 
         /**
          * Builds a {@link DeletePitRequest}.
-         * 
+         *
          * @throws NullPointerException if some of the required fields are null.
          */
         public DeletePitRequest build() {
@@ -104,26 +100,28 @@ public class DeletePitRequest extends RequestBase implements JsonpSerializable {
     }
 
     public static final Endpoint<DeletePitRequest, DeletePitResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-            // Request Method
-            request -> {
-                return "DELETE";
-            },
+        // Request Method
+        request -> { return "DELETE"; },
 
-            // Request Path
-            request -> {
-                final int _all = 1 << 0;
+        // Request Path
+        request -> {
+            final int _all = 1 << 0;
 
-                int propsSet = 0;
+            int propsSet = 0;
 
-                if (request.pitId() == null) {
-                    propsSet |= _all;
-                }
-                if (propsSet == 0) {
-                    return "/_search/point_in_time";
-                } else {
-                    return "/_search/point_in_time/_all";
-                }
-            },
-            SimpleEndpoint.emptyMap(), SimpleEndpoint.emptyMap(), true, DeletePitResponse._DESERIALIZER);
+            if (request.pitId() == null) {
+                propsSet |= _all;
+            }
+            if (propsSet == 0) {
+                return "/_search/point_in_time";
+            } else {
+                return "/_search/point_in_time/_all";
+            }
+        },
+        SimpleEndpoint.emptyMap(),
+        SimpleEndpoint.emptyMap(),
+        true,
+        DeletePitResponse._DESERIALIZER
+    );
 
 }

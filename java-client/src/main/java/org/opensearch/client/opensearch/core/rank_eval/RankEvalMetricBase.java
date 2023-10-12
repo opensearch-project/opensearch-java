@@ -32,87 +32,84 @@
 
 package org.opensearch.client.opensearch.core.rank_eval;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricBase
 
-
-
 public abstract class RankEvalMetricBase implements JsonpSerializable {
-	@Nullable
-	private final Integer k;
+    @Nullable
+    private final Integer k;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected RankEvalMetricBase(AbstractBuilder<?> builder) {
+    protected RankEvalMetricBase(AbstractBuilder<?> builder) {
 
-		this.k = builder.k;
+        this.k = builder.k;
 
-	}
+    }
 
-	/**
-	 * Sets the maximum number of documents retrieved per query. This value will act
-	 * in place of the usual size parameter in the query.
-	 * <p>
-	 * API name: {@code k}
-	 */
-	@Nullable
-	public final Integer k() {
-		return this.k;
-	}
+    /**
+     * Sets the maximum number of documents retrieved per query. This value will act
+     * in place of the usual size parameter in the query.
+     * <p>
+     * API name: {@code k}
+     */
+    @Nullable
+    public final Integer k() {
+        return this.k;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.k != null) {
-			generator.writeKey("k");
-			generator.write(this.k);
+        if (this.k != null) {
+            generator.writeKey("k");
+            generator.write(this.k);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ObjectBuilderBase {
-		@Nullable
-		private Integer k;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+        @Nullable
+        private Integer k;
 
-		/**
-		 * Sets the maximum number of documents retrieved per query. This value will act
-		 * in place of the usual size parameter in the query.
-		 * <p>
-		 * API name: {@code k}
-		 */
-		public final BuilderT k(@Nullable Integer value) {
-			this.k = value;
-			return self();
-		}
+        /**
+         * Sets the maximum number of documents retrieved per query. This value will act
+         * in place of the usual size parameter in the query.
+         * <p>
+         * API name: {@code k}
+         */
+        public final BuilderT k(@Nullable Integer value) {
+            this.k = value;
+            return self();
+        }
 
-		protected abstract BuilderT self();
+        protected abstract BuilderT self();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRankEvalMetricBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRankEvalMetricBaseDeserializer(
+        ObjectDeserializer<BuilderT> op
+    ) {
 
-		op.add(AbstractBuilder::k, JsonpDeserializer.integerDeserializer(), "k");
+        op.add(AbstractBuilder::k, JsonpDeserializer.integerDeserializer(), "k");
 
-	}
+    }
 
 }

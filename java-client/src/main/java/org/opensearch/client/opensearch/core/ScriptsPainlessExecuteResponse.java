@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch.core;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -44,128 +48,126 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import java.util.function.Supplier;
-import javax.annotation.Nullable;
 
 // typedef: _global.scripts_painless_execute.Response
 
 @JsonpDeserializable
 public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializable {
-	private final TResult result;
+    private final TResult result;
 
-	@Nullable
-	private final JsonpSerializer<TResult> tResultSerializer;
+    @Nullable
+    private final JsonpSerializer<TResult> tResultSerializer;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ScriptsPainlessExecuteResponse(Builder<TResult> builder) {
+    private ScriptsPainlessExecuteResponse(Builder<TResult> builder) {
 
-		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
-		this.tResultSerializer = builder.tResultSerializer;
+        this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+        this.tResultSerializer = builder.tResultSerializer;
 
-	}
+    }
 
-	public static <TResult> ScriptsPainlessExecuteResponse<TResult> of(
-			Function<Builder<TResult>, ObjectBuilder<ScriptsPainlessExecuteResponse<TResult>>> fn) {
-		return fn.apply(new Builder<>()).build();
-	}
+    public static <TResult> ScriptsPainlessExecuteResponse<TResult> of(
+        Function<Builder<TResult>, ObjectBuilder<ScriptsPainlessExecuteResponse<TResult>>> fn
+    ) {
+        return fn.apply(new Builder<>()).build();
+    }
 
-	/**
-	 * Required - API name: {@code result}
-	 */
-	public final TResult result() {
-		return this.result;
-	}
+    /**
+     * Required - API name: {@code result}
+     */
+    public final TResult result() {
+        return this.result;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("result");
-		JsonpUtils.serialize(this.result, generator, tResultSerializer, mapper);
+        generator.writeKey("result");
+        JsonpUtils.serialize(this.result, generator, tResultSerializer, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ScriptsPainlessExecuteResponse}.
-	 */
+    /**
+     * Builder for {@link ScriptsPainlessExecuteResponse}.
+     */
 
-	public static class Builder<TResult> extends ObjectBuilderBase
-			implements
-				ObjectBuilder<ScriptsPainlessExecuteResponse<TResult>> {
-		private TResult result;
+    public static class Builder<TResult> extends ObjectBuilderBase implements ObjectBuilder<ScriptsPainlessExecuteResponse<TResult>> {
+        private TResult result;
 
-		@Nullable
-		private JsonpSerializer<TResult> tResultSerializer;
+        @Nullable
+        private JsonpSerializer<TResult> tResultSerializer;
 
-		/**
-		 * Required - API name: {@code result}
-		 */
-		public final Builder<TResult> result(TResult value) {
-			this.result = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code result}
+         */
+        public final Builder<TResult> result(TResult value) {
+            this.result = value;
+            return this;
+        }
 
-		/**
-		 * Serializer for TResult. If not set, an attempt will be made to find a
-		 * serializer from the JSON context.
-		 */
-		public final Builder<TResult> tResultSerializer(@Nullable JsonpSerializer<TResult> value) {
-			this.tResultSerializer = value;
-			return this;
-		}
+        /**
+         * Serializer for TResult. If not set, an attempt will be made to find a
+         * serializer from the JSON context.
+         */
+        public final Builder<TResult> tResultSerializer(@Nullable JsonpSerializer<TResult> value) {
+            this.tResultSerializer = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ScriptsPainlessExecuteResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ScriptsPainlessExecuteResponse<TResult> build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ScriptsPainlessExecuteResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ScriptsPainlessExecuteResponse<TResult> build() {
+            _checkSingleUse();
 
-			return new ScriptsPainlessExecuteResponse<TResult>(this);
-		}
-	}
+            return new ScriptsPainlessExecuteResponse<TResult>(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Create a JSON deserializer for ScriptsPainlessExecuteResponse
-	 */
-	public static <TResult> JsonpDeserializer<ScriptsPainlessExecuteResponse<TResult>> createScriptsPainlessExecuteResponseDeserializer(
-			JsonpDeserializer<TResult> tResultDeserializer) {
-		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TResult>>) Builder::new,
-				op -> ScriptsPainlessExecuteResponse.setupScriptsPainlessExecuteResponseDeserializer(op,
-						tResultDeserializer));
-	};
+    /**
+     * Create a JSON deserializer for ScriptsPainlessExecuteResponse
+     */
+    public static <TResult> JsonpDeserializer<ScriptsPainlessExecuteResponse<TResult>> createScriptsPainlessExecuteResponseDeserializer(
+        JsonpDeserializer<TResult> tResultDeserializer
+    ) {
+        return ObjectBuilderDeserializer.createForObject(
+            (Supplier<Builder<TResult>>) Builder::new,
+            op -> ScriptsPainlessExecuteResponse.setupScriptsPainlessExecuteResponseDeserializer(op, tResultDeserializer)
+        );
+    };
 
-	/**
-	 * Json deserializer for {@link ScriptsPainlessExecuteResponse} based on named
-	 * deserializers provided by the calling {@code JsonMapper}.
-	 */
-	public static final JsonpDeserializer<ScriptsPainlessExecuteResponse<Object>> _DESERIALIZER =
-			createScriptsPainlessExecuteResponseDeserializer(
-			new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.scripts_painless_execute.TResult"));
+    /**
+     * Json deserializer for {@link ScriptsPainlessExecuteResponse} based on named
+     * deserializers provided by the calling {@code JsonMapper}.
+     */
+    public static final JsonpDeserializer<ScriptsPainlessExecuteResponse<Object>> _DESERIALIZER =
+        createScriptsPainlessExecuteResponseDeserializer(
+            new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.scripts_painless_execute.TResult")
+        );
 
-	protected static <TResult> void setupScriptsPainlessExecuteResponseDeserializer(
-			ObjectDeserializer<ScriptsPainlessExecuteResponse.Builder<TResult>> op,
-			JsonpDeserializer<TResult> tResultDeserializer) {
+    protected static <TResult> void setupScriptsPainlessExecuteResponseDeserializer(
+        ObjectDeserializer<ScriptsPainlessExecuteResponse.Builder<TResult>> op,
+        JsonpDeserializer<TResult> tResultDeserializer
+    ) {
 
-		op.add(Builder::result, tResultDeserializer, "result");
+        op.add(Builder::result, tResultDeserializer, "result");
 
-	}
+    }
 
 }

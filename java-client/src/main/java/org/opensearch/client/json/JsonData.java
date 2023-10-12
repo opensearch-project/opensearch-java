@@ -34,7 +34,6 @@ package org.opensearch.client.json;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
-
 import java.util.EnumSet;
 
 /**
@@ -71,19 +70,19 @@ public interface JsonData extends JsonpSerializable {
     /**
      * Converts this object to a target class.
      */
-     <T> T to(Class<T> clazz, JsonpMapper mapper);
+    <T> T to(Class<T> clazz, JsonpMapper mapper);
 
     /**
      * Converts this object using a deserializer. A mapper must have been provided at creation time.
      *
      * @throws IllegalStateException if no mapper was provided at creation time.
      */
-     <T> T deserialize(JsonpDeserializer<T> deserializer);
+    <T> T deserialize(JsonpDeserializer<T> deserializer);
 
     /**
      * Converts this object using a deserializer.
      */
-     <T> T deserialize(JsonpDeserializer<T> deserializer, JsonpMapper mapper);
+    <T> T deserialize(JsonpDeserializer<T> deserializer, JsonpMapper mapper);
 
     /**
      * Creates a raw JSON value from an existing object. A mapper will be needed to convert the result.
@@ -109,7 +108,5 @@ public interface JsonData extends JsonpSerializable {
         return of(parser.getValue(), mapper);
     }
 
-    JsonpDeserializer<JsonData> _DESERIALIZER = JsonpDeserializer.of(
-        EnumSet.allOf(JsonParser.Event.class), JsonData::from
-    );
+    JsonpDeserializer<JsonData> _DESERIALIZER = JsonpDeserializer.of(EnumSet.allOf(JsonParser.Event.class), JsonData::from);
 }

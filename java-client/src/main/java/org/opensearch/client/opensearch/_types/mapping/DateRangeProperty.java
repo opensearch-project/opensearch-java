@@ -32,116 +32,115 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DateRangeProperty
 
-
 @JsonpDeserializable
 public class DateRangeProperty extends RangePropertyBase implements PropertyVariant {
-	@Nullable
-	private final String format;
+    @Nullable
+    private final String format;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DateRangeProperty(Builder builder) {
-		super(builder);
+    private DateRangeProperty(Builder builder) {
+        super(builder);
 
-		this.format = builder.format;
+        this.format = builder.format;
 
-	}
+    }
 
-	public static DateRangeProperty of(Function<Builder, ObjectBuilder<DateRangeProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DateRangeProperty of(Function<Builder, ObjectBuilder<DateRangeProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.DateRange;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.DateRange;
+    }
 
-	/**
-	 * API name: {@code format}
-	 */
-	@Nullable
-	public final String format() {
-		return this.format;
-	}
+    /**
+     * API name: {@code format}
+     */
+    @Nullable
+    public final String format() {
+        return this.format;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "date_range");
-		super.serializeInternal(generator, mapper);
-		if (this.format != null) {
-			generator.writeKey("format");
-			generator.write(this.format);
+        generator.write("type", "date_range");
+        super.serializeInternal(generator, mapper);
+        if (this.format != null) {
+            generator.writeKey("format");
+            generator.write(this.format);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DateRangeProperty}.
-	 */
+    /**
+     * Builder for {@link DateRangeProperty}.
+     */
 
-	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DateRangeProperty> {
-		@Nullable
-		private String format;
+    public static class Builder extends RangePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<DateRangeProperty> {
+        @Nullable
+        private String format;
 
-		/**
-		 * API name: {@code format}
-		 */
-		public final Builder format(@Nullable String value) {
-			this.format = value;
-			return this;
-		}
+        /**
+         * API name: {@code format}
+         */
+        public final Builder format(@Nullable String value) {
+            this.format = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DateRangeProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DateRangeProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DateRangeProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DateRangeProperty build() {
+            _checkSingleUse();
 
-			return new DateRangeProperty(this);
-		}
-	}
+            return new DateRangeProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DateRangeProperty}
-	 */
-	public static final JsonpDeserializer<DateRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DateRangeProperty::setupDateRangePropertyDeserializer);
+    /**
+     * Json deserializer for {@link DateRangeProperty}
+     */
+    public static final JsonpDeserializer<DateRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DateRangeProperty::setupDateRangePropertyDeserializer
+    );
 
-	protected static void setupDateRangePropertyDeserializer(ObjectDeserializer<DateRangeProperty.Builder> op) {
-		setupRangePropertyBaseDeserializer(op);
-		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
+    protected static void setupDateRangePropertyDeserializer(ObjectDeserializer<DateRangeProperty.Builder> op) {
+        setupRangePropertyBaseDeserializer(op);
+        op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

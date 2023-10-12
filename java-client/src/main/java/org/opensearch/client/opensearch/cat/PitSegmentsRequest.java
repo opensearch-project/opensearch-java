@@ -10,9 +10,7 @@ package org.opensearch.client.opensearch.cat;
 
 import java.util.List;
 import java.util.function.Function;
-
 import javax.annotation.Nullable;
-
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
@@ -21,10 +19,10 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Provides low-level information about the disk utilization of a PIT by
  * describing its Lucene segments
- * 
+ *
  */
 public class PitSegmentsRequest extends CatRequestBase {
-    
+
     @Nullable
     private List<String> pitId;
 
@@ -64,7 +62,7 @@ public class PitSegmentsRequest extends CatRequestBase {
 
         /**
          * Builds a {@link PitSegmentsRequest}.
-         * 
+         *
          * @throws NullPointerException if some of the required fields are null.
          */
         public PitSegmentsRequest build() {
@@ -82,26 +80,28 @@ public class PitSegmentsRequest extends CatRequestBase {
      * Endpoint "{@code point_in_time_segments}"
      */
     public static final Endpoint<PitSegmentsRequest, SegmentsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-            // Request Method
-            request -> {
-                return "GET";
-            },
+        // Request Method
+        request -> { return "GET"; },
 
-            // Request Path
-            request -> {
-                final int _all = 1 << 0;
+        // Request Path
+        request -> {
+            final int _all = 1 << 0;
 
-                int propsSet = 0;
+            int propsSet = 0;
 
-                if (request.pitId() == null) {
-                    propsSet |= _all;
-                }
-                if (propsSet == 0) {
-                    return "/_cat/pit_segments";
-                } else {
-                    return "/_cat/pit_segments/_all";
-                }
-            },
-            SimpleEndpoint.emptyMap(), SimpleEndpoint.emptyMap(), false, SegmentsResponse._DESERIALIZER);
+            if (request.pitId() == null) {
+                propsSet |= _all;
+            }
+            if (propsSet == 0) {
+                return "/_cat/pit_segments";
+            } else {
+                return "/_cat/pit_segments/_all";
+            }
+        },
+        SimpleEndpoint.emptyMap(),
+        SimpleEndpoint.emptyMap(),
+        false,
+        SegmentsResponse._DESERIALIZER
+    );
 
 }

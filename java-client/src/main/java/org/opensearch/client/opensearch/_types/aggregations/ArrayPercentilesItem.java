@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,150 +45,149 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ArrayPercentilesItem
 
 @JsonpDeserializable
 public class ArrayPercentilesItem implements JsonpSerializable {
-	private final String key;
+    private final String key;
 
-	private final double value;
+    private final double value;
 
-	@Nullable
-	private final String valueAsString;
+    @Nullable
+    private final String valueAsString;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ArrayPercentilesItem(Builder builder) {
+    private ArrayPercentilesItem(Builder builder) {
 
-		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
-		this.valueAsString = builder.valueAsString;
+        this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+        this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+        this.valueAsString = builder.valueAsString;
 
-	}
+    }
 
-	public static ArrayPercentilesItem of(Function<Builder, ObjectBuilder<ArrayPercentilesItem>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ArrayPercentilesItem of(Function<Builder, ObjectBuilder<ArrayPercentilesItem>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code key}
-	 */
-	public final String key() {
-		return this.key;
-	}
+    /**
+     * Required - API name: {@code key}
+     */
+    public final String key() {
+        return this.key;
+    }
 
-	/**
-	 * Required - API name: {@code value}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
-	 */
-	public final double value() {
-		return this.value;
-	}
+    /**
+     * Required - API name: {@code value}
+     * <p>
+     * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+     */
+    public final double value() {
+        return this.value;
+    }
 
-	/**
-	 * API name: {@code value_as_string}
-	 */
-	@Nullable
-	public final String valueAsString() {
-		return this.valueAsString;
-	}
+    /**
+     * API name: {@code value_as_string}
+     */
+    @Nullable
+    public final String valueAsString() {
+        return this.valueAsString;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("key");
-		generator.write(this.key);
+        generator.writeKey("key");
+        generator.write(this.key);
 
-		generator.writeKey("value");
-		JsonpUtils.serializeDoubleOrNull(generator, this.value, 0);
-		if (this.valueAsString != null) {
-			generator.writeKey("value_as_string");
-			generator.write(this.valueAsString);
+        generator.writeKey("value");
+        JsonpUtils.serializeDoubleOrNull(generator, this.value, 0);
+        if (this.valueAsString != null) {
+            generator.writeKey("value_as_string");
+            generator.write(this.valueAsString);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ArrayPercentilesItem}.
-	 */
+    /**
+     * Builder for {@link ArrayPercentilesItem}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ArrayPercentilesItem> {
-		private String key;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ArrayPercentilesItem> {
+        private String key;
 
-		private Double value;
+        private Double value;
 
-		@Nullable
-		private String valueAsString;
+        @Nullable
+        private String valueAsString;
 
-		/**
-		 * Required - API name: {@code key}
-		 */
-		public final Builder key(String value) {
-			this.key = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code key}
+         */
+        public final Builder key(String value) {
+            this.key = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code value}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
-		 */
-		public final Builder value(double value) {
-			this.value = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code value}
+         * <p>
+         * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+         */
+        public final Builder value(double value) {
+            this.value = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code value_as_string}
-		 */
-		public final Builder valueAsString(@Nullable String value) {
-			this.valueAsString = value;
-			return this;
-		}
+        /**
+         * API name: {@code value_as_string}
+         */
+        public final Builder valueAsString(@Nullable String value) {
+            this.valueAsString = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ArrayPercentilesItem}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ArrayPercentilesItem build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ArrayPercentilesItem}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ArrayPercentilesItem build() {
+            _checkSingleUse();
 
-			return new ArrayPercentilesItem(this);
-		}
-	}
+            return new ArrayPercentilesItem(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ArrayPercentilesItem}
-	 */
-	public static final JsonpDeserializer<ArrayPercentilesItem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ArrayPercentilesItem::setupArrayPercentilesItemDeserializer);
+    /**
+     * Json deserializer for {@link ArrayPercentilesItem}
+     */
+    public static final JsonpDeserializer<ArrayPercentilesItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ArrayPercentilesItem::setupArrayPercentilesItemDeserializer
+    );
 
-	protected static void setupArrayPercentilesItemDeserializer(ObjectDeserializer<ArrayPercentilesItem.Builder> op) {
+    protected static void setupArrayPercentilesItemDeserializer(ObjectDeserializer<ArrayPercentilesItem.Builder> op) {
 
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
-		op.add(Builder::value, JsonpDeserializer.doubleOrNullDeserializer(0), "value");
-		op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
+        op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
+        op.add(Builder::value, JsonpDeserializer.doubleOrNullDeserializer(0), "value");
+        op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
 
-	}
+    }
 
 }

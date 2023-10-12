@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,93 +41,90 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.StringTermsBucket
 
-
 @JsonpDeserializable
 public class StringTermsBucket extends TermsBucketBase {
-	private final String key;
+    private final String key;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private StringTermsBucket(Builder builder) {
-		super(builder);
+    private StringTermsBucket(Builder builder) {
+        super(builder);
 
-		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+        this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
 
-	}
+    }
 
-	public static StringTermsBucket of(Function<Builder, ObjectBuilder<StringTermsBucket>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StringTermsBucket of(Function<Builder, ObjectBuilder<StringTermsBucket>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code key}
-	 */
-	public final String key() {
-		return this.key;
-	}
+    /**
+     * Required - API name: {@code key}
+     */
+    public final String key() {
+        return this.key;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("key");
-		generator.write(this.key);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("key");
+        generator.write(this.key);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StringTermsBucket}.
-	 */
+    /**
+     * Builder for {@link StringTermsBucket}.
+     */
 
-	public static class Builder extends TermsBucketBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<StringTermsBucket> {
-		private String key;
+    public static class Builder extends TermsBucketBase.AbstractBuilder<Builder> implements ObjectBuilder<StringTermsBucket> {
+        private String key;
 
-		/**
-		 * Required - API name: {@code key}
-		 */
-		public final Builder key(String value) {
-			this.key = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code key}
+         */
+        public final Builder key(String value) {
+            this.key = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StringTermsBucket}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StringTermsBucket build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link StringTermsBucket}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StringTermsBucket build() {
+            _checkSingleUse();
 
-			return new StringTermsBucket(this);
-		}
-	}
+            return new StringTermsBucket(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link StringTermsBucket}
-	 */
-	public static final JsonpDeserializer<StringTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StringTermsBucket::setupStringTermsBucketDeserializer);
+    /**
+     * Json deserializer for {@link StringTermsBucket}
+     */
+    public static final JsonpDeserializer<StringTermsBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StringTermsBucket::setupStringTermsBucketDeserializer
+    );
 
-	protected static void setupStringTermsBucketDeserializer(ObjectDeserializer<StringTermsBucket.Builder> op) {
-		setupTermsBucketBaseDeserializer(op);
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
+    protected static void setupStringTermsBucketDeserializer(ObjectDeserializer<StringTermsBucket.Builder> op) {
+        setupTermsBucketBaseDeserializer(op);
+        op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
 
-	}
+    }
 
 }

@@ -32,69 +32,67 @@
 
 package org.opensearch.client.opensearch.core;
 
-import org.opensearch.client.opensearch._types.WriteResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.WriteResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _global.create.Response
 
-
 @JsonpDeserializable
 public class CreateResponse extends WriteResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CreateResponse(Builder builder) {
-		super(builder);
+    private CreateResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static CreateResponse of(Function<Builder, ObjectBuilder<CreateResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CreateResponse of(Function<Builder, ObjectBuilder<CreateResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CreateResponse}.
-	 */
+    /**
+     * Builder for {@link CreateResponse}.
+     */
 
-	public static class Builder extends WriteResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<CreateResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<CreateResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CreateResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CreateResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CreateResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CreateResponse build() {
+            _checkSingleUse();
 
-			return new CreateResponse(this);
-		}
-	}
+            return new CreateResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CreateResponse}
-	 */
-	public static final JsonpDeserializer<CreateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CreateResponse::setupCreateResponseDeserializer);
+    /**
+     * Json deserializer for {@link CreateResponse}
+     */
+    public static final JsonpDeserializer<CreateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CreateResponse::setupCreateResponseDeserializer
+    );
 
-	protected static void setupCreateResponseDeserializer(ObjectDeserializer<CreateResponse.Builder> op) {
-		WriteResponseBase.setupWriteResponseBaseDeserializer(op);
+    protected static void setupCreateResponseDeserializer(ObjectDeserializer<CreateResponse.Builder> op) {
+        WriteResponseBase.setupWriteResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

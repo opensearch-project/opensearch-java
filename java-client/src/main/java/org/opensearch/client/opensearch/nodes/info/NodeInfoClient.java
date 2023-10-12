@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,92 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoClient
 
 @JsonpDeserializable
 public class NodeInfoClient implements JsonpSerializable {
-	private final String type;
+    private final String type;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoClient(Builder builder) {
+    private NodeInfoClient(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+        this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
-	}
+    }
 
-	public static NodeInfoClient of(Function<Builder, ObjectBuilder<NodeInfoClient>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoClient of(Function<Builder, ObjectBuilder<NodeInfoClient>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code type}
-	 */
-	public final String type() {
-		return this.type;
-	}
+    /**
+     * Required - API name: {@code type}
+     */
+    public final String type() {
+        return this.type;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("type");
-		generator.write(this.type);
+        generator.writeKey("type");
+        generator.write(this.type);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoClient}.
-	 */
+    /**
+     * Builder for {@link NodeInfoClient}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoClient> {
-		private String type;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoClient> {
+        private String type;
 
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public final Builder type(String value) {
-			this.type = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code type}
+         */
+        public final Builder type(String value) {
+            this.type = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeInfoClient}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoClient build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoClient}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoClient build() {
+            _checkSingleUse();
 
-			return new NodeInfoClient(this);
-		}
-	}
+            return new NodeInfoClient(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoClient}
-	 */
-	public static final JsonpDeserializer<NodeInfoClient> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoClient::setupNodeInfoClientDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoClient}
+     */
+    public static final JsonpDeserializer<NodeInfoClient> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoClient::setupNodeInfoClientDeserializer
+    );
 
-	protected static void setupNodeInfoClientDeserializer(ObjectDeserializer<NodeInfoClient.Builder> op) {
+    protected static void setupNodeInfoClientDeserializer(ObjectDeserializer<NodeInfoClient.Builder> op) {
 
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
-	}
+    }
 
 }

@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.Collections;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -39,119 +42,118 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import java.util.Collections;
-import java.util.function.Function;
-import javax.annotation.Nullable;
-
 // typedef: indices.get_upgrade.Request
 
 /**
  * DEPRECATED Returns a progress status of current upgrade.
- * 
+ *
  */
 
 public class GetUpgradeRequest extends RequestBase {
-	@Nullable
-	private final String index;
+    @Nullable
+    private final String index;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GetUpgradeRequest(Builder builder) {
+    private GetUpgradeRequest(Builder builder) {
 
-		this.index = builder.index;
+        this.index = builder.index;
 
-	}
+    }
 
-	public static GetUpgradeRequest of(Function<Builder, ObjectBuilder<GetUpgradeRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GetUpgradeRequest of(Function<Builder, ObjectBuilder<GetUpgradeRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * A comma-separated list of index names; use <code>_all</code> or empty string
-	 * to perform the operation on all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public final String index() {
-		return this.index;
-	}
+    /**
+     * A comma-separated list of index names; use <code>_all</code> or empty string
+     * to perform the operation on all indices
+     * <p>
+     * API name: {@code index}
+     */
+    @Nullable
+    public final String index() {
+        return this.index;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GetUpgradeRequest}.
-	 */
+    /**
+     * Builder for {@link GetUpgradeRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUpgradeRequest> {
-		@Nullable
-		private String index;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUpgradeRequest> {
+        @Nullable
+        private String index;
 
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public final Builder index(@Nullable String value) {
-			this.index = value;
-			return this;
-		}
+        /**
+         * A comma-separated list of index names; use <code>_all</code> or empty string
+         * to perform the operation on all indices
+         * <p>
+         * API name: {@code index}
+         */
+        public final Builder index(@Nullable String value) {
+            this.index = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GetUpgradeRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetUpgradeRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GetUpgradeRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GetUpgradeRequest build() {
+            _checkSingleUse();
 
-			return new GetUpgradeRequest(this);
-		}
-	}
+            return new GetUpgradeRequest(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code indices.get_upgrade}".
-	 */
-	public static final Endpoint<GetUpgradeRequest, GetUpgradeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code indices.get_upgrade}".
+     */
+    public static final Endpoint<GetUpgradeRequest, GetUpgradeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _index = 1 << 0;
+        // Request path
+        request -> {
+            final int _index = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+            if (request.index() != null) propsSet |= _index;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_upgrade");
-					return buf.toString();
-				}
-				if (propsSet == (_index)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/_upgrade");
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_upgrade");
+                return buf.toString();
+            }
+            if (propsSet == (_index)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.index, buf);
+                buf.append("/_upgrade");
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetUpgradeResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        GetUpgradeResponse._DESERIALIZER
+    );
 }

@@ -32,147 +32,148 @@
 
 package org.opensearch.client.opensearch.indices.get_mapping;
 
-import org.opensearch.client.opensearch._types.mapping.TypeMapping;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.mapping.TypeMapping;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices.get_mapping.IndexMappingRecord
 
 @JsonpDeserializable
 public class IndexMappingRecord implements JsonpSerializable {
-	@Nullable
-	private final TypeMapping item;
+    @Nullable
+    private final TypeMapping item;
 
-	private final TypeMapping mappings;
+    private final TypeMapping mappings;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndexMappingRecord(Builder builder) {
+    private IndexMappingRecord(Builder builder) {
 
-		this.item = builder.item;
-		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
+        this.item = builder.item;
+        this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
 
-	}
+    }
 
-	public static IndexMappingRecord of(Function<Builder, ObjectBuilder<IndexMappingRecord>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndexMappingRecord of(Function<Builder, ObjectBuilder<IndexMappingRecord>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code item}
-	 */
-	@Nullable
-	public final TypeMapping item() {
-		return this.item;
-	}
+    /**
+     * API name: {@code item}
+     */
+    @Nullable
+    public final TypeMapping item() {
+        return this.item;
+    }
 
-	/**
-	 * Required - API name: {@code mappings}
-	 */
-	public final TypeMapping mappings() {
-		return this.mappings;
-	}
+    /**
+     * Required - API name: {@code mappings}
+     */
+    public final TypeMapping mappings() {
+        return this.mappings;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.item != null) {
-			generator.writeKey("item");
-			this.item.serialize(generator, mapper);
+        if (this.item != null) {
+            generator.writeKey("item");
+            this.item.serialize(generator, mapper);
 
-		}
-		generator.writeKey("mappings");
-		this.mappings.serialize(generator, mapper);
+        }
+        generator.writeKey("mappings");
+        this.mappings.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndexMappingRecord}.
-	 */
+    /**
+     * Builder for {@link IndexMappingRecord}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexMappingRecord> {
-		@Nullable
-		private TypeMapping item;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexMappingRecord> {
+        @Nullable
+        private TypeMapping item;
 
-		private TypeMapping mappings;
+        private TypeMapping mappings;
 
-		/**
-		 * API name: {@code item}
-		 */
-		public final Builder item(@Nullable TypeMapping value) {
-			this.item = value;
-			return this;
-		}
+        /**
+         * API name: {@code item}
+         */
+        public final Builder item(@Nullable TypeMapping value) {
+            this.item = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code item}
-		 */
-		public final Builder item(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
-			return this.item(fn.apply(new TypeMapping.Builder()).build());
-		}
+        /**
+         * API name: {@code item}
+         */
+        public final Builder item(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+            return this.item(fn.apply(new TypeMapping.Builder()).build());
+        }
 
-		/**
-		 * Required - API name: {@code mappings}
-		 */
-		public final Builder mappings(TypeMapping value) {
-			this.mappings = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code mappings}
+         */
+        public final Builder mappings(TypeMapping value) {
+            this.mappings = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code mappings}
-		 */
-		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
-			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code mappings}
+         */
+        public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+            return this.mappings(fn.apply(new TypeMapping.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link IndexMappingRecord}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndexMappingRecord build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndexMappingRecord}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndexMappingRecord build() {
+            _checkSingleUse();
 
-			return new IndexMappingRecord(this);
-		}
-	}
+            return new IndexMappingRecord(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IndexMappingRecord}
-	 */
-	public static final JsonpDeserializer<IndexMappingRecord> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexMappingRecord::setupIndexMappingRecordDeserializer);
+    /**
+     * Json deserializer for {@link IndexMappingRecord}
+     */
+    public static final JsonpDeserializer<IndexMappingRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IndexMappingRecord::setupIndexMappingRecordDeserializer
+    );
 
-	protected static void setupIndexMappingRecordDeserializer(ObjectDeserializer<IndexMappingRecord.Builder> op) {
+    protected static void setupIndexMappingRecordDeserializer(ObjectDeserializer<IndexMappingRecord.Builder> op) {
 
-		op.add(Builder::item, TypeMapping._DESERIALIZER, "item");
-		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
+        op.add(Builder::item, TypeMapping._DESERIALIZER, "item");
+        op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 
-	}
+    }
 
 }

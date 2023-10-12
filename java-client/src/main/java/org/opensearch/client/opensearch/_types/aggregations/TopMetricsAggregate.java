@@ -32,77 +32,77 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.TopMetricsAggregate
-
 
 @JsonpDeserializable
 public class TopMetricsAggregate extends MultiBucketAggregateBase<TopMetricsBucket> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private TopMetricsAggregate(Builder builder) {
-		super(builder);
+    private TopMetricsAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static TopMetricsAggregate of(Function<Builder, ObjectBuilder<TopMetricsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static TopMetricsAggregate of(Function<Builder, ObjectBuilder<TopMetricsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.TopMetrics;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.TopMetrics;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link TopMetricsAggregate}.
-	 */
+    /**
+     * Builder for {@link TopMetricsAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<TopMetricsBucket, Builder>
-			implements
-				ObjectBuilder<TopMetricsAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<TopMetricsBucket, Builder>
+        implements
+            ObjectBuilder<TopMetricsAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link TopMetricsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TopMetricsAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link TopMetricsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public TopMetricsAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new TopMetricsAggregate(this);
-		}
-	}
+            return new TopMetricsAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link TopMetricsAggregate}
-	 */
-	public static final JsonpDeserializer<TopMetricsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TopMetricsAggregate::setupTopMetricsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link TopMetricsAggregate}
+     */
+    public static final JsonpDeserializer<TopMetricsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        TopMetricsAggregate::setupTopMetricsAggregateDeserializer
+    );
 
-	protected static void setupTopMetricsAggregateDeserializer(ObjectDeserializer<TopMetricsAggregate.Builder> op) {
-		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, TopMetricsBucket._DESERIALIZER);
+    protected static void setupTopMetricsAggregateDeserializer(ObjectDeserializer<TopMetricsAggregate.Builder> op) {
+        MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, TopMetricsBucket._DESERIALIZER);
 
-	}
+    }
 
 }

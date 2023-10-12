@@ -32,116 +32,115 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
-import org.opensearch.client.opensearch._types.GeoBounds;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.GeoBounds;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.GeoBoundsAggregate
 
 @JsonpDeserializable
 public class GeoBoundsAggregate extends AggregateBase implements AggregateVariant {
-	private final GeoBounds bounds;
+    private final GeoBounds bounds;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GeoBoundsAggregate(Builder builder) {
-		super(builder);
+    private GeoBoundsAggregate(Builder builder) {
+        super(builder);
 
-		this.bounds = ApiTypeHelper.requireNonNull(builder.bounds, this, "bounds");
+        this.bounds = ApiTypeHelper.requireNonNull(builder.bounds, this, "bounds");
 
-	}
+    }
 
-	public static GeoBoundsAggregate of(Function<Builder, ObjectBuilder<GeoBoundsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GeoBoundsAggregate of(Function<Builder, ObjectBuilder<GeoBoundsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.GeoBounds;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.GeoBounds;
+    }
 
-	/**
-	 * Required - API name: {@code bounds}
-	 */
-	public final GeoBounds bounds() {
-		return this.bounds;
-	}
+    /**
+     * Required - API name: {@code bounds}
+     */
+    public final GeoBounds bounds() {
+        return this.bounds;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("bounds");
-		this.bounds.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("bounds");
+        this.bounds.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GeoBoundsAggregate}.
-	 */
+    /**
+     * Builder for {@link GeoBoundsAggregate}.
+     */
 
-	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<GeoBoundsAggregate> {
-		private GeoBounds bounds;
+    public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoBoundsAggregate> {
+        private GeoBounds bounds;
 
-		/**
-		 * Required - API name: {@code bounds}
-		 */
-		public final Builder bounds(GeoBounds value) {
-			this.bounds = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code bounds}
+         */
+        public final Builder bounds(GeoBounds value) {
+            this.bounds = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code bounds}
-		 */
-		public final Builder bounds(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
-			return this.bounds(fn.apply(new GeoBounds.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code bounds}
+         */
+        public final Builder bounds(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
+            return this.bounds(fn.apply(new GeoBounds.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GeoBoundsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GeoBoundsAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GeoBoundsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GeoBoundsAggregate build() {
+            _checkSingleUse();
 
-			return new GeoBoundsAggregate(this);
-		}
-	}
+            return new GeoBoundsAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GeoBoundsAggregate}
-	 */
-	public static final JsonpDeserializer<GeoBoundsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoBoundsAggregate::setupGeoBoundsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link GeoBoundsAggregate}
+     */
+    public static final JsonpDeserializer<GeoBoundsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GeoBoundsAggregate::setupGeoBoundsAggregateDeserializer
+    );
 
-	protected static void setupGeoBoundsAggregateDeserializer(ObjectDeserializer<GeoBoundsAggregate.Builder> op) {
-		setupAggregateBaseDeserializer(op);
-		op.add(Builder::bounds, GeoBounds._DESERIALIZER, "bounds");
+    protected static void setupGeoBoundsAggregateDeserializer(ObjectDeserializer<GeoBoundsAggregate.Builder> op) {
+        setupAggregateBaseDeserializer(op);
+        op.add(Builder::bounds, GeoBounds._DESERIALIZER, "bounds");
 
-	}
+    }
 
 }

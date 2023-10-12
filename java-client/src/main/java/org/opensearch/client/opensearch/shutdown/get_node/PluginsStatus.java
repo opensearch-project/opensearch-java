@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.shutdown.get_node;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,93 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: shutdown.get_node.PluginsStatus
 
 @JsonpDeserializable
 public class PluginsStatus implements JsonpSerializable {
-	private final ShutdownStatus status;
+    private final ShutdownStatus status;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PluginsStatus(Builder builder) {
+    private PluginsStatus(Builder builder) {
 
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+        this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
-	}
+    }
 
-	public static PluginsStatus of(Function<Builder, ObjectBuilder<PluginsStatus>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PluginsStatus of(Function<Builder, ObjectBuilder<PluginsStatus>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code status}
-	 */
-	public final ShutdownStatus status() {
-		return this.status;
-	}
+    /**
+     * Required - API name: {@code status}
+     */
+    public final ShutdownStatus status() {
+        return this.status;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("status");
-		this.status.serialize(generator, mapper);
+        generator.writeKey("status");
+        this.status.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PluginsStatus}.
-	 */
+    /**
+     * Builder for {@link PluginsStatus}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PluginsStatus> {
-		private ShutdownStatus status;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PluginsStatus> {
+        private ShutdownStatus status;
 
-		/**
-		 * Required - API name: {@code status}
-		 */
-		public final Builder status(ShutdownStatus value) {
-			this.status = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code status}
+         */
+        public final Builder status(ShutdownStatus value) {
+            this.status = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PluginsStatus}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PluginsStatus build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PluginsStatus}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PluginsStatus build() {
+            _checkSingleUse();
 
-			return new PluginsStatus(this);
-		}
-	}
+            return new PluginsStatus(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PluginsStatus}
-	 */
-	public static final JsonpDeserializer<PluginsStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PluginsStatus::setupPluginsStatusDeserializer);
+    /**
+     * Json deserializer for {@link PluginsStatus}
+     */
+    public static final JsonpDeserializer<PluginsStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PluginsStatus::setupPluginsStatusDeserializer
+    );
 
-	protected static void setupPluginsStatusDeserializer(ObjectDeserializer<PluginsStatus.Builder> op) {
+    protected static void setupPluginsStatusDeserializer(ObjectDeserializer<PluginsStatus.Builder> op) {
 
-		op.add(Builder::status, ShutdownStatus._DESERIALIZER, "status");
+        op.add(Builder::status, ShutdownStatus._DESERIALIZER, "status");
 
-	}
+    }
 
 }

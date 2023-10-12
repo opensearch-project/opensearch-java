@@ -32,86 +32,84 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.mapping.FloatRangeProperty
 
-
 @JsonpDeserializable
 public class FloatRangeProperty extends RangePropertyBase implements PropertyVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FloatRangeProperty(Builder builder) {
-		super(builder);
+    private FloatRangeProperty(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static FloatRangeProperty of(Function<Builder, ObjectBuilder<FloatRangeProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FloatRangeProperty of(Function<Builder, ObjectBuilder<FloatRangeProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.FloatRange;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.FloatRange;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "float_range");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "float_range");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FloatRangeProperty}.
-	 */
+    /**
+     * Builder for {@link FloatRangeProperty}.
+     */
 
-	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<FloatRangeProperty> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends RangePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<FloatRangeProperty> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FloatRangeProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FloatRangeProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FloatRangeProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FloatRangeProperty build() {
+            _checkSingleUse();
 
-			return new FloatRangeProperty(this);
-		}
-	}
+            return new FloatRangeProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FloatRangeProperty}
-	 */
-	public static final JsonpDeserializer<FloatRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FloatRangeProperty::setupFloatRangePropertyDeserializer);
+    /**
+     * Json deserializer for {@link FloatRangeProperty}
+     */
+    public static final JsonpDeserializer<FloatRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FloatRangeProperty::setupFloatRangePropertyDeserializer
+    );
 
-	protected static void setupFloatRangePropertyDeserializer(ObjectDeserializer<FloatRangeProperty.Builder> op) {
-		RangePropertyBase.setupRangePropertyBaseDeserializer(op);
+    protected static void setupFloatRangePropertyDeserializer(ObjectDeserializer<FloatRangeProperty.Builder> op) {
+        RangePropertyBase.setupRangePropertyBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

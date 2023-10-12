@@ -32,51 +32,53 @@
 
 package org.opensearch.client.opensearch.features;
 
+import java.util.Collections;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
-import java.util.Collections;
-
 // typedef: features.reset_features.Request
 
 /**
  * Resets the internal state of features, usually by deleting system indices
- * 
+ *
  */
 
 public class ResetFeaturesRequest extends RequestBase {
-	public ResetFeaturesRequest() {
-	}
+    public ResetFeaturesRequest() {}
 
-	/**
-	 * Singleton instance for {@link ResetFeaturesRequest}.
-	 */
-	public static final ResetFeaturesRequest _INSTANCE = new ResetFeaturesRequest();
+    /**
+     * Singleton instance for {@link ResetFeaturesRequest}.
+     */
+    public static final ResetFeaturesRequest _INSTANCE = new ResetFeaturesRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code features.reset_features}".
-	 */
-	public static final Endpoint<ResetFeaturesRequest, ResetFeaturesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code features.reset_features}".
+     */
+    public static final Endpoint<ResetFeaturesRequest, ResetFeaturesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "POST";
+        // Request method
+        request -> {
+            return "POST";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_features/_reset";
+        // Request path
+        request -> {
+            return "/_features/_reset";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, ResetFeaturesResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        ResetFeaturesResponse._DESERIALIZER
+    );
 }

@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,131 +44,129 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.analysis.Tokenizer
 
 @JsonpDeserializable
 public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSerializable {
 
-	public enum Kind {
-		Definition, Name
+    public enum Kind {
+        Definition,
+        Name
 
-	}
+    }
 
-	private final Kind _kind;
-	private final Object _value;
+    private final Kind _kind;
+    private final Object _value;
 
-	@Override
-	public final Kind _kind() {
-		return _kind;
-	}
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
 
-	@Override
-	public final Object _get() {
-		return _value;
-	}
+    @Override
+    public final Object _get() {
+        return _value;
+    }
 
-	private Tokenizer(Kind kind, Object value) {
-		this._kind = kind;
-		this._value = value;
-	}
+    private Tokenizer(Kind kind, Object value) {
+        this._kind = kind;
+        this._value = value;
+    }
 
-	private Tokenizer(Builder builder) {
+    private Tokenizer(Builder builder) {
 
-		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-	}
+    }
 
-	public static Tokenizer of(Function<Builder, ObjectBuilder<Tokenizer>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static Tokenizer of(Function<Builder, ObjectBuilder<Tokenizer>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Is this variant instance of kind {@code definition}?
-	 */
-	public boolean isDefinition() {
-		return _kind == Kind.Definition;
-	}
+    /**
+     * Is this variant instance of kind {@code definition}?
+     */
+    public boolean isDefinition() {
+        return _kind == Kind.Definition;
+    }
 
-	/**
-	 * Get the {@code definition} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code definition} kind.
-	 */
-	public TokenizerDefinition definition() {
-		return TaggedUnionUtils.get(this, Kind.Definition);
-	}
+    /**
+     * Get the {@code definition} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code definition} kind.
+     */
+    public TokenizerDefinition definition() {
+        return TaggedUnionUtils.get(this, Kind.Definition);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code name}?
-	 */
-	public boolean isName() {
-		return _kind == Kind.Name;
-	}
+    /**
+     * Is this variant instance of kind {@code name}?
+     */
+    public boolean isName() {
+        return _kind == Kind.Name;
+    }
 
-	/**
-	 * Get the {@code name} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code name} kind.
-	 */
-	public String name() {
-		return TaggedUnionUtils.get(this, Kind.Name);
-	}
+    /**
+     * Get the {@code name} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code name} kind.
+     */
+    public String name() {
+        return TaggedUnionUtils.get(this, Kind.Name);
+    }
 
-	@Override
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_kind) {
-				case Name :
-					generator.write(((String) this._value));
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        if (_value instanceof JsonpSerializable) {
+            ((JsonpSerializable) _value).serialize(generator, mapper);
+        } else {
+            switch (_kind) {
+                case Name:
+                    generator.write(((String) this._value));
 
-					break;
-			}
-		}
+                    break;
+            }
+        }
 
-	}
+    }
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Tokenizer> {
-		private Kind _kind;
-		private Object _value;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Tokenizer> {
+        private Kind _kind;
+        private Object _value;
 
-		public ObjectBuilder<Tokenizer> definition(TokenizerDefinition v) {
-			this._kind = Kind.Definition;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<Tokenizer> definition(TokenizerDefinition v) {
+            this._kind = Kind.Definition;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<Tokenizer> definition(
-				Function<TokenizerDefinition.Builder, ObjectBuilder<TokenizerDefinition>> fn) {
-			return this.definition(fn.apply(new TokenizerDefinition.Builder()).build());
-		}
+        public ObjectBuilder<Tokenizer> definition(Function<TokenizerDefinition.Builder, ObjectBuilder<TokenizerDefinition>> fn) {
+            return this.definition(fn.apply(new TokenizerDefinition.Builder()).build());
+        }
 
-		public ObjectBuilder<Tokenizer> name(String v) {
-			this._kind = Kind.Name;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<Tokenizer> name(String v) {
+            this._kind = Kind.Name;
+            this._value = v;
+            return this;
+        }
 
-		public Tokenizer build() {
-			_checkSingleUse();
-			return new Tokenizer(this);
-		}
+        public Tokenizer build() {
+            _checkSingleUse();
+            return new Tokenizer(this);
+        }
 
-	}
+    }
 
-	private static JsonpDeserializer<Tokenizer> buildTokenizerDeserializer() {
-		return new UnionDeserializer.Builder<Tokenizer, Kind, Object>(Tokenizer::new, false)
-				.addMember(Kind.Definition, TokenizerDefinition._DESERIALIZER)
-				.addMember(Kind.Name, JsonpDeserializer.stringDeserializer()).build();
-	}
+    private static JsonpDeserializer<Tokenizer> buildTokenizerDeserializer() {
+        return new UnionDeserializer.Builder<Tokenizer, Kind, Object>(Tokenizer::new, false).addMember(
+            Kind.Definition,
+            TokenizerDefinition._DESERIALIZER
+        ).addMember(Kind.Name, JsonpDeserializer.stringDeserializer()).build();
+    }
 
-	public static final JsonpDeserializer<Tokenizer> _DESERIALIZER = JsonpDeserializer
-			.lazy(Tokenizer::buildTokenizerDeserializer);
+    public static final JsonpDeserializer<Tokenizer> _DESERIALIZER = JsonpDeserializer.lazy(Tokenizer::buildTokenizerDeserializer);
 }

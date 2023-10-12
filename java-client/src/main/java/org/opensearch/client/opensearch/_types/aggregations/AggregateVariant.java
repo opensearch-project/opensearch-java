@@ -37,10 +37,10 @@ package org.opensearch.client.opensearch._types.aggregations;
  */
 public interface AggregateVariant {
 
-	Aggregate.Kind _aggregateKind();
+    Aggregate.Kind _aggregateKind();
 
-	default Aggregate _toAggregate() {
-		return new Aggregate(this);
-	}
+    default Aggregate _toAggregate() {
+        return new Aggregate(this);
+    }
 
 }

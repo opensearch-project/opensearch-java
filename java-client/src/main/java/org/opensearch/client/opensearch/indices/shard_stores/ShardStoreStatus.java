@@ -35,41 +35,39 @@ package org.opensearch.client.opensearch.indices.shard_stores;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum ShardStoreStatus implements JsonEnum {
-	/**
-	 * The primary shard and all replica shards are assigned.
-	 */
-	Green("green"),
+    /**
+     * The primary shard and all replica shards are assigned.
+     */
+    Green("green"),
 
-	/**
-	 * One or more replica shards are unassigned.
-	 */
-	Yellow("yellow"),
+    /**
+     * One or more replica shards are unassigned.
+     */
+    Yellow("yellow"),
 
-	/**
-	 * The primary shard is unassigned.
-	 */
-	Red("red"),
+    /**
+     * The primary shard is unassigned.
+     */
+    Red("red"),
 
-	/**
-	 * Return all shards, regardless of health status.
-	 */
-	All("all"),
+    /**
+     * Return all shards, regardless of health status.
+     */
+    All("all"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ShardStoreStatus(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ShardStoreStatus(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ShardStoreStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ShardStoreStatus.values());
+    public static final JsonEnum.Deserializer<ShardStoreStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(ShardStoreStatus.values());
 }

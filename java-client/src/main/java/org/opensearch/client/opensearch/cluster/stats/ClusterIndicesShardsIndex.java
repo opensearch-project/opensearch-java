@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.cluster.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,191 +43,188 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterIndicesShardsIndex
 
-
 @JsonpDeserializable
 public class ClusterIndicesShardsIndex implements JsonpSerializable {
-	private final ClusterShardMetrics primaries;
+    private final ClusterShardMetrics primaries;
 
-	private final ClusterShardMetrics replication;
+    private final ClusterShardMetrics replication;
 
-	private final ClusterShardMetrics shards;
+    private final ClusterShardMetrics shards;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ClusterIndicesShardsIndex(Builder builder) {
+    private ClusterIndicesShardsIndex(Builder builder) {
 
-		this.primaries = ApiTypeHelper.requireNonNull(builder.primaries, this, "primaries");
-		this.replication = ApiTypeHelper.requireNonNull(builder.replication, this, "replication");
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+        this.primaries = ApiTypeHelper.requireNonNull(builder.primaries, this, "primaries");
+        this.replication = ApiTypeHelper.requireNonNull(builder.replication, this, "replication");
+        this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
-	}
+    }
 
-	public static ClusterIndicesShardsIndex of(Function<Builder, ObjectBuilder<ClusterIndicesShardsIndex>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ClusterIndicesShardsIndex of(Function<Builder, ObjectBuilder<ClusterIndicesShardsIndex>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Contains statistics about the number of primary shards assigned to
-	 * selected nodes.
-	 * <p>
-	 * API name: {@code primaries}
-	 */
-	public final ClusterShardMetrics primaries() {
-		return this.primaries;
-	}
+    /**
+     * Required - Contains statistics about the number of primary shards assigned to
+     * selected nodes.
+     * <p>
+     * API name: {@code primaries}
+     */
+    public final ClusterShardMetrics primaries() {
+        return this.primaries;
+    }
 
-	/**
-	 * Required - Contains statistics about the number of replication shards
-	 * assigned to selected nodes.
-	 * <p>
-	 * API name: {@code replication}
-	 */
-	public final ClusterShardMetrics replication() {
-		return this.replication;
-	}
+    /**
+     * Required - Contains statistics about the number of replication shards
+     * assigned to selected nodes.
+     * <p>
+     * API name: {@code replication}
+     */
+    public final ClusterShardMetrics replication() {
+        return this.replication;
+    }
 
-	/**
-	 * Required - Contains statistics about the number of shards assigned to
-	 * selected nodes.
-	 * <p>
-	 * API name: {@code shards}
-	 */
-	public final ClusterShardMetrics shards() {
-		return this.shards;
-	}
+    /**
+     * Required - Contains statistics about the number of shards assigned to
+     * selected nodes.
+     * <p>
+     * API name: {@code shards}
+     */
+    public final ClusterShardMetrics shards() {
+        return this.shards;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("primaries");
-		this.primaries.serialize(generator, mapper);
+        generator.writeKey("primaries");
+        this.primaries.serialize(generator, mapper);
 
-		generator.writeKey("replication");
-		this.replication.serialize(generator, mapper);
+        generator.writeKey("replication");
+        this.replication.serialize(generator, mapper);
 
-		generator.writeKey("shards");
-		this.shards.serialize(generator, mapper);
+        generator.writeKey("shards");
+        this.shards.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ClusterIndicesShardsIndex}.
-	 */
+    /**
+     * Builder for {@link ClusterIndicesShardsIndex}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterIndicesShardsIndex> {
-		private ClusterShardMetrics primaries;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterIndicesShardsIndex> {
+        private ClusterShardMetrics primaries;
 
-		private ClusterShardMetrics replication;
+        private ClusterShardMetrics replication;
 
-		private ClusterShardMetrics shards;
+        private ClusterShardMetrics shards;
 
-		/**
-		 * Required - Contains statistics about the number of primary shards assigned to
-		 * selected nodes.
-		 * <p>
-		 * API name: {@code primaries}
-		 */
-		public final Builder primaries(ClusterShardMetrics value) {
-			this.primaries = value;
-			return this;
-		}
+        /**
+         * Required - Contains statistics about the number of primary shards assigned to
+         * selected nodes.
+         * <p>
+         * API name: {@code primaries}
+         */
+        public final Builder primaries(ClusterShardMetrics value) {
+            this.primaries = value;
+            return this;
+        }
 
-		/**
-		 * Required - Contains statistics about the number of primary shards assigned to
-		 * selected nodes.
-		 * <p>
-		 * API name: {@code primaries}
-		 */
-		public final Builder primaries(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
-			return this.primaries(fn.apply(new ClusterShardMetrics.Builder()).build());
-		}
+        /**
+         * Required - Contains statistics about the number of primary shards assigned to
+         * selected nodes.
+         * <p>
+         * API name: {@code primaries}
+         */
+        public final Builder primaries(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
+            return this.primaries(fn.apply(new ClusterShardMetrics.Builder()).build());
+        }
 
-		/**
-		 * Required - Contains statistics about the number of replication shards
-		 * assigned to selected nodes.
-		 * <p>
-		 * API name: {@code replication}
-		 */
-		public final Builder replication(ClusterShardMetrics value) {
-			this.replication = value;
-			return this;
-		}
+        /**
+         * Required - Contains statistics about the number of replication shards
+         * assigned to selected nodes.
+         * <p>
+         * API name: {@code replication}
+         */
+        public final Builder replication(ClusterShardMetrics value) {
+            this.replication = value;
+            return this;
+        }
 
-		/**
-		 * Required - Contains statistics about the number of replication shards
-		 * assigned to selected nodes.
-		 * <p>
-		 * API name: {@code replication}
-		 */
-		public final Builder replication(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
-			return this.replication(fn.apply(new ClusterShardMetrics.Builder()).build());
-		}
+        /**
+         * Required - Contains statistics about the number of replication shards
+         * assigned to selected nodes.
+         * <p>
+         * API name: {@code replication}
+         */
+        public final Builder replication(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
+            return this.replication(fn.apply(new ClusterShardMetrics.Builder()).build());
+        }
 
-		/**
-		 * Required - Contains statistics about the number of shards assigned to
-		 * selected nodes.
-		 * <p>
-		 * API name: {@code shards}
-		 */
-		public final Builder shards(ClusterShardMetrics value) {
-			this.shards = value;
-			return this;
-		}
+        /**
+         * Required - Contains statistics about the number of shards assigned to
+         * selected nodes.
+         * <p>
+         * API name: {@code shards}
+         */
+        public final Builder shards(ClusterShardMetrics value) {
+            this.shards = value;
+            return this;
+        }
 
-		/**
-		 * Required - Contains statistics about the number of shards assigned to
-		 * selected nodes.
-		 * <p>
-		 * API name: {@code shards}
-		 */
-		public final Builder shards(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
-			return this.shards(fn.apply(new ClusterShardMetrics.Builder()).build());
-		}
+        /**
+         * Required - Contains statistics about the number of shards assigned to
+         * selected nodes.
+         * <p>
+         * API name: {@code shards}
+         */
+        public final Builder shards(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
+            return this.shards(fn.apply(new ClusterShardMetrics.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link ClusterIndicesShardsIndex}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ClusterIndicesShardsIndex build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ClusterIndicesShardsIndex}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ClusterIndicesShardsIndex build() {
+            _checkSingleUse();
 
-			return new ClusterIndicesShardsIndex(this);
-		}
-	}
+            return new ClusterIndicesShardsIndex(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ClusterIndicesShardsIndex}
-	 */
-	public static final JsonpDeserializer<ClusterIndicesShardsIndex> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterIndicesShardsIndex::setupClusterIndicesShardsIndexDeserializer);
+    /**
+     * Json deserializer for {@link ClusterIndicesShardsIndex}
+     */
+    public static final JsonpDeserializer<ClusterIndicesShardsIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ClusterIndicesShardsIndex::setupClusterIndicesShardsIndexDeserializer
+    );
 
-	protected static void setupClusterIndicesShardsIndexDeserializer(
-			ObjectDeserializer<ClusterIndicesShardsIndex.Builder> op) {
+    protected static void setupClusterIndicesShardsIndexDeserializer(ObjectDeserializer<ClusterIndicesShardsIndex.Builder> op) {
 
-		op.add(Builder::primaries, ClusterShardMetrics._DESERIALIZER, "primaries");
-		op.add(Builder::replication, ClusterShardMetrics._DESERIALIZER, "replication");
-		op.add(Builder::shards, ClusterShardMetrics._DESERIALIZER, "shards");
+        op.add(Builder::primaries, ClusterShardMetrics._DESERIALIZER, "primaries");
+        op.add(Builder::replication, ClusterShardMetrics._DESERIALIZER, "replication");
+        op.add(Builder::shards, ClusterShardMetrics._DESERIALIZER, "shards");
 
-	}
+    }
 
 }

@@ -32,83 +32,78 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.RangeAggregate
-
 
 @JsonpDeserializable
 public class RangeAggregate extends MultiBucketAggregateBase<RangeBucket> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected RangeAggregate(AbstractBuilder<?> builder) {
-		super(builder);
+    protected RangeAggregate(AbstractBuilder<?> builder) {
+        super(builder);
 
-	}
+    }
 
-	public static RangeAggregate rangeAggregateOf(Function<Builder, ObjectBuilder<RangeAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RangeAggregate rangeAggregateOf(Function<Builder, ObjectBuilder<RangeAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Range;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Range;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RangeAggregate}.
-	 */
+    /**
+     * Builder for {@link RangeAggregate}.
+     */
 
-	public static class Builder extends RangeAggregate.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RangeAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends RangeAggregate.AbstractBuilder<Builder> implements ObjectBuilder<RangeAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RangeAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RangeAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link RangeAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RangeAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new RangeAggregate(this);
-		}
-	}
+            return new RangeAggregate(this);
+        }
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				MultiBucketAggregateBase.AbstractBuilder<RangeBucket, BuilderT> {
-	}
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends
+        MultiBucketAggregateBase.AbstractBuilder<RangeBucket, BuilderT> {}
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RangeAggregate}
-	 */
-	public static final JsonpDeserializer<RangeAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RangeAggregate::setupRangeAggregateDeserializer);
+    /**
+     * Json deserializer for {@link RangeAggregate}
+     */
+    public static final JsonpDeserializer<RangeAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RangeAggregate::setupRangeAggregateDeserializer
+    );
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRangeAggregateDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		setupMultiBucketAggregateBaseDeserializer(op, RangeBucket._DESERIALIZER);
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRangeAggregateDeserializer(ObjectDeserializer<BuilderT> op) {
+        setupMultiBucketAggregateBaseDeserializer(op, RangeBucket._DESERIALIZER);
 
-	}
+    }
 
 }

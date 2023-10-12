@@ -32,68 +32,67 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.ShardsOperationResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.ShardsOperationResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.flush.Response
 
 @JsonpDeserializable
 public class FlushResponse extends ShardsOperationResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FlushResponse(Builder builder) {
-		super(builder);
+    private FlushResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static FlushResponse of(Function<Builder, ObjectBuilder<FlushResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FlushResponse of(Function<Builder, ObjectBuilder<FlushResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FlushResponse}.
-	 */
+    /**
+     * Builder for {@link FlushResponse}.
+     */
 
-	public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<FlushResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<FlushResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FlushResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FlushResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link FlushResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FlushResponse build() {
+            _checkSingleUse();
 
-			return new FlushResponse(this);
-		}
-	}
+            return new FlushResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FlushResponse}
-	 */
-	public static final JsonpDeserializer<FlushResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FlushResponse::setupFlushResponseDeserializer);
+    /**
+     * Json deserializer for {@link FlushResponse}
+     */
+    public static final JsonpDeserializer<FlushResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FlushResponse::setupFlushResponseDeserializer
+    );
 
-	protected static void setupFlushResponseDeserializer(ObjectDeserializer<FlushResponse.Builder> op) {
-		ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
+    protected static void setupFlushResponseDeserializer(ObjectDeserializer<FlushResponse.Builder> op) {
+        ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

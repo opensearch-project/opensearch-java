@@ -32,10 +32,10 @@
 
 package org.opensearch.client.opensearch.model;
 
+import org.junit.Test;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.opensearch._types.query_dsl.SimpleQueryStringFlag;
 import org.opensearch.client.opensearch._types.query_dsl.SimpleQueryStringFlags;
-import org.junit.Test;
 
 public class UnionTests extends ModelTestCase {
 
@@ -43,21 +43,13 @@ public class UnionTests extends ModelTestCase {
     public void testScriptDeserializer() {
         // A union discriminated by its field names (source -> inline, id -> stored)
         {
-            Script s = Script.of(_1 -> _1
-                .inline(_2 -> _2
-                    .source("a script")
-                )
-            );
+            Script s = Script.of(_1 -> _1.inline(_2 -> _2.source("a script")));
             s = checkJsonRoundtrip(s, "{\"source\":\"a script\"}");
             assertEquals("a script", s.inline().source());
         }
 
         {
-            Script s = Script.of(_1 -> _1
-                .stored(_2 -> _2
-                    .id("script_id")
-                )
-            );
+            Script s = Script.of(_1 -> _1.stored(_2 -> _2.id("script_id")));
             s = checkJsonRoundtrip(s, "{\"id\":\"script_id\"}");
             assertEquals("script_id", s.stored().id());
         }
@@ -75,12 +67,11 @@ public class UnionTests extends ModelTestCase {
 
         SimpleQueryStringFlags f;
 
-        f= fromJson("\"OR\"", SimpleQueryStringFlags.class);
+        f = fromJson("\"OR\"", SimpleQueryStringFlags.class);
         assertEquals(SimpleQueryStringFlag.Or, f.single());
 
         f = fromJson("\"OR|AND\"", SimpleQueryStringFlags.class);
         assertEquals("OR|AND", f.multiple());
-
 
     }
 }

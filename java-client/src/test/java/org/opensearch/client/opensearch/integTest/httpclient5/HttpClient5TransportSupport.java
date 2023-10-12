@@ -18,10 +18,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
-
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
-
 import org.apache.hc.client5.http.auth.AuthScope;
 import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
 import org.apache.hc.client5.http.impl.auth.BasicCredentialsProvider;
@@ -47,8 +45,7 @@ import org.opensearch.common.util.concurrent.ThreadContext;
 interface HttpClient5TransportSupport extends OpenSearchTransportSupport {
     @Override
     default OpenSearchTransport buildTransport(Settings settings, org.apache.http.HttpHost[] hosts) throws IOException {
-        final HttpHost[] converted = Arrays
-            .stream(hosts)
+        final HttpHost[] converted = Arrays.stream(hosts)
             .map(h -> new HttpHost(h.getSchemeName(), h.getHostName(), h.getPort()))
             .toArray(HttpHost[]::new);
 
@@ -60,19 +57,18 @@ interface HttpClient5TransportSupport extends OpenSearchTransportSupport {
     private void configure(ApacheHttpClient5TransportBuilder builder, Settings settings, HttpHost[] hosts) throws IOException {
         if (isHttps()) {
             try {
-                final SSLContext sslcontext = SSLContextBuilder
-                        .create()
-                        .loadTrustMaterial(null, (chains, authType) -> true)
-                        .build();
+                final SSLContext sslcontext = SSLContextBuilder.create().loadTrustMaterial(null, (chains, authType) -> true).build();
 
                 builder.setHttpClientConfigCallback(httpClientBuilder -> {
                     String userName = Optional.ofNullable(System.getProperty("user")).orElse("admin");
                     String password = Optional.ofNullable(System.getProperty("password")).orElse("admin");
-        
+
                     final BasicCredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-                    for (final HttpHost host: hosts) {
-                        credentialsProvider.setCredentials(new AuthScope(host),
-                            new UsernamePasswordCredentials(userName, password.toCharArray()));
+                    for (final HttpHost host : hosts) {
+                        credentialsProvider.setCredentials(
+                            new AuthScope(host),
+                            new UsernamePasswordCredentials(userName, password.toCharArray())
+                        );
                     }
 
                     final TlsStrategy tlsStrategy = ClientTlsStrategyBuilder.create()
@@ -92,9 +88,7 @@ interface HttpClient5TransportSupport extends OpenSearchTransportSupport {
                         .setTlsStrategy(tlsStrategy)
                         .build();
 
-                    return httpClientBuilder
-                        .setDefaultCredentialsProvider(credentialsProvider)
-                        .setConnectionManager(connectionManager);
+                    return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider).setConnectionManager(connectionManager);
                 });
             } catch (KeyStoreException | NoSuchAlgorithmException | KeyManagementException e) {
                 throw new RuntimeException("Error setting up ssl", e);

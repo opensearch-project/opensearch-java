@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,194 +44,193 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.RequestCacheStats
 
 @JsonpDeserializable
 public class RequestCacheStats implements JsonpSerializable {
-	private final long evictions;
+    private final long evictions;
 
-	private final long hitCount;
+    private final long hitCount;
 
-	@Nullable
-	private final String memorySize;
+    @Nullable
+    private final String memorySize;
 
-	private final long memorySizeInBytes;
+    private final long memorySizeInBytes;
 
-	private final long missCount;
+    private final long missCount;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RequestCacheStats(Builder builder) {
+    private RequestCacheStats(Builder builder) {
 
-		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions");
-		this.hitCount = ApiTypeHelper.requireNonNull(builder.hitCount, this, "hitCount");
-		this.memorySize = builder.memorySize;
-		this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
-		this.missCount = ApiTypeHelper.requireNonNull(builder.missCount, this, "missCount");
+        this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions");
+        this.hitCount = ApiTypeHelper.requireNonNull(builder.hitCount, this, "hitCount");
+        this.memorySize = builder.memorySize;
+        this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
+        this.missCount = ApiTypeHelper.requireNonNull(builder.missCount, this, "missCount");
 
-	}
+    }
 
-	public static RequestCacheStats of(Function<Builder, ObjectBuilder<RequestCacheStats>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RequestCacheStats of(Function<Builder, ObjectBuilder<RequestCacheStats>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code evictions}
-	 */
-	public final long evictions() {
-		return this.evictions;
-	}
+    /**
+     * Required - API name: {@code evictions}
+     */
+    public final long evictions() {
+        return this.evictions;
+    }
 
-	/**
-	 * Required - API name: {@code hit_count}
-	 */
-	public final long hitCount() {
-		return this.hitCount;
-	}
+    /**
+     * Required - API name: {@code hit_count}
+     */
+    public final long hitCount() {
+        return this.hitCount;
+    }
 
-	/**
-	 * API name: {@code memory_size}
-	 */
-	@Nullable
-	public final String memorySize() {
-		return this.memorySize;
-	}
+    /**
+     * API name: {@code memory_size}
+     */
+    @Nullable
+    public final String memorySize() {
+        return this.memorySize;
+    }
 
-	/**
-	 * Required - API name: {@code memory_size_in_bytes}
-	 */
-	public final long memorySizeInBytes() {
-		return this.memorySizeInBytes;
-	}
+    /**
+     * Required - API name: {@code memory_size_in_bytes}
+     */
+    public final long memorySizeInBytes() {
+        return this.memorySizeInBytes;
+    }
 
-	/**
-	 * Required - API name: {@code miss_count}
-	 */
-	public final long missCount() {
-		return this.missCount;
-	}
+    /**
+     * Required - API name: {@code miss_count}
+     */
+    public final long missCount() {
+        return this.missCount;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("evictions");
-		generator.write(this.evictions);
+        generator.writeKey("evictions");
+        generator.write(this.evictions);
 
-		generator.writeKey("hit_count");
-		generator.write(this.hitCount);
+        generator.writeKey("hit_count");
+        generator.write(this.hitCount);
 
-		if (this.memorySize != null) {
-			generator.writeKey("memory_size");
-			generator.write(this.memorySize);
+        if (this.memorySize != null) {
+            generator.writeKey("memory_size");
+            generator.write(this.memorySize);
 
-		}
-		generator.writeKey("memory_size_in_bytes");
-		generator.write(this.memorySizeInBytes);
+        }
+        generator.writeKey("memory_size_in_bytes");
+        generator.write(this.memorySizeInBytes);
 
-		generator.writeKey("miss_count");
-		generator.write(this.missCount);
+        generator.writeKey("miss_count");
+        generator.write(this.missCount);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RequestCacheStats}.
-	 */
+    /**
+     * Builder for {@link RequestCacheStats}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RequestCacheStats> {
-		private Long evictions;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RequestCacheStats> {
+        private Long evictions;
 
-		private Long hitCount;
+        private Long hitCount;
 
-		@Nullable
-		private String memorySize;
+        @Nullable
+        private String memorySize;
 
-		private Long memorySizeInBytes;
+        private Long memorySizeInBytes;
 
-		private Long missCount;
+        private Long missCount;
 
-		/**
-		 * Required - API name: {@code evictions}
-		 */
-		public final Builder evictions(long value) {
-			this.evictions = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code evictions}
+         */
+        public final Builder evictions(long value) {
+            this.evictions = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code hit_count}
-		 */
-		public final Builder hitCount(long value) {
-			this.hitCount = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code hit_count}
+         */
+        public final Builder hitCount(long value) {
+            this.hitCount = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code memory_size}
-		 */
-		public final Builder memorySize(@Nullable String value) {
-			this.memorySize = value;
-			return this;
-		}
+        /**
+         * API name: {@code memory_size}
+         */
+        public final Builder memorySize(@Nullable String value) {
+            this.memorySize = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code memory_size_in_bytes}
-		 */
-		public final Builder memorySizeInBytes(long value) {
-			this.memorySizeInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code memory_size_in_bytes}
+         */
+        public final Builder memorySizeInBytes(long value) {
+            this.memorySizeInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code miss_count}
-		 */
-		public final Builder missCount(long value) {
-			this.missCount = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code miss_count}
+         */
+        public final Builder missCount(long value) {
+            this.missCount = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RequestCacheStats}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RequestCacheStats build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RequestCacheStats}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RequestCacheStats build() {
+            _checkSingleUse();
 
-			return new RequestCacheStats(this);
-		}
-	}
+            return new RequestCacheStats(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RequestCacheStats}
-	 */
-	public static final JsonpDeserializer<RequestCacheStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RequestCacheStats::setupRequestCacheStatsDeserializer);
+    /**
+     * Json deserializer for {@link RequestCacheStats}
+     */
+    public static final JsonpDeserializer<RequestCacheStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RequestCacheStats::setupRequestCacheStatsDeserializer
+    );
 
-	protected static void setupRequestCacheStatsDeserializer(ObjectDeserializer<RequestCacheStats.Builder> op) {
+    protected static void setupRequestCacheStatsDeserializer(ObjectDeserializer<RequestCacheStats.Builder> op) {
 
-		op.add(Builder::evictions, JsonpDeserializer.longDeserializer(), "evictions");
-		op.add(Builder::hitCount, JsonpDeserializer.longDeserializer(), "hit_count");
-		op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
-		op.add(Builder::memorySizeInBytes, JsonpDeserializer.longDeserializer(), "memory_size_in_bytes");
-		op.add(Builder::missCount, JsonpDeserializer.longDeserializer(), "miss_count");
+        op.add(Builder::evictions, JsonpDeserializer.longDeserializer(), "evictions");
+        op.add(Builder::hitCount, JsonpDeserializer.longDeserializer(), "hit_count");
+        op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
+        op.add(Builder::memorySizeInBytes, JsonpDeserializer.longDeserializer(), "memory_size_in_bytes");
+        op.add(Builder::missCount, JsonpDeserializer.longDeserializer(), "miss_count");
 
-	}
+    }
 
 }

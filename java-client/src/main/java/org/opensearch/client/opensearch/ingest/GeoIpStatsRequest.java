@@ -32,51 +32,53 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import java.util.Collections;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
-import java.util.Collections;
-
 // typedef: ingest.geo_ip_stats.Request
 
 /**
  * Returns statistical information about geoip databases
- * 
+ *
  */
 
 public class GeoIpStatsRequest extends RequestBase {
-	public GeoIpStatsRequest() {
-	}
+    public GeoIpStatsRequest() {}
 
-	/**
-	 * Singleton instance for {@link GeoIpStatsRequest}.
-	 */
-	public static final GeoIpStatsRequest _INSTANCE = new GeoIpStatsRequest();
+    /**
+     * Singleton instance for {@link GeoIpStatsRequest}.
+     */
+    public static final GeoIpStatsRequest _INSTANCE = new GeoIpStatsRequest();
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code ingest.geo_ip_stats}".
-	 */
-	public static final Endpoint<GeoIpStatsRequest, GeoIpStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code ingest.geo_ip_stats}".
+     */
+    public static final Endpoint<GeoIpStatsRequest, GeoIpStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				return "/_ingest/geoip/stats";
+        // Request path
+        request -> {
+            return "/_ingest/geoip/stats";
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GeoIpStatsResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        GeoIpStatsResponse._DESERIALIZER
+    );
 }

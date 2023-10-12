@@ -32,76 +32,76 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.ExtendedStatsBucketAggregate
 
 @JsonpDeserializable
 public class ExtendedStatsBucketAggregate extends ExtendedStatsAggregate implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ExtendedStatsBucketAggregate(Builder builder) {
-		super(builder);
+    private ExtendedStatsBucketAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static ExtendedStatsBucketAggregate of(Function<Builder, ObjectBuilder<ExtendedStatsBucketAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ExtendedStatsBucketAggregate of(Function<Builder, ObjectBuilder<ExtendedStatsBucketAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.ExtendedStatsBucket;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.ExtendedStatsBucket;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ExtendedStatsBucketAggregate}.
-	 */
+    /**
+     * Builder for {@link ExtendedStatsBucketAggregate}.
+     */
 
-	public static class Builder extends ExtendedStatsAggregate.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ExtendedStatsBucketAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends ExtendedStatsAggregate.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<ExtendedStatsBucketAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ExtendedStatsBucketAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ExtendedStatsBucketAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ExtendedStatsBucketAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ExtendedStatsBucketAggregate build() {
+            _checkSingleUse();
 
-			return new ExtendedStatsBucketAggregate(this);
-		}
-	}
+            return new ExtendedStatsBucketAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ExtendedStatsBucketAggregate}
-	 */
-	public static final JsonpDeserializer<ExtendedStatsBucketAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExtendedStatsBucketAggregate::setupExtendedStatsBucketAggregateDeserializer);
+    /**
+     * Json deserializer for {@link ExtendedStatsBucketAggregate}
+     */
+    public static final JsonpDeserializer<ExtendedStatsBucketAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ExtendedStatsBucketAggregate::setupExtendedStatsBucketAggregateDeserializer
+    );
 
-	protected static void setupExtendedStatsBucketAggregateDeserializer(
-			ObjectDeserializer<ExtendedStatsBucketAggregate.Builder> op) {
-		setupExtendedStatsAggregateDeserializer(op);
+    protected static void setupExtendedStatsBucketAggregateDeserializer(ObjectDeserializer<ExtendedStatsBucketAggregate.Builder> op) {
+        setupExtendedStatsAggregateDeserializer(op);
 
-	}
+    }
 
 }

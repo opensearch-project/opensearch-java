@@ -35,29 +35,29 @@ package org.opensearch.client.opensearch.indices;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum IndexRoutingRebalanceOptions implements JsonEnum {
-	All("all"),
+    All("all"),
 
-	Primaries("primaries"),
+    Primaries("primaries"),
 
-	Replicas("replicas"),
+    Replicas("replicas"),
 
-	None("none"),
+    None("none"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	IndexRoutingRebalanceOptions(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    IndexRoutingRebalanceOptions(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<IndexRoutingRebalanceOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IndexRoutingRebalanceOptions.values());
+    public static final JsonEnum.Deserializer<IndexRoutingRebalanceOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IndexRoutingRebalanceOptions.values()
+    );
 }

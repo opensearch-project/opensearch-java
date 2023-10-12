@@ -35,33 +35,31 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum FunctionScoreMode implements JsonEnum {
-	Multiply("multiply"),
+    Multiply("multiply"),
 
-	Sum("sum"),
+    Sum("sum"),
 
-	Avg("avg"),
+    Avg("avg"),
 
-	First("first"),
+    First("first"),
 
-	Max("max"),
+    Max("max"),
 
-	Min("min"),
+    Min("min"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	FunctionScoreMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    FunctionScoreMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<FunctionScoreMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			FunctionScoreMode.values());
+    public static final JsonEnum.Deserializer<FunctionScoreMode> _DESERIALIZER = new JsonEnum.Deserializer<>(FunctionScoreMode.values());
 }

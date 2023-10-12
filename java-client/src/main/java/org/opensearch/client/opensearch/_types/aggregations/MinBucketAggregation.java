@@ -32,75 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.MinBucketAggregation
 
 @JsonpDeserializable
 public class MinBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MinBucketAggregation(Builder builder) {
-		super(builder);
+    private MinBucketAggregation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static MinBucketAggregation of(Function<Builder, ObjectBuilder<MinBucketAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MinBucketAggregation of(Function<Builder, ObjectBuilder<MinBucketAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.MinBucket;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.MinBucket;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MinBucketAggregation}.
-	 */
+    /**
+     * Builder for {@link MinBucketAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<MinBucketAggregation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<MinBucketAggregation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MinBucketAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MinBucketAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MinBucketAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MinBucketAggregation build() {
+            _checkSingleUse();
 
-			return new MinBucketAggregation(this);
-		}
-	}
+            return new MinBucketAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MinBucketAggregation}
-	 */
-	public static final JsonpDeserializer<MinBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MinBucketAggregation::setupMinBucketAggregationDeserializer);
+    /**
+     * Json deserializer for {@link MinBucketAggregation}
+     */
+    public static final JsonpDeserializer<MinBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MinBucketAggregation::setupMinBucketAggregationDeserializer
+    );
 
-	protected static void setupMinBucketAggregationDeserializer(ObjectDeserializer<MinBucketAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+    protected static void setupMinBucketAggregationDeserializer(ObjectDeserializer<MinBucketAggregation.Builder> op) {
+        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
-	}
+    }
 
 }

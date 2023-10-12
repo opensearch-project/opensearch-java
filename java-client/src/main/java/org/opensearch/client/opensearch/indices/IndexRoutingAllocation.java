@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,213 +43,207 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocation
 
-
 @JsonpDeserializable
 public class IndexRoutingAllocation implements JsonpSerializable {
-	@Nullable
-	private final IndexRoutingAllocationOptions enable;
+    @Nullable
+    private final IndexRoutingAllocationOptions enable;
 
-	@Nullable
-	private final IndexRoutingAllocationInclude include;
+    @Nullable
+    private final IndexRoutingAllocationInclude include;
 
-	@Nullable
-	private final IndexRoutingAllocationInitialRecovery initialRecovery;
+    @Nullable
+    private final IndexRoutingAllocationInitialRecovery initialRecovery;
 
-	@Nullable
-	private final IndexRoutingAllocationDisk disk;
+    @Nullable
+    private final IndexRoutingAllocationDisk disk;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndexRoutingAllocation(Builder builder) {
+    private IndexRoutingAllocation(Builder builder) {
 
-		this.enable = builder.enable;
-		this.include = builder.include;
-		this.initialRecovery = builder.initialRecovery;
-		this.disk = builder.disk;
+        this.enable = builder.enable;
+        this.include = builder.include;
+        this.initialRecovery = builder.initialRecovery;
+        this.disk = builder.disk;
 
-	}
+    }
 
-	public static IndexRoutingAllocation of(Function<Builder, ObjectBuilder<IndexRoutingAllocation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndexRoutingAllocation of(Function<Builder, ObjectBuilder<IndexRoutingAllocation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code enable}
-	 */
-	@Nullable
-	public final IndexRoutingAllocationOptions enable() {
-		return this.enable;
-	}
+    /**
+     * API name: {@code enable}
+     */
+    @Nullable
+    public final IndexRoutingAllocationOptions enable() {
+        return this.enable;
+    }
 
-	/**
-	 * API name: {@code include}
-	 */
-	@Nullable
-	public final IndexRoutingAllocationInclude include() {
-		return this.include;
-	}
+    /**
+     * API name: {@code include}
+     */
+    @Nullable
+    public final IndexRoutingAllocationInclude include() {
+        return this.include;
+    }
 
-	/**
-	 * API name: {@code initial_recovery}
-	 */
-	@Nullable
-	public final IndexRoutingAllocationInitialRecovery initialRecovery() {
-		return this.initialRecovery;
-	}
+    /**
+     * API name: {@code initial_recovery}
+     */
+    @Nullable
+    public final IndexRoutingAllocationInitialRecovery initialRecovery() {
+        return this.initialRecovery;
+    }
 
-	/**
-	 * API name: {@code disk}
-	 */
-	@Nullable
-	public final IndexRoutingAllocationDisk disk() {
-		return this.disk;
-	}
+    /**
+     * API name: {@code disk}
+     */
+    @Nullable
+    public final IndexRoutingAllocationDisk disk() {
+        return this.disk;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.enable != null) {
-			generator.writeKey("enable");
-			this.enable.serialize(generator, mapper);
-		}
-		if (this.include != null) {
-			generator.writeKey("include");
-			this.include.serialize(generator, mapper);
+        if (this.enable != null) {
+            generator.writeKey("enable");
+            this.enable.serialize(generator, mapper);
+        }
+        if (this.include != null) {
+            generator.writeKey("include");
+            this.include.serialize(generator, mapper);
 
-		}
-		if (this.initialRecovery != null) {
-			generator.writeKey("initial_recovery");
-			this.initialRecovery.serialize(generator, mapper);
+        }
+        if (this.initialRecovery != null) {
+            generator.writeKey("initial_recovery");
+            this.initialRecovery.serialize(generator, mapper);
 
-		}
-		if (this.disk != null) {
-			generator.writeKey("disk");
-			this.disk.serialize(generator, mapper);
+        }
+        if (this.disk != null) {
+            generator.writeKey("disk");
+            this.disk.serialize(generator, mapper);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndexRoutingAllocation}.
-	 */
+    /**
+     * Builder for {@link IndexRoutingAllocation}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocation> {
-		@Nullable
-		private IndexRoutingAllocationOptions enable;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocation> {
+        @Nullable
+        private IndexRoutingAllocationOptions enable;
 
-		@Nullable
-		private IndexRoutingAllocationInclude include;
+        @Nullable
+        private IndexRoutingAllocationInclude include;
 
-		@Nullable
-		private IndexRoutingAllocationInitialRecovery initialRecovery;
+        @Nullable
+        private IndexRoutingAllocationInitialRecovery initialRecovery;
 
-		@Nullable
-		private IndexRoutingAllocationDisk disk;
+        @Nullable
+        private IndexRoutingAllocationDisk disk;
 
-		/**
-		 * API name: {@code enable}
-		 */
-		public final Builder enable(@Nullable IndexRoutingAllocationOptions value) {
-			this.enable = value;
-			return this;
-		}
+        /**
+         * API name: {@code enable}
+         */
+        public final Builder enable(@Nullable IndexRoutingAllocationOptions value) {
+            this.enable = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code include}
-		 */
-		public final Builder include(@Nullable IndexRoutingAllocationInclude value) {
-			this.include = value;
-			return this;
-		}
+        /**
+         * API name: {@code include}
+         */
+        public final Builder include(@Nullable IndexRoutingAllocationInclude value) {
+            this.include = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code include}
-		 */
-		public final Builder include(
-				Function<IndexRoutingAllocationInclude.Builder, ObjectBuilder<IndexRoutingAllocationInclude>> fn) {
-			return this.include(fn.apply(new IndexRoutingAllocationInclude.Builder()).build());
-		}
+        /**
+         * API name: {@code include}
+         */
+        public final Builder include(Function<IndexRoutingAllocationInclude.Builder, ObjectBuilder<IndexRoutingAllocationInclude>> fn) {
+            return this.include(fn.apply(new IndexRoutingAllocationInclude.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code initial_recovery}
-		 */
-		public final Builder initialRecovery(@Nullable IndexRoutingAllocationInitialRecovery value) {
-			this.initialRecovery = value;
-			return this;
-		}
+        /**
+         * API name: {@code initial_recovery}
+         */
+        public final Builder initialRecovery(@Nullable IndexRoutingAllocationInitialRecovery value) {
+            this.initialRecovery = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code initial_recovery}
-		 */
-		public final Builder initialRecovery(
-				Function<IndexRoutingAllocationInitialRecovery.Builder
-						, ObjectBuilder<IndexRoutingAllocationInitialRecovery>> fn) {
-			return this.initialRecovery(fn.apply(new IndexRoutingAllocationInitialRecovery.Builder()).build());
-		}
+        /**
+         * API name: {@code initial_recovery}
+         */
+        public final Builder initialRecovery(
+            Function<IndexRoutingAllocationInitialRecovery.Builder, ObjectBuilder<IndexRoutingAllocationInitialRecovery>> fn
+        ) {
+            return this.initialRecovery(fn.apply(new IndexRoutingAllocationInitialRecovery.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code disk}
-		 */
-		public final Builder disk(@Nullable IndexRoutingAllocationDisk value) {
-			this.disk = value;
-			return this;
-		}
+        /**
+         * API name: {@code disk}
+         */
+        public final Builder disk(@Nullable IndexRoutingAllocationDisk value) {
+            this.disk = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code disk}
-		 */
-		public final Builder disk(
-				Function<IndexRoutingAllocationDisk.Builder, ObjectBuilder<IndexRoutingAllocationDisk>> fn) {
-			return this.disk(fn.apply(new IndexRoutingAllocationDisk.Builder()).build());
-		}
+        /**
+         * API name: {@code disk}
+         */
+        public final Builder disk(Function<IndexRoutingAllocationDisk.Builder, ObjectBuilder<IndexRoutingAllocationDisk>> fn) {
+            return this.disk(fn.apply(new IndexRoutingAllocationDisk.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link IndexRoutingAllocation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndexRoutingAllocation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndexRoutingAllocation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndexRoutingAllocation build() {
+            _checkSingleUse();
 
-			return new IndexRoutingAllocation(this);
-		}
-	}
+            return new IndexRoutingAllocation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IndexRoutingAllocation}
-	 */
-	public static final JsonpDeserializer<IndexRoutingAllocation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexRoutingAllocation::setupIndexRoutingAllocationDeserializer);
+    /**
+     * Json deserializer for {@link IndexRoutingAllocation}
+     */
+    public static final JsonpDeserializer<IndexRoutingAllocation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IndexRoutingAllocation::setupIndexRoutingAllocationDeserializer
+    );
 
-	protected static void setupIndexRoutingAllocationDeserializer(
-			ObjectDeserializer<IndexRoutingAllocation.Builder> op) {
+    protected static void setupIndexRoutingAllocationDeserializer(ObjectDeserializer<IndexRoutingAllocation.Builder> op) {
 
-		op.add(Builder::enable, IndexRoutingAllocationOptions._DESERIALIZER, "enable");
-		op.add(Builder::include, IndexRoutingAllocationInclude._DESERIALIZER, "include");
-		op.add(Builder::initialRecovery, IndexRoutingAllocationInitialRecovery._DESERIALIZER, "initial_recovery");
-		op.add(Builder::disk, IndexRoutingAllocationDisk._DESERIALIZER, "disk");
+        op.add(Builder::enable, IndexRoutingAllocationOptions._DESERIALIZER, "enable");
+        op.add(Builder::include, IndexRoutingAllocationInclude._DESERIALIZER, "include");
+        op.add(Builder::initialRecovery, IndexRoutingAllocationInitialRecovery._DESERIALIZER, "initial_recovery");
+        op.add(Builder::disk, IndexRoutingAllocationDisk._DESERIALIZER, "disk");
 
-	}
+    }
 
 }

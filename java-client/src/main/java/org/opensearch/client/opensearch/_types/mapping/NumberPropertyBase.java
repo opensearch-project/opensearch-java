@@ -32,99 +32,97 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
-import jakarta.json.stream.JsonGenerator;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.NumberPropertyBase
 
-
-
 public abstract class NumberPropertyBase extends DocValuesPropertyBase {
-	@Nullable
-	private final Boolean index;
+    @Nullable
+    private final Boolean index;
 
-	@Nullable
-	private final Boolean ignoreMalformed;
+    @Nullable
+    private final Boolean ignoreMalformed;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected NumberPropertyBase(AbstractBuilder<?> builder) {
-		super(builder);
+    protected NumberPropertyBase(AbstractBuilder<?> builder) {
+        super(builder);
 
-		this.index = builder.index;
-		this.ignoreMalformed = builder.ignoreMalformed;
+        this.index = builder.index;
+        this.ignoreMalformed = builder.ignoreMalformed;
 
-	}
+    }
 
-	/**
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public final Boolean index() {
-		return this.index;
-	}
+    /**
+     * API name: {@code index}
+     */
+    @Nullable
+    public final Boolean index() {
+        return this.index;
+    }
 
-	/**
-	 * API name: {@code ignore_malformed}
-	 */
-	@Nullable
-	public final Boolean ignoreMalformed() {
-		return this.ignoreMalformed;
-	}
+    /**
+     * API name: {@code ignore_malformed}
+     */
+    @Nullable
+    public final Boolean ignoreMalformed() {
+        return this.ignoreMalformed;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.index != null) {
-			generator.writeKey("index");
-			generator.write(this.index);
+        super.serializeInternal(generator, mapper);
+        if (this.index != null) {
+            generator.writeKey("index");
+            generator.write(this.index);
 
-		}
-		if (this.ignoreMalformed != null) {
-			generator.writeKey("ignore_malformed");
-			generator.write(this.ignoreMalformed);
+        }
+        if (this.ignoreMalformed != null) {
+            generator.writeKey("ignore_malformed");
+            generator.write(this.ignoreMalformed);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				DocValuesPropertyBase.AbstractBuilder<BuilderT> {
-		@Nullable
-		private Boolean index;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends
+        DocValuesPropertyBase.AbstractBuilder<BuilderT> {
+        @Nullable
+        private Boolean index;
 
-		@Nullable
-		private Boolean ignoreMalformed;
+        @Nullable
+        private Boolean ignoreMalformed;
 
-		/**
-		 * API name: {@code index}
-		 */
-		public final BuilderT index(@Nullable Boolean value) {
-			this.index = value;
-			return self();
-		}
+        /**
+         * API name: {@code index}
+         */
+        public final BuilderT index(@Nullable Boolean value) {
+            this.index = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code ignore_malformed}
-		 */
-		public final BuilderT ignoreMalformed(@Nullable Boolean value) {
-			this.ignoreMalformed = value;
-			return self();
-		}
+        /**
+         * API name: {@code ignore_malformed}
+         */
+        public final BuilderT ignoreMalformed(@Nullable Boolean value) {
+            this.ignoreMalformed = value;
+            return self();
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupNumberPropertyBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
-		op.add(AbstractBuilder::index, JsonpDeserializer.booleanDeserializer(), "index");
-		op.add(AbstractBuilder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupNumberPropertyBaseDeserializer(
+        ObjectDeserializer<BuilderT> op
+    ) {
+        DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
+        op.add(AbstractBuilder::index, JsonpDeserializer.booleanDeserializer(), "index");
+        op.add(AbstractBuilder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 
-	}
+    }
 
 }

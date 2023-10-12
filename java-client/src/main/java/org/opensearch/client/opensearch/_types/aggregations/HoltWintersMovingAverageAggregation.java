@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,117 +41,111 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.HoltWintersMovingAverageAggregation
 
-
 @JsonpDeserializable
-public class HoltWintersMovingAverageAggregation extends MovingAverageAggregationBase
-		implements
-			MovingAverageAggregationVariant {
-	private final HoltWintersModelSettings settings;
+public class HoltWintersMovingAverageAggregation extends MovingAverageAggregationBase implements MovingAverageAggregationVariant {
+    private final HoltWintersModelSettings settings;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private HoltWintersMovingAverageAggregation(Builder builder) {
-		super(builder);
+    private HoltWintersMovingAverageAggregation(Builder builder) {
+        super(builder);
 
-		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
+        this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
-	}
+    }
 
-	public static HoltWintersMovingAverageAggregation of(
-			Function<Builder, ObjectBuilder<HoltWintersMovingAverageAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static HoltWintersMovingAverageAggregation of(Function<Builder, ObjectBuilder<HoltWintersMovingAverageAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * MovingAverageAggregation variant kind.
-	 */
-	@Override
-	public MovingAverageAggregation.Kind _movingAverageAggregationKind() {
-		return MovingAverageAggregation.Kind.HoltWinters;
-	}
+    /**
+     * MovingAverageAggregation variant kind.
+     */
+    @Override
+    public MovingAverageAggregation.Kind _movingAverageAggregationKind() {
+        return MovingAverageAggregation.Kind.HoltWinters;
+    }
 
-	/**
-	 * Required - API name: {@code settings}
-	 */
-	public final HoltWintersModelSettings settings() {
-		return this.settings;
-	}
+    /**
+     * Required - API name: {@code settings}
+     */
+    public final HoltWintersModelSettings settings() {
+        return this.settings;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("model", "holt_winters");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("settings");
-		this.settings.serialize(generator, mapper);
+        generator.write("model", "holt_winters");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("settings");
+        this.settings.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link HoltWintersMovingAverageAggregation}.
-	 */
+    /**
+     * Builder for {@link HoltWintersMovingAverageAggregation}.
+     */
 
-	public static class Builder extends MovingAverageAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<HoltWintersMovingAverageAggregation> {
-		private HoltWintersModelSettings settings;
+    public static class Builder extends MovingAverageAggregationBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<HoltWintersMovingAverageAggregation> {
+        private HoltWintersModelSettings settings;
 
-		/**
-		 * Required - API name: {@code settings}
-		 */
-		public final Builder settings(HoltWintersModelSettings value) {
-			this.settings = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code settings}
+         */
+        public final Builder settings(HoltWintersModelSettings value) {
+            this.settings = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code settings}
-		 */
-		public final Builder settings(
-				Function<HoltWintersModelSettings.Builder, ObjectBuilder<HoltWintersModelSettings>> fn) {
-			return this.settings(fn.apply(new HoltWintersModelSettings.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code settings}
+         */
+        public final Builder settings(Function<HoltWintersModelSettings.Builder, ObjectBuilder<HoltWintersModelSettings>> fn) {
+            return this.settings(fn.apply(new HoltWintersModelSettings.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link HoltWintersMovingAverageAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public HoltWintersMovingAverageAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link HoltWintersMovingAverageAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public HoltWintersMovingAverageAggregation build() {
+            _checkSingleUse();
 
-			return new HoltWintersMovingAverageAggregation(this);
-		}
-	}
+            return new HoltWintersMovingAverageAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link HoltWintersMovingAverageAggregation}
-	 */
-	public static final JsonpDeserializer<HoltWintersMovingAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new,
-					HoltWintersMovingAverageAggregation::setupHoltWintersMovingAverageAggregationDeserializer);
+    /**
+     * Json deserializer for {@link HoltWintersMovingAverageAggregation}
+     */
+    public static final JsonpDeserializer<HoltWintersMovingAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        HoltWintersMovingAverageAggregation::setupHoltWintersMovingAverageAggregationDeserializer
+    );
 
-	protected static void setupHoltWintersMovingAverageAggregationDeserializer(
-			ObjectDeserializer<HoltWintersMovingAverageAggregation.Builder> op) {
-		MovingAverageAggregationBase.setupMovingAverageAggregationBaseDeserializer(op);
-		op.add(Builder::settings, HoltWintersModelSettings._DESERIALIZER, "settings");
+    protected static void setupHoltWintersMovingAverageAggregationDeserializer(
+        ObjectDeserializer<HoltWintersMovingAverageAggregation.Builder> op
+    ) {
+        MovingAverageAggregationBase.setupMovingAverageAggregationBaseDeserializer(op);
+        op.add(Builder::settings, HoltWintersModelSettings._DESERIALIZER, "settings");
 
-		op.ignore("model");
-	}
+        op.ignore("model");
+    }
 
 }

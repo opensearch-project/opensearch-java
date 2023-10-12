@@ -12,6 +12,5 @@ public final class TransportHeaders {
     public static final String ACCEPT = "Accept";
     public static final String USER_AGENT = "User-Agent";
 
-    private TransportHeaders() {
-    }
+    private TransportHeaders() {}
 }

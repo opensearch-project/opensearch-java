@@ -32,76 +32,76 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.CumulativeSumAggregation
 
 @JsonpDeserializable
 public class CumulativeSumAggregation extends PipelineAggregationBase implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private CumulativeSumAggregation(Builder builder) {
-		super(builder);
+    private CumulativeSumAggregation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static CumulativeSumAggregation of(Function<Builder, ObjectBuilder<CumulativeSumAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static CumulativeSumAggregation of(Function<Builder, ObjectBuilder<CumulativeSumAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.CumulativeSum;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.CumulativeSum;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link CumulativeSumAggregation}.
-	 */
+    /**
+     * Builder for {@link CumulativeSumAggregation}.
+     */
 
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<CumulativeSumAggregation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<CumulativeSumAggregation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link CumulativeSumAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public CumulativeSumAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link CumulativeSumAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public CumulativeSumAggregation build() {
+            _checkSingleUse();
 
-			return new CumulativeSumAggregation(this);
-		}
-	}
+            return new CumulativeSumAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link CumulativeSumAggregation}
-	 */
-	public static final JsonpDeserializer<CumulativeSumAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CumulativeSumAggregation::setupCumulativeSumAggregationDeserializer);
+    /**
+     * Json deserializer for {@link CumulativeSumAggregation}
+     */
+    public static final JsonpDeserializer<CumulativeSumAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        CumulativeSumAggregation::setupCumulativeSumAggregationDeserializer
+    );
 
-	protected static void setupCumulativeSumAggregationDeserializer(
-			ObjectDeserializer<CumulativeSumAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+    protected static void setupCumulativeSumAggregationDeserializer(ObjectDeserializer<CumulativeSumAggregation.Builder> op) {
+        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
-	}
+    }
 
 }

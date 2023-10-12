@@ -37,24 +37,23 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum ThreadType implements JsonEnum {
-	Cpu("cpu"),
+    Cpu("cpu"),
 
-	Wait("wait"),
+    Wait("wait"),
 
-	Block("block"),
+    Block("block"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ThreadType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ThreadType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ThreadType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ThreadType.values());
+    public static final JsonEnum.Deserializer<ThreadType> _DESERIALIZER = new JsonEnum.Deserializer<>(ThreadType.values());
 }

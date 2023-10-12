@@ -32,80 +32,78 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
 
 // typedef: _types.AcknowledgedResponseBase
 
-
 public abstract class AcknowledgedResponseBase implements JsonpSerializable {
-	private final boolean acknowledged;
+    private final boolean acknowledged;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected AcknowledgedResponseBase(AbstractBuilder<?> builder) {
+    protected AcknowledgedResponseBase(AbstractBuilder<?> builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+        this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
 
-	}
+    }
 
-	/**
-	 * Required - For a successful response, this value is always true. On failure,
-	 * an exception is returned instead.
-	 * <p>
-	 * API name: {@code acknowledged}
-	 */
-	public final boolean acknowledged() {
-		return this.acknowledged;
-	}
+    /**
+     * Required - For a successful response, this value is always true. On failure,
+     * an exception is returned instead.
+     * <p>
+     * API name: {@code acknowledged}
+     */
+    public final boolean acknowledged() {
+        return this.acknowledged;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("acknowledged");
-		generator.write(this.acknowledged);
+        generator.writeKey("acknowledged");
+        generator.write(this.acknowledged);
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				ObjectBuilderBase {
-		private Boolean acknowledged;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+        private Boolean acknowledged;
 
-		/**
-		 * Required - For a successful response, this value is always true. On failure,
-		 * an exception is returned instead.
-		 * <p>
-		 * API name: {@code acknowledged}
-		 */
-		public final BuilderT acknowledged(boolean value) {
-			this.acknowledged = value;
-			return self();
-		}
+        /**
+         * Required - For a successful response, this value is always true. On failure,
+         * an exception is returned instead.
+         * <p>
+         * API name: {@code acknowledged}
+         */
+        public final BuilderT acknowledged(boolean value) {
+            this.acknowledged = value;
+            return self();
+        }
 
-		protected abstract BuilderT self();
+        protected abstract BuilderT self();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAcknowledgedResponseBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAcknowledgedResponseBaseDeserializer(
+        ObjectDeserializer<BuilderT> op
+    ) {
 
-		op.add(AbstractBuilder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
+        op.add(AbstractBuilder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 
-	}
+    }
 
 }

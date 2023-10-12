@@ -32,128 +32,124 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
-import jakarta.json.stream.JsonGenerator;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RangePropertyBase
 
-
-
 public abstract class RangePropertyBase extends DocValuesPropertyBase {
-	@Nullable
-	private final Double boost;
+    @Nullable
+    private final Double boost;
 
-	@Nullable
-	private final Boolean coerce;
+    @Nullable
+    private final Boolean coerce;
 
-	@Nullable
-	private final Boolean index;
+    @Nullable
+    private final Boolean index;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected RangePropertyBase(AbstractBuilder<?> builder) {
-		super(builder);
+    protected RangePropertyBase(AbstractBuilder<?> builder) {
+        super(builder);
 
-		this.boost = builder.boost;
-		this.coerce = builder.coerce;
-		this.index = builder.index;
+        this.boost = builder.boost;
+        this.coerce = builder.coerce;
+        this.index = builder.index;
 
-	}
+    }
 
-	/**
-	 * API name: {@code boost}
-	 */
-	@Nullable
-	public final Double boost() {
-		return this.boost;
-	}
+    /**
+     * API name: {@code boost}
+     */
+    @Nullable
+    public final Double boost() {
+        return this.boost;
+    }
 
-	/**
-	 * API name: {@code coerce}
-	 */
-	@Nullable
-	public final Boolean coerce() {
-		return this.coerce;
-	}
+    /**
+     * API name: {@code coerce}
+     */
+    @Nullable
+    public final Boolean coerce() {
+        return this.coerce;
+    }
 
-	/**
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public final Boolean index() {
-		return this.index;
-	}
+    /**
+     * API name: {@code index}
+     */
+    @Nullable
+    public final Boolean index() {
+        return this.index;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.boost != null) {
-			generator.writeKey("boost");
-			generator.write(this.boost);
+        super.serializeInternal(generator, mapper);
+        if (this.boost != null) {
+            generator.writeKey("boost");
+            generator.write(this.boost);
 
-		}
-		if (this.coerce != null) {
-			generator.writeKey("coerce");
-			generator.write(this.coerce);
+        }
+        if (this.coerce != null) {
+            generator.writeKey("coerce");
+            generator.write(this.coerce);
 
-		}
-		if (this.index != null) {
-			generator.writeKey("index");
-			generator.write(this.index);
+        }
+        if (this.index != null) {
+            generator.writeKey("index");
+            generator.write(this.index);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				DocValuesPropertyBase.AbstractBuilder<BuilderT> {
-		@Nullable
-		private Double boost;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends
+        DocValuesPropertyBase.AbstractBuilder<BuilderT> {
+        @Nullable
+        private Double boost;
 
-		@Nullable
-		private Boolean coerce;
+        @Nullable
+        private Boolean coerce;
 
-		@Nullable
-		private Boolean index;
+        @Nullable
+        private Boolean index;
 
-		/**
-		 * API name: {@code boost}
-		 */
-		public final BuilderT boost(@Nullable Double value) {
-			this.boost = value;
-			return self();
-		}
+        /**
+         * API name: {@code boost}
+         */
+        public final BuilderT boost(@Nullable Double value) {
+            this.boost = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code coerce}
-		 */
-		public final BuilderT coerce(@Nullable Boolean value) {
-			this.coerce = value;
-			return self();
-		}
+        /**
+         * API name: {@code coerce}
+         */
+        public final BuilderT coerce(@Nullable Boolean value) {
+            this.coerce = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code index}
-		 */
-		public final BuilderT index(@Nullable Boolean value) {
-			this.index = value;
-			return self();
-		}
+        /**
+         * API name: {@code index}
+         */
+        public final BuilderT index(@Nullable Boolean value) {
+            this.index = value;
+            return self();
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRangePropertyBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		setupDocValuesPropertyBaseDeserializer(op);
-		op.add(AbstractBuilder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
-		op.add(AbstractBuilder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
-		op.add(AbstractBuilder::index, JsonpDeserializer.booleanDeserializer(), "index");
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRangePropertyBaseDeserializer(ObjectDeserializer<BuilderT> op) {
+        setupDocValuesPropertyBaseDeserializer(op);
+        op.add(AbstractBuilder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
+        op.add(AbstractBuilder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
+        op.add(AbstractBuilder::index, JsonpDeserializer.booleanDeserializer(), "index");
 
-	}
+    }
 
 }

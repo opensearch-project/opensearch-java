@@ -32,77 +32,76 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.HdrPercentilesAggregate
-
 
 @JsonpDeserializable
 public class HdrPercentilesAggregate extends PercentilesAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private HdrPercentilesAggregate(Builder builder) {
-		super(builder);
+    private HdrPercentilesAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static HdrPercentilesAggregate of(Function<Builder, ObjectBuilder<HdrPercentilesAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static HdrPercentilesAggregate of(Function<Builder, ObjectBuilder<HdrPercentilesAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.HdrPercentiles;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.HdrPercentiles;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link HdrPercentilesAggregate}.
-	 */
+    /**
+     * Builder for {@link HdrPercentilesAggregate}.
+     */
 
-	public static class Builder extends PercentilesAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<HdrPercentilesAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends PercentilesAggregateBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<HdrPercentilesAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link HdrPercentilesAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public HdrPercentilesAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link HdrPercentilesAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public HdrPercentilesAggregate build() {
+            _checkSingleUse();
 
-			return new HdrPercentilesAggregate(this);
-		}
-	}
+            return new HdrPercentilesAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link HdrPercentilesAggregate}
-	 */
-	public static final JsonpDeserializer<HdrPercentilesAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HdrPercentilesAggregate::setupHdrPercentilesAggregateDeserializer);
+    /**
+     * Json deserializer for {@link HdrPercentilesAggregate}
+     */
+    public static final JsonpDeserializer<HdrPercentilesAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        HdrPercentilesAggregate::setupHdrPercentilesAggregateDeserializer
+    );
 
-	protected static void setupHdrPercentilesAggregateDeserializer(
-			ObjectDeserializer<HdrPercentilesAggregate.Builder> op) {
-		setupPercentilesAggregateBaseDeserializer(op);
+    protected static void setupHdrPercentilesAggregateDeserializer(ObjectDeserializer<HdrPercentilesAggregate.Builder> op) {
+        setupPercentilesAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

@@ -32,69 +32,69 @@
 
 package org.opensearch.client.opensearch.dangling_indices;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: dangling_indices.delete_dangling_index.Response
 
 @JsonpDeserializable
 public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DeleteDanglingIndexResponse(Builder builder) {
-		super(builder);
+    private DeleteDanglingIndexResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DeleteDanglingIndexResponse of(Function<Builder, ObjectBuilder<DeleteDanglingIndexResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DeleteDanglingIndexResponse of(Function<Builder, ObjectBuilder<DeleteDanglingIndexResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DeleteDanglingIndexResponse}.
-	 */
+    /**
+     * Builder for {@link DeleteDanglingIndexResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DeleteDanglingIndexResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<DeleteDanglingIndexResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DeleteDanglingIndexResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DeleteDanglingIndexResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link DeleteDanglingIndexResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DeleteDanglingIndexResponse build() {
+            _checkSingleUse();
 
-			return new DeleteDanglingIndexResponse(this);
-		}
-	}
+            return new DeleteDanglingIndexResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DeleteDanglingIndexResponse}
-	 */
-	public static final JsonpDeserializer<DeleteDanglingIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteDanglingIndexResponse::setupDeleteDanglingIndexResponseDeserializer);
+    /**
+     * Json deserializer for {@link DeleteDanglingIndexResponse}
+     */
+    public static final JsonpDeserializer<DeleteDanglingIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeleteDanglingIndexResponse::setupDeleteDanglingIndexResponseDeserializer
+    );
 
-	protected static void setupDeleteDanglingIndexResponseDeserializer(
-			ObjectDeserializer<DeleteDanglingIndexResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupDeleteDanglingIndexResponseDeserializer(ObjectDeserializer<DeleteDanglingIndexResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

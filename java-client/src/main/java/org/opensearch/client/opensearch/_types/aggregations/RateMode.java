@@ -35,24 +35,23 @@ package org.opensearch.client.opensearch._types.aggregations;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum RateMode implements JsonEnum {
-	Sum("sum"),
+    Sum("sum"),
 
-	ValueCount("value_count"),
+    ValueCount("value_count"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	RateMode(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    RateMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<RateMode> _DESERIALIZER = new JsonEnum.Deserializer<>(RateMode.values());
+    public static final JsonEnum.Deserializer<RateMode> _DESERIALIZER = new JsonEnum.Deserializer<>(RateMode.values());
 }

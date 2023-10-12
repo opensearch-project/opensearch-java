@@ -32,68 +32,67 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: indices.put_template.Response
 
 @JsonpDeserializable
 public class PutTemplateResponse extends AcknowledgedResponseBase {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PutTemplateResponse(Builder builder) {
-		super(builder);
+    private PutTemplateResponse(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static PutTemplateResponse of(Function<Builder, ObjectBuilder<PutTemplateResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PutTemplateResponse of(Function<Builder, ObjectBuilder<PutTemplateResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PutTemplateResponse}.
-	 */
+    /**
+     * Builder for {@link PutTemplateResponse}.
+     */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<PutTemplateResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<PutTemplateResponse> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PutTemplateResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PutTemplateResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PutTemplateResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PutTemplateResponse build() {
+            _checkSingleUse();
 
-			return new PutTemplateResponse(this);
-		}
-	}
+            return new PutTemplateResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PutTemplateResponse}
-	 */
-	public static final JsonpDeserializer<PutTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutTemplateResponse::setupPutTemplateResponseDeserializer);
+    /**
+     * Json deserializer for {@link PutTemplateResponse}
+     */
+    public static final JsonpDeserializer<PutTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PutTemplateResponse::setupPutTemplateResponseDeserializer
+    );
 
-	protected static void setupPutTemplateResponseDeserializer(ObjectDeserializer<PutTemplateResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    protected static void setupPutTemplateResponseDeserializer(ObjectDeserializer<PutTemplateResponse.Builder> op) {
+        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
-	}
+    }
 
 }

@@ -35,25 +35,23 @@ package org.opensearch.client.opensearch.indices;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum SegmentSortOrder implements JsonEnum {
-	Asc("asc"),
+    Asc("asc"),
 
-	Desc("desc"),
+    Desc("desc"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	SegmentSortOrder(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    SegmentSortOrder(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<SegmentSortOrder> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SegmentSortOrder.values());
+    public static final JsonEnum.Deserializer<SegmentSortOrder> _DESERIALIZER = new JsonEnum.Deserializer<>(SegmentSortOrder.values());
 }

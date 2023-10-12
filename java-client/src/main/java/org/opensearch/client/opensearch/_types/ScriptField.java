@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,130 +44,129 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.ScriptField
 
 @JsonpDeserializable
 public class ScriptField implements JsonpSerializable {
-	private final Script script;
+    private final Script script;
 
-	@Nullable
-	private final Boolean ignoreFailure;
+    @Nullable
+    private final Boolean ignoreFailure;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ScriptField(Builder builder) {
+    private ScriptField(Builder builder) {
 
-		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
-		this.ignoreFailure = builder.ignoreFailure;
+        this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
+        this.ignoreFailure = builder.ignoreFailure;
 
-	}
+    }
 
-	public static ScriptField of(Function<Builder, ObjectBuilder<ScriptField>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ScriptField of(Function<Builder, ObjectBuilder<ScriptField>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code script}
-	 */
-	public final Script script() {
-		return this.script;
-	}
+    /**
+     * Required - API name: {@code script}
+     */
+    public final Script script() {
+        return this.script;
+    }
 
-	/**
-	 * API name: {@code ignore_failure}
-	 */
-	@Nullable
-	public final Boolean ignoreFailure() {
-		return this.ignoreFailure;
-	}
+    /**
+     * API name: {@code ignore_failure}
+     */
+    @Nullable
+    public final Boolean ignoreFailure() {
+        return this.ignoreFailure;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("script");
-		this.script.serialize(generator, mapper);
+        generator.writeKey("script");
+        this.script.serialize(generator, mapper);
 
-		if (this.ignoreFailure != null) {
-			generator.writeKey("ignore_failure");
-			generator.write(this.ignoreFailure);
+        if (this.ignoreFailure != null) {
+            generator.writeKey("ignore_failure");
+            generator.write(this.ignoreFailure);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ScriptField}.
-	 */
+    /**
+     * Builder for {@link ScriptField}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptField> {
-		private Script script;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptField> {
+        private Script script;
 
-		@Nullable
-		private Boolean ignoreFailure;
+        @Nullable
+        private Boolean ignoreFailure;
 
-		/**
-		 * Required - API name: {@code script}
-		 */
-		public final Builder script(Script value) {
-			this.script = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code script}
+         */
+        public final Builder script(Script value) {
+            this.script = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code script}
-		 */
-		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-			return this.script(fn.apply(new Script.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code script}
+         */
+        public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+            return this.script(fn.apply(new Script.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code ignore_failure}
-		 */
-		public final Builder ignoreFailure(@Nullable Boolean value) {
-			this.ignoreFailure = value;
-			return this;
-		}
+        /**
+         * API name: {@code ignore_failure}
+         */
+        public final Builder ignoreFailure(@Nullable Boolean value) {
+            this.ignoreFailure = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ScriptField}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ScriptField build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ScriptField}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ScriptField build() {
+            _checkSingleUse();
 
-			return new ScriptField(this);
-		}
-	}
+            return new ScriptField(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ScriptField}
-	 */
-	public static final JsonpDeserializer<ScriptField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ScriptField::setupScriptFieldDeserializer);
+    /**
+     * Json deserializer for {@link ScriptField}
+     */
+    public static final JsonpDeserializer<ScriptField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ScriptField::setupScriptFieldDeserializer
+    );
 
-	protected static void setupScriptFieldDeserializer(ObjectDeserializer<ScriptField.Builder> op) {
+    protected static void setupScriptFieldDeserializer(ObjectDeserializer<ScriptField.Builder> op) {
 
-		op.add(Builder::script, Script._DESERIALIZER, "script");
-		op.add(Builder::ignoreFailure, JsonpDeserializer.booleanDeserializer(), "ignore_failure");
+        op.add(Builder::script, Script._DESERIALIZER, "script");
+        op.add(Builder::ignoreFailure, JsonpDeserializer.booleanDeserializer(), "ignore_failure");
 
-	}
+    }
 
 }

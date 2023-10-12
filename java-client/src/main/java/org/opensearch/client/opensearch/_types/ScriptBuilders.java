@@ -36,22 +36,21 @@ package org.opensearch.client.opensearch._types;
  * Builders for {@link Script} variants.
  */
 public class ScriptBuilders {
-	private ScriptBuilders() {
-	}
+    private ScriptBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link InlineScript inline} {@code Script} variant.
-	 */
-	public static InlineScript.Builder inline() {
-		return new InlineScript.Builder();
-	}
+    /**
+     * Creates a builder for the {@link InlineScript inline} {@code Script} variant.
+     */
+    public static InlineScript.Builder inline() {
+        return new InlineScript.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link StoredScriptId stored} {@code Script}
-	 * variant.
-	 */
-	public static StoredScriptId.Builder stored() {
-		return new StoredScriptId.Builder();
-	}
+    /**
+     * Creates a builder for the {@link StoredScriptId stored} {@code Script}
+     * variant.
+     */
+    public static StoredScriptId.Builder stored() {
+        return new StoredScriptId.Builder();
+    }
 
 }

@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,161 +42,157 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: ingest._types.LowercaseProcessor
 
-
 @JsonpDeserializable
 public class LowercaseProcessor extends ProcessorBase implements ProcessorVariant {
-	private final String field;
+    private final String field;
 
-	@Nullable
-	private final Boolean ignoreMissing;
+    @Nullable
+    private final Boolean ignoreMissing;
 
-	@Nullable
-	private final String targetField;
+    @Nullable
+    private final String targetField;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private LowercaseProcessor(Builder builder) {
-		super(builder);
+    private LowercaseProcessor(Builder builder) {
+        super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.ignoreMissing = builder.ignoreMissing;
-		this.targetField = builder.targetField;
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.ignoreMissing = builder.ignoreMissing;
+        this.targetField = builder.targetField;
 
-	}
+    }
 
-	public static LowercaseProcessor of(Function<Builder, ObjectBuilder<LowercaseProcessor>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static LowercaseProcessor of(Function<Builder, ObjectBuilder<LowercaseProcessor>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Processor variant kind.
-	 */
-	@Override
-	public Processor.Kind _processorKind() {
-		return Processor.Kind.Lowercase;
-	}
+    /**
+     * Processor variant kind.
+     */
+    @Override
+    public Processor.Kind _processorKind() {
+        return Processor.Kind.Lowercase;
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * API name: {@code ignore_missing}
-	 */
-	@Nullable
-	public final Boolean ignoreMissing() {
-		return this.ignoreMissing;
-	}
+    /**
+     * API name: {@code ignore_missing}
+     */
+    @Nullable
+    public final Boolean ignoreMissing() {
+        return this.ignoreMissing;
+    }
 
-	/**
-	 * API name: {@code target_field}
-	 */
-	@Nullable
-	public final String targetField() {
-		return this.targetField;
-	}
+    /**
+     * API name: {@code target_field}
+     */
+    @Nullable
+    public final String targetField() {
+        return this.targetField;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("field");
-		generator.write(this.field);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-		if (this.ignoreMissing != null) {
-			generator.writeKey("ignore_missing");
-			generator.write(this.ignoreMissing);
+        if (this.ignoreMissing != null) {
+            generator.writeKey("ignore_missing");
+            generator.write(this.ignoreMissing);
 
-		}
-		if (this.targetField != null) {
-			generator.writeKey("target_field");
-			generator.write(this.targetField);
+        }
+        if (this.targetField != null) {
+            generator.writeKey("target_field");
+            generator.write(this.targetField);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link LowercaseProcessor}.
-	 */
+    /**
+     * Builder for {@link LowercaseProcessor}.
+     */
 
-	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<LowercaseProcessor> {
-		private String field;
+    public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<LowercaseProcessor> {
+        private String field;
 
-		@Nullable
-		private Boolean ignoreMissing;
+        @Nullable
+        private Boolean ignoreMissing;
 
-		@Nullable
-		private String targetField;
+        @Nullable
+        private String targetField;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code ignore_missing}
-		 */
-		public final Builder ignoreMissing(@Nullable Boolean value) {
-			this.ignoreMissing = value;
-			return this;
-		}
+        /**
+         * API name: {@code ignore_missing}
+         */
+        public final Builder ignoreMissing(@Nullable Boolean value) {
+            this.ignoreMissing = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code target_field}
-		 */
-		public final Builder targetField(@Nullable String value) {
-			this.targetField = value;
-			return this;
-		}
+        /**
+         * API name: {@code target_field}
+         */
+        public final Builder targetField(@Nullable String value) {
+            this.targetField = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link LowercaseProcessor}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public LowercaseProcessor build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link LowercaseProcessor}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public LowercaseProcessor build() {
+            _checkSingleUse();
 
-			return new LowercaseProcessor(this);
-		}
-	}
+            return new LowercaseProcessor(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link LowercaseProcessor}
-	 */
-	public static final JsonpDeserializer<LowercaseProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LowercaseProcessor::setupLowercaseProcessorDeserializer);
+    /**
+     * Json deserializer for {@link LowercaseProcessor}
+     */
+    public static final JsonpDeserializer<LowercaseProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        LowercaseProcessor::setupLowercaseProcessorDeserializer
+    );
 
-	protected static void setupLowercaseProcessorDeserializer(ObjectDeserializer<LowercaseProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseDeserializer(op);
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
-		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+    protected static void setupLowercaseProcessorDeserializer(ObjectDeserializer<LowercaseProcessor.Builder> op) {
+        ProcessorBase.setupProcessorBaseDeserializer(op);
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
+        op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
-	}
+    }
 
 }

@@ -32,116 +32,117 @@
 
 package org.opensearch.client.opensearch.core.rank_eval;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricDiscountedCumulativeGain
 
 /**
  * Discounted cumulative gain (DCG)
- * 
+ *
  */
 @JsonpDeserializable
 public class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
-	@Nullable
-	private final Boolean normalize;
+    @Nullable
+    private final Boolean normalize;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RankEvalMetricDiscountedCumulativeGain(Builder builder) {
-		super(builder);
+    private RankEvalMetricDiscountedCumulativeGain(Builder builder) {
+        super(builder);
 
-		this.normalize = builder.normalize;
+        this.normalize = builder.normalize;
 
-	}
+    }
 
-	public static RankEvalMetricDiscountedCumulativeGain of(
-			Function<Builder, ObjectBuilder<RankEvalMetricDiscountedCumulativeGain>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RankEvalMetricDiscountedCumulativeGain of(Function<Builder, ObjectBuilder<RankEvalMetricDiscountedCumulativeGain>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * If set to true, this metric will calculate the Normalized DCG.
-	 * <p>
-	 * API name: {@code normalize}
-	 */
-	@Nullable
-	public final Boolean normalize() {
-		return this.normalize;
-	}
+    /**
+     * If set to true, this metric will calculate the Normalized DCG.
+     * <p>
+     * API name: {@code normalize}
+     */
+    @Nullable
+    public final Boolean normalize() {
+        return this.normalize;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.normalize != null) {
-			generator.writeKey("normalize");
-			generator.write(this.normalize);
+        super.serializeInternal(generator, mapper);
+        if (this.normalize != null) {
+            generator.writeKey("normalize");
+            generator.write(this.normalize);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RankEvalMetricDiscountedCumulativeGain}.
-	 */
+    /**
+     * Builder for {@link RankEvalMetricDiscountedCumulativeGain}.
+     */
 
-	public static class Builder extends RankEvalMetricBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RankEvalMetricDiscountedCumulativeGain> {
-		@Nullable
-		private Boolean normalize;
+    public static class Builder extends RankEvalMetricBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<RankEvalMetricDiscountedCumulativeGain> {
+        @Nullable
+        private Boolean normalize;
 
-		/**
-		 * If set to true, this metric will calculate the Normalized DCG.
-		 * <p>
-		 * API name: {@code normalize}
-		 */
-		public final Builder normalize(@Nullable Boolean value) {
-			this.normalize = value;
-			return this;
-		}
+        /**
+         * If set to true, this metric will calculate the Normalized DCG.
+         * <p>
+         * API name: {@code normalize}
+         */
+        public final Builder normalize(@Nullable Boolean value) {
+            this.normalize = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RankEvalMetricDiscountedCumulativeGain}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RankEvalMetricDiscountedCumulativeGain build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RankEvalMetricDiscountedCumulativeGain}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RankEvalMetricDiscountedCumulativeGain build() {
+            _checkSingleUse();
 
-			return new RankEvalMetricDiscountedCumulativeGain(this);
-		}
-	}
+            return new RankEvalMetricDiscountedCumulativeGain(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RankEvalMetricDiscountedCumulativeGain}
-	 */
-	public static final JsonpDeserializer<RankEvalMetricDiscountedCumulativeGain> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new,
-					RankEvalMetricDiscountedCumulativeGain::setupRankEvalMetricDiscountedCumulativeGainDeserializer);
+    /**
+     * Json deserializer for {@link RankEvalMetricDiscountedCumulativeGain}
+     */
+    public static final JsonpDeserializer<RankEvalMetricDiscountedCumulativeGain> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RankEvalMetricDiscountedCumulativeGain::setupRankEvalMetricDiscountedCumulativeGainDeserializer
+    );
 
-	protected static void setupRankEvalMetricDiscountedCumulativeGainDeserializer(
-			ObjectDeserializer<RankEvalMetricDiscountedCumulativeGain.Builder> op) {
-		setupRankEvalMetricBaseDeserializer(op);
-		op.add(Builder::normalize, JsonpDeserializer.booleanDeserializer(), "normalize");
+    protected static void setupRankEvalMetricDiscountedCumulativeGainDeserializer(
+        ObjectDeserializer<RankEvalMetricDiscountedCumulativeGain.Builder> op
+    ) {
+        setupRankEvalMetricBaseDeserializer(op);
+        op.add(Builder::normalize, JsonpDeserializer.booleanDeserializer(), "normalize");
 
-	}
+    }
 
 }

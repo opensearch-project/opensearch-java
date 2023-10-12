@@ -32,76 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.GlobalAggregate
-
 
 @JsonpDeserializable
 public class GlobalAggregate extends SingleBucketAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GlobalAggregate(Builder builder) {
-		super(builder);
+    private GlobalAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static GlobalAggregate of(Function<Builder, ObjectBuilder<GlobalAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GlobalAggregate of(Function<Builder, ObjectBuilder<GlobalAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Global;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Global;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GlobalAggregate}.
-	 */
+    /**
+     * Builder for {@link GlobalAggregate}.
+     */
 
-	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<GlobalAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<GlobalAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GlobalAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GlobalAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GlobalAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GlobalAggregate build() {
+            _checkSingleUse();
 
-			return new GlobalAggregate(this);
-		}
-	}
+            return new GlobalAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GlobalAggregate}
-	 */
-	public static final JsonpDeserializer<GlobalAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GlobalAggregate::setupGlobalAggregateDeserializer);
+    /**
+     * Json deserializer for {@link GlobalAggregate}
+     */
+    public static final JsonpDeserializer<GlobalAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GlobalAggregate::setupGlobalAggregateDeserializer
+    );
 
-	protected static void setupGlobalAggregateDeserializer(ObjectDeserializer<GlobalAggregate.Builder> op) {
-		setupSingleBucketAggregateBaseDeserializer(op);
+    protected static void setupGlobalAggregateDeserializer(ObjectDeserializer<GlobalAggregate.Builder> op) {
+        setupSingleBucketAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

@@ -32,116 +32,115 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RankFeatureProperty
 
-
 @JsonpDeserializable
 public class RankFeatureProperty extends PropertyBase implements PropertyVariant {
-	@Nullable
-	private final Boolean positiveScoreImpact;
+    @Nullable
+    private final Boolean positiveScoreImpact;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RankFeatureProperty(Builder builder) {
-		super(builder);
+    private RankFeatureProperty(Builder builder) {
+        super(builder);
 
-		this.positiveScoreImpact = builder.positiveScoreImpact;
+        this.positiveScoreImpact = builder.positiveScoreImpact;
 
-	}
+    }
 
-	public static RankFeatureProperty of(Function<Builder, ObjectBuilder<RankFeatureProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RankFeatureProperty of(Function<Builder, ObjectBuilder<RankFeatureProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.RankFeature;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.RankFeature;
+    }
 
-	/**
-	 * API name: {@code positive_score_impact}
-	 */
-	@Nullable
-	public final Boolean positiveScoreImpact() {
-		return this.positiveScoreImpact;
-	}
+    /**
+     * API name: {@code positive_score_impact}
+     */
+    @Nullable
+    public final Boolean positiveScoreImpact() {
+        return this.positiveScoreImpact;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "rank_feature");
-		super.serializeInternal(generator, mapper);
-		if (this.positiveScoreImpact != null) {
-			generator.writeKey("positive_score_impact");
-			generator.write(this.positiveScoreImpact);
+        generator.write("type", "rank_feature");
+        super.serializeInternal(generator, mapper);
+        if (this.positiveScoreImpact != null) {
+            generator.writeKey("positive_score_impact");
+            generator.write(this.positiveScoreImpact);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RankFeatureProperty}.
-	 */
+    /**
+     * Builder for {@link RankFeatureProperty}.
+     */
 
-	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RankFeatureProperty> {
-		@Nullable
-		private Boolean positiveScoreImpact;
+    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<RankFeatureProperty> {
+        @Nullable
+        private Boolean positiveScoreImpact;
 
-		/**
-		 * API name: {@code positive_score_impact}
-		 */
-		public final Builder positiveScoreImpact(@Nullable Boolean value) {
-			this.positiveScoreImpact = value;
-			return this;
-		}
+        /**
+         * API name: {@code positive_score_impact}
+         */
+        public final Builder positiveScoreImpact(@Nullable Boolean value) {
+            this.positiveScoreImpact = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RankFeatureProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RankFeatureProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RankFeatureProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RankFeatureProperty build() {
+            _checkSingleUse();
 
-			return new RankFeatureProperty(this);
-		}
-	}
+            return new RankFeatureProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RankFeatureProperty}
-	 */
-	public static final JsonpDeserializer<RankFeatureProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankFeatureProperty::setupRankFeaturePropertyDeserializer);
+    /**
+     * Json deserializer for {@link RankFeatureProperty}
+     */
+    public static final JsonpDeserializer<RankFeatureProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RankFeatureProperty::setupRankFeaturePropertyDeserializer
+    );
 
-	protected static void setupRankFeaturePropertyDeserializer(ObjectDeserializer<RankFeatureProperty.Builder> op) {
-		PropertyBase.setupPropertyBaseDeserializer(op);
-		op.add(Builder::positiveScoreImpact, JsonpDeserializer.booleanDeserializer(), "positive_score_impact");
+    protected static void setupRankFeaturePropertyDeserializer(ObjectDeserializer<RankFeatureProperty.Builder> op) {
+        PropertyBase.setupPropertyBaseDeserializer(op);
+        op.add(Builder::positiveScoreImpact, JsonpDeserializer.booleanDeserializer(), "positive_score_impact");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

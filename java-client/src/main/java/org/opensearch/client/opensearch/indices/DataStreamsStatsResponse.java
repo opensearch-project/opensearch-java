@@ -9,6 +9,9 @@
 package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -19,10 +22,6 @@ import org.opensearch.client.opensearch._types.ShardStatistics;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: indices.data_streams_stats.Response
 
@@ -251,8 +250,10 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
     /**
      * Json deserializer for {@link DataStreamsStatsResponse}
      */
-    public static final JsonpDeserializer<DataStreamsStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-            DataStreamsStatsResponse::setupDataStreamStatsResponseDeserializer);
+    public static final JsonpDeserializer<DataStreamsStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DataStreamsStatsResponse::setupDataStreamStatsResponseDeserializer
+    );
 
     protected static void setupDataStreamStatsResponseDeserializer(ObjectDeserializer<Builder> op) {
 

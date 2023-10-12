@@ -32,10 +32,9 @@
 
 package org.opensearch.client.util;
 
-import org.opensearch.client.json.NdJsonpSerializable;
-
 import java.util.Collections;
 import java.util.Iterator;
+import org.opensearch.client.json.NdJsonpSerializable;
 
 public class TaggedUnionUtils {
     public static <Union extends TaggedUnion<Tag, ?>, Tag extends Enum<Tag>, Value> Value get(Union union, Tag kind) {

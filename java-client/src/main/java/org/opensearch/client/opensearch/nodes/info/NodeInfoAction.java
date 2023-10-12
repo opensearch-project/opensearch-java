@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,93 +43,92 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoAction
 
 @JsonpDeserializable
 public class NodeInfoAction implements JsonpSerializable {
-	private final String destructiveRequiresName;
+    private final String destructiveRequiresName;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoAction(Builder builder) {
+    private NodeInfoAction(Builder builder) {
 
-		this.destructiveRequiresName = ApiTypeHelper.requireNonNull(builder.destructiveRequiresName, this,
-				"destructiveRequiresName");
+        this.destructiveRequiresName = ApiTypeHelper.requireNonNull(builder.destructiveRequiresName, this, "destructiveRequiresName");
 
-	}
+    }
 
-	public static NodeInfoAction of(Function<Builder, ObjectBuilder<NodeInfoAction>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoAction of(Function<Builder, ObjectBuilder<NodeInfoAction>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code destructive_requires_name}
-	 */
-	public final String destructiveRequiresName() {
-		return this.destructiveRequiresName;
-	}
+    /**
+     * Required - API name: {@code destructive_requires_name}
+     */
+    public final String destructiveRequiresName() {
+        return this.destructiveRequiresName;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("destructive_requires_name");
-		generator.write(this.destructiveRequiresName);
+        generator.writeKey("destructive_requires_name");
+        generator.write(this.destructiveRequiresName);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoAction}.
-	 */
+    /**
+     * Builder for {@link NodeInfoAction}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoAction> {
-		private String destructiveRequiresName;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoAction> {
+        private String destructiveRequiresName;
 
-		/**
-		 * Required - API name: {@code destructive_requires_name}
-		 */
-		public final Builder destructiveRequiresName(String value) {
-			this.destructiveRequiresName = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code destructive_requires_name}
+         */
+        public final Builder destructiveRequiresName(String value) {
+            this.destructiveRequiresName = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeInfoAction}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoAction build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoAction}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoAction build() {
+            _checkSingleUse();
 
-			return new NodeInfoAction(this);
-		}
-	}
+            return new NodeInfoAction(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoAction}
-	 */
-	public static final JsonpDeserializer<NodeInfoAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoAction::setupNodeInfoActionDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoAction}
+     */
+    public static final JsonpDeserializer<NodeInfoAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoAction::setupNodeInfoActionDeserializer
+    );
 
-	protected static void setupNodeInfoActionDeserializer(ObjectDeserializer<NodeInfoAction.Builder> op) {
+    protected static void setupNodeInfoActionDeserializer(ObjectDeserializer<NodeInfoAction.Builder> op) {
 
-		op.add(Builder::destructiveRequiresName, JsonpDeserializer.stringDeserializer(), "destructive_requires_name");
+        op.add(Builder::destructiveRequiresName, JsonpDeserializer.stringDeserializer(), "destructive_requires_name");
 
-	}
+    }
 
 }

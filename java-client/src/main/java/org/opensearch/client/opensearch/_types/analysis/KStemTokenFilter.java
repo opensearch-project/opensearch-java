@@ -32,85 +32,84 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.analysis.KStemTokenFilter
 
 @JsonpDeserializable
 public class KStemTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private KStemTokenFilter(Builder builder) {
-		super(builder);
+    private KStemTokenFilter(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static KStemTokenFilter of(Function<Builder, ObjectBuilder<KStemTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static KStemTokenFilter of(Function<Builder, ObjectBuilder<KStemTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.Kstem;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.Kstem;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "kstem");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "kstem");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link KStemTokenFilter}.
-	 */
+    /**
+     * Builder for {@link KStemTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<KStemTokenFilter> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<KStemTokenFilter> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link KStemTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public KStemTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link KStemTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public KStemTokenFilter build() {
+            _checkSingleUse();
 
-			return new KStemTokenFilter(this);
-		}
-	}
+            return new KStemTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link KStemTokenFilter}
-	 */
-	public static final JsonpDeserializer<KStemTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KStemTokenFilter::setupKStemTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link KStemTokenFilter}
+     */
+    public static final JsonpDeserializer<KStemTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        KStemTokenFilter::setupKStemTokenFilterDeserializer
+    );
 
-	protected static void setupKStemTokenFilterDeserializer(ObjectDeserializer<KStemTokenFilter.Builder> op) {
-		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
+    protected static void setupKStemTokenFilterDeserializer(ObjectDeserializer<KStemTokenFilter.Builder> op) {
+        TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

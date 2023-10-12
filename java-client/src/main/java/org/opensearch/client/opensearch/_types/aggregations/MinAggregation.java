@@ -32,75 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.MinAggregation
 
 @JsonpDeserializable
 public class MinAggregation extends FormatMetricAggregationBase implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MinAggregation(Builder builder) {
-		super(builder);
+    private MinAggregation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static MinAggregation of(Function<Builder, ObjectBuilder<MinAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MinAggregation of(Function<Builder, ObjectBuilder<MinAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Min;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.Min;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MinAggregation}.
-	 */
+    /**
+     * Builder for {@link MinAggregation}.
+     */
 
-	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<MinAggregation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<MinAggregation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MinAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MinAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MinAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MinAggregation build() {
+            _checkSingleUse();
 
-			return new MinAggregation(this);
-		}
-	}
+            return new MinAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MinAggregation}
-	 */
-	public static final JsonpDeserializer<MinAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MinAggregation::setupMinAggregationDeserializer);
+    /**
+     * Json deserializer for {@link MinAggregation}
+     */
+    public static final JsonpDeserializer<MinAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MinAggregation::setupMinAggregationDeserializer
+    );
 
-	protected static void setupMinAggregationDeserializer(ObjectDeserializer<MinAggregation.Builder> op) {
-		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
+    protected static void setupMinAggregationDeserializer(ObjectDeserializer<MinAggregation.Builder> op) {
+        FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 
-	}
+    }
 
 }

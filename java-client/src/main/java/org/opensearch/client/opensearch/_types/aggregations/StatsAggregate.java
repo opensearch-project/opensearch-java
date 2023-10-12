@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,9 +43,6 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StatsAggregate
 
@@ -54,325 +54,323 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class StatsAggregate extends AggregateBase implements AggregateVariant {
-	private final long count;
+    private final long count;
 
-	private final double min;
+    private final double min;
 
-	private final double max;
+    private final double max;
 
-	private final double avg;
+    private final double avg;
 
-	private final double sum;
+    private final double sum;
 
-	@Nullable
-	private final String minAsString;
+    @Nullable
+    private final String minAsString;
 
-	@Nullable
-	private final String maxAsString;
+    @Nullable
+    private final String maxAsString;
 
-	@Nullable
-	private final String avgAsString;
+    @Nullable
+    private final String avgAsString;
 
-	@Nullable
-	private final String sumAsString;
+    @Nullable
+    private final String sumAsString;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected StatsAggregate(AbstractBuilder<?> builder) {
-		super(builder);
+    protected StatsAggregate(AbstractBuilder<?> builder) {
+        super(builder);
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
-		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
-		this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg");
-		this.sum = ApiTypeHelper.requireNonNull(builder.sum, this, "sum");
-		this.minAsString = builder.minAsString;
-		this.maxAsString = builder.maxAsString;
-		this.avgAsString = builder.avgAsString;
-		this.sumAsString = builder.sumAsString;
+        this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+        this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
+        this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+        this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg");
+        this.sum = ApiTypeHelper.requireNonNull(builder.sum, this, "sum");
+        this.minAsString = builder.minAsString;
+        this.maxAsString = builder.maxAsString;
+        this.avgAsString = builder.avgAsString;
+        this.sumAsString = builder.sumAsString;
 
-	}
+    }
 
-	public static StatsAggregate statsAggregateOf(Function<Builder, ObjectBuilder<StatsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static StatsAggregate statsAggregateOf(Function<Builder, ObjectBuilder<StatsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Stats;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Stats;
+    }
 
-	/**
-	 * Required - API name: {@code count}
-	 */
-	public final long count() {
-		return this.count;
-	}
+    /**
+     * Required - API name: {@code count}
+     */
+    public final long count() {
+        return this.count;
+    }
 
-	/**
-	 * Required - API name: {@code min}
-	 * <p>
-	 * Defaults to {@code Double.POSITIVE_INFINITY} if parsed from a JSON
-	 * {@code null} value.
-	 */
-	public final double min() {
-		return this.min;
-	}
+    /**
+     * Required - API name: {@code min}
+     * <p>
+     * Defaults to {@code Double.POSITIVE_INFINITY} if parsed from a JSON
+     * {@code null} value.
+     */
+    public final double min() {
+        return this.min;
+    }
 
-	/**
-	 * Required - API name: {@code max}
-	 * <p>
-	 * Defaults to {@code Double.NEGATIVE_INFINITY} if parsed from a JSON
-	 * {@code null} value.
-	 */
-	public final double max() {
-		return this.max;
-	}
+    /**
+     * Required - API name: {@code max}
+     * <p>
+     * Defaults to {@code Double.NEGATIVE_INFINITY} if parsed from a JSON
+     * {@code null} value.
+     */
+    public final double max() {
+        return this.max;
+    }
 
-	/**
-	 * Required - API name: {@code avg}
-	 * <p>
-	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
-	 */
-	public final double avg() {
-		return this.avg;
-	}
+    /**
+     * Required - API name: {@code avg}
+     * <p>
+     * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+     */
+    public final double avg() {
+        return this.avg;
+    }
 
-	/**
-	 * Required - API name: {@code sum}
-	 */
-	public final double sum() {
-		return this.sum;
-	}
+    /**
+     * Required - API name: {@code sum}
+     */
+    public final double sum() {
+        return this.sum;
+    }
 
-	/**
-	 * API name: {@code min_as_string}
-	 */
-	@Nullable
-	public final String minAsString() {
-		return this.minAsString;
-	}
+    /**
+     * API name: {@code min_as_string}
+     */
+    @Nullable
+    public final String minAsString() {
+        return this.minAsString;
+    }
 
-	/**
-	 * API name: {@code max_as_string}
-	 */
-	@Nullable
-	public final String maxAsString() {
-		return this.maxAsString;
-	}
+    /**
+     * API name: {@code max_as_string}
+     */
+    @Nullable
+    public final String maxAsString() {
+        return this.maxAsString;
+    }
 
-	/**
-	 * API name: {@code avg_as_string}
-	 */
-	@Nullable
-	public final String avgAsString() {
-		return this.avgAsString;
-	}
+    /**
+     * API name: {@code avg_as_string}
+     */
+    @Nullable
+    public final String avgAsString() {
+        return this.avgAsString;
+    }
 
-	/**
-	 * API name: {@code sum_as_string}
-	 */
-	@Nullable
-	public final String sumAsString() {
-		return this.sumAsString;
-	}
+    /**
+     * API name: {@code sum_as_string}
+     */
+    @Nullable
+    public final String sumAsString() {
+        return this.sumAsString;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("count");
-		generator.write(this.count);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("count");
+        generator.write(this.count);
 
-		generator.writeKey("min");
-		JsonpUtils.serializeDoubleOrNull(generator, this.min, Double.POSITIVE_INFINITY);
-		generator.writeKey("max");
-		JsonpUtils.serializeDoubleOrNull(generator, this.max, Double.NEGATIVE_INFINITY);
-		generator.writeKey("avg");
-		JsonpUtils.serializeDoubleOrNull(generator, this.avg, 0);
-		generator.writeKey("sum");
-		generator.write(this.sum);
+        generator.writeKey("min");
+        JsonpUtils.serializeDoubleOrNull(generator, this.min, Double.POSITIVE_INFINITY);
+        generator.writeKey("max");
+        JsonpUtils.serializeDoubleOrNull(generator, this.max, Double.NEGATIVE_INFINITY);
+        generator.writeKey("avg");
+        JsonpUtils.serializeDoubleOrNull(generator, this.avg, 0);
+        generator.writeKey("sum");
+        generator.write(this.sum);
 
-		if (this.minAsString != null) {
-			generator.writeKey("min_as_string");
-			generator.write(this.minAsString);
+        if (this.minAsString != null) {
+            generator.writeKey("min_as_string");
+            generator.write(this.minAsString);
 
-		}
-		if (this.maxAsString != null) {
-			generator.writeKey("max_as_string");
-			generator.write(this.maxAsString);
+        }
+        if (this.maxAsString != null) {
+            generator.writeKey("max_as_string");
+            generator.write(this.maxAsString);
 
-		}
-		if (this.avgAsString != null) {
-			generator.writeKey("avg_as_string");
-			generator.write(this.avgAsString);
+        }
+        if (this.avgAsString != null) {
+            generator.writeKey("avg_as_string");
+            generator.write(this.avgAsString);
 
-		}
-		if (this.sumAsString != null) {
-			generator.writeKey("sum_as_string");
-			generator.write(this.sumAsString);
+        }
+        if (this.sumAsString != null) {
+            generator.writeKey("sum_as_string");
+            generator.write(this.sumAsString);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link StatsAggregate}.
-	 */
+    /**
+     * Builder for {@link StatsAggregate}.
+     */
 
-	public static class Builder extends StatsAggregate.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<StatsAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends StatsAggregate.AbstractBuilder<Builder> implements ObjectBuilder<StatsAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link StatsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public StatsAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link StatsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public StatsAggregate build() {
+            _checkSingleUse();
 
-			return new StatsAggregate(this);
-		}
-	}
+            return new StatsAggregate(this);
+        }
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				AggregateBase.AbstractBuilder<BuilderT> {
-		private Long count;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregateBase.AbstractBuilder<
+        BuilderT> {
+        private Long count;
 
-		private Double min;
+        private Double min;
 
-		private Double max;
+        private Double max;
 
-		private Double avg;
+        private Double avg;
 
-		private Double sum;
+        private Double sum;
 
-		@Nullable
-		private String minAsString;
+        @Nullable
+        private String minAsString;
 
-		@Nullable
-		private String maxAsString;
+        @Nullable
+        private String maxAsString;
 
-		@Nullable
-		private String avgAsString;
+        @Nullable
+        private String avgAsString;
 
-		@Nullable
-		private String sumAsString;
+        @Nullable
+        private String sumAsString;
 
-		/**
-		 * Required - API name: {@code count}
-		 */
-		public final BuilderT count(long value) {
-			this.count = value;
-			return self();
-		}
+        /**
+         * Required - API name: {@code count}
+         */
+        public final BuilderT count(long value) {
+            this.count = value;
+            return self();
+        }
 
-		/**
-		 * Required - API name: {@code min}
-		 * <p>
-		 * Defaults to {@code Double.POSITIVE_INFINITY} if parsed from a JSON
-		 * {@code null} value.
-		 */
-		public final BuilderT min(double value) {
-			this.min = value;
-			return self();
-		}
+        /**
+         * Required - API name: {@code min}
+         * <p>
+         * Defaults to {@code Double.POSITIVE_INFINITY} if parsed from a JSON
+         * {@code null} value.
+         */
+        public final BuilderT min(double value) {
+            this.min = value;
+            return self();
+        }
 
-		/**
-		 * Required - API name: {@code max}
-		 * <p>
-		 * Defaults to {@code Double.NEGATIVE_INFINITY} if parsed from a JSON
-		 * {@code null} value.
-		 */
-		public final BuilderT max(double value) {
-			this.max = value;
-			return self();
-		}
+        /**
+         * Required - API name: {@code max}
+         * <p>
+         * Defaults to {@code Double.NEGATIVE_INFINITY} if parsed from a JSON
+         * {@code null} value.
+         */
+        public final BuilderT max(double value) {
+            this.max = value;
+            return self();
+        }
 
-		/**
-		 * Required - API name: {@code avg}
-		 * <p>
-		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
-		 */
-		public final BuilderT avg(double value) {
-			this.avg = value;
-			return self();
-		}
+        /**
+         * Required - API name: {@code avg}
+         * <p>
+         * Defaults to {@code 0} if parsed from a JSON {@code null} value.
+         */
+        public final BuilderT avg(double value) {
+            this.avg = value;
+            return self();
+        }
 
-		/**
-		 * Required - API name: {@code sum}
-		 */
-		public final BuilderT sum(double value) {
-			this.sum = value;
-			return self();
-		}
+        /**
+         * Required - API name: {@code sum}
+         */
+        public final BuilderT sum(double value) {
+            this.sum = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code min_as_string}
-		 */
-		public final BuilderT minAsString(@Nullable String value) {
-			this.minAsString = value;
-			return self();
-		}
+        /**
+         * API name: {@code min_as_string}
+         */
+        public final BuilderT minAsString(@Nullable String value) {
+            this.minAsString = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code max_as_string}
-		 */
-		public final BuilderT maxAsString(@Nullable String value) {
-			this.maxAsString = value;
-			return self();
-		}
+        /**
+         * API name: {@code max_as_string}
+         */
+        public final BuilderT maxAsString(@Nullable String value) {
+            this.maxAsString = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code avg_as_string}
-		 */
-		public final BuilderT avgAsString(@Nullable String value) {
-			this.avgAsString = value;
-			return self();
-		}
+        /**
+         * API name: {@code avg_as_string}
+         */
+        public final BuilderT avgAsString(@Nullable String value) {
+            this.avgAsString = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code sum_as_string}
-		 */
-		public final BuilderT sumAsString(@Nullable String value) {
-			this.sumAsString = value;
-			return self();
-		}
+        /**
+         * API name: {@code sum_as_string}
+         */
+        public final BuilderT sumAsString(@Nullable String value) {
+            this.sumAsString = value;
+            return self();
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link StatsAggregate}
-	 */
-	public static final JsonpDeserializer<StatsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StatsAggregate::setupStatsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link StatsAggregate}
+     */
+    public static final JsonpDeserializer<StatsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        StatsAggregate::setupStatsAggregateDeserializer
+    );
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupStatsAggregateDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		setupAggregateBaseDeserializer(op);
-		op.add(AbstractBuilder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(AbstractBuilder::min, JsonpDeserializer.doubleOrNullDeserializer(Double.POSITIVE_INFINITY), "min");
-		op.add(AbstractBuilder::max, JsonpDeserializer.doubleOrNullDeserializer(Double.NEGATIVE_INFINITY), "max");
-		op.add(AbstractBuilder::avg, JsonpDeserializer.doubleOrNullDeserializer(0), "avg");
-		op.add(AbstractBuilder::sum, JsonpDeserializer.doubleDeserializer(), "sum");
-		op.add(AbstractBuilder::minAsString, JsonpDeserializer.stringDeserializer(), "min_as_string");
-		op.add(AbstractBuilder::maxAsString, JsonpDeserializer.stringDeserializer(), "max_as_string");
-		op.add(AbstractBuilder::avgAsString, JsonpDeserializer.stringDeserializer(), "avg_as_string");
-		op.add(AbstractBuilder::sumAsString, JsonpDeserializer.stringDeserializer(), "sum_as_string");
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupStatsAggregateDeserializer(ObjectDeserializer<BuilderT> op) {
+        setupAggregateBaseDeserializer(op);
+        op.add(AbstractBuilder::count, JsonpDeserializer.longDeserializer(), "count");
+        op.add(AbstractBuilder::min, JsonpDeserializer.doubleOrNullDeserializer(Double.POSITIVE_INFINITY), "min");
+        op.add(AbstractBuilder::max, JsonpDeserializer.doubleOrNullDeserializer(Double.NEGATIVE_INFINITY), "max");
+        op.add(AbstractBuilder::avg, JsonpDeserializer.doubleOrNullDeserializer(0), "avg");
+        op.add(AbstractBuilder::sum, JsonpDeserializer.doubleDeserializer(), "sum");
+        op.add(AbstractBuilder::minAsString, JsonpDeserializer.stringDeserializer(), "min_as_string");
+        op.add(AbstractBuilder::maxAsString, JsonpDeserializer.stringDeserializer(), "max_as_string");
+        op.add(AbstractBuilder::avgAsString, JsonpDeserializer.stringDeserializer(), "avg_as_string");
+        op.add(AbstractBuilder::sumAsString, JsonpDeserializer.stringDeserializer(), "sum_as_string");
 
-	}
+    }
 
 }

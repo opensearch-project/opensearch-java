@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,117 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSigmoid
 
 @JsonpDeserializable
 public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements JsonpSerializable {
-	private final float pivot;
+    private final float pivot;
 
-	private final float exponent;
+    private final float exponent;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RankFeatureFunctionSigmoid(Builder builder) {
+    private RankFeatureFunctionSigmoid(Builder builder) {
 
-		this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot");
-		this.exponent = ApiTypeHelper.requireNonNull(builder.exponent, this, "exponent");
+        this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot");
+        this.exponent = ApiTypeHelper.requireNonNull(builder.exponent, this, "exponent");
 
-	}
+    }
 
-	public static RankFeatureFunctionSigmoid of(Function<Builder, ObjectBuilder<RankFeatureFunctionSigmoid>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RankFeatureFunctionSigmoid of(Function<Builder, ObjectBuilder<RankFeatureFunctionSigmoid>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code pivot}
-	 */
-	public final float pivot() {
-		return this.pivot;
-	}
+    /**
+     * Required - API name: {@code pivot}
+     */
+    public final float pivot() {
+        return this.pivot;
+    }
 
-	/**
-	 * Required - API name: {@code exponent}
-	 */
-	public final float exponent() {
-		return this.exponent;
-	}
+    /**
+     * Required - API name: {@code exponent}
+     */
+    public final float exponent() {
+        return this.exponent;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("pivot");
-		generator.write(this.pivot);
+        generator.writeKey("pivot");
+        generator.write(this.pivot);
 
-		generator.writeKey("exponent");
-		generator.write(this.exponent);
+        generator.writeKey("exponent");
+        generator.write(this.exponent);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RankFeatureFunctionSigmoid}.
-	 */
+    /**
+     * Builder for {@link RankFeatureFunctionSigmoid}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionSigmoid> {
-		private Float pivot;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionSigmoid> {
+        private Float pivot;
 
-		private Float exponent;
+        private Float exponent;
 
-		/**
-		 * Required - API name: {@code pivot}
-		 */
-		public final Builder pivot(float value) {
-			this.pivot = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code pivot}
+         */
+        public final Builder pivot(float value) {
+            this.pivot = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code exponent}
-		 */
-		public final Builder exponent(float value) {
-			this.exponent = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code exponent}
+         */
+        public final Builder exponent(float value) {
+            this.exponent = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link RankFeatureFunctionSigmoid}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RankFeatureFunctionSigmoid build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RankFeatureFunctionSigmoid}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RankFeatureFunctionSigmoid build() {
+            _checkSingleUse();
 
-			return new RankFeatureFunctionSigmoid(this);
-		}
-	}
+            return new RankFeatureFunctionSigmoid(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link RankFeatureFunctionSigmoid}
-	 */
-	public static final JsonpDeserializer<RankFeatureFunctionSigmoid> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankFeatureFunctionSigmoid::setupRankFeatureFunctionSigmoidDeserializer);
+    /**
+     * Json deserializer for {@link RankFeatureFunctionSigmoid}
+     */
+    public static final JsonpDeserializer<RankFeatureFunctionSigmoid> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        RankFeatureFunctionSigmoid::setupRankFeatureFunctionSigmoidDeserializer
+    );
 
-	protected static void setupRankFeatureFunctionSigmoidDeserializer(
-			ObjectDeserializer<RankFeatureFunctionSigmoid.Builder> op) {
+    protected static void setupRankFeatureFunctionSigmoidDeserializer(ObjectDeserializer<RankFeatureFunctionSigmoid.Builder> op) {
 
-		op.add(Builder::pivot, JsonpDeserializer.floatDeserializer(), "pivot");
-		op.add(Builder::exponent, JsonpDeserializer.floatDeserializer(), "exponent");
+        op.add(Builder::pivot, JsonpDeserializer.floatDeserializer(), "pivot");
+        op.add(Builder::exponent, JsonpDeserializer.floatDeserializer(), "exponent");
 
-	}
+    }
 
 }

@@ -35,65 +35,63 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum SnowballLanguage implements JsonEnum {
-	Armenian("Armenian"),
+    Armenian("Armenian"),
 
-	Basque("Basque"),
+    Basque("Basque"),
 
-	Catalan("Catalan"),
+    Catalan("Catalan"),
 
-	Danish("Danish"),
+    Danish("Danish"),
 
-	Dutch("Dutch"),
+    Dutch("Dutch"),
 
-	English("English"),
+    English("English"),
 
-	Finnish("Finnish"),
+    Finnish("Finnish"),
 
-	French("French"),
+    French("French"),
 
-	German("German"),
+    German("German"),
 
-	German2("German2"),
+    German2("German2"),
 
-	Hungarian("Hungarian"),
+    Hungarian("Hungarian"),
 
-	Italian("Italian"),
+    Italian("Italian"),
 
-	Kp("Kp"),
+    Kp("Kp"),
 
-	Lovins("Lovins"),
+    Lovins("Lovins"),
 
-	Norwegian("Norwegian"),
+    Norwegian("Norwegian"),
 
-	Porter("Porter"),
+    Porter("Porter"),
 
-	Portuguese("Portuguese"),
+    Portuguese("Portuguese"),
 
-	Romanian("Romanian"),
+    Romanian("Romanian"),
 
-	Russian("Russian"),
+    Russian("Russian"),
 
-	Spanish("Spanish"),
+    Spanish("Spanish"),
 
-	Swedish("Swedish"),
+    Swedish("Swedish"),
 
-	Turkish("Turkish"),
+    Turkish("Turkish"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	SnowballLanguage(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    SnowballLanguage(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<SnowballLanguage> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SnowballLanguage.values());
+    public static final JsonEnum.Deserializer<SnowballLanguage> _DESERIALIZER = new JsonEnum.Deserializer<>(SnowballLanguage.values());
 }

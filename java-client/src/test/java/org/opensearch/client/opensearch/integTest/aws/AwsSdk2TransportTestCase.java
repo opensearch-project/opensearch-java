@@ -11,6 +11,11 @@ package org.opensearch.client.opensearch.integTest.aws;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import javax.annotation.CheckForNull;
 import org.junit.AfterClass;
 import org.junit.Assume;
 import org.junit.Before;
@@ -34,12 +39,6 @@ import software.amazon.awssdk.http.apache.ApacheHttpClient;
 import software.amazon.awssdk.http.async.SdkAsyncHttpClient;
 import software.amazon.awssdk.http.crt.AwsCrtAsyncHttpClient;
 import software.amazon.awssdk.regions.Region;
-
-import javax.annotation.CheckForNull;
-import java.io.IOException;
-import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
 
 public abstract class AwsSdk2TransportTestCase {
     public static final String TEST_INDEX = "opensearch-java-integtest";
@@ -71,74 +70,79 @@ public abstract class AwsSdk2TransportTestCase {
         return AwsSdk2TransportOptions.builder();
     }
 
-    protected OpenSearchClient getClient(
-            boolean async,
-            @CheckForNull JsonpMapper mapper,
-            @CheckForNull TransportOptions options) {
+    protected OpenSearchClient getClient(boolean async, @CheckForNull JsonpMapper mapper, @CheckForNull TransportOptions options) {
 
         AwsSdk2Transport transport;
         if (async) {
             transport = new AwsSdk2Transport(
-                    getAsyncHttpClient(),
-                    getTestClusterHost(),
-                    getTestClusterServiceName(),
-                    getTestClusterRegion(),
-                    getTransportOptions().build());
+                getAsyncHttpClient(),
+                getTestClusterHost(),
+                getTestClusterServiceName(),
+                getTestClusterRegion(),
+                getTransportOptions().build()
+            );
         } else {
             transport = new AwsSdk2Transport(
-                    getHttpClient(),
-                    getTestClusterHost(),
-                    getTestClusterServiceName(),
-                    getTestClusterRegion(),
-                    getTransportOptions().build());
+                getHttpClient(),
+                getTestClusterHost(),
+                getTestClusterServiceName(),
+                getTestClusterRegion(),
+                getTransportOptions().build()
+            );
         }
         return new OpenSearchClient(transport);
     }
 
     protected OpenSearchAsyncClient getAsyncClient(
-            boolean async,
-            @CheckForNull JsonpMapper mapper,
-            @CheckForNull TransportOptions options) {
+        boolean async,
+        @CheckForNull JsonpMapper mapper,
+        @CheckForNull TransportOptions options
+    ) {
 
         AwsSdk2Transport transport;
         if (async) {
             transport = new AwsSdk2Transport(
-                    getAsyncHttpClient(),
-                    getTestClusterHost(),
-                    getTestClusterServiceName(),
-                    getTestClusterRegion(),
-                    getTransportOptions().build());
+                getAsyncHttpClient(),
+                getTestClusterHost(),
+                getTestClusterServiceName(),
+                getTestClusterRegion(),
+                getTransportOptions().build()
+            );
         } else {
             transport = new AwsSdk2Transport(
-                    getHttpClient(),
-                    getTestClusterHost(),
-                    getTestClusterServiceName(),
-                    getTestClusterRegion(),
-                    getTransportOptions().build());
+                getHttpClient(),
+                getTestClusterHost(),
+                getTestClusterServiceName(),
+                getTestClusterRegion(),
+                getTransportOptions().build()
+            );
         }
         return new OpenSearchAsyncClient(transport);
     }
 
     protected OpenSearchIndicesClient getIndexesClient(
-            boolean async,
-            @CheckForNull JsonpMapper mapper,
-            @CheckForNull TransportOptions options) {
+        boolean async,
+        @CheckForNull JsonpMapper mapper,
+        @CheckForNull TransportOptions options
+    ) {
 
         AwsSdk2Transport transport;
         if (async) {
             transport = new AwsSdk2Transport(
-                    getAsyncHttpClient(),
-                    getTestClusterHost(),
-                    getTestClusterServiceName(),
-                    getTestClusterRegion(),
-                    getTransportOptions().build());
+                getAsyncHttpClient(),
+                getTestClusterHost(),
+                getTestClusterServiceName(),
+                getTestClusterRegion(),
+                getTransportOptions().build()
+            );
         } else {
             transport = new AwsSdk2Transport(
-                    getHttpClient(),
-                    getTestClusterHost(),
-                    getTestClusterServiceName(),
-                    getTestClusterRegion(),
-                    getTransportOptions().build());
+                getHttpClient(),
+                getTestClusterHost(),
+                getTestClusterServiceName(),
+                getTestClusterRegion(),
+                getTransportOptions().build()
+            );
         }
         return new OpenSearchIndicesClient(transport);
     }
@@ -207,8 +211,7 @@ public abstract class AwsSdk2TransportTestCase {
         if (indexExists) {
             client.delete(b -> b.index(List.of(TEST_INDEX)));
         }
-        var req = new CreateIndexRequest.Builder()
-                .index(TEST_INDEX);
+        var req = new CreateIndexRequest.Builder().index(TEST_INDEX);
         client.create(req.build());
     }
 
@@ -222,21 +225,20 @@ public abstract class AwsSdk2TransportTestCase {
             }
             return qb;
         });
-        final SearchRequest.Builder req = new SearchRequest.Builder()
-                .allowPartialSearchResults(false)
-                .index(List.of(TEST_INDEX))
-                .size(10)
-                .ignoreThrottled(false)
-                .sort(
-                        new SortOptions.Builder().score(o -> o.order(SortOrder.Desc)).build(),
-                        new SortOptions.Builder().doc(o -> o.order(SortOrder.Desc)).build())
-                .query(query);
+        final SearchRequest.Builder req = new SearchRequest.Builder().allowPartialSearchResults(false)
+            .index(List.of(TEST_INDEX))
+            .size(10)
+            .ignoreThrottled(false)
+            .sort(
+                new SortOptions.Builder().score(o -> o.order(SortOrder.Desc)).build(),
+                new SortOptions.Builder().doc(o -> o.order(SortOrder.Desc)).build()
+            )
+            .query(query);
 
         return client.search(req.build(), SimplePojo.class);
     }
 
-    protected CompletableFuture<SearchResponse<SimplePojo>> query(
-            OpenSearchAsyncClient client, String title, String text) {
+    protected CompletableFuture<SearchResponse<SimplePojo>> query(OpenSearchAsyncClient client, String title, String text) {
         var query = Query.of(qb -> {
             if (title != null) {
                 qb.match(mb -> mb.field("title").query(vb -> vb.stringValue(title)));
@@ -246,15 +248,15 @@ public abstract class AwsSdk2TransportTestCase {
             }
             return qb;
         });
-        final SearchRequest.Builder req = new SearchRequest.Builder()
-                .allowPartialSearchResults(false)
-                .index(List.of(TEST_INDEX))
-                .size(10)
-                .ignoreThrottled(false)
-                .sort(
-                        new SortOptions.Builder().score(o -> o.order(SortOrder.Desc)).build(),
-                        new SortOptions.Builder().doc(o -> o.order(SortOrder.Desc)).build())
-                .query(query);
+        final SearchRequest.Builder req = new SearchRequest.Builder().allowPartialSearchResults(false)
+            .index(List.of(TEST_INDEX))
+            .size(10)
+            .ignoreThrottled(false)
+            .sort(
+                new SortOptions.Builder().score(o -> o.order(SortOrder.Desc)).build(),
+                new SortOptions.Builder().doc(o -> o.order(SortOrder.Desc)).build()
+            )
+            .query(query);
 
         try {
             return client.search(req.build(), SimplePojo.class);
@@ -269,9 +271,7 @@ public abstract class AwsSdk2TransportTestCase {
         final String title;
         final String text;
 
-        public SimplePojo(
-                @JsonProperty("title") String title,
-                @JsonProperty("text") String text) {
+        public SimplePojo(@JsonProperty("title") String title, @JsonProperty("text") String text) {
             this.title = title;
             this.text = text;
         }

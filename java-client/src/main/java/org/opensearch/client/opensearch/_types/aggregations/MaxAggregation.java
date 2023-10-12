@@ -32,76 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.MaxAggregation
-
 
 @JsonpDeserializable
 public class MaxAggregation extends FormatMetricAggregationBase implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MaxAggregation(Builder builder) {
-		super(builder);
+    private MaxAggregation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static MaxAggregation of(Function<Builder, ObjectBuilder<MaxAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MaxAggregation of(Function<Builder, ObjectBuilder<MaxAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Max;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.Max;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MaxAggregation}.
-	 */
+    /**
+     * Builder for {@link MaxAggregation}.
+     */
 
-	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<MaxAggregation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<MaxAggregation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MaxAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MaxAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MaxAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MaxAggregation build() {
+            _checkSingleUse();
 
-			return new MaxAggregation(this);
-		}
-	}
+            return new MaxAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MaxAggregation}
-	 */
-	public static final JsonpDeserializer<MaxAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MaxAggregation::setupMaxAggregationDeserializer);
+    /**
+     * Json deserializer for {@link MaxAggregation}
+     */
+    public static final JsonpDeserializer<MaxAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MaxAggregation::setupMaxAggregationDeserializer
+    );
 
-	protected static void setupMaxAggregationDeserializer(ObjectDeserializer<MaxAggregation.Builder> op) {
-		setupFormatMetricAggregationBaseDeserializer(op);
+    protected static void setupMaxAggregationDeserializer(ObjectDeserializer<MaxAggregation.Builder> op) {
+        setupFormatMetricAggregationBaseDeserializer(op);
 
-	}
+    }
 
 }

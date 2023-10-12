@@ -33,25 +33,21 @@ public class KnnBooleanFilter {
 
             if (!client.indices().exists(r -> r.index(indexName)).value()) {
                 LOGGER.info("Creating index {}", indexName);
-                client.indices().create(r -> r
-                        .index(indexName)
-                        .settings(s -> s.knn(true))
-                        .mappings(m -> m
-                                .properties("values", p -> p
-                                        .knnVector(k -> k.dimension(dimensions)))));
+                client.indices()
+                    .create(
+                        r -> r.index(indexName)
+                            .settings(s -> s.knn(true))
+                            .mappings(m -> m.properties("values", p -> p.knnVector(k -> k.dimension(dimensions))))
+                    );
             }
 
             final var nVectors = 3000;
-            final var genres = new String[] {"fiction", "drama", "romance"};
+            final var genres = new String[] { "fiction", "drama", "romance" };
             var bulkRequest = new BulkRequest.Builder();
             for (var i = 0; i < nVectors; ++i) {
                 var id = Integer.toString(i);
                 var doc = Doc.rand(dimensions, genres);
-                bulkRequest.operations(b -> b
-                        .index(o -> o
-                                .index(indexName)
-                                .id(id)
-                                .document(doc)));
+                bulkRequest.operations(b -> b.index(o -> o.index(indexName).id(id).document(doc)));
             }
 
             LOGGER.info("Indexing {} vectors", nVectors);
@@ -64,22 +60,19 @@ public class KnnBooleanFilter {
             final var searchVector = RandUtil.rand2SfArray(dimensions);
             LOGGER.info("Searching for vector {} with the '{}' genre", searchVector, searchGenre);
 
-            var searchResponse = client.search(s -> s
-                    .index(indexName)
-                    .query(q -> q
-                            .bool(b -> b
-                                    .filter(f -> f
-                                            .bool(b2 -> b2
-                                                    .must(m -> m
-                                                            .term(t -> t
-                                                                    .field("metadata.genre")
-                                                                    .value(v -> v.stringValue(searchGenre))))))
-                                    .must(m -> m
-                                            .knn(k -> k
-                                                    .field("values")
-                                                    .vector(searchVector)
-                                                    .k(5))))),
-                    Doc.class);
+            var searchResponse = client.search(
+                s -> s.index(indexName)
+                    .query(
+                        q -> q.bool(
+                            b -> b.filter(
+                                f -> f.bool(
+                                    b2 -> b2.must(m -> m.term(t -> t.field("metadata.genre").value(v -> v.stringValue(searchGenre))))
+                                )
+                            ).must(m -> m.knn(k -> k.field("values").vector(searchVector).k(5)))
+                        )
+                    ),
+                Doc.class
+            );
 
             for (var hit : searchResponse.hits().hits()) {
                 LOGGER.info("Found {} with score {}", hit.source(), hit.score());
@@ -125,10 +118,7 @@ public class KnnBooleanFilter {
 
         @Override
         public String toString() {
-            return "{" +
-                    "values=" + Arrays.toString(values) +
-                    ", metadata=" + metadata +
-                    '}';
+            return "{" + "values=" + Arrays.toString(values) + ", metadata=" + metadata + '}';
         }
     }
 
@@ -151,9 +141,7 @@ public class KnnBooleanFilter {
 
         @Override
         public String toString() {
-            return "{" +
-                    "genre=" + genre +
-                    '}';
+            return "{" + "genre=" + genre + '}';
         }
     }
 }

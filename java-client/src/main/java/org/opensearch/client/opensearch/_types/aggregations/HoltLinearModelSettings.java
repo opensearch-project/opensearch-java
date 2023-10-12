@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,130 +43,127 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HoltLinearModelSettings
 
-
 @JsonpDeserializable
 public class HoltLinearModelSettings implements JsonpSerializable {
-	@Nullable
-	private final Float alpha;
+    @Nullable
+    private final Float alpha;
 
-	@Nullable
-	private final Float beta;
+    @Nullable
+    private final Float beta;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private HoltLinearModelSettings(Builder builder) {
+    private HoltLinearModelSettings(Builder builder) {
 
-		this.alpha = builder.alpha;
-		this.beta = builder.beta;
+        this.alpha = builder.alpha;
+        this.beta = builder.beta;
 
-	}
+    }
 
-	public static HoltLinearModelSettings of(Function<Builder, ObjectBuilder<HoltLinearModelSettings>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static HoltLinearModelSettings of(Function<Builder, ObjectBuilder<HoltLinearModelSettings>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code alpha}
-	 */
-	@Nullable
-	public final Float alpha() {
-		return this.alpha;
-	}
+    /**
+     * API name: {@code alpha}
+     */
+    @Nullable
+    public final Float alpha() {
+        return this.alpha;
+    }
 
-	/**
-	 * API name: {@code beta}
-	 */
-	@Nullable
-	public final Float beta() {
-		return this.beta;
-	}
+    /**
+     * API name: {@code beta}
+     */
+    @Nullable
+    public final Float beta() {
+        return this.beta;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.alpha != null) {
-			generator.writeKey("alpha");
-			generator.write(this.alpha);
+        if (this.alpha != null) {
+            generator.writeKey("alpha");
+            generator.write(this.alpha);
 
-		}
-		if (this.beta != null) {
-			generator.writeKey("beta");
-			generator.write(this.beta);
+        }
+        if (this.beta != null) {
+            generator.writeKey("beta");
+            generator.write(this.beta);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link HoltLinearModelSettings}.
-	 */
+    /**
+     * Builder for {@link HoltLinearModelSettings}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HoltLinearModelSettings> {
-		@Nullable
-		private Float alpha;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HoltLinearModelSettings> {
+        @Nullable
+        private Float alpha;
 
-		@Nullable
-		private Float beta;
+        @Nullable
+        private Float beta;
 
-		/**
-		 * API name: {@code alpha}
-		 */
-		public final Builder alpha(@Nullable Float value) {
-			this.alpha = value;
-			return this;
-		}
+        /**
+         * API name: {@code alpha}
+         */
+        public final Builder alpha(@Nullable Float value) {
+            this.alpha = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code beta}
-		 */
-		public final Builder beta(@Nullable Float value) {
-			this.beta = value;
-			return this;
-		}
+        /**
+         * API name: {@code beta}
+         */
+        public final Builder beta(@Nullable Float value) {
+            this.beta = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link HoltLinearModelSettings}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public HoltLinearModelSettings build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link HoltLinearModelSettings}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public HoltLinearModelSettings build() {
+            _checkSingleUse();
 
-			return new HoltLinearModelSettings(this);
-		}
-	}
+            return new HoltLinearModelSettings(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link HoltLinearModelSettings}
-	 */
-	public static final JsonpDeserializer<HoltLinearModelSettings> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HoltLinearModelSettings::setupHoltLinearModelSettingsDeserializer);
+    /**
+     * Json deserializer for {@link HoltLinearModelSettings}
+     */
+    public static final JsonpDeserializer<HoltLinearModelSettings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        HoltLinearModelSettings::setupHoltLinearModelSettingsDeserializer
+    );
 
-	protected static void setupHoltLinearModelSettingsDeserializer(
-			ObjectDeserializer<HoltLinearModelSettings.Builder> op) {
+    protected static void setupHoltLinearModelSettingsDeserializer(ObjectDeserializer<HoltLinearModelSettings.Builder> op) {
 
-		op.add(Builder::alpha, JsonpDeserializer.floatDeserializer(), "alpha");
-		op.add(Builder::beta, JsonpDeserializer.floatDeserializer(), "beta");
+        op.add(Builder::alpha, JsonpDeserializer.floatDeserializer(), "alpha");
+        op.add(Builder::beta, JsonpDeserializer.floatDeserializer(), "beta");
 
-	}
+    }
 
 }

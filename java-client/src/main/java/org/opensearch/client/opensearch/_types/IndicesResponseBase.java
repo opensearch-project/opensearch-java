@@ -32,78 +32,76 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.IndicesResponseBase
 
-
 public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
-	@Nullable
-	private final ShardStatistics shards;
+    @Nullable
+    private final ShardStatistics shards;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected IndicesResponseBase(AbstractBuilder<?> builder) {
-		super(builder);
+    protected IndicesResponseBase(AbstractBuilder<?> builder) {
+        super(builder);
 
-		this.shards = builder.shards;
+        this.shards = builder.shards;
 
-	}
+    }
 
-	/**
-	 * API name: {@code _shards}
-	 */
-	@Nullable
-	public final ShardStatistics shards() {
-		return this.shards;
-	}
+    /**
+     * API name: {@code _shards}
+     */
+    @Nullable
+    public final ShardStatistics shards() {
+        return this.shards;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.shards != null) {
-			generator.writeKey("_shards");
-			this.shards.serialize(generator, mapper);
+        super.serializeInternal(generator, mapper);
+        if (this.shards != null) {
+            generator.writeKey("_shards");
+            this.shards.serialize(generator, mapper);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				AcknowledgedResponseBase.AbstractBuilder<BuilderT> {
-		@Nullable
-		private ShardStatistics shards;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends
+        AcknowledgedResponseBase.AbstractBuilder<BuilderT> {
+        @Nullable
+        private ShardStatistics shards;
 
-		/**
-		 * API name: {@code _shards}
-		 */
-		public final BuilderT shards(@Nullable ShardStatistics value) {
-			this.shards = value;
-			return self();
-		}
+        /**
+         * API name: {@code _shards}
+         */
+        public final BuilderT shards(@Nullable ShardStatistics value) {
+            this.shards = value;
+            return self();
+        }
 
-		/**
-		 * API name: {@code _shards}
-		 */
-		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
-		}
+        /**
+         * API name: {@code _shards}
+         */
+        public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+            return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupIndicesResponseBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupIndicesResponseBaseDeserializer(
+        ObjectDeserializer<BuilderT> op
+    ) {
+        setupAcknowledgedResponseBaseDeserializer(op);
+        op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
 
-	}
+    }
 
 }

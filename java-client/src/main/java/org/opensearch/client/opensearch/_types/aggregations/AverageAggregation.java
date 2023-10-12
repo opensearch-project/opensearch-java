@@ -32,75 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.AverageAggregation
 
 @JsonpDeserializable
 public class AverageAggregation extends FormatMetricAggregationBase implements AggregationVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private AverageAggregation(Builder builder) {
-		super(builder);
+    private AverageAggregation(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static AverageAggregation of(Function<Builder, ObjectBuilder<AverageAggregation>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static AverageAggregation of(Function<Builder, ObjectBuilder<AverageAggregation>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregation variant kind.
-	 */
-	@Override
-	public Aggregation.Kind _aggregationKind() {
-		return Aggregation.Kind.Avg;
-	}
+    /**
+     * Aggregation variant kind.
+     */
+    @Override
+    public Aggregation.Kind _aggregationKind() {
+        return Aggregation.Kind.Avg;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link AverageAggregation}.
-	 */
+    /**
+     * Builder for {@link AverageAggregation}.
+     */
 
-	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<AverageAggregation> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<AverageAggregation> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link AverageAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public AverageAggregation build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link AverageAggregation}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public AverageAggregation build() {
+            _checkSingleUse();
 
-			return new AverageAggregation(this);
-		}
-	}
+            return new AverageAggregation(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link AverageAggregation}
-	 */
-	public static final JsonpDeserializer<AverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AverageAggregation::setupAverageAggregationDeserializer);
+    /**
+     * Json deserializer for {@link AverageAggregation}
+     */
+    public static final JsonpDeserializer<AverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        AverageAggregation::setupAverageAggregationDeserializer
+    );
 
-	protected static void setupAverageAggregationDeserializer(ObjectDeserializer<AverageAggregation.Builder> op) {
-		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
+    protected static void setupAverageAggregationDeserializer(ObjectDeserializer<AverageAggregation.Builder> op) {
+        FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 
-	}
+    }
 
 }

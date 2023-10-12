@@ -32,21 +32,20 @@
 
 package org.opensearch.client.opensearch.experiments.api.query2;
 
-import org.opensearch.client.opensearch.experiments.UnionVariant;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
 import org.opensearch.client.json.BuildFunctionDeserializer;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.experiments.UnionVariant;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
-import jakarta.json.JsonValue;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.Map;
-import java.util.function.Function;
 
 public class Query implements TaggedUnion<Query.Kind, Query.Variant>, JsonpSerializable {
 
@@ -127,7 +126,7 @@ public class Query implements TaggedUnion<Query.Kind, Query.Variant>, JsonpSeria
         }
         if (meta != null) {
             generator.writeStartObject("meta");
-            for (Map.Entry<String, JsonValue> e: meta.entrySet()) {
+            for (Map.Entry<String, JsonValue> e : meta.entrySet()) {
                 generator.write(e.getKey(), e.getValue());
             }
             generator.writeEnd();
@@ -213,6 +212,5 @@ public class Query implements TaggedUnion<Query.Kind, Query.Variant>, JsonpSeria
 
         return PARSER;
     }
-
 
 }

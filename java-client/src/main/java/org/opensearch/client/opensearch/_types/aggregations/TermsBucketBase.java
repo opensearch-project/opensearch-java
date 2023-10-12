@@ -32,70 +32,66 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
-import jakarta.json.stream.JsonGenerator;
-import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsBucketBase
 
-
-
 public abstract class TermsBucketBase extends MultiBucketBase {
-	@Nullable
-	private final Long docCountError;
+    @Nullable
+    private final Long docCountError;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	protected TermsBucketBase(AbstractBuilder<?> builder) {
-		super(builder);
+    protected TermsBucketBase(AbstractBuilder<?> builder) {
+        super(builder);
 
-		this.docCountError = builder.docCountError;
+        this.docCountError = builder.docCountError;
 
-	}
+    }
 
-	/**
-	 * API name: {@code doc_count_error}
-	 */
-	@Nullable
-	public final Long docCountError() {
-		return this.docCountError;
-	}
+    /**
+     * API name: {@code doc_count_error}
+     */
+    @Nullable
+    public final Long docCountError() {
+        return this.docCountError;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (this.docCountError != null) {
-			generator.writeKey("doc_count_error");
-			generator.write(this.docCountError);
+        super.serializeInternal(generator, mapper);
+        if (this.docCountError != null) {
+            generator.writeKey("doc_count_error");
+            generator.write(this.docCountError);
 
-		}
+        }
 
-	}
+    }
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				MultiBucketBase.AbstractBuilder<BuilderT> {
-		@Nullable
-		private Long docCountError;
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends MultiBucketBase.AbstractBuilder<
+        BuilderT> {
+        @Nullable
+        private Long docCountError;
 
-		/**
-		 * API name: {@code doc_count_error}
-		 */
-		public final BuilderT docCountError(@Nullable Long value) {
-			this.docCountError = value;
-			return self();
-		}
+        /**
+         * API name: {@code doc_count_error}
+         */
+        public final BuilderT docCountError(@Nullable Long value) {
+            this.docCountError = value;
+            return self();
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupTermsBucketBaseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
-		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
-		op.add(AbstractBuilder::docCountError, JsonpDeserializer.longDeserializer(), "doc_count_error");
+    // ---------------------------------------------------------------------------------------------
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupTermsBucketBaseDeserializer(ObjectDeserializer<BuilderT> op) {
+        MultiBucketBase.setupMultiBucketBaseDeserializer(op);
+        op.add(AbstractBuilder::docCountError, JsonpDeserializer.longDeserializer(), "doc_count_error");
 
-	}
+    }
 
 }

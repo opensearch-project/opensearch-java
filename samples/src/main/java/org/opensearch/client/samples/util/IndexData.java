@@ -12,8 +12,7 @@ public class IndexData {
     private String title;
     private String text;
 
-    public IndexData() {
-    }
+    public IndexData() {}
 
     public IndexData(String title, String text) {
         this.title = title;

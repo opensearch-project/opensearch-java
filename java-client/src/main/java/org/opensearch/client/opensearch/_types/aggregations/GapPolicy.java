@@ -37,22 +37,21 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum GapPolicy implements JsonEnum {
-	Skip("skip"),
+    Skip("skip"),
 
-	InsertZeros("insert_zeros"),
+    InsertZeros("insert_zeros"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	GapPolicy(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    GapPolicy(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<GapPolicy> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			GapPolicy.values());
+    public static final JsonEnum.Deserializer<GapPolicy> _DESERIALIZER = new JsonEnum.Deserializer<>(GapPolicy.values());
 }

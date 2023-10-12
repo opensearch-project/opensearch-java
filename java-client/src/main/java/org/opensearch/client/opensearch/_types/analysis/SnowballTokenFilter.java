@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,104 +41,100 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.analysis.SnowballTokenFilter
 
-
 @JsonpDeserializable
 public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final SnowballLanguage language;
+    private final SnowballLanguage language;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SnowballTokenFilter(Builder builder) {
-		super(builder);
+    private SnowballTokenFilter(Builder builder) {
+        super(builder);
 
-		this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
+        this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
 
-	}
+    }
 
-	public static SnowballTokenFilter of(Function<Builder, ObjectBuilder<SnowballTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SnowballTokenFilter of(Function<Builder, ObjectBuilder<SnowballTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.Snowball;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.Snowball;
+    }
 
-	/**
-	 * Required - API name: {@code language}
-	 */
-	public final SnowballLanguage language() {
-		return this.language;
-	}
+    /**
+     * Required - API name: {@code language}
+     */
+    public final SnowballLanguage language() {
+        return this.language;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "snowball");
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("language");
-		this.language.serialize(generator, mapper);
+        generator.write("type", "snowball");
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("language");
+        this.language.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SnowballTokenFilter}.
-	 */
+    /**
+     * Builder for {@link SnowballTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<SnowballTokenFilter> {
-		private SnowballLanguage language;
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<SnowballTokenFilter> {
+        private SnowballLanguage language;
 
-		/**
-		 * Required - API name: {@code language}
-		 */
-		public final Builder language(SnowballLanguage value) {
-			this.language = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code language}
+         */
+        public final Builder language(SnowballLanguage value) {
+            this.language = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SnowballTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SnowballTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SnowballTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SnowballTokenFilter build() {
+            _checkSingleUse();
 
-			return new SnowballTokenFilter(this);
-		}
-	}
+            return new SnowballTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SnowballTokenFilter}
-	 */
-	public static final JsonpDeserializer<SnowballTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SnowballTokenFilter::setupSnowballTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link SnowballTokenFilter}
+     */
+    public static final JsonpDeserializer<SnowballTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SnowballTokenFilter::setupSnowballTokenFilterDeserializer
+    );
 
-	protected static void setupSnowballTokenFilterDeserializer(ObjectDeserializer<SnowballTokenFilter.Builder> op) {
-		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::language, SnowballLanguage._DESERIALIZER, "language");
+    protected static void setupSnowballTokenFilterDeserializer(ObjectDeserializer<SnowballTokenFilter.Builder> op) {
+        TokenFilterBase.setupTokenFilterBaseDeserializer(op);
+        op.add(Builder::language, SnowballLanguage._DESERIALIZER, "language");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

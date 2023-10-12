@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,138 +41,137 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: _types.query_dsl.SpanFirstQuery
 
-
 @JsonpDeserializable
 public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
-	private final int end;
+    private final int end;
 
-	private final SpanQuery match;
+    private final SpanQuery match;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private SpanFirstQuery(Builder builder) {
-		super(builder);
+    private SpanFirstQuery(Builder builder) {
+        super(builder);
 
-		this.end = ApiTypeHelper.requireNonNull(builder.end, this, "end");
-		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
+        this.end = ApiTypeHelper.requireNonNull(builder.end, this, "end");
+        this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
 
-	}
+    }
 
-	public static SpanFirstQuery of(Function<Builder, ObjectBuilder<SpanFirstQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SpanFirstQuery of(Function<Builder, ObjectBuilder<SpanFirstQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * SpanQuery variant kind.
-	 */
-	@Override
-	public SpanQuery.Kind _spanQueryKind() {
-		return SpanQuery.Kind.SpanFirst;
-	}
+    /**
+     * SpanQuery variant kind.
+     */
+    @Override
+    public SpanQuery.Kind _spanQueryKind() {
+        return SpanQuery.Kind.SpanFirst;
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.SpanFirst;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.SpanFirst;
+    }
 
-	/**
-	 * Required - API name: {@code end}
-	 */
-	public final int end() {
-		return this.end;
-	}
+    /**
+     * Required - API name: {@code end}
+     */
+    public final int end() {
+        return this.end;
+    }
 
-	/**
-	 * Required - API name: {@code match}
-	 */
-	public final SpanQuery match() {
-		return this.match;
-	}
+    /**
+     * Required - API name: {@code match}
+     */
+    public final SpanQuery match() {
+        return this.match;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("end");
-		generator.write(this.end);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("end");
+        generator.write(this.end);
 
-		generator.writeKey("match");
-		this.match.serialize(generator, mapper);
+        generator.writeKey("match");
+        this.match.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link SpanFirstQuery}.
-	 */
+    /**
+     * Builder for {@link SpanFirstQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanFirstQuery> {
-		private Integer end;
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanFirstQuery> {
+        private Integer end;
 
-		private SpanQuery match;
+        private SpanQuery match;
 
-		/**
-		 * Required - API name: {@code end}
-		 */
-		public final Builder end(int value) {
-			this.end = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code end}
+         */
+        public final Builder end(int value) {
+            this.end = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code match}
-		 */
-		public final Builder match(SpanQuery value) {
-			this.match = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code match}
+         */
+        public final Builder match(SpanQuery value) {
+            this.match = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code match}
-		 */
-		public final Builder match(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
-			return this.match(fn.apply(new SpanQuery.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code match}
+         */
+        public final Builder match(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
+            return this.match(fn.apply(new SpanQuery.Builder()).build());
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link SpanFirstQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public SpanFirstQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link SpanFirstQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public SpanFirstQuery build() {
+            _checkSingleUse();
 
-			return new SpanFirstQuery(this);
-		}
-	}
+            return new SpanFirstQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link SpanFirstQuery}
-	 */
-	public static final JsonpDeserializer<SpanFirstQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SpanFirstQuery::setupSpanFirstQueryDeserializer);
+    /**
+     * Json deserializer for {@link SpanFirstQuery}
+     */
+    public static final JsonpDeserializer<SpanFirstQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SpanFirstQuery::setupSpanFirstQueryDeserializer
+    );
 
-	protected static void setupSpanFirstQueryDeserializer(ObjectDeserializer<SpanFirstQuery.Builder> op) {
-		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::end, JsonpDeserializer.integerDeserializer(), "end");
-		op.add(Builder::match, SpanQuery._DESERIALIZER, "match");
+    protected static void setupSpanFirstQueryDeserializer(ObjectDeserializer<SpanFirstQuery.Builder> op) {
+        QueryBase.setupQueryBaseDeserializer(op);
+        op.add(Builder::end, JsonpDeserializer.integerDeserializer(), "end");
+        op.add(Builder::match, SpanQuery._DESERIALIZER, "match");
 
-	}
+    }
 
 }

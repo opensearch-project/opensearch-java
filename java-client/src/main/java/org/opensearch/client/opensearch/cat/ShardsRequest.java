@@ -32,19 +32,18 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.Bytes;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 // typedef: cat.shards.Request
 
@@ -54,155 +53,158 @@ import java.util.stream.Collectors;
  */
 
 public class ShardsRequest extends CatRequestBase {
-	@Nullable
-	private final Bytes bytes;
+    @Nullable
+    private final Bytes bytes;
 
-	private final List<String> index;
+    private final List<String> index;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ShardsRequest(Builder builder) {
-		super(builder);
-		this.bytes = builder.bytes;
-		this.index = ApiTypeHelper.unmodifiable(builder.index);
+    private ShardsRequest(Builder builder) {
+        super(builder);
+        this.bytes = builder.bytes;
+        this.index = ApiTypeHelper.unmodifiable(builder.index);
 
-	}
+    }
 
-	public static ShardsRequest of(Function<Builder, ObjectBuilder<ShardsRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ShardsRequest of(Function<Builder, ObjectBuilder<ShardsRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * The unit in which to display byte values
-	 * <p>
-	 * API name: {@code bytes}
-	 */
-	@Nullable
-	public final Bytes bytes() {
-		return this.bytes;
-	}
+    /**
+     * The unit in which to display byte values
+     * <p>
+     * API name: {@code bytes}
+     */
+    @Nullable
+    public final Bytes bytes() {
+        return this.bytes;
+    }
 
-	/**
-	 * A comma-separated list of index names to limit the returned information
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public final List<String> index() {
-		return this.index;
-	}
+    /**
+     * A comma-separated list of index names to limit the returned information
+     * <p>
+     * API name: {@code index}
+     */
+    public final List<String> index() {
+        return this.index;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ShardsRequest}.
-	 */
+    /**
+     * Builder for {@link ShardsRequest}.
+     */
 
-	public static class Builder extends CatRequestBaseBuilder<ShardsRequest.Builder> {
-		@Nullable
-		private Bytes bytes;
+    public static class Builder extends CatRequestBaseBuilder<ShardsRequest.Builder> {
+        @Nullable
+        private Bytes bytes;
 
-		@Nullable
-		private List<String> index;
+        @Nullable
+        private List<String> index;
 
-		/**
-		 * The unit in which to display byte values
-		 * <p>
-		 * API name: {@code bytes}
-		 */
-		public final Builder bytes(@Nullable Bytes value) {
-			this.bytes = value;
-			return this;
-		}
+        /**
+         * The unit in which to display byte values
+         * <p>
+         * API name: {@code bytes}
+         */
+        public final Builder bytes(@Nullable Bytes value) {
+            this.bytes = value;
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of index names to limit the returned information
-		 * <p>
-		 * API name: {@code index}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>index</code>.
-		 */
-		public final Builder index(List<String> list) {
-			this.index = _listAddAll(this.index, list);
-			return this;
-		}
+        /**
+         * A comma-separated list of index names to limit the returned information
+         * <p>
+         * API name: {@code index}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>index</code>.
+         */
+        public final Builder index(List<String> list) {
+            this.index = _listAddAll(this.index, list);
+            return this;
+        }
 
-		/**
-		 * A comma-separated list of index names to limit the returned information
-		 * <p>
-		 * API name: {@code index}
-		 * <p>
-		 * Adds one or more values to <code>index</code>.
-		 */
-		public final Builder index(String value, String... values) {
-			this.index = _listAdd(this.index, value, values);
-			return this;
-		}
+        /**
+         * A comma-separated list of index names to limit the returned information
+         * <p>
+         * API name: {@code index}
+         * <p>
+         * Adds one or more values to <code>index</code>.
+         */
+        public final Builder index(String value, String... values) {
+            this.index = _listAdd(this.index, value, values);
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ShardsRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ShardsRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ShardsRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ShardsRequest build() {
+            _checkSingleUse();
 
-			return new ShardsRequest(this);
-		}
+            return new ShardsRequest(this);
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
-	}
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code cat.shards}".
-	 */
-	public static final Endpoint<ShardsRequest, ShardsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code cat.shards}".
+     */
+    public static final Endpoint<ShardsRequest, ShardsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _index = 1 << 0;
+        // Request path
+        request -> {
+            final int _index = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.index()))
-					propsSet |= _index;
+            if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
 
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/shards");
-					return buf.toString();
-				}
-				if (propsSet == (_index)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_cat");
-					buf.append("/shards");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == 0) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/shards");
+                return buf.toString();
+            }
+            if (propsSet == (_index)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_cat");
+                buf.append("/shards");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				Map<String, String> params = new HashMap<>(request.queryParameters());
-				if (request.bytes != null) {
-					params.put("bytes", request.bytes.jsonValue());
-				}
-				return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>(request.queryParameters());
+            if (request.bytes != null) {
+                params.put("bytes", request.bytes.jsonValue());
+            }
+            return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ShardsResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        ShardsResponse._DESERIALIZER
+    );
 }

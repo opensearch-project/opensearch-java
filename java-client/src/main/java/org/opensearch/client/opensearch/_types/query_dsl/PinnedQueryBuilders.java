@@ -37,10 +37,9 @@ package org.opensearch.client.opensearch._types.query_dsl;
  * <p>
  * Variants <code>ids</code>, <code>docs</code> are not available here as they
  * don't have a dedicated class. Use {@link PinnedQuery}'s builder for these.
- * 
+ *
  */
 public class PinnedQueryBuilders {
-	private PinnedQueryBuilders() {
-	}
+    private PinnedQueryBuilders() {}
 
 }

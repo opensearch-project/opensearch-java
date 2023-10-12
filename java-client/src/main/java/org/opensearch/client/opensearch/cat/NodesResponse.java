@@ -32,125 +32,125 @@
 
 package org.opensearch.client.opensearch.cat;
 
-import org.opensearch.client.opensearch.cat.nodes.NodesRecord;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.opensearch.cat.nodes.NodesRecord;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: cat.nodes.Response
 
-
 @JsonpDeserializable
 public class NodesResponse implements JsonpSerializable {
-	private final List<NodesRecord> valueBody;
+    private final List<NodesRecord> valueBody;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodesResponse(Builder builder) {
+    private NodesResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+        this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
-	}
+    }
 
-	public static NodesResponse of(Function<Builder, ObjectBuilder<NodesResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodesResponse of(Function<Builder, ObjectBuilder<NodesResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
-	 */
-	public final List<NodesRecord> valueBody() {
-		return this.valueBody;
-	}
+    /**
+     * Required - Response value.
+     * <p>
+     * API name: {@code _value_body}
+     */
+    public final List<NodesRecord> valueBody() {
+        return this.valueBody;
+    }
 
-	/**
-	 * Serialize this value to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartArray();
-		for (NodesRecord item0 : this.valueBody) {
-			item0.serialize(generator, mapper);
+    /**
+     * Serialize this value to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartArray();
+        for (NodesRecord item0 : this.valueBody) {
+            item0.serialize(generator, mapper);
 
-		}
-		generator.writeEnd();
+        }
+        generator.writeEnd();
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodesResponse}.
-	 */
+    /**
+     * Builder for {@link NodesResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesResponse> {
-		private List<NodesRecord> valueBody;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesResponse> {
+        private List<NodesRecord> valueBody;
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
-		 */
-		public final Builder valueBody(List<NodesRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
-			return this;
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>valueBody</code>.
+         */
+        public final Builder valueBody(List<NodesRecord> list) {
+            this.valueBody = _listAddAll(this.valueBody, list);
+            return this;
+        }
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
-		 */
-		public final Builder valueBody(NodesRecord value, NodesRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
-			return this;
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds one or more values to <code>valueBody</code>.
+         */
+        public final Builder valueBody(NodesRecord value, NodesRecord... values) {
+            this.valueBody = _listAdd(this.valueBody, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
-		 */
-		public final Builder valueBody(Function<NodesRecord.Builder, ObjectBuilder<NodesRecord>> fn) {
-			return valueBody(fn.apply(new NodesRecord.Builder()).build());
-		}
+        /**
+         * Required - Response value.
+         * <p>
+         * API name: {@code _value_body}
+         * <p>
+         * Adds a value to <code>valueBody</code> using a builder lambda.
+         */
+        public final Builder valueBody(Function<NodesRecord.Builder, ObjectBuilder<NodesRecord>> fn) {
+            return valueBody(fn.apply(new NodesRecord.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link NodesResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodesResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodesResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodesResponse build() {
+            _checkSingleUse();
 
-			return new NodesResponse(this);
-		}
-	}
+            return new NodesResponse(this);
+        }
+    }
 
-	public static final JsonpDeserializer<NodesResponse> _DESERIALIZER = createNodesResponseDeserializer();
-	protected static JsonpDeserializer<NodesResponse> createNodesResponseDeserializer() {
+    public static final JsonpDeserializer<NodesResponse> _DESERIALIZER = createNodesResponseDeserializer();
 
-		JsonpDeserializer<List<NodesRecord>> valueDeserializer = JsonpDeserializer
-				.arrayDeserializer(NodesRecord._DESERIALIZER);
+    protected static JsonpDeserializer<NodesResponse> createNodesResponseDeserializer() {
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
-	}
+        JsonpDeserializer<List<NodesRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(NodesRecord._DESERIALIZER);
+
+        return JsonpDeserializer.of(
+            valueDeserializer.acceptedEvents(),
+            (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
+        );
+    }
 
 }

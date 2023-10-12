@@ -35,33 +35,31 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum TokenChar implements JsonEnum {
-	Letter("letter"),
+    Letter("letter"),
 
-	Digit("digit"),
+    Digit("digit"),
 
-	Whitespace("whitespace"),
+    Whitespace("whitespace"),
 
-	Punctuation("punctuation"),
+    Punctuation("punctuation"),
 
-	Symbol("symbol"),
+    Symbol("symbol"),
 
-	Custom("custom"),
+    Custom("custom"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	TokenChar(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    TokenChar(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<TokenChar> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			TokenChar.values());
+    public static final JsonEnum.Deserializer<TokenChar> _DESERIALIZER = new JsonEnum.Deserializer<>(TokenChar.values());
 }

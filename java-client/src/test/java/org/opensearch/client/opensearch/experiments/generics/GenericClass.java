@@ -32,7 +32,8 @@
 
 package org.opensearch.client.opensearch.experiments.generics;
 
-import org.opensearch.client.opensearch._types.ErrorResponse;
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Supplier;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
@@ -40,12 +41,10 @@ import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Supplier;
 
 public class GenericClass<GenParam> implements JsonpSerializable {
 
@@ -111,7 +110,6 @@ public class GenericClass<GenParam> implements JsonpSerializable {
     private static <GenParam> void setupParser(ObjectDeserializer<Builder<GenParam>> op, JsonpDeserializer<GenParam> deserializer) {
         op.add(Builder::genParam, deserializer, "genParam");
     }
-
 
     public static <GenParam> Endpoint<Boolean, GenericClass<GenParam>, ErrorResponse> endpoint(
         JsonpDeserializer<GenParam> genParamDeserializer

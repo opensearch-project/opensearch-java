@@ -9,11 +9,7 @@
 plugins {
     java
     application
-    checkstyle
-}
-
-checkstyle {
-    toolVersion = "10.0"
+    id("com.diffplug.spotless") version "6.22.0"
 }
 
 java {
@@ -30,6 +26,22 @@ dependencies {
     implementation("com.fasterxml.jackson.core", "jackson-databind", "2.15.2")
     implementation("org.apache.httpcomponents.client5", "httpclient5", "5.2.1")
     implementation("org.apache.httpcomponents.core5", "httpcore5", "5.2.2")
+}
+
+spotless {
+  java {
+
+    target("**/*.java")
+
+    // Use the default importOrder configuration
+    importOrder()
+    removeUnusedImports()
+
+    eclipse().configFile("../buildSrc/formatterConfig.xml")
+
+    trimTrailingWhitespace()
+    endWithNewline()
+  }
 }
 
 application {

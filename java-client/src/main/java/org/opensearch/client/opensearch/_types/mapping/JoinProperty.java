@@ -32,6 +32,11 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,134 +44,133 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.mapping.JoinProperty
 
-
 @JsonpDeserializable
 public class JoinProperty extends PropertyBase implements PropertyVariant {
-	private final Map<String, List<String>> relations;
+    private final Map<String, List<String>> relations;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private JoinProperty(Builder builder) {
-		super(builder);
+    private JoinProperty(Builder builder) {
+        super(builder);
 
-		this.relations = ApiTypeHelper.unmodifiable(builder.relations);
+        this.relations = ApiTypeHelper.unmodifiable(builder.relations);
 
-	}
+    }
 
-	public static JoinProperty of(Function<Builder, ObjectBuilder<JoinProperty>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static JoinProperty of(Function<Builder, ObjectBuilder<JoinProperty>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Property variant kind.
-	 */
-	@Override
-	public Property.Kind _propertyKind() {
-		return Property.Kind.Join;
-	}
+    /**
+     * Property variant kind.
+     */
+    @Override
+    public Property.Kind _propertyKind() {
+        return Property.Kind.Join;
+    }
 
-	/**
-	 * API name: {@code relations}
-	 */
-	public final Map<String, List<String>> relations() {
-		return this.relations;
-	}
+    /**
+     * API name: {@code relations}
+     */
+    public final Map<String, List<String>> relations() {
+        return this.relations;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "join");
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.relations)) {
-			generator.writeKey("relations");
-			generator.writeStartObject();
-			for (Map.Entry<String, List<String>> item0 : this.relations.entrySet()) {
-				generator.writeKey(item0.getKey());
-				generator.writeStartArray();
-				if (item0.getValue() != null) {
-					for (String item1 : item0.getValue()) {
-						generator.write(item1);
+        generator.write("type", "join");
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.relations)) {
+            generator.writeKey("relations");
+            generator.writeStartObject();
+            for (Map.Entry<String, List<String>> item0 : this.relations.entrySet()) {
+                generator.writeKey(item0.getKey());
+                generator.writeStartArray();
+                if (item0.getValue() != null) {
+                    for (String item1 : item0.getValue()) {
+                        generator.write(item1);
 
-					}
-				}
-				generator.writeEnd();
+                    }
+                }
+                generator.writeEnd();
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link JoinProperty}.
-	 */
+    /**
+     * Builder for {@link JoinProperty}.
+     */
 
-	public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<JoinProperty> {
-		@Nullable
-		private Map<String, List<String>> relations;
+    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<JoinProperty> {
+        @Nullable
+        private Map<String, List<String>> relations;
 
-		/**
-		 * API name: {@code relations}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>relations</code>.
-		 */
-		public final Builder relations(Map<String, List<String>> map) {
-			this.relations = _mapPutAll(this.relations, map);
-			return this;
-		}
+        /**
+         * API name: {@code relations}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>relations</code>.
+         */
+        public final Builder relations(Map<String, List<String>> map) {
+            this.relations = _mapPutAll(this.relations, map);
+            return this;
+        }
 
-		/**
-		 * API name: {@code relations}
-		 * <p>
-		 * Adds an entry to <code>relations</code>.
-		 */
-		public final Builder relations(String key, List<String> value) {
-			this.relations = _mapPut(this.relations, key, value);
-			return this;
-		}
+        /**
+         * API name: {@code relations}
+         * <p>
+         * Adds an entry to <code>relations</code>.
+         */
+        public final Builder relations(String key, List<String> value) {
+            this.relations = _mapPut(this.relations, key, value);
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link JoinProperty}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public JoinProperty build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link JoinProperty}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public JoinProperty build() {
+            _checkSingleUse();
 
-			return new JoinProperty(this);
-		}
-	}
+            return new JoinProperty(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link JoinProperty}
-	 */
-	public static final JsonpDeserializer<JoinProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			JoinProperty::setupJoinPropertyDeserializer);
+    /**
+     * Json deserializer for {@link JoinProperty}
+     */
+    public static final JsonpDeserializer<JoinProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        JoinProperty::setupJoinPropertyDeserializer
+    );
 
-	protected static void setupJoinPropertyDeserializer(ObjectDeserializer<JoinProperty.Builder> op) {
-		PropertyBase.setupPropertyBaseDeserializer(op);
-		op.add(Builder::relations, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "relations");
+    protected static void setupJoinPropertyDeserializer(ObjectDeserializer<JoinProperty.Builder> op) {
+        PropertyBase.setupPropertyBaseDeserializer(op);
+        op.add(
+            Builder::relations,
+            JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())),
+            "relations"
+        );
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

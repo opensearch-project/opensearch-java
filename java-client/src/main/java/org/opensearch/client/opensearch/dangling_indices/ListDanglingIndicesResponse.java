@@ -32,135 +32,134 @@
 
 package org.opensearch.client.opensearch.dangling_indices;
 
-import org.opensearch.client.opensearch.dangling_indices.list_dangling_indices.DanglingIndex;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.dangling_indices.list_dangling_indices.DanglingIndex;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: dangling_indices.list_dangling_indices.Response
 
 @JsonpDeserializable
 public class ListDanglingIndicesResponse implements JsonpSerializable {
-	private final List<DanglingIndex> danglingIndices;
+    private final List<DanglingIndex> danglingIndices;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ListDanglingIndicesResponse(Builder builder) {
+    private ListDanglingIndicesResponse(Builder builder) {
 
-		this.danglingIndices = ApiTypeHelper.unmodifiableRequired(builder.danglingIndices, this, "danglingIndices");
+        this.danglingIndices = ApiTypeHelper.unmodifiableRequired(builder.danglingIndices, this, "danglingIndices");
 
-	}
+    }
 
-	public static ListDanglingIndicesResponse of(Function<Builder, ObjectBuilder<ListDanglingIndicesResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ListDanglingIndicesResponse of(Function<Builder, ObjectBuilder<ListDanglingIndicesResponse>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code dangling_indices}
-	 */
-	public final List<DanglingIndex> danglingIndices() {
-		return this.danglingIndices;
-	}
+    /**
+     * Required - API name: {@code dangling_indices}
+     */
+    public final List<DanglingIndex> danglingIndices() {
+        return this.danglingIndices;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.danglingIndices)) {
-			generator.writeKey("dangling_indices");
-			generator.writeStartArray();
-			for (DanglingIndex item0 : this.danglingIndices) {
-				item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.danglingIndices)) {
+            generator.writeKey("dangling_indices");
+            generator.writeStartArray();
+            for (DanglingIndex item0 : this.danglingIndices) {
+                item0.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ListDanglingIndicesResponse}.
-	 */
+    /**
+     * Builder for {@link ListDanglingIndicesResponse}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ListDanglingIndicesResponse> {
-		private List<DanglingIndex> danglingIndices;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ListDanglingIndicesResponse> {
+        private List<DanglingIndex> danglingIndices;
 
-		/**
-		 * Required - API name: {@code dangling_indices}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>danglingIndices</code>.
-		 */
-		public final Builder danglingIndices(List<DanglingIndex> list) {
-			this.danglingIndices = _listAddAll(this.danglingIndices, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code dangling_indices}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>danglingIndices</code>.
+         */
+        public final Builder danglingIndices(List<DanglingIndex> list) {
+            this.danglingIndices = _listAddAll(this.danglingIndices, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code dangling_indices}
-		 * <p>
-		 * Adds one or more values to <code>danglingIndices</code>.
-		 */
-		public final Builder danglingIndices(DanglingIndex value, DanglingIndex... values) {
-			this.danglingIndices = _listAdd(this.danglingIndices, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code dangling_indices}
+         * <p>
+         * Adds one or more values to <code>danglingIndices</code>.
+         */
+        public final Builder danglingIndices(DanglingIndex value, DanglingIndex... values) {
+            this.danglingIndices = _listAdd(this.danglingIndices, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code dangling_indices}
-		 * <p>
-		 * Adds a value to <code>danglingIndices</code> using a builder lambda.
-		 */
-		public final Builder danglingIndices(Function<DanglingIndex.Builder, ObjectBuilder<DanglingIndex>> fn) {
-			return danglingIndices(fn.apply(new DanglingIndex.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code dangling_indices}
+         * <p>
+         * Adds a value to <code>danglingIndices</code> using a builder lambda.
+         */
+        public final Builder danglingIndices(Function<DanglingIndex.Builder, ObjectBuilder<DanglingIndex>> fn) {
+            return danglingIndices(fn.apply(new DanglingIndex.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link ListDanglingIndicesResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ListDanglingIndicesResponse build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ListDanglingIndicesResponse}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ListDanglingIndicesResponse build() {
+            _checkSingleUse();
 
-			return new ListDanglingIndicesResponse(this);
-		}
-	}
+            return new ListDanglingIndicesResponse(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ListDanglingIndicesResponse}
-	 */
-	public static final JsonpDeserializer<ListDanglingIndicesResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ListDanglingIndicesResponse::setupListDanglingIndicesResponseDeserializer);
+    /**
+     * Json deserializer for {@link ListDanglingIndicesResponse}
+     */
+    public static final JsonpDeserializer<ListDanglingIndicesResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ListDanglingIndicesResponse::setupListDanglingIndicesResponseDeserializer
+    );
 
-	protected static void setupListDanglingIndicesResponseDeserializer(
-			ObjectDeserializer<ListDanglingIndicesResponse.Builder> op) {
+    protected static void setupListDanglingIndicesResponseDeserializer(ObjectDeserializer<ListDanglingIndicesResponse.Builder> op) {
 
-		op.add(Builder::danglingIndices, JsonpDeserializer.arrayDeserializer(DanglingIndex._DESERIALIZER),
-				"dangling_indices");
+        op.add(Builder::danglingIndices, JsonpDeserializer.arrayDeserializer(DanglingIndex._DESERIALIZER), "dangling_indices");
 
-	}
+    }
 
 }

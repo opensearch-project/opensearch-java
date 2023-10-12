@@ -36,31 +36,30 @@ package org.opensearch.client.opensearch.core.search;
  * Builders for {@link SmoothingModel} variants.
  */
 public class SmoothingModelBuilders {
-	private SmoothingModelBuilders() {
-	}
+    private SmoothingModelBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link LaplaceSmoothingModel laplace}
-	 * {@code SmoothingModel} variant.
-	 */
-	public static LaplaceSmoothingModel.Builder laplace() {
-		return new LaplaceSmoothingModel.Builder();
-	}
+    /**
+     * Creates a builder for the {@link LaplaceSmoothingModel laplace}
+     * {@code SmoothingModel} variant.
+     */
+    public static LaplaceSmoothingModel.Builder laplace() {
+        return new LaplaceSmoothingModel.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link LinearInterpolationSmoothingModel
-	 * linear_interpolation} {@code SmoothingModel} variant.
-	 */
-	public static LinearInterpolationSmoothingModel.Builder linearInterpolation() {
-		return new LinearInterpolationSmoothingModel.Builder();
-	}
+    /**
+     * Creates a builder for the {@link LinearInterpolationSmoothingModel
+     * linear_interpolation} {@code SmoothingModel} variant.
+     */
+    public static LinearInterpolationSmoothingModel.Builder linearInterpolation() {
+        return new LinearInterpolationSmoothingModel.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link StupidBackoffSmoothingModel stupid_backoff}
-	 * {@code SmoothingModel} variant.
-	 */
-	public static StupidBackoffSmoothingModel.Builder stupidBackoff() {
-		return new StupidBackoffSmoothingModel.Builder();
-	}
+    /**
+     * Creates a builder for the {@link StupidBackoffSmoothingModel stupid_backoff}
+     * {@code SmoothingModel} variant.
+     */
+    public static StupidBackoffSmoothingModel.Builder stupidBackoff() {
+        return new StupidBackoffSmoothingModel.Builder();
+    }
 
 }

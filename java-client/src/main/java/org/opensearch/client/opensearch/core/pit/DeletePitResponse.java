@@ -8,9 +8,9 @@
 
 package org.opensearch.client.opensearch.core.pit;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
-
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -21,8 +21,6 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-import jakarta.json.stream.JsonGenerator;
-
 @JsonpDeserializable
 public class DeletePitResponse implements JsonpSerializable {
     private final List<DeletePitRecord> pits;
@@ -30,7 +28,7 @@ public class DeletePitResponse implements JsonpSerializable {
     private DeletePitResponse(Builder builder) {
         this.pits = ApiTypeHelper.unmodifiableRequired(builder.pits, this, "pits");
     }
-    
+
     public static DeletePitResponse of(Function<Builder, ObjectBuilder<DeletePitResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
@@ -111,14 +109,14 @@ public class DeletePitResponse implements JsonpSerializable {
         }
     }
 
-    public static final JsonpDeserializer<DeletePitResponse> _DESERIALIZER = ObjectBuilderDeserializer
-            .lazy(Builder::new, DeletePitResponse::createDeletePitResponseDeserializer);
+    public static final JsonpDeserializer<DeletePitResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DeletePitResponse::createDeletePitResponseDeserializer
+    );
 
-    protected static void createDeletePitResponseDeserializer(
-            ObjectDeserializer<DeletePitResponse.Builder> op) {
+    protected static void createDeletePitResponseDeserializer(ObjectDeserializer<DeletePitResponse.Builder> op) {
 
-        JsonpDeserializer<List<DeletePitRecord>> valueDeserializer = JsonpDeserializer
-                .arrayDeserializer(DeletePitRecord._DESERIALIZER);
+        JsonpDeserializer<List<DeletePitRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(DeletePitRecord._DESERIALIZER);
 
         op.add(Builder::pits, valueDeserializer, "pits");
     }

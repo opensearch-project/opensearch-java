@@ -35,31 +35,29 @@ package org.opensearch.client.opensearch.cat.thread_pool;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum ThreadPoolSize implements JsonEnum {
-	K("k"),
+    K("k"),
 
-	M("m"),
+    M("m"),
 
-	G("g"),
+    G("g"),
 
-	T("t"),
+    T("t"),
 
-	P("p"),
+    P("p"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	ThreadPoolSize(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    ThreadPoolSize(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<ThreadPoolSize> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ThreadPoolSize.values());
+    public static final JsonEnum.Deserializer<ThreadPoolSize> _DESERIALIZER = new JsonEnum.Deserializer<>(ThreadPoolSize.values());
 }

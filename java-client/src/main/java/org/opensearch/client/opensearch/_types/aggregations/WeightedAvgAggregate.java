@@ -32,13 +32,12 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-
-import java.util.function.Function;
 
 // typedef: _types.aggregations.WeightedAvgAggregate
 
@@ -49,63 +48,63 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class WeightedAvgAggregate extends SingleMetricAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private WeightedAvgAggregate(Builder builder) {
-		super(builder);
+    private WeightedAvgAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static WeightedAvgAggregate of(Function<Builder, ObjectBuilder<WeightedAvgAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static WeightedAvgAggregate of(Function<Builder, ObjectBuilder<WeightedAvgAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.WeightedAvg;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.WeightedAvg;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link WeightedAvgAggregate}.
-	 */
+    /**
+     * Builder for {@link WeightedAvgAggregate}.
+     */
 
-	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<WeightedAvgAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<WeightedAvgAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link WeightedAvgAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public WeightedAvgAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link WeightedAvgAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public WeightedAvgAggregate build() {
+            _checkSingleUse();
 
-			return new WeightedAvgAggregate(this);
-		}
-	}
+            return new WeightedAvgAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link WeightedAvgAggregate}
-	 */
-	public static final JsonpDeserializer<WeightedAvgAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, WeightedAvgAggregate::setupWeightedAvgAggregateDeserializer);
+    /**
+     * Json deserializer for {@link WeightedAvgAggregate}
+     */
+    public static final JsonpDeserializer<WeightedAvgAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        WeightedAvgAggregate::setupWeightedAvgAggregateDeserializer
+    );
 
-	protected static void setupWeightedAvgAggregateDeserializer(ObjectDeserializer<WeightedAvgAggregate.Builder> op) {
-		setupSingleMetricAggregateBaseDeserializer(op);
+    protected static void setupWeightedAvgAggregateDeserializer(ObjectDeserializer<WeightedAvgAggregate.Builder> op) {
+        setupSingleMetricAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,101 +43,98 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationDisk
 
-
 @JsonpDeserializable
 public class IndexRoutingAllocationDisk implements JsonpSerializable {
-	@Nullable
-	private final Boolean thresholdEnabled;
+    @Nullable
+    private final Boolean thresholdEnabled;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndexRoutingAllocationDisk(Builder builder) {
+    private IndexRoutingAllocationDisk(Builder builder) {
 
-		this.thresholdEnabled = builder.thresholdEnabled;
+        this.thresholdEnabled = builder.thresholdEnabled;
 
-	}
+    }
 
-	public static IndexRoutingAllocationDisk of(Function<Builder, ObjectBuilder<IndexRoutingAllocationDisk>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndexRoutingAllocationDisk of(Function<Builder, ObjectBuilder<IndexRoutingAllocationDisk>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code threshold_enabled}
-	 */
-	@Nullable
-	public final Boolean thresholdEnabled() {
-		return this.thresholdEnabled;
-	}
+    /**
+     * API name: {@code threshold_enabled}
+     */
+    @Nullable
+    public final Boolean thresholdEnabled() {
+        return this.thresholdEnabled;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.thresholdEnabled != null) {
-			generator.writeKey("threshold_enabled");
-			generator.write(this.thresholdEnabled);
+        if (this.thresholdEnabled != null) {
+            generator.writeKey("threshold_enabled");
+            generator.write(this.thresholdEnabled);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndexRoutingAllocationDisk}.
-	 */
+    /**
+     * Builder for {@link IndexRoutingAllocationDisk}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocationDisk> {
-		@Nullable
-		private Boolean thresholdEnabled;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocationDisk> {
+        @Nullable
+        private Boolean thresholdEnabled;
 
-		/**
-		 * API name: {@code threshold_enabled}
-		 */
-		public final Builder thresholdEnabled(@Nullable Boolean value) {
-			this.thresholdEnabled = value;
-			return this;
-		}
+        /**
+         * API name: {@code threshold_enabled}
+         */
+        public final Builder thresholdEnabled(@Nullable Boolean value) {
+            this.thresholdEnabled = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IndexRoutingAllocationDisk}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndexRoutingAllocationDisk build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndexRoutingAllocationDisk}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndexRoutingAllocationDisk build() {
+            _checkSingleUse();
 
-			return new IndexRoutingAllocationDisk(this);
-		}
-	}
+            return new IndexRoutingAllocationDisk(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IndexRoutingAllocationDisk}
-	 */
-	public static final JsonpDeserializer<IndexRoutingAllocationDisk> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexRoutingAllocationDisk::setupIndexRoutingAllocationDiskDeserializer);
+    /**
+     * Json deserializer for {@link IndexRoutingAllocationDisk}
+     */
+    public static final JsonpDeserializer<IndexRoutingAllocationDisk> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IndexRoutingAllocationDisk::setupIndexRoutingAllocationDiskDeserializer
+    );
 
-	protected static void setupIndexRoutingAllocationDiskDeserializer(
-			ObjectDeserializer<IndexRoutingAllocationDisk.Builder> op) {
+    protected static void setupIndexRoutingAllocationDiskDeserializer(ObjectDeserializer<IndexRoutingAllocationDisk.Builder> op) {
 
-		op.add(Builder::thresholdEnabled, JsonpDeserializer.booleanDeserializer(), "threshold_enabled");
+        op.add(Builder::thresholdEnabled, JsonpDeserializer.booleanDeserializer(), "threshold_enabled");
 
-	}
+    }
 
 }

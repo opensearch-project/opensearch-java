@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,124 +44,124 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-
-import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoScript
 
 @JsonpDeserializable
 public class NodeInfoScript implements JsonpSerializable {
     @Nullable
-	private final String allowedTypes;
+    private final String allowedTypes;
 
-	private final String disableMaxCompilationsRate;
+    private final String disableMaxCompilationsRate;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoScript(Builder builder) {
+    private NodeInfoScript(Builder builder) {
 
-		this.allowedTypes = builder.allowedTypes;
-		this.disableMaxCompilationsRate = ApiTypeHelper.requireNonNull(builder.disableMaxCompilationsRate, this,
-				"disableMaxCompilationsRate");
+        this.allowedTypes = builder.allowedTypes;
+        this.disableMaxCompilationsRate = ApiTypeHelper.requireNonNull(
+            builder.disableMaxCompilationsRate,
+            this,
+            "disableMaxCompilationsRate"
+        );
 
-	}
+    }
 
-	public static NodeInfoScript of(Function<Builder, ObjectBuilder<NodeInfoScript>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoScript of(Function<Builder, ObjectBuilder<NodeInfoScript>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code allowed_types}
-	 */
-	@Nullable
-	public final String allowedTypes() {
-		return this.allowedTypes;
-	}
+    /**
+     * API name: {@code allowed_types}
+     */
+    @Nullable
+    public final String allowedTypes() {
+        return this.allowedTypes;
+    }
 
-	/**
-	 * Required - API name: {@code disable_max_compilations_rate}
-	 */
-	public final String disableMaxCompilationsRate() {
-		return this.disableMaxCompilationsRate;
-	}
+    /**
+     * Required - API name: {@code disable_max_compilations_rate}
+     */
+    public final String disableMaxCompilationsRate() {
+        return this.disableMaxCompilationsRate;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-	    if (this.allowedTypes != null) {
-    		generator.writeKey("allowed_types");
-    		generator.write(this.allowedTypes);
-		}
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.allowedTypes != null) {
+            generator.writeKey("allowed_types");
+            generator.write(this.allowedTypes);
+        }
 
-		generator.writeKey("disable_max_compilations_rate");
-		generator.write(this.disableMaxCompilationsRate);
+        generator.writeKey("disable_max_compilations_rate");
+        generator.write(this.disableMaxCompilationsRate);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoScript}.
-	 */
+    /**
+     * Builder for {@link NodeInfoScript}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoScript> {
-	    @Nullable
-	    private String allowedTypes;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoScript> {
+        @Nullable
+        private String allowedTypes;
 
-		private String disableMaxCompilationsRate;
+        private String disableMaxCompilationsRate;
 
-		/**
-		 * API name: {@code allowed_types}
-		 */
-		public final Builder allowedTypes(String value) {
-			this.allowedTypes = value;
-			return this;
-		}
+        /**
+         * API name: {@code allowed_types}
+         */
+        public final Builder allowedTypes(String value) {
+            this.allowedTypes = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code disable_max_compilations_rate}
-		 */
-		public final Builder disableMaxCompilationsRate(String value) {
-			this.disableMaxCompilationsRate = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code disable_max_compilations_rate}
+         */
+        public final Builder disableMaxCompilationsRate(String value) {
+            this.disableMaxCompilationsRate = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeInfoScript}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoScript build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoScript}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoScript build() {
+            _checkSingleUse();
 
-			return new NodeInfoScript(this);
-		}
-	}
+            return new NodeInfoScript(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoScript}
-	 */
-	public static final JsonpDeserializer<NodeInfoScript> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoScript::setupNodeInfoScriptDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoScript}
+     */
+    public static final JsonpDeserializer<NodeInfoScript> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoScript::setupNodeInfoScriptDeserializer
+    );
 
-	protected static void setupNodeInfoScriptDeserializer(ObjectDeserializer<NodeInfoScript.Builder> op) {
+    protected static void setupNodeInfoScriptDeserializer(ObjectDeserializer<NodeInfoScript.Builder> op) {
 
-		op.add(Builder::allowedTypes, JsonpDeserializer.stringDeserializer(), "allowed_types");
-		op.add(Builder::disableMaxCompilationsRate, JsonpDeserializer.stringDeserializer(),
-				"disable_max_compilations_rate");
+        op.add(Builder::allowedTypes, JsonpDeserializer.stringDeserializer(), "allowed_types");
+        op.add(Builder::disableMaxCompilationsRate, JsonpDeserializer.stringDeserializer(), "disable_max_compilations_rate");
 
-	}
+    }
 
 }

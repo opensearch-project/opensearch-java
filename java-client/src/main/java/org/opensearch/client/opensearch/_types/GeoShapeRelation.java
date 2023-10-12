@@ -37,26 +37,25 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum GeoShapeRelation implements JsonEnum {
-	Intersects("intersects"),
+    Intersects("intersects"),
 
-	Disjoint("disjoint"),
+    Disjoint("disjoint"),
 
-	Within("within"),
+    Within("within"),
 
-	Contains("contains"),
+    Contains("contains"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	GeoShapeRelation(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    GeoShapeRelation(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<GeoShapeRelation> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			GeoShapeRelation.values());
+    public static final JsonEnum.Deserializer<GeoShapeRelation> _DESERIALIZER = new JsonEnum.Deserializer<>(GeoShapeRelation.values());
 }

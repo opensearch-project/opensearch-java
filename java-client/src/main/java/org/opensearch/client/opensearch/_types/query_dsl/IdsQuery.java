@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,122 +43,119 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IdsQuery
 
-
 @JsonpDeserializable
 public class IdsQuery extends QueryBase implements QueryVariant {
-	private final List<String> values;
+    private final List<String> values;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IdsQuery(Builder builder) {
-		super(builder);
+    private IdsQuery(Builder builder) {
+        super(builder);
 
-		this.values = ApiTypeHelper.unmodifiable(builder.values);
+        this.values = ApiTypeHelper.unmodifiable(builder.values);
 
-	}
+    }
 
-	public static IdsQuery of(Function<Builder, ObjectBuilder<IdsQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IdsQuery of(Function<Builder, ObjectBuilder<IdsQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.Ids;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.Ids;
+    }
 
-	/**
-	 * API name: {@code values}
-	 */
-	public final List<String> values() {
-		return this.values;
-	}
+    /**
+     * API name: {@code values}
+     */
+    public final List<String> values() {
+        return this.values;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.values)) {
-			generator.writeKey("values");
-			generator.writeStartArray();
-			for (String item0 : this.values) {
-				generator.write(item0);
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.values)) {
+            generator.writeKey("values");
+            generator.writeStartArray();
+            for (String item0 : this.values) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IdsQuery}.
-	 */
+    /**
+     * Builder for {@link IdsQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<IdsQuery> {
-		@Nullable
-		private List<String> values;
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<IdsQuery> {
+        @Nullable
+        private List<String> values;
 
-		/**
-		 * API name: {@code values}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>values</code>.
-		 */
-		public final Builder values(List<String> list) {
-			this.values = _listAddAll(this.values, list);
-			return this;
-		}
+        /**
+         * API name: {@code values}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>values</code>.
+         */
+        public final Builder values(List<String> list) {
+            this.values = _listAddAll(this.values, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code values}
-		 * <p>
-		 * Adds one or more values to <code>values</code>.
-		 */
-		public final Builder values(String value, String... values) {
-			this.values = _listAdd(this.values, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code values}
+         * <p>
+         * Adds one or more values to <code>values</code>.
+         */
+        public final Builder values(String value, String... values) {
+            this.values = _listAdd(this.values, value, values);
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IdsQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IdsQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IdsQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IdsQuery build() {
+            _checkSingleUse();
 
-			return new IdsQuery(this);
-		}
-	}
+            return new IdsQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IdsQuery}
-	 */
-	public static final JsonpDeserializer<IdsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IdsQuery::setupIdsQueryDeserializer);
+    /**
+     * Json deserializer for {@link IdsQuery}
+     */
+    public static final JsonpDeserializer<IdsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IdsQuery::setupIdsQueryDeserializer
+    );
 
-	protected static void setupIdsQueryDeserializer(ObjectDeserializer<IdsQuery.Builder> op) {
-		setupQueryBaseDeserializer(op);
-		op.add(Builder::values, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "values");
+    protected static void setupIdsQueryDeserializer(ObjectDeserializer<IdsQuery.Builder> op) {
+        setupQueryBaseDeserializer(op);
+        op.add(Builder::values, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "values");
 
-	}
+    }
 
 }

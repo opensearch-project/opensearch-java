@@ -37,22 +37,21 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
 public enum EdgeNGramSide implements JsonEnum {
-	Front("front"),
+    Front("front"),
 
-	Back("back"),
+    Back("back"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	EdgeNGramSide(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    EdgeNGramSide(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<EdgeNGramSide> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			EdgeNGramSide.values());
+    public static final JsonEnum.Deserializer<EdgeNGramSide> _DESERIALIZER = new JsonEnum.Deserializer<>(EdgeNGramSide.values());
 }

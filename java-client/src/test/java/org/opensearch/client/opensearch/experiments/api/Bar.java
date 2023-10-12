@@ -32,64 +32,63 @@
 
 package org.opensearch.client.opensearch.experiments.api;
 
+import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import javax.annotation.Nullable;
 
 public class Bar implements JsonpSerializable {
 
-  private final String name;
+    private final String name;
 
-  @Nullable
-  public String name() {
-    return this.name;
-  }
-
-  public Bar(Bar.Builder builder) {
-    this.name = builder.name;
-  }
-
-  @Override
-  public void serialize(JsonGenerator builder, JsonpMapper mapper) {
-    builder.writeStartObject();
-    if (this.name != null) builder.write("name", this.name);
-    builder.writeEnd();
-  }
-
-  public static Builder builder() {
-    return new Builder();
-  }
-
-  public static class Builder implements ObjectBuilder<Bar> {
-    private String name;
-
-    public Bar.Builder name(@Nullable String name) {
-      this.name = name;
-      return this;
+    @Nullable
+    public String name() {
+        return this.name;
     }
 
-    public Bar build() {
-      return new Bar(this);
+    public Bar(Bar.Builder builder) {
+        this.name = builder.name;
     }
-  }
 
-  private static final JsonpDeserializer<Bar> PARSER;
+    @Override
+    public void serialize(JsonGenerator builder, JsonpMapper mapper) {
+        builder.writeStartObject();
+        if (this.name != null) builder.write("name", this.name);
+        builder.writeEnd();
+    }
 
-  public static JsonpDeserializer<Bar> parser() {
-    return PARSER;
-  }
+    public static Builder builder() {
+        return new Builder();
+    }
 
-  static {
-    ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
+    public static class Builder implements ObjectBuilder<Bar> {
+        private String name;
 
-    op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        public Bar.Builder name(@Nullable String name) {
+            this.name = name;
+            return this;
+        }
 
-    PARSER = new ObjectBuilderDeserializer<>(op);
-  }
+        public Bar build() {
+            return new Bar(this);
+        }
+    }
+
+    private static final JsonpDeserializer<Bar> PARSER;
+
+    public static JsonpDeserializer<Bar> parser() {
+        return PARSER;
+    }
+
+    static {
+        ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
+
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+
+        PARSER = new ObjectBuilderDeserializer<>(op);
+    }
 }

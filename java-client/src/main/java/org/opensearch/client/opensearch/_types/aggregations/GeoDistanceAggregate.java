@@ -32,80 +32,79 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.GeoDistanceAggregate
 
 /**
  * Result of a <code>geo_distance</code> aggregation. The unit for
  * <code>from</code> and <code>to</code> is meters by default.
- * 
+ *
  */
 @JsonpDeserializable
 public class GeoDistanceAggregate extends RangeAggregate implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private GeoDistanceAggregate(Builder builder) {
-		super(builder);
+    private GeoDistanceAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static GeoDistanceAggregate of(Function<Builder, ObjectBuilder<GeoDistanceAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static GeoDistanceAggregate of(Function<Builder, ObjectBuilder<GeoDistanceAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.GeoDistance;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.GeoDistance;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link GeoDistanceAggregate}.
-	 */
+    /**
+     * Builder for {@link GeoDistanceAggregate}.
+     */
 
-	public static class Builder extends RangeAggregate.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<GeoDistanceAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends RangeAggregate.AbstractBuilder<Builder> implements ObjectBuilder<GeoDistanceAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link GeoDistanceAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GeoDistanceAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link GeoDistanceAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public GeoDistanceAggregate build() {
+            _checkSingleUse();
 
-			return new GeoDistanceAggregate(this);
-		}
-	}
+            return new GeoDistanceAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link GeoDistanceAggregate}
-	 */
-	public static final JsonpDeserializer<GeoDistanceAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoDistanceAggregate::setupGeoDistanceAggregateDeserializer);
+    /**
+     * Json deserializer for {@link GeoDistanceAggregate}
+     */
+    public static final JsonpDeserializer<GeoDistanceAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        GeoDistanceAggregate::setupGeoDistanceAggregateDeserializer
+    );
 
-	protected static void setupGeoDistanceAggregateDeserializer(ObjectDeserializer<GeoDistanceAggregate.Builder> op) {
-		RangeAggregate.setupRangeAggregateDeserializer(op);
+    protected static void setupGeoDistanceAggregateDeserializer(ObjectDeserializer<GeoDistanceAggregate.Builder> op) {
+        RangeAggregate.setupRangeAggregateDeserializer(op);
 
-	}
+    }
 
 }

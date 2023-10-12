@@ -32,81 +32,82 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.DoubleTermsAggregate
 
 /**
  * Result of a <code>terms</code> aggregation when the field is some kind of
  * decimal number like a float, double, or distance.
- * 
+ *
  */
 @JsonpDeserializable
 public class DoubleTermsAggregate extends TermsAggregateBase<DoubleTermsBucket> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private DoubleTermsAggregate(Builder builder) {
-		super(builder);
+    private DoubleTermsAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static DoubleTermsAggregate of(Function<Builder, ObjectBuilder<DoubleTermsAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static DoubleTermsAggregate of(Function<Builder, ObjectBuilder<DoubleTermsAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Dterms;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Dterms;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link DoubleTermsAggregate}.
-	 */
+    /**
+     * Builder for {@link DoubleTermsAggregate}.
+     */
 
-	public static class Builder extends TermsAggregateBase.AbstractBuilder<DoubleTermsBucket, Builder>
-			implements
-				ObjectBuilder<DoubleTermsAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends TermsAggregateBase.AbstractBuilder<DoubleTermsBucket, Builder>
+        implements
+            ObjectBuilder<DoubleTermsAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link DoubleTermsAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DoubleTermsAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link DoubleTermsAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public DoubleTermsAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new DoubleTermsAggregate(this);
-		}
-	}
+            return new DoubleTermsAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link DoubleTermsAggregate}
-	 */
-	public static final JsonpDeserializer<DoubleTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DoubleTermsAggregate::setupDoubleTermsAggregateDeserializer);
+    /**
+     * Json deserializer for {@link DoubleTermsAggregate}
+     */
+    public static final JsonpDeserializer<DoubleTermsAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        DoubleTermsAggregate::setupDoubleTermsAggregateDeserializer
+    );
 
-	protected static void setupDoubleTermsAggregateDeserializer(ObjectDeserializer<DoubleTermsAggregate.Builder> op) {
-		setupTermsAggregateBaseDeserializer(op, DoubleTermsBucket._DESERIALIZER);
+    protected static void setupDoubleTermsAggregateDeserializer(ObjectDeserializer<DoubleTermsAggregate.Builder> op) {
+        setupTermsAggregateBaseDeserializer(op, DoubleTermsBucket._DESERIALIZER);
 
-	}
+    }
 
 }

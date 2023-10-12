@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.cluster;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,125 +43,123 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: cluster._types.ComponentTemplate
 
-
 @JsonpDeserializable
 public class ComponentTemplate implements JsonpSerializable {
-	private final String name;
+    private final String name;
 
-	private final ComponentTemplateNode componentTemplate;
+    private final ComponentTemplateNode componentTemplate;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ComponentTemplate(Builder builder) {
+    private ComponentTemplate(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.componentTemplate = ApiTypeHelper.requireNonNull(builder.componentTemplate, this, "componentTemplate");
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.componentTemplate = ApiTypeHelper.requireNonNull(builder.componentTemplate, this, "componentTemplate");
 
-	}
+    }
 
-	public static ComponentTemplate of(Function<Builder, ObjectBuilder<ComponentTemplate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ComponentTemplate of(Function<Builder, ObjectBuilder<ComponentTemplate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * Required - API name: {@code name}
+     */
+    public final String name() {
+        return this.name;
+    }
 
-	/**
-	 * Required - API name: {@code component_template}
-	 */
-	public final ComponentTemplateNode componentTemplate() {
-		return this.componentTemplate;
-	}
+    /**
+     * Required - API name: {@code component_template}
+     */
+    public final ComponentTemplateNode componentTemplate() {
+        return this.componentTemplate;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+        generator.writeKey("name");
+        generator.write(this.name);
 
-		generator.writeKey("component_template");
-		this.componentTemplate.serialize(generator, mapper);
+        generator.writeKey("component_template");
+        this.componentTemplate.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ComponentTemplate}.
-	 */
+    /**
+     * Builder for {@link ComponentTemplate}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ComponentTemplate> {
-		private String name;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ComponentTemplate> {
+        private String name;
 
-		private ComponentTemplateNode componentTemplate;
+        private ComponentTemplateNode componentTemplate;
 
-		/**
-		 * Required - API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code name}
+         */
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code component_template}
-		 */
-		public final Builder componentTemplate(ComponentTemplateNode value) {
-			this.componentTemplate = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code component_template}
+         */
+        public final Builder componentTemplate(ComponentTemplateNode value) {
+            this.componentTemplate = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code component_template}
-		 */
-		public final Builder componentTemplate(
-				Function<ComponentTemplateNode.Builder, ObjectBuilder<ComponentTemplateNode>> fn) {
-			return this.componentTemplate(fn.apply(new ComponentTemplateNode.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code component_template}
+         */
+        public final Builder componentTemplate(Function<ComponentTemplateNode.Builder, ObjectBuilder<ComponentTemplateNode>> fn) {
+            return this.componentTemplate(fn.apply(new ComponentTemplateNode.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link ComponentTemplate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ComponentTemplate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ComponentTemplate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ComponentTemplate build() {
+            _checkSingleUse();
 
-			return new ComponentTemplate(this);
-		}
-	}
+            return new ComponentTemplate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ComponentTemplate}
-	 */
-	public static final JsonpDeserializer<ComponentTemplate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ComponentTemplate::setupComponentTemplateDeserializer);
+    /**
+     * Json deserializer for {@link ComponentTemplate}
+     */
+    public static final JsonpDeserializer<ComponentTemplate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ComponentTemplate::setupComponentTemplateDeserializer
+    );
 
-	protected static void setupComponentTemplateDeserializer(ObjectDeserializer<ComponentTemplate.Builder> op) {
+    protected static void setupComponentTemplateDeserializer(ObjectDeserializer<ComponentTemplate.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::componentTemplate, ComponentTemplateNode._DESERIALIZER, "component_template");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::componentTemplate, ComponentTemplateNode._DESERIALIZER, "component_template");
 
-	}
+    }
 
 }

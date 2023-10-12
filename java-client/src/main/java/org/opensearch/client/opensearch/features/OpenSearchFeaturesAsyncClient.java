@@ -32,59 +32,53 @@
 
 package org.opensearch.client.opensearch.features;
 
+import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 
-import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
-import javax.annotation.Nullable;
-
 /**
  * Client for the features namespace.
  */
-public class OpenSearchFeaturesAsyncClient
-		extends
-			ApiClient<OpenSearchTransport, OpenSearchFeaturesAsyncClient> {
+public class OpenSearchFeaturesAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchFeaturesAsyncClient> {
 
-	public OpenSearchFeaturesAsyncClient(OpenSearchTransport transport) {
-		super(transport, null);
-	}
+    public OpenSearchFeaturesAsyncClient(OpenSearchTransport transport) {
+        super(transport, null);
+    }
 
-	public OpenSearchFeaturesAsyncClient(OpenSearchTransport transport,
-                                         @Nullable TransportOptions transportOptions) {
-		super(transport, transportOptions);
-	}
+    public OpenSearchFeaturesAsyncClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+        super(transport, transportOptions);
+    }
 
-	@Override
-	public OpenSearchFeaturesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpenSearchFeaturesAsyncClient(this.transport, transportOptions);
-	}
+    @Override
+    public OpenSearchFeaturesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchFeaturesAsyncClient(this.transport, transportOptions);
+    }
 
-	// ----- Endpoint: features.get_features
+    // ----- Endpoint: features.get_features
 
-	/**
-	 * Gets a list of features which can be included in snapshots using the
-	 * feature_states field when creating a snapshot
-	 * 
-	 *
-	 */
-	public CompletableFuture<GetFeaturesResponse> getFeatures() throws IOException, OpenSearchException {
-		return this.transport.performRequestAsync(GetFeaturesRequest._INSTANCE, GetFeaturesRequest._ENDPOINT,
-				this.transportOptions);
-	}
+    /**
+     * Gets a list of features which can be included in snapshots using the
+     * feature_states field when creating a snapshot
+     *
+     *
+     */
+    public CompletableFuture<GetFeaturesResponse> getFeatures() throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(GetFeaturesRequest._INSTANCE, GetFeaturesRequest._ENDPOINT, this.transportOptions);
+    }
 
-	// ----- Endpoint: features.reset_features
+    // ----- Endpoint: features.reset_features
 
-	/**
-	 * Resets the internal state of features, usually by deleting system indices
-	 * 
-	 *
-	 */
-	public CompletableFuture<ResetFeaturesResponse> resetFeatures() throws IOException, OpenSearchException {
-		return this.transport.performRequestAsync(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest._ENDPOINT,
-				this.transportOptions);
-	}
+    /**
+     * Resets the internal state of features, usually by deleting system indices
+     *
+     *
+     */
+    public CompletableFuture<ResetFeaturesResponse> resetFeatures() throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest._ENDPOINT, this.transportOptions);
+    }
 
 }

@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,154 +42,152 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: ingest._types.JoinProcessor
 
-
 @JsonpDeserializable
 public class JoinProcessor extends ProcessorBase implements ProcessorVariant {
-	private final String field;
+    private final String field;
 
-	private final String separator;
+    private final String separator;
 
-	@Nullable
-	private final String targetField;
+    @Nullable
+    private final String targetField;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private JoinProcessor(Builder builder) {
-		super(builder);
+    private JoinProcessor(Builder builder) {
+        super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
-		this.targetField = builder.targetField;
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
+        this.targetField = builder.targetField;
 
-	}
+    }
 
-	public static JoinProcessor of(Function<Builder, ObjectBuilder<JoinProcessor>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static JoinProcessor of(Function<Builder, ObjectBuilder<JoinProcessor>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Processor variant kind.
-	 */
-	@Override
-	public Processor.Kind _processorKind() {
-		return Processor.Kind.Join;
-	}
+    /**
+     * Processor variant kind.
+     */
+    @Override
+    public Processor.Kind _processorKind() {
+        return Processor.Kind.Join;
+    }
 
-	/**
-	 * Required - API name: {@code field}
-	 */
-	public final String field() {
-		return this.field;
-	}
+    /**
+     * Required - API name: {@code field}
+     */
+    public final String field() {
+        return this.field;
+    }
 
-	/**
-	 * Required - API name: {@code separator}
-	 */
-	public final String separator() {
-		return this.separator;
-	}
+    /**
+     * Required - API name: {@code separator}
+     */
+    public final String separator() {
+        return this.separator;
+    }
 
-	/**
-	 * API name: {@code target_field}
-	 */
-	@Nullable
-	public final String targetField() {
-		return this.targetField;
-	}
+    /**
+     * API name: {@code target_field}
+     */
+    @Nullable
+    public final String targetField() {
+        return this.targetField;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("field");
-		generator.write(this.field);
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("field");
+        generator.write(this.field);
 
-		generator.writeKey("separator");
-		generator.write(this.separator);
+        generator.writeKey("separator");
+        generator.write(this.separator);
 
-		if (this.targetField != null) {
-			generator.writeKey("target_field");
-			generator.write(this.targetField);
+        if (this.targetField != null) {
+            generator.writeKey("target_field");
+            generator.write(this.targetField);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link JoinProcessor}.
-	 */
+    /**
+     * Builder for {@link JoinProcessor}.
+     */
 
-	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<JoinProcessor> {
-		private String field;
+    public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<JoinProcessor> {
+        private String field;
 
-		private String separator;
+        private String separator;
 
-		@Nullable
-		private String targetField;
+        @Nullable
+        private String targetField;
 
-		/**
-		 * Required - API name: {@code field}
-		 */
-		public final Builder field(String value) {
-			this.field = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code separator}
-		 */
-		public final Builder separator(String value) {
-			this.separator = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code separator}
+         */
+        public final Builder separator(String value) {
+            this.separator = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code target_field}
-		 */
-		public final Builder targetField(@Nullable String value) {
-			this.targetField = value;
-			return this;
-		}
+        /**
+         * API name: {@code target_field}
+         */
+        public final Builder targetField(@Nullable String value) {
+            this.targetField = value;
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link JoinProcessor}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public JoinProcessor build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link JoinProcessor}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public JoinProcessor build() {
+            _checkSingleUse();
 
-			return new JoinProcessor(this);
-		}
-	}
+            return new JoinProcessor(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link JoinProcessor}
-	 */
-	public static final JsonpDeserializer<JoinProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			JoinProcessor::setupJoinProcessorDeserializer);
+    /**
+     * Json deserializer for {@link JoinProcessor}
+     */
+    public static final JsonpDeserializer<JoinProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        JoinProcessor::setupJoinProcessorDeserializer
+    );
 
-	protected static void setupJoinProcessorDeserializer(ObjectDeserializer<JoinProcessor.Builder> op) {
-		ProcessorBase.setupProcessorBaseDeserializer(op);
-		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
-		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
+    protected static void setupJoinProcessorDeserializer(ObjectDeserializer<JoinProcessor.Builder> op) {
+        ProcessorBase.setupProcessorBaseDeserializer(op);
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
+        op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
-	}
+    }
 
 }

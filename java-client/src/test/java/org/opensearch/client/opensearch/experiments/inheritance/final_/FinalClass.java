@@ -32,15 +32,14 @@
 
 package org.opensearch.client.opensearch.experiments.inheritance.final_;
 
-import org.opensearch.client.opensearch.experiments.inheritance.child.ChildClass;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.experiments.inheritance.child.ChildClass;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.Objects;
 
 /**
  * A concrete class that inherits a parent class but has no child classes
@@ -64,11 +63,9 @@ public final class FinalClass extends ChildClass {
         generator.write("finalField", this.finalField);
     }
 
-    //---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-    public static class Builder
-        extends ChildClass.AbstractBuilder<Builder>
-        implements ObjectBuilder<FinalClass> {
+    public static class Builder extends ChildClass.AbstractBuilder<Builder> implements ObjectBuilder<FinalClass> {
 
         private String finalField;
 
@@ -88,7 +85,7 @@ public final class FinalClass extends ChildClass {
         }
     }
 
-    //---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
     private static void setupFinalClassParser(ObjectDeserializer<Builder> op) {
         ChildClass.setupChildClassParser(op);
@@ -105,7 +102,8 @@ public final class FinalClass extends ChildClass {
     // (even if users should rarely have to interact directly with the parser).
 
     public static final JsonpDeserializer<FinalClass> JSONP_PARSER = ObjectBuilderDeserializer.createForObject(
-        Builder::new, FinalClass::setupFinalClassParser
+        Builder::new,
+        FinalClass::setupFinalClassParser
     );
 
 }

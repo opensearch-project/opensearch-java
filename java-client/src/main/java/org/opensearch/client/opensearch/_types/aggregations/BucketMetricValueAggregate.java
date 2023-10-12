@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -39,122 +42,120 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 // typedef: _types.aggregations.BucketMetricValueAggregate
 
 @JsonpDeserializable
 public class BucketMetricValueAggregate extends SingleMetricAggregateBase implements AggregateVariant {
-	private final List<String> keys;
+    private final List<String> keys;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private BucketMetricValueAggregate(Builder builder) {
-		super(builder);
+    private BucketMetricValueAggregate(Builder builder) {
+        super(builder);
 
-		this.keys = ApiTypeHelper.unmodifiableRequired(builder.keys, this, "keys");
+        this.keys = ApiTypeHelper.unmodifiableRequired(builder.keys, this, "keys");
 
-	}
+    }
 
-	public static BucketMetricValueAggregate of(Function<Builder, ObjectBuilder<BucketMetricValueAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static BucketMetricValueAggregate of(Function<Builder, ObjectBuilder<BucketMetricValueAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.BucketMetricValue;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.BucketMetricValue;
+    }
 
-	/**
-	 * Required - API name: {@code keys}
-	 */
-	public final List<String> keys() {
-		return this.keys;
-	}
+    /**
+     * Required - API name: {@code keys}
+     */
+    public final List<String> keys() {
+        return this.keys;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
-		if (ApiTypeHelper.isDefined(this.keys)) {
-			generator.writeKey("keys");
-			generator.writeStartArray();
-			for (String item0 : this.keys) {
-				generator.write(item0);
+        super.serializeInternal(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.keys)) {
+            generator.writeKey("keys");
+            generator.writeStartArray();
+            for (String item0 : this.keys) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link BucketMetricValueAggregate}.
-	 */
+    /**
+     * Builder for {@link BucketMetricValueAggregate}.
+     */
 
-	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<BucketMetricValueAggregate> {
-		private List<String> keys;
+    public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<BucketMetricValueAggregate> {
+        private List<String> keys;
 
-		/**
-		 * Required - API name: {@code keys}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>keys</code>.
-		 */
-		public final Builder keys(List<String> list) {
-			this.keys = _listAddAll(this.keys, list);
-			return this;
-		}
+        /**
+         * Required - API name: {@code keys}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>keys</code>.
+         */
+        public final Builder keys(List<String> list) {
+            this.keys = _listAddAll(this.keys, list);
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code keys}
-		 * <p>
-		 * Adds one or more values to <code>keys</code>.
-		 */
-		public final Builder keys(String value, String... values) {
-			this.keys = _listAdd(this.keys, value, values);
-			return this;
-		}
+        /**
+         * Required - API name: {@code keys}
+         * <p>
+         * Adds one or more values to <code>keys</code>.
+         */
+        public final Builder keys(String value, String... values) {
+            this.keys = _listAdd(this.keys, value, values);
+            return this;
+        }
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link BucketMetricValueAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public BucketMetricValueAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link BucketMetricValueAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public BucketMetricValueAggregate build() {
+            _checkSingleUse();
 
-			return new BucketMetricValueAggregate(this);
-		}
-	}
+            return new BucketMetricValueAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link BucketMetricValueAggregate}
-	 */
-	public static final JsonpDeserializer<BucketMetricValueAggregate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, BucketMetricValueAggregate::setupBucketMetricValueAggregateDeserializer);
+    /**
+     * Json deserializer for {@link BucketMetricValueAggregate}
+     */
+    public static final JsonpDeserializer<BucketMetricValueAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        BucketMetricValueAggregate::setupBucketMetricValueAggregateDeserializer
+    );
 
-	protected static void setupBucketMetricValueAggregateDeserializer(
-			ObjectDeserializer<BucketMetricValueAggregate.Builder> op) {
-		setupSingleMetricAggregateBaseDeserializer(op);
-		op.add(Builder::keys, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "keys");
+    protected static void setupBucketMetricValueAggregateDeserializer(ObjectDeserializer<BucketMetricValueAggregate.Builder> op) {
+        setupSingleMetricAggregateBaseDeserializer(op);
+        op.add(Builder::keys, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "keys");
 
-	}
+    }
 
 }

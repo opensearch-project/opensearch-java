@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.cluster.pending_tasks;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,212 +43,212 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: cluster.pending_tasks.PendingTask
 
 @JsonpDeserializable
 public class PendingTask implements JsonpSerializable {
-	private final boolean executing;
+    private final boolean executing;
 
-	private final int insertOrder;
+    private final int insertOrder;
 
-	private final String priority;
+    private final String priority;
 
-	private final String source;
+    private final String source;
 
-	private final String timeInQueue;
+    private final String timeInQueue;
 
-	private final int timeInQueueMillis;
+    private final int timeInQueueMillis;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PendingTask(Builder builder) {
+    private PendingTask(Builder builder) {
 
-		this.executing = ApiTypeHelper.requireNonNull(builder.executing, this, "executing");
-		this.insertOrder = ApiTypeHelper.requireNonNull(builder.insertOrder, this, "insertOrder");
-		this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
-		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
-		this.timeInQueue = ApiTypeHelper.requireNonNull(builder.timeInQueue, this, "timeInQueue");
-		this.timeInQueueMillis = ApiTypeHelper.requireNonNull(builder.timeInQueueMillis, this, "timeInQueueMillis");
+        this.executing = ApiTypeHelper.requireNonNull(builder.executing, this, "executing");
+        this.insertOrder = ApiTypeHelper.requireNonNull(builder.insertOrder, this, "insertOrder");
+        this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
+        this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+        this.timeInQueue = ApiTypeHelper.requireNonNull(builder.timeInQueue, this, "timeInQueue");
+        this.timeInQueueMillis = ApiTypeHelper.requireNonNull(builder.timeInQueueMillis, this, "timeInQueueMillis");
 
-	}
+    }
 
-	public static PendingTask of(Function<Builder, ObjectBuilder<PendingTask>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PendingTask of(Function<Builder, ObjectBuilder<PendingTask>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code executing}
-	 */
-	public final boolean executing() {
-		return this.executing;
-	}
+    /**
+     * Required - API name: {@code executing}
+     */
+    public final boolean executing() {
+        return this.executing;
+    }
 
-	/**
-	 * Required - API name: {@code insert_order}
-	 */
-	public final int insertOrder() {
-		return this.insertOrder;
-	}
+    /**
+     * Required - API name: {@code insert_order}
+     */
+    public final int insertOrder() {
+        return this.insertOrder;
+    }
 
-	/**
-	 * Required - API name: {@code priority}
-	 */
-	public final String priority() {
-		return this.priority;
-	}
+    /**
+     * Required - API name: {@code priority}
+     */
+    public final String priority() {
+        return this.priority;
+    }
 
-	/**
-	 * Required - API name: {@code source}
-	 */
-	public final String source() {
-		return this.source;
-	}
+    /**
+     * Required - API name: {@code source}
+     */
+    public final String source() {
+        return this.source;
+    }
 
-	/**
-	 * Required - API name: {@code time_in_queue}
-	 */
-	public final String timeInQueue() {
-		return this.timeInQueue;
-	}
+    /**
+     * Required - API name: {@code time_in_queue}
+     */
+    public final String timeInQueue() {
+        return this.timeInQueue;
+    }
 
-	/**
-	 * Required - API name: {@code time_in_queue_millis}
-	 */
-	public final int timeInQueueMillis() {
-		return this.timeInQueueMillis;
-	}
+    /**
+     * Required - API name: {@code time_in_queue_millis}
+     */
+    public final int timeInQueueMillis() {
+        return this.timeInQueueMillis;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("executing");
-		generator.write(this.executing);
+        generator.writeKey("executing");
+        generator.write(this.executing);
 
-		generator.writeKey("insert_order");
-		generator.write(this.insertOrder);
+        generator.writeKey("insert_order");
+        generator.write(this.insertOrder);
 
-		generator.writeKey("priority");
-		generator.write(this.priority);
+        generator.writeKey("priority");
+        generator.write(this.priority);
 
-		generator.writeKey("source");
-		generator.write(this.source);
+        generator.writeKey("source");
+        generator.write(this.source);
 
-		generator.writeKey("time_in_queue");
-		generator.write(this.timeInQueue);
+        generator.writeKey("time_in_queue");
+        generator.write(this.timeInQueue);
 
-		generator.writeKey("time_in_queue_millis");
-		generator.write(this.timeInQueueMillis);
+        generator.writeKey("time_in_queue_millis");
+        generator.write(this.timeInQueueMillis);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PendingTask}.
-	 */
+    /**
+     * Builder for {@link PendingTask}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTask> {
-		private Boolean executing;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTask> {
+        private Boolean executing;
 
-		private Integer insertOrder;
+        private Integer insertOrder;
 
-		private String priority;
+        private String priority;
 
-		private String source;
+        private String source;
 
-		private String timeInQueue;
+        private String timeInQueue;
 
-		private Integer timeInQueueMillis;
+        private Integer timeInQueueMillis;
 
-		/**
-		 * Required - API name: {@code executing}
-		 */
-		public final Builder executing(boolean value) {
-			this.executing = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code executing}
+         */
+        public final Builder executing(boolean value) {
+            this.executing = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code insert_order}
-		 */
-		public final Builder insertOrder(int value) {
-			this.insertOrder = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code insert_order}
+         */
+        public final Builder insertOrder(int value) {
+            this.insertOrder = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code priority}
-		 */
-		public final Builder priority(String value) {
-			this.priority = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code priority}
+         */
+        public final Builder priority(String value) {
+            this.priority = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code source}
-		 */
-		public final Builder source(String value) {
-			this.source = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code source}
+         */
+        public final Builder source(String value) {
+            this.source = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code time_in_queue}
-		 */
-		public final Builder timeInQueue(String value) {
-			this.timeInQueue = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code time_in_queue}
+         */
+        public final Builder timeInQueue(String value) {
+            this.timeInQueue = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code time_in_queue_millis}
-		 */
-		public final Builder timeInQueueMillis(int value) {
-			this.timeInQueueMillis = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code time_in_queue_millis}
+         */
+        public final Builder timeInQueueMillis(int value) {
+            this.timeInQueueMillis = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PendingTask}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PendingTask build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PendingTask}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PendingTask build() {
+            _checkSingleUse();
 
-			return new PendingTask(this);
-		}
-	}
+            return new PendingTask(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PendingTask}
-	 */
-	public static final JsonpDeserializer<PendingTask> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PendingTask::setupPendingTaskDeserializer);
+    /**
+     * Json deserializer for {@link PendingTask}
+     */
+    public static final JsonpDeserializer<PendingTask> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PendingTask::setupPendingTaskDeserializer
+    );
 
-	protected static void setupPendingTaskDeserializer(ObjectDeserializer<PendingTask.Builder> op) {
+    protected static void setupPendingTaskDeserializer(ObjectDeserializer<PendingTask.Builder> op) {
 
-		op.add(Builder::executing, JsonpDeserializer.booleanDeserializer(), "executing");
-		op.add(Builder::insertOrder, JsonpDeserializer.integerDeserializer(), "insert_order");
-		op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority");
-		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
-		op.add(Builder::timeInQueue, JsonpDeserializer.stringDeserializer(), "time_in_queue");
-		op.add(Builder::timeInQueueMillis, JsonpDeserializer.integerDeserializer(), "time_in_queue_millis");
+        op.add(Builder::executing, JsonpDeserializer.booleanDeserializer(), "executing");
+        op.add(Builder::insertOrder, JsonpDeserializer.integerDeserializer(), "insert_order");
+        op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority");
+        op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+        op.add(Builder::timeInQueue, JsonpDeserializer.stringDeserializer(), "time_in_queue");
+        op.add(Builder::timeInQueueMillis, JsonpDeserializer.integerDeserializer(), "time_in_queue_millis");
 
-	}
+    }
 
 }

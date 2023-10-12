@@ -32,13 +32,11 @@
 
 package org.opensearch.client.json;
 
-import org.opensearch.client.util.ObjectBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -51,6 +49,7 @@ import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.opensearch.client.util.ObjectBuilder;
 
 public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer<Union> {
 
@@ -62,6 +61,7 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
 
     private abstract static class EventHandler<Union, Kind, Member> {
         abstract Union deserialize(JsonParser parser, JsonpMapper mapper, Event event, BiFunction<Kind, Member, Union> buildFn);
+
         abstract EnumSet<Event> nativeEvents();
     }
 
@@ -102,7 +102,7 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
         @Override
         EnumSet<Event> nativeEvents() {
             EnumSet<Event> result = EnumSet.noneOf(Event.class);
-            for (SingleMemberHandler<Union, Kind, Member> smh: handlers) {
+            for (SingleMemberHandler<Union, Kind, Member> smh : handlers) {
                 result.addAll(smh.deserializer.nativeEvents());
             }
             return result;
@@ -111,10 +111,10 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
         @Override
         Union deserialize(JsonParser parser, JsonpMapper mapper, Event event, BiFunction<Kind, Member, Union> buildFn) {
             RuntimeException exception = null;
-            for (EventHandler<Union, Kind, Member> d: handlers) {
+            for (EventHandler<Union, Kind, Member> d : handlers) {
                 try {
                     return d.deserialize(parser, mapper, event, buildFn);
-                } catch(RuntimeException ex) {
+                } catch (RuntimeException ex) {
                     exception = ex;
                 }
             }
@@ -172,8 +172,11 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
             JsonpDeserializer<?> unwrapped = DelegatingDeserializer.unwrap(deserializer);
             if (unwrapped instanceof ObjectDeserializer) {
                 ObjectDeserializer<?> od = (ObjectDeserializer<?>) unwrapped;
-                UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member =
-                        new SingleMemberHandler<>(tag, deserializer, new HashSet<>(od.fieldNames()));
+                UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member = new SingleMemberHandler<>(
+                    tag,
+                    deserializer,
+                    new HashSet<>(od.fieldNames())
+                );
                 objectMembers.add(member);
                 if (od.shortcutProperty() != null) {
                     // also add it as a string
@@ -181,7 +184,7 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
                 }
             } else {
                 UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member = new SingleMemberHandler<>(tag, deserializer);
-                for (Event e: deserializer.nativeEvents()) {
+                for (Event e : deserializer.nativeEvents()) {
                     addMember(e, tag, member);
                 }
             }
@@ -191,18 +194,20 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
 
         @Override
         public JsonpDeserializer<Union> build() {
-            Map<String, Long> fieldFrequencies = objectMembers.stream().flatMap(m -> m.fields.stream())
-                    .collect( Collectors.groupingBy(Function.identity(), Collectors.counting()));
-            Set<String> duplicateFields = fieldFrequencies.entrySet().stream()
-                    .filter(entry -> entry.getValue() > 1)
-                    .map(Map.Entry::getKey)
-                    .collect(Collectors.toSet());
-            for (UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member: objectMembers) {
+            Map<String, Long> fieldFrequencies = objectMembers.stream()
+                .flatMap(m -> m.fields.stream())
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+            Set<String> duplicateFields = fieldFrequencies.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() > 1)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toSet());
+            for (UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member : objectMembers) {
                 member.fields.removeAll(duplicateFields);
             }
 
             // Check that no object member had all its fields removed
-            for (UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member: objectMembers) {
+            for (UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member : objectMembers) {
                 if (member.fields.isEmpty()) {
                     throw new AmbiguousUnionException("All properties of '" + member.tag + "' also exist in other object members");
                 }
@@ -212,10 +217,6 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
                 // A single deserializer handles objects: promote it to otherMembers as we don't need property-based disambiguation
                 otherMembers.put(Event.START_OBJECT, objectMembers.remove(0));
             }
-
-//            if (objectMembers.size() > 1) {
-//                System.out.println("multiple objects in " + buildFn);
-//            }
 
             return new UnionDeserializer<>(objectMembers, otherMembers, buildFn);
         }
@@ -239,8 +240,8 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
             this.objectMembers = Collections.emptyMap();
         } else {
             this.objectMembers = new HashMap<>();
-            for (SingleMemberHandler<Union, Kind, Member> member: objectMembers) {
-                for (String field: member.fields) {
+            for (SingleMemberHandler<Union, Kind, Member> member : objectMembers) {
+                for (String field : member.fields) {
                     this.objectMembers.put(field, member);
                 }
             }
@@ -249,7 +250,7 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
         this.nonObjectMembers = nonObjectMembers;
 
         this.nativeEvents = EnumSet.noneOf(Event.class);
-        for (EventHandler<Union, Kind, Member> member: nonObjectMembers.values()) {
+        for (EventHandler<Union, Kind, Member> member : nonObjectMembers.values()) {
             this.nativeEvents.addAll(member.nativeEvents());
         }
 
@@ -286,8 +287,9 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
 
         if (member == null && event == Event.START_OBJECT && !objectMembers.isEmpty()) {
             if (parser instanceof LookAheadJsonParser) {
-                Map.Entry<EventHandler<Union, Kind, Member>, JsonParser> memberAndParser =
-                        ((LookAheadJsonParser) parser).findVariant(objectMembers);
+                Map.Entry<EventHandler<Union, Kind, Member>, JsonParser> memberAndParser = ((LookAheadJsonParser) parser).findVariant(
+                    objectMembers
+                );
 
                 member = memberAndParser.getKey();
                 // Parse the buffered parser
@@ -297,7 +299,7 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
                 // Parse as an object to find matching field names
                 JsonObject object = parser.getObject();
 
-                for (String field: object.keySet()) {
+                for (String field : object.keySet()) {
                     member = objectMembers.get(field);
                     if (member != null) {
                         break;

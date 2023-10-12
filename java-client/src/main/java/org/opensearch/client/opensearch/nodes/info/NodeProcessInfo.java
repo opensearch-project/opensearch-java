@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,155 +43,154 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: nodes.info.NodeProcessInfo
 
 @JsonpDeserializable
 public class NodeProcessInfo implements JsonpSerializable {
-	private final long id;
+    private final long id;
 
-	private final boolean mlockall;
+    private final boolean mlockall;
 
-	private final long refreshIntervalInMillis;
+    private final long refreshIntervalInMillis;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeProcessInfo(Builder builder) {
+    private NodeProcessInfo(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.mlockall = ApiTypeHelper.requireNonNull(builder.mlockall, this, "mlockall");
-		this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
-				"refreshIntervalInMillis");
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.mlockall = ApiTypeHelper.requireNonNull(builder.mlockall, this, "mlockall");
+        this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this, "refreshIntervalInMillis");
 
-	}
+    }
 
-	public static NodeProcessInfo of(Function<Builder, ObjectBuilder<NodeProcessInfo>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeProcessInfo of(Function<Builder, ObjectBuilder<NodeProcessInfo>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - Process identifier (PID)
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public final long id() {
-		return this.id;
-	}
+    /**
+     * Required - Process identifier (PID)
+     * <p>
+     * API name: {@code id}
+     */
+    public final long id() {
+        return this.id;
+    }
 
-	/**
-	 * Required - Indicates if the process address space has been successfully
-	 * locked in memory
-	 * <p>
-	 * API name: {@code mlockall}
-	 */
-	public final boolean mlockall() {
-		return this.mlockall;
-	}
+    /**
+     * Required - Indicates if the process address space has been successfully
+     * locked in memory
+     * <p>
+     * API name: {@code mlockall}
+     */
+    public final boolean mlockall() {
+        return this.mlockall;
+    }
 
-	/**
-	 * Required - Refresh interval for the process statistics
-	 * <p>
-	 * API name: {@code refresh_interval_in_millis}
-	 */
-	public final long refreshIntervalInMillis() {
-		return this.refreshIntervalInMillis;
-	}
+    /**
+     * Required - Refresh interval for the process statistics
+     * <p>
+     * API name: {@code refresh_interval_in_millis}
+     */
+    public final long refreshIntervalInMillis() {
+        return this.refreshIntervalInMillis;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("id");
-		generator.write(this.id);
+        generator.writeKey("id");
+        generator.write(this.id);
 
-		generator.writeKey("mlockall");
-		generator.write(this.mlockall);
+        generator.writeKey("mlockall");
+        generator.write(this.mlockall);
 
-		generator.writeKey("refresh_interval_in_millis");
-		generator.write(this.refreshIntervalInMillis);
+        generator.writeKey("refresh_interval_in_millis");
+        generator.write(this.refreshIntervalInMillis);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeProcessInfo}.
-	 */
+    /**
+     * Builder for {@link NodeProcessInfo}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeProcessInfo> {
-		private Long id;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeProcessInfo> {
+        private Long id;
 
-		private Boolean mlockall;
+        private Boolean mlockall;
 
-		private Long refreshIntervalInMillis;
+        private Long refreshIntervalInMillis;
 
-		/**
-		 * Required - Process identifier (PID)
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public final Builder id(long value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * Required - Process identifier (PID)
+         * <p>
+         * API name: {@code id}
+         */
+        public final Builder id(long value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * Required - Indicates if the process address space has been successfully
-		 * locked in memory
-		 * <p>
-		 * API name: {@code mlockall}
-		 */
-		public final Builder mlockall(boolean value) {
-			this.mlockall = value;
-			return this;
-		}
+        /**
+         * Required - Indicates if the process address space has been successfully
+         * locked in memory
+         * <p>
+         * API name: {@code mlockall}
+         */
+        public final Builder mlockall(boolean value) {
+            this.mlockall = value;
+            return this;
+        }
 
-		/**
-		 * Required - Refresh interval for the process statistics
-		 * <p>
-		 * API name: {@code refresh_interval_in_millis}
-		 */
-		public final Builder refreshIntervalInMillis(long value) {
-			this.refreshIntervalInMillis = value;
-			return this;
-		}
+        /**
+         * Required - Refresh interval for the process statistics
+         * <p>
+         * API name: {@code refresh_interval_in_millis}
+         */
+        public final Builder refreshIntervalInMillis(long value) {
+            this.refreshIntervalInMillis = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link NodeProcessInfo}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeProcessInfo build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeProcessInfo}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeProcessInfo build() {
+            _checkSingleUse();
 
-			return new NodeProcessInfo(this);
-		}
-	}
+            return new NodeProcessInfo(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeProcessInfo}
-	 */
-	public static final JsonpDeserializer<NodeProcessInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeProcessInfo::setupNodeProcessInfoDeserializer);
+    /**
+     * Json deserializer for {@link NodeProcessInfo}
+     */
+    public static final JsonpDeserializer<NodeProcessInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeProcessInfo::setupNodeProcessInfoDeserializer
+    );
 
-	protected static void setupNodeProcessInfoDeserializer(ObjectDeserializer<NodeProcessInfo.Builder> op) {
+    protected static void setupNodeProcessInfoDeserializer(ObjectDeserializer<NodeProcessInfo.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.longDeserializer(), "id");
-		op.add(Builder::mlockall, JsonpDeserializer.booleanDeserializer(), "mlockall");
-		op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.longDeserializer(), "refresh_interval_in_millis");
+        op.add(Builder::id, JsonpDeserializer.longDeserializer(), "id");
+        op.add(Builder::mlockall, JsonpDeserializer.booleanDeserializer(), "mlockall");
+        op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.longDeserializer(), "refresh_interval_in_millis");
 
-	}
+    }
 
 }

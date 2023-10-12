@@ -34,5 +34,4 @@ package org.opensearch.client.opensearch.experiments.containers;
 
 import org.opensearch.client.opensearch.experiments.UnionVariant;
 
-public interface SomeUnionVariant extends UnionVariant {
-}
+public interface SomeUnionVariant extends UnionVariant {}

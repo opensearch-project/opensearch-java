@@ -32,75 +32,74 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.MinAggregate
 
 @JsonpDeserializable
 public class MinAggregate extends SingleMetricAggregateBase implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MinAggregate(Builder builder) {
-		super(builder);
+    private MinAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static MinAggregate of(Function<Builder, ObjectBuilder<MinAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MinAggregate of(Function<Builder, ObjectBuilder<MinAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Min;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Min;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MinAggregate}.
-	 */
+    /**
+     * Builder for {@link MinAggregate}.
+     */
 
-	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<MinAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<MinAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MinAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MinAggregate build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MinAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MinAggregate build() {
+            _checkSingleUse();
 
-			return new MinAggregate(this);
-		}
-	}
+            return new MinAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MinAggregate}
-	 */
-	public static final JsonpDeserializer<MinAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MinAggregate::setupMinAggregateDeserializer);
+    /**
+     * Json deserializer for {@link MinAggregate}
+     */
+    public static final JsonpDeserializer<MinAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MinAggregate::setupMinAggregateDeserializer
+    );
 
-	protected static void setupMinAggregateDeserializer(ObjectDeserializer<MinAggregate.Builder> op) {
-		setupSingleMetricAggregateBaseDeserializer(op);
+    protected static void setupMinAggregateDeserializer(ObjectDeserializer<MinAggregate.Builder> op) {
+        setupSingleMetricAggregateBaseDeserializer(op);
 
-	}
+    }
 
 }

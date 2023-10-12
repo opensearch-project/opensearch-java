@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,105 +43,100 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationInitialRecovery
 
-
 @JsonpDeserializable
 public class IndexRoutingAllocationInitialRecovery implements JsonpSerializable {
-	@Nullable
-	private final String id;
+    @Nullable
+    private final String id;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private IndexRoutingAllocationInitialRecovery(Builder builder) {
+    private IndexRoutingAllocationInitialRecovery(Builder builder) {
 
-		this.id = builder.id;
+        this.id = builder.id;
 
-	}
+    }
 
-	public static IndexRoutingAllocationInitialRecovery of(
-			Function<Builder, ObjectBuilder<IndexRoutingAllocationInitialRecovery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static IndexRoutingAllocationInitialRecovery of(Function<Builder, ObjectBuilder<IndexRoutingAllocationInitialRecovery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code _id}
-	 */
-	@Nullable
-	public final String id() {
-		return this.id;
-	}
+    /**
+     * API name: {@code _id}
+     */
+    @Nullable
+    public final String id() {
+        return this.id;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.id != null) {
-			generator.writeKey("_id");
-			generator.write(this.id);
+        if (this.id != null) {
+            generator.writeKey("_id");
+            generator.write(this.id);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link IndexRoutingAllocationInitialRecovery}.
-	 */
+    /**
+     * Builder for {@link IndexRoutingAllocationInitialRecovery}.
+     */
 
-	public static class Builder extends ObjectBuilderBase
-			implements
-				ObjectBuilder<IndexRoutingAllocationInitialRecovery> {
-		@Nullable
-		private String id;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocationInitialRecovery> {
+        @Nullable
+        private String id;
 
-		/**
-		 * API name: {@code _id}
-		 */
-		public final Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
+        /**
+         * API name: {@code _id}
+         */
+        public final Builder id(@Nullable String value) {
+            this.id = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link IndexRoutingAllocationInitialRecovery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public IndexRoutingAllocationInitialRecovery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link IndexRoutingAllocationInitialRecovery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public IndexRoutingAllocationInitialRecovery build() {
+            _checkSingleUse();
 
-			return new IndexRoutingAllocationInitialRecovery(this);
-		}
-	}
+            return new IndexRoutingAllocationInitialRecovery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link IndexRoutingAllocationInitialRecovery}
-	 */
-	public static final JsonpDeserializer<IndexRoutingAllocationInitialRecovery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new,
-					IndexRoutingAllocationInitialRecovery::setupIndexRoutingAllocationInitialRecoveryDeserializer);
+    /**
+     * Json deserializer for {@link IndexRoutingAllocationInitialRecovery}
+     */
+    public static final JsonpDeserializer<IndexRoutingAllocationInitialRecovery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        IndexRoutingAllocationInitialRecovery::setupIndexRoutingAllocationInitialRecoveryDeserializer
+    );
 
-	protected static void setupIndexRoutingAllocationInitialRecoveryDeserializer(
-			ObjectDeserializer<IndexRoutingAllocationInitialRecovery.Builder> op) {
+    protected static void setupIndexRoutingAllocationInitialRecoveryDeserializer(
+        ObjectDeserializer<IndexRoutingAllocationInitialRecovery.Builder> op
+    ) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 
-	}
+    }
 
 }

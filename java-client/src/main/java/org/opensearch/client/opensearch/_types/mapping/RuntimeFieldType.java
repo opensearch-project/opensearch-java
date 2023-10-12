@@ -35,35 +35,33 @@ package org.opensearch.client.opensearch._types.mapping;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-
 @JsonpDeserializable
 public enum RuntimeFieldType implements JsonEnum {
-	Boolean("boolean"),
+    Boolean("boolean"),
 
-	Date("date"),
+    Date("date"),
 
-	Double("double"),
+    Double("double"),
 
-	GeoPoint("geo_point"),
+    GeoPoint("geo_point"),
 
-	Ip("ip"),
+    Ip("ip"),
 
-	Keyword("keyword"),
+    Keyword("keyword"),
 
-	Long("long"),
+    Long("long"),
 
-	;
+    ;
 
-	private final String jsonValue;
+    private final String jsonValue;
 
-	RuntimeFieldType(String jsonValue) {
-		this.jsonValue = jsonValue;
-	}
+    RuntimeFieldType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
+    public String jsonValue() {
+        return this.jsonValue;
+    }
 
-	public static final JsonEnum.Deserializer<RuntimeFieldType> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			RuntimeFieldType.values());
+    public static final JsonEnum.Deserializer<RuntimeFieldType> _DESERIALIZER = new JsonEnum.Deserializer<>(RuntimeFieldType.values());
 }

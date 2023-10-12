@@ -32,76 +32,77 @@
 
 package org.opensearch.client.opensearch._types.aggregations;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.aggregations.FiltersAggregate
 
 @JsonpDeserializable
 public class FiltersAggregate extends MultiBucketAggregateBase<FiltersBucket> implements AggregateVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private FiltersAggregate(Builder builder) {
-		super(builder);
+    private FiltersAggregate(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static FiltersAggregate of(Function<Builder, ObjectBuilder<FiltersAggregate>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static FiltersAggregate of(Function<Builder, ObjectBuilder<FiltersAggregate>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Aggregate variant kind.
-	 */
-	@Override
-	public Aggregate.Kind _aggregateKind() {
-		return Aggregate.Kind.Filters;
-	}
+    /**
+     * Aggregate variant kind.
+     */
+    @Override
+    public Aggregate.Kind _aggregateKind() {
+        return Aggregate.Kind.Filters;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link FiltersAggregate}.
-	 */
+    /**
+     * Builder for {@link FiltersAggregate}.
+     */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<FiltersBucket, Builder>
-			implements
-				ObjectBuilder<FiltersAggregate> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<FiltersBucket, Builder>
+        implements
+            ObjectBuilder<FiltersAggregate> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link FiltersAggregate}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FiltersAggregate build() {
-			_checkSingleUse();
-			super.tBucketSerializer(null);
+        /**
+         * Builds a {@link FiltersAggregate}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public FiltersAggregate build() {
+            _checkSingleUse();
+            super.tBucketSerializer(null);
 
-			return new FiltersAggregate(this);
-		}
-	}
+            return new FiltersAggregate(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link FiltersAggregate}
-	 */
-	public static final JsonpDeserializer<FiltersAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FiltersAggregate::setupFiltersAggregateDeserializer);
+    /**
+     * Json deserializer for {@link FiltersAggregate}
+     */
+    public static final JsonpDeserializer<FiltersAggregate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        FiltersAggregate::setupFiltersAggregateDeserializer
+    );
 
-	protected static void setupFiltersAggregateDeserializer(ObjectDeserializer<FiltersAggregate.Builder> op) {
-		setupMultiBucketAggregateBaseDeserializer(op, FiltersBucket._DESERIALIZER);
+    protected static void setupFiltersAggregateDeserializer(ObjectDeserializer<FiltersAggregate.Builder> op) {
+        setupMultiBucketAggregateBaseDeserializer(op, FiltersBucket._DESERIALIZER);
 
-	}
+    }
 
 }

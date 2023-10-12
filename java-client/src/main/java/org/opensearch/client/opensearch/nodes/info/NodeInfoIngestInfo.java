@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.nodes.info;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,101 +43,99 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: nodes.info.NodeInfoIngestInfo
 
 @JsonpDeserializable
 public class NodeInfoIngestInfo implements JsonpSerializable {
-	private final NodeInfoIngestDownloader downloader;
+    private final NodeInfoIngestDownloader downloader;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private NodeInfoIngestInfo(Builder builder) {
+    private NodeInfoIngestInfo(Builder builder) {
 
-		this.downloader = ApiTypeHelper.requireNonNull(builder.downloader, this, "downloader");
+        this.downloader = ApiTypeHelper.requireNonNull(builder.downloader, this, "downloader");
 
-	}
+    }
 
-	public static NodeInfoIngestInfo of(Function<Builder, ObjectBuilder<NodeInfoIngestInfo>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static NodeInfoIngestInfo of(Function<Builder, ObjectBuilder<NodeInfoIngestInfo>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code downloader}
-	 */
-	public final NodeInfoIngestDownloader downloader() {
-		return this.downloader;
-	}
+    /**
+     * Required - API name: {@code downloader}
+     */
+    public final NodeInfoIngestDownloader downloader() {
+        return this.downloader;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("downloader");
-		this.downloader.serialize(generator, mapper);
+        generator.writeKey("downloader");
+        this.downloader.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link NodeInfoIngestInfo}.
-	 */
+    /**
+     * Builder for {@link NodeInfoIngestInfo}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoIngestInfo> {
-		private NodeInfoIngestDownloader downloader;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoIngestInfo> {
+        private NodeInfoIngestDownloader downloader;
 
-		/**
-		 * Required - API name: {@code downloader}
-		 */
-		public final Builder downloader(NodeInfoIngestDownloader value) {
-			this.downloader = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code downloader}
+         */
+        public final Builder downloader(NodeInfoIngestDownloader value) {
+            this.downloader = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code downloader}
-		 */
-		public final Builder downloader(
-				Function<NodeInfoIngestDownloader.Builder, ObjectBuilder<NodeInfoIngestDownloader>> fn) {
-			return this.downloader(fn.apply(new NodeInfoIngestDownloader.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code downloader}
+         */
+        public final Builder downloader(Function<NodeInfoIngestDownloader.Builder, ObjectBuilder<NodeInfoIngestDownloader>> fn) {
+            return this.downloader(fn.apply(new NodeInfoIngestDownloader.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link NodeInfoIngestInfo}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public NodeInfoIngestInfo build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link NodeInfoIngestInfo}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public NodeInfoIngestInfo build() {
+            _checkSingleUse();
 
-			return new NodeInfoIngestInfo(this);
-		}
-	}
+            return new NodeInfoIngestInfo(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link NodeInfoIngestInfo}
-	 */
-	public static final JsonpDeserializer<NodeInfoIngestInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoIngestInfo::setupNodeInfoIngestInfoDeserializer);
+    /**
+     * Json deserializer for {@link NodeInfoIngestInfo}
+     */
+    public static final JsonpDeserializer<NodeInfoIngestInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeInfoIngestInfo::setupNodeInfoIngestInfoDeserializer
+    );
 
-	protected static void setupNodeInfoIngestInfoDeserializer(ObjectDeserializer<NodeInfoIngestInfo.Builder> op) {
+    protected static void setupNodeInfoIngestInfoDeserializer(ObjectDeserializer<NodeInfoIngestInfo.Builder> op) {
 
-		op.add(Builder::downloader, NodeInfoIngestDownloader._DESERIALIZER, "downloader");
+        op.add(Builder::downloader, NodeInfoIngestDownloader._DESERIALIZER, "downloader");
 
-	}
+    }
 
 }

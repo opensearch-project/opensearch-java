@@ -32,127 +32,127 @@
 
 package org.opensearch.client.opensearch.core.msearch;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.NdJsonpSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.function.Function;
 
 // typedef: _global.msearch.RequestItem
 
 public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
-	private final MultisearchHeader header;
+    private final MultisearchHeader header;
 
-	private final MultisearchBody body;
+    private final MultisearchBody body;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private RequestItem(Builder builder) {
+    private RequestItem(Builder builder) {
 
-		this.header = ApiTypeHelper.requireNonNull(builder.header, this, "header");
-		this.body = ApiTypeHelper.requireNonNull(builder.body, this, "body");
+        this.header = ApiTypeHelper.requireNonNull(builder.header, this, "header");
+        this.body = ApiTypeHelper.requireNonNull(builder.body, this, "body");
 
-	}
+    }
 
-	public static RequestItem of(Function<Builder, ObjectBuilder<RequestItem>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static RequestItem of(Function<Builder, ObjectBuilder<RequestItem>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	@Override
-	public Iterator<?> _serializables() {
-		return Arrays.asList(header, body).iterator();
-	}
+    @Override
+    public Iterator<?> _serializables() {
+        return Arrays.asList(header, body).iterator();
+    }
 
-	/**
-	 * Required - API name: {@code header}
-	 */
-	public final MultisearchHeader header() {
-		return this.header;
-	}
+    /**
+     * Required - API name: {@code header}
+     */
+    public final MultisearchHeader header() {
+        return this.header;
+    }
 
-	/**
-	 * Required - API name: {@code body}
-	 */
-	public final MultisearchBody body() {
-		return this.body;
-	}
+    /**
+     * Required - API name: {@code body}
+     */
+    public final MultisearchBody body() {
+        return this.body;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("header");
-		this.header.serialize(generator, mapper);
+        generator.writeKey("header");
+        this.header.serialize(generator, mapper);
 
-		generator.writeKey("body");
-		this.body.serialize(generator, mapper);
+        generator.writeKey("body");
+        this.body.serialize(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link RequestItem}.
-	 */
+    /**
+     * Builder for {@link RequestItem}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RequestItem> {
-		private MultisearchHeader header;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RequestItem> {
+        private MultisearchHeader header;
 
-		private MultisearchBody body;
+        private MultisearchBody body;
 
-		/**
-		 * Required - API name: {@code header}
-		 */
-		public final Builder header(MultisearchHeader value) {
-			this.header = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code header}
+         */
+        public final Builder header(MultisearchHeader value) {
+            this.header = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code header}
-		 */
-		public final Builder header(Function<MultisearchHeader.Builder, ObjectBuilder<MultisearchHeader>> fn) {
-			return this.header(fn.apply(new MultisearchHeader.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code header}
+         */
+        public final Builder header(Function<MultisearchHeader.Builder, ObjectBuilder<MultisearchHeader>> fn) {
+            return this.header(fn.apply(new MultisearchHeader.Builder()).build());
+        }
 
-		/**
-		 * Required - API name: {@code body}
-		 */
-		public final Builder body(MultisearchBody value) {
-			this.body = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code body}
+         */
+        public final Builder body(MultisearchBody value) {
+            this.body = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code body}
-		 */
-		public final Builder body(Function<MultisearchBody.Builder, ObjectBuilder<MultisearchBody>> fn) {
-			return this.body(fn.apply(new MultisearchBody.Builder()).build());
-		}
+        /**
+         * Required - API name: {@code body}
+         */
+        public final Builder body(Function<MultisearchBody.Builder, ObjectBuilder<MultisearchBody>> fn) {
+            return this.body(fn.apply(new MultisearchBody.Builder()).build());
+        }
 
-		/**
-		 * Builds a {@link RequestItem}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public RequestItem build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link RequestItem}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public RequestItem build() {
+            _checkSingleUse();
 
-			return new RequestItem(this);
-		}
-	}
+            return new RequestItem(this);
+        }
+    }
 
 }

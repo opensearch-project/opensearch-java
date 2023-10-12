@@ -39,10 +39,10 @@ import org.opensearch.client.json.JsonpSerializable;
  */
 public interface PropertyVariant extends JsonpSerializable {
 
-	Property.Kind _propertyKind();
+    Property.Kind _propertyKind();
 
-	default Property _toProperty() {
-		return new Property(this);
-	}
+    default Property _toProperty() {
+        return new Property(this);
+    }
 
 }

@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch.snapshot;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,117 +43,116 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
 
 // typedef: snapshot._types.ShardsStatsSummaryItem
 
 @JsonpDeserializable
 public class ShardsStatsSummaryItem implements JsonpSerializable {
-	private final long fileCount;
+    private final long fileCount;
 
-	private final long sizeInBytes;
+    private final long sizeInBytes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private ShardsStatsSummaryItem(Builder builder) {
+    private ShardsStatsSummaryItem(Builder builder) {
 
-		this.fileCount = ApiTypeHelper.requireNonNull(builder.fileCount, this, "fileCount");
-		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+        this.fileCount = ApiTypeHelper.requireNonNull(builder.fileCount, this, "fileCount");
+        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 
-	}
+    }
 
-	public static ShardsStatsSummaryItem of(Function<Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static ShardsStatsSummaryItem of(Function<Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code file_count}
-	 */
-	public final long fileCount() {
-		return this.fileCount;
-	}
+    /**
+     * Required - API name: {@code file_count}
+     */
+    public final long fileCount() {
+        return this.fileCount;
+    }
 
-	/**
-	 * Required - API name: {@code size_in_bytes}
-	 */
-	public final long sizeInBytes() {
-		return this.sizeInBytes;
-	}
+    /**
+     * Required - API name: {@code size_in_bytes}
+     */
+    public final long sizeInBytes() {
+        return this.sizeInBytes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("file_count");
-		generator.write(this.fileCount);
+        generator.writeKey("file_count");
+        generator.write(this.fileCount);
 
-		generator.writeKey("size_in_bytes");
-		generator.write(this.sizeInBytes);
+        generator.writeKey("size_in_bytes");
+        generator.write(this.sizeInBytes);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link ShardsStatsSummaryItem}.
-	 */
+    /**
+     * Builder for {@link ShardsStatsSummaryItem}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsStatsSummaryItem> {
-		private Long fileCount;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsStatsSummaryItem> {
+        private Long fileCount;
 
-		private Long sizeInBytes;
+        private Long sizeInBytes;
 
-		/**
-		 * Required - API name: {@code file_count}
-		 */
-		public final Builder fileCount(long value) {
-			this.fileCount = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code file_count}
+         */
+        public final Builder fileCount(long value) {
+            this.fileCount = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code size_in_bytes}
-		 */
-		public final Builder sizeInBytes(long value) {
-			this.sizeInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code size_in_bytes}
+         */
+        public final Builder sizeInBytes(long value) {
+            this.sizeInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link ShardsStatsSummaryItem}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ShardsStatsSummaryItem build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link ShardsStatsSummaryItem}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public ShardsStatsSummaryItem build() {
+            _checkSingleUse();
 
-			return new ShardsStatsSummaryItem(this);
-		}
-	}
+            return new ShardsStatsSummaryItem(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link ShardsStatsSummaryItem}
-	 */
-	public static final JsonpDeserializer<ShardsStatsSummaryItem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShardsStatsSummaryItem::setupShardsStatsSummaryItemDeserializer);
+    /**
+     * Json deserializer for {@link ShardsStatsSummaryItem}
+     */
+    public static final JsonpDeserializer<ShardsStatsSummaryItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        ShardsStatsSummaryItem::setupShardsStatsSummaryItemDeserializer
+    );
 
-	protected static void setupShardsStatsSummaryItemDeserializer(
-			ObjectDeserializer<ShardsStatsSummaryItem.Builder> op) {
+    protected static void setupShardsStatsSummaryItemDeserializer(ObjectDeserializer<ShardsStatsSummaryItem.Builder> op) {
 
-		op.add(Builder::fileCount, JsonpDeserializer.longDeserializer(), "file_count");
-		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
+        op.add(Builder::fileCount, JsonpDeserializer.longDeserializer(), "file_count");
+        op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
 
-	}
+    }
 
 }

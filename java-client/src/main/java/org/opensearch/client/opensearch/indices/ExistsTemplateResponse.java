@@ -36,17 +36,16 @@ import org.opensearch.client.json.JsonpDeserializer;
 
 // typedef: indices.exists_template.Response
 
-
 public class ExistsTemplateResponse {
-	public ExistsTemplateResponse() {
-	}
+    public ExistsTemplateResponse() {}
 
-	/**
-	 * Singleton instance for {@link ExistsTemplateResponse}.
-	 */
-	public static final ExistsTemplateResponse _INSTANCE = new ExistsTemplateResponse();
+    /**
+     * Singleton instance for {@link ExistsTemplateResponse}.
+     */
+    public static final ExistsTemplateResponse _INSTANCE = new ExistsTemplateResponse();
 
-	public static final JsonpDeserializer<ExistsTemplateResponse> _DESERIALIZER = JsonpDeserializer
-			.fixedValue(ExistsTemplateResponse._INSTANCE);
+    public static final JsonpDeserializer<ExistsTemplateResponse> _DESERIALIZER = JsonpDeserializer.fixedValue(
+        ExistsTemplateResponse._INSTANCE
+    );
 
 }

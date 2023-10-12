@@ -32,237 +32,243 @@
 
 package org.opensearch.client.opensearch.nodes;
 
-import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.OpenSearchTransport;
-import org.opensearch.client.transport.JsonEndpoint;
-import org.opensearch.client.transport.TransportOptions;
-import org.opensearch.client.util.ObjectBuilder;
-
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.transport.JsonEndpoint;
+import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.util.ObjectBuilder;
 
 /**
  * Client for the nodes namespace.
  */
 public class OpenSearchNodesClient extends ApiClient<OpenSearchTransport, OpenSearchNodesClient> {
 
-	public OpenSearchNodesClient(OpenSearchTransport transport) {
-		super(transport, null);
-	}
+    public OpenSearchNodesClient(OpenSearchTransport transport) {
+        super(transport, null);
+    }
 
-	public OpenSearchNodesClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
-		super(transport, transportOptions);
-	}
+    public OpenSearchNodesClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+        super(transport, transportOptions);
+    }
 
-	@Override
-	public OpenSearchNodesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-		return new OpenSearchNodesClient(this.transport, transportOptions);
-	}
+    @Override
+    public OpenSearchNodesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchNodesClient(this.transport, transportOptions);
+    }
 
-	// ----- Endpoint: nodes.hot_threads
+    // ----- Endpoint: nodes.hot_threads
 
-	/**
-	 * Returns information about hot threads on each node in the cluster.
-	 * 
-	 *
-	 */
+    /**
+     * Returns information about hot threads on each node in the cluster.
+     *
+     *
+     */
 
-	public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
+    public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            HotThreadsRequest,
+            HotThreadsResponse,
+            ErrorResponse>) HotThreadsRequest._ENDPOINT;
 
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Returns information about hot threads on each node in the cluster.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link HotThreadsRequest}
-	 *
-	 */
+    /**
+     * Returns information about hot threads on each node in the cluster.
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link HotThreadsRequest}
+     *
+     */
 
-	public final HotThreadsResponse hotThreads(Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
-			throws IOException, OpenSearchException {
-		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
-	}
+    public final HotThreadsResponse hotThreads(Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn) throws IOException,
+        OpenSearchException {
+        return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
+    }
 
-	/**
-	 * Returns information about hot threads on each node in the cluster.
-	 * 
-	 *
-	 */
+    /**
+     * Returns information about hot threads on each node in the cluster.
+     *
+     *
+     */
 
-	public HotThreadsResponse hotThreads() throws IOException, OpenSearchException {
-		return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT,
-				this.transportOptions);
-	}
+    public HotThreadsResponse hotThreads() throws IOException, OpenSearchException {
+        return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT, this.transportOptions);
+    }
 
-	// ----- Endpoint: nodes.info
+    // ----- Endpoint: nodes.info
 
-	/**
-	 * Returns information about nodes in the cluster.
-	 * 
-	 *
-	 */
+    /**
+     * Returns information about nodes in the cluster.
+     *
+     *
+     */
 
-	public NodesInfoResponse info(NodesInfoRequest request) throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse>) NodesInfoRequest._ENDPOINT;
+    public NodesInfoResponse info(NodesInfoRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            NodesInfoRequest,
+            NodesInfoResponse,
+            ErrorResponse>) NodesInfoRequest._ENDPOINT;
 
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Returns information about nodes in the cluster.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link NodesInfoRequest}
-	 *
-	 */
+    /**
+     * Returns information about nodes in the cluster.
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link NodesInfoRequest}
+     *
+     */
 
-	public final NodesInfoResponse info(Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
-			throws IOException, OpenSearchException {
-		return info(fn.apply(new NodesInfoRequest.Builder()).build());
-	}
+    public final NodesInfoResponse info(Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn) throws IOException,
+        OpenSearchException {
+        return info(fn.apply(new NodesInfoRequest.Builder()).build());
+    }
 
-	/**
-	 * Returns information about nodes in the cluster.
-	 * 
-	 *
-	 */
+    /**
+     * Returns information about nodes in the cluster.
+     *
+     *
+     */
 
-	public NodesInfoResponse info() throws IOException, OpenSearchException {
-		return this.transport.performRequest(new NodesInfoRequest.Builder().build(), NodesInfoRequest._ENDPOINT,
-				this.transportOptions);
-	}
+    public NodesInfoResponse info() throws IOException, OpenSearchException {
+        return this.transport.performRequest(new NodesInfoRequest.Builder().build(), NodesInfoRequest._ENDPOINT, this.transportOptions);
+    }
 
-	// ----- Endpoint: nodes.reload_secure_settings
+    // ----- Endpoint: nodes.reload_secure_settings
 
-	/**
-	 * Reloads secure settings.
-	 */
+    /**
+     * Reloads secure settings.
+     */
 
-	public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request)
-			throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse>)
-						ReloadSecureSettingsRequest._ENDPOINT;
+    public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            ReloadSecureSettingsRequest,
+            ReloadSecureSettingsResponse,
+            ErrorResponse>) ReloadSecureSettingsRequest._ENDPOINT;
 
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Reloads secure settings.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link ReloadSecureSettingsRequest}
-	 */
+    /**
+     * Reloads secure settings.
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link ReloadSecureSettingsRequest}
+     */
 
-	public final ReloadSecureSettingsResponse reloadSecureSettings(
-			Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn)
-			throws IOException, OpenSearchException {
-		return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
-	}
+    public final ReloadSecureSettingsResponse reloadSecureSettings(
+        Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
+    }
 
-	/**
-	 * Reloads secure settings.
-	 */
+    /**
+     * Reloads secure settings.
+     */
 
-	public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException, OpenSearchException {
-		return this.transport.performRequest(new ReloadSecureSettingsRequest.Builder().build(),
-				ReloadSecureSettingsRequest._ENDPOINT, this.transportOptions);
-	}
+    public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException, OpenSearchException {
+        return this.transport.performRequest(
+            new ReloadSecureSettingsRequest.Builder().build(),
+            ReloadSecureSettingsRequest._ENDPOINT,
+            this.transportOptions
+        );
+    }
 
-	// ----- Endpoint: nodes.stats
+    // ----- Endpoint: nodes.stats
 
-	/**
-	 * Returns statistical information about nodes in the cluster.
-	 * 
-	 *
-	 */
+    /**
+     * Returns statistical information about nodes in the cluster.
+     *
+     *
+     */
 
-	public NodesStatsResponse stats(NodesStatsRequest request) throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse>) NodesStatsRequest._ENDPOINT;
+    public NodesStatsResponse stats(NodesStatsRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            NodesStatsRequest,
+            NodesStatsResponse,
+            ErrorResponse>) NodesStatsRequest._ENDPOINT;
 
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Returns statistical information about nodes in the cluster.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link NodesStatsRequest}
-	 *
-	 */
+    /**
+     * Returns statistical information about nodes in the cluster.
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link NodesStatsRequest}
+     *
+     */
 
-	public final NodesStatsResponse stats(Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
-			throws IOException, OpenSearchException {
-		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
-	}
+    public final NodesStatsResponse stats(Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn) throws IOException,
+        OpenSearchException {
+        return stats(fn.apply(new NodesStatsRequest.Builder()).build());
+    }
 
-	/**
-	 * Returns statistical information about nodes in the cluster.
-	 * 
-	 *
-	 */
+    /**
+     * Returns statistical information about nodes in the cluster.
+     *
+     *
+     */
 
-	public NodesStatsResponse stats() throws IOException, OpenSearchException {
-		return this.transport.performRequest(new NodesStatsRequest.Builder().build(), NodesStatsRequest._ENDPOINT,
-				this.transportOptions);
-	}
+    public NodesStatsResponse stats() throws IOException, OpenSearchException {
+        return this.transport.performRequest(new NodesStatsRequest.Builder().build(), NodesStatsRequest._ENDPOINT, this.transportOptions);
+    }
 
-	// ----- Endpoint: nodes.usage
+    // ----- Endpoint: nodes.usage
 
-	/**
-	 * Returns low-level information about REST actions usage on nodes.
-	 * 
-	 *
-	 */
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     *
+     *
+     */
 
-	public NodesUsageResponse usage(NodesUsageRequest request) throws IOException, OpenSearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> endpoint =
-				(JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse>) NodesUsageRequest._ENDPOINT;
+    public NodesUsageResponse usage(NodesUsageRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            NodesUsageRequest,
+            NodesUsageResponse,
+            ErrorResponse>) NodesUsageRequest._ENDPOINT;
 
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
 
-	/**
-	 * Returns low-level information about REST actions usage on nodes.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link NodesUsageRequest}
-	 *
-	 */
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     *
+     * @param fn
+     *            a function that initializes a builder to create the
+     *            {@link NodesUsageRequest}
+     *
+     */
 
-	public final NodesUsageResponse usage(Function<NodesUsageRequest.Builder, ObjectBuilder<NodesUsageRequest>> fn)
-			throws IOException, OpenSearchException {
-		return usage(fn.apply(new NodesUsageRequest.Builder()).build());
-	}
+    public final NodesUsageResponse usage(Function<NodesUsageRequest.Builder, ObjectBuilder<NodesUsageRequest>> fn) throws IOException,
+        OpenSearchException {
+        return usage(fn.apply(new NodesUsageRequest.Builder()).build());
+    }
 
-	/**
-	 * Returns low-level information about REST actions usage on nodes.
-	 * 
-	 *
-	 */
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     *
+     *
+     */
 
-	public NodesUsageResponse usage() throws IOException, OpenSearchException {
-		return this.transport.performRequest(new NodesUsageRequest.Builder().build(), NodesUsageRequest._ENDPOINT,
-				this.transportOptions);
-	}
+    public NodesUsageResponse usage() throws IOException, OpenSearchException {
+        return this.transport.performRequest(new NodesUsageRequest.Builder().build(), NodesUsageRequest._ENDPOINT, this.transportOptions);
+    }
 
 }

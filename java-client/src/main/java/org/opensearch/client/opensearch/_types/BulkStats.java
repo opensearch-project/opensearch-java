@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,306 +44,304 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.BulkStats
 
 @JsonpDeserializable
 public class BulkStats implements JsonpSerializable {
-	private final long totalOperations;
+    private final long totalOperations;
 
-	@Nullable
-	private final String totalTime;
+    @Nullable
+    private final String totalTime;
 
-	private final long totalTimeInMillis;
+    private final long totalTimeInMillis;
 
-	@Nullable
-	private final String totalSize;
+    @Nullable
+    private final String totalSize;
 
-	private final long totalSizeInBytes;
+    private final long totalSizeInBytes;
 
-	@Nullable
-	private final String avgTime;
+    @Nullable
+    private final String avgTime;
 
-	private final long avgTimeInMillis;
+    private final long avgTimeInMillis;
 
-	@Nullable
-	private final String avgSize;
+    @Nullable
+    private final String avgSize;
 
-	private final long avgSizeInBytes;
+    private final long avgSizeInBytes;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private BulkStats(Builder builder) {
+    private BulkStats(Builder builder) {
 
-		this.totalOperations = ApiTypeHelper.requireNonNull(builder.totalOperations, this, "totalOperations");
-		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
-		this.totalSize = builder.totalSize;
-		this.totalSizeInBytes = ApiTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes");
-		this.avgTime = builder.avgTime;
-		this.avgTimeInMillis = ApiTypeHelper.requireNonNull(builder.avgTimeInMillis, this, "avgTimeInMillis");
-		this.avgSize = builder.avgSize;
-		this.avgSizeInBytes = ApiTypeHelper.requireNonNull(builder.avgSizeInBytes, this, "avgSizeInBytes");
+        this.totalOperations = ApiTypeHelper.requireNonNull(builder.totalOperations, this, "totalOperations");
+        this.totalTime = builder.totalTime;
+        this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+        this.totalSize = builder.totalSize;
+        this.totalSizeInBytes = ApiTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes");
+        this.avgTime = builder.avgTime;
+        this.avgTimeInMillis = ApiTypeHelper.requireNonNull(builder.avgTimeInMillis, this, "avgTimeInMillis");
+        this.avgSize = builder.avgSize;
+        this.avgSizeInBytes = ApiTypeHelper.requireNonNull(builder.avgSizeInBytes, this, "avgSizeInBytes");
 
-	}
+    }
 
-	public static BulkStats of(Function<Builder, ObjectBuilder<BulkStats>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static BulkStats of(Function<Builder, ObjectBuilder<BulkStats>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Required - API name: {@code total_operations}
-	 */
-	public final long totalOperations() {
-		return this.totalOperations;
-	}
+    /**
+     * Required - API name: {@code total_operations}
+     */
+    public final long totalOperations() {
+        return this.totalOperations;
+    }
 
-	/**
-	 * API name: {@code total_time}
-	 */
-	@Nullable
-	public final String totalTime() {
-		return this.totalTime;
-	}
+    /**
+     * API name: {@code total_time}
+     */
+    @Nullable
+    public final String totalTime() {
+        return this.totalTime;
+    }
 
-	/**
-	 * Required - API name: {@code total_time_in_millis}
-	 */
-	public final long totalTimeInMillis() {
-		return this.totalTimeInMillis;
-	}
+    /**
+     * Required - API name: {@code total_time_in_millis}
+     */
+    public final long totalTimeInMillis() {
+        return this.totalTimeInMillis;
+    }
 
-	/**
-	 * API name: {@code total_size}
-	 */
-	@Nullable
-	public final String totalSize() {
-		return this.totalSize;
-	}
+    /**
+     * API name: {@code total_size}
+     */
+    @Nullable
+    public final String totalSize() {
+        return this.totalSize;
+    }
 
-	/**
-	 * Required - API name: {@code total_size_in_bytes}
-	 */
-	public final long totalSizeInBytes() {
-		return this.totalSizeInBytes;
-	}
+    /**
+     * Required - API name: {@code total_size_in_bytes}
+     */
+    public final long totalSizeInBytes() {
+        return this.totalSizeInBytes;
+    }
 
-	/**
-	 * API name: {@code avg_time}
-	 */
-	@Nullable
-	public final String avgTime() {
-		return this.avgTime;
-	}
+    /**
+     * API name: {@code avg_time}
+     */
+    @Nullable
+    public final String avgTime() {
+        return this.avgTime;
+    }
 
-	/**
-	 * Required - API name: {@code avg_time_in_millis}
-	 */
-	public final long avgTimeInMillis() {
-		return this.avgTimeInMillis;
-	}
+    /**
+     * Required - API name: {@code avg_time_in_millis}
+     */
+    public final long avgTimeInMillis() {
+        return this.avgTimeInMillis;
+    }
 
-	/**
-	 * API name: {@code avg_size}
-	 */
-	@Nullable
-	public final String avgSize() {
-		return this.avgSize;
-	}
+    /**
+     * API name: {@code avg_size}
+     */
+    @Nullable
+    public final String avgSize() {
+        return this.avgSize;
+    }
 
-	/**
-	 * Required - API name: {@code avg_size_in_bytes}
-	 */
-	public final long avgSizeInBytes() {
-		return this.avgSizeInBytes;
-	}
+    /**
+     * Required - API name: {@code avg_size_in_bytes}
+     */
+    public final long avgSizeInBytes() {
+        return this.avgSizeInBytes;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("total_operations");
-		generator.write(this.totalOperations);
+        generator.writeKey("total_operations");
+        generator.write(this.totalOperations);
 
-		if (this.totalTime != null) {
-			generator.writeKey("total_time");
-			generator.write(this.totalTime);
+        if (this.totalTime != null) {
+            generator.writeKey("total_time");
+            generator.write(this.totalTime);
 
-		}
-		generator.writeKey("total_time_in_millis");
-		generator.write(this.totalTimeInMillis);
+        }
+        generator.writeKey("total_time_in_millis");
+        generator.write(this.totalTimeInMillis);
 
-		if (this.totalSize != null) {
-			generator.writeKey("total_size");
-			generator.write(this.totalSize);
+        if (this.totalSize != null) {
+            generator.writeKey("total_size");
+            generator.write(this.totalSize);
 
-		}
-		generator.writeKey("total_size_in_bytes");
-		generator.write(this.totalSizeInBytes);
+        }
+        generator.writeKey("total_size_in_bytes");
+        generator.write(this.totalSizeInBytes);
 
-		if (this.avgTime != null) {
-			generator.writeKey("avg_time");
-			generator.write(this.avgTime);
+        if (this.avgTime != null) {
+            generator.writeKey("avg_time");
+            generator.write(this.avgTime);
 
-		}
-		generator.writeKey("avg_time_in_millis");
-		generator.write(this.avgTimeInMillis);
+        }
+        generator.writeKey("avg_time_in_millis");
+        generator.write(this.avgTimeInMillis);
 
-		if (this.avgSize != null) {
-			generator.writeKey("avg_size");
-			generator.write(this.avgSize);
+        if (this.avgSize != null) {
+            generator.writeKey("avg_size");
+            generator.write(this.avgSize);
 
-		}
-		generator.writeKey("avg_size_in_bytes");
-		generator.write(this.avgSizeInBytes);
+        }
+        generator.writeKey("avg_size_in_bytes");
+        generator.write(this.avgSizeInBytes);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link BulkStats}.
-	 */
+    /**
+     * Builder for {@link BulkStats}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkStats> {
-		private Long totalOperations;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkStats> {
+        private Long totalOperations;
 
-		@Nullable
-		private String totalTime;
+        @Nullable
+        private String totalTime;
 
-		private Long totalTimeInMillis;
+        private Long totalTimeInMillis;
 
-		@Nullable
-		private String totalSize;
+        @Nullable
+        private String totalSize;
 
-		private Long totalSizeInBytes;
+        private Long totalSizeInBytes;
 
-		@Nullable
-		private String avgTime;
+        @Nullable
+        private String avgTime;
 
-		private Long avgTimeInMillis;
+        private Long avgTimeInMillis;
 
-		@Nullable
-		private String avgSize;
+        @Nullable
+        private String avgSize;
 
-		private Long avgSizeInBytes;
+        private Long avgSizeInBytes;
 
-		/**
-		 * Required - API name: {@code total_operations}
-		 */
-		public final Builder totalOperations(long value) {
-			this.totalOperations = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total_operations}
+         */
+        public final Builder totalOperations(long value) {
+            this.totalOperations = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code total_time}
-		 */
-		public final Builder totalTime(@Nullable String value) {
-			this.totalTime = value;
-			return this;
-		}
+        /**
+         * API name: {@code total_time}
+         */
+        public final Builder totalTime(@Nullable String value) {
+            this.totalTime = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total_time_in_millis}
-		 */
-		public final Builder totalTimeInMillis(long value) {
-			this.totalTimeInMillis = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total_time_in_millis}
+         */
+        public final Builder totalTimeInMillis(long value) {
+            this.totalTimeInMillis = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code total_size}
-		 */
-		public final Builder totalSize(@Nullable String value) {
-			this.totalSize = value;
-			return this;
-		}
+        /**
+         * API name: {@code total_size}
+         */
+        public final Builder totalSize(@Nullable String value) {
+            this.totalSize = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code total_size_in_bytes}
-		 */
-		public final Builder totalSizeInBytes(long value) {
-			this.totalSizeInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code total_size_in_bytes}
+         */
+        public final Builder totalSizeInBytes(long value) {
+            this.totalSizeInBytes = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code avg_time}
-		 */
-		public final Builder avgTime(@Nullable String value) {
-			this.avgTime = value;
-			return this;
-		}
+        /**
+         * API name: {@code avg_time}
+         */
+        public final Builder avgTime(@Nullable String value) {
+            this.avgTime = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code avg_time_in_millis}
-		 */
-		public final Builder avgTimeInMillis(long value) {
-			this.avgTimeInMillis = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code avg_time_in_millis}
+         */
+        public final Builder avgTimeInMillis(long value) {
+            this.avgTimeInMillis = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code avg_size}
-		 */
-		public final Builder avgSize(@Nullable String value) {
-			this.avgSize = value;
-			return this;
-		}
+        /**
+         * API name: {@code avg_size}
+         */
+        public final Builder avgSize(@Nullable String value) {
+            this.avgSize = value;
+            return this;
+        }
 
-		/**
-		 * Required - API name: {@code avg_size_in_bytes}
-		 */
-		public final Builder avgSizeInBytes(long value) {
-			this.avgSizeInBytes = value;
-			return this;
-		}
+        /**
+         * Required - API name: {@code avg_size_in_bytes}
+         */
+        public final Builder avgSizeInBytes(long value) {
+            this.avgSizeInBytes = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link BulkStats}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public BulkStats build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link BulkStats}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public BulkStats build() {
+            _checkSingleUse();
 
-			return new BulkStats(this);
-		}
-	}
+            return new BulkStats(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link BulkStats}
-	 */
-	public static final JsonpDeserializer<BulkStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BulkStats::setupBulkStatsDeserializer);
+    /**
+     * Json deserializer for {@link BulkStats}
+     */
+    public static final JsonpDeserializer<BulkStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        BulkStats::setupBulkStatsDeserializer
+    );
 
-	protected static void setupBulkStatsDeserializer(ObjectDeserializer<BulkStats.Builder> op) {
+    protected static void setupBulkStatsDeserializer(ObjectDeserializer<BulkStats.Builder> op) {
 
-		op.add(Builder::totalOperations, JsonpDeserializer.longDeserializer(), "total_operations");
-		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpDeserializer.longDeserializer(), "total_time_in_millis");
-		op.add(Builder::totalSize, JsonpDeserializer.stringDeserializer(), "total_size");
-		op.add(Builder::totalSizeInBytes, JsonpDeserializer.longDeserializer(), "total_size_in_bytes");
-		op.add(Builder::avgTime, JsonpDeserializer.stringDeserializer(), "avg_time");
-		op.add(Builder::avgTimeInMillis, JsonpDeserializer.longDeserializer(), "avg_time_in_millis");
-		op.add(Builder::avgSize, JsonpDeserializer.stringDeserializer(), "avg_size");
-		op.add(Builder::avgSizeInBytes, JsonpDeserializer.longDeserializer(), "avg_size_in_bytes");
+        op.add(Builder::totalOperations, JsonpDeserializer.longDeserializer(), "total_operations");
+        op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+        op.add(Builder::totalTimeInMillis, JsonpDeserializer.longDeserializer(), "total_time_in_millis");
+        op.add(Builder::totalSize, JsonpDeserializer.stringDeserializer(), "total_size");
+        op.add(Builder::totalSizeInBytes, JsonpDeserializer.longDeserializer(), "total_size_in_bytes");
+        op.add(Builder::avgTime, JsonpDeserializer.stringDeserializer(), "avg_time");
+        op.add(Builder::avgTimeInMillis, JsonpDeserializer.longDeserializer(), "avg_time_in_millis");
+        op.add(Builder::avgSize, JsonpDeserializer.stringDeserializer(), "avg_size");
+        op.add(Builder::avgSizeInBytes, JsonpDeserializer.longDeserializer(), "avg_size_in_bytes");
 
-	}
+    }
 
 }

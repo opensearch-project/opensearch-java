@@ -37,18 +37,17 @@ package org.opensearch.client.opensearch._types.analysis;
  * <p>
  * Variants <code>name</code> are not available here as they don't have a
  * dedicated class. Use {@link Tokenizer}'s builder for these.
- * 
+ *
  */
 public class TokenizerBuilders {
-	private TokenizerBuilders() {
-	}
+    private TokenizerBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link TokenizerDefinition definition}
-	 * {@code Tokenizer} variant.
-	 */
-	public static TokenizerDefinition.Builder definition() {
-		return new TokenizerDefinition.Builder();
-	}
+    /**
+     * Creates a builder for the {@link TokenizerDefinition definition}
+     * {@code Tokenizer} variant.
+     */
+    public static TokenizerDefinition.Builder definition() {
+        return new TokenizerDefinition.Builder();
+    }
 
 }

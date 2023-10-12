@@ -32,16 +32,15 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.Bytes;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ObjectBuilder;
-
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
 
 // typedef: cat.nodes.Request
 
@@ -146,28 +145,32 @@ public class NodesRequest extends CatRequestBase {
      */
     public static final Endpoint<NodesRequest, NodesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-            // Request method
-            request -> {
-                return "GET";
+        // Request method
+        request -> {
+            return "GET";
 
-            },
+        },
 
-            // Request path
-            request -> {
-                return "/_cat/nodes";
+        // Request path
+        request -> {
+            return "/_cat/nodes";
 
-            },
+        },
 
-            // Request parameters
-            request -> {
-                Map<String, String> params = new HashMap<>(request.queryParameters());
-                if (request.bytes != null) {
-                    params.put("bytes", request.bytes.jsonValue());
-                }
-                if (request.fullId != null) {
-                    params.put("full_id", String.valueOf(request.fullId));
-                }
-                return params;
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>(request.queryParameters());
+            if (request.bytes != null) {
+                params.put("bytes", request.bytes.jsonValue());
+            }
+            if (request.fullId != null) {
+                params.put("full_id", String.valueOf(request.fullId));
+            }
+            return params;
 
-            }, SimpleEndpoint.emptyMap(), false, NodesResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        NodesResponse._DESERIALIZER
+    );
 }

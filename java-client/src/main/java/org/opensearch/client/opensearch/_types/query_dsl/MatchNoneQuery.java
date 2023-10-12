@@ -32,74 +32,74 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-import java.util.function.Function;
-
 // typedef: _types.query_dsl.MatchNoneQuery
-
 
 @JsonpDeserializable
 public class MatchNoneQuery extends QueryBase implements QueryVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private MatchNoneQuery(Builder builder) {
-		super(builder);
+    private MatchNoneQuery(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static MatchNoneQuery of(Function<Builder, ObjectBuilder<MatchNoneQuery>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static MatchNoneQuery of(Function<Builder, ObjectBuilder<MatchNoneQuery>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Query variant kind.
-	 */
-	@Override
-	public Query.Kind _queryKind() {
-		return Query.Kind.MatchNone;
-	}
+    /**
+     * Query variant kind.
+     */
+    @Override
+    public Query.Kind _queryKind() {
+        return Query.Kind.MatchNone;
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link MatchNoneQuery}.
-	 */
+    /**
+     * Builder for {@link MatchNoneQuery}.
+     */
 
-	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchNoneQuery> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchNoneQuery> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link MatchNoneQuery}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public MatchNoneQuery build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link MatchNoneQuery}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public MatchNoneQuery build() {
+            _checkSingleUse();
 
-			return new MatchNoneQuery(this);
-		}
-	}
+            return new MatchNoneQuery(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link MatchNoneQuery}
-	 */
-	public static final JsonpDeserializer<MatchNoneQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MatchNoneQuery::setupMatchNoneQueryDeserializer);
+    /**
+     * Json deserializer for {@link MatchNoneQuery}
+     */
+    public static final JsonpDeserializer<MatchNoneQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        MatchNoneQuery::setupMatchNoneQueryDeserializer
+    );
 
-	protected static void setupMatchNoneQueryDeserializer(ObjectDeserializer<MatchNoneQuery.Builder> op) {
-		setupQueryBaseDeserializer(op);
+    protected static void setupMatchNoneQueryDeserializer(ObjectDeserializer<MatchNoneQuery.Builder> op) {
+        setupQueryBaseDeserializer(op);
 
-	}
+    }
 
 }

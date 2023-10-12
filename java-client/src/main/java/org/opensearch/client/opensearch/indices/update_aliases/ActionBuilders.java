@@ -36,29 +36,28 @@ package org.opensearch.client.opensearch.indices.update_aliases;
  * Builders for {@link Action} variants.
  */
 public class ActionBuilders {
-	private ActionBuilders() {
-	}
+    private ActionBuilders() {}
 
-	/**
-	 * Creates a builder for the {@link AddAction add} {@code Action} variant.
-	 */
-	public static AddAction.Builder add() {
-		return new AddAction.Builder();
-	}
+    /**
+     * Creates a builder for the {@link AddAction add} {@code Action} variant.
+     */
+    public static AddAction.Builder add() {
+        return new AddAction.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link RemoveAction remove} {@code Action} variant.
-	 */
-	public static RemoveAction.Builder remove() {
-		return new RemoveAction.Builder();
-	}
+    /**
+     * Creates a builder for the {@link RemoveAction remove} {@code Action} variant.
+     */
+    public static RemoveAction.Builder remove() {
+        return new RemoveAction.Builder();
+    }
 
-	/**
-	 * Creates a builder for the {@link RemoveIndexAction remove_index}
-	 * {@code Action} variant.
-	 */
-	public static RemoveIndexAction.Builder removeIndex() {
-		return new RemoveIndexAction.Builder();
-	}
+    /**
+     * Creates a builder for the {@link RemoveIndexAction remove_index}
+     * {@code Action} variant.
+     */
+    public static RemoveIndexAction.Builder removeIndex() {
+        return new RemoveIndexAction.Builder();
+    }
 
 }

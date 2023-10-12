@@ -32,12 +32,11 @@
 
 package org.opensearch.client.transport;
 
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.NdJsonpSerializable;
-
-import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.Map;
+import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.NdJsonpSerializable;
 
 /**
  * An endpoint links requests and responses to HTTP protocol encoding. It also defines the error response
@@ -54,41 +53,41 @@ import java.util.Map;
  */
 public interface Endpoint<RequestT, ResponseT, ErrorT> {
 
-  /**
-   * Get the endpoint's HTTP method for a request.
-   */
-  String method(RequestT request);
+    /**
+     * Get the endpoint's HTTP method for a request.
+     */
+    String method(RequestT request);
 
-  /**
-   * Get the URL path for a request.
-   */
-  String requestUrl(RequestT request);
+    /**
+     * Get the URL path for a request.
+     */
+    String requestUrl(RequestT request);
 
-  /**
-   * Get the query parameters for a request.
-   */
-  default Map<String, String> queryParameters(RequestT request) {
-    return Collections.emptyMap();
-  }
+    /**
+     * Get the query parameters for a request.
+     */
+    default Map<String, String> queryParameters(RequestT request) {
+        return Collections.emptyMap();
+    }
 
-  /**
-   * Get the HTTP headers for a request.
-   */
-  default Map<String, String> headers(RequestT request) {
-    return Collections.emptyMap();
-  }
+    /**
+     * Get the HTTP headers for a request.
+     */
+    default Map<String, String> headers(RequestT request) {
+        return Collections.emptyMap();
+    }
 
-  boolean hasRequestBody();
+    boolean hasRequestBody();
 
-  /**
-   * Is this status code to be considered as an error?
-   */
-  boolean isError(int statusCode);
+    /**
+     * Is this status code to be considered as an error?
+     */
+    boolean isError(int statusCode);
 
-  /**
-   * The entity parser for the error response body. Can be {@code null} to indicate that there's no error body.
-   */
-  @Nullable
-  JsonpDeserializer<ErrorT> errorDeserializer(int statusCode);
+    /**
+     * The entity parser for the error response body. Can be {@code null} to indicate that there's no error body.
+     */
+    @Nullable
+    JsonpDeserializer<ErrorT> errorDeserializer(int statusCode);
 
 }

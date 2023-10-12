@@ -32,86 +32,84 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
-
-import java.util.function.Function;
 
 // typedef: _types.analysis.UppercaseTokenFilter
 
-
 @JsonpDeserializable
 public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private UppercaseTokenFilter(Builder builder) {
-		super(builder);
+    private UppercaseTokenFilter(Builder builder) {
+        super(builder);
 
-	}
+    }
 
-	public static UppercaseTokenFilter of(Function<Builder, ObjectBuilder<UppercaseTokenFilter>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static UppercaseTokenFilter of(Function<Builder, ObjectBuilder<UppercaseTokenFilter>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * TokenFilterDefinition variant kind.
-	 */
-	@Override
-	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
-		return TokenFilterDefinition.Kind.Uppercase;
-	}
+    /**
+     * TokenFilterDefinition variant kind.
+     */
+    @Override
+    public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+        return TokenFilterDefinition.Kind.Uppercase;
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "uppercase");
-		super.serializeInternal(generator, mapper);
+        generator.write("type", "uppercase");
+        super.serializeInternal(generator, mapper);
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link UppercaseTokenFilter}.
-	 */
+    /**
+     * Builder for {@link UppercaseTokenFilter}.
+     */
 
-	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<UppercaseTokenFilter> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<UppercaseTokenFilter> {
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-		/**
-		 * Builds a {@link UppercaseTokenFilter}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public UppercaseTokenFilter build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link UppercaseTokenFilter}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public UppercaseTokenFilter build() {
+            _checkSingleUse();
 
-			return new UppercaseTokenFilter(this);
-		}
-	}
+            return new UppercaseTokenFilter(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link UppercaseTokenFilter}
-	 */
-	public static final JsonpDeserializer<UppercaseTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UppercaseTokenFilter::setupUppercaseTokenFilterDeserializer);
+    /**
+     * Json deserializer for {@link UppercaseTokenFilter}
+     */
+    public static final JsonpDeserializer<UppercaseTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        UppercaseTokenFilter::setupUppercaseTokenFilterDeserializer
+    );
 
-	protected static void setupUppercaseTokenFilterDeserializer(ObjectDeserializer<UppercaseTokenFilter.Builder> op) {
-		setupTokenFilterBaseDeserializer(op);
+    protected static void setupUppercaseTokenFilterDeserializer(ObjectDeserializer<UppercaseTokenFilter.Builder> op) {
+        setupTokenFilterBaseDeserializer(op);
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

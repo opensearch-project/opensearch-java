@@ -32,6 +32,9 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,111 +43,109 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeywordAnalyzer
 
-
 @JsonpDeserializable
 public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
-	@Nullable
-	private final String version;
+    @Nullable
+    private final String version;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private KeywordAnalyzer(Builder builder) {
+    private KeywordAnalyzer(Builder builder) {
 
-		this.version = builder.version;
+        this.version = builder.version;
 
-	}
+    }
 
-	public static KeywordAnalyzer of(Function<Builder, ObjectBuilder<KeywordAnalyzer>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static KeywordAnalyzer of(Function<Builder, ObjectBuilder<KeywordAnalyzer>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Analyzer variant kind.
-	 */
-	@Override
-	public Analyzer.Kind _analyzerKind() {
-		return Analyzer.Kind.Keyword;
-	}
+    /**
+     * Analyzer variant kind.
+     */
+    @Override
+    public Analyzer.Kind _analyzerKind() {
+        return Analyzer.Kind.Keyword;
+    }
 
-	/**
-	 * API name: {@code version}
-	 */
-	@Nullable
-	public final String version() {
-		return this.version;
-	}
+    /**
+     * API name: {@code version}
+     */
+    @Nullable
+    public final String version() {
+        return this.version;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.write("type", "keyword");
+        generator.write("type", "keyword");
 
-		if (this.version != null) {
-			generator.writeKey("version");
-			generator.write(this.version);
+        if (this.version != null) {
+            generator.writeKey("version");
+            generator.write(this.version);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link KeywordAnalyzer}.
-	 */
+    /**
+     * Builder for {@link KeywordAnalyzer}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KeywordAnalyzer> {
-		@Nullable
-		private String version;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KeywordAnalyzer> {
+        @Nullable
+        private String version;
 
-		/**
-		 * API name: {@code version}
-		 */
-		public final Builder version(@Nullable String value) {
-			this.version = value;
-			return this;
-		}
+        /**
+         * API name: {@code version}
+         */
+        public final Builder version(@Nullable String value) {
+            this.version = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link KeywordAnalyzer}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public KeywordAnalyzer build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link KeywordAnalyzer}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public KeywordAnalyzer build() {
+            _checkSingleUse();
 
-			return new KeywordAnalyzer(this);
-		}
-	}
+            return new KeywordAnalyzer(this);
+        }
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link KeywordAnalyzer}
-	 */
-	public static final JsonpDeserializer<KeywordAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KeywordAnalyzer::setupKeywordAnalyzerDeserializer);
+    /**
+     * Json deserializer for {@link KeywordAnalyzer}
+     */
+    public static final JsonpDeserializer<KeywordAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        KeywordAnalyzer::setupKeywordAnalyzerDeserializer
+    );
 
-	protected static void setupKeywordAnalyzerDeserializer(ObjectDeserializer<KeywordAnalyzer.Builder> op) {
+    protected static void setupKeywordAnalyzerDeserializer(ObjectDeserializer<KeywordAnalyzer.Builder> op) {
 
-		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+        op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
-		op.ignore("type");
-	}
+        op.ignore("type");
+    }
 
 }

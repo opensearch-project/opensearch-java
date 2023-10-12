@@ -37,10 +37,10 @@ package org.opensearch.client.opensearch._types.query_dsl;
  */
 public interface IntervalsVariant {
 
-	Intervals.Kind _intervalsKind();
+    Intervals.Kind _intervalsKind();
 
-	default Intervals _toIntervals() {
-		return new Intervals(this);
-	}
+    default Intervals _toIntervals() {
+        return new Intervals(this);
+    }
 
 }

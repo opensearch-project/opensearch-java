@@ -32,41 +32,33 @@
 
 package org.opensearch.client.opensearch.model;
 
+import java.util.Collections;
+import org.junit.Test;
+import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.AvgAggregate;
 import org.opensearch.client.opensearch._types.aggregations.StringTermsAggregate;
 import org.opensearch.client.opensearch._types.aggregations.StringTermsBucket;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.search.TotalHitsRelation;
-import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.util.ListBuilder;
 import org.opensearch.client.util.MapBuilder;
-import org.junit.Test;
-
-import java.util.Collections;
 
 public class TypedKeysTest extends ModelTestCase {
 
     @Test
     public void testMapProperty() {
 
-        SearchResponse<Void> resp = new SearchResponse.Builder<Void>()
-            .aggregations(
-                "foo", _2 -> _2
-                    .avg(_3 -> _3.value(3.14))
-            )
+        SearchResponse<Void> resp = new SearchResponse.Builder<Void>().aggregations("foo", _2 -> _2.avg(_3 -> _3.value(3.14)))
             // Required properties on a SearchResponse
             .took(1)
             .shards(_1 -> _1.successful(1).failed(0).total(1))
-            .hits(_1 -> _1
-                .total(_2 -> _2.value(0).relation(TotalHitsRelation.Eq))
-                .hits(Collections.emptyList())
-            )
+            .hits(_1 -> _1.total(_2 -> _2.value(0).relation(TotalHitsRelation.Eq)).hits(Collections.emptyList()))
             .timedOut(false)
             .build();
 
-        String json = "{\"took\":1,\"timed_out\":false,\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0}," +
-            "\"hits\":{\"total\":{\"relation\":\"eq\",\"value\":0},\"hits\":[]},\"aggregations\":{\"avg#foo\":{\"value\":3.14}}}";
+        String json = "{\"took\":1,\"timed_out\":false,\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0},"
+            + "\"hits\":{\"total\":{\"relation\":\"eq\",\"value\":0},\"hits\":[]},\"aggregations\":{\"avg#foo\":{\"value\":3.14}}}";
 
         assertEquals(json, toJson(resp));
 
@@ -83,44 +75,32 @@ public class TypedKeysTest extends ModelTestCase {
         Aggregate avg1 = AvgAggregate.of(_1 -> _1.value(1.0))._toAggregate();
         Aggregate avg2 = AvgAggregate.of(_1 -> _1.value(2.0))._toAggregate();
 
-        Aggregate aggregate = StringTermsAggregate.of(_0 -> _0
-            .sumOtherDocCount(1)
-            .buckets(b -> b.array(
-                ListBuilder.of(StringTermsBucket.Builder::new)
-                .add(_1 -> _1
-                    .key("key_1")
-                    .docCount(1)
-                    .aggregations(MapBuilder.of("bar", avg1))
+        Aggregate aggregate = StringTermsAggregate.of(
+            _0 -> _0.sumOtherDocCount(1)
+                .buckets(
+                    b -> b.array(
+                        ListBuilder.of(StringTermsBucket.Builder::new)
+                            .add(_1 -> _1.key("key_1").docCount(1).aggregations(MapBuilder.of("bar", avg1)))
+                            .add(_1 -> _1.key("key_2").docCount(2).aggregations(MapBuilder.of("bar", avg2)))
+                            .build()
+                    )
                 )
-                .add(_1 -> _1
-                    .key("key_2")
-                    .docCount(2)
-                    .aggregations(MapBuilder.of("bar", avg2))
-                )
-                .build()
-            ))
-        )
-        ._toAggregate();
+        )._toAggregate();
 
-        SearchResponse<Void> resp = new SearchResponse.Builder<Void>()
-            .aggregations("foo", aggregate)
+        SearchResponse<Void> resp = new SearchResponse.Builder<Void>().aggregations("foo", aggregate)
             // Required properties on a SearchResponse
             .took(1)
             .shards(_1 -> _1.successful(1).failed(0).total(1))
-            .hits(_1 -> _1
-                .total(_2 -> _2.value(0).relation(TotalHitsRelation.Eq))
-                .hits(Collections.emptyList())
-            )
+            .hits(_1 -> _1.total(_2 -> _2.value(0).relation(TotalHitsRelation.Eq)).hits(Collections.emptyList()))
             .timedOut(false)
             .build();
 
-
-        String json = "{\"took\":1,\"timed_out\":false,\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0}," +
-            "\"hits\":{\"total\":{\"relation\":\"eq\",\"value\":0},\"hits\":[]}," +
-            "\"aggregations\":{\"sterms#foo\":{\"buckets\":[" +
-                "{\"avg#bar\":{\"value\":1.0},\"doc_count\":1,\"key\":\"key_1\"}," +
-                "{\"avg#bar\":{\"value\":2.0},\"doc_count\":2,\"key\":\"key_2\"}" +
-            "],\"sum_other_doc_count\":1}}}";
+        String json = "{\"took\":1,\"timed_out\":false,\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0},"
+            + "\"hits\":{\"total\":{\"relation\":\"eq\",\"value\":0},\"hits\":[]},"
+            + "\"aggregations\":{\"sterms#foo\":{\"buckets\":["
+            + "{\"avg#bar\":{\"value\":1.0},\"doc_count\":1,\"key\":\"key_1\"},"
+            + "{\"avg#bar\":{\"value\":2.0},\"doc_count\":2,\"key\":\"key_2\"}"
+            + "],\"sum_other_doc_count\":1}}}";
 
         assertEquals(json, toJson(resp));
         resp = fromJson(json, SearchResponse.createSearchResponseDeserializer(JsonpDeserializer.voidDeserializer()));
