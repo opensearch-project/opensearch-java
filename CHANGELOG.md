@@ -2,6 +2,21 @@
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 2.x]
 ### Added
+
+### Dependencies
+  
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.7.0] - 10/13/2023
+### Added
 - Added support for "smartcn" analyzer ([#605](https://github.com/opensearch-project/opensearch-java/pull/605))
 - Added support for "cjk" analyzer ([#604](https://github.com/opensearch-project/opensearch-java/pull/604))
 - Added support for wrapper queries ([#630](https://github.com/opensearch-project/opensearch-java/pull/630))
@@ -171,7 +186,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Security
 
 
-[Unreleased]: https://github.com/opensearch-project/opensearch-java/compare/v2.6.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.7.0...2.x
+[2.7.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.6.0...v2.7.0
 [2.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.3.0...v2.4.0
