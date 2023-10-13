@@ -3,56 +3,71 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.0]
 
+This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
+
 ### Added
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
-- Added support for "cjk" analyzer ([#604](https://github.com/opensearch-project/opensearch-java/pull/604))
-- Added support for wrapper queries ([#630](https://github.com/opensearch-project/opensearch-java/pull/630))
-- Added size attribute to MultiTermsAggregation ([#627](https://github.com/opensearch-project/opensearch-java/pull/627))
 
 ### Dependencies
-- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
-- Bumps `org.eclipse.parsson:parsson` from 1.1.2 to 1.1.3
-- Bumps `io.github.classgraph:classgraph` from 4.8.161 to 4.8.162
-- Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.2 to 5.2.3
-- Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.2 to 5.2.3
 
 ### Changed
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
-- Moved "software.amazon.awssdk" dependencies to the compileOnly scope. ([#628](https://github.com/opensearch-project/opensearch-java/pull/628))
 
 ### Deprecated
 - Deprecate RestClientTransport ([#536](https://github.com/opensearch-project/opensearch-java/pull/536))
 
 ### Removed
-- Remove generated code comments from all files ([#598](https://github.com/opensearch-project/opensearch-java/pull/598))
 
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
-- Fix PutMappingRequest by removing unsupported fields ([#597](https://github.com/opensearch-project/opensearch-java/pull/597))
-- Fix parsing of GetFieldMappingResponse ([#641](https://github.com/opensearch-project/opensearch-java/pull/641))
-- Fix TermvectorsResponse for optional fields ([#642](https://github.com/opensearch-project/opensearch-java/pull/642))
 
 ### Security
 
 ## [Unreleased 2.x]
 
 ### Added
-- Added support for "smartcn" analyzer ([#605](https://github.com/opensearch-project/opensearch-java/pull/605))
-- Added support for "script_fields" in multi search request ([#632](https://github.com/opensearch-project/opensearch-java/pull/632))
 
 ### Dependencies
 
 ### Changed
-- Migrated from checkstyle to spotless ([#648](https://github.com/opensearch-project/opensearch-java/pull/648))
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
- - [BUG] JarHell caused by latest software.amazon.awssdk 2.20.141 ([#616](https://github.com/opensearch-project/opensearch-java/pull/616))
+
+### Security
+
+## [2.7.0] - 10/13/2023
+### Added
+- Added support for "smartcn" analyzer ([#605](https://github.com/opensearch-project/opensearch-java/pull/605))
+- Added support for "cjk" analyzer ([#604](https://github.com/opensearch-project/opensearch-java/pull/604))
+- Added support for wrapper queries ([#630](https://github.com/opensearch-project/opensearch-java/pull/630))
+- Added support for "script_fields" in multi search request ([#632](https://github.com/opensearch-project/opensearch-java/pull/632))
+- Added size attribute to MultiTermsAggregation ([#627](https://github.com/opensearch-project/opensearch-java/pull/627))
+
+### Dependencies
+- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
+- Bumps `com.github.jk1.dependency-license-report` from 2.4 to 2.5
+- Bumps `io.github.classgraph:classgraph` from 4.8.160 to 4.8.161
+  
+### Changed
+- Moved "software.amazon.awssdk" dependencies to the compileOnly scope. ([#628](https://github.com/opensearch-project/opensearch-java/pull/628))
+- Migrated from checkstyle to spotless ([#648](https://github.com/opensearch-project/opensearch-java/pull/648))
+
+### Deprecated
+
+### Removed
+- Remove generated code comments from all files ([#598](https://github.com/opensearch-project/opensearch-java/pull/598))
+
+### Fixed
+- Fix PutMappingRequest by removing unsupported fields ([#597](https://github.com/opensearch-project/opensearch-java/pull/597))
+- [BUG] JarHell caused by latest software.amazon.awssdk 2.20.141 ([#616](https://github.com/opensearch-project/opensearch-java/pull/616))
 - Don't over-allocate in HeapBufferedAsyncEntityConsumer in order to consume the response ([#620](https://github.com/opensearch-project/opensearch-java/pull/620))
 - Fixed CVE-2976 + added CVE checker ([#624](https://github.com/opensearch-project/opensearch-java/pull/624))
+- Fix parsing of GetFieldMappingResponse ([#641](https://github.com/opensearch-project/opensearch-java/pull/641))
+- Fix TermvectorsResponse for optional fields ([#642](https://github.com/opensearch-project/opensearch-java/pull/642))
 - Fix deserialization of MsearchTemplateResponse ([#660](https://github.com/opensearch-project/opensearch-java/pull/660))
 
 ### Security
@@ -196,7 +211,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.6.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.7.0...2.x
+[2.7.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.6.0...v2.7.0
 [2.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.3.0...v2.4.0
