@@ -46,6 +46,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Added support for wrapper queries ([#630](https://github.com/opensearch-project/opensearch-java/pull/630))
 - Added support for "script_fields" in multi search request ([#632](https://github.com/opensearch-project/opensearch-java/pull/632))
 - Added size attribute to MultiTermsAggregation ([#627](https://github.com/opensearch-project/opensearch-java/pull/627))
+- Added version increment workflow that executes after release ([#664](https://github.com/opensearch-project/opensearch-java/pull/664))
 
 ### Dependencies
 - Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
