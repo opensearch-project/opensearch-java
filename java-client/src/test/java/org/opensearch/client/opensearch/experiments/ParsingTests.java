@@ -48,7 +48,9 @@ import org.opensearch.client.opensearch.core.TermvectorsResponse;
 import org.opensearch.client.opensearch.experiments.api.FooRequest;
 import org.opensearch.client.opensearch.indices.GetFieldMappingResponse;
 import org.opensearch.client.opensearch.indices.IndexSettings;
+import org.opensearch.client.opensearch.indices.IndexSettingsIndexing;
 import org.opensearch.client.opensearch.indices.IndexSettingsMapping;
+import org.opensearch.client.opensearch.indices.IndexSettingsSearch;
 import org.opensearch.client.opensearch.indices.Translog;
 import org.opensearch.client.opensearch.indices.get_field_mapping.TypeFieldMappings;
 import org.opensearch.client.opensearch.model.ModelTestCase;
@@ -275,4 +277,84 @@ public class ParsingTests extends ModelTestCase {
         assertEquals(response.index(), response2.index());
     }
 
+    @Test
+    public void testIndexSettingsIndexing() {
+
+        var indexing = IndexSettingsIndexing.of(
+            is -> is.slowlog(
+                s -> s.level("info")
+                    .source(0)
+                    .threshold(
+                        t -> t.index(
+                            it -> it.debug(Time.of(ti -> ti.time("500ms")))
+                                .info(Time.of(ti -> ti.time("1000ms")))
+                                .trace(Time.of(ti -> ti.time("200ms")))
+                                .warn(Time.of(ti -> ti.time("5000ms")))
+                        )
+                    )
+            )
+        );
+
+        var str = toJson(indexing);
+        assertEquals(
+            "{\"slowlog\":{\"level\":\"info\",\"source\":0,\"threshold\":{\"index\":{"
+                + "\"warn\":\"5000ms\",\"info\":\"1000ms\",\"debug\":\"500ms\",\"trace\":\"200ms\"}}}}",
+            str
+        );
+
+        var deserialized = fromJson(str, IndexSettingsIndexing._DESERIALIZER);
+        assertEquals(indexing.slowlog().level(), deserialized.slowlog().level());
+        assertEquals(indexing.slowlog().source(), deserialized.slowlog().source());
+        assertEquals(indexing.slowlog().threshold().index().debug().time(), deserialized.slowlog().threshold().index().debug().time());
+        assertEquals(indexing.slowlog().threshold().index().info().time(), deserialized.slowlog().threshold().index().info().time());
+        assertEquals(indexing.slowlog().threshold().index().trace().time(), deserialized.slowlog().threshold().index().trace().time());
+        assertEquals(indexing.slowlog().threshold().index().warn().time(), deserialized.slowlog().threshold().index().warn().time());
+
+    }
+
+    @Test
+    public void testIndexSettingsSearch() {
+
+        var search = IndexSettingsSearch.of(
+            is -> is.slowlog(
+                s -> s.level("info")
+                    .threshold(
+                        t -> t.query(
+                            it -> it.debug(Time.of(ti -> ti.time("500ms")))
+                                .info(Time.of(ti -> ti.time("1000ms")))
+                                .trace(Time.of(ti -> ti.time("200ms")))
+                                .warn(Time.of(ti -> ti.time("5000ms")))
+                        )
+                            .fetch(
+                                it -> it.debug(Time.of(ti -> ti.time("5ms")))
+                                    .info(Time.of(ti -> ti.time("10ms")))
+                                    .trace(Time.of(ti -> ti.time("2ms")))
+                                    .warn(Time.of(ti -> ti.time("50ms")))
+                            )
+                    )
+            ).idle(id -> id.after(a -> a.time("5s")))
+        );
+
+        var str = toJson(search);
+        assertEquals(
+            "{\"idle\":{\"after\":\"5s\"},\"slowlog\":{\"level\":\"info\","
+                + "\"threshold\":{\"query\":{\"warn\":\"5000ms\",\"info\":\"1000ms\",\"debug\":\"500ms\","
+                + "\"trace\":\"200ms\"},\"fetch\":{\"warn\":\"50ms\",\"info\":\"10ms\",\"debug\":\"5ms\","
+                + "\"trace\":\"2ms\"}}}}",
+            str
+        );
+
+        var deserialized = fromJson(str, IndexSettingsSearch._DESERIALIZER);
+        assertEquals(search.slowlog().level(), deserialized.slowlog().level());
+        assertEquals(search.slowlog().threshold().query().debug().time(), deserialized.slowlog().threshold().query().debug().time());
+        assertEquals(search.slowlog().threshold().query().info().time(), deserialized.slowlog().threshold().query().info().time());
+        assertEquals(search.slowlog().threshold().query().trace().time(), deserialized.slowlog().threshold().query().trace().time());
+        assertEquals(search.slowlog().threshold().query().warn().time(), deserialized.slowlog().threshold().query().warn().time());
+        assertEquals(search.slowlog().threshold().fetch().debug().time(), deserialized.slowlog().threshold().fetch().debug().time());
+        assertEquals(search.slowlog().threshold().fetch().info().time(), deserialized.slowlog().threshold().fetch().info().time());
+        assertEquals(search.slowlog().threshold().fetch().trace().time(), deserialized.slowlog().threshold().fetch().trace().time());
+        assertEquals(search.slowlog().threshold().fetch().warn().time(), deserialized.slowlog().threshold().fetch().warn().time());
+        assertEquals(search.idle().after().time(), deserialized.idle().after().time());
+
+    }
 }
