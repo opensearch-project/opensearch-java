@@ -2,6 +2,8 @@
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.0]
+### Dependencies
+- Bumps `io.github.classgraph:classgraph` from 4.8.162 to 4.8.163
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
