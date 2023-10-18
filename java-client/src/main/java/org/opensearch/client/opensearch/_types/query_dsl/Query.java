@@ -118,6 +118,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
         Nested("nested"),
 
+        Neural("neural"),
+
         ParentId("parent_id"),
 
         Percolate("percolate"),
@@ -704,6 +706,23 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
      */
     public NestedQuery nested() {
         return TaggedUnionUtils.get(this, Kind.Nested);
+    }
+
+    /**
+     * Is this variant instance of kind {@code neural}?
+     */
+    public boolean isNeural() {
+        return _kind == Kind.Neural;
+    }
+
+    /**
+     * Get the {@code neural} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code neural} kind.
+     */
+    public NeuralQuery neural() {
+        return TaggedUnionUtils.get(this, Kind.Neural);
     }
 
     /**
@@ -1450,6 +1469,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
             return this.nested(fn.apply(new NestedQuery.Builder()).build());
         }
 
+        public ObjectBuilder<Query> neural(NeuralQuery v) {
+            this._kind = Kind.Neural;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Query> neural(Function<NeuralQuery.Builder, ObjectBuilder<NeuralQuery>> fn) {
+            return this.neural(fn.apply(new NeuralQuery.Builder()).build());
+        }
+
         public ObjectBuilder<Query> parentId(ParentIdQuery v) {
             this._kind = Kind.ParentId;
             this._value = v;
@@ -1747,6 +1776,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
         op.add(Builder::moreLikeThis, MoreLikeThisQuery._DESERIALIZER, "more_like_this");
         op.add(Builder::multiMatch, MultiMatchQuery._DESERIALIZER, "multi_match");
         op.add(Builder::nested, NestedQuery._DESERIALIZER, "nested");
+        op.add(Builder::neural, NeuralQuery._DESERIALIZER, "neural");
         op.add(Builder::parentId, ParentIdQuery._DESERIALIZER, "parent_id");
         op.add(Builder::percolate, PercolateQuery._DESERIALIZER, "percolate");
         op.add(Builder::pinned, PinnedQuery._DESERIALIZER, "pinned");

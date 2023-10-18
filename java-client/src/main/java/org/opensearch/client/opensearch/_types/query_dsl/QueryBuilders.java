@@ -255,6 +255,13 @@ public class QueryBuilders {
     }
 
     /**
+     * Creates a builder for the {@link NeuralQuery nested} {@code Query} variant.
+     */
+    public static NeuralQuery.Builder neural() {
+        return new NeuralQuery.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link ParentIdQuery parent_id} {@code Query}
      * variant.
      */
