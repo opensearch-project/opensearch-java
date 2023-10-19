@@ -963,6 +963,10 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
             generator.writeEnd();
 
         }
+        if (this.scroll != null) {
+            generator.writeKey("scroll");
+            generator.write(this.scroll._toJsonString());
+        }
         if (ApiTypeHelper.isDefined(this.searchAfter)) {
             generator.writeKey("search_after");
             generator.writeStartArray();
