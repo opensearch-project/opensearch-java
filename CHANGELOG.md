@@ -38,6 +38,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
+- Fix for 'scroll' parameter not serialized to SearchRequest.
 
 ### Security
 
