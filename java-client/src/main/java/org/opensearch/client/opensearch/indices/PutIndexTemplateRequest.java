@@ -32,11 +32,12 @@
 
 package org.opensearch.client.opensearch.indices;
 
-import jakarta.json.stream.JsonParser;
-import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch._types.RequestBase;
-import org.opensearch.client.opensearch.indices.put_index_template.IndexTemplateMapping;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -44,418 +45,415 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.opensearch.indices.put_index_template.IndexTemplateMapping;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.WithJsonBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: indices.put_index_template.Request
 
 /**
  * Creates or updates an index template.
- * 
+ *
  */
 @JsonpDeserializable
 public class PutIndexTemplateRequest extends RequestBase implements JsonpSerializable {
-	private final Map<String, JsonData> meta;
+    private final Map<String, JsonData> meta;
 
-	private final List<String> composedOf;
+    private final List<String> composedOf;
 
-	@Nullable
-	private final DataStream dataStream;
+    @Nullable
+    private final DataStream dataStream;
 
-	private final List<String> indexPatterns;
+    private final List<String> indexPatterns;
 
-	private final String name;
+    private final String name;
 
-	@Nullable
-	private final Integer priority;
+    @Nullable
+    private final Integer priority;
 
-	@Nullable
-	private final IndexTemplateMapping template;
+    @Nullable
+    private final IndexTemplateMapping template;
 
-	@Nullable
-	private final Long version;
+    @Nullable
+    private final Long version;
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	private PutIndexTemplateRequest(Builder builder) {
+    private PutIndexTemplateRequest(Builder builder) {
 
-		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
-		this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
-		this.dataStream = builder.dataStream;
-		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.priority = builder.priority;
-		this.template = builder.template;
-		this.version = builder.version;
+        this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+        this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
+        this.dataStream = builder.dataStream;
+        this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.priority = builder.priority;
+        this.template = builder.template;
+        this.version = builder.version;
 
-	}
+    }
 
-	public static PutIndexTemplateRequest of(Function<Builder, ObjectBuilder<PutIndexTemplateRequest>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static PutIndexTemplateRequest of(Function<Builder, ObjectBuilder<PutIndexTemplateRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * API name: {@code _meta}
-	 */
-	public final Map<String, JsonData> meta() {
-		return this.meta;
-	}
+    /**
+     * API name: {@code _meta}
+     */
+    public final Map<String, JsonData> meta() {
+        return this.meta;
+    }
 
-	/**
-	 * API name: {@code composed_of}
-	 */
-	public final List<String> composedOf() {
-		return this.composedOf;
-	}
+    /**
+     * API name: {@code composed_of}
+     */
+    public final List<String> composedOf() {
+        return this.composedOf;
+    }
 
-	/**
-	 * API name: {@code data_stream}
-	 */
-	@Nullable
-	public final DataStream dataStream() {
-		return this.dataStream;
-	}
+    /**
+     * API name: {@code data_stream}
+     */
+    @Nullable
+    public final DataStream dataStream() {
+        return this.dataStream;
+    }
 
-	/**
-	 * API name: {@code index_patterns}
-	 */
-	public final List<String> indexPatterns() {
-		return this.indexPatterns;
-	}
+    /**
+     * API name: {@code index_patterns}
+     */
+    public final List<String> indexPatterns() {
+        return this.indexPatterns;
+    }
 
-	/**
-	 * Required - Index or template name
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
+    /**
+     * Required - Index or template name
+     * <p>
+     * API name: {@code name}
+     */
+    public final String name() {
+        return this.name;
+    }
 
-	/**
-	 * API name: {@code priority}
-	 */
-	@Nullable
-	public final Integer priority() {
-		return this.priority;
-	}
+    /**
+     * API name: {@code priority}
+     */
+    @Nullable
+    public final Integer priority() {
+        return this.priority;
+    }
 
-	/**
-	 * API name: {@code template}
-	 */
-	@Nullable
-	public final IndexTemplateMapping template() {
-		return this.template;
-	}
+    /**
+     * API name: {@code template}
+     */
+    @Nullable
+    public final IndexTemplateMapping template() {
+        return this.template;
+    }
 
-	/**
-	 * API name: {@code version}
-	 */
-	@Nullable
-	public final Long version() {
-		return this.version;
-	}
+    /**
+     * API name: {@code version}
+     */
+    @Nullable
+    public final Long version() {
+        return this.version;
+    }
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.meta)) {
-			generator.writeKey("_meta");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.meta)) {
+            generator.writeKey("_meta");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (ApiTypeHelper.isDefined(this.composedOf)) {
-			generator.writeKey("composed_of");
-			generator.writeStartArray();
-			for (String item0 : this.composedOf) {
-				generator.write(item0);
+        }
+        if (ApiTypeHelper.isDefined(this.composedOf)) {
+            generator.writeKey("composed_of");
+            generator.writeStartArray();
+            for (String item0 : this.composedOf) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.dataStream != null) {
-			generator.writeKey("data_stream");
-			this.dataStream.serialize(generator, mapper);
+        }
+        if (this.dataStream != null) {
+            generator.writeKey("data_stream");
+            this.dataStream.serialize(generator, mapper);
 
-		}
-		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
-			generator.writeKey("index_patterns");
-			generator.writeStartArray();
-			for (String item0 : this.indexPatterns) {
-				generator.write(item0);
+        }
+        if (ApiTypeHelper.isDefined(this.indexPatterns)) {
+            generator.writeKey("index_patterns");
+            generator.writeStartArray();
+            for (String item0 : this.indexPatterns) {
+                generator.write(item0);
 
-			}
-			generator.writeEnd();
+            }
+            generator.writeEnd();
 
-		}
-		if (this.priority != null) {
-			generator.writeKey("priority");
-			generator.write(this.priority);
+        }
+        if (this.priority != null) {
+            generator.writeKey("priority");
+            generator.write(this.priority);
 
-		}
-		if (this.template != null) {
-			generator.writeKey("template");
-			this.template.serialize(generator, mapper);
+        }
+        if (this.template != null) {
+            generator.writeKey("template");
+            this.template.serialize(generator, mapper);
 
-		}
-		if (this.version != null) {
-			generator.writeKey("version");
-			generator.write(this.version);
+        }
+        if (this.version != null) {
+            generator.writeKey("version");
+            generator.write(this.version);
 
-		}
+        }
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Builder for {@link PutIndexTemplateRequest}.
-	 */
+    /**
+     * Builder for {@link PutIndexTemplateRequest}.
+     */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutIndexTemplateRequest>, WithJsonBuilderBase<Builder> {
-		@Nullable
-		private Map<String, JsonData> meta;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutIndexTemplateRequest>, WithJsonBuilderBase<Builder> {
+        @Nullable
+        private Map<String, JsonData> meta;
 
-		@Nullable
-		private List<String> composedOf;
+        @Nullable
+        private List<String> composedOf;
 
-		@Nullable
-		private DataStream dataStream;
+        @Nullable
+        private DataStream dataStream;
 
-		@Nullable
-		private List<String> indexPatterns;
+        @Nullable
+        private List<String> indexPatterns;
 
-		private String name;
+        private String name;
 
-		@Nullable
-		private Integer priority;
+        @Nullable
+        private Integer priority;
 
-		@Nullable
-		private IndexTemplateMapping template;
+        @Nullable
+        private IndexTemplateMapping template;
 
-		@Nullable
-		private Long version;
+        @Nullable
+        private Long version;
 
-		/**
-		 * API name: {@code _meta}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>meta</code>.
-		 */
-		public final Builder meta(Map<String, JsonData> map) {
-			this.meta = _mapPutAll(this.meta, map);
-			return this;
-		}
+        /**
+         * API name: {@code _meta}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>meta</code>.
+         */
+        public final Builder meta(Map<String, JsonData> map) {
+            this.meta = _mapPutAll(this.meta, map);
+            return this;
+        }
 
-		/**
-		 * API name: {@code _meta}
-		 * <p>
-		 * Adds an entry to <code>meta</code>.
-		 */
-		public final Builder meta(String key, JsonData value) {
-			this.meta = _mapPut(this.meta, key, value);
-			return this;
-		}
+        /**
+         * API name: {@code _meta}
+         * <p>
+         * Adds an entry to <code>meta</code>.
+         */
+        public final Builder meta(String key, JsonData value) {
+            this.meta = _mapPut(this.meta, key, value);
+            return this;
+        }
 
-		/**
-		 * API name: {@code composed_of}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>composedOf</code>.
-		 */
-		public final Builder composedOf(List<String> list) {
-			this.composedOf = _listAddAll(this.composedOf, list);
-			return this;
-		}
+        /**
+         * API name: {@code composed_of}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>composedOf</code>.
+         */
+        public final Builder composedOf(List<String> list) {
+            this.composedOf = _listAddAll(this.composedOf, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code composed_of}
-		 * <p>
-		 * Adds one or more values to <code>composedOf</code>.
-		 */
-		public final Builder composedOf(String value, String... values) {
-			this.composedOf = _listAdd(this.composedOf, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code composed_of}
+         * <p>
+         * Adds one or more values to <code>composedOf</code>.
+         */
+        public final Builder composedOf(String value, String... values) {
+            this.composedOf = _listAdd(this.composedOf, value, values);
+            return this;
+        }
 
-		/**
-		 * API name: {@code data_stream}
-		 */
-		public final Builder dataStream(@Nullable DataStream value) {
-			this.dataStream = value;
-			return this;
-		}
+        /**
+         * API name: {@code data_stream}
+         */
+        public final Builder dataStream(@Nullable DataStream value) {
+            this.dataStream = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code data_stream}
-		 */
-		public final Builder dataStream(Function<DataStream.Builder, ObjectBuilder<DataStream>> fn) {
-			return this.dataStream(fn.apply(new DataStream.Builder()).build());
-		}
+        /**
+         * API name: {@code data_stream}
+         */
+        public final Builder dataStream(Function<DataStream.Builder, ObjectBuilder<DataStream>> fn) {
+            return this.dataStream(fn.apply(new DataStream.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code index_patterns}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
-		 */
-		public final Builder indexPatterns(List<String> list) {
-			this.indexPatterns = _listAddAll(this.indexPatterns, list);
-			return this;
-		}
+        /**
+         * API name: {@code index_patterns}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
+         */
+        public final Builder indexPatterns(List<String> list) {
+            this.indexPatterns = _listAddAll(this.indexPatterns, list);
+            return this;
+        }
 
-		/**
-		 * API name: {@code index_patterns}
-		 * <p>
-		 * Adds one or more values to <code>indexPatterns</code>.
-		 */
-		public final Builder indexPatterns(String value, String... values) {
-			this.indexPatterns = _listAdd(this.indexPatterns, value, values);
-			return this;
-		}
+        /**
+         * API name: {@code index_patterns}
+         * <p>
+         * Adds one or more values to <code>indexPatterns</code>.
+         */
+        public final Builder indexPatterns(String value, String... values) {
+            this.indexPatterns = _listAdd(this.indexPatterns, value, values);
+            return this;
+        }
 
-		/**
-		 * Required - Index or template name
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
-			return this;
-		}
+        /**
+         * Required - Index or template name
+         * <p>
+         * API name: {@code name}
+         */
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code priority}
-		 */
-		public final Builder priority(@Nullable Integer value) {
-			this.priority = value;
-			return this;
-		}
+        /**
+         * API name: {@code priority}
+         */
+        public final Builder priority(@Nullable Integer value) {
+            this.priority = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code template}
-		 */
-		public final Builder template(@Nullable IndexTemplateMapping value) {
-			this.template = value;
-			return this;
-		}
+        /**
+         * API name: {@code template}
+         */
+        public final Builder template(@Nullable IndexTemplateMapping value) {
+            this.template = value;
+            return this;
+        }
 
-		/**
-		 * API name: {@code template}
-		 */
-		public final Builder template(Function<IndexTemplateMapping.Builder, ObjectBuilder<IndexTemplateMapping>> fn) {
-			return this.template(fn.apply(new IndexTemplateMapping.Builder()).build());
-		}
+        /**
+         * API name: {@code template}
+         */
+        public final Builder template(Function<IndexTemplateMapping.Builder, ObjectBuilder<IndexTemplateMapping>> fn) {
+            return this.template(fn.apply(new IndexTemplateMapping.Builder()).build());
+        }
 
-		/**
-		 * API name: {@code version}
-		 */
-		public final Builder version(@Nullable Long value) {
-			this.version = value;
-			return this;
-		}
+        /**
+         * API name: {@code version}
+         */
+        public final Builder version(@Nullable Long value) {
+            this.version = value;
+            return this;
+        }
 
-		/**
-		 * Builds a {@link PutIndexTemplateRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public PutIndexTemplateRequest build() {
-			_checkSingleUse();
+        /**
+         * Builds a {@link PutIndexTemplateRequest}.
+         *
+         * @throws NullPointerException
+         *             if some of the required fields are null.
+         */
+        public PutIndexTemplateRequest build() {
+            _checkSingleUse();
 
-			return new PutIndexTemplateRequest(this);
-		}
+            return new PutIndexTemplateRequest(this);
+        }
 
 		@Override
-		public Builder get() {
+		public Builder get(){
 			return this;
 		}
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Json deserializer for {@link PutIndexTemplateRequest}
-	 */
-	public static final JsonpDeserializer<PutIndexTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutIndexTemplateRequest::setupPutIndexTemplateRequestDeserializer);
+    /**
+     * Json deserializer for {@link PutIndexTemplateRequest}
+     */
+    public static final JsonpDeserializer<PutIndexTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        PutIndexTemplateRequest::setupPutIndexTemplateRequestDeserializer
+    );
 
-	protected static void setupPutIndexTemplateRequestDeserializer(
-			ObjectDeserializer<PutIndexTemplateRequest.Builder> op) {
+    protected static void setupPutIndexTemplateRequestDeserializer(ObjectDeserializer<PutIndexTemplateRequest.Builder> op) {
 
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
-		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"composed_of");
-		op.add(Builder::dataStream, DataStream._DESERIALIZER, "data_stream");
-		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"index_patterns");
-		op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
-		op.add(Builder::template, IndexTemplateMapping._DESERIALIZER, "template");
-		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+        op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
+        op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "composed_of");
+        op.add(Builder::dataStream, DataStream._DESERIALIZER, "data_stream");
+        op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index_patterns");
+        op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
+        op.add(Builder::template, IndexTemplateMapping._DESERIALIZER, "template");
+        op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
-	}
+    }
 
-	// ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-	/**
-	 * Endpoint "{@code indices.put_index_template}".
-	 */
-	public static final Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    /**
+     * Endpoint "{@code indices.put_index_template}".
+     */
+    public static final Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 
-			// Request method
-			request -> {
-				return "PUT";
+        // Request method
+        request -> {
+            return "PUT";
 
-			},
+        },
 
-			// Request path
-			request -> {
-				final int _name = 1 << 0;
+        // Request path
+        request -> {
+            final int _name = 1 << 0;
 
-				int propsSet = 0;
+            int propsSet = 0;
 
-				propsSet |= _name;
+            propsSet |= _name;
 
-				if (propsSet == (_name)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_index_template");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+            if (propsSet == (_name)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_index_template");
+                buf.append("/");
+                SimpleEndpoint.pathEncode(request.name, buf);
+                return buf.toString();
+            }
+            throw SimpleEndpoint.noPathTemplateFound("path");
 
-			},
+        },
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+        // Request parameters
+        request -> {
+            return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, PutIndexTemplateResponse._DESERIALIZER);
+        },
+        SimpleEndpoint.emptyMap(),
+        true,
+        PutIndexTemplateResponse._DESERIALIZER
+    );
 }
