@@ -44,20 +44,20 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.WithJsonBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_index_template.Request
@@ -240,7 +240,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	 * Builder for {@link PutIndexTemplateRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutIndexTemplateRequest> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutIndexTemplateRequest>, WithJsonBuilderBase<Builder> {
 		@Nullable
 		private Map<String, JsonData> meta;
 
@@ -381,32 +381,6 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Re-writes previous builder fields ( template, index_patterns, version, priority, data_streams )
-		 *
-		 * @throws NullPointerException
-		 * 		 if value is null.
-		 */
-		public final Builder withJson(InputStream value){
-			assert value != null;
-			JsonpMapper mapper = new JsonbJsonpMapper();
-			JsonParser parser = mapper.jsonProvider().createParser(new InputStreamReader(value));
-			var builder = ObjectBuilderDeserializer.lazy(
-						Builder::new,
-					PutIndexTemplateRequest::setupPutIndexTemplateRequestDeserializer,
-					_builder -> _builder
-			).deserialize(parser,mapper);
-
-			template(builder.template);
-			indexPatterns(builder.indexPatterns);
-			version(builder.version);
-			priority(builder.priority);
-			dataStream(builder.dataStream);
-
-			return this;
-		}
-
-
-		/**
 		 * Builds a {@link PutIndexTemplateRequest}.
 		 *
 		 * @throws NullPointerException
@@ -416,6 +390,11 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 			_checkSingleUse();
 
 			return new PutIndexTemplateRequest(this);
+		}
+
+		@Override
+		public Builder get() {
+			return this;
 		}
 	}
 
