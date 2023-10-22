@@ -32,6 +32,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Dependencies
 
 ### Changed
+- Allow null values in arrays ([#679](https://github.com/opensearch-project/opensearch-java/pull/679))
 
 ### Deprecated
 

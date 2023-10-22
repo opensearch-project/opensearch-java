@@ -1,14 +1,12 @@
 package org.opensearch.client.opensearch.json;
 
 import jakarta.json.stream.JsonParser;
+import java.io.StringReader;
+import java.util.List;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch.model.ModelTestCase;
-
-import java.io.StringReader;
-import java.util.List;
-
 
 public class JsonpDeserializerBaseTest extends ModelTestCase {
 
