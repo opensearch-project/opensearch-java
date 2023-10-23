@@ -9,6 +9,8 @@
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -16,9 +18,6 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-
-import javax.annotation.Nullable;
-import java.util.function.Function;
 
 @JsonpDeserializable
 public class NeuralQuery extends QueryBase implements QueryVariant {
@@ -28,7 +27,6 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     private final int k;
     @Nullable
     private final String modelId;
-
 
     private NeuralQuery(NeuralQuery.Builder builder) {
         super(builder);
@@ -189,8 +187,8 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     }
 
     public static final JsonpDeserializer<NeuralQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-            NeuralQuery.Builder::new,
-            NeuralQuery::setupNeuralQueryDeserializer
+        NeuralQuery.Builder::new,
+        NeuralQuery::setupNeuralQueryDeserializer
     );
 
     protected static void setupNeuralQueryDeserializer(ObjectDeserializer<NeuralQuery.Builder> op) {
@@ -199,7 +197,6 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         op.add(NeuralQuery.Builder::queryText, JsonpDeserializer.stringDeserializer(), "query_text");
         op.add(NeuralQuery.Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
         op.add(NeuralQuery.Builder::k, JsonpDeserializer.integerDeserializer(), "k");
-
 
         op.setKey(NeuralQuery.Builder::field, JsonpDeserializer.stringDeserializer());
     }

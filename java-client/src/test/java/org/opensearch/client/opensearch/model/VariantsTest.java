@@ -210,13 +210,7 @@ public class VariantsTest extends ModelTestCase {
     public void testNeuralQuery() {
 
         SearchRequest searchRequest = SearchRequest.of(
-                s -> s.query(
-                        q -> q.neural(n -> n.field("passage_embedding")
-                                        .queryText("Hi world")
-                                        .modelId("bQ1J8ooBpBj3wT4HVUsb")
-                                        .k(100)
-                        )
-                )
+            s -> s.query(q -> q.neural(n -> n.field("passage_embedding").queryText("Hi world").modelId("bQ1J8ooBpBj3wT4HVUsb").k(100)))
         );
 
         assertEquals("passage_embedding", searchRequest.query().neural().field());
@@ -228,19 +222,19 @@ public class VariantsTest extends ModelTestCase {
     @Test
     public void testNeuralQueryFromJson() {
 
-        String json = "{\n" +
-                "  \"from\": 0,\n" +
-                "  \"size\": 100,\n" +
-                "  \"query\": {\n" +
-                "    \"neural\": {\n" +
-                "      \"passage_embedding\": {\n" +
-                "        \"query_text\": \"Hi world\",\n" +
-                "        \"model_id\": \"bQ1J8ooBpBj3wT4HVUsb\",\n" +
-                "        \"k\": 100\n" +
-                "      }\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
+        String json = "{\n"
+            + "  \"from\": 0,\n"
+            + "  \"size\": 100,\n"
+            + "  \"query\": {\n"
+            + "    \"neural\": {\n"
+            + "      \"passage_embedding\": {\n"
+            + "        \"query_text\": \"Hi world\",\n"
+            + "        \"model_id\": \"bQ1J8ooBpBj3wT4HVUsb\",\n"
+            + "        \"k\": 100\n"
+            + "      }\n"
+            + "    }\n"
+            + "  }\n"
+            + "}";
 
         SearchRequest searchRequest = ModelTestCase.fromJson(json, SearchRequest.class, mapper);
 
