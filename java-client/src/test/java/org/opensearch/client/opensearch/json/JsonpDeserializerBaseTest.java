@@ -1,4 +1,4 @@
-package org.opensearch.client.json;
+package org.opensearch.client.opensearch.json;
 
 import jakarta.json.stream.JsonParser;
 import java.io.StringReader;
