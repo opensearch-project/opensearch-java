@@ -228,7 +228,7 @@ public class VariantsTest extends ModelTestCase {
             + "  \"query\": {\n"
             + "    \"neural\": {\n"
             + "      \"passage_embedding\": {\n"
-            + "        \"query_text\": \"Hi world\",\n"
+            + "        \"query_text\": \"Hi world!\",\n"
             + "        \"model_id\": \"bQ1J8ooBpBj3wT4HVUsb\",\n"
             + "        \"k\": 100\n"
             + "      }\n"
@@ -239,7 +239,7 @@ public class VariantsTest extends ModelTestCase {
         SearchRequest searchRequest = ModelTestCase.fromJson(json, SearchRequest.class, mapper);
 
         assertEquals("passage_embedding", searchRequest.query().neural().field());
-        assertEquals("Hi world", searchRequest.query().neural().queryText());
+        assertEquals("Hi world!", searchRequest.query().neural().queryText());
         assertEquals("bQ1J8ooBpBj3wT4HVUsb", searchRequest.query().neural().modelId());
         assertEquals(100, searchRequest.query().neural().k());
     }
