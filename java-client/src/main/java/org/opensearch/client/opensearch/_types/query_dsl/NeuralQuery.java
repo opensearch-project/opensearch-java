@@ -48,7 +48,7 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
      */
     @Override
     public Query.Kind _queryKind() {
-        return null;
+        return Query.Kind.Neural;
     }
 
     /**
@@ -114,14 +114,11 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
      * Builder for {@link NeuralQuery}.
      */
     public static class Builder extends QueryBase.AbstractBuilder<NeuralQuery.Builder> implements ObjectBuilder<NeuralQuery> {
-        @Nullable
         private String field;
-        @Nullable
         private String queryText;
+        private Integer k;
         @Nullable
         private String modelId;
-        @Nullable
-        private Integer k;
 
         /**
          * Required - The target field.
