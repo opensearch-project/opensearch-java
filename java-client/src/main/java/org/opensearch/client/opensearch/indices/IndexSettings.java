@@ -216,6 +216,12 @@ public class IndexSettings implements JsonpSerializable {
     private final IndexSettingsMapping mapping;
 
     @Nullable
+    private final IndexSettingsIndexing indexing;
+
+    @Nullable
+    private final IndexSettingsSearch search;
+
+    @Nullable
     private final Boolean knn;
 
     @Nullable
@@ -280,6 +286,8 @@ public class IndexSettings implements JsonpSerializable {
         this.analysis = builder.analysis;
         this.settings = builder.settings;
         this.mapping = builder.mapping;
+        this.indexing = builder.indexing;
+        this.search = builder.search;
         this.knn = builder.knn;
         this.knnAlgoParamEfSearch = builder.knnAlgoParamEfSearch;
 
@@ -749,6 +757,22 @@ public class IndexSettings implements JsonpSerializable {
     }
 
     /**
+     * API name: {@code indexing}
+     */
+    @Nullable
+    public final IndexSettingsIndexing indexing() {
+        return this.indexing;
+    }
+
+    /**
+     * API name: {@code search}
+     */
+    @Nullable
+    public final IndexSettingsSearch search() {
+        return this.search;
+    }
+
+    /**
      * API name: {@code knn}
      */
     @Nullable
@@ -1055,6 +1079,16 @@ public class IndexSettings implements JsonpSerializable {
             this.mapping.serialize(generator, mapper);
 
         }
+        if (this.indexing != null) {
+            generator.writeKey("indexing");
+            this.indexing.serialize(generator, mapper);
+
+        }
+        if (this.search != null) {
+            generator.writeKey("search");
+            this.search.serialize(generator, mapper);
+
+        }
         if (this.knn != null) {
             generator.writeKey("knn");
             generator.write(this.knn);
@@ -1239,6 +1273,12 @@ public class IndexSettings implements JsonpSerializable {
 
         @Nullable
         private IndexSettingsMapping mapping;
+
+        @Nullable
+        private IndexSettingsIndexing indexing;
+
+        @Nullable
+        private IndexSettingsSearch search;
 
         @Nullable
         private Boolean knn;
@@ -1822,6 +1862,36 @@ public class IndexSettings implements JsonpSerializable {
         }
 
         /**
+         * API name: {@code indexing}
+         */
+        public final Builder indexing(@Nullable IndexSettingsIndexing value) {
+            this.indexing = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code indexing}
+         */
+        public final Builder indexing(Function<IndexSettingsIndexing.Builder, ObjectBuilder<IndexSettingsIndexing>> fn) {
+            return this.indexing(fn.apply(new IndexSettingsIndexing.Builder()).build());
+        }
+
+        /**
+         * API name: {@code search}
+         */
+        public final Builder search(@Nullable IndexSettingsSearch value) {
+            this.search = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code search}
+         */
+        public final Builder search(Function<IndexSettingsSearch.Builder, ObjectBuilder<IndexSettingsSearch>> fn) {
+            return this.search(fn.apply(new IndexSettingsSearch.Builder()).build());
+        }
+
+        /**
          * Builds a {@link IndexSettings}.
          *
          * @throws NullPointerException
@@ -1995,6 +2065,8 @@ public class IndexSettings implements JsonpSerializable {
         op.add(Builder::analysis, IndexSettingsAnalysis._DESERIALIZER, "analysis", "index.analysis");
         op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
         op.add(Builder::mapping, IndexSettingsMapping._DESERIALIZER, "mapping");
+        op.add(Builder::indexing, IndexSettingsIndexing._DESERIALIZER, "indexing");
+        op.add(Builder::search, IndexSettingsSearch._DESERIALIZER, "search");
         op.add(Builder::knn, JsonpDeserializer.booleanDeserializer(), "knn", "index.knn");
         op.add(
             Builder::knnAlgoParamEfSearch,

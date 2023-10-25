@@ -139,6 +139,40 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                                     .depth(f -> f.limit(3L))
                                     .nestedObjects(f -> f.limit(9L))
                             )
+                            .indexing(
+                                i -> i.slowlog(
+                                    sl -> sl.level("info")
+                                        .source(1000)
+                                        .reformat(false)
+                                        .threshold(
+                                            th -> th.index(
+                                                in -> in.trace(Time.of(t -> t.time("5s")))
+                                                    .debug(Time.of(t -> t.time("10s")))
+                                                    .info(Time.of(t -> t.time("20s")))
+                                                    .warn(Time.of(t -> t.time("30s")))
+                                            )
+                                        )
+                                )
+                            )
+                            .search(
+                                i -> i.slowlog(
+                                    sl -> sl.level("info")
+                                        .threshold(
+                                            th -> th.query(
+                                                in -> in.trace(Time.of(t -> t.time("5s")))
+                                                    .debug(Time.of(t -> t.time("10s")))
+                                                    .info(Time.of(t -> t.time("20s")))
+                                                    .warn(Time.of(t -> t.time("30s")))
+                                            )
+                                                .fetch(
+                                                    in -> in.trace(Time.of(t -> t.time("5s")))
+                                                        .debug(Time.of(t -> t.time("10s")))
+                                                        .info(Time.of(t -> t.time("20s")))
+                                                        .warn(Time.of(t -> t.time("30s")))
+                                                )
+                                        )
+                                ).idle(id -> id.after(a -> a.time("120s")))
+                            )
                     )
             );
         assertTrue(createResponse.acknowledged());
@@ -165,6 +199,35 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         assertEquals(3L, (Object) createdMappingSettings.depth().limit());
         assertNotNull(createdMappingSettings.nestedObjects());
         assertEquals(9L, (Object) createdMappingSettings.nestedObjects().limit());
+
+        var createdIndexingSettings = createdIndexSettings.settings().index().indexing();
+        assertNotNull(createdIndexingSettings);
+        assertNotNull(createdIndexingSettings.slowlog());
+        assertEquals("info", createdIndexingSettings.slowlog().level());
+        assertEquals(1000, (Object) createdIndexingSettings.slowlog().source());
+        assertEquals(false, createdIndexingSettings.slowlog().reformat());
+        assertNotNull(createdIndexingSettings.slowlog().threshold());
+        assertNotNull(createdIndexingSettings.slowlog().threshold().index());
+        assertEquals("5s", createdIndexingSettings.slowlog().threshold().index().trace().time());
+        assertEquals("10s", createdIndexingSettings.slowlog().threshold().index().debug().time());
+        assertEquals("20s", createdIndexingSettings.slowlog().threshold().index().info().time());
+        assertEquals("30s", createdIndexingSettings.slowlog().threshold().index().warn().time());
+
+        var createdSearchSettings = createdIndexSettings.settings().index().search();
+        assertNotNull(createdSearchSettings);
+        assertNotNull(createdSearchSettings.slowlog());
+        assertEquals("info", createdSearchSettings.slowlog().level());
+        assertNotNull(createdSearchSettings.slowlog().threshold());
+        assertNotNull(createdSearchSettings.slowlog().threshold().query());
+        assertEquals("5s", createdSearchSettings.slowlog().threshold().query().trace().time());
+        assertEquals("10s", createdSearchSettings.slowlog().threshold().query().debug().time());
+        assertEquals("20s", createdSearchSettings.slowlog().threshold().query().info().time());
+        assertEquals("30s", createdSearchSettings.slowlog().threshold().query().warn().time());
+        assertNotNull(createdSearchSettings.slowlog().threshold().fetch());
+        assertEquals("5s", createdSearchSettings.slowlog().threshold().fetch().trace().time());
+        assertEquals("10s", createdSearchSettings.slowlog().threshold().fetch().debug().time());
+        assertEquals("20s", createdSearchSettings.slowlog().threshold().fetch().info().time());
+        assertEquals("30s", createdSearchSettings.slowlog().threshold().fetch().warn().time());
 
         var putSettingsResponse = javaClient().indices()
             .putSettings(
