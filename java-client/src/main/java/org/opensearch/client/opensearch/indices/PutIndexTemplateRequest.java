@@ -387,10 +387,10 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
             return new PutIndexTemplateRequest(this);
         }
 
-		@Override
-		public Builder get(){
-			return this;
-		}
+        @Override
+        public Builder get() {
+            return this;
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
