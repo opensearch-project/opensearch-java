@@ -1,0 +1,66 @@
+name: Increment Version
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+permissions: {}
+jobs:
+  build:
+    if: github.repository == 'opensearch-project/opensearch-java'
+    runs-on: ubuntu-latest
+    steps:
+      - name: GitHub App token
+        id: github_app_token
+        uses: tibdex/github-app-token@v2.1.0
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+          installation_id: 22958780
+
+      - uses: actions/checkout@v4
+      - name: Fetch Tag and Version Information
+        run: |
+          TAG=$(echo "${GITHUB_REF#refs/*/}")
+          CURRENT_VERSION_ARRAY=($(echo "${TAG//v}" | tr . '\n'))
+          CURRENT_VERSION_ARRAY[0]=$((CURRENT_VERSION_ARRAY[0]//v))
+          BASE_X=$(IFS=. ; echo "${CURRENT_VERSION_ARRAY[*]:0:1}.x")
+          CURRENT_VERSION=$(IFS=. ; echo "${CURRENT_VERSION_ARRAY[*]:0:3}")
+          CURRENT_VERSION_ARRAY[1]=$((CURRENT_VERSION_ARRAY[1]+1))
+          NEXT_VERSION=$(IFS=. ; echo "${CURRENT_VERSION_ARRAY[*]:0:3}")
+          # if [[ ${#CURRENT_VERSION_ARRAY[2]} -gt 1 ]]; then
+          #   NEXT_VERSION_ID="${CURRENT_VERSION_ARRAY[0]:0:3}0${CURRENT_VERSION_ARRAY[1]:0:3}${CURRENT_VERSION_ARRAY[2]:0:3}99"
+          # else
+          #   NEXT_VERSION_ID=$(IFS=0 ; echo "${CURRENT_VERSION_ARRAY[*]:0:3}99")
+          # fi
+          echo "TAG=$TAG" >> $GITHUB_ENV
+          # echo "BASE=$BASE" >> $GITHUB_ENV
+          echo "BASE_X=$BASE_X" >> $GITHUB_ENV
+          echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
+          echo "NEXT_VERSION=$NEXT_VERSION" >> $GITHUB_ENV
+          # echo "NEXT_VERSION_ID=$NEXT_VERSION_ID" >> $GITHUB_ENV
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BASE_X }}
+          token: ${{ steps.github_app_token.outputs.token }}
+
+      - name: Increment Minor Version
+        run: |
+          echo Incrementing $CURRENT_VERSION to $NEXT_VERSION
+          sed -i "s/systemProp.version = $CURRENT_VERSION/systemProp.version = $NEXT_VERSION/g" gradle.properties
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ steps.github_app_token.outputs.token }}
+          base: ${{ env.BASE_X }}
+          branch: 'create-pull-request/patch-${{ env.BASE }}'
+          commit-message: Increment version to ${{ env.NEXT_VERSION }}
+          signoff: true
+          delete-branch: true
+          labels: |
+            autocut
+          title: '[AUTO] Increment version to ${{ env.NEXT_VERSION }}.'
+          body: |
+            I've noticed that a new tag ${{ env.TAG }} was pushed, and incremented the version from ${{ env.CURRENT_VERSION }} to ${{ env.NEXT_VERSION }}.

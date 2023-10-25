@@ -51,7 +51,7 @@ plugins {
     `java-library`
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "2.5"
-    id("org.owasp.dependencycheck") version "8.4.0"
+    id("org.owasp.dependencycheck") version "8.4.2"
     id("com.diffplug.spotless") version "6.22.0"
 }
 apply(plugin = "opensearch.repositories")
@@ -172,7 +172,7 @@ dependencies {
     // Needed even if using Jackson to have an implementation of the Jsonp object model
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/parsson
-    api("org.eclipse.parsson:parsson:1.1.4")
+    api("org.eclipse.parsson:parsson:1.1.5")
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // http://json-b.net/
@@ -199,7 +199,7 @@ dependencies {
     implementation("org.eclipse", "yasson", "2.0.2")
 
     // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.162")
+    testImplementation("io.github.classgraph:classgraph:4.8.163")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {
