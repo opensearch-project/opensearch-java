@@ -40,6 +40,7 @@ import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
 import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.IndexSettingsAnalysis;
 import org.opensearch.client.samples.util.AppData;
+import org.opensearch.client.samples.util.CommonUtil;
 import org.opensearch.client.samples.util.IndexData;
 
 /**
@@ -59,11 +60,7 @@ public class Search {
 
             final var indexName = "my-index";
 
-            if (!client.indices().exists(r -> r.index(indexName)).value()) {
-                LOGGER.info("Creating index {}", indexName);
-                CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(indexName).build();
-                client.indices().create(createIndexRequest);
-            }
+            CommonUtil.createIndex(client, indexName);
 
             LOGGER.info("Indexing documents");
             IndexData indexData = new IndexData("Document 1", "Text for document 1");

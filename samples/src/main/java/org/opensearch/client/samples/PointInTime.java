@@ -23,6 +23,7 @@ import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
 import org.opensearch.client.opensearch.indices.IndexSettings;
+import org.opensearch.client.samples.util.CommonUtil;
 
 /**
  * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=PointInTime</c>
@@ -39,19 +40,7 @@ public class PointInTime {
 
             final var indexName = "my-index";
 
-            if (!client.indices().exists(r -> r.index(indexName)).value()) {
-                LOGGER.info("Creating index {}", indexName);
-                IndexSettings settings = new IndexSettings.Builder().numberOfShards("2").numberOfReplicas("1").build();
-                TypeMapping mapping = new TypeMapping.Builder().properties(
-                    "age",
-                    new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build()
-                ).build();
-                CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(indexName)
-                    .settings(settings)
-                    .mappings(mapping)
-                    .build();
-                client.indices().create(createIndexRequest);
-            }
+            CommonUtil.createIndex(client, indexName);
 
             CreatePitRequest createPitRequest = new CreatePitRequest.Builder().targetIndexes(Collections.singletonList(indexName))
                 .keepAlive(new Time.Builder().time("100m").build())

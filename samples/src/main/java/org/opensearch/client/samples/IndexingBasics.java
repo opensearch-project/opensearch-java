@@ -27,6 +27,7 @@ import org.opensearch.client.opensearch.indices.GetMappingRequest;
 import org.opensearch.client.opensearch.indices.GetMappingResponse;
 import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.PutMappingRequest;
+import org.opensearch.client.samples.util.CommonUtil;
 import org.opensearch.client.samples.util.IndexData;
 
 /**
@@ -44,19 +45,7 @@ public class IndexingBasics {
 
             final var indexName = "my-index";
 
-            if (!client.indices().exists(r -> r.index(indexName)).value()) {
-                LOGGER.info("Creating index {}", indexName);
-                IndexSettings settings = new IndexSettings.Builder().numberOfShards("2").numberOfReplicas("1").build();
-                TypeMapping mapping = new TypeMapping.Builder().properties(
-                    "age",
-                    new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build()
-                ).build();
-                CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(indexName)
-                    .settings(settings)
-                    .mappings(mapping)
-                    .build();
-                client.indices().create(createIndexRequest);
-            }
+            CommonUtil.createIndex(client, indexName);
 
             LOGGER.info("Indexing documents");
             IndexData indexData = new IndexData("Document 1", "Text for document 1");
