@@ -8,12 +8,10 @@
 
 package org.opensearch.client.samples;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.mapping.IntegerNumberProperty;
 import org.opensearch.client.opensearch._types.mapping.Property;
@@ -72,42 +70,33 @@ public class Bulk {
             BulkResponse bulkResponse = client.bulk(bulkReq.build());
             LOGGER.info("Bulk response items: {}", bulkResponse.items().size());
 
-            LOGGER.info("Search & bulk update documents");
+            Query query = Query.of(qb -> qb.match(mb -> mb.field("title").query(fv -> fv.stringValue("document"))));
+            final SearchRequest.Builder searchReq = new SearchRequest.Builder().allowPartialSearchResults(false)
+                .index(List.of(indexName))
+                .size(10)
+                .ignoreThrottled(false)
+                .query(query);
 
-            SearchResponse<IndexData> searchResponse = search(client, indexName, "title", "Document");
+            SearchResponse<IndexData> searchResponse = client.search(searchReq.build(), IndexData.class);
             LOGGER.info("Found {} documents", searchResponse.hits().hits().size());
 
             for (var hit : searchResponse.hits().hits()) {
                 LOGGER.info("Found {} with score {} and id {}", hit.source(), hit.score(), hit.id());
-                IndexData finalSearchedData = hit.source();
-                finalSearchedData.setText("Updated document");
-                BulkRequest request = new BulkRequest.Builder().operations(
-                    o -> o.update(u -> u.index(indexName).id(hit.id()).document(finalSearchedData))
-                ).refresh(Refresh.WaitFor).build();
-                bulkResponse = client.bulk(request);
-                LOGGER.info("Bulk update response items: {}", bulkResponse.items().size());
             }
-            searchResponse = search(client, indexName, "title", "Document");
 
-            for (var hit : searchResponse.hits().hits()) {
-                LOGGER.info("Found {} with score {} and id {}", hit.source(), hit.score(), hit.id());
-            }
+            LOGGER.info("Bulk update document");
+            doc1.setText("Updated Document");
+            BulkRequest request = new BulkRequest.Builder().operations(o -> o.update(u -> u.index(indexName).id("id1").document(doc1)))
+                .refresh(Refresh.WaitFor)
+                .build();
+            bulkResponse = client.bulk(request);
+            LOGGER.info("Bulk update response items: {}", bulkResponse.items().size());
+
             LOGGER.info("Deleting index {}", indexName);
             DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest.Builder().index(indexName).build();
             client.indices().delete(deleteIndexRequest);
         } catch (Exception e) {
             LOGGER.error("Unexpected exception", e);
         }
-    }
-
-    public static SearchResponse<IndexData> search(OpenSearchClient client, String indexName, String field, String value)
-        throws IOException {
-        Query query = Query.of(qb -> qb.match(mb -> mb.field(field).query(fv -> fv.stringValue(value))));
-        final SearchRequest.Builder searchReq = new SearchRequest.Builder().allowPartialSearchResults(false)
-            .index(List.of(indexName))
-            .size(10)
-            .ignoreThrottled(false)
-            .query(query);
-        return client.search(searchReq.build(), IndexData.class);
     }
 }
