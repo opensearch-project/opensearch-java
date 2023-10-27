@@ -35,15 +35,15 @@ import org.opensearch.client.samples.util.IndexData;
  */
 public class Bulk {
     private static final Logger LOGGER = LogManager.getLogger(Bulk.class);
-    private static OpenSearchClient client;
-    private static final String indexName = "my-index";
 
     public static void main(String[] args) {
         try {
-            client = SampleClient.create();
+            var client = SampleClient.create();
 
             var version = client.info().version();
             LOGGER.info("Server: {}@{}", version.distribution(), version.number());
+
+            final var indexName = "my-index";
 
             if (!client.indices().exists(r -> r.index(indexName)).value()) {
                 LOGGER.info("Creating index {}", indexName);
@@ -72,8 +72,6 @@ public class Bulk {
             BulkResponse bulkResponse = client.bulk(bulkReq.build());
             LOGGER.info("Bulk response items: {}", bulkResponse.items().size());
 
-            // wait for the changes to reflect
-            Thread.sleep(3000);
             LOGGER.info("Search & bulk update documents");
 
             SearchResponse<IndexData> searchResponse = search(client, indexName, "title", "Document");
@@ -85,12 +83,10 @@ public class Bulk {
                 finalSearchedData.setText("Updated document");
                 BulkRequest request = new BulkRequest.Builder().operations(
                     o -> o.update(u -> u.index(indexName).id(hit.id()).document(finalSearchedData))
-                ).build();
+                ).refresh(Refresh.WaitFor).build();
                 bulkResponse = client.bulk(request);
                 LOGGER.info("Bulk update response items: {}", bulkResponse.items().size());
             }
-            // wait for the changes to reflect
-            Thread.sleep(3000);
             searchResponse = search(client, indexName, "title", "Document");
 
             for (var hit : searchResponse.hits().hits()) {
