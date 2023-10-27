@@ -95,17 +95,10 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         try {
             openSearchClient.cluster().putSettings(request);
             fail();
-        } catch (OpenSearchException | IOException e) {
-            OpenSearchException openSearchException;
-            if (e instanceof OpenSearchException) {
-                openSearchException = (OpenSearchException) e;
-            } else {
-                assertTrue(e.getCause() instanceof OpenSearchException);
-                openSearchException = (OpenSearchException) e.getCause();
-            }
-
-            assertEquals(openSearchException.response().status(), 400);
-            assertTrue(openSearchException.getMessage().contains("transient setting [no_idea_what_you_are_talking_about], not recognized"));
+        } catch (OpenSearchException e) {
+            assertNotNull(e);
+            assertEquals(e.response().status(), 400);
+            assertTrue(e.getMessage().contains("transient setting [no_idea_what_you_are_talking_about], not recognized"));
         }
     }
 

@@ -15,6 +15,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -35,12 +37,15 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.GZIPOutputStream;
 import javax.annotation.Nullable;
+import javax.net.ssl.SSLHandshakeException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.hc.client5.http.ConnectTimeoutException;
 import org.apache.hc.client5.http.auth.AuthCache;
 import org.apache.hc.client5.http.auth.AuthScheme;
 import org.apache.hc.client5.http.auth.AuthScope;
@@ -55,6 +60,7 @@ import org.apache.hc.client5.http.impl.auth.BasicScheme;
 import org.apache.hc.client5.http.protocol.HttpClientContext;
 import org.apache.hc.core5.concurrent.FutureCallback;
 import org.apache.hc.core5.http.ClassicHttpResponse;
+import org.apache.hc.core5.http.ConnectionClosedException;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpEntity;
@@ -141,17 +147,16 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         TransportOptions options
     ) throws IOException {
         try {
-            return performRequestAsync(request, endpoint, options).join();
-        } catch (final CompletionException ex) {
-            Throwable cause = ex.getCause();
-            if (cause != null) {
-                if (cause instanceof IOException) {
-                    throw (IOException) cause;
-                } else {
-                    throw new IOException(cause);
-                }
+            return performRequestAsync(request, endpoint, options).get();
+        } catch (final Exception ex) {
+            Exception cause = extractAndWrapCause(ex);
+            if (cause instanceof IOException) {
+                throw (IOException) cause;
             }
-            throw new IOException(ex);
+            if (cause instanceof RuntimeException) {
+                throw (RuntimeException) cause;
+            }
+            throw new IllegalStateException("unexpected exception type: must be either RuntimeException or IOException", cause);
         }
     }
 
@@ -1015,4 +1020,72 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             return new ByteArrayInputStream(this.buf, 0, this.count);
         }
     }
+
+    /**
+     * Wrap the exception so the caller's signature shows up in the stack trace, taking care to copy the original type and message
+     * where possible so async and sync code don't have to check different exceptions.
+     */
+    private static Exception extractAndWrapCause(Exception exception) {
+        if (exception instanceof InterruptedException) {
+            throw new RuntimeException("thread waiting for the response was interrupted", exception);
+        }
+        if (exception instanceof ExecutionException) {
+            ExecutionException executionException = (ExecutionException) exception;
+            Throwable t = executionException.getCause() == null ? executionException : executionException.getCause();
+            if (t instanceof Error) {
+                throw (Error) t;
+            }
+            exception = (Exception) t;
+        }
+        if (exception instanceof ConnectTimeoutException) {
+            ConnectTimeoutException e = new ConnectTimeoutException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof SocketTimeoutException) {
+            SocketTimeoutException e = new SocketTimeoutException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof ConnectionClosedException) {
+            ConnectionClosedException e = new ConnectionClosedException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof SSLHandshakeException) {
+            SSLHandshakeException e = new SSLHandshakeException(
+                exception.getMessage() + "\nSee https://opensearch.org/docs/latest/clients/java/ for troubleshooting."
+            );
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof ConnectException) {
+            ConnectException e = new ConnectException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof ResponseException) {
+            try {
+                ResponseException e = new ResponseException(((ResponseException) exception).getResponse());
+                e.initCause(exception);
+                return e;
+            } catch (final IOException ex) {
+                // We are not able to reconstruct the response, throw IOException instead
+                return new IOException(exception.getMessage(), exception);
+            }
+        }
+        if (exception instanceof IOException) {
+            return new IOException(exception.getMessage(), exception);
+        }
+        if (exception instanceof OpenSearchException) {
+            final OpenSearchException e = new OpenSearchException(((OpenSearchException) exception).response());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof RuntimeException) {
+            return new RuntimeException(exception.getMessage(), exception);
+        }
+        return new RuntimeException("error while performing request", exception);
+    }
+
 }

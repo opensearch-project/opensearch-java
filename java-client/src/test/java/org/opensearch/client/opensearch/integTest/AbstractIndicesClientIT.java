@@ -52,19 +52,10 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
             try {
                 javaClient().indices().get(request);
                 fail(); // should never execute
-            } catch (OpenSearchException | IOException ex) {
-                OpenSearchException openSearchException;
-                if (ex instanceof OpenSearchException) {
-                    openSearchException = (OpenSearchException) ex;
-                } else {
-                    assertTrue(ex.getCause() instanceof OpenSearchException);
-                    openSearchException = (OpenSearchException) ex.getCause();
-                }
-
-                assertEquals(openSearchException.status(), 404);
-                assertEquals(openSearchException.getMessage(),
-                        "Request failed: [index_not_found_exception] " +
-                                "no such index [non_existent_index]");
+            } catch (OpenSearchException ex) {
+                assertNotNull(ex);
+                assertEquals(ex.status(), 404);
+                assertEquals(ex.getMessage(), "Request failed: [index_not_found_exception] " + "no such index [non_existent_index]");
             }
         }
 
@@ -80,10 +71,8 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
             try {
                 javaClient().indices().get(request);
                 fail(); // should never execute
-            } catch (OpenSearchException | IOException ex) {
-                if (!(ex instanceof OpenSearchException)) {
-                    assertTrue(ex.getCause() instanceof OpenSearchException);
-                }
+            } catch (OpenSearchException ex) {
+                assertNotNull(ex);
             }
         }
     }
@@ -113,19 +102,10 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         try {
             javaClient().indices().getSettings(getIndicesSettingsRequest);
             fail();
-        } catch (OpenSearchException | IOException ex) {
-            OpenSearchException openSearchException;
-            if (ex instanceof OpenSearchException) {
-                openSearchException = (OpenSearchException) ex;
-            } else {
-                assertTrue(ex.getCause() instanceof OpenSearchException);
-                openSearchException = (OpenSearchException) ex.getCause();
-            }
-
-            assertEquals(openSearchException.status(), 404);
-            assertEquals(openSearchException.getMessage(),
-                    "Request failed: [index_not_found_exception] " +
-                            "no such index [index_that_doesnt_exist]");
+        } catch (OpenSearchException ex) {
+            assertNotNull(ex);
+            assertEquals(ex.status(), 404);
+            assertEquals(ex.getMessage(), "Request failed: [index_not_found_exception] " + "no such index [index_that_doesnt_exist]");
         }
     }
 
@@ -194,16 +174,9 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         try {
             javaClient().indices().getDataStream(b -> b.name(dataStreamName));
             fail();
-        } catch (OpenSearchException | IOException ex) {
-            OpenSearchException openSearchException;
-            if (ex instanceof OpenSearchException) {
-                openSearchException = (OpenSearchException) ex;
-            } else {
-                assertTrue(ex.getCause() instanceof OpenSearchException);
-                openSearchException = (OpenSearchException) ex.getCause();
-            }
-
-            assertEquals(openSearchException.status(), 404);
+        } catch (OpenSearchException ex) {
+            assertNotNull(ex);
+            assertEquals(ex.status(), 404);
         }
     }
 
@@ -213,19 +186,10 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         try {
             GetAliasResponse response = javaClient().indices().getAlias(aliasRequest);
             fail();
-        } catch (OpenSearchException | IOException ex) {
-            OpenSearchException openSearchException;
-            if (ex instanceof OpenSearchException) {
-                openSearchException = (OpenSearchException) ex;
-            } else {
-                assertTrue(ex.getCause() instanceof OpenSearchException);
-                openSearchException = (OpenSearchException) ex.getCause();
-            }
-
-            assertEquals(openSearchException.status(), 404);
-            assertEquals(openSearchException.getMessage(),
-                    "Request failed: [string_error] " +
-                            "alias [alias_not_exists] missing");
+        } catch (OpenSearchException ex) {
+            assertNotNull(ex);
+            assertEquals(ex.status(), 404);
+            assertEquals(ex.getMessage(), "Request failed: [string_error] " + "alias [alias_not_exists] missing");
         }
     }
 }

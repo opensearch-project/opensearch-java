@@ -8,6 +8,7 @@
 
 package org.opensearch.client.opensearch.integTest.aws;
 
+import java.io.IOException;
 import org.apache.hc.core5.http.HttpHost;
 import org.opensearch.client.opensearch.integTest.OpenSearchTransportSupport;
 import org.opensearch.client.transport.OpenSearchTransport;
@@ -18,17 +19,16 @@ import software.amazon.awssdk.http.async.SdkAsyncHttpClient;
 import software.amazon.awssdk.http.crt.AwsCrtAsyncHttpClient;
 import software.amazon.awssdk.regions.Region;
 
-import java.io.IOException;
-
 interface AwsSdk2AsyncTransportSupport extends OpenSearchTransportSupport {
     @Override
     default OpenSearchTransport buildTransport(Settings settings, HttpHost[] hosts) throws IOException {
         return new AwsSdk2Transport(
-                getAsyncHttpClient(),
-                getTestClusterHost(),
-                getTestClusterServiceName(),
-                getTestClusterRegion(),
-                getTransportOptions().build());
+            getAsyncHttpClient(),
+            getTestClusterHost(),
+            getTestClusterServiceName(),
+            getTestClusterRegion(),
+            getTransportOptions().build()
+        );
     }
 
     private String getTestClusterHost() {
