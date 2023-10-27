@@ -70,19 +70,16 @@ public class Bulk {
             BulkResponse bulkResponse = client.bulk(bulkReq.build());
             LOGGER.info("Bulk response items: {}", bulkResponse.items().size());
 
-            Query query = Query.of(qb -> qb.match(mb -> mb.field("title").query(fv -> fv.stringValue("document"))));
+            Query query = Query.of(qb -> qb.match(mb -> mb.field("title").query(fv -> fv.stringValue("Document"))));
             final SearchRequest.Builder searchReq = new SearchRequest.Builder().allowPartialSearchResults(false)
                 .index(List.of(indexName))
                 .size(10)
+                .source(sc -> sc.fetch(false))
                 .ignoreThrottled(false)
                 .query(query);
 
             SearchResponse<IndexData> searchResponse = client.search(searchReq.build(), IndexData.class);
             LOGGER.info("Found {} documents", searchResponse.hits().hits().size());
-
-            for (var hit : searchResponse.hits().hits()) {
-                LOGGER.info("Found {} with score {} and id {}", hit.source(), hit.score(), hit.id());
-            }
 
             LOGGER.info("Bulk update document");
             doc1.setText("Updated Document");
