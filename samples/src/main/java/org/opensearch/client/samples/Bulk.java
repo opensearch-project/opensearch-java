@@ -11,7 +11,6 @@ package org.opensearch.client.samples;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.opensearch.OpenSearchClient;
@@ -50,13 +49,13 @@ public class Bulk {
                 LOGGER.info("Creating index {}", indexName);
                 IndexSettings settings = new IndexSettings.Builder().numberOfShards("2").numberOfReplicas("1").build();
                 TypeMapping mapping = new TypeMapping.Builder().properties(
-                        "age",
-                        new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build()
+                    "age",
+                    new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build()
                 ).build();
                 CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(indexName)
-                        .settings(settings)
-                        .mappings(mapping)
-                        .build();
+                    .settings(settings)
+                    .mappings(mapping)
+                    .build();
                 client.indices().create(createIndexRequest);
             }
 
@@ -106,13 +105,13 @@ public class Bulk {
     }
 
     public static SearchResponse<IndexData> search(OpenSearchClient client, String indexName, String field, String value)
-            throws IOException {
+        throws IOException {
         Query query = Query.of(qb -> qb.match(mb -> mb.field(field).query(fv -> fv.stringValue(value))));
         final SearchRequest.Builder searchReq = new SearchRequest.Builder().allowPartialSearchResults(false)
-                .index(List.of(indexName))
-                .size(10)
-                .ignoreThrottled(false)
-                .query(query);
+            .index(List.of(indexName))
+            .size(10)
+            .ignoreThrottled(false)
+            .query(query);
         return client.search(searchReq.build(), IndexData.class);
     }
 }
