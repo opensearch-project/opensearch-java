@@ -77,8 +77,17 @@ public class Bulk {
                 .source(sc -> sc.fetch(false))
                 .ignoreThrottled(false)
                 .query(query);
+
             SearchResponse<IndexData> searchResponse = client.search(searchReq.build(), IndexData.class);
             LOGGER.info("Found {} documents", searchResponse.hits().hits().size());
+
+            LOGGER.info("Bulk update document");
+            doc1.setText("Updated Document");
+            BulkRequest request = new BulkRequest.Builder().operations(o -> o.update(u -> u.index(indexName).id("id1").document(doc1)))
+                .refresh(Refresh.WaitFor)
+                .build();
+            bulkResponse = client.bulk(request);
+            LOGGER.info("Bulk update response items: {}", bulkResponse.items().size());
 
             LOGGER.info("Deleting index {}", indexName);
             DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest.Builder().index(indexName).build();

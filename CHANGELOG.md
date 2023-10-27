@@ -7,7 +7,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
   
 ### Changed
-Allow null values in arrays ([#687](https://github.com/opensearch-project/opensearch-java/pull/687))
+- Allow null values in arrays ([#687](https://github.com/opensearch-project/opensearch-java/pull/687))
+- Add an example for bulk update operation in samples ([#690](https://github.com/opensearch-project/opensearch-java/pull/690))
 
 ### Deprecated
 
