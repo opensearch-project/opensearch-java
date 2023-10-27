@@ -43,13 +43,13 @@ public class PointInTime {
                 LOGGER.info("Creating index {}", indexName);
                 IndexSettings settings = new IndexSettings.Builder().numberOfShards("2").numberOfReplicas("1").build();
                 TypeMapping mapping = new TypeMapping.Builder().properties(
-                        "age",
-                        new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build()
+                    "age",
+                    new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build()
                 ).build();
                 CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(indexName)
-                        .settings(settings)
-                        .mappings(mapping)
-                        .build();
+                    .settings(settings)
+                    .mappings(mapping)
+                    .build();
                 client.indices().create(createIndexRequest);
             }
 

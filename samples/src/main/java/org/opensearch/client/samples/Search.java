@@ -23,7 +23,6 @@ import org.opensearch.client.opensearch._types.analysis.CustomAnalyzer;
 import org.opensearch.client.opensearch._types.analysis.ShingleTokenFilter;
 import org.opensearch.client.opensearch._types.analysis.TokenFilter;
 import org.opensearch.client.opensearch._types.analysis.TokenFilterDefinition;
-import org.opensearch.client.opensearch._types.mapping.IntegerNumberProperty;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.mapping.TextProperty;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
@@ -62,15 +61,7 @@ public class Search {
 
             if (!client.indices().exists(r -> r.index(indexName)).value()) {
                 LOGGER.info("Creating index {}", indexName);
-                IndexSettings settings = new IndexSettings.Builder().numberOfShards("2").numberOfReplicas("1").build();
-                TypeMapping mapping = new TypeMapping.Builder().properties(
-                        "age",
-                        new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build()
-                ).build();
-                CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(indexName)
-                        .settings(settings)
-                        .mappings(mapping)
-                        .build();
+                CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(indexName).build();
                 client.indices().create(createIndexRequest);
             }
 
