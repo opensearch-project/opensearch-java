@@ -35,7 +35,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Dependencies
 
 ### Changed
-Allow null values in arrays ([#687](https://github.com/opensearch-project/opensearch-java/pull/687))
+- Allow null values in arrays ([#687](https://github.com/opensearch-project/opensearch-java/pull/687))
+- Wrap RuntimeExceptions in IOException when synchronous callers use asynchronous transports ([#656](https://github.com/opensearch-project/opensearch-java/pull/656))
 
 ### Deprecated
 

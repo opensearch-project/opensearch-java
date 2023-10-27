@@ -198,13 +198,11 @@ public class AwsSdk2Transport implements OpenSearchTransport {
                 if (cause != null) {
                     if (cause instanceof IOException) {
                         throw (IOException) cause;
+                    } else {
+                        throw new IOException(cause);
                     }
-                    if (cause instanceof RuntimeException) {
-                        throw (RuntimeException) cause;
-                    }
-                    throw new RuntimeException(cause);
                 }
-                throw new RuntimeException(e);
+                throw new IOException(e);
             } catch (InterruptedException e) {
                 throw new IOException("HttpRequest was interrupted", e);
             }
