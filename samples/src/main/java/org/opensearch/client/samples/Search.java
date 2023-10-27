@@ -35,7 +35,6 @@ import org.opensearch.client.opensearch.core.search.FieldSuggesterBuilders;
 import org.opensearch.client.opensearch.core.search.PhraseSuggester;
 import org.opensearch.client.opensearch.core.search.Suggester;
 import org.opensearch.client.opensearch.core.search.TermSuggester;
-import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
 import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.IndexSettingsAnalysis;

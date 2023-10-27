@@ -8,8 +8,9 @@
 
 package org.opensearch.client.samples;
 
-import java.util.ArrayList;
+import static org.opensearch.client.samples.util.CommonUtil.search;
 
+import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.opensearch.OpenSearchClient;
@@ -23,8 +24,6 @@ import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
 import org.opensearch.client.samples.util.CommonUtil;
 import org.opensearch.client.samples.util.IndexData;
 
-import static org.opensearch.client.samples.util.CommonUtil.search;
-
 /**
  * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=Bulk</c>
  */
@@ -32,6 +31,7 @@ public class Bulk {
     private static final Logger LOGGER = LogManager.getLogger(Bulk.class);
     private static OpenSearchClient client;
     private static final String indexName = "my-index";
+
     public static void main(String[] args) {
         try {
             client = SampleClient.create();
@@ -65,8 +65,9 @@ public class Bulk {
                 LOGGER.info("Found {} with score {} and id {}", hit.source(), hit.score(), hit.id());
                 IndexData finalSearchedData = hit.source();
                 finalSearchedData.setText("Updated document");
-                BulkRequest request = new BulkRequest.Builder().operations(o -> o.update(u -> u.index(indexName)
-                        .id(hit.id()).document(finalSearchedData))).build();
+                BulkRequest request = new BulkRequest.Builder().operations(
+                    o -> o.update(u -> u.index(indexName).id(hit.id()).document(finalSearchedData))
+                ).build();
                 bulkResponse = client.bulk(request);
                 LOGGER.info("Bulk update response items: {}", bulkResponse.items().size());
             }

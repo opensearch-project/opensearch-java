@@ -12,17 +12,12 @@ import java.util.Collections;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.opensearch._types.Time;
-import org.opensearch.client.opensearch._types.mapping.IntegerNumberProperty;
-import org.opensearch.client.opensearch._types.mapping.Property;
-import org.opensearch.client.opensearch._types.mapping.TypeMapping;
 import org.opensearch.client.opensearch.core.pit.CreatePitRequest;
 import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
 import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
 import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
 import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
-import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
-import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.samples.util.CommonUtil;
 
 /**
