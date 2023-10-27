@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
   
 ### Changed
+Allow null values in arrays ([#687](https://github.com/opensearch-project/opensearch-java/pull/687))
 
 ### Deprecated
 
