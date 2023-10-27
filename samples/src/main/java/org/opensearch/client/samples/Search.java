@@ -23,6 +23,7 @@ import org.opensearch.client.opensearch._types.analysis.CustomAnalyzer;
 import org.opensearch.client.opensearch._types.analysis.ShingleTokenFilter;
 import org.opensearch.client.opensearch._types.analysis.TokenFilter;
 import org.opensearch.client.opensearch._types.analysis.TokenFilterDefinition;
+import org.opensearch.client.opensearch._types.mapping.IntegerNumberProperty;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.mapping.TextProperty;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
@@ -35,11 +36,11 @@ import org.opensearch.client.opensearch.core.search.FieldSuggesterBuilders;
 import org.opensearch.client.opensearch.core.search.PhraseSuggester;
 import org.opensearch.client.opensearch.core.search.Suggester;
 import org.opensearch.client.opensearch.core.search.TermSuggester;
+import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
 import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.IndexSettingsAnalysis;
 import org.opensearch.client.samples.util.AppData;
-import org.opensearch.client.samples.util.CommonUtil;
 import org.opensearch.client.samples.util.IndexData;
 
 /**
@@ -59,7 +60,19 @@ public class Search {
 
             final var indexName = "my-index";
 
-            CommonUtil.createIndex(client, indexName);
+            if (!client.indices().exists(r -> r.index(indexName)).value()) {
+                LOGGER.info("Creating index {}", indexName);
+                IndexSettings settings = new IndexSettings.Builder().numberOfShards("2").numberOfReplicas("1").build();
+                TypeMapping mapping = new TypeMapping.Builder().properties(
+                        "age",
+                        new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build()
+                ).build();
+                CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(indexName)
+                        .settings(settings)
+                        .mappings(mapping)
+                        .build();
+                client.indices().create(createIndexRequest);
+            }
 
             LOGGER.info("Indexing documents");
             IndexData indexData = new IndexData("Document 1", "Text for document 1");
