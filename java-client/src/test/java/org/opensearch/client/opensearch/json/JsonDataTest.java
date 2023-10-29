@@ -36,13 +36,18 @@ import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
 import java.io.StringReader;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.client.opensearch._types.FieldValue;
+import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
 import org.opensearch.client.opensearch.core.IndexRequest;
+import org.opensearch.client.opensearch.core.SearchRequest;
+import org.opensearch.client.opensearch.experiments.api.query2.BoolQuery;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
 public class JsonDataTest extends Assert {
@@ -114,7 +119,7 @@ public class JsonDataTest extends Assert {
     }
 
     @Test
-    public void testToJson() {
+    public void indexRequestToJsonTest() {
         String expectedJson = "{\"aga\":42,\"name\":\"koko\"}";
         Person person = new Person(42, "koko");
         IndexRequest<Person> indexRequest = new IndexRequest.Builder<Person>()
@@ -128,5 +133,28 @@ public class JsonDataTest extends Assert {
 
         assertEquals(expectedJson, json);
     }
+
+    @Test
+    public void searchRequestToJsonTest() {
+        String expectedJson = "{\"query\":{\"term\":{\"key-field\":{\"value\":\"value-filed\"}}}}";
+
+        SearchRequest searchRequest = new SearchRequest
+                .Builder()
+                .index("my-index")
+                .query(new TermQuery
+                        .Builder()
+                        .field("key-field")
+                        .value(FieldValue.of("value-filed"))
+                        .build()
+                        ._toQuery()
+                )
+                .build();
+
+        String json = JsonpUtils.toJson(searchRequest);
+        System.out.println(json);
+
+        assertEquals(expectedJson, json);
+    }
+
 
 }
