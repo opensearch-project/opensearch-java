@@ -40,7 +40,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.client.opensearch.core.IndexRequest;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
 public class JsonDataTest extends Assert {
@@ -89,4 +91,42 @@ public class JsonDataTest extends Assert {
         assertEquals(JsonValue.ValueType.STRING, value.getValueType());
         assertEquals("foo", ((JsonString) value).getString());
     }
+
+
+
+    public class Person {
+        private int aga;
+        private String name;
+
+
+        public Person(int aga, String name) {
+            this.aga = aga;
+            this.name = name;
+        }
+
+        public int getAga() {
+            return aga;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
+
+    @Test
+    public void testToJson() {
+        String expectedJson = "{\"aga\":42,\"name\":\"koko\"}";
+        Person person = new Person(42, "koko");
+        IndexRequest<Person> indexRequest = new IndexRequest.Builder<Person>()
+                .index("sample-index")
+                .id("1")
+                .document(person)
+                .build();
+
+        String json = JsonpUtils.toJson(indexRequest);
+        System.out.println(json);
+
+        assertEquals(expectedJson, json);
+    }
+
 }
