@@ -24,7 +24,7 @@ import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 /** Base interface to set JSON properties **/
 public interface WithJsonBuilderBase<B> {
 
-    abstract B get();
+    B get();
 
     /** Updates object with newly provided JSON properties
      @param parser the JsonParser parser
