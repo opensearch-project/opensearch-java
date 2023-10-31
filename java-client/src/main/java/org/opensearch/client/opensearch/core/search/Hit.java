@@ -108,7 +108,7 @@ public class Hit<TDocument> implements JsonpSerializable {
     private Hit(Builder<TDocument> builder) {
 
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.id = builder.id;
         this.score = builder.score;
         this.explanation = builder.explanation;
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
@@ -141,8 +141,9 @@ public class Hit<TDocument> implements JsonpSerializable {
     }
 
     /**
-     * Required - API name: {@code _id}
+     * API name: {@code _id}
      */
+    @Nullable
     public final String id() {
         return this.id;
     }
@@ -283,8 +284,10 @@ public class Hit<TDocument> implements JsonpSerializable {
         generator.writeKey("_index");
         generator.write(this.index);
 
-        generator.writeKey("_id");
-        generator.write(this.id);
+        if (this.id != null) {
+            generator.writeKey("_id");
+            generator.write(this.id);
+        }           
 
         if (this.score != null) {
             generator.writeKey("_score");
@@ -418,6 +421,7 @@ public class Hit<TDocument> implements JsonpSerializable {
     public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<Hit<TDocument>> {
         private String index;
 
+        @Nullable
         private String id;
 
         @Nullable
@@ -480,9 +484,9 @@ public class Hit<TDocument> implements JsonpSerializable {
         }
 
         /**
-         * Required - API name: {@code _id}
+         * API name: {@code _id}
          */
-        public final Builder<TDocument> id(String value) {
+        public final Builder<TDocument> id(@Nullable String value) {
             this.id = value;
             return this;
         }
