@@ -8,12 +8,9 @@
 
 package org.opensearch.client.opensearch.integTest;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.arrayContaining;
-import static org.hamcrest.Matchers.hasSize;
-
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import org.junit.Test;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.SortOrder;
@@ -27,9 +24,9 @@ import org.opensearch.client.opensearch.indices.SegmentSortOrder;
 public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCase {
 
     @Test
-    public void shouldReturnSearcheResults() throws Exception {
-        final String index = "searches_request";
-        assertThat(
+    public void shouldReturnSearchResults() throws Exception {
+        final String index = "search_request";
+        assertTrue(
             javaClient().indices()
                 .create(
                     b -> b.index(index)
@@ -39,8 +36,7 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
                         )
                         .settings(settings -> settings.sort(s -> s.field("name").order(SegmentSortOrder.Asc)))
                 )
-                .acknowledged(),
-            equalTo(true)
+                .acknowledged()
         );
 
         createTestDocuments(index);
@@ -61,10 +57,53 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
         );
 
         final SearchResponse<ShopItem> response = javaClient().search(request, ShopItem.class);
-        assertThat(response.hits().hits(), hasSize(2));
+        assertEquals(response.hits().hits().size(), 2);
 
-        assertThat(response.hits().hits().get(0).fields().get("name").to(String[].class), arrayContaining("hummer"));
-        assertThat(response.hits().hits().get(1).fields().get("name").to(String[].class), arrayContaining("jammer"));
+        assertTrue(
+            Arrays.stream(response.hits().hits().get(0).fields().get("name").to(String[].class))
+                .collect(Collectors.toList())
+                .contains("hummer")
+        );
+        assertTrue(
+            Arrays.stream(response.hits().hits().get(1).fields().get("name").to(String[].class))
+                .collect(Collectors.toList())
+                .contains("jammer")
+        );
+    }
+
+    @Test
+    public void shouldReturnSearchResultsWithoutStoredFields() throws Exception {
+        final String index = "search_request";
+        assertTrue(
+            javaClient().indices()
+                .create(
+                    b -> b.index(index)
+                        .mappings(
+                            m -> m.properties("name", Property.of(p -> p.keyword(v -> v.docValues(true))))
+                                .properties("size", Property.of(p -> p.keyword(v -> v.docValues(true))))
+                        )
+                        .settings(settings -> settings.sort(s -> s.field("name").order(SegmentSortOrder.Asc)))
+                )
+                .acknowledged()
+        );
+
+        createTestDocuments(index);
+        javaClient().indices().refresh();
+
+        final Query query = Query.of(
+            q -> q.bool(
+                builder -> builder.filter(filter -> filter.term(TermQuery.of(term -> term.field("size").value(FieldValue.of("huge")))))
+            )
+        );
+
+        final SearchRequest request = SearchRequest.of(
+            r -> r.index(index).sort(s -> s.field(f -> f.field("name").order(SortOrder.Asc))).query(query).storedFields("_none_")
+        );
+
+        final SearchResponse<ShopItem> response = javaClient().search(request, ShopItem.class);
+        assertEquals(response.hits().hits().size(), 2);
+        assertNull(response.hits().hits().get(0).id());
+        assertNull(response.hits().hits().get(1).id());
     }
 
     private void createTestDocuments(String index) throws IOException {
