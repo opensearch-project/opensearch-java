@@ -11,7 +11,6 @@ package org.opensearch.client.opensearch.integTest;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-
 import org.junit.Test;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.SortOrder;
@@ -27,7 +26,8 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
     @Test
     public void shouldReturnSearchResults() throws Exception {
         final String index = "search_request";
-        assertTrue(javaClient().indices()
+        assertTrue(
+            javaClient().indices()
                 .create(
                     b -> b.index(index)
                         .mappings(
@@ -36,7 +36,8 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
                         )
                         .settings(settings -> settings.sort(s -> s.field("name").order(SegmentSortOrder.Asc)))
                 )
-                .acknowledged());
+                .acknowledged()
+        );
 
         createTestDocuments(index);
         javaClient().indices().refresh();
@@ -58,14 +59,23 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
         final SearchResponse<ShopItem> response = javaClient().search(request, ShopItem.class);
         assertEquals(response.hits().hits().size(), 2);
 
-        assertTrue(Arrays.stream(response.hits().hits().get(0).fields().get("name").to(String[].class)).collect(Collectors.toList()).contains("hummer"));
-        assertTrue(Arrays.stream(response.hits().hits().get(1).fields().get("name").to(String[].class)).collect(Collectors.toList()).contains("jammer"));
+        assertTrue(
+            Arrays.stream(response.hits().hits().get(0).fields().get("name").to(String[].class))
+                .collect(Collectors.toList())
+                .contains("hummer")
+        );
+        assertTrue(
+            Arrays.stream(response.hits().hits().get(1).fields().get("name").to(String[].class))
+                .collect(Collectors.toList())
+                .contains("jammer")
+        );
     }
 
     @Test
     public void shouldReturnSearchResultsWithoutStoredFields() throws Exception {
         final String index = "search_request";
-        assertTrue(javaClient().indices()
+        assertTrue(
+            javaClient().indices()
                 .create(
                     b -> b.index(index)
                         .mappings(
@@ -74,7 +84,8 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
                         )
                         .settings(settings -> settings.sort(s -> s.field("name").order(SegmentSortOrder.Asc)))
                 )
-                .acknowledged());
+                .acknowledged()
+        );
 
         createTestDocuments(index);
         javaClient().indices().refresh();
@@ -86,10 +97,7 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
         );
 
         final SearchRequest request = SearchRequest.of(
-            r -> r.index(index)
-                .sort(s -> s.field(f -> f.field("name").order(SortOrder.Asc)))
-                .query(query)
-                .storedFields("_none_")
+            r -> r.index(index).sort(s -> s.field(f -> f.field("name").order(SortOrder.Asc))).query(query).storedFields("_none_")
         );
 
         final SearchResponse<ShopItem> response = javaClient().search(request, ShopItem.class);

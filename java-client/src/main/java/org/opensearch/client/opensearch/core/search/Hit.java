@@ -287,7 +287,7 @@ public class Hit<TDocument> implements JsonpSerializable {
         if (this.id != null) {
             generator.writeKey("_id");
             generator.write(this.id);
-        }           
+        }
 
         if (this.score != null) {
             generator.writeKey("_score");
