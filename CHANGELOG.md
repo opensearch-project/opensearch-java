@@ -43,6 +43,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
+- Fixed Hit response when search request has storedFields as null ([#698](https://github.com/opensearch-project/opensearch-java/pull/698))
 
 ### Security
 
