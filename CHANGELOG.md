@@ -2,11 +2,6 @@
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.0]
-### Dependencies
-- Bumps `io.github.classgraph:classgraph` from 4.8.162 to 4.8.163
-- Bumps `org.owasp.dependencycheck` from 8.4.0 to 8.4.2
-- Bumps `org.eclipse.parsson:parsson` from 1.1.4 to 1.1.5
-- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.2.0 to 5.2.1
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
@@ -31,7 +26,23 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ## [Unreleased 2.x]
 
 ### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.8.0] - 01/11/2023
+### Added
 - Added support for indexing and search index settings ([#667](https://github.com/opensearch-project/opensearch-java/pull/667))
+- Added support for neural query type ([#674](https://github.com/opensearch-project/opensearch-java/pull/674))
 
 ### Dependencies
 
@@ -56,7 +67,6 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Added support for "script_fields" in multi search request ([#632](https://github.com/opensearch-project/opensearch-java/pull/632))
 - Added size attribute to MultiTermsAggregation ([#627](https://github.com/opensearch-project/opensearch-java/pull/627))
 - Added version increment workflow that executes after release ([#664](https://github.com/opensearch-project/opensearch-java/pull/664))
-- Added support for neural query type ([#674](https://github.com/opensearch-project/opensearch-java/pull/674))
 
 ### Dependencies
 - Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
@@ -222,7 +232,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.7.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.0...2.x
+[2.8.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.7.0...v2.8.0
 [2.7.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.6.0...v2.7.0
 [2.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.4.0...v2.5.0
