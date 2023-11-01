@@ -39,7 +39,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Security
 
-## [2.8.0] - 10/31/2023
+## [2.8.0] - 01/11/2023
 ### Added
 - Added support for indexing and search index settings ([#667](https://github.com/opensearch-project/opensearch-java/pull/667))
 - Added support for neural query type ([#674](https://github.com/opensearch-project/opensearch-java/pull/674))
