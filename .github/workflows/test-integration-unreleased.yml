@@ -20,6 +20,7 @@ jobs:
           - { opensearch_ref: '2.x', java: 17 }
           - { opensearch_ref: 'main', java: 11 }
           - { opensearch_ref: 'main', java: 17 }
+          - { opensearch_ref: 'main', java: 21 }
     steps:
       - name: Set up JDK ${{ matrix.entry.java }}
         uses: actions/setup-java@v3
