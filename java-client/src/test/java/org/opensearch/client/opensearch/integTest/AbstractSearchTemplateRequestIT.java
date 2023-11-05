@@ -95,22 +95,22 @@ public abstract class AbstractSearchTemplateRequestIT extends OpenSearchJavaClie
 
         RequestItem requestItem = RequestItem.of(
             r -> r.header(h -> h.index(index))
-                    .body(
-                        t -> t.id(TEST_SEARCH_TEMPLATE)
-                            .params("title", JsonData.of("Document"))
-                            .params("suggs", JsonData.of(false))
-                            .params("aggs", JsonData.of(false))
-                    )
+                .body(
+                    t -> t.id(TEST_SEARCH_TEMPLATE)
+                        .params("title", JsonData.of("Document"))
+                        .params("suggs", JsonData.of(false))
+                        .params("aggs", JsonData.of(false))
+                )
         );
         // adding a request to non existing template to test partial results
         RequestItem requestItem2 = RequestItem.of(
             r -> r.header(h -> h.index(index))
-                    .body(
-                        t -> t.id("my-other-search-template")
-                            .params("title", JsonData.of("Document"))
-                            .params("suggs", JsonData.of(false))
-                            .params("aggs", JsonData.of(false))
-                    )
+                .body(
+                    t -> t.id("my-other-search-template")
+                        .params("title", JsonData.of("Document"))
+                        .params("suggs", JsonData.of(false))
+                        .params("aggs", JsonData.of(false))
+                )
         );
 
         var searchResponse = javaClient().msearchTemplate(
