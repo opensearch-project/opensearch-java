@@ -335,7 +335,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         assertTrue(msearch.responses().get(0).isResult());
         assertEquals(1, msearch.responses().get(0).result().hits().hits().size());
         assertTrue(msearch.responses().get(1).isFailure());
-        assertEquals(404, msearch.responses().get(1).failure().status());
+        assertEquals(404, msearch.responses().get(1).failure().status().intValue());
     }
 
     @Test

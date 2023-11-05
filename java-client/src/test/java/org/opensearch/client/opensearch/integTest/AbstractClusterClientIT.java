@@ -97,7 +97,7 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
             fail();
         } catch (OpenSearchException e) {
             assertNotNull(e);
-            assertEquals(e.response().status(), 400);
+            assertEquals(e.response().status().intValue(), 400);
             assertTrue(e.getMessage().contains("transient setting [no_idea_what_you_are_talking_about], not recognized"));
         }
     }

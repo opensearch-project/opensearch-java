@@ -185,7 +185,7 @@ public class JacksonJsonpParserTest extends ModelTestCase {
         MsearchResponse<Foo> response = fromJson(json, MsearchResponse.class, mapper);
 
         assertEquals(2, response.responses().size());
-        assertEquals(404, response.responses().get(0).failure().status());
+        assertEquals(404, response.responses().get(0).failure().status().intValue());
         assertEquals((Integer) 200, response.responses().get(1).result().status());
     }
 
