@@ -62,14 +62,14 @@ public class ErrorResponse implements JsonpSerializable {
 
     private final ErrorCause error;
 
-    private final int status;
+    private final Integer status;
 
     // ---------------------------------------------------------------------------------------------
 
     private ErrorResponse(Builder builder) {
 
         this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
-        this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+        this.status = builder.status;
 
     }
 
@@ -87,7 +87,7 @@ public class ErrorResponse implements JsonpSerializable {
     /**
      * Required - API name: {@code status}
      */
-    public final int status() {
+    public final Integer status() {
         return this.status;
     }
 
@@ -105,8 +105,10 @@ public class ErrorResponse implements JsonpSerializable {
         generator.writeKey("error");
         this.error.serialize(generator, mapper);
 
-        generator.writeKey("status");
-        generator.write(this.status);
+        if (this.status != null) {
+            generator.writeKey("status");
+            generator.write(this.status);
+        }
 
     }
 
