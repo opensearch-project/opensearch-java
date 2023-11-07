@@ -208,7 +208,7 @@ dependencies {
 }
 
 licenseReport {
-    renderers = arrayOf(SpdxReporter(File(rootProject.buildDir, "release/dependencies.csv")))
+    renderers = arrayOf(SpdxReporter(rootProject.layout.buildDirectory.file("release/dependencies.csv").get().getAsFile()))
     excludeGroups = arrayOf("org.opensearch.client")
 }
 
@@ -296,7 +296,7 @@ publishing {
                 }
             }
         }
-        maven("${rootProject.buildDir}/repository") {
+        maven(rootProject.layout.buildDirectory.dir("repository")) {
             name = "localRepo"
         }
     }
