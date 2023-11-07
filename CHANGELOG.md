@@ -2,6 +2,22 @@
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 2.x]
 ### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fix partial success results for msearch_template ([#709](https://github.com/opensearch-project/opensearch-java/pull/709))
+
+### Security
+
+## [2.8.0] - 01/11/2023
+### Added
 - Added support for indexing and search index settings ([#667](https://github.com/opensearch-project/opensearch-java/pull/667))
 
 ### Dependencies
