@@ -9,6 +9,7 @@
 package org.opensearch.client.opensearch.integTest;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import org.junit.Test;
 import org.opensearch.client.json.JsonData;
@@ -16,6 +17,7 @@ import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch.core.PutScriptRequest;
 import org.opensearch.client.opensearch.core.SearchTemplateResponse;
+import org.opensearch.client.opensearch.core.msearch_template.RequestItem;
 
 public abstract class AbstractSearchTemplateRequestIT extends OpenSearchJavaClientTestCase {
 
@@ -87,27 +89,43 @@ public abstract class AbstractSearchTemplateRequestIT extends OpenSearchJavaClie
 
     @Test
     public void testMultiSearchTemplate() throws Exception {
+        System.out.println("Multi search template test");
         var index = "test-msearch-template";
         createDocuments(index);
 
+        RequestItem requestItem = RequestItem.of(
+            r -> r.header(h -> h.index(index))
+                .body(
+                    t -> t.id(TEST_SEARCH_TEMPLATE)
+                        .params("title", JsonData.of("Document"))
+                        .params("suggs", JsonData.of(false))
+                        .params("aggs", JsonData.of(false))
+                )
+        );
+        // adding a request to non existing template to test partial results
+        RequestItem requestItem2 = RequestItem.of(
+            r -> r.header(h -> h.index(index))
+                .body(
+                    t -> t.id("my-other-search-template")
+                        .params("title", JsonData.of("Document"))
+                        .params("suggs", JsonData.of(false))
+                        .params("aggs", JsonData.of(false))
+                )
+        );
+
         var searchResponse = javaClient().msearchTemplate(
-            request -> request.searchTemplates(
-                r -> r.header(h -> h.index(index))
-                    .body(
-                        t -> t.id(TEST_SEARCH_TEMPLATE)
-                            .params("title", JsonData.of("Document"))
-                            .params("suggs", JsonData.of(false))
-                            .params("aggs", JsonData.of(false))
-                    )
-            ),
+            request -> request.searchTemplates(List.of(requestItem, requestItem2)),
             SimpleDoc.class
         );
 
-        assertEquals(1, searchResponse.responses().size());
+        assertEquals(2, searchResponse.responses().size());
         var response = searchResponse.responses().get(0);
         assertTrue(response.isResult());
         assertNull(response.result().status());
         assertEquals(4, response.result().hits().hits().size());
+        var failureResponse = searchResponse.responses().get(1);
+        assertTrue(failureResponse.isFailure());
+        assertNull(failureResponse.failure().status());
     }
 
     private SearchTemplateResponse<SimpleDoc> sendTemplateRequest(String index, String title, boolean suggs, boolean aggs)
