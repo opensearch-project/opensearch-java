@@ -34,7 +34,7 @@ public class PutTemplateRequestTest extends Assert {
 
         assertEquals(putTemplateRequest.name(), "test");
         assertEquals(putTemplateRequest.indexPatterns(), List.of("*"));
-        assertEquals((long) putTemplateRequest.order(), 1L);
+        assertEquals((int) putTemplateRequest.order(), 1);
         assertEquals(putTemplateRequest.create(), true);
     }
 }
