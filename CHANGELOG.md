@@ -28,6 +28,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ## [Unreleased 2.x]
 
 ### Added
+- Added support for icu_collation_keyword type ([#](https://github.com/opensearch-project/opensearch-java/pull/))
 
 ### Dependencies
 
