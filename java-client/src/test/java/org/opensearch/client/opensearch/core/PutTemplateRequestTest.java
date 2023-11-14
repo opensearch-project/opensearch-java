@@ -16,17 +16,8 @@ public class PutTemplateRequestTest extends Assert {
     @Test
     public void deserialize_validFieldsIncluded_RequestIsBuilt() throws JsonProcessingException {
         final JsonpMapper mapper = new JsonbJsonpMapper();
-        final Map<String, Object> indexTemplateMap = Map.of(
-            "name",
-            "test",
-            "index_patterns",
-            "*",
-            "create",
-            true,
-            "order",
-            1
+        final Map<String, Object> indexTemplateMap = Map.of("name", "test", "index_patterns", "*", "create", true, "order", 1);
 
-        );
         final String indexTemplate = new ObjectMapper().writeValueAsString(indexTemplateMap);
         final var parser = mapper.jsonProvider().createParser(new StringReader(indexTemplate));
 
