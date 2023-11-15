@@ -19,6 +19,23 @@ public class GetMappingsResponseTest extends Assert {
     @Test
     public void deserialize_IcuCollationKeywordExists_propertyDeserializes() throws JsonProcessingException {
         Map<String, Object> mappingTemplate = new HashMap<>();
+        Map<String, Object> icuCollationConfig = new HashMap<>();
+        icuCollationConfig.put("type", "icu_collation_keyword");
+        icuCollationConfig.put("ignore_above", 1);
+        icuCollationConfig.put("index", true);
+        icuCollationConfig.put("null_value", "not-null-value");
+        icuCollationConfig.put("store", true);
+
+        // Collations
+        icuCollationConfig.put("alternate", "shifted");
+        icuCollationConfig.put("case_level", true);
+        icuCollationConfig.put("case_first", "lower");
+        icuCollationConfig.put("decomposition", "no");
+        icuCollationConfig.put("hiragana_quaternary_mode", true);
+        icuCollationConfig.put("numeric", true);
+        icuCollationConfig.put("strength", "quaternary");
+        icuCollationConfig.put("variable_top", "$");
+
         mappingTemplate.put(
             "test-index",
             Map.of(
@@ -27,24 +44,7 @@ public class GetMappingsResponseTest extends Assert {
                 "index_patterns",
                 Collections.singletonList("test-pattern*"),
                 "mappings",
-                Map.of(
-                    "properties",
-                    Map.of(
-                        "icu_test_field",
-                        Map.of(
-                            "type",
-                            "icu_collation_keyword",
-                            "ignore_above",
-                            1,
-                            "index",
-                            true,
-                            "null_value",
-                            "not-null-value",
-                            "store",
-                            true
-                        )
-                    )
-                ),
+                Map.of("properties", Map.of("icu_test_field", icuCollationConfig)),
                 "order",
                 0,
                 "settings",
@@ -70,5 +70,13 @@ public class GetMappingsResponseTest extends Assert {
         assertTrue(icu.index());
         assertTrue(icu.store());
         assertEquals((int) icu.ignoreAbove(), 1);
+        assertEquals(icu.alternate().jsonValue(), "shifted");
+        assertTrue(icu.caseLevel());
+        assertEquals(icu.caseFirst().jsonValue(), "lower");
+        assertEquals(icu.decomposition().jsonValue(), "no");
+        assertTrue(icu.hiraganaQuaternaryMode());
+        assertTrue(icu.numeric());
+        assertEquals(icu.strength().jsonValue(), "quaternary");
+        assertEquals(icu.variableTop(), "$");
     }
 }
