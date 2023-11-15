@@ -12,6 +12,21 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+
+### Security
+
+## [2.8.1]
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
 - Fix partial success results for msearch_template ([#709](https://github.com/opensearch-project/opensearch-java/pull/709))
 
 ### Security
@@ -208,7 +223,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Security
 
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.7.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.1...2.x
+[2.8.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.0...v2.8.1
+[2.8.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.7.0...v2.8.0
 [2.7.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.6.0...v2.7.0
 [2.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.4.0...v2.5.0
