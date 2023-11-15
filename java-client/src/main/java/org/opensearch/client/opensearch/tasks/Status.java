@@ -43,6 +43,7 @@ import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.Retries;
+import org.opensearch.client.opensearch._types.TaskFailure;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -63,7 +64,7 @@ public class Status implements JsonpSerializable {
 
     private final long noops;
 
-    private final List<String> failures;
+    private final List<TaskFailure> failures;
 
     private final float requestsPerSecond;
 
@@ -158,7 +159,7 @@ public class Status implements JsonpSerializable {
     /**
      * API name: {@code failures}
      */
-    public final List<String> failures() {
+    public final List<TaskFailure> failures() {
         return this.failures;
     }
 
@@ -274,9 +275,8 @@ public class Status implements JsonpSerializable {
         if (ApiTypeHelper.isDefined(this.failures)) {
             generator.writeKey("failures");
             generator.writeStartArray();
-            for (String item0 : this.failures) {
-                generator.write(item0);
-
+            for (TaskFailure item0 : this.failures) {
+                item0.serialize(generator, mapper);
             }
             generator.writeEnd();
 
@@ -343,7 +343,7 @@ public class Status implements JsonpSerializable {
         private Long noops;
 
         @Nullable
-        private List<String> failures;
+        private List<TaskFailure> failures;
 
         private Float requestsPerSecond;
 
@@ -416,7 +416,7 @@ public class Status implements JsonpSerializable {
          * <p>
          * Adds all elements of <code>list</code> to <code>failures</code>.
          */
-        public final Builder failures(List<String> list) {
+        public final Builder failures(List<TaskFailure> list) {
             this.failures = _listAddAll(this.failures, list);
             return this;
         }
@@ -426,7 +426,7 @@ public class Status implements JsonpSerializable {
          * <p>
          * Adds one or more values to <code>failures</code>.
          */
-        public final Builder failures(String value, String... values) {
+        public final Builder failures(TaskFailure value, TaskFailure... values) {
             this.failures = _listAdd(this.failures, value, values);
             return this;
         }
@@ -570,7 +570,7 @@ public class Status implements JsonpSerializable {
         op.add(Builder::created, JsonpDeserializer.longDeserializer(), "created");
         op.add(Builder::deleted, JsonpDeserializer.longDeserializer(), "deleted");
         op.add(Builder::noops, JsonpDeserializer.longDeserializer(), "noops");
-        op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "failures");
+        op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(TaskFailure._DESERIALIZER), "failures");
         op.add(Builder::requestsPerSecond, JsonpDeserializer.floatDeserializer(), "requests_per_second");
         op.add(Builder::retries, Retries._DESERIALIZER, "retries");
         op.add(Builder::throttled, Time._DESERIALIZER, "throttled");

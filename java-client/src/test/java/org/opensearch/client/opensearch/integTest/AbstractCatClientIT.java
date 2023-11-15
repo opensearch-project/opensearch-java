@@ -101,7 +101,8 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
         createIndex("test-cat-recovery-index");
         RecoveryResponse recoveryResponse = javaClient().cat()
             .recovery(
-                r -> r.headers(
+                r -> r.index("*,-.*") // exclude system indices
+                        .headers(
                     "index,shard,type,stage,source_host,source_node,"
                         + "target_host,target_node,repository,snapshot,files,files_recovered,files_percent,files_total"
                 ).bytes(Bytes.Bytes)

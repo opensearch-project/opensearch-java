@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -71,7 +72,7 @@ public class Info implements JsonpSerializable {
     private final long startTimeInMillis;
 
     @Nullable
-    private final Status status;
+    private final JsonData status;
 
     private final String type;
 
@@ -169,7 +170,7 @@ public class Info implements JsonpSerializable {
      * API name: {@code status}
      */
     @Nullable
-    public final Status status() {
+    public final JsonData status() {
         return this.status;
     }
 
@@ -294,7 +295,7 @@ public class Info implements JsonpSerializable {
         private Long startTimeInMillis;
 
         @Nullable
-        private Status status;
+        private JsonData status;
 
         private String type;
 
@@ -409,16 +410,9 @@ public class Info implements JsonpSerializable {
         /**
          * API name: {@code status}
          */
-        public final Builder status(@Nullable Status value) {
+        public final Builder status(@Nullable JsonData value) {
             this.status = value;
             return this;
-        }
-
-        /**
-         * API name: {@code status}
-         */
-        public final Builder status(Function<Status.Builder, ObjectBuilder<Status>> fn) {
-            return this.status(fn.apply(new Status.Builder()).build());
         }
 
         /**
@@ -472,7 +466,7 @@ public class Info implements JsonpSerializable {
         op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
         op.add(Builder::runningTimeInNanos, JsonpDeserializer.longDeserializer(), "running_time_in_nanos");
         op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
-        op.add(Builder::status, Status._DESERIALIZER, "status");
+        op.add(Builder::status, JsonData._DESERIALIZER, "status");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
         op.add(Builder::parentTaskId, JsonpDeserializer.stringDeserializer(), "parent_task_id");
 

@@ -43,6 +43,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fix partial success results for msearch_template ([#709](https://github.com/opensearch-project/opensearch-java/pull/709))
+- Fix deserialization of failures in GetTasksResponse ([#727](https://github.com/opensearch-project/opensearch-java/pull/727))
+
 
 ### Security
 

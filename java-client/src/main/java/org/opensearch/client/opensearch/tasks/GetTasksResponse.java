@@ -35,6 +35,7 @@ package org.opensearch.client.opensearch.tasks;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -55,7 +56,7 @@ public class GetTasksResponse implements JsonpSerializable {
     private final Info task;
 
     @Nullable
-    private final Status response;
+    private final JsonData response;
 
     @Nullable
     private final ErrorCause error;
@@ -93,7 +94,7 @@ public class GetTasksResponse implements JsonpSerializable {
      * API name: {@code response}
      */
     @Nullable
-    public final Status response() {
+    public final JsonData response() {
         return this.response;
     }
 
@@ -147,7 +148,7 @@ public class GetTasksResponse implements JsonpSerializable {
         private Info task;
 
         @Nullable
-        private Status response;
+        private JsonData response;
 
         @Nullable
         private ErrorCause error;
@@ -178,16 +179,9 @@ public class GetTasksResponse implements JsonpSerializable {
         /**
          * API name: {@code response}
          */
-        public final Builder response(@Nullable Status value) {
+        public final Builder response(@Nullable JsonData value) {
             this.response = value;
             return this;
-        }
-
-        /**
-         * API name: {@code response}
-         */
-        public final Builder response(Function<Status.Builder, ObjectBuilder<Status>> fn) {
-            return this.response(fn.apply(new Status.Builder()).build());
         }
 
         /**
@@ -232,7 +226,7 @@ public class GetTasksResponse implements JsonpSerializable {
 
         op.add(Builder::completed, JsonpDeserializer.booleanDeserializer(), "completed");
         op.add(Builder::task, Info._DESERIALIZER, "task");
-        op.add(Builder::response, Status._DESERIALIZER, "response");
+        op.add(Builder::response, JsonData._DESERIALIZER, "response");
         op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 
     }
