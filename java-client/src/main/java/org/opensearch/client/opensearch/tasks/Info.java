@@ -331,7 +331,7 @@ public class Info implements JsonpSerializable {
         /**
          * Required - API name: {@code cancellable}
          */
-        public final Builder cancellable(boolean value) {
+        public final Builder cancellable(Boolean value) {
             this.cancellable = value;
             return this;
         }
@@ -339,7 +339,7 @@ public class Info implements JsonpSerializable {
         /**
          * API name: {@code cancelled}
          */
-        public final Builder cancelled(boolean value) {
+        public final Builder cancelled(@Nullable Boolean value) {
             this.cancelled = value;
             return this;
         }
