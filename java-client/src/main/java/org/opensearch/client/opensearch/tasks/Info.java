@@ -53,7 +53,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
 public class Info implements JsonpSerializable {
     private final String action;
 
-    private final boolean cancellable;
+    @Nullable
+    private final Boolean cancelled;
+
+    private final Boolean cancellable;
 
     private final List<Info> children;
 
@@ -84,6 +87,7 @@ public class Info implements JsonpSerializable {
 
         this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
         this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
+        this.cancelled = builder.cancelled;
         this.children = ApiTypeHelper.unmodifiable(builder.children);
         this.description = builder.description;
         this.headers = ApiTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
@@ -106,6 +110,14 @@ public class Info implements JsonpSerializable {
      */
     public final String action() {
         return this.action;
+    }
+
+    /**
+     * API name: {@code action}
+     */
+    @Nullable
+    public final Boolean cancelled() {
+        return this.cancelled;
     }
 
     /**
@@ -205,6 +217,10 @@ public class Info implements JsonpSerializable {
         generator.writeKey("cancellable");
         generator.write(this.cancellable);
 
+        if (this.cancelled != null) {
+            generator.writeKey("cancelled");
+            generator.write(this.cancelled);
+        }
         if (ApiTypeHelper.isDefined(this.children)) {
             generator.writeKey("children");
             generator.writeStartArray();
@@ -278,6 +294,9 @@ public class Info implements JsonpSerializable {
         private Boolean cancellable;
 
         @Nullable
+        private Boolean cancelled;
+
+        @Nullable
         private List<Info> children;
 
         @Nullable
@@ -314,6 +333,14 @@ public class Info implements JsonpSerializable {
          */
         public final Builder cancellable(boolean value) {
             this.cancellable = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code cancelled}
+         */
+        public final Builder cancelled(boolean value) {
+            this.cancelled = value;
             return this;
         }
 
@@ -461,6 +488,7 @@ public class Info implements JsonpSerializable {
 
         op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
         op.add(Builder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");
+        op.add(Builder::cancelled, JsonpDeserializer.booleanDeserializer(), "cancelled");
         op.add(Builder::children, JsonpDeserializer.arrayDeserializer(Info._DESERIALIZER), "children");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(
