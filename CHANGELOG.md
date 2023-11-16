@@ -40,7 +40,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fix partial success results for msearch_template ([#709](https://github.com/opensearch-project/opensearch-java/pull/709))
-- Fix missing "cancelled" property in Info class ([#730](https://github.com/opensearch-project/opensearch-java/pull/730))
+- Fix missing "cancelled" property in Info class ([#731](https://github.com/opensearch-project/opensearch-java/pull/731))
 
 ### Security
 
