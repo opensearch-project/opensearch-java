@@ -586,8 +586,10 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
     protected static void setupPutTemplateRequestDeserializer(ObjectDeserializer<PutTemplateRequest.Builder> op) {
 
         op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
+        op.add(Builder::create, JsonpDeserializer.booleanDeserializer(), "create");
         op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index_patterns");
         op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::order, JsonpDeserializer.integerDeserializer(), "order");
         op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
         op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
