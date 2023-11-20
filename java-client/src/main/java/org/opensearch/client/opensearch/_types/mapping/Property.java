@@ -402,17 +402,17 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
     }
 
     /**
-     * Is this variant instance of kind {@code flattened}?
+     * Is this variant instance of kind {@code flat_oject}?
      */
     public boolean isFlatObject() {
         return _kind == Kind.FlatObject;
     }
 
     /**
-     * Get the {@code flattened} variant value.
+     * Get the {@code flat_object} variant value.
      *
      * @throws IllegalStateException
-     *             if the current variant is not of the {@code flattened} kind.
+     *             if the current variant is not of the {@code flat_object} kind.
      */
     public FlatObjectProperty flatObject() {
         return TaggedUnionUtils.get(this, Kind.FlatObject);
