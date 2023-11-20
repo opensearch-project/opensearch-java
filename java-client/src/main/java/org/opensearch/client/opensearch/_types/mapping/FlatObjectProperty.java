@@ -42,10 +42,10 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: _types.mapping.FlattenedProperty
+// typedef: _types.mapping.FlatObjectProperty
 
 @JsonpDeserializable
-public class FlattenedProperty extends PropertyBase implements PropertyVariant {
+public class FlatObjectProperty extends PropertyBase implements PropertyVariant {
     @Nullable
     private final Double boost;
 
@@ -75,7 +75,7 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 
     // ---------------------------------------------------------------------------------------------
 
-    private FlattenedProperty(Builder builder) {
+    private FlatObjectProperty(Builder builder) {
         super(builder);
 
         this.boost = builder.boost;
@@ -90,7 +90,7 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 
     }
 
-    public static FlattenedProperty of(Function<Builder, ObjectBuilder<FlattenedProperty>> fn) {
+    public static FlatObjectProperty of(Function<Builder, ObjectBuilder<FlatObjectProperty>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -99,7 +99,7 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
      */
     @Override
     public Property.Kind _propertyKind() {
-        return Property.Kind.Flattened;
+        return Property.Kind.FlatObject;
     }
 
     /**
@@ -176,7 +176,7 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-        generator.write("type", "flattened");
+        generator.write("type", "flat_object");
         super.serializeInternal(generator, mapper);
         if (this.boost != null) {
             generator.writeKey("boost");
@@ -228,10 +228,10 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link FlattenedProperty}.
+     * Builder for {@link FlatObjectProperty}.
      */
 
-    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<FlattenedProperty> {
+    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<FlatObjectProperty> {
         @Nullable
         private Double boost;
 
@@ -337,29 +337,29 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
         }
 
         /**
-         * Builds a {@link FlattenedProperty}.
+         * Builds a {@link FlatObjectProperty}.
          *
          * @throws NullPointerException
          *             if some of the required fields are null.
          */
-        public FlattenedProperty build() {
+        public FlatObjectProperty build() {
             _checkSingleUse();
 
-            return new FlattenedProperty(this);
+            return new FlatObjectProperty(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link FlattenedProperty}
+     * Json deserializer for {@link FlatObjectProperty}
      */
-    public static final JsonpDeserializer<FlattenedProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<FlatObjectProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        FlattenedProperty::setupFlattenedPropertyDeserializer
+        FlatObjectProperty::setupFlatObjectPropertyDeserializer
     );
 
-    protected static void setupFlattenedPropertyDeserializer(ObjectDeserializer<FlattenedProperty.Builder> op) {
+    protected static void setupFlatObjectPropertyDeserializer(ObjectDeserializer<FlatObjectProperty.Builder> op) {
         PropertyBase.setupPropertyBaseDeserializer(op);
         op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
         op.add(Builder::depthLimit, JsonpDeserializer.integerDeserializer(), "depth_limit");

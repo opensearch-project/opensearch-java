@@ -12,9 +12,15 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
+import org.junit.Test;
+import org.opensearch.Version;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch._types.mapping.FlatObjectProperty;
+import org.opensearch.client.opensearch._types.mapping.Property;
+import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.indices.CreateDataStreamResponse;
+import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 import org.opensearch.client.opensearch.indices.DataStream;
 import org.opensearch.client.opensearch.indices.DataStreamsStatsResponse;
@@ -190,6 +196,25 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
             assertNotNull(ex);
             assertEquals(ex.status(), 404);
             assertEquals(ex.getMessage(), "Request failed: [string_error] " + "alias [alias_not_exists] missing");
+        }
+    }
+
+    @Test
+    public void createIndex_withFlatObject_IndexCreatesSucessfully() throws IOException {
+        InfoResponse info = javaClient().info();
+        String version = info.version().number();
+        if (version.contains("SNAPSHOT")) {
+            version = version.split("-")[0];
+        }
+        assumeTrue("Flat Object is supported after version 2.7.0 only", Version.fromString(version).onOrAfter(Version.fromString("2.7.0")));
+        try {
+            final CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index("flat-object-test")
+                .mappings(m -> m.properties("sample_flat_object", Property.of(p -> p.flatObject(new FlatObjectProperty.Builder().build()))))
+                .build();
+            final CreateIndexResponse createIndexResponse = javaClient().indices().create(createIndexRequest);
+            assertTrue(createIndexResponse.acknowledged());
+        } catch (OpenSearchException ex) {
+            fail(ex.getMessage());
         }
     }
 }
