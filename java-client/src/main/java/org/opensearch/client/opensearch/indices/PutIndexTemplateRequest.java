@@ -53,6 +53,7 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.WithJsonBuilderBase;
 
 // typedef: indices.put_index_template.Request
 
@@ -234,7 +235,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
      * Builder for {@link PutIndexTemplateRequest}.
      */
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutIndexTemplateRequest> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutIndexTemplateRequest>, WithJsonBuilderBase<Builder> {
         @Nullable
         private Map<String, JsonData> meta;
 
@@ -384,6 +385,11 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
             _checkSingleUse();
 
             return new PutIndexTemplateRequest(this);
+        }
+
+        @Override
+        public Builder get() {
+            return this;
         }
     }
 
