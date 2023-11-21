@@ -6,7 +6,6 @@ public class IssueDocument {
 
     private Issue issue;
 
-    // Getter and setter for "issue"
     public Issue getIssue() {
         return issue;
     }
@@ -19,7 +18,6 @@ public class IssueDocument {
         private String number;
         private Labels labels;
 
-        // Getters and setters for "number" and "labels"
         public String getNumber() {
             return number;
         }
@@ -43,7 +41,6 @@ public class IssueDocument {
         private List<String> backport;
         private Category category;
 
-        // Getters and setters for "version", "backport", and "category"
         public String getVersion() {
             return version;
         }
@@ -74,7 +71,6 @@ public class IssueDocument {
         private String type;
         private String level;
 
-        // Getters and setters for "type" and "level"
         public String getType() {
             return type;
         }
