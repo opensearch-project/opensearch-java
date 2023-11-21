@@ -84,7 +84,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 
         Alias("alias"),
 
-        Flattened("flattened"),
+        FlatObject("flat_object"),
 
         Float("float"),
 
@@ -402,20 +402,20 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
     }
 
     /**
-     * Is this variant instance of kind {@code flattened}?
+     * Is this variant instance of kind {@code flat_object}?
      */
-    public boolean isFlattened() {
-        return _kind == Kind.Flattened;
+    public boolean isFlatObject() {
+        return _kind == Kind.FlatObject;
     }
 
     /**
-     * Get the {@code flattened} variant value.
+     * Get the {@code flat_object} variant value.
      *
      * @throws IllegalStateException
-     *             if the current variant is not of the {@code flattened} kind.
+     *             if the current variant is not of the {@code flat_object} kind.
      */
-    public FlattenedProperty flattened() {
-        return TaggedUnionUtils.get(this, Kind.Flattened);
+    public FlatObjectProperty flatObject() {
+        return TaggedUnionUtils.get(this, Kind.FlatObject);
     }
 
     /**
@@ -1098,14 +1098,14 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
             return this.alias(fn.apply(new FieldAliasProperty.Builder()).build());
         }
 
-        public ObjectBuilder<Property> flattened(FlattenedProperty v) {
-            this._kind = Kind.Flattened;
+        public ObjectBuilder<Property> flatObject(FlatObjectProperty v) {
+            this._kind = Kind.FlatObject;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Property> flattened(Function<FlattenedProperty.Builder, ObjectBuilder<FlattenedProperty>> fn) {
-            return this.flattened(fn.apply(new FlattenedProperty.Builder()).build());
+        public ObjectBuilder<Property> flatObject(Function<FlatObjectProperty.Builder, ObjectBuilder<FlatObjectProperty>> fn) {
+            return this.flatObject(fn.apply(new FlatObjectProperty.Builder()).build());
         }
 
         public ObjectBuilder<Property> float_(FloatNumberProperty v) {
@@ -1457,7 +1457,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
         op.add(Builder::double_, DoubleNumberProperty._DESERIALIZER, "double");
         op.add(Builder::doubleRange, DoubleRangeProperty._DESERIALIZER, "double_range");
         op.add(Builder::alias, FieldAliasProperty._DESERIALIZER, "alias");
-        op.add(Builder::flattened, FlattenedProperty._DESERIALIZER, "flattened");
+        op.add(Builder::flatObject, FlatObjectProperty._DESERIALIZER, "flat_object");
         op.add(Builder::float_, FloatNumberProperty._DESERIALIZER, "float");
         op.add(Builder::floatRange, FloatRangeProperty._DESERIALIZER, "float_range");
         op.add(Builder::geoPoint, GeoPointProperty._DESERIALIZER, "geo_point");
