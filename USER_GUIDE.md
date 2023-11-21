@@ -7,6 +7,7 @@
     - [Creating an index](#creating-an-index)
       - [With default settings](#with-default-settings)
       - [With custom settings and mappings](#with-custom-settings-and-mappings)
+      - [With FlatObject mappings](#with-flat-object-mappings)
     - [Indexing data](#indexing-data)
     - [Searching for a document](#searching-for-a-document)
     - [Deleting a document](#deleting-a-document)
@@ -136,6 +137,18 @@ CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder()
         .build();
 client.indices().create(createIndexRequest);
 ```
+#### With flat object mappings
+OpenSearch supports FlatObject mappings from version 2.7.0 without additional parameters.
+
+```java
+final CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(indexName)
+                    .mappings(m -> m.properties("issue", Property.of(p -> p.flatObject(new FlatObjectProperty.Builder().build()))))
+                    .build();
+client.indices().create(createIndexRequest);
+```
+
+You can find a working sample of the above code in [FlatObjectBasics.java](./samples/src/main/java/org/opensearch/client/samples/FlatObjectBasics.java).
+
 
 ### Indexing data
 

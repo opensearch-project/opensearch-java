@@ -31,6 +31,8 @@ import org.opensearch.client.opensearch.indices.GetDataStreamResponse;
 import org.opensearch.client.opensearch.indices.GetIndexRequest;
 import org.opensearch.client.opensearch.indices.GetIndexResponse;
 import org.opensearch.client.opensearch.indices.GetIndicesSettingsRequest;
+import org.opensearch.client.opensearch.indices.GetMappingRequest;
+import org.opensearch.client.opensearch.indices.GetMappingResponse;
 import org.opensearch.client.opensearch.indices.IndexState;
 import org.opensearch.client.opensearch.indices.PutIndexTemplateResponse;
 import org.opensearch.common.settings.Settings;
@@ -200,13 +202,9 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
     }
 
     @Test
-    public void createIndex_withFlatObject_IndexCreatesSucessfully() throws IOException {
-        InfoResponse info = javaClient().info();
-        String version = info.version().number();
-        if (version.contains("SNAPSHOT")) {
-            version = version.split("-")[0];
-        }
-        assumeTrue("Flat Object is supported after version 2.7.0 only", Version.fromString(version).onOrAfter(Version.fromString("2.7.0")));
+    public void createIndex_withFlatObject_indexCreatesSuccessfully() throws IOException {
+        assumeFlatObjectSupport();
+
         try {
             final CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index("flat-object-test")
                 .mappings(m -> m.properties("sample_flat_object", Property.of(p -> p.flatObject(new FlatObjectProperty.Builder().build()))))
@@ -216,5 +214,34 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         } catch (OpenSearchException ex) {
             fail(ex.getMessage());
         }
+    }
+
+    @Test
+    public void createIndex_withFlatObject_mappingCanBeRetrieved() throws IOException {
+        assumeFlatObjectSupport();
+
+        try {
+            final String indexName = "flat-object-mapping-index";
+            final CreateIndexRequest createIndexRequest = new CreateIndexRequest.Builder().index(indexName)
+                .mappings(m -> m.properties("sample_flat_object", Property.of(p -> p.flatObject(new FlatObjectProperty.Builder().build()))))
+                .build();
+            final CreateIndexResponse createIndexResponse = javaClient().indices().create(createIndexRequest);
+            assertTrue(createIndexResponse.acknowledged());
+
+            final GetMappingResponse response = javaClient().indices().getMapping(GetMappingRequest.of(m -> m.index(indexName)));
+            final Property.Kind mappingKind = response.result().get(indexName).mappings().properties().get("sample_flat_object")._kind();
+            assertEquals(mappingKind, Property.Kind.FlatObject);
+        } catch (OpenSearchException ex) {
+            fail(ex.getMessage());
+        }
+    }
+
+    private void assumeFlatObjectSupport() throws IOException {
+        InfoResponse info = javaClient().info();
+        String version = info.version().number();
+        if (version.contains("SNAPSHOT")) {
+            version = version.split("-")[0];
+        }
+        assumeTrue("Flat Object is supported after version 2.7.0 only", Version.fromString(version).onOrAfter(Version.fromString("2.7.0")));
     }
 }

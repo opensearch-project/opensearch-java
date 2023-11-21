@@ -34,7 +34,6 @@ package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -46,47 +45,11 @@ import org.opensearch.client.util.ObjectBuilder;
 
 @JsonpDeserializable
 public class FlatObjectProperty extends PropertyBase implements PropertyVariant {
-    @Nullable
-    private final Double boost;
-
-    @Nullable
-    private final Integer depthLimit;
-
-    @Nullable
-    private final Boolean docValues;
-
-    @Nullable
-    private final Boolean eagerGlobalOrdinals;
-
-    @Nullable
-    private final Boolean index;
-
-    @Nullable
-    private final IndexOptions indexOptions;
-
-    @Nullable
-    private final String nullValue;
-
-    @Nullable
-    private final String similarity;
-
-    @Nullable
-    private final Boolean splitQueriesOnWhitespace;
 
     // ---------------------------------------------------------------------------------------------
 
     private FlatObjectProperty(Builder builder) {
         super(builder);
-
-        this.boost = builder.boost;
-        this.depthLimit = builder.depthLimit;
-        this.docValues = builder.docValues;
-        this.eagerGlobalOrdinals = builder.eagerGlobalOrdinals;
-        this.index = builder.index;
-        this.indexOptions = builder.indexOptions;
-        this.nullValue = builder.nullValue;
-        this.similarity = builder.similarity;
-        this.splitQueriesOnWhitespace = builder.splitQueriesOnWhitespace;
 
     }
 
@@ -102,127 +65,10 @@ public class FlatObjectProperty extends PropertyBase implements PropertyVariant 
         return Property.Kind.FlatObject;
     }
 
-    /**
-     * API name: {@code boost}
-     */
-    @Nullable
-    public final Double boost() {
-        return this.boost;
-    }
-
-    /**
-     * API name: {@code depth_limit}
-     */
-    @Nullable
-    public final Integer depthLimit() {
-        return this.depthLimit;
-    }
-
-    /**
-     * API name: {@code doc_values}
-     */
-    @Nullable
-    public final Boolean docValues() {
-        return this.docValues;
-    }
-
-    /**
-     * API name: {@code eager_global_ordinals}
-     */
-    @Nullable
-    public final Boolean eagerGlobalOrdinals() {
-        return this.eagerGlobalOrdinals;
-    }
-
-    /**
-     * API name: {@code index}
-     */
-    @Nullable
-    public final Boolean index() {
-        return this.index;
-    }
-
-    /**
-     * API name: {@code index_options}
-     */
-    @Nullable
-    public final IndexOptions indexOptions() {
-        return this.indexOptions;
-    }
-
-    /**
-     * API name: {@code null_value}
-     */
-    @Nullable
-    public final String nullValue() {
-        return this.nullValue;
-    }
-
-    /**
-     * API name: {@code similarity}
-     */
-    @Nullable
-    public final String similarity() {
-        return this.similarity;
-    }
-
-    /**
-     * API name: {@code split_queries_on_whitespace}
-     */
-    @Nullable
-    public final Boolean splitQueriesOnWhitespace() {
-        return this.splitQueriesOnWhitespace;
-    }
-
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
         generator.write("type", "flat_object");
         super.serializeInternal(generator, mapper);
-        if (this.boost != null) {
-            generator.writeKey("boost");
-            generator.write(this.boost);
-
-        }
-        if (this.depthLimit != null) {
-            generator.writeKey("depth_limit");
-            generator.write(this.depthLimit);
-
-        }
-        if (this.docValues != null) {
-            generator.writeKey("doc_values");
-            generator.write(this.docValues);
-
-        }
-        if (this.eagerGlobalOrdinals != null) {
-            generator.writeKey("eager_global_ordinals");
-            generator.write(this.eagerGlobalOrdinals);
-
-        }
-        if (this.index != null) {
-            generator.writeKey("index");
-            generator.write(this.index);
-
-        }
-        if (this.indexOptions != null) {
-            generator.writeKey("index_options");
-            this.indexOptions.serialize(generator, mapper);
-        }
-        if (this.nullValue != null) {
-            generator.writeKey("null_value");
-            generator.write(this.nullValue);
-
-        }
-        if (this.similarity != null) {
-            generator.writeKey("similarity");
-            generator.write(this.similarity);
-
-        }
-        if (this.splitQueriesOnWhitespace != null) {
-            generator.writeKey("split_queries_on_whitespace");
-            generator.write(this.splitQueriesOnWhitespace);
-
-        }
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -232,104 +78,6 @@ public class FlatObjectProperty extends PropertyBase implements PropertyVariant 
      */
 
     public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<FlatObjectProperty> {
-        @Nullable
-        private Double boost;
-
-        @Nullable
-        private Integer depthLimit;
-
-        @Nullable
-        private Boolean docValues;
-
-        @Nullable
-        private Boolean eagerGlobalOrdinals;
-
-        @Nullable
-        private Boolean index;
-
-        @Nullable
-        private IndexOptions indexOptions;
-
-        @Nullable
-        private String nullValue;
-
-        @Nullable
-        private String similarity;
-
-        @Nullable
-        private Boolean splitQueriesOnWhitespace;
-
-        /**
-         * API name: {@code boost}
-         */
-        public final Builder boost(@Nullable Double value) {
-            this.boost = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code depth_limit}
-         */
-        public final Builder depthLimit(@Nullable Integer value) {
-            this.depthLimit = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code doc_values}
-         */
-        public final Builder docValues(@Nullable Boolean value) {
-            this.docValues = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code eager_global_ordinals}
-         */
-        public final Builder eagerGlobalOrdinals(@Nullable Boolean value) {
-            this.eagerGlobalOrdinals = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code index}
-         */
-        public final Builder index(@Nullable Boolean value) {
-            this.index = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code index_options}
-         */
-        public final Builder indexOptions(@Nullable IndexOptions value) {
-            this.indexOptions = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code null_value}
-         */
-        public final Builder nullValue(@Nullable String value) {
-            this.nullValue = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code similarity}
-         */
-        public final Builder similarity(@Nullable String value) {
-            this.similarity = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code split_queries_on_whitespace}
-         */
-        public final Builder splitQueriesOnWhitespace(@Nullable Boolean value) {
-            this.splitQueriesOnWhitespace = value;
-            return this;
-        }
 
         @Override
         protected Builder self() {
@@ -361,15 +109,6 @@ public class FlatObjectProperty extends PropertyBase implements PropertyVariant 
 
     protected static void setupFlatObjectPropertyDeserializer(ObjectDeserializer<FlatObjectProperty.Builder> op) {
         PropertyBase.setupPropertyBaseDeserializer(op);
-        op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
-        op.add(Builder::depthLimit, JsonpDeserializer.integerDeserializer(), "depth_limit");
-        op.add(Builder::docValues, JsonpDeserializer.booleanDeserializer(), "doc_values");
-        op.add(Builder::eagerGlobalOrdinals, JsonpDeserializer.booleanDeserializer(), "eager_global_ordinals");
-        op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
-        op.add(Builder::indexOptions, IndexOptions._DESERIALIZER, "index_options");
-        op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
-        op.add(Builder::similarity, JsonpDeserializer.stringDeserializer(), "similarity");
-        op.add(Builder::splitQueriesOnWhitespace, JsonpDeserializer.booleanDeserializer(), "split_queries_on_whitespace");
 
         op.ignore("type");
     }
