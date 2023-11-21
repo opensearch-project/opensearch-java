@@ -402,7 +402,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
     }
 
     /**
-     * Is this variant instance of kind {@code flat_oject}?
+     * Is this variant instance of kind {@code flat_object}?
      */
     public boolean isFlatObject() {
         return _kind == Kind.FlatObject;
