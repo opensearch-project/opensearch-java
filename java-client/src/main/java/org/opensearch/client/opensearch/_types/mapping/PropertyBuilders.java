@@ -134,11 +134,11 @@ public class PropertyBuilders {
     }
 
     /**
-     * Creates a builder for the {@link FlattenedProperty flattened}
+     * Creates a builder for the {@link FlatObjectProperty flatObject}
      * {@code Property} variant.
      */
-    public static FlattenedProperty.Builder flattened() {
-        return new FlattenedProperty.Builder();
+    public static FlatObjectProperty.Builder flatObject() {
+        return new FlatObjectProperty.Builder();
     }
 
     /**
