@@ -43,7 +43,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fix partial success results for msearch_template ([#709](https://github.com/opensearch-project/opensearch-java/pull/709))
-- Fix deserialization of node stats response ([#740](https://github.com/opensearch-project/opensearch-java/pull/740))
+- Fix deserialization of node stats response ([#745](https://github.com/opensearch-project/opensearch-java/pull/745))
 
 ### Security
 
