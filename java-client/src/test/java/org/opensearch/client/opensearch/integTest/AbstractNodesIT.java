@@ -14,7 +14,6 @@ import static org.hamcrest.Matchers.anEmptyMap;
 
 import java.io.IOException;
 import java.util.Arrays;
-
 import org.junit.Test;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.nodes.NodesStatsResponse;
@@ -97,7 +96,7 @@ public abstract class AbstractNodesIT extends OpenSearchJavaClientTestCase {
     @Test
     public void stats_processMetricRequested_returnsProcessStatsWithoutException() {
         try {
-            final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("host"));
+            final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("process"));
             statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.process()); });
         } catch (OpenSearchException | IOException ex) {
             fail(ex.getMessage());
