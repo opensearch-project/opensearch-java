@@ -38,6 +38,8 @@ import org.opensearch.client.opensearch.indices.PutIndexTemplateResponse;
 import org.opensearch.common.settings.Settings;
 
 public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCase {
+
+    @Test
     public void testIndicesExists() throws IOException {
 
         // Index present
@@ -85,6 +87,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         }
     }
 
+    @Test
     public void testCreateIndex() throws Exception {
         OpenSearchAsyncClient asyncClient = new OpenSearchAsyncClient(javaClient()._transport());
         CreateIndexResponse createResponse = javaClient().indices().create(b -> b.index("my-index"));
@@ -101,6 +104,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         assertNotNull(indices.get("my-index"));
     }
 
+    @Test
     public void testGetSettingsNonExistentIndex() throws IOException {
 
         String nonExistentIndex = "index_that_doesnt_exist";
@@ -117,6 +121,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         }
     }
 
+    @Test
     public void testDataStream() throws IOException {
         String dataStreamIndexTemplateName = "test-data-stream-template";
         String timestampFieldName = "my_timestamp_field";
@@ -127,6 +132,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         PutIndexTemplateResponse putIndexTemplateResponse = javaClient().indices()
             .putIndexTemplate(
                 b -> b.name(dataStreamIndexTemplateName)
+                    .indexPatterns("test*")
                     .dataStream(new DataStream.Builder().timestampField(bd -> bd.name(timestampFieldName)).build())
                     .indexPatterns(namePattern)
             );
@@ -188,6 +194,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         }
     }
 
+    @Test
     public void testGetNotExistingIndexAlias() throws Exception {
         String notExistingIndexAlias = "alias_not_exists";
         GetAliasRequest aliasRequest = new GetAliasRequest.Builder().name(notExistingIndexAlias).build();
