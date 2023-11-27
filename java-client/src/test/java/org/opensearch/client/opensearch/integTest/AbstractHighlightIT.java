@@ -105,7 +105,9 @@ public abstract class AbstractHighlightIT extends OpenSearchJavaClientTestCase {
     private List<Map<String, List<String>>> highlightQuery(String query, Function<Highlight.Builder, ObjectBuilder<Highlight>> fn)
         throws IOException {
         SearchResponse<Article> response = javaClient().search(
-            s -> s.query(q -> q.simpleQueryString(sqs -> sqs.fields("title", "content", "author").query(query))).highlight(fn),
+            s -> s.index("*,-.*") // exclude system indices
+                .query(q -> q.simpleQueryString(sqs -> sqs.fields("title", "content", "author").query(query)))
+                .highlight(fn),
             Article.class
         );
         return response.hits().hits().stream().map(Hit::highlight).collect(Collectors.toList());
