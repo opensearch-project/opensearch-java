@@ -102,10 +102,11 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
         RecoveryResponse recoveryResponse = javaClient().cat()
             .recovery(
                 r -> r.index("*,-.*") // exclude system indices
-                        .headers(
-                    "index,shard,type,stage,source_host,source_node,"
-                        + "target_host,target_node,repository,snapshot,files,files_recovered,files_percent,files_total"
-                ).bytes(Bytes.Bytes)
+                    .headers(
+                        "index,shard,type,stage,source_host,source_node,"
+                            + "target_host,target_node,repository,snapshot,files,files_recovered,files_percent,files_total"
+                    )
+                    .bytes(Bytes.Bytes)
             );
 
         assertNotNull("recoveryResponse.valueBody() is null", recoveryResponse.valueBody());
