@@ -8,14 +8,16 @@
 
 package org.opensearch.client.opensearch.core.bulk;
 
-import jakarta.json.stream.JsonGenerator;
 import javax.annotation.Nullable;
+
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ObjectBuilder;
+
+import jakarta.json.stream.JsonGenerator;
 
 public class UpdateOperationData<TDocument> implements JsonpSerializable {
     @Nullable
@@ -26,6 +28,9 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
 
     @Nullable
     private final Boolean scriptedUpsert;
+
+    @Nullable
+    private final Boolean detectNoop;
 
     @Nullable
     private final TDocument upsert;
@@ -40,6 +45,7 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
         this.document = builder.document;
         this.docAsUpsert = builder.docAsUpsert;
         this.scriptedUpsert = builder.scriptedUpsert;
+        this.detectNoop = builder.detectNoop;
         this.script = builder.script;
         this.upsert = builder.upsert;
         this.tDocumentSerializer = builder.tDocumentSerializer;
@@ -64,6 +70,11 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
             generator.write(scriptedUpsert);
         }
 
+        if (this.detectNoop != null) {
+            generator.writeKey("detect_noop");
+            generator.write(scriptedUpsert);
+        }
+
         if (this.document != null) {
             generator.writeKey("doc");
             JsonpUtils.serialize(document, generator, tDocumentSerializer, mapper);
@@ -85,7 +96,7 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
      */
     public static class Builder<TDocument> extends BulkOperationBase.AbstractBuilder<Builder<TDocument>>
         implements
-            ObjectBuilder<UpdateOperationData<TDocument>> {
+        ObjectBuilder<UpdateOperationData<TDocument>> {
 
         @Nullable
         private TDocument document;
@@ -98,6 +109,9 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
 
         @Nullable
         private Boolean scriptedUpsert;
+
+        @Nullable
+        private Boolean detectNoop;
 
         @Nullable
         private TDocument upsert;
@@ -128,7 +142,15 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
             this.scriptedUpsert = value;
             return this;
         }
-        
+
+        /**
+         * API name: {@code detect_noop}
+         */
+        public final Builder<TDocument> detectNoop(@Nullable Boolean value) {
+            this.detectNoop = value;
+            return this;
+        }
+
         /**
          * API name: {@code upsert}
          */
@@ -165,10 +187,11 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
          * @throws NullPointerException
          *             if some of the required fields are null.
          */
+        @Override
         public UpdateOperationData<TDocument> build() {
             _checkSingleUse();
 
-            return new UpdateOperationData<TDocument>(this);
+            return new UpdateOperationData<>(this);
         }
     }
 }
