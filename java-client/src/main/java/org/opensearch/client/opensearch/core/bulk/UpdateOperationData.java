@@ -25,6 +25,9 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
     private final Boolean docAsUpsert;
 
     @Nullable
+    private final Boolean scriptedUpsert;
+
+    @Nullable
     private final TDocument upsert;
 
     @Nullable
@@ -36,6 +39,7 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
     private UpdateOperationData(Builder<TDocument> builder) {
         this.document = builder.document;
         this.docAsUpsert = builder.docAsUpsert;
+        this.scriptedUpsert = builder.scriptedUpsert;
         this.script = builder.script;
         this.upsert = builder.upsert;
         this.tDocumentSerializer = builder.tDocumentSerializer;
@@ -53,6 +57,11 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
         if (this.docAsUpsert != null) {
             generator.writeKey("doc_as_upsert");
             generator.write(this.docAsUpsert);
+        }
+
+        if (this.scriptedUpsert != null) {
+            generator.writeKey("scripted_upsert");
+            generator.write(scriptedUpsert);
         }
 
         if (this.document != null) {
@@ -88,6 +97,9 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
         private Boolean docAsUpsert;
 
         @Nullable
+        private Boolean scriptedUpsert;
+
+        @Nullable
         private TDocument upsert;
 
         @Nullable
@@ -109,6 +121,14 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
             return this;
         }
 
+        /**
+         * API name: {@code scripted_upsert}
+         */
+        public final Builder<TDocument> scriptedUpsert(@Nullable Boolean value) {
+            this.scriptedUpsert = value;
+            return this;
+        }
+        
         /**
          * API name: {@code upsert}
          */

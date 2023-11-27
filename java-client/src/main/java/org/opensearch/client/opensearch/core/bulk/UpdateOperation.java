@@ -32,17 +32,20 @@
 
 package org.opensearch.client.opensearch.core.bulk;
 
-import jakarta.json.stream.JsonGenerator;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.function.Function;
+
 import javax.annotation.Nullable;
+
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.NdJsonpSerializable;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
+
+import jakarta.json.stream.JsonGenerator;
 
 // typedef: _global.bulk.UpdateOperation
 
@@ -69,7 +72,8 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 
     }
 
-    public static <TDocument> UpdateOperation<TDocument> of(Function<Builder<TDocument>, ObjectBuilder<UpdateOperation<TDocument>>> fn) {
+    public static <TDocument> UpdateOperation<TDocument>
+        of(Function<Builder<TDocument>, ObjectBuilder<UpdateOperation<TDocument>>> fn) {
         return fn.apply(new Builder<>()).build();
     }
 
@@ -102,6 +106,7 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
         return this.retryOnConflict;
     }
 
+    @Override
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
         super.serializeInternal(generator, mapper);
@@ -125,7 +130,7 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 
     public static class Builder<TDocument> extends BulkOperationBase.AbstractBuilder<Builder<TDocument>>
         implements
-            ObjectBuilder<UpdateOperation<TDocument>> {
+        ObjectBuilder<UpdateOperation<TDocument>> {
 
         private UpdateOperationData<TDocument> data;
 
@@ -143,6 +148,9 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 
         @Nullable
         private Boolean docAsUpsert;
+
+        @Nullable
+        private Boolean scriptedUpsert;
 
         @Nullable
         private TDocument upsert;
@@ -163,6 +171,14 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
          */
         public final Builder<TDocument> docAsUpsert(@Nullable Boolean value) {
             this.docAsUpsert = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code scripted_upsert}
+         */
+        public final Builder<TDocument> scriptedUpsert(@Nullable Boolean value) {
+            this.scriptedUpsert = value;
             return this;
         }
 
@@ -218,17 +234,19 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
          * @throws NullPointerException
          *			 if some of the required fields are null.
          */
+        @Override
         public UpdateOperation<TDocument> build() {
             _checkSingleUse();
 
             data = new UpdateOperationData.Builder<TDocument>().document(document)
                 .docAsUpsert(docAsUpsert)
+                .scriptedUpsert(scriptedUpsert)
                 .script(script)
                 .upsert(upsert)
                 .tDocumentSerializer(tDocumentSerializer)
                 .build();
 
-            return new UpdateOperation<TDocument>(this);
+            return new UpdateOperation<>(this);
         }
     }
 
