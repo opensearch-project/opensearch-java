@@ -52,7 +52,7 @@ plugins {
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "2.5"
     id("org.owasp.dependencycheck") version "9.0.1"
-    id("com.diffplug.spotless") version "6.22.0"
+    id("com.diffplug.spotless") version "6.23.0"
 }
 apply(plugin = "opensearch.repositories")
 apply(plugin = "org.owasp.dependencycheck")
