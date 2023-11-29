@@ -72,7 +72,7 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
 
         if (this.detectNoop != null) {
             generator.writeKey("detect_noop");
-            generator.write(scriptedUpsert);
+            generator.write(detectNoop);
         }
 
         if (this.document != null) {
