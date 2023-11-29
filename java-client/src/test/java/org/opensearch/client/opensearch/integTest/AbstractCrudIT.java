@@ -392,7 +392,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         assertTrue(getResponse.found());
         assertEquals(1337, getResponse.source().getIntValue());
     }
-    
+
     public void testBulkUpdateScriptedUpsertUpdate() throws IOException {
         final String id = "777";
 
@@ -412,8 +412,11 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
                         s -> s.inline(
                             new InlineScript.Builder().lang("painless")
                                 .source("ctx._source.intValue = ctx?._source?.intValue == null ? 7777 : 9999")
-                                .build()))))
-            .build();
+                                .build()
+                        )
+                    )
+                )
+        ).build();
 
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
         BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
@@ -439,8 +442,11 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
                         s -> s.inline(
                             new InlineScript.Builder().lang("painless")
                                 .source("ctx._source.intValue = ctx?._source?.intValue == null ? 7777 : 9999")
-                                .build()))))
-            .build();
+                                .build()
+                        )
+                    )
+                )
+        ).build();
 
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
         BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
@@ -462,12 +468,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
 
         assertEquals(Result.Created, javaClient().index(b -> b.index("index").id(id).document(appData)).result());
 
-        BulkOperation op = new BulkOperation.Builder().update(
-            o -> o.index("index")
-                .id(id)
-                .detectNoop(true)
-                .document(appData))
-            .build();
+        BulkOperation op = new BulkOperation.Builder().update(o -> o.index("index").id(id).detectNoop(true).document(appData)).build();
 
         BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
         BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
@@ -476,12 +477,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         assertEquals(1, bulkResponse.items().size());
         assertEquals(Result.NoOp.jsonValue(), bulkResponse.items().get(0).result());
 
-        op = new BulkOperation.Builder().update(
-            o -> o.index("index")
-                .id(id)
-                .detectNoop(false)
-                .document(appData))
-            .build();
+        op = new BulkOperation.Builder().update(o -> o.index("index").id(id).detectNoop(false).document(appData)).build();
 
         bulkRequest = new BulkRequest.Builder().operations(op).build();
         bulkResponse = javaClient().bulk(bulkRequest);

@@ -8,16 +8,14 @@
 
 package org.opensearch.client.opensearch.core.bulk;
 
+import jakarta.json.stream.JsonGenerator;
 import javax.annotation.Nullable;
-
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ObjectBuilder;
-
-import jakarta.json.stream.JsonGenerator;
 
 public class UpdateOperationData<TDocument> implements JsonpSerializable {
     @Nullable
@@ -96,7 +94,7 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
      */
     public static class Builder<TDocument> extends BulkOperationBase.AbstractBuilder<Builder<TDocument>>
         implements
-        ObjectBuilder<UpdateOperationData<TDocument>> {
+            ObjectBuilder<UpdateOperationData<TDocument>> {
 
         @Nullable
         private TDocument document;

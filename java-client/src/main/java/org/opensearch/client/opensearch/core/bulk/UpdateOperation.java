@@ -32,20 +32,17 @@
 
 package org.opensearch.client.opensearch.core.bulk;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.function.Function;
-
 import javax.annotation.Nullable;
-
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.NdJsonpSerializable;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-
-import jakarta.json.stream.JsonGenerator;
 
 // typedef: _global.bulk.UpdateOperation
 
@@ -72,8 +69,7 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 
     }
 
-    public static <TDocument> UpdateOperation<TDocument>
-        of(Function<Builder<TDocument>, ObjectBuilder<UpdateOperation<TDocument>>> fn) {
+    public static <TDocument> UpdateOperation<TDocument> of(Function<Builder<TDocument>, ObjectBuilder<UpdateOperation<TDocument>>> fn) {
         return fn.apply(new Builder<>()).build();
     }
 
@@ -130,7 +126,7 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 
     public static class Builder<TDocument> extends BulkOperationBase.AbstractBuilder<Builder<TDocument>>
         implements
-        ObjectBuilder<UpdateOperation<TDocument>> {
+            ObjectBuilder<UpdateOperation<TDocument>> {
 
         private UpdateOperationData<TDocument> data;
 
