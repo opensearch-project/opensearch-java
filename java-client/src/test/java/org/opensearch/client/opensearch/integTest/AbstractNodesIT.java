@@ -34,82 +34,50 @@ public abstract class AbstractNodesIT extends OpenSearchJavaClientTestCase {
     }
 
     @Test
-    public void stats_fsMetricRequested_returnsFsStatsWithoutException() {
-        try {
+    public void stats_fsMetricRequested_returnsFsStatsWithoutException() throws IOException {
             final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("fs"));
             statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.fs()); });
-        } catch (OpenSearchException | IOException ex) {
-            fail(ex.getMessage());
-        }
     }
 
     @Test
-    public void stats_httpMetricRequested_returnsHttpStatsWithoutException() {
-        try {
+    public void stats_httpMetricRequested_returnsHttpStatsWithoutException() throws IOException {
             final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("http"));
             statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.http()); });
-        } catch (OpenSearchException | IOException ex) {
-            fail(ex.getMessage());
-        }
     }
 
     @Test
-    public void stats_indicesMetricRequested_returnsIndicesStatsWithoutException() {
-        try {
+    public void stats_indicesMetricRequested_returnsIndicesStatsWithoutException() throws IOException {
             final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("indices"));
             statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.indices()); });
-        } catch (OpenSearchException | IOException ex) {
-            fail(ex.getMessage());
-        }
     }
 
     @Test
-    public void stats_ingestMetricRequested_returnsIngestStatsWithoutException() {
-        try {
+    public void stats_ingestMetricRequested_returnsIngestStatsWithoutException() throws IOException {
             final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("ingest"));
             statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.ingest()); });
-        } catch (OpenSearchException | IOException ex) {
-            fail(ex.getMessage());
-        }
     }
 
     @Test
-    public void stats_jvmMetricRequested_returnsJvmStatsWithoutException() {
-        try {
+    public void stats_jvmMetricRequested_returnsJvmStatsWithoutException() throws IOException {
             final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("jvm"));
             statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.jvm()); });
-        } catch (OpenSearchException | IOException ex) {
-            fail(ex.getMessage());
-        }
     }
 
     @Test
-    public void stats_osMetricRequested_returnsOsStatsWithoutException() {
-        try {
+    public void stats_osMetricRequested_returnsOsStatsWithoutException() throws IOException {
             final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("os"));
             statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.os()); });
-        } catch (OpenSearchException | IOException ex) {
-            fail(ex.getMessage());
-        }
     }
 
     @Test
-    public void stats_processMetricRequested_returnsProcessStatsWithoutException() {
-        try {
+    public void stats_processMetricRequested_returnsProcessStatsWithoutException() throws IOException {
             final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("process"));
             statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.process()); });
-        } catch (OpenSearchException | IOException ex) {
-            fail(ex.getMessage());
-        }
     }
 
     @Test
-    public void stats_scriptMetricRequested_returnsScriptStatsWithoutException() {
-        try {
+    public void stats_scriptMetricRequested_returnsScriptStatsWithoutException() throws IOException {
             final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("script"));
             statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.script()); });
-        } catch (OpenSearchException | IOException ex) {
-            fail(ex.getMessage());
-        }
     }
 }
