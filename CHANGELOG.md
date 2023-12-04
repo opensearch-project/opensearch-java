@@ -1,9 +1,11 @@
 # CHANGELOG
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+
 ## [Unreleased 2.x]
 ### Added
 - Added support for icu_collation_keyword type ([#725](https://github.com/opensearch-project/opensearch-java/pull/725))
 - Added support for flat_object field property ([#735](https://github.com/opensearch-project/opensearch-java/pull/735))
+- Expose HTTP status code through `ResponseException#status` ([#756](https://github.com/opensearch-project/opensearch-java/pull/756))
 
 ### Dependencies
 
