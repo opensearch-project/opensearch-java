@@ -159,7 +159,7 @@ dependencies {
     compileOnly("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
     testImplementation("org.opensearch.test", "framework", opensearchVersion)
 
-    api("org.apache.httpcomponents.client5:httpclient5:5.2.1") {
+    api("org.apache.httpcomponents.client5:httpclient5:5.2.3") {
       exclude(group = "org.apache.httpcomponents.core5")
     }
     api("org.apache.httpcomponents.core5:httpcore5:5.2.3")
