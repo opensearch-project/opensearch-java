@@ -48,7 +48,7 @@ public class QueryTest extends Assert {
         Query.Variant v = q._get();
         assertEquals(Query.Kind.Bool, v._variantType());
 
-        Query q1 = v._toQuery();
+        Query q1 = v.toQuery();
 
         Collection<Query> must = q.bool().must();
 

@@ -39,8 +39,12 @@ public interface QueryVariant {
 
     Query.Kind _queryKind();
 
+    @Deprecated
     default Query _toQuery() {
         return new Query(this);
     }
 
+    default Query toQuery() {
+        return new Query(this);
+    }
 }

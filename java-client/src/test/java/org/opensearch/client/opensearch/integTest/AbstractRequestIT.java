@@ -495,9 +495,9 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                         .filter(
                             BoolQuery.of(
                                 _5 -> _5.filter(
-                                    List.of(TermsQuery.of(_6 -> _6.field("color.keyword").terms(_7 -> _7.value(fieldValues)))._toQuery())
+                                    List.of(TermsQuery.of(_6 -> _6.field("color.keyword").terms(_7 -> _7.value(fieldValues))).toQuery())
                                 )
-                            )._toQuery()
+                            ).toQuery()
                         )
                 )
         );
