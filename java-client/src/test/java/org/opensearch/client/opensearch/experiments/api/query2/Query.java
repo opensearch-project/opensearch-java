@@ -50,7 +50,12 @@ import org.opensearch.client.util.TaggedUnionUtils;
 public class Query implements TaggedUnion<Query.Kind, Query.Variant>, JsonpSerializable {
 
     public interface Variant extends UnionVariant<Kind>, JsonpSerializable {
+        @Deprecated
         default Query _toQuery() {
+            return new Query(this);
+        }
+
+        default Query toQuery() {
             return new Query(this);
         }
     }
