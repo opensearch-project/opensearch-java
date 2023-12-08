@@ -42,7 +42,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Changed
 
 ### Deprecated
-- deprecated _toQuery() in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760)
+- Deprecated "_toQuery()" in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760)
 ### Removed
 
 ### Fixed
