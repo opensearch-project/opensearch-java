@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+- Bumps `io.github.classgraph:classgraph` from 4.8.161 to 4.8.165
 
 ### Changed
 
