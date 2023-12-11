@@ -763,7 +763,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
     /**
      * Maximum number of documents to collect for each shard. If a query reaches
-     * this limit, Elasticsearch terminates the query early. Elasticsearch collects
+     * this limit, OpenSearch terminates the query early. OpenSearch collects
      * documents before sorting. Defaults to 0, which does not terminate query
      * execution early.
      * <p>
@@ -2027,7 +2027,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
         /**
          * Maximum number of documents to collect for each shard. If a query reaches
-         * this limit, Elasticsearch terminates the query early. Elasticsearch collects
+         * this limit, OpenSearch terminates the query early. OpenSearch collects
          * documents before sorting. Defaults to 0, which does not terminate query
          * execution early.
          * <p>

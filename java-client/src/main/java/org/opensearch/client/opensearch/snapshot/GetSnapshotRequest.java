@@ -195,7 +195,7 @@ public class GetSnapshotRequest extends RequestBase {
 
     /**
      * If true, returns additional information about each snapshot such as the
-     * version of Elasticsearch which took the snapshot, the start and end times of
+     * version of OpenSearch which took the snapshot, the start and end times of
      * the snapshot, and the number of shards snapshotted.
      * <p>
      * API name: {@code verbose}
@@ -376,7 +376,7 @@ public class GetSnapshotRequest extends RequestBase {
 
         /**
          * If true, returns additional information about each snapshot such as the
-         * version of Elasticsearch which took the snapshot, the start and end times of
+         * version of OpenSearch which took the snapshot, the start and end times of
          * the snapshot, and the number of shards snapshotted.
          * <p>
          * API name: {@code verbose}

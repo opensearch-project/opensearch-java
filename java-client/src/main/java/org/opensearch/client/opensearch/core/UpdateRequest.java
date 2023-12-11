@@ -248,7 +248,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
     }
 
     /**
-     * If 'true', Elasticsearch refreshes the affected shards to make this operation
+     * If 'true', OpenSearch refreshes the affected shards to make this operation
      * visible to search, if 'wait_for' then wait for a refresh to make this
      * operation visible to search, if 'false' do nothing with refreshes.
      * <p>
@@ -312,7 +312,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
     /**
      * Period to wait for dynamic mapping updates and active shards. This guarantees
-     * Elasticsearch waits for at least the timeout before failing. The actual wait
+     * OpenSearch waits for at least the timeout before failing. The actual wait
      * time could be longer, particularly when multiple waits occur.
      * <p>
      * API name: {@code timeout}
@@ -565,7 +565,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
         }
 
         /**
-         * If 'true', Elasticsearch refreshes the affected shards to make this operation
+         * If 'true', OpenSearch refreshes the affected shards to make this operation
          * visible to search, if 'wait_for' then wait for a refresh to make this
          * operation visible to search, if 'false' do nothing with refreshes.
          * <p>
@@ -638,7 +638,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
         /**
          * Period to wait for dynamic mapping updates and active shards. This guarantees
-         * Elasticsearch waits for at least the timeout before failing. The actual wait
+         * OpenSearch waits for at least the timeout before failing. The actual wait
          * time could be longer, particularly when multiple waits occur.
          * <p>
          * API name: {@code timeout}
@@ -650,7 +650,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
         /**
          * Period to wait for dynamic mapping updates and active shards. This guarantees
-         * Elasticsearch waits for at least the timeout before failing. The actual wait
+         * OpenSearch waits for at least the timeout before failing. The actual wait
          * time could be longer, particularly when multiple waits occur.
          * <p>
          * API name: {@code timeout}

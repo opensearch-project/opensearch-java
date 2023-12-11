@@ -304,7 +304,7 @@ public class NodeInfo implements JsonpSerializable {
     }
 
     /**
-     * Required - Elasticsearch version running on this node.
+     * Required - OpenSearch version running on this node.
      * <p>
      * API name: {@code version}
      */
@@ -834,7 +834,7 @@ public class NodeInfo implements JsonpSerializable {
         }
 
         /**
-         * Required - Elasticsearch version running on this node.
+         * Required - OpenSearch version running on this node.
          * <p>
          * API name: {@code version}
          */
