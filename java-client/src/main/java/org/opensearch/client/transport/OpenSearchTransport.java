@@ -33,7 +33,7 @@
 package org.opensearch.client.transport;
 
 /**
- * A transport layer that implements Elasticsearch specificities.
+ * A transport layer that implements OpenSearch specificities.
  *
  * Currently an empty placeholder for future extension.
  */

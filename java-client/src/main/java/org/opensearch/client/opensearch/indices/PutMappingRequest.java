@@ -160,7 +160,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
     /**
      * A mapping type can have custom meta data associated with it. These are not
-     * used at all by Elasticsearch, but can be used to store application-specific
+     * used at all by OpenSearch, but can be used to store application-specific
      * metadata.
      * <p>
      * API name: {@code _meta}
@@ -513,7 +513,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
         /**
          * A mapping type can have custom meta data associated with it. These are not
-         * used at all by Elasticsearch, but can be used to store application-specific
+         * used at all by OpenSearch, but can be used to store application-specific
          * metadata.
          * <p>
          * API name: {@code _meta}
@@ -527,7 +527,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
         /**
          * A mapping type can have custom meta data associated with it. These are not
-         * used at all by Elasticsearch, but can be used to store application-specific
+         * used at all by OpenSearch, but can be used to store application-specific
          * metadata.
          * <p>
          * API name: {@code _meta}

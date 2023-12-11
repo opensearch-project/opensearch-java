@@ -33,7 +33,7 @@
 package org.opensearch.client.opensearch._types;
 
 /**
- * Exception thrown by API client methods when Elasticsearch could not accept or
+ * Exception thrown by API client methods when OpenSearch could not accept or
  * process a request.
  * <p>
  * The {@link #error()} contains the error's type and reason along with
@@ -50,7 +50,7 @@ public class OpenSearchException extends RuntimeException {
     }
 
     /**
-     * The error response sent by Elasticsearch
+     * The error response sent by OpenSearch
      */
     public ErrorResponse response() {
         return this.response;
@@ -64,7 +64,7 @@ public class OpenSearchException extends RuntimeException {
     }
 
     /**
-     * Status code returned by Elasticsearch. Shortcut for
+     * Status code returned by OpenSearch. Shortcut for
      * {@code response().status()}.
      */
     public int status() {
