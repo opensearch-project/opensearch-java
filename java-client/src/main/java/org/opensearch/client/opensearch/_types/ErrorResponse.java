@@ -48,7 +48,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _types.ErrorResponseBase
 
 /**
- * The response returned by Elasticsearch when request execution did not
+ * The response returned by OpenSearch when request execution did not
  * succeed.
  *
  */

@@ -49,7 +49,7 @@ import org.opensearch.client.util.TaggedUnion;
 
 /**
  * Utilities for union types whose discriminant is not directly part of the structure, either as an enclosing property name or as
- * an inner property. This is used for Elasticsearch aggregation results and suggesters, using the {@code typed_keys} parameter that
+ * an inner property. This is used for OpenSearch aggregation results and suggesters, using the {@code typed_keys} parameter that
  * encodes a name+type in a single JSON property.
  *
  */

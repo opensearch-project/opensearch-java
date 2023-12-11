@@ -180,7 +180,7 @@ public class GetRequest extends RequestBase {
     }
 
     /**
-     * If true, Elasticsearch refreshes the affected shards to make this operation
+     * If true, OpenSearch refreshes the affected shards to make this operation
      * visible to search. If false, do nothing with refreshes.
      * <p>
      * API name: {@code refresh}
@@ -382,7 +382,7 @@ public class GetRequest extends RequestBase {
         }
 
         /**
-         * If true, Elasticsearch refreshes the affected shards to make this operation
+         * If true, OpenSearch refreshes the affected shards to make this operation
          * visible to search. If false, do nothing with refreshes.
          * <p>
          * API name: {@code refresh}
