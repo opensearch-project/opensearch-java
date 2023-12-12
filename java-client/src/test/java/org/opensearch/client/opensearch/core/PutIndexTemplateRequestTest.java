@@ -2,15 +2,14 @@ package org.opensearch.client.opensearch.core;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.StringReader;
+import java.util.List;
+import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.opensearch.indices.PutIndexTemplateRequest;
-
-import java.io.StringReader;
-import java.util.List;
-import java.util.Map;
 
 public class PutIndexTemplateRequestTest extends Assert {
 
