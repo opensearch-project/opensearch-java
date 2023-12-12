@@ -406,6 +406,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
         op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
         op.add(Builder::template, IndexTemplateMapping._DESERIALIZER, "template");
         op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
     }
 
