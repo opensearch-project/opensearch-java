@@ -229,6 +229,21 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 
     }
 
+    public Builder<TDocument> toBuilder() {
+        return new Builder<TDocument>()
+            .id(id)
+            .index(index)
+            .pipeline(pipeline)
+            .refresh(refresh)
+            .routing(routing)
+            .timeout(timeout)
+            .version(version)
+            .versionType(versionType)
+            .waitForActiveShards(waitForActiveShards)
+            .document(document)
+            .tDocumentSerializer(tDocumentSerializer);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

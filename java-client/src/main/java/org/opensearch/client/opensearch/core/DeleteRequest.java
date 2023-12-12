@@ -212,6 +212,20 @@ public class DeleteRequest extends RequestBase {
         return this.waitForActiveShards;
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .id(id)
+            .ifPrimaryTerm(ifPrimaryTerm)
+            .ifSeqNo(ifSeqNo)
+            .index(index)
+            .refresh(refresh)
+            .routing(routing)
+            .timeout(timeout)
+            .version(version)
+            .versionType(versionType)
+            .waitForActiveShards(waitForActiveShards);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

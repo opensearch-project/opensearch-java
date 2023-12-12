@@ -168,6 +168,16 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .context(context)
+            .id(id)
+            .masterTimeout(masterTimeout)
+            .clusterManagerTimeout(clusterManagerTimeout)
+            .script(script)
+            .timeout(timeout);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

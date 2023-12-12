@@ -104,6 +104,11 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .scrollId(scrollId);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

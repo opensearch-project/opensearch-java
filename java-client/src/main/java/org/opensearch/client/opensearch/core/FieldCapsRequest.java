@@ -211,6 +211,18 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .allowNoIndices(allowNoIndices)
+            .expandWildcards(expandWildcards)
+            .fields(fields)
+            .ignoreUnavailable(ignoreUnavailable)
+            .includeUnmapped(includeUnmapped)
+            .index(index)
+            .indexFilter(indexFilter)
+            .runtimeMappings(runtimeMappings);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

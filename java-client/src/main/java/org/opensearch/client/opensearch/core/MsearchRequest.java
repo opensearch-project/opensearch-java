@@ -254,6 +254,21 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .allowNoIndices(allowNoIndices)
+            .ccsMinimizeRoundtrips(ccsMinimizeRoundtrips)
+            .expandWildcards(expandWildcards)
+            .ignoreThrottled(ignoreThrottled)
+            .ignoreUnavailable(ignoreUnavailable)
+            .index(index)
+            .maxConcurrentSearches(maxConcurrentSearches)
+            .maxConcurrentShardRequests(maxConcurrentShardRequests)
+            .preFilterShardSize(preFilterShardSize)
+            .searchType(searchType)
+            .searches(searches);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

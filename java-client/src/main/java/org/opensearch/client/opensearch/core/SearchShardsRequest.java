@@ -168,6 +168,17 @@ public class SearchShardsRequest extends RequestBase {
         return this.routing;
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .allowNoIndices(allowNoIndices)
+            .expandWildcards(expandWildcards)
+            .ignoreUnavailable(ignoreUnavailable)
+            .index(index)
+            .local(local)
+            .preference(preference)
+            .routing(routing);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

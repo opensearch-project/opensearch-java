@@ -1058,7 +1058,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
             .aggregations(aggregations)
             .allowNoIndices(allowNoIndices)
             .allowPartialSearchResults(allowPartialSearchResults)
-            .allowPartialSearchResults(allowPartialSearchResults)
             .analyzeWildcard(analyzeWildcard)
             .analyzer(analyzer)
             .batchedReduceSize(batchedReduceSize)
@@ -1108,6 +1107,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
             .trackTotalHits(trackTotalHits)
             .version(version);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

@@ -91,6 +91,12 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
         return this.taskId;
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .requestsPerSecond(requestsPerSecond)
+            .taskId(taskId);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

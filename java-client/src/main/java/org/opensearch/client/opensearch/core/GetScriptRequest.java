@@ -106,6 +106,13 @@ public class GetScriptRequest extends RequestBase {
         return this.clusterManagerTimeout;
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .id(id)
+            .masterTimeout(masterTimeout)
+            .clusterManagerTimeout(clusterManagerTimeout);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

@@ -309,6 +309,24 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .conflicts(conflicts)
+            .dest(dest)
+            .maxDocs(maxDocs)
+            .refresh(refresh)
+            .requestsPerSecond(requestsPerSecond)
+            .requireAlias(requireAlias)
+            .script(script)
+            .scroll(scroll)
+            .size(size)
+            .slices(slices)
+            .source(source)
+            .timeout(timeout)
+            .waitForActiveShards(waitForActiveShards)
+            .waitForCompletion(waitForCompletion);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

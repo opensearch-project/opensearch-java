@@ -154,6 +154,14 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .file(file)
+            .id(id)
+            .params(params)
+            .source(source);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**
