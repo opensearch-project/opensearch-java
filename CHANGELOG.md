@@ -42,6 +42,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Dependencies
 
 ### Changed
+- Restore support for Java 8 ([#767](https://github.com/opensearch-project/opensearch-java/pull/767))
 
 ### Deprecated
 - Deprecated "_toQuery()" in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760)

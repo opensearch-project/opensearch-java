@@ -51,7 +51,7 @@ import org.opensearch.client.transport.Version;
  * The {@link RestClientTransport} is deprecated and is scheduled for removal in later versions. Please
  * use {@link org.opensearch.client.transport.httpclient5.ApacheHttpClient5Transport} instead.
  */
-@Deprecated(since = "3.0.0", forRemoval = true)
+@Deprecated
 public class RestClientOptions implements TransportOptions {
 
     private final RequestOptions options;
