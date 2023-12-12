@@ -29,7 +29,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
 - Fix PutTemplateRequest field deserialization ([#723](https://github.com/opensearch-project/opensearch-java/pull/723))
-- Fix PutIndexTemplateRequest field deserialization (...)
+- Fix PutIndexTemplateRequest field deserialization ([#765](https://github.com/opensearch-project/opensearch-java/pull/765))
 
 ### Security
 
