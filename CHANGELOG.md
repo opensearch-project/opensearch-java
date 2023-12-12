@@ -43,6 +43,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Added support for icu_collation_keyword type ([#725](https://github.com/opensearch-project/opensearch-java/pull/725))
 - Added support for flat_object field property ([#735](https://github.com/opensearch-project/opensearch-java/pull/735))
 - Added toQuery method in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760)
+- Added toBuilder method to all request model in core package & _types.query_dsl package
+
 ### Dependencies
 
 ### Changed
@@ -50,6 +52,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Deprecated
 - Deprecated "_toQuery()" in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760)
+
 ### Removed
 
 ### Fixed
