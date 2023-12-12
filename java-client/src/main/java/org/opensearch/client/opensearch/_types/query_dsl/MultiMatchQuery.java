@@ -362,6 +362,27 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .analyzer(analyzer)
+            .autoGenerateSynonymsPhraseQuery(autoGenerateSynonymsPhraseQuery)
+            .cutoffFrequency(cutoffFrequency)
+            .fields(fields)
+            .fuzziness(fuzziness)
+            .fuzzyRewrite(fuzzyRewrite)
+            .fuzzyTranspositions(fuzzyTranspositions)
+            .lenient(lenient)
+            .maxExpansions(maxExpansions)
+            .minimumShouldMatch(minimumShouldMatch)
+            .operator(operator)
+            .prefixLength(prefixLength)
+            .query(query)
+            .slop(slop)
+            .tieBreaker(tieBreaker)
+            .type(type)
+            .zeroTermsQuery(zeroTermsQuery);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

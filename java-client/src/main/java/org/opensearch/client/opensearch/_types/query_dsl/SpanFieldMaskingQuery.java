@@ -105,6 +105,12 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .field(field)
+            .query(query);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

@@ -151,6 +151,15 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .ignoreUnmapped(ignoreUnmapped)
+            .innerHits(innerHits)
+            .parentType(parentType)
+            .query(query)
+            .score(score);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

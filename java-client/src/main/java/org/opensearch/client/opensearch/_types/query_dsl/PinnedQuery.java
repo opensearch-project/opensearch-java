@@ -196,6 +196,13 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<PinnedQuery.Ki
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            ._kind(_kind)
+            ._value(_value)
+            .organic(organic);
+    }
+
     public static class Builder extends QueryBase.AbstractBuilder<Builder> {
         private Kind _kind;
         private Object _value;
@@ -219,6 +226,16 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<PinnedQuery.Ki
 
         @Override
         protected Builder self() {
+            return this;
+        }
+
+        protected final Builder _kind(Kind v) {
+            this._kind = v;
+            return this;
+        }
+
+        protected final Builder _value(Object v) {
+            this._value = v;
             return this;
         }
 

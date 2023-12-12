@@ -120,9 +120,14 @@ public class ShapeFieldQuery implements JsonpSerializable {
         if (this.shape != null) {
             generator.writeKey("shape");
             this.shape.serialize(generator, mapper);
-
         }
+    }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .indexedShape(indexedShape)
+            .relation(relation)
+            .shape(shape);
     }
 
     // ---------------------------------------------------------------------------------------------

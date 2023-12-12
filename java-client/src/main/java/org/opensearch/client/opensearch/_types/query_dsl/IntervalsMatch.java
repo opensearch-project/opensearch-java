@@ -188,6 +188,16 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .analyzer(analyzer)
+            .maxGaps(maxGaps)
+            .ordered(ordered)
+            .query(query)
+            .useField(useField)
+            .filter(filter);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

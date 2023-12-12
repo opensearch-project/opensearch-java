@@ -142,6 +142,14 @@ public class DecayPlacement implements JsonpSerializable {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .decay(decay)
+            .offset(offset)
+            .scale(scale)
+            .origin(origin);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

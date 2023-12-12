@@ -85,6 +85,11 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .scalingFactor(scalingFactor);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

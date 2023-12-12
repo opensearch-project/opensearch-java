@@ -41,6 +41,8 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.opensearch._types.FieldValue;
+import org.opensearch.client.opensearch._types.query_dsl.SpanQuery.Builder;
+import org.opensearch.client.opensearch._types.query_dsl.SpanQuery.Kind;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -141,9 +143,25 @@ public class TermsQueryField implements TaggedUnion<TermsQueryField.Kind, Object
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            ._kind(_kind)
+            ._value(_value);
+    }
+
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsQueryField> {
         private Kind _kind;
         private Object _value;
+
+        protected final Builder _kind(Kind v) {
+            this._kind = v;
+            return this;
+        }
+
+        protected final Builder _value(Object v) {
+            this._value = v;
+            return this;
+        }
 
         public ObjectBuilder<TermsQueryField> value(List<FieldValue> v) {
             this._kind = Kind.Value;

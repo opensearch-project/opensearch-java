@@ -116,6 +116,13 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .minScore(minScore)
+            .query(query)
+            .script(script);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

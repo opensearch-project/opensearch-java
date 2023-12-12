@@ -496,6 +496,35 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .allowLeadingWildcard(allowLeadingWildcard)
+            .analyzer(analyzer)
+            .analyzeWildcard(analyzeWildcard)
+            .autoGenerateSynonymsPhraseQuery(autoGenerateSynonymsPhraseQuery)
+            .defaultField(defaultField)
+            .defaultOperator(defaultOperator)
+            .enablePositionIncrements(enablePositionIncrements)
+            .escape(escape)
+            .fields(fields)
+            .fuzziness(fuzziness)
+            .fuzzyMaxExpansions(fuzzyMaxExpansions)
+            .fuzzyPrefixLength(fuzzyPrefixLength)
+            .fuzzyRewrite(fuzzyRewrite)
+            .fuzzyTranspositions(fuzzyTranspositions)
+            .lenient(lenient)
+            .maxDeterminizedStates(maxDeterminizedStates)
+            .minimumShouldMatch(minimumShouldMatch)
+            .phraseSlop(phraseSlop)
+            .query(query)
+            .quoteAnalyzer(quoteAnalyzer)
+            .quoteFieldSuffix(quoteFieldSuffix)
+            .rewrite(rewrite)
+            .tieBreaker(tieBreaker)
+            .timeZone(timeZone)
+            .type(type);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

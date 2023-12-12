@@ -251,6 +251,13 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<IntervalsQu
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            ._kind(_kind)
+            ._value(_value)
+            .field(field);
+    }
+
     public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<IntervalsQuery> {
         private Kind _kind;
         private Object _value;
@@ -267,6 +274,16 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<IntervalsQu
 
         @Override
         protected Builder self() {
+            return this;
+        }
+
+        protected final Builder _kind(Kind v) {
+            this._kind = v;
+            return this;
+        }
+
+        protected final Builder _value(Object v) {
+            this._value = v;
             return this;
         }
 

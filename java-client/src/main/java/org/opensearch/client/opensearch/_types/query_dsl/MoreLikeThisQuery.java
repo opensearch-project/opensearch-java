@@ -414,6 +414,29 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()
+            .analyzer(analyzer)
+            .boostTerms(boostTerms)
+            .failOnUnsupportedField(failOnUnsupportedField)
+            .fields(fields)
+            .include(include)
+            .like(like)
+            .maxDocFreq(maxDocFreq)
+            .maxQueryTerms(maxQueryTerms)
+            .maxWordLength(maxWordLength)
+            .minDocFreq(minDocFreq)
+            .minimumShouldMatch(minimumShouldMatch)
+            .minTermFreq(minTermFreq)
+            .minWordLength(minWordLength)
+            .perFieldAnalyzer(perFieldAnalyzer)
+            .routing(routing)
+            .stopWords(stopWords)
+            .unlike(unlike)
+            .version(version)
+            .versionType(versionType);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**
