@@ -168,8 +168,7 @@ public class WildcardQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .field(field);
+        return new Builder().field(field);
     }
 
     // ---------------------------------------------------------------------------------------------

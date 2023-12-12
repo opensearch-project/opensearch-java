@@ -99,9 +99,7 @@ public class PinnedDoc implements JsonpSerializable {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .id(id)
-            .index(index);
+        return new Builder().id(id).index(index);
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -310,8 +310,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .docs(docs)
+        return new Builder().docs(docs)
             .fieldStatistics(fieldStatistics)
             .fields(fields)
             .ids(ids)

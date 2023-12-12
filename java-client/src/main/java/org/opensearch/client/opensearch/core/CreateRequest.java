@@ -230,8 +230,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
     }
 
     public Builder<TDocument> toBuilder() {
-        return new Builder<TDocument>()
-            .id(id)
+        return new Builder<TDocument>().id(id)
             .index(index)
             .pipeline(pipeline)
             .refresh(refresh)

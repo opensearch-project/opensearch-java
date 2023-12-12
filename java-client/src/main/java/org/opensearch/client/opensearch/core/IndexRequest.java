@@ -290,8 +290,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
     }
 
     public Builder<TDocument> toBuilder() {
-        return new Builder<TDocument>()
-            .id(id)
+        return new Builder<TDocument>().id(id)
             .ifPrimaryTerm(ifPrimaryTerm)
             .ifSeqNo(ifSeqNo)
             .index(index)

@@ -213,8 +213,7 @@ public class DeleteRequest extends RequestBase {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .id(id)
+        return new Builder().id(id)
             .ifPrimaryTerm(ifPrimaryTerm)
             .ifSeqNo(ifSeqNo)
             .index(index)

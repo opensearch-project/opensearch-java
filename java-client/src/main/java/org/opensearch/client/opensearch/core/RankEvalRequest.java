@@ -207,8 +207,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .allowNoIndices(allowNoIndices)
+        return new Builder().allowNoIndices(allowNoIndices)
             .expandWildcards(expandWildcards)
             .ignoreUnavailable(ignoreUnavailable)
             .index(index)

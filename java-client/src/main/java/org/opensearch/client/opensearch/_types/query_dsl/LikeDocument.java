@@ -238,8 +238,7 @@ public class LikeDocument implements JsonpSerializable {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .doc(doc)
+        return new Builder().doc(doc)
             .fields(fields)
             .id(id)
             .type(type)

@@ -617,8 +617,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .source(source)
+        return new Builder().source(source)
             .sourceExcludes(sourceExcludes)
             .sourceIncludes(sourceIncludes)
             .allowNoIndices(allowNoIndices)

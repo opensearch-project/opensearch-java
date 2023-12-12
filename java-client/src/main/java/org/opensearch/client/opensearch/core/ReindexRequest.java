@@ -310,8 +310,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .conflicts(conflicts)
+        return new Builder().conflicts(conflicts)
             .dest(dest)
             .maxDocs(maxDocs)
             .refresh(refresh)

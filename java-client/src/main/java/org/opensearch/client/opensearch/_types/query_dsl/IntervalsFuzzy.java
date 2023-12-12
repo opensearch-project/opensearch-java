@@ -189,8 +189,7 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .analyzer(analyzer)
+        return new Builder().analyzer(analyzer)
             .fuzziness(fuzziness)
             .prefixLength(prefixLength)
             .term(term)

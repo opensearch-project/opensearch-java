@@ -253,8 +253,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .source(source)
+        return new Builder().source(source)
             .sourceExcludes(sourceExcludes)
             .sourceIncludes(sourceIncludes)
             .index(index)

@@ -218,8 +218,7 @@ public class ExistsSourceRequest extends RequestBase {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .source(source)
+        return new Builder().source(source)
             .sourceExcludes(sourceExcludes)
             .sourceIncludes(sourceIncludes)
             .id(id)

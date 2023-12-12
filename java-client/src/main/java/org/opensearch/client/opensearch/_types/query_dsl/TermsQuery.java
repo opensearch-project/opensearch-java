@@ -94,9 +94,7 @@ public class TermsQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .field(field)
-            .terms(terms);
+        return new Builder().field(field).terms(terms);
     }
 
     // ---------------------------------------------------------------------------------------------

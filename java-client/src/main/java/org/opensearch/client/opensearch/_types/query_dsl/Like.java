@@ -138,10 +138,9 @@ public class Like implements TaggedUnion<Like.Kind, Object>, JsonpSerializable {
         }
 
     }
+
     public Builder toBuilder() {
-        return new Builder()
-            ._kind(_kind)
-            ._value(_value);
+        return new Builder()._kind(_kind)._value(_value);
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Like> {

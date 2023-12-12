@@ -1186,15 +1186,12 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            ._kind(_kind)
-            ._value(_value);
+        return new Builder()._kind(_kind)._value(_value);
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Query> {
         private Kind _kind;
         private Object _value;
-
 
         protected final Builder _kind(Kind v) {
             this._kind = v;

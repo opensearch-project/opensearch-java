@@ -86,8 +86,7 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .script(script);
+        return new Builder().script(script);
     }
 
     // ---------------------------------------------------------------------------------------------

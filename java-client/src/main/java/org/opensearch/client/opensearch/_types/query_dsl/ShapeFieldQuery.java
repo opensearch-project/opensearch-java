@@ -124,10 +124,7 @@ public class ShapeFieldQuery implements JsonpSerializable {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .indexedShape(indexedShape)
-            .relation(relation)
-            .shape(shape);
+        return new Builder().indexedShape(indexedShape).relation(relation).shape(shape);
     }
 
     // ---------------------------------------------------------------------------------------------

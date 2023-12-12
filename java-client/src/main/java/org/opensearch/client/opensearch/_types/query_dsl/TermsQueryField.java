@@ -144,9 +144,7 @@ public class TermsQueryField implements TaggedUnion<TermsQueryField.Kind, Object
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            ._kind(_kind)
-            ._value(_value);
+        return new Builder()._kind(_kind)._value(_value);
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsQueryField> {

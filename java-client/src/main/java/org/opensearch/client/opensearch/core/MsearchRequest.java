@@ -255,8 +255,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .allowNoIndices(allowNoIndices)
+        return new Builder().allowNoIndices(allowNoIndices)
             .ccsMinimizeRoundtrips(ccsMinimizeRoundtrips)
             .expandWildcards(expandWildcards)
             .ignoreThrottled(ignoreThrottled)

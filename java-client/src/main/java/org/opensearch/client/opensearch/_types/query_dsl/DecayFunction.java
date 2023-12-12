@@ -94,9 +94,7 @@ public class DecayFunction extends DecayFunctionBase implements FunctionScoreVar
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .field(field)
-            .placement(placement);
+        return new Builder().field(field).placement(placement);
     }
 
     // ---------------------------------------------------------------------------------------------

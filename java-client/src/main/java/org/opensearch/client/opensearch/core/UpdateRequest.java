@@ -396,8 +396,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
     }
 
     public Builder<TDocument, TPartialDocument> toBuilder() {
-        return new Builder<TDocument, TPartialDocument>()
-            .source(source)
+        return new Builder<TDocument, TPartialDocument>().source(source)
             .detectNoop(detectNoop)
             .doc(doc)
             .docAsUpsert(docAsUpsert)

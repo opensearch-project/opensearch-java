@@ -313,9 +313,7 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, Object>, JsonpSeri
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            ._kind(_kind)
-            ._value(_value);
+        return new Builder()._kind(_kind)._value(_value);
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SpanQuery> {

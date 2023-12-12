@@ -88,8 +88,7 @@ public class WrapperQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .query(query);
+        return new Builder().query(query);
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -334,8 +334,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
     }
 
     public Builder<TDocument> toBuilder() {
-        return new Builder<TDocument>()
-            .doc(doc)
+        return new Builder<TDocument>().doc(doc)
             .fieldStatistics(fieldStatistics)
             .fields(fields)
             .filter(filter)

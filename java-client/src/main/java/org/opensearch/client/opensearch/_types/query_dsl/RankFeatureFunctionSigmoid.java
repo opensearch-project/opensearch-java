@@ -99,9 +99,7 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements J
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .pivot(pivot)
-            .exponent(exponent);
+        return new Builder().pivot(pivot).exponent(exponent);
     }
 
     // ---------------------------------------------------------------------------------------------

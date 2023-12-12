@@ -324,8 +324,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .allowNoIndices(allowNoIndices)
+        return new Builder().allowNoIndices(allowNoIndices)
             .analyzeWildcard(analyzeWildcard)
             .analyzer(analyzer)
             .defaultOperator(defaultOperator)

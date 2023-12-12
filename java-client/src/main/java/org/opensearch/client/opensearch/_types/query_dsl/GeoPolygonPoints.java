@@ -96,8 +96,7 @@ public class GeoPolygonPoints implements JsonpSerializable {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .points(points);
+        return new Builder().points(points);
     }
 
     // ---------------------------------------------------------------------------------------------

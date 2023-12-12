@@ -107,10 +107,7 @@ public class GetScriptRequest extends RequestBase {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .id(id)
-            .masterTimeout(masterTimeout)
-            .clusterManagerTimeout(clusterManagerTimeout);
+        return new Builder().id(id).masterTimeout(masterTimeout).clusterManagerTimeout(clusterManagerTimeout);
     }
 
     // ---------------------------------------------------------------------------------------------

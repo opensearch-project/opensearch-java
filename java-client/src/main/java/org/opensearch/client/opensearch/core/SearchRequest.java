@@ -1053,8 +1053,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .source(source)
+        return new Builder().source(source)
             .aggregations(aggregations)
             .allowNoIndices(allowNoIndices)
             .allowPartialSearchResults(allowPartialSearchResults)

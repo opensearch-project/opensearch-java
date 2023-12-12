@@ -415,8 +415,7 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .analyzer(analyzer)
+        return new Builder().analyzer(analyzer)
             .boostTerms(boostTerms)
             .failOnUnsupportedField(failOnUnsupportedField)
             .fields(fields)

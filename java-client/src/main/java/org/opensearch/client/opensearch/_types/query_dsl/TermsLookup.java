@@ -131,11 +131,7 @@ public class TermsLookup implements JsonpSerializable {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .index(index)
-            .id(id)
-            .path(path)
-            .routing(routing);
+        return new Builder().index(index).id(id).path(path).routing(routing);
     }
 
     // ---------------------------------------------------------------------------------------------

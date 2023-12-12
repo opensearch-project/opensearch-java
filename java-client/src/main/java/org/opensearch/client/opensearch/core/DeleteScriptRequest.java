@@ -120,11 +120,7 @@ public class DeleteScriptRequest extends RequestBase {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .id(id)
-            .masterTimeout(masterTimeout)
-            .clusterManagerTimeout(clusterManagerTimeout)
-            .timeout(timeout);
+        return new Builder().id(id).masterTimeout(masterTimeout).clusterManagerTimeout(clusterManagerTimeout).timeout(timeout);
     }
 
     // ---------------------------------------------------------------------------------------------

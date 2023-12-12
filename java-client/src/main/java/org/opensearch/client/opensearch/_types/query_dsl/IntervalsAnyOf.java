@@ -129,8 +129,7 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .intervals(intervals);
+        return new Builder().intervals(intervals);
     }
 
     // ---------------------------------------------------------------------------------------------

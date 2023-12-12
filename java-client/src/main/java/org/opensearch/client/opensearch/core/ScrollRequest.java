@@ -118,9 +118,7 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .scroll(scroll)
-            .scrollId(scrollId);
+        return new Builder().scroll(scroll).scrollId(scrollId);
     }
 
     // ---------------------------------------------------------------------------------------------

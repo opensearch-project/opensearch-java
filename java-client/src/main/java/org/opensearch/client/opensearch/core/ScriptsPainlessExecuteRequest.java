@@ -136,10 +136,7 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .context(context)
-            .contextSetup(contextSetup)
-            .script(script);
+        return new Builder().context(context).contextSetup(contextSetup).script(script);
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -332,8 +332,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .allowNoIndices(allowNoIndices)
+        return new Builder().allowNoIndices(allowNoIndices)
             .ccsMinimizeRoundtrips(ccsMinimizeRoundtrips)
             .expandWildcards(expandWildcards)
             .explain(explain)

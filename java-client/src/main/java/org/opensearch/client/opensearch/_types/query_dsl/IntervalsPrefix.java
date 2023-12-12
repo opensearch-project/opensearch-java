@@ -138,10 +138,7 @@ public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant,
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .analyzer(analyzer)
-            .prefix(prefix)
-            .useField(useField);
+        return new Builder().analyzer(analyzer).prefix(prefix).useField(useField);
     }
 
     // ---------------------------------------------------------------------------------------------

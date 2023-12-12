@@ -276,11 +276,7 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            ._kind(_kind)
-            ._value(_value)
-            .filter(filter)
-            .weight(weight);
+        return new Builder()._kind(_kind)._value(_value).filter(filter).weight(weight);
     }
 
     public static class Builder extends ObjectBuilderBase {

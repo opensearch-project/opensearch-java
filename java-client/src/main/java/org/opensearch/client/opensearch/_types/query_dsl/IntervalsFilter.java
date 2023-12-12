@@ -295,9 +295,7 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            ._kind(_kind)
-            ._value(_value);
+        return new Builder()._kind(_kind)._value(_value);
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsFilter> {

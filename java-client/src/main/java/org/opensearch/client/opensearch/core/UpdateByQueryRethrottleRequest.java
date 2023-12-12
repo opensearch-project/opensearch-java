@@ -92,9 +92,7 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .requestsPerSecond(requestsPerSecond)
-            .taskId(taskId);
+        return new Builder().requestsPerSecond(requestsPerSecond).taskId(taskId);
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -160,8 +160,7 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .ccsMinimizeRoundtrips(ccsMinimizeRoundtrips)
+        return new Builder().ccsMinimizeRoundtrips(ccsMinimizeRoundtrips)
             .index(index)
             .maxConcurrentSearches(maxConcurrentSearches)
             .searchType(searchType)
