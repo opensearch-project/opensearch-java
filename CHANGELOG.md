@@ -42,6 +42,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Dependencies
 
 ### Changed
+- Changed SearchAfter of SearchRequest type to FieldValue instead of String
 
 ### Deprecated
 - Deprecated "_toQuery()" in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760)
