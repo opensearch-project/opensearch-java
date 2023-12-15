@@ -307,7 +307,21 @@ public class MatchQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().field(field);
+        return new Builder()
+            .field(field)
+            .analyzer(analyzer)
+            .autoGenerateSynonymsPhraseQuery(autoGenerateSynonymsPhraseQuery)
+            .cutoffFrequency(cutoffFrequency)
+            .fuzziness(fuzziness)
+            .fuzzyRewrite(fuzzyRewrite)
+            .fuzzyTranspositions(fuzzyTranspositions)
+            .lenient(lenient)
+            .maxExpansions(maxExpansions)
+            .minimumShouldMatch(minimumShouldMatch)
+            .operator(operator)
+            .prefixLength(prefixLength)
+            .query(query)
+            .zeroTermsQuery(zeroTermsQuery);
     }
 
     // ---------------------------------------------------------------------------------------------
