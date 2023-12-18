@@ -4,7 +4,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 3.0]
 ### Dependencies
 - Bumps `io.github.classgraph:classgraph` from 4.8.163 to 4.8.165
-- Bumps `org.owasp.dependencycheck` from 8.4.2 to 9.0.1
+- Bumps `org.owasp.dependencycheck` from 8.4.2 to 9.0.7
 - Bumps `com.diffplug.spotless` from 6.22.0 to 6.23.3
 - Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.3 to 5.2.4
 - Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.2.1 to 5.2.3
