@@ -73,7 +73,6 @@ public abstract class ModelTestCase extends Assert {
                     return false;
                 }
             };
-
         }
     }
 
