@@ -7,8 +7,7 @@ import org.opensearch.client.opensearch.model.ModelTestCase;
 public class SpanFirstQueryTest extends ModelTestCase {
     @Test
     public void toBuilder() {
-        SpanFirstQuery origin = new SpanFirstQuery.Builder()
-            .end(1)
+        SpanFirstQuery origin = new SpanFirstQuery.Builder().end(1)
             .match(new SpanQuery.Builder().spanOr(new SpanOrQuery.Builder().clauses(List.of()).build()).build())
             .build();
         SpanFirstQuery copied = origin.toBuilder().build();

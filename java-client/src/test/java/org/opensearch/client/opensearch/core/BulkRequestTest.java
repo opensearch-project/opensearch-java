@@ -10,8 +10,7 @@ public class BulkRequestTest extends ModelTestCase {
 
     @Test
     public void toBuilder() {
-        BulkRequest origin = new BulkRequest.Builder()
-            .index("index")
+        BulkRequest origin = new BulkRequest.Builder().index("index")
             .operations(List.of(new BulkOperation.Builder().delete(new DeleteOperation.Builder().id("id").build()).build()))
             .build();
         BulkRequest copied = origin.toBuilder().build();

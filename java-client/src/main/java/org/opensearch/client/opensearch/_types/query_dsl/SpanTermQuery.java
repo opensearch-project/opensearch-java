@@ -107,9 +107,7 @@ public class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryV
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .field(field)
-            .value(value);
+        return new Builder().field(field).value(value);
     }
 
     // ---------------------------------------------------------------------------------------------

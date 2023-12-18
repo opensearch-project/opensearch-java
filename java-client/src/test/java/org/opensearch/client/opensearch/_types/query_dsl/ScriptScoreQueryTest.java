@@ -9,9 +9,9 @@ import org.opensearch.client.opensearch.model.ModelTestCase;
 public class ScriptScoreQueryTest extends ModelTestCase {
     @Test
     public void toBuilder() {
-        ScriptScoreQuery origin = new ScriptScoreQuery.Builder().query(buildDummyQuery()).script(
-            new Script.Builder().inline(new InlineScript.Builder().source("source").build()).build()
-        ).build();
+        ScriptScoreQuery origin = new ScriptScoreQuery.Builder().query(buildDummyQuery())
+            .script(new Script.Builder().inline(new InlineScript.Builder().source("source").build()).build())
+            .build();
         ScriptScoreQuery copied = origin.toBuilder().build();
 
         assertEquals(toJson(copied), toJson(origin));
@@ -20,8 +20,7 @@ public class ScriptScoreQueryTest extends ModelTestCase {
     private Query buildDummyQuery() {
         return Query.of(
             query -> query.bool(
-                builder -> builder.filter(filter -> filter.term(TermQuery.of(term -> term.field("size").value(
-                    FieldValue.of(1)))))
+                builder -> builder.filter(filter -> filter.term(TermQuery.of(term -> term.field("size").value(FieldValue.of(1)))))
             )
         );
     }

@@ -7,8 +7,7 @@ import org.opensearch.client.opensearch.model.ModelTestCase;
 public class DistanceFeatureQueryTest extends ModelTestCase {
     @Test
     public void toBuilder() {
-        DistanceFeatureQuery origin = new DistanceFeatureQuery.Builder()
-            .origin(JsonData.of("{}"))
+        DistanceFeatureQuery origin = new DistanceFeatureQuery.Builder().origin(JsonData.of("{}"))
             .pivot(JsonData.of("{}"))
             .field("field")
             .build();

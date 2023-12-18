@@ -168,13 +168,7 @@ public class WildcardQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder()
-            .field(field)
-            .value(value)
-            .caseInsensitive(caseInsensitive)
-            .rewrite(rewrite)
-            .value(value)
-            .wildcard(wildcard);
+        return new Builder().field(field).value(value).caseInsensitive(caseInsensitive).rewrite(rewrite).value(value).wildcard(wildcard);
     }
 
     // ---------------------------------------------------------------------------------------------

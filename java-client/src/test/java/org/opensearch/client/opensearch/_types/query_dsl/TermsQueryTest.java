@@ -8,8 +8,7 @@ import org.opensearch.client.opensearch.model.ModelTestCase;
 public class TermsQueryTest extends ModelTestCase {
     @Test
     public void toBuilder() {
-        TermsQuery origin = new TermsQuery.Builder()
-            .field("field")
+        TermsQuery origin = new TermsQuery.Builder().field("field")
             .terms(new TermsQueryField.Builder().value(List.of(FieldValue.of("1"))).build())
             .build();
         TermsQuery copied = origin.toBuilder().build();

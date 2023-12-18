@@ -17,8 +17,7 @@ public class PinnedQueryTest extends ModelTestCase {
     private Query buildDummyQuery() {
         return Query.of(
             query -> query.bool(
-                builder -> builder.filter(filter -> filter.term(TermQuery.of(term -> term.field("size").value(
-                    FieldValue.of(1)))))
+                builder -> builder.filter(filter -> filter.term(TermQuery.of(term -> term.field("size").value(FieldValue.of(1)))))
             )
         );
     }

@@ -8,8 +8,7 @@ import org.opensearch.client.opensearch.model.ModelTestCase;
 public class GeoDistanceQueryTest extends ModelTestCase {
     @Test
     public void toBuilder() {
-        GeoDistanceQuery origin = new GeoDistanceQuery.Builder()
-            .field("field")
+        GeoDistanceQuery origin = new GeoDistanceQuery.Builder().field("field")
             .location(new GeoLocation.Builder().coords(List.of(1.0)).build())
             .build();
         GeoDistanceQuery copied = origin.toBuilder().build();

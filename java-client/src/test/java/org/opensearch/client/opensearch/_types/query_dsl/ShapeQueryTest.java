@@ -7,7 +7,9 @@ import org.opensearch.client.opensearch.model.ModelTestCase;
 public class ShapeQueryTest extends ModelTestCase {
     @Test
     public void toBuilder() {
-        ShapeQuery origin = new ShapeQuery.Builder().field("field").shape(new ShapeFieldQuery.Builder().shape(JsonData.of("{}")).build()).build();
+        ShapeQuery origin = new ShapeQuery.Builder().field("field")
+            .shape(new ShapeFieldQuery.Builder().shape(JsonData.of("{}")).build())
+            .build();
         ShapeQuery copied = origin.toBuilder().build();
 
         assertEquals(toJson(copied), toJson(origin));

@@ -7,9 +7,9 @@ import org.opensearch.client.opensearch.model.ModelTestCase;
 public class SpanOrQueryTest extends ModelTestCase {
     @Test
     public void toBuilder() {
-        SpanOrQuery origin = new SpanOrQuery.Builder()
-            .clauses(List.of(new SpanQuery.Builder().spanOr(new SpanOrQuery.Builder().clauses(List.of()).build()).build()))
-            .build();
+        SpanOrQuery origin = new SpanOrQuery.Builder().clauses(
+            List.of(new SpanQuery.Builder().spanOr(new SpanOrQuery.Builder().clauses(List.of()).build()).build())
+        ).build();
         SpanOrQuery copied = origin.toBuilder().build();
 
         assertEquals(toJson(copied), toJson(origin));

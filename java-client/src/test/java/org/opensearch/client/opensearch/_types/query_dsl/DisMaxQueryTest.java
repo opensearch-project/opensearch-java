@@ -7,9 +7,7 @@ import org.opensearch.client.opensearch.model.ModelTestCase;
 public class DisMaxQueryTest extends ModelTestCase {
     @Test
     public void toBuilder() {
-        DisMaxQuery origin = new DisMaxQuery.Builder()
-            .queries(buildDummyQuery())
-            .build();
+        DisMaxQuery origin = new DisMaxQuery.Builder().queries(buildDummyQuery()).build();
         DisMaxQuery copied = origin.toBuilder().build();
 
         assertEquals(toJson(copied), toJson(origin));

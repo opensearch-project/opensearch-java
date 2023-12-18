@@ -8,8 +8,7 @@ public class PutScriptRequestTest extends ModelTestCase {
 
     @Test
     public void toBuilder() {
-        PutScriptRequest origin = new PutScriptRequest.Builder()
-            .id("id")
+        PutScriptRequest origin = new PutScriptRequest.Builder().id("id")
             .script(StoredScript.of(a -> a.lang("lang").source("source")))
             .build();
         PutScriptRequest copied = origin.toBuilder().build();

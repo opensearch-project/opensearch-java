@@ -8,10 +8,7 @@ public class RankEvalRequestTest extends ModelTestCase {
 
     @Test
     public void toBuilder() {
-        RankEvalRequest origin = new RankEvalRequest.Builder()
-            .index("index")
-            .requests(List.of())
-            .build();
+        RankEvalRequest origin = new RankEvalRequest.Builder().index("index").requests(List.of()).build();
         RankEvalRequest copied = origin.toBuilder().build();
 
         assertEquals(toJson(copied), toJson(origin));

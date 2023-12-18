@@ -7,9 +7,7 @@ import org.opensearch.client.opensearch.model.ModelTestCase;
 public class SpanMultiTermQueryTest extends ModelTestCase {
     @Test
     public void toBuilder() {
-        SpanMultiTermQuery origin = new SpanMultiTermQuery.Builder()
-            .match(buildDummyQuery())
-            .build();
+        SpanMultiTermQuery origin = new SpanMultiTermQuery.Builder().match(buildDummyQuery()).build();
         SpanMultiTermQuery copied = origin.toBuilder().build();
 
         assertEquals(toJson(copied), toJson(origin));
@@ -18,8 +16,7 @@ public class SpanMultiTermQueryTest extends ModelTestCase {
     private Query buildDummyQuery() {
         return Query.of(
             query -> query.bool(
-                builder -> builder.filter(filter -> filter.term(TermQuery.of(term -> term.field("size").value(
-                    FieldValue.of(1)))))
+                builder -> builder.filter(filter -> filter.term(TermQuery.of(term -> term.field("size").value(FieldValue.of(1)))))
             )
         );
     }

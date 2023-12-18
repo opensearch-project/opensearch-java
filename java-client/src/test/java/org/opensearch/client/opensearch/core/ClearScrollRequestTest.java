@@ -8,9 +8,7 @@ public class ClearScrollRequestTest extends ModelTestCase {
 
     @Test
     public void toBuilder() {
-        ClearScrollRequest origin = new ClearScrollRequest.Builder()
-            .scrollId(List.of("1"))
-            .build();
+        ClearScrollRequest origin = new ClearScrollRequest.Builder().scrollId(List.of("1")).build();
         ClearScrollRequest copied = origin.toBuilder().build();
 
         assertEquals(toJson(copied), toJson(origin));

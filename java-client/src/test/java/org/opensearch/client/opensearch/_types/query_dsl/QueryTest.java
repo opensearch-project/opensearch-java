@@ -9,8 +9,7 @@ public class QueryTest extends ModelTestCase {
     public void toBuilder() {
         Query origin = Query.of(
             query -> query.bool(
-                builder -> builder.filter(filter -> filter.term(TermQuery.of(term -> term.field("size").value(
-                    FieldValue.of(1)))))
+                builder -> builder.filter(filter -> filter.term(TermQuery.of(term -> term.field("size").value(FieldValue.of(1)))))
             )
         );
         Query copied = origin.toBuilder().build();

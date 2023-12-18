@@ -6,10 +6,7 @@ import org.opensearch.client.opensearch.model.ModelTestCase;
 public class TermsSetQueryTest extends ModelTestCase {
     @Test
     public void toBuilder() {
-        TermsSetQuery origin = new TermsSetQuery.Builder()
-            .field("field")
-            .terms("terms")
-            .build();
+        TermsSetQuery origin = new TermsSetQuery.Builder().field("field").terms("terms").build();
         TermsSetQuery copied = origin.toBuilder().build();
 
         assertEquals(toJson(copied), toJson(origin));

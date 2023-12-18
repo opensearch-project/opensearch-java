@@ -13,5 +13,5 @@ public class TermvectorsRequestTest extends ModelTestCase {
         assertEquals(toJson(copied), toJson(origin));
     }
 
-    static class MyDoc { }
+    static class MyDoc {}
 }

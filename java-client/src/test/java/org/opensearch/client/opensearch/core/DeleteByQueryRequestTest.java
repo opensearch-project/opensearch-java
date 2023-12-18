@@ -34,10 +34,7 @@ public class DeleteByQueryRequestTest extends ModelTestCase {
 
     @Test
     public void toBuilder() {
-        DeleteByQueryRequest origin = new DeleteByQueryRequest.Builder()
-            .index("index")
-            .query(buildDummyQuery())
-            .build();
+        DeleteByQueryRequest origin = new DeleteByQueryRequest.Builder().index("index").query(buildDummyQuery()).build();
         DeleteByQueryRequest copied = origin.toBuilder().build();
 
         assertEquals(toJson(copied), toJson(origin));
@@ -46,9 +43,7 @@ public class DeleteByQueryRequestTest extends ModelTestCase {
     private Query buildDummyQuery() {
         return Query.of(
             query -> query.bool(
-                builder -> builder.filter(filter -> filter.term(
-                    TermQuery.of(term -> term.field("size").value(
-                        FieldValue.of(1)))))
+                builder -> builder.filter(filter -> filter.term(TermQuery.of(term -> term.field("size").value(FieldValue.of(1)))))
             )
         );
     }

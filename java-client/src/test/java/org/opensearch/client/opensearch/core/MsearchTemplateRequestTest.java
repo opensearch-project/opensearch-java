@@ -8,10 +8,7 @@ public class MsearchTemplateRequestTest extends ModelTestCase {
 
     @Test
     public void toBuilder() {
-        MsearchTemplateRequest origin = new MsearchTemplateRequest.Builder()
-            .index("index")
-            .searchTemplates(List.of())
-            .build();
+        MsearchTemplateRequest origin = new MsearchTemplateRequest.Builder().index("index").searchTemplates(List.of()).build();
         MsearchTemplateRequest copied = origin.toBuilder().build();
 
         assertEquals(toJson(copied), toJson(origin));
