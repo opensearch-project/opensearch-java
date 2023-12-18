@@ -19,7 +19,7 @@ The below matrix shows the compatibility of the [`opensearch-java-client`](https
 | Client Version | JDK                |
 |----------------|--------------------|
 | 1.0.0          | 8                  |
-| 2.x.0          | 11 / 17 / 21       |
+| 2.x.0          | 8 / 11 / 17 / 21   |
 
 ## Upgrading
 
