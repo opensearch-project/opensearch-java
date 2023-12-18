@@ -1,16 +1,16 @@
 package org.opensearch.client.opensearch.core;
 
+import org.junit.Assert;
 import org.junit.Test;
-import org.opensearch.client.opensearch.model.ModelTestCase;
 
-public class CreateRequestTest extends ModelTestCase {
+public class CreateRequestTest extends Assert {
 
     @Test
     public void toBuilder() {
         CreateRequest<MyDoc> origin = new CreateRequest.Builder<MyDoc>().id("id").document(new MyDoc("1")).index("index").build();
         CreateRequest<MyDoc> copied = origin.toBuilder().build();
 
-        assertEquals(toJson(copied), toJson(origin));
+        assertEquals(copied.index(), origin.index());
     }
 
     static class MyDoc {

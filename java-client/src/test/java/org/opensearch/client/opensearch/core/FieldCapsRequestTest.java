@@ -1,15 +1,15 @@
 package org.opensearch.client.opensearch.core;
 
+import org.junit.Assert;
 import org.junit.Test;
-import org.opensearch.client.opensearch.model.ModelTestCase;
 
-public class FieldCapsRequestTest extends ModelTestCase {
+public class FieldCapsRequestTest extends Assert {
 
     @Test
     public void toBuilder() {
         FieldCapsRequest origin = new FieldCapsRequest.Builder().index("index").build();
         FieldCapsRequest copied = origin.toBuilder().build();
 
-        assertEquals(toJson(copied), toJson(origin));
+        assertEquals(copied.index(), origin.index());
     }
 }

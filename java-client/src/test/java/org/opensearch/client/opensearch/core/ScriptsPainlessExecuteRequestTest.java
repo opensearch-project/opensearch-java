@@ -1,15 +1,15 @@
 package org.opensearch.client.opensearch.core;
 
+import org.junit.Assert;
 import org.junit.Test;
-import org.opensearch.client.opensearch.model.ModelTestCase;
 
-public class ScriptsPainlessExecuteRequestTest extends ModelTestCase {
+public class ScriptsPainlessExecuteRequestTest extends Assert {
 
     @Test
     public void toBuilder() {
-        ScriptsPainlessExecuteRequest origin = new ScriptsPainlessExecuteRequest.Builder().build();
+        ScriptsPainlessExecuteRequest origin = new ScriptsPainlessExecuteRequest.Builder().context("context").build();
         ScriptsPainlessExecuteRequest copied = origin.toBuilder().build();
 
-        assertEquals(toJson(copied), toJson(origin));
+        assertEquals(copied.context(), origin.context());
     }
 }

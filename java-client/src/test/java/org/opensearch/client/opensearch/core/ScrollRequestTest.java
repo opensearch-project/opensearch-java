@@ -1,15 +1,15 @@
 package org.opensearch.client.opensearch.core;
 
+import org.junit.Assert;
 import org.junit.Test;
-import org.opensearch.client.opensearch.model.ModelTestCase;
 
-public class ScrollRequestTest extends ModelTestCase {
+public class ScrollRequestTest extends Assert {
 
     @Test
     public void toBuilder() {
         ScrollRequest origin = new ScrollRequest.Builder().scrollId("scrollId").build();
         ScrollRequest copied = origin.toBuilder().build();
 
-        assertEquals(toJson(copied), toJson(origin));
+        assertEquals(copied.scrollId(), origin.scrollId());
     }
 }

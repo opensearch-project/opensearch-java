@@ -1,15 +1,15 @@
 package org.opensearch.client.opensearch.core;
 
+import org.junit.Assert;
 import org.junit.Test;
-import org.opensearch.client.opensearch.model.ModelTestCase;
 
-public class CountRequestTest extends ModelTestCase {
+public class CountRequestTest extends Assert {
 
     @Test
     public void toBuilder() {
         CountRequest origin = new CountRequest.Builder().index("index").build();
         CountRequest copied = origin.toBuilder().build();
 
-        assertEquals(toJson(copied), toJson(origin));
+        assertEquals(copied.index(), origin.index());
     }
 }

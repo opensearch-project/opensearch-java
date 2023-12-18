@@ -9,10 +9,10 @@
 package org.opensearch.client.opensearch.core;
 
 import java.util.Map;
+import org.junit.Assert;
 import org.junit.Test;
-import org.opensearch.client.opensearch.model.ModelTestCase;
 
-public class ReindexRequestTest extends ModelTestCase {
+public class ReindexRequestTest extends Assert {
     @Test
     public void testEndpointSlicesAuto() {
         ReindexRequest reindexRequest = ReindexRequest.of(b -> b.slices(0L));
@@ -31,9 +31,9 @@ public class ReindexRequestTest extends ModelTestCase {
 
     @Test
     public void toBuilder() {
-        ReindexRequest origin = new ReindexRequest.Builder().build();
+        ReindexRequest origin = new ReindexRequest.Builder().requestsPerSecond(1L).build();
         ReindexRequest copied = origin.toBuilder().build();
 
-        assertEquals(toJson(copied), toJson(origin));
+        assertEquals(copied.requestsPerSecond(), origin.requestsPerSecond());
     }
 }

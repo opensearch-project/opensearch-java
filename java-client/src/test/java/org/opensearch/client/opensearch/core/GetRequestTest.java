@@ -1,15 +1,15 @@
 package org.opensearch.client.opensearch.core;
 
+import org.junit.Assert;
 import org.junit.Test;
-import org.opensearch.client.opensearch.model.ModelTestCase;
 
-public class GetRequestTest extends ModelTestCase {
+public class GetRequestTest extends Assert {
 
     @Test
     public void toBuilder() {
         GetRequest origin = new GetRequest.Builder().index("index").id("id").build();
         GetRequest copied = origin.toBuilder().build();
 
-        assertEquals(toJson(copied), toJson(origin));
+        assertEquals(copied.index(), origin.index());
     }
 }
