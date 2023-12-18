@@ -9,10 +9,10 @@
 package org.opensearch.client.opensearch.core;
 
 import java.util.Map;
-import org.junit.Assert;
 import org.junit.Test;
+import org.opensearch.client.opensearch.model.ModelTestCase;
 
-public class UpdateByQueryRequestTest extends Assert {
+public class UpdateByQueryRequestTest extends ModelTestCase {
     @Test
     public void testEndpointSlicesAuto() {
         UpdateByQueryRequest updateByQueryRequest = UpdateByQueryRequest.of(b -> b.index("test-index").slices(0L));
@@ -27,5 +27,13 @@ public class UpdateByQueryRequestTest extends Assert {
         Map<String, String> queryParameters = UpdateByQueryRequest._ENDPOINT.queryParameters(updateByQueryRequest);
         assertTrue("Must have a slices query parameter", queryParameters.containsKey("slices"));
         assertEquals("6", queryParameters.get("slices"));
+    }
+
+    @Test
+    public void toBuilder() {
+        TermsEnumRequest origin = new TermsEnumRequest.Builder().index("index").field("field").build();
+        TermsEnumRequest copied = origin.toBuilder().build();
+
+        assertEquals(toJson(copied), toJson(origin));
     }
 }
