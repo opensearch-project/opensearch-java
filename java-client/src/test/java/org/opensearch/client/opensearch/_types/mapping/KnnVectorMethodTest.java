@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 import jakarta.json.stream.JsonParser;
 import java.io.StringReader;
-import java.util.Map;
+import java.util.Collections;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.opensearch.client.json.JsonData;
@@ -30,7 +30,7 @@ public class KnnVectorMethodTest {
         KnnVectorMethod knnVectorMethod = new KnnVectorMethod.Builder().name("hnsw")
             .spaceType("l2")
             .engine("nmslib")
-            .parameters(Map.of("ef_construction", JsonData.of(128)))
+            .parameters(Collections.singletonMap("ef_construction", JsonData.of(128)))
             .build();
         assertEquals("hnsw", knnVectorMethod.name());
         assertEquals("l2", knnVectorMethod.spaceType());

@@ -61,8 +61,8 @@ configurations {
 }
 
 java {
-    targetCompatibility = JavaVersion.VERSION_11
-    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_1_8
 
     withJavadocJar()
     withSourcesJar()
@@ -146,15 +146,20 @@ val integrationTest = task<Test>("integrationTest") {
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
 
+val opensearchVersion = "2.11.1"
+
 dependencies {
 
-    val opensearchVersion = "2.7.0"
     val jacksonVersion = "2.15.2"
     val jacksonDatabindVersion = "2.15.2"
 
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
     testImplementation("org.opensearch.test", "framework", opensearchVersion)
+    testImplementation("org.hamcrest:hamcrest:2.1")
+    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.7.1") {
+        exclude(group = "junit")
+    }
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
@@ -326,4 +331,39 @@ publishing {
             }
         }
     }
+}
+
+if (JavaVersion.current() >= JavaVersion.VERSION_11) {
+  val java11: SourceSet = sourceSets.create("java11") {
+    java {
+      compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+      runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+      srcDir("src/test/java11")
+    }
+  }
+
+  configurations[java11.implementationConfigurationName].extendsFrom(configurations.testImplementation.get())
+  configurations[java11.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly.get())
+
+  dependencies {
+    testImplementation("org.opensearch.test", "framework", opensearchVersion) {
+      exclude(group = "org.hamcrest")
+    }
+  }
+
+  tasks.named<JavaCompile>("compileJava11Java") {
+    targetCompatibility = JavaVersion.VERSION_11.toString()
+    sourceCompatibility = JavaVersion.VERSION_11.toString()
+  }
+  
+  tasks.named<JavaCompile>("compileTestJava") {
+    targetCompatibility = JavaVersion.VERSION_11.toString()
+    sourceCompatibility = JavaVersion.VERSION_11.toString()
+  }
+  
+  tasks.test {
+    testClassesDirs += java11.output.classesDirs
+    classpath = sourceSets["java11"].runtimeClasspath
+  }
+ 
 }

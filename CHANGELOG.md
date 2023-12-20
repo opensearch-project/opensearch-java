@@ -11,6 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `com.diffplug.spotless` from 6.22.0 to 6.23.3
 
 ### Changed
+- Restore support for Java 8 ([#767](https://github.com/opensearch-project/opensearch-java/pull/767))
 
 ### Deprecated
 

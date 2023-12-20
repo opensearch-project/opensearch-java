@@ -13,16 +13,17 @@ import jakarta.json.stream.JsonParser;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.function.Supplier;
 import java.util.zip.GZIPInputStream;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
@@ -261,11 +262,12 @@ public class AwsSdk2Transport implements OpenSearchTransport {
                 .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
                 .map(AwsSdk2TransportOptions::mapper)
                 .orElse(defaultMapper);
-            final int maxUncompressedSize = Optional.ofNullable(options)
-                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                .map(AwsSdk2TransportOptions::requestCompressionSize)
-                .or(() -> Optional.ofNullable(transportOptions.requestCompressionSize()))
-                .orElse(DEFAULT_REQUEST_COMPRESSION_SIZE);
+            final int maxUncompressedSize = or(
+                Optional.ofNullable(options)
+                    .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
+                    .map(AwsSdk2TransportOptions::requestCompressionSize),
+                () -> Optional.ofNullable(transportOptions.requestCompressionSize())
+            ).orElse(DEFAULT_REQUEST_COMPRESSION_SIZE);
 
             OpenSearchRequestBodyBuffer buffer = new OpenSearchRequestBodyBuffer(mapper, maxUncompressedSize);
             buffer.addContent(request);
@@ -280,7 +282,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         Endpoint<RequestT, ?, ?> endpoint,
         @CheckForNull TransportOptions options,
         @CheckForNull OpenSearchRequestBodyBuffer body
-    ) {
+    ) throws UnsupportedEncodingException {
         SdkHttpFullRequest.Builder req = SdkHttpFullRequest.builder().method(SdkHttpMethod.fromValue(endpoint.method(request)));
 
         StringBuilder url = new StringBuilder();
@@ -293,9 +295,9 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         Map<String, String> params = endpoint.queryParameters(request);
         if (params != null && !params.isEmpty()) {
             char sep = '?';
-            for (var ent : params.entrySet()) {
+            for (Map.Entry<String, String> ent : params.entrySet()) {
                 url.append(sep).append(ent.getKey()).append('=');
-                url.append(URLEncoder.encode(ent.getValue(), StandardCharsets.UTF_8));
+                url.append(URLEncoder.encode(ent.getValue(), "UTF-8"));
                 sep = '&';
             }
         }
@@ -321,22 +323,24 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             req.putHeader("x-amz-content-sha256", "required");
         }
 
-        boolean responseCompression = Optional.ofNullable(options)
-            .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-            .map(AwsSdk2TransportOptions::responseCompression)
-            .or(() -> Optional.ofNullable(transportOptions.responseCompression()))
-            .orElse(Boolean.TRUE);
+        boolean responseCompression = or(
+            Optional.ofNullable(options)
+                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
+                .map(AwsSdk2TransportOptions::responseCompression),
+            () -> Optional.ofNullable(transportOptions.responseCompression())
+        ).orElse(Boolean.TRUE);
         if (responseCompression) {
             req.putHeader("Accept-Encoding", "gzip");
         } else {
             req.removeHeader("Accept-Encoding");
         }
 
-        final AwsCredentialsProvider credentials = Optional.ofNullable(options)
-            .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-            .map(AwsSdk2TransportOptions::credentials)
-            .or(() -> Optional.ofNullable(transportOptions.credentials()))
-            .orElse(DefaultCredentialsProvider.create());
+        final AwsCredentialsProvider credentials = or(
+            Optional.ofNullable(options)
+                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
+                .map(AwsSdk2TransportOptions::credentials),
+            () -> Optional.ofNullable(transportOptions.credentials())
+        ).orElse(DefaultCredentialsProvider.create());
 
         Aws4SignerParams signerParams = Aws4SignerParams.builder()
             .awsCredentials(credentials.resolveCredentials())
@@ -346,7 +350,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         return Aws4Signer.create().sign(req.build(), signerParams);
     }
 
-    private void applyOptionsParams(StringBuilder url, TransportOptions options) {
+    private void applyOptionsParams(StringBuilder url, TransportOptions options) throws UnsupportedEncodingException {
         if (options == null) {
             return;
         }
@@ -355,7 +359,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             char sep = url.indexOf("?") < 0 ? '?' : '&';
             for (Map.Entry<String, String> param : params.entrySet()) {
                 url.append(sep).append(param.getKey()).append('=');
-                url.append(URLEncoder.encode(param.getValue(), StandardCharsets.UTF_8));
+                url.append(URLEncoder.encode(param.getValue(), "UTF-8"));
                 sep = '?';
             }
         }
@@ -522,6 +526,18 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             } else {
                 throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'");
             }
+        }
+    }
+
+    private static <T> Optional<T> or(Optional<T> opt, Supplier<? extends Optional<? extends T>> supplier) {
+        Objects.requireNonNull(opt);
+        Objects.requireNonNull(supplier);
+        if (opt.isPresent()) {
+            return opt;
+        } else {
+            @SuppressWarnings("unchecked")
+            Optional<T> r = (Optional<T>) supplier.get();
+            return Objects.requireNonNull(r);
         }
     }
 }

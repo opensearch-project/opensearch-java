@@ -15,7 +15,7 @@ public class ResponseExceptionTest {
 
     @Test
     public void testStatus() throws IOException {
-        final var response = this.buildResponseException(HttpStatus.SC_BAD_REQUEST);
+        final ResponseException response = this.buildResponseException(HttpStatus.SC_BAD_REQUEST);
         assertThat(response.status(), equalTo(HttpStatus.SC_BAD_REQUEST));
     }
 

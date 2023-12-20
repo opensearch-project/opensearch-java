@@ -32,6 +32,7 @@
 
 package org.opensearch.client.transport;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -98,7 +99,7 @@ public interface TransportOptions {
             if (headers.isEmpty()) {
                 headers = new ArrayList<>();
             }
-            headers.add(Map.entry(name, value));
+            headers.add(new AbstractMap.SimpleEntry<>(name, value));
             return this;
         }
 
@@ -135,8 +136,8 @@ public interface TransportOptions {
         private final Function<List<String>, Boolean> onWarnings;
 
         protected DefaultImpl(BuilderImpl builder) {
-            this.headers = builder.headers.isEmpty() ? Collections.emptyList() : List.copyOf(builder.headers);
-            this.params = builder.queryParameters.isEmpty() ? Collections.emptyMap() : Map.copyOf(builder.queryParameters);
+            this.headers = builder.headers.isEmpty() ? Collections.emptyList() : new ArrayList<>(builder.headers);
+            this.params = builder.queryParameters.isEmpty() ? Collections.emptyMap() : new HashMap<>(builder.queryParameters);
             this.onWarnings = builder.onWarnings;
         }
 
