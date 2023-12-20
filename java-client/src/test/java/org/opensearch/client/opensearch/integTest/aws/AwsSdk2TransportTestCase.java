@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.IOException;
-import java.util.List;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import javax.annotation.CheckForNull;
@@ -209,14 +209,14 @@ public abstract class AwsSdk2TransportTestCase {
             }
         }
         if (indexExists) {
-            client.delete(b -> b.index(List.of(TEST_INDEX)));
+            client.delete(b -> b.index(Collections.singletonList(TEST_INDEX)));
         }
-        var req = new CreateIndexRequest.Builder().index(TEST_INDEX);
+        final CreateIndexRequest.Builder req = new CreateIndexRequest.Builder().index(TEST_INDEX);
         client.create(req.build());
     }
 
     protected SearchResponse<SimplePojo> query(OpenSearchClient client, String title, String text) throws Exception {
-        var query = Query.of(qb -> {
+        final Query query = Query.of(qb -> {
             if (title != null) {
                 qb.match(mb -> mb.field("title").query(vb -> vb.stringValue(title)));
             }
@@ -226,7 +226,7 @@ public abstract class AwsSdk2TransportTestCase {
             return qb;
         });
         final SearchRequest.Builder req = new SearchRequest.Builder().allowPartialSearchResults(false)
-            .index(List.of(TEST_INDEX))
+            .index(Collections.singletonList(TEST_INDEX))
             .size(10)
             .ignoreThrottled(false)
             .sort(
@@ -239,7 +239,7 @@ public abstract class AwsSdk2TransportTestCase {
     }
 
     protected CompletableFuture<SearchResponse<SimplePojo>> query(OpenSearchAsyncClient client, String title, String text) {
-        var query = Query.of(qb -> {
+        Query query = Query.of(qb -> {
             if (title != null) {
                 qb.match(mb -> mb.field("title").query(vb -> vb.stringValue(title)));
             }
@@ -249,7 +249,7 @@ public abstract class AwsSdk2TransportTestCase {
             return qb;
         });
         final SearchRequest.Builder req = new SearchRequest.Builder().allowPartialSearchResults(false)
-            .index(List.of(TEST_INDEX))
+            .index(Collections.singletonList(TEST_INDEX))
             .size(10)
             .ignoreThrottled(false)
             .sort(
@@ -261,7 +261,9 @@ public abstract class AwsSdk2TransportTestCase {
         try {
             return client.search(req.build(), SimplePojo.class);
         } catch (Exception e) {
-            return CompletableFuture.failedFuture(e);
+            final CompletableFuture<SearchResponse<SimplePojo>> failed = new CompletableFuture<>();
+            failed.completeExceptionally(e);
+            return failed;
         }
     }
 

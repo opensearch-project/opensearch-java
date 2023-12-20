@@ -9,7 +9,7 @@
 package org.opensearch.client.opensearch.integTest.aws;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 import org.junit.Assert;
 import org.junit.Test;
 import org.opensearch.client.opensearch.OpenSearchClient;
@@ -43,7 +43,7 @@ public class AwsSdk2BulkRequestIT extends AwsSdk2TransportTestCase {
 
         Query query = Query.of(qb -> qb.match(mb -> mb.field("title").query(fv -> fv.stringValue("Document"))));
         final SearchRequest.Builder searchReq = new SearchRequest.Builder().allowPartialSearchResults(false)
-            .index(List.of(TEST_INDEX))
+            .index(Collections.singletonList(TEST_INDEX))
             .size(10)
             .source(sc -> sc.fetch(false))
             .ignoreThrottled(false)
