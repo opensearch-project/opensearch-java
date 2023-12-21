@@ -146,7 +146,7 @@ val integrationTest = task<Test>("integrationTest") {
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
 
-val opensearchVersion = "2.11.1"
+val opensearchVersion = "2.12.0-SNAPSHOT"
 
 dependencies {
 
@@ -156,8 +156,8 @@ dependencies {
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
     testImplementation("org.opensearch.test", "framework", opensearchVersion)
-    testImplementation("org.hamcrest:hamcrest:2.1")
-    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.7.1") {
+    testImplementation("org.hamcrest:hamcrest:2.2")
+    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.1") {
         exclude(group = "junit")
     }
 
