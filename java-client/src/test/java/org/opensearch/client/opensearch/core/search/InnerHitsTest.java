@@ -1,27 +1,25 @@
 package org.opensearch.client.opensearch.core.search;
 
-import jakarta.json.spi.JsonProvider;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.List;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.opensearch.core.SearchRequest;
 
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.util.List;
-
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 public class InnerHitsTest {
-    private JsonpMapper mapper = new JsonbJsonpMapper();
-    private String storedSalary = "details.salary";
-    private String storedJobId = "details.jobId";
+    private final JsonpMapper mapper = new JsonbJsonpMapper();
+    private final String storedSalary = "details.salary";
+    private final String storedJobId = "details.jobId";
 
     /**
      * test if the json field for storedFields is generated with the correct name "stored_fields"
@@ -43,7 +41,6 @@ public class InnerHitsTest {
         assertThat(innerHits.storedFields(), containsInAnyOrder(storedJobId, storedSalary));
         String actualJson = toJson(innerHits);
         assertEquals(innerHitsJson, actualJson);
-
 
     }
 
@@ -68,13 +65,11 @@ public class InnerHitsTest {
         }
         return stringWriter.toString();
     }
-    private String innerHitsJson = String.format(
-            "{\"_source\":false,\"stored_fields\":[\"%s\",\"%s\"]}",
-            storedJobId,
-            storedSalary
+
+    private final String innerHitsJson = String.format("{\"_source\":false,\"stored_fields\":[\"%s\",\"%s\"]}", storedJobId, storedSalary);
+    private final String searchRequestJson = String.format(
+        "{\"_source\":false,\"query\":{\"bool\":{\"must\":[{\"match_all\":{}},{\"nested\":{\"inner_hits\":%s,\"path\":\"details\","
+            + "\"query\":{\"match_all\":{}}}}]}},\"stored_fields\":[\"title\",\"companyName\"]}",
+        innerHitsJson
     );
-    private String searchRequestJson = String.format(
-            "{\"_source\":false,\"query\":{\"bool\":{\"must\":[{\"match_all\":{}},{\"nested\":{\"inner_hits\":%s,\"path\":\"details\","
-                    + "\"query\":{\"match_all\":{}}}}]}},\"stored_fields\":[\"title\",\"companyName\"]}",
-            innerHitsJson);
 }
