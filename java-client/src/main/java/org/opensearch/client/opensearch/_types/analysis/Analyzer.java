@@ -237,8 +237,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Dutch);
     }
 
-
-
     /**
      * Is this variant instance of kind {@code arabic}?
      */
@@ -255,7 +253,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public ArabicAnalyzer arabic() {
         return TaggedUnionUtils.get(this, Kind.Arabic);
     }
-
 
     /**
      * Is this variant instance of kind {@code armenian}?
@@ -274,7 +271,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Armenian);
     }
 
-
     /**
      * Is this variant instance of kind {@code basque}?
      */
@@ -291,7 +287,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public BasqueAnalyzer basque() {
         return TaggedUnionUtils.get(this, Kind.Basque);
     }
-
 
     /**
      * Is this variant instance of kind {@code bengali}?
@@ -310,7 +305,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Bengali);
     }
 
-
     /**
      * Is this variant instance of kind {@code brazilian}?
      */
@@ -327,7 +321,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public BrazilianAnalyzer brazilian() {
         return TaggedUnionUtils.get(this, Kind.Brazilian);
     }
-
 
     /**
      * Is this variant instance of kind {@code bulgarian}?
@@ -346,7 +339,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Bulgarian);
     }
 
-
     /**
      * Is this variant instance of kind {@code catalan}?
      */
@@ -364,7 +356,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Catalan);
     }
 
-
     /**
      * Is this variant instance of kind {@code czech}?
      */
@@ -381,7 +372,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public CzechAnalyzer czech() {
         return TaggedUnionUtils.get(this, Kind.Czech);
     }
-
 
     /**
      * Is this variant instance of kind {@code danish}?
@@ -417,7 +407,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.English);
     }
 
-
     /**
      * Is this variant instance of kind {@code estonian}?
      */
@@ -434,7 +423,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public EstonianAnalyzer estonian() {
         return TaggedUnionUtils.get(this, Kind.Estonian);
     }
-
 
     /**
      * Is this variant instance of kind {@code finnish}?
@@ -453,7 +441,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Finnish);
     }
 
-
     /**
      * Is this variant instance of kind {@code french}?
      */
@@ -470,7 +457,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public FrenchAnalyzer french() {
         return TaggedUnionUtils.get(this, Kind.French);
     }
-
 
     /**
      * Is this variant instance of kind {@code galician}?
@@ -489,7 +475,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Galician);
     }
 
-
     /**
      * Is this variant instance of kind {@code german}?
      */
@@ -506,7 +491,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public GermanAnalyzer german() {
         return TaggedUnionUtils.get(this, Kind.German);
     }
-
 
     /**
      * Is this variant instance of kind {@code greek}?
@@ -525,7 +509,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Greek);
     }
 
-
     /**
      * Is this variant instance of kind {@code hindi}?
      */
@@ -542,7 +525,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public HindiAnalyzer hindi() {
         return TaggedUnionUtils.get(this, Kind.Hindi);
     }
-
 
     /**
      * Is this variant instance of kind {@code hungarian}?
@@ -561,7 +543,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Hungarian);
     }
 
-
     /**
      * Is this variant instance of kind {@code indonesian}?
      */
@@ -578,7 +559,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public IndonesianAnalyzer indonesian() {
         return TaggedUnionUtils.get(this, Kind.Indonesian);
     }
-
 
     /**
      * Is this variant instance of kind {@code irish}?
@@ -597,7 +577,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Irish);
     }
 
-
     /**
      * Is this variant instance of kind {@code italian}?
      */
@@ -614,7 +593,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public ItalianAnalyzer italian() {
         return TaggedUnionUtils.get(this, Kind.Italian);
     }
-
 
     /**
      * Is this variant instance of kind {@code latvian}?
@@ -633,7 +611,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Latvian);
     }
 
-
     /**
      * Is this variant instance of kind {@code lithuanian}?
      */
@@ -650,7 +627,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public LithuanianAnalyzer lithuanian() {
         return TaggedUnionUtils.get(this, Kind.Lithuanian);
     }
-
 
     /**
      * Is this variant instance of kind {@code norwegian}?
@@ -669,7 +645,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Norwegian);
     }
 
-
     /**
      * Is this variant instance of kind {@code persian}?
      */
@@ -686,7 +661,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public PersianAnalyzer persian() {
         return TaggedUnionUtils.get(this, Kind.Persian);
     }
-
 
     /**
      * Is this variant instance of kind {@code portuguese}?
@@ -705,7 +679,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Portuguese);
     }
 
-
     /**
      * Is this variant instance of kind {@code romanian}?
      */
@@ -722,7 +695,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public RomanianAnalyzer romanian() {
         return TaggedUnionUtils.get(this, Kind.Romanian);
     }
-
 
     /**
      * Is this variant instance of kind {@code russian}?
@@ -741,7 +713,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Russian);
     }
 
-
     /**
      * Is this variant instance of kind {@code sorani}?
      */
@@ -758,7 +729,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public SoraniAnalyzer sorani() {
         return TaggedUnionUtils.get(this, Kind.Sorani);
     }
-
 
     /**
      * Is this variant instance of kind {@code spanish}?
@@ -777,7 +747,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Spanish);
     }
 
-
     /**
      * Is this variant instance of kind {@code swedish}?
      */
@@ -794,7 +763,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public SwedishAnalyzer swedish() {
         return TaggedUnionUtils.get(this, Kind.Swedish);
     }
-
 
     /**
      * Is this variant instance of kind {@code turkish}?
@@ -813,7 +781,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Turkish);
     }
 
-
     /**
      * Is this variant instance of kind {@code thai}?
      */
@@ -830,7 +797,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public ThaiAnalyzer thai() {
         return TaggedUnionUtils.get(this, Kind.Thai);
     }
-
 
     /**
      * Is this variant instance of kind {@code fingerprint}?

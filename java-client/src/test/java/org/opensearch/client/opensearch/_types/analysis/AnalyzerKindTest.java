@@ -33,16 +33,15 @@
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonParser;
+import java.io.StringReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.opensearch.indices.IndexSettings;
-
-import java.io.StringReader;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.List;
 
 public class AnalyzerKindTest extends Assert {
 
@@ -50,21 +49,25 @@ public class AnalyzerKindTest extends Assert {
      *  Test if we can deserialize the language analyzers
      *  it uses reflection to avoid having to duplicate tests for all 34 currently supported languages
      *
-     * @throws NoSuchMethodException
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
-     * @throws ClassNotFoundException
+     * @throws NoSuchMethodException if the specified method is not found through reflection
+     * @throws InvocationTargetException if an exception occurs during method invocation through reflection
+     * @throws IllegalAccessException if access to the method is denied through reflection
+     * @throws ClassNotFoundException if a required class cannot be found
+     * @throws NullPointerException if a method argument is unexpectedly null
      */
     @Test
-    public void testParsingAnalyzersForLanguages() throws NoSuchMethodException, InvocationTargetException,
-            IllegalAccessException, ClassNotFoundException, NullPointerException {
+    public void testParsingAnalyzersForLanguages() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException,
+        ClassNotFoundException, NullPointerException {
         JsonpMapper mapper = new JsonbJsonpMapper();
 
         for (Analyzer.Kind theKind : onlyLanguageAnalyzers) {
             String type = theKind.jsonValue();
             String typeCapitalized = type.substring(0, 1).toUpperCase() + type.substring(1);
-            String json = String.format("{ \"index\": { \"analysis\": { \"analyzer\": { \"some_analyzer\": { \"type\": \"%s\"," +
-                    " \"char_filter\": [ \"html_strip\" ], \"tokenizer\": \"standard\" } } } } } ", type);
+            String json = String.format(
+                "{ \"index\": { \"analysis\": { \"analyzer\": { \"some_analyzer\": { \"type\": \"%s\","
+                    + " \"char_filter\": [ \"html_strip\" ], \"tokenizer\": \"standard\" } } } } } ",
+                type
+            );
 
             JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
             IndexSettings indexSettings = IndexSettings._DESERIALIZER.deserialize(parser, mapper);
@@ -73,7 +76,6 @@ public class AnalyzerKindTest extends Assert {
             // Use reflection to generically check analyzer type
             Method isMethod = someAnalyzer.getClass().getMethod("is" + typeCapitalized);
             assertTrue((boolean) isMethod.invoke(someAnalyzer));
-
 
             String analyzerClassName = typeCapitalized + "Analyzer";
 
@@ -86,40 +88,40 @@ public class AnalyzerKindTest extends Assert {
     }
 
     private final List<Analyzer.Kind> onlyLanguageAnalyzers = List.of(
-            Analyzer.Kind.Arabic,
-            Analyzer.Kind.Armenian,
-            Analyzer.Kind.Basque,
-            Analyzer.Kind.Bengali,
-            Analyzer.Kind.Brazilian,
-            Analyzer.Kind.Bulgarian,
-            Analyzer.Kind.Catalan,
-            Analyzer.Kind.Czech,
-            Analyzer.Kind.Danish,
-            Analyzer.Kind.Dutch,
-            Analyzer.Kind.English,
-            Analyzer.Kind.Estonian,
-            Analyzer.Kind.Finnish,
-            Analyzer.Kind.French,
-            Analyzer.Kind.Galician,
-            Analyzer.Kind.German,
-            Analyzer.Kind.Greek,
-            Analyzer.Kind.Hindi,
-            Analyzer.Kind.Hungarian,
-            Analyzer.Kind.Indonesian,
-            Analyzer.Kind.Irish,
-            Analyzer.Kind.Italian,
-            Analyzer.Kind.Latvian,
-            Analyzer.Kind.Lithuanian,
-            Analyzer.Kind.Norwegian,
-            Analyzer.Kind.Persian,
-            Analyzer.Kind.Portuguese,
-            Analyzer.Kind.Romanian,
-            Analyzer.Kind.Russian,
-            Analyzer.Kind.Sorani,
-            Analyzer.Kind.Spanish,
-            Analyzer.Kind.Swedish,
-            Analyzer.Kind.Turkish,
-            Analyzer.Kind.Thai
+        Analyzer.Kind.Arabic,
+        Analyzer.Kind.Armenian,
+        Analyzer.Kind.Basque,
+        Analyzer.Kind.Bengali,
+        Analyzer.Kind.Brazilian,
+        Analyzer.Kind.Bulgarian,
+        Analyzer.Kind.Catalan,
+        Analyzer.Kind.Czech,
+        Analyzer.Kind.Danish,
+        Analyzer.Kind.Dutch,
+        Analyzer.Kind.English,
+        Analyzer.Kind.Estonian,
+        Analyzer.Kind.Finnish,
+        Analyzer.Kind.French,
+        Analyzer.Kind.Galician,
+        Analyzer.Kind.German,
+        Analyzer.Kind.Greek,
+        Analyzer.Kind.Hindi,
+        Analyzer.Kind.Hungarian,
+        Analyzer.Kind.Indonesian,
+        Analyzer.Kind.Irish,
+        Analyzer.Kind.Italian,
+        Analyzer.Kind.Latvian,
+        Analyzer.Kind.Lithuanian,
+        Analyzer.Kind.Norwegian,
+        Analyzer.Kind.Persian,
+        Analyzer.Kind.Portuguese,
+        Analyzer.Kind.Romanian,
+        Analyzer.Kind.Russian,
+        Analyzer.Kind.Sorani,
+        Analyzer.Kind.Spanish,
+        Analyzer.Kind.Swedish,
+        Analyzer.Kind.Turkish,
+        Analyzer.Kind.Thai
     );
 
 }
