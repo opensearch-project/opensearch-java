@@ -21,6 +21,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Changed
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
+- Changed SearchAfter of SearchRequest type to FieldValue instead of String ([#769](https://github.com/opensearch-project/opensearch-java/pull/769))
 
 ### Deprecated
 - Deprecate RestClientTransport ([#536](https://github.com/opensearch-project/opensearch-java/pull/536))

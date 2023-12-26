@@ -47,6 +47,7 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
+import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.ScriptField;
 import org.opensearch.client.opensearch._types.SearchType;
@@ -184,7 +185,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
     @Nullable
     private final Time scroll;
 
-    private final List<String> searchAfter;
+    private final List<FieldValue> searchAfter;
 
     @Nullable
     private final SearchType searchType;
@@ -678,7 +679,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
     /**
      * API name: {@code search_after}
      */
-    public final List<String> searchAfter() {
+    public final List<FieldValue> searchAfter() {
         return this.searchAfter;
     }
 
@@ -966,8 +967,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
         if (ApiTypeHelper.isDefined(this.searchAfter)) {
             generator.writeKey("search_after");
             generator.writeStartArray();
-            for (String item0 : this.searchAfter) {
-                generator.write(item0);
+            for (FieldValue item0 : this.searchAfter) {
+                item0.serialize(generator, mapper);
 
             }
             generator.writeEnd();
@@ -1173,7 +1174,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
         private Time scroll;
 
         @Nullable
-        private List<String> searchAfter;
+        private List<FieldValue> searchAfter;
 
         @Nullable
         private SearchType searchType;
@@ -1860,7 +1861,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
          * <p>
          * Adds all elements of <code>list</code> to <code>searchAfter</code>.
          */
-        public final Builder searchAfter(List<String> list) {
+        public final Builder searchAfter(List<FieldValue> list) {
             this.searchAfter = _listAddAll(this.searchAfter, list);
             return this;
         }
@@ -1870,7 +1871,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
          * <p>
          * Adds one or more values to <code>searchAfter</code>.
          */
-        public final Builder searchAfter(String value, String... values) {
+        public final Builder searchAfter(FieldValue value, FieldValue... values) {
             this.searchAfter = _listAdd(this.searchAfter, value, values);
             return this;
         }
@@ -2142,7 +2143,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
         op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
         op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER), "runtime_mappings");
         op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER), "script_fields");
-        op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "search_after");
+        op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "search_after");
         op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
         op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
