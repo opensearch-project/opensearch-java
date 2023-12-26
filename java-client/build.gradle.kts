@@ -158,7 +158,7 @@ dependencies {
 
     // Apache 2.0
     compileOnly("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
-    testImplementation("org.hamcrest:hamcrest:2.1")
+    testImplementation("org.hamcrest:hamcrest:2.2")
     testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.1") {
         exclude(group = "junit")
     }
