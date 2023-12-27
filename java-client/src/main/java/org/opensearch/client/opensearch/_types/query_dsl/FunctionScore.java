@@ -1,12 +1,4 @@
 /*
- * SPDX-License-Identifier: Apache-2.0
- *
- * The OpenSearch Contributors require contributions made to
- * this file be licensed under the Apache-2.0 license or a
- * compatible open source license.
- */
-
-/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -25,14 +17,15 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Double;
+import java.lang.Object;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonEnum;
@@ -40,24 +33,32 @@ import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
+import org.opensearch.client.util.WithJsonObjectBuilderBase;
 
 // typedef: _types.query_dsl.FunctionScoreContainer
 
+/**
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_types.query_dsl.FunctionScoreContainer">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, JsonpSerializable {
 
     /**
      * {@link FunctionScore} variant kinds.
-     */
-    /**
-     * {@link FunctionScore} variant kinds.
+     *
+     * @see <a href=
+     *      "../../doc-files/api-spec.html#_types.query_dsl.FunctionScoreContainer">API
+     *      specification</a>
      */
 
     public enum Kind implements JsonEnum {
@@ -87,15 +88,19 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
     }
 
+    @Nullable
     private final Kind _kind;
+    @Nullable
     private final Object _value;
 
     @Override
+    @Nullable
     public final Kind _kind() {
         return _kind;
     }
 
     @Override
+    @Nullable
     public final Object _get() {
         return _value;
     }
@@ -106,10 +111,16 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
     @Nullable
     private final Double weight;
 
-    public FunctionScore(FunctionScoreVariant value) {
+    public FunctionScore(@Nullable FunctionScoreVariant value) {
 
-        this._kind = ApiTypeHelper.requireNonNull(value._functionScoreKind(), this, "<variant kind>");
-        this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+        if (value != null) {
+            this._kind = ApiTypeHelper.requireNonNull(value._functionScoreKind(), this, "<variant kind>");
+            this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+
+        } else {
+            this._kind = null;
+            this._value = null;
+        }
 
         this.filter = null;
         this.weight = null;
@@ -118,8 +129,14 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
     private FunctionScore(Builder builder) {
 
-        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        if (builder._value != null) {
+            this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+            this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+
+        } else {
+            this._kind = null;
+            this._value = null;
+        }
 
         this.filter = builder.filter;
         this.weight = builder.weight;
@@ -266,16 +283,24 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
         }
 
-        generator.writeKey(_kind.jsonValue());
-        if (_value instanceof JsonpSerializable) {
-            ((JsonpSerializable) _value).serialize(generator, mapper);
+        if (this._value != null) {
+            generator.writeKey(_kind.jsonValue());
+            if (_value instanceof JsonpSerializable) {
+                ((JsonpSerializable) _value).serialize(generator, mapper);
+            }
+
         }
 
         generator.writeEnd();
 
     }
 
-    public static class Builder extends ObjectBuilderBase {
+    @Override
+    public String toString() {
+        return JsonpUtils.toString(this);
+    }
+
+    public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FunctionScore> {
         private Kind _kind;
         private Object _value;
 
@@ -308,6 +333,10 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
             return this;
         }
 
+        @Override
+        protected Builder self() {
+            return this;
+        }
         public ContainerBuilder exp(DecayFunction v) {
             this._kind = Kind.Exp;
             this._value = v;
@@ -345,8 +374,7 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
         }
 
         public ContainerBuilder fieldValueFactor(
-            Function<FieldValueFactorScoreFunction.Builder, ObjectBuilder<FieldValueFactorScoreFunction>> fn
-        ) {
+                Function<FieldValueFactorScoreFunction.Builder, ObjectBuilder<FieldValueFactorScoreFunction>> fn) {
             return this.fieldValueFactor(fn.apply(new FieldValueFactorScoreFunction.Builder()).build());
         }
 
@@ -356,7 +384,8 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
             return new ContainerBuilder();
         }
 
-        public ContainerBuilder randomScore(Function<RandomScoreFunction.Builder, ObjectBuilder<RandomScoreFunction>> fn) {
+        public ContainerBuilder randomScore(
+                Function<RandomScoreFunction.Builder, ObjectBuilder<RandomScoreFunction>> fn) {
             return this.randomScore(fn.apply(new RandomScoreFunction.Builder()).build());
         }
 
@@ -366,11 +395,12 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
             return new ContainerBuilder();
         }
 
-        public ContainerBuilder scriptScore(Function<ScriptScoreFunction.Builder, ObjectBuilder<ScriptScoreFunction>> fn) {
+        public ContainerBuilder scriptScore(
+                Function<ScriptScoreFunction.Builder, ObjectBuilder<ScriptScoreFunction>> fn) {
             return this.scriptScore(fn.apply(new ScriptScoreFunction.Builder()).build());
         }
 
-        protected FunctionScore build() {
+        public FunctionScore build() {
             _checkSingleUse();
             return new FunctionScore(this);
         }
@@ -419,9 +449,6 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
     }
 
-    public static final JsonpDeserializer<FunctionScore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        FunctionScore::setupFunctionScoreDeserializer,
-        Builder::build
-    );
+    public static final JsonpDeserializer<FunctionScore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+            FunctionScore::setupFunctionScoreDeserializer, Builder::build);
 }

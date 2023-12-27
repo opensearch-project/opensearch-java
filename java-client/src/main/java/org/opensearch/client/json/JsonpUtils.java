@@ -1,12 +1,4 @@
 /*
- * SPDX-License-Identifier: Apache-2.0
- *
- * The OpenSearch Contributors require contributions made to
- * this file be licensed under the Apache-2.0 license or a
- * compatible open source license.
- */
-
-/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -25,29 +17,73 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 package org.opensearch.client.json;
 
+import org.opensearch.client.util.AllowForbiddenApis;
+import jakarta.json.JsonException;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
+import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
+
+import javax.annotation.Nullable;
 import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.AbstractMap;
 import java.util.Map;
+import java.util.ServiceLoader;
 import java.util.stream.Collectors;
-import javax.annotation.Nullable;
-import org.opensearch.client.util.ObjectBuilder;
 
 public class JsonpUtils {
+
+    private static JsonProvider systemJsonProvider = null;
+
+    /**
+     * Get a <code>JsonProvider</code> instance. This method first calls the standard `JsonProvider.provider()` that is based on
+     * the current thread's context classloader, and in case of failure tries to find a provider in other classloaders. The
+     * value is cached for subsequent calls.
+     */
+    public static JsonProvider provider() {
+        JsonProvider result = systemJsonProvider;
+        if (result == null) {
+            result = findProvider();
+            systemJsonProvider = result;
+        }
+        return result;
+    }
+
+    @AllowForbiddenApis("Implementation of the JsonProvider lookup")
+    static JsonProvider findProvider() {
+        RuntimeException exception;
+        try {
+            return JsonProvider.provider();
+        } catch(RuntimeException re) {
+            exception = re;
+        }
+
+        // Not found from the thread's context classloader. Try from our own classloader which should be a descendant of an app-server
+        // classloader if any, and if it still fails try from the SPI class which hopefully will be close to the implementation.
+
+        try {
+            return ServiceLoader.load(JsonProvider.class, JsonpUtils.class.getClassLoader()).iterator().next();
+        } catch(Exception e) {
+            // ignore
+        }
+
+        try {
+            return ServiceLoader.load(JsonProvider.class, JsonProvider.class.getClassLoader()).iterator().next();
+        } catch(Exception e) {
+            // ignore
+        }
+
+        throw new JsonException("Unable to get a JsonProvider. Check your classpath or thread context classloader.", exception);
+    }
 
     /**
      * Advances the parser to the next event and checks that this even is the expected one.
@@ -82,6 +118,12 @@ public class JsonpUtils {
         }
     }
 
+    public static void ensureCustomVariantsAllowed(JsonParser parser, JsonpMapper mapper) {
+        if (mapper.attribute(JsonpMapperFeatures.FORBID_CUSTOM_VARIANTS, false)) {
+            throw new JsonpMappingException("Json mapper configuration forbids custom variants", parser.getLocation());
+        }
+    }
+
     /**
      * Skip the value at the next position of the parser.
      */
@@ -93,7 +135,7 @@ public class JsonpUtils {
      * Skip the value at the current position of the parser.
      */
     public static void skipValue(JsonParser parser, Event event) {
-        switch (event) {
+        switch(event) {
             case START_OBJECT:
                 parser.skipObject();
                 break;
@@ -108,11 +150,64 @@ public class JsonpUtils {
         }
     }
 
-    public static <T> T buildVariant(JsonParser parser, ObjectBuilder<T> builder) {
-        if (builder == null) {
-            throw new JsonParsingException("No variant found", parser.getLocation());
+    /**
+     * Copy the JSON value at the current parser location to a JSON generator.
+     */
+    public static void copy(JsonParser parser, JsonGenerator generator) {
+        copy(parser, generator, parser.next());
+    }
+
+    /**
+     * Copy the JSON value at the current parser location to a JSON generator.
+     */
+    public static void copy(JsonParser parser, JsonGenerator generator, JsonParser.Event event) {
+
+        switch (event) {
+            case START_OBJECT:
+                generator.writeStartObject();
+                while ((event = parser.next()) != Event.END_OBJECT) {
+                    expectEvent(parser, Event.KEY_NAME, event);
+                    generator.writeKey(parser.getString());
+                    copy(parser, generator, parser.next());
+                }
+                generator.writeEnd();
+                break;
+
+            case START_ARRAY:
+                generator.writeStartArray();
+                while ((event = parser.next()) != Event.END_ARRAY) {
+                    copy(parser, generator, event);
+                }
+                generator.writeEnd();
+                break;
+
+            case VALUE_STRING:
+                generator.write(parser.getString());
+                break;
+
+            case VALUE_FALSE:
+                generator.write(false);
+                break;
+
+            case VALUE_TRUE:
+                generator.write(true);
+                break;
+
+            case VALUE_NULL:
+                generator.writeNull();
+                break;
+
+            case VALUE_NUMBER:
+                if (parser.isIntegralNumber()) {
+                    generator.write(parser.getLong());
+                } else {
+                    generator.write(parser.getBigDecimal());
+                }
+                break;
+
+            default:
+                throw new UnexpectedJsonEventException(parser, event);
         }
-        return builder.build();
     }
 
     public static <T> void serialize(T value, JsonGenerator generator, @Nullable JsonpSerializer<T> serializer, JsonpMapper mapper) {
@@ -128,15 +223,12 @@ public class JsonpUtils {
     /**
      * Looks ahead a field value in the Json object from the upcoming object in a parser, which should be on the
      * START_OBJECT event.
-     *
+     * <p>
      * Returns a pair containing that value and a parser that should be used to actually parse the object
      * (the object has been consumed from the original one).
      */
     public static Map.Entry<String, JsonParser> lookAheadFieldValue(
-        String name,
-        String defaultValue,
-        JsonParser parser,
-        JsonpMapper mapper
+            String name, String defaultValue, JsonParser parser, JsonpMapper mapper
     ) {
         JsonLocation location = parser.getLocation();
 
@@ -144,7 +236,7 @@ public class JsonpUtils {
             // Fast buffered path
             Map.Entry<String, JsonParser> result = ((LookAheadJsonParser) parser).lookAheadFieldValue(name, defaultValue);
             if (result.getKey() == null) {
-                throw new JsonParsingException("Property '" + name + "' not found", location);
+                throw new JsonpMappingException("Property '" + name + "' not found", location);
             }
             return result;
 
@@ -158,7 +250,7 @@ public class JsonpUtils {
             }
 
             if (result == null) {
-                throw new JsonParsingException("Property '" + name + "' not found", location);
+                throw new JsonpMappingException("Property '" + name + "' not found", location);
             }
 
             JsonParser newParser = objectParser(object, mapper);
@@ -194,15 +286,17 @@ public class JsonpUtils {
     }
 
     public static String toString(JsonValue value) {
-        switch (value.getValueType()) {
+        switch(value.getValueType()) {
             case OBJECT:
                 throw new IllegalArgumentException("Json objects cannot be used as string");
 
             case ARRAY:
-                return value.asJsonArray().stream().map(JsonpUtils::toString).collect(Collectors.joining(","));
+                return value.asJsonArray().stream()
+                        .map(JsonpUtils::toString)
+                        .collect(Collectors.joining(","));
 
             case STRING:
-                return ((JsonString) value).getString();
+                return ((JsonString)value).getString();
 
             case TRUE:
                 return "true";
@@ -222,8 +316,7 @@ public class JsonpUtils {
     }
 
     public static void serializeDoubleOrNull(JsonGenerator generator, double value, double defaultValue) {
-        // Only output null if the default value isn't finite, which cannot be represented as JSON
-        if (value == defaultValue && !Double.isFinite(defaultValue)) {
+        if (!Double.isFinite(value)) {
             generator.writeNull();
         } else {
             generator.write(value);
@@ -231,11 +324,114 @@ public class JsonpUtils {
     }
 
     public static void serializeIntOrNull(JsonGenerator generator, int value, int defaultValue) {
-        // Only output null if the default value isn't finite, which cannot be represented as JSON
-        if (value == defaultValue && defaultValue == Integer.MAX_VALUE || defaultValue == Integer.MIN_VALUE) {
+        if (value == defaultValue && (defaultValue == Integer.MAX_VALUE || defaultValue == Integer.MIN_VALUE)) {
             generator.writeNull();
         } else {
             generator.write(value);
         }
+    }
+
+    /**
+     * Renders a <code>JsonpSerializable</code> as a string by serializing it to JSON, prefixed by the class name. Any object of an
+     * application-specific class in the object graph is rendered using that object's <code>toString()</code> representation as a JSON
+     * string value.
+     * <p>
+     * The size of the string is limited to {@link #maxToStringLength()}.
+     *
+     * @see #maxToStringLength()
+     */
+    public static String toString(JsonpSerializable value) {
+        StringBuilder sb = new StringBuilder(value.getClass().getSimpleName()).append(": ");
+        return toString(value, ToStringMapper.INSTANCE, sb).toString();
+    }
+
+    /**
+     * Set the maximum length of the JSON representation of a <code>JsonpSerializable</code> in the result of its <code>toString()</code>
+     * method. The default is 10k characters.
+     */
+    public static void maxToStringLength(int length) {
+        MAX_TO_STRING_LENGTH = length;
+    }
+
+    /**
+     * Get the maximum length of the JSON representation of a <code>JsonpSerializable</code> in the result of its <code>toString()</code>
+     * method. The default is 10k characters.
+     */
+    public static int maxToStringLength() {
+        return MAX_TO_STRING_LENGTH;
+    }
+
+    /**
+     * @deprecated use {@link #maxToStringLength(int)}
+     */
+    @Deprecated
+    public static int MAX_TO_STRING_LENGTH = 10000;
+
+    private static class ToStringTooLongException extends RuntimeException {
+    }
+
+    /**
+     * Renders a <code>JsonpSerializable</code> as a string in a destination <code>StringBuilder</code>by serializing it to JSON.
+     * <p>
+     * The size of the string is limited to {@link #maxToStringLength()}.
+     *
+     * @return the <code>dest</code> parameter, for chaining.
+     * @see #toString(JsonpSerializable)
+     * @see #maxToStringLength()
+     */
+    public static StringBuilder toString(JsonpSerializable value, JsonpMapper mapper, StringBuilder dest) {
+        Writer writer = new Writer() {
+            int length = 0;
+            @Override
+            public void write(char[] cbuf, int off, int len) {
+                int max = maxToStringLength();
+                length += len;
+                if (length > max) {
+                    dest.append(cbuf, off, len - (length - max));
+                    dest.append("...");
+                    throw new ToStringTooLongException();
+                } else {
+                    dest.append(cbuf, off, len);
+                }
+            }
+
+            @Override
+            public void flush() {
+            }
+
+            @Override
+            public void close() {
+            }
+        };
+
+        try(JsonGenerator generator = mapper.jsonProvider().createGenerator(writer)) {
+            value.serialize(generator, mapper);
+        } catch (ToStringTooLongException e) {
+            // Ignore
+        }
+        return dest;
+    }
+
+    public static String toJsonString(JsonpSerializable value, JsonpMapper mapper) {
+        StringWriter writer = new StringWriter();
+        JsonGenerator generator = mapper.jsonProvider().createGenerator(writer);
+        value.serialize(generator, mapper);
+        generator.close();
+        return writer.toString();
+    }
+
+    /**
+     * Renders a <code>JsonpSerializable</code> as a string in a destination <code>StringBuilder</code>by serializing it to JSON.
+     * Any object of an application-specific class in the object graph is rendered using that object's <code>toString()</code>
+     * representation as a JSON string value.
+     * <p>
+     * The size of the string is limited to {@link #maxToStringLength()}.
+     *
+     * @return the <code>dest</code> parameter, for chaining.
+     * @see #toString(JsonpSerializable)
+     * @see #maxToStringLength()
+     */
+    public static StringBuilder toString(JsonpSerializable value, StringBuilder dest) {
+        return toString(value, ToStringMapper.INSTANCE, dest);
     }
 }

@@ -1,12 +1,4 @@
 /*
- * SPDX-License-Identifier: Apache-2.0
- *
- * The OpenSearch Contributors require contributions made to
- * this file be licensed under the Apache-2.0 license or a
- * compatible open source license.
- */
-
-/*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
  * this work for additional information regarding copyright
@@ -25,28 +17,38 @@
  * under the License.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Double;
+import java.lang.String;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.WithJsonObjectBuilderBase;
 
 // typedef: _types.query_dsl.FieldValueFactorScoreFunction
 
+/**
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_types.query_dsl.FieldValueFactorScoreFunction">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
+public class FieldValueFactorScoreFunction implements FunctionScoreVariant, JsonpSerializable {
     private final String field;
 
     @Nullable
@@ -61,7 +63,6 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
     // ---------------------------------------------------------------------------------------------
 
     private FieldValueFactorScoreFunction(Builder builder) {
-        super(builder);
 
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.factor = builder.factor;
@@ -113,9 +114,17 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
         return this.modifier;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-        super.serializeInternal(generator, mapper);
         generator.writeKey("field");
         generator.write(this.field);
 
@@ -136,13 +145,20 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
 
     }
 
+    @Override
+    public String toString() {
+        return JsonpUtils.toString(this);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**
      * Builder for {@link FieldValueFactorScoreFunction}.
      */
 
-    public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder> implements ObjectBuilder<FieldValueFactorScoreFunction> {
+    public static class Builder extends WithJsonObjectBuilderBase<Builder>
+            implements
+            ObjectBuilder<FieldValueFactorScoreFunction> {
         private String field;
 
         @Nullable
@@ -209,13 +225,12 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
     /**
      * Json deserializer for {@link FieldValueFactorScoreFunction}
      */
-    public static final JsonpDeserializer<FieldValueFactorScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        FieldValueFactorScoreFunction::setupFieldValueFactorScoreFunctionDeserializer
-    );
+    public static final JsonpDeserializer<FieldValueFactorScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer
+            .lazy(Builder::new, FieldValueFactorScoreFunction::setupFieldValueFactorScoreFunctionDeserializer);
 
-    protected static void setupFieldValueFactorScoreFunctionDeserializer(ObjectDeserializer<FieldValueFactorScoreFunction.Builder> op) {
-        ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
+    protected static void setupFieldValueFactorScoreFunctionDeserializer(
+            ObjectDeserializer<FieldValueFactorScoreFunction.Builder> op) {
+
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::factor, JsonpDeserializer.doubleDeserializer(), "factor");
         op.add(Builder::missing, JsonpDeserializer.doubleDeserializer(), "missing");
