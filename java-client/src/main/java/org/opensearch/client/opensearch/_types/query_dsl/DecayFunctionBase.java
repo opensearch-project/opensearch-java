@@ -33,26 +33,39 @@
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
-import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.WithJsonObjectBuilderBase;
+
+import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DecayFunctionBase
 
-public abstract class DecayFunctionBase extends ScoreFunctionBase {
+/**
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_types.query_dsl.DecayFunctionBase">API
+ *      specification</a>
+ */
+
+public abstract class DecayFunctionBase implements JsonpSerializable {
     @Nullable
     private final MultiValueMode multiValueMode;
 
     // ---------------------------------------------------------------------------------------------
 
     protected DecayFunctionBase(AbstractBuilder<?> builder) {
-        super(builder);
 
         this.multiValueMode = builder.multiValueMode;
 
     }
 
     /**
+     * Determines how the distance is calculated when a field used for computing the
+     * decay contains multiple values.
+     * <p>
      * API name: {@code multi_value_mode}
      */
     @Nullable
@@ -60,9 +73,17 @@ public abstract class DecayFunctionBase extends ScoreFunctionBase {
         return this.multiValueMode;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-        super.serializeInternal(generator, mapper);
         if (this.multiValueMode != null) {
             generator.writeKey("multi_value_mode");
             this.multiValueMode.serialize(generator, mapper);
@@ -70,12 +91,21 @@ public abstract class DecayFunctionBase extends ScoreFunctionBase {
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ScoreFunctionBase.AbstractBuilder<
-        BuilderT> {
+    @Override
+    public String toString() {
+        return JsonpUtils.toString(this);
+    }
+
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+            extends
+            WithJsonObjectBuilderBase<BuilderT> {
         @Nullable
         private MultiValueMode multiValueMode;
 
         /**
+         * Determines how the distance is calculated when a field used for computing the
+         * decay contains multiple values.
+         * <p>
          * API name: {@code multi_value_mode}
          */
         public final BuilderT multiValueMode(@Nullable MultiValueMode value) {
@@ -83,11 +113,14 @@ public abstract class DecayFunctionBase extends ScoreFunctionBase {
             return self();
         }
 
+        protected abstract BuilderT self();
+
     }
 
     // ---------------------------------------------------------------------------------------------
-    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDecayFunctionBaseDeserializer(ObjectDeserializer<BuilderT> op) {
-        ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDecayFunctionBaseDeserializer(
+            ObjectDeserializer<BuilderT> op) {
+
         op.add(AbstractBuilder::multiValueMode, MultiValueMode._DESERIALIZER, "multi_value_mode");
 
     }

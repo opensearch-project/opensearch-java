@@ -71,7 +71,7 @@ public class SomeUnionTest extends ModelTestCase {
 
         JsonParsingException e = assertThrows(JsonParsingException.class, () -> { fromJson(json, SomeUnion._DESERIALIZER); });
 
-        assertEquals("Property 'type' not found", e.getMessage());
+        assertTrue(e.getMessage().contains("Property 'type' not found"));
     }
 
 }

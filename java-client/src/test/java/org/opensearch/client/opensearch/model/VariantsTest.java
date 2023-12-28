@@ -36,6 +36,7 @@ import org.junit.Test;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
+import org.opensearch.client.opensearch._types.query_dsl.FunctionScore;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch._types.query_dsl.QueryBuilders;
 import org.opensearch.client.opensearch.core.SearchRequest;
@@ -49,12 +50,20 @@ public class VariantsTest extends ModelTestCase {
         // intervals is a single key dictionary
         // query has container properties
 
-        Query q = Query.of(
-            _0 -> _0.intervals(
-                _1 -> _1.queryName("my-query")
-                    .field("a_field")
-                    .anyOf(_2 -> _2.intervals(_3 -> _3.match(_5 -> _5.query("match-query").analyzer("lowercase"))))
-            )
+        Query q = Query.of(_0 -> _0
+                .intervals(_1 -> _1
+                        .queryName("my-query")
+                        .field("a_field")
+                        .anyOf(_2 -> _2
+                                .intervals(_3 -> _3
+                                        .match(
+                                                _5 -> _5
+                                                        .query("match-query")
+                                                        .analyzer("lowercase")
+                                        )
+                                )
+                        )
+                )
         );
 
         assertEquals(Query.Kind.Intervals, q._kind());
@@ -65,11 +74,8 @@ public class VariantsTest extends ModelTestCase {
 
         String json = toJson(q);
 
-        assertEquals(
-            "{\"intervals\":{\"a_field\":{\"_name\":\"my-query\","
-                + "\"any_of\":{\"intervals\":[{\"match\":{\"analyzer\":\"lowercase\",\"query\":\"match-query\"}}]}}}}",
-            json
-        );
+        assertEquals("{\"intervals\":{\"a_field\":{\"_name\":\"my-query\"," +
+                "\"any_of\":{\"intervals\":[{\"match\":{\"analyzer\":\"lowercase\",\"query\":\"match-query\"}}]}}}}", json);
 
         Query q2 = fromJson(json, Query.class);
         assertEquals(json, toJson(q2));
@@ -84,10 +90,21 @@ public class VariantsTest extends ModelTestCase {
 
     @Test
     public void testInternalTag() {
-        String expected = "{\"type\":\"ip\",\"fields\":{\"a-field\":{\"type\":\"float\",\"coerce\":true}},\"boost\":1"
-            + ".0,\"index\":true}";
+        String expected = "{\"type\":\"ip\",\"fields\":{\"a-field\":{\"type\":\"float\",\"coerce\":true}},\"boost\":1" +
+                ".0,\"index\":true}";
 
-        Property p = Property.of(_0 -> _0.ip(_1 -> _1.index(true).boost(1.0).fields("a-field", _3 -> _3.float_(_4 -> _4.coerce(true)))));
+        Property p = Property.of(_0 -> _0
+                .ip(_1 -> _1
+                        .index(true)
+                        .boost(1.0)
+                        .fields(
+                                "a-field", _3 -> _3
+                                        .float_(_4 -> _4
+                                                .coerce(true)
+                                        )
+                        )
+                )
+        );
 
         assertEquals(expected, toJson(p));
 
@@ -100,79 +117,80 @@ public class VariantsTest extends ModelTestCase {
 
     @Test
     public void testBuilders() {
-        Query q = new Query(QueryBuilders.exists().field("foo").build());
+        String json = "{\"exists\":{\"field\":\"foo\"}}";
+        Query q;
 
-        assertEquals("{\"exists\":{\"field\":\"foo\"}}", toJson(q));
+        q = new Query(QueryBuilders.exists().field("foo").build());
+        assertEquals(json, toJson(q));
+
+        q = QueryBuilders.exists(e -> e.field("foo"));
+        assertEquals(json, toJson(q));
     }
+
 
     @Test
     public void testNestedTaggedUnionWithDefaultTag() {
+        // https://github.com/elastic/elasticsearch-java/issues/45
 
         // Object fields don't really exist in ES and are based on a naming convention where field names
         // are dot-separated paths. The hierarchy is rebuilt from these names and ES doesn't send back
         // "type": "object" for object properties.
+        // See https://www.elastic.co/guide/en/elasticsearch/reference/current/object.html
         //
         // Mappings are therefore a hierarchy of internally-tagged unions based on the "type" property
         // with a default "object" tag value if the "type" property is missing.
 
-        String json = "{\n"
-            + "  \"testindex\" : {\n"
-            + "    \"mappings\" : {\n"
-            + "      \"properties\" : {\n"
-            + "        \"id\" : {\n"
-            + "          \"type\" : \"text\",\n"
-            + "          \"fields\" : {\n"
-            + "            \"keyword\" : {\n"
-            + "              \"type\" : \"keyword\",\n"
-            + "              \"ignore_above\" : 256\n"
-            + "            }\n"
-            + "          }\n"
-            + "        },\n"
-            + "        \"name\" : {\n"
-            + "          \"properties\" : {\n"
-            + "            \"first\" : {\n"
-            + "              \"type\" : \"text\",\n"
-            + "              \"fields\" : {\n"
-            + "                \"keyword\" : {\n"
-            + "                  \"type\" : \"keyword\",\n"
-            + "                  \"ignore_above\" : 256\n"
-            + "                }\n"
-            + "              }\n"
-            + "            },\n"
-            + "            \"last\" : {\n"
-            + "              \"type\" : \"text\",\n"
-            + "              \"fields\" : {\n"
-            + "                \"keyword\" : {\n"
-            + "                  \"type\" : \"keyword\",\n"
-            + "                  \"ignore_above\" : 256\n"
-            + "                }\n"
-            + "              }\n"
-            + "            }\n"
-            + "          }\n"
-            + "        }\n"
-            + "      }\n"
-            + "    }\n"
-            + "  }\n"
-            + "}";
+        String json =
+                "{\n" +
+                        "  \"testindex\" : {\n" +
+                        "    \"mappings\" : {\n" +
+                        "      \"properties\" : {\n" +
+                        "        \"id\" : {\n" +
+                        "          \"type\" : \"text\",\n" +
+                        "          \"fields\" : {\n" +
+                        "            \"keyword\" : {\n" +
+                        "              \"type\" : \"keyword\",\n" +
+                        "              \"ignore_above\" : 256\n" +
+                        "            }\n" +
+                        "          }\n" +
+                        "        },\n" +
+                        "        \"name\" : {\n" +
+                        "          \"properties\" : {\n" +
+                        "            \"first\" : {\n" +
+                        "              \"type\" : \"text\",\n" +
+                        "              \"fields\" : {\n" +
+                        "                \"keyword\" : {\n" +
+                        "                  \"type\" : \"keyword\",\n" +
+                        "                  \"ignore_above\" : 256\n" +
+                        "                }\n" +
+                        "              }\n" +
+                        "            },\n" +
+                        "            \"last\" : {\n" +
+                        "              \"type\" : \"text\",\n" +
+                        "              \"fields\" : {\n" +
+                        "                \"keyword\" : {\n" +
+                        "                  \"type\" : \"keyword\",\n" +
+                        "                  \"ignore_above\" : 256\n" +
+                        "                }\n" +
+                        "              }\n" +
+                        "            }\n" +
+                        "          }\n" +
+                        "        }\n" +
+                        "      }\n" +
+                        "    }\n" +
+                        "  }\n" +
+                        "}";
 
         GetMappingResponse response = fromJson(json, GetMappingResponse.class);
 
         TypeMapping mappings = response.get("testindex").mappings();
         assertTrue(mappings.properties().get("name").isObject());
 
-        assertEquals(
-            256,
-            mappings.properties()
-                .get("name")
-                .object()
-                .properties()
-                .get("first")
-                .text()
-                .fields()
-                .get("keyword")
-                .keyword()
-                .ignoreAbove()
-                .longValue()
+        assertEquals(256, mappings
+                .properties().get("name").object()
+                .properties().get("first").text()
+                .fields().get("keyword").keyword().
+                ignoreAbove().longValue()
         );
 
         assertTrue(mappings.properties().get("id").isText());
@@ -191,15 +209,15 @@ public class VariantsTest extends ModelTestCase {
     @Test
     public void testNestedVariantsWithContainerProperties() {
 
-        SearchRequest search = SearchRequest.of(
-            s -> s.aggregations(
-                "agg1",
-                a -> a.meta("m1", JsonData.of("m1 value"))
-                    // Here we can choose any aggregation type, but build() isn't accessible
-                    .valueCount(v -> v.field("f"))
-                    // Here we can only set container properties (meta and (sub)aggregations) or build()
-                    .meta("m2", JsonData.of("m2 value"))
-            )
+        SearchRequest search = SearchRequest.of(s -> s
+                .aggregations(
+                        "agg1", a -> a
+                                .meta("m1", JsonData.of("m1 value"))
+                                // Here we can choose any aggregation type, but build() isn't accessible
+                                .valueCount(v -> v.field("f"))
+                                // Here we can only set container properties (meta and (sub)aggregations) or build()
+                                .meta("m2", JsonData.of("m2 value"))
+                )
         );
 
         assertEquals("m1 value", search.aggregations().get("agg1").meta().get("m1").to(String.class));
@@ -207,40 +225,50 @@ public class VariantsTest extends ModelTestCase {
     }
 
     @Test
-    public void testNeuralQuery() {
+    public void testContainerWithOptionalVariants() {
+        // FunctionScore is the only occurrence of this
 
-        SearchRequest searchRequest = SearchRequest.of(
-            s -> s.query(q -> q.neural(n -> n.field("passage_embedding").queryText("Hi world").modelId("bQ1J8ooBpBj3wT4HVUsb").k(100)))
-        );
+        Query q = QueryBuilders.term(t -> t.field("foo").value("bar"));
 
-        assertEquals("passage_embedding", searchRequest.query().neural().field());
-        assertEquals("Hi world", searchRequest.query().neural().queryText());
-        assertEquals("bQ1J8ooBpBj3wT4HVUsb", searchRequest.query().neural().modelId());
-        assertEquals(100, searchRequest.query().neural().k());
-    }
+        // No variant
+        {
+            Query fsq = QueryBuilders.functionScore(fs -> fs
+                    .query(q)
+                    .functions(f -> f.weight(1.0))
+            );
 
-    @Test
-    public void testNeuralQueryFromJson() {
+            String json = "{\"function_score\":{\"functions\":[{\"weight\":1.0}]," +
+                    "\"query\":{\"term\":{\"foo\":{\"value\":\"bar\"}}}}}";
+            assertEquals(json, toJson(fsq));
 
-        String json = "{\n"
-            + "  \"from\": 0,\n"
-            + "  \"size\": 100,\n"
-            + "  \"query\": {\n"
-            + "    \"neural\": {\n"
-            + "      \"passage_embedding\": {\n"
-            + "        \"query_text\": \"Hi world!\",\n"
-            + "        \"model_id\": \"bQ1J8ooBpBj3wT4HVUsb\",\n"
-            + "        \"k\": 100\n"
-            + "      }\n"
-            + "    }\n"
-            + "  }\n"
-            + "}";
+            Query fsq2 = checkJsonRoundtrip(fsq, json);
 
-        SearchRequest searchRequest = ModelTestCase.fromJson(json, SearchRequest.class, mapper);
+            assertNull(fsq2.functionScore().functions().get(0)._kind());
+            assertEquals(1.0, fsq2.functionScore().functions().get(0).weight(), 0.001);
+        }
 
-        assertEquals("passage_embedding", searchRequest.query().neural().field());
-        assertEquals("Hi world!", searchRequest.query().neural().queryText());
-        assertEquals("bQ1J8ooBpBj3wT4HVUsb", searchRequest.query().neural().modelId());
-        assertEquals(100, searchRequest.query().neural().k());
+        // With a variant
+        {
+            Query fsq = QueryBuilders.functionScore(fs -> fs
+                    .query(q)
+                    .functions(f -> f
+                            .weight(1.0)
+                            .linear(l -> l
+                                    .field("foo")
+                                    .placement(p -> p.decay(2.0))
+                            )
+                    )
+            );
+
+            String json = "{\"function_score\":{\"functions\":[{\"weight\":1.0,\"linear\":{\"foo\":{\"decay\":2.0}}}]," +
+                    "\"query\":{\"term\":{\"foo\":{\"value\":\"bar\"}}}}}";
+            assertEquals(json, toJson(fsq));
+
+            Query fsq2 = checkJsonRoundtrip(fsq, json);
+
+            assertEquals(FunctionScore.Kind.Linear, fsq2.functionScore().functions().get(0)._kind());
+            assertEquals(1.0, fsq2.functionScore().functions().get(0).weight(), 0.001);
+            assertEquals(2.0, fsq2.functionScore().functions().get(0).linear().placement().decay(), 0.001);
+        }
     }
 }

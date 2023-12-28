@@ -32,6 +32,10 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import org.opensearch.client.util.ObjectBuilder;
+
+import java.util.function.Function;
+
 /**
  * Builders for {@link Query} variants.
  */
@@ -100,11 +104,30 @@ public class QueryBuilders {
     }
 
     /**
+     * Creates a Query of the {@link ExistsQuery exists} {@code Query} variant.
+     */
+    public static Query exists(Function<ExistsQuery.Builder, ObjectBuilder<ExistsQuery>> fn) {
+        Query.Builder builder = new Query.Builder();
+        builder.exists(fn.apply(new ExistsQuery.Builder()).build());
+        return builder.build();
+    }
+
+    /**
      * Creates a builder for the {@link FunctionScoreQuery function_score}
      * {@code Query} variant.
      */
     public static FunctionScoreQuery.Builder functionScore() {
         return new FunctionScoreQuery.Builder();
+    }
+
+    /**
+     * Creates a Query of the {@link FunctionScoreQuery function_score}
+     * {@code Query} variant.
+     */
+    public static Query functionScore(Function<FunctionScoreQuery.Builder, ObjectBuilder<FunctionScoreQuery>> fn) {
+        Query.Builder builder = new Query.Builder();
+        builder.functionScore(fn.apply(new FunctionScoreQuery.Builder()).build());
+        return builder.build();
     }
 
     /**
@@ -427,6 +450,15 @@ public class QueryBuilders {
      */
     public static TermQuery.Builder term() {
         return new TermQuery.Builder();
+    }
+
+    /**
+     * Creates a Query of the {@link TermQuery term} {@code Query} variant.
+     */
+    public static Query term(Function<TermQuery.Builder, ObjectBuilder<TermQuery>> fn) {
+        Query.Builder builder = new Query.Builder();
+        builder.term(fn.apply(new TermQuery.Builder()).build());
+        return builder.build();
     }
 
     /**

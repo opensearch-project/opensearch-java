@@ -156,6 +156,16 @@ public class TermQuery extends QueryBase implements QueryVariant {
         }
 
         /**
+         * Required - Term you wish to find in the provided field.
+         * <p>
+         * API name: {@code value}
+         */
+        public final Builder value(String value) {
+            this.value = FieldValue.of(value);
+            return this;
+        }
+
+        /**
          * API name: {@code case_insensitive}
          */
         public final Builder caseInsensitive(@Nullable Boolean value) {

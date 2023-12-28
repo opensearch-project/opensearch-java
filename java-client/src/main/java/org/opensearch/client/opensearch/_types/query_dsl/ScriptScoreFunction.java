@@ -34,25 +34,33 @@ package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.WithJsonObjectBuilderBase;
 
 // typedef: _types.query_dsl.ScriptScoreFunction
 
+/**
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_types.query_dsl.ScriptScoreFunction">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
+public class ScriptScoreFunction implements FunctionScoreVariant, JsonpSerializable {
     private final Script script;
 
     // ---------------------------------------------------------------------------------------------
 
     private ScriptScoreFunction(Builder builder) {
-        super(builder);
 
         this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
@@ -77,12 +85,25 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
         return this.script;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-        super.serializeInternal(generator, mapper);
         generator.writeKey("script");
         this.script.serialize(generator, mapper);
 
+    }
+
+    @Override
+    public String toString() {
+        return JsonpUtils.toString(this);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -91,7 +112,9 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
      * Builder for {@link ScriptScoreFunction}.
      */
 
-    public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptScoreFunction> {
+    public static class Builder extends WithJsonObjectBuilderBase<Builder>
+            implements
+            ObjectBuilder<ScriptScoreFunction> {
         private Script script;
 
         /**
@@ -132,13 +155,11 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
     /**
      * Json deserializer for {@link ScriptScoreFunction}
      */
-    public static final JsonpDeserializer<ScriptScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        ScriptScoreFunction::setupScriptScoreFunctionDeserializer
-    );
+    public static final JsonpDeserializer<ScriptScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer
+            .lazy(Builder::new, ScriptScoreFunction::setupScriptScoreFunctionDeserializer);
 
     protected static void setupScriptScoreFunctionDeserializer(ObjectDeserializer<ScriptScoreFunction.Builder> op) {
-        setupScoreFunctionBaseDeserializer(op);
+
         op.add(Builder::script, Script._DESERIALIZER, "script");
 
     }
