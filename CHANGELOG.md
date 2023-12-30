@@ -9,6 +9,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.3 to 5.2.4
 - Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.2.1 to 5.2.3
 - Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.3 to 5.2.4
+- Bumps `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.7.1 to 2.8.1
+- Bumps `org.hamcrest:hamcrest` from 2.1 to 2.2
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
@@ -21,6 +23,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Changed
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
+- Changed SearchAfter of SearchRequest type to FieldValue instead of String ([#769](https://github.com/opensearch-project/opensearch-java/pull/769))
 
 ### Deprecated
 - Deprecate RestClientTransport ([#536](https://github.com/opensearch-project/opensearch-java/pull/536))
@@ -31,6 +34,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
 - Fix PutTemplateRequest field deserialization ([#723](https://github.com/opensearch-project/opensearch-java/pull/723))
 - Fix PutIndexTemplateRequest field deserialization ([#765](https://github.com/opensearch-project/opensearch-java/pull/765))
+- Fix InnerHits storedFields deserialization/serialization ([#781](https://github.com/opensearch-project/opensearch-java/pull/781)
 
 ### Security
 
