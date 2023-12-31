@@ -34,6 +34,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Fix PutTemplateRequest field deserialization ([#723](https://github.com/opensearch-project/opensearch-java/pull/723))
 - Fix PutIndexTemplateRequest field deserialization ([#765](https://github.com/opensearch-project/opensearch-java/pull/765))
 - Fix InnerHits storedFields deserialization/serialization ([#781](https://github.com/opensearch-project/opensearch-java/pull/781)
+- Fix PutPipelineRequest field deserialization ([#789](https://github.com/opensearch-project/opensearch-java/issues/789)
 
 ### Security
 

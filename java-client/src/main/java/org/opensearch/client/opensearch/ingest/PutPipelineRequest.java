@@ -481,6 +481,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
         op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
         op.add(Builder::onFailure, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "on_failure");
         op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "processors");
         op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");

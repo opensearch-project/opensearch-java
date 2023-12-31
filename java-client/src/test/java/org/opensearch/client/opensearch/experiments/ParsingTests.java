@@ -53,6 +53,8 @@ import org.opensearch.client.opensearch.indices.IndexSettingsMapping;
 import org.opensearch.client.opensearch.indices.IndexSettingsSearch;
 import org.opensearch.client.opensearch.indices.Translog;
 import org.opensearch.client.opensearch.indices.get_field_mapping.TypeFieldMappings;
+import org.opensearch.client.opensearch.ingest.ConvertType;
+import org.opensearch.client.opensearch.ingest.PutPipelineRequest;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
 public class ParsingTests extends ModelTestCase {
@@ -356,5 +358,30 @@ public class ParsingTests extends ModelTestCase {
         assertEquals(search.slowlog().threshold().fetch().warn().time(), deserialized.slowlog().threshold().fetch().warn().time());
         assertEquals(search.idle().after().time(), deserialized.idle().after().time());
 
+    }
+
+    @Test
+    public void testPutPipelineRequestDeserialization() {
+        var putPipelineRequest = PutPipelineRequest.of(
+            b -> b.id("test-pipeline")
+                .description("pipeline desc")
+                .processors(p -> p.convert(c -> c.field("age").targetField("age").type(ConvertType.Integer)))
+        );
+
+        var input = "{\"id\":\"test-pipeline\",\"description\":\"pipeline desc\","
+            + "\"processors\":[{\"convert\":{\"field\":\"age\",\"target_field\":\"age\",\"type\":\"integer\"}}]}";
+
+        var deserialized = fromJson(input, PutPipelineRequest._DESERIALIZER);
+
+        assertEquals(putPipelineRequest.id(), deserialized.id());
+        assertEquals(putPipelineRequest.description(), deserialized.description());
+        assertEquals(putPipelineRequest.processors().size(), deserialized.processors().size());
+
+        var processor = putPipelineRequest.processors().get(0);
+        var deserializedProcessor = deserialized.processors().get(0);
+        assertEquals(processor._kind(), deserializedProcessor._kind());
+        assertEquals(processor.convert().field(), deserializedProcessor.convert().field());
+        assertEquals(processor.convert().targetField(), deserializedProcessor.convert().targetField());
+        assertEquals(processor.convert().type(), deserializedProcessor.convert().type());
     }
 }
