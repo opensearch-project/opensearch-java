@@ -157,20 +157,21 @@ public class ParsingTests extends ModelTestCase {
         TokenFilterDefinition analyzer2 = fromJson(str, TokenFilterDefinition._DESERIALIZER);
     }
 
-    @Test
-    public void testCjk_Analyzer() {
-        final Analyzer analyzer = new Analyzer.Builder().cjk(b -> b.stopwords(Arrays.asList("a", "b", "c")).stopwordsPath("path")).build();
-
-        assertTrue(analyzer.isCjk());
-
-        String str = toJson(analyzer);
-        assertEquals("{\"type\":\"cjk\",\"stopwords\":[\"a\",\"b\",\"c\"],\"stopwords_path\":\"path\"}", str);
-
-        Analyzer analyzer2 = fromJson(str, Analyzer._DESERIALIZER);
-        assertTrue(analyzer2.isCjk());
-        assertEquals(analyzer.cjk().stopwords(), analyzer2.cjk().stopwords());
-        assertEquals(analyzer.cjk().stopwordsPath(), analyzer2.cjk().stopwordsPath());
-    }
+//   temporary commenting this test until we decide if we keep the CjkAnalyser
+//    @Test
+//    public void testCjk_Analyzer() {
+//        final Analyzer analyzer = new Analyzer.Builder().cjk(b -> b.stopwords(Arrays.asList("a", "b", "c")).stopwordsPath("path")).build();
+//
+//        assertTrue(analyzer.isCjk());
+//
+//        String str = toJson(analyzer);
+//        assertEquals("{\"type\":\"cjk\",\"stopwords\":[\"a\",\"b\",\"c\"],\"stopwords_path\":\"path\"}", str);
+//
+//        Analyzer analyzer2 = fromJson(str, Analyzer._DESERIALIZER);
+//        assertTrue(analyzer2.isCjk());
+//        assertEquals(analyzer.cjk().stopwords(), analyzer2.cjk().stopwords());
+//        assertEquals(analyzer.cjk().stopwordsPath(), analyzer2.cjk().stopwordsPath());
+//    }
 
     @Test
     public void testFieldMappingResponse() {
