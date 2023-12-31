@@ -50,6 +50,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 @JsonpDeserializable
 public class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializable {
+
     @Nullable
     private final String version;
 
@@ -68,7 +69,7 @@ public class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
         this.version = builder.version;
         this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
-        this.stemExclusion = ApiTypeHelper.unmodifiableRequired(builder.stemExclusion, this, "stemExclusion");
+        this.stemExclusion = builder.stemExclusion; // ApiTypeHelper.unmodifiableRequired(builder.stemExclusion, this, "stemExclusion");
         this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
         this.stopwordsPath = builder.stopwordsPath;
 
@@ -83,7 +84,7 @@ public class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializable {
      */
     @Override
     public Analyzer.Kind _analyzerKind() {
-        return Analyzer.Kind.Language;
+        return Analyzer.Kind.valueOf(this.language.name());
     }
 
     /**
@@ -128,21 +129,19 @@ public class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializable {
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
-        serializeInternal(generator, mapper);
+        serializeInternal(generator);
         generator.writeEnd();
     }
 
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator) {
 
-        generator.write("type", "language");
+        generator.write("type", this._analyzerKind().jsonValue());
 
         if (this.version != null) {
             generator.writeKey("version");
             generator.write(this.version);
 
         }
-        generator.writeKey("language");
-        this.language.serialize(generator, mapper);
         if (ApiTypeHelper.isDefined(this.stemExclusion)) {
             generator.writeKey("stem_exclusion");
             generator.writeStartArray();
@@ -281,12 +280,11 @@ public class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializable {
     protected static void setupLanguageAnalyzerDeserializer(ObjectDeserializer<LanguageAnalyzer.Builder> op) {
 
         op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
-        op.add(Builder::language, Language._DESERIALIZER, "language");
+        op.add(Builder::language, Language._DESERIALIZER, "type");
         op.add(Builder::stemExclusion, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stem_exclusion");
         op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stopwords");
         op.add(Builder::stopwordsPath, JsonpDeserializer.stringDeserializer(), "stopwords_path");
 
-        op.ignore("type");
     }
 
 }

@@ -32,42 +32,48 @@
 
 package org.opensearch.client.opensearch._types.analysis;
 
+import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-import java.io.StringReader;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
+import org.opensearch.client.opensearch.cluster.stats.CharFilterTypes;
 import org.opensearch.client.opensearch.indices.IndexSettings;
+import org.opensearch.client.opensearch.indices.IndexSettingsAnalysis;
+import org.opensearch.core.index.Index;
+
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AnalyzerKindTest extends Assert {
 
     /**
-     *  Test if we can deserialize the language analyzers
-     *  it uses reflection to avoid having to duplicate tests for all 34 currently supported languages
+     * Test if we can deserialize the language analyzers
+     * it uses reflection to avoid having to duplicate tests for all 34 currently supported languages
      *
-     * @throws NoSuchMethodException if the specified method is not found through reflection
-     * @throws InvocationTargetException if an exception occurs during method invocation through reflection
-     * @throws IllegalAccessException if access to the method is denied through reflection
-     * @throws ClassNotFoundException if a required class cannot be found
-     * @throws NullPointerException if a method argument is unexpectedly null
+     * @throws NoSuchMethodException
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     * @throws ClassNotFoundException
      */
     @Test
-    public void testParsingAnalyzersForLanguages() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException,
-        ClassNotFoundException, NullPointerException {
+    public void testParsingAnalyzersForLanguages() throws NoSuchMethodException, InvocationTargetException,
+            IllegalAccessException, ClassNotFoundException, NullPointerException {
         JsonpMapper mapper = new JsonbJsonpMapper();
 
         for (Analyzer.Kind theKind : onlyLanguageAnalyzers) {
             String type = theKind.jsonValue();
             String typeCapitalized = type.substring(0, 1).toUpperCase() + type.substring(1);
-            String json = String.format(
-                "{ \"index\": { \"analysis\": { \"analyzer\": { \"some_analyzer\": { \"type\": \"%s\","
-                    + " \"char_filter\": [ \"html_strip\" ], \"tokenizer\": \"standard\" } } } } } ",
-                type
-            );
+            String json = String.format("{ \"index\": { \"analysis\": { \"analyzer\": { \"some_analyzer\": { \"type\": \"%s\"," +
+                    " \"char_filter\": [ \"html_strip\" ], \"tokenizer\": \"standard\" } } } } } ", type);
 
             JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
             IndexSettings indexSettings = IndexSettings._DESERIALIZER.deserialize(parser, mapper);
@@ -76,6 +82,7 @@ public class AnalyzerKindTest extends Assert {
             // Use reflection to generically check analyzer type
             Method isMethod = someAnalyzer.getClass().getMethod("is" + typeCapitalized);
             assertTrue((boolean) isMethod.invoke(someAnalyzer));
+
 
             String analyzerClassName = typeCapitalized + "Analyzer";
 
@@ -87,41 +94,140 @@ public class AnalyzerKindTest extends Assert {
         }
     }
 
+    @Test
+    public void testParsingAnalyzer() {
+
+        JsonpMapper mapper = new JsonbJsonpMapper();
+        String json = "{ \"index\": { \"analysis\": { \"analyzer\": { \"some_analyzer\": { \"type\": \"english\", \"char_filter\": [ \"html_strip\" ], \"tokenizer\": \"standard\" } } } } } ";
+
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+        IndexSettings indexSettings = IndexSettings._DESERIALIZER.deserialize(parser, mapper);
+        System.out.println(toJson(indexSettings));
+        assertTrue(true);
+    }
+
+
+
+//    @Test
+//    public void testAnParsingAnalyzer3() {
+//        Map<String, Analyzer> map2 = new HashMap<>();
+//        map2.put("some_analyzer", DutchAnalyzer.of(en -> en)._toAnalyzer());
+//        Map<String, Analyzer> map = new HashMap<>();
+//        map.put("some_analyzersss", DutchAnalyzer.of(en -> en)._toAnalyzer());
+//        IndexSettingsAnalysis settings = IndexSettingsAnalysis.of(
+//                a ->
+//
+//                a. charFilter("htm",CharFilter.of(c->c.name("html_strip")))
+//        );
+//
+//        System.out.println(toJson(settings));
+//    }
+
+    @Test
+    public void testParsingAnalyzer2() {
+
+        JsonpMapper mapper = new JsonbJsonpMapper();
+        String json = "{ \"index\": { \"analysis\": { \"analyzer\": { \"some_analyzer\": { \"type\": \"english\", \"version\": \"2\", \"char_filter\": [ \"html_strip\" ], \"tokenizer\": \"standard\" } } } } } ";
+
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+        IndexSettings indexSettings = IndexSettings._DESERIALIZER.deserialize(parser, mapper);
+        System.out.println(toJson(indexSettings));
+        assertTrue(true);
+    }
+    @Test
+    public void testLanguage() {
+        Map<String, Analyzer> map = new HashMap<>();
+        map.put("some_analyzer",
+                LanguageAnalyzer.of(
+                                l -> l.language(Language.German).
+                                        stemExclusion(new ArrayList<>())
+                        )
+                        ._toAnalyzer());
+        IndexSettings settings = IndexSettings.of(
+                it -> it.analysis(a ->
+                        a.analyzer(map)
+
+                )
+        );
+
+        System.out.println(toJson(settings));
+    }
+
+    @Test
+    public void testParsingLanguageANother() {
+
+        JsonpMapper mapper = new JsonbJsonpMapper();
+        String json = "{ \"index\": {\"analysis\":{\"analyzer\":{\"some_analyzer\":{\"type\":\"language\",\"language\":\"German\",\"stem_exclusion\":[]}}}} } ";
+
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+        IndexSettings indexSettings = IndexSettings._DESERIALIZER.deserialize(parser, mapper);
+        System.out.println(toJson(indexSettings));
+        assertTrue(true);
+    }
+
+//    @Test
+//    public void testParsingAnalyzer3() {
+//        Map<String, Analyzer> map = new HashMap<>();
+//        map.put("english_analyzer", DutchAnalyzer.of(en -> en)._toAnalyzer());
+//        IndexSettings settings = IndexSettings.of(
+//                it -> it.analysis(a ->
+//                        a.analyzer(map))
+//        );
+//
+//        System.out.println(toJson(settings));
+//    }
+
+    @Test
+    public void testPassingLanguageAnalyzer() {
+        String[] v= new String[]{"", ""};
+        CharFilterDefinition fd2= CharFilterDefinitionBuilders.htmlStrip().build()._toCharFilterDefinition();
+//        CharFilterDefinition fd= CharFilterDefinition. of(v -> v.htmlStrip(
+//                        HtmlStripCharFilter.of(h->h.self())
+//                ));
+        Map<String, Analyzer> map = new HashMap<>();
+        map.put("some_analyzer",
+
+                LanguageAnalyzer.of(l -> l.language(Language.German).
+                                stemExclusion(new ArrayList<>()))
+                        ._toAnalyzer());
+        IndexSettingsAnalysis settings = IndexSettingsAnalysis.of(
+                        anl -> anl
+                                .analyzer(map)
+                                .charFilter("kkk",CharFilter.of(a->a.name("html")))
+//                                .charFilter("aaaa",CharFilter.of(i->i.definition(CharFilterDefinitionBuilders.htmlStrip().build()._toCharFilterDefinition())))
+                            //    .charFilter("some_char_filter", CharFilter.of(c -> c.name("html_strip")))
+        );
+
+        System.out.println(toJson(settings));
+    }
+
+    private String toJson(JsonpSerializable obj) {
+        JsonpMapper mapper = new JsonbJsonpMapper();
+        StringWriter stringWriter = new StringWriter();
+        try (JsonGenerator generator = mapper.jsonProvider().createGenerator(stringWriter)) {
+            mapper.serialize(obj, generator);
+        }
+        return stringWriter.toString();
+    }
+
     private final List<Analyzer.Kind> onlyLanguageAnalyzers = List.of(
-        Analyzer.Kind.Arabic,
-        Analyzer.Kind.Armenian,
-        Analyzer.Kind.Basque,
-        Analyzer.Kind.Bengali,
-        Analyzer.Kind.Brazilian,
-        Analyzer.Kind.Bulgarian,
-        Analyzer.Kind.Catalan,
-        Analyzer.Kind.Czech,
-        Analyzer.Kind.Danish,
-        Analyzer.Kind.Dutch,
-        Analyzer.Kind.English,
-        Analyzer.Kind.Estonian,
-        Analyzer.Kind.Finnish,
-        Analyzer.Kind.French,
-        Analyzer.Kind.Galician,
-        Analyzer.Kind.German,
-        Analyzer.Kind.Greek,
-        Analyzer.Kind.Hindi,
-        Analyzer.Kind.Hungarian,
-        Analyzer.Kind.Indonesian,
-        Analyzer.Kind.Irish,
-        Analyzer.Kind.Italian,
-        Analyzer.Kind.Latvian,
-        Analyzer.Kind.Lithuanian,
-        Analyzer.Kind.Norwegian,
-        Analyzer.Kind.Persian,
-        Analyzer.Kind.Portuguese,
-        Analyzer.Kind.Romanian,
-        Analyzer.Kind.Russian,
-        Analyzer.Kind.Sorani,
-        Analyzer.Kind.Spanish,
-        Analyzer.Kind.Swedish,
-        Analyzer.Kind.Turkish,
-        Analyzer.Kind.Thai
+
     );
 
+    @Test
+    public void testPassingLanguageAnalyzerss() {
+        Map<String, Analyzer> map = new HashMap<>();
+        map.put("some_analyzer",
+
+                LanguageAnalyzer.of(l -> l.language(Language.German).
+                                stemExclusion(new ArrayList<>()))
+                        ._toAnalyzer());
+        IndexSettingsAnalysis settings = IndexSettingsAnalysis.of(
+                anl -> anl
+                        .analyzer(map)
+        );
+
+        System.out.println(toJson(settings));
+    }
 }
+

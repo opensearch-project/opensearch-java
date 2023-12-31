@@ -35,76 +35,77 @@ package org.opensearch.client.opensearch._types.analysis;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+import java.util.Arrays;
+
 @JsonpDeserializable
 public enum Language implements JsonEnum {
-    Arabic("Arabic"),
+    Arabic("arabic"),
 
-    Armenian("Armenian"),
+    Armenian("armenian"),
 
-    Basque("Basque"),
+    Basque("basque"),
 
-    Brazilian("Brazilian"),
+    Brazilian("brazilian"),
 
-    Bulgarian("Bulgarian"),
+    Bulgarian("bulgarian"),
 
-    Catalan("Catalan"),
+    Catalan("catalan"),
 
-    Chinese("Chinese"),
+    Chinese("chinese"),
 
-    Cjk("Cjk"),
+    Cjk("cjk"),
 
-    Czech("Czech"),
+    Czech("czech"),
 
-    Danish("Danish"),
+    Danish("danish"),
 
-    Dutch("Dutch"),
+    Dutch("dutch"),
 
-    English("English"),
+    English("english"),
 
-    Estonian("Estonian"),
+    Estonian("estonian"),
 
-    Finnish("Finnish"),
+    Finnish("finnish"),
 
-    French("French"),
+    French("french"),
 
-    Galician("Galician"),
+    Galician("galician"),
 
-    German("German"),
+    German("german"),
 
-    Greek("Greek"),
+    Greek("greek"),
 
-    Hindi("Hindi"),
+    Hindi("hindi"),
 
-    Hungarian("Hungarian"),
+    Hungarian("hungarian"),
 
-    Indonesian("Indonesian"),
+    Indonesian("indonesian"),
 
-    Irish("Irish"),
+    Irish("irish"),
 
-    Italian("Italian"),
+    Italian("italian"),
 
-    Latvian("Latvian"),
+    Latvian("latvian"),
 
-    Norwegian("Norwegian"),
+    Norwegian("norwegian"),
 
-    Persian("Persian"),
+    Persian("persian"),
 
-    Portuguese("Portuguese"),
+    Portuguese("portuguese"),
 
-    Romanian("Romanian"),
+    Romanian("romanian"),
 
-    Russian("Russian"),
+    Russian("russian"),
 
-    Sorani("Sorani"),
+    Sorani("sorani"),
 
-    Spanish("Spanish"),
+    Spanish("spanish"),
 
-    Swedish("Swedish"),
+    Swedish("swedish"),
 
-    Turkish("Turkish"),
+    Turkish("turkish"),
 
-    Thai("Thai"),
-
+    Thai("thai"),
     ;
 
     private final String jsonValue;

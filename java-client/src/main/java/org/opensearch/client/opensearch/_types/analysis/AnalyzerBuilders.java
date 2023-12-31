@@ -47,14 +47,6 @@ public class AnalyzerBuilders {
     }
 
     /**
-     * Creates a builder for the {@link DutchAnalyzer dutch} {@code Analyzer}
-     * variant.
-     */
-    public static DutchAnalyzer.Builder dutch() {
-        return new DutchAnalyzer.Builder();
-    }
-
-    /**
      * Creates a builder for the {@link FingerprintAnalyzer fingerprint}
      * {@code Analyzer} variant.
      */
