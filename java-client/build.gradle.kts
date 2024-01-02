@@ -32,6 +32,7 @@
 
 import com.github.jk1.license.ProjectData
 import com.github.jk1.license.render.ReportRenderer
+import org.gradle.api.tasks.testing.Test
 import java.io.FileWriter
 
 buildscript {
@@ -337,7 +338,9 @@ publishing {
     }
 }
 
-if (JavaVersion.current() >= JavaVersion.VERSION_11) {
+// Use `-Pcheck-jdk8-compatibility=true` to
+val jdk8compatibility = (project.findProperty("check-jdk8-compatibility") as String?).toBoolean()
+if (JavaVersion.current() >= JavaVersion.VERSION_11 && jdk8compatibility == false) {
   val java11: SourceSet = sourceSets.create("java11") {
     java {
       compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
@@ -369,5 +372,17 @@ if (JavaVersion.current() >= JavaVersion.VERSION_11) {
     testClassesDirs += java11.output.classesDirs
     classpath = sourceSets["java11"].runtimeClasspath
   }
- 
+} else if (jdk8compatibility == true) {
+    java {
+        toolchain {
+          languageVersion = JavaLanguageVersion.of(8)
+          vendor = JvmVendorSpec.ADOPTIUM
+        }
+    }
+
+    tasks.register<Test>("tests-jdk8") {
+      javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(8)
+      }
+    }
 }
