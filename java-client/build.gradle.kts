@@ -176,8 +176,8 @@ dependencies {
     testImplementation("com.fasterxml.jackson.datatype", "jackson-datatype-jakarta-jsonp", jacksonVersion)
 
     // ApacheHttpClient5Transport dependencies (optional)
-    implementation("org.apache.httpcomponents.client5", "httpclient5", "5.1.4")
-    implementation("org.apache.httpcomponents.core5", "httpcore5", "5.1.5")
+    implementation("org.apache.httpcomponents.client5", "httpclient5", "5.3")
+    implementation("org.apache.httpcomponents.core5", "httpcore5", "5.2.4")
 
     // For AwsSdk2Transport
     "awsSdk2SupportCompileOnly"("software.amazon.awssdk","sdk-core","[2.15,3.0)")
