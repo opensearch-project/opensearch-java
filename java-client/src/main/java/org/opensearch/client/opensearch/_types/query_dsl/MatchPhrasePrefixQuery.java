@@ -167,6 +167,15 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().field(field)
+            .analyzer(analyzer)
+            .maxExpansions(maxExpansions)
+            .query(query)
+            .slop(slop)
+            .zeroTermsQuery(zeroTermsQuery);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

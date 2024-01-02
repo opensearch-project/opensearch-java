@@ -331,6 +331,24 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().allowNoIndices(allowNoIndices)
+            .ccsMinimizeRoundtrips(ccsMinimizeRoundtrips)
+            .expandWildcards(expandWildcards)
+            .explain(explain)
+            .id(id)
+            .ignoreThrottled(ignoreThrottled)
+            .ignoreUnavailable(ignoreUnavailable)
+            .index(index)
+            .params(params)
+            .preference(preference)
+            .profile(profile)
+            .routing(routing)
+            .scroll(scroll)
+            .searchType(searchType)
+            .source(source);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

@@ -131,6 +131,10 @@ public class FieldAndFormat implements JsonpSerializable {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().field(field).format(format).includeUnmapped(includeUnmapped);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

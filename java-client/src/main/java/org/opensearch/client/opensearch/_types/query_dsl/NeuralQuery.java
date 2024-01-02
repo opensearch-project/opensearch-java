@@ -110,6 +110,10 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         generator.writeEnd();
     }
 
+    public Builder toBuilder() {
+        return new Builder().field(field).queryText(queryText).k(k).modelId(modelId);
+    }
+
     /**
      * Builder for {@link NeuralQuery}.
      */

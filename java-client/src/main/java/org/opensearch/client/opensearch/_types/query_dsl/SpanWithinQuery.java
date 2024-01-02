@@ -105,6 +105,10 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().big(big).little(little);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

@@ -395,6 +395,29 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
     }
 
+    public Builder<TDocument, TPartialDocument> toBuilder() {
+        return new Builder<TDocument, TPartialDocument>().source(source)
+            .detectNoop(detectNoop)
+            .doc(doc)
+            .docAsUpsert(docAsUpsert)
+            .id(id)
+            .ifPrimaryTerm(ifPrimaryTerm)
+            .ifSeqNo(ifSeqNo)
+            .index(index)
+            .lang(lang)
+            .refresh(refresh)
+            .requireAlias(requireAlias)
+            .retryOnConflict(retryOnConflict)
+            .routing(routing)
+            .script(script)
+            .scriptedUpsert(scriptedUpsert)
+            .timeout(timeout)
+            .upsert(upsert)
+            .waitForActiveShards(waitForActiveShards)
+            .tDocumentSerializer(tDocumentSerializer)
+            .tPartialDocumentSerializer(tPartialDocumentSerializer);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

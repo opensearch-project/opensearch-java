@@ -309,6 +309,23 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().docs(docs)
+            .fieldStatistics(fieldStatistics)
+            .fields(fields)
+            .ids(ids)
+            .index(index)
+            .offsets(offsets)
+            .payloads(payloads)
+            .positions(positions)
+            .preference(preference)
+            .realtime(realtime)
+            .routing(routing)
+            .termStatistics(termStatistics)
+            .version(version)
+            .versionType(versionType);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**
