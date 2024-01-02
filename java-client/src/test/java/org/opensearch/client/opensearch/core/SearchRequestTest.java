@@ -12,11 +12,11 @@ public class SearchRequestTest extends ModelTestCase {
         assertEquals("{\"search_after\":[1,\"string\"]}", toJson(request));
     }
 
-  @Test
-  public void toBuilder() {
-    SearchRequest origin = new SearchRequest.Builder().index("index").build();
-    SearchRequest copied = origin.toBuilder().build();
+    @Test
+    public void toBuilder() {
+        SearchRequest origin = new SearchRequest.Builder().index("index").build();
+        SearchRequest copied = origin.toBuilder().build();
 
-    assertEquals(copied.index(), origin.index());
-  }
+        assertEquals(copied.index(), origin.index());
+    }
 }
