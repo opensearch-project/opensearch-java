@@ -616,6 +616,45 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().source(source)
+            .sourceExcludes(sourceExcludes)
+            .sourceIncludes(sourceIncludes)
+            .allowNoIndices(allowNoIndices)
+            .analyzeWildcard(analyzeWildcard)
+            .analyzer(analyzer)
+            .conflicts(conflicts)
+            .defaultOperator(defaultOperator)
+            .df(df)
+            .expandWildcards(expandWildcards)
+            .from(from)
+            .ignoreUnavailable(ignoreUnavailable)
+            .index(index)
+            .lenient(lenient)
+            .maxDocs(maxDocs)
+            .preference(preference)
+            .q(q)
+            .query(query)
+            .refresh(refresh)
+            .requestCache(requestCache)
+            .requestsPerSecond(requestsPerSecond)
+            .routing(routing)
+            .scroll(scroll)
+            .scrollSize(scrollSize)
+            .searchTimeout(searchTimeout)
+            .searchType(searchType)
+            .size(size)
+            .slice(slice)
+            .slices(slices)
+            .sort(sort)
+            .stats(stats)
+            .terminateAfter(terminateAfter)
+            .timeout(timeout)
+            .version(version)
+            .waitForActiveShards(waitForActiveShards)
+            .waitForCompletion(waitForCompletion);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

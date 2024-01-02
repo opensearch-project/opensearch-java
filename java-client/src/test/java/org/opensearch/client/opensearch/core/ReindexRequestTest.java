@@ -28,4 +28,12 @@ public class ReindexRequestTest extends Assert {
         assertTrue("Must have a slices query parameter", queryParameters.containsKey("slices"));
         assertEquals("6", queryParameters.get("slices"));
     }
+
+    @Test
+    public void toBuilder() {
+        ReindexRequest origin = new ReindexRequest.Builder().requestsPerSecond(1L).build();
+        ReindexRequest copied = origin.toBuilder().build();
+
+        assertEquals(copied.requestsPerSecond(), origin.requestsPerSecond());
+    }
 }

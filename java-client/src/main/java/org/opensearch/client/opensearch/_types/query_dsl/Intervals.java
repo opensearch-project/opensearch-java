@@ -242,9 +242,23 @@ public class Intervals implements TaggedUnion<Intervals.Kind, Object>, Intervals
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()._kind(_kind)._value(_value);
+    }
+
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Intervals> {
         private Kind _kind;
         private Object _value;
+
+        protected final Builder _kind(Kind v) {
+            this._kind = v;
+            return this;
+        }
+
+        protected final Builder _value(Object v) {
+            this._value = v;
+            return this;
+        }
 
         public ObjectBuilder<Intervals> allOf(IntervalsAllOf v) {
             this._kind = Kind.AllOf;

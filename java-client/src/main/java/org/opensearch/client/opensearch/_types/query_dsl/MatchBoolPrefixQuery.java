@@ -234,6 +234,19 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().field(field)
+            .analyzer(analyzer)
+            .fuzziness(fuzziness)
+            .fuzzyRewrite(fuzzyRewrite)
+            .fuzzyTranspositions(fuzzyTranspositions)
+            .maxExpansions(maxExpansions)
+            .minimumShouldMatch(minimumShouldMatch)
+            .operator(operator)
+            .prefixLength(prefixLength)
+            .query(query);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

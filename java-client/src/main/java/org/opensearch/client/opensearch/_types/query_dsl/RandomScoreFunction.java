@@ -106,6 +106,10 @@ public class RandomScoreFunction extends ScoreFunctionBase implements FunctionSc
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().field(field).seed(seed);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

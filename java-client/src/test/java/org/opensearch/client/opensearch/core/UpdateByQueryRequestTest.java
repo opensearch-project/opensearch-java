@@ -28,4 +28,12 @@ public class UpdateByQueryRequestTest extends Assert {
         assertTrue("Must have a slices query parameter", queryParameters.containsKey("slices"));
         assertEquals("6", queryParameters.get("slices"));
     }
+
+    @Test
+    public void toBuilder() {
+        TermsEnumRequest origin = new TermsEnumRequest.Builder().index("index").field("field").build();
+        TermsEnumRequest copied = origin.toBuilder().build();
+
+        assertEquals(copied.index(), origin.index());
+    }
 }
