@@ -9,6 +9,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bumps `com.diffplug.spotless` from 6.22.0 to 6.23.3
+- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.2.1 to 5.3
 
 ### Changed
 
