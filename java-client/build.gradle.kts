@@ -32,6 +32,7 @@
 
 import com.github.jk1.license.ProjectData
 import com.github.jk1.license.render.ReportRenderer
+import org.gradle.api.tasks.testing.Test
 import java.io.FileWriter
 
 buildscript {
@@ -60,15 +61,26 @@ configurations {
     }
 }
 
+val runtimeJavaVersion = (System.getProperty("runtime.java")?.toInt())?.let(JavaVersion::toVersion) ?: JavaVersion.current()
+logger.quiet("=======================================")
+logger.quiet("  Runtime JDK Version   : " + runtimeJavaVersion)
+logger.quiet("  Gradle JDK Version    : " + JavaVersion.current())
+logger.quiet("=======================================")
+
 java {
-    targetCompatibility = JavaVersion.VERSION_11
-    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_1_8
 
     withJavadocJar()
     withSourcesJar()
 
     registerFeature("awsSdk2Support") {
         usingSourceSet(sourceSets.get("main"))
+    }
+    
+    toolchain {
+      languageVersion = JavaLanguageVersion.of(runtimeJavaVersion.majorVersion)
+      vendor = JvmVendorSpec.ADOPTIUM
     }
 }
 
@@ -146,15 +158,19 @@ val integrationTest = task<Test>("integrationTest") {
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
 
+val opensearchVersion = "2.12.0"
+
 dependencies {
 
-    val opensearchVersion = "2.7.0"
-    val jacksonVersion = "2.15.2"
-    val jacksonDatabindVersion = "2.15.2"
+    val jacksonVersion = "2.16.1"
+    val jacksonDatabindVersion = "2.16.1"
 
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
-    testImplementation("org.opensearch.test", "framework", opensearchVersion)
+    testImplementation("org.hamcrest:hamcrest:2.2")
+    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.1") {
+        exclude(group = "junit")
+    }
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
@@ -326,4 +342,38 @@ publishing {
             }
         }
     }
+}
+
+if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
+  val java11: SourceSet = sourceSets.create("java11") {
+    java {
+      compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+      runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
+      srcDir("src/test/java11")
+    }
+  }
+
+  configurations[java11.implementationConfigurationName].extendsFrom(configurations.testImplementation.get())
+  configurations[java11.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly.get())
+
+  dependencies {
+    testImplementation("org.opensearch.test", "framework", opensearchVersion) {
+      exclude(group = "org.hamcrest")
+    }
+  }
+
+  tasks.named<JavaCompile>("compileJava11Java") {
+    targetCompatibility = JavaVersion.VERSION_11.toString()
+    sourceCompatibility = JavaVersion.VERSION_11.toString()
+  }
+  
+  tasks.named<JavaCompile>("compileTestJava") {
+    targetCompatibility = JavaVersion.VERSION_11.toString()
+    sourceCompatibility = JavaVersion.VERSION_11.toString()
+  }
+  
+  tasks.test {
+    testClassesDirs += java11.output.classesDirs
+    classpath = sourceSets["java11"].runtimeClasspath
+  }
 }

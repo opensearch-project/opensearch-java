@@ -9,7 +9,7 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.List;
+import java.util.Arrays;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
@@ -26,7 +26,7 @@ public class InnerHitsTest {
      */
     @Test
     public void testInnerHitStoredFields() {
-        InnerHits hits = InnerHits.of((it) -> it.storedFields(List.of("field1", "field2")));
+        InnerHits hits = InnerHits.of((it) -> it.storedFields(Arrays.asList("field1", "field2")));
         assertTrue(toJson(hits).contains("stored_fields"));
     }
 
