@@ -61,8 +61,8 @@ configurations {
 }
 
 java {
-    targetCompatibility = JavaVersion.VERSION_1_8
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_11
 
     withJavadocJar()
     withSourcesJar()
@@ -146,7 +146,8 @@ val integrationTest = task<Test>("integrationTest") {
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
 
-val opensearchVersion = "2.12.0-SNAPSHOT"
+// TODO: Revert https://github.com/opensearch-project/opensearch-java/pull/799 when OpenSearch 2.12 ships.
+val opensearchVersion = "2.7.0"
 
 dependencies {
 
