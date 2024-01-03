@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added support for icu_collation_keyword type ([#725](https://github.com/opensearch-project/opensearch-java/pull/725))
 - Added support for flat_object field property ([#735](https://github.com/opensearch-project/opensearch-java/pull/735))
 - Expose HTTP status code through `ResponseException#status` ([#756](https://github.com/opensearch-project/opensearch-java/pull/756))
+- Added toBuilder method to all request model in core package & _types.query_dsl package ([#766](https://github.com/opensearch-project/opensearch-java/pull/766))
 
 ### Dependencies
 - Bumps `com.diffplug.spotless` from 6.22.0 to 6.23.3

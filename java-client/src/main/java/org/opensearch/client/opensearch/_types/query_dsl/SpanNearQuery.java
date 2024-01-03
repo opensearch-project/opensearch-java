@@ -136,6 +136,10 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().clauses(clauses).inOrder(inOrder).slop(slop);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

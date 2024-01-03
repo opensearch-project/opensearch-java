@@ -296,6 +296,24 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().source(source)
+            .sourceExcludes(sourceExcludes)
+            .sourceIncludes(sourceIncludes)
+            .analyzeWildcard(analyzeWildcard)
+            .analyzer(analyzer)
+            .defaultOperator(defaultOperator)
+            .df(df)
+            .id(id)
+            .index(index)
+            .lenient(lenient)
+            .preference(preference)
+            .q(q)
+            .query(query)
+            .routing(routing)
+            .storedFields(storedFields);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

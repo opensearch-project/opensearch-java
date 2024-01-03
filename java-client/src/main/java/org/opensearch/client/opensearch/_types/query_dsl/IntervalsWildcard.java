@@ -137,6 +137,10 @@ public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVarian
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().analyzer(analyzer).pattern(pattern).useField(useField);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

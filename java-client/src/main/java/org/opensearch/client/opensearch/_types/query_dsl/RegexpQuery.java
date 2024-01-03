@@ -167,6 +167,16 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().field(field)
+            .value(value)
+            .caseInsensitive(caseInsensitive)
+            .flags(flags)
+            .maxDeterminizedStates(maxDeterminizedStates)
+            .rewrite(rewrite)
+            .value(value);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

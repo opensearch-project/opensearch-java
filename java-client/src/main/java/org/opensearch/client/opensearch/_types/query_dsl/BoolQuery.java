@@ -171,6 +171,10 @@ public class BoolQuery extends QueryBase implements QueryVariant {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().filter(filter).minimumShouldMatch(minimumShouldMatch).must(must).mustNot(mustNot).should(should);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

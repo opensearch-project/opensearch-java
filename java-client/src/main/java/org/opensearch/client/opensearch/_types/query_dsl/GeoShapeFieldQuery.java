@@ -125,6 +125,10 @@ public class GeoShapeFieldQuery implements JsonpSerializable {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().shape(shape).indexedShape(indexedShape).relation(relation);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

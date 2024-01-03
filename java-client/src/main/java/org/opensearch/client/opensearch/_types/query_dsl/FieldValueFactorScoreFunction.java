@@ -136,6 +136,10 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().field(field).factor(factor).missing(missing).modifier(modifier);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

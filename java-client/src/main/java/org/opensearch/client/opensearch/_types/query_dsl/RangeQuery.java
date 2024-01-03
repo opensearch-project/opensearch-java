@@ -224,6 +224,10 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().field(field).gt(gt).gte(gte).lt(lt).lte(lte).from(from).to(to).format(format).timeZone(timeZone);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

@@ -323,6 +323,25 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().allowNoIndices(allowNoIndices)
+            .analyzeWildcard(analyzeWildcard)
+            .analyzer(analyzer)
+            .defaultOperator(defaultOperator)
+            .df(df)
+            .expandWildcards(expandWildcards)
+            .ignoreThrottled(ignoreThrottled)
+            .ignoreUnavailable(ignoreUnavailable)
+            .index(index)
+            .lenient(lenient)
+            .minScore(minScore)
+            .preference(preference)
+            .q(q)
+            .query(query)
+            .routing(routing)
+            .terminateAfter(terminateAfter);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

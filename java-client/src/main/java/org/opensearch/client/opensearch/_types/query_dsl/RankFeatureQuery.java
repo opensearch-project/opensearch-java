@@ -154,6 +154,10 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().field(field).saturation(saturation).log(log).linear(linear).sigmoid(sigmoid);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

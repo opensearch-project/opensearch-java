@@ -107,6 +107,10 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         generator.writeEnd();
     }
 
+    public Builder toBuilder() {
+        return new Builder().field(field).vector(vector).k(k).filter(filter);
+    }
+
     /**
      * Builder for {@link KnnQuery}.
      */

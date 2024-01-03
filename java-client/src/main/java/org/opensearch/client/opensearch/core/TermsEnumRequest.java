@@ -233,6 +233,17 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().caseInsensitive(caseInsensitive)
+            .field(field)
+            .index(index)
+            .indexFilter(indexFilter)
+            .searchAfter(searchAfter)
+            .size(size)
+            .string(string)
+            .timeout(timeout);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

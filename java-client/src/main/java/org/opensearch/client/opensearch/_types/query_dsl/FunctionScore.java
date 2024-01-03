@@ -275,6 +275,10 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()._kind(_kind)._value(_value).filter(filter).weight(weight);
+    }
+
     public static class Builder extends ObjectBuilderBase {
         private Kind _kind;
         private Object _value;
@@ -284,6 +288,16 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
         @Nullable
         private Double weight;
+
+        protected final Builder _kind(Kind v) {
+            this._kind = v;
+            return this;
+        }
+
+        protected final Builder _value(Object v) {
+            this._value = v;
+            return this;
+        }
 
         /**
          * API name: {@code filter}
