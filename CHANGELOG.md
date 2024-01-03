@@ -13,7 +13,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.2.1 to 5.3
 
 ### Changed
-- Restore support for Java 8 ([#767](https://github.com/opensearch-project/opensearch-java/pull/767))
 
 ### Deprecated
 
