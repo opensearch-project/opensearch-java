@@ -64,6 +64,12 @@ configurations {
     }
 }
 
+val runtimeJavaVersion = (System.getProperty("runtime.java")?.toInt())?.let(JavaVersion::toVersion) ?: JavaVersion.current()
+logger.quiet("=======================================")
+logger.quiet("  Runtime JDK Version   : " + runtimeJavaVersion)
+logger.quiet("  Gradle JDK Version    : " + JavaVersion.current())
+logger.quiet("=======================================")
+
 java {
     targetCompatibility = JavaVersion.VERSION_1_8
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -73,6 +79,11 @@ java {
 
     registerFeature("awsSdk2Support") {
         usingSourceSet(sourceSets.get("main"))
+    }
+    
+    toolchain {
+      languageVersion = JavaLanguageVersion.of(runtimeJavaVersion.majorVersion)
+      vendor = JvmVendorSpec.ADOPTIUM
     }
 }
 
@@ -338,9 +349,7 @@ publishing {
     }
 }
 
-// Use `-Pcheck-jdk8-compatibility=true` to
-val jdk8compatibility = (project.findProperty("check-jdk8-compatibility") as String?).toBoolean()
-if (JavaVersion.current() >= JavaVersion.VERSION_11 && jdk8compatibility == false) {
+if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
   val java11: SourceSet = sourceSets.create("java11") {
     java {
       compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
@@ -372,17 +381,4 @@ if (JavaVersion.current() >= JavaVersion.VERSION_11 && jdk8compatibility == fals
     testClassesDirs += java11.output.classesDirs
     classpath = sourceSets["java11"].runtimeClasspath
   }
-} else if (jdk8compatibility == true) {
-    java {
-        toolchain {
-          languageVersion = JavaLanguageVersion.of(8)
-          vendor = JvmVendorSpec.ADOPTIUM
-        }
-    }
-
-    tasks.register<Test>("tests-jdk8") {
-      javaLauncher = javaToolchains.launcherFor {
-        languageVersion = JavaLanguageVersion.of(8)
-      }
-    }
 }
