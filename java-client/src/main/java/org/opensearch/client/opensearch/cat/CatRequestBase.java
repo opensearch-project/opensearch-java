@@ -61,10 +61,10 @@ public abstract class CatRequestBase extends RequestBase {
 
     protected final Map<String, String> queryParameters() {
         Map<String, String> params = new HashMap<>();
-        if (headers != null && !headers.trim().isEmpty()) {
+        if (headers != null && !headers.isBlank()) {
             params.put("h", headers);
         }
-        if (sort != null && !sort.trim().isEmpty()) {
+        if (sort != null && !sort.isBlank()) {
             params.put("s", sort);
         }
         params.put("format", "json");

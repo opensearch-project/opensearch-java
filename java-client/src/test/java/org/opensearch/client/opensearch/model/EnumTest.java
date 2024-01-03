@@ -58,13 +58,13 @@ public class EnumTest extends ModelTestCase {
 
     @Test
     public void testEnumWithBooleanSupport() {
-        DynamicMapping booleanAsString = fromJson("\"true\"", DynamicMapping.class);
+        var booleanAsString = fromJson("\"true\"", DynamicMapping.class);
         assertEquals(booleanAsString, DynamicMapping.True);
 
-        DynamicMapping nonBooleanEnumValue = fromJson("\"runtime\"", DynamicMapping.class);
+        var nonBooleanEnumValue = fromJson("\"runtime\"", DynamicMapping.class);
         assertEquals(nonBooleanEnumValue, DynamicMapping.Runtime);
 
-        DynamicMapping booleanPrimitive = fromJson("false", DynamicMapping.class);
+        var booleanPrimitive = fromJson("false", DynamicMapping.class);
         assertEquals(booleanPrimitive, DynamicMapping.False);
     }
 }

@@ -32,7 +32,7 @@
 
 package org.opensearch.client.opensearch.experiments;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import org.junit.Test;
 import org.opensearch.client.opensearch._types.Time;
@@ -76,13 +76,13 @@ public class ParsingTests extends ModelTestCase {
     @Test
     public void testIndexSettingsTranslogOptionsParsing() {
 
-        final IndexSettings indexSettings = IndexSettings.of(
+        var indexSettings = IndexSettings.of(
             _1 -> _1.translog(
                 Translog.of(tr -> tr.syncInterval(Time.of(t -> t.time("10s"))).durability("async").flushThresholdSize("256mb"))
             )
         );
 
-        final String str = toJson(indexSettings);
+        var str = toJson(indexSettings);
         assertEquals("{\"translog\":{\"durability\":\"async\",\"flush_threshold_size\":\"256mb\"," + "\"sync_interval\":\"10s\"}}", str);
 
         IndexSettings deserialized = fromJson(str, IndexSettings._DESERIALIZER);
@@ -90,7 +90,7 @@ public class ParsingTests extends ModelTestCase {
         assertEquals(indexSettings.translog().durability(), deserialized.translog().durability());
         assertEquals(indexSettings.translog().flushThresholdSize(), deserialized.translog().flushThresholdSize());
 
-        final String deprecatedForm = "{\"translog\":{\"sync_interval\":\"10s\"},\"translog.durability\":\"async\",\"translog"
+        var deprecatedForm = "{\"translog\":{\"sync_interval\":\"10s\"},\"translog.durability\":\"async\",\"translog"
             + ".flush_threshold_size\":\"256mb\"}";
         IndexSettings deprecatedDeserialized = fromJson(deprecatedForm, IndexSettings._DESERIALIZER);
         assertEquals(indexSettings.translog().syncInterval().time(), deprecatedDeserialized.translog().syncInterval().time());
@@ -101,7 +101,7 @@ public class ParsingTests extends ModelTestCase {
     @Test
     public void testIndexSettingsMappingParsing() {
 
-        final IndexSettingsMapping mapping = IndexSettingsMapping.of(
+        var mapping = IndexSettingsMapping.of(
             b -> b.totalFields(d -> d.limit(1L))
                 .depth(d -> d.limit(2L))
                 .nestedFields(d -> d.limit(3L))
@@ -109,14 +109,14 @@ public class ParsingTests extends ModelTestCase {
                 .fieldNameLength(d -> d.limit(5L))
         );
 
-        final String str = toJson(mapping);
+        var str = toJson(mapping);
         assertEquals(
             "{\"total_fields\":{\"limit\":1},\"depth\":{\"limit\":2},\"nested_fields\":{\"limit\":3},"
                 + "\"nested_objects\":{\"limit\":4},\"field_name_length\":{\"limit\":5}}",
             str
         );
 
-        final IndexSettingsMapping deserialized = fromJson(str, IndexSettingsMapping._DESERIALIZER);
+        var deserialized = fromJson(str, IndexSettingsMapping._DESERIALIZER);
         assertEquals(mapping.totalFields().limit(), deserialized.totalFields().limit());
         assertEquals(mapping.depth().limit(), deserialized.depth().limit());
         assertEquals(mapping.nestedFields().limit(), deserialized.nestedFields().limit());
@@ -159,7 +159,7 @@ public class ParsingTests extends ModelTestCase {
 
     @Test
     public void testCjk_Analyzer() {
-        final Analyzer analyzer = new Analyzer.Builder().cjk(b -> b.stopwords(Arrays.asList("a", "b", "c")).stopwordsPath("path")).build();
+        final Analyzer analyzer = new Analyzer.Builder().cjk(b -> b.stopwords(List.of("a", "b", "c")).stopwordsPath("path")).build();
 
         assertTrue(analyzer.isCjk());
 
@@ -280,7 +280,7 @@ public class ParsingTests extends ModelTestCase {
     @Test
     public void testIndexSettingsIndexing() {
 
-        final IndexSettingsIndexing indexing = IndexSettingsIndexing.of(
+        var indexing = IndexSettingsIndexing.of(
             is -> is.slowlog(
                 s -> s.level("info")
                     .source(0)
@@ -295,14 +295,14 @@ public class ParsingTests extends ModelTestCase {
             )
         );
 
-        final String str = toJson(indexing);
+        var str = toJson(indexing);
         assertEquals(
             "{\"slowlog\":{\"level\":\"info\",\"source\":0,\"threshold\":{\"index\":{"
                 + "\"warn\":\"5000ms\",\"info\":\"1000ms\",\"debug\":\"500ms\",\"trace\":\"200ms\"}}}}",
             str
         );
 
-        final IndexSettingsIndexing deserialized = fromJson(str, IndexSettingsIndexing._DESERIALIZER);
+        var deserialized = fromJson(str, IndexSettingsIndexing._DESERIALIZER);
         assertEquals(indexing.slowlog().level(), deserialized.slowlog().level());
         assertEquals(indexing.slowlog().source(), deserialized.slowlog().source());
         assertEquals(indexing.slowlog().threshold().index().debug().time(), deserialized.slowlog().threshold().index().debug().time());
@@ -315,7 +315,7 @@ public class ParsingTests extends ModelTestCase {
     @Test
     public void testIndexSettingsSearch() {
 
-        final IndexSettingsSearch search = IndexSettingsSearch.of(
+        var search = IndexSettingsSearch.of(
             is -> is.slowlog(
                 s -> s.level("info")
                     .threshold(
@@ -335,7 +335,7 @@ public class ParsingTests extends ModelTestCase {
             ).idle(id -> id.after(a -> a.time("5s")))
         );
 
-        final String str = toJson(search);
+        var str = toJson(search);
         assertEquals(
             "{\"idle\":{\"after\":\"5s\"},\"slowlog\":{\"level\":\"info\","
                 + "\"threshold\":{\"query\":{\"warn\":\"5000ms\",\"info\":\"1000ms\",\"debug\":\"500ms\","
@@ -344,7 +344,7 @@ public class ParsingTests extends ModelTestCase {
             str
         );
 
-        final IndexSettingsSearch deserialized = fromJson(str, IndexSettingsSearch._DESERIALIZER);
+        var deserialized = fromJson(str, IndexSettingsSearch._DESERIALIZER);
         assertEquals(search.slowlog().level(), deserialized.slowlog().level());
         assertEquals(search.slowlog().threshold().query().debug().time(), deserialized.slowlog().threshold().query().debug().time());
         assertEquals(search.slowlog().threshold().query().info().time(), deserialized.slowlog().threshold().query().info().time());

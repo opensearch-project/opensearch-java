@@ -932,15 +932,9 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                 if (chunkedEnabled.get()) {
                     return -1L;
                 } else {
-                    long size = 0;
-                    final byte[] buf = new byte[8192];
-                    int nread = 0;
-
+                    long size;
                     try (InputStream is = getContent()) {
-                        // read to EOF which may read more or less than buffer size
-                        while ((nread = is.read(buf)) > 0) {
-                            size += nread;
-                        }
+                        size = is.readAllBytes().length;
                     } catch (IOException ex) {
                         size = -1L;
                     }

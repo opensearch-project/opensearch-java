@@ -8,7 +8,6 @@
 
 package org.opensearch.client.opensearch.integTest.aws;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import org.junit.Assert;
@@ -91,7 +90,7 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
             CompletableFuture<SearchResponse<SimplePojo>> r1 = query(client, "NotPresent", null);
             CompletableFuture<SearchResponse<SimplePojo>> r2 = query(client, "Document", null);
             CompletableFuture<SearchResponse<SimplePojo>> r3 = query(client, "1", null);
-            return CompletableFuture.allOf(r1, r2, r3).thenApply(u2 -> Arrays.asList(r1.getNow(null), r2.getNow(null), r3.getNow(null)));
+            return CompletableFuture.allOf(r1, r2, r3).thenApply(u2 -> List.of(r1.getNow(null), r2.getNow(null), r3.getNow(null)));
         }).get();
 
         SearchResponse<SimplePojo> response = results.get(0);
@@ -115,9 +114,7 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         try {
             return client.index(req.build());
         } catch (Exception e) {
-            final CompletableFuture<IndexResponse> failed = new CompletableFuture<>();
-            failed.completeExceptionally(e);
-            return failed;
+            return CompletableFuture.failedFuture(e);
         }
     }
 
@@ -127,7 +124,7 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         resetTestIndex(false);
         // attempt to create the same index a second time
         OpenSearchIndicesClient client = getIndexesClient(false, null, null);
-        final CreateIndexRequest.Builder req = new CreateIndexRequest.Builder().index(TEST_INDEX);
+        var req = new CreateIndexRequest.Builder().index(TEST_INDEX);
         Exception exception = Assert.assertThrows(OpenSearchException.class, () -> { client.create(req.build()); });
         // error message contains the actual error, not a generic [http_exception]
         Assert.assertTrue(exception.getMessage().contains("[resource_already_exists_exception]"));

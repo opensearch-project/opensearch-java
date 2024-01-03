@@ -18,7 +18,6 @@ jobs:
           - { opensearch_ref: '1.x', java: 11 }
           - { opensearch_ref: '2.x', java: 11 }
           - { opensearch_ref: '2.x', java: 17 }
-          - { opensearch_ref: '2.x', java: 21 }
           - { opensearch_ref: 'main', java: 11 }
           - { opensearch_ref: 'main', java: 17 }
           - { opensearch_ref: 'main', java: 21 }

@@ -2,7 +2,6 @@ package org.opensearch.client.opensearch.core;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.json.stream.JsonParser;
 import java.io.StringReader;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,9 +12,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.opensearch._types.mapping.IcuCollationKeywordProperty;
 import org.opensearch.client.opensearch._types.mapping.Property;
-import org.opensearch.client.opensearch._types.mapping.TypeMapping;
 import org.opensearch.client.opensearch.indices.GetTemplateResponse;
-import org.opensearch.client.opensearch.indices.TemplateMapping;
 
 public class GetMappingsResponseTest extends Assert {
 
@@ -39,27 +36,32 @@ public class GetMappingsResponseTest extends Assert {
         icuCollationConfig.put("strength", "quaternary");
         icuCollationConfig.put("variable_top", "$");
 
-        final Map<String, Object> mappingTemplateMap = new HashMap<>();
-        mappingTemplateMap.put("aliases", Collections.emptyMap());
-        mappingTemplateMap.put("index_patterns", Collections.singletonList("test-pattern*"));
-        mappingTemplateMap.put(
-            "mappings",
-            Collections.singletonMap("properties", Collections.singletonMap("icu_test_field", icuCollationConfig))
+        mappingTemplate.put(
+            "test-index",
+            Map.of(
+                "aliases",
+                Collections.emptyMap(),
+                "index_patterns",
+                Collections.singletonList("test-pattern*"),
+                "mappings",
+                Map.of("properties", Map.of("icu_test_field", icuCollationConfig)),
+                "order",
+                0,
+                "settings",
+                Collections.emptyMap(),
+                "version",
+                1
+            )
         );
-        mappingTemplateMap.put("order", 0);
-        mappingTemplateMap.put("settings", Collections.emptyMap());
-        mappingTemplateMap.put("version", 1);
-        mappingTemplate.put("test-index", mappingTemplateMap);
-
         final JsonpMapper mapper = new JsonbJsonpMapper();
         final String indexTemplate = new ObjectMapper().writeValueAsString(mappingTemplate);
-        final JsonParser parser = mapper.jsonProvider().createParser(new StringReader(indexTemplate));
+        final var parser = mapper.jsonProvider().createParser(new StringReader(indexTemplate));
 
         final GetTemplateResponse response = GetTemplateResponse._DESERIALIZER.deserialize(parser, mapper);
-        final TemplateMapping template = response.get("test-index");
-        final TypeMapping mappings = template.mappings();
-        final Map<String, Property> properties = mappings.properties();
-        final Property property = properties.get("icu_test_field");
+        final var template = response.get("test-index");
+        final var mappings = template.mappings();
+        final var properties = mappings.properties();
+        final var property = properties.get("icu_test_field");
         final IcuCollationKeywordProperty icu = property.icuCollationKeyword();
 
         assertEquals(property._kind(), Property.Kind.IcuCollationKeyword);
