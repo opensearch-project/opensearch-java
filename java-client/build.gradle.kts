@@ -32,6 +32,7 @@
 
 import com.github.jk1.license.ProjectData
 import com.github.jk1.license.render.ReportRenderer
+import org.gradle.api.tasks.testing.Test
 import java.io.FileWriter
 
 buildscript {
@@ -63,6 +64,12 @@ configurations {
     }
 }
 
+val runtimeJavaVersion = (System.getProperty("runtime.java")?.toInt())?.let(JavaVersion::toVersion) ?: JavaVersion.current()
+logger.quiet("=======================================")
+logger.quiet("  Runtime JDK Version   : " + runtimeJavaVersion)
+logger.quiet("  Gradle JDK Version    : " + JavaVersion.current())
+logger.quiet("=======================================")
+
 java {
     targetCompatibility = JavaVersion.VERSION_1_8
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -72,6 +79,11 @@ java {
 
     registerFeature("awsSdk2Support") {
         usingSourceSet(sourceSets.get("main"))
+    }
+    
+    toolchain {
+      languageVersion = JavaLanguageVersion.of(runtimeJavaVersion.majorVersion)
+      vendor = JvmVendorSpec.ADOPTIUM
     }
 }
 
@@ -337,7 +349,7 @@ publishing {
     }
 }
 
-if (JavaVersion.current() >= JavaVersion.VERSION_11) {
+if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
   val java11: SourceSet = sourceSets.create("java11") {
     java {
       compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
@@ -369,5 +381,4 @@ if (JavaVersion.current() >= JavaVersion.VERSION_11) {
     testClassesDirs += java11.output.classesDirs
     classpath = sourceSets["java11"].runtimeClasspath
   }
- 
 }
