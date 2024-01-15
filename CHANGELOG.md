@@ -10,7 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added toQuery method in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760)
 
 ### Dependencies
-- Bumps `com.diffplug.spotless` from 6.22.0 to 6.23.3
+- Bumps `com.diffplug.spotless` from 6.22.0 to 6.24.0
 - Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.2.1 to 5.3
 - Bumps `org.owasp.dependencycheck` from 8.4.2 to 9.0.8
 
