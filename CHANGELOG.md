@@ -17,6 +17,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Added
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
 - Expose HTTP status code through `ResponseException#status` ([#756](https://github.com/opensearch-project/opensearch-java/pull/756))
+- Added support for 33 new language analyzers (only Dutch existed previously) ([#779](https://github.com/opensearch-project/opensearch-java/pull/779))
 
 ### Dependencies
 

@@ -33,6 +33,8 @@
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
+
+import java.util.Arrays;
 import java.util.function.Function;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -62,8 +64,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     public enum Kind implements JsonEnum {
         Custom("custom"),
 
-        Dutch("dutch"),
-
         Fingerprint("fingerprint"),
 
         IcuAnalyzer("icu_analyzer"),
@@ -71,8 +71,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         Keyword("keyword"),
 
         Kuromoji("kuromoji"),
-
-        Language("language"),
 
         Nori("nori"),
 
@@ -91,6 +89,74 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         Smartcn("smartcn"),
 
         Cjk("cjk"),
+
+        Arabic("arabic"),
+
+        Armenian("armenian"),
+
+        Basque("basque"),
+
+        Bengali("bengali"),
+
+        Brazilian("brazilian"),
+
+        Bulgarian("bulgarian"),
+
+        Catalan("catalan"),
+
+        Czech("czech"),
+
+        Danish("danish"),
+
+        Dutch("dutch"),
+
+        English("english"),
+
+        Estonian("estonian"),
+
+        Finnish("finnish"),
+
+        French("french"),
+
+        Galician("galician"),
+
+        German("german"),
+
+        Greek("greek"),
+
+        Hindi("hindi"),
+
+        Hungarian("hungarian"),
+
+        Indonesian("indonesian"),
+
+        Irish("irish"),
+
+        Italian("italian"),
+
+        Latvian("latvian"),
+
+        Lithuanian("lithuanian"),
+
+        Norwegian("norwegian"),
+
+        Persian("persian"),
+
+        Portuguese("portuguese"),
+
+        Romanian("romanian"),
+
+        Russian("russian"),
+
+        Sorani("sorani"),
+
+        Spanish("spanish"),
+
+        Swedish("swedish"),
+
+        Turkish("turkish"),
+
+        Thai("thai"),
 
         ;
 
@@ -152,23 +218,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
      */
     public CustomAnalyzer custom() {
         return TaggedUnionUtils.get(this, Kind.Custom);
-    }
-
-    /**
-     * Is this variant instance of kind {@code dutch}?
-     */
-    public boolean isDutch() {
-        return _kind == Kind.Dutch;
-    }
-
-    /**
-     * Get the {@code dutch} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code dutch} kind.
-     */
-    public DutchAnalyzer dutch() {
-        return TaggedUnionUtils.get(this, Kind.Dutch);
     }
 
     /**
@@ -239,22 +288,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return TaggedUnionUtils.get(this, Kind.Kuromoji);
     }
 
-    /**
-     * Is this variant instance of kind {@code language}?
-     */
-    public boolean isLanguage() {
-        return _kind == Kind.Language;
-    }
-
-    /**
-     * Get the {@code language} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code language} kind.
-     */
-    public LanguageAnalyzer language() {
-        return TaggedUnionUtils.get(this, Kind.Language);
-    }
 
     /**
      * Is this variant instance of kind {@code nori}?
@@ -399,16 +432,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         return _kind == Kind.Cjk;
     }
 
-    /**
-     * Get the {@code cjk} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code cjk} kind.
-     */
-    public CjkAnalyzer cjk() {
-        return TaggedUnionUtils.get(this, Kind.Cjk);
-    }
-
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
@@ -428,16 +451,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 
         public ObjectBuilder<Analyzer> custom(Function<CustomAnalyzer.Builder, ObjectBuilder<CustomAnalyzer>> fn) {
             return this.custom(fn.apply(new CustomAnalyzer.Builder()).build());
-        }
-
-        public ObjectBuilder<Analyzer> dutch(DutchAnalyzer v) {
-            this._kind = Kind.Dutch;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<Analyzer> dutch(Function<DutchAnalyzer.Builder, ObjectBuilder<DutchAnalyzer>> fn) {
-            return this.dutch(fn.apply(new DutchAnalyzer.Builder()).build());
         }
 
         public ObjectBuilder<Analyzer> fingerprint(FingerprintAnalyzer v) {
@@ -481,7 +494,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         }
 
         public ObjectBuilder<Analyzer> language(LanguageAnalyzer v) {
-            this._kind = Kind.Language;
+            this._kind = Kind.valueOf(v.language().name());
             this._value = v;
             return this;
         }
@@ -570,16 +583,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
             return this.smartcn(new SmartcnAnalyzer.Builder().build());
         }
 
-        public ObjectBuilder<Analyzer> cjk(CjkAnalyzer v) {
-            this._kind = Kind.Cjk;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<Analyzer> cjk(Function<CjkAnalyzer.Builder, ObjectBuilder<CjkAnalyzer>> fn) {
-            return this.cjk(fn.apply(new CjkAnalyzer.Builder()).build());
-        }
-
         public Analyzer build() {
             _checkSingleUse();
             return new Analyzer(this);
@@ -589,8 +592,11 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 
     protected static void setupAnalyzerDeserializer(ObjectDeserializer<Builder> op) {
 
+        for (Language value : Language.values()) {
+            op.add(Builder::language, LanguageAnalyzer._DESERIALIZER, value.jsonValue().toLowerCase());
+            //TODO should we lowercase in the Language Enum?
+        }
         op.add(Builder::custom, CustomAnalyzer._DESERIALIZER, "custom");
-        op.add(Builder::dutch, DutchAnalyzer._DESERIALIZER, "dutch");
         op.add(Builder::fingerprint, FingerprintAnalyzer._DESERIALIZER, "fingerprint");
         op.add(Builder::icuAnalyzer, IcuAnalyzer._DESERIALIZER, "icu_analyzer");
         op.add(Builder::keyword, KeywordAnalyzer._DESERIALIZER, "keyword");
@@ -604,7 +610,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         op.add(Builder::stop, StopAnalyzer._DESERIALIZER, "stop");
         op.add(Builder::whitespace, WhitespaceAnalyzer._DESERIALIZER, "whitespace");
         op.add(Builder::smartcn, SmartcnAnalyzer._DESERIALIZER, Kind.Smartcn.jsonValue());
-        op.add(Builder::cjk, CjkAnalyzer._DESERIALIZER, Kind.Cjk.jsonValue());
 
         op.setTypeProperty("type", null);
 
