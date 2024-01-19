@@ -1154,6 +1154,23 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     }
 
     /**
+     * Is this variant instance of kind {@code wrapper}?
+     */
+    public boolean isWrapper() {
+        return this._kind == Query.Kind.Wrapper;
+    }
+
+    /**
+     * Get the {@code wrapper} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code wrapper} kind.
+     */
+    public WrapperQuery wrapper() {
+        return (WrapperQuery) TaggedUnionUtils.get(this, Query.Kind.Wrapper);
+    }
+
+    /**
      * Is this variant instance of kind {@code type}?
      */
     public boolean isType() {
@@ -1741,6 +1758,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
         public ObjectBuilder<Query> wildcard(Function<WildcardQuery.Builder, ObjectBuilder<WildcardQuery>> fn) {
             return this.wildcard(fn.apply(new WildcardQuery.Builder()).build());
+        }
+
+        public ObjectBuilder<Query> wrapper(WrapperQuery v) {
+            this._kind = Query.Kind.Wrapper;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Query> wrapper(Function<WrapperQuery.Builder, ObjectBuilder<WrapperQuery>> fn) {
+            return this.wrapper(fn.apply(new WrapperQuery.Builder()).build());
         }
 
         public ObjectBuilder<Query> type(TypeQuery v) {
