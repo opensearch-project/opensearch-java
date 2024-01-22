@@ -49,8 +49,8 @@ plugins {
     `java-library`
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "2.5"
-    id("org.owasp.dependencycheck") version "9.0.8"
     id("com.diffplug.spotless") version "6.25.0"
+    id("org.owasp.dependencycheck") version "9.0.9"
 }
 
 apply(plugin = "org.owasp.dependencycheck")
