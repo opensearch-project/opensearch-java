@@ -18,23 +18,19 @@ public class HttpPathPart {
         List<HttpPathPart> parts = new ArrayList<>();
         boolean isParameter = false;
         StringBuilder content = new StringBuilder();
+
         for (char c : httpPath.toCharArray()) {
-            if (c == '{') {
+            if (c == '{' || c == '}') {
                 if (content.length() > 0) {
                     parts.add(from(isParameter, content.toString(), pathParams));
                 }
                 content = new StringBuilder();
-                isParameter = true;
-            } else if (c == '}') {
-                if (content.length() > 0) {
-                    parts.add(from(isParameter, content.toString(), pathParams));
-                }
-                content = new StringBuilder();
-                isParameter = false;
+                isParameter = c == '{';
             } else {
                 content.append(c);
             }
         }
+
         if (content.length() > 0) {
             parts.add(from(isParameter, content.toString(), pathParams));
         }
