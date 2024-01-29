@@ -7,7 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.owasp.dependencycheck` from 8.4.2 to 9.0.9
 - Bumps `com.diffplug.spotless` from 6.22.0 to 6.24.0
 - Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.3 to 5.2.4
-- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.2.1 to 5.3
+- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.2.1 to 5.3.1
 - Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.3 to 5.2.4
 - Bumps `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.7.1 to 2.8.1
 - Bumps `org.hamcrest:hamcrest` from 2.1 to 2.2
