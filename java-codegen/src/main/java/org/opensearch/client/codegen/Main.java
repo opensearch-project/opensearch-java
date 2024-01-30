@@ -8,11 +8,14 @@
 
 package org.opensearch.client.codegen;
 
+import com.google.common.collect.Sets;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.stream.Stream;
 import org.openapi4j.core.exception.ResolutionException;
 import org.openapi4j.core.validation.ValidationException;
@@ -23,6 +26,10 @@ import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Namespace;
 
 public class Main {
+    private static final HashSet<String> OPERATIONS = Sets.newHashSet(
+            "cat.segment_replication"
+    );
+
     public static void main(String[] args) {
         if (args.length < 2) {
             System.err.println("Usage: Main.class {specFile} {outputDir}");
@@ -52,7 +59,7 @@ public class Main {
     private static Namespace parseSpec(File spec) throws ApiSpecificationParseException {
         try {
             OpenApi3 api = new OpenApi3Parser().parse(spec, true);
-            return Namespace.from(api);
+            return Namespace.from(api, OPERATIONS);
         } catch (ResolutionException | ValidationException e) {
             throw new ApiSpecificationParseException("Failed to parse schema: " + spec, e);
         }

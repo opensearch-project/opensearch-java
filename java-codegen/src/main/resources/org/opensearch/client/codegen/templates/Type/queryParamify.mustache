@@ -11,7 +11,15 @@
         {{/type.isPrimitive}}
         {{^type.isPrimitive}}
             {{#type.isList}}
-                {{value}}.stream().map(v -> {{#type.listValueType.queryParamify}}v{{/type.listValueType.queryParamify}}).collect(Collectors.joining(","))
+                {{#type.listValueType.isString}}
+                    String.join(",", {{value}})
+                {{/type.listValueType.isString}}
+                {{^type.listValueType.isString}}
+                    {{value}}
+                        .stream()
+                        .map(v -> {{#type.listValueType.queryParamify}}v{{/type.listValueType.queryParamify}})
+                        .collect(Collectors.joining(","))
+                {{/type.listValueType.isString}}
             {{/type.isList}}
             {{^type.isList}}
                 ERROR: Unsupported queryParamify of {{type}}

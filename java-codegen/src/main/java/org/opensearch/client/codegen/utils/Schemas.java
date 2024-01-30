@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
+import org.apache.commons.lang3.tuple.Pair;
 import org.openapi4j.core.exception.DecodeException;
 import org.openapi4j.core.model.OAIContext;
 import org.openapi4j.core.model.reference.Reference;
@@ -47,26 +48,6 @@ public final class Schemas {
 
     public static boolean hasEnums(Schema schema) {
         return schema != null && schema.hasEnums();
-    }
-
-    public static String getNamespaceExtension(AbsExtendedOpenApiSchema<?> schema) {
-        return (String) getExtension(schema, "x-namespace");
-    }
-
-    public static String getNamespaceExtension(AbsExtendedRefOpenApiSchema<?> schema) {
-        return (String) getExtension(schema, "x-namespace");
-    }
-
-    public static String getOperationNameExtension(AbsExtendedOpenApiSchema<?> schema) {
-        return (String) getExtension(schema, "x-operation-name");
-    }
-
-    public static Object getExtension(AbsExtendedOpenApiSchema<?> schema, String key) {
-        return schema.getExtensions().get(key);
-    }
-
-    public static Object getExtension(AbsExtendedRefOpenApiSchema<?> schema, String key) {
-        return schema.getExtensions().get(key);
     }
 
     public static <S extends AbsRefOpenApiSchema<S>> Optional<S> resolve(OAIContext context, S schema, Class<S> clazz) {
