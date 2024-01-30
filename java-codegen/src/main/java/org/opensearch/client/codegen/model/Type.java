@@ -119,10 +119,12 @@ public class Type {
 
     public boolean isPrimitive() { return PRIMITIVES.contains(name); }
 
+    public boolean isEnum() { return Schemas.hasEnums(schema); }
+
     public boolean isBuiltIn() { return isListOrMap() || isPrimitive() || "JsonData".equals(name); }
 
     public boolean hasBuilder() {
-        return !isBuiltIn() && !Schemas.hasEnums(schema);
+        return !isBuiltIn() && !isEnum();
     }
 
     public Type builderType() {

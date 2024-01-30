@@ -26,11 +26,12 @@ import org.openapi4j.parser.model.v3.Schema;
 import org.opensearch.client.codegen.Renderer;
 import org.opensearch.client.codegen.TypeMapper;
 import org.opensearch.client.codegen.exceptions.RenderException;
+import org.opensearch.client.codegen.utils.Extensions;
 import org.opensearch.client.codegen.utils.Schemas;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Namespace extends Shape {
-    public static Namespace from(OpenApi3 api) {
+    public static Namespace from(OpenApi3 api, HashSet<String> operations) {
         OAIContext openApiCtx = api.getContext();
         Queue<Pair<String, Schema>> referencedSchemas = new ConcurrentLinkedQueue<>();
         Context ctx = new Context(
@@ -40,7 +41,11 @@ public class Namespace extends Shape {
         );
 
         api.getPaths().forEach((httpPath, path) -> path.getOperations().forEach((method, operation) -> {
-            Namespace parent = ctx.namespace.child(Schemas.getNamespaceExtension(operation));
+            OperationGroup group = Extensions.of(operation).operationGroup();
+
+            if (!operations.contains(group.toString())) return;
+
+            Namespace parent = ctx.namespace.child(group.namespace());
             Context opCtx = ctx.withNamespace(parent);
 
             RequestShape requestShape = RequestShape.from(opCtx, httpPath, path, method, operation);
@@ -62,7 +67,7 @@ public class Namespace extends Shape {
             String[] refParts = ref.split("/");
             String name = refParts[refParts.length - 1];
 
-            Namespace parent = ctx.namespace.child(Schemas.getNamespaceExtension(schema));
+            Namespace parent = ctx.namespace.child(Extensions.of(schema).namespace());
             Context thisCtx = ctx.withNamespace(parent);
 
             if (Schemas.isObject(schema)) {

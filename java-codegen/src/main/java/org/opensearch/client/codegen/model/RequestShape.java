@@ -14,8 +14,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 import org.openapi4j.parser.model.v3.Operation;
 import org.openapi4j.parser.model.v3.Path;
+import org.opensearch.client.codegen.utils.Extensions;
 import org.opensearch.client.codegen.utils.Schemas;
 import org.opensearch.client.codegen.utils.Strings;
 
@@ -30,7 +32,7 @@ public class RequestShape extends ObjectShape {
 
         return new RequestShape(
                 ctx.namespace,
-                Schemas.getOperationNameExtension(operation),
+                Extensions.of(operation).operationName(),
                 operation.getDescription(),
                 method,
                 httpPath,
@@ -85,6 +87,10 @@ public class RequestShape extends ObjectShape {
         return Collections.unmodifiableCollection(httpPathParts);
     }
 
+    public String httpPath() {
+        return httpPathParts.stream().map(HttpPathPart::toString).collect(Collectors.joining());
+    }
+
     public String responseType() {
         return responseClassName(id);
     }
@@ -97,8 +103,16 @@ public class RequestShape extends ObjectShape {
         return queryParams.values();
     }
 
+    public boolean hasQueryParams() {
+        return !queryParams.isEmpty();
+    }
+
     public Collection<Field> pathParams() {
         return pathParams.values();
+    }
+
+    public boolean hasPathParams() {
+        return !pathParams.isEmpty();
     }
 
     @Override

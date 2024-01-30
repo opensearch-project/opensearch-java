@@ -10,6 +10,7 @@ import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 {{/hasRequestBody}}
+import org.opensearch.client.opensearch.*;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -50,10 +51,9 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
 
     public static final Endpoint<{{className}}, {{responseType}}, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
             // Request method
-            request -> {
-                return {{#quoted}}{{httpMethod}}{{/quoted}};
-            },
+            request -> {{#quoted}}{{httpMethod}}{{/quoted}},
             // Request path
+            {{#hasPathParams}}
             request -> {
                 StringBuilder buf = new StringBuilder();
                 {{#httpPathParts}}
@@ -66,7 +66,12 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
                 {{/httpPathParts}}
                 return buf.toString();
             },
+            {{/hasPathParams}}
+            {{^hasPathParams}}
+            request -> {{#quoted}}{{httpPath}}{{/quoted}},
+            {{/hasPathParams}}
             // Request parameters
+            {{#hasQueryParams}}
             request -> {
                 Map<String, String> params = new HashMap<>();
                 {{#queryParams}}
@@ -81,6 +86,10 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
                 {{/queryParams}}
                 return params;
             },
+            {{/hasQueryParams}}
+            {{^hasQueryParams}}
+            SimpleEndpoint.emptyMap(),
+            {{/hasQueryParams}}
             SimpleEndpoint.emptyMap(),
             {{hasRequestBody}},
             {{responseType}}._DESERIALIZER

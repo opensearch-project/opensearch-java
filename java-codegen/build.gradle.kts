@@ -60,7 +60,7 @@ application {
 
 tasks.named<JavaExec>("run") {
     args = listOf(
-        "${projectDir}/OpenSearch.yaml",
+        "${projectDir}/OpenSearch.openapi.json",
         "${project(":java-client").projectDir}/src/generated/java/"
     )
 }
@@ -110,6 +110,7 @@ dependencies {
     implementation("com.samskivert:jmustache:1.15")
 
     // Apache 2.0
+    implementation("org.apache.commons:commons-lang3:3.14.0")
     implementation("org.apache.commons:commons-text:1.10.0")
 
     // Apache 2.0
