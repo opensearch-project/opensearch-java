@@ -13,6 +13,7 @@ public class OpenApiKeywords {
     public static final String TYPE_INTEGER = "integer";
     public static final String TYPE_NUMBER = "number";
     public static final String TYPE_BOOLEAN = "boolean";
+    public static final String TYPE_TIME = "time";
 
     public static final String FORMAT_INT32 = "int32";
     public static final String FORMAT_INT64 = "int64";

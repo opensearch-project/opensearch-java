@@ -48,7 +48,10 @@ public class Namespace extends Shape {
             parent.shapes.add(requestShape);
 
             var responseSchema = Schemas.resolveResponseBodySchema(opCtx.openApi, operation).orElseGet(Schema::new);
-            parent.shapes.add(ObjectShape.from(opCtx, requestShape.responseType(), responseSchema));
+            var responseShape = Schemas.isArray(responseSchema)
+                    ? ArrayShape.from(opCtx, requestShape.responseType(), responseSchema)
+                    : ObjectShape.from(opCtx, requestShape.responseType(), responseSchema);
+            parent.shapes.add(responseShape);
         }));
 
         var seenRefs = new HashSet<>();

@@ -145,6 +145,10 @@ public class Type {
         return Schemas.hasEnums(schema);
     }
 
+    public boolean isTime() {
+        return "Time".equals(name);
+    }
+
     public boolean isBuiltIn() {
         return isListOrMap() || isPrimitive() || "JsonData".equals(name);
     }

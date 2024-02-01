@@ -51,7 +51,7 @@ public class SegmentReplicationRequest extends RequestBase {
 
     @Nullable private final Boolean ignoreUnavailable;
 
-    private final String index;
+    private final List<String> index;
 
     @Nullable private final List<String> s;
 
@@ -59,7 +59,7 @@ public class SegmentReplicationRequest extends RequestBase {
 
     @Nullable private final TimeUnit time;
 
-    @Nullable private final String timeout;
+    @Nullable private final Time timeout;
 
     @Nullable private final Boolean v;
 
@@ -75,7 +75,7 @@ public class SegmentReplicationRequest extends RequestBase {
         this.help = builder.help;
         this.ignoreThrottled = builder.ignoreThrottled;
         this.ignoreUnavailable = builder.ignoreUnavailable;
-        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
         this.s = ApiTypeHelper.unmodifiable(builder.s);
         this.shards = ApiTypeHelper.unmodifiable(builder.shards);
         this.time = builder.time;
@@ -132,7 +132,7 @@ public class SegmentReplicationRequest extends RequestBase {
         return this.ignoreUnavailable;
     }
 
-    public final String index() {
+    public final List<String> index() {
         return this.index;
     }
 
@@ -148,7 +148,7 @@ public class SegmentReplicationRequest extends RequestBase {
         return this.time;
     }
 
-    public final String timeout() {
+    public final Time timeout() {
         return this.timeout;
     }
 
@@ -170,11 +170,11 @@ public class SegmentReplicationRequest extends RequestBase {
         private Boolean help;
         private Boolean ignoreThrottled;
         private Boolean ignoreUnavailable;
-        private String index;
+        private List<String> index;
         private List<String> s;
         private List<String> shards;
         private TimeUnit time;
-        private String timeout;
+        private Time timeout;
         private Boolean v;
 
         public final Builder activeOnly(Boolean value) {
@@ -242,8 +242,13 @@ public class SegmentReplicationRequest extends RequestBase {
             return this;
         }
 
-        public final Builder index(String value) {
-            this.index = value;
+        public final Builder index(List<String> list) {
+            this.index = _listAddAll(this.index, list);
+            return this;
+        }
+
+        public final Builder index(String value, String... values) {
+            this.index = _listAdd(this.index, value, values);
             return this;
         }
 
@@ -272,9 +277,13 @@ public class SegmentReplicationRequest extends RequestBase {
             return this;
         }
 
-        public final Builder timeout(String value) {
+        public final Builder timeout(Time value) {
             this.timeout = value;
             return this;
+        }
+
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return timeout(fn.apply(new Time.Builder()).build());
         }
 
         public final Builder v(Boolean value) {
@@ -304,7 +313,7 @@ public class SegmentReplicationRequest extends RequestBase {
                             request -> {
                                 StringBuilder buf = new StringBuilder();
                                 buf.append("/_cat/segment_replication/");
-                                SimpleEndpoint.pathEncode(request.index, buf);
+                                SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
                                 return buf.toString();
                             },
                             // Request parameters
@@ -368,7 +377,7 @@ public class SegmentReplicationRequest extends RequestBase {
                                     params.put("time", request.time.jsonValue());
                                 }
                                 if (request.timeout != null) {
-                                    params.put("timeout", request.timeout);
+                                    params.put("timeout", request.timeout._toJsonString());
                                 }
                                 if (request.v != null) {
                                     params.put("v", String.valueOf(request.v));
