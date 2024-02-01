@@ -29,15 +29,19 @@ buildscript {
 
 plugins {
     application
-    checkstyle
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "1.19"
+    id("org.owasp.dependencycheck") version "9.0.9"
+    id("com.diffplug.spotless") version "6.24.0"
 }
 apply(plugin = "opensearch.repositories")
+apply(plugin = "org.owasp.dependencycheck")
 
-checkstyle {
-    toolVersion = "10.0"
-}
+val runtimeJavaVersion = (System.getProperty("runtime.java")?.toInt())?.let(JavaVersion::toVersion) ?: JavaVersion.current()
+logger.quiet("=======================================")
+logger.quiet("  Runtime JDK Version   : $runtimeJavaVersion")
+logger.quiet("  Gradle JDK Version    : " + JavaVersion.current())
+logger.quiet("=======================================")
 
 java {
     targetCompatibility = JavaVersion.VERSION_11
@@ -45,6 +49,11 @@ java {
 
     withJavadocJar()
     withSourcesJar()
+
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(runtimeJavaVersion.majorVersion)
+        vendor = JvmVendorSpec.ADOPTIUM
+    }
 }
 
 application {
@@ -102,9 +111,13 @@ tasks.withType<Jar> {
     }
 }
 
+tasks.build {
+    dependsOn("spotlessJavaCheck")
+}
+
 dependencies {
     // Apache 2.0
-    implementation("org.openapi4j:openapi-parser:1.0.7")
+    implementation("io.swagger.parser.v3:swagger-parser:2.1.20")
 
     // (New) BSD
     implementation("com.samskivert:jmustache:1.15")
@@ -131,7 +144,7 @@ dependencies {
 }
 
 licenseReport {
-    renderers = arrayOf(SpdxReporter(File(rootProject.buildDir, "release/codegen-dependencies.csv")))
+    renderers = arrayOf(SpdxReporter(rootProject.layout.buildDirectory.file("release/codegen-dependencies.csv").get().getAsFile()))
     excludeGroups = arrayOf()
 }
 
@@ -184,11 +197,27 @@ class SpdxReporter(val dest: File) : ReportRenderer {
 tasks.withType<Jar> {
     doLast {
         ant.withGroovyBuilder {
-            "checksum"("algorithm" to "md5", "file" to archivePath)
-            "checksum"("algorithm" to "sha1", "file" to archivePath)
-            "checksum"("algorithm" to "sha-256", "file" to archivePath, "fileext" to ".sha256")
-            "checksum"("algorithm" to "sha-512", "file" to archivePath, "fileext" to ".sha512")
+            "checksum"("algorithm" to "md5", "file" to archiveFile.get())
+            "checksum"("algorithm" to "sha1", "file" to archiveFile.get())
+            "checksum"("algorithm" to "sha-256", "file" to archiveFile.get(), "fileext" to ".sha256")
+            "checksum"("algorithm" to "sha-512", "file" to archiveFile.get(), "fileext" to ".sha512")
         }
+    }
+}
+
+spotless {
+    java {
+
+        target("**/*.java")
+
+        // Use the default importOrder configuration
+        importOrder()
+        removeUnusedImports()
+
+        eclipse().configFile("../buildSrc/formatterConfig.xml")
+
+        trimTrailingWhitespace()
+        endWithNewline()
     }
 }
 
@@ -203,7 +232,7 @@ publishing {
                 }
             }
         }
-        maven("${rootProject.buildDir}/repository") {
+        maven("${rootProject.layout.buildDirectory}/repository") {
             name = "localRepo"
         }
     }

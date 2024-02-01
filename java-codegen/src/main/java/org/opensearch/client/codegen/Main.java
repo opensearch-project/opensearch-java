@@ -9,26 +9,20 @@
 package org.opensearch.client.codegen;
 
 import com.google.common.collect.Sets;
+import io.swagger.parser.OpenAPIParser;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.stream.Stream;
-import org.openapi4j.core.exception.ResolutionException;
-import org.openapi4j.core.validation.ValidationException;
-import org.openapi4j.parser.OpenApi3Parser;
-import org.openapi4j.parser.model.v3.OpenApi3;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Namespace;
 
 public class Main {
-    private static final HashSet<String> OPERATIONS = Sets.newHashSet(
-            "cat.segment_replication"
-    );
+    private static final HashSet<String> OPERATIONS = Sets.newHashSet("cat.segment_replication");
 
     public static void main(String[] args) {
         if (args.length < 2) {
@@ -38,8 +32,8 @@ public class Main {
         }
 
         try {
-            File specFile = new File(args[0]);
-            File outputDir = new File(args[1]);
+            var specFile = new File(args[0]);
+            var outputDir = new File(args[1]);
             System.out.println("Spec File: " + specFile);
             System.out.println("Output Dir: " + outputDir);
 
@@ -57,19 +51,18 @@ public class Main {
     }
 
     private static Namespace parseSpec(File spec) throws ApiSpecificationParseException {
-        try {
-            OpenApi3 api = new OpenApi3Parser().parse(spec, true);
-            return Namespace.from(api, OPERATIONS);
-        } catch (ResolutionException | ValidationException e) {
-            throw new ApiSpecificationParseException("Failed to parse schema: " + spec, e);
+        var result = new OpenAPIParser().readLocation(spec.toURI().toString(), null, null);
+
+        if (result.getOpenAPI() == null) {
+            throw new ApiSpecificationParseException("Unable to parse spec: " + spec, result.getMessages());
         }
+
+        return Namespace.from(result.getOpenAPI(), OPERATIONS);
     }
 
     private static void cleanDirectory(File dir) throws RenderException {
         try (Stream<Path> walker = Files.walk(dir.toPath())) {
-            walker.sorted(Comparator.reverseOrder())
-                    .map(Path::toFile)
-                    .forEach(File::delete);
+            walker.sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
         } catch (IOException e) {
             throw new RenderException("Unable to cleanup output directory: " + dir, e);
         }

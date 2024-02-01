@@ -8,21 +8,21 @@
 
 package org.opensearch.client.codegen.model;
 
-import org.openapi4j.core.model.OAIContext;
+import io.swagger.v3.oas.models.OpenAPI;
 import org.opensearch.client.codegen.TypeMapper;
 
 public class Context {
     public final Namespace namespace;
-    public final OAIContext openApiCtx;
+    public final OpenAPI openApi;
     public final TypeMapper typeMapper;
 
-    public Context(Namespace namespace, OAIContext openApiCtx, TypeMapper typeMapper) {
+    public Context(Namespace namespace, OpenAPI openApi, TypeMapper typeMapper) {
         this.namespace = namespace;
-        this.openApiCtx = openApiCtx;
+        this.openApi = openApi;
         this.typeMapper = typeMapper;
     }
 
     public Context withNamespace(Namespace namespace) {
-        return new Context(namespace, openApiCtx, typeMapper);
+        return new Context(namespace, openApi, typeMapper);
     }
 }

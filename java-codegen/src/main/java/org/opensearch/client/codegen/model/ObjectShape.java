@@ -8,13 +8,13 @@
 
 package org.opensearch.client.codegen.model;
 
+import io.swagger.v3.oas.models.media.Schema;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
-import org.openapi4j.parser.model.v3.Schema;
 
 public class ObjectShape extends Shape {
-    public static ObjectShape from(Context ctx, String name, Schema schema) {
+    public static ObjectShape from(Context ctx, String name, Schema<?> schema) {
         return new ObjectShape(ctx.namespace, name, Field.allFrom(ctx, schema));
     }
 
@@ -25,7 +25,9 @@ public class ObjectShape extends Shape {
         bodyFields.forEach(f -> this.bodyFields.put(f.name(), f));
     }
 
-    public Collection<Field> bodyFields() { return bodyFields.values(); }
+    public Collection<Field> bodyFields() {
+        return bodyFields.values();
+    }
 
     public Collection<Field> fields() {
         return bodyFields();

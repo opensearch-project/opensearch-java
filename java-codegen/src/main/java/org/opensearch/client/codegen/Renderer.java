@@ -17,7 +17,6 @@ import com.samskivert.mustache.Template;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -46,38 +45,32 @@ public class Renderer {
         };
     }
 
-    private static final Map<String, Mustache.Lambda> lambdas = new HashMap<>() {{
-        put("quoted", transformer(s -> '\"' + StringEscapeUtils.escapeJava(s) + '\"'));
-        put("camelCase", transformer(Strings::toCamelCase));
-        put("toLower", transformer(String::toLowerCase));
-    }};
+    private static final Map<String, Mustache.Lambda> lambdas = new HashMap<>() {
+        {
+            put("quoted", transformer(s -> '\"' + StringEscapeUtils.escapeJava(s) + '\"'));
+            put("camelCase", transformer(Strings::toCamelCase));
+            put("toLower", transformer(String::toLowerCase));
+        }
+    };
 
     private final Mustache.Compiler compiler;
     private final Formatter formatter;
 
     private Renderer() {
-        compiler = Mustache.compiler()
-                .escapeHTML(false)
-                .withLoader(name -> {
-                            InputStream stream = Renderer.class.getResourceAsStream("templates/" + name + ".mustache");
-                            if (stream == null) {
-                                throw new MissingResourceException("Unable to find template", Renderer.class.getName(), name);
-                            }
-                            return new InputStreamReader(stream);
-                        }
-                );
+        compiler = Mustache.compiler().escapeHTML(false).withLoader(name -> {
+            var stream = Renderer.class.getResourceAsStream("templates/" + name + ".mustache");
+            if (stream == null) {
+                throw new MissingResourceException("Unable to find template", Renderer.class.getName(), name);
+            }
+            return new InputStreamReader(stream);
+        });
 
-        formatter = new Formatter(
-                JavaFormatterOptions.builder()
-                        .style(JavaFormatterOptions.Style.AOSP)
-                        .formatJavadoc(true)
-                        .build());
+        formatter = new Formatter(JavaFormatterOptions.builder().style(JavaFormatterOptions.Style.AOSP).formatJavadoc(true).build());
     }
 
     public void render(String templateName, Object context, Writer out) throws RenderException {
         try {
-            compiler.loadTemplate(templateName)
-                    .execute(context, lambdas, out);
+            compiler.loadTemplate(templateName).execute(context, lambdas, out);
         } catch (MustacheException e) {
             throw new RenderException("Failed to render: " + context, e);
         }
@@ -88,7 +81,7 @@ public class Renderer {
 
         render(templateName, context, writer);
 
-        String output = writer.toString();
+        var output = writer.toString();
 
         try {
             return formatter.formatSource(output);
@@ -102,7 +95,7 @@ public class Renderer {
     }
 
     public void renderJava(String templateName, Object context, File outputFile) throws RenderException {
-        String output = renderJava(templateName, context);
+        var output = renderJava(templateName, context);
         try (Writer writer = new FileWriter(outputFile)) {
             writer.write(output);
         } catch (IOException e) {

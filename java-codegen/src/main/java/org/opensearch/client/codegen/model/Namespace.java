@@ -8,6 +8,8 @@
 
 package org.opensearch.client.codegen.model;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.media.Schema;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,60 +22,52 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.tuple.Pair;
-import org.openapi4j.core.model.OAIContext;
-import org.openapi4j.parser.model.v3.OpenApi3;
-import org.openapi4j.parser.model.v3.Schema;
 import org.opensearch.client.codegen.Renderer;
 import org.opensearch.client.codegen.TypeMapper;
 import org.opensearch.client.codegen.exceptions.RenderException;
+import org.opensearch.client.codegen.utils.ComponentSchemaRef;
 import org.opensearch.client.codegen.utils.Extensions;
 import org.opensearch.client.codegen.utils.Schemas;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Namespace extends Shape {
-    public static Namespace from(OpenApi3 api, HashSet<String> operations) {
-        OAIContext openApiCtx = api.getContext();
-        Queue<Pair<String, Schema>> referencedSchemas = new ConcurrentLinkedQueue<>();
-        Context ctx = new Context(
-                new Namespace(),
-                openApiCtx,
-                new TypeMapper(openApiCtx, (ref, schema) -> referencedSchemas.add(Pair.of(ref, schema)))
-        );
+    public static Namespace from(OpenAPI api, HashSet<String> operations) {
+        var referencedSchemas = new ConcurrentLinkedQueue<Pair<String, Schema<?>>>();
+        var ctx = new Context(new Namespace(), api, new TypeMapper(api, (ref, schema) -> referencedSchemas.add(Pair.of(ref, schema))));
 
-        api.getPaths().forEach((httpPath, path) -> path.getOperations().forEach((method, operation) -> {
-            OperationGroup group = Extensions.of(operation).operationGroup();
+        api.getPaths().forEach((httpPath, path) -> path.readOperationsMap().forEach((method, operation) -> {
+            var group = Extensions.of(operation).operationGroup();
 
             if (!operations.contains(group.toString())) return;
 
-            Namespace parent = ctx.namespace.child(group.namespace());
-            Context opCtx = ctx.withNamespace(parent);
+            var parent = ctx.namespace.child(group.namespace());
+            var opCtx = ctx.withNamespace(parent);
 
-            RequestShape requestShape = RequestShape.from(opCtx, httpPath, path, method, operation);
+            var requestShape = RequestShape.from(opCtx, httpPath, path, method, operation);
             parent.operations.put(requestShape.id(), requestShape);
             parent.shapes.add(requestShape);
 
-            Schema responseSchema = Schemas.resolveResponseBodySchema(opCtx.openApiCtx, operation).orElseGet(Schema::new);
+            var responseSchema = Schemas.resolveResponseBodySchema(opCtx.openApi, operation).orElseGet(Schema::new);
             parent.shapes.add(ObjectShape.from(opCtx, requestShape.responseType(), responseSchema));
         }));
 
-        Set<String> seenRefs = new HashSet<>();
-        Pair<String, Schema> schemaRef;
+        var seenRefs = new HashSet<>();
+        Pair<String, Schema<?>> schemaRef;
         while ((schemaRef = referencedSchemas.poll()) != null) {
-            String ref = schemaRef.getKey();
-            Schema schema = schemaRef.getValue();
+            var $ref = schemaRef.getKey();
+            var schema = schemaRef.getValue();
 
-            if (!seenRefs.add(ref)) continue;
+            if (!seenRefs.add($ref)) continue;
 
-            String[] refParts = ref.split("/");
-            String name = refParts[refParts.length - 1];
+            var refParts = ComponentSchemaRef.from($ref);
 
-            Namespace parent = ctx.namespace.child(Extensions.of(schema).namespace());
+            Namespace parent = ctx.namespace.child(refParts.namespace());
             Context thisCtx = ctx.withNamespace(parent);
 
             if (Schemas.isObject(schema)) {
-                parent.shapes.add(ObjectShape.from(thisCtx, name, schema));
-            } else if (Schemas.isString(schema) && schema.hasEnums()) {
-                parent.shapes.add(EnumShape.from(thisCtx, name, schema));
+                parent.shapes.add(ObjectShape.from(thisCtx, refParts.name(), schema));
+            } else if (Schemas.isString(schema) && Schemas.hasEnums(schema)) {
+                parent.shapes.add(EnumShape.from(thisCtx, refParts.name(), schema));
             }
         }
 
@@ -96,13 +90,11 @@ public class Namespace extends Shape {
 
     @Override
     public String packageName() {
-        return parent != null
-                ? parent.packageName() + "." + packageNamePart()
-                : "org.opensearch.client.opensearch";
+        return parent != null ? parent.packageName() + "." + packageNamePart() : "org.opensearch.client.opensearch";
     }
 
     private String packageNamePart() {
-        return name.replace("_", "").toLowerCase();
+        return name;
     }
 
     public Namespace child(String name) {
@@ -111,13 +103,8 @@ public class Namespace extends Shape {
         }
 
         int idx = name.indexOf('.');
-        Namespace child = children.computeIfAbsent(
-                idx >= 0 ? name.substring(0, idx) : name,
-                n -> new Namespace(this, n)
-        );
-        return idx < 0
-                ? child
-                : child.child(name.substring(idx + 1));
+        Namespace child = children.computeIfAbsent(idx >= 0 ? name.substring(0, idx) : name, n -> new Namespace(this, n));
+        return idx < 0 ? child : child.child(name.substring(idx + 1));
     }
 
     @Override
@@ -132,8 +119,7 @@ public class Namespace extends Shape {
             shape.render(renderer, outputDir);
         }
 
-        // Don't generate root client for now otherwise conflicts
-        if (parent == null) return;
+        if (operations.isEmpty()) return;
 
         new Client(this, false).render(renderer, outputDir);
         new Client(this, true).render(renderer, outputDir);
@@ -152,12 +138,7 @@ public class Namespace extends Shape {
         }
 
         public Collection<Client> children() {
-            return parent
-                    .children
-                    .values()
-                    .stream()
-                    .map(n -> new Client(n, async))
-                    .collect(Collectors.toList());
+            return parent.children.values().stream().map(n -> new Client(n, async)).collect(Collectors.toList());
         }
 
         public Collection<RequestShape> operations() {

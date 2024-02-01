@@ -13,8 +13,7 @@
 package org.opensearch.client.opensearch.cat;
 
 import org.opensearch.client.opensearch.*;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.opensearch._types.*;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -40,7 +39,7 @@ public class SegmentReplicationRequest extends RequestBase {
 
     @Nullable private final Boolean detailed;
 
-    @Nullable private final ExpandWildcards expandWildcards;
+    @Nullable private final List<ExpandWildcard> expandWildcards;
 
     @Nullable private final String format;
 
@@ -58,7 +57,7 @@ public class SegmentReplicationRequest extends RequestBase {
 
     @Nullable private final List<String> shards;
 
-    @Nullable private final Time time;
+    @Nullable private final TimeUnit time;
 
     @Nullable private final String timeout;
 
@@ -70,7 +69,7 @@ public class SegmentReplicationRequest extends RequestBase {
         this.bytes = builder.bytes;
         this.completedOnly = builder.completedOnly;
         this.detailed = builder.detailed;
-        this.expandWildcards = builder.expandWildcards;
+        this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.format = builder.format;
         this.h = ApiTypeHelper.unmodifiable(builder.h);
         this.help = builder.help;
@@ -109,7 +108,7 @@ public class SegmentReplicationRequest extends RequestBase {
         return this.detailed;
     }
 
-    public final ExpandWildcards expandWildcards() {
+    public final List<ExpandWildcard> expandWildcards() {
         return this.expandWildcards;
     }
 
@@ -145,7 +144,7 @@ public class SegmentReplicationRequest extends RequestBase {
         return this.shards;
     }
 
-    public final Time time() {
+    public final TimeUnit time() {
         return this.time;
     }
 
@@ -165,7 +164,7 @@ public class SegmentReplicationRequest extends RequestBase {
         private Bytes bytes;
         private Boolean completedOnly;
         private Boolean detailed;
-        private ExpandWildcards expandWildcards;
+        private List<ExpandWildcard> expandWildcards;
         private String format;
         private List<String> h;
         private Boolean help;
@@ -174,7 +173,7 @@ public class SegmentReplicationRequest extends RequestBase {
         private String index;
         private List<String> s;
         private List<String> shards;
-        private Time time;
+        private TimeUnit time;
         private String timeout;
         private Boolean v;
 
@@ -203,8 +202,13 @@ public class SegmentReplicationRequest extends RequestBase {
             return this;
         }
 
-        public final Builder expandWildcards(ExpandWildcards value) {
-            this.expandWildcards = value;
+        public final Builder expandWildcards(List<ExpandWildcard> list) {
+            this.expandWildcards = _listAddAll(this.expandWildcards, list);
+            return this;
+        }
+
+        public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+            this.expandWildcards = _listAdd(this.expandWildcards, value, values);
             return this;
         }
 
@@ -263,7 +267,7 @@ public class SegmentReplicationRequest extends RequestBase {
             return this;
         }
 
-        public final Builder time(Time value) {
+        public final Builder time(TimeUnit value) {
             this.time = value;
             return this;
         }
@@ -295,7 +299,7 @@ public class SegmentReplicationRequest extends RequestBase {
             _ENDPOINT =
                     new SimpleEndpoint<>(
                             // Request method
-                            request -> "get",
+                            request -> "GET",
                             // Request path
                             request -> {
                                 StringBuilder buf = new StringBuilder();
@@ -325,10 +329,12 @@ public class SegmentReplicationRequest extends RequestBase {
                                 if (request.detailed != null) {
                                     params.put("detailed", String.valueOf(request.detailed));
                                 }
-                                if (request.expandWildcards != null) {
+                                if (ApiTypeHelper.isDefined(request.expandWildcards)) {
                                     params.put(
                                             "expand_wildcards",
-                                            request.expandWildcards.jsonValue());
+                                            request.expandWildcards.stream()
+                                                    .map(v -> v.jsonValue())
+                                                    .collect(Collectors.joining(",")));
                                 }
                                 if (request.format != null) {
                                     params.put("format", request.format);

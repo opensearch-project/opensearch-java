@@ -8,31 +8,38 @@
 
 package org.opensearch.client.codegen.model;
 
-import com.samskivert.mustache.Mustache;
-import org.openapi4j.parser.model.v3.Schema;
-import org.opensearch.client.codegen.Renderer;
-import org.opensearch.client.codegen.utils.Schemas;
+import static org.opensearch.client.codegen.Renderer.templateLambda;
 
+import com.samskivert.mustache.Mustache;
+import io.swagger.v3.oas.models.media.Schema;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import static org.opensearch.client.codegen.Renderer.templateLambda;
+import org.opensearch.client.codegen.Renderer;
+import org.opensearch.client.codegen.utils.Schemas;
 
 public class Type {
     private static final Set<String> PRIMITIVES = Set.of(
-            "String",
-            "boolean", "Boolean",
-            "char", "Character",
-            "byte", "Byte",
-            "short", "Short",
-            "int", "Integer",
-            "long", "Long",
-            "float", "Float",
-            "double", "Double"
+        "String",
+        "boolean",
+        "Boolean",
+        "char",
+        "Character",
+        "byte",
+        "Byte",
+        "short",
+        "Short",
+        "int",
+        "Integer",
+        "long",
+        "Long",
+        "float",
+        "Float",
+        "double",
+        "Double"
     );
 
-    private final Schema schema;
+    private final Schema<?> schema;
     private final String name;
     private final Type[] genericArgs;
 
@@ -40,17 +47,17 @@ public class Type {
         this(null, name);
     }
 
-    public Type(Schema schema, String name) {
+    public Type(Schema<?> schema, String name) {
         this.schema = schema;
         this.name = name;
         this.genericArgs = null;
     }
 
-    public Type(Schema schema, String name, String... genericArgs) {
+    public Type(Schema<?> schema, String name, String... genericArgs) {
         this(schema, name, Arrays.stream(genericArgs).map(Type::new).toArray(Type[]::new));
     }
 
-    public Type(Schema schema, String name, Type... genericArgs) {
+    public Type(Schema<?> schema, String name, Type... genericArgs) {
         this.schema = schema;
         this.name = name;
         this.genericArgs = genericArgs;
@@ -61,9 +68,7 @@ public class Type {
         String str = name;
         if (genericArgs != null && genericArgs.length > 0) {
             str += "<";
-            str += Arrays.stream(genericArgs)
-                    .map(Type::toString)
-                    .collect(Collectors.joining(", "));
+            str += Arrays.stream(genericArgs).map(Type::toString).collect(Collectors.joining(", "));
             str += ">";
         }
         return str;
@@ -71,19 +76,30 @@ public class Type {
 
     public Type boxed() {
         switch (name) {
-            case "char": return new Type(schema, "Character");
-            case "boolean": return new Type(schema, "Boolean");
-            case "byte": return new Type(schema, "Byte");
-            case "short": return new Type(schema, "Short");
-            case "int": return new Type(schema, "Integer");
-            case "long": return new Type(schema, "Long");
-            case "float": return new Type(schema, "Float");
-            case "double": return new Type(schema, "Double");
-            default: return this;
+            case "char":
+                return new Type(schema, "Character");
+            case "boolean":
+                return new Type(schema, "Boolean");
+            case "byte":
+                return new Type(schema, "Byte");
+            case "short":
+                return new Type(schema, "Short");
+            case "int":
+                return new Type(schema, "Integer");
+            case "long":
+                return new Type(schema, "Long");
+            case "float":
+                return new Type(schema, "Float");
+            case "double":
+                return new Type(schema, "Double");
+            default:
+                return this;
         }
     }
 
-    public boolean isMap() { return "Map".equals(name); }
+    public boolean isMap() {
+        return "Map".equals(name);
+    }
 
     public Type mapEntryType() {
         if (!isMap()) return null;
@@ -103,7 +119,9 @@ public class Type {
         return this.genericArgs[1];
     }
 
-    public boolean isList() { return "List".equals(name); }
+    public boolean isList() {
+        return "List".equals(name);
+    }
 
     public Type listValueType() {
         if (!isList()) return null;
@@ -111,17 +129,25 @@ public class Type {
         return this.genericArgs[0];
     }
 
-    public boolean isListOrMap() { return isList() || isMap(); }
+    public boolean isListOrMap() {
+        return isList() || isMap();
+    }
 
     public boolean isString() {
         return "String".equals(name);
     }
 
-    public boolean isPrimitive() { return PRIMITIVES.contains(name); }
+    public boolean isPrimitive() {
+        return PRIMITIVES.contains(name);
+    }
 
-    public boolean isEnum() { return Schemas.hasEnums(schema); }
+    public boolean isEnum() {
+        return Schemas.hasEnums(schema);
+    }
 
-    public boolean isBuiltIn() { return isListOrMap() || isPrimitive() || "JsonData".equals(name); }
+    public boolean isBuiltIn() {
+        return isListOrMap() || isPrimitive() || "JsonData".equals(name);
+    }
 
     public boolean hasBuilder() {
         return !isBuiltIn() && !isEnum();
@@ -141,14 +167,12 @@ public class Type {
 
     public Mustache.Lambda serializer() {
         return Renderer.templateLambda(
-                "Type/serializer",
-                frag -> new SerializerLambdaContext(
-                        Type.this,
-                        frag.execute(),
-                        frag.context() instanceof SerializerLambdaContext
-                                ? ((SerializerLambdaContext) frag.context()).depth + 1
-                                : 0
-                )
+            "Type/serializer",
+            frag -> new SerializerLambdaContext(
+                Type.this,
+                frag.execute(),
+                frag.context() instanceof SerializerLambdaContext ? ((SerializerLambdaContext) frag.context()).depth + 1 : 0
+            )
         );
     }
 
@@ -165,12 +189,9 @@ public class Type {
     }
 
     public Mustache.Lambda queryParamify() {
-        return templateLambda(
-                "Type/queryParamify",
-                frag -> new Object() {
-                    final Type type = Type.this;
-                    final String value = frag.execute();
-                }
-        );
+        return templateLambda("Type/queryParamify", frag -> new Object() {
+            final Type type = Type.this;
+            final String value = frag.execute();
+        });
     }
 }

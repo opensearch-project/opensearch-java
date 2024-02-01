@@ -8,23 +8,19 @@
 
 package org.opensearch.client.codegen.model;
 
+import io.swagger.v3.oas.models.media.Schema;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.openapi4j.parser.model.v3.Schema;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class EnumShape extends Shape {
-    public static EnumShape from(Context ctx, String name, Schema schema) {
+    public static EnumShape from(Context ctx, String name, Schema<?> schema) {
         return new EnumShape(
-                ctx.namespace,
-                name,
-                schema.getEnums()
-                        .stream()
-                        .map(Object::toString)
-                        .map(Variant::new)
-                        .collect(Collectors.toList())
+            ctx.namespace,
+            name,
+            schema.getEnum().stream().map(Object::toString).map(Variant::new).collect(Collectors.toList())
         );
     }
 

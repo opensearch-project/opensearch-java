@@ -8,9 +8,8 @@
 
 package org.opensearch.client.codegen.utils;
 
-import org.apache.commons.text.CaseUtils;
-
 import java.util.Locale;
+import org.apache.commons.text.CaseUtils;
 
 public final class Strings {
     private Strings() {}
@@ -29,9 +28,9 @@ public final class Strings {
 
     public static String toSnakeCase(String str) {
         return str.replaceAll("([A-Z]+)([A-Z][a-z])", "$1_$2")
-                .replaceAll("([a-z\\d])([A-Z])", "$1_$2")
-                .replaceAll("(\\s|-)", "_")
-                .toLowerCase(Locale.US);
+            .replaceAll("([a-z\\d])([A-Z])", "$1_$2")
+            .replaceAll("(\\s|-)", "_")
+            .toLowerCase(Locale.US);
     }
 
 }
