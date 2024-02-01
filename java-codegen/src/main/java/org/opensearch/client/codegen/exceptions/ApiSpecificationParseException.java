@@ -8,8 +8,14 @@
 
 package org.opensearch.client.codegen.exceptions;
 
+import java.util.List;
+
 public class ApiSpecificationParseException extends Exception {
     public ApiSpecificationParseException(String msg, Exception inner) {
         super(msg, inner);
+    }
+
+    public ApiSpecificationParseException(String msg, List<String> errors) {
+        super(msg + "\n-" + String.join("\n-", errors));
     }
 }

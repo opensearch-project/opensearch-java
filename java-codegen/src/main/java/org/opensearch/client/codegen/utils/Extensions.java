@@ -8,29 +8,28 @@
 
 package org.opensearch.client.codegen.utils;
 
+import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.media.Schema;
 import java.util.Map;
-import org.apache.commons.lang3.tuple.Pair;
-import org.openapi4j.parser.model.v3.AbsExtendedOpenApiSchema;
-import org.openapi4j.parser.model.v3.AbsExtendedRefOpenApiSchema;
 import org.opensearch.client.codegen.model.OperationGroup;
 
 public class Extensions {
-    private final Either<AbsExtendedOpenApiSchema<?>, AbsExtendedRefOpenApiSchema<?>> schema;
+    private final Either<Operation, Schema<?>> schema;
 
-    public static Extensions of(AbsExtendedOpenApiSchema<?> schema) {
+    public static Extensions of(Operation schema) {
         return new Extensions(Either.left(schema));
     }
 
-    public static Extensions of(AbsExtendedRefOpenApiSchema<?> schema) {
+    public static Extensions of(Schema<?> schema) {
         return new Extensions(Either.right(schema));
     }
 
-    private Extensions(Either<AbsExtendedOpenApiSchema<?>, AbsExtendedRefOpenApiSchema<?>> schema) {
+    private Extensions(Either<Operation, Schema<?>> schema) {
         this.schema = schema;
     }
 
     private Object get(String name) {
-        Map<String, Object> extensions = schema.fold(AbsExtendedOpenApiSchema::getExtensions, AbsExtendedRefOpenApiSchema::getExtensions);
+        Map<String, Object> extensions = schema.fold(Operation::getExtensions, Schema::getExtensions);
         if (extensions == null) return null;
         return extensions.get(name);
     }

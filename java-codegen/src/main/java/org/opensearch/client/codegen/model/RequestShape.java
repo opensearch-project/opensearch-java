@@ -8,6 +8,8 @@
 
 package org.opensearch.client.codegen.model;
 
+import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.PathItem;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,30 +17,30 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
-import org.openapi4j.parser.model.v3.Operation;
-import org.openapi4j.parser.model.v3.Path;
 import org.opensearch.client.codegen.utils.Extensions;
 import org.opensearch.client.codegen.utils.Schemas;
 import org.opensearch.client.codegen.utils.Strings;
 
-public class RequestShape extends ObjectShape {
-    public static RequestShape from(Context ctx, String httpPath, Path path, String method, Operation operation) {
-        List<Field> bodyFields = Schemas.resolveRequestBodySchema(ctx.openApiCtx, operation)
-                .map(schema -> Field.allFrom(ctx, schema))
-                .orElseGet(ArrayList::new);
+import static org.opensearch.client.codegen.utils.OpenApiKeywords.*;
 
-        List<Field> queryParams = Field.allFrom(ctx, path, operation, "query");
-        List<Field> pathParams = Field.allFrom(ctx, path, operation, "path");
+public class RequestShape extends ObjectShape {
+    public static RequestShape from(Context ctx, String httpPath, PathItem path, PathItem.HttpMethod method, Operation operation) {
+        List<Field> bodyFields = Schemas.resolveRequestBodySchema(ctx.openApi, operation)
+            .map(schema -> Field.allFrom(ctx, schema))
+            .orElseGet(ArrayList::new);
+
+        List<Field> queryParams = Field.allFrom(ctx, path, operation, IN_QUERY);
+        List<Field> pathParams = Field.allFrom(ctx, path, operation, IN_PATH);
 
         return new RequestShape(
-                ctx.namespace,
-                Extensions.of(operation).operationName(),
-                operation.getDescription(),
-                method,
-                httpPath,
-                bodyFields,
-                queryParams,
-                pathParams
+            ctx.namespace,
+            Extensions.of(operation).operationName(),
+            operation.getDescription(),
+            method.name(),
+            httpPath,
+            bodyFields,
+            queryParams,
+            pathParams
         );
     }
 
@@ -51,14 +53,15 @@ public class RequestShape extends ObjectShape {
     private final Collection<HttpPathPart> httpPathParts;
 
     private RequestShape(
-            Namespace parent,
-            String id,
-            String description,
-            String httpMethod,
-            String httpPath,
-            Collection<Field> bodyFields,
-            Collection<Field> queryParams,
-            Collection<Field> pathParams) {
+        Namespace parent,
+        String id,
+        String description,
+        String httpMethod,
+        String httpPath,
+        Collection<Field> bodyFields,
+        Collection<Field> queryParams,
+        Collection<Field> pathParams
+    ) {
         super(parent, requestClassName(id), bodyFields);
         this.id = id;
         this.description = description;

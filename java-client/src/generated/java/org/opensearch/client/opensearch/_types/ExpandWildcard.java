@@ -10,13 +10,13 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 // ----------------------------------------------------
 
-package org.opensearch.client.opensearch;
+package org.opensearch.client.opensearch._types;
 
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
-public enum ExpandWildcards implements JsonEnum {
+public enum ExpandWildcard implements JsonEnum {
     All("all"),
     Open("open"),
     Closed("closed"),
@@ -27,7 +27,7 @@ public enum ExpandWildcards implements JsonEnum {
     private final String jsonValue;
     private final String[] aliases;
 
-    ExpandWildcards(String jsonValue, String... aliases) {
+    ExpandWildcard(String jsonValue, String... aliases) {
         this.jsonValue = jsonValue;
         this.aliases = aliases;
     }
@@ -40,6 +40,6 @@ public enum ExpandWildcards implements JsonEnum {
         return this.aliases;
     }
 
-    public static final JsonEnum.Deserializer<ExpandWildcards> _DESERIALIZER =
-            new JsonEnum.Deserializer<>(ExpandWildcards.values());
+    public static final JsonEnum.Deserializer<ExpandWildcard> _DESERIALIZER =
+            new JsonEnum.Deserializer<>(ExpandWildcard.values());
 }

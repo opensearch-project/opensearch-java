@@ -8,18 +8,19 @@
 
 package org.opensearch.client.codegen;
 
-import org.opensearch.client.codegen.utils.Strings;
-
 import java.util.HashSet;
 import java.util.Set;
+import org.opensearch.client.codegen.utils.Strings;
 
 public class NameSanitizer {
-    private static final Set<String> reservedWords = new HashSet<>(){{
-        add("transient");
-    }};
+    private static final Set<String> reservedWords = new HashSet<>() {
+        {
+            add("transient");
+        }
+    };
 
     public static String wireNameToField(String wireName) {
-        String name = Strings.toCamelCase(wireName);
+        var name = Strings.toCamelCase(wireName);
         if (reservedWords.contains(name)) {
             name += "_";
         }

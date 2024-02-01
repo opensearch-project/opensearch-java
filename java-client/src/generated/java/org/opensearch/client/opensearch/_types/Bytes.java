@@ -10,26 +10,25 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 // ----------------------------------------------------
 
-package org.opensearch.client.opensearch;
+package org.opensearch.client.opensearch._types;
 
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
 @JsonpDeserializable
-public enum Time implements JsonEnum {
-    D("d"),
-    H("h"),
-    M("m"),
-    S("s"),
-    Ms("ms"),
-    Micros("micros"),
-    Nanos("nanos"),
+public enum Bytes implements JsonEnum {
+    B("b"),
+    Kb("kb"),
+    Mb("mb"),
+    Gb("gb"),
+    Tb("tb"),
+    Pb("pb"),
     ;
 
     private final String jsonValue;
     private final String[] aliases;
 
-    Time(String jsonValue, String... aliases) {
+    Bytes(String jsonValue, String... aliases) {
         this.jsonValue = jsonValue;
         this.aliases = aliases;
     }
@@ -42,6 +41,6 @@ public enum Time implements JsonEnum {
         return this.aliases;
     }
 
-    public static final JsonEnum.Deserializer<Time> _DESERIALIZER =
-            new JsonEnum.Deserializer<>(Time.values());
+    public static final JsonEnum.Deserializer<Bytes> _DESERIALIZER =
+            new JsonEnum.Deserializer<>(Bytes.values());
 }

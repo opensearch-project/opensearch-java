@@ -43,9 +43,7 @@ public class HttpPathPart {
     }
 
     private static HttpPathPart from(boolean isParameter, String content, Map<String, Field> pathParams) {
-        return isParameter
-                ? new HttpPathPart(pathParams.get(NameSanitizer.wireNameToField(content)))
-                : new HttpPathPart(content);
+        return isParameter ? new HttpPathPart(pathParams.get(NameSanitizer.wireNameToField(content))) : new HttpPathPart(content);
     }
 
     private final Either<Field, String> part;
