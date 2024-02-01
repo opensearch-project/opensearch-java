@@ -22,7 +22,12 @@
                 {{/type.listValueType.isString}}
             {{/type.isList}}
             {{^type.isList}}
-                ERROR: Unsupported queryParamify of {{type}}
+                {{#type.isTime}}
+                    {{value}}._toJsonString()
+                {{/type.isTime}}
+                {{^type.isTime}}
+                    ERROR: Unsupported queryParamify of {{type}}
+                {{/type.isTime}}
             {{/type.isList}}
         {{/type.isPrimitive}}
     {{/type.isEnum}}

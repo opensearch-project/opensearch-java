@@ -1,0 +1,39 @@
+{{>Partials/LicenseHeader}}
+
+package {{packageName}};
+
+import org.opensearch.client.json.JsonpDeserializable;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.opensearch.*;
+import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+
+@JsonpDeserializable
+public class {{className}} implements JsonpSerializable {
+    {{>ObjectShape/Fields}}
+    {{>ObjectShape/Constructor}}
+    {{>ObjectShape/Getters}}
+
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        {{#valueBodyField.type.serializer}}this.{{valueBodyField.name}}{{/valueBodyField.type.serializer}}
+    }
+
+    {{>ObjectShape/Builder}}
+
+    public static final JsonpDeserializer<{{className}}> _DESERIALIZER = create{{className}}Deserializer();
+
+    protected static JsonpDeserializer<{{className}}> create{{className}}Deserializer() {
+        JsonpDeserializer<{{valueBodyField.type}}> valueDeserializer = {{#valueBodyField.type}}{{>Type/deserializer}}{{/valueBodyField.type}};
+
+        return JsonpDeserializer.of(
+            valueDeserializer.acceptedEvents(),
+            (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
+        );
+    }
+}

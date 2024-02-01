@@ -67,7 +67,7 @@ public class TypeMapper {
                 var first = oneOf.get(0);
                 var second = oneOf.get(1);
 
-                if (first.getType() == null && first.get$ref() != null && Schemas.isArray(second) && first.get$ref().equals(second.getItems().get$ref())) {
+                if (Schemas.getType(first) == null && first.get$ref() != null && Schemas.isArray(second) && first.get$ref().equals(second.getItems().get$ref())) {
                     return mapType(second);
                 }
             }
@@ -75,7 +75,7 @@ public class TypeMapper {
             throw new UnsupportedOperationException("Can not get type name for oneOf: " + schema);
         }
 
-        var type = schema.getType();
+        var type = Schemas.getType(schema);
 
         if (type == null) {
             return new Type(schema, "JsonData");
@@ -85,6 +85,7 @@ public class TypeMapper {
 
         switch (type) {
             case TYPE_ARRAY:
+                if (schema.getItems() == null) return new Type(schema, "List", "String");
                 return new Type(schema, "List", mapType(schema.getItems(), true));
             case TYPE_STRING:
                 return new Type(schema, "String");
@@ -109,6 +110,8 @@ public class TypeMapper {
                     default:
                         throw new UnsupportedOperationException("Can not get type name for number with format: " + format);
                 }
+            case TYPE_TIME:
+                return new Type(schema, "Time");
         }
 
         throw new UnsupportedOperationException("Can not get type name for: " + type);

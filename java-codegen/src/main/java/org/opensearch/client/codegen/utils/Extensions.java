@@ -40,15 +40,13 @@ public class Extensions {
         return OperationGroup.from(group);
     }
 
-    public String namespace() {
-        OperationGroup group = operationGroup();
-        if (group == null) return null;
-        return group.namespace();
-    }
-
     public String operationName() {
         OperationGroup group = operationGroup();
         if (group == null) return null;
         return group.name();
+    }
+
+    public String dataType() {
+        return (String) get("x-data-type");
     }
 }

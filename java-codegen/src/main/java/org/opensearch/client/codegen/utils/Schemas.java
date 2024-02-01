@@ -29,7 +29,10 @@ import static org.opensearch.client.codegen.utils.OpenApiKeywords.TYPE_STRING;
 
 public final class Schemas {
     public static String getType(Schema<?> schema) {
-        return schema != null ? schema.getType() : null;
+        if (schema == null) return null;
+        var xDataType = Extensions.of(schema).dataType();
+        if (xDataType != null) return xDataType;
+        return schema.getType();
     }
 
     public static boolean is(Schema<?> schema, String type) {
