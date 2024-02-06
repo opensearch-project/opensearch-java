@@ -35,8 +35,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
 - Fix PutTemplateRequest field deserialization ([#723](https://github.com/opensearch-project/opensearch-java/pull/723))
 - Fix PutIndexTemplateRequest field deserialization ([#765](https://github.com/opensearch-project/opensearch-java/pull/765))
-- Fix InnerHits storedFields deserialization/serialization ([#781](https://github.com/opensearch-project/opensearch-java/pull/781)
-
+- Fix InnerHits storedFields deserialization/serialization ([#781](https://github.com/opensearch-project/opensearch-java/pull/781))
+- Fix InnerHits to no longer enforce the nullable Index field when converting to Hit. ([#825](https://github.com/opensearch-project/opensearch-java/issues/825))
 ### Security
 
 ## [Unreleased 2.x]
