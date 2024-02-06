@@ -74,9 +74,11 @@ public class InnerHitsResultTest {
                 innerHitsResultBuilder -> innerHitsResultBuilder.hits(
                     innerHitsMetadataBuilder -> innerHitsMetadataBuilder.total(total -> total.value(1).relation(TotalHitsRelation.Eq))
                         .hits(
-                            innerHitsListMemberBuilder -> innerHitsListMemberBuilder.id("child_id").index("_index").source(
-                                JsonData.from(mapper.jsonProvider().createParser(new StringReader(innerHitJsonWithIdOrIndex)), mapper)
-                            )
+                            innerHitsListMemberBuilder -> innerHitsListMemberBuilder.id("child_id")
+                                .index("_index")
+                                .source(
+                                    JsonData.from(mapper.jsonProvider().createParser(new StringReader(innerHitJsonWithIdOrIndex)), mapper)
+                                )
                         )
                 )
             )
