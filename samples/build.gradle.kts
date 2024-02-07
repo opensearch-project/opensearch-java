@@ -9,7 +9,7 @@
 plugins {
     java
     application
-    id("com.diffplug.spotless") version "6.24.0"
+    id("com.diffplug.spotless") version "6.25.0"
 }
 
 java {
