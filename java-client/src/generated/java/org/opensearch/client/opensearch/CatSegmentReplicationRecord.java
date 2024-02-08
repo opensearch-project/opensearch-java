@@ -6,6 +6,30 @@
  * compatible open source license.
  */
 
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+/*
+ * Modifications Copyright OpenSearch Contributors. See
+ * GitHub history for details.
+ */
+
 // ----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 // ----------------------------------------------------
@@ -81,7 +105,7 @@ public class CatSegmentReplicationRecord implements JsonpSerializable {
 
     @Nullable private final String time;
 
-    public CatSegmentReplicationRecord(Builder builder) {
+    private CatSegmentReplicationRecord(Builder builder) {
         this.bytes = builder.bytes;
         this.bytesBehind = builder.bytesBehind;
         this.bytesFetched = builder.bytesFetched;
@@ -114,102 +138,152 @@ public class CatSegmentReplicationRecord implements JsonpSerializable {
         return fn.apply(new Builder()).build();
     }
 
+    /** API name: {@code bytes} */
+    @Nullable
     public final String bytes() {
         return this.bytes;
     }
 
+    /** API name: {@code bytes_behind} */
+    @Nullable
     public final String bytesBehind() {
         return this.bytesBehind;
     }
 
+    /** API name: {@code bytes_fetched} */
+    @Nullable
     public final String bytesFetched() {
         return this.bytesFetched;
     }
 
+    /** API name: {@code bytes_percent} */
+    @Nullable
     public final String bytesPercent() {
         return this.bytesPercent;
     }
 
+    /** API name: {@code bytes_total} */
+    @Nullable
     public final String bytesTotal() {
         return this.bytesTotal;
     }
 
+    /** API name: {@code checkpoints_behind} */
+    @Nullable
     public final String checkpointsBehind() {
         return this.checkpointsBehind;
     }
 
+    /** API name: {@code current_lag} */
+    @Nullable
     public final String currentLag() {
         return this.currentLag;
     }
 
+    /** API name: {@code file_diff_stage_time_taken} */
+    @Nullable
     public final String fileDiffStageTimeTaken() {
         return this.fileDiffStageTimeTaken;
     }
 
+    /** API name: {@code files} */
+    @Nullable
     public final String files() {
         return this.files;
     }
 
+    /** API name: {@code files_fetched} */
+    @Nullable
     public final String filesFetched() {
         return this.filesFetched;
     }
 
+    /** API name: {@code files_percent} */
+    @Nullable
     public final String filesPercent() {
         return this.filesPercent;
     }
 
+    /** API name: {@code files_total} */
+    @Nullable
     public final String filesTotal() {
         return this.filesTotal;
     }
 
+    /** API name: {@code finalize_replication_stage_time_taken} */
+    @Nullable
     public final String finalizeReplicationStageTimeTaken() {
         return this.finalizeReplicationStageTimeTaken;
     }
 
+    /** API name: {@code get_checkpoint_info_stage_time_taken} */
+    @Nullable
     public final String getCheckpointInfoStageTimeTaken() {
         return this.getCheckpointInfoStageTimeTaken;
     }
 
+    /** API name: {@code get_files_stage_time_taken} */
+    @Nullable
     public final String getFilesStageTimeTaken() {
         return this.getFilesStageTimeTaken;
     }
 
+    /** API name: {@code last_completed_lag} */
+    @Nullable
     public final String lastCompletedLag() {
         return this.lastCompletedLag;
     }
 
+    /** API name: {@code rejected_requests} */
+    @Nullable
     public final String rejectedRequests() {
         return this.rejectedRequests;
     }
 
+    /** API name: {@code replicating_stage_time_taken} */
+    @Nullable
     public final String replicatingStageTimeTaken() {
         return this.replicatingStageTimeTaken;
     }
 
+    /** API name: {@code shardId} */
+    @Nullable
     public final String shardId() {
         return this.shardId;
     }
 
+    /** API name: {@code stage} */
+    @Nullable
     public final String stage() {
         return this.stage;
     }
 
+    /** API name: {@code start_time} */
+    @Nullable
     public final String startTime() {
         return this.startTime;
     }
 
+    /** API name: {@code stop_time} */
+    @Nullable
     public final String stopTime() {
         return this.stopTime;
     }
 
+    /** API name: {@code target_host} */
+    @Nullable
     public final String targetHost() {
         return this.targetHost;
     }
 
+    /** API name: {@code target_node} */
+    @Nullable
     public final String targetNode() {
         return this.targetNode;
     }
 
+    /** API name: {@code time} */
+    @Nullable
     public final String time() {
         return this.time;
     }
@@ -350,153 +424,178 @@ public class CatSegmentReplicationRecord implements JsonpSerializable {
     /** Builder for {@link CatSegmentReplicationRecord}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<CatSegmentReplicationRecord> {
-        private String bytes;
-        private String bytesBehind;
-        private String bytesFetched;
-        private String bytesPercent;
-        private String bytesTotal;
-        private String checkpointsBehind;
-        private String currentLag;
-        private String fileDiffStageTimeTaken;
-        private String files;
-        private String filesFetched;
-        private String filesPercent;
-        private String filesTotal;
-        private String finalizeReplicationStageTimeTaken;
-        private String getCheckpointInfoStageTimeTaken;
-        private String getFilesStageTimeTaken;
-        private String lastCompletedLag;
-        private String rejectedRequests;
-        private String replicatingStageTimeTaken;
-        private String shardId;
-        private String stage;
-        private String startTime;
-        private String stopTime;
-        private String targetHost;
-        private String targetNode;
-        private String time;
+        @Nullable private String bytes;
+        @Nullable private String bytesBehind;
+        @Nullable private String bytesFetched;
+        @Nullable private String bytesPercent;
+        @Nullable private String bytesTotal;
+        @Nullable private String checkpointsBehind;
+        @Nullable private String currentLag;
+        @Nullable private String fileDiffStageTimeTaken;
+        @Nullable private String files;
+        @Nullable private String filesFetched;
+        @Nullable private String filesPercent;
+        @Nullable private String filesTotal;
+        @Nullable private String finalizeReplicationStageTimeTaken;
+        @Nullable private String getCheckpointInfoStageTimeTaken;
+        @Nullable private String getFilesStageTimeTaken;
+        @Nullable private String lastCompletedLag;
+        @Nullable private String rejectedRequests;
+        @Nullable private String replicatingStageTimeTaken;
+        @Nullable private String shardId;
+        @Nullable private String stage;
+        @Nullable private String startTime;
+        @Nullable private String stopTime;
+        @Nullable private String targetHost;
+        @Nullable private String targetNode;
+        @Nullable private String time;
 
-        public final Builder bytes(String value) {
+        /** API name: {@code bytes} */
+        public final Builder bytes(@Nullable String value) {
             this.bytes = value;
             return this;
         }
 
-        public final Builder bytesBehind(String value) {
+        /** API name: {@code bytes_behind} */
+        public final Builder bytesBehind(@Nullable String value) {
             this.bytesBehind = value;
             return this;
         }
 
-        public final Builder bytesFetched(String value) {
+        /** API name: {@code bytes_fetched} */
+        public final Builder bytesFetched(@Nullable String value) {
             this.bytesFetched = value;
             return this;
         }
 
-        public final Builder bytesPercent(String value) {
+        /** API name: {@code bytes_percent} */
+        public final Builder bytesPercent(@Nullable String value) {
             this.bytesPercent = value;
             return this;
         }
 
-        public final Builder bytesTotal(String value) {
+        /** API name: {@code bytes_total} */
+        public final Builder bytesTotal(@Nullable String value) {
             this.bytesTotal = value;
             return this;
         }
 
-        public final Builder checkpointsBehind(String value) {
+        /** API name: {@code checkpoints_behind} */
+        public final Builder checkpointsBehind(@Nullable String value) {
             this.checkpointsBehind = value;
             return this;
         }
 
-        public final Builder currentLag(String value) {
+        /** API name: {@code current_lag} */
+        public final Builder currentLag(@Nullable String value) {
             this.currentLag = value;
             return this;
         }
 
-        public final Builder fileDiffStageTimeTaken(String value) {
+        /** API name: {@code file_diff_stage_time_taken} */
+        public final Builder fileDiffStageTimeTaken(@Nullable String value) {
             this.fileDiffStageTimeTaken = value;
             return this;
         }
 
-        public final Builder files(String value) {
+        /** API name: {@code files} */
+        public final Builder files(@Nullable String value) {
             this.files = value;
             return this;
         }
 
-        public final Builder filesFetched(String value) {
+        /** API name: {@code files_fetched} */
+        public final Builder filesFetched(@Nullable String value) {
             this.filesFetched = value;
             return this;
         }
 
-        public final Builder filesPercent(String value) {
+        /** API name: {@code files_percent} */
+        public final Builder filesPercent(@Nullable String value) {
             this.filesPercent = value;
             return this;
         }
 
-        public final Builder filesTotal(String value) {
+        /** API name: {@code files_total} */
+        public final Builder filesTotal(@Nullable String value) {
             this.filesTotal = value;
             return this;
         }
 
-        public final Builder finalizeReplicationStageTimeTaken(String value) {
+        /** API name: {@code finalize_replication_stage_time_taken} */
+        public final Builder finalizeReplicationStageTimeTaken(@Nullable String value) {
             this.finalizeReplicationStageTimeTaken = value;
             return this;
         }
 
-        public final Builder getCheckpointInfoStageTimeTaken(String value) {
+        /** API name: {@code get_checkpoint_info_stage_time_taken} */
+        public final Builder getCheckpointInfoStageTimeTaken(@Nullable String value) {
             this.getCheckpointInfoStageTimeTaken = value;
             return this;
         }
 
-        public final Builder getFilesStageTimeTaken(String value) {
+        /** API name: {@code get_files_stage_time_taken} */
+        public final Builder getFilesStageTimeTaken(@Nullable String value) {
             this.getFilesStageTimeTaken = value;
             return this;
         }
 
-        public final Builder lastCompletedLag(String value) {
+        /** API name: {@code last_completed_lag} */
+        public final Builder lastCompletedLag(@Nullable String value) {
             this.lastCompletedLag = value;
             return this;
         }
 
-        public final Builder rejectedRequests(String value) {
+        /** API name: {@code rejected_requests} */
+        public final Builder rejectedRequests(@Nullable String value) {
             this.rejectedRequests = value;
             return this;
         }
 
-        public final Builder replicatingStageTimeTaken(String value) {
+        /** API name: {@code replicating_stage_time_taken} */
+        public final Builder replicatingStageTimeTaken(@Nullable String value) {
             this.replicatingStageTimeTaken = value;
             return this;
         }
 
-        public final Builder shardId(String value) {
+        /** API name: {@code shardId} */
+        public final Builder shardId(@Nullable String value) {
             this.shardId = value;
             return this;
         }
 
-        public final Builder stage(String value) {
+        /** API name: {@code stage} */
+        public final Builder stage(@Nullable String value) {
             this.stage = value;
             return this;
         }
 
-        public final Builder startTime(String value) {
+        /** API name: {@code start_time} */
+        public final Builder startTime(@Nullable String value) {
             this.startTime = value;
             return this;
         }
 
-        public final Builder stopTime(String value) {
+        /** API name: {@code stop_time} */
+        public final Builder stopTime(@Nullable String value) {
             this.stopTime = value;
             return this;
         }
 
-        public final Builder targetHost(String value) {
+        /** API name: {@code target_host} */
+        public final Builder targetHost(@Nullable String value) {
             this.targetHost = value;
             return this;
         }
 
-        public final Builder targetNode(String value) {
+        /** API name: {@code target_node} */
+        public final Builder targetNode(@Nullable String value) {
             this.targetNode = value;
             return this;
         }
 
-        public final Builder time(String value) {
+        /** API name: {@code time} */
+        public final Builder time(@Nullable String value) {
             this.time = value;
             return this;
         }

@@ -1,7 +1,9 @@
 {{#fields}}
 
     {{^required}}
+    {{^type.isListOrMap}}
     @Nullable
+    {{/type.isListOrMap}}
     {{/required}}
     private final {{type}} {{name}};
 {{/fields}}

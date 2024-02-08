@@ -9,15 +9,16 @@
 package org.opensearch.client.codegen.model;
 
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.Operation;
+import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.media.Schema;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
@@ -27,32 +28,37 @@ import org.opensearch.client.codegen.TypeMapper;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.utils.ComponentSchemaRef;
 import org.opensearch.client.codegen.utils.Extensions;
+import org.opensearch.client.codegen.utils.Quartet;
 import org.opensearch.client.codegen.utils.Schemas;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Namespace extends Shape {
-    public static Namespace from(OpenAPI api, HashSet<String> operations) {
+    public static Namespace from(OpenAPI api, HashSet<String> operationsToGenerate) {
         var referencedSchemas = new ConcurrentLinkedQueue<Pair<String, Schema<?>>>();
         var ctx = new Context(new Namespace(), api, new TypeMapper(api, (ref, schema) -> referencedSchemas.add(Pair.of(ref, schema))));
 
-        api.getPaths().forEach((httpPath, path) -> path.readOperationsMap().forEach((method, operation) -> {
+        var groupedOperations = new HashMap<OperationGroup, List<Quartet<String, PathItem, PathItem.HttpMethod, Operation>>>();
+
+        api.getPaths().forEach((httpPath, pathItem) -> pathItem.readOperationsMap().forEach((httpMethod, operation) -> {
             var group = Extensions.of(operation).operationGroup();
+            if (!operationsToGenerate.contains(group.toString())) return;
+            groupedOperations.computeIfAbsent(group, k -> new ArrayList<>()).add(Quartet.of(httpPath, pathItem, httpMethod, operation));
+        }));
 
-            if (!operations.contains(group.toString())) return;
-
+        groupedOperations.forEach((group, variants) -> {
             var parent = ctx.namespace.child(group.namespace());
             var opCtx = ctx.withNamespace(parent);
 
-            var requestShape = RequestShape.from(opCtx, httpPath, path, method, operation);
+            var requestShape = RequestShape.from(opCtx, group, variants);
             parent.operations.put(requestShape.id(), requestShape);
             parent.shapes.add(requestShape);
 
-            var responseSchema = Schemas.resolveResponseBodySchema(opCtx.openApi, operation).orElseGet(Schema::new);
+            var responseSchema = Schemas.resolveResponseBodySchema(opCtx.openApi, variants.get(0).fourth()).orElseGet(Schema::new);
             var responseShape = Schemas.isArray(responseSchema)
                     ? ArrayShape.from(opCtx, requestShape.responseType(), responseSchema)
                     : ObjectShape.from(opCtx, requestShape.responseType(), responseSchema);
             parent.shapes.add(responseShape);
-        }));
+        });
 
         var seenRefs = new HashSet<>();
         Pair<String, Schema<?>> schemaRef;

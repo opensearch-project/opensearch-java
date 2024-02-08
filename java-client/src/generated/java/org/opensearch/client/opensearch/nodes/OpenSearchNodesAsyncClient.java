@@ -34,7 +34,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 // ----------------------------------------------------
 
-package org.opensearch.client.opensearch.cat;
+package org.opensearch.client.opensearch.nodes;
 
 import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
@@ -44,41 +44,38 @@ import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-public class OpenSearchCatClient extends ApiClient<OpenSearchTransport, OpenSearchCatClient> {
-    public OpenSearchCatClient(OpenSearchTransport transport) {
+public class OpenSearchNodesAsyncClient
+        extends ApiClient<OpenSearchTransport, OpenSearchNodesAsyncClient> {
+    public OpenSearchNodesAsyncClient(OpenSearchTransport transport) {
         super(transport, null);
     }
 
-    public OpenSearchCatClient(
+    public OpenSearchNodesAsyncClient(
             OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
     }
 
     @Override
-    public OpenSearchCatClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-        return new OpenSearchCatClient(this.transport, transportOptions);
+    public OpenSearchNodesAsyncClient withTransportOptions(
+            @Nullable TransportOptions transportOptions) {
+        return new OpenSearchNodesAsyncClient(this.transport, transportOptions);
     }
 
-    public SegmentReplicationResponse segmentReplication(SegmentReplicationRequest request)
+    public CompletableFuture<UsageResponse> usage(UsageRequest request)
             throws IOException, OpenSearchException {
-        JsonEndpoint<SegmentReplicationRequest, SegmentReplicationResponse, ErrorResponse>
-                endpoint =
-                        (JsonEndpoint<
-                                        SegmentReplicationRequest,
-                                        SegmentReplicationResponse,
-                                        ErrorResponse>)
-                                SegmentReplicationRequest._ENDPOINT;
+        JsonEndpoint<UsageRequest, UsageResponse, ErrorResponse> endpoint =
+                (JsonEndpoint<UsageRequest, UsageResponse, ErrorResponse>) UsageRequest._ENDPOINT;
 
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
     }
 
-    public final SegmentReplicationResponse segmentReplication(
-            Function<SegmentReplicationRequest.Builder, ObjectBuilder<SegmentReplicationRequest>>
-                    fn)
+    public final CompletableFuture<UsageResponse> usage(
+            Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
             throws IOException, OpenSearchException {
-        return segmentReplication(fn.apply(new SegmentReplicationRequest.Builder()).build());
+        return usage(fn.apply(new UsageRequest.Builder()).build());
     }
 }

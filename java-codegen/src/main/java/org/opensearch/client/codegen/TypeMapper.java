@@ -64,10 +64,10 @@ public class TypeMapper {
         if (schema.getOneOf() != null) {
             var oneOf = schema.getOneOf();
             if (oneOf.size() == 2) {
-                var first = oneOf.get(0);
-                var second = oneOf.get(1);
+                var first = Schemas.resolve(openApi, oneOf.get(0)).orElseThrow();
+                var second = Schemas.resolve(openApi, oneOf.get(1)).orElseThrow();
 
-                if (Schemas.getType(first) == null && first.get$ref() != null && Schemas.isArray(second) && first.get$ref().equals(second.getItems().get$ref())) {
+                if (Schemas.isString(first) && Schemas.isArray(second)) {
                     return mapType(second);
                 }
             }

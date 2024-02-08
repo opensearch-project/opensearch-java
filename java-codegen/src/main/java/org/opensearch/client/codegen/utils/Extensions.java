@@ -11,6 +11,7 @@ package org.opensearch.client.codegen.utils;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.media.Schema;
 import java.util.Map;
+import org.opensearch.client.codegen.model.Deprecation;
 import org.opensearch.client.codegen.model.OperationGroup;
 
 public class Extensions {
@@ -40,13 +41,30 @@ public class Extensions {
         return OperationGroup.from(group);
     }
 
-    public String operationName() {
-        OperationGroup group = operationGroup();
-        if (group == null) return null;
-        return group.name();
-    }
-
     public String dataType() {
         return (String) get("x-data-type");
+    }
+
+    public String overloadedParam() {
+        return (String) get("x-overloaded-param");
+    }
+
+    public String deprecationMessage() {
+        return (String) get("x-deprecation-message");
+    }
+
+    public String versionAdded() {
+        return (String) get("x-version-added");
+    }
+
+    public String versionDeprecated() {
+        return (String) get("x-version-deprecated");
+    }
+
+    public Deprecation deprecation() {
+        var msg = deprecationMessage();
+        var version = versionDeprecated();
+        if (msg == null && version == null) return null;
+        return new Deprecation(msg, version);
     }
 }
