@@ -33,26 +33,43 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
-- Fix PutTemplateRequest field deserialization ([#723](https://github.com/opensearch-project/opensearch-java/pull/723))
-- Fix PutIndexTemplateRequest field deserialization ([#765](https://github.com/opensearch-project/opensearch-java/pull/765))
-- Fix InnerHits storedFields deserialization/serialization ([#781](https://github.com/opensearch-project/opensearch-java/pull/781))
-- Fix InnerHits to no longer enforce the nullable Index field when converting to Hit. ([#825](https://github.com/opensearch-project/opensearch-java/issues/825))
 
 ### Security
 
 ## [Unreleased 2.x]
 
 ### Added
-- Added support for icu_collation_keyword type ([#725](https://github.com/opensearch-project/opensearch-java/pull/725))
-- Added support for flat_object field property ([#735](https://github.com/opensearch-project/opensearch-java/pull/735))
-- Added toQuery method in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760)
-- Added toBuilder method to all request model in core package & _types.query_dsl package ([#766](https://github.com/opensearch-project/opensearch-java/pull/766))
 
 ### Dependencies
 
 ### Changed
 - Restore support for Java 8 ([#767](https://github.com/opensearch-project/opensearch-java/pull/767))
 - Add an integration test that runs on JDK-8 ([#795](https://github.com/opensearch-project/opensearch-java/pull/795))
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fix PutTemplateRequest field deserialization ([#723](https://github.com/opensearch-project/opensearch-java/pull/723))
+
+### Security
+
+## [2.8.2] - 02/07/2024
+### Added
+- Added support for icu_collation_keyword type ([#725](https://github.com/opensearch-project/opensearch-java/pull/725))
+- Added support for flat_object field property ([#735](https://github.com/opensearch-project/opensearch-java/pull/735))
+- Expose HTTP status code through `ResponseException#status` ([#756](https://github.com/opensearch-project/opensearch-java/pull/756))
+- Added toBuilder method to all request model in core package & _types.query_dsl package ([#766](https://github.com/opensearch-project/opensearch-java/pull/766))
+- Added toQuery method in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760)
+- Added missing WrapperQuery accessors and builder methods ([#806](https://github.com/opensearch-project/opensearch-java/pull/806))
+
+### Dependencies
+- Bumps `com.diffplug.spotless` from 6.22.0 to 6.25.0
+- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.2.1 to 5.3
+- Bumps `org.owasp.dependencycheck` from 8.4.2 to 9.0.8
+
+### Changed
 
 ### Deprecated
 - Deprecated "_toQuery()" in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760))
@@ -63,10 +80,28 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Fixed
 - Fix partial success results for msearch_template ([#709](https://github.com/opensearch-project/opensearch-java/pull/709))
 - Fix deserialization of node stats response ([#745](https://github.com/opensearch-project/opensearch-java/pull/745))
+- Fix PutIndexTemplateRequest field deserialization ([#765](https://github.com/opensearch-project/opensearch-java/pull/765))
+- Fix InnerHits to no longer enforce the nullable Index field when converting to Hit. ([#825](https://github.com/opensearch-project/opensearch-java/issues/825))
 
 ### Security
 
-## [2.8.0] - 01/11/2023
+## [2.8.1]
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fix partial success results for msearch_template ([#709](https://github.com/opensearch-project/opensearch-java/pull/709))
+
+### Security
+## [2.8.0] -
+ 01/11/2023
 ### Added
 - Added support for indexing and search index settings ([#667](https://github.com/opensearch-project/opensearch-java/pull/667))
 - Added support for neural query type ([#674](https://github.com/opensearch-project/opensearch-java/pull/674))
