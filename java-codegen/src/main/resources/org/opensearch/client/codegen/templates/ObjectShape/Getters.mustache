@@ -1,5 +1,11 @@
 {{#fields}}
 
+    {{>ObjectShape/FieldDoc/Basic}}
+    {{^required}}
+    {{^type.isListOrMap}}
+    @Nullable
+    {{/type.isListOrMap}}
+    {{/required}}
     public final {{type}} {{name}}() {
         return this.{{name}};
     }

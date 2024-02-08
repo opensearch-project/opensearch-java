@@ -39,6 +39,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -134,6 +135,7 @@ public class ApiTypeHelper {
     /**
      * Returns an unmodifiable view of a list. If {@code list} is {@code null}, an {@link #undefinedList()} is returned.
      */
+    @Nonnull
     public static <T> List<T> unmodifiable(@Nullable List<T> list) {
         if (list == null) {
             return undefinedList();

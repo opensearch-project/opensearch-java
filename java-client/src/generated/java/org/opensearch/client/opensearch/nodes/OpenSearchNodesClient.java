@@ -34,7 +34,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 // ----------------------------------------------------
 
-package org.opensearch.client.opensearch.cat;
+package org.opensearch.client.opensearch.nodes;
 
 import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
@@ -47,38 +47,30 @@ import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-public class OpenSearchCatClient extends ApiClient<OpenSearchTransport, OpenSearchCatClient> {
-    public OpenSearchCatClient(OpenSearchTransport transport) {
+public class OpenSearchNodesClient extends ApiClient<OpenSearchTransport, OpenSearchNodesClient> {
+    public OpenSearchNodesClient(OpenSearchTransport transport) {
         super(transport, null);
     }
 
-    public OpenSearchCatClient(
+    public OpenSearchNodesClient(
             OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
     }
 
     @Override
-    public OpenSearchCatClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-        return new OpenSearchCatClient(this.transport, transportOptions);
+    public OpenSearchNodesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchNodesClient(this.transport, transportOptions);
     }
 
-    public SegmentReplicationResponse segmentReplication(SegmentReplicationRequest request)
-            throws IOException, OpenSearchException {
-        JsonEndpoint<SegmentReplicationRequest, SegmentReplicationResponse, ErrorResponse>
-                endpoint =
-                        (JsonEndpoint<
-                                        SegmentReplicationRequest,
-                                        SegmentReplicationResponse,
-                                        ErrorResponse>)
-                                SegmentReplicationRequest._ENDPOINT;
+    public UsageResponse usage(UsageRequest request) throws IOException, OpenSearchException {
+        JsonEndpoint<UsageRequest, UsageResponse, ErrorResponse> endpoint =
+                (JsonEndpoint<UsageRequest, UsageResponse, ErrorResponse>) UsageRequest._ENDPOINT;
 
         return this.transport.performRequest(request, endpoint, this.transportOptions);
     }
 
-    public final SegmentReplicationResponse segmentReplication(
-            Function<SegmentReplicationRequest.Builder, ObjectBuilder<SegmentReplicationRequest>>
-                    fn)
+    public final UsageResponse usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
             throws IOException, OpenSearchException {
-        return segmentReplication(fn.apply(new SegmentReplicationRequest.Builder()).build());
+        return usage(fn.apply(new UsageRequest.Builder()).build());
     }
 }

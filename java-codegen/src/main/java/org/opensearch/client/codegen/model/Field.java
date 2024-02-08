@@ -20,35 +20,29 @@ import org.opensearch.client.codegen.utils.Schemas;
 
 public class Field {
     public static Field from(Context ctx, Parameter parameter) {
-        return from(ctx, parameter.getName(), parameter.getSchema(), parameter.getRequired());
+        return from(ctx, parameter.getName(), parameter.getSchema(), parameter.getRequired(), parameter.getDescription());
     }
 
-    public static Field from(Context ctx, String name, Schema<?> schema, boolean required) {
-        return new Field(name, ctx.typeMapper.mapType(schema), required);
+    public static Field from(Context ctx, String name, Schema<?> schema, boolean required, String description) {
+        return new Field(name, ctx.typeMapper.mapType(schema), required, description);
     }
 
     public static List<Field> allFrom(Context ctx, Schema<?> schema) {
         List<Field> fields = new ArrayList<>();
-        Schemas.forEachProperty(schema, (name, prop, required) -> fields.add(from(ctx, name, prop, required)));
-        return fields;
-    }
-
-    public static List<Field> allFrom(Context ctx, PathItem path, Operation operation, String in) {
-        var fields = new ArrayList<Field>();
-        for (var parameter : Schemas.getParametersIn(path, operation, in).collect(Collectors.toList())) {
-            fields.add(from(ctx, parameter));
-        }
+        Schemas.forEachProperty(schema, (name, prop, required) -> fields.add(from(ctx, name, prop, required, prop.getDescription())));
         return fields;
     }
 
     private final String wireName;
     private final Type type;
-    private final boolean required;
+    private boolean required;
+    private final String description;
 
-    private Field(String wireName, Type type, boolean required) {
+    private Field(String wireName, Type type, boolean required, String description) {
         this.wireName = wireName;
-        this.type = required ? type : type.boxed();
+        this.type = type;
         this.required = required;
+        this.description = description;
     }
 
     public String wireName() {
@@ -60,10 +54,18 @@ public class Field {
     }
 
     public Type type() {
-        return type;
+        return required ? type : type.boxed();
     }
 
     public boolean required() {
         return required;
+    }
+
+    public void setRequired(boolean required) {
+        this.required = required;
+    }
+
+    public String description() {
+        return description;
     }
 }

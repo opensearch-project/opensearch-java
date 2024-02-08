@@ -3,47 +3,54 @@
      */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<{{className}}> {
         {{#fields}}
-        private {{type.boxed}} {{name}};
+        @Nullable private {{type.boxed}} {{name}};
         {{/fields}}
 
         {{#fields}}
         {{#type.isMap}}
+        {{>ObjectShape/FieldDoc/Basic}}
         public final Builder {{name}}({{type}} map) {
             this.{{name}} = _mapPutAll(this.{{name}}, map);
             return this;
         }
 
+        {{>ObjectShape/FieldDoc/Basic}}
         public final Builder {{name}}({{type.mapKeyType}} key, {{type.mapValueType}} value) {
             this.{{name}} = _mapPut(this.{{name}}, key, value);
             return this;
         }
         {{/type.isMap}}
         {{#type.isList}}
+        {{>ObjectShape/FieldDoc/ListAddAll}}
         public final Builder {{name}}({{type}} list) {
             this.{{name}} = _listAddAll(this.{{name}}, list);
             return this;
         }
 
+        {{>ObjectShape/FieldDoc/ListAdd}}
         public final Builder {{name}}({{type.listValueType}} value, {{type.listValueType}}... values) {
             this.{{name}} = _listAdd(this.{{name}}, value, values);
             return this;
         }
         {{#type.listValueType.hasBuilder}}
 
+        {{>ObjectShape/FieldDoc/Basic}}
         public final Builder {{name}}({{type.listValueType.builderFuncType}} fn) {
             return {{name}}(fn.apply(new {{type.listValueType.builderType}}()).build());
         }
         {{/type.listValueType.hasBuilder}}
         {{/type.isList}}
         {{^type.isListOrMap}}
-        public final Builder {{name}}({{type}} value) {
+        {{>ObjectShape/FieldDoc/Basic}}
+        public final Builder {{name}}({{^required}}@Nullable {{/required}}{{type}} value) {
             this.{{name}} = value;
             return this;
         }
         {{#type.hasBuilder}}
 
+        {{>ObjectShape/FieldDoc/Basic}}
         public final Builder {{name}}({{type.builderFuncType}} fn) {
-            return {{name}}(fn.apply(new {{type.builderType}}()).build());
+            return this.{{name}}(fn.apply(new {{type.builderType}}()).build());
         }
         {{/type.hasBuilder}}
         {{/type.isListOrMap}}

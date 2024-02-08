@@ -81,8 +81,12 @@ public final class Schemas {
         return resolve(api.getComponents().getResponses(), body, ApiResponse::get$ref);
     }
 
-    public static Optional<Schema<?>> resolve(OpenAPI context, Schema<?> schema) {
-        return resolve(context.getComponents().getSchemas(), schema, Schema::get$ref).map(s -> (Schema<?>) s);
+    public static Optional<Schema<?>> resolve(OpenAPI api, Schema<?> schema) {
+        return resolve(api.getComponents().getSchemas(), schema, Schema::get$ref).map(s -> (Schema<?>) s);
+    }
+
+    public static Optional<Parameter> resolve(OpenAPI api, Parameter parameter) {
+        return resolve(api.getComponents().getParameters(), parameter, Parameter::get$ref);
     }
 
     public static Optional<Schema<?>> resolveRequestBodySchema(OpenAPI api, Operation operation) {
@@ -107,9 +111,10 @@ public final class Schemas {
         properties.forEach((name, propertySchema) -> propertyVisitor.accept(name, propertySchema, requiredFields.contains(name)));
     }
 
-    public static Stream<Parameter> getParametersIn(PathItem path, Operation operation, String in) {
+    public static Stream<Parameter> getParametersIn(OpenAPI api, PathItem path, Operation operation, String in) {
         return Stream.of(path.getParameters(), operation.getParameters())
                 .flatMap(l -> l != null ? l.stream() : Stream.empty())
+                .map(p -> resolve(api, p).orElseThrow())
                 .filter(p -> in.equals(p.getIn()));
     }
 }

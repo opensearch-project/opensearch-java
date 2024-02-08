@@ -22,7 +22,10 @@ import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Namespace;
 
 public class Main {
-    private static final HashSet<String> OPERATIONS = Sets.newHashSet("cat.segment_replication");
+    private static final HashSet<String> OPERATIONS = Sets.newHashSet(
+            "cat.segment_replication",
+            "nodes.usage"
+    );
 
     public static void main(String[] args) {
         if (args.length < 2) {

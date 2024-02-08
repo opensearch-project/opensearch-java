@@ -3,6 +3,15 @@
 package {{packageName}};
 
 {{#hasRequestBody}}
+import jakarta.json.stream.JsonGenerator;
+{{/hasRequestBody}}
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
+{{#hasRequestBody}}
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -17,15 +26,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-{{#hasRequestBody}}
-import jakarta.json.stream.JsonGenerator;
-{{/hasRequestBody}}
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import javax.annotation.Nullable;
 
 /**
  * {{description}}
@@ -35,6 +35,9 @@ import javax.annotation.Nullable;
 {{/hasRequestBody}}
 public class {{className}} extends RequestBase{{#hasRequestBody}} implements JsonpSerializable{{/hasRequestBody}} {
     {{>ObjectShape/Fields}}
+
+    // ---------------------------------------------------------------------------------------------
+
     {{>ObjectShape/Constructor}}
     {{>ObjectShape/Getters}}
 
@@ -42,33 +45,47 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
     {{>ObjectShape/Serialize}}
     {{/hasRequestBody}}
 
+    // ---------------------------------------------------------------------------------------------
+
     {{>ObjectShape/Builder}}
 
     {{#hasRequestBody}}
     {{>ObjectShape/Deserialize}}
     {{/hasRequestBody}}
 
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Endpoint "{@code {{operationGroup}}}".
+     */
     public static final Endpoint<{{className}}, {{responseType}}, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
             // Request method
             request -> {{#quoted}}{{httpMethod}}{{/quoted}},
             // Request path
-            {{#hasPathParams}}
             request -> {
-                StringBuilder buf = new StringBuilder();
-                {{#httpPathParts}}
-                {{#isParameter}}
-                SimpleEndpoint.pathEncode({{#parameter.type.queryParamify}}request.{{parameter.name}}{{/parameter.type.queryParamify}}, buf);
-                {{/isParameter}}
-                {{^isParameter}}
-                buf.append({{#quoted}}{{content}}{{/quoted}});
-                {{/isParameter}}
-                {{/httpPathParts}}
-                return buf.toString();
+                {{#hasSinglePath}}
+                    {{#firstPath}}{{>RequestShape/HttpPathBuilder}}{{/firstPath}}
+                {{/hasSinglePath}}
+                {{^hasSinglePath}}
+                    {{#indexedPathParams}}
+                    final int _{{left}} = 1 << {{right}};
+                    {{/indexedPathParams}}
+
+                    int propsSet = 0;
+
+                    {{#pathParams}}
+                    if (ApiTypeHelper.isDefined(request.{{name}}())) propsSet |= _{{name}};
+                    {{/pathParams}}
+
+                    {{#httpPaths}}
+                    if (propsSet == {{#hasParams}}({{#params}}{{^-first}} | {{/-first}}_{{name}}{{/params}}){{/hasParams}}{{^hasParams}}0{{/hasParams}}) {
+                        {{>RequestShape/HttpPathBuilder}}
+                    }
+                    {{/httpPaths}}
+
+                    throw SimpleEndpoint.noPathTemplateFound("path");
+                {{/hasSinglePath}}
             },
-            {{/hasPathParams}}
-            {{^hasPathParams}}
-            request -> {{#quoted}}{{httpPath}}{{/quoted}},
-            {{/hasPathParams}}
             // Request parameters
             {{#hasQueryParams}}
             request -> {
