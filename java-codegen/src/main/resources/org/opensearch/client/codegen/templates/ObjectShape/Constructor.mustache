@@ -2,15 +2,15 @@
 {{#fields}}
 {{#type.isListOrMap}}
     {{#required}}
-        this.{{name}} = ApiTypeHelper.unmodifiableRequired(builder.{{name}}, this, {{#quoted}}{{name}}{{/quoted}});
+        this.{{name}} = {{TYPES.Client.Util.ApiTypeHelper}}.unmodifiableRequired(builder.{{name}}, this, {{#quoted}}{{name}}{{/quoted}});
     {{/required}}
     {{^required}}
-        this.{{name}} = ApiTypeHelper.unmodifiable(builder.{{name}});
+        this.{{name}} = {{TYPES.Client.Util.ApiTypeHelper}}.unmodifiable(builder.{{name}});
     {{/required}}
 {{/type.isListOrMap}}
 {{^type.isListOrMap}}
     {{#required}}
-        this.{{name}} = ApiTypeHelper.requireNonNull(builder.{{name}}, this, {{#quoted}}{{name}}{{/quoted}});
+        this.{{name}} = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder.{{name}}, this, {{#quoted}}{{name}}{{/quoted}});
     {{/required}}
     {{^required}}
         this.{{name}} = builder.{{name}};
@@ -19,6 +19,6 @@
 {{/fields}}
     }
 
-    public static {{className}} of(Function<Builder, ObjectBuilder<{{className}}>> fn) {
+    public static {{className}} of({{builderFnType}} fn) {
         return fn.apply(new Builder()).build();
     }

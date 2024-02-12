@@ -1,25 +1,4 @@
-{{>Partials/LicenseHeader}}
-
-package {{packageName}};
-
-import org.opensearch.client.json.JsonpDeserializable;
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
-import org.opensearch.client.json.ObjectBuilderDeserializer;
-import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch.*;
-import org.opensearch.client.util.ApiTypeHelper;
-import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
-
-@JsonpDeserializable
-public class {{className}} implements JsonpSerializable {
+{{>ObjectShape/ClassDeclaration}} {
     {{>ObjectShape/Fields}}
     {{>ObjectShape/Constructor}}
     {{>ObjectShape/Getters}}

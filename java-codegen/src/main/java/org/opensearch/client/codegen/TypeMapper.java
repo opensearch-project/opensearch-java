@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiConsumer;
 import org.opensearch.client.codegen.model.Type;
+import org.opensearch.client.codegen.model.Types;
 import org.opensearch.client.codegen.utils.ComponentSchemaRef;
 import org.opensearch.client.codegen.utils.Schemas;
 
@@ -44,21 +45,27 @@ public class TypeMapper {
 
     private Type mapTypeInner(Schema<?> schema) {
         if (schema.get$ref() != null) {
-            var target = Schemas.resolve(openApi, schema).get();
+            var target = Schemas.resolve(openApi, schema).orElseThrow();
 
             if (!shouldKeepRef(target)) {
                 return mapType(target);
-            }
-
-            if (Schemas.isObject(target) && target.getProperties() == null) {
-                return new Type(target, "Map", "String", "JsonData");
             }
 
             var $ref = schema.get$ref();
 
             referencedSchemaVisitor.accept($ref, target);
 
-            return new Type(target, ComponentSchemaRef.from($ref).name());
+            var ref = ComponentSchemaRef.from($ref);
+            var pkg = Types.Client.OpenSearch.PACKAGE;
+            if (ref.namespace() != null && !ref.namespace().isEmpty()) {
+                pkg += "." + ref.namespace();
+            }
+
+            return Type.builder()
+                    .schema(target)
+                    .pkg(pkg)
+                    .name(ref.name())
+                    .build();
         }
 
         if (schema.getOneOf() != null) {
@@ -78,40 +85,47 @@ public class TypeMapper {
         var type = Schemas.getType(schema);
 
         if (type == null) {
-            return new Type(schema, "JsonData");
+            return Types.Client.Json.JsonData;
         }
 
         var format = schema.getFormat();
 
         switch (type) {
+            case TYPE_OBJECT:
+                var additionalProperties = schema.getAdditionalProperties();
+                if (additionalProperties instanceof Schema<?>) {
+                    return Types.Java.Util.Map(Types.Java.Lang.String, mapType((Schema<?>) additionalProperties, true));
+                }
+                return Types.Java.Util.Map(Types.Java.Lang.String, Types.Client.Json.JsonData);
             case TYPE_ARRAY:
-                if (schema.getItems() == null) return new Type(schema, "List", "String");
-                return new Type(schema, "List", mapType(schema.getItems(), true));
+                if (schema.getItems() == null) return Types.Java.Util.List(Types.Java.Lang.String);
+                return Types.Java.Util.List(mapType(schema.getItems(), true));
             case TYPE_STRING:
-                return new Type(schema, "String");
+                return Types.Java.Lang.String;
             case TYPE_BOOLEAN:
-                return new Type(schema, "boolean");
+                return Types.Primitive.Boolean;
             case TYPE_INTEGER:
                 if (format == null) format = FORMAT_INT32;
                 switch (format) {
                     case FORMAT_INT32:
-                        return new Type(schema, "int");
+                        return Types.Primitive.Int;
                     case FORMAT_INT64:
-                        return new Type(schema, "long");
+                        return Types.Primitive.Long;
                     default:
                         throw new UnsupportedOperationException("Can not get type name for integer with format: " + format);
                 }
             case TYPE_NUMBER:
+                if (format == null) format = FORMAT_FLOAT;
                 switch (format) {
                     case FORMAT_FLOAT:
-                        return new Type(schema, "float");
+                        return Types.Primitive.Float;
                     case FORMAT_DOUBLE:
-                        return new Type(schema, "double");
+                        return Types.Primitive.Double;
                     default:
                         throw new UnsupportedOperationException("Can not get type name for number with format: " + format);
                 }
             case TYPE_TIME:
-                return new Type(schema, "Time");
+                return Types.Client.OpenSearch._Types.Time;
         }
 
         throw new UnsupportedOperationException("Can not get type name for: " + type);

@@ -1,9 +1,9 @@
     /**
      * Builder for {@link {{className}}}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<{{className}}> {
+    public static class Builder extends {{TYPES.Client.Util.ObjectBuilderBase}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
         {{#fields}}
-        @Nullable private {{type.boxed}} {{name}};
+        @{{TYPES.Javax.Annotation.Nullable}} private {{type.boxed}} {{name}};
         {{/fields}}
 
         {{#fields}}
@@ -42,7 +42,7 @@
         {{/type.isList}}
         {{^type.isListOrMap}}
         {{>ObjectShape/FieldDoc/Basic}}
-        public final Builder {{name}}({{^required}}@Nullable {{/required}}{{type}} value) {
+        public final Builder {{name}}({{^required}}@{{TYPES.Javax.Annotation.Nullable}} {{/required}}{{type}} value) {
             this.{{name}} = value;
             return this;
         }

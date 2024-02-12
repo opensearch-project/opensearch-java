@@ -11,7 +11,7 @@ public class ArrayShape extends ObjectShape {
     private final Field valueBodyField;
 
     protected ArrayShape(Namespace parent, String className, Field valueBodyField) {
-        super(parent, className, List.of(valueBodyField));
+        super(parent, className, valueBodyField);
         this.valueBodyField = valueBodyField;
     }
 

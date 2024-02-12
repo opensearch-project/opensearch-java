@@ -36,21 +36,17 @@
 
 package org.opensearch.client.opensearch;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch.*;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 @JsonpDeserializable
 public class CatSegmentReplicationRecord implements JsonpSerializable {
@@ -134,10 +130,12 @@ public class CatSegmentReplicationRecord implements JsonpSerializable {
     }
 
     public static CatSegmentReplicationRecord of(
-            Function<Builder, ObjectBuilder<CatSegmentReplicationRecord>> fn) {
+            Function<
+                            CatSegmentReplicationRecord.Builder,
+                            ObjectBuilder<CatSegmentReplicationRecord>>
+                    fn) {
         return fn.apply(new Builder()).build();
     }
-
     /** API name: {@code bytes} */
     @Nullable
     public final String bytes() {
@@ -420,7 +418,6 @@ public class CatSegmentReplicationRecord implements JsonpSerializable {
             generator.write(this.time);
         }
     }
-
     /** Builder for {@link CatSegmentReplicationRecord}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<CatSegmentReplicationRecord> {

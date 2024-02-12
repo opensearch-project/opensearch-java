@@ -18,7 +18,7 @@
                     {{value}}
                         .stream()
                         .map(v -> {{#type.listValueType.queryParamify}}v{{/type.listValueType.queryParamify}})
-                        .collect(Collectors.joining(","))
+                        .collect({{TYPES.Java.Util.Stream.Collectors}}.joining(","))
                 {{/type.listValueType.isString}}
             {{/type.isList}}
             {{^type.isList}}

@@ -1,14 +1,14 @@
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+    public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
         generator.writeEnd();
     }
 
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
 {{#bodyFields}}
     {{^required}}
         {{#type.isListOrMap}}
-        if (ApiTypeHelper.isDefined(this.{{name}})) {
+        if ({{TYPES.Client.Util.ApiTypeHelper}}.isDefined(this.{{name}})) {
         {{/type.isListOrMap}}
         {{^type.isListOrMap}}
         if (this.{{name}} != null) {

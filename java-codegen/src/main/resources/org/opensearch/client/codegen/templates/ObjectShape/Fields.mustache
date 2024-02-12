@@ -2,7 +2,7 @@
 
     {{^required}}
     {{^type.isListOrMap}}
-    @Nullable
+    @{{TYPES.Javax.Annotation.Nullable}}
     {{/type.isListOrMap}}
     {{/required}}
     private final {{type}} {{name}};

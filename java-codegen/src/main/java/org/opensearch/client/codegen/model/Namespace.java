@@ -117,21 +117,21 @@ public class Namespace extends Shape {
     }
 
     @Override
-    public void render(Renderer renderer, File outputDir) throws RenderException {
+    public void render(File outputDir) throws RenderException {
         outputDir.mkdirs();
 
         for (Namespace child : children.values()) {
-            child.render(renderer, new File(outputDir, child.packageNamePart()));
+            child.render(new File(outputDir, child.packageNamePart()));
         }
 
         for (Shape shape : shapes) {
-            shape.render(renderer, outputDir);
+            shape.render(outputDir);
         }
 
         if (operations.isEmpty()) return;
 
-        new Client(this, false).render(renderer, outputDir);
-        new Client(this, true).render(renderer, outputDir);
+        new Client(this, false).render(outputDir);
+        new Client(this, true).render(outputDir);
     }
 
     private static class Client extends Shape {
@@ -147,7 +147,13 @@ public class Namespace extends Shape {
         }
 
         public Collection<Client> children() {
-            return parent.children.values().stream().map(n -> new Client(n, async)).collect(Collectors.toList());
+            return parent
+                    .children
+                    .values()
+                    .stream()
+                    .filter(n -> !n.operations.isEmpty())
+                    .map(n -> new Client(n, async))
+                    .collect(Collectors.toList());
         }
 
         public Collection<RequestShape> operations() {

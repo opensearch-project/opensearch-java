@@ -3,7 +3,7 @@
     {{>ObjectShape/FieldDoc/Basic}}
     {{^required}}
     {{^type.isListOrMap}}
-    @Nullable
+    @{{TYPES.Javax.Annotation.Nullable}}
     {{/type.isListOrMap}}
     {{/required}}
     public final {{type}} {{name}}() {
