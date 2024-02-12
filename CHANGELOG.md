@@ -13,9 +13,23 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
-- Fix PutTemplateRequest field deserialization ([#723](https://github.com/opensearch-project/opensearch-java/pull/723))
 
 ### Security
+
+## [2.8.3] - 02/12/2024
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fix PutTemplateRequest field deserialization ([#723](https://github.com/opensearch-project/opensearch-java/pull/723))
+- Fix InnerHits to no longer enforce the nullable Index field when converting to Hit. ([#838](https://github.com/opensearch-project/opensearch-java/pull/838))
 
 ## [2.8.2] - 02/07/2024
 ### Added
@@ -23,7 +37,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added support for flat_object field property ([#735](https://github.com/opensearch-project/opensearch-java/pull/735))
 - Expose HTTP status code through `ResponseException#status` ([#756](https://github.com/opensearch-project/opensearch-java/pull/756))
 - Added toBuilder method to all request model in core package & _types.query_dsl package ([#766](https://github.com/opensearch-project/opensearch-java/pull/766))
-- Added toQuery method in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760)
+- Added toQuery method in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760))
 - Added missing WrapperQuery accessors and builder methods ([#806](https://github.com/opensearch-project/opensearch-java/pull/806))
 
 ### Dependencies
@@ -43,7 +57,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix partial success results for msearch_template ([#709](https://github.com/opensearch-project/opensearch-java/pull/709))
 - Fix deserialization of node stats response ([#745](https://github.com/opensearch-project/opensearch-java/pull/745))
 - Fix PutIndexTemplateRequest field deserialization ([#765](https://github.com/opensearch-project/opensearch-java/pull/765))
-- Fix InnerHits to no longer enforce the nullable Index field when converting to Hit. ([#825](https://github.com/opensearch-project/opensearch-java/issues/825))
 
 ### Security
 
@@ -255,7 +268,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.2...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.3...2.x
+[2.8.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.2...v2.8.3
 [2.8.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.1...v2.8.2
 [2.8.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.0...v2.8.1
 [2.8.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.7.0...v2.8.0
