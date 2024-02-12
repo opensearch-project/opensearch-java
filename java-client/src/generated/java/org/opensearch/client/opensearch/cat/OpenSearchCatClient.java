@@ -36,16 +36,16 @@
 
 package org.opensearch.client.opensearch.cat;
 
-import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.transport.OpenSearchTransport;
-import org.opensearch.client.transport.JsonEndpoint;
-import org.opensearch.client.transport.TransportOptions;
-import org.opensearch.client.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.transport.JsonEndpoint;
+import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.util.ObjectBuilder;
 
 public class OpenSearchCatClient extends ApiClient<OpenSearchTransport, OpenSearchCatClient> {
     public OpenSearchCatClient(OpenSearchTransport transport) {

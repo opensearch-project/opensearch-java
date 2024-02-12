@@ -36,17 +36,18 @@
 
 package org.opensearch.client.opensearch.cat;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
-import org.opensearch.client.opensearch.*;
+import org.opensearch.client.opensearch.CatSegmentReplicationRecord;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.function.Function;
 
 @JsonpDeserializable
 public class SegmentReplicationResponse implements JsonpSerializable {
@@ -58,10 +59,10 @@ public class SegmentReplicationResponse implements JsonpSerializable {
     }
 
     public static SegmentReplicationResponse of(
-            Function<Builder, ObjectBuilder<SegmentReplicationResponse>> fn) {
+            Function<SegmentReplicationResponse.Builder, ObjectBuilder<SegmentReplicationResponse>>
+                    fn) {
         return fn.apply(new Builder()).build();
     }
-
     /**
      * Response value
      *

@@ -8,21 +8,42 @@
 
 package org.opensearch.client.codegen.model;
 
+import com.samskivert.mustache.Mustache;
 import io.swagger.v3.oas.models.media.Schema;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class ObjectShape extends Shape {
     public static ObjectShape from(Context ctx, String name, Schema<?> schema) {
-        return new ObjectShape(ctx.namespace, name, Field.allFrom(ctx, schema));
+        return new ObjectShape(ctx, name, schema);
     }
 
+    protected Type extendsType;
     protected final Map<String, Field> bodyFields = new TreeMap<>();
 
-    protected ObjectShape(Namespace parent, String className, Collection<Field> bodyFields) {
+    protected ObjectShape(Context ctx, String className, Schema<?> schema) {
+        super(ctx.namespace, className);
+        if (schema.getAllOf() != null) {
+            this.extendsType = ctx.typeMapper.mapType(schema.getAllOf().get(0));
+            schema = schema.getAllOf().get(1);
+        } else {
+            this.extendsType = null;
+        }
+        Field.allFrom(ctx, schema).forEach(f -> this.bodyFields.put(f.name(), f));
+    }
+
+    protected ObjectShape(Namespace parent, String className, Field... bodyFields) {
         super(parent, className);
-        bodyFields.forEach(f -> this.bodyFields.put(f.name(), f));
+        this.extendsType = null;
+        for (Field f : bodyFields) {
+            this.bodyFields.put(f.name(), f);
+        }
     }
 
     public Collection<Field> bodyFields() {
@@ -31,5 +52,21 @@ public class ObjectShape extends Shape {
 
     public Collection<Field> fields() {
         return bodyFields();
+    }
+
+    public Type extendsType() {
+        return extendsType;
+    }
+
+    public Type implementsType() {
+        return !bodyFields.isEmpty() ? Types.Client.Json.JsonpSerializable : null;
+    }
+
+    public Collection<Type> annotations() {
+        return !bodyFields.isEmpty() ? List.of(Types.Client.Json.JsonpDeserializable) : null;
+    }
+
+    public Type builderFnType() {
+        return Types.Java.Util.Function.Function(type().builderType(), Types.Client.Util.ObjectBuilder(type()));
     }
 }

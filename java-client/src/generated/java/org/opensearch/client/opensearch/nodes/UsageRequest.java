@@ -40,10 +40,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import javax.annotation.Nullable;
-import org.opensearch.client.opensearch.*;
-import org.opensearch.client.opensearch._types.*;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -67,10 +67,9 @@ public class UsageRequest extends RequestBase {
         this.timeout = builder.timeout;
     }
 
-    public static UsageRequest of(Function<Builder, ObjectBuilder<UsageRequest>> fn) {
+    public static UsageRequest of(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
-
     /**
      * Limits the information returned to the specific metrics. A comma-separated list of the
      * following options: `_all`, `rest_actions`.

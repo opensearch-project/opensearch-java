@@ -1,54 +1,33 @@
-{{>Partials/LicenseHeader}}
-
-package {{packageName}};
-
-import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-{{#children}}
-import {{packageName}}.{{className}};
-{{/children}}
-import org.opensearch.client.transport.OpenSearchTransport;
-import org.opensearch.client.transport.JsonEndpoint;
-import org.opensearch.client.transport.TransportOptions;
-import org.opensearch.client.util.ObjectBuilder;
-import java.io.IOException;
-{{#async}}
-import java.util.concurrent.CompletableFuture;
-{{/async}}
-import java.util.function.Function;
-import javax.annotation.Nullable;
-
-public class {{className}} extends ApiClient<OpenSearchTransport, {{className}}> {
-    public {{className}}(OpenSearchTransport transport) {
+public class {{className}} extends {{TYPES.Client.ApiClient}}<{{TYPES.Client.Transport.OpenSearchTransport}}, {{className}}> {
+    public {{className}}({{TYPES.Client.Transport.OpenSearchTransport}} transport) {
         super(transport, null);
     }
 
-    public {{className}}(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+    public {{className}}({{TYPES.Client.Transport.OpenSearchTransport}} transport, @{{TYPES.Javax.Annotation.Nullable}} {{TYPES.Client.Transport.TransportOptions}} transportOptions) {
         super(transport, transportOptions);
     }
 
     @Override
-    public {{className}} withTransportOptions(@Nullable TransportOptions transportOptions) {
+    public {{className}} withTransportOptions(@{{TYPES.Javax.Annotation.Nullable}} {{TYPES.Client.Transport.TransportOptions}} transportOptions) {
         return new {{className}}(this.transport, transportOptions);
     }
 {{#children}}
 
-    public {{className}} {{#camelCase}}{{name}}{{/camelCase}}() {
-        return new {{className}}(this.transport, this.transportOptions);
+    public {{type}} {{#camelCase}}{{name}}{{/camelCase}}() {
+        return new {{type}}(this.transport, this.transportOptions);
     }
 {{/children}}
 {{#operations}}
 
-    public {{#async}}CompletableFuture<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{className}} request) throws IOException, OpenSearchException {
-        JsonEndpoint<{{className}}, {{responseType}}, ErrorResponse> endpoint = (JsonEndpoint<{{className}}, {{responseType}}, ErrorResponse>) {{className}}._ENDPOINT;
+    public {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{type}} request) throws {{TYPES.Java.Io.IOException}}, {{TYPES.Client.OpenSearch._Types.OpenSearchException}} {
+        {{TYPES.Client.Transport.JsonEndpoint}}<{{type}}, {{responseType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}> endpoint = ({{TYPES.Client.Transport.JsonEndpoint}}<{{type}}, {{responseType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}>) {{type}}._ENDPOINT;
 
         return this.transport.performRequest{{#async}}Async{{/async}}(request, endpoint, this.transportOptions);
     }
 
-    public final {{#async}}CompletableFuture<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}(Function<{{className}}.Builder, ObjectBuilder<{{className}}>> fn)
+    public final {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{builderFnType}} fn)
             throws IOException, OpenSearchException {
-        return {{#camelCase}}{{id}}{{/camelCase}}(fn.apply(new {{className}}.Builder()).build());
+        return {{#camelCase}}{{id}}{{/camelCase}}(fn.apply(new {{type.builderType}}()).build());
     }
 {{/operations}}
 }

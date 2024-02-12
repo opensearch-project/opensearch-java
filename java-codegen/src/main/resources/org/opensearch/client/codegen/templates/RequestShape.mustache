@@ -1,39 +1,4 @@
-{{>Partials/LicenseHeader}}
-
-package {{packageName}};
-
-{{#hasRequestBody}}
-import jakarta.json.stream.JsonGenerator;
-{{/hasRequestBody}}
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import javax.annotation.Nullable;
-{{#hasRequestBody}}
-import org.opensearch.client.json.JsonpDeserializable;
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
-import org.opensearch.client.json.ObjectBuilderDeserializer;
-import org.opensearch.client.json.ObjectDeserializer;
-{{/hasRequestBody}}
-import org.opensearch.client.opensearch.*;
-import org.opensearch.client.opensearch._types.*;
-import org.opensearch.client.transport.Endpoint;
-import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-import org.opensearch.client.util.ApiTypeHelper;
-import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
-
-/**
- * {{description}}
- */
-{{#hasRequestBody}}
-@JsonpDeserializable
-{{/hasRequestBody}}
-public class {{className}} extends RequestBase{{#hasRequestBody}} implements JsonpSerializable{{/hasRequestBody}} {
+{{>ObjectShape/ClassDeclaration}} {
     {{>ObjectShape/Fields}}
 
     // ---------------------------------------------------------------------------------------------
@@ -58,7 +23,7 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
     /**
      * Endpoint "{@code {{operationGroup}}}".
      */
-    public static final Endpoint<{{className}}, {{responseType}}, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final {{TYPES.Client.Transport.Endpoint}}<{{className}}, {{responseType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}> _ENDPOINT = new {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}<>(
             // Request method
             request -> {{#quoted}}{{httpMethod}}{{/quoted}},
             // Request path
@@ -74,7 +39,7 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
                     int propsSet = 0;
 
                     {{#pathParams}}
-                    if (ApiTypeHelper.isDefined(request.{{name}}())) propsSet |= _{{name}};
+                    if ({{TYPES.Client.Util.ApiTypeHelper}}.isDefined(request.{{name}}())) propsSet |= _{{name}};
                     {{/pathParams}}
 
                     {{#httpPaths}}
@@ -83,16 +48,16 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
                     }
                     {{/httpPaths}}
 
-                    throw SimpleEndpoint.noPathTemplateFound("path");
+                    throw {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.noPathTemplateFound("path");
                 {{/hasSinglePath}}
             },
             // Request parameters
             {{#hasQueryParams}}
             request -> {
-                Map<String, String> params = new HashMap<>();
+                {{TYPES.Java.Util.Map}}<String, String> params = new {{TYPES.Java.Util.HashMap}}<>();
                 {{#queryParams}}
                 {{#type.isListOrMap}}
-                if (ApiTypeHelper.isDefined(request.{{name}})) {
+                if ({{TYPES.Client.Util.ApiTypeHelper}}.isDefined(request.{{name}})) {
                 {{/type.isListOrMap}}
                 {{^type.isListOrMap}}
                 if (request.{{name}} != null) {
@@ -104,9 +69,9 @@ public class {{className}} extends RequestBase{{#hasRequestBody}} implements Jso
             },
             {{/hasQueryParams}}
             {{^hasQueryParams}}
-            SimpleEndpoint.emptyMap(),
+            {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.emptyMap(),
             {{/hasQueryParams}}
-            SimpleEndpoint.emptyMap(),
+            {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.emptyMap(),
             {{hasRequestBody}},
             {{responseType}}._DESERIALIZER
     );

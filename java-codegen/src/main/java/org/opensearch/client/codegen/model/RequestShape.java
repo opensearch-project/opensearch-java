@@ -10,6 +10,7 @@ package org.opensearch.client.codegen.model;
 
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
+import io.swagger.v3.oas.models.media.Schema;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -116,9 +117,7 @@ public class RequestShape extends ObjectShape {
             entry.getValue().setRequired(requiredPathParams.contains(entry.getKey()));
         }
 
-        var bodyFields = Schemas.resolveRequestBodySchema(ctx.openApi, variants.get(0).fourth())
-            .map(schema -> Field.allFrom(ctx, schema))
-            .orElseGet(ArrayList::new);
+        var bodySchema = Schemas.resolveRequestBodySchema(ctx.openApi, variants.get(0).fourth()).orElseGet(Schema::new);
 
         var queryParams = variants.stream()
             .flatMap(v -> Schemas.getParametersIn(ctx.openApi, v.second(), v.fourth(), IN_QUERY))
@@ -126,12 +125,12 @@ public class RequestShape extends ObjectShape {
             .collect(Collectors.toList());
 
         return new RequestShape(
-            ctx.namespace,
+            ctx,
             operationGroup,
             variants.get(0).fourth().getDescription(),
             variants.stream().map(Quartet::third).map(Enum::name).collect(Collectors.toSet()),
             paths,
-            bodyFields,
+            bodySchema,
             queryParams,
             allPathParams.values()
         );
@@ -146,16 +145,16 @@ public class RequestShape extends ObjectShape {
     private final Map<String, Field> fields = new TreeMap<>();
 
     private RequestShape(
-        Namespace parent,
+        Context ctx,
         OperationGroup operationGroup,
         String description,
         Set<String> httpMethods,
         List<HttpPath> httpPaths,
-        Collection<Field> bodyFields,
+        Schema<?> bodySchema,
         Collection<Field> queryParams,
         Collection<Field> pathParams
     ) {
-        super(parent, requestClassName(operationGroup), bodyFields);
+        super(ctx, requestClassName(operationGroup), bodySchema);
         this.operationGroup = operationGroup;
         this.description = description;
         this.httpMethods = httpMethods;
@@ -165,6 +164,9 @@ public class RequestShape extends ObjectShape {
         this.fields.putAll(this.bodyFields);
         this.fields.putAll(this.queryParams);
         this.fields.putAll(this.pathParams);
+        if (super.extendsType == null) {
+            super.extendsType = Types.Client.OpenSearch._Types.RequestBase;
+        }
     }
 
     public OperationGroup operationGroup() {

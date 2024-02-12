@@ -42,8 +42,12 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
-import org.opensearch.client.opensearch.*;
-import org.opensearch.client.opensearch._types.*;
+import org.opensearch.client.opensearch._types.Bytes;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.ExpandWildcard;
+import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.opensearch._types.Time;
+import org.opensearch.client.opensearch._types.TimeUnit;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -110,10 +114,10 @@ public class SegmentReplicationRequest extends RequestBase {
     }
 
     public static SegmentReplicationRequest of(
-            Function<Builder, ObjectBuilder<SegmentReplicationRequest>> fn) {
+            Function<SegmentReplicationRequest.Builder, ObjectBuilder<SegmentReplicationRequest>>
+                    fn) {
         return fn.apply(new Builder()).build();
     }
-
     /**
      * If `true`, the response only includes ongoing segment replication events.
      *

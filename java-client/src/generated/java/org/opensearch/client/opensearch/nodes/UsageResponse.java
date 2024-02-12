@@ -36,29 +36,46 @@
 
 package org.opensearch.client.opensearch.nodes;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch.*;
+import org.opensearch.client.opensearch.nodes._types.NodesResponseBase;
+import org.opensearch.client.opensearch.nodes.usage.NodeUsage;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import jakarta.json.stream.JsonGenerator;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 @JsonpDeserializable
-public class UsageResponse implements JsonpSerializable {
+public class UsageResponse extends NodesResponseBase implements JsonpSerializable {
 
-    private UsageResponse(Builder builder) {}
+    private final String clusterName;
 
-    public static UsageResponse of(Function<Builder, ObjectBuilder<UsageResponse>> fn) {
+    private final Map<String, NodeUsage> nodes;
+
+    private UsageResponse(Builder builder) {
+        this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+        this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+    }
+
+    public static UsageResponse of(
+            Function<UsageResponse.Builder, ObjectBuilder<UsageResponse>> fn) {
         return fn.apply(new Builder()).build();
+    }
+    /** API name: {@code cluster_name} */
+    public final String clusterName() {
+        return this.clusterName;
+    }
+
+    /** API name: {@code nodes} */
+    public final Map<String, NodeUsage> nodes() {
+        return this.nodes;
     }
 
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -67,10 +84,40 @@ public class UsageResponse implements JsonpSerializable {
         generator.writeEnd();
     }
 
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {}
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey("cluster_name");
+        generator.write(this.clusterName);
 
+        generator.writeKey("nodes");
+        generator.writeStartObject();
+        for (Map.Entry<String, NodeUsage> item0 : this.nodes.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
+        }
+        generator.writeEnd();
+    }
     /** Builder for {@link UsageResponse}. */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UsageResponse> {
+        @Nullable private String clusterName;
+        @Nullable private Map<String, NodeUsage> nodes;
+
+        /** API name: {@code cluster_name} */
+        public final Builder clusterName(String value) {
+            this.clusterName = value;
+            return this;
+        }
+
+        /** API name: {@code nodes} */
+        public final Builder nodes(Map<String, NodeUsage> map) {
+            this.nodes = _mapPutAll(this.nodes, map);
+            return this;
+        }
+
+        /** API name: {@code nodes} */
+        public final Builder nodes(String key, NodeUsage value) {
+            this.nodes = _mapPut(this.nodes, key, value);
+            return this;
+        }
 
         /**
          * Builds a {@link UsageResponse}.
@@ -89,5 +136,11 @@ public class UsageResponse implements JsonpSerializable {
                     Builder::new, UsageResponse::setupUsageResponseDeserializer);
 
     protected static void setupUsageResponseDeserializer(
-            ObjectDeserializer<UsageResponse.Builder> op) {}
+            ObjectDeserializer<UsageResponse.Builder> op) {
+        op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
+        op.add(
+                Builder::nodes,
+                JsonpDeserializer.stringMapDeserializer(NodeUsage._DESERIALIZER),
+                "nodes");
+    }
 }

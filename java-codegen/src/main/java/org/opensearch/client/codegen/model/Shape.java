@@ -9,17 +9,25 @@
 package org.opensearch.client.codegen.model;
 
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 import org.opensearch.client.codegen.Renderer;
 import org.opensearch.client.codegen.exceptions.RenderException;
 
 public abstract class Shape {
     protected final Namespace parent;
+    protected final Renderer renderer;
     private final String className;
+    private final Set<Type> referencedTypes = new HashSet<>();
 
     public Shape(Namespace parent, String className) {
         this.parent = parent;
+        this.renderer = new Renderer(this::addReferencedType);
         this.className = className;
     }
+
+    public Type type() { return Type.builder().pkg(packageName()).name(className).build();}
 
     public Namespace parent() {
         return this.parent;
@@ -33,7 +41,19 @@ public abstract class Shape {
         return this.className;
     }
 
-    public void render(Renderer renderer, File outputDir) throws RenderException {
+    public void render(File outputDir) throws RenderException {
         renderer.renderJava(this, new File(outputDir, this.className + ".java"));
+    }
+
+    public void addReferencedType(Type type) {
+        referencedTypes.add(type);
+    }
+
+    public Set<String> imports() {
+        var imports = new TreeSet<String>();
+        for (var type : referencedTypes) {
+            type.getRequiredImports(imports, packageName());
+        }
+        return imports;
     }
 }

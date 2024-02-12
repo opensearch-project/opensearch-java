@@ -9,6 +9,7 @@
 package org.opensearch.client.codegen.model;
 
 import static org.opensearch.client.codegen.Renderer.templateLambda;
+import static org.opensearch.client.codegen.model.Types.*;
 
 import com.samskivert.mustache.Mustache;
 import io.swagger.v3.oas.models.media.Schema;
@@ -39,26 +40,18 @@ public class Type {
         "Double"
     );
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     private final Schema<?> schema;
+    private final String pkg;
     private final String name;
     private final Type[] genericArgs;
 
-    private Type(String name) {
-        this(null, name);
-    }
-
-    public Type(Schema<?> schema, String name) {
+    private Type(Schema<?> schema, String pkg, String name, Type... genericArgs) {
         this.schema = schema;
-        this.name = name;
-        this.genericArgs = null;
-    }
-
-    public Type(Schema<?> schema, String name, String... genericArgs) {
-        this(schema, name, Arrays.stream(genericArgs).map(Type::new).toArray(Type[]::new));
-    }
-
-    public Type(Schema<?> schema, String name, Type... genericArgs) {
-        this.schema = schema;
+        this.pkg = pkg;
         this.name = name;
         this.genericArgs = genericArgs;
     }
@@ -77,21 +70,21 @@ public class Type {
     public Type boxed() {
         switch (name) {
             case "char":
-                return new Type(schema, "Character");
+                return Java.Lang.Character;
             case "boolean":
-                return new Type(schema, "Boolean");
+                return Java.Lang.Boolean;
             case "byte":
-                return new Type(schema, "Byte");
+                return Java.Lang.Byte;
             case "short":
-                return new Type(schema, "Short");
+                return Java.Lang.Short;
             case "int":
-                return new Type(schema, "Integer");
+                return Java.Lang.Integer;
             case "long":
-                return new Type(schema, "Long");
+                return Java.Lang.Long;
             case "float":
-                return new Type(schema, "Float");
+                return Java.Lang.Float;
             case "double":
-                return new Type(schema, "Double");
+                return Java.Lang.Double;
             default:
                 return this;
         }
@@ -104,7 +97,7 @@ public class Type {
     public Type mapEntryType() {
         if (!isMap()) return null;
 
-        return new Type(null, "Map.Entry", this.genericArgs);
+        return Java.Util.MapEntry(this.genericArgs[0], this.genericArgs[1]);
     }
 
     public Type mapKeyType() {
@@ -160,13 +153,16 @@ public class Type {
     public Type builderType() {
         if (!hasBuilder()) return null;
 
-        return new Type(name + ".Builder");
+        return builder()
+                .pkg(pkg)
+                .name(name + ".Builder")
+                .build();
     }
 
     public Type builderFuncType() {
         if (!hasBuilder()) return null;
 
-        return new Type(null, "Function", builderType(), new Type(null, "ObjectBuilder", this));
+        return Java.Util.Function.Function(builderType(), Client.Util.ObjectBuilder(this));
     }
 
     public Mustache.Lambda serializer() {
@@ -178,6 +174,22 @@ public class Type {
                 frag.context() instanceof SerializerLambdaContext ? ((SerializerLambdaContext) frag.context()).depth + 1 : 0
             )
         );
+    }
+
+    public void getRequiredImports(Set<String> imports, String currentPkg) {
+        if (pkg != null && !pkg.equals(Java.Lang.PACKAGE) && !pkg.equals(currentPkg)) {
+            var dotIdx = name.indexOf('.');
+            imports.add(pkg + '.' + (dotIdx > 0 ? name.substring(0, dotIdx) : name));
+        }
+        if (genericArgs != null) {
+            for (Type arg : genericArgs) {
+                arg.getRequiredImports(imports, currentPkg);
+            }
+        }
+    }
+
+    public Type withGenericArgs(Type... genericArgs) {
+        return new Type(schema, pkg, name, genericArgs);
     }
 
     private static class SerializerLambdaContext {
@@ -197,5 +209,36 @@ public class Type {
             final Type type = Type.this;
             final String value = frag.execute();
         });
+    }
+
+    public static class Builder {
+        private Schema<?> schema;
+        private String pkg;
+        private String name;
+        private Type[] genericArgs;
+
+        public Builder schema(Schema<?> schema) {
+            this.schema = schema;
+            return this;
+        }
+
+        public Builder pkg(String pkg) {
+            this.pkg = pkg;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder genericArgs(Type... genericArgs) {
+            this.genericArgs = genericArgs;
+            return this;
+        }
+
+        public Type build() {
+            return new Type(schema, pkg, name, genericArgs);
+        }
     }
 }

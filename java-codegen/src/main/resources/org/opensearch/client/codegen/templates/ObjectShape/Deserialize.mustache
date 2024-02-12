@@ -1,6 +1,6 @@
-    public static final JsonpDeserializer<{{className}}> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new, {{className}}::setup{{className}}Deserializer);
+    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.ObjectBuilderDeserializer}}.lazy(Builder::new, {{className}}::setup{{className}}Deserializer);
 
-    protected static void setup{{className}}Deserializer(ObjectDeserializer<{{className}}.Builder> op) {
+    protected static void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<{{type.builderType}}> op) {
     {{#bodyFields}}
         op.add(Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{wireName}}{{/quoted}});
     {{/bodyFields}}

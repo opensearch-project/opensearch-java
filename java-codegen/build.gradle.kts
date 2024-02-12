@@ -120,7 +120,7 @@ dependencies {
     implementation("io.swagger.parser.v3:swagger-parser:2.1.20")
 
     // (New) BSD
-    implementation("com.samskivert:jmustache:1.15")
+    implementation("com.samskivert:jmustache:1.16")
 
     // Apache 2.0
     implementation("org.apache.commons:commons-lang3:3.14.0")

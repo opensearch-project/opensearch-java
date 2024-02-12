@@ -1,0 +1,9 @@
+{{#description}}
+/**
+* {{.}}
+*/
+{{/description}}
+{{#annotations}}
+@{{.}}
+{{/annotations}}
+public class {{className}}{{#extendsType}} extends {{.}}{{/extendsType}}{{#implementsType}} implements {{.}}{{/implementsType}}
