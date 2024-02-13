@@ -6,16 +6,12 @@ public enum {{className}} implements {{TYPES.Client.Json.JsonEnum}} {
     ;
 
     private final String jsonValue;
-    private final String[] aliases;
 
-    {{className}}(String jsonValue, String... aliases) {
+    {{className}}(String jsonValue) {
         this.jsonValue = jsonValue;
-        this.aliases = aliases;
     }
 
     public String jsonValue() { return this.jsonValue; }
-
-    public String[] aliases() { return this.aliases; }
 
     public static final JsonEnum.Deserializer<{{className}}> _DESERIALIZER = new JsonEnum.Deserializer<>({{className}}.values());
 }
