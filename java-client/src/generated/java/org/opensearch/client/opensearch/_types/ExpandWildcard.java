@@ -49,19 +49,13 @@ public enum ExpandWildcard implements JsonEnum {
     ;
 
     private final String jsonValue;
-    private final String[] aliases;
 
-    ExpandWildcard(String jsonValue, String... aliases) {
+    ExpandWildcard(String jsonValue) {
         this.jsonValue = jsonValue;
-        this.aliases = aliases;
     }
 
     public String jsonValue() {
         return this.jsonValue;
-    }
-
-    public String[] aliases() {
-        return this.aliases;
     }
 
     public static final JsonEnum.Deserializer<ExpandWildcard> _DESERIALIZER =
