@@ -23,7 +23,7 @@ import org.opensearch.client.codegen.model.Namespace;
 
 public class Main {
     private static final HashSet<String> OPERATIONS = Sets.newHashSet(
-            "cat.segment_replication",
+            "cat.aliases",
             "nodes.usage"
     );
 
