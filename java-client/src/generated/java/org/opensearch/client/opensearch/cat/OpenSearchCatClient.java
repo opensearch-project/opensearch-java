@@ -62,23 +62,17 @@ public class OpenSearchCatClient extends ApiClient<OpenSearchTransport, OpenSear
         return new OpenSearchCatClient(this.transport, transportOptions);
     }
 
-    public SegmentReplicationResponse segmentReplication(SegmentReplicationRequest request)
-            throws IOException, OpenSearchException {
-        JsonEndpoint<SegmentReplicationRequest, SegmentReplicationResponse, ErrorResponse>
-                endpoint =
-                        (JsonEndpoint<
-                                        SegmentReplicationRequest,
-                                        SegmentReplicationResponse,
-                                        ErrorResponse>)
-                                SegmentReplicationRequest._ENDPOINT;
+    public AliasesResponse aliases(AliasesRequest request) throws IOException, OpenSearchException {
+        JsonEndpoint<AliasesRequest, AliasesResponse, ErrorResponse> endpoint =
+                (JsonEndpoint<AliasesRequest, AliasesResponse, ErrorResponse>)
+                        AliasesRequest._ENDPOINT;
 
         return this.transport.performRequest(request, endpoint, this.transportOptions);
     }
 
-    public final SegmentReplicationResponse segmentReplication(
-            Function<SegmentReplicationRequest.Builder, ObjectBuilder<SegmentReplicationRequest>>
-                    fn)
+    public final AliasesResponse aliases(
+            Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn)
             throws IOException, OpenSearchException {
-        return segmentReplication(fn.apply(new SegmentReplicationRequest.Builder()).build());
+        return aliases(fn.apply(new AliasesRequest.Builder()).build());
     }
 }

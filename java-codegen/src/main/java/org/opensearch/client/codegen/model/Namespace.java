@@ -112,8 +112,13 @@ public class Namespace extends Shape {
         }
 
         int idx = name.indexOf('.');
-        Namespace child = children.computeIfAbsent(idx >= 0 ? name.substring(0, idx) : name, n -> new Namespace(this, n));
-        return idx < 0 ? child : child.child(name.substring(idx + 1));
+        var childName = idx >= 0 ? name.substring(0, idx) : name;
+        var grandChildName = idx >= 0 ? name.substring(idx + 1) : null;
+
+        if ("_types".equals(childName) && this.parent != null) return child(grandChildName);
+
+        Namespace child = children.computeIfAbsent(childName, n -> new Namespace(this, n));
+        return grandChildName == null ? child : child.child(grandChildName);
     }
 
     @Override
