@@ -63,6 +63,8 @@ public class AliasesRecord implements JsonpSerializable {
 
     @Nullable private final String routingSearch;
 
+    // ---------------------------------------------------------------------------------------------
+
     private AliasesRecord(Builder builder) {
         this.alias = builder.alias;
         this.filter = builder.filter;
@@ -132,6 +134,7 @@ public class AliasesRecord implements JsonpSerializable {
         return this.routingSearch;
     }
 
+    /** Serialize this object to JSON. */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -141,34 +144,42 @@ public class AliasesRecord implements JsonpSerializable {
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.alias != null) {
             generator.writeKey("alias");
+
             generator.write(this.alias);
         }
 
         if (this.filter != null) {
             generator.writeKey("filter");
+
             generator.write(this.filter);
         }
 
         if (this.index != null) {
             generator.writeKey("index");
+
             generator.write(this.index);
         }
 
         if (this.isWriteIndex != null) {
             generator.writeKey("is_write_index");
+
             generator.write(this.isWriteIndex);
         }
 
         if (this.routingIndex != null) {
             generator.writeKey("routing.index");
+
             generator.write(this.routingIndex);
         }
 
         if (this.routingSearch != null) {
             generator.writeKey("routing.search");
+
             generator.write(this.routingSearch);
         }
     }
+    // ---------------------------------------------------------------------------------------------
+
     /** Builder for {@link AliasesRecord}. */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AliasesRecord> {
         @Nullable private String alias;
@@ -245,7 +256,9 @@ public class AliasesRecord implements JsonpSerializable {
             return new AliasesRecord(this);
         }
     }
+    // ---------------------------------------------------------------------------------------------
 
+    /** Json deserializer for {@link AliasesRecord} */
     public static final JsonpDeserializer<AliasesRecord> _DESERIALIZER =
             ObjectBuilderDeserializer.lazy(
                     Builder::new, AliasesRecord::setupAliasesRecordDeserializer);

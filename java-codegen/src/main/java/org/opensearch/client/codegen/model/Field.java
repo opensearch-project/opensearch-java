@@ -38,7 +38,7 @@ public class Field {
     private boolean required;
     private final String description;
 
-    private Field(String wireName, Type type, boolean required, String description) {
+    public Field(String wireName, Type type, boolean required, String description) {
         this.wireName = wireName;
         this.type = type;
         this.required = required;

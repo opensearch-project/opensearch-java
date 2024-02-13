@@ -59,6 +59,8 @@ public class UsageResponse extends NodesResponseBase implements JsonpSerializabl
 
     private final Map<String, NodeUsage> nodes;
 
+    // ---------------------------------------------------------------------------------------------
+
     private UsageResponse(Builder builder) {
         this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
         this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
@@ -78,6 +80,7 @@ public class UsageResponse extends NodesResponseBase implements JsonpSerializabl
         return this.nodes;
     }
 
+    /** Serialize this object to JSON. */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -86,16 +89,20 @@ public class UsageResponse extends NodesResponseBase implements JsonpSerializabl
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey("cluster_name");
+
         generator.write(this.clusterName);
 
         generator.writeKey("nodes");
         generator.writeStartObject();
         for (Map.Entry<String, NodeUsage> item0 : this.nodes.entrySet()) {
             generator.writeKey(item0.getKey());
+
             item0.getValue().serialize(generator, mapper);
         }
         generator.writeEnd();
     }
+    // ---------------------------------------------------------------------------------------------
+
     /** Builder for {@link UsageResponse}. */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UsageResponse> {
         @Nullable private String clusterName;
@@ -130,7 +137,9 @@ public class UsageResponse extends NodesResponseBase implements JsonpSerializabl
             return new UsageResponse(this);
         }
     }
+    // ---------------------------------------------------------------------------------------------
 
+    /** Json deserializer for {@link UsageResponse} */
     public static final JsonpDeserializer<UsageResponse> _DESERIALIZER =
             ObjectBuilderDeserializer.lazy(
                     Builder::new, UsageResponse::setupUsageResponseDeserializer);

@@ -34,7 +34,7 @@
         }
         {{#type.listValueType.hasBuilder}}
 
-        {{>ObjectShape/FieldDoc/Basic}}
+        {{>ObjectShape/FieldDoc/ListAddBuilderFn}}
         public final Builder {{name}}({{type.listValueType.builderFuncType}} fn) {
             return {{name}}(fn.apply(new {{type.listValueType.builderType}}()).build());
         }

@@ -1,23 +1,3 @@
-{{#type.isMap}}
-    generator.writeStartObject();
-    for ({{type.mapEntryType}} item{{depth}} : {{value}}.entrySet()) {
-        generator.writeKey(item{{depth}}.getKey());
-        {{#type.mapValueType.serializer}}item{{depth}}.getValue(){{/type.mapValueType.serializer}}
-    }
-    generator.writeEnd();
-{{/type.isMap}}
-{{#type.isList}}
-    generator.writeStartArray();
-    for ({{type.listValueType}} item{{depth}} : {{value}}) {
-        {{#type.listValueType.serializer}}item{{depth}}{{/type.listValueType.serializer}}
-    }
-    generator.writeEnd();
-{{/type.isList}}
-{{^type.isListOrMap}}
-    {{#type.isPrimitive}}
-        generator.write({{value}});
-    {{/type.isPrimitive}}
-    {{^type.isPrimitive}}
-        {{value}}.serialize(generator, mapper);
-    {{/type.isPrimitive}}
-{{/type.isListOrMap}}
+{{#type.isMap}}generator.writeStartObject();{{/type.isMap}}{{#type.isList}}generator.writeStartArray();{{/type.isList}}
+{{>Type/directSerializer}}
+{{#type.isMap}}generator.writeEnd();{{/type.isMap}}{{#type.isList}}generator.writeEnd();{{/type.isList}}

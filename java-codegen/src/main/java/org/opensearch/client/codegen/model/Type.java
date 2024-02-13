@@ -12,6 +12,7 @@ import static org.opensearch.client.codegen.Renderer.templateLambda;
 import static org.opensearch.client.codegen.model.Types.*;
 
 import com.samskivert.mustache.Mustache;
+import com.samskivert.mustache.Template;
 import io.swagger.v3.oas.models.media.Schema;
 import java.util.Arrays;
 import java.util.Set;
@@ -166,13 +167,20 @@ public class Type {
     }
 
     public Mustache.Lambda serializer() {
-        return Renderer.templateLambda(
-            "Type/serializer",
-            frag -> new SerializerLambdaContext(
+        return Renderer.templateLambda("Type/serializer", this::getSerializerLambdaContext);
+    }
+
+    public Mustache.Lambda directSerializer() {
+        return Renderer.templateLambda("Type/directSerializer", this::getSerializerLambdaContext);
+    }
+
+    private SerializerLambdaContext getSerializerLambdaContext(Template.Fragment fragment) {
+        return new SerializerLambdaContext(
                 Type.this,
-                frag.execute(),
-                frag.context() instanceof SerializerLambdaContext ? ((SerializerLambdaContext) frag.context()).depth + 1 : 0
-            )
+                fragment.execute(),
+                Renderer.findContext(fragment, SerializerLambdaContext.class)
+                        .map(ctx -> ctx.depth + 1)
+                        .orElse(0)
         );
     }
 

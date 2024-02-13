@@ -1,3 +1,6 @@
+    /**
+     * Serialize this object to JSON.
+     */
     public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -5,6 +8,9 @@
     }
 
     protected void serializeInternal({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
+{{#additionalPropertiesField}}
+    {{#type.directSerializer}}this.{{name}}{{/type.directSerializer}}
+{{/additionalPropertiesField}}
 {{#bodyFields}}
     {{^required}}
         {{#type.isListOrMap}}

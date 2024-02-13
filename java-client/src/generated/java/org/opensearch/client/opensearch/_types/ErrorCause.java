@@ -37,9 +37,12 @@
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -65,6 +68,10 @@ public class ErrorCause implements JsonpSerializable {
 
     private final String type;
 
+    private final Map<String, JsonData> metadata;
+
+    // ---------------------------------------------------------------------------------------------
+
     private ErrorCause(Builder builder) {
         this.causedBy = builder.causedBy;
         this.reason = builder.reason;
@@ -72,6 +79,7 @@ public class ErrorCause implements JsonpSerializable {
         this.stackTrace = builder.stackTrace;
         this.suppressed = ApiTypeHelper.unmodifiable(builder.suppressed);
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+        this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
     }
 
     public static ErrorCause of(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
@@ -115,7 +123,7 @@ public class ErrorCause implements JsonpSerializable {
     }
 
     /**
-     * The type of error
+     * Required - The type of error
      *
      * <p>API name: {@code type}
      */
@@ -123,6 +131,16 @@ public class ErrorCause implements JsonpSerializable {
         return this.type;
     }
 
+    /**
+     * Additional details about the error
+     *
+     * <p>API name: {@code metadata}
+     */
+    public final Map<String, JsonData> metadata() {
+        return this.metadata;
+    }
+
+    /** Serialize this object to JSON. */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -130,13 +148,21 @@ public class ErrorCause implements JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
+            generator.writeKey(item0.getKey());
+
+            item0.getValue().serialize(generator, mapper);
+        }
+
         if (this.causedBy != null) {
             generator.writeKey("caused_by");
+
             this.causedBy.serialize(generator, mapper);
         }
 
         if (this.reason != null) {
             generator.writeKey("reason");
+
             generator.write(this.reason);
         }
 
@@ -144,6 +170,7 @@ public class ErrorCause implements JsonpSerializable {
             generator.writeKey("root_cause");
             generator.writeStartArray();
             for (ErrorCause item0 : this.rootCause) {
+
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
@@ -151,6 +178,7 @@ public class ErrorCause implements JsonpSerializable {
 
         if (this.stackTrace != null) {
             generator.writeKey("stack_trace");
+
             generator.write(this.stackTrace);
         }
 
@@ -158,14 +186,18 @@ public class ErrorCause implements JsonpSerializable {
             generator.writeKey("suppressed");
             generator.writeStartArray();
             for (ErrorCause item0 : this.suppressed) {
+
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
         }
 
         generator.writeKey("type");
+
         generator.write(this.type);
     }
+    // ---------------------------------------------------------------------------------------------
+
     /** Builder for {@link ErrorCause}. */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorCause> {
         @Nullable private ErrorCause causedBy;
@@ -174,6 +206,7 @@ public class ErrorCause implements JsonpSerializable {
         @Nullable private String stackTrace;
         @Nullable private List<ErrorCause> suppressed;
         @Nullable private String type;
+        @Nullable private Map<String, JsonData> metadata;
 
         /** API name: {@code caused_by} */
         public final Builder causedBy(@Nullable ErrorCause value) {
@@ -216,7 +249,11 @@ public class ErrorCause implements JsonpSerializable {
             return this;
         }
 
-        /** API name: {@code root_cause} */
+        /**
+         * API name: {@code root_cause}
+         *
+         * <p>Adds a value to <code>rootCause</code> using a builder lambda.
+         */
         public final Builder rootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return rootCause(fn.apply(new ErrorCause.Builder()).build());
         }
@@ -252,19 +289,43 @@ public class ErrorCause implements JsonpSerializable {
             return this;
         }
 
-        /** API name: {@code suppressed} */
+        /**
+         * API name: {@code suppressed}
+         *
+         * <p>Adds a value to <code>suppressed</code> using a builder lambda.
+         */
         public final Builder suppressed(
                 Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return suppressed(fn.apply(new ErrorCause.Builder()).build());
         }
 
         /**
-         * The type of error
+         * Required - The type of error
          *
          * <p>API name: {@code type}
          */
         public final Builder type(String value) {
             this.type = value;
+            return this;
+        }
+
+        /**
+         * Additional details about the error
+         *
+         * <p>API name: {@code metadata}
+         */
+        public final Builder metadata(Map<String, JsonData> map) {
+            this.metadata = _mapPutAll(this.metadata, map);
+            return this;
+        }
+
+        /**
+         * Additional details about the error
+         *
+         * <p>API name: {@code metadata}
+         */
+        public final Builder metadata(String key, JsonData value) {
+            this.metadata = _mapPut(this.metadata, key, value);
             return this;
         }
 
@@ -279,7 +340,9 @@ public class ErrorCause implements JsonpSerializable {
             return new ErrorCause(this);
         }
     }
+    // ---------------------------------------------------------------------------------------------
 
+    /** Json deserializer for {@link ErrorCause} */
     public static final JsonpDeserializer<ErrorCause> _DESERIALIZER =
             ObjectBuilderDeserializer.lazy(Builder::new, ErrorCause::setupErrorCauseDeserializer);
 
@@ -296,5 +359,12 @@ public class ErrorCause implements JsonpSerializable {
                 JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER),
                 "suppressed");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+        op.setUnknownFieldHandler(
+                (builder, name, parser, mapper) -> {
+                    if (builder.metadata == null) {
+                        builder.metadata = new HashMap<>();
+                    }
+                    builder.metadata.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+                });
     }
 }
