@@ -54,6 +54,8 @@ public class NodesResponseBase implements JsonpSerializable {
 
     @Nullable private final NodeStatistics nodes;
 
+    // ---------------------------------------------------------------------------------------------
+
     private NodesResponseBase(Builder builder) {
         this.nodes = builder.nodes;
     }
@@ -68,6 +70,7 @@ public class NodesResponseBase implements JsonpSerializable {
         return this.nodes;
     }
 
+    /** Serialize this object to JSON. */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -77,9 +80,12 @@ public class NodesResponseBase implements JsonpSerializable {
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.nodes != null) {
             generator.writeKey("_nodes");
+
             this.nodes.serialize(generator, mapper);
         }
     }
+    // ---------------------------------------------------------------------------------------------
+
     /** Builder for {@link NodesResponseBase}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<NodesResponseBase> {
@@ -108,7 +114,9 @@ public class NodesResponseBase implements JsonpSerializable {
             return new NodesResponseBase(this);
         }
     }
+    // ---------------------------------------------------------------------------------------------
 
+    /** Json deserializer for {@link NodesResponseBase} */
     public static final JsonpDeserializer<NodesResponseBase> _DESERIALIZER =
             ObjectBuilderDeserializer.lazy(
                     Builder::new, NodesResponseBase::setupNodesResponseBaseDeserializer);

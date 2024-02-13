@@ -63,7 +63,7 @@ public class AliasesResponse implements JsonpSerializable {
         return fn.apply(new Builder()).build();
     }
     /**
-     * Response value
+     * Required - Response value
      *
      * <p>API name: {@code _value_body}
      */
@@ -74,6 +74,7 @@ public class AliasesResponse implements JsonpSerializable {
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartArray();
         for (AliasesRecord item0 : this.valueBody) {
+
             item0.serialize(generator, mapper);
         }
         generator.writeEnd();
@@ -85,7 +86,7 @@ public class AliasesResponse implements JsonpSerializable {
         @Nullable private List<AliasesRecord> valueBody;
 
         /**
-         * Response value
+         * Required - Response value
          *
          * <p>API name: {@code _value_body}
          *
@@ -97,7 +98,7 @@ public class AliasesResponse implements JsonpSerializable {
         }
 
         /**
-         * Response value
+         * Required - Response value
          *
          * <p>API name: {@code _value_body}
          *
@@ -109,9 +110,11 @@ public class AliasesResponse implements JsonpSerializable {
         }
 
         /**
-         * Response value
+         * Required - Response value
          *
          * <p>API name: {@code _value_body}
+         *
+         * <p>Adds a value to <code>valueBody</code> using a builder lambda.
          */
         public final Builder valueBody(
                 Function<AliasesRecord.Builder, ObjectBuilder<AliasesRecord>> fn) {

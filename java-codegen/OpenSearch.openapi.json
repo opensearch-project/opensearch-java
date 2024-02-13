@@ -25828,7 +25828,10 @@
         },
         "required": [
           "type"
-        ]
+        ],
+        "additionalProperties": {
+          "description": "Additional details about the error"
+        }
       },
       "_global.search._types:Profile": {
         "type": "object",

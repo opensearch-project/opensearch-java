@@ -61,6 +61,8 @@ public class NodeStatistics implements JsonpSerializable {
 
     private final float total;
 
+    // ---------------------------------------------------------------------------------------------
+
     private NodeStatistics(Builder builder) {
         this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
         this.failures = ApiTypeHelper.unmodifiable(builder.failures);
@@ -73,8 +75,8 @@ public class NodeStatistics implements JsonpSerializable {
         return fn.apply(new Builder()).build();
     }
     /**
-     * Number of nodes that rejected the request or failed to respond. If this value is not 0, a
-     * reason for the rejection or failure is included in the response.
+     * Required - Number of nodes that rejected the request or failed to respond. If this value is
+     * not 0, a reason for the rejection or failure is included in the response.
      *
      * <p>API name: {@code failed}
      */
@@ -88,7 +90,7 @@ public class NodeStatistics implements JsonpSerializable {
     }
 
     /**
-     * Number of nodes that responded successfully to the request.
+     * Required - Number of nodes that responded successfully to the request.
      *
      * <p>API name: {@code successful}
      */
@@ -97,7 +99,7 @@ public class NodeStatistics implements JsonpSerializable {
     }
 
     /**
-     * Total number of nodes selected by the request.
+     * Required - Total number of nodes selected by the request.
      *
      * <p>API name: {@code total}
      */
@@ -105,6 +107,7 @@ public class NodeStatistics implements JsonpSerializable {
         return this.total;
     }
 
+    /** Serialize this object to JSON. */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -113,23 +116,29 @@ public class NodeStatistics implements JsonpSerializable {
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey("failed");
+
         generator.write(this.failed);
 
         if (ApiTypeHelper.isDefined(this.failures)) {
             generator.writeKey("failures");
             generator.writeStartArray();
             for (ErrorCause item0 : this.failures) {
+
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
         }
 
         generator.writeKey("successful");
+
         generator.write(this.successful);
 
         generator.writeKey("total");
+
         generator.write(this.total);
     }
+    // ---------------------------------------------------------------------------------------------
+
     /** Builder for {@link NodeStatistics}. */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeStatistics> {
         @Nullable private Float failed;
@@ -138,8 +147,8 @@ public class NodeStatistics implements JsonpSerializable {
         @Nullable private Float total;
 
         /**
-         * Number of nodes that rejected the request or failed to respond. If this value is not 0, a
-         * reason for the rejection or failure is included in the response.
+         * Required - Number of nodes that rejected the request or failed to respond. If this value
+         * is not 0, a reason for the rejection or failure is included in the response.
          *
          * <p>API name: {@code failed}
          */
@@ -168,13 +177,17 @@ public class NodeStatistics implements JsonpSerializable {
             return this;
         }
 
-        /** API name: {@code failures} */
+        /**
+         * API name: {@code failures}
+         *
+         * <p>Adds a value to <code>failures</code> using a builder lambda.
+         */
         public final Builder failures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return failures(fn.apply(new ErrorCause.Builder()).build());
         }
 
         /**
-         * Number of nodes that responded successfully to the request.
+         * Required - Number of nodes that responded successfully to the request.
          *
          * <p>API name: {@code successful}
          */
@@ -184,7 +197,7 @@ public class NodeStatistics implements JsonpSerializable {
         }
 
         /**
-         * Total number of nodes selected by the request.
+         * Required - Total number of nodes selected by the request.
          *
          * <p>API name: {@code total}
          */
@@ -204,7 +217,9 @@ public class NodeStatistics implements JsonpSerializable {
             return new NodeStatistics(this);
         }
     }
+    // ---------------------------------------------------------------------------------------------
 
+    /** Json deserializer for {@link NodeStatistics} */
     public static final JsonpDeserializer<NodeStatistics> _DESERIALIZER =
             ObjectBuilderDeserializer.lazy(
                     Builder::new, NodeStatistics::setupNodeStatisticsDeserializer);

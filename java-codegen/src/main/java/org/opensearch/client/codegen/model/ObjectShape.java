@@ -8,16 +8,12 @@
 
 package org.opensearch.client.codegen.model;
 
-import com.samskivert.mustache.Mustache;
 import io.swagger.v3.oas.models.media.Schema;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 public class ObjectShape extends Shape {
     public static ObjectShape from(Context ctx, String name, Schema<?> schema) {
@@ -26,6 +22,7 @@ public class ObjectShape extends Shape {
 
     protected Type extendsType;
     protected final Map<String, Field> bodyFields = new TreeMap<>();
+    protected Field additionalPropertiesField;
 
     protected ObjectShape(Context ctx, String className, Schema<?> schema) {
         super(ctx.namespace, className);
@@ -36,14 +33,16 @@ public class ObjectShape extends Shape {
             this.extendsType = null;
         }
         Field.allFrom(ctx, schema).forEach(f -> this.bodyFields.put(f.name(), f));
+        if (schema.getAdditionalProperties() instanceof Schema<?>) {
+            var valueSchema = (Schema<?>) schema.getAdditionalProperties();
+            var valueType = ctx.typeMapper.mapType(valueSchema);
+            this.additionalPropertiesField = new Field("metadata", Types.Java.Util.Map(Types.Java.Lang.String, valueType), false, valueSchema.getDescription());
+        }
     }
 
-    protected ObjectShape(Namespace parent, String className, Field... bodyFields) {
+    protected ObjectShape(Namespace parent, String className) {
         super(parent, className);
         this.extendsType = null;
-        for (Field f : bodyFields) {
-            this.bodyFields.put(f.name(), f);
-        }
     }
 
     public Collection<Field> bodyFields() {
@@ -51,6 +50,11 @@ public class ObjectShape extends Shape {
     }
 
     public Collection<Field> fields() {
+        if (additionalPropertiesField != null) {
+            var fields = new ArrayList<>(bodyFields());
+            fields.add(additionalPropertiesField);
+            return fields;
+        }
         return bodyFields();
     }
 

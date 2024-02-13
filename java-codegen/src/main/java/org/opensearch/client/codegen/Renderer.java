@@ -23,6 +23,7 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.MissingResourceException;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import org.apache.commons.text.StringEscapeUtils;
@@ -109,27 +110,35 @@ public class Renderer {
     public static Mustache.Lambda templateLambda(String templateName, Function<Template.Fragment, Object> contextGetter) {
         return (frag, out) -> {
             try {
-                Context.retrieveFrom(frag).getRenderer().render(templateName, contextGetter.apply(frag), out);
+                findContext(frag, Context.class)
+                        .orElseThrow()
+                        .getRenderer()
+                        .render(templateName, contextGetter.apply(frag), out);
             } catch (RenderException e) {
                 throw new RuntimeException(e);
             }
         };
     }
 
-    private static class Context implements Mustache.CustomContext {
-        public static Context retrieveFrom(Template.Fragment fragment) {
-            var i = 0;
-            while (true) {
-                var ctx = fragment.context(i++);
-                if (ctx instanceof Context) {
-                    return (Context) ctx;
-                }
-                if (ctx == null) {
-                    throw new IllegalArgumentException("No Renderer.Context found in fragment");
-                }
+    @SuppressWarnings("unchecked")
+    public static <T> Optional<T> findContext(Template.Fragment fragment, Class<T> clazz) {
+        var i = 0;
+        while (true) {
+            Object ctx = null;
+
+            try {
+                ctx = fragment.context(i++);
+            } catch (NullPointerException ignored) {}
+
+            if (ctx == null) return Optional.empty();
+
+            if (clazz.isAssignableFrom(ctx.getClass())) {
+                return Optional.of((T) ctx);
             }
         }
+    }
 
+    private static class Context implements Mustache.CustomContext {
         private final Renderer renderer;
 
         public Context(Renderer renderer) {

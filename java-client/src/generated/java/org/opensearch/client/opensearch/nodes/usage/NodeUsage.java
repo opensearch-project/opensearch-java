@@ -62,6 +62,8 @@ public class NodeUsage implements JsonpSerializable {
 
     private final JsonData timestamp;
 
+    // ---------------------------------------------------------------------------------------------
+
     private NodeUsage(Builder builder) {
         this.aggregations =
                 ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
@@ -94,6 +96,7 @@ public class NodeUsage implements JsonpSerializable {
         return this.timestamp;
     }
 
+    /** Serialize this object to JSON. */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -108,6 +111,7 @@ public class NodeUsage implements JsonpSerializable {
             generator.writeStartObject();
             for (Map.Entry<String, JsonData> item1 : item0.getValue().entrySet()) {
                 generator.writeKey(item1.getKey());
+
                 item1.getValue().serialize(generator, mapper);
             }
             generator.writeEnd();
@@ -118,16 +122,21 @@ public class NodeUsage implements JsonpSerializable {
         generator.writeStartObject();
         for (Map.Entry<String, Float> item0 : this.restActions.entrySet()) {
             generator.writeKey(item0.getKey());
+
             generator.write(item0.getValue());
         }
         generator.writeEnd();
 
         generator.writeKey("since");
+
         this.since.serialize(generator, mapper);
 
         generator.writeKey("timestamp");
+
         this.timestamp.serialize(generator, mapper);
     }
+    // ---------------------------------------------------------------------------------------------
+
     /** Builder for {@link NodeUsage}. */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeUsage> {
         @Nullable private Map<String, Map<String, JsonData>> aggregations;
@@ -182,7 +191,9 @@ public class NodeUsage implements JsonpSerializable {
             return new NodeUsage(this);
         }
     }
+    // ---------------------------------------------------------------------------------------------
 
+    /** Json deserializer for {@link NodeUsage} */
     public static final JsonpDeserializer<NodeUsage> _DESERIALIZER =
             ObjectBuilderDeserializer.lazy(Builder::new, NodeUsage::setupNodeUsageDeserializer);
 
