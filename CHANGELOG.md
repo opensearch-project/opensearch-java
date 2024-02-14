@@ -13,9 +13,23 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
-- Fix PutTemplateRequest field deserialization ([#723](https://github.com/opensearch-project/opensearch-java/pull/723))
 
 ### Security
+
+## [2.8.3] - 02/12/2024
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fix PutTemplateRequest field deserialization ([#723](https://github.com/opensearch-project/opensearch-java/pull/723))
+- Fix InnerHits to no longer enforce the nullable Index field when converting to Hit. ([#838](https://github.com/opensearch-project/opensearch-java/pull/838))
 
 ## [2.8.2] - 02/07/2024
 ### Added
@@ -255,7 +269,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.2...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.3...2.x
+[2.8.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.2...v2.8.3
 [2.8.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.1...v2.8.2
 [2.8.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.0...v2.8.1
 [2.8.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.7.0...v2.8.0
