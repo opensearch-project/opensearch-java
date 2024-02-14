@@ -64,6 +64,7 @@ public class NodesResponseBase implements JsonpSerializable {
             Function<NodesResponseBase.Builder, ObjectBuilder<NodesResponseBase>> fn) {
         return fn.apply(new Builder()).build();
     }
+
     /** API name: {@code _nodes} */
     @Nullable
     public final NodeStatistics nodes() {
@@ -80,10 +81,10 @@ public class NodesResponseBase implements JsonpSerializable {
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.nodes != null) {
             generator.writeKey("_nodes");
-
             this.nodes.serialize(generator, mapper);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /** Builder for {@link NodesResponseBase}. */

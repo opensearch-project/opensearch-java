@@ -78,6 +78,7 @@ public class AliasesRecord implements JsonpSerializable {
             Function<AliasesRecord.Builder, ObjectBuilder<AliasesRecord>> fn) {
         return fn.apply(new Builder()).build();
     }
+
     /**
      * alias name
      *
@@ -144,40 +145,35 @@ public class AliasesRecord implements JsonpSerializable {
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.alias != null) {
             generator.writeKey("alias");
-
             generator.write(this.alias);
         }
 
         if (this.filter != null) {
             generator.writeKey("filter");
-
             generator.write(this.filter);
         }
 
         if (this.index != null) {
             generator.writeKey("index");
-
             generator.write(this.index);
         }
 
         if (this.isWriteIndex != null) {
             generator.writeKey("is_write_index");
-
             generator.write(this.isWriteIndex);
         }
 
         if (this.routingIndex != null) {
             generator.writeKey("routing.index");
-
             generator.write(this.routingIndex);
         }
 
         if (this.routingSearch != null) {
             generator.writeKey("routing.search");
-
             generator.write(this.routingSearch);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /** Builder for {@link AliasesRecord}. */

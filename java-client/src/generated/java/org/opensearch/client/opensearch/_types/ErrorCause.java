@@ -85,6 +85,7 @@ public class ErrorCause implements JsonpSerializable {
     public static ErrorCause of(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
         return fn.apply(new Builder()).build();
     }
+
     /** API name: {@code caused_by} */
     @Nullable
     public final ErrorCause causedBy() {
@@ -150,19 +151,16 @@ public class ErrorCause implements JsonpSerializable {
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
             generator.writeKey(item0.getKey());
-
             item0.getValue().serialize(generator, mapper);
         }
 
         if (this.causedBy != null) {
             generator.writeKey("caused_by");
-
             this.causedBy.serialize(generator, mapper);
         }
 
         if (this.reason != null) {
             generator.writeKey("reason");
-
             generator.write(this.reason);
         }
 
@@ -170,7 +168,6 @@ public class ErrorCause implements JsonpSerializable {
             generator.writeKey("root_cause");
             generator.writeStartArray();
             for (ErrorCause item0 : this.rootCause) {
-
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
@@ -178,7 +175,6 @@ public class ErrorCause implements JsonpSerializable {
 
         if (this.stackTrace != null) {
             generator.writeKey("stack_trace");
-
             generator.write(this.stackTrace);
         }
 
@@ -186,16 +182,15 @@ public class ErrorCause implements JsonpSerializable {
             generator.writeKey("suppressed");
             generator.writeStartArray();
             for (ErrorCause item0 : this.suppressed) {
-
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
         }
 
         generator.writeKey("type");
-
         generator.write(this.type);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /** Builder for {@link ErrorCause}. */

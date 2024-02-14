@@ -74,7 +74,6 @@ public class AliasesResponse implements JsonpSerializable {
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartArray();
         for (AliasesRecord item0 : this.valueBody) {
-
             item0.serialize(generator, mapper);
         }
         generator.writeEnd();

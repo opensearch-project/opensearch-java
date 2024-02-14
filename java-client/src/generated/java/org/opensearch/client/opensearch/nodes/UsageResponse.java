@@ -70,6 +70,7 @@ public class UsageResponse extends NodesResponseBase implements JsonpSerializabl
             Function<UsageResponse.Builder, ObjectBuilder<UsageResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
+
     /** API name: {@code cluster_name} */
     public final String clusterName() {
         return this.clusterName;
@@ -89,18 +90,17 @@ public class UsageResponse extends NodesResponseBase implements JsonpSerializabl
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey("cluster_name");
-
         generator.write(this.clusterName);
 
         generator.writeKey("nodes");
         generator.writeStartObject();
         for (Map.Entry<String, NodeUsage> item0 : this.nodes.entrySet()) {
             generator.writeKey(item0.getKey());
-
             item0.getValue().serialize(generator, mapper);
         }
         generator.writeEnd();
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /** Builder for {@link UsageResponse}. */

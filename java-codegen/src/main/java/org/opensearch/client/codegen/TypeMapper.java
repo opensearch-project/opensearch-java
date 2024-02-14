@@ -105,24 +105,19 @@ public class TypeMapper {
             case TYPE_BOOLEAN:
                 return Types.Primitive.Boolean;
             case TYPE_INTEGER:
+            case TYPE_NUMBER:
                 if (format == null) format = FORMAT_INT32;
                 switch (format) {
                     case FORMAT_INT32:
                         return Types.Primitive.Int;
                     case FORMAT_INT64:
                         return Types.Primitive.Long;
-                    default:
-                        throw new UnsupportedOperationException("Can not get type name for integer with format: " + format);
-                }
-            case TYPE_NUMBER:
-                if (format == null) format = FORMAT_FLOAT;
-                switch (format) {
                     case FORMAT_FLOAT:
                         return Types.Primitive.Float;
                     case FORMAT_DOUBLE:
                         return Types.Primitive.Double;
                     default:
-                        throw new UnsupportedOperationException("Can not get type name for number with format: " + format);
+                        throw new UnsupportedOperationException("Can not get type name for integer/number with format: " + format);
                 }
             case TYPE_TIME:
                 return Types.Client.OpenSearch._Types.Time;

@@ -56,7 +56,7 @@ public class NodeUsage implements JsonpSerializable {
 
     private final Map<String, Map<String, JsonData>> aggregations;
 
-    private final Map<String, Float> restActions;
+    private final Map<String, Integer> restActions;
 
     private final JsonData since;
 
@@ -76,13 +76,14 @@ public class NodeUsage implements JsonpSerializable {
     public static NodeUsage of(Function<NodeUsage.Builder, ObjectBuilder<NodeUsage>> fn) {
         return fn.apply(new Builder()).build();
     }
+
     /** API name: {@code aggregations} */
     public final Map<String, Map<String, JsonData>> aggregations() {
         return this.aggregations;
     }
 
     /** API name: {@code rest_actions} */
-    public final Map<String, Float> restActions() {
+    public final Map<String, Integer> restActions() {
         return this.restActions;
     }
 
@@ -111,7 +112,6 @@ public class NodeUsage implements JsonpSerializable {
             generator.writeStartObject();
             for (Map.Entry<String, JsonData> item1 : item0.getValue().entrySet()) {
                 generator.writeKey(item1.getKey());
-
                 item1.getValue().serialize(generator, mapper);
             }
             generator.writeEnd();
@@ -120,27 +120,25 @@ public class NodeUsage implements JsonpSerializable {
 
         generator.writeKey("rest_actions");
         generator.writeStartObject();
-        for (Map.Entry<String, Float> item0 : this.restActions.entrySet()) {
+        for (Map.Entry<String, Integer> item0 : this.restActions.entrySet()) {
             generator.writeKey(item0.getKey());
-
             generator.write(item0.getValue());
         }
         generator.writeEnd();
 
         generator.writeKey("since");
-
         this.since.serialize(generator, mapper);
 
         generator.writeKey("timestamp");
-
         this.timestamp.serialize(generator, mapper);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /** Builder for {@link NodeUsage}. */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeUsage> {
         @Nullable private Map<String, Map<String, JsonData>> aggregations;
-        @Nullable private Map<String, Float> restActions;
+        @Nullable private Map<String, Integer> restActions;
         @Nullable private JsonData since;
         @Nullable private JsonData timestamp;
 
@@ -157,13 +155,13 @@ public class NodeUsage implements JsonpSerializable {
         }
 
         /** API name: {@code rest_actions} */
-        public final Builder restActions(Map<String, Float> map) {
+        public final Builder restActions(Map<String, Integer> map) {
             this.restActions = _mapPutAll(this.restActions, map);
             return this;
         }
 
         /** API name: {@code rest_actions} */
-        public final Builder restActions(String key, Float value) {
+        public final Builder restActions(String key, Integer value) {
             this.restActions = _mapPut(this.restActions, key, value);
             return this;
         }
@@ -205,7 +203,7 @@ public class NodeUsage implements JsonpSerializable {
                 "aggregations");
         op.add(
                 Builder::restActions,
-                JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.floatDeserializer()),
+                JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
                 "rest_actions");
         op.add(Builder::since, JsonData._DESERIALIZER, "since");
         op.add(Builder::timestamp, JsonData._DESERIALIZER, "timestamp");
