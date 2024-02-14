@@ -53,13 +53,13 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @JsonpDeserializable
 public class NodeStatistics implements JsonpSerializable {
 
-    private final float failed;
+    private final int failed;
 
     private final List<ErrorCause> failures;
 
-    private final float successful;
+    private final int successful;
 
-    private final float total;
+    private final int total;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -74,13 +74,14 @@ public class NodeStatistics implements JsonpSerializable {
             Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
         return fn.apply(new Builder()).build();
     }
+
     /**
      * Required - Number of nodes that rejected the request or failed to respond. If this value is
      * not 0, a reason for the rejection or failure is included in the response.
      *
      * <p>API name: {@code failed}
      */
-    public final float failed() {
+    public final int failed() {
         return this.failed;
     }
 
@@ -94,7 +95,7 @@ public class NodeStatistics implements JsonpSerializable {
      *
      * <p>API name: {@code successful}
      */
-    public final float successful() {
+    public final int successful() {
         return this.successful;
     }
 
@@ -103,7 +104,7 @@ public class NodeStatistics implements JsonpSerializable {
      *
      * <p>API name: {@code total}
      */
-    public final float total() {
+    public final int total() {
         return this.total;
     }
 
@@ -116,35 +117,32 @@ public class NodeStatistics implements JsonpSerializable {
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey("failed");
-
         generator.write(this.failed);
 
         if (ApiTypeHelper.isDefined(this.failures)) {
             generator.writeKey("failures");
             generator.writeStartArray();
             for (ErrorCause item0 : this.failures) {
-
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
         }
 
         generator.writeKey("successful");
-
         generator.write(this.successful);
 
         generator.writeKey("total");
-
         generator.write(this.total);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /** Builder for {@link NodeStatistics}. */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeStatistics> {
-        @Nullable private Float failed;
+        @Nullable private Integer failed;
         @Nullable private List<ErrorCause> failures;
-        @Nullable private Float successful;
-        @Nullable private Float total;
+        @Nullable private Integer successful;
+        @Nullable private Integer total;
 
         /**
          * Required - Number of nodes that rejected the request or failed to respond. If this value
@@ -152,7 +150,7 @@ public class NodeStatistics implements JsonpSerializable {
          *
          * <p>API name: {@code failed}
          */
-        public final Builder failed(float value) {
+        public final Builder failed(int value) {
             this.failed = value;
             return this;
         }
@@ -191,7 +189,7 @@ public class NodeStatistics implements JsonpSerializable {
          *
          * <p>API name: {@code successful}
          */
-        public final Builder successful(float value) {
+        public final Builder successful(int value) {
             this.successful = value;
             return this;
         }
@@ -201,7 +199,7 @@ public class NodeStatistics implements JsonpSerializable {
          *
          * <p>API name: {@code total}
          */
-        public final Builder total(float value) {
+        public final Builder total(int value) {
             this.total = value;
             return this;
         }
@@ -226,12 +224,12 @@ public class NodeStatistics implements JsonpSerializable {
 
     protected static void setupNodeStatisticsDeserializer(
             ObjectDeserializer<NodeStatistics.Builder> op) {
-        op.add(Builder::failed, JsonpDeserializer.floatDeserializer(), "failed");
+        op.add(Builder::failed, JsonpDeserializer.integerDeserializer(), "failed");
         op.add(
                 Builder::failures,
                 JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER),
                 "failures");
-        op.add(Builder::successful, JsonpDeserializer.floatDeserializer(), "successful");
-        op.add(Builder::total, JsonpDeserializer.floatDeserializer(), "total");
+        op.add(Builder::successful, JsonpDeserializer.integerDeserializer(), "successful");
+        op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
     }
 }
