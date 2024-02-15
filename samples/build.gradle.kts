@@ -24,6 +24,7 @@ dependencies {
     implementation("org.apache.logging.log4j", "log4j-slf4j2-impl","[2.17.1,3.0)")
     implementation("commons-logging", "commons-logging", "1.2")
     implementation("com.fasterxml.jackson.core", "jackson-databind", "2.15.2")
+    implementation("cglib", "cglib", "3.3.0")
 }
 
 spotless {

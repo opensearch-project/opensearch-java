@@ -21,10 +21,12 @@ import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.ssl.SSLContextBuilder;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.OpenSearchClient;
+import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.httpclient5.ApacheHttpClient5TransportBuilder;
 
 public class SampleClient {
-    public static OpenSearchClient create() throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+
+    public static OpenSearchTransport createTransport() throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         var env = System.getenv();
         var https = Boolean.parseBoolean(env.getOrDefault("HTTPS", "true"));
         var hostname = env.getOrDefault("HOST", "localhost");
@@ -36,7 +38,7 @@ public class SampleClient {
 
         final var sslContext = SSLContextBuilder.create().loadTrustMaterial(null, (chains, authType) -> true).build();
 
-        final var transport = ApacheHttpClient5TransportBuilder.builder(hosts)
+        return ApacheHttpClient5TransportBuilder.builder(hosts)
             .setMapper(new JacksonJsonpMapper())
             .setHttpClientConfigCallback(httpClientBuilder -> {
                 final var credentialsProvider = new BasicCredentialsProvider();
@@ -55,6 +57,9 @@ public class SampleClient {
                 return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider).setConnectionManager(connectionManager);
             })
             .build();
-        return new OpenSearchClient(transport);
+    }
+
+    public static OpenSearchClient create() throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+        return new OpenSearchClient(createTransport());
     }
 }

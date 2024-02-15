@@ -18,7 +18,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
 - Expose HTTP status code through `ResponseException#status` ([#756](https://github.com/opensearch-project/opensearch-java/pull/756))
 - Added missing WrapperQuery accessors and builder methods ([#806](https://github.com/opensearch-project/opensearch-java/pull/806))
-
+- Added a sample for creating OpenSearchClient via dynamic proxy ([#847](https://github.com/opensearch-project/opensearch-java/pull/847))
 
 ### Dependencies
 
