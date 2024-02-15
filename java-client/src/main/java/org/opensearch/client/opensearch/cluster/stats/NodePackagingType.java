@@ -50,8 +50,6 @@ import org.opensearch.client.util.ObjectBuilderBase;
 public class NodePackagingType implements JsonpSerializable {
     private final int count;
 
-    private final String flavor;
-
     private final String type;
 
     // ---------------------------------------------------------------------------------------------
@@ -59,7 +57,6 @@ public class NodePackagingType implements JsonpSerializable {
     private NodePackagingType(Builder builder) {
 
         this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-        this.flavor = ApiTypeHelper.requireNonNull(builder.flavor, this, "flavor");
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
     }
@@ -73,13 +70,6 @@ public class NodePackagingType implements JsonpSerializable {
      */
     public final int count() {
         return this.count;
-    }
-
-    /**
-     * Required - API name: {@code flavor}
-     */
-    public final String flavor() {
-        return this.flavor;
     }
 
     /**
@@ -103,9 +93,6 @@ public class NodePackagingType implements JsonpSerializable {
         generator.writeKey("count");
         generator.write(this.count);
 
-        generator.writeKey("flavor");
-        generator.write(this.flavor);
-
         generator.writeKey("type");
         generator.write(this.type);
 
@@ -120,8 +107,6 @@ public class NodePackagingType implements JsonpSerializable {
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodePackagingType> {
         private Integer count;
 
-        private String flavor;
-
         private String type;
 
         /**
@@ -129,14 +114,6 @@ public class NodePackagingType implements JsonpSerializable {
          */
         public final Builder count(int value) {
             this.count = value;
-            return this;
-        }
-
-        /**
-         * Required - API name: {@code flavor}
-         */
-        public final Builder flavor(String value) {
-            this.flavor = value;
             return this;
         }
 
@@ -174,7 +151,6 @@ public class NodePackagingType implements JsonpSerializable {
     protected static void setupNodePackagingTypeDeserializer(ObjectDeserializer<NodePackagingType.Builder> op) {
 
         op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
-        op.add(Builder::flavor, JsonpDeserializer.stringDeserializer(), "flavor");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
     }
