@@ -36,6 +36,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ## [Unreleased 2.x]
 
 ### Added
+- Add search role type for nodes in cluster stats ([#848](https://github.com/opensearch-project/opensearch-java/pull/848))
 
 ### Dependencies
 
@@ -48,6 +49,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
+- Fix ClusterStatsResponse field deserialization ([#848](https://github.com/opensearch-project/opensearch-java/pull/848))
 
 ### Security
 
