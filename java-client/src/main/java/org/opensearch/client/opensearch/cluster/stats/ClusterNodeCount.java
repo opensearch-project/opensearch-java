@@ -55,7 +55,10 @@ public class ClusterNodeCount implements JsonpSerializable {
 
     private final int ingest;
 
-    private final int clusterManager;
+    @Deprecated
+    private final Integer master;
+
+    private final Integer clusterManager;
 
     private final int total;
 
@@ -71,7 +74,8 @@ public class ClusterNodeCount implements JsonpSerializable {
         this.coordinatingOnly = ApiTypeHelper.requireNonNull(builder.coordinatingOnly, this, "coordinatingOnly");
         this.data = ApiTypeHelper.requireNonNull(builder.data, this, "data");
         this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest");
-        this.clusterManager = ApiTypeHelper.requireNonNull(builder.clusterManager, this, "clusterManager");
+        this.master = builder.master;
+        this.clusterManager = builder.clusterManager;
         this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
         this.remoteClusterClient = ApiTypeHelper.requireNonNull(builder.remoteClusterClient, this, "remoteClusterClient");
         this.search = builder.search;
@@ -103,7 +107,15 @@ public class ClusterNodeCount implements JsonpSerializable {
     }
 
     /**
-     * Required - API name: {@code clusterManager}
+     * API name: {@code master}
+     */
+    @Deprecated
+    public final int master() {
+        return this.master;
+    }
+
+    /**
+     * API name: {@code clusterManager}
      */
     public final int clusterManager() {
         return this.clusterManager;
@@ -151,8 +163,15 @@ public class ClusterNodeCount implements JsonpSerializable {
         generator.writeKey("ingest");
         generator.write(this.ingest);
 
-        generator.writeKey("cluster_manager");
-        generator.write(this.clusterManager);
+        if (this.master != null) {
+            generator.writeKey("master");
+            generator.write(this.master);
+        }
+
+        if (this.clusterManager != null) {
+            generator.writeKey("cluster_manager");
+            generator.write(this.clusterManager);
+        }
 
         generator.writeKey("total");
         generator.write(this.total);
@@ -179,6 +198,8 @@ public class ClusterNodeCount implements JsonpSerializable {
         private Integer data;
 
         private Integer ingest;
+
+        private Integer master;
 
         private Integer clusterManager;
 
@@ -213,7 +234,16 @@ public class ClusterNodeCount implements JsonpSerializable {
         }
 
         /**
-         * Required - API name: {@code clusterManager}
+         * API name: {@code master}
+         */
+        @Deprecated
+        public final Builder master(int value) {
+            this.master = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code clusterManager}
          */
         public final Builder clusterManager(int value) {
             this.clusterManager = value;
@@ -273,6 +303,7 @@ public class ClusterNodeCount implements JsonpSerializable {
         op.add(Builder::coordinatingOnly, JsonpDeserializer.integerDeserializer(), "coordinating_only");
         op.add(Builder::data, JsonpDeserializer.integerDeserializer(), "data");
         op.add(Builder::ingest, JsonpDeserializer.integerDeserializer(), "ingest");
+        op.add(Builder::master, JsonpDeserializer.integerDeserializer(), "master");
         op.add(Builder::clusterManager, JsonpDeserializer.integerDeserializer(), "cluster_manager");
         op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
         op.add(Builder::remoteClusterClient, JsonpDeserializer.integerDeserializer(), "remote_cluster_client");
