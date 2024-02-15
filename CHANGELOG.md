@@ -3,6 +3,21 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.8.4] - 02/15/2024
+### Added
 - Add search role type for nodes in cluster stats ([#848](https://github.com/opensearch-project/opensearch-java/pull/848))
 
 ### Dependencies
@@ -15,8 +30,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fix ClusterStatsResponse field deserialization ([#848](https://github.com/opensearch-project/opensearch-java/pull/848))
-
-### Security
 
 ## [2.8.3] - 02/12/2024
 ### Added
@@ -271,7 +284,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.3...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.4...2.x
+[2.8.4]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.3...v2.8.4
 [2.8.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.2...v2.8.3
 [2.8.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.1...v2.8.2
 [2.8.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.0...v2.8.1
