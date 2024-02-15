@@ -21,6 +21,8 @@ import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.HealthStatus;
 import org.opensearch.client.opensearch._types.Level;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch.cluster.ClusterStatsRequest;
+import org.opensearch.client.opensearch.cluster.ClusterStatsResponse;
 import org.opensearch.client.opensearch.cluster.GetClusterSettingsRequest;
 import org.opensearch.client.opensearch.cluster.GetClusterSettingsResponse;
 import org.opensearch.client.opensearch.cluster.HealthRequest;
@@ -298,5 +300,16 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         } catch (ResponseException e) {
             assertNotNull(e);
         }
+    }
+
+    public void testClusterStats() throws IOException {
+        OpenSearchClient openSearchClient = javaClient();
+        javaClient().indices().create(b -> b.index("index"));
+        ClusterStatsRequest request = new ClusterStatsRequest.Builder().build();
+        ClusterStatsResponse response = openSearchClient.cluster().stats(request);
+        assertNotNull(response);
+        assertNotNull(response.clusterName());
+        assertNotEquals(response.nodes().count().total(), 0);
+        assertNotEquals(response.indices().count(), 0);
     }
 }
