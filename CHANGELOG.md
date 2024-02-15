@@ -295,6 +295,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
 [Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.0...2.x
+- Add support for Hybrid query type ([]())
 [2.8.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.7.0...v2.8.0
 [2.7.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.6.0...v2.7.0
 [2.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...v2.6.0
