@@ -40,9 +40,7 @@ import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -62,15 +60,26 @@ public class OpenSearchNodesClient extends ApiClient<OpenSearchTransport, OpenSe
         return new OpenSearchNodesClient(this.transport, transportOptions);
     }
 
-    public UsageResponse usage(UsageRequest request) throws IOException, OpenSearchException {
-        JsonEndpoint<UsageRequest, UsageResponse, ErrorResponse> endpoint =
-                (JsonEndpoint<UsageRequest, UsageResponse, ErrorResponse>) UsageRequest._ENDPOINT;
+    // ----- Endpoint: nodes.usage
 
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    /** Returns low-level information about REST actions usage on nodes. */
+    public UsageResponse usage(UsageRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(
+                request, UsageRequest._ENDPOINT, this.transportOptions);
     }
 
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     *
+     * @param fn a function that initializes a builder to create the {@link UsageRequest}
+     */
     public final UsageResponse usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
             throws IOException, OpenSearchException {
         return usage(fn.apply(new UsageRequest.Builder()).build());
+    }
+
+    /** Returns low-level information about REST actions usage on nodes. */
+    public UsageResponse usage() throws IOException, OpenSearchException {
+        return usage(new UsageRequest.Builder().build());
     }
 }

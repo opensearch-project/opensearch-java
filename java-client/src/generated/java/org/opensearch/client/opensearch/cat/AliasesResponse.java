@@ -54,6 +54,8 @@ public class AliasesResponse implements JsonpSerializable {
 
     private final List<AliasesRecord> valueBody;
 
+    // ---------------------------------------------------------------------------------------------
+
     private AliasesResponse(Builder builder) {
         this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
     }
@@ -62,8 +64,9 @@ public class AliasesResponse implements JsonpSerializable {
             Function<AliasesResponse.Builder, ObjectBuilder<AliasesResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
+
     /**
-     * Required - Response value
+     * Required - Response value.
      *
      * <p>API name: {@code _value_body}
      */
@@ -71,6 +74,7 @@ public class AliasesResponse implements JsonpSerializable {
         return this.valueBody;
     }
 
+    /** Serialize this value to JSON. */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartArray();
         for (AliasesRecord item0 : this.valueBody) {
@@ -79,13 +83,15 @@ public class AliasesResponse implements JsonpSerializable {
         generator.writeEnd();
     }
 
+    // ---------------------------------------------------------------------------------------------
+
     /** Builder for {@link AliasesResponse}. */
     public static class Builder extends ObjectBuilderBase
             implements ObjectBuilder<AliasesResponse> {
         @Nullable private List<AliasesRecord> valueBody;
 
         /**
-         * Required - Response value
+         * Required - Response value.
          *
          * <p>API name: {@code _value_body}
          *
@@ -97,7 +103,7 @@ public class AliasesResponse implements JsonpSerializable {
         }
 
         /**
-         * Required - Response value
+         * Required - Response value.
          *
          * <p>API name: {@code _value_body}
          *
@@ -109,7 +115,7 @@ public class AliasesResponse implements JsonpSerializable {
         }
 
         /**
-         * Required - Response value
+         * Required - Response value.
          *
          * <p>API name: {@code _value_body}
          *

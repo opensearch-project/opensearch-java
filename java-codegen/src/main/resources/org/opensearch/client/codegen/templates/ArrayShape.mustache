@@ -1,11 +1,20 @@
 {{>ObjectShape/ClassDeclaration}} {
     {{>ObjectShape/Fields}}
+
+    // ---------------------------------------------------------------------------------------------
+
     {{>ObjectShape/Constructor}}
+
     {{>ObjectShape/Getters}}
 
+    /**
+     * Serialize this value to JSON.
+     */
     public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
         {{#valueBodyField.type.serializer}}this.{{valueBodyField.name}}{{/valueBodyField.type.serializer}}
     }
+
+    // ---------------------------------------------------------------------------------------------
 
     {{>ObjectShape/Builder}}
 

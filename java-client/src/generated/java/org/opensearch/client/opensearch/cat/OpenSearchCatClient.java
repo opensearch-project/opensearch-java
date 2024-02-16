@@ -40,9 +40,7 @@ import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -62,17 +60,34 @@ public class OpenSearchCatClient extends ApiClient<OpenSearchTransport, OpenSear
         return new OpenSearchCatClient(this.transport, transportOptions);
     }
 
-    public AliasesResponse aliases(AliasesRequest request) throws IOException, OpenSearchException {
-        JsonEndpoint<AliasesRequest, AliasesResponse, ErrorResponse> endpoint =
-                (JsonEndpoint<AliasesRequest, AliasesResponse, ErrorResponse>)
-                        AliasesRequest._ENDPOINT;
+    // ----- Endpoint: cat.aliases
 
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    /**
+     * Shows information about currently configured aliases to indices including filter and routing
+     * infos.
+     */
+    public AliasesResponse aliases(AliasesRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(
+                request, AliasesRequest._ENDPOINT, this.transportOptions);
     }
 
+    /**
+     * Shows information about currently configured aliases to indices including filter and routing
+     * infos.
+     *
+     * @param fn a function that initializes a builder to create the {@link AliasesRequest}
+     */
     public final AliasesResponse aliases(
             Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn)
             throws IOException, OpenSearchException {
         return aliases(fn.apply(new AliasesRequest.Builder()).build());
+    }
+
+    /**
+     * Shows information about currently configured aliases to indices including filter and routing
+     * infos.
+     */
+    public AliasesResponse aliases() throws IOException, OpenSearchException {
+        return aliases(new AliasesRequest.Builder().build());
     }
 }

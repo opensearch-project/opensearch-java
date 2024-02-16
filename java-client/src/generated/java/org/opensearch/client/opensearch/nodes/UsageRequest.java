@@ -70,6 +70,7 @@ public class UsageRequest extends RequestBase {
     public static UsageRequest of(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
+
     /**
      * Limits the information returned to the specific metrics. A comma-separated list of the
      * following options: `_all`, `rest_actions`.

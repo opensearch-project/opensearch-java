@@ -245,6 +245,10 @@ public class RequestShape extends ObjectShape {
         return fields.values();
     }
 
+    public boolean hasAnyRequiredFields() {
+        return fields.values().stream().anyMatch(Field::required);
+    }
+
     public static String requestClassName(OperationGroup operationGroup) {
         return Strings.toPascalCase(operationGroup.name()) + "Request";
     }

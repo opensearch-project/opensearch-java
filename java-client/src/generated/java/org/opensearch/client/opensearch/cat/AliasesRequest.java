@@ -90,6 +90,7 @@ public class AliasesRequest extends RequestBase {
             Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
+
     /**
      * Whether to expand wildcard expression to concrete indices that are open, closed or both.
      *
