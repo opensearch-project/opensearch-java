@@ -38,7 +38,10 @@ import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
-import org.opensearch.client.opensearch._types.query_dsl.*;
+import org.opensearch.client.opensearch._types.query_dsl.KnnQuery;
+import org.opensearch.client.opensearch._types.query_dsl.NeuralQuery;
+import org.opensearch.client.opensearch._types.query_dsl.Query;
+import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.indices.GetMappingResponse;
 
