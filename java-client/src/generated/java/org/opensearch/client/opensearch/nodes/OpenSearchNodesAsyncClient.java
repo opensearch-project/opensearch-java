@@ -41,9 +41,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -65,17 +63,28 @@ public class OpenSearchNodesAsyncClient
         return new OpenSearchNodesAsyncClient(this.transport, transportOptions);
     }
 
+    // ----- Endpoint: nodes.usage
+
+    /** Returns low-level information about REST actions usage on nodes. */
     public CompletableFuture<UsageResponse> usage(UsageRequest request)
             throws IOException, OpenSearchException {
-        JsonEndpoint<UsageRequest, UsageResponse, ErrorResponse> endpoint =
-                (JsonEndpoint<UsageRequest, UsageResponse, ErrorResponse>) UsageRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(
+                request, UsageRequest._ENDPOINT, this.transportOptions);
     }
 
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     *
+     * @param fn a function that initializes a builder to create the {@link UsageRequest}
+     */
     public final CompletableFuture<UsageResponse> usage(
             Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
             throws IOException, OpenSearchException {
         return usage(fn.apply(new UsageRequest.Builder()).build());
+    }
+
+    /** Returns low-level information about REST actions usage on nodes. */
+    public CompletableFuture<UsageResponse> usage() throws IOException, OpenSearchException {
+        return usage(new UsageRequest.Builder().build());
     }
 }

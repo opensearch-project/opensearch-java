@@ -19,15 +19,33 @@ public class {{className}} extends {{TYPES.Client.ApiClient}}<{{TYPES.Client.Tra
 {{/children}}
 {{#operations}}
 
-    public {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{type}} request) throws {{TYPES.Java.Io.IOException}}, {{TYPES.Client.OpenSearch._Types.OpenSearchException}} {
-        {{TYPES.Client.Transport.JsonEndpoint}}<{{type}}, {{responseType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}> endpoint = ({{TYPES.Client.Transport.JsonEndpoint}}<{{type}}, {{responseType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}>) {{type}}._ENDPOINT;
+    // ----- Endpoint: {{operationGroup}}
 
-        return this.transport.performRequest{{#async}}Async{{/async}}(request, endpoint, this.transportOptions);
+    /**
+     * {{description}}
+     */
+    public {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{type}} request) throws {{TYPES.Java.Io.IOException}}, {{TYPES.Client.OpenSearch._Types.OpenSearchException}} {
+        return this.transport.performRequest{{#async}}Async{{/async}}(request, {{type}}._ENDPOINT, this.transportOptions);
     }
 
+    /**
+     * {{description}}
+     *
+     * @param fn a function that initializes a builder to create the {@link {{type}}}
+     */
     public final {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{builderFnType}} fn)
             throws IOException, OpenSearchException {
         return {{#camelCase}}{{id}}{{/camelCase}}(fn.apply(new {{type.builderType}}()).build());
     }
+    {{^hasAnyRequiredFields}}
+
+    /**
+     * {{description}}
+     */
+    public {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}()
+            throws IOException, OpenSearchException {
+        return {{#camelCase}}{{id}}{{/camelCase}}(new {{type.builderType}}().build());
+    }
+    {{/hasAnyRequiredFields}}
 {{/operations}}
 }

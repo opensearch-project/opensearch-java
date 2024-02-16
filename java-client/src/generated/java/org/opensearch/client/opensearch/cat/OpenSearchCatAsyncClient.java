@@ -41,9 +41,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -65,18 +63,35 @@ public class OpenSearchCatAsyncClient
         return new OpenSearchCatAsyncClient(this.transport, transportOptions);
     }
 
+    // ----- Endpoint: cat.aliases
+
+    /**
+     * Shows information about currently configured aliases to indices including filter and routing
+     * infos.
+     */
     public CompletableFuture<AliasesResponse> aliases(AliasesRequest request)
             throws IOException, OpenSearchException {
-        JsonEndpoint<AliasesRequest, AliasesResponse, ErrorResponse> endpoint =
-                (JsonEndpoint<AliasesRequest, AliasesResponse, ErrorResponse>)
-                        AliasesRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(
+                request, AliasesRequest._ENDPOINT, this.transportOptions);
     }
 
+    /**
+     * Shows information about currently configured aliases to indices including filter and routing
+     * infos.
+     *
+     * @param fn a function that initializes a builder to create the {@link AliasesRequest}
+     */
     public final CompletableFuture<AliasesResponse> aliases(
             Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn)
             throws IOException, OpenSearchException {
         return aliases(fn.apply(new AliasesRequest.Builder()).build());
+    }
+
+    /**
+     * Shows information about currently configured aliases to indices including filter and routing
+     * infos.
+     */
+    public CompletableFuture<AliasesResponse> aliases() throws IOException, OpenSearchException {
+        return aliases(new AliasesRequest.Builder().build());
     }
 }
