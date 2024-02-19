@@ -31,7 +31,7 @@
  */
 
 dependencies {
-    implementation("org.ajoberstar.grgit:grgit-gradle:5.2.1")
+    implementation("org.ajoberstar.grgit:grgit-gradle:5.2.2")
 }
 
 repositories {
