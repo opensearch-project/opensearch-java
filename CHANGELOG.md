@@ -11,6 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.3 to 5.2.4
 - Bumps `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.7.1 to 2.8.1
 - Bumps `org.hamcrest:hamcrest` from 2.1 to 2.2
+- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.2.1 to 5.2.2
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
