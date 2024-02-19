@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add search role type for nodes in cluster stats ([#848](https://github.com/opensearch-project/opensearch-java/pull/848))
 
 ### Dependencies
+- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.2.0 to 5.2.2
 
 ### Changed
 
