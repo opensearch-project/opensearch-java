@@ -31,6 +31,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
+- Fix missing properties on UpdateOperation ([#744](https://github.com/opensearch-project/opensearch-java/pull/744))
 
 ### Security
 
