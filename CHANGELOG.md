@@ -38,7 +38,6 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ## [Unreleased 2.x]
 
 ### Added
-- Add search role type for nodes in cluster stats ([#848](https://github.com/opensearch-project/opensearch-java/pull/848))
 - Add support for Hybrid query type ([#850](https://github.com/opensearch-project/opensearch-java/pull/850))
 
 ### Dependencies
@@ -46,6 +45,22 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Changed
 - Restore support for Java 8 ([#767](https://github.com/opensearch-project/opensearch-java/pull/767))
 - Add an integration test that runs on JDK-8 ([#795](https://github.com/opensearch-project/opensearch-java/pull/795))
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.8.4] - 02/20/2024
+### Added
+- Add search role type for nodes in cluster stats ([#848](https://github.com/opensearch-project/opensearch-java/pull/848))
+
+### Dependencies
+
+### Changed
 
 ### Deprecated
 
@@ -311,7 +326,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.3...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.4...2.x
+[2.8.4]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.3...v2.8.4
 [2.8.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.2...v2.8.3
 [2.8.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.1...v2.8.2
 [2.8.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.0...v2.8.1
