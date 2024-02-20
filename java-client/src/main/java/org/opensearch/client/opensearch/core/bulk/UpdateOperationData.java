@@ -25,6 +25,12 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
     private final Boolean docAsUpsert;
 
     @Nullable
+    private final Boolean scriptedUpsert;
+
+    @Nullable
+    private final Boolean detectNoop;
+
+    @Nullable
     private final TDocument upsert;
 
     @Nullable
@@ -36,6 +42,8 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
     private UpdateOperationData(Builder<TDocument> builder) {
         this.document = builder.document;
         this.docAsUpsert = builder.docAsUpsert;
+        this.scriptedUpsert = builder.scriptedUpsert;
+        this.detectNoop = builder.detectNoop;
         this.script = builder.script;
         this.upsert = builder.upsert;
         this.tDocumentSerializer = builder.tDocumentSerializer;
@@ -53,6 +61,16 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
         if (this.docAsUpsert != null) {
             generator.writeKey("doc_as_upsert");
             generator.write(this.docAsUpsert);
+        }
+
+        if (this.scriptedUpsert != null) {
+            generator.writeKey("scripted_upsert");
+            generator.write(scriptedUpsert);
+        }
+
+        if (this.detectNoop != null) {
+            generator.writeKey("detect_noop");
+            generator.write(detectNoop);
         }
 
         if (this.document != null) {
@@ -88,6 +106,12 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
         private Boolean docAsUpsert;
 
         @Nullable
+        private Boolean scriptedUpsert;
+
+        @Nullable
+        private Boolean detectNoop;
+
+        @Nullable
         private TDocument upsert;
 
         @Nullable
@@ -106,6 +130,22 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
          */
         public final Builder<TDocument> docAsUpsert(@Nullable Boolean value) {
             this.docAsUpsert = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code scripted_upsert}
+         */
+        public final Builder<TDocument> scriptedUpsert(@Nullable Boolean value) {
+            this.scriptedUpsert = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code detect_noop}
+         */
+        public final Builder<TDocument> detectNoop(@Nullable Boolean value) {
+            this.detectNoop = value;
             return this;
         }
 

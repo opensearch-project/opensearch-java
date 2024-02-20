@@ -393,6 +393,100 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         assertEquals(1337, getResponse.source().getIntValue());
     }
 
+    public void testBulkUpdateScriptedUpsertUpdate() throws IOException {
+        final String id = "777";
+
+        final AppData appData = new AppData();
+        appData.setIntValue(1337);
+        appData.setMsg("foo");
+
+        assertEquals(Result.Created, javaClient().index(b -> b.index("index").id(id).document(appData)).result());
+
+        final BulkOperation op = new BulkOperation.Builder().update(
+            o -> o.index("index")
+                .id(id)
+                .scriptedUpsert(true)
+                .upsert(Collections.emptyMap())
+                .script(
+                    Script.of(
+                        s -> s.inline(
+                            new InlineScript.Builder().lang("painless")
+                                .source("ctx._source.intValue = ctx?._source?.intValue == null ? 7777 : 9999")
+                                .build()
+                        )
+                    )
+                )
+        ).build();
+
+        BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
+        BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
+
+        assertTrue(bulkResponse.took() > 0);
+        assertEquals(1, bulkResponse.items().size());
+
+        final GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id(id), AppData.class);
+        assertTrue(getResponse.found());
+        assertEquals(9999, getResponse.source().getIntValue());
+    }
+
+    public void testBulkUpdateScriptedUpsertInsert() throws IOException {
+        final String id = "778";
+
+        final BulkOperation op = new BulkOperation.Builder().update(
+            o -> o.index("index")
+                .id(id)
+                .scriptedUpsert(true)
+                .upsert(Collections.emptyMap())
+                .script(
+                    Script.of(
+                        s -> s.inline(
+                            new InlineScript.Builder().lang("painless")
+                                .source("ctx._source.intValue = ctx?._source?.intValue == null ? 7777 : 9999")
+                                .build()
+                        )
+                    )
+                )
+        ).build();
+
+        BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
+        BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
+
+        assertTrue(bulkResponse.took() > 0);
+        assertEquals(1, bulkResponse.items().size());
+
+        final GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id(id), AppData.class);
+        assertTrue(getResponse.found());
+        assertEquals(7777, getResponse.source().getIntValue());
+    }
+
+    public void testBulkUpdateDetectNoop() throws IOException {
+        final String id = "779";
+
+        final AppData appData = new AppData();
+        appData.setIntValue(1337);
+        appData.setMsg("foo");
+
+        assertEquals(Result.Created, javaClient().index(b -> b.index("index").id(id).document(appData)).result());
+
+        BulkOperation op = new BulkOperation.Builder().update(o -> o.index("index").id(id).detectNoop(true).document(appData)).build();
+
+        BulkRequest bulkRequest = new BulkRequest.Builder().operations(op).build();
+        BulkResponse bulkResponse = javaClient().bulk(bulkRequest);
+
+        assertTrue(bulkResponse.took() > 0);
+        assertEquals(1, bulkResponse.items().size());
+        assertEquals(Result.NoOp.jsonValue(), bulkResponse.items().get(0).result());
+
+        op = new BulkOperation.Builder().update(o -> o.index("index").id(id).detectNoop(false).document(appData)).build();
+
+        bulkRequest = new BulkRequest.Builder().operations(op).build();
+        bulkResponse = javaClient().bulk(bulkRequest);
+        assertTrue(bulkResponse.took() > 0);
+        assertEquals(1, bulkResponse.items().size());
+        assertEquals(Result.Updated.jsonValue(), bulkResponse.items().get(0).result());
+
+    }
+
     public void testBulkUpdateUpsert() throws IOException {
         final String id = "100";
 
