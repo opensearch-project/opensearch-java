@@ -8,29 +8,23 @@
 
 package org.opensearch.client.codegen.model;
 
-import io.swagger.v3.oas.models.Operation;
-import io.swagger.v3.oas.models.PathItem;
-import io.swagger.v3.oas.models.media.Schema;
-import io.swagger.v3.oas.models.parameters.Parameter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.opensearch.client.codegen.NameSanitizer;
-import org.opensearch.client.codegen.utils.Schemas;
+import org.opensearch.client.codegen.openapi.OpenApiParameter;
+import org.opensearch.client.codegen.openapi.OpenApiSchema;
 
 public class Field {
-    public static Field from(Context ctx, Parameter parameter) {
+    public static Field from(Context ctx, OpenApiParameter parameter) {
         return from(ctx, parameter.getName(), parameter.getSchema(), parameter.getRequired(), parameter.getDescription());
     }
 
-    public static Field from(Context ctx, String name, Schema<?> schema, boolean required, String description) {
+    public static Field from(Context ctx, String name, OpenApiSchema schema, boolean required, String description) {
         return new Field(name, ctx.typeMapper.mapType(schema), required, description);
     }
 
-    public static List<Field> allFrom(Context ctx, Schema<?> schema) {
-        List<Field> fields = new ArrayList<>();
-        Schemas.forEachProperty(schema, (name, prop, required) -> fields.add(from(ctx, name, prop, required, prop.getDescription())));
-        return fields;
+    public static Stream<Field> allFrom(Context ctx, OpenApiSchema schema) {
+        return schema.getProperties()
+                .map(p -> from(ctx, p.getName(), p.getSchema(), p.isRequired(), p.getDescription()));
     }
 
     private final String wireName;

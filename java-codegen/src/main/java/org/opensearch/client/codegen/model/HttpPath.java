@@ -8,7 +8,6 @@
 
 package org.opensearch.client.codegen.model;
 
-import io.swagger.v3.oas.models.Operation;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -16,17 +15,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import org.opensearch.client.codegen.NameSanitizer;
+import org.opensearch.client.codegen.openapi.OpenApiOperation;
 import org.opensearch.client.codegen.utils.Either;
-import org.opensearch.client.codegen.utils.Extensions;
 
 public class HttpPath {
     private final List<Part> parts;
     private final Deprecation deprecation;
     private final String versionAdded;
 
-    public static HttpPath from(String httpPath, Operation operation, Map<String, Field> pathParams) {
+    public static HttpPath from(String httpPath, OpenApiOperation operation, Map<String, Field> pathParams) {
         var parts = new ArrayList<Part>();
         var isParameter = false;
         var text = new StringBuilder();
@@ -47,9 +44,7 @@ public class HttpPath {
             parts.add(Part.from(isParameter, text.toString(), pathParams));
         }
 
-        var extensions = Extensions.of(operation);
-
-        return new HttpPath(parts, extensions.deprecation(), extensions.versionAdded());
+        return new HttpPath(parts, operation.getDeprecation(), operation.getXVersionAdded().orElse(null));
     }
 
     private HttpPath(List<Part> parts, Deprecation deprecation, String versionAdded) {

@@ -10,7 +10,7 @@ package org.opensearch.client.codegen.exceptions;
 
 import java.util.List;
 
-public class ApiSpecificationParseException extends Exception {
+public class ApiSpecificationParseException extends RuntimeException {
     public ApiSpecificationParseException(String msg, Exception inner) {
         super(msg, inner);
     }

@@ -8,33 +8,27 @@
 
 package org.opensearch.client.codegen;
 
-import static org.opensearch.client.codegen.utils.OpenApiKeywords.*;
-
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.media.Schema;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.BiConsumer;
+import org.apache.commons.lang3.function.TriConsumer;
 import org.opensearch.client.codegen.model.Type;
 import org.opensearch.client.codegen.model.Types;
-import org.opensearch.client.codegen.utils.ComponentSchemaRef;
-import org.opensearch.client.codegen.utils.Schemas;
+import org.opensearch.client.codegen.openapi.OpenApiSchema;
 
 public class TypeMapper {
-    private final OpenAPI openApi;
-    private final Map<Schema<?>, Type> cache = new ConcurrentHashMap<>();
-    private final BiConsumer<String, Schema<?>> referencedSchemaVisitor;
+    private final Map<OpenApiSchema, Type> cache = new ConcurrentHashMap<>();
+    private final TriConsumer<String, String, OpenApiSchema> referencedSchemaVisitor;
 
-    public TypeMapper(OpenAPI api, BiConsumer<String, Schema<?>> referencedSchemaVisitor) {
-        this.openApi = api;
+    public TypeMapper(TriConsumer<String, String, OpenApiSchema> referencedSchemaVisitor) {
         this.referencedSchemaVisitor = referencedSchemaVisitor;
     }
 
-    public Type mapType(Schema<?> schema) {
+    public Type mapType(OpenApiSchema schema) {
         return mapType(schema, false);
     }
 
-    public Type mapType(Schema<?> schema, boolean boxed) {
+    public Type mapType(OpenApiSchema schema, boolean boxed) {
         var type = cache.get(schema);
         if (type == null) {
             type = mapTypeInner(schema);
@@ -43,98 +37,92 @@ public class TypeMapper {
         return boxed ? type.boxed() : type;
     }
 
-    private Type mapTypeInner(Schema<?> schema) {
+    private Type mapTypeInner(OpenApiSchema schema) {
         if (schema.get$ref() != null) {
-            var target = Schemas.resolve(openApi, schema).orElseThrow();
+            var target = schema.resolve();
 
-            if (!shouldKeepRef(target)) {
+            if (!target.shouldKeepRef()) {
                 return mapType(target);
             }
 
             var $ref = schema.get$ref();
 
-            referencedSchemaVisitor.accept($ref, target);
+            var schemaFile = target.getParent().getLocation().getPath();
+            var namespace = schemaFile.substring(schemaFile.lastIndexOf('/') + 1, schemaFile.lastIndexOf('.'));
+            var name = $ref.substring($ref.lastIndexOf('/') + 1);
 
-            var ref = ComponentSchemaRef.from($ref);
-            var pkg = Types.Client.OpenSearch.PACKAGE;
-            if (ref.namespace() != null && !ref.namespace().isEmpty()) {
-                pkg += "." + ref.namespace();
-            }
+            referencedSchemaVisitor.accept(namespace, name, target);
 
             return Type.builder()
                     .schema(target)
-                    .pkg(pkg)
-                    .name(ref.name())
+                    .pkg(Types.Client.OpenSearch.PACKAGE + "." + namespace)
+                    .name(name)
                     .build();
         }
 
-        if (schema.getOneOf() != null) {
-            var oneOf = schema.getOneOf();
-            if (oneOf.size() == 2) {
-                var first = Schemas.resolve(openApi, oneOf.get(0)).orElseThrow();
-                var second = Schemas.resolve(openApi, oneOf.get(1)).orElseThrow();
-
-                if (Schemas.isString(first) && Schemas.isArray(second)) {
-                    return mapType(second);
-                }
-            }
-
-            throw new UnsupportedOperationException("Can not get type name for oneOf: " + schema);
+        var oneOf = schema.getOneOf();
+        if (oneOf.isPresent()) {
+            return mapOneOf(oneOf.get());
         }
 
-        var type = Schemas.getType(schema);
+        var type = schema.getType();
 
-        if (type == null) {
+        if (type.isEmpty()) {
             return Types.Client.Json.JsonData;
         }
 
-        var format = schema.getFormat();
-
-        switch (type) {
-            case TYPE_OBJECT:
-                var additionalProperties = schema.getAdditionalProperties();
-                if (additionalProperties instanceof Schema<?>) {
-                    return Types.Java.Util.Map(Types.Java.Lang.String, mapType((Schema<?>) additionalProperties, true));
-                }
-                return Types.Java.Util.Map(Types.Java.Lang.String, Types.Client.Json.JsonData);
-            case TYPE_ARRAY:
-                if (schema.getItems() == null) return Types.Java.Util.List(Types.Java.Lang.String);
-                return Types.Java.Util.List(mapType(schema.getItems(), true));
-            case TYPE_STRING:
-                return Types.Java.Lang.String;
-            case TYPE_BOOLEAN:
-                return Types.Primitive.Boolean;
-            case TYPE_INTEGER:
-            case TYPE_NUMBER:
-                if (format == null) format = FORMAT_INT32;
-                switch (format) {
-                    case FORMAT_INT32:
-                        return Types.Primitive.Int;
-                    case FORMAT_INT64:
-                        return Types.Primitive.Long;
-                    case FORMAT_FLOAT:
-                        return Types.Primitive.Float;
-                    case FORMAT_DOUBLE:
-                        return Types.Primitive.Double;
-                    default:
-                        throw new UnsupportedOperationException("Can not get type name for integer/number with format: " + format);
-                }
-            case TYPE_TIME:
-                return Types.Client.OpenSearch._Types.Time;
+        switch (type.get()) {
+            case OBJECT: return mapObject(schema);
+            case ARRAY: return mapArray(schema);
+            case STRING: return Types.Java.Lang.String;
+            case BOOLEAN: return Types.Primitive.Boolean;
+            case INTEGER: case NUMBER: return mapNumber(schema);
+            case TIME: return Types.Client.OpenSearch._Types.Time;
         }
 
         throw new UnsupportedOperationException("Can not get type name for: " + type);
     }
 
-    private boolean shouldKeepRef(Schema<?> schema) {
-        if (Schemas.isObject(schema)) {
-            return true;
+    private Type mapOneOf(List<OpenApiSchema> oneOf) {
+        if (oneOf.size() == 2) {
+            var first = oneOf.get(0).resolve();
+            var second = oneOf.get(1).resolve();
+
+            if (first.isString() && second.isArray()) {
+                return mapType(second);
+            }
         }
 
-        if (Schemas.isString(schema)) {
-            return Schemas.hasEnums(schema);
-        }
+        throw new UnsupportedOperationException("Can not get type name for oneOf: " + oneOf);
+    }
 
-        return false;
+    private Type mapObject(OpenApiSchema schema) {
+        var values = schema.getAdditionalProperties()
+                .map(s -> mapType(s, true))
+                .orElse(Types.Client.Json.JsonData);
+        return Types.Java.Util.Map(Types.Java.Lang.String, values);
+    }
+
+    private Type mapArray(OpenApiSchema schema) {
+        var items = schema.getItems()
+                .map(i -> mapType(i, true))
+                .orElse(Types.Java.Lang.String);
+        return Types.Java.Util.List(items);
+    }
+
+    private Type mapNumber(OpenApiSchema schema) {
+        var format = schema.getFormat().orElse(OpenApiSchema.Format.INT32);
+        switch (format) {
+            case INT32:
+                return Types.Primitive.Int;
+            case INT64:
+                return Types.Primitive.Long;
+            case FLOAT:
+                return Types.Primitive.Float;
+            case DOUBLE:
+                return Types.Primitive.Double;
+            default:
+                throw new UnsupportedOperationException("Can not get type name for integer/number with format: " + format);
+        }
     }
 }

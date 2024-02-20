@@ -8,9 +8,6 @@
 
 package org.opensearch.client.codegen.model;
 
-import io.swagger.v3.oas.models.Operation;
-import io.swagger.v3.oas.models.PathItem;
-import io.swagger.v3.oas.models.media.Schema;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -23,64 +20,41 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.commons.lang3.tuple.Pair;
-import org.opensearch.client.codegen.utils.Extensions;
-import org.opensearch.client.codegen.utils.Quartet;
-import org.opensearch.client.codegen.utils.Schemas;
+import org.opensearch.client.codegen.openapi.OpenApiOperation;
+import org.opensearch.client.codegen.openapi.OpenApiParameter;
+import org.opensearch.client.codegen.openapi.OpenApiRequestBody;
+import org.opensearch.client.codegen.openapi.OpenApiSchema;
+import org.opensearch.client.codegen.utils.MediaType;
 import org.opensearch.client.codegen.utils.Streams;
 import org.opensearch.client.codegen.utils.Strings;
 
-import static org.opensearch.client.codegen.utils.OpenApiKeywords.*;
-
 public class RequestShape extends ObjectShape {
-    public static RequestShape from(Context ctx, OperationGroup operationGroup, List<Quartet<String, PathItem, PathItem.HttpMethod, Operation>> variants) {
+    public static RequestShape from(Context ctx, OperationGroup operationGroup, List<OpenApiOperation> variants) {
         var seenHttpPaths = new HashSet<String>();
         HashSet<String> requiredPathParams = null;
         var allPathParams = new HashMap<String, Field>();
         var canonicalPaths = new HashMap<Set<String>, HttpPath>();
         var deprecatedPaths = new HashMap<Set<String>, HttpPath>();
-        var overloads = new ArrayList<Pair<HttpPath, List<Pair<String, String>>>>();
 
         for (var variant : variants) {
-            var httpPathStr = variant.first();
+            var httpPathStr = variant.getHttpPath();
             if (!seenHttpPaths.add(httpPathStr)) continue;
-            var pathItem = variant.second();
-            var operation = variant.fourth();
 
-            var overloadedParams = new ArrayList<Pair<String, String>>();
-
-            for (var parameter : Schemas.getParametersIn(ctx.openApi, pathItem, operation, IN_PATH).collect(Collectors.toList())) {
+            variant.getParametersIn(OpenApiParameter.In.PATH).forEach(parameter -> {
                 var paramName = parameter.getName();
                 if (!allPathParams.containsKey(paramName)) {
                     allPathParams.put(paramName, Field.from(ctx, parameter));
                 }
+            });
 
-                var overloadedParam = Extensions.of(parameter.getSchema()).overloadedParam();
-                if (overloadedParam != null) {
-                    overloadedParams.add(Pair.of(paramName, overloadedParam));
-                }
-            }
-
-            var httpPath = HttpPath.from(httpPathStr, operation, allPathParams);
+            var httpPath = HttpPath.from(httpPathStr, variant, allPathParams);
 
             (httpPath.deprecation() == null ? canonicalPaths : deprecatedPaths).put(httpPath.paramNameSet(), httpPath);
-
-            if (!overloadedParams.isEmpty()) overloads.add(Pair.of(httpPath, overloadedParams));
 
             if (requiredPathParams != null) {
                 requiredPathParams.retainAll(httpPath.paramNameSet());
             } else {
                 requiredPathParams = new HashSet<>(httpPath.paramNameSet());
-            }
-        }
-
-        for (var overload : overloads) {
-            var path = overload.getLeft();
-            for (var rename : overload.getRight()) {
-                var from = rename.getLeft();
-                var to = rename.getRight();
-
-                var newPath = path.withRenamedParam(from, to, allPathParams);
-                (newPath.deprecation() == null ? canonicalPaths : deprecatedPaths).put(newPath.paramNameSet(), newPath);
             }
         }
 
@@ -117,18 +91,24 @@ public class RequestShape extends ObjectShape {
             entry.getValue().setRequired(requiredPathParams.contains(entry.getKey()));
         }
 
-        var bodySchema = Schemas.resolveRequestBodySchema(ctx.openApi, variants.get(0).fourth()).orElseGet(Schema::new);
+        var bodySchema = variants
+                .get(0)
+                .getRequestBody()
+                .map(OpenApiRequestBody::resolve)
+                .flatMap(b -> b.getContentSchema(MediaType.JSON))
+                .map(OpenApiSchema::resolve)
+                .orElse(OpenApiSchema.EMPTY);
 
         var queryParams = variants.stream()
-            .flatMap(v -> Schemas.getParametersIn(ctx.openApi, v.second(), v.fourth(), IN_QUERY))
+            .flatMap(v -> v.getParametersIn(OpenApiParameter.In.QUERY))
             .map(p -> Field.from(ctx, p))
             .collect(Collectors.toList());
 
         return new RequestShape(
             ctx,
             operationGroup,
-            variants.get(0).fourth().getDescription(),
-            variants.stream().map(Quartet::third).map(Enum::name).collect(Collectors.toSet()),
+            variants.get(0).getDescription(),
+            variants.stream().map(OpenApiOperation::getHttpMethod).map(Enum::name).collect(Collectors.toSet()),
             paths,
             bodySchema,
             queryParams,
@@ -150,7 +130,7 @@ public class RequestShape extends ObjectShape {
         String description,
         Set<String> httpMethods,
         List<HttpPath> httpPaths,
-        Schema<?> bodySchema,
+        OpenApiSchema bodySchema,
         Collection<Field> queryParams,
         Collection<Field> pathParams
     ) {
