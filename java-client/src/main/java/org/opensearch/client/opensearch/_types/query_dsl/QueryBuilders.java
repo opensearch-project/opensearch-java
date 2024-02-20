@@ -262,6 +262,13 @@ public class QueryBuilders {
     }
 
     /**
+     * Creates a builder for the {@link HybridQuery nested} {@code Query} variant.
+     */
+    public static HybridQuery.Builder hybrid() {
+        return new HybridQuery.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link ParentIdQuery parent_id} {@code Query}
      * variant.
      */

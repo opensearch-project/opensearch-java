@@ -38,6 +38,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Added
 - Add search role type for nodes in cluster stats ([#848](https://github.com/opensearch-project/opensearch-java/pull/848))
+- Add support for Hybrid query type ([#850](https://github.com/opensearch-project/opensearch-java/pull/850))
 
 ### Dependencies
 
