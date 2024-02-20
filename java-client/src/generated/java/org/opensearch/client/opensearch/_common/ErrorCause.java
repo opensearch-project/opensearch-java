@@ -34,15 +34,12 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 // ----------------------------------------------------
 
-package org.opensearch.client.opensearch._types;
+package org.opensearch.client.opensearch._common;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -68,8 +65,6 @@ public class ErrorCause implements JsonpSerializable {
 
     private final String type;
 
-    private final Map<String, JsonData> metadata;
-
     // ---------------------------------------------------------------------------------------------
 
     private ErrorCause(Builder builder) {
@@ -79,7 +74,6 @@ public class ErrorCause implements JsonpSerializable {
         this.stackTrace = builder.stackTrace;
         this.suppressed = ApiTypeHelper.unmodifiable(builder.suppressed);
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-        this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
     }
 
     public static ErrorCause of(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
@@ -132,15 +126,6 @@ public class ErrorCause implements JsonpSerializable {
         return this.type;
     }
 
-    /**
-     * Additional details about the error
-     *
-     * <p>API name: {@code metadata}
-     */
-    public final Map<String, JsonData> metadata() {
-        return this.metadata;
-    }
-
     /** Serialize this object to JSON. */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
@@ -149,11 +134,6 @@ public class ErrorCause implements JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
-            generator.writeKey(item0.getKey());
-            item0.getValue().serialize(generator, mapper);
-        }
-
         if (this.causedBy != null) {
             generator.writeKey("caused_by");
             this.causedBy.serialize(generator, mapper);
@@ -201,7 +181,6 @@ public class ErrorCause implements JsonpSerializable {
         @Nullable private String stackTrace;
         @Nullable private List<ErrorCause> suppressed;
         @Nullable private String type;
-        @Nullable private Map<String, JsonData> metadata;
 
         /** API name: {@code caused_by} */
         public final Builder causedBy(@Nullable ErrorCause value) {
@@ -305,26 +284,6 @@ public class ErrorCause implements JsonpSerializable {
         }
 
         /**
-         * Additional details about the error
-         *
-         * <p>API name: {@code metadata}
-         */
-        public final Builder metadata(Map<String, JsonData> map) {
-            this.metadata = _mapPutAll(this.metadata, map);
-            return this;
-        }
-
-        /**
-         * Additional details about the error
-         *
-         * <p>API name: {@code metadata}
-         */
-        public final Builder metadata(String key, JsonData value) {
-            this.metadata = _mapPut(this.metadata, key, value);
-            return this;
-        }
-
-        /**
          * Builds a {@link ErrorCause}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -354,12 +313,5 @@ public class ErrorCause implements JsonpSerializable {
                 JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER),
                 "suppressed");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-        op.setUnknownFieldHandler(
-                (builder, name, parser, mapper) -> {
-                    if (builder.metadata == null) {
-                        builder.metadata = new HashMap<>();
-                    }
-                    builder.metadata.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
-                });
     }
 }

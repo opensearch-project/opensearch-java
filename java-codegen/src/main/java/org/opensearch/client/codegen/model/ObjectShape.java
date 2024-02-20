@@ -8,15 +8,15 @@
 
 package org.opensearch.client.codegen.model;
 
-import io.swagger.v3.oas.models.media.Schema;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import org.opensearch.client.codegen.openapi.OpenApiSchema;
 
 public class ObjectShape extends Shape {
-    public static ObjectShape from(Context ctx, String name, Schema<?> schema) {
+    public static ObjectShape from(Context ctx, String name, OpenApiSchema schema) {
         return new ObjectShape(ctx, name, schema);
     }
 
@@ -24,19 +24,20 @@ public class ObjectShape extends Shape {
     protected final Map<String, Field> bodyFields = new TreeMap<>();
     protected Field additionalPropertiesField;
 
-    protected ObjectShape(Context ctx, String className, Schema<?> schema) {
+    protected ObjectShape(Context ctx, String className, OpenApiSchema schema) {
         super(ctx.namespace, className);
-        if (schema.getAllOf() != null) {
-            this.extendsType = ctx.typeMapper.mapType(schema.getAllOf().get(0));
-            schema = schema.getAllOf().get(1);
+        var allOf = schema.getAllOf();
+        if (allOf.isPresent()) {
+            this.extendsType = ctx.typeMapper.mapType(allOf.get().get(0));
+            schema = allOf.get().get(1);
         } else {
             this.extendsType = null;
         }
         Field.allFrom(ctx, schema).forEach(f -> this.bodyFields.put(f.name(), f));
-        if (schema.getAdditionalProperties() instanceof Schema<?>) {
-            var valueSchema = (Schema<?>) schema.getAdditionalProperties();
-            var valueType = ctx.typeMapper.mapType(valueSchema);
-            this.additionalPropertiesField = new Field("metadata", Types.Java.Util.Map(Types.Java.Lang.String, valueType), false, valueSchema.getDescription());
+        var additionalProperties = schema.getAdditionalProperties();
+        if (additionalProperties.isPresent()) {
+            var valueType = ctx.typeMapper.mapType(additionalProperties.get());
+            this.additionalPropertiesField = new Field("metadata", Types.Java.Util.Map(Types.Java.Lang.String, valueType), false, additionalProperties.get().getDescription());
         }
     }
 

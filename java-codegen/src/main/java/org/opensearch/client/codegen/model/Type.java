@@ -13,12 +13,11 @@ import static org.opensearch.client.codegen.model.Types.*;
 
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
-import io.swagger.v3.oas.models.media.Schema;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.opensearch.client.codegen.Renderer;
-import org.opensearch.client.codegen.utils.Schemas;
+import org.opensearch.client.codegen.openapi.OpenApiSchema;
 
 public class Type {
     private static final Set<String> PRIMITIVES = Set.of(
@@ -45,12 +44,12 @@ public class Type {
         return new Builder();
     }
 
-    private final Schema<?> schema;
+    private final OpenApiSchema schema;
     private final String pkg;
     private final String name;
     private final Type[] genericArgs;
 
-    private Type(Schema<?> schema, String pkg, String name, Type... genericArgs) {
+    private Type(OpenApiSchema schema, String pkg, String name, Type... genericArgs) {
         this.schema = schema;
         this.pkg = pkg;
         this.name = name;
@@ -136,7 +135,7 @@ public class Type {
     }
 
     public boolean isEnum() {
-        return Schemas.hasEnums(schema);
+        return schema != null && schema.hasEnums();
     }
 
     public boolean isTime() {
@@ -220,12 +219,12 @@ public class Type {
     }
 
     public static class Builder {
-        private Schema<?> schema;
+        private OpenApiSchema schema;
         private String pkg;
         private String name;
         private Type[] genericArgs;
 
-        public Builder schema(Schema<?> schema) {
+        public Builder schema(OpenApiSchema schema) {
             this.schema = schema;
             return this;
         }

@@ -8,7 +8,12 @@
 
 package org.opensearch.client.codegen.utils;
 
-@FunctionalInterface
-public interface TriConsumer<T, U, V> {
-    void accept(T t, U u, V v);
+import java.util.Map;
+import java.util.Optional;
+
+public class Maps {
+    public static <K, V> Optional<V> tryGet(Map<K, V> map, K key) {
+        return Optional.ofNullable(map)
+                .flatMap(m -> Optional.ofNullable(m.get(key)));
+    }
 }

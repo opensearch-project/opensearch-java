@@ -9,9 +9,9 @@
 package org.opensearch.client.codegen;
 
 import com.google.common.collect.Sets;
-import io.swagger.parser.OpenAPIParser;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
@@ -20,6 +20,7 @@ import java.util.stream.Stream;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Namespace;
+import org.opensearch.client.codegen.openapi.OpenApiSpec;
 
 public class Main {
     private static final HashSet<String> OPERATIONS = Sets.newHashSet(
@@ -35,12 +36,12 @@ public class Main {
         }
 
         try {
-            var specFile = new File(args[0]);
+            var specLocation = new URI(args[0]);
             var outputDir = new File(args[1]);
-            System.out.println("Spec File: " + specFile);
+            System.out.println("Spec Location: " + specLocation);
             System.out.println("Output Dir: " + outputDir);
 
-            Namespace root = parseSpec(specFile);
+            Namespace root = parseSpec(specLocation);
 
             cleanDirectory(outputDir);
 
@@ -53,14 +54,10 @@ public class Main {
         }
     }
 
-    private static Namespace parseSpec(File spec) throws ApiSpecificationParseException {
-        var result = new OpenAPIParser().readLocation(spec.toURI().toString(), null, null);
+    private static Namespace parseSpec(URI location) throws ApiSpecificationParseException {
+        var spec = OpenApiSpec.parse(location);
 
-        if (result.getOpenAPI() == null) {
-            throw new ApiSpecificationParseException("Unable to parse spec: " + spec, result.getMessages());
-        }
-
-        return Namespace.from(result.getOpenAPI(), OPERATIONS);
+        return Namespace.from(spec, OPERATIONS);
     }
 
     private static void cleanDirectory(File dir) throws RenderException {

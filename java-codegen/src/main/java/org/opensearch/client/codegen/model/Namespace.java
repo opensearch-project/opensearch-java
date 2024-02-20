@@ -8,10 +8,6 @@
 
 package org.opensearch.client.codegen.model;
 
-import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.Operation;
-import io.swagger.v3.oas.models.PathItem;
-import io.swagger.v3.oas.models.media.Schema;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,28 +18,28 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
-import org.apache.commons.lang3.tuple.Pair;
-import org.opensearch.client.codegen.Renderer;
+import org.apache.commons.lang3.tuple.Triple;
+import org.opensearch.client.codegen.openapi.OpenApiApiResponse;
+import org.opensearch.client.codegen.openapi.OpenApiOperation;
+import org.opensearch.client.codegen.openapi.OpenApiSchema;
+import org.opensearch.client.codegen.openapi.OpenApiSpec;
 import org.opensearch.client.codegen.TypeMapper;
 import org.opensearch.client.codegen.exceptions.RenderException;
-import org.opensearch.client.codegen.utils.ComponentSchemaRef;
-import org.opensearch.client.codegen.utils.Extensions;
-import org.opensearch.client.codegen.utils.Quartet;
-import org.opensearch.client.codegen.utils.Schemas;
+import org.opensearch.client.codegen.utils.MediaType;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Namespace extends Shape {
-    public static Namespace from(OpenAPI api, HashSet<String> operationsToGenerate) {
-        var referencedSchemas = new ConcurrentLinkedQueue<Pair<String, Schema<?>>>();
-        var ctx = new Context(new Namespace(), api, new TypeMapper(api, (ref, schema) -> referencedSchemas.add(Pair.of(ref, schema))));
+    public static Namespace from(OpenApiSpec api, HashSet<String> operationsToGenerate) {
+        var referencedSchemas = new ConcurrentLinkedQueue<Triple<String, String, OpenApiSchema>>();
+        var ctx = new Context(new Namespace(), new TypeMapper((namespace, name, schema) -> referencedSchemas.add(Triple.of(namespace, name, schema))));
 
-        var groupedOperations = new HashMap<OperationGroup, List<Quartet<String, PathItem, PathItem.HttpMethod, Operation>>>();
+        var groupedOperations = new HashMap<OperationGroup, List<OpenApiOperation>>();
 
-        api.getPaths().forEach((httpPath, pathItem) -> pathItem.readOperationsMap().forEach((httpMethod, operation) -> {
-            var group = Extensions.of(operation).operationGroup();
+        api.getOperations().forEach((operation) -> {
+            var group = operation.getXOperationGroup();
             if (!operationsToGenerate.contains(group.toString())) return;
-            groupedOperations.computeIfAbsent(group, k -> new ArrayList<>()).add(Quartet.of(httpPath, pathItem, httpMethod, operation));
-        }));
+            groupedOperations.computeIfAbsent(group, k -> new ArrayList<>()).add(operation);
+        });
 
         groupedOperations.forEach((group, variants) -> {
             var parent = ctx.namespace.child(group.namespace());
@@ -53,30 +49,35 @@ public class Namespace extends Shape {
             parent.operations.put(requestShape.id(), requestShape);
             parent.shapes.add(requestShape);
 
-            var responseSchema = Schemas.resolveResponseBodySchema(opCtx.openApi, variants.get(0).fourth()).orElseGet(Schema::new);
-            var responseShape = Schemas.isArray(responseSchema)
+            var responseSchema = variants.get(0)
+                    .getResponse(200)
+                    .map(OpenApiApiResponse::resolve)
+                    .flatMap(r -> r.getContentSchema(MediaType.JSON))
+                    .map(OpenApiSchema::resolve)
+                    .orElse(OpenApiSchema.EMPTY);
+
+            var responseShape = responseSchema.isArray()
                     ? ArrayShape.from(opCtx, requestShape.responseType(), responseSchema)
                     : ObjectShape.from(opCtx, requestShape.responseType(), responseSchema);
             parent.shapes.add(responseShape);
         });
 
-        var seenRefs = new HashSet<>();
-        Pair<String, Schema<?>> schemaRef;
+        var seenSchemas = new HashSet<>();
+        Triple<String, String, OpenApiSchema> schemaRef;
         while ((schemaRef = referencedSchemas.poll()) != null) {
-            var $ref = schemaRef.getKey();
-            var schema = schemaRef.getValue();
+            var namespace = schemaRef.getLeft();
+            var name = schemaRef.getMiddle();
+            var schema = schemaRef.getRight();
 
-            if (!seenRefs.add($ref)) continue;
+            if (!seenSchemas.add(namespace + "." + name)) continue;
 
-            var refParts = ComponentSchemaRef.from($ref);
-
-            Namespace parent = ctx.namespace.child(refParts.namespace());
+            Namespace parent = ctx.namespace.child(namespace);
             Context thisCtx = ctx.withNamespace(parent);
 
-            if (Schemas.isObject(schema)) {
-                parent.shapes.add(ObjectShape.from(thisCtx, refParts.name(), schema));
-            } else if (Schemas.isString(schema) && Schemas.hasEnums(schema)) {
-                parent.shapes.add(EnumShape.from(thisCtx, refParts.name(), schema));
+            if (schema.isObject()) {
+                parent.shapes.add(ObjectShape.from(thisCtx, name, schema));
+            } else if (schema.isString() && schema.hasEnums()) {
+                parent.shapes.add(EnumShape.from(thisCtx, name, schema));
             }
         }
 
@@ -115,7 +116,7 @@ public class Namespace extends Shape {
         var childName = idx >= 0 ? name.substring(0, idx) : name;
         var grandChildName = idx >= 0 ? name.substring(idx + 1) : null;
 
-        if ("_types".equals(childName) && this.parent != null) return child(grandChildName);
+//        if ("_common".equals(childName) && this.parent != null) return child(grandChildName);
 
         Namespace child = children.computeIfAbsent(childName, n -> new Namespace(this, n));
         return grandChildName == null ? child : child.child(grandChildName);

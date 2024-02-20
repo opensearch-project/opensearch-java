@@ -8,8 +8,17 @@
 
 package org.opensearch.client.codegen.utils;
 
-public class MediaType {
-    public static final String JSON = "application/json";
+public enum MediaType {
+    JSON("application/json");
 
-    private MediaType() {}
+    private final String mimeType;
+
+    MediaType(String mimeType) {
+        this.mimeType = mimeType;
+    }
+
+    @Override
+    public String toString() {
+        return mimeType;
+    }
 }

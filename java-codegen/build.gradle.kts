@@ -69,7 +69,7 @@ application {
 
 tasks.named<JavaExec>("run") {
     args = listOf(
-        "${projectDir}/OpenSearch.openapi.json",
+        "https://raw.githubusercontent.com/opensearch-project/opensearch-api-specification/feature/native_openapi/spec/OpenSearch.openapi.yaml",
         "${project(":java-client").projectDir}/src/generated/java/"
     )
 }
