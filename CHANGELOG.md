@@ -4,6 +4,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 2.x]
 ### Added
 - Add search role type for nodes in cluster stats ([#848](https://github.com/opensearch-project/opensearch-java/pull/848))
+- Add support for Hybrid query type ([#850](https://github.com/opensearch-project/opensearch-java/pull/850))
 
 ### Dependencies
 

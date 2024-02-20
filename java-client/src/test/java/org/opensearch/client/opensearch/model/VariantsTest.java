@@ -32,12 +32,17 @@
 
 package org.opensearch.client.opensearch.model;
 
+import java.util.Arrays;
 import org.junit.Test;
 import org.opensearch.client.json.JsonData;
+import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
+import org.opensearch.client.opensearch._types.query_dsl.KnnQuery;
+import org.opensearch.client.opensearch._types.query_dsl.NeuralQuery;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch._types.query_dsl.QueryBuilders;
+import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.indices.GetMappingResponse;
 
@@ -242,5 +247,58 @@ public class VariantsTest extends ModelTestCase {
         assertEquals("Hi world!", searchRequest.query().neural().queryText());
         assertEquals("bQ1J8ooBpBj3wT4HVUsb", searchRequest.query().neural().modelId());
         assertEquals(100, searchRequest.query().neural().k());
+    }
+
+    @Test
+    public void testHybridQuery() {
+
+        Query query = Query.of(
+            h -> h.hybrid(
+                q -> q.queries(
+                    Arrays.asList(
+                        new TermQuery.Builder().field("passage_text").value(FieldValue.of("Foo bar")).build().toQuery(),
+                        new NeuralQuery.Builder().field("passage_embedding")
+                            .queryText("Hi world")
+                            .modelId("bQ1J8ooBpBj3wT4HVUsb")
+                            .k(100)
+                            .build()
+                            .toQuery(),
+                        new KnnQuery.Builder().field("passage_embedding").vector(new float[] { 0.01f, 0.02f }).k(2).build().toQuery()
+                    )
+                )
+            )
+        );
+        SearchRequest searchRequest = SearchRequest.of(s -> s.query(query));
+        assertEquals("passage_text", searchRequest.query().hybrid().queries().get(0).term().field());
+        assertEquals("Foo bar", searchRequest.query().hybrid().queries().get(0).term().value().stringValue());
+        assertEquals("passage_embedding", searchRequest.query().hybrid().queries().get(1).neural().field());
+        assertEquals("Hi world", searchRequest.query().hybrid().queries().get(1).neural().queryText());
+        assertEquals("bQ1J8ooBpBj3wT4HVUsb", searchRequest.query().hybrid().queries().get(1).neural().modelId());
+        assertEquals(100, searchRequest.query().hybrid().queries().get(1).neural().k());
+        assertEquals("passage_embedding", searchRequest.query().hybrid().queries().get(2).knn().field());
+        assertEquals(2, searchRequest.query().hybrid().queries().get(2).knn().vector().length);
+        assertEquals(2, searchRequest.query().hybrid().queries().get(2).knn().k());
+    }
+
+    @Test
+    public void testHybridQueryFromJson() {
+
+        String json = "{\"query\""
+            + ":{\"hybrid\":{\"queries\":[{\"term\":{\"passage_text\":\"Foo bar\"}},"
+            + "{\"neural\":{\"passage_embedding\":{\"query_text\":\"Hi world\",\"model_id\":\"bQ1J8ooBpBj3wT4HVUsb\",\"k\":100}}},"
+            + "{\"knn\":{\"passage_embedding\":{\"vector\":[0.01,0.02],\"k\":2}}}]}},\"size\":10"
+            + "}";
+
+        SearchRequest searchRequest = ModelTestCase.fromJson(json, SearchRequest.class, mapper);
+
+        assertEquals("passage_text", searchRequest.query().hybrid().queries().get(0).term().field());
+        assertEquals("Foo bar", searchRequest.query().hybrid().queries().get(0).term().value().stringValue());
+        assertEquals("passage_embedding", searchRequest.query().hybrid().queries().get(1).neural().field());
+        assertEquals("Hi world", searchRequest.query().hybrid().queries().get(1).neural().queryText());
+        assertEquals("bQ1J8ooBpBj3wT4HVUsb", searchRequest.query().hybrid().queries().get(1).neural().modelId());
+        assertEquals(100, searchRequest.query().hybrid().queries().get(1).neural().k());
+        assertEquals("passage_embedding", searchRequest.query().hybrid().queries().get(2).knn().field());
+        assertEquals(2, searchRequest.query().hybrid().queries().get(2).knn().vector().length);
+        assertEquals(2, searchRequest.query().hybrid().queries().get(2).knn().k());
     }
 }

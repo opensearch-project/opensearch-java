@@ -15,10 +15,12 @@ import org.junit.Test;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.mapping.Property;
+import org.opensearch.client.opensearch._types.query_dsl.MatchQuery;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
+import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
 import org.opensearch.client.opensearch.indices.SegmentSortOrder;
 
 public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCase {
@@ -26,21 +28,7 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
     @Test
     public void shouldReturnSearchResults() throws Exception {
         final String index = "search_request";
-        assertTrue(
-            javaClient().indices()
-                .create(
-                    b -> b.index(index)
-                        .mappings(
-                            m -> m.properties("name", Property.of(p -> p.keyword(v -> v.docValues(true))))
-                                .properties("size", Property.of(p -> p.keyword(v -> v.docValues(true))))
-                        )
-                        .settings(settings -> settings.sort(s -> s.field("name").order(SegmentSortOrder.Asc)))
-                )
-                .acknowledged()
-        );
-
-        createTestDocuments(index);
-        javaClient().indices().refresh();
+        createIndex(index);
 
         final Query query = Query.of(
             q -> q.bool(
@@ -72,23 +60,47 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
     }
 
     @Test
+    public void hybridSearchShouldReturnSearchResults() throws Exception {
+        final String index = "hybrid_search_request";
+        try {
+            createIndex(index);
+            final Query query = Query.of(
+                h -> h.hybrid(
+                    q -> q.queries(Arrays.asList(new MatchQuery.Builder().field("size").query(FieldValue.of("huge")).build().toQuery()))
+                )
+            );
+
+            final SearchRequest request = SearchRequest.of(
+                r -> r.index(index)
+                    .sort(s -> s.field(f -> f.field("name").order(SortOrder.Asc)))
+                    .fields(f -> f.field("name"))
+                    .query(query)
+                    .source(s -> s.fetch(true))
+            );
+
+            final SearchResponse<ShopItem> response = javaClient().search(request, ShopItem.class);
+            assertEquals(response.hits().hits().size(), 5);
+
+            assertTrue(
+                Arrays.stream(response.hits().hits().get(2).fields().get("name").to(String[].class))
+                    .collect(Collectors.toList())
+                    .contains("hummer")
+            );
+            assertTrue(
+                Arrays.stream(response.hits().hits().get(3).fields().get("name").to(String[].class))
+                    .collect(Collectors.toList())
+                    .contains("jammer")
+            );
+        } finally {
+            DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest.Builder().index(index).build();
+            javaClient().indices().delete(deleteIndexRequest);
+        }
+    }
+
+    @Test
     public void shouldReturnSearchResultsWithoutStoredFields() throws Exception {
         final String index = "search_request";
-        assertTrue(
-            javaClient().indices()
-                .create(
-                    b -> b.index(index)
-                        .mappings(
-                            m -> m.properties("name", Property.of(p -> p.keyword(v -> v.docValues(true))))
-                                .properties("size", Property.of(p -> p.keyword(v -> v.docValues(true))))
-                        )
-                        .settings(settings -> settings.sort(s -> s.field("name").order(SegmentSortOrder.Asc)))
-                )
-                .acknowledged()
-        );
-
-        createTestDocuments(index);
-        javaClient().indices().refresh();
+        createIndex(index);
 
         final Query query = Query.of(
             q -> q.bool(
@@ -115,6 +127,23 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
         javaClient().create(_1 -> _1.index(index).id("6").document(createItem("wrench", "medium", "no", 3)));
         javaClient().create(_1 -> _1.index(index).id("7").document(createItem("screws", "small", "no", 1)));
         javaClient().create(_1 -> _1.index(index).id("8").document(createItem("nuts", "small", "no", 2)));
+    }
+
+    private void createIndex(String index) throws IOException {
+        assertTrue(
+            javaClient().indices()
+                .create(
+                    b -> b.index(index)
+                        .mappings(
+                            m -> m.properties("name", Property.of(p -> p.keyword(v -> v.docValues(true))))
+                                .properties("size", Property.of(p -> p.keyword(v -> v.docValues(true))))
+                        )
+                        .settings(settings -> settings.sort(s -> s.field("name").order(SegmentSortOrder.Asc)))
+                )
+                .acknowledged()
+        );
+        createTestDocuments(index);
+        javaClient().indices().refresh();
     }
 
     private ShopItem createItem(String name, String size, String company, int quantity) {
