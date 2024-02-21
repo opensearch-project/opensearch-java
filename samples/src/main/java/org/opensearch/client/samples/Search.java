@@ -26,6 +26,8 @@ import org.opensearch.client.opensearch._types.analysis.TokenFilterDefinition;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.mapping.TextProperty;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
+import org.opensearch.client.opensearch._types.query_dsl.MatchQuery;
+import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch.core.IndexRequest;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
@@ -102,6 +104,20 @@ public class Search {
             for (Map.Entry<String, Aggregate> entry : searchResponse.aggregations().entrySet()) {
                 LOGGER.info("Agg - {}", entry.getKey());
                 entry.getValue().sterms().buckets().array().forEach(b -> LOGGER.info("{} : {}", b.key(), b.docCount()));
+            }
+
+            // HybridSearch
+            Query searchQuery = Query.of(
+                h -> h.hybrid(
+                    q -> q.queries(
+                        Arrays.asList(new MatchQuery.Builder().field("text").query(FieldValue.of("Text for document 2")).build().toQuery())
+                    )
+                )
+            );
+            searchRequest = new SearchRequest.Builder().query(searchQuery).build();
+            searchResponse = client.search(searchRequest, IndexData.class);
+            for (var hit : searchResponse.hits().hits()) {
+                LOGGER.info("Found {} with score {}", hit.source(), hit.score());
             }
 
             LOGGER.info("Deleting index {}", indexName);

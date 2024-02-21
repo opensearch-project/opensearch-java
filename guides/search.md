@@ -81,6 +81,25 @@ for (int i = 0; i < searchResponse.hits().hits().size(); i++) {
 }
 ```
 
+### Search documents using a hybrid query
+```java
+Query searchQuery = Query.of(
+        h -> h.hybrid(
+                q -> q.queries(Arrays.asList(
+                                       new MatchQuery.Builder().field("text").query(FieldValue.of("Text for document 2")).build().toQuery(),
+                                       new TermQuery.Builder().field("passage_text").value(FieldValue.of("Foo bar")).build().toQuery(),
+                                       new NeuralQuery.Builder().field("passage_embedding").queryText("Hi world").modelId("bQ1J8ooBpBj3wT4HVUsb").k(100).build().toQuery()
+                               )
+                              )
+                )
+        );
+SearchRequest searchRequest = new SearchRequest.Builder().query(searchQuery).build();
+SearchResponse<IndexData> searchResponse = client.search(searchRequest, IndexData.class);
+for (var hit : searchResponse.hits().hits()) {
+        LOGGER.info("Found {} with score {}", hit.source(), hit.score());
+}
+```
+
 ### Search documents using suggesters
 
 [AppData](../samples/src/main/java/org/opensearch/client/samples/util/AppData.java) refers to the sample data class used in the below samples.
