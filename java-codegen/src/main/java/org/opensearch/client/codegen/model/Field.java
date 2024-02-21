@@ -23,8 +23,7 @@ public class Field {
     }
 
     public static Stream<Field> allFrom(Context ctx, OpenApiSchema schema) {
-        return schema.getProperties()
-                .map(p -> from(ctx, p.getName(), p.getSchema(), p.isRequired(), p.getDescription()));
+        return schema.getProperties().map(p -> from(ctx, p.getName(), p.getSchema(), p.isRequired(), p.getDescription()));
     }
 
     private final String wireName;

@@ -22,18 +22,14 @@ public class OpenApiPath extends OpenApiRefObject<OpenApiPath, PathItem> {
     }
 
     public Stream<OpenApiOperation> getOperations() {
-        return getInner()
-                .readOperationsMap()
-                .entrySet()
-                .stream()
-                .map(e -> new OpenApiOperation(this, e.getKey(), e.getValue()));
+        return getInner().readOperationsMap().entrySet().stream().map(e -> new OpenApiOperation(this, e.getKey(), e.getValue()));
     }
 
     public Stream<OpenApiParameter> getParametersIn(OpenApiParameter.In in) {
         return Streams.tryOf(getInner().getParameters())
-                .map(p -> new OpenApiParameter(getParent(), p))
-                .map(OpenApiParameter::resolve)
-                .filter(p -> in.equals(p.getIn()));
+            .map(p -> new OpenApiParameter(getParent(), p))
+            .map(OpenApiParameter::resolve)
+            .filter(p -> in.equals(p.getIn()));
     }
 
     public String getHttpPath() {

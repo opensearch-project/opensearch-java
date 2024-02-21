@@ -13,7 +13,6 @@ import java.util.Optional;
 
 public class Maps {
     public static <K, V> Optional<V> tryGet(Map<K, V> map, K key) {
-        return Optional.ofNullable(map)
-                .flatMap(m -> Optional.ofNullable(m.get(key)));
+        return Optional.ofNullable(map).flatMap(m -> Optional.ofNullable(m.get(key)));
     }
 }

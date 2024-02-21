@@ -27,7 +27,9 @@ public abstract class Shape {
         this.className = className;
     }
 
-    public Type type() { return Type.builder().pkg(packageName()).name(className).build();}
+    public Type type() {
+        return Type.builder().pkg(packageName()).name(className).build();
+    }
 
     public Namespace parent() {
         return this.parent;

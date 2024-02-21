@@ -23,10 +23,7 @@ import org.opensearch.client.codegen.model.Namespace;
 import org.opensearch.client.codegen.openapi.OpenApiSpec;
 
 public class Main {
-    private static final HashSet<String> OPERATIONS = Sets.newHashSet(
-            "cat.aliases",
-            "nodes.usage"
-    );
+    private static final HashSet<String> OPERATIONS = Sets.newHashSet("cat.aliases", "nodes.usage");
 
     public static void main(String[] args) {
         if (args.length < 2) {

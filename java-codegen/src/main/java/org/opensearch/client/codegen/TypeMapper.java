@@ -53,11 +53,7 @@ public class TypeMapper {
 
             referencedSchemaVisitor.accept(namespace, name, target);
 
-            return Type.builder()
-                    .schema(target)
-                    .pkg(Types.Client.OpenSearch.PACKAGE + "." + namespace)
-                    .name(name)
-                    .build();
+            return Type.builder().schema(target).pkg(Types.Client.OpenSearch.PACKAGE + "." + namespace).name(name).build();
         }
 
         var oneOf = schema.getOneOf();
@@ -72,12 +68,19 @@ public class TypeMapper {
         }
 
         switch (type.get()) {
-            case OBJECT: return mapObject(schema);
-            case ARRAY: return mapArray(schema);
-            case STRING: return Types.Java.Lang.String;
-            case BOOLEAN: return Types.Primitive.Boolean;
-            case INTEGER: case NUMBER: return mapNumber(schema);
-            case TIME: return Types.Client.OpenSearch._Types.Time;
+            case OBJECT:
+                return mapObject(schema);
+            case ARRAY:
+                return mapArray(schema);
+            case STRING:
+                return Types.Java.Lang.String;
+            case BOOLEAN:
+                return Types.Primitive.Boolean;
+            case INTEGER:
+            case NUMBER:
+                return mapNumber(schema);
+            case TIME:
+                return Types.Client.OpenSearch._Types.Time;
         }
 
         throw new UnsupportedOperationException("Can not get type name for: " + type);
@@ -97,16 +100,12 @@ public class TypeMapper {
     }
 
     private Type mapObject(OpenApiSchema schema) {
-        var values = schema.getAdditionalProperties()
-                .map(s -> mapType(s, true))
-                .orElse(Types.Client.Json.JsonData);
+        var values = schema.getAdditionalProperties().map(s -> mapType(s, true)).orElse(Types.Client.Json.JsonData);
         return Types.Java.Util.Map(Types.Java.Lang.String, values);
     }
 
     private Type mapArray(OpenApiSchema schema) {
-        var items = schema.getItems()
-                .map(i -> mapType(i, true))
-                .orElse(Types.Java.Lang.String);
+        var items = schema.getItems().map(i -> mapType(i, true)).orElse(Types.Java.Lang.String);
         return Types.Java.Util.List(items);
     }
 

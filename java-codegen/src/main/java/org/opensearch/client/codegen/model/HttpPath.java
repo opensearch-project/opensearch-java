@@ -54,17 +54,11 @@ public class HttpPath {
     }
 
     public List<Field> params() {
-        return parts.stream()
-                .filter(Part::isParameter)
-                .map(Part::parameter)
-                .collect(Collectors.toList());
+        return parts.stream().filter(Part::isParameter).map(Part::parameter).collect(Collectors.toList());
     }
 
     public Set<String> paramNameSet() {
-        return parts.stream()
-                .filter(Part::isParameter)
-                .map(p -> p.parameter().name())
-                .collect(Collectors.toSet());
+        return parts.stream().filter(Part::isParameter).map(p -> p.parameter().name()).collect(Collectors.toSet());
     }
 
     public Deprecation deprecation() {

@@ -75,9 +75,9 @@ public class OpenApiSpec {
 
     public Stream<OpenApiOperation> getOperations() {
         return api.getPaths()
-                .entrySet()
-                .stream()
-                .map(e -> new OpenApiPath(this, e.getKey(), e.getValue()).resolve())
-                .flatMap(OpenApiPath::getOperations);
+            .entrySet()
+            .stream()
+            .map(e -> new OpenApiPath(this, e.getKey(), e.getValue()).resolve())
+            .flatMap(OpenApiPath::getOperations);
     }
 }

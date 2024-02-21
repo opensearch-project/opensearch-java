@@ -153,10 +153,7 @@ public class Type {
     public Type builderType() {
         if (!hasBuilder()) return null;
 
-        return builder()
-                .pkg(pkg)
-                .name(name + ".Builder")
-                .build();
+        return builder().pkg(pkg).name(name + ".Builder").build();
     }
 
     public Type builderFuncType() {
@@ -175,11 +172,9 @@ public class Type {
 
     private SerializerLambdaContext getSerializerLambdaContext(Template.Fragment fragment) {
         return new SerializerLambdaContext(
-                Type.this,
-                fragment.execute(),
-                Renderer.findContext(fragment, SerializerLambdaContext.class)
-                        .map(ctx -> ctx.depth + 1)
-                        .orElse(0)
+            Type.this,
+            fragment.execute(),
+            Renderer.findContext(fragment, SerializerLambdaContext.class).map(ctx -> ctx.depth + 1).orElse(0)
         );
     }
 

@@ -36,7 +36,8 @@ public class OpenApiParameter extends OpenApiRefObject<OpenApiParameter, Paramet
     }
 
     public enum In {
-        QUERY, PATH;
+        QUERY,
+        PATH;
 
         public static In from(String s) {
             return valueOf(s.toUpperCase());

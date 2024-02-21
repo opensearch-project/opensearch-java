@@ -37,7 +37,12 @@ public class ObjectShape extends Shape {
         var additionalProperties = schema.getAdditionalProperties();
         if (additionalProperties.isPresent()) {
             var valueType = ctx.typeMapper.mapType(additionalProperties.get());
-            this.additionalPropertiesField = new Field("metadata", Types.Java.Util.Map(Types.Java.Lang.String, valueType), false, additionalProperties.get().getDescription());
+            this.additionalPropertiesField = new Field(
+                "metadata",
+                Types.Java.Util.Map(Types.Java.Lang.String, valueType),
+                false,
+                additionalProperties.get().getDescription()
+            );
         }
     }
 
