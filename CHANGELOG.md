@@ -84,6 +84,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 
 ### Changed
+- Restore support for Java 8 ([#767](https://github.com/opensearch-project/opensearch-java/pull/767))
+- Add an integration test that runs on JDK-8 ([#795](https://github.com/opensearch-project/opensearch-java/pull/795))
 
 ### Deprecated
 
