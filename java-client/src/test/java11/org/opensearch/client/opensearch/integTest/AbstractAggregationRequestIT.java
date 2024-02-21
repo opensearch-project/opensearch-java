@@ -25,7 +25,6 @@ import org.opensearch.client.opensearch._types.aggregations.MultiTermLookup;
 import org.opensearch.client.opensearch._types.aggregations.MultiTermsAggregation;
 import org.opensearch.client.opensearch._types.aggregations.RangeAggregation;
 import org.opensearch.client.opensearch._types.mapping.Property;
-import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.SearchResponse;
 
 public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientTestCase {
@@ -101,15 +100,7 @@ public abstract class AbstractAggregationRequestIT extends OpenSearchJavaClientT
     }
 
     private void checkIfOpenSearchSupportsMultiTermsAggregation() throws Exception {
-        InfoResponse info = javaClient().info();
-        String version = info.version().number();
-        if (version.contains("SNAPSHOT")) {
-            version = version.split("-")[0];
-        }
-        assumeTrue(
-            "multi_terms is supported in OpenSearch 2.1.0 and later",
-            Version.fromString(version).onOrAfter(Version.fromString("2.1.0"))
-        );
+        assumeTrue("multi_terms is supported in OpenSearch 2.1.0 and later", getServerVersion().onOrAfter(Version.V_2_1_0));
     }
 
     private Aggregation getExpiryDateRangeAggregation() {
