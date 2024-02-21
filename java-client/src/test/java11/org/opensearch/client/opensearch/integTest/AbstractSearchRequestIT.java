@@ -19,7 +19,6 @@ import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.query_dsl.MatchQuery;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
-import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
@@ -63,12 +62,7 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
 
     @Test
     public void hybridSearchShouldReturnSearchResults() throws Exception {
-        InfoResponse info = javaClient().info();
-        String version = info.version().number();
-        if (version.contains("SNAPSHOT")) {
-            version = version.split("-")[0];
-        }
-        assumeTrue("Hybrid search is supported from 2.10.0", Version.fromString(version).onOrAfter(Version.fromString("2.10.0")));
+        assumeTrue("Hybrid search is supported from 2.10.0", getServerVersion().onOrAfter(Version.V_2_10_0));
         final String index = "hybrid_search_request";
         try {
             createIndex(index);
