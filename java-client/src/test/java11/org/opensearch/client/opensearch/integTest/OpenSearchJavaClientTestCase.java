@@ -31,6 +31,7 @@ import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch.cat.IndicesResponse;
 import org.opensearch.client.opensearch.cat.indices.IndicesRecord;
+import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
 import org.opensearch.client.opensearch.nodes.NodesInfoResponse;
 import org.opensearch.client.opensearch.nodes.info.NodeInfo;
@@ -161,5 +162,16 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
     @Override
     protected boolean preserveIndicesUponCompletion() {
         return true;
+    }
+
+    protected Version getServerVersion() throws IOException {
+        final InfoResponse info = javaClient().info();
+
+        String version = info.version().number();
+        if (version.contains("SNAPSHOT")) {
+            version = version.split("-")[0];
+        }
+
+        return Version.fromString(version);
     }
 }

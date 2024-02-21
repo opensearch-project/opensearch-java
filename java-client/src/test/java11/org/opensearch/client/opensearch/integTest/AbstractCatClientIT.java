@@ -34,7 +34,6 @@ import org.opensearch.client.opensearch.cat.recovery.RecoveryRecord;
 import org.opensearch.client.opensearch.cat.segments.SegmentsRecord;
 import org.opensearch.client.opensearch.cat.shards.ShardsRecord;
 import org.opensearch.client.opensearch.core.IndexResponse;
-import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 
@@ -238,15 +237,8 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
 
     @Test
     public void testCatPitSegments() throws Exception {
-        InfoResponse info = javaClient().info();
-        String version = info.version().number();
-        if (version.contains("SNAPSHOT")) {
-            version = version.split("-")[0];
-        }
-        assumeTrue(
-            "The PIT is supported in OpenSearch 2.4.0 and later",
-            Version.fromString(version).onOrAfter(Version.fromString("2.4.0"))
-        );
+        final Version version = getServerVersion();
+        assumeTrue("The PIT is supported in OpenSearch 2.4.0 and later", version.onOrAfter(Version.V_2_4_0));
         createIndex("cat-pit-segments-test-index");
 
         final IndexResponse index = javaClient().index(
@@ -264,7 +256,7 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
 
         assertNotNull("PitSegmentsResponse.segments() is null", PitSegmentsResponse.valueBody());
 
-        if (Version.fromString(version).onOrAfter(Version.fromString("2.10.0"))) {
+        if (version.onOrAfter(Version.V_2_10_0)) {
             assertTrue("PitSegmentsResponse.segments().size() == 0", PitSegmentsResponse.valueBody().isEmpty());
         } else {
             assertTrue("PitSegmentsResponse.segments().size() == 0", PitSegmentsResponse.valueBody().size() > 0);

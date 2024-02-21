@@ -617,15 +617,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
     @Test
     public void testPit() throws IOException {
-        InfoResponse info = javaClient().info();
-        String version = info.version().number();
-        if (version.contains("SNAPSHOT")) {
-            version = version.split("-")[0];
-        }
-        assumeTrue(
-            "The PIT is supported in OpenSearch 2.4.0 and later",
-            Version.fromString(version).onOrAfter(Version.fromString("2.4.0"))
-        );
+        assumeTrue("The PIT is supported in OpenSearch 2.4.0 and later", getServerVersion().onOrAfter(Version.V_2_4_0));
 
         String index = "test-point-in-time";
 
