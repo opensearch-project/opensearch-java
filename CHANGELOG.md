@@ -3,6 +3,23 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
+
+### Dependencies
+- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.2.0 to 5.2.2
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fix missing properties on UpdateOperation ([#744](https://github.com/opensearch-project/opensearch-java/pull/744))
+
+### Security
+
+## [2.8.4] - 02/20/2024
+### Added
 - Add search role type for nodes in cluster stats ([#848](https://github.com/opensearch-project/opensearch-java/pull/848))
 - Add support for Hybrid query type ([#850](https://github.com/opensearch-project/opensearch-java/pull/850))
 
@@ -16,8 +33,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fix ClusterStatsResponse field deserialization ([#848](https://github.com/opensearch-project/opensearch-java/pull/848))
-
-### Security
 
 ## [2.8.3] - 02/12/2024
 ### Added
@@ -70,6 +85,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 
 ### Changed
+- Restore support for Java 8 ([#767](https://github.com/opensearch-project/opensearch-java/pull/767))
+- Add an integration test that runs on JDK-8 ([#795](https://github.com/opensearch-project/opensearch-java/pull/795))
 
 ### Deprecated
 
@@ -272,7 +289,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.3...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.4...2.x
+[2.8.4]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.3...v2.8.4
 [2.8.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.2...v2.8.3
 [2.8.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.1...v2.8.2
 [2.8.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.0...v2.8.1

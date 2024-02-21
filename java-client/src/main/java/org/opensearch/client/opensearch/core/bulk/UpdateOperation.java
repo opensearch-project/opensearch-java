@@ -145,6 +145,12 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
         private Boolean docAsUpsert;
 
         @Nullable
+        private Boolean scriptedUpsert;
+
+        @Nullable
+        private Boolean detectNoop;
+
+        @Nullable
         private TDocument upsert;
 
         @Nullable
@@ -163,6 +169,22 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
          */
         public final Builder<TDocument> docAsUpsert(@Nullable Boolean value) {
             this.docAsUpsert = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code scripted_upsert}
+         */
+        public final Builder<TDocument> scriptedUpsert(@Nullable Boolean value) {
+            this.scriptedUpsert = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code detect_noop}
+         */
+        public final Builder<TDocument> detectNoop(@Nullable Boolean value) {
+            this.detectNoop = value;
             return this;
         }
 
@@ -223,6 +245,8 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 
             data = new UpdateOperationData.Builder<TDocument>().document(document)
                 .docAsUpsert(docAsUpsert)
+                .scriptedUpsert(scriptedUpsert)
+                .detectNoop(detectNoop)
                 .script(script)
                 .upsert(upsert)
                 .tDocumentSerializer(tDocumentSerializer)
