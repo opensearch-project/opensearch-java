@@ -30,9 +30,9 @@
  * GitHub history for details.
  */
 
-// ----------------------------------------------------
+//----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-// ----------------------------------------------------
+//----------------------------------------------------
 
 package org.opensearch.client.opensearch.cat;
 
@@ -46,50 +46,41 @@ import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
 
-public class OpenSearchCatAsyncClient
-        extends ApiClient<OpenSearchTransport, OpenSearchCatAsyncClient> {
+public class OpenSearchCatAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchCatAsyncClient> {
     public OpenSearchCatAsyncClient(OpenSearchTransport transport) {
         super(transport, null);
     }
 
-    public OpenSearchCatAsyncClient(
-            OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+    public OpenSearchCatAsyncClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
     }
 
     @Override
-    public OpenSearchCatAsyncClient withTransportOptions(
-            @Nullable TransportOptions transportOptions) {
+    public OpenSearchCatAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
         return new OpenSearchCatAsyncClient(this.transport, transportOptions);
     }
 
     // ----- Endpoint: cat.aliases
 
     /**
-     * Shows information about currently configured aliases to indices including filter and routing
-     * infos.
+     * Shows information about currently configured aliases to indices including filter and routing infos.
      */
-    public CompletableFuture<AliasesResponse> aliases(AliasesRequest request)
-            throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-                request, AliasesRequest._ENDPOINT, this.transportOptions);
+    public CompletableFuture<AliasesResponse> aliases(AliasesRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, AliasesRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Shows information about currently configured aliases to indices including filter and routing
-     * infos.
+     * Shows information about currently configured aliases to indices including filter and routing infos.
      *
      * @param fn a function that initializes a builder to create the {@link AliasesRequest}
      */
-    public final CompletableFuture<AliasesResponse> aliases(
-            Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn)
-            throws IOException, OpenSearchException {
+    public final CompletableFuture<AliasesResponse> aliases(Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn)
+        throws IOException, OpenSearchException {
         return aliases(fn.apply(new AliasesRequest.Builder()).build());
     }
 
     /**
-     * Shows information about currently configured aliases to indices including filter and routing
-     * infos.
+     * Shows information about currently configured aliases to indices including filter and routing infos.
      */
     public CompletableFuture<AliasesResponse> aliases() throws IOException, OpenSearchException {
         return aliases(new AliasesRequest.Builder().build());

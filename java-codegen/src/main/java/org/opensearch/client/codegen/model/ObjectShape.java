@@ -25,10 +25,10 @@ public class ObjectShape extends Shape {
     protected Field additionalPropertiesField;
 
     protected ObjectShape(Context ctx, String className, OpenApiSchema schema) {
-        super(ctx.namespace, className);
+        super(ctx.getNamespace(), className);
         var allOf = schema.getAllOf();
         if (allOf.isPresent()) {
-            this.extendsType = ctx.typeMapper.mapType(allOf.get().get(0));
+            this.extendsType = ctx.mapType(allOf.get().get(0));
             schema = allOf.get().get(1);
         } else {
             this.extendsType = null;
@@ -36,7 +36,7 @@ public class ObjectShape extends Shape {
         Field.allFrom(ctx, schema).forEach(f -> this.bodyFields.put(f.name(), f));
         var additionalProperties = schema.getAdditionalProperties();
         if (additionalProperties.isPresent()) {
-            var valueType = ctx.typeMapper.mapType(additionalProperties.get());
+            var valueType = ctx.mapType(additionalProperties.get());
             this.additionalPropertiesField = new Field(
                 "metadata",
                 Types.Java.Util.Map(Types.Java.Lang.String, valueType),

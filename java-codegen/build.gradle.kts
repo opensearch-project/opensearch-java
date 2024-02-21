@@ -70,6 +70,7 @@ application {
 tasks.named<JavaExec>("run") {
     args = listOf(
         "https://raw.githubusercontent.com/opensearch-project/opensearch-api-specification/feature/native_openapi/spec/OpenSearch.openapi.yaml",
+        "$rootDir/buildSrc/formatterConfig.xml",
         "${project(":java-client").projectDir}/src/generated/java/"
     )
 }
@@ -131,11 +132,16 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.14.2")
 
     // Apache 2.0
-    implementation("com.google.googlejavaformat:google-java-format:1.15.0")
+    implementation("com.diffplug.spotless:spotless-lib:2.45.0")
+    implementation("com.diffplug.spotless:spotless-lib-extra:2.45.0")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
     implementation("com.google.code.findbugs:jsr305:3.0.2")
+
+    // Apache 2.0
+    implementation("org.apache.maven.resolver:maven-resolver-api:1.9.18")
+    implementation("org.apache.maven.resolver:maven-resolver-supplier:1.9.18")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {

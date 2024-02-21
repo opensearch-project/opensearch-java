@@ -27,15 +27,17 @@ public class Main {
 
     public static void main(String[] args) {
         if (args.length < 2) {
-            System.err.println("Usage: Main.class {specFile} {outputDir}");
+            System.err.println("Usage: Main.class {specURI} {eclipseConfigFile} {outputDir}");
             System.exit(1);
             return;
         }
 
         try {
             var specLocation = new URI(args[0]);
-            var outputDir = new File(args[1]);
+            var eclipseConfig = new File(args[1]);
+            var outputDir = new File(args[2]);
             System.out.println("Spec Location: " + specLocation);
+            System.out.println("Eclipse Config: " + eclipseConfig);
             System.out.println("Output Dir: " + outputDir);
 
             Namespace root = parseSpec(specLocation);
@@ -44,7 +46,9 @@ public class Main {
 
             outputDir = new File(outputDir, root.packageName().replace('.', '/'));
 
-            root.render(outputDir);
+            try (var formatter = new JavaFormatter(outputDir.toPath(), eclipseConfig)) {
+                root.render(outputDir, formatter);
+            }
         } catch (Throwable e) {
             e.printStackTrace(System.err);
             System.exit(1);

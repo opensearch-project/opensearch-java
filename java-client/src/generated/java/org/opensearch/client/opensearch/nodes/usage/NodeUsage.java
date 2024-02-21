@@ -30,9 +30,9 @@
  * GitHub history for details.
  */
 
-// ----------------------------------------------------
+//----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-// ----------------------------------------------------
+//----------------------------------------------------
 
 package org.opensearch.client.opensearch.nodes.usage;
 
@@ -65,10 +65,8 @@ public class NodeUsage implements JsonpSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private NodeUsage(Builder builder) {
-        this.aggregations =
-                ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
-        this.restActions =
-                ApiTypeHelper.unmodifiableRequired(builder.restActions, this, "restActions");
+        this.aggregations = ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
+        this.restActions = ApiTypeHelper.unmodifiableRequired(builder.restActions, this, "restActions");
         this.since = ApiTypeHelper.requireNonNull(builder.since, this, "since");
         this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
     }
@@ -77,27 +75,45 @@ public class NodeUsage implements JsonpSerializable {
         return fn.apply(new Builder()).build();
     }
 
-    /** API name: {@code aggregations} */
+    /**
+
+
+    * <p>API name: {@code aggregations}</p>
+    */
     public final Map<String, Map<String, JsonData>> aggregations() {
         return this.aggregations;
     }
 
-    /** API name: {@code rest_actions} */
+    /**
+
+
+    * <p>API name: {@code rest_actions}</p>
+    */
     public final Map<String, Integer> restActions() {
         return this.restActions;
     }
 
-    /** API name: {@code since} */
+    /**
+
+
+    * <p>API name: {@code since}</p>
+    */
     public final JsonData since() {
         return this.since;
     }
 
-    /** API name: {@code timestamp} */
+    /**
+
+
+    * <p>API name: {@code timestamp}</p>
+    */
     public final JsonData timestamp() {
         return this.timestamp;
     }
 
-    /** Serialize this object to JSON. */
+    /**
+     * Serialize this object to JSON.
+     */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -113,8 +129,10 @@ public class NodeUsage implements JsonpSerializable {
             for (Map.Entry<String, JsonData> item1 : item0.getValue().entrySet()) {
                 generator.writeKey(item1.getKey());
                 item1.getValue().serialize(generator, mapper);
+
             }
             generator.writeEnd();
+
         }
         generator.writeEnd();
 
@@ -123,6 +141,7 @@ public class NodeUsage implements JsonpSerializable {
         for (Map.Entry<String, Integer> item0 : this.restActions.entrySet()) {
             generator.writeKey(item0.getKey());
             generator.write(item0.getValue());
+
         }
         generator.writeEnd();
 
@@ -131,48 +150,79 @@ public class NodeUsage implements JsonpSerializable {
 
         generator.writeKey("timestamp");
         this.timestamp.serialize(generator, mapper);
+
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    /** Builder for {@link NodeUsage}. */
+    /**
+     * Builder for {@link NodeUsage}.
+     */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeUsage> {
-        @Nullable private Map<String, Map<String, JsonData>> aggregations;
-        @Nullable private Map<String, Integer> restActions;
-        @Nullable private JsonData since;
-        @Nullable private JsonData timestamp;
+        @Nullable
+        private Map<String, Map<String, JsonData>> aggregations;
+        @Nullable
+        private Map<String, Integer> restActions;
+        @Nullable
+        private JsonData since;
+        @Nullable
+        private JsonData timestamp;
 
-        /** API name: {@code aggregations} */
+        /**
+
+
+        * <p>API name: {@code aggregations}</p>
+        */
         public final Builder aggregations(Map<String, Map<String, JsonData>> map) {
             this.aggregations = _mapPutAll(this.aggregations, map);
             return this;
         }
 
-        /** API name: {@code aggregations} */
+        /**
+
+
+        * <p>API name: {@code aggregations}</p>
+        */
         public final Builder aggregations(String key, Map<String, JsonData> value) {
             this.aggregations = _mapPut(this.aggregations, key, value);
             return this;
         }
 
-        /** API name: {@code rest_actions} */
+        /**
+
+
+        * <p>API name: {@code rest_actions}</p>
+        */
         public final Builder restActions(Map<String, Integer> map) {
             this.restActions = _mapPutAll(this.restActions, map);
             return this;
         }
 
-        /** API name: {@code rest_actions} */
+        /**
+
+
+        * <p>API name: {@code rest_actions}</p>
+        */
         public final Builder restActions(String key, Integer value) {
             this.restActions = _mapPut(this.restActions, key, value);
             return this;
         }
 
-        /** API name: {@code since} */
+        /**
+
+
+        * <p>API name: {@code since}</p>
+        */
         public final Builder since(JsonData value) {
             this.since = value;
             return this;
         }
 
-        /** API name: {@code timestamp} */
+        /**
+
+
+        * <p>API name: {@code timestamp}</p>
+        */
         public final Builder timestamp(JsonData value) {
             this.timestamp = value;
             return this;
@@ -181,7 +231,8 @@ public class NodeUsage implements JsonpSerializable {
         /**
          * Builds a {@link NodeUsage}.
          *
-         * @throws NullPointerException if some of the required fields are null.
+         * @throws NullPointerException
+         *              if some of the required fields are null.
          */
         public NodeUsage build() {
             _checkSingleUse();
@@ -191,20 +242,21 @@ public class NodeUsage implements JsonpSerializable {
     }
     // ---------------------------------------------------------------------------------------------
 
-    /** Json deserializer for {@link NodeUsage} */
-    public static final JsonpDeserializer<NodeUsage> _DESERIALIZER =
-            ObjectBuilderDeserializer.lazy(Builder::new, NodeUsage::setupNodeUsageDeserializer);
+    /**
+     * Json deserializer for {@link NodeUsage}
+     */
+    public static final JsonpDeserializer<NodeUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeUsage::setupNodeUsageDeserializer
+    );
 
     protected static void setupNodeUsageDeserializer(ObjectDeserializer<NodeUsage.Builder> op) {
         op.add(
-                Builder::aggregations,
-                JsonpDeserializer.stringMapDeserializer(
-                        JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER)),
-                "aggregations");
-        op.add(
-                Builder::restActions,
-                JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
-                "rest_actions");
+            Builder::aggregations,
+            JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER)),
+            "aggregations"
+        );
+        op.add(Builder::restActions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()), "rest_actions");
         op.add(Builder::since, JsonData._DESERIALIZER, "since");
         op.add(Builder::timestamp, JsonData._DESERIALIZER, "timestamp");
     }

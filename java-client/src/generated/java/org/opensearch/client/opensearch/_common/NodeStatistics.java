@@ -30,9 +30,9 @@
  * GitHub history for details.
  */
 
-// ----------------------------------------------------
+//----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-// ----------------------------------------------------
+//----------------------------------------------------
 
 package org.opensearch.client.opensearch._common;
 
@@ -70,45 +70,52 @@ public class NodeStatistics implements JsonpSerializable {
         this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
     }
 
-    public static NodeStatistics of(
-            Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+    public static NodeStatistics of(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - Number of nodes that rejected the request or failed to respond. If this value is
-     * not 0, a reason for the rejection or failure is included in the response.
-     *
-     * <p>API name: {@code failed}
-     */
+
+    * <p>Required - Number of nodes that rejected the request or failed to respond. If this value is not 0, a reason for the rejection or failure is included in the response.</p>
+
+    * <p>API name: {@code failed}</p>
+    */
     public final int failed() {
         return this.failed;
     }
 
-    /** API name: {@code failures} */
+    /**
+
+
+    * <p>API name: {@code failures}</p>
+    */
     public final List<ErrorCause> failures() {
         return this.failures;
     }
 
     /**
-     * Required - Number of nodes that responded successfully to the request.
-     *
-     * <p>API name: {@code successful}
-     */
+
+    * <p>Required - Number of nodes that responded successfully to the request.</p>
+
+    * <p>API name: {@code successful}</p>
+    */
     public final int successful() {
         return this.successful;
     }
 
     /**
-     * Required - Total number of nodes selected by the request.
-     *
-     * <p>API name: {@code total}
-     */
+
+    * <p>Required - Total number of nodes selected by the request.</p>
+
+    * <p>API name: {@code total}</p>
+    */
     public final int total() {
         return this.total;
     }
 
-    /** Serialize this object to JSON. */
+    /**
+     * Serialize this object to JSON.
+     */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -124,8 +131,10 @@ public class NodeStatistics implements JsonpSerializable {
             generator.writeStartArray();
             for (ErrorCause item0 : this.failures) {
                 item0.serialize(generator, mapper);
+
             }
             generator.writeEnd();
+
         }
 
         generator.writeKey("successful");
@@ -133,72 +142,81 @@ public class NodeStatistics implements JsonpSerializable {
 
         generator.writeKey("total");
         generator.write(this.total);
+
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    /** Builder for {@link NodeStatistics}. */
+    /**
+     * Builder for {@link NodeStatistics}.
+     */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeStatistics> {
-        @Nullable private Integer failed;
-        @Nullable private List<ErrorCause> failures;
-        @Nullable private Integer successful;
-        @Nullable private Integer total;
+        @Nullable
+        private Integer failed;
+        @Nullable
+        private List<ErrorCause> failures;
+        @Nullable
+        private Integer successful;
+        @Nullable
+        private Integer total;
 
         /**
-         * Required - Number of nodes that rejected the request or failed to respond. If this value
-         * is not 0, a reason for the rejection or failure is included in the response.
-         *
-         * <p>API name: {@code failed}
-         */
+
+        * <p>Required - Number of nodes that rejected the request or failed to respond. If this value is not 0, a reason for the rejection or failure is included in the response.</p>
+
+        * <p>API name: {@code failed}</p>
+        */
         public final Builder failed(int value) {
             this.failed = value;
             return this;
         }
 
         /**
-         * API name: {@code failures}
-         *
-         * <p>Adds all elements of <code>list</code> to <code>failures</code>.
-         */
+
+        * <p>API name: {@code failures}</p>
+        * <p>Adds all elements of <code>list</code> to <code>failures</code>.</p>
+        */
         public final Builder failures(List<ErrorCause> list) {
             this.failures = _listAddAll(this.failures, list);
             return this;
         }
 
         /**
-         * API name: {@code failures}
-         *
-         * <p>Adds one or more values to <code>failures</code>.
-         */
+
+        * <p>API name: {@code failures}</p>
+        * <p>Adds one or more values to <code>failures</code>.</p>
+        */
         public final Builder failures(ErrorCause value, ErrorCause... values) {
             this.failures = _listAdd(this.failures, value, values);
             return this;
         }
 
         /**
-         * API name: {@code failures}
-         *
-         * <p>Adds a value to <code>failures</code> using a builder lambda.
-         */
+
+        * <p>API name: {@code failures}</p>
+        * <p>Adds a value to <code>failures</code> using a builder lambda.</p>
+        */
         public final Builder failures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return failures(fn.apply(new ErrorCause.Builder()).build());
         }
 
         /**
-         * Required - Number of nodes that responded successfully to the request.
-         *
-         * <p>API name: {@code successful}
-         */
+
+        * <p>Required - Number of nodes that responded successfully to the request.</p>
+
+        * <p>API name: {@code successful}</p>
+        */
         public final Builder successful(int value) {
             this.successful = value;
             return this;
         }
 
         /**
-         * Required - Total number of nodes selected by the request.
-         *
-         * <p>API name: {@code total}
-         */
+
+        * <p>Required - Total number of nodes selected by the request.</p>
+
+        * <p>API name: {@code total}</p>
+        */
         public final Builder total(int value) {
             this.total = value;
             return this;
@@ -207,7 +225,8 @@ public class NodeStatistics implements JsonpSerializable {
         /**
          * Builds a {@link NodeStatistics}.
          *
-         * @throws NullPointerException if some of the required fields are null.
+         * @throws NullPointerException
+         *              if some of the required fields are null.
          */
         public NodeStatistics build() {
             _checkSingleUse();
@@ -217,18 +236,17 @@ public class NodeStatistics implements JsonpSerializable {
     }
     // ---------------------------------------------------------------------------------------------
 
-    /** Json deserializer for {@link NodeStatistics} */
-    public static final JsonpDeserializer<NodeStatistics> _DESERIALIZER =
-            ObjectBuilderDeserializer.lazy(
-                    Builder::new, NodeStatistics::setupNodeStatisticsDeserializer);
+    /**
+     * Json deserializer for {@link NodeStatistics}
+     */
+    public static final JsonpDeserializer<NodeStatistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeStatistics::setupNodeStatisticsDeserializer
+    );
 
-    protected static void setupNodeStatisticsDeserializer(
-            ObjectDeserializer<NodeStatistics.Builder> op) {
+    protected static void setupNodeStatisticsDeserializer(ObjectDeserializer<NodeStatistics.Builder> op) {
         op.add(Builder::failed, JsonpDeserializer.integerDeserializer(), "failed");
-        op.add(
-                Builder::failures,
-                JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER),
-                "failures");
+        op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "failures");
         op.add(Builder::successful, JsonpDeserializer.integerDeserializer(), "successful");
         op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
     }

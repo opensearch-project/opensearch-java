@@ -8,9 +8,6 @@
 
 package org.opensearch.client.codegen;
 
-import com.google.googlejavaformat.java.Formatter;
-import com.google.googlejavaformat.java.FormatterException;
-import com.google.googlejavaformat.java.JavaFormatterOptions;
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.MustacheException;
 import com.samskivert.mustache.Template;
@@ -34,10 +31,6 @@ import org.opensearch.client.codegen.model.Types;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Renderer {
-    private static final Formatter JAVA_FORMATTER = new Formatter(
-        JavaFormatterOptions.builder().style(JavaFormatterOptions.Style.AOSP).formatJavadoc(true).build()
-    );
-
     private static final Mustache.Compiler BASE_COMPILER = Mustache.compiler().escapeHTML(false).withLoader(name -> {
         var stream = Renderer.class.getResourceAsStream("templates/" + name + ".mustache");
         if (stream == null) {
@@ -61,8 +54,9 @@ public class Renderer {
 
     private final Mustache.Compiler compiler;
     private final Context context;
+    private final JavaFormatter formatter;
 
-    public Renderer(Consumer<Type> typeReferenceTracker) {
+    public Renderer(Consumer<Type> typeReferenceTracker, JavaFormatter formatter) {
         compiler = BASE_COMPILER.withFormatter((value) -> {
             if (value instanceof Type) {
                 typeReferenceTracker.accept((Type) value);
@@ -70,6 +64,7 @@ public class Renderer {
             return String.valueOf(value);
         });
         this.context = new Context(this);
+        this.formatter = formatter;
     }
 
     public void render(String templateName, Object context, Writer out) throws RenderException {
@@ -90,18 +85,18 @@ public class Renderer {
         var classBody = render(shape.getClass().getSimpleName(), shape);
         var classHeader = render("Partials/ClassHeader", shape);
 
-        var output = classHeader + "\n\n" + classBody;
-
-        try {
-            output = JAVA_FORMATTER.formatSource(output);
-        } catch (FormatterException e) {
-            output = "// FAILED FORMATTING: " + e + "\n\n" + output;
-        }
-
         try (Writer fileWriter = new FileWriter(outputFile)) {
-            fileWriter.write(output);
+            fileWriter.write(classHeader);
+            fileWriter.write("\n\n");
+            fileWriter.write(classBody);
         } catch (IOException e) {
             throw new RenderException("Unable to write rendered output to: " + outputFile, e);
+        }
+
+        try {
+            formatter.format(outputFile);
+        } catch (IOException e) {
+            throw new RenderException("Unable to format rendered output: " + outputFile, e);
         }
     }
 

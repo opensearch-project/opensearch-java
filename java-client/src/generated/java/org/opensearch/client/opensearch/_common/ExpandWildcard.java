@@ -30,9 +30,9 @@
  * GitHub history for details.
  */
 
-// ----------------------------------------------------
+//----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-// ----------------------------------------------------
+//----------------------------------------------------
 
 package org.opensearch.client.opensearch._common;
 
@@ -45,8 +45,7 @@ public enum ExpandWildcard implements JsonEnum {
     Open("open"),
     Closed("closed"),
     Hidden("hidden"),
-    None("none"),
-    ;
+    None("none"),;
 
     private final String jsonValue;
 
@@ -58,6 +57,5 @@ public enum ExpandWildcard implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<ExpandWildcard> _DESERIALIZER =
-            new JsonEnum.Deserializer<>(ExpandWildcard.values());
+    public static final JsonEnum.Deserializer<ExpandWildcard> _DESERIALIZER = new JsonEnum.Deserializer<>(ExpandWildcard.values());
 }

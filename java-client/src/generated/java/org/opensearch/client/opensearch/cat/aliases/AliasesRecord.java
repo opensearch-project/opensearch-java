@@ -30,9 +30,9 @@
  * GitHub history for details.
  */
 
-// ----------------------------------------------------
+//----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-// ----------------------------------------------------
+//----------------------------------------------------
 
 package org.opensearch.client.opensearch.cat.aliases;
 
@@ -51,17 +51,23 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @JsonpDeserializable
 public class AliasesRecord implements JsonpSerializable {
 
-    @Nullable private final String alias;
+    @Nullable
+    private final String alias;
 
-    @Nullable private final String filter;
+    @Nullable
+    private final String filter;
 
-    @Nullable private final String index;
+    @Nullable
+    private final String index;
 
-    @Nullable private final String isWriteIndex;
+    @Nullable
+    private final String isWriteIndex;
 
-    @Nullable private final String routingIndex;
+    @Nullable
+    private final String routingIndex;
 
-    @Nullable private final String routingSearch;
+    @Nullable
+    private final String routingSearch;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -74,68 +80,78 @@ public class AliasesRecord implements JsonpSerializable {
         this.routingSearch = builder.routingSearch;
     }
 
-    public static AliasesRecord of(
-            Function<AliasesRecord.Builder, ObjectBuilder<AliasesRecord>> fn) {
+    public static AliasesRecord of(Function<AliasesRecord.Builder, ObjectBuilder<AliasesRecord>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * alias name
-     *
-     * <p>API name: {@code alias}
-     */
+
+    * <p>alias name</p>
+
+    * <p>API name: {@code alias}</p>
+    */
     @Nullable
     public final String alias() {
         return this.alias;
     }
 
     /**
-     * filter
-     *
-     * <p>API name: {@code filter}
-     */
+
+    * <p>filter</p>
+
+    * <p>API name: {@code filter}</p>
+    */
     @Nullable
     public final String filter() {
         return this.filter;
     }
 
-    /** API name: {@code index} */
+    /**
+
+
+    * <p>API name: {@code index}</p>
+    */
     @Nullable
     public final String index() {
         return this.index;
     }
 
     /**
-     * write index
-     *
-     * <p>API name: {@code is_write_index}
-     */
+
+    * <p>write index</p>
+
+    * <p>API name: {@code is_write_index}</p>
+    */
     @Nullable
     public final String isWriteIndex() {
         return this.isWriteIndex;
     }
 
     /**
-     * index routing
-     *
-     * <p>API name: {@code routing.index}
-     */
+
+    * <p>index routing</p>
+
+    * <p>API name: {@code routing.index}</p>
+    */
     @Nullable
     public final String routingIndex() {
         return this.routingIndex;
     }
 
     /**
-     * search routing
-     *
-     * <p>API name: {@code routing.search}
-     */
+
+    * <p>search routing</p>
+
+    * <p>API name: {@code routing.search}</p>
+    */
     @Nullable
     public final String routingSearch() {
         return this.routingSearch;
     }
 
-    /** Serialize this object to JSON. */
+    /**
+     * Serialize this object to JSON.
+     */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -146,96 +162,120 @@ public class AliasesRecord implements JsonpSerializable {
         if (this.alias != null) {
             generator.writeKey("alias");
             generator.write(this.alias);
+
         }
 
         if (this.filter != null) {
             generator.writeKey("filter");
             generator.write(this.filter);
+
         }
 
         if (this.index != null) {
             generator.writeKey("index");
             generator.write(this.index);
+
         }
 
         if (this.isWriteIndex != null) {
             generator.writeKey("is_write_index");
             generator.write(this.isWriteIndex);
+
         }
 
         if (this.routingIndex != null) {
             generator.writeKey("routing.index");
             generator.write(this.routingIndex);
+
         }
 
         if (this.routingSearch != null) {
             generator.writeKey("routing.search");
             generator.write(this.routingSearch);
+
         }
+
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    /** Builder for {@link AliasesRecord}. */
+    /**
+     * Builder for {@link AliasesRecord}.
+     */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AliasesRecord> {
-        @Nullable private String alias;
-        @Nullable private String filter;
-        @Nullable private String index;
-        @Nullable private String isWriteIndex;
-        @Nullable private String routingIndex;
-        @Nullable private String routingSearch;
+        @Nullable
+        private String alias;
+        @Nullable
+        private String filter;
+        @Nullable
+        private String index;
+        @Nullable
+        private String isWriteIndex;
+        @Nullable
+        private String routingIndex;
+        @Nullable
+        private String routingSearch;
 
         /**
-         * alias name
-         *
-         * <p>API name: {@code alias}
-         */
+
+        * <p>alias name</p>
+
+        * <p>API name: {@code alias}</p>
+        */
         public final Builder alias(@Nullable String value) {
             this.alias = value;
             return this;
         }
 
         /**
-         * filter
-         *
-         * <p>API name: {@code filter}
-         */
+
+        * <p>filter</p>
+
+        * <p>API name: {@code filter}</p>
+        */
         public final Builder filter(@Nullable String value) {
             this.filter = value;
             return this;
         }
 
-        /** API name: {@code index} */
+        /**
+
+
+        * <p>API name: {@code index}</p>
+        */
         public final Builder index(@Nullable String value) {
             this.index = value;
             return this;
         }
 
         /**
-         * write index
-         *
-         * <p>API name: {@code is_write_index}
-         */
+
+        * <p>write index</p>
+
+        * <p>API name: {@code is_write_index}</p>
+        */
         public final Builder isWriteIndex(@Nullable String value) {
             this.isWriteIndex = value;
             return this;
         }
 
         /**
-         * index routing
-         *
-         * <p>API name: {@code routing.index}
-         */
+
+        * <p>index routing</p>
+
+        * <p>API name: {@code routing.index}</p>
+        */
         public final Builder routingIndex(@Nullable String value) {
             this.routingIndex = value;
             return this;
         }
 
         /**
-         * search routing
-         *
-         * <p>API name: {@code routing.search}
-         */
+
+        * <p>search routing</p>
+
+        * <p>API name: {@code routing.search}</p>
+        */
         public final Builder routingSearch(@Nullable String value) {
             this.routingSearch = value;
             return this;
@@ -244,7 +284,8 @@ public class AliasesRecord implements JsonpSerializable {
         /**
          * Builds a {@link AliasesRecord}.
          *
-         * @throws NullPointerException if some of the required fields are null.
+         * @throws NullPointerException
+         *              if some of the required fields are null.
          */
         public AliasesRecord build() {
             _checkSingleUse();
@@ -254,13 +295,15 @@ public class AliasesRecord implements JsonpSerializable {
     }
     // ---------------------------------------------------------------------------------------------
 
-    /** Json deserializer for {@link AliasesRecord} */
-    public static final JsonpDeserializer<AliasesRecord> _DESERIALIZER =
-            ObjectBuilderDeserializer.lazy(
-                    Builder::new, AliasesRecord::setupAliasesRecordDeserializer);
+    /**
+     * Json deserializer for {@link AliasesRecord}
+     */
+    public static final JsonpDeserializer<AliasesRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        AliasesRecord::setupAliasesRecordDeserializer
+    );
 
-    protected static void setupAliasesRecordDeserializer(
-            ObjectDeserializer<AliasesRecord.Builder> op) {
+    protected static void setupAliasesRecordDeserializer(ObjectDeserializer<AliasesRecord.Builder> op) {
         op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias");
         op.add(Builder::filter, JsonpDeserializer.stringDeserializer(), "filter");
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");

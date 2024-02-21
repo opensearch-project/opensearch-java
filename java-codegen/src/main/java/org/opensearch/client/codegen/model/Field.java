@@ -19,7 +19,7 @@ public class Field {
     }
 
     public static Field from(Context ctx, String name, OpenApiSchema schema, boolean required, String description) {
-        return new Field(name, ctx.typeMapper.mapType(schema), required, description);
+        return new Field(name, ctx.mapType(schema), required, description);
     }
 
     public static Stream<Field> allFrom(Context ctx, OpenApiSchema schema) {

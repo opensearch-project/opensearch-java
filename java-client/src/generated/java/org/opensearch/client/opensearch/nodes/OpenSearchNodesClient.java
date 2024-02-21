@@ -30,9 +30,9 @@
  * GitHub history for details.
  */
 
-// ----------------------------------------------------
+//----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-// ----------------------------------------------------
+//----------------------------------------------------
 
 package org.opensearch.client.opensearch.nodes;
 
@@ -50,8 +50,7 @@ public class OpenSearchNodesClient extends ApiClient<OpenSearchTransport, OpenSe
         super(transport, null);
     }
 
-    public OpenSearchNodesClient(
-            OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+    public OpenSearchNodesClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
     }
 
@@ -62,10 +61,11 @@ public class OpenSearchNodesClient extends ApiClient<OpenSearchTransport, OpenSe
 
     // ----- Endpoint: nodes.usage
 
-    /** Returns low-level information about REST actions usage on nodes. */
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     */
     public UsageResponse usage(UsageRequest request) throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-                request, UsageRequest._ENDPOINT, this.transportOptions);
+        return this.transport.performRequest(request, UsageRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -73,12 +73,14 @@ public class OpenSearchNodesClient extends ApiClient<OpenSearchTransport, OpenSe
      *
      * @param fn a function that initializes a builder to create the {@link UsageRequest}
      */
-    public final UsageResponse usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
-            throws IOException, OpenSearchException {
+    public final UsageResponse usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn) throws IOException,
+        OpenSearchException {
         return usage(fn.apply(new UsageRequest.Builder()).build());
     }
 
-    /** Returns low-level information about REST actions usage on nodes. */
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     */
     public UsageResponse usage() throws IOException, OpenSearchException {
         return usage(new UsageRequest.Builder().build());
     }
