@@ -65,13 +65,17 @@ public final class Types {
         public static final class Util {
             public static final String PACKAGE = Java.PACKAGE + ".util";
             public static final Type HashMap = Type.builder().pkg(PACKAGE).name("HashMap").build();
+
             public static Type Map(Type keyType, Type valueType) {
                 return Map.withGenericArgs(keyType, valueType);
             }
+
             public static final Type Map = Type.builder().pkg(PACKAGE).name("Map").build();
+
             public static Type MapEntry(Type keyType, Type valueType) {
                 return Type.builder().pkg(PACKAGE).name("Map.Entry").genericArgs(keyType, valueType).build();
             }
+
             public static Type List(Type valueType) {
                 return Type.builder().pkg(PACKAGE).name("List").genericArgs(valueType).build();
             }
@@ -150,9 +154,11 @@ public final class Types {
         public static final class Util {
             public static final String PACKAGE = Client.PACKAGE + ".util";
             public static final Type ApiTypeHelper = Type.builder().pkg(PACKAGE).name("ApiTypeHelper").build();
+
             public static Type ObjectBuilder(Type type) {
                 return ObjectBuilder.withGenericArgs(type);
             }
+
             public static final Type ObjectBuilder = Type.builder().pkg(PACKAGE).name("ObjectBuilder").build();
             public static final Type ObjectBuilderBase = Type.builder().pkg(PACKAGE).name("ObjectBuilderBase").build();
         }
@@ -163,6 +169,7 @@ public final class Types {
 
         public static final class Json {
             public static final String PACKAGE = Jakarta.PACKAGE + ".json";
+
             public static final class Stream {
                 public static final String PACKAGE = Json.PACKAGE + ".stream";
                 public static final Type JsonGenerator = Type.builder().pkg(PACKAGE).name("JsonGenerator").build();

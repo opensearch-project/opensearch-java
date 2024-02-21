@@ -19,7 +19,6 @@ public class OpenApiApiResponse extends OpenApiRefObject<OpenApiApiResponse, Api
     }
 
     public Optional<OpenApiSchema> getContentSchema(MediaType mediaType) {
-        return Maps.tryGet(getInner().getContent(), mediaType.toString())
-                .map(m -> new OpenApiSchema(getParent(), m.getSchema()));
+        return Maps.tryGet(getInner().getContent(), mediaType.toString()).map(m -> new OpenApiSchema(getParent(), m.getSchema()));
     }
 }

@@ -59,45 +59,35 @@ public class RequestShape extends ObjectShape {
         }
 
         var paths = Stream.of(
-                        canonicalPaths
-                                .values()
-                                .stream(),
-                        deprecatedPaths
-                                .entrySet()
-                                .stream()
-                                .filter(p -> !canonicalPaths.containsKey(p.getKey()))
-                                .map(Map.Entry::getValue)
-                )
-                .flatMap(Function.identity())
-                .sorted((p1, p2) -> {
-                    var params1 = p1.params();
-                    var p1Size = params1.size();
-                    var params2 = p2.params();
-                    var p2Size = params2.size();
-                    var len = Math.max(p1Size, p2Size);
+            canonicalPaths.values().stream(),
+            deprecatedPaths.entrySet().stream().filter(p -> !canonicalPaths.containsKey(p.getKey())).map(Map.Entry::getValue)
+        ).flatMap(Function.identity()).sorted((p1, p2) -> {
+            var params1 = p1.params();
+            var p1Size = params1.size();
+            var params2 = p2.params();
+            var p2Size = params2.size();
+            var len = Math.max(p1Size, p2Size);
 
-                    for (int i = 0; i < len; i++) {
-                        if (i >= p1Size) return -1;
-                        if (i >= p2Size) return 1;
-                        var cmp = params1.get(i).name().compareTo(params2.get(i).name());
-                        if (cmp != 0) return cmp;
-                    }
+            for (int i = 0; i < len; i++) {
+                if (i >= p1Size) return -1;
+                if (i >= p2Size) return 1;
+                var cmp = params1.get(i).name().compareTo(params2.get(i).name());
+                if (cmp != 0) return cmp;
+            }
 
-                    return 0;
-                })
-                .collect(Collectors.toList());
+            return 0;
+        }).collect(Collectors.toList());
 
         for (var entry : allPathParams.entrySet()) {
             entry.getValue().setRequired(requiredPathParams.contains(entry.getKey()));
         }
 
-        var bodySchema = variants
-                .get(0)
-                .getRequestBody()
-                .map(OpenApiRequestBody::resolve)
-                .flatMap(b -> b.getContentSchema(MediaType.JSON))
-                .map(OpenApiSchema::resolve)
-                .orElse(OpenApiSchema.EMPTY);
+        var bodySchema = variants.get(0)
+            .getRequestBody()
+            .map(OpenApiRequestBody::resolve)
+            .flatMap(b -> b.getContentSchema(MediaType.JSON))
+            .map(OpenApiSchema::resolve)
+            .orElse(OpenApiSchema.EMPTY);
 
         var queryParams = variants.stream()
             .flatMap(v -> v.getParametersIn(OpenApiParameter.In.QUERY))

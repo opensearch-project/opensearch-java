@@ -34,18 +34,17 @@ import org.opensearch.client.codegen.model.Types;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Renderer {
-    private static final Formatter JAVA_FORMATTER = new Formatter(JavaFormatterOptions.builder().style(JavaFormatterOptions.Style.AOSP).formatJavadoc(true).build());
+    private static final Formatter JAVA_FORMATTER = new Formatter(
+        JavaFormatterOptions.builder().style(JavaFormatterOptions.Style.AOSP).formatJavadoc(true).build()
+    );
 
-    private static final Mustache.Compiler BASE_COMPILER = Mustache
-            .compiler()
-            .escapeHTML(false)
-            .withLoader(name -> {
-                var stream = Renderer.class.getResourceAsStream("templates/" + name + ".mustache");
-                if (stream == null) {
-                    throw new MissingResourceException("Unable to find template", Renderer.class.getName(), name);
-                }
-                return new InputStreamReader(stream);
-            });
+    private static final Mustache.Compiler BASE_COMPILER = Mustache.compiler().escapeHTML(false).withLoader(name -> {
+        var stream = Renderer.class.getResourceAsStream("templates/" + name + ".mustache");
+        if (stream == null) {
+            throw new MissingResourceException("Unable to find template", Renderer.class.getName(), name);
+        }
+        return new InputStreamReader(stream);
+    });
 
     public static Mustache.Lambda transformer(Function<String, String> transform) {
         return ((frag, out) -> out.write(transform.apply(frag.execute())));
@@ -64,13 +63,12 @@ public class Renderer {
     private final Context context;
 
     public Renderer(Consumer<Type> typeReferenceTracker) {
-        compiler = BASE_COMPILER
-                .withFormatter((value) -> {
-                    if (value instanceof Type) {
-                        typeReferenceTracker.accept((Type) value);
-                    }
-                    return String.valueOf(value);
-                });
+        compiler = BASE_COMPILER.withFormatter((value) -> {
+            if (value instanceof Type) {
+                typeReferenceTracker.accept((Type) value);
+            }
+            return String.valueOf(value);
+        });
         this.context = new Context(this);
     }
 
@@ -110,10 +108,7 @@ public class Renderer {
     public static Mustache.Lambda templateLambda(String templateName, Function<Template.Fragment, Object> contextGetter) {
         return (frag, out) -> {
             try {
-                findContext(frag, Context.class)
-                        .orElseThrow()
-                        .getRenderer()
-                        .render(templateName, contextGetter.apply(frag), out);
+                findContext(frag, Context.class).orElseThrow().getRenderer().render(templateName, contextGetter.apply(frag), out);
             } catch (RenderException e) {
                 throw new RuntimeException(e);
             }

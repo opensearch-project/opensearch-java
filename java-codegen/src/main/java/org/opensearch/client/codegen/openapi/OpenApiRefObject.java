@@ -19,11 +19,12 @@ public abstract class OpenApiRefObject<T extends OpenApiRefObject<T, O>, O> exte
     private final Function<O, String> get$ref;
 
     protected OpenApiRefObject(
-            OpenApiSpec parent,
-            O inner,
-            BiFunction<OpenApiSpec, O, T> constructor,
-            Function<OpenAPI, Map<String, O>> componentsGetter,
-            Function<O, String> get$ref) {
+        OpenApiSpec parent,
+        O inner,
+        BiFunction<OpenApiSpec, O, T> constructor,
+        Function<OpenAPI, Map<String, O>> componentsGetter,
+        Function<O, String> get$ref
+    ) {
         super(parent, inner);
         this.constructor = constructor;
         this.componentsGetter = componentsGetter;

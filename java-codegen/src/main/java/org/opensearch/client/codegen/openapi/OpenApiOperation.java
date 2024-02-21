@@ -43,22 +43,20 @@ public class OpenApiOperation extends OpenApiObject<Operation> implements OpenAp
 
     public Stream<OpenApiParameter> getParametersIn(OpenApiParameter.In in) {
         var stream = Streams.tryOf(getInner().getParameters())
-                .map(p -> new OpenApiParameter(getParent(), p))
-                .map(OpenApiParameter::resolve)
-                .filter(p -> in.equals(p.getIn()));
+            .map(p -> new OpenApiParameter(getParent(), p))
+            .map(OpenApiParameter::resolve)
+            .filter(p -> in.equals(p.getIn()));
 
-        return Stream.of(path.getParametersIn(in), stream)
-                .flatMap(Function.identity());
+        return Stream.of(path.getParametersIn(in), stream).flatMap(Function.identity());
     }
 
     public Optional<OpenApiRequestBody> getRequestBody() {
-        return Optional.ofNullable(getInner().getRequestBody())
-                .map(body -> new OpenApiRequestBody(getParent(), body));
+        return Optional.ofNullable(getInner().getRequestBody()).map(body -> new OpenApiRequestBody(getParent(), body));
     }
 
     public Optional<OpenApiApiResponse> getResponse(int statusCode) {
         return Maps.tryGet(getInner().getResponses(), Integer.toString(statusCode))
-                .map(response -> new OpenApiApiResponse(getParent(), response));
+            .map(response -> new OpenApiApiResponse(getParent(), response));
     }
 
     @Override
@@ -67,9 +65,7 @@ public class OpenApiOperation extends OpenApiObject<Operation> implements OpenAp
     }
 
     public OperationGroup getXOperationGroup() {
-        return getExtensionAsString("x-operation-group")
-                .map(OperationGroup::from)
-                .orElseThrow();
+        return getExtensionAsString("x-operation-group").map(OperationGroup::from).orElseThrow();
     }
 
     public Optional<String> getXVersionAdded() {

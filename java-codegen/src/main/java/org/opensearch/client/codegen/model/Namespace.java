@@ -19,19 +19,22 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.tuple.Triple;
+import org.opensearch.client.codegen.TypeMapper;
+import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.openapi.OpenApiApiResponse;
 import org.opensearch.client.codegen.openapi.OpenApiOperation;
 import org.opensearch.client.codegen.openapi.OpenApiSchema;
 import org.opensearch.client.codegen.openapi.OpenApiSpec;
-import org.opensearch.client.codegen.TypeMapper;
-import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.utils.MediaType;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Namespace extends Shape {
     public static Namespace from(OpenApiSpec api, HashSet<String> operationsToGenerate) {
         var referencedSchemas = new ConcurrentLinkedQueue<Triple<String, String, OpenApiSchema>>();
-        var ctx = new Context(new Namespace(), new TypeMapper((namespace, name, schema) -> referencedSchemas.add(Triple.of(namespace, name, schema))));
+        var ctx = new Context(
+            new Namespace(),
+            new TypeMapper((namespace, name, schema) -> referencedSchemas.add(Triple.of(namespace, name, schema)))
+        );
 
         var groupedOperations = new HashMap<OperationGroup, List<OpenApiOperation>>();
 
@@ -50,15 +53,15 @@ public class Namespace extends Shape {
             parent.shapes.add(requestShape);
 
             var responseSchema = variants.get(0)
-                    .getResponse(200)
-                    .map(OpenApiApiResponse::resolve)
-                    .flatMap(r -> r.getContentSchema(MediaType.JSON))
-                    .map(OpenApiSchema::resolve)
-                    .orElse(OpenApiSchema.EMPTY);
+                .getResponse(200)
+                .map(OpenApiApiResponse::resolve)
+                .flatMap(r -> r.getContentSchema(MediaType.JSON))
+                .map(OpenApiSchema::resolve)
+                .orElse(OpenApiSchema.EMPTY);
 
             var responseShape = responseSchema.isArray()
-                    ? ArrayShape.from(opCtx, requestShape.responseType(), responseSchema)
-                    : ObjectShape.from(opCtx, requestShape.responseType(), responseSchema);
+                ? ArrayShape.from(opCtx, requestShape.responseType(), responseSchema)
+                : ObjectShape.from(opCtx, requestShape.responseType(), responseSchema);
             parent.shapes.add(responseShape);
         });
 
@@ -116,7 +119,7 @@ public class Namespace extends Shape {
         var childName = idx >= 0 ? name.substring(0, idx) : name;
         var grandChildName = idx >= 0 ? name.substring(idx + 1) : null;
 
-//        if ("_common".equals(childName) && this.parent != null) return child(grandChildName);
+        // if ("_common".equals(childName) && this.parent != null) return child(grandChildName);
 
         Namespace child = children.computeIfAbsent(childName, n -> new Namespace(this, n));
         return grandChildName == null ? child : child.child(grandChildName);
@@ -153,13 +156,11 @@ public class Namespace extends Shape {
         }
 
         public Collection<Client> children() {
-            return parent
-                    .children
-                    .values()
-                    .stream()
-                    .filter(n -> !n.operations.isEmpty())
-                    .map(n -> new Client(n, async))
-                    .collect(Collectors.toList());
+            return parent.children.values()
+                .stream()
+                .filter(n -> !n.operations.isEmpty())
+                .map(n -> new Client(n, async))
+                .collect(Collectors.toList());
         }
 
         public Collection<RequestShape> operations() {
