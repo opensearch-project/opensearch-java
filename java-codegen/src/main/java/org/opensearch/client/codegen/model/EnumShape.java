@@ -17,7 +17,11 @@ import org.opensearch.client.codegen.utils.Strings;
 
 public class EnumShape extends Shape {
     public static EnumShape from(Context ctx, String name, OpenApiSchema schema) {
-        return new EnumShape(ctx.namespace, name, schema.getEnum().orElseThrow().stream().map(Variant::new).collect(Collectors.toList()));
+        return new EnumShape(
+            ctx.getNamespace(),
+            name,
+            schema.getEnum().orElseThrow().stream().map(Variant::new).collect(Collectors.toList())
+        );
     }
 
     private final List<Variant> variants;

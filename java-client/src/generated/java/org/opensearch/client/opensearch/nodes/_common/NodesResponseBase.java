@@ -30,9 +30,9 @@
  * GitHub history for details.
  */
 
-// ----------------------------------------------------
+//----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-// ----------------------------------------------------
+//----------------------------------------------------
 
 package org.opensearch.client.opensearch.nodes._common;
 
@@ -52,7 +52,8 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @JsonpDeserializable
 public class NodesResponseBase implements JsonpSerializable {
 
-    @Nullable private final NodeStatistics nodes;
+    @Nullable
+    private final NodeStatistics nodes;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -60,18 +61,23 @@ public class NodesResponseBase implements JsonpSerializable {
         this.nodes = builder.nodes;
     }
 
-    public static NodesResponseBase of(
-            Function<NodesResponseBase.Builder, ObjectBuilder<NodesResponseBase>> fn) {
+    public static NodesResponseBase of(Function<NodesResponseBase.Builder, ObjectBuilder<NodesResponseBase>> fn) {
         return fn.apply(new Builder()).build();
     }
 
-    /** API name: {@code _nodes} */
+    /**
+
+
+    * <p>API name: {@code _nodes}</p>
+    */
     @Nullable
     public final NodeStatistics nodes() {
         return this.nodes;
     }
 
-    /** Serialize this object to JSON. */
+    /**
+     * Serialize this object to JSON.
+     */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -82,32 +88,44 @@ public class NodesResponseBase implements JsonpSerializable {
         if (this.nodes != null) {
             generator.writeKey("_nodes");
             this.nodes.serialize(generator, mapper);
+
         }
+
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    /** Builder for {@link NodesResponseBase}. */
-    public static class Builder extends ObjectBuilderBase
-            implements ObjectBuilder<NodesResponseBase> {
-        @Nullable private NodeStatistics nodes;
+    /**
+     * Builder for {@link NodesResponseBase}.
+     */
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesResponseBase> {
+        @Nullable
+        private NodeStatistics nodes;
 
-        /** API name: {@code _nodes} */
+        /**
+
+
+        * <p>API name: {@code _nodes}</p>
+        */
         public final Builder nodes(@Nullable NodeStatistics value) {
             this.nodes = value;
             return this;
         }
 
-        /** API name: {@code _nodes} */
-        public final Builder nodes(
-                Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+        /**
+
+
+        * <p>API name: {@code _nodes}</p>
+        */
+        public final Builder nodes(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
             return this.nodes(fn.apply(new NodeStatistics.Builder()).build());
         }
 
         /**
          * Builds a {@link NodesResponseBase}.
          *
-         * @throws NullPointerException if some of the required fields are null.
+         * @throws NullPointerException
+         *              if some of the required fields are null.
          */
         public NodesResponseBase build() {
             _checkSingleUse();
@@ -117,13 +135,15 @@ public class NodesResponseBase implements JsonpSerializable {
     }
     // ---------------------------------------------------------------------------------------------
 
-    /** Json deserializer for {@link NodesResponseBase} */
-    public static final JsonpDeserializer<NodesResponseBase> _DESERIALIZER =
-            ObjectBuilderDeserializer.lazy(
-                    Builder::new, NodesResponseBase::setupNodesResponseBaseDeserializer);
+    /**
+     * Json deserializer for {@link NodesResponseBase}
+     */
+    public static final JsonpDeserializer<NodesResponseBase> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodesResponseBase::setupNodesResponseBaseDeserializer
+    );
 
-    protected static void setupNodesResponseBaseDeserializer(
-            ObjectDeserializer<NodesResponseBase.Builder> op) {
+    protected static void setupNodesResponseBaseDeserializer(ObjectDeserializer<NodesResponseBase.Builder> op) {
         op.add(Builder::nodes, NodeStatistics._DESERIALIZER, "_nodes");
     }
 }

@@ -30,9 +30,9 @@
  * GitHub history for details.
  */
 
-// ----------------------------------------------------
+//----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-// ----------------------------------------------------
+//----------------------------------------------------
 
 package org.opensearch.client.opensearch.cat;
 
@@ -50,8 +50,7 @@ public class OpenSearchCatClient extends ApiClient<OpenSearchTransport, OpenSear
         super(transport, null);
     }
 
-    public OpenSearchCatClient(
-            OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+    public OpenSearchCatClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
     }
 
@@ -63,29 +62,24 @@ public class OpenSearchCatClient extends ApiClient<OpenSearchTransport, OpenSear
     // ----- Endpoint: cat.aliases
 
     /**
-     * Shows information about currently configured aliases to indices including filter and routing
-     * infos.
+     * Shows information about currently configured aliases to indices including filter and routing infos.
      */
     public AliasesResponse aliases(AliasesRequest request) throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-                request, AliasesRequest._ENDPOINT, this.transportOptions);
+        return this.transport.performRequest(request, AliasesRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Shows information about currently configured aliases to indices including filter and routing
-     * infos.
+     * Shows information about currently configured aliases to indices including filter and routing infos.
      *
      * @param fn a function that initializes a builder to create the {@link AliasesRequest}
      */
-    public final AliasesResponse aliases(
-            Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn)
-            throws IOException, OpenSearchException {
+    public final AliasesResponse aliases(Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn) throws IOException,
+        OpenSearchException {
         return aliases(fn.apply(new AliasesRequest.Builder()).build());
     }
 
     /**
-     * Shows information about currently configured aliases to indices including filter and routing
-     * infos.
+     * Shows information about currently configured aliases to indices including filter and routing infos.
      */
     public AliasesResponse aliases() throws IOException, OpenSearchException {
         return aliases(new AliasesRequest.Builder().build());

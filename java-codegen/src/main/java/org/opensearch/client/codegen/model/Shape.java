@@ -12,18 +12,17 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
+import org.opensearch.client.codegen.JavaFormatter;
 import org.opensearch.client.codegen.Renderer;
 import org.opensearch.client.codegen.exceptions.RenderException;
 
 public abstract class Shape {
     protected final Namespace parent;
-    protected final Renderer renderer;
     private final String className;
     private final Set<Type> referencedTypes = new HashSet<>();
 
     public Shape(Namespace parent, String className) {
         this.parent = parent;
-        this.renderer = new Renderer(this::addReferencedType);
         this.className = className;
     }
 
@@ -43,12 +42,9 @@ public abstract class Shape {
         return this.className;
     }
 
-    public void render(File outputDir) throws RenderException {
+    public void render(File outputDir, JavaFormatter formatter) throws RenderException {
+        var renderer = new Renderer(referencedTypes::add, formatter);
         renderer.renderJava(this, new File(outputDir, this.className + ".java"));
-    }
-
-    public void addReferencedType(Type type) {
-        referencedTypes.add(type);
     }
 
     public Set<String> imports() {

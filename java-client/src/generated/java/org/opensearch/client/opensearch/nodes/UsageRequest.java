@@ -30,9 +30,9 @@
  * GitHub history for details.
  */
 
-// ----------------------------------------------------
+//----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-// ----------------------------------------------------
+//----------------------------------------------------
 
 package org.opensearch.client.opensearch.nodes;
 
@@ -50,14 +50,17 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-/** Returns low-level information about REST actions usage on nodes. */
+/**
+* Returns low-level information about REST actions usage on nodes.
+*/
 public class UsageRequest extends RequestBase {
 
     private final List<String> metric;
 
     private final List<String> nodeId;
 
-    @Nullable private final Time timeout;
+    @Nullable
+    private final Time timeout;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -72,32 +75,33 @@ public class UsageRequest extends RequestBase {
     }
 
     /**
-     * Limits the information returned to the specific metrics. A comma-separated list of the
-     * following options: `_all`, `rest_actions`.
-     *
-     * <p>API name: {@code metric}
-     */
+
+    * <p>Limits the information returned to the specific metrics.
+    A comma-separated list of the following options: `_all`, `rest_actions`.</p>
+
+    * <p>API name: {@code metric}</p>
+    */
     public final List<String> metric() {
         return this.metric;
     }
 
     /**
-     * A comma-separated list of node IDs or names to limit the returned information; use `_local`
-     * to return information from the node you're connecting to, leave empty to get information from
-     * all nodes
-     *
-     * <p>API name: {@code node_id}
-     */
+
+    * <p>A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes</p>
+
+    * <p>API name: {@code node_id}</p>
+    */
     public final List<String> nodeId() {
         return this.nodeId;
     }
 
     /**
-     * Period to wait for a response. If no response is received before the timeout expires, the
-     * request fails and returns an error.
-     *
-     * <p>API name: {@code timeout}
-     */
+
+    * <p>Period to wait for a response.
+    If no response is received before the timeout expires, the request fails and returns an error.</p>
+
+    * <p>API name: {@code timeout}</p>
+    */
     @Nullable
     public final Time timeout() {
         return this.timeout;
@@ -105,83 +109,82 @@ public class UsageRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
-    /** Builder for {@link UsageRequest}. */
+    /**
+     * Builder for {@link UsageRequest}.
+     */
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UsageRequest> {
-        @Nullable private List<String> metric;
-        @Nullable private List<String> nodeId;
-        @Nullable private Time timeout;
+        @Nullable
+        private List<String> metric;
+        @Nullable
+        private List<String> nodeId;
+        @Nullable
+        private Time timeout;
 
         /**
-         * Limits the information returned to the specific metrics. A comma-separated list of the
-         * following options: `_all`, `rest_actions`.
-         *
-         * <p>API name: {@code metric}
-         *
-         * <p>Adds all elements of <code>list</code> to <code>metric</code>.
-         */
+        * <p>Limits the information returned to the specific metrics.
+        A comma-separated list of the following options: `_all`, `rest_actions`.</p>
+
+        * <p>API name: {@code metric}</p>
+        * <p>Adds all elements of <code>list</code> to <code>metric</code>.</p>
+        */
         public final Builder metric(List<String> list) {
             this.metric = _listAddAll(this.metric, list);
             return this;
         }
 
         /**
-         * Limits the information returned to the specific metrics. A comma-separated list of the
-         * following options: `_all`, `rest_actions`.
-         *
-         * <p>API name: {@code metric}
-         *
-         * <p>Adds one or more values to <code>metric</code>.
-         */
+        * <p>Limits the information returned to the specific metrics.
+        A comma-separated list of the following options: `_all`, `rest_actions`.</p>
+
+        * <p>API name: {@code metric}</p>
+        * <p>Adds one or more values to <code>metric</code>.</p>
+        */
         public final Builder metric(String value, String... values) {
             this.metric = _listAdd(this.metric, value, values);
             return this;
         }
 
         /**
-         * A comma-separated list of node IDs or names to limit the returned information; use
-         * `_local` to return information from the node you're connecting to, leave empty to get
-         * information from all nodes
-         *
-         * <p>API name: {@code node_id}
-         *
-         * <p>Adds all elements of <code>list</code> to <code>nodeId</code>.
-         */
+        * <p>A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes</p>
+
+        * <p>API name: {@code node_id}</p>
+        * <p>Adds all elements of <code>list</code> to <code>nodeId</code>.</p>
+        */
         public final Builder nodeId(List<String> list) {
             this.nodeId = _listAddAll(this.nodeId, list);
             return this;
         }
 
         /**
-         * A comma-separated list of node IDs or names to limit the returned information; use
-         * `_local` to return information from the node you're connecting to, leave empty to get
-         * information from all nodes
-         *
-         * <p>API name: {@code node_id}
-         *
-         * <p>Adds one or more values to <code>nodeId</code>.
-         */
+        * <p>A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes</p>
+
+        * <p>API name: {@code node_id}</p>
+        * <p>Adds one or more values to <code>nodeId</code>.</p>
+        */
         public final Builder nodeId(String value, String... values) {
             this.nodeId = _listAdd(this.nodeId, value, values);
             return this;
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the
-         * request fails and returns an error.
-         *
-         * <p>API name: {@code timeout}
-         */
+
+        * <p>Period to wait for a response.
+        If no response is received before the timeout expires, the request fails and returns an error.</p>
+
+        * <p>API name: {@code timeout}</p>
+        */
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
             return this;
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the
-         * request fails and returns an error.
-         *
-         * <p>API name: {@code timeout}
-         */
+
+        * <p>Period to wait for a response.
+        If no response is received before the timeout expires, the request fails and returns an error.</p>
+
+        * <p>API name: {@code timeout}</p>
+        */
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return this.timeout(fn.apply(new Time.Builder()).build());
         }
@@ -189,7 +192,8 @@ public class UsageRequest extends RequestBase {
         /**
          * Builds a {@link UsageRequest}.
          *
-         * @throws NullPointerException if some of the required fields are null.
+         * @throws NullPointerException
+         *              if some of the required fields are null.
          */
         public UsageRequest build() {
             _checkSingleUse();
@@ -200,57 +204,59 @@ public class UsageRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
-    /** Endpoint "{@code nodes.usage}". */
-    public static final Endpoint<UsageRequest, UsageResponse, ErrorResponse> _ENDPOINT =
-            new SimpleEndpoint<>(
-                    // Request method
-                    request -> "GET",
-                    // Request path
-                    request -> {
-                        final int _metric = 1 << 0;
-                        final int _nodeId = 1 << 1;
+    /**
+     * Endpoint "{@code nodes.usage}".
+     */
+    public static final Endpoint<UsageRequest, UsageResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+        // Request method
+        request -> "GET",
+        // Request path
+        request -> {
+            final int _metric = 1 << 0;
+            final int _nodeId = 1 << 1;
 
-                        int propsSet = 0;
+            int propsSet = 0;
 
-                        if (ApiTypeHelper.isDefined(request.metric())) propsSet |= _metric;
-                        if (ApiTypeHelper.isDefined(request.nodeId())) propsSet |= _nodeId;
+            if (ApiTypeHelper.isDefined(request.metric())) propsSet |= _metric;
+            if (ApiTypeHelper.isDefined(request.nodeId())) propsSet |= _nodeId;
 
-                        if (propsSet == 0) {
-                            return "/_nodes/usage";
-                        }
-                        if (propsSet == (_metric)) {
-                            StringBuilder buf = new StringBuilder();
-                            buf.append("/_nodes/usage/");
-                            SimpleEndpoint.pathEncode(String.join(",", request.metric), buf);
-                            return buf.toString();
-                        }
-                        if (propsSet == (_nodeId)) {
-                            StringBuilder buf = new StringBuilder();
-                            buf.append("/_nodes/");
-                            SimpleEndpoint.pathEncode(String.join(",", request.nodeId), buf);
-                            buf.append("/usage");
-                            return buf.toString();
-                        }
-                        if (propsSet == (_nodeId | _metric)) {
-                            StringBuilder buf = new StringBuilder();
-                            buf.append("/_nodes/");
-                            SimpleEndpoint.pathEncode(String.join(",", request.nodeId), buf);
-                            buf.append("/usage/");
-                            SimpleEndpoint.pathEncode(String.join(",", request.metric), buf);
-                            return buf.toString();
-                        }
+            if (propsSet == 0) {
+                return "/_nodes/usage";
+            }
+            if (propsSet == (_metric)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_nodes/usage/");
+                SimpleEndpoint.pathEncode(String.join(",", request.metric), buf);
+                return buf.toString();
+            }
+            if (propsSet == (_nodeId)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_nodes/");
+                SimpleEndpoint.pathEncode(String.join(",", request.nodeId), buf);
+                buf.append("/usage");
+                return buf.toString();
+            }
+            if (propsSet == (_nodeId | _metric)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_nodes/");
+                SimpleEndpoint.pathEncode(String.join(",", request.nodeId), buf);
+                buf.append("/usage/");
+                SimpleEndpoint.pathEncode(String.join(",", request.metric), buf);
+                return buf.toString();
+            }
 
-                        throw SimpleEndpoint.noPathTemplateFound("path");
-                    },
-                    // Request parameters
-                    request -> {
-                        Map<String, String> params = new HashMap<>();
-                        if (request.timeout != null) {
-                            params.put("timeout", request.timeout._toJsonString());
-                        }
-                        return params;
-                    },
-                    SimpleEndpoint.emptyMap(),
-                    false,
-                    UsageResponse._DESERIALIZER);
+            throw SimpleEndpoint.noPathTemplateFound("path");
+        },
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
+            }
+            return params;
+        },
+        SimpleEndpoint.emptyMap(),
+        false,
+        UsageResponse._DESERIALIZER
+    );
 }

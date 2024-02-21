@@ -30,9 +30,9 @@
  * GitHub history for details.
  */
 
-// ----------------------------------------------------
+//----------------------------------------------------
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-// ----------------------------------------------------
+//----------------------------------------------------
 
 package org.opensearch.client.opensearch.nodes;
 
@@ -46,30 +46,27 @@ import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
 
-public class OpenSearchNodesAsyncClient
-        extends ApiClient<OpenSearchTransport, OpenSearchNodesAsyncClient> {
+public class OpenSearchNodesAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchNodesAsyncClient> {
     public OpenSearchNodesAsyncClient(OpenSearchTransport transport) {
         super(transport, null);
     }
 
-    public OpenSearchNodesAsyncClient(
-            OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+    public OpenSearchNodesAsyncClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
     }
 
     @Override
-    public OpenSearchNodesAsyncClient withTransportOptions(
-            @Nullable TransportOptions transportOptions) {
+    public OpenSearchNodesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
         return new OpenSearchNodesAsyncClient(this.transport, transportOptions);
     }
 
     // ----- Endpoint: nodes.usage
 
-    /** Returns low-level information about REST actions usage on nodes. */
-    public CompletableFuture<UsageResponse> usage(UsageRequest request)
-            throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-                request, UsageRequest._ENDPOINT, this.transportOptions);
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     */
+    public CompletableFuture<UsageResponse> usage(UsageRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, UsageRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -77,13 +74,14 @@ public class OpenSearchNodesAsyncClient
      *
      * @param fn a function that initializes a builder to create the {@link UsageRequest}
      */
-    public final CompletableFuture<UsageResponse> usage(
-            Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
-            throws IOException, OpenSearchException {
+    public final CompletableFuture<UsageResponse> usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn) throws IOException,
+        OpenSearchException {
         return usage(fn.apply(new UsageRequest.Builder()).build());
     }
 
-    /** Returns low-level information about REST actions usage on nodes. */
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     */
     public CompletableFuture<UsageResponse> usage() throws IOException, OpenSearchException {
         return usage(new UsageRequest.Builder().build());
     }

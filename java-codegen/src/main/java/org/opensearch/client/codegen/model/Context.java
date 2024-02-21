@@ -9,10 +9,11 @@
 package org.opensearch.client.codegen.model;
 
 import org.opensearch.client.codegen.TypeMapper;
+import org.opensearch.client.codegen.openapi.OpenApiSchema;
 
 public class Context {
-    public final Namespace namespace;
-    public final TypeMapper typeMapper;
+    private final Namespace namespace;
+    private final TypeMapper typeMapper;
 
     public Context(Namespace namespace, TypeMapper typeMapper) {
         this.namespace = namespace;
@@ -21,5 +22,13 @@ public class Context {
 
     public Context withNamespace(Namespace namespace) {
         return new Context(namespace, typeMapper);
+    }
+
+    public Namespace getNamespace() {
+        return namespace;
+    }
+
+    public Type mapType(OpenApiSchema schema) {
+        return typeMapper.mapType(schema);
     }
 }

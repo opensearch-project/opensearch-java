@@ -19,6 +19,7 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.tuple.Triple;
+import org.opensearch.client.codegen.JavaFormatter;
 import org.opensearch.client.codegen.TypeMapper;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.openapi.OpenApiApiResponse;
@@ -45,7 +46,7 @@ public class Namespace extends Shape {
         });
 
         groupedOperations.forEach((group, variants) -> {
-            var parent = ctx.namespace.child(group.namespace());
+            var parent = ctx.getNamespace().child(group.namespace());
             var opCtx = ctx.withNamespace(parent);
 
             var requestShape = RequestShape.from(opCtx, group, variants);
@@ -74,7 +75,7 @@ public class Namespace extends Shape {
 
             if (!seenSchemas.add(namespace + "." + name)) continue;
 
-            Namespace parent = ctx.namespace.child(namespace);
+            Namespace parent = ctx.getNamespace().child(namespace);
             Context thisCtx = ctx.withNamespace(parent);
 
             if (schema.isObject()) {
@@ -84,7 +85,7 @@ public class Namespace extends Shape {
             }
         }
 
-        return ctx.namespace;
+        return ctx.getNamespace();
     }
 
     private final String name;
@@ -126,21 +127,21 @@ public class Namespace extends Shape {
     }
 
     @Override
-    public void render(File outputDir) throws RenderException {
+    public void render(File outputDir, JavaFormatter formatter) throws RenderException {
         outputDir.mkdirs();
 
         for (Namespace child : children.values()) {
-            child.render(new File(outputDir, child.packageNamePart()));
+            child.render(new File(outputDir, child.packageNamePart()), formatter);
         }
 
         for (Shape shape : shapes) {
-            shape.render(outputDir);
+            shape.render(outputDir, formatter);
         }
 
         if (operations.isEmpty()) return;
 
-        new Client(this, false).render(outputDir);
-        new Client(this, true).render(outputDir);
+        new Client(this, false).render(outputDir, formatter);
+        new Client(this, true).render(outputDir, formatter);
     }
 
     private static class Client extends Shape {

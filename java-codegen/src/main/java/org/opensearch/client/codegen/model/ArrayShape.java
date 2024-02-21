@@ -14,7 +14,7 @@ import org.opensearch.client.codegen.openapi.OpenApiSchema;
 
 public class ArrayShape extends ObjectShape {
     public static ArrayShape from(Context ctx, String name, OpenApiSchema schema) {
-        return new ArrayShape(ctx.namespace, name, Field.from(ctx, "_value_body", schema, true, "Response value."));
+        return new ArrayShape(ctx.getNamespace(), name, Field.from(ctx, "_value_body", schema, true, "Response value."));
     }
 
     private final Field valueBodyField;
