@@ -6,19 +6,19 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.codegen.utils;
+package org.opensearch.client.codegen.openapi;
 
-public enum MediaType {
-    JSON("application/json");
+public enum HttpStatus {
+    OK("200");
 
-    private final String mimeType;
+    private final String code;
 
-    MediaType(String mimeType) {
-        this.mimeType = mimeType;
+    HttpStatus(String code) {
+        this.code = code;
     }
 
     @Override
     public String toString() {
-        return mimeType;
+        return code;
     }
 }

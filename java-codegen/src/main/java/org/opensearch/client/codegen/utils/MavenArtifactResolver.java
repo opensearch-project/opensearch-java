@@ -55,7 +55,7 @@ public class MavenArtifactResolver {
     public Set<File> resolve(boolean withTransitives, Collection<String> mavenCoordinates) {
         var dependencies = mavenCoordinates.stream()
             .map(coord -> new Dependency(new DefaultArtifact(coord), null, null, withTransitives ? null : EXCLUDE_ALL_TRANSITIVES))
-            .collect(Collectors.toList());
+            .toList();
 
         var request = new DependencyRequest(new CollectRequest(dependencies, null, repositories), null);
 

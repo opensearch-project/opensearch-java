@@ -12,19 +12,16 @@ import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Stream;
 import org.opensearch.client.codegen.model.Deprecation;
 import org.opensearch.client.codegen.model.OperationGroup;
-import org.opensearch.client.codegen.utils.Maps;
-import org.opensearch.client.codegen.utils.Streams;
 
 public class OpenApiOperation extends OpenApiObject<Operation> implements OpenApiExtensions {
     private final OpenApiPath path;
     private final PathItem.HttpMethod httpMethod;
 
     protected OpenApiOperation(OpenApiPath path, PathItem.HttpMethod httpMethod, Operation operation) {
-        super(path.getParent(), operation);
+        super(path.getParent(), path.childPtr(httpMethod.toString().toLowerCase()), operation);
         this.path = path;
         this.httpMethod = httpMethod;
     }
@@ -41,22 +38,22 @@ public class OpenApiOperation extends OpenApiObject<Operation> implements OpenAp
         return getInner().getDescription();
     }
 
-    public Stream<OpenApiParameter> getParametersIn(OpenApiParameter.In in) {
-        var stream = Streams.tryOf(getInner().getParameters())
-            .map(p -> new OpenApiParameter(getParent(), p))
-            .map(OpenApiParameter::resolve)
-            .filter(p -> in.equals(p.getIn()));
+    public Stream<OpenApiParameter> getParameters() {
+        return children("parameters", Operation::getParameters, OpenApiParameter::new);
+    }
 
-        return Stream.of(path.getParametersIn(in), stream).flatMap(Function.identity());
+    public Stream<OpenApiParameter> getAllApplicableParameters(OpenApiParameter.In in) {
+        return Stream.concat(path.getParameters(), getParameters()).map(OpenApiParameter::resolve).filter(p -> in.equals(p.getIn()));
     }
 
     public Optional<OpenApiRequestBody> getRequestBody() {
-        return Optional.ofNullable(getInner().getRequestBody()).map(body -> new OpenApiRequestBody(getParent(), body));
+        return Optional.ofNullable(getInner().getRequestBody())
+            .map(body -> new OpenApiRequestBody(getParent(), childPtr("requestBody"), body));
     }
 
-    public Optional<OpenApiApiResponse> getResponse(int statusCode) {
-        return Maps.tryGet(getInner().getResponses(), Integer.toString(statusCode))
-            .map(response -> new OpenApiApiResponse(getParent(), response));
+    public Optional<OpenApiApiResponses> getResponses() {
+        return Optional.ofNullable(getInner().getResponses())
+            .map(responses -> new OpenApiApiResponses(getParent(), childPtr("responses"), responses));
     }
 
     @Override

@@ -32,5 +32,4 @@ public final class Strings {
             .replaceAll("(\\s|-)", "_")
             .toLowerCase(Locale.US);
     }
-
 }

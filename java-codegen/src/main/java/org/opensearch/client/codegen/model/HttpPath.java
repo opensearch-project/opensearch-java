@@ -54,7 +54,7 @@ public class HttpPath {
     }
 
     public List<Field> params() {
-        return parts.stream().filter(Part::isParameter).map(Part::parameter).collect(Collectors.toList());
+        return parts.stream().filter(Part::isParameter).map(Part::parameter).toList();
     }
 
     public Set<String> paramNameSet() {
@@ -71,7 +71,7 @@ public class HttpPath {
                 return Part.from(true, to, allParams);
             }
             return p;
-        }).collect(Collectors.toList());
+        }).toList();
         return new HttpPath(newParts, deprecation, versionAdded);
     }
 

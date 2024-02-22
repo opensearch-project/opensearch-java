@@ -16,7 +16,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Stream;
-import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.tuple.Triple;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 
 public class OpenApiSpec {
@@ -47,37 +50,66 @@ public class OpenApiSpec {
         this.api = api;
     }
 
-    protected <T> Pair<OpenApiSpec, T> resolve(Function<OpenAPI, Map<String, T>> componentsGetter, T item, Function<T, String> get$ref) {
+    protected <T> Triple<OpenApiSpec, JsonPointer, T> resolve(
+        Function<OpenAPI, Map<String, T>> componentsGetter,
+        JsonPointer jsonPtr,
+        T item,
+        Function<T, String> get$ref
+    ) {
         var spec = this;
         String $ref;
-        while (item != null && ($ref = get$ref.apply(item)) != null) {
+        while (($ref = get$ref.apply(item)) != null) {
             var fragmentIdx = $ref.indexOf('#');
 
             if (fragmentIdx > 0) {
                 spec = parse(spec.location.resolve($ref.substring(0, fragmentIdx)));
             }
 
-            var parts = $ref.substring(fragmentIdx + 1).split("/");
-            var componentName = parts[parts.length - 1].replaceAll("~1", "/").replaceAll("~0", "~");
+            jsonPtr = JsonPointer.parse($ref.substring(fragmentIdx + 1));
 
-            item = componentsGetter.apply(spec.api).get(componentName);
+            item = componentsGetter.apply(spec.api).get(jsonPtr.getKey().orElseThrow());
 
             if (item == null) {
                 throw new IllegalStateException("Failed to resolve reference: " + $ref);
             }
         }
-        return Pair.of(spec, item);
+        return Triple.of(spec, jsonPtr, item);
     }
 
     public URI getLocation() {
         return location;
     }
 
-    public Stream<OpenApiOperation> getOperations() {
+    public Stream<OpenApiPath> getPaths() {
+        var pathsPtr = JsonPointer.of("paths");
         return api.getPaths()
             .entrySet()
             .stream()
-            .map(e -> new OpenApiPath(this, e.getKey(), e.getValue()).resolve())
-            .flatMap(OpenApiPath::getOperations);
+            .map(e -> new OpenApiPath(this, pathsPtr.append(e.getKey()), e.getKey(), e.getValue()).resolve());
+    }
+
+    public Stream<OpenApiOperation> getOperations() {
+        return getPaths().flatMap(OpenApiPath::getOperations);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("location", location).toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        OpenApiSpec that = (OpenApiSpec) o;
+
+        return new EqualsBuilder().append(location, that.location).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(location).toHashCode();
     }
 }

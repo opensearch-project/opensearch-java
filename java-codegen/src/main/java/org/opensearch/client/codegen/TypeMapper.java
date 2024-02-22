@@ -11,16 +11,16 @@ package org.opensearch.client.codegen;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import org.apache.commons.lang3.function.TriConsumer;
+import java.util.function.Consumer;
 import org.opensearch.client.codegen.model.Type;
 import org.opensearch.client.codegen.model.Types;
 import org.opensearch.client.codegen.openapi.OpenApiSchema;
 
 public class TypeMapper {
     private final Map<OpenApiSchema, Type> cache = new ConcurrentHashMap<>();
-    private final TriConsumer<String, String, OpenApiSchema> referencedSchemaVisitor;
+    private final Consumer<OpenApiSchema> referencedSchemaVisitor;
 
-    public TypeMapper(TriConsumer<String, String, OpenApiSchema> referencedSchemaVisitor) {
+    public TypeMapper(Consumer<OpenApiSchema> referencedSchemaVisitor) {
         this.referencedSchemaVisitor = referencedSchemaVisitor;
     }
 
@@ -45,15 +45,13 @@ public class TypeMapper {
                 return mapType(target);
             }
 
-            var $ref = schema.get$ref();
+            referencedSchemaVisitor.accept(target);
 
-            var schemaFile = target.getParent().getLocation().getPath();
-            var namespace = schemaFile.substring(schemaFile.lastIndexOf('/') + 1, schemaFile.lastIndexOf('.'));
-            var name = $ref.substring($ref.lastIndexOf('/') + 1);
-
-            referencedSchemaVisitor.accept(namespace, name, target);
-
-            return Type.builder().schema(target).pkg(Types.Client.OpenSearch.PACKAGE + "." + namespace).name(name).build();
+            return Type.builder()
+                .schema(target)
+                .pkg(Types.Client.OpenSearch.PACKAGE + "." + target.getNamespace())
+                .name(target.getName())
+                .build();
         }
 
         var oneOf = schema.getOneOf();

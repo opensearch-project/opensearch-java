@@ -20,11 +20,12 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.commons.lang3.tuple.Pair;
+import org.opensearch.client.codegen.openapi.MimeType;
+import org.opensearch.client.codegen.openapi.OpenApiMediaType;
 import org.opensearch.client.codegen.openapi.OpenApiOperation;
 import org.opensearch.client.codegen.openapi.OpenApiParameter;
 import org.opensearch.client.codegen.openapi.OpenApiRequestBody;
 import org.opensearch.client.codegen.openapi.OpenApiSchema;
-import org.opensearch.client.codegen.utils.MediaType;
 import org.opensearch.client.codegen.utils.Streams;
 import org.opensearch.client.codegen.utils.Strings;
 
@@ -40,7 +41,7 @@ public class RequestShape extends ObjectShape {
             var httpPathStr = variant.getHttpPath();
             if (!seenHttpPaths.add(httpPathStr)) continue;
 
-            variant.getParametersIn(OpenApiParameter.In.PATH).forEach(parameter -> {
+            variant.getAllApplicableParameters(OpenApiParameter.In.PATH).forEach(parameter -> {
                 var paramName = parameter.getName();
                 if (!allPathParams.containsKey(paramName)) {
                     allPathParams.put(paramName, Field.from(ctx, parameter));
@@ -76,7 +77,7 @@ public class RequestShape extends ObjectShape {
             }
 
             return 0;
-        }).collect(Collectors.toList());
+        }).toList();
 
         for (var entry : allPathParams.entrySet()) {
             entry.getValue().setRequired(requiredPathParams.contains(entry.getKey()));
@@ -85,14 +86,16 @@ public class RequestShape extends ObjectShape {
         var bodySchema = variants.get(0)
             .getRequestBody()
             .map(OpenApiRequestBody::resolve)
-            .flatMap(b -> b.getContentSchema(MediaType.JSON))
+            .flatMap(OpenApiRequestBody::getContent)
+            .flatMap(c -> c.get(MimeType.JSON))
+            .flatMap(OpenApiMediaType::getSchema)
             .map(OpenApiSchema::resolve)
             .orElse(OpenApiSchema.EMPTY);
 
         var queryParams = variants.stream()
-            .flatMap(v -> v.getParametersIn(OpenApiParameter.In.QUERY))
+            .flatMap(v -> v.getAllApplicableParameters(OpenApiParameter.In.QUERY))
             .map(p -> Field.from(ctx, p))
-            .collect(Collectors.toList());
+            .toList();
 
         return new RequestShape(
             ctx,
