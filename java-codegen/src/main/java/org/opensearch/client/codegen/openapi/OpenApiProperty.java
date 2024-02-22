@@ -10,29 +10,19 @@ package org.opensearch.client.codegen.openapi;
 
 import io.swagger.v3.oas.models.media.Schema;
 
-public class OpenApiProperty extends OpenApiObject<Schema<?>> {
-    private final String name;
+public class OpenApiProperty extends OpenApiSchema {
     private final boolean required;
 
-    protected OpenApiProperty(OpenApiSpec parent, String name, Schema<?> schema, boolean required) {
-        super(parent, schema);
-        this.name = name;
+    protected OpenApiProperty(OpenApiSpec parent, JsonPointer jsonPtr, Schema<?> schema, boolean required) {
+        super(parent, jsonPtr, schema);
         this.required = required;
     }
 
-    public OpenApiSchema getSchema() {
-        return new OpenApiSchema(getParent(), getInner());
-    }
-
     public String getName() {
-        return name;
+        return getJsonPtr().getKey().orElseThrow();
     }
 
     public boolean isRequired() {
         return required;
-    }
-
-    public String getDescription() {
-        return getInner().getDescription();
     }
 }

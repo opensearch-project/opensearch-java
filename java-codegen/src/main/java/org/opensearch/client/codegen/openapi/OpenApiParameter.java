@@ -8,11 +8,14 @@
 
 package org.opensearch.client.codegen.openapi;
 
+import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.parameters.Parameter;
+import java.util.Optional;
+import java.util.function.Function;
 
 public class OpenApiParameter extends OpenApiRefObject<OpenApiParameter, Parameter> {
-    protected OpenApiParameter(OpenApiSpec parent, Parameter parameter) {
-        super(parent, parameter, OpenApiParameter::new, api -> api.getComponents().getParameters(), Parameter::get$ref);
+    protected OpenApiParameter(OpenApiSpec parent, JsonPointer jsonPtr, Parameter parameter) {
+        super(parent, jsonPtr, parameter, OpenApiParameter::new, api -> api.getComponents().getParameters(), Parameter::get$ref);
     }
 
     public String getName() {
@@ -31,8 +34,13 @@ public class OpenApiParameter extends OpenApiRefObject<OpenApiParameter, Paramet
         return getInner().getRequired();
     }
 
-    public OpenApiSchema getSchema() {
-        return new OpenApiSchema(getParent(), getInner().getSchema());
+    public Optional<OpenApiSchema> getSchema() {
+        return childOpt("schema", (Function<Parameter, Schema<?>>) Parameter::getSchema, OpenApiSchema::new);
+    }
+
+    @Override
+    protected OpenApiParameter getSelf() {
+        return this;
     }
 
     public enum In {

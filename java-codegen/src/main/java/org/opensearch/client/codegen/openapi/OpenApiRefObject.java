@@ -10,23 +10,23 @@ package org.opensearch.client.codegen.openapi;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import java.util.Map;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
-public abstract class OpenApiRefObject<T extends OpenApiRefObject<T, O>, O> extends OpenApiObject<O> {
-    private final BiFunction<OpenApiSpec, O, T> constructor;
-    private final Function<OpenAPI, Map<String, O>> componentsGetter;
-    private final Function<O, String> get$ref;
+public abstract class OpenApiRefObject<TSelf extends OpenApiRefObject<TSelf, TInner>, TInner> extends OpenApiObject<TInner> {
+    private final Factory<TInner, TSelf> factory;
+    private final Function<OpenAPI, Map<String, TInner>> componentsGetter;
+    private final Function<TInner, String> get$ref;
 
     protected OpenApiRefObject(
         OpenApiSpec parent,
-        O inner,
-        BiFunction<OpenApiSpec, O, T> constructor,
-        Function<OpenAPI, Map<String, O>> componentsGetter,
-        Function<O, String> get$ref
+        JsonPointer jsonPtr,
+        TInner inner,
+        Factory<TInner, TSelf> factory,
+        Function<OpenAPI, Map<String, TInner>> componentsGetter,
+        Function<TInner, String> get$ref
     ) {
-        super(parent, inner);
-        this.constructor = constructor;
+        super(parent, jsonPtr, inner);
+        this.factory = factory;
         this.componentsGetter = componentsGetter;
         this.get$ref = get$ref;
     }
@@ -35,7 +35,11 @@ public abstract class OpenApiRefObject<T extends OpenApiRefObject<T, O>, O> exte
         return get$ref.apply(getInner());
     }
 
-    public T resolve() {
-        return getParent().resolve(componentsGetter, getInner(), get$ref).apply(constructor::apply);
+    protected abstract TSelf getSelf();
+
+    public TSelf resolve() {
+        if (get$ref() == null) return getSelf();
+        var resolved = getParent().resolve(componentsGetter, getJsonPtr(), getInner(), get$ref);
+        return factory.create(resolved.getLeft(), resolved.getMiddle(), resolved.getRight());
     }
 }

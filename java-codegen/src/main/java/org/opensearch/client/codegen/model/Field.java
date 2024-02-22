@@ -15,7 +15,7 @@ import org.opensearch.client.codegen.openapi.OpenApiSchema;
 
 public class Field {
     public static Field from(Context ctx, OpenApiParameter parameter) {
-        return from(ctx, parameter.getName(), parameter.getSchema(), parameter.getRequired(), parameter.getDescription());
+        return from(ctx, parameter.getName(), parameter.getSchema().orElseThrow(), parameter.getRequired(), parameter.getDescription());
     }
 
     public static Field from(Context ctx, String name, OpenApiSchema schema, boolean required, String description) {
@@ -23,7 +23,7 @@ public class Field {
     }
 
     public static Stream<Field> allFrom(Context ctx, OpenApiSchema schema) {
-        return schema.getProperties().map(p -> from(ctx, p.getName(), p.getSchema(), p.isRequired(), p.getDescription()));
+        return schema.getProperties().map(p -> from(ctx, p.getName(), p, p.isRequired(), p.getDescription()));
     }
 
     private final String wireName;

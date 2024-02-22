@@ -10,15 +10,18 @@ package org.opensearch.client.codegen.openapi;
 
 import io.swagger.v3.oas.models.parameters.RequestBody;
 import java.util.Optional;
-import org.opensearch.client.codegen.utils.Maps;
-import org.opensearch.client.codegen.utils.MediaType;
 
 public class OpenApiRequestBody extends OpenApiRefObject<OpenApiRequestBody, RequestBody> {
-    protected OpenApiRequestBody(OpenApiSpec parent, RequestBody inner) {
-        super(parent, inner, OpenApiRequestBody::new, api -> api.getComponents().getRequestBodies(), RequestBody::get$ref);
+    protected OpenApiRequestBody(OpenApiSpec parent, JsonPointer jsonPtr, RequestBody inner) {
+        super(parent, jsonPtr, inner, OpenApiRequestBody::new, api -> api.getComponents().getRequestBodies(), RequestBody::get$ref);
     }
 
-    public Optional<OpenApiSchema> getContentSchema(MediaType mediaType) {
-        return Maps.tryGet(getInner().getContent(), mediaType.toString()).map(m -> new OpenApiSchema(getParent(), m.getSchema()));
+    public Optional<OpenApiContent> getContent() {
+        return childOpt("content", RequestBody::getContent, OpenApiContent::new);
+    }
+
+    @Override
+    protected OpenApiRequestBody getSelf() {
+        return this;
     }
 }

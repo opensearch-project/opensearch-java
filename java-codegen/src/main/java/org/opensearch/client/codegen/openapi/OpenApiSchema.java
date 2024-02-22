@@ -9,6 +9,7 @@
 package org.opensearch.client.codegen.openapi;
 
 import io.swagger.v3.oas.models.media.Schema;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -18,10 +19,10 @@ import java.util.stream.Stream;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class OpenApiSchema extends OpenApiRefObject<OpenApiSchema, Schema> implements OpenApiExtensions {
-    public static final OpenApiSchema EMPTY = new OpenApiSchema(null, new Schema<>());
+    public static final OpenApiSchema EMPTY = new OpenApiSchema(null, null, new Schema<>());
 
-    protected OpenApiSchema(OpenApiSpec parent, Schema<?> schema) {
-        super(parent, schema, OpenApiSchema::new, api -> api.getComponents().getSchemas(), Schema::get$ref);
+    protected OpenApiSchema(OpenApiSpec parent, JsonPointer jsonPtr, Schema<?> schema) {
+        super(parent, jsonPtr, schema, OpenApiSchema::new, api -> api.getComponents().getSchemas(), Schema::get$ref);
     }
 
     public String getDescription() {
@@ -80,28 +81,20 @@ public class OpenApiSchema extends OpenApiRefObject<OpenApiSchema, Schema> imple
         return getEnum().map(l -> !l.isEmpty()).orElse(false);
     }
 
-    private Optional<List<OpenApiSchema>> composedOf(List<Schema> schemas) {
-        return Optional.ofNullable(schemas).map(l -> l.stream().map(s -> new OpenApiSchema(getParent(), s)).toList());
-    }
-
     public Optional<List<OpenApiSchema>> getOneOf() {
-        return composedOf(getInner().getOneOf());
+        return childrenOpt("oneOf", Schema::getOneOf, OpenApiSchema::new);
     }
 
     public Optional<List<OpenApiSchema>> getAllOf() {
-        return composedOf(getInner().getAllOf());
-    }
-
-    private Optional<OpenApiSchema> subSchema(Schema schema) {
-        return Optional.ofNullable(schema).map(s -> new OpenApiSchema(getParent(), s));
+        return childrenOpt("allOf", Schema::getAllOf, OpenApiSchema::new);
     }
 
     public Optional<OpenApiSchema> getItems() {
-        return subSchema(getInner().getItems());
+        return childOpt("items", Schema::getItems, OpenApiSchema::new);
     }
 
     public Optional<OpenApiSchema> getAdditionalProperties() {
-        return subSchema((Schema) getInner().getAdditionalProperties());
+        return childOpt("additionalProperties", s -> (Schema<?>) s.getAdditionalProperties(), OpenApiSchema::new);
     }
 
     public Set<String> getRequired() {
@@ -111,10 +104,11 @@ public class OpenApiSchema extends OpenApiRefObject<OpenApiSchema, Schema> imple
     public Stream<OpenApiProperty> getProperties() {
         var properties = (Map<String, Schema<?>>) getInner().getProperties();
         if (properties == null) return Stream.empty();
+        var basePtr = getJsonPtr().append("properties");
         var requiredFields = getRequired();
         return properties.entrySet()
             .stream()
-            .map(e -> new OpenApiProperty(getParent(), e.getKey(), e.getValue(), requiredFields.contains(e.getKey())));
+            .map(e -> new OpenApiProperty(getParent(), basePtr.append(e.getKey()), e.getValue(), requiredFields.contains(e.getKey())));
     }
 
     @Override
@@ -124,6 +118,20 @@ public class OpenApiSchema extends OpenApiRefObject<OpenApiSchema, Schema> imple
 
     public Optional<String> getXDataType() {
         return getExtensionAsString("x-data-type");
+    }
+
+    public String getName() {
+        return getJsonPtr().getKey().orElseThrow();
+    }
+
+    public String getNamespace() {
+        var schemaFile = Path.of(getParent().getLocation().getPath()).getFileName().toString();
+        return schemaFile.substring(0, schemaFile.lastIndexOf('.'));
+    }
+
+    @Override
+    protected OpenApiSchema getSelf() {
+        return this;
     }
 
     public enum Type {
