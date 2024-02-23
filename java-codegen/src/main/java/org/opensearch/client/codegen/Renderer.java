@@ -48,6 +48,7 @@ public class Renderer {
             put("quoted", transformer(s -> '\"' + StringEscapeUtils.escapeJava(s) + '\"'));
             put("camelCase", transformer(Strings::toCamelCase));
             put("toLower", transformer(String::toLowerCase));
+            put("ERROR", (Mustache.Lambda) (frag, out) -> { throw new RuntimeException(frag.execute()); });
             put("TYPES", Types.asMap());
         }
     };

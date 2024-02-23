@@ -8,24 +8,9 @@
 
 package org.opensearch.client.codegen.model;
 
-import java.util.stream.Stream;
 import org.opensearch.client.codegen.NameSanitizer;
-import org.opensearch.client.codegen.openapi.OpenApiParameter;
-import org.opensearch.client.codegen.openapi.OpenApiSchema;
 
 public class Field {
-    public static Field from(Context ctx, OpenApiParameter parameter) {
-        return from(ctx, parameter.getName(), parameter.getSchema().orElseThrow(), parameter.getRequired(), parameter.getDescription());
-    }
-
-    public static Field from(Context ctx, String name, OpenApiSchema schema, boolean required, String description) {
-        return new Field(name, ctx.mapType(schema), required, description);
-    }
-
-    public static Stream<Field> allFrom(Context ctx, OpenApiSchema schema) {
-        return schema.getProperties().map(p -> from(ctx, p.getName(), p, p.isRequired(), p.getDescription()));
-    }
-
     private final String wireName;
     private final Type type;
     private boolean required;
@@ -38,19 +23,19 @@ public class Field {
         this.description = description;
     }
 
-    public String wireName() {
+    public String getWireName() {
         return wireName;
     }
 
-    public String name() {
+    public String getName() {
         return NameSanitizer.wireNameToField(wireName);
     }
 
-    public Type type() {
-        return required ? type : type.boxed();
+    public Type getType() {
+        return required ? type : type.getBoxed();
     }
 
-    public boolean required() {
+    public boolean isRequired() {
         return required;
     }
 
@@ -58,7 +43,7 @@ public class Field {
         this.required = required;
     }
 
-    public String description() {
+    public String getDescription() {
         return description;
     }
 }

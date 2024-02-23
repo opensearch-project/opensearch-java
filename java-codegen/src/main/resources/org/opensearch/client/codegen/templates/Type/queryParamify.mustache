@@ -26,7 +26,7 @@
                     {{value}}._toJsonString()
                 {{/type.isTime}}
                 {{^type.isTime}}
-                    ERROR: Unsupported queryParamify of {{type}}
+                    {{#ERROR}}Unsupported queryParamify of {{type}}{{/ERROR}}
                 {{/type.isTime}}
             {{/type.isList}}
         {{/type.isPrimitive}}

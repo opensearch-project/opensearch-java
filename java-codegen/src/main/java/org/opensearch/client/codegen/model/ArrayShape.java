@@ -10,36 +10,31 @@ package org.opensearch.client.codegen.model;
 
 import java.util.Collection;
 import java.util.List;
-import org.opensearch.client.codegen.openapi.OpenApiSchema;
 
 public class ArrayShape extends ObjectShape {
-    public static ArrayShape from(Context ctx, String name, OpenApiSchema schema) {
-        return new ArrayShape(ctx.getNamespace(), name, Field.from(ctx, "_value_body", schema, true, "Response value."));
-    }
-
     private final Field valueBodyField;
 
-    protected ArrayShape(Namespace parent, String className, Field valueBodyField) {
+    public ArrayShape(Namespace parent, String className, Type arrayType) {
         super(parent, className);
-        this.valueBodyField = valueBodyField;
+        this.valueBodyField = new Field("_value_body", arrayType, true, "Response value.");
     }
 
     @Override
-    public Collection<Field> fields() {
+    public Collection<Field> getFields() {
         return List.of(valueBodyField);
     }
 
     @Override
-    public Collection<Type> annotations() {
+    public Collection<Type> getAnnotations() {
         return List.of(Types.Client.Json.JsonpDeserializable);
     }
 
     @Override
-    public Type implementsType() {
+    public Type getImplementsType() {
         return Types.Client.Json.JsonpSerializable;
     }
 
-    public Field valueBodyField() {
+    public Field getValueBodyField() {
         return valueBodyField;
     }
 }

@@ -53,29 +53,19 @@ public class HttpPath {
         this.versionAdded = versionAdded;
     }
 
-    public List<Field> params() {
-        return parts.stream().filter(Part::isParameter).map(Part::parameter).toList();
+    public List<Field> getParams() {
+        return parts.stream().filter(Part::isParameter).map(Part::getParameter).toList();
     }
 
-    public Set<String> paramNameSet() {
-        return parts.stream().filter(Part::isParameter).map(p -> p.parameter().name()).collect(Collectors.toSet());
+    public Set<String> getParamNameSet() {
+        return parts.stream().filter(Part::isParameter).map(p -> p.getParameter().getName()).collect(Collectors.toSet());
     }
 
-    public Deprecation deprecation() {
+    public Deprecation getDeprecation() {
         return deprecation;
     }
 
-    public HttpPath withRenamedParam(String from, String to, Map<String, Field> allParams) {
-        var newParts = parts.stream().map(p -> {
-            if (p.isParameter() && p.parameter().name().equals(from)) {
-                return Part.from(true, to, allParams);
-            }
-            return p;
-        }).toList();
-        return new HttpPath(newParts, deprecation, versionAdded);
-    }
-
-    public Collection<Part> parts() {
+    public Collection<Part> getParts() {
         return parts;
     }
 
@@ -107,17 +97,17 @@ public class HttpPath {
             return part.isLeft();
         }
 
-        public String content() {
+        public String getContent() {
             return part.getRightOrThrow((p) -> new IllegalStateException("Cannot get content of non-content part"));
         }
 
-        public Field parameter() {
+        public Field getParameter() {
             return part.getLeftOrThrow((c) -> new IllegalStateException("Cannot get parameter of non-parameter part"));
         }
 
         @Override
         public String toString() {
-            return part.fold(f -> '{' + f.name() + '}', Function.identity());
+            return part.fold(f -> '{' + f.getName() + '}', Function.identity());
         }
     }
 }

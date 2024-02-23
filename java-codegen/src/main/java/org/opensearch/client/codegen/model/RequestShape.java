@@ -10,151 +10,43 @@ package org.opensearch.client.codegen.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import org.apache.commons.lang3.tuple.Pair;
-import org.opensearch.client.codegen.openapi.MimeType;
-import org.opensearch.client.codegen.openapi.OpenApiMediaType;
-import org.opensearch.client.codegen.openapi.OpenApiOperation;
-import org.opensearch.client.codegen.openapi.OpenApiParameter;
-import org.opensearch.client.codegen.openapi.OpenApiRequestBody;
-import org.opensearch.client.codegen.openapi.OpenApiSchema;
 import org.opensearch.client.codegen.utils.Streams;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class RequestShape extends ObjectShape {
-    public static RequestShape from(Context ctx, OperationGroup operationGroup, List<OpenApiOperation> variants) {
-        var seenHttpPaths = new HashSet<String>();
-        HashSet<String> requiredPathParams = null;
-        var allPathParams = new HashMap<String, Field>();
-        var canonicalPaths = new HashMap<Set<String>, HttpPath>();
-        var deprecatedPaths = new HashMap<Set<String>, HttpPath>();
-
-        for (var variant : variants) {
-            var httpPathStr = variant.getHttpPath();
-            if (!seenHttpPaths.add(httpPathStr)) continue;
-
-            variant.getAllApplicableParameters(OpenApiParameter.In.PATH).forEach(parameter -> {
-                var paramName = parameter.getName();
-                if (!allPathParams.containsKey(paramName)) {
-                    allPathParams.put(paramName, Field.from(ctx, parameter));
-                }
-            });
-
-            var httpPath = HttpPath.from(httpPathStr, variant, allPathParams);
-
-            (httpPath.deprecation() == null ? canonicalPaths : deprecatedPaths).put(httpPath.paramNameSet(), httpPath);
-
-            if (requiredPathParams != null) {
-                requiredPathParams.retainAll(httpPath.paramNameSet());
-            } else {
-                requiredPathParams = new HashSet<>(httpPath.paramNameSet());
-            }
-        }
-
-        var paths = Stream.of(
-            canonicalPaths.values().stream(),
-            deprecatedPaths.entrySet().stream().filter(p -> !canonicalPaths.containsKey(p.getKey())).map(Map.Entry::getValue)
-        ).flatMap(Function.identity()).sorted((p1, p2) -> {
-            var params1 = p1.params();
-            var p1Size = params1.size();
-            var params2 = p2.params();
-            var p2Size = params2.size();
-            var len = Math.max(p1Size, p2Size);
-
-            for (int i = 0; i < len; i++) {
-                if (i >= p1Size) return -1;
-                if (i >= p2Size) return 1;
-                var cmp = params1.get(i).name().compareTo(params2.get(i).name());
-                if (cmp != 0) return cmp;
-            }
-
-            return 0;
-        }).toList();
-
-        for (var entry : allPathParams.entrySet()) {
-            entry.getValue().setRequired(requiredPathParams.contains(entry.getKey()));
-        }
-
-        var bodySchema = variants.get(0)
-            .getRequestBody()
-            .map(OpenApiRequestBody::resolve)
-            .flatMap(OpenApiRequestBody::getContent)
-            .flatMap(c -> c.get(MimeType.JSON))
-            .flatMap(OpenApiMediaType::getSchema)
-            .map(OpenApiSchema::resolve)
-            .orElse(OpenApiSchema.EMPTY);
-
-        var queryParams = variants.stream()
-            .flatMap(v -> v.getAllApplicableParameters(OpenApiParameter.In.QUERY))
-            .map(p -> Field.from(ctx, p))
-            .toList();
-
-        return new RequestShape(
-            ctx,
-            operationGroup,
-            variants.get(0).getDescription(),
-            variants.stream().map(OpenApiOperation::getHttpMethod).map(Enum::name).collect(Collectors.toSet()),
-            paths,
-            bodySchema,
-            queryParams,
-            allPathParams.values()
-        );
-    }
-
     private final OperationGroup operationGroup;
     private final String description;
-    private final Set<String> httpMethods;
-    private final List<HttpPath> httpPaths;
+    private final Set<String> httpMethods = new HashSet<>();
+    private final List<HttpPath> httpPaths = new ArrayList<>();
     private final Map<String, Field> queryParams = new TreeMap<>();
     private final Map<String, Field> pathParams = new TreeMap<>();
     private final Map<String, Field> fields = new TreeMap<>();
 
-    private RequestShape(
-        Context ctx,
-        OperationGroup operationGroup,
-        String description,
-        Set<String> httpMethods,
-        List<HttpPath> httpPaths,
-        OpenApiSchema bodySchema,
-        Collection<Field> queryParams,
-        Collection<Field> pathParams
-    ) {
-        super(ctx, requestClassName(operationGroup), bodySchema);
+    public RequestShape(Namespace parent, OperationGroup operationGroup, String description) {
+        super(parent, requestClassName(operationGroup));
         this.operationGroup = operationGroup;
         this.description = description;
-        this.httpMethods = httpMethods;
-        this.httpPaths = httpPaths;
-        queryParams.forEach(f -> this.queryParams.put(f.name(), f));
-        pathParams.forEach(f -> this.pathParams.put(f.name(), f));
-        this.fields.putAll(this.bodyFields);
-        this.fields.putAll(this.queryParams);
-        this.fields.putAll(this.pathParams);
-        if (super.extendsType == null) {
-            super.extendsType = Types.Client.OpenSearch._Types.RequestBase;
-        }
     }
 
-    public OperationGroup operationGroup() {
+    public OperationGroup getOperationGroup() {
         return operationGroup;
     }
 
-    public String id() {
-        return operationGroup.name();
+    public String getId() {
+        return operationGroup.getName();
     }
 
-    public String description() {
+    public String getDescription() {
         return description;
     }
 
-    public String httpMethod() {
+    public String getHttpMethod() {
         return Streams.sortedBy(httpMethods.stream(), m -> {
             switch (m) {
                 case "PUT":
@@ -172,15 +64,24 @@ public class RequestShape extends ObjectShape {
         }).findFirst().orElseThrow();
     }
 
-    public String responseType() {
+    public void addSupportedHttpMethod(String method) {
+        httpMethods.add(method);
+    }
+
+    public String getResponseType() {
         return responseClassName(operationGroup);
     }
 
     public boolean hasRequestBody() {
-        return !bodyFields().isEmpty();
+        return !getBodyFields().isEmpty();
     }
 
-    public Collection<Field> queryParams() {
+    public void addQueryParam(Field field) {
+        queryParams.put(field.getName(), field);
+        addField(field);
+    }
+
+    public Collection<Field> getQueryParams() {
         return queryParams.values();
     }
 
@@ -188,11 +89,15 @@ public class RequestShape extends ObjectShape {
         return !queryParams.isEmpty();
     }
 
-    public Collection<HttpPath> httpPaths() {
+    public void addHttpPath(HttpPath httpPath) {
+        httpPaths.add(httpPath);
+    }
+
+    public Collection<HttpPath> getHttpPaths() {
         return httpPaths;
     }
 
-    public HttpPath firstHttpPath() {
+    public HttpPath getFirstHttpPath() {
         return httpPaths.get(0);
     }
 
@@ -200,33 +105,42 @@ public class RequestShape extends ObjectShape {
         return httpPaths.size() == 1;
     }
 
-    public Collection<Pair<String, Integer>> indexedPathParams() {
+    public void addPathParam(Field field) {
+        pathParams.put(field.getName(), field);
+        addField(field);
+    }
+
+    public Collection<Pair<String, Integer>> getIndexedPathParams() {
         var indexed = new ArrayList<Pair<String, Integer>>();
         var i = 0;
         for (var param : pathParams.values()) {
-            indexed.add(Pair.of(param.name(), i++));
+            indexed.add(Pair.of(param.getName(), i++));
         }
         return indexed;
     }
 
-    public Collection<Field> pathParams() {
+    public Collection<Field> getPathParams() {
         return pathParams.values();
     }
 
+    private void addField(Field field) {
+        fields.put(field.getName(), field);
+    }
+
     @Override
-    public Collection<Field> fields() {
+    public Collection<Field> getFields() {
         return fields.values();
     }
 
     public boolean hasAnyRequiredFields() {
-        return fields.values().stream().anyMatch(Field::required);
+        return fields.values().stream().anyMatch(Field::isRequired);
     }
 
     public static String requestClassName(OperationGroup operationGroup) {
-        return Strings.toPascalCase(operationGroup.name()) + "Request";
+        return Strings.toPascalCase(operationGroup.getName()) + "Request";
     }
 
     public static String responseClassName(OperationGroup operationGroup) {
-        return Strings.toPascalCase(operationGroup.name()) + "Response";
+        return Strings.toPascalCase(operationGroup.getName()) + "Response";
     }
 }

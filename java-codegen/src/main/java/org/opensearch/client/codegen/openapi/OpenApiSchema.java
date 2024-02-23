@@ -85,6 +85,10 @@ public class OpenApiSchema extends OpenApiRefObject<OpenApiSchema, Schema> imple
         return childrenOpt("oneOf", Schema::getOneOf, OpenApiSchema::new);
     }
 
+    public boolean hasAllOf() {
+        return getAllOf().isPresent();
+    }
+
     public Optional<List<OpenApiSchema>> getAllOf() {
         return childrenOpt("allOf", Schema::getAllOf, OpenApiSchema::new);
     }

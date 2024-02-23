@@ -9,7 +9,8 @@
 package org.opensearch.client.codegen.model;
 
 import static org.opensearch.client.codegen.Renderer.templateLambda;
-import static org.opensearch.client.codegen.model.Types.*;
+import static org.opensearch.client.codegen.model.Types.Client;
+import static org.opensearch.client.codegen.model.Types.Java;
 
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
@@ -17,7 +18,6 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.opensearch.client.codegen.Renderer;
-import org.opensearch.client.codegen.openapi.OpenApiSchema;
 
 public class Type {
     private static final Set<String> PRIMITIVES = Set.of(
@@ -44,16 +44,20 @@ public class Type {
         return new Builder();
     }
 
-    private final OpenApiSchema schema;
     private final String pkg;
     private final String name;
     private final Type[] genericArgs;
+    private final boolean isEnum;
 
-    private Type(OpenApiSchema schema, String pkg, String name, Type... genericArgs) {
-        this.schema = schema;
-        this.pkg = pkg;
-        this.name = name;
-        this.genericArgs = genericArgs;
+    private Type(Builder builder) {
+        this.pkg = builder.pkg;
+        this.name = builder.name;
+        this.genericArgs = builder.genericArgs;
+        this.isEnum = builder.isEnum;
+    }
+
+    public Builder toBuilder() {
+        return new Builder().pkg(pkg).name(name).genericArgs(genericArgs).isEnum(isEnum);
     }
 
     @Override
@@ -67,7 +71,7 @@ public class Type {
         return str;
     }
 
-    public Type boxed() {
+    public Type getBoxed() {
         switch (name) {
             case "char":
                 return Java.Lang.Character;
@@ -94,19 +98,19 @@ public class Type {
         return "Map".equals(name);
     }
 
-    public Type mapEntryType() {
+    public Type getMapEntryType() {
         if (!isMap()) return null;
 
         return Java.Util.MapEntry(this.genericArgs[0], this.genericArgs[1]);
     }
 
-    public Type mapKeyType() {
+    public Type getMapKeyType() {
         if (!isMap()) return null;
 
         return this.genericArgs[0];
     }
 
-    public Type mapValueType() {
+    public Type getMapValueType() {
         if (!isMap()) return null;
 
         return this.genericArgs[1];
@@ -116,7 +120,7 @@ public class Type {
         return "List".equals(name);
     }
 
-    public Type listValueType() {
+    public Type getListValueType() {
         if (!isList()) return null;
 
         return this.genericArgs[0];
@@ -135,7 +139,7 @@ public class Type {
     }
 
     public boolean isEnum() {
-        return schema != null && schema.hasEnums();
+        return isEnum;
     }
 
     public boolean isTime() {
@@ -150,16 +154,16 @@ public class Type {
         return !isBuiltIn() && !isEnum();
     }
 
-    public Type builderType() {
+    public Type getBuilderType() {
         if (!hasBuilder()) return null;
 
         return builder().pkg(pkg).name(name + ".Builder").build();
     }
 
-    public Type builderFuncType() {
+    public Type getBuilderFnType() {
         if (!hasBuilder()) return null;
 
-        return Java.Util.Function.Function(builderType(), Client.Util.ObjectBuilder(this));
+        return Java.Util.Function.Function(getBuilderType(), Client.Util.ObjectBuilder(this));
     }
 
     public Mustache.Lambda serializer() {
@@ -191,7 +195,7 @@ public class Type {
     }
 
     public Type withGenericArgs(Type... genericArgs) {
-        return new Type(schema, pkg, name, genericArgs);
+        return toBuilder().genericArgs(genericArgs).build();
     }
 
     private static class SerializerLambdaContext {
@@ -214,15 +218,10 @@ public class Type {
     }
 
     public static class Builder {
-        private OpenApiSchema schema;
         private String pkg;
         private String name;
         private Type[] genericArgs;
-
-        public Builder schema(OpenApiSchema schema) {
-            this.schema = schema;
-            return this;
-        }
+        private boolean isEnum;
 
         public Builder pkg(String pkg) {
             this.pkg = pkg;
@@ -239,8 +238,13 @@ public class Type {
             return this;
         }
 
+        public Builder isEnum(boolean isEnum) {
+            this.isEnum = isEnum;
+            return this;
+        }
+
         public Type build() {
-            return new Type(schema, pkg, name, genericArgs);
+            return new Type(this);
         }
     }
 }

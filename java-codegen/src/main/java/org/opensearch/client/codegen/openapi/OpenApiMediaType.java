@@ -9,9 +9,7 @@
 package org.opensearch.client.codegen.openapi;
 
 import io.swagger.v3.oas.models.media.MediaType;
-import io.swagger.v3.oas.models.media.Schema;
 import java.util.Optional;
-import java.util.function.Function;
 
 public class OpenApiMediaType extends OpenApiObject<MediaType> {
     protected OpenApiMediaType(OpenApiSpec parent, JsonPointer jsonPtr, MediaType inner) {
@@ -19,6 +17,6 @@ public class OpenApiMediaType extends OpenApiObject<MediaType> {
     }
 
     public Optional<OpenApiSchema> getSchema() {
-        return childOpt("schema", (Function<MediaType, Schema<?>>) MediaType::getSchema, OpenApiSchema::new);
+        return childOpt("schema", MediaType::getSchema, OpenApiSchema::new);
     }
 }

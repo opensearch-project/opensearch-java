@@ -19,6 +19,6 @@
 {{/fields}}
     }
 
-    public static {{className}} of({{builderFnType}} fn) {
+    public static {{className}} of({{type.builderFnType}} fn) {
         return fn.apply(new Builder()).build();
     }

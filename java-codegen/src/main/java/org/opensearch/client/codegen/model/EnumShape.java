@@ -11,37 +11,32 @@ package org.opensearch.client.codegen.model;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import org.opensearch.client.codegen.openapi.OpenApiSchema;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class EnumShape extends Shape {
-    public static EnumShape from(Context ctx, String name, OpenApiSchema schema) {
-        return new EnumShape(ctx.getNamespace(), name, schema.getEnum().orElseThrow().stream().map(Variant::new).toList());
-    }
-
     private final List<Variant> variants;
 
-    private EnumShape(Namespace parent, String className, List<Variant> variants) {
+    public EnumShape(Namespace parent, String className, List<Variant> variants) {
         super(parent, className);
         this.variants = variants;
     }
 
-    public Collection<Variant> variants() {
+    public Collection<Variant> getVariants() {
         return Collections.unmodifiableCollection(variants);
     }
 
     public static class Variant {
         private final String wireName;
 
-        private Variant(String wireName) {
+        public Variant(String wireName) {
             this.wireName = wireName;
         }
 
-        public String wireName() {
+        public String getWireName() {
             return wireName;
         }
 
-        public String name() {
+        public String getName() {
             return Strings.toPascalCase(wireName);
         }
     }
