@@ -5,6 +5,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+- Bumps `io.github.classgraph:classgraph` from 4.8.161 to 4.8.165
+- Bumps `org.owasp.dependencycheck` from 9.0.8 to 9.0.9
+- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.3.0 to 5.3.1
 
 ### Changed
 

@@ -49,8 +49,8 @@ plugins {
     `java-library`
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "2.5"
-    id("org.owasp.dependencycheck") version "9.0.8"
     id("com.diffplug.spotless") version "6.25.0"
+    id("org.owasp.dependencycheck") version "9.0.9"
 }
 
 apply(plugin = "org.owasp.dependencycheck")
@@ -192,7 +192,9 @@ dependencies {
     testImplementation("com.fasterxml.jackson.datatype", "jackson-datatype-jakarta-jsonp", jacksonVersion)
 
     // ApacheHttpClient5Transport dependencies (optional)
-    implementation("org.apache.httpcomponents.client5", "httpclient5", "5.3")
+    implementation("org.apache.httpcomponents.client5", "httpclient5", "5.3.1") {
+      exclude(group = "org.apache.httpcomponents.core5")
+    }
     implementation("org.apache.httpcomponents.core5", "httpcore5", "5.2.4")
 
     // For AwsSdk2Transport
@@ -211,7 +213,7 @@ dependencies {
     implementation("org.eclipse", "yasson", "2.0.2")
 
     // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.161")
+    testImplementation("io.github.classgraph:classgraph:4.8.165")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {
