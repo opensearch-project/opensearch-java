@@ -20,6 +20,7 @@ import java.util.stream.Stream;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Namespace;
+import org.opensearch.client.codegen.model.SpecTransformer;
 import org.opensearch.client.codegen.openapi.OpenApiSpec;
 
 public class Main {
@@ -44,7 +45,7 @@ public class Main {
 
             cleanDirectory(outputDir);
 
-            outputDir = new File(outputDir, root.packageName().replace('.', '/'));
+            outputDir = new File(outputDir, root.getPackageName().replace('.', '/'));
 
             try (var formatter = new JavaFormatter(outputDir.toPath(), eclipseConfig)) {
                 root.render(outputDir, formatter);
@@ -57,8 +58,9 @@ public class Main {
 
     private static Namespace parseSpec(URI location) throws ApiSpecificationParseException {
         var spec = OpenApiSpec.parse(location);
-
-        return Namespace.from(spec, OPERATIONS);
+        var transformer = new SpecTransformer(OPERATIONS);
+        transformer.visit(spec);
+        return transformer.getRoot();
     }
 
     private static void cleanDirectory(File dir) throws RenderException {

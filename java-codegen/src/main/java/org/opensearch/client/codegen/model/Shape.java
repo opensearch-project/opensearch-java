@@ -26,19 +26,19 @@ public abstract class Shape {
         this.className = className;
     }
 
-    public Type type() {
-        return Type.builder().pkg(packageName()).name(className).build();
+    public Type getType() {
+        return Type.builder().pkg(getPackageName()).name(className).build();
     }
 
-    public Namespace parent() {
+    public Namespace getParent() {
         return this.parent;
     }
 
-    public String packageName() {
-        return parent.packageName();
+    public String getPackageName() {
+        return parent.getPackageName();
     }
 
-    public String className() {
+    public String getClassName() {
         return this.className;
     }
 
@@ -47,10 +47,10 @@ public abstract class Shape {
         renderer.renderJava(this, new File(outputDir, this.className + ".java"));
     }
 
-    public Set<String> imports() {
+    public Set<String> getImports() {
         var imports = new TreeSet<String>();
         for (var type : referencedTypes) {
-            type.getRequiredImports(imports, packageName());
+            type.getRequiredImports(imports, getPackageName());
         }
         return imports;
     }

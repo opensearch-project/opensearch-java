@@ -20,11 +20,11 @@ public class OperationGroup {
         this.name = name;
     }
 
-    public String namespace() {
+    public String getNamespace() {
         return namespace;
     }
 
-    public String name() {
+    public String getName() {
         return name;
     }
 

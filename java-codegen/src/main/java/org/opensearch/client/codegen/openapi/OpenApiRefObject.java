@@ -10,6 +10,7 @@ package org.opensearch.client.codegen.openapi;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 public abstract class OpenApiRefObject<TSelf extends OpenApiRefObject<TSelf, TInner>, TInner> extends OpenApiObject<TInner> {
@@ -31,14 +32,18 @@ public abstract class OpenApiRefObject<TSelf extends OpenApiRefObject<TSelf, TIn
         this.get$ref = get$ref;
     }
 
-    public String get$ref() {
-        return get$ref.apply(getInner());
+    public Optional<String> get$ref() {
+        return Optional.ofNullable(get$ref.apply(getInner()));
+    }
+
+    public boolean has$ref() {
+        return get$ref().isPresent();
     }
 
     protected abstract TSelf getSelf();
 
     public TSelf resolve() {
-        if (get$ref() == null) return getSelf();
+        if (!has$ref()) return getSelf();
         var resolved = getParent().resolve(componentsGetter, getJsonPtr(), getInner(), get$ref);
         return factory.create(resolved.getLeft(), resolved.getMiddle(), resolved.getRight());
     }

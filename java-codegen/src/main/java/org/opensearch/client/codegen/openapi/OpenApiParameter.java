@@ -8,10 +8,8 @@
 
 package org.opensearch.client.codegen.openapi;
 
-import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.parameters.Parameter;
 import java.util.Optional;
-import java.util.function.Function;
 
 public class OpenApiParameter extends OpenApiRefObject<OpenApiParameter, Parameter> {
     protected OpenApiParameter(OpenApiSpec parent, JsonPointer jsonPtr, Parameter parameter) {
@@ -35,7 +33,7 @@ public class OpenApiParameter extends OpenApiRefObject<OpenApiParameter, Paramet
     }
 
     public Optional<OpenApiSchema> getSchema() {
-        return childOpt("schema", (Function<Parameter, Schema<?>>) Parameter::getSchema, OpenApiSchema::new);
+        return childOpt("schema", Parameter::getSchema, OpenApiSchema::new);
     }
 
     @Override
