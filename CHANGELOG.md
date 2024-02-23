@@ -3,15 +3,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.0]
 ### Dependencies
-- Bumps `io.github.classgraph:classgraph` from 4.8.163 to 4.8.165
-- Bumps `org.owasp.dependencycheck` from 8.4.2 to 9.0.9
-- Bumps `com.diffplug.spotless` from 6.22.0 to 6.25.0
 - Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.3 to 5.2.4
-- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.2.1 to 5.3.1
-- Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.3 to 5.2.4
-- Bumps `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.7.1 to 2.8.1
-- Bumps `org.hamcrest:hamcrest` from 2.1 to 2.2
-- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.2.1 to 5.2.2
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
@@ -31,16 +23,34 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
-- Fix missing properties on UpdateOperation ([#744](https://github.com/opensearch-project/opensearch-java/pull/744))
 
 ### Security
 
 ## [Unreleased 2.x]
 
 ### Added
+
+### Dependencies
+- Bumps `io.github.classgraph:classgraph` from 4.8.161 to 4.8.165
+- Bumps `org.owasp.dependencycheck` from 9.0.8 to 9.0.9
+- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.3.0 to 5.3.1
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.9.0] - 02/22/2024
+### Added
 - Add support for Hybrid query type ([#850](https://github.com/opensearch-project/opensearch-java/pull/850))
 
 ### Dependencies
+- Bumps org.ajoberstar.grgit:grgit-gradle from 5.2.0 to 5.2.2
 
 ### Changed
 - Restore support for Java 8 ([#767](https://github.com/opensearch-project/opensearch-java/pull/767))
@@ -51,6 +61,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
+- Fix missing properties on UpdateOperation ([#744](https://github.com/opensearch-project/opensearch-java/pull/744))
 
 ### Security
 
@@ -326,7 +337,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.4...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.9.0...2.x
+[2.9.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.4...v2.9.0
 [2.8.4]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.3...v2.8.4
 [2.8.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.2...v2.8.3
 [2.8.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.1...v2.8.2
