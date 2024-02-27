@@ -34,7 +34,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.nodes._common;
+package org.opensearch.client.opensearch.nodes;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
@@ -45,7 +45,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch._common.NodeStatistics;
+import org.opensearch.client.opensearch._types.NodeStatistics;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
