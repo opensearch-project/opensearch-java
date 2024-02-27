@@ -60,8 +60,6 @@ public class Namespace extends Shape {
         var childName = idx >= 0 ? name.substring(0, idx) : name;
         var grandChildName = idx >= 0 ? name.substring(idx + 1) : null;
 
-        // if ("_common".equals(childName) && this.parent != null) return child(grandChildName);
-
         Namespace child = children.computeIfAbsent(childName, n -> new Namespace(this, n));
         return grandChildName == null ? child : child.child(grandChildName);
     }

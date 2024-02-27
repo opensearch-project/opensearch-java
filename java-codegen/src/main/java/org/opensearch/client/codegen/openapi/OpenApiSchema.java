@@ -130,7 +130,9 @@ public class OpenApiSchema extends OpenApiRefObject<OpenApiSchema, Schema> imple
 
     public String getNamespace() {
         var schemaFile = Path.of(getParent().getLocation().getPath()).getFileName().toString();
-        return schemaFile.substring(0, schemaFile.lastIndexOf('.'));
+        var ns = schemaFile.substring(0, schemaFile.lastIndexOf('.'));
+        // Match existing naming scheme
+        return ns.replaceAll("\\._common", "").replaceAll("^_common", "_types");
     }
 
     @Override

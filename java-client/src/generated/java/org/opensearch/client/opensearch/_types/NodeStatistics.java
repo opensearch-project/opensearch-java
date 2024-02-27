@@ -34,7 +34,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch._common;
+package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
