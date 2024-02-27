@@ -106,10 +106,14 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
     @Nullable
     private final Double weight;
 
-    public FunctionScore(FunctionScoreVariant value) {
-
-        this._kind = ApiTypeHelper.requireNonNull(value._functionScoreKind(), this, "<variant kind>");
-        this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+    public FunctionScore(@Nullable FunctionScoreVariant value) {
+        if (value != null) {
+            this._kind = ApiTypeHelper.requireNonNull(value._functionScoreKind(), this, "<variant kind>");
+            this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+        } else {
+            this._kind = null;
+            this._value = null;
+        }
 
         this.filter = null;
         this.weight = null;
@@ -117,9 +121,13 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
     }
 
     private FunctionScore(Builder builder) {
-
-        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        if (builder._value != null) {
+            this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+            this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        } else {
+            this._kind = null;
+            this._value = null;
+        }
 
         this.filter = builder.filter;
         this.weight = builder.weight;
@@ -266,9 +274,11 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
         }
 
-        generator.writeKey(_kind.jsonValue());
-        if (_value instanceof JsonpSerializable) {
-            ((JsonpSerializable) _value).serialize(generator, mapper);
+        if (_value != null) {
+            generator.writeKey(_kind.jsonValue());
+            if (_value instanceof JsonpSerializable) {
+                ((JsonpSerializable) _value).serialize(generator, mapper);
+            }
         }
 
         generator.writeEnd();
@@ -279,8 +289,10 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
         return new Builder()._kind(_kind)._value(_value).filter(filter).weight(weight);
     }
 
-    public static class Builder extends ObjectBuilderBase {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FunctionScore> {
+        @Nullable
         private Kind _kind;
+        @Nullable
         private Object _value;
 
         @Nullable
@@ -289,12 +301,12 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
         @Nullable
         private Double weight;
 
-        protected final Builder _kind(Kind v) {
+        protected final Builder _kind(@Nullable Kind v) {
             this._kind = v;
             return this;
         }
 
-        protected final Builder _value(Object v) {
+        protected final Builder _value(@Nullable Object v) {
             this._value = v;
             return this;
         }
@@ -384,7 +396,7 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
             return this.scriptScore(fn.apply(new ScriptScoreFunction.Builder()).build());
         }
 
-        protected FunctionScore build() {
+        public FunctionScore build() {
             _checkSingleUse();
             return new FunctionScore(this);
         }
