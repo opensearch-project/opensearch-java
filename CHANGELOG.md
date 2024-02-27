@@ -43,6 +43,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fix integer overflow for variables in indices stats response ([#877](https://github.com/opensearch-project/opensearch-java/pull/877))
+- Support weight function in function score query ([#880](https://github.com/opensearch-project/opensearch-java/pull/880))
 
 ### Security
 
