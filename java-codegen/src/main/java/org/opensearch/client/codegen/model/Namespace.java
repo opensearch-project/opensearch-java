@@ -29,7 +29,7 @@ public class Namespace extends Shape {
     }
 
     private Namespace(Namespace parent, String name) {
-        super(parent, null);
+        super(parent, null, null);
         this.name = name;
     }
 
@@ -86,7 +86,7 @@ public class Namespace extends Shape {
         private final boolean async;
 
         private Client(Namespace parent, boolean async) {
-            super(parent, "OpenSearch" + Strings.toPascalCase(parent.name) + (async ? "Async" : "") + "Client");
+            super(parent, "OpenSearch" + Strings.toPascalCase(parent.name) + (async ? "Async" : "") + "Client", null);
             this.async = async;
         }
 

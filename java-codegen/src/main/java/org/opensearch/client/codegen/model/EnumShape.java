@@ -16,8 +16,8 @@ import org.opensearch.client.codegen.utils.Strings;
 public class EnumShape extends Shape {
     private final List<Variant> variants;
 
-    public EnumShape(Namespace parent, String className, List<Variant> variants) {
-        super(parent, className);
+    public EnumShape(Namespace parent, String className, List<Variant> variants, String typedefName) {
+        super(parent, className, typedefName);
         this.variants = variants;
     }
 
