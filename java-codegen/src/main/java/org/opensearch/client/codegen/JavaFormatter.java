@@ -24,6 +24,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
+import org.opensearch.client.codegen.exceptions.JavaFormatterException;
 import org.opensearch.client.codegen.utils.MavenArtifactResolver;
 
 public class JavaFormatter implements AutoCloseable {
@@ -76,8 +77,12 @@ public class JavaFormatter implements AutoCloseable {
         return TrimTrailingWhitespaceStep.create();
     }
 
-    public void format(File file) throws IOException {
-        formatter.applyTo(file);
+    public void format(File file) throws JavaFormatterException {
+        try {
+            formatter.applyTo(file);
+        } catch (Throwable e) {
+            throw new JavaFormatterException("Failed to format: " + file, e);
+        }
     }
 
     @Override
