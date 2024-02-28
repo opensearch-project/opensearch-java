@@ -24,6 +24,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import org.apache.commons.text.StringEscapeUtils;
+import org.opensearch.client.codegen.exceptions.JavaFormatterException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Shape;
 import org.opensearch.client.codegen.model.Type;
@@ -96,7 +97,7 @@ public class Renderer {
 
         try {
             formatter.format(outputFile);
-        } catch (IOException e) {
+        } catch (JavaFormatterException e) {
             throw new RenderException("Unable to format rendered output: " + outputFile, e);
         }
     }
