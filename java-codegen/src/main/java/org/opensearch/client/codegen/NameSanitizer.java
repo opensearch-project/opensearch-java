@@ -15,6 +15,8 @@ import org.opensearch.client.codegen.utils.Strings;
 public class NameSanitizer {
     private static final Set<String> reservedWords = new HashSet<>() {
         {
+            add("default");
+            add("native");
             add("transient");
         }
     };
