@@ -124,6 +124,7 @@ public final class Types {
             public static final Type JsonpSerializable = Type.builder().pkg(PACKAGE).name("JsonpSerializable").build();
             public static final Type ObjectBuilderDeserializer = Type.builder().pkg(PACKAGE).name("ObjectBuilderDeserializer").build();
             public static final Type ObjectDeserializer = Type.builder().pkg(PACKAGE).name("ObjectDeserializer").build();
+            public static final Type UnionDeserializer = Type.builder().pkg(PACKAGE).name("UnionDeserializer").build();
         }
 
         public static final class OpenSearch {
@@ -161,6 +162,13 @@ public final class Types {
 
             public static final Type ObjectBuilder = Type.builder().pkg(PACKAGE).name("ObjectBuilder").build();
             public static final Type ObjectBuilderBase = Type.builder().pkg(PACKAGE).name("ObjectBuilderBase").build();
+
+            public static Type TaggedUnion(Type tagType, Type baseType) {
+                return TaggedUnion.withGenericArgs(tagType, baseType);
+            }
+
+            public static final Type TaggedUnion = Type.builder().pkg(PACKAGE).name("TaggedUnion").build();
+            public static final Type TaggedUnionUtils = Type.builder().pkg(PACKAGE).name("TaggedUnionUtils").build();
         }
     }
 
