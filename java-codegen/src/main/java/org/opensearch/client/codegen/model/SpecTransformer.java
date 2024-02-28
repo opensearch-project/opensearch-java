@@ -30,13 +30,13 @@ import org.opensearch.client.codegen.openapi.OpenApiSchema;
 import org.opensearch.client.codegen.openapi.OpenApiSpec;
 
 public class SpecTransformer {
-    private final Set<String> operationsToGenerate;
+    private final OperationGroup.Matcher matcher;
     private final Namespace root = new Namespace();
     private final Set<OpenApiSchema> visitedSchemas = new HashSet<>();
     private final Map<OpenApiSchema, Type> schemaToType = new ConcurrentHashMap<>();
 
-    public SpecTransformer(Set<String> operationsToGenerate) {
-        this.operationsToGenerate = operationsToGenerate;
+    public SpecTransformer(OperationGroup.Matcher matcher) {
+        this.matcher = matcher;
     }
 
     public Namespace getRoot() {
@@ -48,7 +48,7 @@ public class SpecTransformer {
 
         spec.getOperations().forEach((operation) -> {
             var group = operation.getXOperationGroup();
-            if (!operationsToGenerate.contains(group.toString())) return;
+            if (!matcher.matches(group)) return;
             groupedOperations.computeIfAbsent(group, k -> new ArrayList<>()).add(operation);
         });
 
