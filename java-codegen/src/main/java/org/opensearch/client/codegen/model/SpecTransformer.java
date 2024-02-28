@@ -185,6 +185,12 @@ public class SpecTransformer {
             shape = objShape;
         } else if (schema.isString() && schema.hasEnums()) {
             shape = new EnumShape(parent, className, schema.getEnum().orElseThrow().stream().map(EnumShape.Variant::new).toList(), typedefName);
+        } else if (schema.getOneOf().isPresent()) {
+            var taggedUnion = new TaggedUnionShape(parent, className, typedefName);
+            schema.getOneOf()
+                    .get()
+                    .forEach(s -> taggedUnion.addVariant(s.resolve().getName(), mapType(s)));
+            shape = taggedUnion;
         } else {
             throw new NotImplementedException("Unsupported schema: " + schema);
         }
@@ -232,7 +238,7 @@ public class SpecTransformer {
         if (schema.has$ref()) {
             schema = schema.resolve();
 
-            if (!schema.shouldKeepRef()) {
+            if (!shouldKeepRef(schema)) {
                 return mapType(schema);
             }
 
@@ -277,11 +283,23 @@ public class SpecTransformer {
 
     private Type mapOneOf(List<OpenApiSchema> oneOf) {
         if (oneOf.size() == 2) {
-            var first = oneOf.get(0).resolve();
-            var second = oneOf.get(1).resolve();
+            var first = oneOf.get(0);
+            var second = oneOf.get(1);
 
-            if (first.isString() && second.isArray()) {
-                return mapType(second);
+            if (second.isArray()) {
+                var items = second.getItems().orElseThrow();
+
+                if (first.getType().equals(items.getType()) && first.get$ref().equals(items.get$ref())) {
+                    return mapType(second);
+                }
+            }
+
+            if ((first.isString() && (second.isString() || second.isNumber())) || (first.isNumber() && second.isString())) {
+                return Types.Java.Lang.String;
+            }
+
+            if (first.isBoolean() && second.isString()) {
+                return Types.Primitive.Boolean;
             }
         }
 
@@ -311,6 +329,24 @@ public class SpecTransformer {
                 return Types.Primitive.Double;
             default:
                 throw new UnsupportedOperationException("Can not get type name for integer/number with format: " + format);
+        }
+    }
+
+    private boolean shouldKeepRef(OpenApiSchema schema) {
+        var type = schema.getType();
+        if (type.isEmpty()) {
+            if (schema.getOneOf().isPresent()) {
+                return schema.getOneOf().get().get(0).resolve().getType().map(OpenApiSchema.Type.OBJECT::equals).orElse(false);
+            }
+            return false;
+        }
+        switch (type.get()) {
+            case OBJECT:
+                return true;
+            case STRING:
+                return schema.hasEnums();
+            default:
+                return false;
         }
     }
 }

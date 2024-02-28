@@ -48,6 +48,14 @@ public class OpenApiSchema extends OpenApiRefObject<OpenApiSchema, Schema> imple
         return is(Type.STRING);
     }
 
+    public boolean isNumber() {
+        return is(Type.NUMBER);
+    }
+
+    public boolean isBoolean() {
+        return is(Type.BOOLEAN);
+    }
+
     public boolean isArray() {
         return is(Type.ARRAY);
     }
@@ -58,19 +66,6 @@ public class OpenApiSchema extends OpenApiRefObject<OpenApiSchema, Schema> imple
 
     public Optional<Format> getFormat() {
         return Optional.ofNullable(getInner().getFormat()).map(Format::from);
-    }
-
-    public boolean shouldKeepRef() {
-        var type = getType();
-        if (type.isEmpty()) return false;
-        switch (type.get()) {
-            case OBJECT:
-                return true;
-            case STRING:
-                return hasEnums();
-            default:
-                return false;
-        }
     }
 
     public Optional<List<String>> getEnum() {
