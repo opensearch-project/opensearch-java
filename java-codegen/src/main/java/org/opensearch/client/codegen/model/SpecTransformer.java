@@ -71,7 +71,7 @@ public class SpecTransformer {
             .map(OpenApiSchema::resolve)
             .orElse(OpenApiSchema.EMPTY);
 
-        visit(parent, requestShape.getResponseType(), responseSchema);
+        visit(parent, requestShape.getResponseType(), group + ".Response", responseSchema);
     }
 
     private RequestShape visit(Namespace parent, OperationGroup group, List<OpenApiOperation> variants) {
@@ -169,22 +169,22 @@ public class SpecTransformer {
     }
 
     private void visit(OpenApiSchema schema) {
-        visit(root.child(schema.getNamespace()), schema.getName(), schema);
+        visit(root.child(schema.getNamespace()), schema.getName(), schema.getNamespace() + "." + schema.getName(), schema);
     }
 
-    private void visit(Namespace parent, String name, OpenApiSchema schema) {
+    private void visit(Namespace parent, String className, String typedefName, OpenApiSchema schema) {
         if (!visitedSchemas.add(schema)) return;
 
         Shape shape;
 
         if (schema.isArray()) {
-            shape = new ArrayShape(parent, name, mapType(schema));
-        } else if (schema.isObject() || schema.hasAllOf()) {
-            var objShape = new ObjectShape(parent, name);
+            shape = new ArrayShape(parent, className, mapType(schema), typedefName);
+        } else if (schema.isObject() || schema.hasAllOf() || schema.equals(OpenApiSchema.EMPTY)) {
+            var objShape = new ObjectShape(parent, className, typedefName);
             visitInto(schema, objShape);
             shape = objShape;
         } else if (schema.isString() && schema.hasEnums()) {
-            shape = new EnumShape(parent, name, schema.getEnum().orElseThrow().stream().map(EnumShape.Variant::new).toList());
+            shape = new EnumShape(parent, className, schema.getEnum().orElseThrow().stream().map(EnumShape.Variant::new).toList(), typedefName);
         } else {
             throw new NotImplementedException("Unsupported schema: " + schema);
         }

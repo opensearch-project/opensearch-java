@@ -20,10 +20,12 @@ public abstract class Shape {
     protected final Namespace parent;
     private final String className;
     private final Set<Type> referencedTypes = new HashSet<>();
+    private final String typedefName;
 
-    public Shape(Namespace parent, String className) {
+    public Shape(Namespace parent, String className, String typedefName) {
         this.parent = parent;
         this.className = className;
+        this.typedefName = typedefName;
     }
 
     public Type getType() {
@@ -40,6 +42,10 @@ public abstract class Shape {
 
     public String getClassName() {
         return this.className;
+    }
+
+    public String getTypedefName() {
+        return this.typedefName;
     }
 
     public void render(File outputDir, JavaFormatter formatter) throws RenderException {

@@ -29,7 +29,7 @@ public class RequestShape extends ObjectShape {
     private final Map<String, Field> fields = new TreeMap<>();
 
     public RequestShape(Namespace parent, OperationGroup operationGroup, String description) {
-        super(parent, requestClassName(operationGroup));
+        super(parent, requestClassName(operationGroup), operationGroup + ".Request");
         this.operationGroup = operationGroup;
         this.description = description;
     }
