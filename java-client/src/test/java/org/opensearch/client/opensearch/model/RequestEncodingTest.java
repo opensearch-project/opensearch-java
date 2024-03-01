@@ -66,10 +66,8 @@ public class RequestEncodingTest extends ModelTestCase {
     @Test
     public void testKnnVectorPrecision() {
 
-        float[] vector = {0.4f, 0.3f};
-        SearchRequest request = new SearchRequest.Builder().q("knn")
-                .query(q -> q.knn(k -> k.field("values").vector(vector).k(1)))
-                .build();
+        float[] vector = { 0.4f, 0.3f };
+        SearchRequest request = new SearchRequest.Builder().q("knn").query(q -> q.knn(k -> k.field("values").vector(vector).k(1))).build();
 
         JacksonJsonpMapper mapper = new JacksonJsonpMapper();
         String str = toJson(request, mapper);

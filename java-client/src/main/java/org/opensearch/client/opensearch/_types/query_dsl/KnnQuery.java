@@ -8,6 +8,8 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import static java.math.RoundingMode.HALF_UP;
+
 import jakarta.json.stream.JsonGenerator;
 import java.math.BigDecimal;
 import java.util.function.Function;
@@ -19,8 +21,6 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
-
-import static java.math.RoundingMode.HALF_UP;
 
 @JsonpDeserializable
 public class KnnQuery extends QueryBase implements QueryVariant {
