@@ -144,6 +144,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
         Shape("shape"),
 
+        XyShape("xy_shape"),
+
         SimpleQueryString("simple_query_string"),
 
         SpanContaining("span_containing"),
@@ -929,6 +931,23 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
      */
     public ShapeQuery shape() {
         return TaggedUnionUtils.get(this, Kind.Shape);
+    }
+
+    /**
+     * Is this variant instance of kind {@code xy_shape}?
+     */
+    public boolean isXyShape() {
+        return _kind == Kind.XyShape;
+    }
+
+    /**
+     * Get the {@code xy_shape} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code xy_shape} kind.
+     */
+    public XyShapeQuery xyShape() {
+        return TaggedUnionUtils.get(this, Kind.XyShape);
     }
 
     /**

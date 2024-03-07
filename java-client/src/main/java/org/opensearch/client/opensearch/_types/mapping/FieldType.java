@@ -111,6 +111,8 @@ public enum FieldType implements JsonEnum {
 
     Shape("shape"),
 
+    XyShape("xy_shape"),
+
     Histogram("histogram"),
 
     ConstantKeyword("constant_keyword"),

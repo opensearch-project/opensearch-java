@@ -41,6 +41,8 @@ public enum ShapeType implements JsonEnum {
 
     Shape("shape"),
 
+    XyShape("xy_shape"),
+
     ;
 
     private final String jsonValue;

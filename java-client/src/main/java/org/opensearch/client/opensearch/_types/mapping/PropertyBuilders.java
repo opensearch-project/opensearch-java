@@ -340,6 +340,14 @@ public class PropertyBuilders {
     }
 
     /**
+     * Creates a builder for the {@link XyShapeProperty xy_shape} {@code Property}
+     * variant.
+     */
+    public static XyShapeProperty.Builder xyShape() {
+        return new XyShapeProperty.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link ShortNumberProperty short} {@code Property}
      * variant.
      */

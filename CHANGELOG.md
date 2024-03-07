@@ -9,6 +9,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Added
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
+- Add xy_shape property ([#884](https://github.com/opensearch-project/opensearch-java/pull/885))
 
 ### Dependencies
 

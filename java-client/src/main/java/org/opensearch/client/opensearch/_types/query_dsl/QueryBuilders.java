@@ -351,6 +351,13 @@ public class QueryBuilders {
     }
 
     /**
+     * Creates a builder for the {@link XyShapeQuery shape} {@code Query} variant.
+     */
+    public static XyShapeQuery.Builder xyShape() {
+        return new XyShapeQuery.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link SimpleQueryStringQuery simple_query_string}
      * {@code Query} variant.
      */

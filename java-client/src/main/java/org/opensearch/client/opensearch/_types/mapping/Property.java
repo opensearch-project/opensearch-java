@@ -138,6 +138,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 
         Shape("shape"),
 
+        XyShape("xy_shape"),
+
         Short("short"),
 
         Text("text"),
@@ -862,6 +864,23 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
     }
 
     /**
+     * Is this variant instance of kind {@code xy_shape}?
+     */
+    public boolean isXyShape() {
+        return _kind == Kind.XyShape;
+    }
+
+    /**
+     * Get the {@code xy_shape} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code shape} kind.
+     */
+    public XyShapeProperty xyShape() {
+        return TaggedUnionUtils.get(this, Kind.XyShape);
+    }
+
+    /**
      * Is this variant instance of kind {@code short}?
      */
     public boolean isShort() {
@@ -1374,6 +1393,16 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
             return this.shape(fn.apply(new ShapeProperty.Builder()).build());
         }
 
+        public ObjectBuilder<Property> xyShape(XyShapeProperty v) {
+            this._kind = Kind.XyShape;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Property> xyShape(Function<XyShapeProperty.Builder, ObjectBuilder<XyShapeProperty>> fn) {
+            return this.xyShape(fn.apply(new XyShapeProperty.Builder()).build());
+        }
+
         public ObjectBuilder<Property> short_(ShortNumberProperty v) {
             this._kind = Kind.Short;
             this._value = v;
@@ -1484,6 +1513,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
         op.add(Builder::scaledFloat, ScaledFloatNumberProperty._DESERIALIZER, "scaled_float");
         op.add(Builder::searchAsYouType, SearchAsYouTypeProperty._DESERIALIZER, "search_as_you_type");
         op.add(Builder::shape, ShapeProperty._DESERIALIZER, "shape");
+        op.add(Builder::xyShape, XyShapeProperty._DESERIALIZER, "xy_shape");
         op.add(Builder::short_, ShortNumberProperty._DESERIALIZER, "short");
         op.add(Builder::text, TextProperty._DESERIALIZER, "text");
         op.add(Builder::tokenCount, TokenCountProperty._DESERIALIZER, "token_count");
