@@ -5,6 +5,21 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.9.1]
+### Added
+
+### Dependencies
 - Bumps `io.github.classgraph:classgraph` from 4.8.161 to 4.8.165
 - Bumps `org.owasp.dependencycheck` from 9.0.8 to 9.0.9
 - Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.3.0 to 5.3.1
@@ -309,7 +324,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.4...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.9.1...2.x
+[2.9.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.9.0...v2.9.1
+[2.9.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.4...v2.9.0
 [2.8.4]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.3...v2.8.4
 [2.8.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.2...v2.8.3
 [2.8.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.1...v2.8.2
