@@ -34,6 +34,7 @@ package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -46,6 +47,7 @@ import org.opensearch.client.util.ObjectBuilder;
 
 @JsonpDeserializable
 public class PatternReplaceCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
+    @Nullable
     private final String flags;
 
     private final String pattern;
@@ -57,7 +59,7 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
     private PatternReplaceCharFilter(Builder builder) {
         super(builder);
 
-        this.flags = ApiTypeHelper.requireNonNull(builder.flags, this, "flags");
+        this.flags = builder.flags;
         this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
         this.replacement = ApiTypeHelper.requireNonNull(builder.replacement, this, "replacement");
 
@@ -76,8 +78,9 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
     }
 
     /**
-     * Required - API name: {@code flags}
+     * API name: {@code flags}
      */
+    @Nullable
     public final String flags() {
         return this.flags;
     }
@@ -100,8 +103,11 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
 
         generator.write("type", "pattern_replace");
         super.serializeInternal(generator, mapper);
-        generator.writeKey("flags");
-        generator.write(this.flags);
+
+        if (this.flags != null) {
+            generator.writeKey("flags");
+            generator.write(this.flags);
+        }
 
         generator.writeKey("pattern");
         generator.write(this.pattern);
@@ -118,6 +124,7 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
      */
 
     public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<PatternReplaceCharFilter> {
+        @Nullable
         private String flags;
 
         private String pattern;
@@ -125,9 +132,9 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
         private String replacement;
 
         /**
-         * Required - API name: {@code flags}
+         * API name: {@code flags}
          */
-        public final Builder flags(String value) {
+        public final Builder flags(@Nullable String value) {
             this.flags = value;
             return this;
         }
