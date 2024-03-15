@@ -18,6 +18,12 @@ import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 public class PatternReplaceCharFilterTest {
     @Test
     public void testCreatePatternReplaceCharFilter() {
+        PatternReplaceCharFilter patternReplaceCharFilter = new PatternReplaceCharFilter.Builder().pattern("pattern").build();
+        assertEquals("pattern", patternReplaceCharFilter.pattern());
+    }
+
+    @Test
+    public void testCreatePatternReplaceCharFilterWithReplacement() {
         PatternReplaceCharFilter patternReplaceCharFilter = new PatternReplaceCharFilter.Builder().pattern("pattern")
             .replacement("replacement")
             .build();

@@ -52,6 +52,7 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
 
     private final String pattern;
 
+    @Nullable
     private final String replacement;
 
     // ---------------------------------------------------------------------------------------------
@@ -61,8 +62,7 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
 
         this.flags = builder.flags;
         this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
-        this.replacement = ApiTypeHelper.requireNonNull(builder.replacement, this, "replacement");
-
+        this.replacement = builder.replacement;
     }
 
     public static PatternReplaceCharFilter of(Function<Builder, ObjectBuilder<PatternReplaceCharFilter>> fn) {
@@ -93,7 +93,7 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
     }
 
     /**
-     * Required - API name: {@code replacement}
+     * API name: {@code replacement}
      */
     public final String replacement() {
         return this.replacement;
@@ -104,17 +104,18 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
         generator.write("type", "pattern_replace");
         super.serializeInternal(generator, mapper);
 
+        generator.writeKey("pattern");
+        generator.write(this.pattern);
+
+        if (this.replacement != null) {
+            generator.writeKey("replacement");
+            generator.write(this.replacement);
+        }
+
         if (this.flags != null) {
             generator.writeKey("flags");
             generator.write(this.flags);
         }
-
-        generator.writeKey("pattern");
-        generator.write(this.pattern);
-
-        generator.writeKey("replacement");
-        generator.write(this.replacement);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -129,6 +130,7 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
 
         private String pattern;
 
+        @Nullable
         private String replacement;
 
         /**
@@ -148,9 +150,9 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
         }
 
         /**
-         * Required - API name: {@code replacement}
+         * API name: {@code replacement}
          */
-        public final Builder replacement(String value) {
+        public final Builder replacement(@Nullable String value) {
             this.replacement = value;
             return this;
         }

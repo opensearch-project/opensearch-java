@@ -45,7 +45,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Fixed
 - Fix integer overflow for variables in indices stats response ([#877](https://github.com/opensearch-project/opensearch-java/pull/877))
 - Support weight function in function score query ([#880](https://github.com/opensearch-project/opensearch-java/pull/880))
-- Fix pattern replace by making flag optional as on api  ([#895](https://github.com/opensearch-project/opensearch-java/pull/895))
+- Fix pattern replace by making flag and replacement optional as on api  ([#895](https://github.com/opensearch-project/opensearch-java/pull/895))
 
 ### Security
 
