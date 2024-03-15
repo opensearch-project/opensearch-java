@@ -43,7 +43,7 @@ public class PatternReplaceCharFilterTest {
     }
 
     @Test
-    public void testDeserializePatternReplaceCharFilter() {
+    public void testDeserializePatternReplaceCharFilterWithAllFields() {
         String jsonString =
             "{\"type\": \"pattern_replace\", \"pattern\": \"pattern\", \"replacement\": \"replacement\", \"flags\": \"flags\"}";
 
@@ -55,5 +55,17 @@ public class PatternReplaceCharFilterTest {
         assertEquals("pattern", patternReplaceCharFilter.pattern());
         assertEquals("replacement", patternReplaceCharFilter.replacement());
         assertEquals("flags", patternReplaceCharFilter.flags());
+    }
+
+    @Test
+    public void testDeserializePatternReplaceCharFilterWithPatternOnly() {
+        String jsonString = "{\"type\": \"pattern_replace\", \"pattern\": \"pattern\"}";
+
+        StringReader reader = new StringReader(jsonString);
+        JacksonJsonpMapper mapper = new JacksonJsonpMapper();
+        JsonParser parser = mapper.jsonProvider().createParser(reader);
+
+        PatternReplaceCharFilter patternReplaceCharFilter = PatternReplaceCharFilter._DESERIALIZER.deserialize(parser, mapper);
+        assertEquals("pattern", patternReplaceCharFilter.pattern());
     }
 }
