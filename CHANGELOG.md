@@ -8,6 +8,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
 ### Added
+- Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
+- Add xy_shape property ([#884](https://github.com/opensearch-project/opensearch-java/pull/885))
 
 ### Dependencies
 
@@ -28,8 +30,6 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ## [Unreleased 2.x]
 
 ### Added
-- Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
-- Add xy_shape property ([#884](https://github.com/opensearch-project/opensearch-java/pull/885))
 
 ### Dependencies
 - Bumps `io.github.classgraph:classgraph` from 4.8.161 to 4.8.165
