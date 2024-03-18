@@ -136,8 +136,6 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 
         SearchAsYouType("search_as_you_type"),
 
-        Shape("shape"),
-
         XyShape("xy_shape"),
 
         Short("short"),
@@ -847,23 +845,6 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
     }
 
     /**
-     * Is this variant instance of kind {@code shape}?
-     */
-    public boolean isShape() {
-        return _kind == Kind.Shape;
-    }
-
-    /**
-     * Get the {@code shape} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code shape} kind.
-     */
-    public ShapeProperty shape() {
-        return TaggedUnionUtils.get(this, Kind.Shape);
-    }
-
-    /**
      * Is this variant instance of kind {@code xy_shape}?
      */
     public boolean isXyShape() {
@@ -874,7 +855,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
      * Get the {@code xy_shape} variant value.
      *
      * @throws IllegalStateException
-     *             if the current variant is not of the {@code shape} kind.
+     *             if the current variant is not of the {@code xy_shape} kind.
      */
     public XyShapeProperty xyShape() {
         return TaggedUnionUtils.get(this, Kind.XyShape);
@@ -1383,15 +1364,6 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
             return this.searchAsYouType(fn.apply(new SearchAsYouTypeProperty.Builder()).build());
         }
 
-        public ObjectBuilder<Property> shape(ShapeProperty v) {
-            this._kind = Kind.Shape;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<Property> shape(Function<ShapeProperty.Builder, ObjectBuilder<ShapeProperty>> fn) {
-            return this.shape(fn.apply(new ShapeProperty.Builder()).build());
-        }
 
         public ObjectBuilder<Property> xyShape(XyShapeProperty v) {
             this._kind = Kind.XyShape;
@@ -1512,7 +1484,6 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
         op.add(Builder::rankFeatures, RankFeaturesProperty._DESERIALIZER, "rank_features");
         op.add(Builder::scaledFloat, ScaledFloatNumberProperty._DESERIALIZER, "scaled_float");
         op.add(Builder::searchAsYouType, SearchAsYouTypeProperty._DESERIALIZER, "search_as_you_type");
-        op.add(Builder::shape, ShapeProperty._DESERIALIZER, "shape");
         op.add(Builder::xyShape, XyShapeProperty._DESERIALIZER, "xy_shape");
         op.add(Builder::short_, ShortNumberProperty._DESERIALIZER, "short");
         op.add(Builder::text, TextProperty._DESERIALIZER, "text");

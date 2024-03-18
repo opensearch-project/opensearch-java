@@ -21,6 +21,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Deprecate RestClientTransport ([#536](https://github.com/opensearch-project/opensearch-java/pull/536))
 
 ### Removed
+- Delete shape property ([#884](https://github.com/opensearch-project/opensearch-java/pull/885))
 
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))

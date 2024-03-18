@@ -332,14 +332,6 @@ public class PropertyBuilders {
     }
 
     /**
-     * Creates a builder for the {@link ShapeProperty shape} {@code Property}
-     * variant.
-     */
-    public static ShapeProperty.Builder shape() {
-        return new ShapeProperty.Builder();
-    }
-
-    /**
      * Creates a builder for the {@link XyShapeProperty xy_shape} {@code Property}
      * variant.
      */
