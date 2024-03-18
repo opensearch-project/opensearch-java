@@ -11,6 +11,7 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -19,6 +20,7 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 
 // typedef: _types.query_dsl.XyShapeQuery
+@JsonpDeserializable
 public class XyShapeQuery extends QueryBase implements QueryVariant {
     private final String field;
 

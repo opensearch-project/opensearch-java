@@ -37,12 +37,14 @@ import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.ErrorCause;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.GeoLocation;
+import org.opensearch.client.opensearch._types.GeoShapeRelation;
 import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.SortOptionsBuilders;
 import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
 import org.opensearch.client.opensearch._types.query_dsl.WrapperQuery;
+import org.opensearch.client.opensearch._types.query_dsl.XyShapeQuery;
 import org.opensearch.client.util.MapBuilder;
 
 public class BehaviorsTest extends ModelTestCase {
@@ -56,6 +58,22 @@ public class BehaviorsTest extends ModelTestCase {
         assertEquals("query-name", q.queryName());
         assertEquals("field-name", q.field());
         assertEquals("some-value", q.value().stringValue());
+    }
+
+    @Test
+    public void testAdditionalPropertyOnClass() {
+        XyShapeQuery q = new XyShapeQuery.Builder().queryName("query-name")
+            .field("field-name")
+            .xyShape(_0 -> _0.relation(GeoShapeRelation.Disjoint))
+            .ignoreUnmapped(true)
+            .build();
+
+        q = checkJsonRoundtrip(q, "{\"field-name\":{\"relation\":\"disjoint\"},\"_name\":\"query-name\",\"ignore_unmapped\":true}");
+
+        assertEquals("query-name", q.queryName());
+        assertTrue(q.ignoreUnmapped());
+        assertEquals(GeoShapeRelation.Disjoint, q.xyShape().relation());
+        System.out.println(toJson(q));
     }
 
     @Test

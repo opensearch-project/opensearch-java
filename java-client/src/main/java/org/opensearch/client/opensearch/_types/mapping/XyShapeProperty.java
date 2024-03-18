@@ -13,6 +13,7 @@ package org.opensearch.client.opensearch._types.mapping;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -25,6 +26,7 @@ import org.opensearch.client.util.ObjectBuilder;
  * polygons.
  *
  */
+@JsonpDeserializable
 public class XyShapeProperty extends DocValuesPropertyBase implements PropertyVariant {
     @Nullable
     private final Boolean coerce;
