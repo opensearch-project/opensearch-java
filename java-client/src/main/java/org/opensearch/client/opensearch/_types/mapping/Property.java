@@ -1364,7 +1364,6 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
             return this.searchAsYouType(fn.apply(new SearchAsYouTypeProperty.Builder()).build());
         }
 
-
         public ObjectBuilder<Property> xyShape(XyShapeProperty v) {
             this._kind = Kind.XyShape;
             this._value = v;

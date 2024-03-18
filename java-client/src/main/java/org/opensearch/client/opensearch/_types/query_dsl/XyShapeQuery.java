@@ -92,7 +92,7 @@ public class XyShapeQuery extends QueryBase implements QueryVariant {
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link ShapeQuery}.
+     * Builder for {@link XyShapeQuery}.
      */
 
     public static class Builder extends QueryBase.AbstractBuilder<XyShapeQuery.Builder> implements ObjectBuilder<XyShapeQuery> {
@@ -140,7 +140,7 @@ public class XyShapeQuery extends QueryBase implements QueryVariant {
         }
 
         /**
-         * Builds a {@link ShapeQuery}.
+         * Builds a {@link XyShapeQuery}.
          *
          * @throws NullPointerException
          *             if some of the required fields are null.
@@ -155,7 +155,7 @@ public class XyShapeQuery extends QueryBase implements QueryVariant {
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ShapeQuery}
+     * Json deserializer for {@link XyShapeQuery}
      */
     public static final JsonpDeserializer<XyShapeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         XyShapeQuery.Builder::new,

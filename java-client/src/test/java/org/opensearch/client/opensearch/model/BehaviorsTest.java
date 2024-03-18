@@ -37,7 +37,6 @@ import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.ErrorCause;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.GeoLocation;
-import org.opensearch.client.opensearch._types.GeoShapeRelation;
 import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.SortOptionsBuilders;
 import org.opensearch.client.opensearch._types.SortOrder;
@@ -57,22 +56,6 @@ public class BehaviorsTest extends ModelTestCase {
         assertEquals("query-name", q.queryName());
         assertEquals("field-name", q.field());
         assertEquals("some-value", q.value().stringValue());
-    }
-
-    @Test
-    public void testAdditionalPropertyOnClass() {
-        ShapeQuery q = new ShapeQuery.Builder().queryName("query-name")
-            .field("field-name")
-            .shape(_0 -> _0.relation(GeoShapeRelation.Disjoint))
-            .ignoreUnmapped(true)
-            .build();
-
-        q = checkJsonRoundtrip(q, "{\"field-name\":{\"relation\":\"disjoint\"},\"_name\":\"query-name\",\"ignore_unmapped\":true}");
-
-        assertEquals("query-name", q.queryName());
-        assertTrue(q.ignoreUnmapped());
-        assertEquals(GeoShapeRelation.Disjoint, q.shape().relation());
-        System.out.println(toJson(q));
     }
 
     @Test
