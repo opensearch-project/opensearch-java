@@ -344,10 +344,10 @@ public class QueryBuilders {
     }
 
     /**
-     * Creates a builder for the {@link ShapeQuery shape} {@code Query} variant.
+     * Creates a builder for the {@link XyShapeQuery xy_shape} {@code Query} variant.
      */
-    public static ShapeQuery.Builder shape() {
-        return new ShapeQuery.Builder();
+    public static XyShapeQuery.Builder xyShape() {
+        return new XyShapeQuery.Builder();
     }
 
     /**

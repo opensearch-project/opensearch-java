@@ -142,7 +142,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
         ScriptScore("script_score"),
 
-        Shape("shape"),
+        XyShape("xy_shape"),
 
         SimpleQueryString("simple_query_string"),
 
@@ -915,20 +915,20 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     }
 
     /**
-     * Is this variant instance of kind {@code shape}?
+     * Is this variant instance of kind {@code xy_shape}?
      */
-    public boolean isShape() {
-        return _kind == Kind.Shape;
+    public boolean isXyShape() {
+        return _kind == Kind.XyShape;
     }
 
     /**
-     * Get the {@code shape} variant value.
+     * Get the {@code xy_shape} variant value.
      *
      * @throws IllegalStateException
-     *             if the current variant is not of the {@code shape} kind.
+     *             if the current variant is not of the {@code xy_shape} kind.
      */
-    public ShapeQuery shape() {
-        return TaggedUnionUtils.get(this, Kind.Shape);
+    public XyShapeQuery xyShape() {
+        return TaggedUnionUtils.get(this, Kind.XyShape);
     }
 
     /**
@@ -1639,16 +1639,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
             return this.scriptScore(fn.apply(new ScriptScoreQuery.Builder()).build());
         }
 
-        public ObjectBuilder<Query> shape(ShapeQuery v) {
-            this._kind = Kind.Shape;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<Query> shape(Function<ShapeQuery.Builder, ObjectBuilder<ShapeQuery>> fn) {
-            return this.shape(fn.apply(new ShapeQuery.Builder()).build());
-        }
-
         public ObjectBuilder<Query> simpleQueryString(SimpleQueryStringQuery v) {
             this._kind = Kind.SimpleQueryString;
             this._value = v;
@@ -1858,7 +1848,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
         op.add(Builder::regexp, RegexpQuery._DESERIALIZER, "regexp");
         op.add(Builder::script, ScriptQuery._DESERIALIZER, "script");
         op.add(Builder::scriptScore, ScriptScoreQuery._DESERIALIZER, "script_score");
-        op.add(Builder::shape, ShapeQuery._DESERIALIZER, "shape");
         op.add(Builder::simpleQueryString, SimpleQueryStringQuery._DESERIALIZER, "simple_query_string");
         op.add(Builder::spanContaining, SpanContainingQuery._DESERIALIZER, "span_containing");
         op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery._DESERIALIZER, "field_masking_span");

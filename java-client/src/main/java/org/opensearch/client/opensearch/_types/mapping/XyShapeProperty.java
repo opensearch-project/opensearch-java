@@ -32,6 +32,8 @@
 
 package org.opensearch.client.opensearch._types.mapping;
 
+// typedef: _types.mapping.XyShapeProperty
+
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -42,16 +44,14 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: _types.mapping.ShapeProperty
-
 /**
- * The <code>shape</code> data type facilitates the indexing of and searching
+ * The <code>xy_shape</code> data type facilitates the indexing of and searching
  * with arbitrary <code>x, y</code> cartesian shapes such as rectangles and
  * polygons.
  *
  */
 @JsonpDeserializable
-public class ShapeProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class XyShapeProperty extends DocValuesPropertyBase implements PropertyVariant {
     @Nullable
     private final Boolean coerce;
 
@@ -66,7 +66,7 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
 
     // ---------------------------------------------------------------------------------------------
 
-    private ShapeProperty(Builder builder) {
+    private XyShapeProperty(XyShapeProperty.Builder builder) {
         super(builder);
 
         this.coerce = builder.coerce;
@@ -76,8 +76,8 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
 
     }
 
-    public static ShapeProperty of(Function<Builder, ObjectBuilder<ShapeProperty>> fn) {
-        return fn.apply(new Builder()).build();
+    public static XyShapeProperty of(Function<XyShapeProperty.Builder, ObjectBuilder<XyShapeProperty>> fn) {
+        return fn.apply(new XyShapeProperty.Builder()).build();
     }
 
     /**
@@ -85,7 +85,7 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
      */
     @Override
     public Property.Kind _propertyKind() {
-        return Property.Kind.Shape;
+        return Property.Kind.XyShape;
     }
 
     /**
@@ -122,7 +122,7 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-        generator.write("type", "shape");
+        generator.write("type", "xy_shape");
         super.serializeInternal(generator, mapper);
         if (this.coerce != null) {
             generator.writeKey("coerce");
@@ -149,10 +149,12 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link ShapeProperty}.
+     * Builder for {@link XyShapeProperty}.
      */
 
-    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<ShapeProperty> {
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<XyShapeProperty.Builder>
+        implements
+            ObjectBuilder<XyShapeProperty> {
         @Nullable
         private Boolean coerce;
 
@@ -168,7 +170,7 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
         /**
          * API name: {@code coerce}
          */
-        public final Builder coerce(@Nullable Boolean value) {
+        public final XyShapeProperty.Builder coerce(@Nullable Boolean value) {
             this.coerce = value;
             return this;
         }
@@ -176,7 +178,7 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
         /**
          * API name: {@code ignore_malformed}
          */
-        public final Builder ignoreMalformed(@Nullable Boolean value) {
+        public final XyShapeProperty.Builder ignoreMalformed(@Nullable Boolean value) {
             this.ignoreMalformed = value;
             return this;
         }
@@ -184,7 +186,7 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
         /**
          * API name: {@code ignore_z_value}
          */
-        public final Builder ignoreZValue(@Nullable Boolean value) {
+        public final XyShapeProperty.Builder ignoreZValue(@Nullable Boolean value) {
             this.ignoreZValue = value;
             return this;
         }
@@ -192,45 +194,45 @@ public class ShapeProperty extends DocValuesPropertyBase implements PropertyVari
         /**
          * API name: {@code orientation}
          */
-        public final Builder orientation(@Nullable GeoOrientation value) {
+        public final XyShapeProperty.Builder orientation(@Nullable GeoOrientation value) {
             this.orientation = value;
             return this;
         }
 
         @Override
-        protected Builder self() {
+        protected XyShapeProperty.Builder self() {
             return this;
         }
 
         /**
-         * Builds a {@link ShapeProperty}.
+         * Builds a {@link XyShapeProperty}.
          *
          * @throws NullPointerException
          *             if some of the required fields are null.
          */
-        public ShapeProperty build() {
+        public XyShapeProperty build() {
             _checkSingleUse();
 
-            return new ShapeProperty(this);
+            return new XyShapeProperty(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ShapeProperty}
+     * Json deserializer for {@link XyShapeProperty}
      */
-    public static final JsonpDeserializer<ShapeProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        ShapeProperty::setupShapePropertyDeserializer
+    public static final JsonpDeserializer<XyShapeProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        XyShapeProperty.Builder::new,
+        XyShapeProperty::setupXyShapePropertyDeserializer
     );
 
-    protected static void setupShapePropertyDeserializer(ObjectDeserializer<ShapeProperty.Builder> op) {
+    protected static void setupXyShapePropertyDeserializer(ObjectDeserializer<XyShapeProperty.Builder> op) {
         DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
-        op.add(Builder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
-        op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
-        op.add(Builder::ignoreZValue, JsonpDeserializer.booleanDeserializer(), "ignore_z_value");
-        op.add(Builder::orientation, GeoOrientation._DESERIALIZER, "orientation");
+        op.add(XyShapeProperty.Builder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
+        op.add(XyShapeProperty.Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
+        op.add(XyShapeProperty.Builder::ignoreZValue, JsonpDeserializer.booleanDeserializer(), "ignore_z_value");
+        op.add(XyShapeProperty.Builder::orientation, GeoOrientation._DESERIALIZER, "orientation");
 
         op.ignore("type");
     }

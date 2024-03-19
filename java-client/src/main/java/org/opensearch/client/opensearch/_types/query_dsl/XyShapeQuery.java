@@ -43,30 +43,29 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: _types.query_dsl.ShapeQuery
-
+// typedef: _types.query_dsl.XyShapeQuery
 @JsonpDeserializable
-public class ShapeQuery extends QueryBase implements QueryVariant {
+public class XyShapeQuery extends QueryBase implements QueryVariant {
     private final String field;
 
-    private final ShapeFieldQuery shape;
+    private final XyShapeFieldQuery xyShape;
 
     @Nullable
     private final Boolean ignoreUnmapped;
 
     // ---------------------------------------------------------------------------------------------
 
-    private ShapeQuery(Builder builder) {
+    private XyShapeQuery(XyShapeQuery.Builder builder) {
         super(builder);
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-        this.shape = ApiTypeHelper.requireNonNull(builder.shape, this, "shape");
+        this.xyShape = ApiTypeHelper.requireNonNull(builder.xyShape, this, "xy_shape");
 
         this.ignoreUnmapped = builder.ignoreUnmapped;
 
     }
 
-    public static ShapeQuery of(Function<Builder, ObjectBuilder<ShapeQuery>> fn) {
-        return fn.apply(new Builder()).build();
+    public static XyShapeQuery of(Function<XyShapeQuery.Builder, ObjectBuilder<XyShapeQuery>> fn) {
+        return fn.apply(new XyShapeQuery.Builder()).build();
     }
 
     /**
@@ -74,7 +73,7 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
      */
     @Override
     public Query.Kind _queryKind() {
-        return Query.Kind.Shape;
+        return Query.Kind.XyShape;
     }
 
     /**
@@ -87,8 +86,8 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
     /**
      * Required -
      */
-    public final ShapeFieldQuery shape() {
-        return this.shape;
+    public final XyShapeFieldQuery xyShape() {
+        return this.xyShape;
     }
 
     /**
@@ -101,7 +100,7 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey(this.field);
-        this.shape.serialize(generator, mapper);
+        this.xyShape.serialize(generator, mapper);
 
         super.serializeInternal(generator, mapper);
         if (this.ignoreUnmapped != null) {
@@ -112,25 +111,25 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 
     }
 
-    public Builder toBuilder() {
-        return new Builder().field(field).shape(shape);
+    public XyShapeQuery.Builder toBuilder() {
+        return new XyShapeQuery.Builder().field(field).xyShape(xyShape);
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link ShapeQuery}.
+     * Builder for {@link XyShapeQuery}.
      */
 
-    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ShapeQuery> {
+    public static class Builder extends QueryBase.AbstractBuilder<XyShapeQuery.Builder> implements ObjectBuilder<XyShapeQuery> {
         private String field;
 
-        private ShapeFieldQuery shape;
+        private XyShapeFieldQuery xyShape;
 
         /**
          * Required -
          */
-        public final Builder field(String value) {
+        public final XyShapeQuery.Builder field(String value) {
             this.field = value;
             return this;
         }
@@ -138,16 +137,16 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
         /**
          * Required -
          */
-        public final Builder shape(ShapeFieldQuery value) {
-            this.shape = value;
+        public final XyShapeQuery.Builder xyShape(XyShapeFieldQuery value) {
+            this.xyShape = value;
             return this;
         }
 
         /**
          * Required -
          */
-        public final Builder shape(Function<ShapeFieldQuery.Builder, ObjectBuilder<ShapeFieldQuery>> fn) {
-            return this.shape(fn.apply(new ShapeFieldQuery.Builder()).build());
+        public final XyShapeQuery.Builder xyShape(Function<XyShapeFieldQuery.Builder, ObjectBuilder<XyShapeFieldQuery>> fn) {
+            return this.xyShape(fn.apply(new XyShapeFieldQuery.Builder()).build());
         }
 
         @Nullable
@@ -156,46 +155,46 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
         /**
          * API name: {@code ignore_unmapped}
          */
-        public final Builder ignoreUnmapped(@Nullable Boolean value) {
+        public final XyShapeQuery.Builder ignoreUnmapped(@Nullable Boolean value) {
             this.ignoreUnmapped = value;
             return this;
         }
 
         @Override
-        protected Builder self() {
+        protected XyShapeQuery.Builder self() {
             return this;
         }
 
         /**
-         * Builds a {@link ShapeQuery}.
+         * Builds a {@link XyShapeQuery}.
          *
          * @throws NullPointerException
          *             if some of the required fields are null.
          */
-        public ShapeQuery build() {
+        public XyShapeQuery build() {
             _checkSingleUse();
 
-            return new ShapeQuery(this);
+            return new XyShapeQuery(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ShapeQuery}
+     * Json deserializer for {@link XyShapeQuery}
      */
-    public static final JsonpDeserializer<ShapeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        ShapeQuery::setupShapeQueryDeserializer
+    public static final JsonpDeserializer<XyShapeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        XyShapeQuery.Builder::new,
+        XyShapeQuery::setupXyShapeQueryDeserializer
     );
 
-    protected static void setupShapeQueryDeserializer(ObjectDeserializer<ShapeQuery.Builder> op) {
+    protected static void setupXyShapeQueryDeserializer(ObjectDeserializer<XyShapeQuery.Builder> op) {
         QueryBase.setupQueryBaseDeserializer(op);
-        op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
+        op.add(XyShapeQuery.Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
             builder.field(name);
-            builder.shape(ShapeFieldQuery._DESERIALIZER.deserialize(parser, mapper));
+            builder.xyShape(XyShapeFieldQuery._DESERIALIZER.deserialize(parser, mapper));
         });
 
     }

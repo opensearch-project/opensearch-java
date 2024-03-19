@@ -109,7 +109,7 @@ public enum FieldType implements JsonEnum {
 
     FlatObject("flat_object"),
 
-    Shape("shape"),
+    XyShape("xy_shape"),
 
     Histogram("histogram"),
 
