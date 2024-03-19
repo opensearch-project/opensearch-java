@@ -35,21 +35,13 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
-import org.opensearch.client.json.JsonpDeserializable;
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
-import org.opensearch.client.json.ObjectBuilderDeserializer;
-import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.*;
 import org.opensearch.client.opensearch._types.GeoShapeRelation;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.query_dsl.ShapeFieldQuery
-
-@JsonpDeserializable
-public class ShapeFieldQuery implements JsonpSerializable {
+// typedef: _types.query_dsl.XyShapeFieldQuery
+public class XyShapeFieldQuery implements JsonpSerializable {
     @Nullable
     private final FieldLookup indexedShape;
 
@@ -57,20 +49,20 @@ public class ShapeFieldQuery implements JsonpSerializable {
     private final GeoShapeRelation relation;
 
     @Nullable
-    private final JsonData shape;
+    private final JsonData xyShape;
 
     // ---------------------------------------------------------------------------------------------
 
-    private ShapeFieldQuery(Builder builder) {
+    private XyShapeFieldQuery(XyShapeFieldQuery.Builder builder) {
 
         this.indexedShape = builder.indexedShape;
         this.relation = builder.relation;
-        this.shape = builder.shape;
+        this.xyShape = builder.xyShape;
 
     }
 
-    public static ShapeFieldQuery of(Function<Builder, ObjectBuilder<ShapeFieldQuery>> fn) {
-        return fn.apply(new Builder()).build();
+    public static XyShapeFieldQuery of(Function<XyShapeFieldQuery.Builder, ObjectBuilder<XyShapeFieldQuery>> fn) {
+        return fn.apply(new XyShapeFieldQuery.Builder()).build();
     }
 
     /**
@@ -93,8 +85,8 @@ public class ShapeFieldQuery implements JsonpSerializable {
      * API name: {@code shape}
      */
     @Nullable
-    public final JsonData shape() {
-        return this.shape;
+    public final JsonData xyShape() {
+        return this.xyShape;
     }
 
     /**
@@ -117,23 +109,23 @@ public class ShapeFieldQuery implements JsonpSerializable {
             generator.writeKey("relation");
             this.relation.serialize(generator, mapper);
         }
-        if (this.shape != null) {
-            generator.writeKey("shape");
-            this.shape.serialize(generator, mapper);
+        if (this.xyShape != null) {
+            generator.writeKey("xy_shape");
+            this.xyShape.serialize(generator, mapper);
         }
     }
 
-    public Builder toBuilder() {
-        return new Builder().indexedShape(indexedShape).relation(relation).shape(shape);
+    public XyShapeFieldQuery.Builder toBuilder() {
+        return new XyShapeFieldQuery.Builder().indexedShape(indexedShape).relation(relation).xyShape(xyShape);
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link ShapeFieldQuery}.
+     * Builder for {@link XyShapeFieldQuery}.
      */
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShapeFieldQuery> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<XyShapeFieldQuery> {
         @Nullable
         private FieldLookup indexedShape;
 
@@ -141,12 +133,12 @@ public class ShapeFieldQuery implements JsonpSerializable {
         private GeoShapeRelation relation;
 
         @Nullable
-        private JsonData shape;
+        private JsonData xyShape;
 
         /**
          * API name: {@code indexed_shape}
          */
-        public final Builder indexedShape(@Nullable FieldLookup value) {
+        public final XyShapeFieldQuery.Builder indexedShape(@Nullable FieldLookup value) {
             this.indexedShape = value;
             return this;
         }
@@ -154,14 +146,14 @@ public class ShapeFieldQuery implements JsonpSerializable {
         /**
          * API name: {@code indexed_shape}
          */
-        public final Builder indexedShape(Function<FieldLookup.Builder, ObjectBuilder<FieldLookup>> fn) {
+        public final XyShapeFieldQuery.Builder indexedShape(Function<FieldLookup.Builder, ObjectBuilder<FieldLookup>> fn) {
             return this.indexedShape(fn.apply(new FieldLookup.Builder()).build());
         }
 
         /**
          * API name: {@code relation}
          */
-        public final Builder relation(@Nullable GeoShapeRelation value) {
+        public final XyShapeFieldQuery.Builder relation(@Nullable GeoShapeRelation value) {
             this.relation = value;
             return this;
         }
@@ -169,39 +161,39 @@ public class ShapeFieldQuery implements JsonpSerializable {
         /**
          * API name: {@code shape}
          */
-        public final Builder shape(@Nullable JsonData value) {
-            this.shape = value;
+        public final XyShapeFieldQuery.Builder xyShape(@Nullable JsonData value) {
+            this.xyShape = value;
             return this;
         }
 
         /**
-         * Builds a {@link ShapeFieldQuery}.
+         * Builds a {@link XyShapeFieldQuery}.
          *
          * @throws NullPointerException
          *             if some of the required fields are null.
          */
-        public ShapeFieldQuery build() {
+        public XyShapeFieldQuery build() {
             _checkSingleUse();
 
-            return new ShapeFieldQuery(this);
+            return new XyShapeFieldQuery(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ShapeFieldQuery}
+     * Json deserializer for {@link XyShapeFieldQuery}
      */
-    public static final JsonpDeserializer<ShapeFieldQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        ShapeFieldQuery::setupShapeFieldQueryDeserializer
+    public static final JsonpDeserializer<XyShapeFieldQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        XyShapeFieldQuery.Builder::new,
+        XyShapeFieldQuery::setupXyShapeFieldQueryDeserializer
     );
 
-    protected static void setupShapeFieldQueryDeserializer(ObjectDeserializer<ShapeFieldQuery.Builder> op) {
+    protected static void setupXyShapeFieldQueryDeserializer(ObjectDeserializer<XyShapeFieldQuery.Builder> op) {
 
-        op.add(Builder::indexedShape, FieldLookup._DESERIALIZER, "indexed_shape");
-        op.add(Builder::relation, GeoShapeRelation._DESERIALIZER, "relation");
-        op.add(Builder::shape, JsonData._DESERIALIZER, "shape");
+        op.add(XyShapeFieldQuery.Builder::indexedShape, FieldLookup._DESERIALIZER, "indexed_shape");
+        op.add(XyShapeFieldQuery.Builder::relation, GeoShapeRelation._DESERIALIZER, "relation");
+        op.add(XyShapeFieldQuery.Builder::xyShape, JsonData._DESERIALIZER, "xy_shape");
 
     }
 
