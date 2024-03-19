@@ -3,6 +3,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
+- Add xy_shape property ([#884](https://github.com/opensearch-project/opensearch-java/pull/885))
 
 ### Dependencies
 - Bumps `io.github.classgraph:classgraph` from 4.8.161 to 4.8.165
@@ -15,6 +16,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Deprecated
 
 ### Removed
+- Delete shape property ([#884](https://github.com/opensearch-project/opensearch-java/pull/885))
 
 ### Fixed
 - Fix integer overflow for variables in indices stats response ([#877](https://github.com/opensearch-project/opensearch-java/pull/877))

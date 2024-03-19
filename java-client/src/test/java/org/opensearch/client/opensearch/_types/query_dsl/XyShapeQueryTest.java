@@ -30,28 +30,20 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch.ingest;
+package org.opensearch.client.opensearch._types.query_dsl;
 
-import org.opensearch.client.json.JsonEnum;
-import org.opensearch.client.json.JsonpDeserializable;
+import org.junit.Test;
+import org.opensearch.client.json.JsonData;
+import org.opensearch.client.opensearch.model.ModelTestCase;
 
-@JsonpDeserializable
-public enum ShapeType implements JsonEnum {
-    GeoShape("geo_shape"),
+public class XyShapeQueryTest extends ModelTestCase {
+    @Test
+    public void toBuilder() {
+        XyShapeQuery origin = new XyShapeQuery.Builder().field("field")
+            .xyShape(new XyShapeFieldQuery.Builder().xyShape(JsonData.of("{}")).build())
+            .build();
+        XyShapeQuery copied = origin.toBuilder().build();
 
-    XyShape("xy_shape"),
-
-    ;
-
-    private final String jsonValue;
-
-    ShapeType(String jsonValue) {
-        this.jsonValue = jsonValue;
+        assertEquals(toJson(copied), toJson(origin));
     }
-
-    public String jsonValue() {
-        return this.jsonValue;
-    }
-
-    public static final JsonEnum.Deserializer<ShapeType> _DESERIALIZER = new JsonEnum.Deserializer<>(ShapeType.values());
 }
