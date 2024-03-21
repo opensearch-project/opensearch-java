@@ -1,0 +1,12 @@
+{{#fields}}
+
+    {{>ObjectShape/FieldDoc/Basic}}
+    {{^required}}
+    {{^type.isListOrMap}}
+    @{{TYPES.Javax.Annotation.Nullable}}
+    {{/type.isListOrMap}}
+    {{/required}}
+    public final {{type}} {{name}}() {
+        return this.{{name}};
+    }
+{{/fields}}

@@ -1,0 +1,31 @@
+{{>ObjectShape/ClassDeclaration}} {
+    {{>ObjectShape/Fields}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Constructor}}
+
+    {{>ObjectShape/Getters}}
+
+    /**
+     * Serialize this value to JSON.
+     */
+    public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
+        {{#valueBodyField.type.serializer}}this.{{valueBodyField.name}}{{/valueBodyField.type.serializer}}
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Builder}}
+
+    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = create{{className}}Deserializer();
+
+    protected static {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> create{{className}}Deserializer() {
+        {{TYPES.Client.Json.JsonpDeserializer}}<{{valueBodyField.type}}> valueDeserializer = {{#valueBodyField.type}}{{>Type/deserializer}}{{/valueBodyField.type}};
+
+        return {{TYPES.Client.Json.JsonpDeserializer}}.of(
+            valueDeserializer.acceptedEvents(),
+            (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
+        );
+    }
+}

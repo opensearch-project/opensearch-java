@@ -1,0 +1,24 @@
+// typedef: {{typedefName}}
+
+{{#description}}
+/**
+ * {{.}}
+ */
+{{/description}}
+@{{TYPES.Client.Json.JsonpDeserializable}}
+public enum {{className}} implements {{TYPES.Client.Json.JsonEnum}} {
+    {{#variants}}
+    {{name}}({{#quoted}}{{wireName}}{{/quoted}}){{^-last}},{{/-last}}
+    {{/variants}}
+    ;
+
+    private final String jsonValue;
+
+    {{className}}(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
+
+    public String jsonValue() { return this.jsonValue; }
+
+    public static final JsonEnum.Deserializer<{{className}}> _DESERIALIZER = new JsonEnum.Deserializer<>({{className}}.values());
+}

@@ -1,0 +1,89 @@
+{{>ObjectShape/ClassDeclaration}} {
+    public enum Kind {
+        {{#variants}}{{name}}{{^-last}},{{/-last}}{{/variants}}
+    }
+
+    private final Kind _kind;
+    private final Object _value;
+
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
+
+    @Override
+    public final Object _value() {
+        return _value;
+    }
+
+    private {{className}}(Kind kind, Object value) {
+        this._kind = kind;
+        this._value = value;
+    }
+
+    private {{className}}(Builder builder) {
+        this._kind = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder._value, builder, "<variant value>");
+    }
+
+    public static {{className}} of({{type.builderFnType}} fn) {
+        return fn.apply(new Builder()).build();
+    }
+
+    {{#variants}}
+    /**
+     * Is this variant instance of kind {@code {{name}}}?
+     */
+    public boolean is{{name}}() {
+        return _kind == Kind.{{name}};
+    }
+
+    /**
+     * Get the {@code {{name}}} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code {{name}}} kind.
+     */
+    public {{type}} {{name}}() {
+        return {{TYPES.Client.Util.TaggedUnionUtils}}.get(this, Kind.{{name}});
+    }
+
+    {{/variants}}
+
+    @Override
+    public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
+        if (_value instanceof {{TYPES.Client.Json.JsonpSerializable}}) {
+            (({{TYPES.Client.Json.JsonpSerializable}}) _value).serialize(generator, mapper);
+        }
+    }
+
+    public static class Builder extends {{TYPES.Client.Util.ObjectBuilderBase}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
+        private Kind _kind;
+        private Object _value;
+
+        {{#variants}}
+        public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{name}}({{type}} v) {
+            this._kind = Kind.{{name}};
+            this._value = v;
+            return this;
+        }
+
+        public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{name}}({{type.builderFnType}} fn) {
+            return this.{{name}}(fn.apply(new {{type.builderType}}()).build());
+        }
+
+        {{/variants}}
+        @Override
+        public {{className}} build() {
+            _checkSingleUse();
+            return new {{className}}(this);
+        }
+    }
+
+    private static {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> build{{className}}Deserializer() {
+        return new {{TYPES.Client.Json.UnionDeserializer.builderType}}<{{className}}, Kind, Object>({{className}}::new, false)
+            {{#variants}}.addMember(Kind.{{name}}, {{type}}._DESERIALIZER){{/variants}}
+            .build();
+    }
+
+    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.JsonpDeserializer}}.lazy({{className}}::build{{className}}Deserializer);
+}

@@ -1,0 +1,18 @@
+    /**
+     * Json deserializer for {@link {{className}}}
+     */
+    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.ObjectBuilderDeserializer}}.lazy(Builder::new, {{className}}::setup{{className}}Deserializer);
+
+    protected static void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<{{type.builderType}}> op) {
+    {{#bodyFields}}
+        op.add(Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{wireName}}{{/quoted}});
+    {{/bodyFields}}
+    {{#additionalPropertiesField}}
+        op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+            if (builder.{{name}} == null) {
+                builder.{{name}} = new {{TYPES.Java.Util.HashMap}}<>();
+            }
+            builder.{{name}}.put(name, {{#type.mapValueType}}{{>Type/deserializer}}{{/type.mapValueType}}.deserialize(parser, mapper));
+        });
+    {{/additionalPropertiesField}}
+    }
