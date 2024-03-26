@@ -91,7 +91,6 @@ import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.IndexSettingsAnalysis;
 import org.opensearch.client.opensearch.indices.IndexState;
 import org.opensearch.client.opensearch.indices.Translog;
-import org.opensearch.client.opensearch.model.ModelTestCase;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 
 public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
@@ -342,7 +341,6 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
     public void testCatRequest() throws IOException {
         // Cat requests should have the "format=json" added by the transport
         NodesResponse nodes = javaClient().cat().nodes(_0 -> _0);
-        System.out.println(ModelTestCase.toJson(nodes, javaClient()._transport().jsonpMapper()));
 
         InfoResponse info = javaClient().info();
         String version = info.version().number();
