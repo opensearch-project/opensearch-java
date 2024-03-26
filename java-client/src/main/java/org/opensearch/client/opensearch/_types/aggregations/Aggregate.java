@@ -136,6 +136,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 
         Nested("nested"),
 
+        Parent("parent"),
+
         PercentilesBucket("percentiles_bucket"),
 
         Range("range"),
@@ -892,6 +894,23 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
      */
     public NestedAggregate nested() {
         return TaggedUnionUtils.get(this, Kind.Nested);
+    }
+
+    /**
+     * Is this variant instance of kind {@code parent}?
+     */
+    public boolean isParent() {
+        return _kind == Kind.Parent;
+    }
+
+    /**
+     * Get the {@code parent} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code parent} kind.
+     */
+    public ParentAggregate parent() {
+        return TaggedUnionUtils.get(this, Kind.Parent);
     }
 
     /**
@@ -1754,6 +1773,16 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
             return this;
         }
 
+        public ObjectBuilder<Aggregate> parent(ParentAggregate v) {
+            this._kind = Kind.Parent;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Aggregate> parent(Function<ParentAggregate.Builder, ObjectBuilder<ParentAggregate>> fn) {
+            return this.parent(fn.apply(new ParentAggregate.Builder()).build());
+        }
+
         public ObjectBuilder<Aggregate> percentilesBucket(
             Function<PercentilesBucketAggregate.Builder, ObjectBuilder<PercentilesBucketAggregate>> fn
         ) {
@@ -2075,6 +2104,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
         deserializers.put("missing", MissingAggregate._DESERIALIZER);
         deserializers.put("multi_terms", MultiTermsAggregate._DESERIALIZER);
         deserializers.put("nested", NestedAggregate._DESERIALIZER);
+        deserializers.put("parent", ParentAggregate._DESERIALIZER);
         deserializers.put("percentiles_bucket", PercentilesBucketAggregate._DESERIALIZER);
         deserializers.put("range", RangeAggregate._DESERIALIZER);
         deserializers.put("rate", RateAggregate._DESERIALIZER);
