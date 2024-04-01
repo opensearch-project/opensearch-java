@@ -162,8 +162,8 @@ val opensearchVersion = "2.12.0"
 
 dependencies {
 
-    val jacksonVersion = "2.16.1"
-    val jacksonDatabindVersion = "2.16.1"
+    val jacksonVersion = "2.17.0"
+    val jacksonDatabindVersion = "2.17.0"
 
     // Apache 2.0
     implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
