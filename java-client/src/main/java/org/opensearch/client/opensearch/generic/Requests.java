@@ -15,19 +15,11 @@ public final class Requests {
     private Requests() {}
 
     /**
-     * Creates a new builder for bodyless requests
-     * @return a new builder for bodyless requests
-     */
-    public static Builder builder() {
-        return new Builder();
-    }
-
-    /**
      * Creates a new builder for requests with JSON body
      * @return a new builder for requests with JSON body
      */
-    public static JsonBodyBuilder builder(JsonpMapper mapper) {
-        return new JsonBodyBuilder(mapper);
+    public static JsonBodyBuilder builder() {
+        return new JsonBodyBuilder();
     }
 
     /**
@@ -50,55 +42,16 @@ public final class Requests {
     }
 
     /**
-     * A new builder for bodyless requests
-     */
-    public static final class Builder {
-        private String method;
-        private String endpoint;
-        private Collection<Map.Entry<String, String>> headers = Collections.emptyList();
-        private Map<String, String> parameters = Collections.emptyMap();
-
-        private Builder() {}
-
-        public Builder endpoint(final String endpoint) {
-            this.endpoint = Objects.requireNonNull(endpoint, "endpoint cannot be null");
-            return this;
-        }
-
-        public Builder query(final Map<String, String> parameters) {
-            this.parameters = Objects.requireNonNull(parameters, "parameters cannot be null");
-            return this;
-        }
-
-        public Builder headers(final Collection<Map.Entry<String, String>> headers) {
-            this.headers = Objects.requireNonNull(headers, "headers cannot be null");
-            return this;
-        }
-
-        public Builder method(final String method) {
-            this.method = Objects.requireNonNull(method, "headers cannot be null");
-            return this;
-        }
-
-        public Request build() {
-            return new GenericRequest(method, endpoint, headers, parameters, null);
-        }
-    }
-
-    /**
      * A new builder for requests with JSON body
      */
     public static final class JsonBodyBuilder {
-        private final JsonpMapper mapper;
         private String method;
         private String endpoint;
         private Collection<Map.Entry<String, String>> headers = Collections.emptyList();
         private Map<String, String> parameters = Collections.emptyMap();
         private Body body;
 
-        private JsonBodyBuilder(final JsonpMapper mapper) {
-            this.mapper = Objects.requireNonNull(mapper, "mapper cannot be null");
-        }
+        private JsonBodyBuilder() {}
 
         public JsonBodyBuilder endpoint(final String endpoint) {
             this.endpoint = Objects.requireNonNull(endpoint, "endpoint cannot be null");
@@ -115,7 +68,7 @@ public final class Requests {
             return this;
         }
 
-        public <C> JsonBodyBuilder json(C value) throws IOException {
+        public <C> JsonBodyBuilder json(C value, JsonpMapper mapper) throws IOException {
             this.body = Bodies.json(value, mapper);
             return this;
         }

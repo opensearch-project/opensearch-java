@@ -31,7 +31,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
         try (
             Response response = javaClient().generic()
                 .execute(
-                    Requests.builder(javaClient()._transport().jsonpMapper())
+                    Requests.builder()
                         .endpoint("/" + index + "/_search")
                         .method("POST")
                         .json(
@@ -100,10 +100,10 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
         try (
             Response response = javaClient().generic()
                 .execute(
-                    Requests.builder(javaClient()._transport().jsonpMapper())
+                    Requests.builder()
                         .endpoint("/" + index + "/_doc/" + id)
                         .method("PUT")
-                        .json(document)
+                        .json(document, javaClient()._transport().jsonpMapper())
                         .build()
                 )
         ) {
@@ -116,7 +116,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
         try (
             Response response = javaClient().generic()
                 .execute(
-                    Requests.builder(javaClient()._transport().jsonpMapper())
+                    Requests.builder()
                         .endpoint("/" + index)
                         .method("PUT")
                         .json(
@@ -162,9 +162,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
     private void refreshIndex(String index) throws IOException {
         try (
             Response response = javaClient().generic()
-                .execute(
-                    Requests.builder(javaClient()._transport().jsonpMapper()).endpoint("/" + index + "/_refresh").method("POST").build()
-                )
+                .execute(Requests.builder().endpoint("/" + index + "/_refresh").method("POST").build())
         ) {
             assertThat(response.getStatus(), equalTo(200));
             assertThat(response.getBody().isPresent(), equalTo(true));
