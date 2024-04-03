@@ -15,11 +15,15 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.generic.Bodies;
 import org.opensearch.client.opensearch.generic.Requests;
 import org.opensearch.client.opensearch.generic.Response;
+import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
+import org.opensearch.client.opensearch.indices.SegmentSortOrder;
 
 public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCase {
 
@@ -113,6 +117,14 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
     }
 
     private void createIndex(String index) throws IOException {
+        if (randomBoolean()) {
+            createIndexUntyped(index);
+        } else {
+            createIndexTyped(index);
+        }
+    }
+
+    private void createIndexUntyped(String index) throws IOException {
         try (
             Response response = javaClient().generic()
                 .execute(
@@ -147,11 +159,36 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
             assertThat(response.getStatus(), equalTo(200));
             assertThat(response.getBody().isPresent(), equalTo(true));
 
-            final CreateIndexResponse r = Bodies.json(
-                response.getBody().get(),
-                CreateIndexResponse._DESERIALIZER,
-                javaClient()._transport().jsonpMapper()
-            );
+            final CreateIndexResponse r = response.getBody()
+                .map(b -> Bodies.json(b, CreateIndexResponse._DESERIALIZER, javaClient()._transport().jsonpMapper()))
+                .orElse(null);
+            assertThat(r.acknowledged(), equalTo(true));
+        }
+
+        createTestDocuments(index);
+        refreshIndex(index);
+    }
+
+    private void createIndexTyped(String index) throws IOException {
+        final JsonpMapper jsonpMapper = javaClient()._transport().jsonpMapper();
+
+        final CreateIndexRequest request = CreateIndexRequest.of(
+            b -> b.index(index)
+                .mappings(
+                    m -> m.properties("name", Property.of(p -> p.keyword(v -> v.docValues(true))))
+                        .properties("size", Property.of(p -> p.keyword(v -> v.docValues(true))))
+                )
+                .settings(settings -> settings.sort(s -> s.field("name").order(SegmentSortOrder.Asc)))
+        );
+
+        try (
+            Response response = javaClient().generic()
+                .execute(Requests.builder().endpoint("/" + index).method("PUT").json(request, jsonpMapper).build())
+        ) {
+            assertThat(response.getStatus(), equalTo(200));
+            assertThat(response.getBody().isPresent(), equalTo(true));
+
+            final CreateIndexResponse r = Bodies.json(response.getBody().get(), CreateIndexResponse._DESERIALIZER, jsonpMapper);
             assertThat(r.acknowledged(), equalTo(true));
         }
 

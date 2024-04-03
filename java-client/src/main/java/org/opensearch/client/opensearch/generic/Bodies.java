@@ -37,8 +37,8 @@ public final class Bodies {
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             try (JsonGenerator generator = jsonpMapper.jsonProvider().createGenerator(baos)) {
                 jsonpMapper.serialize(value, generator);
-                return Body.from(baos.toByteArray(), APPLICATION_JSON);
             }
+            return Body.from(baos.toByteArray(), APPLICATION_JSON);
         }
     }
 
