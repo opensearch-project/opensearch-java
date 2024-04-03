@@ -34,6 +34,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ## [Unreleased 2.x]
 
 ### Added
+- Add missed fields to MultisearchBody: seqNoPrimaryTerm, storedFields, explain, fields, indicesBoost ([#914](https://github.com/opensearch-project/opensearch-java/pull/914))
 
 ### Dependencies
 - Bumps `io.github.classgraph:classgraph` from 4.8.161 to 4.8.165
