@@ -6,17 +6,17 @@
 
 # Generic Client
 
-There are rare circumstances when the typed OpenSearch client APIs are too constraining and there is a need to communicate with OpenSearch cluster (or individual nodes) over generic HTTP request / response communication. The `OpenSearchGenericClient` could be used in such cases.
+There are rare circumstances when the typed OpenSearch client APIs are too constraining and there is a need to communicate with OpenSearch cluster (or individual nodes) over generic HTTP request / response communication. Use `OpenSearchGenericClient` in such cases.
 
 ## Getting the Client
-The following sample code gets the `OpenSearchGenericClient` rom the `OpenSearchClient` instance.
+The following sample code gets the `OpenSearchGenericClient` from the `OpenSearchClient` instance.
 
 ```java
 final OpenSearchGenericClient generic = javaClient().generic();
 ```
 
 ## Sending Simple Request
-The following sample code sends a simple request that does not require any payload to be provided.
+The following sample code sends a simple request that does not require any payload to be provided (typically, `GET` requests).
 
 ```java
 // compare with what the low level client outputs
@@ -25,7 +25,24 @@ try (Response response = javaClient().generic().execute(Requests.builder().endpo
 }
 ```
 
-Please notice that the `Response` instance should be closed explicitly in order to free up any allocated resource (like response input streams or buffers). The generic client never interprets status codes and provides the direct access to the response as it was received from the server. This is responsibility of the caller to decide what should happen in case of unsuccessful invocations.
+Please notice that the `Response` instance should be closed explicitly in order to free up any allocated resource (like response input streams or buffers), the [`try-with-resource`](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) pattern is encouraged.
+
+```java
+try (Response response = javaClient().generic().execute(...)) {
+   // ...
+}
+```
+
+The generic client never interprets status codes and provides the direct access to the response as it was received from the server. This is responsibility of the caller to decide what should happen in case of unsuccessful invocations.
+
+```java
+// compare with what the low level client outputs
+try (Response response = javaClient().generic().execute(...)) {
+   if (response.getStatus() != 200) {
+      // Request was not successful
+   }
+}
+```
 
 ## Sending JSON Requests
 The following sample code a simple request with JSON body.

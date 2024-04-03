@@ -153,7 +153,7 @@ final class GenericRequest implements GenericSerializable, Request {
     @Override
     public String serialize(OutputStream out) {
         if (getBody().isPresent() == false) {
-            throw new IllegalStateException("The request has no content body provided");
+            throw new IllegalStateException("The request has no content body provided.");
         }
 
         final Body b = getBody().get();
