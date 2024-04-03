@@ -2,7 +2,8 @@
   - [Getting the Client](#get-client)
   - [Sending Simple Requests](#request-bodyless)
   - [Sending JSON Requests](#request-json)
-  - [Sending JSON using POJOs](#request-pojo)
+  - [Sending JSON Requests using POJOs](#request-pojo)
+  - [Sending Requests using structured JSON](#request-structured)
 
 # Generic Client
 
@@ -66,7 +67,7 @@ The following sample code a simple request with JSON body.
 }
 ```
 
-## Sending JSON using POJOs
+## Sending JSON Requests using POJOs
 Besides providing the ability to deal with raw request and response payloads (bodies), the `OpenSearchGenericClient` could be used mixed with existing OpenSearch typed requests and responses (POJOs), like the following sample code demonstrates.
 
 
@@ -91,6 +92,36 @@ try (Response response = javaClient().generic()
   final CreateIndexResponse r = response.getBody()
       .map(b -> Bodies.json(b, CreateIndexResponse._DESERIALIZER, jsonpMapper))
       .orElse(null);
+  // ...
+}
+```
+
+## Sending Requests using structured JSON
+Dealing with strings or POJOs could be daunting sometimes, using structured JSON APIs is a middle ground of both approaches, as per following sample code that uses (`jakarta.json.Json`)[https://jakarta.ee/specifications/jsonp].
+
+```java
+try (Response response = javaClient().generic()
+      .execute(
+        Requests.builder()
+          .endpoint("/" + index)
+          .method("PUT")
+          .json(Json.createObjectBuilder()
+              .add("settings", Json.createObjectBuilder()
+                .add("index", Json.createObjectBuilder()
+                  .add("sort.field", "name"))
+                  .add("sort.order", "asc")
+              )
+              .add("mappings",Json.createObjectBuilder()
+                .add("properties", Json.createObjectBuilder()
+                  .add("name", Json.createObjectBuilder()
+                    .add("type", "keyword"))
+                    .add("doc_values", true)
+                  .add("size", Json.createObjectBuilder()
+                    .add("type", "keyword"))
+                    .add("doc_values", true))
+              )
+          )
+          .build())) {
   // ...
 }
 ```

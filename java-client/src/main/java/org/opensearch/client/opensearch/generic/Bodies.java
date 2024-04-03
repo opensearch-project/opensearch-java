@@ -8,6 +8,8 @@
 
 package org.opensearch.client.opensearch.generic;
 
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import java.io.ByteArrayOutputStream;
@@ -40,6 +42,14 @@ public final class Bodies {
             }
             return Body.from(baos.toByteArray(), APPLICATION_JSON);
         }
+    }
+
+    public static Body json(final JsonObjectBuilder builder) {
+        return json(builder.build());
+    }
+
+    public static Body json(final JsonObject json) {
+        return json(json.toString());
     }
 
     public static Body json(String str) {

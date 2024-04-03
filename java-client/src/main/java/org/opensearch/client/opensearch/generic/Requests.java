@@ -1,5 +1,7 @@
 package org.opensearch.client.opensearch.generic;
 
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
@@ -60,6 +62,16 @@ public final class Requests {
 
         public JsonBodyBuilder body(final Body body) {
             this.body = Objects.requireNonNull(body, "body cannot be null");
+            return this;
+        }
+
+        public JsonBodyBuilder json(final JsonObjectBuilder builder) {
+            this.body = Bodies.json(builder);
+            return this;
+        }
+
+        public JsonBodyBuilder json(final JsonObject json) {
+            this.body = Bodies.json(json);
             return this;
         }
 

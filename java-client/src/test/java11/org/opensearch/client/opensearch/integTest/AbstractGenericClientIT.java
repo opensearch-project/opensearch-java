@@ -10,6 +10,7 @@ package org.opensearch.client.opensearch.integTest;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
+import jakarta.json.Json;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -125,6 +126,8 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
     }
 
     private void createIndexUntyped(String index) throws IOException {
+        final JsonpMapper jsonpMapper = javaClient()._transport().jsonpMapper();
+
         try (
             Response response = javaClient().generic()
                 .execute(
@@ -132,26 +135,26 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
                         .endpoint("/" + index)
                         .method("PUT")
                         .json(
-                            "{"
-                                + "  \"settings\": {"
-                                + "      \"index\": {"
-                                + "          \"sort.field\": \"name\","
-                                + "          \"sort.order\": \"asc\""
-                                + "        }"
-                                + "  },"
-                                + "  \"mappings\": {"
-                                + "    \"properties\": {"
-                                + "      \"name\": {"
-                                + "          \"type\": \"keyword\","
-                                + "          \"doc_values\": true"
-                                + "       },"
-                                + "      \"size\": {"
-                                + "          \"type\": \"keyword\","
-                                + "          \"doc_values\": true"
-                                + "       }"
-                                + "    }"
-                                + "  }"
-                                + "}"
+                            Json.createObjectBuilder()
+                                .add(
+                                    "settings",
+                                    Json.createObjectBuilder()
+                                        .add("index", Json.createObjectBuilder().add("sort.field", "name"))
+                                        .add("sort.order", "asc")
+                                )
+                                .add(
+                                    "mappings",
+                                    Json.createObjectBuilder()
+                                        .add(
+                                            "properties",
+                                            Json.createObjectBuilder()
+                                                .add("name", Json.createObjectBuilder().add("type", "keyword"))
+                                                .add("doc_values", true)
+
+                                                .add("size", Json.createObjectBuilder().add("type", "keyword"))
+                                                .add("doc_values", true)
+                                        )
+                                )
                         )
                         .build()
                 )
@@ -160,7 +163,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
             assertThat(response.getBody().isPresent(), equalTo(true));
 
             final CreateIndexResponse r = response.getBody()
-                .map(b -> Bodies.json(b, CreateIndexResponse._DESERIALIZER, javaClient()._transport().jsonpMapper()))
+                .map(b -> Bodies.json(b, CreateIndexResponse._DESERIALIZER, jsonpMapper))
                 .orElse(null);
             assertThat(r.acknowledged(), equalTo(true));
         }
