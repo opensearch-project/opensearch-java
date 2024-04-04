@@ -10,6 +10,7 @@ package org.opensearch.client.opensearch.integTest;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.stream.Collectors;
 import org.junit.Test;
 import org.opensearch.Version;
@@ -18,6 +19,7 @@ import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.query_dsl.MatchQuery;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
+import org.opensearch.client.opensearch._types.query_dsl.QueryBuilders;
 import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
@@ -118,6 +120,22 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
         assertEquals(response.hits().hits().size(), 2);
         assertNull(response.hits().hits().get(0).id());
         assertNull(response.hits().hits().get(1).id());
+    }
+
+    @Test
+    public void shouldReturnSearchResultsWithExt() throws Exception {
+        final String index = "search_request";
+        createIndex(index);
+
+        final SearchRequest request = SearchRequest.of(
+            r -> r.index(index)
+                .sort(s -> s.field(f -> f.field("name").order(SortOrder.Asc)))
+                .query(b -> b.matchAll(QueryBuilders.matchAll().build()))
+                .ext(Map.of())
+        );
+
+        final SearchResponse<ShopItem> response = javaClient().search(request, ShopItem.class);
+        assertEquals(response.hits().hits().size(), 8);
     }
 
     private void createTestDocuments(String index) throws IOException {
