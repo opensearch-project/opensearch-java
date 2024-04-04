@@ -49,6 +49,7 @@ import org.opensearch.client.opensearch._types.aggregations.Aggregation;
 import org.opensearch.client.opensearch._types.query_dsl.FieldAndFormat;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch.core.SearchRequest.Builder;
+import org.opensearch.client.opensearch.core.search.FieldCollapse;
 import org.opensearch.client.opensearch.core.search.Highlight;
 import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.opensearch.core.search.Suggester;
@@ -111,6 +112,15 @@ public class MultisearchBody implements JsonpSerializable {
 
     private final List<Map<String, Double>> indicesBoost;
 
+    @Nullable
+    private final FieldCollapse collapse;
+
+    @Nullable
+    private final Boolean version;
+
+    @Nullable
+    private final String timeout;
+
     // ---------------------------------------------------------------------------------------------
 
     private MultisearchBody(Builder builder) {
@@ -134,6 +144,9 @@ public class MultisearchBody implements JsonpSerializable {
         this.explain = builder.explain;
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
         this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
+        this.collapse = builder.collapse;
+        this.version = builder.version;
+        this.timeout = builder.timeout;
     }
 
     public static MultisearchBody of(Function<Builder, ObjectBuilder<MultisearchBody>> fn) {
@@ -299,6 +312,36 @@ public class MultisearchBody implements JsonpSerializable {
     }
 
     /**
+     * API name: {@code collapse}
+     */
+    @Nullable
+    public final FieldCollapse collapse() {
+        return this.collapse;
+    }
+
+    /**
+     * If true, returns document version as part of a hit.
+     * <p>
+     * API name: {@code version}
+     */
+    @Nullable
+    public final Boolean version() {
+        return this.version;
+    }
+
+    /**
+     * Specifies the period of time to wait for a response from each shard. If no
+     * response is received before the timeout expires, the request fails and
+     * returns an error. Defaults to no timeout.
+     * <p>
+     * API name: {@code timeout}
+     */
+    @Nullable
+    public final String timeout() {
+        return this.timeout;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -453,6 +496,21 @@ public class MultisearchBody implements JsonpSerializable {
             }
             generator.writeEnd();
         }
+
+        if (this.collapse != null) {
+            generator.writeKey("collapse");
+            this.collapse.serialize(generator, mapper);
+        }
+
+        if (this.version != null) {
+            generator.writeKey("version");
+            generator.write(this.version);
+        }
+
+        if (this.timeout != null) {
+            generator.writeKey("timeout");
+            generator.write(this.timeout);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -517,6 +575,15 @@ public class MultisearchBody implements JsonpSerializable {
 
         @Nullable
         private List<Map<String, Double>> indicesBoost;
+
+        @Nullable
+        private FieldCollapse collapse;
+
+        @Nullable
+        private Boolean version;
+
+        @Nullable
+        private String timeout;
 
         /**
          * API name: {@code aggregations}
@@ -862,6 +929,43 @@ public class MultisearchBody implements JsonpSerializable {
         }
 
         /**
+         * API name: {@code collapse}
+         */
+        public final Builder collapse(@Nullable FieldCollapse value) {
+            this.collapse = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code collapse}
+         */
+        public final Builder collapse(Function<FieldCollapse.Builder, ObjectBuilder<FieldCollapse>> fn) {
+            return this.collapse(fn.apply(new FieldCollapse.Builder()).build());
+        }
+
+        /**
+         * If true, returns document version as part of a hit.
+         * <p>
+         * API name: {@code version}
+         */
+        public final Builder version(@Nullable Boolean value) {
+            this.version = value;
+            return this;
+        }
+
+        /**
+         * Specifies the period of time to wait for a response from each shard. If no
+         * response is received before the timeout expires, the request fails and
+         * returns an error. Defaults to no timeout.
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(@Nullable String value) {
+            this.timeout = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link MultisearchBody}.
          *
          * @throws NullPointerException
@@ -909,6 +1013,9 @@ public class MultisearchBody implements JsonpSerializable {
             JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
             "indices_boost"
         );
+        op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
+        op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
+        op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
     }
 
 }
