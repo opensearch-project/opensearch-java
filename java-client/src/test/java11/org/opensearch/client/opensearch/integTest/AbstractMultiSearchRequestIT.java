@@ -36,6 +36,7 @@ import org.opensearch.client.opensearch.core.MsearchResponse;
 import org.opensearch.client.opensearch.core.msearch.MultiSearchResponseItem;
 import org.opensearch.client.opensearch.core.msearch.MultisearchBody;
 import org.opensearch.client.opensearch.core.msearch.RequestItem;
+import org.opensearch.client.opensearch.core.search.FieldCollapse;
 import org.opensearch.client.opensearch.core.search.Highlight;
 import org.opensearch.client.opensearch.core.search.HighlightField;
 import org.opensearch.client.opensearch.core.search.Hit;
@@ -263,6 +264,19 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
         createTestDocuments(index);
 
         RequestItem sortedItemsQuery = createMSearchFuzzyRequest(b -> b.indicesBoost(Collections.singletonMap(index, 2d)));
+
+        MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(sortedItemsQuery));
+        assertEquals(1, response.responses().size());
+        assertEquals(3, response.responses().get(0).result().hits().hits().size());
+    }
+
+    public void shouldReturnMultiSearchesCollapse() throws Exception {
+        String index = "multiple_searches_request_indices_boost";
+        createTestDocuments(index);
+
+        RequestItem sortedItemsQuery = createMSearchFuzzyRequest(
+            b -> b.collapse(FieldCollapse.of(f -> f.field("name"))).version(true).timeout("5s")
+        );
 
         MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(sortedItemsQuery));
         assertEquals(1, response.responses().size());
