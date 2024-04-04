@@ -39,6 +39,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -58,6 +59,7 @@ import org.opensearch.client.opensearch._types.mapping.RuntimeField;
 import org.opensearch.client.opensearch._types.query_dsl.FieldAndFormat;
 import org.opensearch.client.opensearch._types.query_dsl.Operator;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
+import org.opensearch.client.opensearch.core.SearchTemplateRequest.Builder;
 import org.opensearch.client.opensearch.core.search.FieldCollapse;
 import org.opensearch.client.opensearch.core.search.Highlight;
 import org.opensearch.client.opensearch.core.search.Pit;
@@ -222,6 +224,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
     @Nullable
     private final Boolean version;
 
+    private final Map<String, JsonData> ext;
+
     // ---------------------------------------------------------------------------------------------
 
     private SearchRequest(Builder builder) {
@@ -278,6 +282,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
         this.trackScores = builder.trackScores;
         this.trackTotalHits = builder.trackTotalHits;
         this.version = builder.version;
+        this.ext = ApiTypeHelper.unmodifiable(builder.ext);
 
     }
 
@@ -821,6 +826,13 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
     }
 
     /**
+     * API name: {@code ext}
+     */
+    public final Map<String, JsonData> ext() {
+        return this.ext;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -1049,6 +1061,17 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
         }
 
+        if (ApiTypeHelper.isDefined(this.ext)) {
+            generator.writeKey("ext");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.ext.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+
+            }
+            generator.writeEnd();
+        }
+
     }
 
     public Builder toBuilder() {
@@ -1103,7 +1126,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
             .timeout(timeout)
             .trackScores(trackScores)
             .trackTotalHits(trackTotalHits)
-            .version(version);
+            .version(version)
+            .ext(ext);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -1268,6 +1292,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
         @Nullable
         private Boolean version;
+
+        @Nullable
+        private Map<String, JsonData> ext;
 
         /**
          * Indicates which source fields are returned for matching documents. These
@@ -2152,6 +2179,26 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
         }
 
         /**
+         * API name: {@code ext}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>ext</code>.
+         */
+        public final Builder ext(Map<String, JsonData> map) {
+            this.ext = _mapPutAll(this.ext, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code ext}
+         * <p>
+         * Adds an entry to <code>ext</code>.
+         */
+        public final Builder ext(String key, JsonData value) {
+            this.ext = _mapPut(this.ext, key, value);
+            return this;
+        }
+
+        /**
          * Builds a {@link SearchRequest}.
          *
          * @throws NullPointerException
@@ -2210,6 +2257,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
         op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
         op.add(Builder::trackTotalHits, TrackHits._DESERIALIZER, "track_total_hits");
         op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
+        op.add(Builder::ext, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "ext");
 
     }
 
