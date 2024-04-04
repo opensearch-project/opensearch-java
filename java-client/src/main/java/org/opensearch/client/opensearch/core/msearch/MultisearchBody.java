@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -51,6 +52,7 @@ import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch.core.SearchRequest.Builder;
 import org.opensearch.client.opensearch.core.search.FieldCollapse;
 import org.opensearch.client.opensearch.core.search.Highlight;
+import org.opensearch.client.opensearch.core.search.Rescore;
 import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.opensearch.core.search.Suggester;
 import org.opensearch.client.opensearch.core.search.TrackHits;
@@ -121,6 +123,10 @@ public class MultisearchBody implements JsonpSerializable {
     @Nullable
     private final String timeout;
 
+    private final List<Rescore> rescore;
+
+    private final Map<String, JsonData> ext;
+
     // ---------------------------------------------------------------------------------------------
 
     private MultisearchBody(Builder builder) {
@@ -147,6 +153,8 @@ public class MultisearchBody implements JsonpSerializable {
         this.collapse = builder.collapse;
         this.version = builder.version;
         this.timeout = builder.timeout;
+        this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
+        this.ext = ApiTypeHelper.unmodifiable(builder.ext);
     }
 
     public static MultisearchBody of(Function<Builder, ObjectBuilder<MultisearchBody>> fn) {
@@ -342,6 +350,20 @@ public class MultisearchBody implements JsonpSerializable {
     }
 
     /**
+     * API name: {@code rescore}
+     */
+    public final List<Rescore> rescore() {
+        return this.rescore;
+    }
+
+    /**
+     * API name: {@code ext}
+     */
+    public final Map<String, JsonData> ext() {
+        return this.ext;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -511,6 +533,27 @@ public class MultisearchBody implements JsonpSerializable {
             generator.writeKey("timeout");
             generator.write(this.timeout);
         }
+
+        if (ApiTypeHelper.isDefined(this.rescore)) {
+            generator.writeKey("rescore");
+            generator.writeStartArray();
+            for (Rescore item0 : this.rescore) {
+                item0.serialize(generator, mapper);
+
+            }
+            generator.writeEnd();
+        }
+
+        if (ApiTypeHelper.isDefined(this.ext)) {
+            generator.writeKey("ext");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.ext.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+
+            }
+            generator.writeEnd();
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -584,6 +627,12 @@ public class MultisearchBody implements JsonpSerializable {
 
         @Nullable
         private String timeout;
+
+        @Nullable
+        private List<Rescore> rescore;
+
+        @Nullable
+        private Map<String, JsonData> ext;
 
         /**
          * API name: {@code aggregations}
@@ -966,6 +1015,55 @@ public class MultisearchBody implements JsonpSerializable {
         }
 
         /**
+         * API name: {@code rescore}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>rescore</code>.
+         */
+        public final Builder rescore(List<Rescore> list) {
+            this.rescore = _listAddAll(this.rescore, list);
+            return this;
+        }
+
+        /**
+         * API name: {@code rescore}
+         * <p>
+         * Adds one or more values to <code>rescore</code>.
+         */
+        public final Builder rescore(Rescore value, Rescore... values) {
+            this.rescore = _listAdd(this.rescore, value, values);
+            return this;
+        }
+
+        /**
+         * API name: {@code rescore}
+         * <p>
+         * Adds a value to <code>rescore</code> using a builder lambda.
+         */
+        public final Builder rescore(Function<Rescore.Builder, ObjectBuilder<Rescore>> fn) {
+            return rescore(fn.apply(new Rescore.Builder()).build());
+        }
+
+        /**
+         * API name: {@code ext}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>ext</code>.
+         */
+        public final Builder ext(Map<String, JsonData> map) {
+            this.ext = _mapPutAll(this.ext, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code ext}
+         * <p>
+         * Adds an entry to <code>ext</code>.
+         */
+        public final Builder ext(String key, JsonData value) {
+            this.ext = _mapPut(this.ext, key, value);
+            return this;
+        }
+
+        /**
          * Builds a {@link MultisearchBody}.
          *
          * @throws NullPointerException
@@ -1016,6 +1114,8 @@ public class MultisearchBody implements JsonpSerializable {
         op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
         op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
         op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+        op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
+        op.add(Builder::ext, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "ext");
     }
 
 }
