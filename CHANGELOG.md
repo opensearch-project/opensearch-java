@@ -26,6 +26,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix integer overflow for variables in indices stats response ([#877](https://github.com/opensearch-project/opensearch-java/pull/877))
 - Support weight function in function score query ([#880](https://github.com/opensearch-project/opensearch-java/pull/880))
 - Fix pattern replace by making flag and replacement optional as on api  ([#895](https://github.com/opensearch-project/opensearch-java/pull/895))
+- Client with Java 8 runtime and Apache HttpClient 5 Transport fails with java.lang.NoSuchMethodError: java.nio.ByteBuffer.flip()Ljava/nio/ByteBuffer ([#920](https://github.com/opensearch-project/opensearch-java/pull/920)) 
 
 ### Security
 
