@@ -89,7 +89,6 @@ public abstract class AbstractSearchTemplateRequestIT extends OpenSearchJavaClie
 
     @Test
     public void testMultiSearchTemplate() throws Exception {
-        System.out.println("Multi search template test");
         var index = "test-msearch-template";
         createDocuments(index);
 

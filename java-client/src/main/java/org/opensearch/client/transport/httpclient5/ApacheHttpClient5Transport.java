@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -37,6 +38,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 import javax.annotation.Nullable;
 import org.apache.commons.logging.Log;
@@ -66,6 +68,7 @@ import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.HttpEntityWrapper;
 import org.apache.hc.core5.http.message.BasicHeader;
 import org.apache.hc.core5.http.message.RequestLine;
+import org.apache.hc.core5.http.message.StatusLine;
 import org.apache.hc.core5.http.nio.AsyncRequestProducer;
 import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
 import org.apache.hc.core5.net.URIBuilder;
@@ -76,6 +79,8 @@ import org.opensearch.client.json.NdJsonpSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.GenericEndpoint;
+import org.opensearch.client.transport.GenericSerializable;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
@@ -535,15 +540,18 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             // Request has a body and must implement JsonpSerializable or NdJsonpSerializable
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
+            ContentType contentType = JsonContentType;
             if (request instanceof NdJsonpSerializable) {
                 writeNdJson((NdJsonpSerializable) request, baos);
+            } else if (request instanceof GenericSerializable) {
+                contentType = ContentType.parse(((GenericSerializable) request).serialize(baos));
             } else {
                 JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
                 mapper.serialize(request, generator);
                 generator.close();
             }
 
-            addRequestBody(clientReq, new ByteArrayEntity(baos.toByteArray(), JsonContentType));
+            addRequestBody(clientReq, new ByteArrayEntity(baos.toByteArray(), contentType));
         }
 
         setHeaders(clientReq, options.headers());
@@ -630,6 +638,31 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                 ;
             }
             return response;
+        } else if (endpoint instanceof GenericEndpoint) {
+            @SuppressWarnings("unchecked")
+            final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
+
+            String contentType = null;
+            InputStream content = null;
+            if (entity != null) {
+                contentType = entity.getContentType();
+                content = entity.getContent();
+            }
+
+            final RequestLine requestLine = clientResp.getRequestLine();
+            final StatusLine statusLine = clientResp.getStatusLine();
+            return rawEndpoint.responseDeserializer(
+                requestLine.getUri(),
+                requestLine.getMethod(),
+                requestLine.getProtocolVersion().format(),
+                statusLine.getStatusCode(),
+                statusLine.getReasonPhrase(),
+                Arrays.stream(clientResp.getHeaders())
+                    .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getName(), h.getValue()))
+                    .collect(Collectors.toList()),
+                contentType,
+                content
+            );
         } else {
             throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'");
         }
