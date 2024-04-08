@@ -13,7 +13,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `io.github.classgraph:classgraph` from 4.8.161 to 4.8.165
 - Bumps `org.owasp.dependencycheck` from 9.0.8 to 9.1.0
 - Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.3.0 to 5.3.1
-- Bumps `io.github.classgraph:classgraph` from 4.8.165 to 4.8.168
+- Bumps `io.github.classgraph:classgraph` from 4.8.165 to 4.8.170
 - Bumps `jackson` from 2.15.2 to 2.17.0
 - Bumps `org.eclipse.parsson:parsson` from 1.1.5 to 1.1.6
 
