@@ -17,6 +17,7 @@ import java.util.Map;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.generic.Bodies;
+import org.opensearch.client.opensearch.generic.OpenSearchGenericClient.ClientOptions;
 import org.opensearch.client.opensearch.generic.Requests;
 import org.opensearch.client.opensearch.generic.Response;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
@@ -32,7 +33,9 @@ public abstract class AbstractPingAndInfoIT extends OpenSearchJavaClientTestCase
         InfoResponse info = openSearchClient.info();
 
         // compare with what the low level client outputs
-        try (Response response = javaClient().generic().execute(Requests.builder().endpoint("/").method("GET").build())) {
+        try (
+            Response response = javaClient().generic(ClientOptions.DEFAULT).execute(Requests.builder().endpoint("/").method("GET").build())
+        ) {
             assertThat(response.getStatus(), equalTo(200));
             assertThat(response.getProtocol(), equalTo("HTTP/1.1"));
             assertThat(response.getBody().isEmpty(), is(false));

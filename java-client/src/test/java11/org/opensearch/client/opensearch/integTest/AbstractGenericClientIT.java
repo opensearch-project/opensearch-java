@@ -20,6 +20,8 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.generic.Bodies;
+import org.opensearch.client.opensearch.generic.OpenSearchClientException;
+import org.opensearch.client.opensearch.generic.OpenSearchGenericClient.ClientOptions;
 import org.opensearch.client.opensearch.generic.Requests;
 import org.opensearch.client.opensearch.generic.Response;
 import org.opensearch.client.opensearch.indices.CreateIndexRequest;
@@ -34,7 +36,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
         createIndex(index);
 
         try (
-            Response response = javaClient().generic()
+            Response response = javaClient().generic(ClientOptions.DEFAULT)
                 .execute(
                     Requests.builder()
                         .endpoint("/" + index + "/_search")
@@ -90,6 +92,36 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
         }
     }
 
+    @Test
+    public void shouldReturn404() throws IOException {
+        final String index = "non_existing_doc";
+        createIndex(index);
+
+        try (
+            Response response = javaClient().generic(ClientOptions.DEFAULT)
+                .execute(Requests.builder().endpoint("/" + index + "/_doc/10").method("GET").build())
+        ) {
+            assertThat(response.getStatus(), equalTo(404));
+            assertThat(response.getBody().isPresent(), equalTo(true));
+        }
+    }
+
+    @Test
+    public void shouldThrow() throws IOException {
+        final String index = "non_existing_doc";
+        createIndex(index);
+
+        final OpenSearchClientException ex = assertThrows(OpenSearchClientException.class, () -> {
+            try (
+                Response response = javaClient().generic(ClientOptions.throwOnHttpErrors())
+                    .execute(Requests.builder().endpoint("/" + index + "/_doc/10").method("GET").build())
+            ) {}
+        });
+
+        assertThat(ex.status(), equalTo(404));
+        assertThat(ex.response().getBody().isPresent(), equalTo(true));
+    }
+
     private void createTestDocuments(String index) throws IOException {
         createTestDocument(index, "1", createItem("hummer", "huge", "yes", 2));
         createTestDocument(index, "2", createItem("jammer", "huge", "yes", 1));
@@ -103,7 +135,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
 
     private void createTestDocument(String index, String id, ShopItem document) throws IOException {
         try (
-            Response response = javaClient().generic()
+            Response response = javaClient().generic(ClientOptions.DEFAULT)
                 .execute(
                     Requests.builder()
                         .endpoint("/" + index + "/_doc/" + id)
@@ -129,7 +161,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
         final JsonpMapper jsonpMapper = javaClient()._transport().jsonpMapper();
 
         try (
-            Response response = javaClient().generic()
+            Response response = javaClient().generic(ClientOptions.DEFAULT)
                 .execute(
                     Requests.builder()
                         .endpoint("/" + index)
@@ -148,11 +180,9 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
                                         .add(
                                             "properties",
                                             Json.createObjectBuilder()
-                                                .add("name", Json.createObjectBuilder().add("type", "keyword"))
-                                                .add("doc_values", true)
+                                                .add("name", Json.createObjectBuilder().add("type", "keyword").add("doc_values", true))
 
-                                                .add("size", Json.createObjectBuilder().add("type", "keyword"))
-                                                .add("doc_values", true)
+                                                .add("size", Json.createObjectBuilder().add("type", "keyword").add("doc_values", true))
                                         )
                                 )
                         )
@@ -185,7 +215,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
         );
 
         try (
-            Response response = javaClient().generic()
+            Response response = javaClient().generic(ClientOptions.DEFAULT)
                 .execute(Requests.builder().endpoint("/" + index).method("PUT").json(request, jsonpMapper).build())
         ) {
             assertThat(response.getStatus(), equalTo(200));
@@ -201,7 +231,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
 
     private void refreshIndex(String index) throws IOException {
         try (
-            Response response = javaClient().generic()
+            Response response = javaClient().generic(ClientOptions.DEFAULT)
                 .execute(Requests.builder().endpoint("/" + index + "/_refresh").method("POST").build())
         ) {
             assertThat(response.getStatus(), equalTo(200));

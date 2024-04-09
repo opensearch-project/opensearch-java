@@ -67,6 +67,14 @@ public interface Body extends AutoCloseable {
      * @return body as {@link String}
      */
     default String bodyAsString() {
+        return new String(bodyAsBytes(), StandardCharsets.UTF_8);
+    }
+
+    /**
+     * Gets the body as {@link byte[]}
+     * @return body as {@link byte[]}
+     */
+    default byte[] bodyAsBytes() {
         try (final ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             try (final InputStream in = body()) {
                 final byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
@@ -77,7 +85,7 @@ public interface Body extends AutoCloseable {
             }
 
             out.flush();
-            return new String(out.toByteArray(), StandardCharsets.UTF_8);
+            return out.toByteArray();
         } catch (final IOException ex) {
             throw new UncheckedIOException(ex);
         }

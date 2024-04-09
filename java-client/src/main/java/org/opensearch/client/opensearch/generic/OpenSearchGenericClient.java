@@ -10,10 +10,12 @@ package org.opensearch.client.opensearch.generic;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UncheckedIOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
@@ -25,13 +27,36 @@ import org.opensearch.client.transport.TransportOptions;
  */
 public class OpenSearchGenericClient extends ApiClient<OpenSearchTransport, OpenSearchGenericClient> {
     /**
+     * Generic client options
+     */
+    public static final class ClientOptions {
+        public static final ClientOptions DEFAULT = new ClientOptions();
+
+        private final Predicate<Integer> error;
+
+        private ClientOptions() {
+            this(statusCode -> false);
+        }
+
+        private ClientOptions(final Predicate<Integer> error) {
+            this.error = error;
+        }
+
+        public static ClientOptions throwOnHttpErrors() {
+            return new ClientOptions(statusCode -> statusCode >= 400);
+        }
+    }
+
+    /**
      * Generic endpoint instance
      */
     private static final class GenericEndpoint implements org.opensearch.client.transport.GenericEndpoint<Request, Response> {
         private final Request request;
+        private final Predicate<Integer> error;
 
-        public GenericEndpoint(Request request) {
+        public GenericEndpoint(Request request, Predicate<Integer> error) {
             this.request = request;
+            this.error = error;
         }
 
         @Override
@@ -67,24 +92,62 @@ public class OpenSearchGenericClient extends ApiClient<OpenSearchTransport, Open
             int status,
             String reason,
             List<Entry<String, String>> headers,
-            String contentType,
-            InputStream body
+            @Nullable String contentType,
+            @Nullable InputStream body
         ) {
-            return new GenericResponse(uri, protocol, method, status, reason, headers, Body.from(body, contentType));
+            if (isError(status)) {
+                // Fully consume the response body since the it will be propagated as an exception with possible no chance to be closed
+                try (Body b = Body.from(body, contentType)) {
+                    if (b != null) {
+                        return new GenericResponse(
+                            uri,
+                            protocol,
+                            method,
+                            status,
+                            reason,
+                            headers,
+                            Body.from(b.bodyAsBytes(), b.contentType())
+                        );
+                    } else {
+                        return new GenericResponse(uri, protocol, method, status, reason, headers);
+                    }
+                } catch (final IOException ex) {
+                    throw new UncheckedIOException(ex);
+                }
+            } else {
+                return new GenericResponse(uri, protocol, method, status, reason, headers, Body.from(body, contentType));
+            }
+        }
+
+        @Override
+        public boolean isError(int statusCode) {
+            return error.test(statusCode);
+        }
+
+        @Override
+        public <T extends RuntimeException> T exceptionConverter(Response error) {
+            throw new OpenSearchClientException(error);
         }
     }
 
+    private final ClientOptions clientOptions;
+
     public OpenSearchGenericClient(OpenSearchTransport transport) {
-        super(transport, null);
+        this(transport, null, ClientOptions.DEFAULT);
     }
 
-    public OpenSearchGenericClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+    public OpenSearchGenericClient(
+        OpenSearchTransport transport,
+        @Nullable TransportOptions transportOptions,
+        ClientOptions clientOptions
+    ) {
         super(transport, transportOptions);
+        this.clientOptions = clientOptions;
     }
 
     @Override
     public OpenSearchGenericClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-        return new OpenSearchGenericClient(this.transport, transportOptions);
+        return new OpenSearchGenericClient(this.transport, transportOptions, this.clientOptions);
     }
 
     /**
@@ -94,7 +157,7 @@ public class OpenSearchGenericClient extends ApiClient<OpenSearchTransport, Open
      * @throws IOException I/O exception
      */
     public Response execute(Request request) throws IOException {
-        return transport.performRequest(request, new GenericEndpoint(request), this.transportOptions);
+        return transport.performRequest(request, new GenericEndpoint(request, clientOptions.error), this.transportOptions);
     }
 
     /**
@@ -103,6 +166,6 @@ public class OpenSearchGenericClient extends ApiClient<OpenSearchTransport, Open
      * @return generic HTTP response future
      */
     public CompletableFuture<Response> executeAsync(Request request) {
-        return transport.performRequestAsync(request, new GenericEndpoint(request), this.transportOptions);
+        return transport.performRequestAsync(request, new GenericEndpoint(request, clientOptions.error), this.transportOptions);
     }
 }
