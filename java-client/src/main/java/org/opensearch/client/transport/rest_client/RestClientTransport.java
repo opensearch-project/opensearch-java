@@ -61,8 +61,6 @@ import org.opensearch.client.RestClient;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.NdJsonpSerializable;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.GenericEndpoint;
 import org.opensearch.client.transport.GenericSerializable;
@@ -264,34 +262,64 @@ public class RestClientTransport implements OpenSearchTransport {
             } else if (statusCode == HttpStatus.SC_UNAUTHORIZED) {
                 throw new TransportException("Unauthorized access", new ResponseException(clientResp));
             } else if (endpoint.isError(statusCode)) {
-                JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
-                if (errorDeserializer == null) {
-                    throw new TransportException("Request failed with status code '" + statusCode + "'", new ResponseException(clientResp));
-                }
-
                 HttpEntity entity = clientResp.getEntity();
                 if (entity == null) {
                     throw new TransportException("Expecting a response body, but none was sent", new ResponseException(clientResp));
                 }
 
-                // We may have to replay it.
-                entity = new BufferedHttpEntity(entity);
+                if (endpoint instanceof GenericEndpoint) {
+                    @SuppressWarnings("unchecked")
+                    final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
 
-                try {
-                    InputStream content = entity.getContent();
-                    try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
-                        ErrorT error = errorDeserializer.deserialize(parser, mapper);
-                        // TODO: have the endpoint provide the exception constructor
-                        throw new OpenSearchException((ErrorResponse) error);
+                    final RequestLine requestLine = clientResp.getRequestLine();
+                    final StatusLine statusLine = clientResp.getStatusLine();
+
+                    // We may have to replay it.
+                    entity = new BufferedHttpEntity(entity);
+
+                    try (InputStream content = entity.getContent()) {
+                        final ResponseT error = rawEndpoint.responseDeserializer(
+                            requestLine.getUri(),
+                            requestLine.getMethod(),
+                            requestLine.getProtocolVersion().format(),
+                            statusLine.getStatusCode(),
+                            statusLine.getReasonPhrase(),
+                            Arrays.stream(clientResp.getHeaders())
+                                .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getName(), h.getValue()))
+                                .collect(Collectors.toList()),
+                            entity.getContentType(),
+                            content
+                        );
+
+                        throw rawEndpoint.exceptionConverter(statusCode, error);
                     }
-                } catch (MissingRequiredPropertyException errorEx) {
-                    // Could not decode exception, try the response type
+                } else {
+                    JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
+                    if (errorDeserializer == null) {
+                        throw new TransportException(
+                            "Request failed with status code '" + statusCode + "'",
+                            new ResponseException(clientResp)
+                        );
+                    }
+
+                    // We may have to replay it.
+                    entity = new BufferedHttpEntity(entity);
+
                     try {
-                        ResponseT response = decodeResponse(statusCode, entity, clientResp, endpoint);
-                        return response;
-                    } catch (Exception respEx) {
-                        // No better luck: throw the original error decoding exception
-                        throw new TransportException("Failed to decode error response", new ResponseException(clientResp));
+                        InputStream content = entity.getContent();
+                        try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
+                            ErrorT error = errorDeserializer.deserialize(parser, mapper);
+                            throw endpoint.exceptionConverter(statusCode, error);
+                        }
+                    } catch (MissingRequiredPropertyException errorEx) {
+                        // Could not decode exception, try the response type
+                        try {
+                            ResponseT response = decodeResponse(statusCode, entity, clientResp, endpoint);
+                            return response;
+                        } catch (Exception respEx) {
+                            // No better luck: throw the original error decoding exception
+                            throw new TransportException("Failed to decode error response", new ResponseException(clientResp));
+                        }
                     }
                 }
             } else {

@@ -16,6 +16,12 @@ The following sample code gets the `OpenSearchGenericClient` from the `OpenSearc
 final OpenSearchGenericClient generic = javaClient().generic();
 ```
 
+The generic client with default options (`ClientOptions.DEFAULT`) returns the responses as those were received from the server. The generic client could be instructed to raise an `OpenSearchClientException` exception instead if the HTTP status code is not indicating the successful response, for example:
+
+```java
+final OpenSearchGenericClient generic = javaClient().generic().witClientOptions(ClientOptions.throwOnHttpErrors());
+```
+
 ## Sending Simple Request
 The following sample code sends a simple request that does not require any payload to be provided (typically, `GET` requests).
 
