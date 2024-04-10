@@ -9,10 +9,8 @@
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
-
 import java.util.function.Function;
 import javax.annotation.Nullable;
-
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -31,7 +29,6 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     private final String modelId;
     @Nullable
     private final Query filter;
-
 
     private NeuralQuery(NeuralQuery.Builder builder) {
         super(builder);
@@ -222,8 +219,8 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     }
 
     public static final JsonpDeserializer<NeuralQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-            NeuralQuery.Builder::new,
-            NeuralQuery::setupNeuralQueryDeserializer
+        NeuralQuery.Builder::new,
+        NeuralQuery::setupNeuralQueryDeserializer
     );
 
     protected static void setupNeuralQueryDeserializer(ObjectDeserializer<NeuralQuery.Builder> op) {
