@@ -9,8 +9,10 @@
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+
 import java.util.function.Function;
 import javax.annotation.Nullable;
+
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -27,6 +29,9 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     private final int k;
     @Nullable
     private final String modelId;
+    @Nullable
+    private final Query filter;
+
 
     private NeuralQuery(NeuralQuery.Builder builder) {
         super(builder);
@@ -35,6 +40,7 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         this.queryText = ApiTypeHelper.requireNonNull(builder.queryText, this, "queryText");
         this.k = ApiTypeHelper.requireNonNull(builder.k, this, "k");
         this.modelId = builder.modelId;
+        this.filter = builder.filter;
     }
 
     public static NeuralQuery of(Function<NeuralQuery.Builder, ObjectBuilder<NeuralQuery>> fn) {
@@ -93,6 +99,16 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         return this.modelId;
     }
 
+    /**
+     * Optional - A query to filter the results of the query.
+     *
+     * @return The filter query.
+     */
+    @Nullable
+    public final Query filter() {
+        return this.filter;
+    }
+
     @Override
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject(this.field);
@@ -107,11 +123,16 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
 
         generator.write("k", this.k);
 
+        if (this.filter != null) {
+            generator.writeKey("filter");
+            this.filter.serialize(generator, mapper);
+        }
+
         generator.writeEnd();
     }
 
     public Builder toBuilder() {
-        return new Builder().field(field).queryText(queryText).k(k).modelId(modelId);
+        return new Builder().field(field).queryText(queryText).k(k).modelId(modelId).filter(filter);
     }
 
     /**
@@ -123,6 +144,8 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         private Integer k;
         @Nullable
         private String modelId;
+        @Nullable
+        private Query filter;
 
         /**
          * Required - The target field.
@@ -169,6 +192,17 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
             return this;
         }
 
+        /**
+         * Optional - A query to filter the results of the knn query.
+         *
+         * @param filter The filter query.
+         * @return This builder.
+         */
+        public NeuralQuery.Builder filter(@Nullable Query filter) {
+            this.filter = filter;
+            return this;
+        }
+
         @Override
         protected NeuralQuery.Builder self() {
             return this;
@@ -188,8 +222,8 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     }
 
     public static final JsonpDeserializer<NeuralQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        NeuralQuery.Builder::new,
-        NeuralQuery::setupNeuralQueryDeserializer
+            NeuralQuery.Builder::new,
+            NeuralQuery::setupNeuralQueryDeserializer
     );
 
     protected static void setupNeuralQueryDeserializer(ObjectDeserializer<NeuralQuery.Builder> op) {
@@ -198,6 +232,7 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         op.add(NeuralQuery.Builder::queryText, JsonpDeserializer.stringDeserializer(), "query_text");
         op.add(NeuralQuery.Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
         op.add(NeuralQuery.Builder::k, JsonpDeserializer.integerDeserializer(), "k");
+        op.add(NeuralQuery.Builder::filter, Query._DESERIALIZER, "filter");
 
         op.setKey(NeuralQuery.Builder::field, JsonpDeserializer.stringDeserializer());
     }
