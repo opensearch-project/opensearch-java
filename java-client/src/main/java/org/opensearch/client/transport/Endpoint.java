@@ -37,6 +37,8 @@ import java.util.Map;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.NdJsonpSerializable;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.OpenSearchException;
 
 /**
  * An endpoint links requests and responses to HTTP protocol encoding. It also defines the error response
@@ -90,4 +92,13 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
     @Nullable
     JsonpDeserializer<ErrorT> errorDeserializer(int statusCode);
 
+    /**
+     * Converts error response to exception instance of type {@code T}
+     * @param <T> exception type
+     * @param error error response
+     * @return exception instance
+     */
+    default <T extends RuntimeException> T exceptionConverter(int statusCode, @Nullable ErrorT error) {
+        throw new OpenSearchException((ErrorResponse) error);
+    }
 }

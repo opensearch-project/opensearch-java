@@ -27,6 +27,10 @@ final class GenericResponse implements Response {
     private final Collection<Map.Entry<String, String>> headers;
     private final Body body;
 
+    GenericResponse(String uri, String protocol, String method, int status, String reason, Collection<Map.Entry<String, String>> headers) {
+        this(uri, protocol, method, status, reason, headers, null);
+    }
+
     GenericResponse(
         String uri,
         String protocol,
