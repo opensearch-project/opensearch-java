@@ -156,8 +156,8 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
     }
 
     // ----- Child clients
-    public OpenSearchGenericClient generic(OpenSearchGenericClient.ClientOptions clientOptions) {
-        return new OpenSearchGenericClient(this.transport, this.transportOptions, clientOptions);
+    public OpenSearchGenericClient generic() {
+        return new OpenSearchGenericClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchCatClient cat() {

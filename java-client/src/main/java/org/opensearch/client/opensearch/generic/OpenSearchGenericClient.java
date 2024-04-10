@@ -30,7 +30,7 @@ public class OpenSearchGenericClient extends ApiClient<OpenSearchTransport, Open
      * Generic client options
      */
     public static final class ClientOptions {
-        public static final ClientOptions DEFAULT = new ClientOptions();
+        private static final ClientOptions DEFAULT = new ClientOptions();
 
         private final Predicate<Integer> error;
 
@@ -125,7 +125,7 @@ public class OpenSearchGenericClient extends ApiClient<OpenSearchTransport, Open
         }
 
         @Override
-        public <T extends RuntimeException> T exceptionConverter(Response error) {
+        public <T extends RuntimeException> T exceptionConverter(int statusCode, @Nullable Response error) {
             throw new OpenSearchClientException(error);
         }
     }
@@ -136,6 +136,10 @@ public class OpenSearchGenericClient extends ApiClient<OpenSearchTransport, Open
         this(transport, null, ClientOptions.DEFAULT);
     }
 
+    public OpenSearchGenericClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+        this(transport, transportOptions, ClientOptions.DEFAULT);
+    }
+
     public OpenSearchGenericClient(
         OpenSearchTransport transport,
         @Nullable TransportOptions transportOptions,
@@ -143,6 +147,10 @@ public class OpenSearchGenericClient extends ApiClient<OpenSearchTransport, Open
     ) {
         super(transport, transportOptions);
         this.clientOptions = clientOptions;
+    }
+
+    public OpenSearchGenericClient withClientOptions(ClientOptions clientOptions) {
+        return new OpenSearchGenericClient(this.transport, this.transportOptions, clientOptions);
     }
 
     @Override

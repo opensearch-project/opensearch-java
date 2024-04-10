@@ -291,7 +291,7 @@ public class RestClientTransport implements OpenSearchTransport {
                             content
                         );
 
-                        throw rawEndpoint.exceptionConverter(error);
+                        throw rawEndpoint.exceptionConverter(statusCode, error);
                     }
                 } else {
                     JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
@@ -309,7 +309,7 @@ public class RestClientTransport implements OpenSearchTransport {
                         InputStream content = entity.getContent();
                         try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
                             ErrorT error = errorDeserializer.deserialize(parser, mapper);
-                            throw endpoint.exceptionConverter(error);
+                            throw endpoint.exceptionConverter(statusCode, error);
                         }
                     } catch (MissingRequiredPropertyException errorEx) {
                         // Could not decode exception, try the response type

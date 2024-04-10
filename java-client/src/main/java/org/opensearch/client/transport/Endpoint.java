@@ -98,7 +98,7 @@ public interface Endpoint<RequestT, ResponseT, ErrorT> {
      * @param error error response
      * @return exception instance
      */
-    default <T extends RuntimeException> T exceptionConverter(ErrorT error) {
+    default <T extends RuntimeException> T exceptionConverter(int statusCode, @Nullable ErrorT error) {
         throw new OpenSearchException((ErrorResponse) error);
     }
 }

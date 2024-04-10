@@ -13,13 +13,13 @@ There are rare circumstances when the typed OpenSearch client APIs are too const
 The following sample code gets the `OpenSearchGenericClient` from the `OpenSearchClient` instance.
 
 ```java
-final OpenSearchGenericClient generic = javaClient().generic(ClientOptions.DEFAULT);
+final OpenSearchGenericClient generic = javaClient().generic();
 ```
 
 The generic client with default options (`ClientOptions.DEFAULT`) returns the responses as those were received from the server. The generic client could be instructed to raise an `OpenSearchClientException` exception instead if the HTTP status code is not indicating the successful response, for example:
 
 ```java
-final OpenSearchGenericClient generic = javaClient().generic(ClientOptions.throwOnHttpErrors());
+final OpenSearchGenericClient generic = javaClient().generic().witClientOptions(ClientOptions.throwOnHttpErrors());
 ```
 
 ## Sending Simple Request
@@ -27,7 +27,7 @@ The following sample code sends a simple request that does not require any paylo
 
 ```java
 // compare with what the low level client outputs
-try (Response response = javaClient().generic(ClientOptions.DEFAULT).execute(Requests.builder().endpoint("/").method("GET").build())) {
+try (Response response = javaClient().generic().execute(Requests.builder().endpoint("/").method("GET").build())) {
    // ...
 }
 ```
@@ -35,7 +35,7 @@ try (Response response = javaClient().generic(ClientOptions.DEFAULT).execute(Req
 Please notice that the `Response` instance should be closed explicitly in order to free up any allocated resource (like response input streams or buffers), the [`try-with-resource`](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) pattern is encouraged.
 
 ```java
-try (Response response = javaClient().generic(ClientOptions.DEFAULT).execute(...)) {
+try (Response response = javaClient().generic().execute(...)) {
    // ...
 }
 ```
@@ -44,7 +44,7 @@ The generic client never interprets status codes and provides the direct access 
 
 ```java
 // compare with what the low level client outputs
-try (Response response = javaClient().generic(ClientOptions.DEFAULT).execute(...)) {
+try (Response response = javaClient().generic().execute(...)) {
    if (response.getStatus() != 200) {
       // Request was not successful
    }
@@ -55,7 +55,7 @@ try (Response response = javaClient().generic(ClientOptions.DEFAULT).execute(...
 The following sample code a simple request with JSON body.
 
 ```java
- try (Response response = javaClient().generic(ClientOptions.DEFAULT)
+ try (Response response = javaClient().generic()
         .execute(
             Requests.builder()
                 .endpoint("/" + index + "/_search")
@@ -89,7 +89,7 @@ final CreateIndexRequest request = CreateIndexRequest.of(
     .settings(settings -> settings.sort(s -> s.field("name").order(SegmentSortOrder.Asc)))
 );
 
-try (Response response = javaClient().generic(ClientOptions.DEFAULT)
+try (Response response = javaClient().generic()
       .execute(
           Requests.builder()
             .endpoint("/" + index).method("PUT")
@@ -106,7 +106,7 @@ try (Response response = javaClient().generic(ClientOptions.DEFAULT)
 Dealing with strings or POJOs could be daunting sometimes, using structured JSON APIs is a middle ground of both approaches, as per following sample code that uses (`jakarta.json.Json`)[https://jakarta.ee/specifications/jsonp].
 
 ```java
-try (Response response = javaClient().generic(ClientOptions.DEFAULT)
+try (Response response = javaClient().generic()
       .execute(
         Requests.builder()
           .endpoint("/" + index)

@@ -36,7 +36,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
         createIndex(index);
 
         try (
-            Response response = javaClient().generic(ClientOptions.DEFAULT)
+            Response response = javaClient().generic()
                 .execute(
                     Requests.builder()
                         .endpoint("/" + index + "/_search")
@@ -98,8 +98,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
         createIndex(index);
 
         try (
-            Response response = javaClient().generic(ClientOptions.DEFAULT)
-                .execute(Requests.builder().endpoint("/" + index + "/_doc/10").method("GET").build())
+            Response response = javaClient().generic().execute(Requests.builder().endpoint("/" + index + "/_doc/10").method("GET").build())
         ) {
             assertThat(response.getStatus(), equalTo(404));
             assertThat(response.getBody().isPresent(), equalTo(true));
@@ -113,7 +112,8 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
 
         final OpenSearchClientException ex = assertThrows(OpenSearchClientException.class, () -> {
             try (
-                Response response = javaClient().generic(ClientOptions.throwOnHttpErrors())
+                Response response = javaClient().generic()
+                    .withClientOptions(ClientOptions.throwOnHttpErrors())
                     .execute(Requests.builder().endpoint("/" + index + "/_doc/10").method("GET").build())
             ) {}
         });
@@ -135,7 +135,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
 
     private void createTestDocument(String index, String id, ShopItem document) throws IOException {
         try (
-            Response response = javaClient().generic(ClientOptions.DEFAULT)
+            Response response = javaClient().generic()
                 .execute(
                     Requests.builder()
                         .endpoint("/" + index + "/_doc/" + id)
@@ -161,7 +161,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
         final JsonpMapper jsonpMapper = javaClient()._transport().jsonpMapper();
 
         try (
-            Response response = javaClient().generic(ClientOptions.DEFAULT)
+            Response response = javaClient().generic()
                 .execute(
                     Requests.builder()
                         .endpoint("/" + index)
@@ -215,7 +215,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
         );
 
         try (
-            Response response = javaClient().generic(ClientOptions.DEFAULT)
+            Response response = javaClient().generic()
                 .execute(Requests.builder().endpoint("/" + index).method("PUT").json(request, jsonpMapper).build())
         ) {
             assertThat(response.getStatus(), equalTo(200));
@@ -231,7 +231,7 @@ public abstract class AbstractGenericClientIT extends OpenSearchJavaClientTestCa
 
     private void refreshIndex(String index) throws IOException {
         try (
-            Response response = javaClient().generic(ClientOptions.DEFAULT)
+            Response response = javaClient().generic()
                 .execute(Requests.builder().endpoint("/" + index + "/_refresh").method("POST").build())
         ) {
             assertThat(response.getStatus(), equalTo(200));
