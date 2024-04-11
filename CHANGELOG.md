@@ -3,6 +3,21 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.10.0] - 04/11/2024
+### Added
 - Add xy_shape property ([#884](https://github.com/opensearch-project/opensearch-java/pull/885))
 - Add missed fields to MultisearchBody: seqNoPrimaryTerm, storedFields, explain, fields, indicesBoost ([#914](https://github.com/opensearch-project/opensearch-java/pull/914))
 - Add OpenSearchGenericClient with support for raw HTTP request/responses ([#910](https://github.com/opensearch-project/opensearch-java/pull/910), [#929](https://github.com/opensearch-project/opensearch-java/pull/929))
@@ -321,7 +336,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.4...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.0...2.x
+[2.10.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.9.1...v2.10.0
+[2.9.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.9.0...v2.9.1
+[2.9.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.4...v2.9.0
 [2.8.4]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.3...v2.8.4
 [2.8.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.2...v2.8.3
 [2.8.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.1...v2.8.2
