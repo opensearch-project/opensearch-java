@@ -51,21 +51,32 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ## [2.10.0] - 04/11/2024
 ### Added
 - Add xy_shape property ([#884](https://github.com/opensearch-project/opensearch-java/pull/885))
+- Add missed fields to MultisearchBody: seqNoPrimaryTerm, storedFields, explain, fields, indicesBoost ([#914](https://github.com/opensearch-project/opensearch-java/pull/914))
+- Add OpenSearchGenericClient with support for raw HTTP request/responses ([#910](https://github.com/opensearch-project/opensearch-java/pull/910), [#929](https://github.com/opensearch-project/opensearch-java/pull/929))
+- Add missed fields to MultisearchBody: collapse, version, timeout ([#916](https://github.com/opensearch-project/opensearch-java/pull/916)
+- Add missed fields to MultisearchBody: ext, rescore and to SearchRequest: ext ([#918](https://github.com/opensearch-project/opensearch-java/pull/918)
 
 ### Dependencies
+- Bumps `io.github.classgraph:classgraph` from 4.8.161 to 4.8.165
+- Bumps `org.owasp.dependencycheck` from 9.0.8 to 9.1.0
+- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.3.0 to 5.3.1
+- Bumps `io.github.classgraph:classgraph` from 4.8.165 to 4.8.170
+- Bumps `jackson` from 2.15.2 to 2.17.0
+- Bumps `org.eclipse.parsson:parsson` from 1.1.5 to 1.1.6
 
 ### Changed
-- Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
-- Changed SearchAfter of SearchRequest type to FieldValue instead of String ([#769](https://github.com/opensearch-project/opensearch-java/pull/769))
 
 ### Deprecated
-- Deprecate RestClientTransport ([#536](https://github.com/opensearch-project/opensearch-java/pull/536))
 
 ### Removed
 - Delete shape property ([#884](https://github.com/opensearch-project/opensearch-java/pull/885))
 
 ### Fixed
-- Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
+- Fix integer overflow for variables in indices stats response ([#877](https://github.com/opensearch-project/opensearch-java/pull/877))
+- Support weight function in function score query ([#880](https://github.com/opensearch-project/opensearch-java/pull/880))
+- Fix pattern replace by making flag and replacement optional as on api  ([#895](https://github.com/opensearch-project/opensearch-java/pull/895))
+- Client with Java 8 runtime and Apache HttpClient 5 Transport fails with java.lang.NoSuchMethodError: java.nio.ByteBuffer.flip()Ljava/nio/ByteBuffer ([#920](https://github.com/opensearch-project/opensearch-java/pull/920)) 
+- Add missed field  "filter" to NeuralQuery model class
 
 ### Security
 
