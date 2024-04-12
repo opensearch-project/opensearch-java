@@ -56,6 +56,9 @@ public class PhraseSuggestOption implements JsonpSerializable {
 
     private final double score;
 
+    @Nullable
+    private final Boolean collateMatch;
+
     // ---------------------------------------------------------------------------------------------
 
     private PhraseSuggestOption(Builder builder) {
@@ -63,6 +66,7 @@ public class PhraseSuggestOption implements JsonpSerializable {
         this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
         this.highlighted = builder.highlighted;
         this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
+        this.collateMatch = builder.collateMatch;
 
     }
 
@@ -93,6 +97,13 @@ public class PhraseSuggestOption implements JsonpSerializable {
     }
 
     /**
+     * API name: {@code collate_match}
+     */
+    public final Boolean collateMatch() {
+        return this.collateMatch;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -114,6 +125,10 @@ public class PhraseSuggestOption implements JsonpSerializable {
         generator.writeKey("score");
         generator.write(this.score);
 
+        if (this.collateMatch != null) {
+            generator.writeKey("collate_match");
+            generator.write(this.collateMatch);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -129,6 +144,9 @@ public class PhraseSuggestOption implements JsonpSerializable {
         private String highlighted;
 
         private Double score;
+
+        @Nullable
+        private Boolean collateMatch;
 
         /**
          * Required - API name: {@code text}
@@ -151,6 +169,14 @@ public class PhraseSuggestOption implements JsonpSerializable {
          */
         public final Builder score(double value) {
             this.score = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code collate_match}
+         */
+        public final Builder collateMatch(@Nullable Boolean value) {
+            this.collateMatch = value;
             return this;
         }
 
@@ -182,6 +208,7 @@ public class PhraseSuggestOption implements JsonpSerializable {
         op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
         op.add(Builder::highlighted, JsonpDeserializer.stringDeserializer(), "highlighted");
         op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "score");
+        op.add(Builder::collateMatch, JsonpDeserializer.booleanDeserializer(), "collate_match");
 
     }
 
