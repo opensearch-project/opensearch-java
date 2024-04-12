@@ -42,6 +42,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 import org.opensearch.Version;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.OpenSearchException;
@@ -772,7 +773,14 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
         String suggesterName = "msgSuggester";
 
-        PhraseSuggester phraseSuggester = FieldSuggesterBuilders.phrase().field("msg.trigram").build();
+        PhraseSuggester phraseSuggester = FieldSuggesterBuilders.phrase()
+            .field("msg.trigram")
+            .collate(
+                c -> c.query(q -> q.source("{\"match\": {\"{{field_name}}\" : \"{{suggestion}}\"}}"))
+                    .prune(true)
+                    .params(Map.of("field_name", JsonData.of("msg")))
+            )
+            .build();
         FieldSuggester fieldSuggester = new FieldSuggester.Builder().text("design paterns").phrase(phraseSuggester).build();
         Suggester suggester = new Suggester.Builder().suggesters(Collections.singletonMap(suggesterName, fieldSuggester)).build();
         SearchRequest searchRequest = new SearchRequest.Builder().index(index).suggest(suggester).build();
@@ -785,18 +793,8 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         assertTrue(response.suggest().get(suggesterName).get(0).isPhrase());
         assertNotNull(response.suggest().get(suggesterName).get(0).phrase().options());
         assertEquals(response.suggest().get(suggesterName).get(0).phrase().options().get(0).text(), "design patterns");
+        assertEquals(response.suggest().get(suggesterName).get(0).phrase().options().get(0).collateMatch(), true);
     }
-
-    // @Test
-    // public void testValueBodyResponse() throws Exception {
-    // DiskUsageResponse resp = highLevelClient().indices().diskUsage(b -> b
-    // .index("*")
-    // .allowNoIndices(true)
-    // .runExpensiveTasks(true)
-    // );
-    //
-    // assertNotNull(resp.valueBody().toJson().asJsonObject().get("_shards"));
-    // }
 
     public static class AppData {
 
