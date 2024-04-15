@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Add missed fields to PhraseSuggestOption: collapseMatch ([#940](https://github.com/opensearch-project/opensearch-java/pull/940))
 
 ### Dependencies
+- Bumps `com.github.jk1.dependency-license-report` from 2.6 to 2.7
 
 ### Changed
 
