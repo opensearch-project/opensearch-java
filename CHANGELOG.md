@@ -36,6 +36,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Added
 - Add missed fields to PhraseSuggestOption: collapseMatch ([#940](https://github.com/opensearch-project/opensearch-java/pull/940))
+- Add missed fields to bulk's UpdateOperation: source ([#947](https://github.com/opensearch-project/opensearch-java/pull/947))
 
 ### Dependencies
 
