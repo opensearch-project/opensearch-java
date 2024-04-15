@@ -204,6 +204,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
             UpdateRequest<AppData, AppData> updateRequest = new UpdateRequest.Builder<AppData, AppData>().index("index")
                 .id("does_not_exist")
                 .doc(appData)
+                .source(s -> s.fetch(randomBoolean()))
                 .build();
             try {
                 javaClient().update(updateRequest, AppData.class);
