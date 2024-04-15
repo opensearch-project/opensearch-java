@@ -4,7 +4,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 3.0]
 ### Dependencies
 - Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.3 to 5.2.4
-- Bumps `com.github.jk1.dependency-license-report` from 2.5 to 2.6
+- Bumps `com.github.jk1.dependency-license-report` from 2.5 to 2.7
 - Bumps `org.owasp.dependencycheck` from 9.0.9 to 9.1.0
 - Bumps `io.github.classgraph:classgraph` from 4.8.165 to 4.8.170
 - Bumps `org.eclipse.parsson:parsson` from 1.1.5 to 1.1.6
