@@ -4,7 +4,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 3.0]
 ### Dependencies
 - Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.3 to 5.2.4
-- Bumps `com.github.jk1.dependency-license-report` from 2.5 to 2.7
 - Bumps `org.owasp.dependencycheck` from 9.0.9 to 9.1.0
 - Bumps `io.github.classgraph:classgraph` from 4.8.165 to 4.8.170
 - Bumps `org.eclipse.parsson:parsson` from 1.1.5 to 1.1.6
@@ -13,7 +12,6 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Added
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
-- Add xy_shape property ([#884](https://github.com/opensearch-project/opensearch-java/pull/885))
 
 ### Dependencies
 
@@ -35,8 +33,6 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ## [Unreleased 2.x]
 
 ### Added
-- Add missed fields to PhraseSuggestOption: collapseMatch ([#940](https://github.com/opensearch-project/opensearch-java/pull/940))
-- Add missed fields to bulk's UpdateOperation: source ([#947](https://github.com/opensearch-project/opensearch-java/pull/947))
 
 ### Dependencies
 
@@ -49,6 +45,25 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Fixed
 
 ### Security
+
+## [2.10.1] - 04/16/2024
+### Added
+- Add missed fields to PhraseSuggestOption: collapseMatch ([#940](https://github.com/opensearch-project/opensearch-java/pull/940))
+- Add missed fields to bulk's UpdateOperation: source ([#947](https://github.com/opensearch-project/opensearch-java/pull/947))
+
+### Dependencies
+- Bumps `com.github.jk1.dependency-license-report` from 2.6 to 2.7
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 
 ## [2.10.0] - 04/11/2024
 ### Added
@@ -374,7 +389,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.1...2.x
+[2.10.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.0...v2.10.1
 [2.10.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.9.1...v2.10.0
 [2.9.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.9.0...v2.9.1
 [2.9.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.4...v2.9.0
