@@ -1,4 +1,3 @@
-// (c) Copyright 2024 Hewlett Packard Enterprise Development LP
 package org.opensearch.client.opensearch._types;
 
 import static org.junit.Assert.assertEquals;
