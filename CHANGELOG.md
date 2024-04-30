@@ -13,6 +13,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fix integer overflow for variables in indices stats response ([#960](https://github.com/opensearch-project/opensearch-java/pull/960))
 
 ### Security
 
