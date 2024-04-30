@@ -32,10 +32,9 @@
 
 package org.opensearch.client.opensearch._types;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
-
 import javax.annotation.Nullable;
-
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -45,8 +44,6 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-
-import jakarta.json.stream.JsonGenerator;
 
 // typedef: _types.QueryCacheStats
 
@@ -192,13 +189,13 @@ public class QueryCacheStats implements JsonpSerializable {
      */
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryCacheStats> {
-      private Long cacheCount;
+        private Long cacheCount;
 
-      private Long cacheSize;
+        private Long cacheSize;
 
-      private Long evictions;
+        private Long evictions;
 
-      private Long hitCount;
+        private Long hitCount;
 
         @Nullable
         private String memorySize;
@@ -299,10 +296,10 @@ public class QueryCacheStats implements JsonpSerializable {
 
     protected static void setupQueryCacheStatsDeserializer(ObjectDeserializer<QueryCacheStats.Builder> op) {
 
-      op.add(Builder::cacheCount, JsonpDeserializer.longDeserializer(), "cache_count");
-      op.add(Builder::cacheSize, JsonpDeserializer.longDeserializer(), "cache_size");
-      op.add(Builder::evictions, JsonpDeserializer.longDeserializer(), "evictions");
-      op.add(Builder::hitCount, JsonpDeserializer.longDeserializer(), "hit_count");
+        op.add(Builder::cacheCount, JsonpDeserializer.longDeserializer(), "cache_count");
+        op.add(Builder::cacheSize, JsonpDeserializer.longDeserializer(), "cache_size");
+        op.add(Builder::evictions, JsonpDeserializer.longDeserializer(), "evictions");
+        op.add(Builder::hitCount, JsonpDeserializer.longDeserializer(), "hit_count");
         op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
         op.add(Builder::memorySizeInBytes, JsonpDeserializer.longDeserializer(), "memory_size_in_bytes");
         op.add(Builder::missCount, JsonpDeserializer.longDeserializer(), "miss_count");
