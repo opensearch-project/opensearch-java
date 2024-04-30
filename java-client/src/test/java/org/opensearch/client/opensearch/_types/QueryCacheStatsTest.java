@@ -10,19 +10,19 @@ import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 public class QueryCacheStatsTest {
 
     @Test
-    public void testLongSerailization() {
-        QueryCacheStats expected = new QueryCacheStats.Builder().cacheCount(8757938874l)
-            .cacheSize(8757938874l)
-            .evictions(8757938874l)
-            .hitCount(8757938874l)
-            .memorySizeInBytes(8757938874l)
-            .missCount(8757938874l)
-            .totalCount(8757938874l)
+    public void testLongSerialization() {
+        QueryCacheStats expected = new QueryCacheStats.Builder().cacheCount(2757938871l)
+            .cacheSize(1757938872l)
+            .evictions(3757938873l)
+            .hitCount(4757938874l)
+            .memorySizeInBytes(5757938875l)
+            .missCount(6757938876l)
+            .totalCount(7757938877l)
             .build();
 
-        String jsonString = "{\"cache_count\": 8757938874, \"cache_size\": 8757938874, \"evictions\":"
-            + " 8757938874, \"hit_count\": 8757938874, \"memory_size_in_bytes\": 8757938874, \"miss_count\":"
-            + " 8757938874, \"total_count\": 8757938874}";
+        String jsonString = "{\"cache_count\": 2757938871, \"cache_size\": 1757938872, \"evictions\":"
+            + " 3757938873, \"hit_count\": 4757938874, \"memory_size_in_bytes\": 5757938875, \"miss_count\":"
+            + " 6757938876, \"total_count\": 7757938877}";
 
         StringReader reader = new StringReader(jsonString);
         JacksonJsonpMapper mapper = new JacksonJsonpMapper();
