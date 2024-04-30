@@ -26,7 +26,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Delete shape property ([#884](https://github.com/opensearch-project/opensearch-java/pull/885))
 
 ### Fixed
--  Fix integer overflow for variables in indices stats response ([#959](https://github.com/opensearch-project/opensearch-java/pull/96))
+-  Fix integer overflow for variables in indices stats response ([#959](https://github.com/opensearch-project/opensearch-java/pull/960))
 
 
 ### Security
