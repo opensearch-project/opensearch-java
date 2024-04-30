@@ -7,8 +7,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        java: [ 8, 11, 17, 21 ]
-        os: [ubuntu-latest, windows-latest, macOS-13]
+        java: [ 11, 17, 21 ]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
       - name: Checkout Java Client
         uses: actions/checkout@v3
@@ -21,17 +21,30 @@ jobs:
           cache: 'gradle'
 
       - name: Run Unit Test
-        if: ${{ matrix.java != 8 }}
         run: ./gradlew clean unitTest
+  
+  test-java8:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-13]
+    steps:
+      - name: Checkout Java Client
+        uses: actions/checkout@v3
 
-      - name: Set up JDK 11
+      - name: Set up JDK 8 (Runtime)
         uses: actions/setup-java@v3
-        if: ${{ matrix.java == 8 }}
+        with:
+          java-version: 8
+          distribution: temurin
+          cache: gradle
+
+      - name: Set up JDK 11 (Tools)
+        uses: actions/setup-java@v3
         with:
           java-version: 11
-          distribution: 'temurin'
-          cache: 'gradle'
+          distribution: temurin
+          cache: gradle
 
       - name: Run Unit Test
-        if: ${{ matrix.java == 8 }}
         run: ./gradlew clean unitTest -D"runtime.java=8"
