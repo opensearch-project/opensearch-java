@@ -10,7 +10,6 @@ package org.opensearch.client.opensearch.integTest;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.junit.Test;
@@ -18,8 +17,10 @@ import org.opensearch.Version;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
+import org.opensearch.client.opensearch._types.aggregations.AggregationBuilders;
 import org.opensearch.client.opensearch._types.aggregations.CompositeAggregationSource;
 import org.opensearch.client.opensearch._types.mapping.Property;
+import org.opensearch.client.opensearch._types.query_dsl.BoolQuery;
 import org.opensearch.client.opensearch._types.query_dsl.MatchQuery;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch._types.query_dsl.QueryBuilders;
@@ -70,12 +71,18 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
         final String index = "search_request";
         createIndex(index);
 
-        CompositeAggregationSource terms = CompositeAggregationSource.of(
-            t -> t.terms(t1 -> t1.field("size").order(SortOrder.Asc).name(index))
-        );
-        final Aggregation avgSize = Aggregation.of(a -> a.composite(c -> c.sources(List.of(Map.of("composite-agg", terms)))));
+        BoolQuery.Builder boolQueryBuilder = QueryBuilders.bool();
+
+        CompositeAggregationSource compositeAggregationSource1 = new CompositeAggregationSource.Builder().terms(
+            t -> t.field("size.keyword").order(SortOrder.Desc).name("terms").missingBucket(true)
+        ).build();
+
+        Aggregation aggregation = new Aggregation.Builder().composite(
+            AggregationBuilders.composite().sources(Map.of("composite", compositeAggregationSource1)).size(0).build()
+        ).build();
+
         final SearchRequest request = SearchRequest.of(
-            r -> r.index(index).query(b -> b.matchAll(QueryBuilders.matchAll().build())).aggregations("composite-agg", avgSize)
+            r -> r.index(index).query(boolQueryBuilder.build().toQuery()).aggregations("composite", aggregation).size(1000)
         );
 
         final SearchResponse<ShopItem> response = javaClient().search(request, ShopItem.class);
