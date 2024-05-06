@@ -26,7 +26,8 @@ public class CompositeDateHistogramAggregationSource extends CompositeValuesSour
     @Nullable
     private final Time fixedInterval;
 
-    private final long offset;
+    @Nullable
+    private final Long offset;
 
     private final String zoneId;
 
@@ -59,9 +60,10 @@ public class CompositeDateHistogramAggregationSource extends CompositeValuesSour
     }
 
     /**
-     * Required - API name: {@code offset}
+     * API name: {@code offset}
      */
-    public final long offset() {
+    @Nullable
+    public final Long offset() {
         return this.offset;
 
     }
@@ -95,8 +97,11 @@ public class CompositeDateHistogramAggregationSource extends CompositeValuesSour
             this.fixedInterval.serialize(generator, mapper);
 
         }
-        generator.writeKey("offset");
-        generator.write(this.offset);
+        if (this.offset != null) {
+            generator.writeKey("offset");
+            generator.write(this.offset);
+
+        }
 
         generator.writeKey("zone_id");
         generator.write(this.zoneId);
@@ -116,7 +121,8 @@ public class CompositeDateHistogramAggregationSource extends CompositeValuesSour
         @Nullable
         private Time fixedInterval;
 
-        private long offset;
+        @Nullable
+        private Long offset;
 
         private String zoneId;
 
@@ -137,9 +143,9 @@ public class CompositeDateHistogramAggregationSource extends CompositeValuesSour
         }
 
         /**
-         * Required - API name: {@code offset}
+         * API name: {@code offset}
          */
-        public final Builder offset(long value) {
+        public final Builder offset(Long value) {
             this.offset = value;
             return this;
         }
