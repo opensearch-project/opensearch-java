@@ -9,13 +9,10 @@ import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.opensearch._types.SortOrder;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 public abstract class CompositeValuesSource implements JsonpSerializable {
-
-    private final String name;
 
     @Nullable
     private final String field;
@@ -39,8 +36,6 @@ public abstract class CompositeValuesSource implements JsonpSerializable {
     private String format;
 
     protected CompositeValuesSource(AbstractBuilder<?> builder) {
-        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-        ;
         this.field = builder.field;
         this.script = builder.script;
         this.valueType = builder.valueType;
@@ -48,13 +43,6 @@ public abstract class CompositeValuesSource implements JsonpSerializable {
         this.missingOrder = builder.missingOrder;
         this.order = builder.order;
         this.format = builder.format;
-    }
-
-    /**
-     * API name: {@code name}
-     */
-    public final String name() {
-        return this.name;
     }
 
     /**
@@ -123,9 +111,6 @@ public abstract class CompositeValuesSource implements JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey(this.name);
-        generator.write(this.name);
-
         if (this.field != null) {
             generator.writeKey("field");
             generator.write(this.field);
@@ -165,8 +150,6 @@ public abstract class CompositeValuesSource implements JsonpSerializable {
 
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
 
-        private String name;
-
         @Nullable
         private String field;
 
@@ -187,14 +170,6 @@ public abstract class CompositeValuesSource implements JsonpSerializable {
 
         @Nullable
         private String format;
-
-        /**
-         * Required - API name: {@code name}
-         */
-        public final BuilderT name(String name) {
-            this.name = name;
-            return self();
-        }
 
         /**
          * API name: {@code field}
@@ -265,7 +240,6 @@ public abstract class CompositeValuesSource implements JsonpSerializable {
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupCompositeValuesSourceDeserializer(
         ObjectDeserializer<BuilderT> op
     ) {
-        op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(AbstractBuilder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(AbstractBuilder::script, Script._DESERIALIZER, "script");
         op.add(AbstractBuilder::valueType, ValueType._DESERIALIZER, "value_type");

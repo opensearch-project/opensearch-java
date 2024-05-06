@@ -10,6 +10,8 @@ package org.opensearch.client.opensearch.integTest;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.junit.Test;
@@ -17,10 +19,10 @@ import org.opensearch.Version;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
-import org.opensearch.client.opensearch._types.aggregations.AggregationBuilders;
+import org.opensearch.client.opensearch._types.aggregations.CompositeAggregation;
 import org.opensearch.client.opensearch._types.aggregations.CompositeAggregationSource;
+import org.opensearch.client.opensearch._types.aggregations.CompositeBucket;
 import org.opensearch.client.opensearch._types.mapping.Property;
-import org.opensearch.client.opensearch._types.query_dsl.BoolQuery;
 import org.opensearch.client.opensearch._types.query_dsl.MatchQuery;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch._types.query_dsl.QueryBuilders;
@@ -71,22 +73,46 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
         final String index = "search_request";
         createIndex(index);
 
-        BoolQuery.Builder boolQueryBuilder = QueryBuilders.bool();
-
-        CompositeAggregationSource compositeAggregationSource1 = new CompositeAggregationSource.Builder().terms(
-            t -> t.field("size.keyword").order(SortOrder.Desc).name("terms").missingBucket(true)
-        ).build();
-
-        Aggregation aggregation = new Aggregation.Builder().composite(
-            AggregationBuilders.composite().sources(Map.of("composite", compositeAggregationSource1)).size(0).build()
-        ).build();
-
-        final SearchRequest request = SearchRequest.of(
-            r -> r.index(index).query(boolQueryBuilder.build().toQuery()).aggregations("composite", aggregation).size(1000)
+        final Query query = Query.of(
+            q -> q.bool(
+                builder -> builder.filter(filter -> filter.term(TermQuery.of(term -> term.field("size").value(FieldValue.of("huge")))))
+            )
         );
 
+        final Map<String, CompositeAggregationSource> comAggrSrcMap = new HashMap<>();
+        CompositeAggregationSource compositeAggregationSource1 = new CompositeAggregationSource.Builder().terms(
+            termsAggrBuilder -> termsAggrBuilder.field("quantity").missingBucket(false).order(SortOrder.Asc)
+        ).build();
+        comAggrSrcMap.put("quantity", compositeAggregationSource1);
+
+        CompositeAggregation compAgg = new CompositeAggregation.Builder().sources(comAggrSrcMap).build();
+
+        Aggregation aggregation = new Aggregation.Builder().composite(compAgg).build();
+
+        final SearchRequest request = SearchRequest.of(r -> r.index(index).query(query).aggregations("my_buckets", aggregation));
+
         final SearchResponse<ShopItem> response = javaClient().search(request, ShopItem.class);
-        assertEquals(response.hits().hits().size(), 8);
+        assertEquals(response.hits().hits().size(), 2);
+        for (Map.Entry<String, Aggregation> entry : response.aggregations().entrySet()) {
+            CompositeAggregation compositeAggregation = entry.getValue().composite();
+            assertEquals(2, compositeAggregation.buckets().size());
+            assertEquals(1, Integer.parseInt(compositeAggregation.buckets().get(0).key().get("quantity").toString()));
+            assertEquals(1, compositeAggregation.buckets().get(0).docCount());
+            assertEquals(2, Integer.parseInt(compositeAggregation.buckets().get(1).key().get("quantity").toString()));
+            assertEquals(1, compositeAggregation.buckets().get(1).docCount());
+        }
+        List<CompositeBucket> buckets = response.aggregations()
+            .entrySet()
+            .stream()
+            .filter(e -> e.getKey().equals("my_buckets"))
+            .map(e -> e.getValue().composite().buckets().array())
+            .flatMap(List::stream)
+            .collect(Collectors.toList());
+        assertEquals(2, buckets.size());
+        assertEquals(1, Integer.parseInt(buckets.get(0).key().get("quantity").toString()));
+        assertEquals(1, buckets.get(0).docCount());
+        assertEquals(2, Integer.parseInt(buckets.get(1).key().get("quantity").toString()));
+        assertEquals(1, buckets.get(1).docCount());
     }
 
     @Test
