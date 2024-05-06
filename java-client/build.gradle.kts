@@ -377,7 +377,12 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
     sourceCompatibility = JavaVersion.VERSION_11.toString()
   }
   
-  tasks.test {
+  tasks.named<Test>("integrationTest") {
+    testClassesDirs += java11.output.classesDirs
+    classpath = sourceSets["java11"].runtimeClasspath
+  }
+  
+  tasks.named<Test>("unitTest") {
     testClassesDirs += java11.output.classesDirs
     classpath = sourceSets["java11"].runtimeClasspath
   }

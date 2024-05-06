@@ -40,11 +40,19 @@ jobs:
 
       - name: Run Docker
         run: |
+          echo "PASSWORD=admin" >> $GITHUB_ENV
           docker-compose --project-directory .ci/opensearch build --build-arg OPENSEARCH_VERSION=${{ matrix.entry.opensearch_version }}
           docker-compose --project-directory .ci/opensearch up -d
           sleep 60
+
+      - name: Sets password (new versions)
+        run: |
+          if [[ ${{ matrix.entry.opensearch_version }} =~ ^2.1[2-9]+.[0-9]+$ ]]; then
+              echo "PASSWORD=0_aD^min_0" >> $GITHUB_ENV
+          fi
+
       - name: Run Integration Test
-        run: ./gradlew clean integrationTest
+        run: ./gradlew clean integrationTest -Dpassword=${{ env.PASSWORD }}
 
       - name: Upload Reports
         if: failure()
