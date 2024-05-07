@@ -19,7 +19,9 @@ import org.junit.Test;
 import org.opensearch.Version;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.SortOrder;
+import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
+import org.opensearch.client.opensearch._types.aggregations.CompositeAggregate;
 import org.opensearch.client.opensearch._types.aggregations.CompositeAggregation;
 import org.opensearch.client.opensearch._types.aggregations.CompositeAggregationSource;
 import org.opensearch.client.opensearch._types.aggregations.CompositeBucket;
@@ -94,13 +96,14 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
 
         final SearchResponse<ShopItem> response = javaClient().search(request, ShopItem.class);
         assertEquals(response.hits().hits().size(), 2);
-        for (Map.Entry<String, Aggregation> entry : response.aggregations().entrySet()) {
-            CompositeAggregation compositeAggregation = entry.getValue().composite();
-            assertEquals(2, compositeAggregation.buckets().size());
-            assertEquals(1, Integer.parseInt(compositeAggregation.buckets().get(0).key().get("quantity").toString()));
-            assertEquals(1, compositeAggregation.buckets().get(0).docCount());
-            assertEquals(2, Integer.parseInt(compositeAggregation.buckets().get(1).key().get("quantity").toString()));
-            assertEquals(1, compositeAggregation.buckets().get(1).docCount());
+        for (Map.Entry<String, Aggregate> entry : response.aggregations().entrySet()) {
+            CompositeAggregate compositeAggregation = entry.getValue().composite();
+            List<CompositeBucket> buckets = compositeAggregation.buckets().array();
+            assertEquals(2, buckets.size());
+            assertEquals(1, Integer.parseInt(buckets.get(0).key().get("quantity").toString()));
+            assertEquals(1, buckets.get(0).docCount());
+            assertEquals(2, Integer.parseInt(buckets.get(1).key().get("quantity").toString()));
+            assertEquals(1, buckets.get(1).docCount());
         }
         List<CompositeBucket> buckets = response.aggregations()
             .entrySet()
