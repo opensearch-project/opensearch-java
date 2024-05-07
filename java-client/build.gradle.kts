@@ -196,6 +196,7 @@ dependencies {
       exclude(group = "org.apache.httpcomponents.core5")
     }
     implementation("org.apache.httpcomponents.core5", "httpcore5", "5.2.4")
+    implementation("org.apache.httpcomponents.core5", "httpcore5-h2", "5.2.4")
 
     // For AwsSdk2Transport
     "awsSdk2SupportCompileOnly"("software.amazon.awssdk","sdk-core","[2.15,3.0)")
@@ -374,8 +375,13 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
     sourceCompatibility = JavaVersion.VERSION_11.toString()
   }
   
-  tasks.test {
+  tasks.named<Test>("integrationTest") {
     testClassesDirs += java11.output.classesDirs
-    classpath = sourceSets["java11"].runtimeClasspath
+    classpath += sourceSets["java11"].runtimeClasspath
+  }
+  
+  tasks.named<Test>("unitTest") {
+    testClassesDirs += java11.output.classesDirs
+    classpath += sourceSets["java11"].runtimeClasspath
   }
 }
