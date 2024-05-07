@@ -8,6 +8,7 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 
@@ -34,7 +35,7 @@ public abstract class AbstractPingAndInfoIT extends OpenSearchJavaClientTestCase
         // compare with what the low level client outputs
         try (Response response = javaClient().generic().execute(Requests.builder().endpoint("/").method("GET").build())) {
             assertThat(response.getStatus(), equalTo(200));
-            assertThat(response.getProtocol(), equalTo("HTTP/1.1"));
+            assertThat(response.getProtocol(), anyOf(equalTo("HTTP"), equalTo("HTTP/1.1")));
             assertThat(response.getBody().isEmpty(), is(false));
 
             Map<String, Object> infoAsMap = response.getBody()

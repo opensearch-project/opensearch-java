@@ -11,6 +11,7 @@ package org.opensearch.client.opensearch.integTest;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import org.junit.Test;
 import org.opensearch.Version;
@@ -65,6 +66,7 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
     @Test
     public void hybridSearchShouldReturnSearchResults() throws Exception {
         assumeTrue("Hybrid search is supported from 2.10.0", getServerVersion().onOrAfter(Version.V_2_10_0));
+        assumeTrue("Hybrid search needs opensearch-neural-search plugin to be installed", isNeuralSearchPluginInstalled());
         final String index = "hybrid_search_request";
         try {
             createIndex(index);
@@ -136,6 +138,10 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
 
         final SearchResponse<ShopItem> response = javaClient().search(request, ShopItem.class);
         assertEquals(response.hits().hits().size(), 8);
+    }
+
+    private boolean isNeuralSearchPluginInstalled() throws IOException {
+        return javaClient().cat().plugins().valueBody().stream().anyMatch(p -> Objects.equals(p.component(), "opensearch-neural-search"));
     }
 
     private void createTestDocuments(String index) throws IOException {
