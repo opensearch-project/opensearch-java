@@ -5,6 +5,22 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+- Bumps `io.github.classgraph:classgraph` from 4.8.170 to 4.8.172
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.10.2]
+### Added
+
+### Dependencies
 
 ### Changed
 
@@ -15,8 +31,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 - Fix integer overflow for variables in indices stats response ([#960](https://github.com/opensearch-project/opensearch-java/pull/960))
 - Fix composite aggregations for search requests ([#967](https://github.com/opensearch-project/opensearch-java/pull/967))
-
-### Security
 
 ## [2.10.1] - 04/16/2024
 ### Added
