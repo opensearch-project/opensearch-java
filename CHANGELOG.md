@@ -40,6 +40,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fix the deserialization of SortOptions ([#981](https://github.com/opensearch-project/opensearch-java/pull/981))
+- [BUG] Generic HTTP Actions in Java Client does not work with AwsSdk2Transport ([#978](https://github.com/opensearch-project/opensearch-java/pull/978))
 
 ### Security
 
