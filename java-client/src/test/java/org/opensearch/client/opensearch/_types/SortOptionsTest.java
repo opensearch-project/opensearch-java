@@ -1,24 +1,19 @@
 package org.opensearch.client.opensearch._types;
 
+import static org.junit.Assert.assertEquals;
+
 import jakarta.json.stream.JsonParser;
+import java.io.StringReader;
+import java.util.List;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
-
-import java.io.StringReader;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 public class SortOptionsTest {
 
     @Test
     public void testSortOptions() {
-        String jsonString = "[{\n" +
-                "    \"entityId\": {\n" +
-                "      \"order\": \"asc\"\n" +
-                "    }\n" +
-                "  }]";
+        String jsonString = "[{\"entityId\":{\"order\":\"asc\"}}]";
         StringReader reader = new StringReader(jsonString);
         JacksonJsonpMapper mapper = new JacksonJsonpMapper();
         JsonParser parser = mapper.jsonProvider().createParser(reader);
