@@ -370,7 +370,6 @@ public class RestClientTransport implements OpenSearchTransport {
             InputStream content = null;
             if (entity != null) {
                 // We may have to replay it.
-                entity = new BufferedHttpEntity(entity);
                 if (entity.getContentType() != null) {
                     contentType = entity.getContentType().getValue();
                 }

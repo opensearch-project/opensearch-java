@@ -18,8 +18,10 @@ import java.util.Iterator;
 import java.util.zip.GZIPOutputStream;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
+import org.apache.hc.core5.http.ContentType;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.NdJsonpSerializable;
+import org.opensearch.client.transport.GenericSerializable;
 import org.opensearch.client.transport.OpenSearchTransport;
 
 /**
@@ -71,6 +73,11 @@ public class OpenSearchRequestBodyBuffer {
         if (content instanceof NdJsonpSerializable) {
             isMulti = true;
             addNdJson(((NdJsonpSerializable) content));
+        } else if (content instanceof GenericSerializable) {
+            ContentType.parse(((GenericSerializable) content).serialize(captureBuffer));
+            if (isMulti) {
+                captureBuffer.write((byte) '\n');
+            }
         } else {
             mapper.serialize(content, jsonGenerator);
             jsonGenerator.flush();
