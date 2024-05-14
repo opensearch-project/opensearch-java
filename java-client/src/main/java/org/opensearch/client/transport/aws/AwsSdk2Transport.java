@@ -17,6 +17,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
+import java.util.AbstractMap;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
@@ -24,6 +25,7 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
@@ -35,6 +37,7 @@ import org.opensearch.client.opensearch._types.ErrorCause;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.GenericEndpoint;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
@@ -47,6 +50,7 @@ import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.auth.signer.Aws4Signer;
 import software.amazon.awssdk.auth.signer.params.Aws4SignerParams;
 import software.amazon.awssdk.http.AbortableInputStream;
+import software.amazon.awssdk.http.Header;
 import software.amazon.awssdk.http.HttpExecuteRequest;
 import software.amazon.awssdk.http.HttpExecuteResponse;
 import software.amazon.awssdk.http.SdkHttpClient;
@@ -393,7 +397,15 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         try {
             bodyStream = executeResponse.responseBody().orElse(null);
             SdkHttpResponse httpResponse = executeResponse.httpResponse();
-            return parseResponse(httpResponse, bodyStream, endpoint, options);
+            return parseResponse(
+                httpRequest.getUri(),
+                httpRequest.method(),
+                httpRequest.protocol(),
+                httpResponse,
+                bodyStream,
+                endpoint,
+                options
+            );
         } finally {
             if (bodyStream != null) {
                 bodyStream.close();
@@ -421,7 +433,17 @@ public class AwsSdk2Transport implements OpenSearchTransport {
                 CompletableFuture<ResponseT> ret = new CompletableFuture<>();
                 try {
                     InputStream bodyStream = new ByteArrayInputStream(responseBody);
-                    ret.complete(parseResponse(response, bodyStream, endpoint, options));
+                    ret.complete(
+                        parseResponse(
+                            httpRequest.getUri(),
+                            httpRequest.method(),
+                            httpRequest.protocol(),
+                            response,
+                            bodyStream,
+                            endpoint,
+                            options
+                        )
+                    );
                 } catch (Throwable e) {
                     ret.completeExceptionally(e);
                 }
@@ -430,6 +452,9 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     }
 
     private <ResponseT, ErrorT> ResponseT parseResponse(
+        URI uri,
+        @Nonnull SdkHttpMethod method,
+        String protocol,
         @Nonnull SdkHttpResponse httpResponse,
         @CheckForNull InputStream bodyStream,
         @Nonnull Endpoint<?, ResponseT, ErrorT> endpoint,
@@ -478,24 +503,51 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         }
 
         if (endpoint.isError(statusCode)) {
-            JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
-            if (errorDeserializer == null || bodyStream == null) {
-                throw new TransportException("Request failed with status code '" + statusCode + "'");
-            }
-            try {
-                try (JsonParser parser = mapper.jsonProvider().createParser(bodyStream)) {
-                    ErrorT error = errorDeserializer.deserialize(parser, mapper);
-                    throw new OpenSearchException((ErrorResponse) error);
+            if (endpoint instanceof GenericEndpoint) {
+                @SuppressWarnings("unchecked")
+                final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
+
+                String contentType = null;
+                if (bodyStream != null) {
+                    contentType = httpResponse.firstMatchingHeader(Header.CONTENT_TYPE).orElse(null);
                 }
-            } catch (OpenSearchException e) {
-                throw e;
-            } catch (Exception e) {
-                // can't parse the error - use a general exception
-                ErrorCause.Builder cause = new ErrorCause.Builder();
-                cause.type("http_exception");
-                cause.reason("server returned " + statusCode);
-                ErrorResponse error = ErrorResponse.of(err -> err.status(statusCode).error(cause.build()));
-                throw new OpenSearchException(error);
+
+                final ResponseT error = rawEndpoint.responseDeserializer(
+                    uri.toString(),
+                    method.name(),
+                    protocol,
+                    httpResponse.statusCode(),
+                    httpResponse.statusText().orElse(null),
+                    httpResponse.headers()
+                        .entrySet()
+                        .stream()
+                        .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getKey(), Objects.toString(h.getValue())))
+                        .collect(Collectors.toList()),
+                    contentType,
+                    bodyStream
+                );
+
+                throw rawEndpoint.exceptionConverter(statusCode, error);
+            } else {
+                JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
+                if (errorDeserializer == null || bodyStream == null) {
+                    throw new TransportException("Request failed with status code '" + statusCode + "'");
+                }
+                try {
+                    try (JsonParser parser = mapper.jsonProvider().createParser(bodyStream)) {
+                        ErrorT error = errorDeserializer.deserialize(parser, mapper);
+                        throw new OpenSearchException((ErrorResponse) error);
+                    }
+                } catch (OpenSearchException e) {
+                    throw e;
+                } catch (Exception e) {
+                    // can't parse the error - use a general exception
+                    ErrorCause.Builder cause = new ErrorCause.Builder();
+                    cause.type("http_exception");
+                    cause.reason("server returned " + statusCode);
+                    ErrorResponse error = ErrorResponse.of(err -> err.status(statusCode).error(cause.build()));
+                    throw new OpenSearchException(error);
+                }
             }
         } else {
             if (endpoint instanceof BooleanEndpoint) {
@@ -523,6 +575,29 @@ public class AwsSdk2Transport implements OpenSearchTransport {
                     ;
                 }
                 return response;
+            } else if (endpoint instanceof GenericEndpoint) {
+                @SuppressWarnings("unchecked")
+                final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
+
+                String contentType = null;
+                if (bodyStream != null) {
+                    contentType = httpResponse.firstMatchingHeader(Header.CONTENT_TYPE).orElse(null);
+                }
+
+                return rawEndpoint.responseDeserializer(
+                    uri.toString(),
+                    method.name(),
+                    protocol,
+                    httpResponse.statusCode(),
+                    httpResponse.statusText().orElse(null),
+                    httpResponse.headers()
+                        .entrySet()
+                        .stream()
+                        .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getKey(), Objects.toString(h.getValue())))
+                        .collect(Collectors.toList()),
+                    contentType,
+                    bodyStream
+                );
             } else {
                 throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'");
             }
