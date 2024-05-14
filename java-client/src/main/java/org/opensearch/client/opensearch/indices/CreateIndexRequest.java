@@ -33,6 +33,7 @@
 package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
+import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -43,6 +44,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -314,6 +316,25 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
          * <p>
          * API name: {@code mappings}
          */
+        public final Builder mappings(@Nullable String typeMappingJson) {
+            return this.mappings(deserialize(TypeMapping._DESERIALIZER, typeMappingJson));
+        }
+
+        private <T> T deserialize(JsonpDeserializer<T> deserializer, String json) {
+            JsonpMapper jsonpMapper = new JacksonJsonpMapper();
+            return deserializer.deserialize(jsonpMapper.jsonProvider().createParser(new StringReader(json)), jsonpMapper);
+        }
+
+        /**
+         * Mapping for fields in the index. If specified, this mapping can include:
+         * <ul>
+         * <li>Field names</li>
+         * <li>Field data types</li>
+         * <li>Mapping parameters</li>
+         * </ul>
+         * <p>
+         * API name: {@code mappings}
+         */
         public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
             return this.mappings(fn.apply(new TypeMapping.Builder()).build());
         }
@@ -364,6 +385,13 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
         public final Builder settings(@Nullable IndexSettings value) {
             this.settings = value;
             return this;
+        }
+
+        /**
+         * API name: {@code settings}
+         */
+        public final Builder settings(String indexSettingsJson) {
+            return this.settings(deserialize(IndexSettings._DESERIALIZER, indexSettingsJson));
         }
 
         /**
