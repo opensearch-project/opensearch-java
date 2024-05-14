@@ -95,27 +95,17 @@ public class OpenSearchGenericClient extends ApiClient<OpenSearchTransport, Open
             @Nullable String contentType,
             @Nullable InputStream body
         ) {
-            if (isError(status)) {
-                // Fully consume the response body since the it will be propagated as an exception with possible no chance to be closed
-                try (Body b = Body.from(body, contentType)) {
-                    if (b != null) {
-                        return new GenericResponse(
-                            uri,
-                            protocol,
-                            method,
-                            status,
-                            reason,
-                            headers,
-                            Body.from(b.bodyAsBytes(), b.contentType())
-                        );
-                    } else {
-                        return new GenericResponse(uri, protocol, method, status, reason, headers);
-                    }
-                } catch (final IOException ex) {
-                    throw new UncheckedIOException(ex);
+            try (Body b = Body.from(body, contentType)) {
+                if (b != null) {
+                    // Fully consume the response body:
+                    // - if it will be propagated as an exception with possible no chance to be closed
+                    // - the entity stream will be consumed and become unavailable
+                    return new GenericResponse(uri, protocol, method, status, reason, headers, Body.from(b.bodyAsBytes(), b.contentType()));
+                } else {
+                    return new GenericResponse(uri, protocol, method, status, reason, headers);
                 }
-            } else {
-                return new GenericResponse(uri, protocol, method, status, reason, headers, Body.from(body, contentType));
+            } catch (final IOException ex) {
+                throw new UncheckedIOException(ex);
             }
         }
 
