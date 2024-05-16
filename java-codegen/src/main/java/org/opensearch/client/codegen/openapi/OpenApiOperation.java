@@ -8,71 +8,112 @@
 
 package org.opensearch.client.codegen.openapi;
 
+import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
+
 import io.swagger.v3.oas.models.Operation;
-import io.swagger.v3.oas.models.PathItem;
-import java.util.Map;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.Deprecation;
 import org.opensearch.client.codegen.model.OperationGroup;
 
-public class OpenApiOperation extends OpenApiObject<Operation> implements OpenApiExtensions {
-    private final OpenApiPath path;
-    private final PathItem.HttpMethod httpMethod;
+public class OpenApiOperation extends OpenApiElement<OpenApiOperation> {
+    @Nonnull
+    private final OpenApiPath parentPath;
+    @Nonnull
+    private final HttpMethod httpMethod;
+    @Nonnull
+    private final String id;
+    @Nullable
+    private final List<OpenApiParameter> parameters;
+    @Nonnull
+    private final OperationGroup operationGroup;
+    @Nullable
+    private final Boolean isDeprecated;
+    @Nullable
+    private final String description;
+    @Nullable
+    private final OpenApiRequestBody requestBody;
+    @Nullable
+    private final OpenApiResponses responses;
+    @Nullable
+    private final String versionAdded;
+    @Nullable
+    private final String versionDeprecated;
+    @Nullable
+    private final String deprecationMessage;
 
-    protected OpenApiOperation(OpenApiPath path, PathItem.HttpMethod httpMethod, Operation operation) {
-        super(path.getParent(), path.childPtr(httpMethod.toString().toLowerCase()), operation);
-        this.path = path;
-        this.httpMethod = httpMethod;
+    protected OpenApiOperation(@Nonnull OpenApiPath parent, @Nonnull JsonPointer pointer, @Nonnull Operation operation) {
+        super(parent, pointer);
+        this.parentPath = Objects.requireNonNull(parent, "parent must not be null");
+        this.httpMethod = HttpMethod.from(pointer.getLastKey().orElseThrow());
+        Objects.requireNonNull(operation, "operation must not be null");
+        this.id = Objects.requireNonNull(operation.getOperationId());
+        this.parameters = children("parameters", operation.getParameters(), OpenApiParameter::new);
+        var extensions = Objects.requireNonNull(operation.getExtensions(), "operation must have extensions defined");
+        this.operationGroup = OperationGroup.from((String) extensions.get("x-operation-group"));
+        this.isDeprecated = operation.getDeprecated();
+        this.description = operation.getDescription();
+        this.requestBody = child("requestBody", operation.getRequestBody(), OpenApiRequestBody::new);
+        this.responses = child("responses", operation.getResponses(), OpenApiResponses::new);
+        this.versionAdded = ifNonnull(extensions.get("x-version-added"), String::valueOf);
+        this.versionDeprecated = ifNonnull(extensions.get("x-version-deprecated"), String::valueOf);
+        this.deprecationMessage = ifNonnull(extensions.get("x-deprecation-message"), String::valueOf);
     }
 
+    @Nonnull
     public String getHttpPath() {
-        return path.getHttpPath();
+        return parentPath.getHttpPath();
     }
 
-    public PathItem.HttpMethod getHttpMethod() {
+    @Nonnull
+    public HttpMethod getHttpMethod() {
         return httpMethod;
     }
 
-    public String getDescription() {
-        return getInner().getDescription();
+    @Nonnull
+    public OperationGroup getOperationGroup() {
+        return operationGroup;
     }
 
-    public Stream<OpenApiParameter> getParameters() {
-        return children("parameters", Operation::getParameters, OpenApiParameter::new);
+    @Nonnull
+    public Optional<String> getDescription() {
+        return Optional.ofNullable(description);
     }
 
-    public Stream<OpenApiParameter> getAllApplicableParameters(OpenApiParameter.In in) {
-        return Stream.concat(path.getParameters(), getParameters()).map(OpenApiParameter::resolve).filter(p -> in.equals(p.getIn()));
-    }
-
+    @Nonnull
     public Optional<OpenApiRequestBody> getRequestBody() {
-        return Optional.ofNullable(getInner().getRequestBody())
-            .map(body -> new OpenApiRequestBody(getParent(), childPtr("requestBody"), body));
+        return Optional.ofNullable(requestBody);
     }
 
-    public Optional<OpenApiApiResponses> getResponses() {
-        return Optional.ofNullable(getInner().getResponses())
-            .map(responses -> new OpenApiApiResponses(getParent(), childPtr("responses"), responses));
+    @Nonnull
+    public Optional<OpenApiResponses> getResponses() {
+        return Optional.ofNullable(responses);
     }
 
-    @Override
-    public Map<String, Object> getExtensions() {
-        return getInner().getExtensions();
+    @Nonnull
+    public List<OpenApiParameter> getAllRelevantParameters(@Nonnull In in) {
+        Objects.requireNonNull(in, "in must not be null");
+        return Stream.of(parentPath.getParameters(), Optional.ofNullable(parameters))
+            .flatMap(Optional::stream)
+            .flatMap(List::stream)
+            .map(OpenApiRefElement::resolve)
+            .filter(p -> p.getIn().equals(Optional.of(in)))
+            .collect(Collectors.toList());
     }
 
-    public OperationGroup getXOperationGroup() {
-        return getExtensionAsString("x-operation-group").map(OperationGroup::from).orElseThrow();
+    @Nonnull
+    public Optional<String> getVersionAdded() {
+        return Optional.ofNullable(versionAdded);
     }
 
-    public Optional<String> getXVersionAdded() {
-        return getExtensionAsString("x-version-added");
-    }
-
-    public Deprecation getDeprecation() {
-        var msg = getExtensionAsString("x-deprecation-message");
-        var version = getExtensionAsString("x-version-deprecated");
-        if (msg.isEmpty() && version.isEmpty()) return null;
-        return new Deprecation(msg.orElse(null), version.orElse(null));
+    @Nonnull
+    public Optional<Deprecation> getDeprecation() {
+        if (versionDeprecated == null && deprecationMessage == null) return Optional.empty();
+        return Optional.of(new Deprecation(deprecationMessage, versionDeprecated));
     }
 }

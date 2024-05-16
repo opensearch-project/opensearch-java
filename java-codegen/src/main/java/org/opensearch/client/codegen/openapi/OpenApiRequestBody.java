@@ -9,19 +9,10 @@
 package org.opensearch.client.codegen.openapi;
 
 import io.swagger.v3.oas.models.parameters.RequestBody;
-import java.util.Optional;
+import javax.annotation.Nonnull;
 
-public class OpenApiRequestBody extends OpenApiRefObject<OpenApiRequestBody, RequestBody> {
-    protected OpenApiRequestBody(OpenApiSpec parent, JsonPointer jsonPtr, RequestBody inner) {
-        super(parent, jsonPtr, inner, OpenApiRequestBody::new, api -> api.getComponents().getRequestBodies(), RequestBody::get$ref);
-    }
-
-    public Optional<OpenApiContent> getContent() {
-        return childOpt("content", RequestBody::getContent, OpenApiContent::new);
-    }
-
-    @Override
-    protected OpenApiRequestBody getSelf() {
-        return this;
+public class OpenApiRequestBody extends OpenApiOperationBodyElement<OpenApiRequestBody> {
+    protected OpenApiRequestBody(@Nonnull OpenApiElement<?> parent, @Nonnull JsonPointer pointer, @Nonnull RequestBody requestBody) {
+        super(parent, pointer, requestBody.get$ref(), requestBody.getContent(), OpenApiRequestBody.class);
     }
 }

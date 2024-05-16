@@ -69,7 +69,7 @@ application {
 
 tasks.named<JavaExec>("run") {
     args = listOf(
-        "https://raw.githubusercontent.com/opensearch-project/opensearch-api-specification/feature/native_openapi/spec/OpenSearch.openapi.yaml",
+        "https://github.com/opensearch-project/opensearch-api-specification/releases/download/main/opensearch-openapi.yaml",
         "$rootDir/buildSrc/formatterConfig.xml",
         "${project(":java-client").projectDir}/src/generated/java/"
     )
@@ -138,6 +138,9 @@ dependencies {
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
     implementation("com.google.code.findbugs:jsr305:3.0.2")
+
+    // Apache 2.0
+    compileOnly("org.jetbrains:annotations:24.1.0")
 
     // Apache 2.0
     implementation("org.apache.maven.resolver:maven-resolver-api:1.9.18")

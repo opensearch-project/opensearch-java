@@ -9,10 +9,10 @@
 package org.opensearch.client.codegen.openapi;
 
 import io.swagger.v3.oas.models.media.Content;
-import io.swagger.v3.oas.models.media.MediaType;
+import javax.annotation.Nonnull;
 
-public class OpenApiContent extends OpenApiMapObject<MimeType, OpenApiMediaType, Content, MediaType> {
-    protected OpenApiContent(OpenApiSpec parent, JsonPointer jsonPtr, Content inner) {
-        super(parent, jsonPtr, inner, OpenApiMediaType::new);
+public class OpenApiContent extends OpenApiMapElement<OpenApiContent, MimeType, OpenApiMediaType> {
+    protected OpenApiContent(@Nonnull OpenApiElement<?> parent, @Nonnull JsonPointer pointer, @Nonnull Content content) {
+        super(parent, pointer, content, MimeType::from, OpenApiMediaType::new);
     }
 }

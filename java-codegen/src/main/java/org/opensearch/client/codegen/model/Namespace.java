@@ -14,6 +14,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.codegen.JavaFormatter;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.utils.Strings;
@@ -51,7 +53,8 @@ public class Namespace extends Shape {
         return name;
     }
 
-    public Namespace child(String name) {
+    @Nonnull
+    public Namespace child(@Nullable String name) {
         if (name == null || name.isEmpty()) {
             return this;
         }

@@ -13,17 +13,14 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collection;
 import java.util.Comparator;
-import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Namespace;
 import org.opensearch.client.codegen.model.OperationGroup;
 import org.opensearch.client.codegen.model.SpecTransformer;
-import org.opensearch.client.codegen.openapi.OpenApiSpec;
+import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 
 public class Main {
     private static final OperationGroup.Matcher OPERATION_MATCHER = OperationGroup.matcher();
@@ -59,13 +56,16 @@ public class Main {
     }
 
     private static Namespace parseSpec(URI location) throws ApiSpecificationParseException {
-        var spec = OpenApiSpec.parse(location);
+        var spec = OpenApiSpecification.retrieve(location);
         var transformer = new SpecTransformer(OPERATION_MATCHER);
         transformer.visit(spec);
         return transformer.getRoot();
     }
 
     private static void cleanDirectory(File dir) throws RenderException {
+        if (!dir.exists()) {
+            return;
+        }
         try (Stream<Path> walker = Files.walk(dir.toPath())) {
             walker.sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
         } catch (IOException e) {

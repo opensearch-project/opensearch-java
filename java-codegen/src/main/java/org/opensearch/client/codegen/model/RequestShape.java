@@ -13,27 +13,38 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.apache.commons.lang3.tuple.Pair;
 import org.opensearch.client.codegen.utils.Streams;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class RequestShape extends ObjectShape {
+    @Nonnull
     private final OperationGroup operationGroup;
+    @Nullable
     private final String description;
+    @Nonnull
     private final Set<String> httpMethods = new HashSet<>();
+    @Nonnull
     private final List<HttpPath> httpPaths = new ArrayList<>();
+    @Nonnull
     private final Map<String, Field> queryParams = new TreeMap<>();
+    @Nonnull
     private final Map<String, Field> pathParams = new TreeMap<>();
+    @Nonnull
     private final Map<String, Field> fields = new TreeMap<>();
 
-    public RequestShape(Namespace parent, OperationGroup operationGroup, String description) {
+    public RequestShape(@Nonnull Namespace parent, @Nonnull OperationGroup operationGroup, @Nullable String description) {
         super(parent, requestClassName(operationGroup), operationGroup + ".Request");
         this.operationGroup = operationGroup;
         this.description = description;
     }
 
+    @Nonnull
     public OperationGroup getOperationGroup() {
         return operationGroup;
     }
@@ -42,6 +53,7 @@ public class RequestShape extends ObjectShape {
         return operationGroup.getName();
     }
 
+    @Nullable
     public String getDescription() {
         return description;
     }
@@ -136,11 +148,15 @@ public class RequestShape extends ObjectShape {
         return fields.values().stream().anyMatch(Field::isRequired);
     }
 
-    public static String requestClassName(OperationGroup operationGroup) {
+    @Nonnull
+    public static String requestClassName(@Nonnull OperationGroup operationGroup) {
+        Objects.requireNonNull(operationGroup, "operationGroup must not be null");
         return Strings.toPascalCase(operationGroup.getName()) + "Request";
     }
 
-    public static String responseClassName(OperationGroup operationGroup) {
+    @Nonnull
+    public static String responseClassName(@Nonnull OperationGroup operationGroup) {
+        Objects.requireNonNull(operationGroup, "operationGroup must not be null");
         return Strings.toPascalCase(operationGroup.getName()) + "Response";
     }
 }

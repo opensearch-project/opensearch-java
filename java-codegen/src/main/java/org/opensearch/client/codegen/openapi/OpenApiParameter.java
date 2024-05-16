@@ -8,45 +8,55 @@
 
 package org.opensearch.client.codegen.openapi;
 
+import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
+
 import io.swagger.v3.oas.models.parameters.Parameter;
 import java.util.Optional;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-public class OpenApiParameter extends OpenApiRefObject<OpenApiParameter, Parameter> {
-    protected OpenApiParameter(OpenApiSpec parent, JsonPointer jsonPtr, Parameter parameter) {
-        super(parent, jsonPtr, parameter, OpenApiParameter::new, api -> api.getComponents().getParameters(), Parameter::get$ref);
+public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
+    @Nullable
+    private final String name;
+    @Nullable
+    private final String description;
+    @Nullable
+    private final In in;
+    @Nullable
+    private final Boolean isRequired;
+    @Nullable
+    private final OpenApiSchema schema;
+
+    protected OpenApiParameter(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer, @Nonnull Parameter parameter) {
+        super(parent, pointer, parameter.get$ref(), OpenApiParameter.class);
+        this.name = parameter.getName();
+        this.description = parameter.getDescription();
+        this.in = ifNonnull(parameter.getIn(), In::from);
+        this.isRequired = parameter.getRequired();
+        this.schema = child("schema", parameter.getSchema(), OpenApiSchema::new);
     }
 
-    public String getName() {
-        return getInner().getName();
+    @Nonnull
+    public Optional<String> getName() {
+        return Optional.ofNullable(name);
     }
 
-    public String getDescription() {
-        return getInner().getDescription();
+    @Nonnull
+    public Optional<String> getDescription() {
+        return Optional.ofNullable(description);
     }
 
-    public In getIn() {
-        return In.from(getInner().getIn());
+    @Nonnull
+    public Optional<In> getIn() {
+        return Optional.ofNullable(in);
     }
 
     public boolean getRequired() {
-        return getInner().getRequired();
+        return isRequired != null && isRequired;
     }
 
+    @Nonnull
     public Optional<OpenApiSchema> getSchema() {
-        return childOpt("schema", Parameter::getSchema, OpenApiSchema::new);
-    }
-
-    @Override
-    protected OpenApiParameter getSelf() {
-        return this;
-    }
-
-    public enum In {
-        QUERY,
-        PATH;
-
-        public static In from(String s) {
-            return valueOf(s.toUpperCase());
-        }
+        return Optional.ofNullable(schema);
     }
 }

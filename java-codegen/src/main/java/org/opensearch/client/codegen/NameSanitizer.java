@@ -10,6 +10,7 @@ package org.opensearch.client.codegen;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.annotation.Nonnull;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class NameSanitizer {
@@ -21,7 +22,8 @@ public class NameSanitizer {
         }
     };
 
-    public static String wireNameToField(String wireName) {
+    @Nonnull
+    public static String wireNameToField(@Nonnull String wireName) {
         var name = Strings.toCamelCase(wireName);
         if (reservedWords.contains(name)) {
             name += "_";

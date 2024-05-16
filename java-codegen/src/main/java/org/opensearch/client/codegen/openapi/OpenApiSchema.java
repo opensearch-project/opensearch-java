@@ -8,155 +8,192 @@
 
 package org.opensearch.client.codegen.openapi;
 
+import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
+
+import io.swagger.v3.oas.models.media.ObjectSchema;
 import io.swagger.v3.oas.models.media.Schema;
-import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Stream;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import org.opensearch.client.codegen.utils.Lists;
+import org.opensearch.client.codegen.utils.Maps;
+import org.opensearch.client.codegen.utils.Sets;
 
-@SuppressWarnings({ "rawtypes", "unchecked" })
-public class OpenApiSchema extends OpenApiRefObject<OpenApiSchema, Schema> implements OpenApiExtensions {
-    public static final OpenApiSchema EMPTY = new OpenApiSchema(null, null, new Schema<>());
+public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
+    private static final JsonPointer ANONYMOUS = JsonPointer.of("<anonymous>");
 
-    protected OpenApiSchema(OpenApiSpec parent, JsonPointer jsonPtr, Schema<?> schema) {
-        super(parent, jsonPtr, schema, OpenApiSchema::new, api -> api.getComponents().getSchemas(), Schema::get$ref);
-    }
+    public static final OpenApiSchema ANONYMOUS_OBJECT = new OpenApiSchema(null, ANONYMOUS.append("object"), new ObjectSchema());
 
-    public String getDescription() {
-        return getInner().getDescription();
-    }
+    @Nullable
+    private final String name;
+    @Nullable
+    private final String namespace;
+    @Nullable
+    private final String description;
+    @Nullable
+    private final OpenApiSchemaType type;
+    @Nullable
+    private final OpenApiSchemaFormat format;
+    @Nullable
+    private final List<OpenApiSchema> allOf;
+    @Nullable
+    private final List<OpenApiSchema> oneOf;
+    @Nullable
+    private final List<String> enums;
+    @Nullable
+    private final OpenApiSchema items;
+    @Nullable
+    private final OpenApiSchema additionalProperties;
+    @Nullable
+    private final Map<String, OpenApiSchema> properties;
+    @Nullable
+    private final Set<String> required;
 
-    public Optional<Type> getType() {
-        return getXDataType().or(() -> Optional.ofNullable(getInner().getType())).or(() -> {
-            var types = (Set<String>) getInner().getTypes();
-            if (types == null || types.isEmpty()) return Optional.empty();
-            if (types.size() > 1) {
-                throw new IllegalStateException("Multiple types are not yet supported");
+    protected OpenApiSchema(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer, @Nonnull Schema<?> schema) {
+        super(parent, pointer, schema.get$ref(), OpenApiSchema.class);
+
+        if (pointer.isDirectChildOf(JsonPointer.of("components", "schemas"))) {
+            var key = pointer.getLastKey().orElseThrow();
+            var colonIdx = key.indexOf(':');
+            if (colonIdx >= 0) {
+                namespace = key.substring(0, colonIdx);
+                name = key.substring(colonIdx + 1);
+            } else {
+                namespace = null;
+                name = key;
             }
-            return Optional.of(types.toArray(new String[0])[0]);
-        }).map(Type::from);
+        } else {
+            name = null;
+            namespace = null;
+        }
+
+        description = schema.getDescription();
+
+        type = Optional.ofNullable(schema.getTypes()).flatMap(types -> {
+            switch (types.size()) {
+                case 0:
+                    return Optional.empty();
+                case 1:
+                    return Optional.of(types.iterator().next());
+                default:
+                    throw new IllegalArgumentException("Multiple types not yet supported: " + types);
+            }
+        }).or(() -> Optional.ofNullable(schema.getType())).map(OpenApiSchemaType::from).orElse(null);
+
+        format = ifNonnull(schema.getFormat(), OpenApiSchemaFormat::from);
+
+        allOf = children("allOf", schema.getAllOf(), OpenApiSchema::new);
+        oneOf = children("oneOf", schema.getOneOf(), OpenApiSchema::new);
+
+        enums = ifNonnull(schema.getEnum(), e -> Lists.transform(e, String::valueOf));
+
+        items = child("items", schema.getItems(), OpenApiSchema::new);
+
+        additionalProperties = child("additionalProperties", (Schema<?>) schema.getAdditionalProperties(), OpenApiSchema::new);
+
+        properties = children("properties", schema.getProperties(), OpenApiSchema::new);
+        required = ifNonnull(schema.getRequired(), HashSet::new);
     }
 
-    public boolean is(Type type) {
+    @Nonnull
+    public Optional<String> getName() {
+        return Optional.ofNullable(name);
+    }
+
+    @Nonnull
+    public Optional<String> getNamespace() {
+        return Optional.ofNullable(namespace);
+    }
+
+    @Nonnull
+    public Optional<String> getDescription() {
+        return Optional.ofNullable(description);
+    }
+
+    @Nonnull
+    public Optional<OpenApiSchemaType> getType() {
+        return Optional.ofNullable(type);
+    }
+
+    @Nonnull
+    public Optional<OpenApiSchemaFormat> getFormat() {
+        return Optional.ofNullable(format);
+    }
+
+    public boolean is(@Nonnull OpenApiSchemaType type) {
+        Objects.requireNonNull(type, "type must not be null");
         return getType().map(type::equals).orElse(false);
     }
 
-    public boolean isString() {
-        return is(Type.STRING);
-    }
-
-    public boolean isNumber() {
-        return is(Type.NUMBER);
+    public boolean isArray() {
+        return is(OpenApiSchemaType.ARRAY);
     }
 
     public boolean isBoolean() {
-        return is(Type.BOOLEAN);
+        return is(OpenApiSchemaType.BOOLEAN);
     }
 
-    public boolean isArray() {
-        return is(Type.ARRAY);
+    public boolean isNumber() {
+        return is(OpenApiSchemaType.NUMBER);
     }
 
     public boolean isObject() {
-        return is(Type.OBJECT);
+        return is(OpenApiSchemaType.OBJECT);
     }
 
-    public Optional<Format> getFormat() {
-        return Optional.ofNullable(getInner().getFormat()).map(Format::from);
-    }
-
-    public Optional<List<String>> getEnum() {
-        return Optional.ofNullable((List<String>) getInner().getEnum());
-    }
-
-    public boolean hasEnums() {
-        return getEnum().map(l -> !l.isEmpty()).orElse(false);
-    }
-
-    public Optional<List<OpenApiSchema>> getOneOf() {
-        return childrenOpt("oneOf", Schema::getOneOf, OpenApiSchema::new);
+    public boolean isString() {
+        return is(OpenApiSchemaType.STRING);
     }
 
     public boolean hasAllOf() {
-        return getAllOf().isPresent();
+        return allOf != null && !allOf.isEmpty();
     }
 
+    @Nonnull
     public Optional<List<OpenApiSchema>> getAllOf() {
-        return childrenOpt("allOf", Schema::getAllOf, OpenApiSchema::new);
+        return Lists.unmodifiableOpt(allOf);
     }
 
+    public boolean hasOneOf() {
+        return oneOf != null && !oneOf.isEmpty();
+    }
+
+    @Nonnull
+    public Optional<List<OpenApiSchema>> getOneOf() {
+        return Lists.unmodifiableOpt(oneOf);
+    }
+
+    public boolean hasEnums() {
+        return enums != null && !enums.isEmpty();
+    }
+
+    @Nonnull
+    public Optional<List<String>> getEnums() {
+        return Lists.unmodifiableOpt(enums);
+    }
+
+    @Nonnull
     public Optional<OpenApiSchema> getItems() {
-        return childOpt("items", Schema::getItems, OpenApiSchema::new);
+        return Optional.ofNullable(items);
     }
 
+    @Nonnull
     public Optional<OpenApiSchema> getAdditionalProperties() {
-        return childOpt("additionalProperties", s -> (Schema<?>) s.getAdditionalProperties(), OpenApiSchema::new);
+        return Optional.ofNullable(additionalProperties);
     }
 
-    public Set<String> getRequired() {
-        return Optional.ofNullable((List<String>) getInner().getRequired()).map(HashSet::new).orElseGet(HashSet::new);
+    @Nonnull
+    public Optional<Map<String, OpenApiSchema>> getProperties() {
+        return Maps.unmodifiableOpt(properties);
     }
 
-    public Stream<OpenApiProperty> getProperties() {
-        var properties = (Map<String, Schema<?>>) getInner().getProperties();
-        if (properties == null) return Stream.empty();
-        var basePtr = getJsonPtr().append("properties");
-        var requiredFields = getRequired();
-        return properties.entrySet()
-            .stream()
-            .map(e -> new OpenApiProperty(getParent(), basePtr.append(e.getKey()), e.getValue(), requiredFields.contains(e.getKey())));
-    }
-
-    @Override
-    public Map<String, Object> getExtensions() {
-        return getInner().getExtensions();
-    }
-
-    public Optional<String> getXDataType() {
-        return getExtensionAsString("x-data-type");
-    }
-
-    public String getName() {
-        return getJsonPtr().getKey().orElseThrow();
-    }
-
-    public String getNamespace() {
-        var schemaFile = Path.of(getParent().getLocation().getPath()).getFileName().toString();
-        var ns = schemaFile.substring(0, schemaFile.lastIndexOf('.'));
-        // Match existing naming scheme
-        return ns.replaceAll("\\._common", "").replaceAll("^_common", "_types");
-    }
-
-    @Override
-    protected OpenApiSchema getSelf() {
-        return this;
-    }
-
-    public enum Type {
-        ARRAY,
-        BOOLEAN,
-        INTEGER,
-        NUMBER,
-        OBJECT,
-        STRING,
-        TIME;
-
-        public static Type from(String s) {
-            return valueOf(s.toUpperCase());
-        }
-    }
-
-    public enum Format {
-        INT32,
-        INT64,
-        FLOAT,
-        DOUBLE;
-
-        public static Format from(String s) {
-            return valueOf(s.toUpperCase());
-        }
+    @Nonnull
+    public Optional<Set<String>> getRequired() {
+        return Sets.unmodifiableOpt(required);
     }
 }
