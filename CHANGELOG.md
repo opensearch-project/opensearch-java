@@ -39,12 +39,28 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
+
+### Security
+
+## [2.10.3] - 05/16/2024
+### Added
+
+### Dependencies
+- Bumps `io.github.classgraph:classgraph` from 4.8.170 to 4.8.172
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
 - Fix the deserialization of SortOptions ([#981](https://github.com/opensearch-project/opensearch-java/pull/981))
 - Generic HTTP Actions in Java Client does not work with AwsSdk2Transport ([#978](https://github.com/opensearch-project/opensearch-java/pull/978))
 
 ### Security
 
-## [2.10.2]
+## [2.10.2] - 05/07/2024
 
 ### Added
 
@@ -405,7 +421,9 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.1...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.3...2.x
+[2.10.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.2...v2.10.3
+[2.10.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.1...v2.10.2
 [2.10.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.0...v2.10.1
 [2.10.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.9.1...v2.10.0
 [2.9.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.9.0...v2.9.1
