@@ -5,6 +5,21 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.10.3] - 05/16/2024
+### Added
+
+### Dependencies
 - Bumps `io.github.classgraph:classgraph` from 4.8.170 to 4.8.172
 
 ### Changed
@@ -19,7 +34,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Security
 
-## [2.10.2]
+## [2.10.2] - 05/07/2024
 ### Added
 
 ### Dependencies
@@ -373,7 +388,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.1...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.3...2.x
+[2.10.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.2...v2.10.3
+[2.10.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.1...v2.10.2
 [2.10.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.0...v2.10.1
 [2.10.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.9.1...v2.10.0
 [2.9.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.9.0...v2.9.1
