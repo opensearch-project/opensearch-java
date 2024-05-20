@@ -52,7 +52,7 @@ plugins {
     `java-library`
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "2.7"
-    id("org.owasp.dependencycheck") version "9.1.0"
+    id("org.owasp.dependencycheck") version "9.2.0"
     id("com.diffplug.spotless") version "6.25.0"
 }
 apply(plugin = "opensearch.repositories")
