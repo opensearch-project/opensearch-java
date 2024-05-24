@@ -8,6 +8,7 @@
 
 package org.opensearch.client.util;
 
+import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.BitSet;
@@ -71,7 +72,7 @@ public class PathEncoder {
      */
     private static void encodePathSegment(StringBuilder buf, String segment) {
         if (segment != null) {
-            byte[] bytes = StandardCharsets.UTF_8.encode(CharBuffer.wrap(segment)).array();
+            final ByteBuffer bytes = StandardCharsets.UTF_8.encode(CharBuffer.wrap(segment));
             encodeBytes(buf, bytes);
         }
     }
@@ -82,9 +83,9 @@ public class PathEncoder {
      * @param buf   the StringBuilder to append the encoded bytes to
      * @param bytes the byte array to encode
      */
-    private static void encodeBytes(StringBuilder buf, byte[] bytes) {
-        for (byte b : bytes) {
-            int c = b & 0xFF;
+    private static void encodeBytes(StringBuilder buf, ByteBuffer bytes) {
+        while (bytes.hasRemaining()) {
+            int c = bytes.get() & 0xFF;
             if (UNRESERVED_CHARACTERS.get(c)) {
                 buf.append((char) c);
             } else {
