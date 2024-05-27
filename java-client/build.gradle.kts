@@ -51,7 +51,7 @@ plugins {
     java
     `java-library`
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "2.7"
+    id("com.github.jk1.dependency-license-report") version "2.8"
     id("org.owasp.dependencycheck") version "9.2.0"
     id("com.diffplug.spotless") version "6.25.0"
 }
