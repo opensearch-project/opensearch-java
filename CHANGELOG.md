@@ -41,6 +41,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
+- ApacheHttpClient5Transport requires Apache Commons Logging dependency ([#1003](https://github.com/opensearch-project/opensearch-java/pull/1003))
 
 ### Security
 
