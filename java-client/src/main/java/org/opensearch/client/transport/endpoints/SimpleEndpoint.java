@@ -32,13 +32,14 @@
 
 package org.opensearch.client.transport.endpoints;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.JsonEndpoint;
-import org.opensearch.client.util.PathEncoder;
 
 public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<RequestT, ResponseT, ErrorResponse> {
 
@@ -133,6 +134,6 @@ public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<Request
     }
 
     public static void pathEncode(String src, StringBuilder dest) {
-        dest.append(PathEncoder.encode(src));
+        dest.append(URLEncoder.encode(src, StandardCharsets.UTF_8));
     }
 }
