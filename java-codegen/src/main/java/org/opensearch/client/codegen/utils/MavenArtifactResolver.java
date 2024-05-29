@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.annotation.Nonnull;
 import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
 import org.eclipse.aether.RepositorySystem;
 import org.eclipse.aether.RepositorySystemSession;
@@ -29,6 +30,7 @@ import org.eclipse.aether.resolution.DependencyResolutionException;
 import org.eclipse.aether.supplier.RepositorySystemSupplier;
 
 public class MavenArtifactResolver {
+    @Nonnull
     public static MavenArtifactResolver createDefault() {
         var repositorySystem = new RepositorySystemSupplier().get();
         var session = MavenRepositorySystemUtils.newSession();
@@ -42,17 +44,27 @@ public class MavenArtifactResolver {
 
     private final static Collection<Exclusion> EXCLUDE_ALL_TRANSITIVES = Collections.singleton(new Exclusion("*", "*", "*", "*"));
 
+    @Nonnull
     private final RepositorySystem repositorySystem;
+    @Nonnull
     private final RepositorySystemSession session;
+    @Nonnull
     private final List<RemoteRepository> repositories;
 
-    public MavenArtifactResolver(RepositorySystem repositorySystem, RepositorySystemSession session, List<RemoteRepository> repositories) {
-        this.repositorySystem = Objects.requireNonNull(repositorySystem);
-        this.session = Objects.requireNonNull(session);
-        this.repositories = Objects.requireNonNull(repositories);
+    public MavenArtifactResolver(
+        @Nonnull RepositorySystem repositorySystem,
+        @Nonnull RepositorySystemSession session,
+        @Nonnull List<RemoteRepository> repositories
+    ) {
+        this.repositorySystem = Objects.requireNonNull(repositorySystem, "repositorySystem must not be null");
+        this.session = Objects.requireNonNull(session, "session must not be null");
+        this.repositories = Objects.requireNonNull(repositories, "repositories must not be null");
     }
 
-    public Set<File> resolve(boolean withTransitives, Collection<String> mavenCoordinates) {
+    @Nonnull
+    public Set<File> resolve(boolean withTransitives, @Nonnull Collection<String> mavenCoordinates) {
+        Objects.requireNonNull(mavenCoordinates, "mavenCoordinates must not be null");
+
         var dependencies = mavenCoordinates.stream()
             .map(coord -> new Dependency(new DefaultArtifact(coord), null, null, withTransitives ? null : EXCLUDE_ALL_TRANSITIVES))
             .toList();

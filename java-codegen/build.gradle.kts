@@ -69,9 +69,9 @@ application {
 
 tasks.named<JavaExec>("run") {
     args = listOf(
-        "https://github.com/opensearch-project/opensearch-api-specification/releases/download/main/opensearch-openapi.yaml",
-        "$rootDir/buildSrc/formatterConfig.xml",
-        "${project(":java-client").projectDir}/src/generated/java/"
+        "--input", "https://github.com/opensearch-project/opensearch-api-specification/releases/download/main/opensearch-openapi.yaml",
+        "--eclipse-config", "$rootDir/buildSrc/formatterConfig.xml",
+        "--output", "${project(":java-client").projectDir}/src/generated/java/"
     )
 }
 
@@ -112,44 +112,56 @@ tasks.withType<Jar> {
     }
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}
+
 tasks.build {
     dependsOn("spotlessJavaCheck")
 }
 
 dependencies {
     // Apache 2.0
-    implementation("io.swagger.parser.v3:swagger-parser:2.1.20")
+    implementation("io.swagger.parser.v3", "swagger-parser", "2.1.22")
 
     // (New) BSD
-    implementation("com.samskivert:jmustache:1.16")
+    implementation("com.samskivert", "jmustache", "1.16")
 
     // Apache 2.0
-    implementation("org.apache.commons:commons-lang3:3.14.0")
-    implementation("org.apache.commons:commons-text:1.10.0")
+    implementation("commons-cli", "commons-cli", "1.8.0")
+    implementation("commons-logging", "commons-logging", "1.3.2")
+    implementation("org.apache.commons", "commons-lang3", "3.14.0")
+    implementation("org.apache.commons", "commons-text", "1.12.0")
+    implementation("org.apache.logging.log4j", "log4j-api", "[2.17.1,3.0)")
+    implementation("org.apache.logging.log4j", "log4j-core", "[2.17.1,3.0)")
+    implementation("org.apache.logging.log4j", "log4j-slf4j2-impl", "[2.17.1,3.0)")
 
     // Apache 2.0
-    implementation("com.fasterxml.jackson.core:jackson-core:2.14.2")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.2")
+    implementation("com.fasterxml.jackson.core", "jackson-core", "2.15.2")
+    implementation("com.fasterxml.jackson.core", "jackson-databind", "2.15.2")
 
     // Apache 2.0
-    implementation("com.diffplug.spotless:spotless-lib:2.45.0")
-    implementation("com.diffplug.spotless:spotless-lib-extra:2.45.0")
+    implementation("com.diffplug.spotless", "spotless-lib", "2.45.0")
+    implementation("com.diffplug.spotless", "spotless-lib-extra", "2.45.0")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
-    implementation("com.google.code.findbugs:jsr305:3.0.2")
+    implementation("com.google.code.findbugs", "jsr305", "3.0.2")
 
     // Apache 2.0
-    compileOnly("org.jetbrains:annotations:24.1.0")
+    compileOnly("org.jetbrains", "annotations", "24.1.0")
 
     // Apache 2.0
-    implementation("org.apache.maven.resolver:maven-resolver-api:1.9.18")
-    implementation("org.apache.maven.resolver:maven-resolver-supplier:1.9.18")
+    implementation("org.apache.maven.resolver", "maven-resolver-api", "1.9.20")
+    implementation("org.apache.maven.resolver", "maven-resolver-supplier", "1.9.20")
 
-    // Eclipse 1.0
-    testImplementation("junit", "junit" , "4.13.2") {
-        exclude(group = "org.hamcrest")
-    }
+    // EPL-2.0
+    testImplementation(platform("org.junit:junit-bom:5.10.2"))
+    testImplementation("org.junit.jupiter", "junit-jupiter")
+    testRuntimeOnly("org.junit.platform", "junit-platform-launcher")
 }
 
 licenseReport {

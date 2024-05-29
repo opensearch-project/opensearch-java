@@ -20,10 +20,13 @@ import java.util.Optional;
 import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.utils.Maps;
 
 public class OpenApiSpecification extends OpenApiElement<OpenApiSpecification> {
+    private static final Logger LOGGER = LogManager.getLogger();
     private static final ParseOptions PARSE_OPTIONS = new ParseOptions();
     private static final OpenAPIV3Parser PARSER = new OpenAPIV3Parser();
     private static final Map<URI, OpenApiSpecification> SPECS = new HashMap<>();
@@ -32,7 +35,7 @@ public class OpenApiSpecification extends OpenApiElement<OpenApiSpecification> {
         if (SPECS.containsKey(location)) {
             return SPECS.get(location);
         }
-        System.out.println("Parsing spec: " + location);
+        LOGGER.info("Parsing spec: {}", location);
         var result = PARSER.readLocation(location.toString(), null, PARSE_OPTIONS);
         var openApi = result.getOpenAPI();
         if (openApi == null) {

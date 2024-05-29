@@ -8,18 +8,26 @@
 
 package org.opensearch.client.codegen.utils;
 
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import org.jetbrains.annotations.Contract;
 
 public abstract class Either<L, R> {
     public abstract boolean isLeft();
 
     public abstract boolean isRight();
 
+    @Nullable
     public abstract L getLeft();
 
+    @Nullable
     public abstract R getRight();
 
-    public <X extends Throwable> L getLeftOrThrow(Function<? super R, X> exceptionFn) throws X {
+    @Nullable
+    public <X extends Throwable> L getLeftOrThrow(@Nonnull Function<? super R, X> exceptionFn) throws X {
+        Objects.requireNonNull(exceptionFn, "exceptionFn must not be null");
         if (isLeft()) {
             return getLeft();
         } else {
@@ -28,6 +36,7 @@ public abstract class Either<L, R> {
     }
 
     public <X extends Throwable> R getRightOrThrow(Function<? super L, X> exceptionFn) throws X {
+        Objects.requireNonNull(exceptionFn, "exceptionFn must not be null");
         if (isRight()) {
             return getRight();
         } else {
@@ -43,18 +52,21 @@ public abstract class Either<L, R> {
         }
     }
 
-    public static <L, R> Either<L, R> left(L value) {
+    @Nonnull
+    public static <L, R> Either<L, R> left(@Nullable L value) {
         return new Left<>(value);
     }
 
-    public static <L, R> Either<L, R> right(R value) {
+    @Nonnull
+    public static <L, R> Either<L, R> right(@Nullable R value) {
         return new Right<>(value);
     }
 
     private static class Left<L, R> extends Either<L, R> {
+        @Nullable
         private final L value;
 
-        private Left(L value) {
+        private Left(@Nullable L value) {
             this.value = value;
         }
 
@@ -68,11 +80,13 @@ public abstract class Either<L, R> {
             return false;
         }
 
+        @Nullable
         @Override
         public L getLeft() {
             return value;
         }
 
+        @Contract("-> fail")
         @Override
         public R getRight() {
             throw new IllegalStateException("Cannot get right value from left");
@@ -80,9 +94,10 @@ public abstract class Either<L, R> {
     }
 
     private static class Right<L, R> extends Either<L, R> {
+        @Nullable
         private final R value;
 
-        private Right(R value) {
+        private Right(@Nullable R value) {
             this.value = value;
         }
 
@@ -96,11 +111,13 @@ public abstract class Either<L, R> {
             return true;
         }
 
+        @Contract("-> fail")
         @Override
         public L getLeft() {
             throw new IllegalStateException("Cannot get left value from right");
         }
 
+        @Nullable
         @Override
         public R getRight() {
             return value;
