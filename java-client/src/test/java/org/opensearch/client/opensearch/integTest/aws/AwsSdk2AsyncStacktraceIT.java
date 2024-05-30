@@ -11,6 +11,7 @@ package org.opensearch.client.opensearch.integTest.aws;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
 import org.apache.logging.log4j.core.util.Throwables;
 import org.junit.Test;
 import org.opensearch.client.opensearch.OpenSearchClient;
@@ -20,10 +21,10 @@ public class AwsSdk2AsyncStacktraceIT extends AwsSdk2TransportTestCase {
     @Test
     public void testFailureFromClientPreservesStacktraceOfCaller() throws Exception {
         final OpenSearchClient client = getClient(false, null, null);
-        var thrown = assertThrows(Exception.class, () -> client.indices().get(g -> g.index("nonexisting-index")));
+        Exception thrown = assertThrows(Exception.class, () -> client.indices().get(g -> g.index("nonexisting-index")));
 
-        var stacktraceElements = Throwables.toStringList(thrown);
-        var someElementContainsCallerMethodName = stacktraceElements.stream()
+        List<String> stacktraceElements = Throwables.toStringList(thrown);
+        boolean someElementContainsCallerMethodName = stacktraceElements.stream()
             .anyMatch(it -> it.contains("testFailureFromClientPreservesStacktraceOfCaller"));
 
         assertTrue(someElementContainsCallerMethodName);
