@@ -80,7 +80,7 @@ java {
     registerFeature("awsSdk2Support") {
         usingSourceSet(sourceSets.get("main"))
     }
-    
+
     toolchain {
       languageVersion = JavaLanguageVersion.of(runtimeJavaVersion.majorVersion)
       vendor = JvmVendorSpec.ADOPTIUM
@@ -205,6 +205,7 @@ dependencies {
     // For AwsSdk2Transport
     "awsSdk2SupportCompileOnly"("software.amazon.awssdk","sdk-core","[2.15,3.0)")
     "awsSdk2SupportCompileOnly"("software.amazon.awssdk","auth","[2.15,3.0)")
+    "awsSdk2SupportCompileOnly"("io.netty","netty-handler","4.1.108.Final")
     testImplementation("software.amazon.awssdk","sdk-core","[2.15,3.0)")
     testImplementation("software.amazon.awssdk","auth","[2.15,3.0)")
     testImplementation("software.amazon.awssdk","aws-crt-client","[2.15,3.0)")
@@ -372,17 +373,17 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
     targetCompatibility = JavaVersion.VERSION_11.toString()
     sourceCompatibility = JavaVersion.VERSION_11.toString()
   }
-  
+
   tasks.named<JavaCompile>("compileTestJava") {
     targetCompatibility = JavaVersion.VERSION_11.toString()
     sourceCompatibility = JavaVersion.VERSION_11.toString()
   }
-  
+
   tasks.named<Test>("integrationTest") {
     testClassesDirs += java11.output.classesDirs
     classpath = sourceSets["java11"].runtimeClasspath
   }
-  
+
   tasks.named<Test>("unitTest") {
     testClassesDirs += java11.output.classesDirs
     classpath = sourceSets["java11"].runtimeClasspath

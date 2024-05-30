@@ -8,6 +8,10 @@
 
 package org.opensearch.client.transport.aws;
 
+import io.netty.channel.ChannelPipelineException;
+import io.netty.channel.EventLoopException;
+import io.netty.handler.timeout.ReadTimeoutException;
+import io.netty.handler.timeout.WriteTimeoutException;
 import jakarta.json.JsonObject;
 import jakarta.json.stream.JsonParser;
 import java.io.ByteArrayInputStream;
@@ -662,9 +666,6 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             e.initCause(exception);
             return e;
         }
-        if (exception instanceof IOException) {
-            return new IOException(exception.getMessage(), exception);
-        }
         if (exception instanceof OpenSearchException) {
             final OpenSearchException e = new OpenSearchException(((OpenSearchException) exception).response());
             e.initCause(exception);
@@ -674,6 +675,29 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             final OpenSearchClientException e = new OpenSearchClientException(((OpenSearchClientException) exception).response());
             e.initCause(exception);
             return e;
+        }
+        if (exception instanceof ReadTimeoutException) {
+            final ReadTimeoutException e = new ReadTimeoutException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof WriteTimeoutException) {
+            final WriteTimeoutException e = new WriteTimeoutException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof ChannelPipelineException) {
+            final ChannelPipelineException e = new ChannelPipelineException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof EventLoopException) {
+            final EventLoopException e = new EventLoopException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof IOException) {
+            return new IOException(exception.getMessage(), exception);
         }
         if (exception instanceof RuntimeException) {
             return new RuntimeException(exception.getMessage(), exception);
