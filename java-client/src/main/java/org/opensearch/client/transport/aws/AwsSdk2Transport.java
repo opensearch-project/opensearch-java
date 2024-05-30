@@ -33,8 +33,6 @@ import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.net.ssl.SSLHandshakeException;
-import org.apache.hc.client5.http.ConnectTimeoutException;
-import org.apache.hc.core5.http.ConnectionClosedException;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
@@ -635,18 +633,8 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             }
             exception = (Exception) t;
         }
-        if (exception instanceof ConnectTimeoutException) {
-            ConnectTimeoutException e = new ConnectTimeoutException(exception.getMessage());
-            e.initCause(exception);
-            return e;
-        }
         if (exception instanceof SocketTimeoutException) {
             SocketTimeoutException e = new SocketTimeoutException(exception.getMessage());
-            e.initCause(exception);
-            return e;
-        }
-        if (exception instanceof ConnectionClosedException) {
-            ConnectionClosedException e = new ConnectionClosedException(exception.getMessage());
             e.initCause(exception);
             return e;
         }
