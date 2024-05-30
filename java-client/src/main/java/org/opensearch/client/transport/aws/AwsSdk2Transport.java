@@ -662,6 +662,9 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             e.initCause(exception);
             return e;
         }
+        if (exception instanceof IOException) {
+            return new IOException(exception.getMessage(), exception);
+        }
         if (exception instanceof OpenSearchException) {
             final OpenSearchException e = new OpenSearchException(((OpenSearchException) exception).response());
             e.initCause(exception);
@@ -671,9 +674,6 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             final OpenSearchClientException e = new OpenSearchClientException(((OpenSearchClientException) exception).response());
             e.initCause(exception);
             return e;
-        }
-        if (exception instanceof IOException) {
-            return new IOException(exception.getMessage(), exception);
         }
         if (exception instanceof RuntimeException) {
             return new RuntimeException(exception.getMessage(), exception);
