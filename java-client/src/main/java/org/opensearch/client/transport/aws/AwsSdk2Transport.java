@@ -651,7 +651,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         }
         if (exception instanceof SSLHandshakeException) {
             SSLHandshakeException e = new SSLHandshakeException(
-                    exception.getMessage() + "\nSee https://opensearch.org/docs/latest/clients/java/ for troubleshooting."
+                exception.getMessage() + "\nSee https://opensearch.org/docs/latest/clients/java/ for troubleshooting."
             );
             e.initCause(exception);
             return e;
