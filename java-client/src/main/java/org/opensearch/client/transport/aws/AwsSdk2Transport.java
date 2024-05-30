@@ -14,6 +14,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
@@ -30,6 +32,9 @@ import java.util.zip.GZIPInputStream;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.net.ssl.SSLHandshakeException;
+import org.apache.hc.client5.http.ConnectTimeoutException;
+import org.apache.hc.core5.http.ConnectionClosedException;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
@@ -199,13 +204,12 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             try {
                 return executeAsync((SdkAsyncHttpClient) httpClient, clientReq, requestBody, endpoint, options).get();
             } catch (ExecutionException e) {
-                Throwable cause = e.getCause();
-                if (cause != null) {
-                    if (cause instanceof IOException) {
-                        throw (IOException) cause;
-                    } else {
-                        throw new IOException(cause);
-                    }
+                Exception cause = extractAndWrapCause(e);
+                if (cause instanceof IOException) {
+                    throw (IOException) cause;
+                }
+                if (cause instanceof RuntimeException) {
+                    throw (RuntimeException) cause;
                 }
                 throw new IOException(e);
             } catch (InterruptedException e) {
@@ -612,5 +616,62 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             Optional<T> r = (Optional<T>) supplier.get();
             return Objects.requireNonNull(r);
         }
+    }
+
+    /**
+     * Wrap the exception so the caller's signature shows up in the stack trace, taking care to copy the original type and message
+     * where possible so async and sync code don't have to check different exceptions.
+     */
+    private static Exception extractAndWrapCause(Exception exception) {
+        if (exception instanceof InterruptedException) {
+            throw new RuntimeException("thread waiting for the response was interrupted", exception);
+        }
+        if (exception instanceof ExecutionException) {
+            ExecutionException executionException = (ExecutionException) exception;
+            Throwable t = executionException.getCause() == null ? executionException : executionException.getCause();
+            if (t instanceof Error) {
+                throw (Error) t;
+            }
+            exception = (Exception) t;
+        }
+        if (exception instanceof ConnectTimeoutException) {
+            ConnectTimeoutException e = new ConnectTimeoutException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof SocketTimeoutException) {
+            SocketTimeoutException e = new SocketTimeoutException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof ConnectionClosedException) {
+            ConnectionClosedException e = new ConnectionClosedException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof SSLHandshakeException) {
+            SSLHandshakeException e = new SSLHandshakeException(
+                    exception.getMessage() + "\nSee https://opensearch.org/docs/latest/clients/java/ for troubleshooting."
+            );
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof ConnectException) {
+            ConnectException e = new ConnectException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof IOException) {
+            return new IOException(exception.getMessage(), exception);
+        }
+        if (exception instanceof OpenSearchException) {
+            final OpenSearchException e = new OpenSearchException(((OpenSearchException) exception).response());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof RuntimeException) {
+            return new RuntimeException(exception.getMessage(), exception);
+        }
+        return new RuntimeException("error while performing request", exception);
     }
 }
