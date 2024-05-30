@@ -229,6 +229,21 @@ public class ExistsRequest extends RequestBase {
         return this.versionType;
     }
 
+    public Builder toBuilder() {
+        return new Builder().source(source)
+            .sourceExcludes(sourceExcludes)
+            .sourceIncludes(sourceIncludes)
+            .id(id)
+            .index(index)
+            .preference(preference)
+            .realtime(realtime)
+            .refresh(refresh)
+            .routing(routing)
+            .storedFields(storedFields)
+            .version(version)
+            .versionType(versionType);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

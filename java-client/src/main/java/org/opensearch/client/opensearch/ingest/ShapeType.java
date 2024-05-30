@@ -39,7 +39,7 @@ import org.opensearch.client.json.JsonpDeserializable;
 public enum ShapeType implements JsonEnum {
     GeoShape("geo_shape"),
 
-    Shape("shape"),
+    XyShape("xy_shape"),
 
     ;
 

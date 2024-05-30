@@ -83,6 +83,10 @@ public class SpanGapQuery implements SpanQueryVariant, JsonpSerializable {
         generator.writeEnd();
     }
 
+    public Builder toBuilder() {
+        return new Builder().field(field).spanWidth(spanWidth);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

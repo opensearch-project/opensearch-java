@@ -3,9 +3,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.0]
 ### Dependencies
-- Bumps `io.github.classgraph:classgraph` from 4.8.162 to 4.8.163
-- Bumps `org.owasp.dependencycheck` from 8.4.0 to 8.4.2
-- Bumps `org.eclipse.parsson:parsson` from 1.1.4 to 1.1.5
+- Bumps `org.owasp.dependencycheck` from 9.1.0 to 9.2.0
+- Bumps `com.github.jk1.dependency-license-report` from 2.7 to 2.8
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
@@ -16,6 +15,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Changed
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
+- Changed SearchAfter of SearchRequest type to FieldValue instead of String ([#769](https://github.com/opensearch-project/opensearch-java/pull/769))
 
 ### Deprecated
 - Deprecate RestClientTransport ([#536](https://github.com/opensearch-project/opensearch-java/pull/536))
@@ -25,24 +25,229 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
 
+
 ### Security
 
 ## [Unreleased 2.x]
 
 ### Added
-- Added support for indexing and search index settings ([#667](https://github.com/opensearch-project/opensearch-java/pull/667))
 
 ### Dependencies
 
 ### Changed
-- Allow null values in arrays ([#687](https://github.com/opensearch-project/opensearch-java/pull/687))
-- Wrap RuntimeExceptions in IOException when synchronous callers use asynchronous transports ([#656](https://github.com/opensearch-project/opensearch-java/pull/656))
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+- ApacheHttpClient5Transport requires Apache Commons Logging dependency ([#1003](https://github.com/opensearch-project/opensearch-java/pull/1003))
+
+### Security
+
+## [2.10.3] - 05/16/2024
+### Added
+
+### Dependencies
+- Bumps `io.github.classgraph:classgraph` from 4.8.170 to 4.8.172
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fix the deserialization of SortOptions ([#981](https://github.com/opensearch-project/opensearch-java/pull/981))
+- Generic HTTP Actions in Java Client does not work with AwsSdk2Transport ([#978](https://github.com/opensearch-project/opensearch-java/pull/978))
+
+### Security
+
+## [2.10.2] - 05/07/2024
+
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fix integer overflow for variables in indices stats response ([#960](https://github.com/opensearch-project/opensearch-java/pull/960))
+- Fix composite aggregations for search requests ([#967](https://github.com/opensearch-project/opensearch-java/pull/967))
+
+### Security
+
+## [2.10.1] - 04/16/2024
+### Added
+- Add missed fields to PhraseSuggestOption: collapseMatch ([#940](https://github.com/opensearch-project/opensearch-java/pull/940))
+- Add missed fields to bulk's UpdateOperation: source ([#947](https://github.com/opensearch-project/opensearch-java/pull/947))
+
+### Dependencies
+- Bumps `com.github.jk1.dependency-license-report` from 2.6 to 2.7
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+
+## [2.10.0] - 04/11/2024
+### Added
+- Add xy_shape property ([#884](https://github.com/opensearch-project/opensearch-java/pull/885))
+- Add missed fields to MultisearchBody: seqNoPrimaryTerm, storedFields, explain, fields, indicesBoost ([#914](https://github.com/opensearch-project/opensearch-java/pull/914))
+- Add OpenSearchGenericClient with support for raw HTTP request/responses ([#910](https://github.com/opensearch-project/opensearch-java/pull/910), [#929](https://github.com/opensearch-project/opensearch-java/pull/929))
+- Add missed fields to MultisearchBody: collapse, version, timeout ([#916](https://github.com/opensearch-project/opensearch-java/pull/916)
+- Add missed fields to MultisearchBody: ext, rescore and to SearchRequest: ext ([#918](https://github.com/opensearch-project/opensearch-java/pull/918)
+
+### Dependencies
+- Bumps `io.github.classgraph:classgraph` from 4.8.161 to 4.8.165
+- Bumps `org.owasp.dependencycheck` from 9.0.8 to 9.1.0
+- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.3.0 to 5.3.1
+- Bumps `io.github.classgraph:classgraph` from 4.8.165 to 4.8.170
+- Bumps `jackson` from 2.15.2 to 2.17.0
+- Bumps `org.eclipse.parsson:parsson` from 1.1.5 to 1.1.6
+
+### Changed
+
+### Deprecated
+
+### Removed
+- Delete shape property ([#884](https://github.com/opensearch-project/opensearch-java/pull/885))
+
+### Fixed
+- Fix integer overflow for variables in indices stats response ([#877](https://github.com/opensearch-project/opensearch-java/pull/877))
+- Support weight function in function score query ([#880](https://github.com/opensearch-project/opensearch-java/pull/880))
+- Fix pattern replace by making flag and replacement optional as on api  ([#895](https://github.com/opensearch-project/opensearch-java/pull/895))
+- Client with Java 8 runtime and Apache HttpClient 5 Transport fails with java.lang.NoSuchMethodError: java.nio.ByteBuffer.flip()Ljava/nio/ByteBuffer ([#920](https://github.com/opensearch-project/opensearch-java/pull/920)) 
+- Add missed field  "filter" to NeuralQuery model class
+
+### Security
+
+## [2.9.0] - 02/22/2024
+### Added
+- Add support for Hybrid query type ([#850](https://github.com/opensearch-project/opensearch-java/pull/850))
+
+### Dependencies
+- Bumps org.ajoberstar.grgit:grgit-gradle from 5.2.0 to 5.2.2
+
+### Changed
+- Restore support for Java 8 ([#767](https://github.com/opensearch-project/opensearch-java/pull/767))
+- Add an integration test that runs on JDK-8 ([#795](https://github.com/opensearch-project/opensearch-java/pull/795))
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fix missing properties on UpdateOperation ([#744](https://github.com/opensearch-project/opensearch-java/pull/744))
+
+### Security
+
+## [2.8.4] - 02/20/2024
+### Added
+- Add search role type for nodes in cluster stats ([#848](https://github.com/opensearch-project/opensearch-java/pull/848))
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fix ClusterStatsResponse field deserialization ([#848](https://github.com/opensearch-project/opensearch-java/pull/848))
+
+### Security
+
+## [2.8.3] - 02/12/2024
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fix PutTemplateRequest field deserialization ([#723](https://github.com/opensearch-project/opensearch-java/pull/723))
+- Fix InnerHits to no longer enforce the nullable Index field when converting to Hit. ([#838](https://github.com/opensearch-project/opensearch-java/pull/838))
+
+### Security
+
+## [2.8.2] - 02/07/2024
+### Added
+- Added support for icu_collation_keyword type ([#725](https://github.com/opensearch-project/opensearch-java/pull/725))
+- Added support for flat_object field property ([#735](https://github.com/opensearch-project/opensearch-java/pull/735))
+- Expose HTTP status code through `ResponseException#status` ([#756](https://github.com/opensearch-project/opensearch-java/pull/756))
+- Added toBuilder method to all request model in core package & _types.query_dsl package ([#766](https://github.com/opensearch-project/opensearch-java/pull/766))
+- Added toQuery method in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760))
+- Added missing WrapperQuery accessors and builder methods ([#806](https://github.com/opensearch-project/opensearch-java/pull/806))
+
+### Dependencies
+- Bumps `com.diffplug.spotless` from 6.22.0 to 6.25.0
+- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.2.1 to 5.3
+- Bumps `org.owasp.dependencycheck` from 8.4.2 to 9.0.8
+
+### Changed
+
+### Deprecated
+- Deprecated "_toQuery()" in Query and QueryVariant ([#760](https://github.com/opensearch-project/opensearch-java/pull/760))
+
+### Removed
+- Removed unsupported `prefix` field from CompletionSuggester ([#812](https://github.com/opensearch-project/opensearch-java/pull/812))
+
+### Fixed
+- Fix partial success results for msearch_template ([#709](https://github.com/opensearch-project/opensearch-java/pull/709))
+- Fix deserialization of node stats response ([#745](https://github.com/opensearch-project/opensearch-java/pull/745))
+- Fix PutIndexTemplateRequest field deserialization ([#765](https://github.com/opensearch-project/opensearch-java/pull/765))
+- Fix InnerHits to no longer enforce the nullable Index field when converting to Hit. ([#825](https://github.com/opensearch-project/opensearch-java/issues/825))
+
+### Security
+
+## [2.8.1]
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fix partial success results for msearch_template ([#709](https://github.com/opensearch-project/opensearch-java/pull/709))
+
+### Security
+## [2.8.0] - 01/11/2023
+### Added
+- Added support for indexing and search index settings ([#667](https://github.com/opensearch-project/opensearch-java/pull/667))
+- Added support for neural query type ([#674](https://github.com/opensearch-project/opensearch-java/pull/674))
+
+### Dependencies
+
+### Changed
+- Allow null values in arrays ([#687](https://github.com/opensearch-project/opensearch-java/pull/687))
+- Add an example for bulk update operation in samples ([#690](https://github.com/opensearch-project/opensearch-java/pull/690))
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fixed Hit response when search request has storedFields as null ([#698](https://github.com/opensearch-project/opensearch-java/pull/698))
 
 ### Security
 
@@ -54,7 +259,6 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Added support for "script_fields" in multi search request ([#632](https://github.com/opensearch-project/opensearch-java/pull/632))
 - Added size attribute to MultiTermsAggregation ([#627](https://github.com/opensearch-project/opensearch-java/pull/627))
 - Added version increment workflow that executes after release ([#664](https://github.com/opensearch-project/opensearch-java/pull/664))
-- Added support for neural query type ([#674](https://github.com/opensearch-project/opensearch-java/pull/674))
 
 ### Dependencies
 - Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.0.0 to 5.2.0
@@ -220,7 +424,18 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.7.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.3...2.x
+[2.10.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.2...v2.10.3
+[2.10.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.1...v2.10.2
+[2.10.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.0...v2.10.1
+[2.10.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.9.1...v2.10.0
+[2.9.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.9.0...v2.9.1
+[2.9.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.4...v2.9.0
+[2.8.4]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.3...v2.8.4
+[2.8.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.2...v2.8.3
+[2.8.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.1...v2.8.2
+[2.8.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.8.0...v2.8.1
+[2.8.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.7.0...v2.8.0
 [2.7.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.6.0...v2.7.0
 [2.6.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.4.0...v2.5.0

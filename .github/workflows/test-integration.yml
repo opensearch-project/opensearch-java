@@ -24,6 +24,9 @@ jobs:
           - { opensearch_version: 2.8.0, java: 11 }
           - { opensearch_version: 2.9.0, java: 11 }
           - { opensearch_version: 2.10.0, java: 11 }
+          - { opensearch_version: 2.11.1, java: 11 }
+          - { opensearch_version: 2.12.0, java: 11 }
+          - { opensearch_version: 2.13.0, java: 11 }
     steps:
       - name: Checkout Java Client
         uses: actions/checkout@v3
@@ -37,11 +40,19 @@ jobs:
 
       - name: Run Docker
         run: |
+          echo "PASSWORD=admin" >> $GITHUB_ENV
           docker-compose --project-directory .ci/opensearch build --build-arg OPENSEARCH_VERSION=${{ matrix.entry.opensearch_version }}
           docker-compose --project-directory .ci/opensearch up -d
           sleep 60
+
+      - name: Sets password (new versions)
+        run: |
+          if [[ ${{ matrix.entry.opensearch_version }} =~ ^2.1[2-9]+.[0-9]+$ ]]; then
+              echo "PASSWORD=0_aD^min_0" >> $GITHUB_ENV
+          fi
+
       - name: Run Integration Test
-        run: ./gradlew clean integrationTest
+        run: ./gradlew clean integrationTest -Dpassword=${{ env.PASSWORD }}
 
       - name: Upload Reports
         if: failure()

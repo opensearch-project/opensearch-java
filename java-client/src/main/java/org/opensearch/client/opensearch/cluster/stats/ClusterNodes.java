@@ -161,7 +161,7 @@ public class ClusterNodes implements JsonpSerializable {
     }
 
     /**
-     * Required - Contains statistics about Elasticsearch distributions installed on
+     * Required - Contains statistics about OpenSearch distributions installed on
      * selected nodes.
      * <p>
      * API name: {@code packaging_types}
@@ -190,7 +190,7 @@ public class ClusterNodes implements JsonpSerializable {
     }
 
     /**
-     * Required - Array of Elasticsearch versions used on selected nodes.
+     * Required - Array of OpenSearch versions used on selected nodes.
      * <p>
      * API name: {@code versions}
      */
@@ -446,7 +446,7 @@ public class ClusterNodes implements JsonpSerializable {
         }
 
         /**
-         * Required - Contains statistics about Elasticsearch distributions installed on
+         * Required - Contains statistics about OpenSearch distributions installed on
          * selected nodes.
          * <p>
          * API name: {@code packaging_types}
@@ -459,7 +459,7 @@ public class ClusterNodes implements JsonpSerializable {
         }
 
         /**
-         * Required - Contains statistics about Elasticsearch distributions installed on
+         * Required - Contains statistics about OpenSearch distributions installed on
          * selected nodes.
          * <p>
          * API name: {@code packaging_types}
@@ -472,7 +472,7 @@ public class ClusterNodes implements JsonpSerializable {
         }
 
         /**
-         * Required - Contains statistics about Elasticsearch distributions installed on
+         * Required - Contains statistics about OpenSearch distributions installed on
          * selected nodes.
          * <p>
          * API name: {@code packaging_types}
@@ -541,7 +541,7 @@ public class ClusterNodes implements JsonpSerializable {
         }
 
         /**
-         * Required - Array of Elasticsearch versions used on selected nodes.
+         * Required - Array of OpenSearch versions used on selected nodes.
          * <p>
          * API name: {@code versions}
          * <p>
@@ -553,7 +553,7 @@ public class ClusterNodes implements JsonpSerializable {
         }
 
         /**
-         * Required - Array of Elasticsearch versions used on selected nodes.
+         * Required - Array of OpenSearch versions used on selected nodes.
          * <p>
          * API name: {@code versions}
          * <p>

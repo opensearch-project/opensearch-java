@@ -120,6 +120,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
         Neural("neural"),
 
+        Hybrid("hybrid"),
+
         ParentId("parent_id"),
 
         Percolate("percolate"),
@@ -140,7 +142,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
         ScriptScore("script_score"),
 
-        Shape("shape"),
+        XyShape("xy_shape"),
 
         SimpleQueryString("simple_query_string"),
 
@@ -726,6 +728,23 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     }
 
     /**
+     * Is this variant instance of kind {@code hybrid}?
+     */
+    public boolean isHybrid() {
+        return _kind == Kind.Hybrid;
+    }
+
+    /**
+     * Get the {@code hybrid} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code hybrid} kind.
+     */
+    public HybridQuery hybrid() {
+        return TaggedUnionUtils.get(this, Kind.Hybrid);
+    }
+
+    /**
      * Is this variant instance of kind {@code parent_id}?
      */
     public boolean isParentId() {
@@ -896,20 +915,20 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     }
 
     /**
-     * Is this variant instance of kind {@code shape}?
+     * Is this variant instance of kind {@code xy_shape}?
      */
-    public boolean isShape() {
-        return _kind == Kind.Shape;
+    public boolean isXyShape() {
+        return _kind == Kind.XyShape;
     }
 
     /**
-     * Get the {@code shape} variant value.
+     * Get the {@code xy_shape} variant value.
      *
      * @throws IllegalStateException
-     *             if the current variant is not of the {@code shape} kind.
+     *             if the current variant is not of the {@code xy_shape} kind.
      */
-    public ShapeQuery shape() {
-        return TaggedUnionUtils.get(this, Kind.Shape);
+    public XyShapeQuery xyShape() {
+        return TaggedUnionUtils.get(this, Kind.XyShape);
     }
 
     /**
@@ -1154,6 +1173,23 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     }
 
     /**
+     * Is this variant instance of kind {@code wrapper}?
+     */
+    public boolean isWrapper() {
+        return this._kind == Query.Kind.Wrapper;
+    }
+
+    /**
+     * Get the {@code wrapper} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code wrapper} kind.
+     */
+    public WrapperQuery wrapper() {
+        return (WrapperQuery) TaggedUnionUtils.get(this, Query.Kind.Wrapper);
+    }
+
+    /**
      * Is this variant instance of kind {@code type}?
      */
     public boolean isType() {
@@ -1185,9 +1221,23 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
     }
 
+    public Builder toBuilder() {
+        return new Builder()._kind(_kind)._value(_value);
+    }
+
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Query> {
         private Kind _kind;
         private Object _value;
+
+        protected final Builder _kind(Kind v) {
+            this._kind = v;
+            return this;
+        }
+
+        protected final Builder _value(Object v) {
+            this._value = v;
+            return this;
+        }
 
         public ObjectBuilder<Query> bool(BoolQuery v) {
             this._kind = Kind.Bool;
@@ -1479,6 +1529,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
             return this.neural(fn.apply(new NeuralQuery.Builder()).build());
         }
 
+        public ObjectBuilder<Query> hybrid(HybridQuery v) {
+            this._kind = Kind.Hybrid;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Query> hybrid(Function<HybridQuery.Builder, ObjectBuilder<HybridQuery>> fn) {
+            return this.hybrid(fn.apply(new HybridQuery.Builder()).build());
+        }
+
         public ObjectBuilder<Query> parentId(ParentIdQuery v) {
             this._kind = Kind.ParentId;
             this._value = v;
@@ -1577,16 +1637,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
         public ObjectBuilder<Query> scriptScore(Function<ScriptScoreQuery.Builder, ObjectBuilder<ScriptScoreQuery>> fn) {
             return this.scriptScore(fn.apply(new ScriptScoreQuery.Builder()).build());
-        }
-
-        public ObjectBuilder<Query> shape(ShapeQuery v) {
-            this._kind = Kind.Shape;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<Query> shape(Function<ShapeQuery.Builder, ObjectBuilder<ShapeQuery>> fn) {
-            return this.shape(fn.apply(new ShapeQuery.Builder()).build());
         }
 
         public ObjectBuilder<Query> simpleQueryString(SimpleQueryStringQuery v) {
@@ -1729,6 +1779,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
             return this.wildcard(fn.apply(new WildcardQuery.Builder()).build());
         }
 
+        public ObjectBuilder<Query> wrapper(WrapperQuery v) {
+            this._kind = Query.Kind.Wrapper;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Query> wrapper(Function<WrapperQuery.Builder, ObjectBuilder<WrapperQuery>> fn) {
+            return this.wrapper(fn.apply(new WrapperQuery.Builder()).build());
+        }
+
         public ObjectBuilder<Query> type(TypeQuery v) {
             this._kind = Kind.Type;
             this._value = v;
@@ -1777,6 +1837,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
         op.add(Builder::multiMatch, MultiMatchQuery._DESERIALIZER, "multi_match");
         op.add(Builder::nested, NestedQuery._DESERIALIZER, "nested");
         op.add(Builder::neural, NeuralQuery._DESERIALIZER, "neural");
+        op.add(Builder::hybrid, HybridQuery._DESERIALIZER, "hybrid");
         op.add(Builder::parentId, ParentIdQuery._DESERIALIZER, "parent_id");
         op.add(Builder::percolate, PercolateQuery._DESERIALIZER, "percolate");
         op.add(Builder::pinned, PinnedQuery._DESERIALIZER, "pinned");
@@ -1787,7 +1848,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
         op.add(Builder::regexp, RegexpQuery._DESERIALIZER, "regexp");
         op.add(Builder::script, ScriptQuery._DESERIALIZER, "script");
         op.add(Builder::scriptScore, ScriptScoreQuery._DESERIALIZER, "script_score");
-        op.add(Builder::shape, ShapeQuery._DESERIALIZER, "shape");
         op.add(Builder::simpleQueryString, SimpleQueryStringQuery._DESERIALIZER, "simple_query_string");
         op.add(Builder::spanContaining, SpanContainingQuery._DESERIALIZER, "span_containing");
         op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery._DESERIALIZER, "field_masking_span");

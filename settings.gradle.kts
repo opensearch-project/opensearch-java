@@ -30,6 +30,10 @@
  * GitHub history for details.
  */
 
+plugins {
+  id("org.gradle.toolchains.foojay-resolver-convention") version("0.7.0")
+}
+
 rootProject.name = "opensearch-java"
 include("java-client")
 include("samples")

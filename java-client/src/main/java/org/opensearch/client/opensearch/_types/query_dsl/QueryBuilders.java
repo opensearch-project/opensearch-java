@@ -262,6 +262,13 @@ public class QueryBuilders {
     }
 
     /**
+     * Creates a builder for the {@link HybridQuery nested} {@code Query} variant.
+     */
+    public static HybridQuery.Builder hybrid() {
+        return new HybridQuery.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link ParentIdQuery parent_id} {@code Query}
      * variant.
      */
@@ -337,10 +344,10 @@ public class QueryBuilders {
     }
 
     /**
-     * Creates a builder for the {@link ShapeQuery shape} {@code Query} variant.
+     * Creates a builder for the {@link XyShapeQuery xy_shape} {@code Query} variant.
      */
-    public static ShapeQuery.Builder shape() {
-        return new ShapeQuery.Builder();
+    public static XyShapeQuery.Builder xyShape() {
+        return new XyShapeQuery.Builder();
     }
 
     /**

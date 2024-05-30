@@ -9,12 +9,14 @@
 package org.opensearch.client.opensearch.core.bulk;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.opensearch._types.Script;
+import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.util.ObjectBuilder;
 
 public class UpdateOperationData<TDocument> implements JsonpSerializable {
@@ -25,6 +27,12 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
     private final Boolean docAsUpsert;
 
     @Nullable
+    private final Boolean scriptedUpsert;
+
+    @Nullable
+    private final Boolean detectNoop;
+
+    @Nullable
     private final TDocument upsert;
 
     @Nullable
@@ -33,13 +41,18 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
     @Nullable
     private final JsonpSerializer<TDocument> tDocumentSerializer;
 
+    @Nullable
+    private final SourceConfig source;
+
     private UpdateOperationData(Builder<TDocument> builder) {
         this.document = builder.document;
         this.docAsUpsert = builder.docAsUpsert;
+        this.scriptedUpsert = builder.scriptedUpsert;
+        this.detectNoop = builder.detectNoop;
         this.script = builder.script;
         this.upsert = builder.upsert;
         this.tDocumentSerializer = builder.tDocumentSerializer;
-
+        this.source = builder.source;
     }
 
     @Override
@@ -55,6 +68,16 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
             generator.write(this.docAsUpsert);
         }
 
+        if (this.scriptedUpsert != null) {
+            generator.writeKey("scripted_upsert");
+            generator.write(scriptedUpsert);
+        }
+
+        if (this.detectNoop != null) {
+            generator.writeKey("detect_noop");
+            generator.write(detectNoop);
+        }
+
         if (this.document != null) {
             generator.writeKey("doc");
             JsonpUtils.serialize(document, generator, tDocumentSerializer, mapper);
@@ -68,6 +91,11 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
         if (this.script != null) {
             generator.writeKey("script");
             this.script.serialize(generator, mapper);
+        }
+
+        if (this.source != null) {
+            generator.writeKey("_source");
+            this.source.serialize(generator, mapper);
         }
     }
 
@@ -88,10 +116,19 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
         private Boolean docAsUpsert;
 
         @Nullable
+        private Boolean scriptedUpsert;
+
+        @Nullable
+        private Boolean detectNoop;
+
+        @Nullable
         private TDocument upsert;
 
         @Nullable
         private Script script;
+
+        @Nullable
+        private SourceConfig source;
 
         /**
          * API name: {@code document}
@@ -110,6 +147,22 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
         }
 
         /**
+         * API name: {@code scripted_upsert}
+         */
+        public final Builder<TDocument> scriptedUpsert(@Nullable Boolean value) {
+            this.scriptedUpsert = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code detect_noop}
+         */
+        public final Builder<TDocument> detectNoop(@Nullable Boolean value) {
+            this.detectNoop = value;
+            return this;
+        }
+
+        /**
          * API name: {@code upsert}
          */
         public final Builder<TDocument> upsert(@Nullable TDocument value) {
@@ -123,6 +176,21 @@ public class UpdateOperationData<TDocument> implements JsonpSerializable {
         public final Builder<TDocument> script(@Nullable Script value) {
             this.script = value;
             return this;
+        }
+
+        /**
+         * API name: {@code _source}
+         */
+        public final Builder<TDocument> source(@Nullable SourceConfig value) {
+            this.source = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code _source}
+         */
+        public final Builder<TDocument> source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+            return this.source(fn.apply(new SourceConfig.Builder()).build());
         }
 
         /**

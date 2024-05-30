@@ -64,7 +64,7 @@ public final class ResponseException extends IOException {
             response.getRequestLine().getMethod(),
             response.getHost(),
             response.getRequestLine().getUri(),
-            response.getStatusLine().toString()
+            response.getStatusLine()
         );
 
         if (response.hasWarnings()) {
@@ -91,5 +91,12 @@ public final class ResponseException extends IOException {
      */
     public Response getResponse() {
         return response;
+    }
+
+    /**
+     * HTTP status code returned by OpenSearch.
+     */
+    public int status() {
+        return this.response.getStatusLine().getStatusCode();
     }
 }

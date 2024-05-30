@@ -37,9 +37,12 @@ import jakarta.json.stream.JsonParser;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.AbstractMap;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpEntity;
@@ -47,6 +50,8 @@ import org.apache.hc.core5.http.HttpStatus;
 import org.apache.hc.core5.http.io.entity.BufferedHttpEntity;
 import org.apache.hc.core5.http.io.entity.ByteArrayEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
+import org.apache.hc.core5.http.message.RequestLine;
+import org.apache.hc.core5.http.message.StatusLine;
 import org.opensearch.client.Cancellable;
 import org.opensearch.client.RequestOptions;
 import org.opensearch.client.Response;
@@ -56,9 +61,9 @@ import org.opensearch.client.RestClient;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.NdJsonpSerializable;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.GenericEndpoint;
+import org.opensearch.client.transport.GenericSerializable;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
@@ -72,7 +77,7 @@ import org.opensearch.client.util.MissingRequiredPropertyException;
  * The {@link RestClientTransport} is deprecated and is scheduled for removal in later versions. Please
  * use {@link org.opensearch.client.transport.httpclient5.ApacheHttpClient5Transport} instead.
  */
-@Deprecated(since = "3.0.0", forRemoval = true)
+@Deprecated
 public class RestClientTransport implements OpenSearchTransport {
 
     static final ContentType JsonContentType = ContentType.APPLICATION_JSON;
@@ -207,15 +212,18 @@ public class RestClientTransport implements OpenSearchTransport {
             // Request has a body and must implement JsonpSerializable or NdJsonpSerializable
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
+            ContentType contentType = JsonContentType;
             if (request instanceof NdJsonpSerializable) {
                 writeNdJson((NdJsonpSerializable) request, baos);
+            } else if (request instanceof GenericSerializable) {
+                contentType = ContentType.parse(((GenericSerializable) request).serialize(baos));
             } else {
                 JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
                 mapper.serialize(request, generator);
                 generator.close();
             }
 
-            clientReq.setEntity(new ByteArrayEntity(baos.toByteArray(), JsonContentType));
+            clientReq.setEntity(new ByteArrayEntity(baos.toByteArray(), contentType));
         }
         // Request parameter intercepted by LLRC
         clientReq.addParameter("ignore", "400,401,403,404,405");
@@ -254,34 +262,64 @@ public class RestClientTransport implements OpenSearchTransport {
             } else if (statusCode == HttpStatus.SC_UNAUTHORIZED) {
                 throw new TransportException("Unauthorized access", new ResponseException(clientResp));
             } else if (endpoint.isError(statusCode)) {
-                JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
-                if (errorDeserializer == null) {
-                    throw new TransportException("Request failed with status code '" + statusCode + "'", new ResponseException(clientResp));
-                }
-
                 HttpEntity entity = clientResp.getEntity();
                 if (entity == null) {
                     throw new TransportException("Expecting a response body, but none was sent", new ResponseException(clientResp));
                 }
 
-                // We may have to replay it.
-                entity = new BufferedHttpEntity(entity);
+                if (endpoint instanceof GenericEndpoint) {
+                    @SuppressWarnings("unchecked")
+                    final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
 
-                try {
-                    InputStream content = entity.getContent();
-                    try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
-                        ErrorT error = errorDeserializer.deserialize(parser, mapper);
-                        // TODO: have the endpoint provide the exception constructor
-                        throw new OpenSearchException((ErrorResponse) error);
+                    final RequestLine requestLine = clientResp.getRequestLine();
+                    final StatusLine statusLine = clientResp.getStatusLine();
+
+                    // We may have to replay it.
+                    entity = new BufferedHttpEntity(entity);
+
+                    try (InputStream content = entity.getContent()) {
+                        final ResponseT error = rawEndpoint.responseDeserializer(
+                            requestLine.getUri(),
+                            requestLine.getMethod(),
+                            requestLine.getProtocolVersion().format(),
+                            statusLine.getStatusCode(),
+                            statusLine.getReasonPhrase(),
+                            Arrays.stream(clientResp.getHeaders())
+                                .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getName(), h.getValue()))
+                                .collect(Collectors.toList()),
+                            entity.getContentType(),
+                            content
+                        );
+
+                        throw rawEndpoint.exceptionConverter(statusCode, error);
                     }
-                } catch (MissingRequiredPropertyException errorEx) {
-                    // Could not decode exception, try the response type
+                } else {
+                    JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
+                    if (errorDeserializer == null) {
+                        throw new TransportException(
+                            "Request failed with status code '" + statusCode + "'",
+                            new ResponseException(clientResp)
+                        );
+                    }
+
+                    // We may have to replay it.
+                    entity = new BufferedHttpEntity(entity);
+
                     try {
-                        ResponseT response = decodeResponse(statusCode, entity, clientResp, endpoint);
-                        return response;
-                    } catch (Exception respEx) {
-                        // No better luck: throw the original error decoding exception
-                        throw new TransportException("Failed to decode error response", new ResponseException(clientResp));
+                        InputStream content = entity.getContent();
+                        try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
+                            ErrorT error = errorDeserializer.deserialize(parser, mapper);
+                            throw endpoint.exceptionConverter(statusCode, error);
+                        }
+                    } catch (MissingRequiredPropertyException errorEx) {
+                        // Could not decode exception, try the response type
+                        try {
+                            ResponseT response = decodeResponse(statusCode, entity, clientResp, endpoint);
+                            return response;
+                        } catch (Exception respEx) {
+                            // No better luck: throw the original error decoding exception
+                            throw new TransportException("Failed to decode error response", new ResponseException(clientResp));
+                        }
                     }
                 }
             } else {
@@ -324,6 +362,31 @@ public class RestClientTransport implements OpenSearchTransport {
                 ;
             }
             return response;
+        } else if (endpoint instanceof GenericEndpoint) {
+            @SuppressWarnings("unchecked")
+            final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
+
+            String contentType = null;
+            InputStream content = null;
+            if (entity != null) {
+                contentType = entity.getContentType();
+                content = entity.getContent();
+            }
+
+            final RequestLine requestLine = clientResp.getRequestLine();
+            final StatusLine statusLine = clientResp.getStatusLine();
+            return rawEndpoint.responseDeserializer(
+                requestLine.getUri(),
+                requestLine.getMethod(),
+                requestLine.getProtocolVersion().format(),
+                statusLine.getStatusCode(),
+                statusLine.getReasonPhrase(),
+                Arrays.stream(clientResp.getHeaders())
+                    .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getName(), h.getValue()))
+                    .collect(Collectors.toList()),
+                contentType,
+                content
+            );
         } else {
             throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'");
         }

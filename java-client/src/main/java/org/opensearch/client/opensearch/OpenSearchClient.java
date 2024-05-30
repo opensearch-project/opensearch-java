@@ -123,6 +123,7 @@ import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
 import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesClient;
 import org.opensearch.client.opensearch.features.OpenSearchFeaturesClient;
+import org.opensearch.client.opensearch.generic.OpenSearchGenericClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesClient;
@@ -155,6 +156,9 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
     }
 
     // ----- Child clients
+    public OpenSearchGenericClient generic() {
+        return new OpenSearchGenericClient(this.transport, this.transportOptions);
+    }
 
     public OpenSearchCatClient cat() {
         return new OpenSearchCatClient(this.transport, this.transportOptions);

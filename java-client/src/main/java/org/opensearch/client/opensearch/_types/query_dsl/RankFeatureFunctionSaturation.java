@@ -90,6 +90,10 @@ public class RankFeatureFunctionSaturation extends RankFeatureFunction implement
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().pivot(pivot);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

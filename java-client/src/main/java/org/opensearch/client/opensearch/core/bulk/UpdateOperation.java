@@ -41,6 +41,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.NdJsonpSerializable;
 import org.opensearch.client.opensearch._types.Script;
+import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 
@@ -145,10 +146,19 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
         private Boolean docAsUpsert;
 
         @Nullable
+        private Boolean scriptedUpsert;
+
+        @Nullable
+        private Boolean detectNoop;
+
+        @Nullable
         private TDocument upsert;
 
         @Nullable
         private Script script;
+
+        @Nullable
+        private SourceConfig source;
 
         /**
          * API name: {@code document}
@@ -163,6 +173,22 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
          */
         public final Builder<TDocument> docAsUpsert(@Nullable Boolean value) {
             this.docAsUpsert = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code scripted_upsert}
+         */
+        public final Builder<TDocument> scriptedUpsert(@Nullable Boolean value) {
+            this.scriptedUpsert = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code detect_noop}
+         */
+        public final Builder<TDocument> detectNoop(@Nullable Boolean value) {
+            this.detectNoop = value;
             return this;
         }
 
@@ -199,6 +225,21 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
         }
 
         /**
+         * API name: {@code _source}
+         */
+        public final Builder<TDocument> source(@Nullable SourceConfig value) {
+            this.source = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code _source}
+         */
+        public final Builder<TDocument> source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+            return this.source(fn.apply(new SourceConfig.Builder()).build());
+        }
+
+        /**
          * Serializer for TDocument. If not set, an attempt will be made to find a
          * serializer from the JSON context.
          */
@@ -223,8 +264,11 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 
             data = new UpdateOperationData.Builder<TDocument>().document(document)
                 .docAsUpsert(docAsUpsert)
+                .scriptedUpsert(scriptedUpsert)
+                .detectNoop(detectNoop)
                 .script(script)
                 .upsert(upsert)
+                .source(source)
                 .tDocumentSerializer(tDocumentSerializer)
                 .build();
 

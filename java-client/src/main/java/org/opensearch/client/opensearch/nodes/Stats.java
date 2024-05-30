@@ -53,38 +53,51 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 @JsonpDeserializable
 public class Stats implements JsonpSerializable {
+
+    @Nullable
     private final Map<String, AdaptiveSelection> adaptiveSelection;
 
+    @Nullable
     private final Map<String, Breaker> breakers;
 
+    @Nullable
     private final FileSystem fs;
 
     private final String host;
 
+    @Nullable
     private final Http http;
 
+    @Nullable
     private final IndexStats indices;
 
+    @Nullable
     private final Ingest ingest;
 
     private final List<String> ip;
 
+    @Nullable
     private final Jvm jvm;
 
     private final String name;
 
+    @Nullable
     private final OperatingSystem os;
 
+    @Nullable
     private final Process process;
 
     private final List<NodeRole> roles;
 
+    @Nullable
     private final Scripting script;
 
+    @Nullable
     private final Map<String, ThreadCount> threadPool;
 
     private final long timestamp;
 
+    @Nullable
     private final Transport transport;
 
     private final String transportAddress;
@@ -96,23 +109,23 @@ public class Stats implements JsonpSerializable {
 
     private Stats(Builder builder) {
 
-        this.adaptiveSelection = ApiTypeHelper.unmodifiableRequired(builder.adaptiveSelection, this, "adaptiveSelection");
-        this.breakers = ApiTypeHelper.unmodifiableRequired(builder.breakers, this, "breakers");
-        this.fs = ApiTypeHelper.requireNonNull(builder.fs, this, "fs");
+        this.adaptiveSelection = builder.adaptiveSelection;
+        this.breakers = builder.breakers;
+        this.fs = builder.fs;
         this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
-        this.http = ApiTypeHelper.requireNonNull(builder.http, this, "http");
-        this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
-        this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest");
+        this.http = builder.http;
+        this.indices = builder.indices;
+        this.ingest = builder.ingest;
         this.ip = ApiTypeHelper.unmodifiableRequired(builder.ip, this, "ip");
-        this.jvm = ApiTypeHelper.requireNonNull(builder.jvm, this, "jvm");
+        this.jvm = builder.jvm;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-        this.os = ApiTypeHelper.requireNonNull(builder.os, this, "os");
-        this.process = ApiTypeHelper.requireNonNull(builder.process, this, "process");
+        this.os = builder.os;
+        this.process = builder.process;
         this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
-        this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
-        this.threadPool = ApiTypeHelper.unmodifiableRequired(builder.threadPool, this, "threadPool");
+        this.script = builder.script;
+        this.threadPool = builder.threadPool;
         this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-        this.transport = ApiTypeHelper.requireNonNull(builder.transport, this, "transport");
+        this.transport = builder.transport;
         this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
         this.attributes = builder.attributes;
 
@@ -123,22 +136,25 @@ public class Stats implements JsonpSerializable {
     }
 
     /**
-     * Required - API name: {@code adaptive_selection}
+     * API name: {@code adaptive_selection}
      */
+    @Nullable
     public final Map<String, AdaptiveSelection> adaptiveSelection() {
         return this.adaptiveSelection;
     }
 
     /**
-     * Required - API name: {@code breakers}
+     * API name: {@code breakers}
      */
+    @Nullable
     public final Map<String, Breaker> breakers() {
         return this.breakers;
     }
 
     /**
-     * Required - API name: {@code fs}
+     * API name: {@code fs}
      */
+    @Nullable
     public final FileSystem fs() {
         return this.fs;
     }
@@ -151,22 +167,25 @@ public class Stats implements JsonpSerializable {
     }
 
     /**
-     * Required - API name: {@code http}
+     * API name: {@code http}
      */
+    @Nullable
     public final Http http() {
         return this.http;
     }
 
     /**
-     * Required - API name: {@code indices}
+     * API name: {@code indices}
      */
+    @Nullable
     public final IndexStats indices() {
         return this.indices;
     }
 
     /**
-     * Required - API name: {@code ingest}
+     * API name: {@code ingest}
      */
+    @Nullable
     public final Ingest ingest() {
         return this.ingest;
     }
@@ -179,8 +198,9 @@ public class Stats implements JsonpSerializable {
     }
 
     /**
-     * Required - API name: {@code jvm}
+     * API name: {@code jvm}
      */
+    @Nullable
     public final Jvm jvm() {
         return this.jvm;
     }
@@ -193,15 +213,17 @@ public class Stats implements JsonpSerializable {
     }
 
     /**
-     * Required - API name: {@code os}
+     * API name: {@code os}
      */
+    @Nullable
     public final OperatingSystem os() {
         return this.os;
     }
 
     /**
-     * Required - API name: {@code process}
+     * API name: {@code process}
      */
+    @Nullable
     public final Process process() {
         return this.process;
     }
@@ -214,15 +236,17 @@ public class Stats implements JsonpSerializable {
     }
 
     /**
-     * Required - API name: {@code script}
+     * API name: {@code script}
      */
+    @Nullable
     public final Scripting script() {
         return this.script;
     }
 
     /**
-     * Required - API name: {@code thread_pool}
+     * API name: {@code thread_pool}
      */
+    @Nullable
     public final Map<String, ThreadCount> threadPool() {
         return this.threadPool;
     }
@@ -235,8 +259,9 @@ public class Stats implements JsonpSerializable {
     }
 
     /**
-     * Required - API name: {@code transport}
+     * API name: {@code transport}
      */
+    @Nullable
     public final Transport transport() {
         return this.transport;
     }
@@ -251,6 +276,7 @@ public class Stats implements JsonpSerializable {
     /**
      * API name: {@code attributes}
      */
+    @Nullable
     public final Map<String, String> attributes() {
         return this.attributes;
     }
@@ -288,21 +314,26 @@ public class Stats implements JsonpSerializable {
             generator.writeEnd();
 
         }
-        generator.writeKey("fs");
-        this.fs.serialize(generator, mapper);
-
-        generator.writeKey("host");
-        generator.write(this.host);
-
-        generator.writeKey("http");
-        this.http.serialize(generator, mapper);
-
-        generator.writeKey("indices");
-        this.indices.serialize(generator, mapper);
-
-        generator.writeKey("ingest");
-        this.ingest.serialize(generator, mapper);
-
+        if (this.fs != null) {
+            generator.writeKey("fs");
+            this.fs.serialize(generator, mapper);
+        }
+        if (this.host != null) {
+            generator.writeKey("host");
+            generator.write(this.host);
+        }
+        if (this.http != null) {
+            generator.writeKey("http");
+            this.http.serialize(generator, mapper);
+        }
+        if (this.indices != null) {
+            generator.writeKey("indices");
+            this.indices.serialize(generator, mapper);
+        }
+        if (this.ingest != null) {
+            generator.writeKey("ingest");
+            this.ingest.serialize(generator, mapper);
+        }
         if (ApiTypeHelper.isDefined(this.ip)) {
             generator.writeKey("ip");
             generator.writeStartArray();
@@ -313,17 +344,23 @@ public class Stats implements JsonpSerializable {
             generator.writeEnd();
 
         }
-        generator.writeKey("jvm");
-        this.jvm.serialize(generator, mapper);
+        if (this.jvm != null) {
+            generator.writeKey("jvm");
+            this.jvm.serialize(generator, mapper);
+        }
 
         generator.writeKey("name");
         generator.write(this.name);
 
-        generator.writeKey("os");
-        this.os.serialize(generator, mapper);
+        if (this.os != null) {
+            generator.writeKey("os");
+            this.os.serialize(generator, mapper);
+        }
 
-        generator.writeKey("process");
-        this.process.serialize(generator, mapper);
+        if (this.process != null) {
+            generator.writeKey("process");
+            this.process.serialize(generator, mapper);
+        }
 
         if (ApiTypeHelper.isDefined(this.roles)) {
             generator.writeKey("roles");
@@ -334,8 +371,10 @@ public class Stats implements JsonpSerializable {
             generator.writeEnd();
 
         }
-        generator.writeKey("script");
-        this.script.serialize(generator, mapper);
+        if (this.script != null) {
+            generator.writeKey("script");
+            this.script.serialize(generator, mapper);
+        }
 
         if (ApiTypeHelper.isDefined(this.threadPool)) {
             generator.writeKey("thread_pool");
@@ -351,8 +390,10 @@ public class Stats implements JsonpSerializable {
         generator.writeKey("timestamp");
         generator.write(this.timestamp);
 
-        generator.writeKey("transport");
-        this.transport.serialize(generator, mapper);
+        if (this.transport != null) {
+            generator.writeKey("transport");
+            this.transport.serialize(generator, mapper);
+        }
 
         generator.writeKey("transport_address");
         generator.write(this.transportAddress);
@@ -378,38 +419,51 @@ public class Stats implements JsonpSerializable {
      */
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Stats> {
+
+        @Nullable
         private Map<String, AdaptiveSelection> adaptiveSelection;
 
+        @Nullable
         private Map<String, Breaker> breakers;
 
+        @Nullable
         private FileSystem fs;
 
         private String host;
 
+        @Nullable
         private Http http;
 
+        @Nullable
         private IndexStats indices;
 
+        @Nullable
         private Ingest ingest;
 
         private List<String> ip;
 
+        @Nullable
         private Jvm jvm;
 
         private String name;
 
+        @Nullable
         private OperatingSystem os;
 
+        @Nullable
         private Process process;
 
         private List<NodeRole> roles;
 
+        @Nullable
         private Scripting script;
 
+        @Nullable
         private Map<String, ThreadCount> threadPool;
 
         private Long timestamp;
 
+        @Nullable
         private Transport transport;
 
         private String transportAddress;
@@ -422,7 +476,7 @@ public class Stats implements JsonpSerializable {
          * <p>
          * Adds all entries of <code>map</code> to <code>adaptiveSelection</code>.
          */
-        public final Builder adaptiveSelection(Map<String, AdaptiveSelection> map) {
+        public final Builder adaptiveSelection(@Nullable Map<String, AdaptiveSelection> map) {
             this.adaptiveSelection = _mapPutAll(this.adaptiveSelection, map);
             return this;
         }
@@ -451,7 +505,7 @@ public class Stats implements JsonpSerializable {
          * <p>
          * Adds all entries of <code>map</code> to <code>breakers</code>.
          */
-        public final Builder breakers(Map<String, Breaker> map) {
+        public final Builder breakers(@Nullable Map<String, Breaker> map) {
             this.breakers = _mapPutAll(this.breakers, map);
             return this;
         }
@@ -478,7 +532,7 @@ public class Stats implements JsonpSerializable {
         /**
          * Required - API name: {@code fs}
          */
-        public final Builder fs(FileSystem value) {
+        public final Builder fs(@Nullable FileSystem value) {
             this.fs = value;
             return this;
         }
@@ -499,9 +553,9 @@ public class Stats implements JsonpSerializable {
         }
 
         /**
-         * Required - API name: {@code http}
+         * API name: {@code http}
          */
-        public final Builder http(Http value) {
+        public final Builder http(@Nullable Http value) {
             this.http = value;
             return this;
         }
@@ -516,7 +570,7 @@ public class Stats implements JsonpSerializable {
         /**
          * Required - API name: {@code indices}
          */
-        public final Builder indices(IndexStats value) {
+        public final Builder indices(@Nullable IndexStats value) {
             this.indices = value;
             return this;
         }
@@ -531,7 +585,7 @@ public class Stats implements JsonpSerializable {
         /**
          * Required - API name: {@code ingest}
          */
-        public final Builder ingest(Ingest value) {
+        public final Builder ingest(@Nullable Ingest value) {
             this.ingest = value;
             return this;
         }
@@ -566,7 +620,7 @@ public class Stats implements JsonpSerializable {
         /**
          * Required - API name: {@code jvm}
          */
-        public final Builder jvm(Jvm value) {
+        public final Builder jvm(@Nullable Jvm value) {
             this.jvm = value;
             return this;
         }
@@ -589,7 +643,7 @@ public class Stats implements JsonpSerializable {
         /**
          * Required - API name: {@code os}
          */
-        public final Builder os(OperatingSystem value) {
+        public final Builder os(@Nullable OperatingSystem value) {
             this.os = value;
             return this;
         }
@@ -604,7 +658,7 @@ public class Stats implements JsonpSerializable {
         /**
          * Required - API name: {@code process}
          */
-        public final Builder process(Process value) {
+        public final Builder process(@Nullable Process value) {
             this.process = value;
             return this;
         }
@@ -637,32 +691,32 @@ public class Stats implements JsonpSerializable {
         }
 
         /**
-         * Required - API name: {@code script}
+         * API name: {@code script}
          */
-        public final Builder script(Scripting value) {
+        public final Builder script(@Nullable Scripting value) {
             this.script = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code script}
+         * API name: {@code script}
          */
         public final Builder script(Function<Scripting.Builder, ObjectBuilder<Scripting>> fn) {
             return this.script(fn.apply(new Scripting.Builder()).build());
         }
 
         /**
-         * Required - API name: {@code thread_pool}
+         * API name: {@code thread_pool}
          * <p>
          * Adds all entries of <code>map</code> to <code>threadPool</code>.
          */
-        public final Builder threadPool(Map<String, ThreadCount> map) {
+        public final Builder threadPool(@Nullable Map<String, ThreadCount> map) {
             this.threadPool = _mapPutAll(this.threadPool, map);
             return this;
         }
 
         /**
-         * Required - API name: {@code thread_pool}
+         * API name: {@code thread_pool}
          * <p>
          * Adds an entry to <code>threadPool</code>.
          */
@@ -672,7 +726,7 @@ public class Stats implements JsonpSerializable {
         }
 
         /**
-         * Required - API name: {@code thread_pool}
+         * API name: {@code thread_pool}
          * <p>
          * Adds an entry to <code>threadPool</code> using a builder lambda.
          */
@@ -689,15 +743,15 @@ public class Stats implements JsonpSerializable {
         }
 
         /**
-         * Required - API name: {@code transport}
+         * API name: {@code transport}
          */
-        public final Builder transport(Transport value) {
+        public final Builder transport(@Nullable Transport value) {
             this.transport = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code transport}
+         * API name: {@code transport}
          */
         public final Builder transport(Function<Transport.Builder, ObjectBuilder<Transport>> fn) {
             return this.transport(fn.apply(new Transport.Builder()).build());
@@ -716,7 +770,7 @@ public class Stats implements JsonpSerializable {
          * <p>
          * Adds all entries of <code>map</code> to <code>attributes</code>.
          */
-        public final Builder attributes(Map<String, String> map) {
+        public final Builder attributes(@Nullable Map<String, String> map) {
             this.attributes = _mapPutAll(this.attributes, map);
             return this;
         }

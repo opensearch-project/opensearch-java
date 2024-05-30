@@ -162,6 +162,10 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().intervals(intervals).maxGaps(maxGaps).ordered(ordered).filter(filter);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

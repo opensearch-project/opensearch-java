@@ -107,9 +107,9 @@ public enum FieldType implements JsonEnum {
 
     RankFeatures("rank_features"),
 
-    Flattened("flattened"),
+    FlatObject("flat_object"),
 
-    Shape("shape"),
+    XyShape("xy_shape"),
 
     Histogram("histogram"),
 

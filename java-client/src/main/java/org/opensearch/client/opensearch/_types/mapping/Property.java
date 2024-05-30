@@ -84,7 +84,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 
         Alias("alias"),
 
-        Flattened("flattened"),
+        FlatObject("flat_object"),
 
         Float("float"),
 
@@ -97,6 +97,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
         HalfFloat("half_float"),
 
         Histogram("histogram"),
+
+        IcuCollationKeyword("icu_collation_keyword"),
 
         Integer("integer"),
 
@@ -134,7 +136,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 
         SearchAsYouType("search_as_you_type"),
 
-        Shape("shape"),
+        XyShape("xy_shape"),
 
         Short("short"),
 
@@ -400,20 +402,20 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
     }
 
     /**
-     * Is this variant instance of kind {@code flattened}?
+     * Is this variant instance of kind {@code flat_object}?
      */
-    public boolean isFlattened() {
-        return _kind == Kind.Flattened;
+    public boolean isFlatObject() {
+        return _kind == Kind.FlatObject;
     }
 
     /**
-     * Get the {@code flattened} variant value.
+     * Get the {@code flat_object} variant value.
      *
      * @throws IllegalStateException
-     *             if the current variant is not of the {@code flattened} kind.
+     *             if the current variant is not of the {@code flat_object} kind.
      */
-    public FlattenedProperty flattened() {
-        return TaggedUnionUtils.get(this, Kind.Flattened);
+    public FlatObjectProperty flatObject() {
+        return TaggedUnionUtils.get(this, Kind.FlatObject);
     }
 
     /**
@@ -516,6 +518,23 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
      */
     public HistogramProperty histogram() {
         return TaggedUnionUtils.get(this, Kind.Histogram);
+    }
+
+    /**
+     * Is this variant instance of kind {@code icu_collation_keyword}?
+     */
+    public boolean isIcuCollationKeyword() {
+        return _kind == Kind.IcuCollationKeyword;
+    }
+
+    /**
+     * Get the {@code icu_collation_keyword} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code icu_collation_keyword} kind.
+     */
+    public IcuCollationKeywordProperty icuCollationKeyword() {
+        return TaggedUnionUtils.get(this, Kind.IcuCollationKeyword);
     }
 
     /**
@@ -826,20 +845,20 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
     }
 
     /**
-     * Is this variant instance of kind {@code shape}?
+     * Is this variant instance of kind {@code xy_shape}?
      */
-    public boolean isShape() {
-        return _kind == Kind.Shape;
+    public boolean isXyShape() {
+        return _kind == Kind.XyShape;
     }
 
     /**
-     * Get the {@code shape} variant value.
+     * Get the {@code xy_shape} variant value.
      *
      * @throws IllegalStateException
-     *             if the current variant is not of the {@code shape} kind.
+     *             if the current variant is not of the {@code xy_shape} kind.
      */
-    public ShapeProperty shape() {
-        return TaggedUnionUtils.get(this, Kind.Shape);
+    public XyShapeProperty xyShape() {
+        return TaggedUnionUtils.get(this, Kind.XyShape);
     }
 
     /**
@@ -1079,14 +1098,14 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
             return this.alias(fn.apply(new FieldAliasProperty.Builder()).build());
         }
 
-        public ObjectBuilder<Property> flattened(FlattenedProperty v) {
-            this._kind = Kind.Flattened;
+        public ObjectBuilder<Property> flatObject(FlatObjectProperty v) {
+            this._kind = Kind.FlatObject;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Property> flattened(Function<FlattenedProperty.Builder, ObjectBuilder<FlattenedProperty>> fn) {
-            return this.flattened(fn.apply(new FlattenedProperty.Builder()).build());
+        public ObjectBuilder<Property> flatObject(Function<FlatObjectProperty.Builder, ObjectBuilder<FlatObjectProperty>> fn) {
+            return this.flatObject(fn.apply(new FlatObjectProperty.Builder()).build());
         }
 
         public ObjectBuilder<Property> float_(FloatNumberProperty v) {
@@ -1147,6 +1166,18 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 
         public ObjectBuilder<Property> histogram(Function<HistogramProperty.Builder, ObjectBuilder<HistogramProperty>> fn) {
             return this.histogram(fn.apply(new HistogramProperty.Builder()).build());
+        }
+
+        public ObjectBuilder<Property> icuCollationKeyword(IcuCollationKeywordProperty v) {
+            this._kind = Kind.IcuCollationKeyword;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Property> icuCollationKeyword(
+            Function<IcuCollationKeywordProperty.Builder, ObjectBuilder<IcuCollationKeywordProperty>> fn
+        ) {
+            return this.icuCollationKeyword(fn.apply(new IcuCollationKeywordProperty.Builder()).build());
         }
 
         public ObjectBuilder<Property> integer(IntegerNumberProperty v) {
@@ -1333,14 +1364,14 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
             return this.searchAsYouType(fn.apply(new SearchAsYouTypeProperty.Builder()).build());
         }
 
-        public ObjectBuilder<Property> shape(ShapeProperty v) {
-            this._kind = Kind.Shape;
+        public ObjectBuilder<Property> xyShape(XyShapeProperty v) {
+            this._kind = Kind.XyShape;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Property> shape(Function<ShapeProperty.Builder, ObjectBuilder<ShapeProperty>> fn) {
-            return this.shape(fn.apply(new ShapeProperty.Builder()).build());
+        public ObjectBuilder<Property> xyShape(Function<XyShapeProperty.Builder, ObjectBuilder<XyShapeProperty>> fn) {
+            return this.xyShape(fn.apply(new XyShapeProperty.Builder()).build());
         }
 
         public ObjectBuilder<Property> short_(ShortNumberProperty v) {
@@ -1426,13 +1457,14 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
         op.add(Builder::double_, DoubleNumberProperty._DESERIALIZER, "double");
         op.add(Builder::doubleRange, DoubleRangeProperty._DESERIALIZER, "double_range");
         op.add(Builder::alias, FieldAliasProperty._DESERIALIZER, "alias");
-        op.add(Builder::flattened, FlattenedProperty._DESERIALIZER, "flattened");
+        op.add(Builder::flatObject, FlatObjectProperty._DESERIALIZER, "flat_object");
         op.add(Builder::float_, FloatNumberProperty._DESERIALIZER, "float");
         op.add(Builder::floatRange, FloatRangeProperty._DESERIALIZER, "float_range");
         op.add(Builder::geoPoint, GeoPointProperty._DESERIALIZER, "geo_point");
         op.add(Builder::geoShape, GeoShapeProperty._DESERIALIZER, "geo_shape");
         op.add(Builder::halfFloat, HalfFloatNumberProperty._DESERIALIZER, "half_float");
         op.add(Builder::histogram, HistogramProperty._DESERIALIZER, "histogram");
+        op.add(Builder::icuCollationKeyword, IcuCollationKeywordProperty._DESERIALIZER, "icu_collation_keyword");
         op.add(Builder::integer, IntegerNumberProperty._DESERIALIZER, "integer");
         op.add(Builder::integerRange, IntegerRangeProperty._DESERIALIZER, "integer_range");
         op.add(Builder::ip, IpProperty._DESERIALIZER, "ip");
@@ -1451,7 +1483,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
         op.add(Builder::rankFeatures, RankFeaturesProperty._DESERIALIZER, "rank_features");
         op.add(Builder::scaledFloat, ScaledFloatNumberProperty._DESERIALIZER, "scaled_float");
         op.add(Builder::searchAsYouType, SearchAsYouTypeProperty._DESERIALIZER, "search_as_you_type");
-        op.add(Builder::shape, ShapeProperty._DESERIALIZER, "shape");
+        op.add(Builder::xyShape, XyShapeProperty._DESERIALIZER, "xy_shape");
         op.add(Builder::short_, ShortNumberProperty._DESERIALIZER, "short");
         op.add(Builder::text, TextProperty._DESERIALIZER, "text");
         op.add(Builder::tokenCount, TokenCountProperty._DESERIALIZER, "token_count");

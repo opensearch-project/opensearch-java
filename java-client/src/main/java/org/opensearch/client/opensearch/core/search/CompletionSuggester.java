@@ -55,9 +55,6 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
     private final SuggestFuzziness fuzzy;
 
     @Nullable
-    private final String prefix;
-
-    @Nullable
     private final String regex;
 
     @Nullable
@@ -70,7 +67,6 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 
         this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
         this.fuzzy = builder.fuzzy;
-        this.prefix = builder.prefix;
         this.regex = builder.regex;
         this.skipDuplicates = builder.skipDuplicates;
 
@@ -101,14 +97,6 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
     @Nullable
     public final SuggestFuzziness fuzzy() {
         return this.fuzzy;
-    }
-
-    /**
-     * API name: {@code prefix}
-     */
-    @Nullable
-    public final String prefix() {
-        return this.prefix;
     }
 
     /**
@@ -153,11 +141,6 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
             this.fuzzy.serialize(generator, mapper);
 
         }
-        if (this.prefix != null) {
-            generator.writeKey("prefix");
-            generator.write(this.prefix);
-
-        }
         if (this.regex != null) {
             generator.writeKey("regex");
             generator.write(this.regex);
@@ -183,9 +166,6 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 
         @Nullable
         private SuggestFuzziness fuzzy;
-
-        @Nullable
-        private String prefix;
 
         @Nullable
         private String regex;
@@ -226,14 +206,6 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
          */
         public final Builder fuzzy(Function<SuggestFuzziness.Builder, ObjectBuilder<SuggestFuzziness>> fn) {
             return this.fuzzy(fn.apply(new SuggestFuzziness.Builder()).build());
-        }
-
-        /**
-         * API name: {@code prefix}
-         */
-        public final Builder prefix(@Nullable String value) {
-            this.prefix = value;
-            return this;
         }
 
         /**
@@ -288,7 +260,6 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
             "contexts"
         );
         op.add(Builder::fuzzy, SuggestFuzziness._DESERIALIZER, "fuzzy");
-        op.add(Builder::prefix, JsonpDeserializer.stringDeserializer(), "prefix");
         op.add(Builder::regex, JsonpDeserializer.stringDeserializer(), "regex");
         op.add(Builder::skipDuplicates, JsonpDeserializer.booleanDeserializer(), "skip_duplicates");
 

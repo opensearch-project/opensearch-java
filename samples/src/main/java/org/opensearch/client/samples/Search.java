@@ -10,14 +10,18 @@ package org.opensearch.client.samples;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.Refresh;
+import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
+import org.opensearch.client.opensearch._types.aggregations.CompositeAggregation;
+import org.opensearch.client.opensearch._types.aggregations.CompositeAggregationSource;
 import org.opensearch.client.opensearch._types.analysis.Analyzer;
 import org.opensearch.client.opensearch._types.analysis.CustomAnalyzer;
 import org.opensearch.client.opensearch._types.analysis.ShingleTokenFilter;
@@ -26,6 +30,8 @@ import org.opensearch.client.opensearch._types.analysis.TokenFilterDefinition;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.mapping.TextProperty;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
+import org.opensearch.client.opensearch._types.query_dsl.MatchQuery;
+import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch.core.IndexRequest;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
@@ -102,6 +108,41 @@ public class Search {
             for (Map.Entry<String, Aggregate> entry : searchResponse.aggregations().entrySet()) {
                 LOGGER.info("Agg - {}", entry.getKey());
                 entry.getValue().sterms().buckets().array().forEach(b -> LOGGER.info("{} : {}", b.key(), b.docCount()));
+            }
+
+            // Custom Aggregations
+            final Map<String, CompositeAggregationSource> comAggrSrcMap = new HashMap<>();
+            CompositeAggregationSource compositeAggregationSource1 = new CompositeAggregationSource.Builder().terms(
+                termsAggrBuilder -> termsAggrBuilder.field("title.keyword").missingBucket(false).order(SortOrder.Asc)
+            ).build();
+            comAggrSrcMap.put("titles", compositeAggregationSource1);
+
+            CompositeAggregation compAgg = new CompositeAggregation.Builder().sources(comAggrSrcMap).build();
+            Aggregation aggregation = new Aggregation.Builder().composite(compAgg).build();
+
+            SearchRequest request = SearchRequest.of(
+                r -> r.index(indexName)
+                    .query(q -> q.match(m -> m.field("title").query(FieldValue.of("Document 1"))))
+                    .aggregations("my_buckets", aggregation)
+            );
+            SearchResponse<IndexData> response = client.search(request, IndexData.class);
+            for (Map.Entry<String, Aggregate> entry : response.aggregations().entrySet()) {
+                LOGGER.info("Agg - {}", entry.getKey());
+                entry.getValue().composite().buckets().array().forEach(b -> LOGGER.info("{} : {}", b.key(), b.docCount()));
+            }
+
+            // HybridSearch
+            Query searchQuery = Query.of(
+                h -> h.hybrid(
+                    q -> q.queries(
+                        Arrays.asList(new MatchQuery.Builder().field("text").query(FieldValue.of("Text for document 2")).build().toQuery())
+                    )
+                )
+            );
+            searchRequest = new SearchRequest.Builder().query(searchQuery).build();
+            searchResponse = client.search(searchRequest, IndexData.class);
+            for (var hit : searchResponse.hits().hits()) {
+                LOGGER.info("Found {} with score {}", hit.source(), hit.score());
             }
 
             LOGGER.info("Deleting index {}", indexName);

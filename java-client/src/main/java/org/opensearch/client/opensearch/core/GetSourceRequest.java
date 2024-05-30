@@ -179,7 +179,7 @@ public class GetSourceRequest {
     }
 
     /**
-     * If true, Elasticsearch refreshes the affected shards to make this operation
+     * If true, OpenSearch refreshes the affected shards to make this operation
      * visible to search. If false, do nothing with refreshes.
      * <p>
      * API name: {@code refresh}
@@ -225,6 +225,21 @@ public class GetSourceRequest {
     @Nullable
     public final VersionType versionType() {
         return this.versionType;
+    }
+
+    public Builder toBuilder() {
+        return new Builder().source(source)
+            .sourceExcludes(sourceExcludes)
+            .sourceIncludes(sourceIncludes)
+            .id(id)
+            .index(index)
+            .preference(preference)
+            .realtime(realtime)
+            .refresh(refresh)
+            .routing(routing)
+            .storedFields(storedFields)
+            .version(version)
+            .versionType(versionType);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -379,7 +394,7 @@ public class GetSourceRequest {
         }
 
         /**
-         * If true, Elasticsearch refreshes the affected shards to make this operation
+         * If true, OpenSearch refreshes the affected shards to make this operation
          * visible to search. If false, do nothing with refreshes.
          * <p>
          * API name: {@code refresh}

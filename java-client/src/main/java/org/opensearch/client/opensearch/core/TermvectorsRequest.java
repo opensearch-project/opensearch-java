@@ -333,6 +333,26 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 
     }
 
+    public Builder<TDocument> toBuilder() {
+        return new Builder<TDocument>().doc(doc)
+            .fieldStatistics(fieldStatistics)
+            .fields(fields)
+            .filter(filter)
+            .id(id)
+            .index(index)
+            .offsets(offsets)
+            .payloads(payloads)
+            .perFieldAnalyzer(perFieldAnalyzer)
+            .positions(positions)
+            .preference(preference)
+            .realtime(realtime)
+            .routing(routing)
+            .termStatistics(termStatistics)
+            .version(version)
+            .versionType(versionType)
+            .tDocumentSerializer(tDocumentSerializer);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

@@ -138,6 +138,10 @@ public class FieldLookup implements JsonpSerializable {
 
     }
 
+    public Builder toBuilder() {
+        return new Builder().id(id).index(index).path(path).routing(routing);
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

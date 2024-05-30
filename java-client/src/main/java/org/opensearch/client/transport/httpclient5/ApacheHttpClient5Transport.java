@@ -19,6 +19,7 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -40,6 +41,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 import javax.annotation.Nullable;
 import javax.net.ssl.SSLHandshakeException;
@@ -66,12 +68,14 @@ import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.HttpRequest;
+import org.apache.hc.core5.http.HttpStatus;
 import org.apache.hc.core5.http.io.entity.BufferedHttpEntity;
 import org.apache.hc.core5.http.io.entity.ByteArrayEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.HttpEntityWrapper;
 import org.apache.hc.core5.http.message.BasicHeader;
 import org.apache.hc.core5.http.message.RequestLine;
+import org.apache.hc.core5.http.message.StatusLine;
 import org.apache.hc.core5.http.nio.AsyncRequestProducer;
 import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
 import org.apache.hc.core5.net.URIBuilder;
@@ -79,9 +83,9 @@ import org.apache.hc.core5.util.Args;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.NdJsonpSerializable;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.GenericEndpoint;
+import org.opensearch.client.transport.GenericSerializable;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
@@ -487,36 +491,68 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
 
         try {
             int statusCode = clientResp.getStatusLine().getStatusCode();
-
-            if (endpoint.isError(statusCode)) {
-                JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
-                if (errorDeserializer == null) {
-                    throw new TransportException("Request failed with status code '" + statusCode + "'", new ResponseException(clientResp));
-                }
-
+            if (statusCode == HttpStatus.SC_FORBIDDEN) {
+                throw new TransportException("Forbidden access", new ResponseException(clientResp));
+            } else if (statusCode == HttpStatus.SC_UNAUTHORIZED) {
+                throw new TransportException("Unauthorized access", new ResponseException(clientResp));
+            } else if (endpoint.isError(statusCode)) {
                 HttpEntity entity = clientResp.getEntity();
                 if (entity == null) {
                     throw new TransportException("Expecting a response body, but none was sent", new ResponseException(clientResp));
                 }
 
-                // We may have to replay it.
-                entity = new BufferedHttpEntity(entity);
+                if (endpoint instanceof GenericEndpoint) {
+                    @SuppressWarnings("unchecked")
+                    final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
 
-                try {
-                    InputStream content = entity.getContent();
-                    try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
-                        ErrorT error = errorDeserializer.deserialize(parser, mapper);
-                        // TODO: have the endpoint provide the exception constructor
-                        throw new OpenSearchException((ErrorResponse) error);
+                    final RequestLine requestLine = clientResp.getRequestLine();
+                    final StatusLine statusLine = clientResp.getStatusLine();
+
+                    // We may have to replay it.
+                    entity = new BufferedHttpEntity(entity);
+
+                    try (InputStream content = entity.getContent()) {
+                        final ResponseT error = rawEndpoint.responseDeserializer(
+                            requestLine.getUri(),
+                            requestLine.getMethod(),
+                            requestLine.getProtocolVersion().format(),
+                            statusLine.getStatusCode(),
+                            statusLine.getReasonPhrase(),
+                            Arrays.stream(clientResp.getHeaders())
+                                .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getName(), h.getValue()))
+                                .collect(Collectors.toList()),
+                            entity.getContentType(),
+                            content
+                        );
+                        throw rawEndpoint.exceptionConverter(statusCode, error);
                     }
-                } catch (MissingRequiredPropertyException errorEx) {
-                    // Could not decode exception, try the response type
+                } else {
+                    JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
+                    if (errorDeserializer == null) {
+                        throw new TransportException(
+                            "Request failed with status code '" + statusCode + "'",
+                            new ResponseException(clientResp)
+                        );
+                    }
+
+                    // We may have to replay it.
+                    entity = new BufferedHttpEntity(entity);
+
                     try {
-                        ResponseT response = decodeResponse(statusCode, entity, clientResp, endpoint);
-                        return response;
-                    } catch (Exception respEx) {
-                        // No better luck: throw the original error decoding exception
-                        throw new TransportException("Failed to decode error response", new ResponseException(clientResp));
+                        InputStream content = entity.getContent();
+                        try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
+                            ErrorT error = errorDeserializer.deserialize(parser, mapper);
+                            throw endpoint.exceptionConverter(statusCode, error);
+                        }
+                    } catch (MissingRequiredPropertyException errorEx) {
+                        // Could not decode exception, try the response type
+                        try {
+                            ResponseT response = decodeResponse(statusCode, entity, clientResp, endpoint);
+                            return response;
+                        } catch (Exception respEx) {
+                            // No better luck: throw the original error decoding exception
+                            throw new TransportException("Failed to decode error response", new ResponseException(clientResp));
+                        }
                     }
                 }
             } else {
@@ -542,15 +578,18 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             // Request has a body and must implement JsonpSerializable or NdJsonpSerializable
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
+            ContentType contentType = JsonContentType;
             if (request instanceof NdJsonpSerializable) {
                 writeNdJson((NdJsonpSerializable) request, baos);
+            } else if (request instanceof GenericSerializable) {
+                contentType = ContentType.parse(((GenericSerializable) request).serialize(baos));
             } else {
                 JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
                 mapper.serialize(request, generator);
                 generator.close();
             }
 
-            addRequestBody(clientReq, new ByteArrayEntity(baos.toByteArray(), JsonContentType));
+            addRequestBody(clientReq, new ByteArrayEntity(baos.toByteArray(), contentType));
         }
 
         setHeaders(clientReq, options.headers());
@@ -637,6 +676,31 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                 ;
             }
             return response;
+        } else if (endpoint instanceof GenericEndpoint) {
+            @SuppressWarnings("unchecked")
+            final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
+
+            String contentType = null;
+            InputStream content = null;
+            if (entity != null) {
+                contentType = entity.getContentType();
+                content = entity.getContent();
+            }
+
+            final RequestLine requestLine = clientResp.getRequestLine();
+            final StatusLine statusLine = clientResp.getStatusLine();
+            return rawEndpoint.responseDeserializer(
+                requestLine.getUri(),
+                requestLine.getMethod(),
+                requestLine.getProtocolVersion().format(),
+                statusLine.getStatusCode(),
+                statusLine.getReasonPhrase(),
+                Arrays.stream(clientResp.getHeaders())
+                    .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getName(), h.getValue()))
+                    .collect(Collectors.toList()),
+                contentType,
+                content
+            );
         } else {
             throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'");
         }
@@ -939,9 +1003,15 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                 if (chunkedEnabled.get()) {
                     return -1L;
                 } else {
-                    long size;
+                    long size = 0;
+                    final byte[] buf = new byte[8192];
+                    int nread = 0;
+
                     try (InputStream is = getContent()) {
-                        size = is.readAllBytes().length;
+                        // read to EOF which may read more or less than buffer size
+                        while ((nread = is.read(buf)) > 0) {
+                            size += nread;
+                        }
                     } catch (IOException ex) {
                         size = -1L;
                     }
