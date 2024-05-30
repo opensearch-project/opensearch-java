@@ -212,7 +212,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
                 if (cause instanceof RuntimeException) {
                     throw (RuntimeException) cause;
                 }
-                throw new IOException(e);
+                throw new IllegalStateException("unexpected exception type: must be either RuntimeException or IOException", cause);
             } catch (InterruptedException e) {
                 throw new IOException("HttpRequest was interrupted", e);
             }
