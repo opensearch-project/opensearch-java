@@ -84,6 +84,7 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.NdJsonpSerializable;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch.generic.OpenSearchClientException;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.GenericEndpoint;
 import org.opensearch.client.transport.GenericSerializable;
@@ -1150,6 +1151,11 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         }
         if (exception instanceof OpenSearchException) {
             final OpenSearchException e = new OpenSearchException(((OpenSearchException) exception).response());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof OpenSearchClientException) {
+            final OpenSearchClientException e = new OpenSearchClientException(((OpenSearchClientException) exception).response());
             e.initCause(exception);
             return e;
         }

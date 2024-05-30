@@ -41,6 +41,7 @@ import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch._types.ErrorCause;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch.generic.OpenSearchClientException;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.GenericEndpoint;
 import org.opensearch.client.transport.JsonEndpoint;
@@ -666,6 +667,11 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         }
         if (exception instanceof OpenSearchException) {
             final OpenSearchException e = new OpenSearchException(((OpenSearchException) exception).response());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof OpenSearchClientException) {
+            final OpenSearchClientException e = new OpenSearchClientException(((OpenSearchClientException) exception).response());
             e.initCause(exception);
             return e;
         }
