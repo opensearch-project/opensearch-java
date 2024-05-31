@@ -51,10 +51,19 @@ public class EndpointTest extends Assert {
         assertEquals("/a/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
 
         req = RefreshRequest.of(b -> b.index("a", "b"));
-        assertEquals("/a%2Cb/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
+        if (isHttpClient5Present()) {
+            assertEquals("/a%2Cb/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
+
+        } else {
+            assertEquals("/a,b/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
+        }
 
         req = RefreshRequest.of(b -> b.index("a", "b", "c"));
-        assertEquals("/a%2Cb%2Cc/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
+        if (isHttpClient5Present()) {
+            assertEquals("/a%2Cb%2Cc/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
+        } else {
+            assertEquals("/a,b,c/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
+        }
     }
 
     @Test
@@ -65,7 +74,11 @@ public class EndpointTest extends Assert {
         assertEquals("/a%2Fb/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
 
         req = RefreshRequest.of(b -> b.index("a/b", "c/d"));
-        assertEquals("/a%2Fb%2Cc%2Fd/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
+        if (isHttpClient5Present()) {
+            assertEquals("/a%2Fb%2Cc%2Fd/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
+        } else {
+            assertEquals("/a%2Fb,c%2Fd/_refresh", RefreshRequest._ENDPOINT.requestUrl(req));
+        }
 
     }
 
@@ -83,5 +96,14 @@ public class EndpointTest extends Assert {
 
         req = RefreshRequest.of(b -> b.expandWildcards(ExpandWildcard.All, ExpandWildcard.Closed));
         assertEquals("all,closed", RefreshRequest._ENDPOINT.queryParameters(req).get("expand_wildcards"));
+    }
+
+    private static boolean isHttpClient5Present() {
+        try {
+            Class.forName("org.apache.hc.core5.net.URLEncodedUtils");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
     }
 }
