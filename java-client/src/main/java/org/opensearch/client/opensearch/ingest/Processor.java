@@ -127,6 +127,8 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 
         Inference("inference"),
 
+        TextEmbedding("text_embedding"),
+
         ;
 
         private final String jsonValue;
@@ -735,6 +737,23 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
         return TaggedUnionUtils.get(this, Kind.Inference);
     }
 
+    /**
+     * Is this variant instance of kind {@code text_embedding}?
+     */
+    public boolean isTextEmbedding() {
+        return _kind == Kind.TextEmbedding;
+    }
+
+    /**
+     * Get the {@code text_embedding} variant value.
+     *
+     * @throws IllegalStateException
+     *             if the current variant is not of the {@code text_embedding} kind.
+     */
+    public TextEmbeddingProcessor textEmbedding() {
+        return TaggedUnionUtils.get(this, Kind.TextEmbedding);
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -1086,6 +1105,16 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
             return this.inference(fn.apply(new InferenceProcessor.Builder()).build());
         }
 
+        public ObjectBuilder<Processor> textEmbedding(TextEmbeddingProcessor v) {
+            this._kind = Kind.TextEmbedding;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Processor> textEmbedding(Function<TextEmbeddingProcessor.Builder, ObjectBuilder<TextEmbeddingProcessor>> fn) {
+            return this.textEmbedding(fn.apply(new TextEmbeddingProcessor.Builder()).build());
+        }
+
         public Processor build() {
             _checkSingleUse();
             return new Processor(this);
@@ -1128,6 +1157,7 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
         op.add(Builder::drop, DropProcessor._DESERIALIZER, "drop");
         op.add(Builder::circle, CircleProcessor._DESERIALIZER, "circle");
         op.add(Builder::inference, InferenceProcessor._DESERIALIZER, "inference");
+        op.add(Builder::textEmbedding, TextEmbeddingProcessor._DESERIALIZER, "text_embedding");
 
     }
 
