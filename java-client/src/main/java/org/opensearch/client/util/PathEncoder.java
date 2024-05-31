@@ -8,43 +8,51 @@ package org.opensearch.client.util;
  * compatible open source license.
  */
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 
 public class PathEncoder {
+    private final static String HTTP_CLIENT4_UTILS_CLASS = "org.apache.http.client.utils.URLEncodedUtils";
+    private final static String HTTP_CLIENT5_UTILS_CLASS = "org.apache.hc.core5.net.URLEncodedUtils";
+    private final static MethodHandle FORMAT_SEGMENTS_MH;
 
-    private final static String httpClient4UtilClassName = "org.apache.http.client.utils.URLEncodedUtils";
-    private final static String httpClient5UtilClassName = "org.apache.hc.core5.net.URLEncodedUtils";
-    private static final boolean isHttpClient5UtilPresent = isPresent(httpClient5UtilClassName);
+    static {
+        Class<?> clazz = null;
+        try {
+            // Try Apache HttpClient5 first since this is a default one
+            clazz = Class.forName(HTTP_CLIENT5_UTILS_CLASS);
+        } catch (final ClassNotFoundException ex) {
+            try {
+                // Fallback to Apache HttpClient4
+                clazz = Class.forName(HTTP_CLIENT4_UTILS_CLASS);
+            } catch (final ClassNotFoundException ex1) {
+                clazz = null;
+            }
+        }
+
+        if (clazz == null) {
+            throw new IllegalStateException(
+                "Either '" + HTTP_CLIENT5_UTILS_CLASS + "' or '" + HTTP_CLIENT4_UTILS_CLASS + "' is required by not found on classpath"
+            );
+        }
+
+        try {
+            FORMAT_SEGMENTS_MH = MethodHandles.lookup()
+                .findStatic(clazz, "formatSegments", MethodType.methodType(String.class, Iterable.class, Charset.class));
+        } catch (final NoSuchMethodException | IllegalAccessException ex) {
+            throw new IllegalStateException("Unable to find 'formatSegments' method in " + clazz + " class");
+        }
+    }
 
     public static String encode(String uri) {
-        if (isHttpClient5UtilPresent) {
-            return encodeByUtilClass(uri, httpClient5UtilClassName);
-        } else {
-            return encodeByUtilClass(uri, httpClient4UtilClassName);
-        }
-    }
-
-    private static String encodeByUtilClass(String uri, String className) {
         try {
-            Method formatSegments = Class.forName(className).getMethod("formatSegments", Iterable.class, Charset.class);
-            String invoke = (String) formatSegments.invoke(null, Collections.singletonList(uri), StandardCharsets.UTF_8);
-            return invoke.substring(1);
-        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException("Failed to encode URI using " + className, e);
+            return ((String) FORMAT_SEGMENTS_MH.invoke(Collections.singletonList(uri), StandardCharsets.UTF_8)).substring(1);
+        } catch (final Throwable ex) {
+            throw new RuntimeException("Unable to encode URI: " + uri, ex);
         }
     }
-
-    private static boolean isPresent(String className) {
-        try {
-            Class.forName(className);
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
-    }
-
 }
