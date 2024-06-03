@@ -36,7 +36,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -51,7 +50,7 @@ import org.opensearch.client.util.ObjectBuilder;
 public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVariant {
     private final String modelId;
 
-    private final Map<String, JsonData> fieldMap;
+    private final Map<String, String> fieldMap;
 
     @Nullable
     private final String description;
@@ -89,7 +88,7 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
     /**
      * API name: {@code field_map}
      */
-    public final Map<String, JsonData> fieldMap() {
+    public final Map<String, String> fieldMap() {
         return this.fieldMap;
     }
 
@@ -110,10 +109,9 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
         if (ApiTypeHelper.isDefined(this.fieldMap)) {
             generator.writeKey("field_map");
             generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.fieldMap.entrySet()) {
+            for (Map.Entry<String, String> item0 : this.fieldMap.entrySet()) {
                 generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-
+                generator.write(item0.getValue());
             }
             generator.writeEnd();
 
@@ -135,7 +133,7 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
         private String modelId;
 
         @Nullable
-        private Map<String, JsonData> fieldMap;
+        private Map<String, String> fieldMap;
 
         @Nullable
         private String description;
@@ -153,7 +151,7 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
          * <p>
          * Adds all entries of <code>map</code> to <code>fieldMap</code>.
          */
-        public final Builder fieldMap(Map<String, JsonData> map) {
+        public final Builder fieldMap(Map<String, String> map) {
             this.fieldMap = _mapPutAll(this.fieldMap, map);
             return this;
         }
@@ -163,7 +161,7 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
          * <p>
          * Adds an entry to <code>fieldMap</code>.
          */
-        public final Builder fieldMap(String key, JsonData value) {
+        public final Builder fieldMap(String key, String value) {
             this.fieldMap = _mapPut(this.fieldMap, key, value);
             return this;
         }
@@ -207,7 +205,7 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
     protected static void setupTextEmbeddingProcessorDeserializer(ObjectDeserializer<TextEmbeddingProcessor.Builder> op) {
         ProcessorBase.setupProcessorBaseDeserializer(op);
         op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-        op.add(Builder::fieldMap, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "field_map");
+        op.add(Builder::fieldMap, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "field_map");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
     }
 
