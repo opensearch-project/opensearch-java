@@ -32,6 +32,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Added
 
+- Added support for [text embedding processor](https://opensearch.org/docs/latest/ingest-pipelines/processors/text-embedding/) ([#1007](https://github.com/opensearch-project/opensearch-java/pull/1007))
+
 ### Dependencies
 
 ### Changed
