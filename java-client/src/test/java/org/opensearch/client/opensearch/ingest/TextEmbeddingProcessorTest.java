@@ -13,13 +13,17 @@
 
 package org.opensearch.client.opensearch.ingest;
 
+import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
 public class TextEmbeddingProcessorTest extends ModelTestCase {
 
-    private static final Map<String, String> baseFieldMap = Map.of("input_field", "vector_field");
+    private static final Map<String, String> baseFieldMap = new HashMap<>();
+    static {
+        baseFieldMap.put("input_field", "vector_field");
+    }
 
     private static TextEmbeddingProcessor.Builder baseTextEmbeddingProcessor() {
         return new TextEmbeddingProcessor.Builder().modelId("modelId").fieldMap(baseFieldMap).tag("some-tag");
