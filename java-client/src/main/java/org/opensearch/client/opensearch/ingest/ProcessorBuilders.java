@@ -301,4 +301,12 @@ public class ProcessorBuilders {
         return new InferenceProcessor.Builder();
     }
 
+    /**
+     * Creates a builder for the {@link TextEmbeddingProcessor text_embedding}
+     * {@code Processor} variant.
+     */
+    public static TextEmbeddingProcessor.Builder textEmbedding() {
+        return new TextEmbeddingProcessor.Builder();
+    }
+
 }
