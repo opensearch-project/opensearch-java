@@ -9,6 +9,7 @@
 package org.opensearch.client.codegen.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class TaggedUnionShape extends ObjectShape {
@@ -19,11 +20,28 @@ public class TaggedUnionShape extends ObjectShape {
     }
 
     public void addVariant(String name, Type type) {
-        variants.add(new Variant(name, type));
+        variants.add(new Variant(name, type.getBoxed()));
     }
 
-    public List<Variant> getVariants() {
+    public Collection<Variant> getVariants() {
         return variants;
+    }
+
+    public Collection<Variant> getPrimitiveVariants() {
+        return variants.stream().filter(v -> v.getType().isPrimitive()).toList();
+    }
+
+    @Override
+    public Collection<Type> getAnnotations() {
+        return List.of(Types.Client.Json.JsonpDeserializable);
+    }
+
+    @Override
+    public Collection<Type> getImplementsTypes() {
+        return List.of(
+            Types.Client.Util.TaggedUnion(getType().getNestedType("Kind"), Types.Java.Lang.Object),
+            Types.Client.Json.JsonpSerializable
+        );
     }
 
     public static class Variant {

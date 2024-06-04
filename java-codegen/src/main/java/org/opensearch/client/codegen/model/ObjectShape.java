@@ -56,8 +56,8 @@ public class ObjectShape extends Shape {
         return extendsType;
     }
 
-    public Type getImplementsType() {
-        return !bodyFields.isEmpty() ? Types.Client.Json.JsonpSerializable : null;
+    public Collection<Type> getImplementsTypes() {
+        return !bodyFields.isEmpty() ? List.of(Types.Client.Json.JsonpSerializable) : null;
     }
 
     public Collection<Type> getAnnotations() {

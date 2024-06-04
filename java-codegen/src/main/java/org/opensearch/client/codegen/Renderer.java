@@ -48,6 +48,7 @@ public class Renderer {
         {
             put("quoted", transformer(s -> '\"' + StringEscapeUtils.escapeJava(s) + '\"'));
             put("camelCase", transformer(Strings::toCamelCase));
+            put("pascalCase", transformer(Strings::toPascalCase));
             put("toLower", transformer(String::toLowerCase));
             put("ERROR", (Mustache.Lambda) (frag, out) -> { throw new RuntimeException(frag.execute()); });
             put("TYPES", Types.asMap());
@@ -56,17 +57,12 @@ public class Renderer {
 
     private final Mustache.Compiler compiler;
     private final Context context;
-    private final JavaFormatter formatter;
+    private final JavaFormatter javaFormatter;
 
-    public Renderer(Consumer<Type> typeReferenceTracker, JavaFormatter formatter) {
-        compiler = BASE_COMPILER.withFormatter((value) -> {
-            if (value instanceof Type) {
-                typeReferenceTracker.accept((Type) value);
-            }
-            return String.valueOf(value);
-        });
+    public Renderer(Consumer<Type> typeReferenceTracker, JavaFormatter javaFormatter) {
+        compiler = BASE_COMPILER.withFormatter(new ValueFormatter(typeReferenceTracker));
         this.context = new Context(this);
-        this.formatter = formatter;
+        this.javaFormatter = javaFormatter;
     }
 
     public void render(String templateName, Object context, Writer out) throws RenderException {
@@ -96,7 +92,7 @@ public class Renderer {
         }
 
         try {
-            formatter.format(outputFile);
+            javaFormatter.format(outputFile);
         } catch (JavaFormatterException e) {
             throw new RenderException("Unable to format rendered output: " + outputFile, e);
         }
@@ -148,6 +144,22 @@ public class Renderer {
 
         public Renderer getRenderer() {
             return renderer;
+        }
+    }
+
+    private static class ValueFormatter implements Mustache.Formatter {
+        private final Consumer<Type> typeReferenceTracker;
+
+        public ValueFormatter(Consumer<Type> typeReferenceTracker) {
+            this.typeReferenceTracker = typeReferenceTracker;
+        }
+
+        @Override
+        public CharSequence format(Object o) {
+            if (o instanceof Type) {
+                typeReferenceTracker.accept((Type) o);
+            }
+            return String.valueOf(o);
         }
     }
 }

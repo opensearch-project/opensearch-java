@@ -8,4 +8,4 @@
 {{#annotations}}
 @{{.}}
 {{/annotations}}
-public class {{className}}{{#extendsType}} extends {{.}}{{/extendsType}}{{#implementsType}} implements {{.}}{{/implementsType}}
+public class {{className}}{{#extendsType}} extends {{.}}{{/extendsType}}{{#implementsTypes}}{{#-first}} implements{{/-first}} {{.}}{{^-last}},{{/-last}}{{/implementsTypes}}

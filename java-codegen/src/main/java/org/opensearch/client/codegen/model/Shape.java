@@ -12,11 +12,14 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.JavaFormatter;
 import org.opensearch.client.codegen.Renderer;
 import org.opensearch.client.codegen.exceptions.RenderException;
 
 public abstract class Shape {
+    private static final Logger LOGGER = LogManager.getLogger();
     protected final Namespace parent;
     private final String className;
     private final Set<Type> referencedTypes = new HashSet<>();
@@ -49,8 +52,10 @@ public abstract class Shape {
     }
 
     public void render(File outputDir, JavaFormatter formatter) throws RenderException {
+        var outFile = new File(outputDir, this.className + ".java");
+        LOGGER.info("Rendering: {}", outFile);
         var renderer = new Renderer(referencedTypes::add, formatter);
-        renderer.renderJava(this, new File(outputDir, this.className + ".java"));
+        renderer.renderJava(this, outFile);
     }
 
     public Set<String> getImports() {

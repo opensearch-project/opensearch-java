@@ -23,6 +23,8 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.NotImplementedException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.openapi.HttpStatusCode;
 import org.opensearch.client.codegen.openapi.In;
 import org.opensearch.client.codegen.openapi.MimeType;
@@ -34,9 +36,11 @@ import org.opensearch.client.codegen.openapi.OpenApiRequestBody;
 import org.opensearch.client.codegen.openapi.OpenApiResponse;
 import org.opensearch.client.codegen.openapi.OpenApiSchema;
 import org.opensearch.client.codegen.openapi.OpenApiSchemaFormat;
+import org.opensearch.client.codegen.openapi.OpenApiSchemaType;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 
 public class SpecTransformer {
+    private static final Logger LOGGER = LogManager.getLogger();
     @Nonnull
     private final OperationGroup.Matcher matcher;
     @Nonnull
@@ -57,6 +61,8 @@ public class SpecTransformer {
 
     public void visit(@Nonnull OpenApiSpecification spec) {
         Objects.requireNonNull(spec, "spec must not be null");
+
+        LOGGER.info("Visiting Specification: {}", spec);
 
         var groupedOperations = new HashMap<OperationGroup, List<OpenApiOperation>>();
 
@@ -80,6 +86,8 @@ public class SpecTransformer {
     }
 
     private void visit(@Nonnull OperationGroup group, @Nonnull List<OpenApiOperation> variants) {
+        LOGGER.info("Visiting Operation Group: {} [{} variants]", group, variants.size());
+
         var parent = root.child(group.getNamespace().orElse(null));
 
         var requestShape = visit(parent, group, variants);
@@ -169,7 +177,10 @@ public class SpecTransformer {
             shape.addPathParam(entry.getValue());
         }
 
-        variants.stream().flatMap(v -> v.getAllRelevantParameters(In.QUERY).stream()).map(this::visit).forEachOrdered(shape::addQueryParam);
+        variants.stream().flatMap(v -> v.getAllRelevantParameters(In.QUERY).stream())
+                .filter(p -> !p.isGlobal())
+                .map(this::visit)
+                .forEachOrdered(shape::addQueryParam);
 
         var bodySchema = variants.stream()
             .map(OpenApiOperation::getRequestBody)
@@ -192,6 +203,7 @@ public class SpecTransformer {
     }
 
     private Field visit(OpenApiParameter parameter) {
+        LOGGER.info("Visiting Parameter: {}", parameter);
         return new Field(
             parameter.getName().orElseThrow(),
             mapType(parameter.getSchema().orElseThrow()),
@@ -211,6 +223,8 @@ public class SpecTransformer {
             return;
         }
 
+        LOGGER.info("Visiting Schema: {}", schema);
+
         Shape shape;
 
         if (schema.isArray()) {
@@ -228,7 +242,11 @@ public class SpecTransformer {
             );
         } else if (schema.hasOneOf()) {
             var taggedUnion = new TaggedUnionShape(parent, className, typedefName);
-            schema.getOneOf().orElseThrow().forEach(s -> taggedUnion.addVariant(s.resolve().getName().orElseThrow(), mapType(s)));
+            schema.getOneOf().orElseThrow().forEach(s -> {
+                var title = s.getTitle()
+                    .orElseThrow(() -> new IllegalStateException("oneOf variant [" + s.getPointer() + "] is missing a `title` tag"));
+                taggedUnion.addVariant(title, mapType(s));
+            });
             shape = taggedUnion;
         } else {
             throw new NotImplementedException("Unsupported schema: " + schema);
@@ -271,7 +289,11 @@ public class SpecTransformer {
     }
 
     private Type mapType(OpenApiSchema schema, boolean boxed) {
-        var type = schemaToType.computeIfAbsent(schema, this::mapTypeInner);
+        var type = schemaToType.get(schema);
+        if (type == null) {
+            type = mapTypeInner(schema);
+            schemaToType.put(schema, type);
+        }
         return boxed ? type.getBoxed() : type;
     }
 
@@ -286,7 +308,7 @@ public class SpecTransformer {
             visit(schema);
 
             return Type.builder()
-                .pkg(Types.Client.OpenSearch.PACKAGE + "." + schema.getNamespace())
+                .pkg(Types.Client.OpenSearch.PACKAGE + "." + schema.getNamespace().orElseThrow())
                 .name(schema.getName().orElseThrow())
                 .isEnum(schema.hasEnums())
                 .build();
@@ -325,12 +347,8 @@ public class SpecTransformer {
             var first = oneOf.get(0);
             var second = oneOf.get(1);
 
-            if (second.isArray()) {
-                var items = second.getItems().orElseThrow();
-
-                if (first.getType().equals(items.getType()) && first.get$ref().equals(items.get$ref())) {
-                    return mapType(second);
-                }
+            if (isOneOfSingleAndArray(oneOf)) {
+                return mapType(second);
             }
 
             if ((first.isString() && (second.isString() || second.isNumber())) || (first.isNumber() && second.isString())) {
@@ -372,20 +390,32 @@ public class SpecTransformer {
     }
 
     private boolean shouldKeepRef(OpenApiSchema schema) {
-        var type = schema.getType();
-        if (type.isEmpty()) {
-            if (schema.hasOneOf()) {
-                return schema.getOneOf().orElseThrow().get(0).resolve().isObject();
-            }
+        if (schema.isNumber()) {
             return false;
         }
-        switch (type.get()) {
-            case OBJECT:
-                return true;
-            case STRING:
-                return schema.hasEnums();
-            default:
-                return false;
+        if (schema.isString() && schema.getEnums().isEmpty()) {
+            return false;
         }
+        if (schema.getOneOf().isPresent()) {
+            return schema.getOneOf().orElseThrow().stream().allMatch(s -> s.getTitle().isPresent());
+        }
+        if (schema.getAllOf().isPresent()) {
+            var types = schema.determineTypes();
+            return types.size() == 1 && types.iterator().next().equals(OpenApiSchemaType.OBJECT);
+        }
+        return true;
+    }
+
+    private static boolean isOneOfSingleAndArray(List<OpenApiSchema> oneOf) {
+        if (oneOf.size() != 2) {
+            return false;
+        }
+        var second = oneOf.get(1);
+        if (!second.isArray()) {
+            return false;
+        }
+        var first = oneOf.get(0);
+        var items = second.getItems().orElseThrow();
+        return first.getType().equals(items.getType()) && first.get$ref().equals(items.get$ref());
     }
 }

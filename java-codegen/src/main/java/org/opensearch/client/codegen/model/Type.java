@@ -157,13 +157,17 @@ public class Type {
     public Type getBuilderType() {
         if (!hasBuilder()) return null;
 
-        return builder().pkg(pkg).name(name + ".Builder").build();
+        return getNestedType("Builder");
     }
 
     public Type getBuilderFnType() {
         if (!hasBuilder()) return null;
 
         return Java.Util.Function.Function(getBuilderType(), Client.Util.ObjectBuilder(this));
+    }
+
+    public Type getNestedType(String name) {
+        return builder().pkg(pkg).name(this.name + "." + name).build();
     }
 
     public Mustache.Lambda serializer() {

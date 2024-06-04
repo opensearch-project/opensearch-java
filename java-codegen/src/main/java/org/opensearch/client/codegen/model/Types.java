@@ -60,6 +60,7 @@ public final class Types {
             public static final Type Long = Type.builder().pkg(PACKAGE).name("Long").build();
             public static final Type Float = Type.builder().pkg(PACKAGE).name("Float").build();
             public static final Type Double = Type.builder().pkg(PACKAGE).name("Double").build();
+            public static final Type Object = Type.builder().pkg(PACKAGE).name("Object").build();
         }
 
         public static final class Util {

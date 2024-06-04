@@ -30,8 +30,8 @@ public class ArrayShape extends ObjectShape {
     }
 
     @Override
-    public Type getImplementsType() {
-        return Types.Client.Json.JsonpSerializable;
+    public Collection<Type> getImplementsTypes() {
+        return List.of(Types.Client.Json.JsonpSerializable);
     }
 
     public Field getValueBodyField() {

@@ -26,6 +26,7 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
     private final Boolean isRequired;
     @Nullable
     private final OpenApiSchema schema;
+    private final boolean isGlobal;
 
     protected OpenApiParameter(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer, @Nonnull Parameter parameter) {
         super(parent, pointer, parameter.get$ref(), OpenApiParameter.class);
@@ -34,6 +35,8 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
         this.in = ifNonnull(parameter.getIn(), In::from);
         this.isRequired = parameter.getRequired();
         this.schema = child("schema", parameter.getSchema(), OpenApiSchema::new);
+        var extensions = parameter.getExtensions();
+        this.isGlobal = extensions != null && Boolean.TRUE.equals(extensions.get("x-global"));
     }
 
     @Nonnull
@@ -58,5 +61,9 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
     @Nonnull
     public Optional<OpenApiSchema> getSchema() {
         return Optional.ofNullable(schema);
+    }
+
+    public boolean isGlobal() {
+        return isGlobal;
     }
 }

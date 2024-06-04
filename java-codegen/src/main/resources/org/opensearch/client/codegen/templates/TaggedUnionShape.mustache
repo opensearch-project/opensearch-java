@@ -1,6 +1,6 @@
 {{>ObjectShape/ClassDeclaration}} {
     public enum Kind {
-        {{#variants}}{{name}}{{^-last}},{{/-last}}{{/variants}}
+        {{#variants}}{{#pascalCase}}{{name}}{{/pascalCase}}{{^-last}},{{/-last}}{{/variants}}
     }
 
     private final Kind _kind;
@@ -12,7 +12,7 @@
     }
 
     @Override
-    public final Object _value() {
+    public final Object _get() {
         return _value;
     }
 
@@ -30,12 +30,23 @@
         return fn.apply(new Builder()).build();
     }
 
+    public String _toJsonString() {
+        switch (_kind) {
+        {{#variants}}
+            case {{#pascalCase}}{{name}}{{/pascalCase}}:
+                return {{#type.queryParamify}}this.{{name}}(){{/type.queryParamify}};
+        {{/variants}}
+            default:
+                throw new IllegalStateException("Unknown kind " + _kind);
+        }
+    }
+
     {{#variants}}
     /**
      * Is this variant instance of kind {@code {{name}}}?
      */
-    public boolean is{{name}}() {
-        return _kind == Kind.{{name}};
+    public boolean is{{#pascalCase}}{{name}}{{/pascalCase}}() {
+        return _kind == Kind.{{#pascalCase}}{{name}}{{/pascalCase}};
     }
 
     /**
@@ -44,7 +55,7 @@
      * @throws IllegalStateException if the current variant is not the {@code {{name}}} kind.
      */
     public {{type}} {{name}}() {
-        return {{TYPES.Client.Util.TaggedUnionUtils}}.get(this, Kind.{{name}});
+        return {{TYPES.Client.Util.TaggedUnionUtils}}.get(this, Kind.{{#pascalCase}}{{name}}{{/pascalCase}});
     }
 
     {{/variants}}
@@ -53,7 +64,17 @@
     public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
         if (_value instanceof {{TYPES.Client.Json.JsonpSerializable}}) {
             (({{TYPES.Client.Json.JsonpSerializable}}) _value).serialize(generator, mapper);
+        }{{#primitiveVariants}}{{#-first}} else {
+            switch (_kind) {
+        {{/-first}}
+                case {{#pascalCase}}{{name}}{{/pascalCase}}:
+                    {{#type.serializer}}(({{type}}) this._value){{/type.serializer}}
+                    break;
+        {{#-last}}
+            }
         }
+        {{/-last}}
+        {{/primitiveVariants}}
     }
 
     public static class Builder extends {{TYPES.Client.Util.ObjectBuilderBase}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
@@ -62,14 +83,16 @@
 
         {{#variants}}
         public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{name}}({{type}} v) {
-            this._kind = Kind.{{name}};
+            this._kind = Kind.{{#pascalCase}}{{name}}{{/pascalCase}};
             this._value = v;
             return this;
         }
+        {{#type.hasBuilder}}
 
         public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{name}}({{type.builderFnType}} fn) {
             return this.{{name}}(fn.apply(new {{type.builderType}}()).build());
         }
+        {{/type.hasBuilder}}
 
         {{/variants}}
         @Override
@@ -81,7 +104,7 @@
 
     private static {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> build{{className}}Deserializer() {
         return new {{TYPES.Client.Json.UnionDeserializer.builderType}}<{{className}}, Kind, Object>({{className}}::new, false)
-            {{#variants}}.addMember(Kind.{{name}}, {{type}}._DESERIALIZER){{/variants}}
+            {{#variants}}.addMember(Kind.{{#pascalCase}}{{name}}{{/pascalCase}}, {{#type}}{{>Type/deserializer}}{{/type}}){{/variants}}
             .build();
     }
 

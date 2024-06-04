@@ -69,7 +69,7 @@ application {
 
 tasks.named<JavaExec>("run") {
     args = listOf(
-        "--input", "https://github.com/opensearch-project/opensearch-api-specification/releases/download/main/opensearch-openapi.yaml",
+        "--input", "$projectDir/opensearch-openapi.yaml",
         "--eclipse-config", "$rootDir/buildSrc/formatterConfig.xml",
         "--output", "${project(":java-client").projectDir}/src/generated/java/"
     )

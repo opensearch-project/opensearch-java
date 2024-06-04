@@ -54,31 +54,6 @@ public abstract class OpenApiRefElement<TSelf extends OpenApiRefElement<TSelf>> 
             .orElseThrow(() -> new UnsupportedOperationException("Cannot resolve $ref in anonymous component"));
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        OpenApiRefElement<?> that = (OpenApiRefElement<?>) o;
-
-        return new EqualsBuilder().append($ref, that.$ref).append(clazz, that.clazz).isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37).append($ref).append(clazz).toHashCode();
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("$ref", $ref).append("clazz", clazz).toString();
-    }
-
     public static class RelativeRef {
         @Nonnull
         public static RelativeRef parse(@Nonnull String $ref) {
@@ -112,6 +87,11 @@ public abstract class OpenApiRefElement<TSelf extends OpenApiRefElement<TSelf>> 
         }
 
         @Override
+        public String toString() {
+            return new ToStringBuilder(this).append("pointer", pointer).append("relativeLocation", relativeLocation).toString();
+        }
+
+        @Override
         public boolean equals(Object o) {
             if (this == o) {
                 return true;
@@ -129,11 +109,6 @@ public abstract class OpenApiRefElement<TSelf extends OpenApiRefElement<TSelf>> 
         @Override
         public int hashCode() {
             return new HashCodeBuilder(17, 37).append(relativeLocation).append(pointer).toHashCode();
-        }
-
-        @Override
-        public String toString() {
-            return new ToStringBuilder(this).append("pointer", pointer).append("relativeLocation", relativeLocation).toString();
         }
     }
 }

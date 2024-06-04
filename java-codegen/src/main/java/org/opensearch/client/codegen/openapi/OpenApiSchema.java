@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.utils.Lists;
@@ -53,6 +54,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     private final Map<String, OpenApiSchema> properties;
     @Nullable
     private final Set<String> required;
+    @Nullable
+    private final String title;
 
     protected OpenApiSchema(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer, @Nonnull Schema<?> schema) {
         super(parent, pointer, schema.get$ref(), OpenApiSchema.class);
@@ -61,7 +64,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
             var key = pointer.getLastKey().orElseThrow();
             var colonIdx = key.indexOf(':');
             if (colonIdx >= 0) {
-                namespace = key.substring(0, colonIdx);
+                namespace = key.substring(0, colonIdx).replaceAll("\\._common", "").replaceAll("^_common", "_types");
                 name = key.substring(colonIdx + 1);
             } else {
                 namespace = null;
@@ -98,6 +101,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
 
         properties = children("properties", schema.getProperties(), OpenApiSchema::new);
         required = ifNonnull(schema.getRequired(), HashSet::new);
+
+        title = schema.getTitle();
     }
 
     @Nonnull
@@ -195,5 +200,30 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nonnull
     public Optional<Set<String>> getRequired() {
         return Sets.unmodifiableOpt(required);
+    }
+
+    @Nonnull
+    public Optional<String> getTitle() {
+        return Optional.ofNullable(title);
+    }
+
+    @Nonnull
+    public Set<OpenApiSchemaType> determineTypes() {
+        if (type != null) {
+            return Set.of(type);
+        } else if (has$ref()) {
+            return resolve().determineTypes();
+        } else if (allOf != null) {
+            var types = allOf.stream().map(OpenApiSchema::determineTypes).flatMap(Set::stream).collect(Collectors.toSet());
+            if (types.size() > 1) {
+                var typeString = types.stream().map(OpenApiSchemaType::toString).collect(Collectors.joining(", "));
+                throw new IllegalStateException("allOf schema must have a uniform type [" + getPointer() + "]: " + typeString);
+            }
+            return types;
+        } else if (oneOf != null) {
+            return oneOf.stream().map(OpenApiSchema::determineTypes).flatMap(Set::stream).collect(Collectors.toSet());
+        }
+
+        throw new IllegalStateException("Cannot determine type for schema: " + getPointer());
     }
 }

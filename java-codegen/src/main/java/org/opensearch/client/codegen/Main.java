@@ -32,7 +32,7 @@ import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final OperationGroup.Matcher OPERATION_MATCHER = OperationGroup.matcher();
+    private static final OperationGroup.Matcher OPERATION_MATCHER = OperationGroup.matcher().add("cluster", "health");
 
     public static void main(String[] args) {
         var inputOpt = Option.builder("i")

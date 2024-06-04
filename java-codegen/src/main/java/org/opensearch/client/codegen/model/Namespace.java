@@ -81,8 +81,9 @@ public class Namespace extends Shape {
 
         if (operations.isEmpty()) return;
 
-        new Client(this, false).render(outputDir, formatter);
-        new Client(this, true).render(outputDir, formatter);
+        // TODO: Render clients when won't be partial and conflict with non-generated code
+        // new Client(this, false).render(outputDir, formatter);
+        // new Client(this, true).render(outputDir, formatter);
     }
 
     private static class Client extends Shape {

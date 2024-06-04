@@ -8,6 +8,8 @@
 
 package org.opensearch.client.codegen.openapi;
 
+import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -15,6 +17,8 @@ import java.util.Optional;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Maps;
@@ -22,15 +26,15 @@ import org.opensearch.client.codegen.utils.Strings;
 
 public abstract class OpenApiElement<TSelf extends OpenApiElement<TSelf>> {
     @Nullable
-    private final OpenApiElement<?> parent;
+    private final OpenApiSpecification specification;
     @Nonnull
     private final JsonPointer pointer;
 
     OpenApiElement(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer) {
-        this.parent = parent;
+        this.specification = ifNonnull(parent, p -> p.getSpecification().orElse(null));
         this.pointer = Objects.requireNonNull(pointer, "pointer must not be null");
-        if (parent != null) {
-            this.getSpecification().ifPresent(s -> s.addElement(this.pointer, self()));
+        if (this.specification != null) {
+            this.specification.addElement(this.pointer, self());
         }
     }
 
@@ -42,12 +46,7 @@ public abstract class OpenApiElement<TSelf extends OpenApiElement<TSelf>> {
 
     @Nonnull
     protected Optional<OpenApiSpecification> getSpecification() {
-        return getParent().flatMap(OpenApiElement::getSpecification);
-    }
-
-    @Nonnull
-    protected Optional<OpenApiElement<?>> getParent() {
-        return Optional.ofNullable(parent);
+        return Optional.ofNullable(specification);
     }
 
     @Nonnull
@@ -126,5 +125,25 @@ public abstract class OpenApiElement<TSelf extends OpenApiElement<TSelf>> {
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("pointer", pointer).toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        OpenApiElement<?> that = (OpenApiElement<?>) o;
+
+        return new EqualsBuilder().append(specification, that.specification).append(pointer, that.pointer).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(specification).append(pointer).toHashCode();
     }
 }
