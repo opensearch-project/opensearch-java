@@ -35,10 +35,10 @@ package org.opensearch.client.transport.endpoints;
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.JsonEndpoint;
+import org.opensearch.client.util.PathEncoder;
 
 public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<RequestT, ResponseT, ErrorResponse> {
 
@@ -133,7 +133,6 @@ public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<Request
     }
 
     public static void pathEncode(String src, StringBuilder dest) {
-        // TODO: avoid dependency on HttpClient here (and use something more efficient)
-        dest.append(URLEncodedUtils.formatSegments(src).substring(1));
+        dest.append(PathEncoder.encode(src));
     }
 }

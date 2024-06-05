@@ -17,6 +17,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 - ApacheHttpClient5Transport requires Apache Commons Logging dependency ([#1003](https://github.com/opensearch-project/opensearch-java/pull/1003))
 - Preserve caller information in stack traces when synchronous callers use asynchronous transports ([#656](https://github.com/opensearch-project/opensearch-java/pull/656))
+- Fix java.lang.NoSuchMethodError: org.apache.http.client.utils.URLEncodedUtils.formatSegments w/o httpclient ([#999](https://github.com/opensearch-project/opensearch-java/pull/999))
 
 ### Security
 
