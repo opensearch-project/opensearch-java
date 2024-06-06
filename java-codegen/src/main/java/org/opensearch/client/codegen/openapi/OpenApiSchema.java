@@ -56,6 +56,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     private final Set<String> required;
     @Nullable
     private final String title;
+    @Nullable
+    private final String pattern;
 
     protected OpenApiSchema(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer, @Nonnull Schema<?> schema) {
         super(parent, pointer, schema.get$ref(), OpenApiSchema.class);
@@ -103,6 +105,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         required = ifNonnull(schema.getRequired(), HashSet::new);
 
         title = schema.getTitle();
+
+        pattern = schema.getPattern();
     }
 
     @Nonnull
@@ -136,23 +140,23 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     }
 
     public boolean isArray() {
-        return is(OpenApiSchemaType.ARRAY);
+        return is(OpenApiSchemaType.Array);
     }
 
     public boolean isBoolean() {
-        return is(OpenApiSchemaType.BOOLEAN);
+        return is(OpenApiSchemaType.Boolean);
     }
 
     public boolean isNumber() {
-        return is(OpenApiSchemaType.NUMBER);
+        return is(OpenApiSchemaType.Number);
     }
 
     public boolean isObject() {
-        return is(OpenApiSchemaType.OBJECT);
+        return is(OpenApiSchemaType.Object);
     }
 
     public boolean isString() {
-        return is(OpenApiSchemaType.STRING);
+        return is(OpenApiSchemaType.String);
     }
 
     public boolean hasAllOf() {
@@ -205,6 +209,11 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nonnull
     public Optional<String> getTitle() {
         return Optional.ofNullable(title);
+    }
+
+    @Nonnull
+    public Optional<String> getPattern() {
+        return Optional.ofNullable(pattern);
     }
 
     @Nonnull

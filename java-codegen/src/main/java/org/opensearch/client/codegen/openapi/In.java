@@ -8,16 +8,28 @@
 
 package org.opensearch.client.codegen.openapi;
 
+import java.util.Map;
 import javax.annotation.Nonnull;
+import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.Strings;
 
 public enum In {
-    QUERY,
-    PATH;
+    Query,
+    Path;
+
+    private static final Map<String, In> VALUES = Maps.createLookupOf(values(), In::toString);
 
     @Nonnull
     public static In from(@Nonnull String in) {
-        Strings.requireNonBlank(in, "in must not be blank");
-        return In.valueOf(in.toUpperCase());
+        var value = VALUES.get(Strings.requireNonBlank(in, "in must not be blank"));
+        if (value == null) {
+            throw new IllegalArgumentException("Unknown in: " + in);
+        }
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return name().toLowerCase();
     }
 }

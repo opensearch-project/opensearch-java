@@ -97,10 +97,10 @@ public class SpecTransformer {
             .map(OpenApiOperation::getResponses)
             .flatMap(Optional::stream)
             .findFirst()
-            .flatMap(r -> r.get(HttpStatusCode.OK))
+            .flatMap(r -> r.get(HttpStatusCode.Ok))
             .map(OpenApiResponse::resolve)
             .flatMap(OpenApiResponse::getContent)
-            .flatMap(c -> c.get(MimeType.JSON))
+            .flatMap(c -> c.get(MimeType.Json))
             .flatMap(OpenApiMediaType::getSchema)
             .map(OpenApiSchema::resolve)
             .orElse(OpenApiSchema.ANONYMOUS_OBJECT);
@@ -121,14 +121,14 @@ public class SpecTransformer {
         var shape = new RequestShape(parent, group, description);
 
         for (var variant : variants) {
-            shape.addSupportedHttpMethod(variant.getHttpMethod().name());
+            shape.addSupportedHttpMethod(variant.getHttpMethod().toString().toUpperCase());
 
             var httpPathStr = variant.getHttpPath();
             if (!seenHttpPaths.add(httpPathStr)) {
                 continue;
             }
 
-            variant.getAllRelevantParameters(In.PATH).forEach(parameter -> {
+            variant.getAllRelevantParameters(In.Path).forEach(parameter -> {
                 var paramName = parameter.getName().orElseThrow();
                 if (!allPathParams.containsKey(paramName)) {
                     allPathParams.put(paramName, visit(parameter));
@@ -177,10 +177,11 @@ public class SpecTransformer {
             shape.addPathParam(entry.getValue());
         }
 
-        variants.stream().flatMap(v -> v.getAllRelevantParameters(In.QUERY).stream())
-                .filter(p -> !p.isGlobal())
-                .map(this::visit)
-                .forEachOrdered(shape::addQueryParam);
+        variants.stream()
+            .flatMap(v -> v.getAllRelevantParameters(In.Query).stream())
+            .filter(p -> !p.isGlobal())
+            .map(this::visit)
+            .forEachOrdered(shape::addQueryParam);
 
         var bodySchema = variants.stream()
             .map(OpenApiOperation::getRequestBody)
@@ -188,7 +189,7 @@ public class SpecTransformer {
             .findFirst()
             .map(OpenApiRequestBody::resolve)
             .flatMap(OpenApiRequestBody::getContent)
-            .flatMap(c -> c.get(MimeType.JSON))
+            .flatMap(c -> c.get(MimeType.Json))
             .flatMap(OpenApiMediaType::getSchema)
             .map(OpenApiSchema::resolve)
             .orElse(OpenApiSchema.ANONYMOUS_OBJECT);
@@ -326,16 +327,16 @@ public class SpecTransformer {
         }
 
         switch (type.get()) {
-            case OBJECT:
+            case Object:
                 return mapObject(schema);
-            case ARRAY:
+            case Array:
                 return mapArray(schema);
-            case STRING:
+            case String:
                 return Types.Java.Lang.String;
-            case BOOLEAN:
+            case Boolean:
                 return Types.Primitive.Boolean;
-            case INTEGER:
-            case NUMBER:
+            case Integer:
+            case Number:
                 return mapNumber(schema);
         }
 
@@ -374,15 +375,15 @@ public class SpecTransformer {
     }
 
     private Type mapNumber(OpenApiSchema schema) {
-        var format = schema.getFormat().orElse(OpenApiSchemaFormat.INT32);
+        var format = schema.getFormat().orElse(OpenApiSchemaFormat.Int32);
         switch (format) {
-            case INT32:
+            case Int32:
                 return Types.Primitive.Int;
-            case INT64:
+            case Int64:
                 return Types.Primitive.Long;
-            case FLOAT:
+            case Float:
                 return Types.Primitive.Float;
-            case DOUBLE:
+            case Double:
                 return Types.Primitive.Double;
             default:
                 throw new UnsupportedOperationException("Can not get type name for integer/number with format: " + format);
@@ -401,7 +402,7 @@ public class SpecTransformer {
         }
         if (schema.getAllOf().isPresent()) {
             var types = schema.determineTypes();
-            return types.size() == 1 && types.iterator().next().equals(OpenApiSchemaType.OBJECT);
+            return types.size() == 1 && types.iterator().next().equals(OpenApiSchemaType.Object);
         }
         return true;
     }

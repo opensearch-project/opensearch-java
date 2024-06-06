@@ -8,16 +8,33 @@
 
 package org.opensearch.client.codegen.utils;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public final class Maps {
     private Maps() {}
+
+    @Nonnull
+    public static <TKey, TValue> Map<TKey, TValue> createLookupOf(@Nonnull TValue[] values, @Nonnull Function<TValue, TKey> by) {
+        Objects.requireNonNull(values, "values must not be null");
+        return createLookupOf(Arrays.stream(values), by);
+    }
+
+    @Nonnull
+    public static <TKey, TValue> Map<TKey, TValue> createLookupOf(@Nonnull Stream<TValue> values, @Nonnull Function<TValue, TKey> by) {
+        Objects.requireNonNull(values, "values must not be null");
+        Objects.requireNonNull(by, "by must not be null");
+        return values.collect(Collectors.toMap(by, Function.identity()));
+    }
 
     @Nonnull
     public static <TKey, TValue> Optional<Map<TKey, TValue>> unmodifiableOpt(@Nullable Map<TKey, TValue> map) {

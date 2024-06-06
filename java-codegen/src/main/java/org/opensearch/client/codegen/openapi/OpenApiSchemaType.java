@@ -8,20 +8,32 @@
 
 package org.opensearch.client.codegen.openapi;
 
+import java.util.Map;
 import javax.annotation.Nonnull;
+import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.Strings;
 
 public enum OpenApiSchemaType {
-    ARRAY,
-    BOOLEAN,
-    INTEGER,
-    NUMBER,
-    OBJECT,
-    STRING;
+    Array,
+    Boolean,
+    Integer,
+    Number,
+    Object,
+    String;
+
+    private static final Map<String, OpenApiSchemaType> VALUES = Maps.createLookupOf(values(), OpenApiSchemaType::toString);
 
     @Nonnull
     public static OpenApiSchemaType from(@Nonnull String type) {
-        Strings.requireNonBlank(type, "type must not be blank");
-        return OpenApiSchemaType.valueOf(type.toUpperCase());
+        var value = VALUES.get(Strings.requireNonBlank(type, "type must not be blank"));
+        if (value == null) {
+            throw new IllegalArgumentException("Unknown type: " + type);
+        }
+        return value;
+    }
+
+    @Override
+    public java.lang.String toString() {
+        return name().toLowerCase();
     }
 }

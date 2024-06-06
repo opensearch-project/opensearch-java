@@ -8,18 +8,30 @@
 
 package org.opensearch.client.codegen.openapi;
 
+import java.util.Map;
 import javax.annotation.Nonnull;
+import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.Strings;
 
 public enum OpenApiSchemaFormat {
-    FLOAT,
-    DOUBLE,
-    INT32,
-    INT64;
+    Float,
+    Double,
+    Int32,
+    Int64;
+
+    private static final Map<String, OpenApiSchemaFormat> VALUES = Maps.createLookupOf(values(), OpenApiSchemaFormat::toString);
 
     @Nonnull
     public static OpenApiSchemaFormat from(@Nonnull String format) {
-        Strings.requireNonBlank(format, "format must not be blank");
-        return OpenApiSchemaFormat.valueOf(format.toUpperCase());
+        var value = VALUES.get(Strings.requireNonBlank(format, "format must not be blank"));
+        if (value == null) {
+            throw new IllegalArgumentException("Unknown format: " + format);
+        }
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return name().toLowerCase();
     }
 }
