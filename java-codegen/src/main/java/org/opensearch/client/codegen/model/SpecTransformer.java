@@ -332,6 +332,8 @@ public class SpecTransformer {
             case Array:
                 return mapArray(schema);
             case String:
+                if (schema.getPattern().map("^([0-9]+)(?:d|h|m|s|ms|micros|nanos)$"::equals).orElse(false))
+                    return Types.Client.OpenSearch._Types.Time;
                 return Types.Java.Lang.String;
             case Boolean:
                 return Types.Primitive.Boolean;
