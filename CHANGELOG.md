@@ -32,6 +32,20 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Added
 
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.10.4] - 06/05/2024
+### Added
 - Added support for [text embedding processor](https://opensearch.org/docs/latest/ingest-pipelines/processors/text-embedding/) ([#1007](https://github.com/opensearch-project/opensearch-java/pull/1007))
 
 ### Dependencies
@@ -428,7 +442,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.3...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.4...2.x
+[2.10.4]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.3...v2.10.4
 [2.10.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.2...v2.10.3
 [2.10.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.1...v2.10.2
 [2.10.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.0...v2.10.1
