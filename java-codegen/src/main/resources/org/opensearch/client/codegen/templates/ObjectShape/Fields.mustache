@@ -1,5 +1,6 @@
 {{#fields}}
 
+    {{#deprecation}}@Deprecated{{/deprecation}}
     {{^required}}
     {{^type.isListOrMap}}
     @{{TYPES.Javax.Annotation.Nullable}}

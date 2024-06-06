@@ -16,7 +16,7 @@ public class ArrayShape extends ObjectShape {
 
     public ArrayShape(Namespace parent, String className, Type arrayType, String typedefName) {
         super(parent, className, typedefName);
-        this.valueBodyField = new Field("_value_body", arrayType, true, "Response value.");
+        this.valueBodyField = new Field("_value_body", arrayType, true, "Response value.", null);
     }
 
     @Override

@@ -22,12 +22,15 @@ public class Field {
     private boolean required;
     @Nullable
     private final String description;
+    @Nullable
+    private final Deprecation deprecation;
 
-    public Field(@Nonnull String wireName, @Nonnull Type type, boolean required, @Nullable String description) {
+    public Field(@Nonnull String wireName, @Nonnull Type type, boolean required, @Nullable String description, @Nullable Deprecation deprecation) {
         this.wireName = Strings.requireNonBlank(wireName, "wireName must not be null");
         this.type = Objects.requireNonNull(type, "type must not be null");
         this.required = required;
         this.description = description;
+        this.deprecation = deprecation;
     }
 
     @Nonnull
@@ -56,5 +59,10 @@ public class Field {
     @Nullable
     public String getDescription() {
         return description;
+    }
+
+    @Nullable
+    public Deprecation getDeprecation() {
+        return deprecation;
     }
 }

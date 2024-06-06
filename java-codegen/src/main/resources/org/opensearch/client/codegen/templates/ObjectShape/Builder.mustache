@@ -9,12 +9,14 @@
         {{#fields}}
         {{#type.isMap}}
         {{>ObjectShape/FieldDoc/Basic}}
+        {{#deprecation}}@Deprecated{{/deprecation}}
         public final Builder {{name}}({{type}} map) {
             this.{{name}} = _mapPutAll(this.{{name}}, map);
             return this;
         }
 
         {{>ObjectShape/FieldDoc/Basic}}
+        {{#deprecation}}@Deprecated{{/deprecation}}
         public final Builder {{name}}({{type.mapKeyType}} key, {{type.mapValueType}} value) {
             this.{{name}} = _mapPut(this.{{name}}, key, value);
             return this;
@@ -22,12 +24,14 @@
         {{/type.isMap}}
         {{#type.isList}}
         {{>ObjectShape/FieldDoc/ListAddAll}}
+        {{#deprecation}}@Deprecated{{/deprecation}}
         public final Builder {{name}}({{type}} list) {
             this.{{name}} = _listAddAll(this.{{name}}, list);
             return this;
         }
 
         {{>ObjectShape/FieldDoc/ListAdd}}
+        {{#deprecation}}@Deprecated{{/deprecation}}
         public final Builder {{name}}({{type.listValueType}} value, {{type.listValueType}}... values) {
             this.{{name}} = _listAdd(this.{{name}}, value, values);
             return this;
@@ -35,6 +39,7 @@
         {{#type.listValueType.hasBuilder}}
 
         {{>ObjectShape/FieldDoc/ListAddBuilderFn}}
+        {{#deprecation}}@Deprecated{{/deprecation}}
         public final Builder {{name}}({{type.listValueType.builderFnType}} fn) {
             return {{name}}(fn.apply(new {{type.listValueType.builderType}}()).build());
         }
@@ -42,6 +47,7 @@
         {{/type.isList}}
         {{^type.isListOrMap}}
         {{>ObjectShape/FieldDoc/Basic}}
+        {{#deprecation}}@Deprecated{{/deprecation}}
         public final Builder {{name}}({{^required}}@{{TYPES.Javax.Annotation.Nullable}} {{/required}}{{type}} value) {
             this.{{name}} = value;
             return this;
@@ -49,6 +55,7 @@
         {{#type.hasBuilder}}
 
         {{>ObjectShape/FieldDoc/Basic}}
+        {{#deprecation}}@Deprecated{{/deprecation}}
         public final Builder {{name}}({{type.builderFnType}} fn) {
             return this.{{name}}(fn.apply(new {{type.builderType}}()).build());
         }

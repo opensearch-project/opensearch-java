@@ -1,6 +1,7 @@
 {{#fields}}
 
     {{>ObjectShape/FieldDoc/Basic}}
+    {{#deprecation}}@Deprecated{{/deprecation}}
     {{^required}}
     {{^type.isListOrMap}}
     @{{TYPES.Javax.Annotation.Nullable}}

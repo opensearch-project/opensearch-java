@@ -14,6 +14,8 @@ import io.swagger.v3.oas.models.parameters.Parameter;
 import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.codegen.model.Deprecation;
+import org.opensearch.client.codegen.utils.Maps;
 
 public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
     @Nullable
@@ -26,7 +28,14 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
     private final Boolean isRequired;
     @Nullable
     private final OpenApiSchema schema;
-    private final boolean isGlobal;
+    @Nullable
+    private final Boolean isDeprecated;
+    @Nullable
+    private final String versionDeprecated;
+    @Nullable
+    private final String deprecationMessage;
+    @Nullable
+    private final Boolean isGlobal;
 
     protected OpenApiParameter(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer, @Nonnull Parameter parameter) {
         super(parent, pointer, parameter.get$ref(), OpenApiParameter.class);
@@ -35,8 +44,12 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
         this.in = ifNonnull(parameter.getIn(), In::from);
         this.isRequired = parameter.getRequired();
         this.schema = child("schema", parameter.getSchema(), OpenApiSchema::new);
+        this.isDeprecated = parameter.getDeprecated();
         var extensions = parameter.getExtensions();
-        this.isGlobal = extensions != null && Boolean.TRUE.equals(extensions.get("x-global"));
+        this.versionDeprecated = Maps.tryGet(extensions, "x-version-deprecated").map(String::valueOf).orElse(null);
+        this.deprecationMessage = Maps.tryGet(extensions, "x-deprecation-message").map(String::valueOf).orElse(null);
+        this.isGlobal = (Boolean) Maps.tryGet(extensions, "x-global")
+                                      .orElse(null);
     }
 
     @Nonnull
@@ -64,6 +77,16 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
     }
 
     public boolean isGlobal() {
-        return isGlobal;
+        return isGlobal != null && isGlobal;
+    }
+
+    public boolean isDeprecated() {
+        return isDeprecated != null && isDeprecated;
+    }
+
+    @Nonnull
+    public Optional<Deprecation> getDeprecation() {
+        if (versionDeprecated == null && deprecationMessage == null) return Optional.empty();
+        return Optional.of(new Deprecation(deprecationMessage, versionDeprecated));
     }
 }

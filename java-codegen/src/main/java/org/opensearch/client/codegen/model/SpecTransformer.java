@@ -209,7 +209,8 @@ public class SpecTransformer {
             parameter.getName().orElseThrow(),
             mapType(parameter.getSchema().orElseThrow()),
             parameter.getRequired(),
-            parameter.getDescription().orElse(null)
+            parameter.getDescription().orElse(null),
+            parameter.getDeprecation().orElse(null)
         );
     }
 
@@ -267,7 +268,7 @@ public class SpecTransformer {
         schema.getProperties()
             .ifPresent(
                 props -> props.forEach(
-                    (k, v) -> shape.addBodyField(new Field(k, mapType(v), required.contains(k), v.getDescription().orElse(null)))
+                    (k, v) -> shape.addBodyField(new Field(k, mapType(v), required.contains(k), v.getDescription().orElse(null), null))
                 )
             );
 
@@ -279,7 +280,8 @@ public class SpecTransformer {
                     "metadata",
                     Types.Java.Util.Map(Types.Java.Lang.String, valueType),
                     false,
-                    additionalProperties.get().getDescription().orElse(null)
+                    additionalProperties.get().getDescription().orElse(null),
+                    null
                 )
             );
         }
@@ -318,6 +320,11 @@ public class SpecTransformer {
         var oneOf = schema.getOneOf();
         if (oneOf.isPresent()) {
             return mapOneOf(oneOf.get());
+        }
+
+        var allOf = schema.getAllOf();
+        if (allOf.isPresent()) {
+            return mapAllOf(allOf.get());
         }
 
         var type = schema.getType();
@@ -364,6 +371,14 @@ public class SpecTransformer {
         }
 
         throw new UnsupportedOperationException("Can not get type name for oneOf: " + oneOf);
+    }
+
+    private Type mapAllOf(List<OpenApiSchema> allOf) {
+        if (allOf.size() == 1) {
+            return mapType(allOf.get(0));
+        }
+
+        throw new UnsupportedOperationException("Can not get type name for allOf: " + allOf);
     }
 
     private Type mapObject(OpenApiSchema schema) {
