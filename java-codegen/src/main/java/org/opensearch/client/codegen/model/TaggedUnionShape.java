@@ -11,6 +11,7 @@ package org.opensearch.client.codegen.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import org.opensearch.client.codegen.utils.Lists;
 
 public class TaggedUnionShape extends ObjectShape {
     private final List<Variant> variants = new ArrayList<>();
@@ -28,7 +29,7 @@ public class TaggedUnionShape extends ObjectShape {
     }
 
     public Collection<Variant> getPrimitiveVariants() {
-        return variants.stream().filter(v -> v.getType().isPrimitive()).toList();
+        return Lists.filter(variants, v -> v.getType().isPrimitive());
     }
 
     @Override

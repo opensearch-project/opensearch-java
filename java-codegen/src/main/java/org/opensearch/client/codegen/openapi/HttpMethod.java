@@ -34,7 +34,6 @@ public enum HttpMethod {
         return from(httpMethod.name().toLowerCase());
     }
 
-
     @Override
     public String toString() {
         return name().toLowerCase();

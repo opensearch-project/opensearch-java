@@ -38,7 +38,7 @@ public class ListsTests {
     }
 
     @Test
-    public void transform_shouldTransformIntoNewList() {
+    public void map_shouldMapIntoNewList() {
         var input = new ArrayList<>() {
             {
                 add("foobar");
@@ -46,7 +46,7 @@ public class ListsTests {
             }
         };
 
-        var output = Lists.transform(input, (i, v) -> i + "-" + v);
+        var output = Lists.map(input, (i, v) -> i + "-" + v);
 
         assertEquals(List.of("foobar", "hello world"), input);
         assertEquals(List.of("0-foobar", "1-hello world"), output);

@@ -75,7 +75,7 @@ public abstract class OpenApiElement<TSelf extends OpenApiElement<TSelf>> {
         Objects.requireNonNull(factory, "factory must not be null");
         var basePtr = childPtr(key);
         var self = self();
-        return Lists.transform(children, (i, v) -> factory.create(self, basePtr.append(String.valueOf(i)), v));
+        return Lists.map(children, (i, v) -> factory.create(self, basePtr.append(String.valueOf(i)), v));
     }
 
     @Nullable

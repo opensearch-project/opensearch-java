@@ -95,7 +95,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         allOf = children("allOf", schema.getAllOf(), OpenApiSchema::new);
         oneOf = children("oneOf", schema.getOneOf(), OpenApiSchema::new);
 
-        enums = ifNonnull(schema.getEnum(), e -> Lists.transform(e, String::valueOf));
+        enums = ifNonnull(schema.getEnum(), e -> Lists.map(e, String::valueOf));
 
         items = child("items", schema.getItems(), OpenApiSchema::new);
 

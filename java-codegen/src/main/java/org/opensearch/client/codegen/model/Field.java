@@ -25,7 +25,13 @@ public class Field {
     @Nullable
     private final Deprecation deprecation;
 
-    public Field(@Nonnull String wireName, @Nonnull Type type, boolean required, @Nullable String description, @Nullable Deprecation deprecation) {
+    public Field(
+        @Nonnull String wireName,
+        @Nonnull Type type,
+        boolean required,
+        @Nullable String description,
+        @Nullable Deprecation deprecation
+    ) {
         this.wireName = Strings.requireNonBlank(wireName, "wireName must not be null");
         this.type = Objects.requireNonNull(type, "type must not be null");
         this.required = required;

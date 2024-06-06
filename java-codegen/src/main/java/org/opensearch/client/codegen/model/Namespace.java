@@ -18,6 +18,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.JavaFormatter;
 import org.opensearch.client.codegen.exceptions.RenderException;
+import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Namespace extends Shape {
@@ -99,7 +100,7 @@ public class Namespace extends Shape {
         }
 
         public Collection<Client> getChildren() {
-            return parent.children.values().stream().filter(n -> !n.operations.isEmpty()).map(n -> new Client(n, async)).toList();
+            return Lists.filterMap(parent.children.values(), n -> !n.operations.isEmpty(), n -> new Client(n, async));
         }
 
         public Collection<RequestShape> getOperations() {

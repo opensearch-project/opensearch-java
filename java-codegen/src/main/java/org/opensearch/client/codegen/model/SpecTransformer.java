@@ -38,6 +38,7 @@ import org.opensearch.client.codegen.openapi.OpenApiSchema;
 import org.opensearch.client.codegen.openapi.OpenApiSchemaFormat;
 import org.opensearch.client.codegen.openapi.OpenApiSchemaType;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
+import org.opensearch.client.codegen.utils.Lists;
 
 public class SpecTransformer {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -236,12 +237,7 @@ public class SpecTransformer {
             visitInto(schema, objShape);
             shape = objShape;
         } else if (schema.isString() && schema.hasEnums()) {
-            shape = new EnumShape(
-                parent,
-                className,
-                schema.getEnums().orElseThrow().stream().map(EnumShape.Variant::new).toList(),
-                typedefName
-            );
+            shape = new EnumShape(parent, className, Lists.map(schema.getEnums().orElseThrow(), EnumShape.Variant::new), typedefName);
         } else if (schema.hasOneOf()) {
             var taggedUnion = new TaggedUnionShape(parent, className, typedefName);
             schema.getOneOf().orElseThrow().forEach(s -> {

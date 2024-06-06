@@ -48,8 +48,7 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
         var extensions = parameter.getExtensions();
         this.versionDeprecated = Maps.tryGet(extensions, "x-version-deprecated").map(String::valueOf).orElse(null);
         this.deprecationMessage = Maps.tryGet(extensions, "x-deprecation-message").map(String::valueOf).orElse(null);
-        this.isGlobal = (Boolean) Maps.tryGet(extensions, "x-global")
-                                      .orElse(null);
+        this.isGlobal = (Boolean) Maps.tryGet(extensions, "x-global").orElse(null);
     }
 
     @Nonnull

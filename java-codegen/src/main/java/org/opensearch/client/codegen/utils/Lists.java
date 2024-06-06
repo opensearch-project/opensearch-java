@@ -8,11 +8,13 @@
 
 package org.opensearch.client.codegen.utils;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import javax.annotation.Nonnull;
@@ -27,22 +29,41 @@ public final class Lists {
     }
 
     @Nonnull
-    public static <TOld, TNew> List<TNew> transform(@Nonnull List<TOld> list, @Nonnull Function<TOld, TNew> function) {
+    public static <T> List<T> filter(@Nonnull Collection<T> list, @Nonnull Predicate<T> predicate) {
         Objects.requireNonNull(list, "list must not be null");
-        Objects.requireNonNull(function, "function must not be null");
-        return list.stream().map(function).collect(Collectors.toList());
+        Objects.requireNonNull(predicate, "predicate must not be null");
+        return list.stream().filter(predicate).collect(Collectors.toList());
     }
 
     @Nonnull
-    public static <TOld, TNew> List<TNew> transform(@Nonnull List<TOld> list, @Nonnull ItemMapper<TOld, TNew> function) {
+    public static <TIn, TOut> List<TOut> map(@Nonnull Collection<TIn> list, @Nonnull Function<TIn, TOut> mapper) {
         Objects.requireNonNull(list, "list must not be null");
-        Objects.requireNonNull(function, "function must not be null");
-        return IntStream.range(0, list.size()).mapToObj(i -> function.map(i, list.get(i))).toList();
+        Objects.requireNonNull(mapper, "mapper must not be null");
+        return list.stream().map(mapper).collect(Collectors.toList());
+    }
+
+    @Nonnull
+    public static <TIn, TOut> List<TOut> map(@Nonnull List<TIn> list, @Nonnull ItemMapper<TIn, TOut> mapper) {
+        Objects.requireNonNull(list, "list must not be null");
+        Objects.requireNonNull(mapper, "mapper must not be null");
+        return IntStream.range(0, list.size()).mapToObj(i -> mapper.map(i, list.get(i))).collect(Collectors.toList());
     }
 
     @FunctionalInterface
     public interface ItemMapper<TIn, TOut> {
         @Nonnull
         TOut map(int index, @Nonnull TIn item);
+    }
+
+    @Nonnull
+    public static <TIn, TOut> List<TOut> filterMap(
+        @Nonnull Collection<TIn> list,
+        @Nonnull Predicate<TIn> predicate,
+        @Nonnull Function<TIn, TOut> mapper
+    ) {
+        Objects.requireNonNull(list, "list must not be null");
+        Objects.requireNonNull(predicate, "predicate must not be null");
+        Objects.requireNonNull(mapper, "mapper must not be null");
+        return list.stream().filter(predicate).map(mapper).collect(Collectors.toList());
     }
 }

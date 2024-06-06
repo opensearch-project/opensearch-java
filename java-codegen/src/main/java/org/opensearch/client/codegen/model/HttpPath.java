@@ -20,6 +20,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.openapi.OpenApiOperation;
 import org.opensearch.client.codegen.utils.Either;
+import org.opensearch.client.codegen.utils.Lists;
 
 public class HttpPath {
     @Nonnull
@@ -60,7 +61,7 @@ public class HttpPath {
     }
 
     public List<Field> getParams() {
-        return parts.stream().filter(Part::isParameter).map(Part::getParameter).toList();
+        return Lists.filterMap(parts, Part::isParameter, Part::getParameter);
     }
 
     public Set<String> getParamNameSet() {
