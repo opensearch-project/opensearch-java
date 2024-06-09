@@ -29,10 +29,9 @@ buildscript {
 
 plugins {
     application
-    `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "1.19"
-    id("org.owasp.dependencycheck") version "9.0.9"
-    id("com.diffplug.spotless") version "6.24.0"
+    id("com.github.jk1.dependency-license-report") version "2.8"
+    id("org.owasp.dependencycheck") version "9.2.0"
+    id("com.diffplug.spotless") version "6.25.0"
 }
 apply(plugin = "opensearch.repositories")
 apply(plugin = "org.owasp.dependencycheck")
@@ -140,8 +139,8 @@ dependencies {
     implementation("org.apache.logging.log4j", "log4j-slf4j2-impl", "[2.17.1,3.0)")
 
     // Apache 2.0
-    implementation("com.fasterxml.jackson.core", "jackson-core", "2.15.2")
-    implementation("com.fasterxml.jackson.core", "jackson-databind", "2.15.2")
+    implementation("com.fasterxml.jackson.core", "jackson-core", "2.17.1")
+    implementation("com.fasterxml.jackson.core", "jackson-databind", "2.17.1")
 
     // Apache 2.0
     implementation("com.diffplug.spotless", "spotless-lib", "2.45.0")
@@ -172,13 +171,34 @@ licenseReport {
 class SpdxReporter(val dest: File) : ReportRenderer {
     // License names to their SPDX identifier
     val spdxIds = mapOf(
+        "Apache 2" to "Apache-2.0",
+        "Apache 2.0" to "Apache-2.0",
+        "Apache-2.0" to "Apache-2.0",
+        "\"Apache-2.0\";link=\"https://www.apache.org/licenses/LICENSE-2.0.txt\"" to "Apache-2.0",
+        "\"Apache 2.0\";link=\"http://www.apache.org/licenses/LICENSE-2.0.txt\"" to "Apache-2.0",
+        "\"Apache License 2.0\";link=\"http://www.apache.org/licenses/LICENSE-2.0.html\"" to "Apache-2.0",
+        "Apache License 2.0" to "Apache-2.0",
+        "Apache License, version 2.0" to "Apache-2.0",
         "Apache License, Version 2.0" to "Apache-2.0",
+        "Apache Software License, version 2.0" to "Apache-2.0",
+        "The Apache License, Version 2.0" to "Apache-2.0",
         "The Apache Software License, Version 2.0" to "Apache-2.0",
         "BSD Zero Clause License" to "0BSD",
+        "The (New) BSD License" to "BSD-3-Clause",
+        "EDL 1.0" to "BSD-3-Clause",
+        "Eclipse Distribution License - v 1.0" to "BSD-3-Clause",
+        "Eclipse Distribution License (New BSD License)" to "BSD-3-Clause",
         "Eclipse Public License 2.0" to "EPL-2.0",
         "Eclipse Public License v. 2.0" to "EPL-2.0",
+        "Eclipse Public License - v 2.0" to "EPL-2.0",
         "GNU General Public License, version 2 with the GNU Classpath Exception" to "GPL-2.0 WITH Classpath-exception-2.0",
-        "COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0" to "CDDL-1.0"
+        "COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0" to "CDDL-1.0",
+        "Lesser General Public License, version 3 or greater" to "LGPL-3.0+",
+        "MIT" to "MIT",
+        "MIT License" to "MIT",
+        "The MIT License" to "MIT",
+        "Mozilla Public License, Version 2.0" to "MPL-2.0",
+        "Public Domain" to "PUBLIC-DOMAIN"
     )
 
     private fun quote(str: String) : String {
@@ -198,7 +218,7 @@ class SpdxReporter(val dest: File) : ReportRenderer {
 
                 val depVersion = dep.version
                 val depName = dep.group + ":" + dep.name
-                val depUrl = info.moduleUrls.first()
+                val depUrl = if (info.moduleUrls.isNotEmpty()) { info.moduleUrls.first() } else { "<NO MODULE URL>" }
 
                 val licenseIds = info.licenses.mapNotNull { license ->
                     license.name?.let {
@@ -228,7 +248,6 @@ tasks.withType<Jar> {
 
 spotless {
     java {
-
         target("**/*.java")
 
         // Use the default importOrder configuration
@@ -239,52 +258,5 @@ spotless {
 
         trimTrailingWhitespace()
         endWithNewline()
-    }
-}
-
-publishing {
-    repositories{
-        if (version.toString().endsWith("SNAPSHOT")) {
-            maven("https://aws.oss.sonatype.org/content/repositories/snapshots/") {
-                name = "Snapshots"
-                credentials {
-                    username = System.getenv("SONATYPE_USERNAME")
-                    password = System.getenv("SONATYPE_PASSWORD")
-                }
-            }
-        }
-        maven("${rootProject.layout.buildDirectory}/repository") {
-            name = "localRepo"
-        }
-    }
-    publications {
-        create<MavenPublication>("publishMaven") {
-            from(components["java"])
-            pom {
-                name.set("OpenSearch Java Client Code Generator")
-                packaging = "jar"
-                artifactId = "opensearch-java-codegen"
-                description.set("Code generator for the OpenSearch Java Client.")
-                url.set("https://github.com/opensearch-project/opensearch-java/")
-                scm {
-                    connection.set("scm:git@github.com:opensearch-project/opensearch-java.git")
-                    developerConnection.set("scm:git@github.com:opensearch-project/opensearch-java.git")
-                    url.set("git@github.com:opensearch-project/opensearch-java.git")
-                }
-                licenses {
-                    license {
-                        name.set("The Apache License, Version 2.0")
-                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
-                    }
-                }
-                developers {
-                    developer {
-                        name.set("opensearch-project")
-                        url.set("https://www.opensearch.org")
-                        inceptionYear.set("2021")
-                    }
-                }
-            }
-        }
     }
 }
