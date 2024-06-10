@@ -1,0 +1,15 @@
+{{#hasParams}}
+    StringBuilder buf = new StringBuilder();
+    {{#parts}}
+        {{#isParameter}}
+            SimpleEndpoint.pathEncode({{#parameter.type.queryParamify}}request.{{parameter.name}}{{/parameter.type.queryParamify}}, buf);
+        {{/isParameter}}
+        {{^isParameter}}
+            buf.append({{#quoted}}{{content}}{{/quoted}});
+        {{/isParameter}}
+    {{/parts}}
+    return buf.toString();
+{{/hasParams}}
+{{^hasParams}}
+    return {{#quoted}}{{this}}{{/quoted}};
+{{/hasParams}}

@@ -1,0 +1,11 @@
+// typedef: {{typedefName}}
+
+{{#description}}
+/**
+* {{.}}
+*/
+{{/description}}
+{{#annotations}}
+@{{.}}
+{{/annotations}}
+public class {{className}}{{#extendsType}} extends {{.}}{{/extendsType}}{{#implementsTypes}}{{#-first}} implements{{/-first}} {{.}}{{^-last}},{{/-last}}{{/implementsTypes}}
