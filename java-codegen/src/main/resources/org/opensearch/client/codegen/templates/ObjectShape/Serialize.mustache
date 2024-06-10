@@ -1,0 +1,31 @@
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
+{{#additionalPropertiesField}}
+    {{#type.directSerializer}}this.{{name}}{{/type.directSerializer}}
+{{/additionalPropertiesField}}
+{{#bodyFields}}
+    {{^required}}
+        {{#type.isListOrMap}}
+        if ({{TYPES.Client.Util.ApiTypeHelper}}.isDefined(this.{{name}})) {
+        {{/type.isListOrMap}}
+        {{^type.isListOrMap}}
+        if (this.{{name}} != null) {
+        {{/type.isListOrMap}}
+    {{/required}}
+            generator.writeKey({{#quoted}}{{wireName}}{{/quoted}});
+            {{#type.serializer}}this.{{name}}{{/type.serializer}}
+    {{^required}}
+        }
+    {{/required}}
+
+{{/bodyFields}}
+    }

@@ -87,6 +87,14 @@ java {
     }
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir("src/generated/java")
+        }
+    }
+}
+
 tasks.withType<ProcessResources> {
     expand(
         "version" to version,

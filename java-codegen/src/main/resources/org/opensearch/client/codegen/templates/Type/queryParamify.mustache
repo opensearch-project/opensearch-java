@@ -1,0 +1,29 @@
+{{#type.isString}}
+    {{value}}
+{{/type.isString}}
+{{^type.isString}}
+    {{#type.isEnum}}
+        {{value}}.jsonValue()
+    {{/type.isEnum}}
+    {{^type.isEnum}}
+        {{#type.isPrimitive}}
+            String.valueOf({{value}})
+        {{/type.isPrimitive}}
+        {{^type.isPrimitive}}
+            {{#type.isList}}
+                {{#type.listValueType.isString}}
+                    String.join(",", {{value}})
+                {{/type.listValueType.isString}}
+                {{^type.listValueType.isString}}
+                    {{value}}
+                        .stream()
+                        .map(v -> {{#type.listValueType.queryParamify}}v{{/type.listValueType.queryParamify}})
+                        .collect({{TYPES.Java.Util.Stream.Collectors}}.joining(","))
+                {{/type.listValueType.isString}}
+            {{/type.isList}}
+            {{^type.isList}}
+                {{value}}._toJsonString()
+            {{/type.isList}}
+        {{/type.isPrimitive}}
+    {{/type.isEnum}}
+{{/type.isString}}
