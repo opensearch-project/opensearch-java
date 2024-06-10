@@ -36,11 +36,10 @@ public final class ShapeRenderingContext implements AutoCloseable {
 
     @Nonnull
     public ShapeRenderingContext forSubDir(@Nonnull String name) {
-        return builder()
-                .withOutputDir(new File(outputDir, Strings.requireNonBlank(name, "name must not be null")))
-                .withTemplateLoader(templateLoader)
-                .withJavaCodeFormatter(javaCodeFormatter)
-                .build();
+        return builder().withOutputDir(new File(outputDir, Strings.requireNonBlank(name, "name must not be null")))
+            .withTemplateLoader(templateLoader)
+            .withJavaCodeFormatter(javaCodeFormatter)
+            .build();
     }
 
     @Nonnull
@@ -50,12 +49,14 @@ public final class ShapeRenderingContext implements AutoCloseable {
     }
 
     @Nonnull
-    public TemplateRenderer getTemplateRenderer(@Nonnull Function<TemplateValueFormatter.Builder, TemplateValueFormatter.Builder> valueFormatterConfigurator) {
+    public TemplateRenderer getTemplateRenderer(
+        @Nonnull Function<TemplateValueFormatter.Builder, TemplateValueFormatter.Builder> valueFormatterConfigurator
+    ) {
         return TemplateRenderer.builder()
-                .withValueFormatter(valueFormatterConfigurator)
-                .withTemplateLoader(templateLoader)
-                .withJavaCodeFormatter(javaCodeFormatter)
-                .build();
+            .withValueFormatter(valueFormatterConfigurator)
+            .withTemplateLoader(templateLoader)
+            .withJavaCodeFormatter(javaCodeFormatter)
+            .build();
     }
 
     @Override
@@ -90,7 +91,9 @@ public final class ShapeRenderingContext implements AutoCloseable {
 
         @Nonnull
         public Builder withTemplateLoader(@Nonnull Function<TemplateLoader.Builder, TemplateLoader.Builder> configurator) {
-            return withTemplateLoader(Objects.requireNonNull(configurator, "configurator must not be null").apply(TemplateLoader.builder()).build());
+            return withTemplateLoader(
+                Objects.requireNonNull(configurator, "configurator must not be null").apply(TemplateLoader.builder()).build()
+            );
         }
 
         @Nonnull
@@ -110,7 +113,10 @@ public final class ShapeRenderingContext implements AutoCloseable {
 
         @Nonnull
         public Builder withJavaCodeFormatter(@Nonnull Function<JavaCodeFormatter.Builder, JavaCodeFormatter.Builder> configurator) {
-            return withJavaCodeFormatter(Objects.requireNonNull(configurator, "configurator must not be null").apply(JavaCodeFormatter.builder()).build(), true);
+            return withJavaCodeFormatter(
+                Objects.requireNonNull(configurator, "configurator must not be null").apply(JavaCodeFormatter.builder()).build(),
+                true
+            );
         }
 
         @Nonnull

@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.io.Writer;
 import javax.annotation.Nonnull;
 import org.opensearch.client.codegen.exceptions.RenderException;
-import org.opensearch.client.codegen.renderer.TemplateGlobalContext;
 import org.opensearch.client.codegen.renderer.TemplateFragmentUtils;
+import org.opensearch.client.codegen.renderer.TemplateGlobalContext;
 import org.opensearch.client.codegen.utils.Strings;
 
 public abstract class TemplateRenderingLambda implements Mustache.Lambda {

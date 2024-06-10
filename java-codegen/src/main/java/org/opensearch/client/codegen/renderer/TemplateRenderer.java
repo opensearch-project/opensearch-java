@@ -37,9 +37,9 @@ public final class TemplateRenderer {
     private TemplateRenderer(@Nonnull Builder builder) {
         Objects.requireNonNull(builder, "builder must not be null");
         this.compiler = Mustache.compiler()
-                .escapeHTML(false)
-                .withLoader(Objects.requireNonNull(builder.templateLoader, "templateLoader must not be null"))
-                .withFormatter(Objects.requireNonNull(builder.valueFormatter, "valueFormatter must not be null"));
+            .escapeHTML(false)
+            .withLoader(Objects.requireNonNull(builder.templateLoader, "templateLoader must not be null"))
+            .withFormatter(Objects.requireNonNull(builder.valueFormatter, "valueFormatter must not be null"));
         this.context = TemplateGlobalContext.builder().withRenderer(this).build();
         this.javaCodeFormatter = Objects.requireNonNull(builder.javaCodeFormatter, "javaCodeFormatter must not be null");
     }
@@ -89,7 +89,9 @@ public final class TemplateRenderer {
 
         @Nonnull
         public Builder withValueFormatter(@Nonnull Function<TemplateValueFormatter.Builder, TemplateValueFormatter.Builder> configurator) {
-            this.valueFormatter = Objects.requireNonNull(configurator, "configurator must not be null").apply(TemplateValueFormatter.builder()).build();
+            this.valueFormatter = Objects.requireNonNull(configurator, "configurator must not be null")
+                .apply(TemplateValueFormatter.builder())
+                .build();
             return this;
         }
 

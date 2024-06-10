@@ -26,9 +26,7 @@ public final class TypeSerializerLambda extends TemplateRenderingLambda {
 
     @Override
     public Object getContext(Template.Fragment fragment) {
-        var depth = TemplateFragmentUtils.findParentContext(fragment, Context.class)
-                .map(ctx -> ctx.depth + 1)
-                .orElse(0);
+        var depth = TemplateFragmentUtils.findParentContext(fragment, Context.class).map(ctx -> ctx.depth + 1).orElse(0);
         return new Context(type, fragment.execute(), depth);
     }
 

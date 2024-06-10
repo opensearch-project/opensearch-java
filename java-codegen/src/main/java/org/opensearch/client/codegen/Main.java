@@ -89,10 +89,10 @@ public class Main {
 
             try (
                 var ctx = ShapeRenderingContext.builder()
-                        .withOutputDir(rootPackageOutputDir)
-                        .withJavaCodeFormatter(b -> b.withRootDir(rootPackageOutputDir.toPath()).withEclipseFormatterConfig(eclipseConfig))
-                        .withTemplateLoader(b -> b.withTemplatesResourceSubPath("/org/opensearch/client/codegen/templates"))
-                        .build()
+                    .withOutputDir(rootPackageOutputDir)
+                    .withJavaCodeFormatter(b -> b.withRootDir(rootPackageOutputDir.toPath()).withEclipseFormatterConfig(eclipseConfig))
+                    .withTemplateLoader(b -> b.withTemplatesResourceSubPath("/org/opensearch/client/codegen/templates"))
+                    .build()
             ) {
                 root.render(ctx);
             }
