@@ -8,7 +8,6 @@
 
 package org.opensearch.client.codegen.model;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -16,7 +15,6 @@ import java.util.Map;
 import java.util.TreeMap;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.codegen.JavaFormatter;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
@@ -69,15 +67,13 @@ public class Namespace extends Shape {
     }
 
     @Override
-    public void render(File outputDir, JavaFormatter formatter) throws RenderException {
-        outputDir.mkdirs();
-
+    public void render(ShapeRenderingContext ctx) throws RenderException {
         for (Namespace child : children.values()) {
-            child.render(new File(outputDir, child.getPackageNamePart()), formatter);
+            child.render(ctx.forSubDir(child.getPackageNamePart()));
         }
 
         for (Shape shape : shapes) {
-            shape.render(outputDir, formatter);
+            shape.render(ctx);
         }
 
         if (operations.isEmpty()) return;

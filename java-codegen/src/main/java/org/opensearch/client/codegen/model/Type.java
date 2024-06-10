@@ -8,16 +8,15 @@
 
 package org.opensearch.client.codegen.model;
 
-import static org.opensearch.client.codegen.Renderer.templateLambda;
 import static org.opensearch.client.codegen.model.Types.Client;
 import static org.opensearch.client.codegen.model.Types.Java;
 
 import com.samskivert.mustache.Mustache;
-import com.samskivert.mustache.Template;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.opensearch.client.codegen.Renderer;
+import org.opensearch.client.codegen.renderer.lambdas.TypeQueryParamifyLambda;
+import org.opensearch.client.codegen.renderer.lambdas.TypeSerializerLambda;
 
 public class Type {
     private static final Set<String> PRIMITIVES = Set.of(
@@ -171,19 +170,11 @@ public class Type {
     }
 
     public Mustache.Lambda serializer() {
-        return Renderer.templateLambda("Type/serializer", this::getSerializerLambdaContext);
+        return new TypeSerializerLambda(this, false);
     }
 
     public Mustache.Lambda directSerializer() {
-        return Renderer.templateLambda("Type/directSerializer", this::getSerializerLambdaContext);
-    }
-
-    private SerializerLambdaContext getSerializerLambdaContext(Template.Fragment fragment) {
-        return new SerializerLambdaContext(
-            Type.this,
-            fragment.execute(),
-            Renderer.findContext(fragment, SerializerLambdaContext.class).map(ctx -> ctx.depth + 1).orElse(0)
-        );
+        return new TypeSerializerLambda(this, true);
     }
 
     public void getRequiredImports(Set<String> imports, String currentPkg) {
@@ -202,26 +193,11 @@ public class Type {
         return toBuilder().genericArgs(genericArgs).build();
     }
 
-    private static class SerializerLambdaContext {
-        public final Type type;
-        public final String value;
-        public final int depth;
-
-        private SerializerLambdaContext(Type type, String value, int depth) {
-            this.type = type;
-            this.value = value;
-            this.depth = depth;
-        }
-    }
-
     public Mustache.Lambda queryParamify() {
-        return templateLambda("Type/queryParamify", frag -> new Object() {
-            final Type type = Type.this;
-            final String value = frag.execute();
-        });
+        return new TypeQueryParamifyLambda(this);
     }
 
-    public static class Builder {
+    public static final class Builder {
         private String pkg;
         private String name;
         private Type[] genericArgs;

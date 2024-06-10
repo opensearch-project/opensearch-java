@@ -8,14 +8,11 @@
 
 package org.opensearch.client.codegen.model;
 
-import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.opensearch.client.codegen.JavaFormatter;
-import org.opensearch.client.codegen.Renderer;
 import org.opensearch.client.codegen.exceptions.RenderException;
 
 public abstract class Shape {
@@ -51,10 +48,13 @@ public abstract class Shape {
         return this.typedefName;
     }
 
-    public void render(File outputDir, JavaFormatter formatter) throws RenderException {
-        var outFile = new File(outputDir, this.className + ".java");
+    public void render(ShapeRenderingContext ctx) throws RenderException {
+        var outFile = ctx.getOutputFile(className + ".java");
         LOGGER.info("Rendering: {}", outFile);
-        var renderer = new Renderer(referencedTypes::add, formatter);
+        var renderer = ctx.getTemplateRenderer(b -> b.withFormatter(Type.class, t -> {
+            referencedTypes.add(t);
+            return t.toString();
+        }));
         renderer.renderJava(this, outFile);
     }
 

@@ -27,6 +27,7 @@ import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Namespace;
 import org.opensearch.client.codegen.model.OperationGroup;
+import org.opensearch.client.codegen.model.ShapeRenderingContext;
 import org.opensearch.client.codegen.model.SpecTransformer;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 
@@ -84,10 +85,16 @@ public class Main {
 
             cleanDirectory(outputDir);
 
-            outputDir = new File(outputDir, root.getPackageName().replace('.', '/'));
+            final var rootPackageOutputDir = new File(outputDir, root.getPackageName().replace('.', '/'));
 
-            try (var formatter = new JavaFormatter(outputDir.toPath(), eclipseConfig)) {
-                root.render(outputDir, formatter);
+            try (
+                var ctx = ShapeRenderingContext.builder()
+                        .withOutputDir(rootPackageOutputDir)
+                        .withJavaCodeFormatter(b -> b.withRootDir(rootPackageOutputDir.toPath()).withEclipseFormatterConfig(eclipseConfig))
+                        .withTemplateLoader(b -> b.withTemplatesResourceSubPath("/org/opensearch/client/codegen/templates"))
+                        .build()
+            ) {
+                root.render(ctx);
             }
         } catch (ParseException e) {
             LOGGER.error("Argument Parsing Failed. Reason: {}", e.getMessage());

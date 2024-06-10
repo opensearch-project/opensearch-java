@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class Types {
-    public static Map<String, Object> asMap() {
-        return asMap(Types.class);
-    }
+    public static final Map<String, Object> TYPES_MAP = asMap(Types.class);
 
     private static Map<String, Object> asMap(Class<?> clazz) {
         var map = new HashMap<String, Object>();
@@ -20,7 +18,7 @@ public final class Types {
         }
 
         for (var field : clazz.getDeclaredFields()) {
-            if ((field.getModifiers() & Modifier.STATIC) == 0) {
+            if ((field.getModifiers() & Modifier.STATIC) == 0 || !Type.class.isAssignableFrom(field.getType())) {
                 continue;
             }
             try {
