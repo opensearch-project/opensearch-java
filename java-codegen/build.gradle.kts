@@ -131,6 +131,7 @@ dependencies {
 
     // Apache 2.0
     implementation("commons-cli", "commons-cli", "1.8.0")
+    implementation("commons-codec", "commons-codec", "1.17.0")
     implementation("commons-logging", "commons-logging", "1.3.2")
     implementation("org.apache.commons", "commons-lang3", "3.14.0")
     implementation("org.apache.commons", "commons-text", "1.12.0")
