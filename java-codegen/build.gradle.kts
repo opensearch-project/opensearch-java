@@ -69,7 +69,7 @@ application {
 tasks.named<JavaExec>("run") {
     args = listOf(
         "--input", "$projectDir/opensearch-openapi.yaml",
-        "--eclipse-config", "$rootDir/buildSrc/formatterConfig.xml",
+        "--eclipse-config", "$rootDir/buildSrc/formatterConfig-generated.xml",
         "--output", "${project(":java-client").projectDir}/src/generated/java/"
     )
 }
@@ -255,7 +255,7 @@ spotless {
         importOrder()
         removeUnusedImports()
 
-        eclipse().configFile("../buildSrc/formatterConfig.xml")
+        eclipse().configFile("../buildSrc/formatterConfig-generated.xml")
 
         trimTrailingWhitespace()
         endWithNewline()
