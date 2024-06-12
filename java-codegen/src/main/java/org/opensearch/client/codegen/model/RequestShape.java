@@ -84,6 +84,10 @@ public class RequestShape extends ObjectShape {
         return responseClassName(operationGroup);
     }
 
+    public boolean canBeSingleton() {
+        return !hasRequestBody() && !hasQueryParams() && hasSinglePath() && !getFirstPath().hasParams();
+    }
+
     public boolean hasRequestBody() {
         return !getBodyFields().isEmpty();
     }
@@ -109,7 +113,7 @@ public class RequestShape extends ObjectShape {
         return httpPaths;
     }
 
-    public HttpPath getFirstHttpPath() {
+    public HttpPath getFirstPath() {
         return httpPaths.get(0);
     }
 
