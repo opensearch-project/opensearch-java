@@ -251,6 +251,8 @@ spotless {
     java {
         target("**/*.java")
 
+        licenseHeaderFile("../LICENSE_HEADER.txt")
+
         // Use the default importOrder configuration
         importOrder()
         removeUnusedImports()
