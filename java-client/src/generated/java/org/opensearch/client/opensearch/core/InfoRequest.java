@@ -30,21 +30,22 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core;
 
-import java.util.Collections;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
-// typedef: _global.info.Request
+// typedef: info.Request
 
 /**
  * Returns basic information about the cluster.
- *
  */
-
 public class InfoRequest extends RequestBase {
     public InfoRequest() {}
 
@@ -59,24 +60,12 @@ public class InfoRequest extends RequestBase {
      * Endpoint "{@code info}".
      */
     public static final Endpoint<InfoRequest, InfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "GET";
-
-        },
-
+        request -> "GET",
         // Request path
-        request -> {
-            return "/";
-
-        },
-
+        request -> "/",
         // Request parameters
-        request -> {
-            return Collections.emptyMap();
-
-        },
+        SimpleEndpoint.emptyMap(),
         SimpleEndpoint.emptyMap(),
         false,
         InfoResponse._DESERIALIZER

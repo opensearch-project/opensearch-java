@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.NotImplementedException;
@@ -89,7 +90,7 @@ public class SpecTransformer {
     private void visit(@Nonnull OperationGroup group, @Nonnull List<OpenApiOperation> variants) {
         LOGGER.info("Visiting Operation Group: {} [{} variants]", group, variants.size());
 
-        var parent = root.child(group.getNamespace().orElse(null));
+        var parent = root.child(group.getNamespace().orElse("core"));
 
         var requestShape = visit(parent, group, variants);
         parent.addOperation(requestShape);
@@ -349,21 +350,16 @@ public class SpecTransformer {
     }
 
     private Type mapOneOf(List<OpenApiSchema> oneOf) {
-        if (oneOf.size() == 2) {
-            var first = oneOf.get(0);
-            var second = oneOf.get(1);
+        if (isOneOfSingleAndArray(oneOf)) {
+            return mapType(oneOf.get(1));
+        }
 
-            if (isOneOfSingleAndArray(oneOf)) {
-                return mapType(second);
-            }
+        var types = oneOf.stream().map(OpenApiSchema::determineTypes).flatMap(Set::stream).collect(Collectors.toSet());
 
-            if ((first.isString() && (second.isString() || second.isNumber())) || (first.isNumber() && second.isString())) {
-                return Types.Java.Lang.String;
-            }
-
-            if (first.isBoolean() && second.isString()) {
-                return Types.Primitive.Boolean;
-            }
+        if (types.size() == 2
+            && types.contains(OpenApiSchemaType.String)
+            && (types.contains(OpenApiSchemaType.Boolean) || types.contains(OpenApiSchemaType.Number))) {
+            return Types.Java.Lang.String;
         }
 
         throw new UnsupportedOperationException("Can not get type name for oneOf: " + oneOf);

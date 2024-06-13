@@ -30,6 +30,10 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core;
 
 import jakarta.json.stream.JsonGenerator;
@@ -45,10 +49,11 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _global.info.Response
+// typedef: info.Response
 
 @JsonpDeserializable
 public class InfoResponse implements JsonpSerializable {
+
     private final String clusterName;
 
     private final String clusterUuid;
@@ -62,16 +67,14 @@ public class InfoResponse implements JsonpSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private InfoResponse(Builder builder) {
-
         this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
         this.clusterUuid = ApiTypeHelper.requireNonNull(builder.clusterUuid, this, "clusterUuid");
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.tagline = ApiTypeHelper.requireNonNull(builder.tagline, this, "tagline");
         this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
-
     }
 
-    public static InfoResponse of(Function<Builder, ObjectBuilder<InfoResponse>> fn) {
+    public static InfoResponse of(Function<InfoResponse.Builder, ObjectBuilder<InfoResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -113,6 +116,7 @@ public class InfoResponse implements JsonpSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -120,7 +124,6 @@ public class InfoResponse implements JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("cluster_name");
         generator.write(this.clusterName);
 
@@ -143,16 +146,11 @@ public class InfoResponse implements JsonpSerializable {
     /**
      * Builder for {@link InfoResponse}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InfoResponse> {
         private String clusterName;
-
         private String clusterUuid;
-
         private String name;
-
         private String tagline;
-
         private OpenSearchVersionInfo version;
 
         /**
@@ -205,8 +203,7 @@ public class InfoResponse implements JsonpSerializable {
         /**
          * Builds a {@link InfoResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public InfoResponse build() {
             _checkSingleUse();
@@ -214,7 +211,6 @@ public class InfoResponse implements JsonpSerializable {
             return new InfoResponse(this);
         }
     }
-
     // ---------------------------------------------------------------------------------------------
 
     /**
@@ -226,13 +222,10 @@ public class InfoResponse implements JsonpSerializable {
     );
 
     protected static void setupInfoResponseDeserializer(ObjectDeserializer<InfoResponse.Builder> op) {
-
         op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
         op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::tagline, JsonpDeserializer.stringDeserializer(), "tagline");
         op.add(Builder::version, OpenSearchVersionInfo._DESERIALIZER, "version");
-
     }
-
 }

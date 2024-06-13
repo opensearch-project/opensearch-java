@@ -3,7 +3,7 @@
      */
     public static class Builder extends {{TYPES.Client.Util.ObjectBuilderBase}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
         {{#fields}}
-        @{{TYPES.Javax.Annotation.Nullable}} private {{type.boxed}} {{name}};
+        {{^required}}@{{TYPES.Javax.Annotation.Nullable}} {{/required}}private {{type.boxed}} {{name}};
         {{/fields}}
 
         {{#fields}}
