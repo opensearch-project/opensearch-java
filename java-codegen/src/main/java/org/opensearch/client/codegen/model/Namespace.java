@@ -19,7 +19,8 @@ import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
 
-public class Namespace extends Shape {
+public class Namespace {
+    private final Namespace parent;
     private final String name;
     private final Map<String, Namespace> children = new TreeMap<>();
     private final Map<String, RequestShape> operations = new TreeMap<>();
@@ -30,7 +31,7 @@ public class Namespace extends Shape {
     }
 
     private Namespace(Namespace parent, String name) {
-        super(parent, null, null);
+        this.parent = parent;
         this.name = name;
     }
 
@@ -43,7 +44,6 @@ public class Namespace extends Shape {
         shapes.add(shape);
     }
 
-    @Override
     public String getPackageName() {
         return parent != null ? parent.getPackageName() + "." + getPackageNamePart() : "org.opensearch.client.opensearch";
     }
@@ -66,7 +66,6 @@ public class Namespace extends Shape {
         return grandChildName == null ? child : child.child(grandChildName);
     }
 
-    @Override
     public void render(ShapeRenderingContext ctx) throws RenderException {
         for (Namespace child : children.values()) {
             child.render(ctx.forSubDir(child.getPackageNamePart()));
@@ -87,8 +86,13 @@ public class Namespace extends Shape {
         private final boolean async;
 
         private Client(Namespace parent, boolean async) {
-            super(parent, "OpenSearch" + Strings.toPascalCase(parent.name) + (async ? "Async" : "") + "Client", null);
+            super(parent, "OpenSearch" + Strings.toPascalCase(parent.name) + (async ? "Async" : "") + "Client", null, null);
             this.async = async;
+        }
+
+        @Override
+        public Type getExtendsType() {
+            return Types.Client.ApiClient(Types.Client.Transport.OpenSearchTransport, getType());
         }
 
         public String getName() {

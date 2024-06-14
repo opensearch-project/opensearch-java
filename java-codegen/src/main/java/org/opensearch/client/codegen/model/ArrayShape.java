@@ -14,8 +14,8 @@ import java.util.List;
 public class ArrayShape extends ObjectShape {
     private final Field valueBodyField;
 
-    public ArrayShape(Namespace parent, String className, Type arrayType, String typedefName) {
-        super(parent, className, typedefName);
+    public ArrayShape(Namespace parent, String className, Type arrayType, String typedefName, String description) {
+        super(parent, className, typedefName, description);
         this.valueBodyField = new Field("_value_body", arrayType, true, "Response value.", null);
     }
 

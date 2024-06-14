@@ -1,0 +1,14 @@
+{{#typedefName}}
+// typedef: {{.}}
+
+{{/typedefName}}
+{{#description}}
+/**
+* {{.}}
+*/
+{{/description}}
+{{#annotations}}
+@{{.}}
+{{/annotations}}
+@{{TYPES.Javax.Annotation.Generated}}("org.opensearch.client.codegen.CodeGenerator")
+public {{classKind}} {{className}}{{#extendsType}} extends {{.}}{{/extendsType}}{{#implementsTypes}}{{#-first}} implements{{/-first}} {{.}}{{^-last}},{{/-last}}{{/implementsTypes}}

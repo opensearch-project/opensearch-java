@@ -25,8 +25,6 @@ import org.opensearch.client.codegen.utils.Strings;
 public class RequestShape extends ObjectShape {
     @Nonnull
     private final OperationGroup operationGroup;
-    @Nullable
-    private final String description;
     @Nonnull
     private final Set<String> httpMethods = new HashSet<>();
     @Nonnull
@@ -39,9 +37,8 @@ public class RequestShape extends ObjectShape {
     private final Map<String, Field> fields = new TreeMap<>();
 
     public RequestShape(@Nonnull Namespace parent, @Nonnull OperationGroup operationGroup, @Nullable String description) {
-        super(parent, requestClassName(operationGroup), operationGroup + ".Request");
+        super(parent, requestClassName(operationGroup), operationGroup + ".Request", description);
         this.operationGroup = operationGroup;
-        this.description = description;
     }
 
     @Nonnull
@@ -51,11 +48,6 @@ public class RequestShape extends ObjectShape {
 
     public String getId() {
         return operationGroup.getName();
-    }
-
-    @Nullable
-    public String getDescription() {
-        return description;
     }
 
     public String getHttpMethod() {

@@ -31,7 +31,7 @@ import org.opensearch.client.codegen.model.ShapeRenderingContext;
 import org.opensearch.client.codegen.model.SpecTransformer;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 
-public class Main {
+public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final OperationGroup.Matcher OPERATION_MATCHER = OperationGroup.matcher().add(null, "info");
 
