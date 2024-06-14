@@ -19,8 +19,8 @@ public class ObjectShape extends Shape {
     protected final Map<String, Field> bodyFields = new TreeMap<>();
     protected Field additionalPropertiesField;
 
-    public ObjectShape(Namespace parent, String className, String typedefName) {
-        super(parent, className, typedefName);
+    public ObjectShape(Namespace parent, String className, String typedefName, String description) {
+        super(parent, className, typedefName, description);
     }
 
     public void addBodyField(Field field) {

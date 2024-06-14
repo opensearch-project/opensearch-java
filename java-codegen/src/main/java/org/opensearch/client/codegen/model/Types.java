@@ -112,12 +112,17 @@ public final class Types {
 
         public static final class Annotation {
             public static final String PACKAGE = Javax.PACKAGE + ".annotation";
+            public static final Type Generated = Type.builder().pkg(PACKAGE).name("Generated").build();
             public static final Type Nullable = Type.builder().pkg(PACKAGE).name("Nullable").build();
         }
     }
 
     public static final class Client {
         public static final String PACKAGE = "org.opensearch.client";
+
+        public static Type ApiClient(Type transport, Type client) {
+            return ApiClient.withGenericArgs(transport, client);
+        }
 
         public static final Type ApiClient = Type.builder().pkg(PACKAGE).name("ApiClient").build();
 

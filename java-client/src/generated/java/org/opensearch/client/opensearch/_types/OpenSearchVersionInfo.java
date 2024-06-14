@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -52,6 +53,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _types.OpenSearchVersionInfo
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class OpenSearchVersionInfo implements JsonpSerializable {
 
     private final String buildDate;

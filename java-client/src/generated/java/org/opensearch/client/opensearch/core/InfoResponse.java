@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.core;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -52,6 +53,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: info.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class InfoResponse implements JsonpSerializable {
 
     private final String clusterName;

@@ -8,12 +8,15 @@
 
 package org.opensearch.client.codegen.model;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.exceptions.RenderException;
+import org.opensearch.client.codegen.utils.JavaClassKind;
 
 public abstract class Shape {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -21,19 +24,13 @@ public abstract class Shape {
     private final String className;
     private final Set<Type> referencedTypes = new HashSet<>();
     private final String typedefName;
+    private final String description;
 
-    public Shape(Namespace parent, String className, String typedefName) {
+    public Shape(Namespace parent, String className, String typedefName, String description) {
         this.parent = parent;
         this.className = className;
         this.typedefName = typedefName;
-    }
-
-    public Type getType() {
-        return Type.builder().pkg(getPackageName()).name(className).build();
-    }
-
-    public Namespace getParent() {
-        return this.parent;
+        this.description = description;
     }
 
     public String getPackageName() {
@@ -44,8 +41,36 @@ public abstract class Shape {
         return this.className;
     }
 
+    public JavaClassKind getClassKind() {
+        return JavaClassKind.Class;
+    }
+
     public String getTypedefName() {
         return this.typedefName;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public Collection<Type> getAnnotations() {
+        return Collections.emptyList();
+    }
+
+    public Type getExtendsType() {
+        return null;
+    }
+
+    public Collection<Type> getImplementsTypes() {
+        return Collections.emptyList();
+    }
+
+    public Type getType() {
+        return Type.builder().pkg(getPackageName()).name(className).build();
+    }
+
+    public Namespace getParent() {
+        return this.parent;
     }
 
     public void render(ShapeRenderingContext ctx) throws RenderException {

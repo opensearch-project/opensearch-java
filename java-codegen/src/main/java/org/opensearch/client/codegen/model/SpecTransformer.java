@@ -231,16 +231,24 @@ public class SpecTransformer {
 
         Shape shape;
 
+        var description = schema.getDescription().orElse(null);
+
         if (schema.isArray()) {
-            shape = new ArrayShape(parent, className, mapType(schema), typedefName);
+            shape = new ArrayShape(parent, className, mapType(schema), typedefName, description);
         } else if (schema.isObject() || schema.hasAllOf() || schema.equals(OpenApiSchema.ANONYMOUS_OBJECT)) {
-            var objShape = new ObjectShape(parent, className, typedefName);
+            var objShape = new ObjectShape(parent, className, typedefName, description);
             visitInto(schema, objShape);
             shape = objShape;
         } else if (schema.isString() && schema.hasEnums()) {
-            shape = new EnumShape(parent, className, Lists.map(schema.getEnums().orElseThrow(), EnumShape.Variant::new), typedefName);
+            shape = new EnumShape(
+                parent,
+                className,
+                Lists.map(schema.getEnums().orElseThrow(), EnumShape.Variant::new),
+                typedefName,
+                description
+            );
         } else if (schema.hasOneOf()) {
-            var taggedUnion = new TaggedUnionShape(parent, className, typedefName);
+            var taggedUnion = new TaggedUnionShape(parent, className, typedefName, description);
             schema.getOneOf().orElseThrow().forEach(s -> {
                 var title = s.getTitle()
                     .orElseThrow(() -> new IllegalStateException("oneOf variant [" + s.getPointer() + "] is missing a `title` tag"));

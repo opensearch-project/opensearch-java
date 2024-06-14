@@ -1,12 +1,4 @@
-// typedef: {{typedefName}}
-
-{{#description}}
-/**
- * {{.}}
- */
-{{/description}}
-@{{TYPES.Client.Json.JsonpDeserializable}}
-public enum {{className}} implements {{TYPES.Client.Json.JsonEnum}} {
+{{>Partials/ClassDeclaration}} {
     {{#variants}}
     {{name}}({{#quoted}}{{wireName}}{{/quoted}}){{^-last}},{{/-last}}
     {{/variants}}

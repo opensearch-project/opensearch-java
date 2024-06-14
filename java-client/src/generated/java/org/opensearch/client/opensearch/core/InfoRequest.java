@@ -36,6 +36,7 @@
 
 package org.opensearch.client.opensearch.core;
 
+import javax.annotation.Generated;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -46,6 +47,7 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 /**
  * Returns basic information about the cluster.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class InfoRequest extends RequestBase {
     public InfoRequest() {}
 
