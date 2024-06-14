@@ -6,11 +6,6 @@
  * compatible open source license.
  */
 
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
-
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
