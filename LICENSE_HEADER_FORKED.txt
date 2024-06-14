@@ -30,14 +30,3 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch.core.search;
-
-public interface SuggestVariant {
-
-    Suggest.Kind _suggestionKind();
-
-    default Suggest _toSuggestion() {
-        return new Suggest(this);
-    }
-
-}
