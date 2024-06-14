@@ -296,19 +296,28 @@ tasks.withType<Jar> {
 }
 
 spotless {
-  java {
+    java {
+        target("**/*.java")
 
-    target("**/*.java")
+        licenseHeaderFile("../LICENSE_HEADER.txt")
+            .named("PrimaryLicenseHeader")
+            .onlyIfContentMatches("^((?!Licensed to Elasticsearch)[\\s\\S])*$")
+            .delimiter("(package |//-----)")
 
-    // Use the default importOrder configuration
-    importOrder()
-    removeUnusedImports()
+        licenseHeaderFile("../LICENSE_HEADER_FORKED.txt")
+            .named("ForkedLicenseHeader")
+            .onlyIfContentMatches("Licensed to Elasticsearch")
+            .delimiter("(package |//-----)")
 
-    eclipse().configFile("../buildSrc/formatterConfig.xml")
+        // Use the default importOrder configuration
+        importOrder()
+        removeUnusedImports()
 
-    trimTrailingWhitespace()
-    endWithNewline()
-  }
+        eclipse().configFile("../buildSrc/formatterConfig.xml")
+
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
 }
 
 publishing {
