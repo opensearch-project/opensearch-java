@@ -14,13 +14,13 @@ import org.opensearch.client.opensearch.model.ModelTestCase;
 public class AnalyzerDeserializerTest extends ModelTestCase {
     @Test
     public void deserializesTypelessCustomAnalyzer() {
-        var json = "{\n"
+        String json = "{\n"
             + "    \"filter\": [\"kuromoji_baseform\", \"ja_stop\"],\n"
             + "    \"char_filter\": [\"icu_normalizer\"],\n"
             + "    \"tokenizer\": \"kuromoji_tokenizer\"\n"
             + "}";
 
-        var analyzer = fromJson(json, Analyzer._DESERIALIZER);
+        Analyzer analyzer = fromJson(json, Analyzer._DESERIALIZER);
         assertTrue(analyzer.isCustom());
         assertEquals("kuromoji_tokenizer", analyzer.custom().tokenizer());
         assertEquals("icu_normalizer", analyzer.custom().charFilter().get(0));
