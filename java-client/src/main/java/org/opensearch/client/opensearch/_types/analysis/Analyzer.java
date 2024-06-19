@@ -606,7 +606,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         op.add(Builder::smartcn, SmartcnAnalyzer._DESERIALIZER, Kind.Smartcn.jsonValue());
         op.add(Builder::cjk, CjkAnalyzer._DESERIALIZER, Kind.Cjk.jsonValue());
 
-        op.setTypeProperty("type", null);
+        op.setTypeProperty("type", Kind.Custom.jsonValue());
 
     }
 

@@ -14,6 +14,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fixed error when deserializing an analyzer without `type` specified ([#1033](https://github.com/opensearch-project/opensearch-java/pull/1033))
 
 ### Security
 
