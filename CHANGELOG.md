@@ -26,10 +26,25 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
 
-
 ### Security
 
 ## [Unreleased 2.x]
+
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.11.0] - 06/20/2024
 
 ### Added
 
@@ -444,7 +459,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.4...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.11.0...2.x
+[2.11.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.4...v2.11.0
 [2.10.4]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.3...v2.10.4
 [2.10.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.2...v2.10.3
 [2.10.2]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.1...v2.10.2
