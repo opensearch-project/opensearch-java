@@ -68,6 +68,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
     @Nullable
     private final String routing;
 
+    @Nullable
     private final TDocument source;
 
     @Nullable
@@ -84,7 +85,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
         this.seqNo = builder.seqNo;
         this.primaryTerm = builder.primaryTerm;
         this.routing = builder.routing;
-        this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+        this.source = builder.source;
         this.tDocumentSerializer = builder.tDocumentSerializer;
 
     }
@@ -139,8 +140,9 @@ public class InlineGet<TDocument> implements JsonpSerializable {
     }
 
     /**
-     * Required - API name: {@code _source}
+     * API name: {@code _source}
      */
+    @Nullable
     public final TDocument source() {
         return this.source;
     }
@@ -191,9 +193,11 @@ public class InlineGet<TDocument> implements JsonpSerializable {
             generator.write(this.routing);
 
         }
-        generator.writeKey("_source");
-        JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
+        if (this.source != null) {
+            generator.writeKey("_source");
+            JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
 
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -240,6 +244,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
         @Nullable
         private String routing;
 
+        @Nullable
         private TDocument source;
 
         @Nullable
@@ -298,9 +303,9 @@ public class InlineGet<TDocument> implements JsonpSerializable {
         }
 
         /**
-         * Required - API name: {@code _source}
+         * API name: {@code _source}
          */
-        public final Builder<TDocument> source(TDocument value) {
+        public final Builder<TDocument> source(@Nullable TDocument value) {
             this.source = value;
             return this;
         }
