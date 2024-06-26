@@ -5,7 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
-- Bumps `io.github.classgraph:classgraph` from 4.8.172 to 4.8.173
+- Bumps `io.github.classgraph:classgraph` from 4.8.172 to 4.8.174
 
 ### Changed
 - Made InlineGet source field nullable. ([#1042](https://github.com/opensearch-project/opensearch-java/pull/1042))
