@@ -74,8 +74,6 @@ import org.opensearch.client.opensearch.core.GetSourceRequest;
 import org.opensearch.client.opensearch.core.GetSourceResponse;
 import org.opensearch.client.opensearch.core.IndexRequest;
 import org.opensearch.client.opensearch.core.IndexResponse;
-import org.opensearch.client.opensearch.core.InfoRequest;
-import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.MgetRequest;
 import org.opensearch.client.opensearch.core.MgetResponse;
 import org.opensearch.client.opensearch.core.MsearchRequest;
@@ -140,19 +138,10 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the namespace.
  */
-public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchClient> {
+public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Self>> extends ApiClient<OpenSearchTransport, Self> {
 
-    public OpenSearchClient(OpenSearchTransport transport) {
-        super(transport, null);
-    }
-
-    public OpenSearchClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+    public OpenSearchClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
-    }
-
-    @Override
-    public OpenSearchClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-        return new OpenSearchClient(this.transport, transportOptions);
     }
 
     // ----- Child clients
@@ -881,17 +870,6 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
     public final <TDocument> IndexResponse index(Function<IndexRequest.Builder<TDocument>, ObjectBuilder<IndexRequest<TDocument>>> fn)
         throws IOException, OpenSearchException {
         return index(fn.apply(new IndexRequest.Builder<TDocument>()).build());
-    }
-
-    // ----- Endpoint: info
-
-    /**
-     * Returns basic information about the cluster.
-     *
-     *
-     */
-    public InfoResponse info() throws IOException, OpenSearchException {
-        return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
     }
 
     // ----- Endpoint: list_point_in_time

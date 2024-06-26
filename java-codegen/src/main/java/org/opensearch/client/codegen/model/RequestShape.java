@@ -37,7 +37,7 @@ public class RequestShape extends ObjectShape {
     private final Map<String, Field> fields = new TreeMap<>();
 
     public RequestShape(@Nonnull Namespace parent, @Nonnull OperationGroup operationGroup, @Nullable String description) {
-        super(parent, requestClassName(operationGroup), operationGroup + ".Request", description);
+        super(parent, requestClassName(operationGroup), operationGroup.asTypedefPrefix() + ".Request", description);
         this.operationGroup = operationGroup;
     }
 
@@ -72,8 +72,8 @@ public class RequestShape extends ObjectShape {
         httpMethods.add(method);
     }
 
-    public String getResponseType() {
-        return responseClassName(operationGroup);
+    public Type getResponseType() {
+        return Type.builder().pkg(getPackageName()).name(responseClassName(operationGroup)).build();
     }
 
     public boolean canBeSingleton() {
@@ -145,13 +145,13 @@ public class RequestShape extends ObjectShape {
     }
 
     @Nonnull
-    public static String requestClassName(@Nonnull OperationGroup operationGroup) {
+    private static String requestClassName(@Nonnull OperationGroup operationGroup) {
         Objects.requireNonNull(operationGroup, "operationGroup must not be null");
         return Strings.toPascalCase(operationGroup.getName()) + "Request";
     }
 
     @Nonnull
-    public static String responseClassName(@Nonnull OperationGroup operationGroup) {
+    private static String responseClassName(@Nonnull OperationGroup operationGroup) {
         Objects.requireNonNull(operationGroup, "operationGroup must not be null");
         return Strings.toPascalCase(operationGroup.getName()) + "Response";
     }

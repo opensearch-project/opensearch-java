@@ -10,6 +10,7 @@ package org.opensearch.client.codegen.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -75,40 +76,83 @@ public class Namespace {
             shape.render(ctx);
         }
 
+        var operations = getOperationsForClient();
+
         if (operations.isEmpty()) return;
 
-        // TODO: Render clients when won't be partial and conflict with non-generated code
-        // new Client(this, false).render(outputDir, formatter);
-        // new Client(this, true).render(outputDir, formatter);
+        new Client(this, false, operations).render(ctx);
+        new Client(this, true, operations).render(ctx);
+    }
+
+    private Collection<RequestShape> getOperationsForClient() {
+        if ("core".equals(name)) return Collections.emptyList();
+        return ("".equals(name) ? child("core") : this).operations.values();
+    }
+
+    private String getClientClassName(boolean async, boolean base) {
+        return "OpenSearch" + Strings.toPascalCase(name) + (async ? "Async" : "") + "Client" + (base ? "Base" : "");
+    }
+
+    private Type getClientType(boolean async, boolean base) {
+        var type = Type.builder().pkg(getPackageName()).name(getClientClassName(async, base));
+        if (base) {
+            type.genericArgs(getClientType(async, false));
+        }
+        return type.build();
     }
 
     private static class Client extends Shape {
         private final boolean async;
+        private final Collection<RequestShape> operations;
 
-        private Client(Namespace parent, boolean async) {
-            super(parent, "OpenSearch" + Strings.toPascalCase(parent.name) + (async ? "Async" : "") + "Client", null, null);
+        private Client(Namespace parent, boolean async, Collection<RequestShape> operations) {
+            super(parent, parent.getClientClassName(async, false), null, null);
             this.async = async;
+            this.operations = operations;
         }
 
         @Override
         public Type getExtendsType() {
-            return Types.Client.ApiClient(Types.Client.Transport.OpenSearchTransport, getType());
+            switch (parent.name) {
+                case "":
+                    return parent.getClientType(async, true);
+                default:
+                    return Types.Client.ApiClient(Types.Client.Transport.OpenSearchTransport, getType());
+            }
         }
 
         public String getName() {
             return parent.name;
         }
 
-        public Collection<Client> getChildren() {
-            return Lists.filterMap(parent.children.values(), n -> !n.operations.isEmpty(), n -> new Client(n, async));
+        public Collection<ClientRef> getChildren() {
+            return Lists.filterMap(parent.children.values(), n -> !n.getOperationsForClient().isEmpty(), n -> new ClientRef(n, async));
         }
 
         public Collection<RequestShape> getOperations() {
-            return parent.operations.values();
+            return operations;
         }
 
         public boolean isAsync() {
             return this.async;
+        }
+
+        private static class ClientRef {
+            private final Type type;
+            private final String name;
+
+            public ClientRef(Namespace namespace, boolean async) {
+                this.type = namespace.getClientType(async, false);
+                this.name = namespace.name;
+            }
+
+            public Type getType() {
+                return type;
+            }
+
+            public String getName() {
+                return name;
+            }
         }
     }
 }

@@ -75,8 +75,6 @@ import org.opensearch.client.opensearch.core.GetSourceRequest;
 import org.opensearch.client.opensearch.core.GetSourceResponse;
 import org.opensearch.client.opensearch.core.IndexRequest;
 import org.opensearch.client.opensearch.core.IndexResponse;
-import org.opensearch.client.opensearch.core.InfoRequest;
-import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.MgetRequest;
 import org.opensearch.client.opensearch.core.MgetResponse;
 import org.opensearch.client.opensearch.core.MsearchRequest;
@@ -140,19 +138,10 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the namespace.
  */
-public class OpenSearchAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchAsyncClient> {
+public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClientBase<Self>> extends ApiClient<OpenSearchTransport, Self> {
 
-    public OpenSearchAsyncClient(OpenSearchTransport transport) {
-        super(transport, null);
-    }
-
-    public OpenSearchAsyncClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+    public OpenSearchAsyncClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
-    }
-
-    @Override
-    public OpenSearchAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-        return new OpenSearchAsyncClient(this.transport, transportOptions);
     }
 
     // ----- Child clients
@@ -895,17 +884,6 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchTransport, OpenSe
         Function<IndexRequest.Builder<TDocument>, ObjectBuilder<IndexRequest<TDocument>>> fn
     ) throws IOException, OpenSearchException {
         return index(fn.apply(new IndexRequest.Builder<TDocument>()).build());
-    }
-
-    // ----- Endpoint: info
-
-    /**
-     * Returns basic information about the cluster.
-     *
-     *
-     */
-    public CompletableFuture<InfoResponse> info() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
     }
 
     // ----- Endpoint: list_point_in_time
