@@ -12,6 +12,10 @@
         return new {{className}}(this.transport, transportOptions);
     }
 {{#children}}
+    {{#-first}}
+
+    // ----- Child clients
+    {{/-first}}
 
     public {{type}} {{#camelCase}}{{name}}{{/camelCase}}() {
         return new {{type}}(this.transport, this.transportOptions);
@@ -21,11 +25,23 @@
 
     // ----- Endpoint: {{operationGroup}}
 
+    {{#canBeSingleton}}
+    /**
+     * {{description}}
+     */
+    public {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}() throws {{TYPES.Java.Io.IOException}}, {{TYPES.Client.OpenSearch._Types.OpenSearchException}} {
+        return this.transport.performRequest{{#async}}Async{{/async}}({{type}}._INSTANCE, {{type}}._ENDPOINT, this.transportOptions);
+    }
+    {{/canBeSingleton}}
+    {{^canBeSingleton}}
     /**
      * {{description}}
      */
     public {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{type}} request) throws {{TYPES.Java.Io.IOException}}, {{TYPES.Client.OpenSearch._Types.OpenSearchException}} {
-        return this.transport.performRequest{{#async}}Async{{/async}}(request, {{type}}._ENDPOINT, this.transportOptions);
+        @SuppressWarnings("unchecked")
+        {{jsonEndpointType}} endpoint = ({{jsonEndpointType}}) {{type.name}}._ENDPOINT;
+
+        return this.transport.performRequest{{#async}}Async{{/async}}(request, endpoint, this.transportOptions);
     }
 
     /**
@@ -44,8 +60,9 @@
      */
     public {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}()
             throws IOException, OpenSearchException {
-        return {{#camelCase}}{{id}}{{/camelCase}}(new {{type.builderType}}().build());
+        return this.transport.performRequest{{#async}}Async{{/async}}(new {{type.builderType}}().build(), {{type.name}}._ENDPOINT, this.transportOptions);
     }
     {{/hasAnyRequiredFields}}
+    {{/canBeSingleton}}
 {{/operations}}
 }
