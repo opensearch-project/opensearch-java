@@ -12,6 +12,7 @@ This document contains a list of maintainers in this repo. See [opensearch-proje
 | Dominik Szczepańczyk | [szczepanczykd](https://github.com/szczepanczykd)       | Exadel         |
 | Madhusudhan Konda    | [madhusudhankonda](https://github.com/madhusudhankonda) | Chocolateminds |
 | Sarat Vemulapalli    | [saratvemulapalli](https://github.com/saratvemulapalli) | Amazon         |
+| Thomas Farr          | [Xtansia](https://github.com/Xtansia)                   | Amazon         |
 | Vacha Shah           | [VachaShah](https://github.com/VachaShah)               | Amazon         |
 
 ## Emeritus
