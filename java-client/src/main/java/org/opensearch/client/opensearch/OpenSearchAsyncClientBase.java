@@ -75,8 +75,6 @@ import org.opensearch.client.opensearch.core.GetSourceRequest;
 import org.opensearch.client.opensearch.core.GetSourceResponse;
 import org.opensearch.client.opensearch.core.IndexRequest;
 import org.opensearch.client.opensearch.core.IndexResponse;
-import org.opensearch.client.opensearch.core.InfoRequest;
-import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.MgetRequest;
 import org.opensearch.client.opensearch.core.MgetResponse;
 import org.opensearch.client.opensearch.core.MsearchRequest;
@@ -140,8 +138,7 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the namespace.
  */
-public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClientBase<Self>>
-        extends ApiClient<OpenSearchTransport, Self> {
+public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClientBase<Self>> extends ApiClient<OpenSearchTransport, Self> {
 
     public OpenSearchAsyncClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
