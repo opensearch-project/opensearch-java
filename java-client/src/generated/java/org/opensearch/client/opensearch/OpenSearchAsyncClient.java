@@ -34,42 +34,39 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.core;
+package org.opensearch.client.opensearch;
 
+import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 import javax.annotation.Generated;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch._types.RequestBase;
-import org.opensearch.client.transport.Endpoint;
-import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import javax.annotation.Nullable;
+import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch.core.InfoRequest;
+import org.opensearch.client.opensearch.core.InfoResponse;
+import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.TransportOptions;
 
-// typedef: _global.info.Request
-
-/**
- * Returns basic information about the cluster.
- */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class InfoRequest extends RequestBase {
-    public InfoRequest() {}
+public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchAsyncClient> {
+    public OpenSearchAsyncClient(OpenSearchTransport transport) {
+        super(transport, null);
+    }
+
+    public OpenSearchAsyncClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+        super(transport, transportOptions);
+    }
+
+    @Override
+    public OpenSearchAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchAsyncClient(this.transport, transportOptions);
+    }
+
+    // ----- Endpoint: info
 
     /**
-     * Singleton instance for {@link InfoRequest}.
+     * Returns basic information about the cluster.
      */
-    public static final InfoRequest _INSTANCE = new InfoRequest();
-
-    // ---------------------------------------------------------------------------------------------
-
-    /**
-     * Endpoint "{@code info}".
-     */
-    public static final Endpoint<InfoRequest, InfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-        // Request method
-        request -> "GET",
-        // Request path
-        request -> "/",
-        // Request parameters
-        SimpleEndpoint.emptyMap(),
-        SimpleEndpoint.emptyMap(),
-        false,
-        InfoResponse._DESERIALIZER
-    );
+    public CompletableFuture<InfoResponse> info() throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
+    }
 }
