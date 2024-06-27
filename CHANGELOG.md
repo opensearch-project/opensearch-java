@@ -7,13 +7,28 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 
 ### Changed
-- Made InlineGet source field nullable. ([#1042](https://github.com/opensearch-project/opensearch-java/pull/1042))
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+### Security
+
+## [2.11.1] - 06/27/2024
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fixed handling of an absent `source` in InlineGet ([#1042](https://github.com/opensearch-project/opensearch-java/pull/1042))
 
 ### Security
 
