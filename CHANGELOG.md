@@ -5,7 +5,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `org.owasp.dependencycheck` from 9.1.0 to 9.2.0
 - Bumps `com.github.jk1.dependency-license-report` from 2.7 to 2.8
-- Bumps `io.github.classgraph:classgraph` from 4.8.172 to 4.8.174
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
@@ -25,7 +24,6 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
-- Deserialize aggregation containing a parent aggregation ([#706](https://github.com/opensearch-project/opensearch-java/pull/706))
 
 ### Security
 
@@ -34,15 +32,32 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Added
 
 ### Dependencies
+- Bumps `io.github.classgraph:classgraph` from 4.8.173 to 4.8.174
 
 ### Changed
-- Made InlineGet source field nullable. ([#1042](https://github.com/opensearch-project/opensearch-java/pull/1042))
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+- Deserialize aggregation containing a parent aggregation ([#706](https://github.com/opensearch-project/opensearch-java/pull/706))
+
+### Security
+
+## [2.11.1] - 06/27/2024
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+- Fixed handling of an absent `source` in InlineGet ([#1042](https://github.com/opensearch-project/opensearch-java/pull/1042))
 
 ### Security
 
@@ -461,7 +476,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.11.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.11.1...2.x
+[2.11.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.11.0...v2.11.1
 [2.11.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.4...v2.11.0
 [2.10.4]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.3...v2.10.4
 [2.10.3]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.2...v2.10.3
