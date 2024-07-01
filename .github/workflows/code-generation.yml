@@ -1,0 +1,34 @@
+name: Code Generation
+
+on: [pull_request]
+
+jobs:
+  up_to_date:
+    name: Ensure Generated Code Up To Date
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Java Client
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Run Code Generator
+        run: ./gradlew clean :java-codegen:run
+
+      - name: Check Has No Changes
+        shell: bash -eo pipefail {0}
+        run: |
+          output=$(git status --porcelain)
+          if [ -z "$output" ]; then
+            echo "Clean working directory"
+            exit 0
+          else
+            echo "Dirty working directory"
+            echo "$output"
+            exit 1
+          fi
