@@ -106,6 +106,12 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
     private final Boolean ccsMinimizeRoundtrips;
 
     @Nullable
+    private final Boolean phaseTook;
+
+    @Nullable
+    private final String pipeline;
+
+    @Nullable
     private final FieldCollapse collapse;
 
     @Nullable
@@ -239,6 +245,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
         this.analyzer = builder.analyzer;
         this.batchedReduceSize = builder.batchedReduceSize;
         this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
+        this.phaseTook = builder.phaseTook;
+        this.pipeline = builder.pipeline;
         this.collapse = builder.collapse;
         this.defaultOperator = builder.defaultOperator;
         this.df = builder.df;
@@ -375,6 +383,27 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
     @Nullable
     public final Boolean ccsMinimizeRoundtrips() {
         return this.ccsMinimizeRoundtrips;
+    }
+
+    /**
+     * Indicates whether search phase took times should be returned
+     * in SearchResponse
+     * <p>
+     * API name: {@code phase_took}
+     */
+    @Nullable
+    public final Boolean phaseTook() {
+        return this.phaseTook;
+    }
+
+    /**
+     * Specifies search pipeline name
+     * <p>
+     * API name: {@code pipeline}
+     */
+    @Nullable
+    public final String pipeline() {
+        return this.pipeline;
     }
 
     /**
@@ -1084,6 +1113,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
             .analyzer(analyzer)
             .batchedReduceSize(batchedReduceSize)
             .ccsMinimizeRoundtrips(ccsMinimizeRoundtrips)
+            .phaseTook(phaseTook)
+            .pipeline(pipeline)
             .collapse(collapse)
             .defaultOperator(defaultOperator)
             .df(df)
@@ -1161,6 +1192,12 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
         @Nullable
         private Boolean ccsMinimizeRoundtrips;
+
+        @Nullable
+        private Boolean phaseTook;
+
+        @Nullable
+        private String pipeline;
 
         @Nullable
         private FieldCollapse collapse;
@@ -1412,6 +1449,27 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
          */
         public final Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
             this.ccsMinimizeRoundtrips = value;
+            return this;
+        }
+
+        /**
+         * Indicates whether search phase took times should be returned
+         * in SearchResponse
+         * <p>
+         * API name: {@code phase_took}
+         */
+        public final Builder phaseTook(@Nullable Boolean value) {
+            this.phaseTook = value;
+            return this;
+        }
+
+        /**
+         * Specifies search pipeline name
+         * <p>
+         * API name: {@code pipeline}
+         */
+        public final Builder pipeline(@Nullable String value) {
+            this.pipeline = value;
             return this;
         }
 
@@ -2353,6 +2411,12 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
             }
             if (request.ccsMinimizeRoundtrips != null) {
                 params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
+            }
+            if (request.phaseTook != null) {
+                params.put("phase_took", String.valueOf(request.phaseTook));
+            }
+            if (request.pipeline != null) {
+                params.put("search_pipeline", request.pipeline);
             }
             if (request.q != null) {
                 params.put("q", request.q);
