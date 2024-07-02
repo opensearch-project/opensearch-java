@@ -33,6 +33,24 @@ public class SearchRequestTest extends ModelTestCase {
     }
 
     @Test
+    public void phaseTook() {
+        SearchRequest request = new SearchRequest.Builder().phaseTook(true).build();
+
+        assertEquals("{}", toJson(request));
+        assertEquals(true, request.phaseTook());
+        assertTrue(Boolean.parseBoolean(SearchRequest._ENDPOINT.queryParameters(request).get("phase_took")));
+    }
+
+    @Test
+    public void pipeline() {
+        SearchRequest request = new SearchRequest.Builder().pipeline("my_pipeline").build();
+
+        assertEquals("{}", toJson(request));
+        assertEquals("my_pipeline", request.pipeline());
+        assertEquals("my_pipeline", SearchRequest._ENDPOINT.queryParameters(request).get("search_pipeline"));
+    }
+
+    @Test
     public void toBuilder() {
         SearchRequest origin = new SearchRequest.Builder().index("index").build();
         SearchRequest copied = origin.toBuilder().build();
