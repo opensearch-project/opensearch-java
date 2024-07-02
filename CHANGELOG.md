@@ -12,6 +12,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Added
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
 - Add support for phase_took & search_pipeline request params ([#1036](https://github.com/opensearch-project/opensearch-java/pull/1036))
+- Add a serializer method for classes implementing JsonpSerializable.([#1064](https://github.com/opensearch-project/opensearch-java/pull/1064))
 
 ### Dependencies
 
