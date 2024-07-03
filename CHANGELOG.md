@@ -3,6 +3,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
+- Add support for phase_took & search_pipeline request params ([#1036](https://github.com/opensearch-project/opensearch-java/pull/1036))
 
 ### Dependencies
 - Bumps `io.github.classgraph:classgraph` from 4.8.173 to 4.8.174
