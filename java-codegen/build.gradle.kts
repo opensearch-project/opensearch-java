@@ -13,6 +13,7 @@
 
 import com.github.jk1.license.ProjectData
 import com.github.jk1.license.render.ReportRenderer
+import de.undercouch.gradle.tasks.download.Download
 import java.io.FileWriter
 
 buildscript {
@@ -32,6 +33,7 @@ plugins {
     id("com.github.jk1.dependency-license-report") version "2.8"
     id("org.owasp.dependencycheck") version "9.2.0"
     id("com.diffplug.spotless") version "6.25.0"
+    id("de.undercouch.download") version "5.6.0"
 }
 apply(plugin = "opensearch.repositories")
 apply(plugin = "org.owasp.dependencycheck")
@@ -66,9 +68,16 @@ application {
     )
 }
 
+val localSpecification = "$projectDir/opensearch-openapi.yaml"
+
+tasks.create<Download>("downloadLatestSpec") {
+    src("https://github.com/opensearch-project/opensearch-api-specification/releases/download/main-latest/opensearch-openapi.yaml")
+    dest(localSpecification)
+}
+
 tasks.named<JavaExec>("run") {
     args = listOf(
-        "--input", "$projectDir/opensearch-openapi.yaml",
+        "--input", localSpecification,
         "--eclipse-config", "$rootDir/buildSrc/formatterConfig-generated.xml",
         "--output", "${project(":java-client").projectDir}/src/generated/java/"
     )
