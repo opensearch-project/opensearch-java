@@ -35,8 +35,8 @@ package org.opensearch.client.opensearch.nodes;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.NodeStatistics;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -44,7 +44,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: nodes._types.NodesResponseBase
 
-public abstract class NodesResponseBase implements JsonpSerializable {
+public abstract class NodesResponseBase implements PlainJsonSerializable {
     private final NodeStatistics nodeStats;
 
     // ---------------------------------------------------------------------------------------------

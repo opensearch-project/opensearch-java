@@ -17,10 +17,10 @@ import org.opensearch.client.json.ExternallyTaggedUnion;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ClusterStatistics;
 import org.opensearch.client.opensearch._types.ShardStatistics;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
@@ -30,7 +30,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 //typedef: _global.search.SearchResult
 
-public abstract class SearchResult<TDocument> implements JsonpSerializable {
+public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
 
     private final long took;
 

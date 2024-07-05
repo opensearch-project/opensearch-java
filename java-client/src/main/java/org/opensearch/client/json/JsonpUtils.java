@@ -82,14 +82,14 @@ public class JsonpUtils {
             }
 
             throw new JsonException(
-                "Cannot find a serializer for type " + value.getClass().getName() + ". Consider using a full-featured JsonpMapper"
+                "Cannot find a serializer for type " + value.getClass().getName() + ". Consider using a full-featured JsonpMapper."
             );
         }
 
         @Override
         protected <T> JsonpDeserializer<T> getDefaultDeserializer(Class<T> clazz) {
             throw new JsonException(
-                "Cannot find a default deserializer for type " + clazz.getName() + ". Consider using a full-featured JsonpMapper"
+                "Cannot find a default deserializer for type " + clazz.getName() + ". Consider using a full-featured JsonpMapper."
             );
         }
     };

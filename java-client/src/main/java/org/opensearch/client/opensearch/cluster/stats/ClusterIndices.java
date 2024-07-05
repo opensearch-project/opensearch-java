@@ -39,9 +39,9 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.CompletionStats;
 import org.opensearch.client.opensearch._types.DocStats;
 import org.opensearch.client.opensearch._types.FielddataStats;
@@ -55,7 +55,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: cluster.stats.ClusterIndices
 
 @JsonpDeserializable
-public class ClusterIndices implements JsonpSerializable {
+public class ClusterIndices implements PlainJsonSerializable {
     private final CompletionStats completion;
 
     private final long count;

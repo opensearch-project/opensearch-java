@@ -16,9 +16,9 @@ import org.opensearch.client.opensearch._types.Result;
 import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.SearchRequest;
 
-public class JsonpSerializableTest extends Assert {
+public class PlainJsonSerializableTest extends Assert {
 
-    // Test IndexResponse which extends WriteResponseBase which implements JsonpSerializable
+    // Test IndexResponse which extends WriteResponseBase which implements PlainJsonSerializable
     @Test
     public void testIndexResponse() {
 
@@ -50,7 +50,7 @@ public class JsonpSerializableTest extends Assert {
         assertEquals(expectedStringValue, indexResponseString);
     }
 
-    // Test SearchRequest which implements JsonpSerializable
+    // Test SearchRequest which implements PlainJsonSerializable
     @Test
     public void testSearchResponse() {
 

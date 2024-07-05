@@ -37,9 +37,9 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.snapshot.restore.SnapshotRestore;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -48,7 +48,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: snapshot.restore.Response
 
 @JsonpDeserializable
-public class RestoreResponse implements JsonpSerializable {
+public class RestoreResponse implements PlainJsonSerializable {
     private final SnapshotRestore snapshot;
 
     // ---------------------------------------------------------------------------------------------

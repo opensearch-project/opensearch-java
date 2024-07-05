@@ -39,9 +39,9 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ShardStatistics;
 import org.opensearch.client.opensearch.indices.validate_query.IndicesValidationExplanation;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -51,7 +51,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: indices.validate_query.Response
 
 @JsonpDeserializable
-public class ValidateQueryResponse implements JsonpSerializable {
+public class ValidateQueryResponse implements PlainJsonSerializable {
     private final List<IndicesValidationExplanation> explanations;
 
     @Nullable

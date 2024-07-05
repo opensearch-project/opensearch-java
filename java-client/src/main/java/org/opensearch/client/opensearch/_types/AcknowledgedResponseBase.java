@@ -35,14 +35,14 @@ package org.opensearch.client.opensearch._types;
 import jakarta.json.stream.JsonGenerator;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.AcknowledgedResponseBase
 
-public abstract class AcknowledgedResponseBase implements JsonpSerializable {
+public abstract class AcknowledgedResponseBase implements PlainJsonSerializable {
     private final boolean acknowledged;
 
     // ---------------------------------------------------------------------------------------------

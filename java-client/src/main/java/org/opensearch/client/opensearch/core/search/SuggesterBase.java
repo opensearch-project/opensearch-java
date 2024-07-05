@@ -36,14 +36,14 @@ import jakarta.json.stream.JsonGenerator;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _global.search._types.SuggesterBase
 
-public abstract class SuggesterBase implements JsonpSerializable {
+public abstract class SuggesterBase implements PlainJsonSerializable {
     private final String field;
 
     @Nullable

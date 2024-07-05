@@ -38,9 +38,9 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.indices.resolve_index.ResolveIndexAliasItem;
 import org.opensearch.client.opensearch.indices.resolve_index.ResolveIndexItem;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -50,7 +50,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: indices.resolve_index.Response
 
 @JsonpDeserializable
-public class ResolveIndexResponse implements JsonpSerializable {
+public class ResolveIndexResponse implements PlainJsonSerializable {
     private final List<ResolveIndexItem> indices;
 
     private final List<ResolveIndexAliasItem> aliases;

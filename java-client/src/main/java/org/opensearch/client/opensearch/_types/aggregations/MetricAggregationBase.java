@@ -37,8 +37,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ObjectBuilder;
@@ -46,7 +46,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.aggregations.MetricAggregationBase
 
-public abstract class MetricAggregationBase implements JsonpSerializable {
+public abstract class MetricAggregationBase implements PlainJsonSerializable {
     @Nullable
     private final String field;
 
