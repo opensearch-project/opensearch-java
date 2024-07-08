@@ -7,6 +7,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bumps `io.github.classgraph:classgraph` from 4.8.173 to 4.8.174
+- Bumps `org.owasp.dependencycheck` from 9.1.0 to 10.0.2
+- Bumps `com.github.jk1.dependency-license-report` from 2.7 to 2.8
 
 ### Changed
 
