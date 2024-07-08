@@ -59,7 +59,7 @@ public class CodeGenerator {
             .build();
         var helpOpt = Option.builder("h").longOpt("help").desc("Print this help information").build();
         final var usageString =
-            "Main.class --input https://.../opensearch-openapi.yaml --eclipse-config ./buildSrc/formatterConfig.xml --output ./java-client/src/generated/java";
+            "CodeGenerator.class --input https://.../opensearch-openapi.yaml --eclipse-config ./buildSrc/formatterConfig.xml --output ./java-client/src/generated/java";
 
         var options = new Options().addOption(inputOpt).addOption(eclipseConfigOpt).addOption(outputOpt).addOption(helpOpt);
 
