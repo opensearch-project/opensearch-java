@@ -45,6 +45,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Deserialize aggregation containing a parent aggregation ([#706](https://github.com/opensearch-project/opensearch-java/pull/706))
+- Deserialize error response when using AwsSdk2Transport ([#1068](https://github.com/opensearch-project/opensearch-java/pull/1068))
 
 ### Security
 

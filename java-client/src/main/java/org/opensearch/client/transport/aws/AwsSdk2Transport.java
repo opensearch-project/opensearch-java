@@ -48,6 +48,7 @@ import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.endpoints.BooleanEndpoint;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
+import org.opensearch.client.util.MissingRequiredPropertyException;
 import org.opensearch.client.util.OpenSearchRequestBodyBuffer;
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
@@ -64,6 +65,7 @@ import software.amazon.awssdk.http.SdkHttpResponse;
 import software.amazon.awssdk.http.async.AsyncExecuteRequest;
 import software.amazon.awssdk.http.async.SdkAsyncHttpClient;
 import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.utils.IoUtils;
 import software.amazon.awssdk.utils.SdkAutoCloseable;
 
 /**
@@ -534,10 +536,17 @@ public class AwsSdk2Transport implements OpenSearchTransport {
                 if (errorDeserializer == null || bodyStream == null) {
                     throw new TransportException("Request failed with status code '" + statusCode + "'");
                 }
+
+                // We may have to reset if there is a parse deserialization exception
+                bodyStream = toByteArrayInputStream(bodyStream);
+
                 try {
                     try (JsonParser parser = mapper.jsonProvider().createParser(bodyStream)) {
                         ErrorT error = errorDeserializer.deserialize(parser, mapper);
                         throw new OpenSearchException((ErrorResponse) error);
+                    } catch (MissingRequiredPropertyException errorEx) {
+                        bodyStream.reset();
+                        return decodeResponse(uri, method, protocol, httpResponse, bodyStream, endpoint, mapper);
                     }
                 } catch (OpenSearchException e) {
                     throw e;
@@ -551,57 +560,68 @@ public class AwsSdk2Transport implements OpenSearchTransport {
                 }
             }
         } else {
-            if (endpoint instanceof BooleanEndpoint) {
-                BooleanEndpoint<?> bep = (BooleanEndpoint<?>) endpoint;
-                @SuppressWarnings("unchecked")
-                ResponseT response = (ResponseT) new BooleanResponse(bep.getResult(statusCode));
-                return response;
-            } else if (endpoint instanceof JsonEndpoint) {
-                JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>) endpoint;
-                // Successful response
-                ResponseT response = null;
-                JsonpDeserializer<ResponseT> responseParser = jsonEndpoint.responseDeserializer();
-                if (responseParser != null) {
-                    // Expecting a body
-                    if (bodyStream == null) {
-                        throw new TransportException("Expecting a response body, but none was sent");
-                    }
-                    try (JsonParser parser = mapper.jsonProvider().createParser(bodyStream)) {
-                        try {
-                            response = responseParser.deserialize(parser, mapper);
-                        } catch (NullPointerException e) {
-                            response = responseParser.deserialize(parser, mapper);
-                        }
-                    }
-                    ;
-                }
-                return response;
-            } else if (endpoint instanceof GenericEndpoint) {
-                @SuppressWarnings("unchecked")
-                final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
+            return decodeResponse(uri, method, protocol, httpResponse, bodyStream, endpoint, mapper);
+        }
+    }
 
-                String contentType = null;
-                if (bodyStream != null) {
-                    contentType = httpResponse.firstMatchingHeader(Header.CONTENT_TYPE).orElse(null);
+    private <ResponseT, ErrorT> ResponseT decodeResponse(
+        URI uri,
+        @Nonnull SdkHttpMethod method,
+        String protocol,
+        @Nonnull SdkHttpResponse httpResponse,
+        @CheckForNull InputStream bodyStream,
+        @Nonnull Endpoint<?, ResponseT, ErrorT> endpoint,
+        JsonpMapper mapper
+    ) throws IOException {
+        if (endpoint instanceof BooleanEndpoint) {
+            BooleanEndpoint<?> bep = (BooleanEndpoint<?>) endpoint;
+            @SuppressWarnings("unchecked")
+            ResponseT response = (ResponseT) new BooleanResponse(bep.getResult(httpResponse.statusCode()));
+            return response;
+        } else if (endpoint instanceof JsonEndpoint) {
+            JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>) endpoint;
+            // Successful response
+            ResponseT response = null;
+            JsonpDeserializer<ResponseT> responseParser = jsonEndpoint.responseDeserializer();
+            if (responseParser != null) {
+                // Expecting a body
+                if (bodyStream == null) {
+                    throw new TransportException("Expecting a response body, but none was sent");
                 }
-
-                return rawEndpoint.responseDeserializer(
-                    uri.toString(),
-                    method.name(),
-                    protocol,
-                    httpResponse.statusCode(),
-                    httpResponse.statusText().orElse(null),
-                    httpResponse.headers()
-                        .entrySet()
-                        .stream()
-                        .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getKey(), Objects.toString(h.getValue())))
-                        .collect(Collectors.toList()),
-                    contentType,
-                    bodyStream
-                );
-            } else {
-                throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'");
+                try (JsonParser parser = mapper.jsonProvider().createParser(bodyStream)) {
+                    try {
+                        response = responseParser.deserialize(parser, mapper);
+                    } catch (NullPointerException e) {
+                        response = responseParser.deserialize(parser, mapper);
+                    }
+                }
             }
+            return response;
+        } else if (endpoint instanceof GenericEndpoint) {
+            @SuppressWarnings("unchecked")
+            final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
+
+            String contentType = null;
+            if (bodyStream != null) {
+                contentType = httpResponse.firstMatchingHeader(Header.CONTENT_TYPE).orElse(null);
+            }
+
+            return rawEndpoint.responseDeserializer(
+                uri.toString(),
+                method.name(),
+                protocol,
+                httpResponse.statusCode(),
+                httpResponse.statusText().orElse(null),
+                httpResponse.headers()
+                    .entrySet()
+                    .stream()
+                    .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getKey(), Objects.toString(h.getValue())))
+                    .collect(Collectors.toList()),
+                contentType,
+                bodyStream
+            );
+        } else {
+            throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'");
         }
     }
 
@@ -615,6 +635,14 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             Optional<T> r = (Optional<T>) supplier.get();
             return Objects.requireNonNull(r);
         }
+    }
+
+    private static ByteArrayInputStream toByteArrayInputStream(InputStream is) throws IOException {
+        // Optimization to avoid copying when applicable. `executeAsync` will produce `ByteArrayInputStream`.
+        if (is instanceof ByteArrayInputStream) {
+            return (ByteArrayInputStream) is;
+        }
+        return new ByteArrayInputStream(IoUtils.toByteArray(is));
     }
 
     /**
