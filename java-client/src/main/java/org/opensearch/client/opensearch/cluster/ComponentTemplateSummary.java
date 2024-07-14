@@ -40,9 +40,9 @@ import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
 import org.opensearch.client.opensearch.indices.AliasDefinition;
 import org.opensearch.client.opensearch.indices.IndexSettings;
@@ -53,7 +53,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: cluster._types.ComponentTemplateSummary
 
 @JsonpDeserializable
-public class ComponentTemplateSummary implements JsonpSerializable {
+public class ComponentTemplateSummary implements PlainJsonSerializable {
     private final Map<String, JsonData> meta;
 
     @Nullable

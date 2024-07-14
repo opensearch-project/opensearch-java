@@ -38,9 +38,9 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.nodes.hot_threads.HotThread;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -49,7 +49,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: nodes.hot_threads.Response
 
 @JsonpDeserializable
-public class HotThreadsResponse implements JsonpSerializable {
+public class HotThreadsResponse implements PlainJsonSerializable {
     private final List<HotThread> hotThreads;
 
     // ---------------------------------------------------------------------------------------------

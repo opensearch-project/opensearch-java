@@ -37,14 +37,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.query_dsl.ScoreFunctionBase
 
-public abstract class ScoreFunctionBase implements JsonpSerializable {
+public abstract class ScoreFunctionBase implements PlainJsonSerializable {
     @Nullable
     private final Query filter;
 

@@ -40,16 +40,16 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: nodes.info.NodeInfoDiscover
 
 @JsonpDeserializable
-public class NodeInfoDiscover implements JsonpSerializable {
+public class NodeInfoDiscover implements PlainJsonSerializable {
     @Nullable
     private final List<String> seedHosts;
 

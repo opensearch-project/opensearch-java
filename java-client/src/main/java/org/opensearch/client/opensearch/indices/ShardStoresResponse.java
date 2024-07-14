@@ -38,9 +38,9 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.indices.shard_stores.IndicesShardStores;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -49,7 +49,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: indices.shard_stores.Response
 
 @JsonpDeserializable
-public class ShardStoresResponse implements JsonpSerializable {
+public class ShardStoresResponse implements PlainJsonSerializable {
     private final Map<String, IndicesShardStores> indices;
 
     // ---------------------------------------------------------------------------------------------

@@ -39,9 +39,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.JsonpUtils;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpType;
 import org.opensearch.client.opensearch._types.Refresh;
@@ -62,7 +62,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  *
  */
 
-public class IndexRequest<TDocument> extends RequestBase implements JsonpSerializable {
+public class IndexRequest<TDocument> extends RequestBase implements PlainJsonSerializable {
     @Nullable
     private final String id;
 

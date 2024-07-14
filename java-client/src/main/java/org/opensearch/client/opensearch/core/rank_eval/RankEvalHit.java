@@ -37,9 +37,9 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -47,7 +47,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _global.rank_eval.RankEvalHit
 
 @JsonpDeserializable
-public class RankEvalHit implements JsonpSerializable {
+public class RankEvalHit implements PlainJsonSerializable {
     private final String id;
 
     private final String index;

@@ -40,9 +40,9 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -50,7 +50,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: cluster.allocation_explain.NodeAllocationExplanation
 
 @JsonpDeserializable
-public class NodeAllocationExplanation implements JsonpSerializable {
+public class NodeAllocationExplanation implements PlainJsonSerializable {
     private final List<AllocationDecision> deciders;
 
     private final Map<String, String> nodeAttributes;

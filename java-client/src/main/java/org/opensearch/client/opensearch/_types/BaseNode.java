@@ -38,14 +38,14 @@ import java.util.Map;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _spec_utils.BaseNode
 
-public abstract class BaseNode implements JsonpSerializable {
+public abstract class BaseNode implements PlainJsonSerializable {
     private final Map<String, String> attributes;
 
     private final String host;

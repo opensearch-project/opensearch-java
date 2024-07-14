@@ -40,11 +40,11 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.NamedDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.core.mget.MultiGetResponseItem;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -53,7 +53,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _global.mget.Response
 
 @JsonpDeserializable
-public class MgetResponse<TDocument> implements JsonpSerializable {
+public class MgetResponse<TDocument> implements PlainJsonSerializable {
     private final List<MultiGetResponseItem<TDocument>> docs;
 
     @Nullable

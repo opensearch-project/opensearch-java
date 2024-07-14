@@ -38,7 +38,7 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.cat.tasks.TasksRecord;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -47,7 +47,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: cat.tasks.Response
 
 @JsonpDeserializable
-public class TasksResponse implements JsonpSerializable {
+public class TasksResponse implements PlainJsonSerializable {
     private final List<TasksRecord> valueBody;
 
     // ---------------------------------------------------------------------------------------------

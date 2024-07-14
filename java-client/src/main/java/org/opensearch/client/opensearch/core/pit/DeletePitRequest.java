@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -26,7 +26,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Deletes PITs on the OpenSearch cluster
  *
  */
-public class DeletePitRequest extends RequestBase implements JsonpSerializable {
+public class DeletePitRequest extends RequestBase implements PlainJsonSerializable {
 
     @Nullable
     private List<String> pitId;

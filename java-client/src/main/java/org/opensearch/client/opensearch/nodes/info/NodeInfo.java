@@ -40,9 +40,9 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.NodeRole;
 import org.opensearch.client.opensearch._types.PluginStats;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -52,7 +52,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: nodes.info.NodeInfo
 
 @JsonpDeserializable
-public class NodeInfo implements JsonpSerializable {
+public class NodeInfo implements PlainJsonSerializable {
     @Nullable
     private final Map<String, String> attributes;
 

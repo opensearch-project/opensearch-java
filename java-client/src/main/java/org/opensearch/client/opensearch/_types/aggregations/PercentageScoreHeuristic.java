@@ -36,11 +36,11 @@ import jakarta.json.stream.JsonGenerator;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ObjectBuilder;
 
 @JsonpDeserializable
-public class PercentageScoreHeuristic implements JsonpSerializable {
+public class PercentageScoreHeuristic implements PlainJsonSerializable {
 
     public static final class Builder implements ObjectBuilder<PercentageScoreHeuristic> {
         @Override

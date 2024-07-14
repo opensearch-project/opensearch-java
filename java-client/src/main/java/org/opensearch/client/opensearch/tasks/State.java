@@ -40,9 +40,9 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -50,7 +50,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: tasks._types.State
 
 @JsonpDeserializable
-public class State implements JsonpSerializable {
+public class State implements PlainJsonSerializable {
     private final String action;
 
     private final boolean cancellable;
