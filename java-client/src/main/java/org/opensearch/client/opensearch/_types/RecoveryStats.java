@@ -38,9 +38,9 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -48,7 +48,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _types.RecoveryStats
 
 @JsonpDeserializable
-public class RecoveryStats implements JsonpSerializable {
+public class RecoveryStats implements PlainJsonSerializable {
     private final long currentAsSource;
 
     private final long currentAsTarget;

@@ -38,9 +38,9 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.core.get_script_languages.LanguageContext;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -49,7 +49,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _global.get_script_languages.Response
 
 @JsonpDeserializable
-public class GetScriptLanguagesResponse implements JsonpSerializable {
+public class GetScriptLanguagesResponse implements PlainJsonSerializable {
     private final List<LanguageContext> languageContexts;
 
     private final List<String> typesAllowed;

@@ -39,9 +39,9 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.InlineScript;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -58,7 +58,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  *
  */
 @JsonpDeserializable
-public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpSerializable {
+public class ScriptsPainlessExecuteRequest extends RequestBase implements PlainJsonSerializable {
     @Nullable
     private final String context;
 

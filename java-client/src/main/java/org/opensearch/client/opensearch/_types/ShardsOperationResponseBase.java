@@ -35,15 +35,15 @@ package org.opensearch.client.opensearch._types;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.ShardsOperationResponseBase
 
-public abstract class ShardsOperationResponseBase implements JsonpSerializable {
+public abstract class ShardsOperationResponseBase implements PlainJsonSerializable {
     private final ShardStatistics shards;
 
     // ---------------------------------------------------------------------------------------------

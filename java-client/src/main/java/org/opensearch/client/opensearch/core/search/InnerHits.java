@@ -40,9 +40,9 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ScriptField;
 import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.query_dsl.FieldAndFormat;
@@ -53,7 +53,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _global.search._types.InnerHits
 
 @JsonpDeserializable
-public class InnerHits implements JsonpSerializable {
+public class InnerHits implements PlainJsonSerializable {
     @Nullable
     private final String name;
 

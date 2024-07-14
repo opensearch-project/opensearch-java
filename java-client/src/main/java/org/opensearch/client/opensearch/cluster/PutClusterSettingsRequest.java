@@ -41,9 +41,9 @@ import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -60,7 +60,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  *
  */
 @JsonpDeserializable
-public class PutClusterSettingsRequest extends RequestBase implements JsonpSerializable {
+public class PutClusterSettingsRequest extends RequestBase implements PlainJsonSerializable {
     @Nullable
     private final Boolean flatSettings;
 

@@ -38,9 +38,9 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.ingest.geo_ip_stats.GeoIpDownloadStatistics;
 import org.opensearch.client.opensearch.ingest.geo_ip_stats.GeoIpNodeDatabases;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -50,7 +50,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: ingest.geo_ip_stats.Response
 
 @JsonpDeserializable
-public class GeoIpStatsResponse implements JsonpSerializable {
+public class GeoIpStatsResponse implements PlainJsonSerializable {
     private final GeoIpDownloadStatistics stats;
 
     private final Map<String, GeoIpNodeDatabases> nodes;

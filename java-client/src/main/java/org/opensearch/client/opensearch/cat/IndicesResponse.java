@@ -38,7 +38,7 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.cat.indices.IndicesRecord;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -47,7 +47,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: cat.indices.Response
 
 @JsonpDeserializable
-public class IndicesResponse implements JsonpSerializable {
+public class IndicesResponse implements PlainJsonSerializable {
     private final List<IndicesRecord> valueBody;
 
     // ---------------------------------------------------------------------------------------------

@@ -40,8 +40,8 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.ExternallyTaggedUnion;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -54,7 +54,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  *
  */
 
-public abstract class MultiBucketBase implements JsonpSerializable {
+public abstract class MultiBucketBase implements PlainJsonSerializable {
     private final Map<String, Aggregate> aggregations;
 
     private final long docCount;

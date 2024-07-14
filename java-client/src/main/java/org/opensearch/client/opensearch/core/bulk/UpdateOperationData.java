@@ -12,14 +12,14 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.JsonpUtils;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.util.ObjectBuilder;
 
-public class UpdateOperationData<TDocument> implements JsonpSerializable {
+public class UpdateOperationData<TDocument> implements PlainJsonSerializable {
     @Nullable
     private final TDocument document;
 

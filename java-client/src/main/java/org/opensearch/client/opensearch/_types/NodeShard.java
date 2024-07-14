@@ -39,9 +39,9 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.cluster.allocation_explain.UnassignedInformation;
 import org.opensearch.client.opensearch.indices.stats.ShardRoutingState;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -51,7 +51,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _types.NodeShard
 
 @JsonpDeserializable
-public class NodeShard implements JsonpSerializable {
+public class NodeShard implements PlainJsonSerializable {
     private final ShardRoutingState state;
 
     private final boolean primary;

@@ -38,16 +38,16 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: indices._types.IndexRoutingAllocation
 
 @JsonpDeserializable
-public class IndexRoutingAllocation implements JsonpSerializable {
+public class IndexRoutingAllocation implements PlainJsonSerializable {
     @Nullable
     private final IndexRoutingAllocationOptions enable;
 

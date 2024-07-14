@@ -38,7 +38,7 @@ import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -46,7 +46,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: cluster.state.Response
 
 @JsonpDeserializable
-public class StateResponse implements JsonpSerializable {
+public class StateResponse implements PlainJsonSerializable {
     private final JsonData valueBody;
 
     // ---------------------------------------------------------------------------------------------
