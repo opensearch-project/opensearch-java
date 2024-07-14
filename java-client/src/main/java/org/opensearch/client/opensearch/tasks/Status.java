@@ -39,9 +39,9 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.Retries;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -51,7 +51,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: tasks._types.Status
 
 @JsonpDeserializable
-public class Status implements JsonpSerializable {
+public class Status implements PlainJsonSerializable {
     private final long batches;
 
     @Nullable

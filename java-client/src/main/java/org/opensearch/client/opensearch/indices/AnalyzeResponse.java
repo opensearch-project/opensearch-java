@@ -39,9 +39,9 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.indices.analyze.AnalyzeDetail;
 import org.opensearch.client.opensearch.indices.analyze.AnalyzeToken;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -51,7 +51,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: indices.analyze.Response
 
 @JsonpDeserializable
-public class AnalyzeResponse implements JsonpSerializable {
+public class AnalyzeResponse implements PlainJsonSerializable {
     @Nullable
     private final AnalyzeDetail detail;
 

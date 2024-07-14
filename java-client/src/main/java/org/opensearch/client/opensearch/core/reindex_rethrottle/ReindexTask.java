@@ -39,9 +39,9 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -49,7 +49,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _global.reindex_rethrottle.ReindexTask
 
 @JsonpDeserializable
-public class ReindexTask implements JsonpSerializable {
+public class ReindexTask implements PlainJsonSerializable {
     private final String action;
 
     private final boolean cancellable;

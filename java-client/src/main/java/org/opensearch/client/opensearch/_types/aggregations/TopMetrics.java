@@ -39,9 +39,9 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -50,7 +50,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _types.aggregations.TopMetrics
 
 @JsonpDeserializable
-public class TopMetrics implements JsonpSerializable {
+public class TopMetrics implements PlainJsonSerializable {
     private final List<FieldValue> sort;
 
     private final Map<String, FieldValue> metrics;

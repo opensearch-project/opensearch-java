@@ -37,9 +37,9 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -53,7 +53,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  *
  */
 @JsonpDeserializable
-public class ErrorResponse implements JsonpSerializable {
+public class ErrorResponse implements PlainJsonSerializable {
 
     private enum Kind {
         OBJECT,

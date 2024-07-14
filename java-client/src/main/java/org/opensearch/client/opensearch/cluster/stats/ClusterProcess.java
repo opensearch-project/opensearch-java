@@ -37,9 +37,9 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -47,7 +47,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: cluster.stats.ClusterProcess
 
 @JsonpDeserializable
-public class ClusterProcess implements JsonpSerializable {
+public class ClusterProcess implements PlainJsonSerializable {
     private final ClusterProcessCpu cpu;
 
     private final ClusterProcessOpenFileDescriptors openFileDescriptors;

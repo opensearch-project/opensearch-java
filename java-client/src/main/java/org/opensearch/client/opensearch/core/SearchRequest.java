@@ -43,9 +43,9 @@ import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -59,7 +59,6 @@ import org.opensearch.client.opensearch._types.mapping.RuntimeField;
 import org.opensearch.client.opensearch._types.query_dsl.FieldAndFormat;
 import org.opensearch.client.opensearch._types.query_dsl.Operator;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
-import org.opensearch.client.opensearch.core.SearchTemplateRequest.Builder;
 import org.opensearch.client.opensearch.core.search.FieldCollapse;
 import org.opensearch.client.opensearch.core.search.Highlight;
 import org.opensearch.client.opensearch.core.search.Pit;
@@ -80,7 +79,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  *
  */
 @JsonpDeserializable
-public class SearchRequest extends RequestBase implements JsonpSerializable {
+public class SearchRequest extends RequestBase implements PlainJsonSerializable {
     @Nullable
     private final SourceConfig source;
 

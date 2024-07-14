@@ -39,16 +39,16 @@ import java.util.Map;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 /**
  * Base class for dictionary responses, i.e. a series of key/value pairs.
  */
-public abstract class DictionaryResponse<TKey, TValue> implements JsonpSerializable {
+public abstract class DictionaryResponse<TKey, TValue> implements PlainJsonSerializable {
     private final Map<String, TValue> result;
 
     @Nullable

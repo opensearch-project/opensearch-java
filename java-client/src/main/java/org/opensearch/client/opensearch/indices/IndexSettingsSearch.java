@@ -35,12 +35,17 @@ package org.opensearch.client.opensearch.indices;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.*;
+import org.opensearch.client.json.JsonpDeserializable;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.ObjectBuilderDeserializer;
+import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 @JsonpDeserializable
-public class IndexSettingsSearch implements JsonpSerializable {
+public class IndexSettingsSearch implements PlainJsonSerializable {
     @Nullable
     private final SearchIdle idle;
 

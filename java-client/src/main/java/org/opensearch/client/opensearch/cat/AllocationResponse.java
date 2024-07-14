@@ -38,7 +38,7 @@ import java.util.function.Function;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.cat.allocation.AllocationRecord;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -47,7 +47,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: cat.allocation.Response
 
 @JsonpDeserializable
-public class AllocationResponse implements JsonpSerializable {
+public class AllocationResponse implements PlainJsonSerializable {
     private final List<AllocationRecord> valueBody;
 
     // ---------------------------------------------------------------------------------------------

@@ -38,16 +38,16 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _global.rank_eval.RankEvalMetric
 
 @JsonpDeserializable
-public class RankEvalMetric implements JsonpSerializable {
+public class RankEvalMetric implements PlainJsonSerializable {
     @Nullable
     private final RankEvalMetricPrecision precision;
 
