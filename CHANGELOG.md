@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.junit:junit-bom` from 5.10.2 to 5.10.3
 - Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.4 to 5.2.5
 - Bumps `commons-logging:commons-logging` from 1.3.2 to 1.3.3
+- Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.4 to 5.2.5
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
