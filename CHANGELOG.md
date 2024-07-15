@@ -11,6 +11,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.owasp.dependencycheck` from 9.1.0 to 10.0.2
 - Bumps `com.github.jk1.dependency-license-report` from 2.7 to 2.8
 - Bumps `commons-logging:commons-logging` from 1.3.2 to 1.3.3
+- Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.4 to 5.2.5
 
 ### Changed
 
