@@ -2,6 +2,7 @@ openapi: 3.1.0
 info:
   title: OpenSearch API Specification
   version: 1.0.0
+  x-api-version: 2.15.0
 paths:
   /:
     get:
@@ -231,6 +232,7 @@ paths:
         - $ref: '#/components/parameters/indices.clear_cache::query.expand_wildcards'
         - $ref: '#/components/parameters/indices.clear_cache::query.fielddata'
         - $ref: '#/components/parameters/indices.clear_cache::query.fields'
+        - $ref: '#/components/parameters/indices.clear_cache::query.file'
         - $ref: '#/components/parameters/indices.clear_cache::query.ignore_unavailable'
         - $ref: '#/components/parameters/indices.clear_cache::query.index'
         - $ref: '#/components/parameters/indices.clear_cache::query.query'
@@ -2642,6 +2644,7 @@ paths:
         - $ref: '#/components/parameters/indices.get_mapping::query.cluster_manager_timeout'
         - $ref: '#/components/parameters/indices.get_mapping::query.expand_wildcards'
         - $ref: '#/components/parameters/indices.get_mapping::query.ignore_unavailable'
+        - $ref: '#/components/parameters/indices.get_mapping::query.index'
         - $ref: '#/components/parameters/indices.get_mapping::query.local'
         - $ref: '#/components/parameters/indices.get_mapping::query.master_timeout'
         - $ref: '#/components/parameters/_global::query.pretty'
@@ -8015,6 +8018,7 @@ paths:
         - $ref: '#/components/parameters/indices.clear_cache::query.expand_wildcards'
         - $ref: '#/components/parameters/indices.clear_cache::query.fielddata'
         - $ref: '#/components/parameters/indices.clear_cache::query.fields'
+        - $ref: '#/components/parameters/indices.clear_cache::query.file'
         - $ref: '#/components/parameters/indices.clear_cache::query.ignore_unavailable'
         - $ref: '#/components/parameters/indices.clear_cache::query.index'
         - $ref: '#/components/parameters/indices.clear_cache::query.query'
@@ -8667,6 +8671,7 @@ paths:
         - $ref: '#/components/parameters/indices.get_mapping::query.cluster_manager_timeout'
         - $ref: '#/components/parameters/indices.get_mapping::query.expand_wildcards'
         - $ref: '#/components/parameters/indices.get_mapping::query.ignore_unavailable'
+        - $ref: '#/components/parameters/indices.get_mapping::query.index'
         - $ref: '#/components/parameters/indices.get_mapping::query.local'
         - $ref: '#/components/parameters/indices.get_mapping::query.master_timeout'
         - $ref: '#/components/parameters/_global::query.pretty'
@@ -11557,7 +11562,7 @@ components:
     bulk::query.require_alias:
       in: query
       name: require_alias
-      description: If `true`, the request’s actions must target an index alias.
+      description: If `true`, the request's actions must target an index alias.
       schema:
         type: boolean
         default: false
@@ -13810,7 +13815,7 @@ components:
         OpenSearch includes the following built-in component templates: `logs-mappings`; 'logs-settings`; `metrics-mappings`; `metrics-settings`;`synthetics-mapping`; `synthetics-settings`.
         OpenSearch Agent uses these templates to configure backing indices for its data streams.
         If you use OpenSearch Agent and want to overwrite one of these templates, set the `version` for your replacement template higher than the current version.
-        If you don’t use OpenSearch Agent and want to disable all built-in component and index templates, set `stack.templates.enabled` to `false` using the cluster update settings API.
+        If you don't use OpenSearch Agent and want to disable all built-in component and index templates, set `stack.templates.enabled` to `false` using the cluster update settings API.
       required: true
       schema:
         $ref: '#/components/schemas/_common:Name'
@@ -14064,7 +14069,7 @@ components:
       description: |-
         Period to wait for each node to respond.
         If a node does not respond before its timeout expires, the response does not include its stats.
-        However, timed out nodes are included in the response’s `_nodes.failed` property. Defaults to no timeout.
+        However, timed out nodes are included in the response's `_nodes.failed` property. Defaults to no timeout.
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
@@ -14258,8 +14263,8 @@ components:
       name: index
       description: |-
         Name of the data stream or index to target.
-        If the target doesn’t exist and matches the name or wildcard (`*`) pattern of an index template with a `data_stream` definition, this request creates the data stream.
-        If the target doesn’t exist and doesn’t match a data stream template, this request creates the index.
+        If the target doesn't exist and matches the name or wildcard (`*`) pattern of an index template with a `data_stream` definition, this request creates the data stream.
+        If the target doesn't exist and doesn't match a data stream template, this request creates the index.
       required: true
       schema:
         $ref: '#/components/schemas/_common:IndexName'
@@ -15595,6 +15600,15 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Fields'
       style: form
+    indices.clear_cache::query.file:
+      x-version-added: '2.8'
+      in: query
+      name: file
+      description: If true, clears the unused entries from the file cache on nodes with the Search role.
+      schema:
+        type: boolean
+        default: false
+      style: form
     indices.clear_cache::query.ignore_unavailable:
       in: query
       name: ignore_unavailable
@@ -15687,6 +15701,7 @@ components:
         $ref: '#/components/schemas/_common:WaitForActiveShards'
       style: form
     indices.clone::query.wait_for_completion:
+      x-version-added: '2.7'
       name: wait_for_completion
       in: query
       description: Should this request wait until the operation has completed before returning.
@@ -16337,6 +16352,7 @@ components:
         type: boolean
       style: form
     indices.forcemerge::query.primary_only:
+      x-version-added: '2.13'
       name: primary_only
       in: query
       description: Specify whether the operation should only perform on primary shards. Defaults to false.
@@ -16345,6 +16361,7 @@ components:
         default: false
         description: Specify whether the operation should only perform on primary shards. Defaults to false.
     indices.forcemerge::query.wait_for_completion:
+      x-version-added: '2.7'
       in: query
       name: wait_for_completion
       description: Should the request wait until the force merge is completed.
@@ -16566,6 +16583,16 @@ components:
       schema:
         type: boolean
       style: form
+    indices.get_mapping::query.index:
+      in: query
+      name: index
+      description: |-
+        Comma-separated list of data streams, indices, and aliases used to limit the request.
+        Supports wildcards (`*`).
+        To target all data streams and indices, omit this parameter or use `*` or `_all`.
+      schema:
+        $ref: '#/components/schemas/_common:Indices'
+      style: simple
     indices.get_mapping::query.local:
       in: query
       name: local
@@ -16920,6 +16947,7 @@ components:
         $ref: '#/components/schemas/_common:WaitForActiveShards'
       style: form
     indices.open::query.wait_for_completion:
+      x-version-added: '2.7'
       name: wait_for_completion
       in: query
       description: Should this request wait until the operation has completed before returning.
@@ -16943,7 +16971,7 @@ components:
       name: name
       description: |-
         Alias to update.
-        If the alias doesn’t exist, the request creates it.
+        If the alias doesn't exist, the request creates it.
         Index alias names support date math.
       required: true
       schema:
@@ -17530,6 +17558,7 @@ components:
         $ref: '#/components/schemas/_common:WaitForActiveShards'
       style: form
     indices.shrink::query.wait_for_completion:
+      x-version-added: '2.7'
       name: wait_for_completion
       in: query
       description: Should this request wait until the operation has completed before returning.
@@ -17696,6 +17725,7 @@ components:
         $ref: '#/components/schemas/_common:WaitForActiveShards'
       style: form
     indices.split::query.wait_for_completion:
+      x-version-added: '2.7'
       name: wait_for_completion
       in: query
       description: Should this request wait until the operation has completed before returning.
@@ -17858,6 +17888,7 @@ components:
         type: boolean
         description: If true, only ancient (an older Lucene major release) segments will be upgraded.
     indices.upgrade::query.wait_for_completion:
+      x-version-added: '2.7'
       name: wait_for_completion
       in: query
       description: Should this request wait until the operation has completed before returning.
@@ -18076,7 +18107,7 @@ components:
       name: id
       description: |-
         Pipeline to test.
-        If you don’t specify a `pipeline` in the request body, this parameter is required.
+        If you don't specify a `pipeline` in the request body, this parameter is required.
       required: true
       schema:
         $ref: '#/components/schemas/_common:Id'
@@ -19423,7 +19454,7 @@ components:
       name: slices
       description: |-
         The number of slices this task should be divided into.
-        Defaults to 1 slice, meaning the task isn’t sliced into subtasks.
+        Defaults to 1 slice, meaning the task isn't sliced into subtasks.
       schema:
         $ref: '#/components/schemas/_common:Slices'
       style: form
@@ -19553,7 +19584,7 @@ components:
     scroll::query.rest_total_hits_as_int:
       in: query
       name: rest_total_hits_as_int
-      description: If true, the API response’s hit.total property is returned as an integer. If false, the API response’s hit.total property is returned as an object.
+      description: If true, the API response's hit.total property is returned as an integer. If false, the API response's hit.total property is returned as an object.
       schema:
         type: boolean
         default: false
@@ -21162,7 +21193,7 @@ components:
     transforms.search::query.from:
       name: from
       in: query
-      description: The starting transform to return. Default is 0.
+      description: The starting transform to return. Default is `0`.
       required: false
       schema:
         type: number
@@ -21178,7 +21209,7 @@ components:
     transforms.search::query.size:
       name: size
       in: query
-      description: Specifies the number of transforms to return. Default is 10.
+      description: Specifies the number of transforms to return. Default is `10`.
       required: false
       schema:
         type: number
@@ -21186,7 +21217,7 @@ components:
     transforms.search::query.sortDirection:
       name: sortDirection
       in: query
-      description: Specifies the direction to sort results in. Can be ASC or DESC. Default is ASC.
+      description: Specifies the direction to sort results in. Can be `ASC` or `DESC`. Default is `ASC`.
       required: false
       schema:
         type: string
@@ -21726,12 +21757,10 @@ components:
             properties:
               persistent:
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: {}
               transient:
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: {}
             description: The settings to be updated. Can be either `transient` or `persistent` (survives cluster restart).
       required: true
     cluster.reroute:
@@ -21828,7 +21857,7 @@ components:
               analyzer:
                 description: |-
                   The name of the analyzer that should be applied to the provided `text`.
-                  This could be a built-in analyzer, or an analyzer that’s been configured in the index.
+                  This could be a built-in analyzer, or an analyzer that's been configured in the index.
                 type: string
               attributes:
                 description: Array of token attributes used to filter the output of the `explain` parameter.
@@ -21910,9 +21939,9 @@ components:
               is_write_index:
                 description: |-
                   If `true`, sets the write index or data stream for the alias.
-                  If an alias points to multiple indices or data streams and `is_write_index` isn’t set, the alias rejects write requests.
-                  If an index alias points to one index and `is_write_index` isn’t set, the index automatically acts as the write index.
-                  Data stream aliases don’t automatically set a write data stream, even if the alias points to one data stream.
+                  If an alias points to multiple indices or data streams and `is_write_index` isn't set, the alias rejects write requests.
+                  If an index alias points to one index and `is_write_index` isn't set, the index automatically acts as the write index.
+                  Data stream aliases don't automatically set a write data stream, even if the alias points to one data stream.
                 type: boolean
               routing:
                 $ref: '#/components/schemas/_common:Routing'
@@ -21937,7 +21966,7 @@ components:
               template:
                 $ref: '#/components/schemas/indices.put_index_template:IndexTemplateMapping'
               data_stream:
-                $ref: '#/components/schemas/indices._common:DataStreamVisibility'
+                $ref: '#/components/schemas/indices._common:IndexTemplateDataStreamConfiguration'
               priority:
                 description: |-
                   Priority to determine index template precedence when a new data stream or index is created.
@@ -22119,7 +22148,7 @@ components:
               template:
                 $ref: '#/components/schemas/indices.put_index_template:IndexTemplateMapping'
               data_stream:
-                $ref: '#/components/schemas/indices._common:DataStreamVisibility'
+                $ref: '#/components/schemas/indices._common:IndexTemplateDataStreamConfiguration'
               priority:
                 description: |-
                   Priority to determine index template precedence when a new data stream or index is created.
@@ -22151,8 +22180,7 @@ components:
               settings:
                 description: Configuration options for the target index.
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: {}
             description: The configuration for the target index (`settings` and `aliases`)
     indices.update_aliases:
       content:
@@ -23193,6 +23221,11 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/cat.health:HealthRecord'
+        application/smile:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/cat.health:HealthRecord'
     cat.help@200:
       description: ''
       content:
@@ -23215,6 +23248,11 @@ components:
             items:
               $ref: '#/components/schemas/cat.indices:IndicesRecord'
         application/cbor:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/cat.indices:IndicesRecord'
+        application/smile:
           schema:
             type: array
             items:
@@ -23550,12 +23588,10 @@ components:
                 type: boolean
               persistent:
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: {}
               transient:
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: {}
             required:
               - acknowledged
               - persistent
@@ -23656,6 +23692,10 @@ components:
           schema:
             type: object
             properties:
+              _nodes:
+                $ref: '#/components/schemas/_common:NodeStatistics'
+              cluster_name:
+                $ref: '#/components/schemas/_common:Name'
               dangling_indices:
                 type: array
                 items:
@@ -24151,15 +24191,22 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              acknowledged:
-                type: boolean
-              shards_acknowledged:
-                type: boolean
-            required:
-              - acknowledged
-              - shards_acknowledged
+            oneOf:
+              - type: object
+                properties:
+                  task:
+                    $ref: '#/components/schemas/_common:TaskId'
+                additionalProperties: false
+              - type: object
+                properties:
+                  acknowledged:
+                    type: boolean
+                  shards_acknowledged:
+                    type: boolean
+                required:
+                  - acknowledged
+                  - shards_acknowledged
+                additionalProperties: false
     indices.put_alias@200:
       description: ''
       content:
@@ -26171,6 +26218,20 @@ components:
           type: number
       required:
         - count
+    _common:DocStatus:
+      description: Item level REST category class codes during indexing.
+      type: object
+      properties:
+        1xx:
+          type: number
+        2xx:
+          type: number
+        3xx:
+          type: number
+        4xx:
+          type: number
+        5xx:
+          type: number
     _common:Duration:
       description: |-
         A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and
@@ -26441,6 +26502,12 @@ components:
         - green
         - yellow
         - red
+    _common:HealthStatusCapitalized:
+      type: string
+      enum:
+        - GREEN
+        - YELLOW
+        - RED
     _common:Host:
       type: string
     _common:HourAndMinute:
@@ -26498,6 +26565,8 @@ components:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         delete_total:
           type: number
+        doc_status:
+          $ref: '#/components/schemas/_common:DocStatus'
         is_throttled:
           type: boolean
         noop_update_total:
@@ -26565,7 +26634,6 @@ components:
           type: object
       required:
         - found
-        - _source
     _common:InlineGetDictUserDefined:
       type: object
       properties:
@@ -26583,11 +26651,9 @@ components:
           $ref: '#/components/schemas/_common:Routing'
         _source:
           type: object
-          additionalProperties:
-            type: object
+          additionalProperties: true
       required:
         - found
-        - _source
     _common:InlineScript:
       allOf:
         - $ref: '#/components/schemas/_common:ScriptBase'
@@ -26691,6 +26757,8 @@ components:
           $ref: '#/components/schemas/_common:Duration'
         total_time_in_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
+        unreferenced_file_cleanups_performed:
+          type: number
       required:
         - current
         - current_docs
@@ -26704,8 +26772,7 @@ components:
         - total_time_in_millis
     _common:Metadata:
       type: object
-      additionalProperties:
-        type: object
+      additionalProperties: true
     _common:Metrics:
       oneOf:
         - type: string
@@ -26792,6 +26859,7 @@ components:
         - transform
         - remote_cluster_client
         - coordinating_only
+        - cluster_manager
     _common:NodeRoles:
       description: '* @doc_id node-roles'
       type: array
@@ -26959,6 +27027,9 @@ components:
           $ref: '#/components/schemas/_common:VersionString'
         licensed:
           type: boolean
+        custom_foldername:
+          nullable: true
+          type: string
         opensearch_version:
           $ref: '#/components/schemas/_common:VersionString'
       required:
@@ -26970,7 +27041,6 @@ components:
         - java_version
         - name
         - version
-        - licensed
     _common:QueryCacheStats:
       type: object
       properties:
@@ -27078,6 +27148,143 @@ components:
           type: number
       required:
         - failed_attempts
+    _common:RemoteStoreDownloadStats:
+      type: object
+      description: Statistics related to downloads to the remote segment store.
+      properties:
+        total_download_size:
+          description: The total amount of data download from the remote segment store.
+          $ref: '#/components/schemas/_common:RemoteStoreUploadDownloadStats'
+        total_time_spent_in_millis:
+          description: The total duration, in milliseconds, spent on downloads from the remote segment store.
+          $ref: '#/components/schemas/_common:DurationValueUnitMillis'
+      required:
+        - total_download_size
+        - total_time_spent_in_millis
+    _common:RemoteStoreStats:
+      type: object
+      description: Statistics about remote segment store operations.
+      properties:
+        upload:
+          $ref: '#/components/schemas/_common:RemoteStoreUploadStats'
+        download:
+          $ref: '#/components/schemas/_common:RemoteStoreDownloadStats'
+      required:
+        - upload
+        - download
+    _common:RemoteStoreTranslogStats:
+      type: object
+      properties:
+        upload:
+          $ref: '#/components/schemas/_common:RemoteStoreTranslogUploadStats'
+      required:
+        - upload
+    _common:RemoteStoreTranslogUploadStats:
+      type: object
+      description: Statistics related to uploads to the remote translog store.
+      properties:
+        total_uploads:
+          $ref: '#/components/schemas/_common:RemoteStoreTranslogUploadTotalUploadsStats'
+        total_upload_size:
+          $ref: '#/components/schemas/_common:RemoteStoreTranslogUploadTotalUploadSizeStats'
+      required:
+        - total_uploads
+        - total_upload_size
+    _common:RemoteStoreTranslogUploadTotalUploadSizeStats:
+      type: object
+      description: The total amount of data uploaded to the remote translog store.
+      properties:
+        failed_bytes:
+          description: The number of bytes that failed to upload to the remote translog store.
+          $ref: '#/components/schemas/_common:ByteSize'
+        started_bytes:
+          description: The number of bytes successfully uploaded to the remote translog store.
+          $ref: '#/components/schemas/_common:ByteSize'
+        succeeded_bytes:
+          description: The number of bytes successfully uploaded to the remote translog store.
+          $ref: '#/components/schemas/_common:ByteSize'
+      required:
+        - failed_bytes
+        - started_bytes
+        - succeeded_bytes
+    _common:RemoteStoreTranslogUploadTotalUploadsStats:
+      type: object
+      description: The number of syncs to the remote translog store.
+      properties:
+        failed:
+          description: The number of failed upload syncs to the remote translog store.
+          type: number
+        started:
+          description: The number of upload syncs to the remote translog store that have started.
+          type: number
+        succeeded:
+          description: The number of successful upload syncs to the remote translog store.
+          type: number
+      required:
+        - failed
+        - started
+        - succeeded
+    _common:RemoteStoreUploadDownloadStats:
+      type: object
+      description: The amount of data, in bytes, uploaded or downloaded to/from the remote segment store.
+      properties:
+        failed_bytes:
+          description: The number of bytes that failed to upload/upload to/from the remote segment store.
+          $ref: '#/components/schemas/_common:ByteSize'
+        started_bytes:
+          description: The number of bytes to upload/download to/from the remote segment store after the upload/download has started.
+          $ref: '#/components/schemas/_common:ByteSize'
+        succeeded_bytes:
+          description: The number of bytes successfully uploaded/downloaded to/from the remote segment store.
+          $ref: '#/components/schemas/_common:ByteSize'
+      required:
+        - failed_bytes
+        - started_bytes
+        - succeeded_bytes
+    _common:RemoteStoreUploadPressureStats:
+      type: object
+      description: Statistics related to segment store upload backpressure.
+      properties:
+        total_rejections:
+          description: The total number of requests rejected due to segment store upload backpressure.
+          type: number
+      required:
+        - total_rejections
+    _common:RemoteStoreUploadRefreshSizeLagStats:
+      type: object
+      description: The amount of lag during upload between the remote segment store and the local store.
+      properties:
+        max_bytes:
+          description: The maximum amount of lag, in bytes, during the upload refresh between the remote segment store and the local store.
+          $ref: '#/components/schemas/_common:ByteSize'
+        total_bytes:
+          description: The total number of bytes that lagged during the upload refresh between the remote segment store and the local store.
+          $ref: '#/components/schemas/_common:ByteSize'
+      required:
+        - max_bytes
+        - total_bytes
+    _common:RemoteStoreUploadStats:
+      type: object
+      description: Statistics related to uploads to the remote segment store.
+      properties:
+        max_refresh_time_lag_in_millis:
+          description: The maximum duration, in milliseconds, that the remote refresh is behind the local refresh.
+          $ref: '#/components/schemas/_common:DurationValueUnitMillis'
+        pressure:
+          $ref: '#/components/schemas/_common:RemoteStoreUploadPressureStats'
+        refresh_size_lag:
+          $ref: '#/components/schemas/_common:RemoteStoreUploadRefreshSizeLagStats'
+        total_time_spent_in_millis:
+          description: The total amount of time, in milliseconds, spent on uploads to the remote segment store.
+          $ref: '#/components/schemas/_common:DurationValueUnitMillis'
+        total_upload_size:
+          $ref: '#/components/schemas/_common:RemoteStoreUploadDownloadStats'
+      required:
+        - max_refresh_time_lag_in_millis
+        - pressure
+        - refresh_size_lag
+        - total_time_spent_in_millis
+        - total_upload_size
     _common:RequestCacheStats:
       type: object
       properties:
@@ -27199,39 +27406,83 @@ components:
     _common:SearchStats:
       type: object
       properties:
+        concurrent_query_total:
+          description: The total number of query operations that use concurrent segment search.
+          type: number
+        concurrent_query_time:
+          $ref: '#/components/schemas/_common:Duration'
+        concurrent_query_time_in_millis:
+          description: The total amount of time taken by all query operations that use concurrent segment search, in milliseconds.
+          $ref: '#/components/schemas/_common:DurationValueUnitMillis'
+        concurrent_query_current:
+          description: The number of currently running query operations that use concurrent segment search.
+          type: number
+        concurrent_avg_slice_count:
+          description: The average slice count of all search requests. This is computed as the total slice count divided by the total number of concurrent search requests.
+          type: number
         fetch_current:
+          description: The number of shard fetch operations that are currently running.
           type: number
         fetch_time:
+          description: The total amount of time for all shard fetch operations.
           $ref: '#/components/schemas/_common:Duration'
         fetch_time_in_millis:
+          description: The total amount of time for all shard fetch operations, in milliseconds.
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         fetch_total:
+          description: The total number of shard fetch operations.
           type: number
         open_contexts:
+          description: The number of open search contexts.
+          type: number
+        point_in_time_total:
+          description: The total number of shard Point in Time (PIT) contexts that have been created (completed and active) since the node last restarted.
+          type: number
+        point_in_time_time:
+          $ref: '#/components/schemas/_common:Duration'
+        point_in_time_time_in_millis:
+          description: The amount of time that shard PIT contexts have been held open since the node last restarted, in milliseconds.
+          $ref: '#/components/schemas/_common:DurationValueUnitMillis'
+        point_in_time_current:
+          description: The number of shard PIT contexts currently open.
           type: number
         query_current:
+          description: The number of shard query operations that are currently running.
           type: number
         query_time:
+          description: The total amount of time for all shard query operations.
           $ref: '#/components/schemas/_common:Duration'
         query_time_in_millis:
+          description: The total amount of time for all shard query operations, in milliseconds.
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         query_total:
+          description: The total number of shard query operations.
+          type: number
+        search_idle_reactivate_count_total:
           type: number
         scroll_current:
+          description: The number of shard scroll operations that are currently running.
           type: number
         scroll_time:
+          description: The total amount of time for all shard scroll operations.
           $ref: '#/components/schemas/_common:Duration'
         scroll_time_in_millis:
+          description: The total amount of time for all shard scroll operations, in milliseconds.
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         scroll_total:
+          description: The total number of shard scroll operations.
           type: number
         suggest_current:
+          description: The number of shard suggest operations that are currently running.
           type: number
         suggest_time:
+          description: The total amount of time for all shard suggest operations.
           $ref: '#/components/schemas/_common:Duration'
         suggest_time_in_millis:
+          description: The total amount of time for all shard suggest operations, in milliseconds.
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         suggest_total:
+          description: The total number of shard suggest operations.
           type: number
         groups:
           type: object
@@ -27255,6 +27506,19 @@ components:
       enum:
         - query_then_fetch
         - dfs_query_then_fetch
+    _common:SegmentReplicationStats:
+      type: object
+      properties:
+        max_bytes_behind:
+          $ref: '#/components/schemas/_common:ByteSize'
+        max_replication_lag:
+          $ref: '#/components/schemas/_common:ByteSize'
+        total_bytes_behind:
+          $ref: '#/components/schemas/_common:ByteSize'
+      required:
+        - max_bytes_behind
+        - max_replication_lag
+        - total_bytes_behind
     _common:SegmentsStats:
       type: object
       properties:
@@ -27323,6 +27587,10 @@ components:
         version_map_memory_in_bytes:
           description: Total amount, in bytes, of memory used by all version maps across all shards assigned to selected nodes.
           type: number
+        remote_store:
+          $ref: '#/components/schemas/_common:RemoteStoreStats'
+        segment_replication:
+          $ref: '#/components/schemas/_common:SegmentReplicationStats'
       required:
         - count
         - doc_values_memory_in_bytes
@@ -27619,6 +27887,8 @@ components:
           type: number
         operations:
           type: number
+        remote_store:
+          $ref: '#/components/schemas/_common:RemoteStoreTranslogStats'
         size:
           type: string
         size_in_bytes:
@@ -28199,7 +28469,7 @@ components:
       properties:
         doc_count:
           description: |-
-            The total number of documents that initially created the expectations. It’s required to be greater
+            The total number of documents that initially created the expectations. It's required to be greater
             than or equal to the sum of all values in the buckets_path as this is the originating superset of data
             to which the term values are correlated.
           type: number
@@ -30362,7 +30632,7 @@ components:
             format:
               description: |-
                 `DecimalFormat` pattern for the output value.
-                If specified, the formatted value is returned in the aggregation’s `value_as_string` property.
+                If specified, the formatted value is returned in the aggregation's `value_as_string` property.
               type: string
             gap_policy:
               $ref: '#/components/schemas/_common.aggregations:GapPolicy'
@@ -34638,7 +34908,7 @@ components:
           type: number
         missing:
           description: |-
-            Value used if the document doesn’t have that field.
+            Value used if the document doesn't have that field.
             The modifier and factor are still applied to it as though it were read from the document.
           type: number
         modifier:
@@ -35468,7 +35738,7 @@ components:
             case_insensitive:
               description: |-
                 Allows ASCII case insensitive matching of the value with the indexed field values when set to `true`.
-                Default is `false` which means the case sensitivity of matching depends on the underlying field’s mapping.
+                Default is `false` which means the case sensitivity of matching depends on the underlying field's mapping.
               type: boolean
           required:
             - value
@@ -35544,7 +35814,9 @@ components:
             The provided text is analyzed before matching.
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/_common.query_dsl:MatchQuery'
+            anyOf:
+              - $ref: '#/components/schemas/_common.query_dsl:MatchQuery'
+              - {}
           minProperties: 1
           maxProperties: 1
         match_all:
@@ -35862,7 +36134,7 @@ components:
             case_insensitive:
               description: |-
                 Allows case insensitive matching of the regular expression value with the indexed field values when set to `true`.
-                When `false`, case sensitivity of matching depends on the underlying field’s mapping.
+                When `false`, case sensitivity of matching depends on the underlying field's mapping.
               type: boolean
             flags:
               description: Enables optional operators for the regular expression.
@@ -36078,7 +36350,7 @@ components:
           properties:
             dist:
               description: |-
-                The number of tokens from within the include span that can’t have overlap with the exclude span.
+                The number of tokens from within the include span that can't have overlap with the exclude span.
                 Equivalent to setting both `pre` and `post`.
               type: number
             exclude:
@@ -36086,10 +36358,10 @@ components:
             include:
               $ref: '#/components/schemas/_common.query_dsl:SpanQuery'
             post:
-              description: The number of tokens after the include span that can’t have overlap with the exclude span.
+              description: The number of tokens after the include span that can't have overlap with the exclude span.
               type: number
             pre:
-              description: The number of tokens before the include span that can’t have overlap with the exclude span.
+              description: The number of tokens before the include span that can't have overlap with the exclude span.
               type: number
           required:
             - exclude
@@ -36167,7 +36439,7 @@ components:
             case_insensitive:
               description: |-
                 Allows ASCII case insensitive matching of the value with the indexed field values when set to `true`.
-                When `false`, the case sensitivity of matching depends on the underlying field’s mapping.
+                When `false`, the case sensitivity of matching depends on the underlying field's mapping.
               type: boolean
           required:
             - value
@@ -36257,7 +36529,7 @@ components:
         - type: object
           properties:
             case_insensitive:
-              description: Allows case insensitive matching of the pattern with the indexed field values when set to true. Default is false which means the case sensitivity of matching depends on the underlying field’s mapping.
+              description: Allows case insensitive matching of the pattern with the indexed field values when set to `true`. Default is `false` which means the case sensitivity of matching depends on the underlying field's mapping.
               type: boolean
             rewrite:
               $ref: '#/components/schemas/_common:MultiTermQueryRewrite'
@@ -36438,7 +36710,7 @@ components:
         - type: object
           properties:
             require_alias:
-              description: If `true`, the request’s actions must target an index alias.
+              description: If `true`, the request's actions must target an index alias.
               type: boolean
             retry_on_conflict:
               type: number
@@ -36452,7 +36724,7 @@ components:
                 A map from the full name of fields to the name of dynamic templates.
                 Defaults to an empty map.
                 If a name matches a dynamic template, then that template will be applied regardless of other match predicates defined in the template.
-                If a field is already defined in the mapping, then this parameter won’t be used.
+                If a field is already defined in the mapping, then this parameter won't be used.
               type: object
               additionalProperties:
                 type: string
@@ -36463,7 +36735,7 @@ components:
                 If a final pipeline is configured it will always run, regardless of the value of this parameter.
               type: string
             require_alias:
-              description: If `true`, the request’s actions must target an index alias.
+              description: If `true`, the request's actions must target an index alias.
               type: boolean
     _core.explain:Explanation:
       type: object
@@ -36531,7 +36803,7 @@ components:
         metric_conflicts_indices:
           description: |-
             The list of indices where this field is present if these indices
-            don’t have the same `time_series_metric` value for this field.
+            don't have the same `time_series_metric` value for this field.
           type: array
           items:
             $ref: '#/components/schemas/_common:IndexName'
@@ -36927,7 +37199,7 @@ components:
         _index:
           $ref: '#/components/schemas/_common:IndexName'
         rating:
-          description: The document’s relevance with regard to this search request.
+          description: The document's relevance with regard to this search request.
           type: number
       required:
         - _id
@@ -36984,7 +37256,7 @@ components:
           description: The metric_score in the details section shows the contribution of this query to the global quality metric score
           type: number
         unrated_docs:
-          description: The unrated_docs section contains an _index and _id entry for each document in the search result for this query that didn’t have a ratings value. This can be used to ask the user to supply ratings for these documents
+          description: The unrated_docs section contains an _index and _id entry for each document in the search result for this query that didn't have a ratings value. This can be used to ask the user to supply ratings for these documents
           type: array
           items:
             $ref: '#/components/schemas/_core.rank_eval:UnratedDocument'
@@ -37246,7 +37518,7 @@ components:
       type: object
       properties:
         document:
-          description: Document that’s temporarily indexed in-memory and accessible from the script.
+          description: Document that's temporarily indexed in-memory and accessible from the script.
           type: object
         index:
           $ref: '#/components/schemas/_common:IndexName'
@@ -37589,7 +37861,7 @@ components:
           description: |-
             If set to a non-negative value, highlighting stops at this defined maximum limit.
             The rest of the text is not processed, thus not highlighted and no error is returned
-            The `max_analyzed_offset` query setting does not override the `index.highlight.max_analyzed_offset` setting, which prevails when it’s set to lower value than the query setting.
+            The `max_analyzed_offset` query setting does not override the `index.highlight.max_analyzed_offset` setting, which prevails when it's set to lower value than the query setting.
           type: number
         no_match_size:
           description: The amount of text you want to return from the beginning of the field if there are no matching fragments to highlight.
@@ -37970,6 +38242,7 @@ components:
         _shards:
           $ref: '#/components/schemas/_common:ShardStatistics'
         phase_took:
+          x-version-added: 2.12.0
           $ref: '#/components/schemas/_common:PhaseTook'
         hits:
           $ref: '#/components/schemas/_core.search:HitsMetadata'
@@ -38362,7 +38635,7 @@ components:
           type: string
         disk.indices:
           description: |-
-            Disk space used by the node’s shards. Does not include disk space for the translog or unassigned shards.
+            Disk space used by the node's shards. Does not include disk space for the translog or unassigned shards.
             IMPORTANT: This metric double-counts disk space for hard-linked files, such as those created when shrinking, splitting, or cloning an index.
           anyOf:
             - $ref: '#/components/schemas/_common:ByteSize'
@@ -38371,8 +38644,8 @@ components:
         disk.used:
           description: |-
             Total disk space in use.
-            OpenSearch retrieves this metric from the node’s operating system (OS).
-            The metric includes disk space for: OpenSearch, including the translog and unassigned shards; the node’s operating system; any other applications or files on the node.
+            OpenSearch retrieves this metric from the node's operating system (OS).
+            The metric includes disk space for: OpenSearch, including the translog and unassigned shards; the node's operating system; any other applications or files on the node.
             Unlike `disk.indices`, this metric does not double-count disk space for hard-linked files.
           anyOf:
             - $ref: '#/components/schemas/_common:ByteSize'
@@ -38381,7 +38654,7 @@ components:
         disk.avail:
           description: |-
             Free disk space available to OpenSearch.
-            OpenSearch retrieves this metric from the node’s operating system.
+            OpenSearch retrieves this metric from the node's operating system.
             Disk-based shard allocation uses this metric to assign shards to nodes based on available disk space.
           anyOf:
             - $ref: '#/components/schemas/_common:ByteSize'
@@ -38502,6 +38775,9 @@ components:
           type: string
         active_shards_percent:
           description: active number of shards in percent
+          type: string
+        discovered_cluster_manager:
+          description: cluster manager is discovered or not
           type: string
     cat.indices:IndicesRecord:
       type: object
@@ -39513,11 +39789,11 @@ components:
             `CLUSTER_RECOVERED`: Unassigned as a result of a full cluster recovery.
             `DANGLING_INDEX_IMPORTED`: Unassigned as a result of importing a dangling index.
             `EXISTING_INDEX_RESTORED`: Unassigned as a result of restoring into a closed index.
-            `FORCED_EMPTY_PRIMARY`: The shard’s allocation was last modified by forcing an empty primary using the cluster reroute API.
+            `FORCED_EMPTY_PRIMARY`: The shard's allocation was last modified by forcing an empty primary using the cluster reroute API.
             `INDEX_CLOSED`: Unassigned because the index was closed.
             `INDEX_CREATED`: Unassigned as a result of an API creation of an index.
             `INDEX_REOPENED`: Unassigned as a result of opening a closed index.
-            `MANUAL_ALLOCATION`: The shard’s allocation was last modified by the cluster reroute API.
+            `MANUAL_ALLOCATION`: The shard's allocation was last modified by the cluster reroute API.
             `NEW_INDEX_RESTORED`: Unassigned as a result of restoring into a new index.
             `NODE_LEFT`: Unassigned as a result of the node hosting it leaving the cluster.
             `NODE_RESTARTING`: Similar to `NODE_LEFT`, except that the node was registered as restarting using the node shutdown API.
@@ -41195,7 +41471,7 @@ components:
         name:
           $ref: '#/components/schemas/_common:Name'
         scriptless_count:
-          description: Number of runtime fields that don’t declare a script.
+          description: Number of runtime fields that don't declare a script.
           type: number
         shadowed_count:
           description: Number of runtime fields that shadow an indexed field.
@@ -41323,7 +41599,7 @@ components:
           description: If `true`, the data stream allows custom routing on write request.
           type: boolean
         generation:
-          description: Current generation for the data stream. This number acts as a cumulative count of the stream’s rollovers, starting at 1.
+          description: Current generation for the data stream. This number acts as a cumulative count of the stream's rollovers, starting at 1.
           type: number
         hidden:
           description: If `true`, the data stream is hidden.
@@ -41337,8 +41613,8 @@ components:
           type: boolean
         indices:
           description: |-
-            Array of objects containing information about the data stream’s backing indices.
-            The last item in this array contains information about the stream’s current write index.
+            Array of objects containing information about the data stream's backing indices.
+            The last item in this array contains information about the stream's current write index.
           type: array
           items:
             $ref: '#/components/schemas/indices._common:DataStreamIndex'
@@ -41350,7 +41626,7 @@ components:
           description: If `true`, the data stream is created and managed by cross-cluster replication and the local cluster can not write into this data stream or change its mappings.
           type: boolean
         status:
-          $ref: '#/components/schemas/_common:HealthStatus'
+          $ref: '#/components/schemas/_common:HealthStatusCapitalized'
         system:
           description: If `true`, the data stream is created and managed by an OpenSearch stack component and cannot be modified through normal user interaction.
           type: boolean
@@ -41360,9 +41636,6 @@ components:
           $ref: '#/components/schemas/indices._common:DataStreamTimestampField'
       required:
         - generation
-        - hidden
-        - next_generation_managed_by
-        - prefer_ilm
         - indices
         - name
         - status
@@ -41385,8 +41658,6 @@ components:
       required:
         - index_name
         - index_uuid
-        - managed_by
-        - prefer_ilm
     indices._common:DataStreamLifecycle:
       type: object
       properties:
@@ -41443,11 +41714,6 @@ components:
           $ref: '#/components/schemas/_common:Field'
       required:
         - name
-    indices._common:DataStreamVisibility:
-      type: object
-      properties:
-        hidden:
-          type: boolean
     indices._common:DownsampleConfig:
       type: object
       properties:
@@ -41741,6 +42007,7 @@ components:
           $ref: '#/components/schemas/indices._common:IndexingPressure'
         store:
           $ref: '#/components/schemas/indices._common:Storage'
+      additionalProperties: {}
       description: The index settings to be updated
     indices._common:IndexSettingsAnalysis:
       type: object
@@ -41783,7 +42050,7 @@ components:
             Set to true to parse the origination date from the index name. This origination date is used to calculate the index age
             for its phase transitions. The index name must match the pattern ^.*-{date_format}-\\d+, where the date_format is
             yyyy.MM.dd and the trailing digits are optional. An index that was rolled over would normally match the full format,
-            for example logs-2016.10.31-000002). If the index name doesn’t match the pattern, index creation fails.
+            for example logs-2016.10.31-000002). If the index name doesn't match the pattern, index creation fails.
           type: boolean
         step:
           $ref: '#/components/schemas/indices._common:IndexSettingsLifecycleStep'
@@ -41855,7 +42122,6 @@ components:
           $ref: '#/components/schemas/indices._common:IndexTemplateDataStreamConfiguration'
       required:
         - index_patterns
-        - composed_of
       description: New index template definition to be simulated, if no index template name is specified
     indices._common:IndexTemplateDataStreamConfiguration:
       type: object
@@ -41866,6 +42132,8 @@ components:
         allow_custom_routing:
           description: If true, the data stream supports custom routing.
           type: boolean
+        timestamp_field:
+          $ref: '#/components/schemas/indices._common:DataStreamTimestampField'
     indices._common:IndexTemplateSummary:
       type: object
       properties:
@@ -41937,8 +42205,8 @@ components:
       properties:
         limit:
           description: |-
-            Setting for the maximum length of a field name. This setting isn’t really something that addresses mappings explosion but
-            might still be useful if you want to limit the field length. It usually shouldn’t be necessary to set this setting. The
+            Setting for the maximum length of a field name. This setting isn't really something that addresses mappings explosion but
+            might still be useful if you want to limit the field length. It usually shouldn't be necessary to set this setting. The
             default is okay unless a user starts to add a huge number of fields with really long names. Default is `Long.MAX_VALUE` (no limit).
           type: number
     indices._common:MappingLimitSettingsNestedFields:
@@ -42436,7 +42704,7 @@ components:
         store_size:
           $ref: '#/components/schemas/_common:ByteSize'
         store_size_bytes:
-          description: Total size, in bytes, of all shards for the data stream’s backing indices.
+          description: Total size, in bytes, of all shards for the data stream's backing indices.
           type: number
       required:
         - backing_indices
@@ -43392,7 +43660,7 @@ components:
         - type: object
           properties:
             error_distance:
-              description: The difference between the resulting inscribed distance from center to side and the circle’s radius (measured in meters for `geo_shape`, unit-less for `shape`).
+              description: The difference between the resulting inscribed distance from center to side and the circle's radius (measured in meters for `geo_shape`, unit-less for `shape`).
               type: number
             field:
               $ref: '#/components/schemas/_common:Field'
@@ -43680,7 +43948,7 @@ components:
               items:
                 type: string
             trace_match:
-              description: When `true`, `_ingest._grok_match_index` will be inserted into your matched document’s metadata with the index into the pattern found in `patterns` that matched.
+              description: When `true`, `_ingest._grok_match_index` will be inserted into your matched document's metadata with the index into the pattern found in `patterns` that matched.
               type: boolean
           required:
             - field
@@ -44435,7 +44703,7 @@ components:
           description: Remote address for the HTTP connection.
           type: string
         last_uri:
-          description: The URI of the client’s most recent request.
+          description: The URI of the client's most recent request.
           type: string
         opened_time_millis:
           description: Time at which the client opened the connection.
@@ -44454,7 +44722,7 @@ components:
           type: number
         x_opaque_id:
           description: |-
-            Value from the client’s `x-opaque-id` HTTP header.
+            Value from the client's `x-opaque-id` HTTP header.
             If unavailable, this property is not included in the response.
           type: string
     nodes._common:ClusterAppliedStats:
@@ -45353,9 +45621,10 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/nodes.info:NodeInfoAggregation'
+        search_pipelines:
+          $ref: '#/components/schemas/nodes.info:NodeInfoSearchPipelines'
       required:
         - attributes
-        - build_flavor
         - build_hash
         - build_type
         - host
@@ -45394,13 +45663,13 @@ components:
           type: string
       required:
         - type
-    nodes.info:NodeInfoDiscover:
+    nodes.info:NodeInfoDiscovery:
       type: object
       properties:
+        type:
+          type: string
         seed_hosts:
           type: string
-      required:
-        - seed_hosts
     nodes.info:NodeInfoHttp:
       type: object
       properties:
@@ -45556,7 +45825,6 @@ components:
       required:
         - logs
         - home
-        - repo
     nodes.info:NodeInfoRepositories:
       type: object
       properties:
@@ -45588,6 +45856,20 @@ components:
           $ref: '#/components/schemas/nodes.info:NodeInfoSearchRemote'
       required:
         - remote
+    nodes.info:NodeInfoSearchPipelines:
+      type: object
+      properties:
+        response_processors:
+          type: array
+          items:
+            $ref: '#/components/schemas/nodes.info:NodeInfoIngestProcessor'
+        request_processors:
+          type: array
+          items:
+            $ref: '#/components/schemas/nodes.info:NodeInfoIngestProcessor'
+      required:
+        - response_processors
+        - request_processors
     nodes.info:NodeInfoSearchRemote:
       type: object
       properties:
@@ -45607,7 +45889,7 @@ components:
         repositories:
           $ref: '#/components/schemas/nodes.info:NodeInfoRepositories'
         discovery:
-          $ref: '#/components/schemas/nodes.info:NodeInfoDiscover'
+          $ref: '#/components/schemas/nodes.info:NodeInfoDiscovery'
         action:
           $ref: '#/components/schemas/nodes.info:NodeInfoAction'
         client:
@@ -45626,6 +45908,8 @@ components:
           $ref: '#/components/schemas/nodes.info:NodeInfoSearch'
         ingest:
           $ref: '#/components/schemas/nodes.info:NodeInfoSettingsIngest'
+        index:
+          $ref: '#/components/schemas/nodes.info:NodeInfoSettingsIndex'
       required:
         - cluster
         - node
@@ -45642,13 +45926,14 @@ components:
           $ref: '#/components/schemas/indices._common:IndexRouting'
         election:
           $ref: '#/components/schemas/nodes.info:NodeInfoSettingsClusterElection'
+        initial_cluster_manager_nodes:
+          type: string
         initial_master_nodes:
           type: string
         deprecation_indexing:
           $ref: '#/components/schemas/nodes.info:DeprecationIndexing'
       required:
         - name
-        - election
     nodes.info:NodeInfoSettingsClusterElection:
       type: object
       properties:
@@ -45660,7 +45945,7 @@ components:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/nodes.info:NodeInfoSettingsHttpType'
+          type: string
         type.default:
           type: string
         compression:
@@ -45673,13 +45958,28 @@ components:
             - type: string
       required:
         - type
-    nodes.info:NodeInfoSettingsHttpType:
+    nodes.info:NodeInfoSettingsIndex:
       type: object
       properties:
-        default:
-          type: string
-      required:
-        - default
+        store:
+          $ref: '#/components/schemas/nodes.info:NodeInfoSettingsIndexStore'
+    nodes.info:NodeInfoSettingsIndexHybrid:
+      type: object
+      properties:
+        mmap:
+          $ref: '#/components/schemas/nodes.info:NodeInfoSettingsIndexStoreMmap'
+    nodes.info:NodeInfoSettingsIndexStore:
+      type: object
+      properties:
+        hybrid:
+          $ref: '#/components/schemas/nodes.info:NodeInfoSettingsIndexHybrid'
+    nodes.info:NodeInfoSettingsIndexStoreMmap:
+      type: object
+      properties:
+        extensions:
+          type: array
+          items:
+            type: string
     nodes.info:NodeInfoSettingsIngest:
       type: object
       properties:
@@ -45764,9 +46064,7 @@ components:
         name:
           $ref: '#/components/schemas/_common:Name'
         attr:
-          type: object
-          additionalProperties:
-            type: object
+          $ref: '#/components/schemas/nodes.info:NodeInfoShardIndexingPressureEnabled'
         max_local_storage_nodes:
           type: string
       required:
@@ -45776,18 +46074,18 @@ components:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/nodes.info:NodeInfoSettingsTransportType'
+          type: string
         type.default:
           type: string
       required:
         - type
-    nodes.info:NodeInfoSettingsTransportType:
+    nodes.info:NodeInfoShardIndexingPressureEnabled:
       type: object
       properties:
-        default:
+        shard_indexing_pressure_enabled:
           type: string
       required:
-        - default
+        - shard_indexing_pressure_enabled
     nodes.info:NodeInfoTransport:
       type: object
       properties:
@@ -45830,6 +46128,8 @@ components:
           type: string
         vm_version:
           $ref: '#/components/schemas/_common:VersionString'
+        bundled_jdk:
+          type: boolean
         using_bundled_jdk:
           type: boolean
         using_compressed_ordinary_object_pointers:
@@ -45850,7 +46150,7 @@ components:
         - vm_name
         - vm_vendor
         - vm_version
-        - using_bundled_jdk
+        - bundled_jdk
         - input_arguments
     nodes.info:NodeOperatingSystemInfo:
       type: object
