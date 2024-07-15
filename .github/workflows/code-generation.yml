@@ -77,6 +77,8 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ steps.github_app_token.outputs.token || secrets.GITHUB_TOKEN }}
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           commit-message: Re-generate client code using latest OpenSearch API specification (${{ steps.date.outputs.date }})
           title: Re-generated client code using latest OpenSearch API specification
           body: |
