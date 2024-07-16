@@ -4,7 +4,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 2.x]
 ### Added
 - Add support for phase_took & search_pipeline request params ([#1036](https://github.com/opensearch-project/opensearch-java/pull/1036))
-- Add an interface PlainJsonSerializable inherit from JsonpSerializable with a default method streamlining serialization ([#1064](https://github.com/opensearch-project/opensearch-java/pull/1064))
+- Add an interface PlainJsonSerializable with a default method for serialization to Json ([#1064](https://github.com/opensearch-project/opensearch-java/pull/1064))
 
 ### Dependencies
 - Bumps `io.github.classgraph:classgraph` from 4.8.173 to 4.8.174
