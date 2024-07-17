@@ -16,7 +16,6 @@ import org.junit.Test;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch.core.IndexRequest;
 import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexRequest;
@@ -103,22 +102,6 @@ public class AwsSdk2SearchIT extends AwsSdk2TransportTestCase {
         response = results.get(2);
         Assert.assertEquals(1, response.hits().hits().size());
         Assert.assertEquals(doc1, response.hits().hits().get(0).source());
-    }
-
-    private void addDoc(OpenSearchClient client, String id, SimplePojo doc) throws Exception {
-        IndexRequest.Builder<SimplePojo> req = new IndexRequest.Builder<SimplePojo>().index(TEST_INDEX).document(doc).id(id);
-        client.index(req.build());
-    }
-
-    private CompletableFuture<IndexResponse> addDoc(OpenSearchAsyncClient client, String id, SimplePojo doc) {
-        IndexRequest.Builder<SimplePojo> req = new IndexRequest.Builder<SimplePojo>().index(TEST_INDEX).document(doc).id(id);
-        try {
-            return client.index(req.build());
-        } catch (Exception e) {
-            final CompletableFuture<IndexResponse> failed = new CompletableFuture<>();
-            failed.completeExceptionally(e);
-            return failed;
-        }
     }
 
     @Test

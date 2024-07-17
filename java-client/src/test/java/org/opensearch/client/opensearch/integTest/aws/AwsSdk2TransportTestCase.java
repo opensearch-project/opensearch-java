@@ -26,6 +26,8 @@ import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
+import org.opensearch.client.opensearch.core.IndexRequest;
+import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexRequest;
@@ -213,6 +215,22 @@ public abstract class AwsSdk2TransportTestCase {
         }
         final CreateIndexRequest.Builder req = new CreateIndexRequest.Builder().index(TEST_INDEX);
         client.create(req.build());
+    }
+
+    protected void addDoc(OpenSearchClient client, String id, SimplePojo doc) throws Exception {
+        IndexRequest.Builder<SimplePojo> req = new IndexRequest.Builder<SimplePojo>().index(TEST_INDEX).document(doc).id(id);
+        client.index(req.build());
+    }
+
+    protected CompletableFuture<IndexResponse> addDoc(OpenSearchAsyncClient client, String id, SimplePojo doc) {
+        IndexRequest.Builder<SimplePojo> req = new IndexRequest.Builder<SimplePojo>().index(TEST_INDEX).document(doc).id(id);
+        try {
+            return client.index(req.build());
+        } catch (Exception e) {
+            final CompletableFuture<IndexResponse> failed = new CompletableFuture<>();
+            failed.completeExceptionally(e);
+            return failed;
+        }
     }
 
     protected SearchResponse<SimplePojo> query(OpenSearchClient client, String title, String text) throws Exception {
