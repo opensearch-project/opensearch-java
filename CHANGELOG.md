@@ -21,6 +21,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Deserialize aggregation containing a parent aggregation ([#706](https://github.com/opensearch-project/opensearch-java/pull/706))
+- Deserialize error response when using AwsSdk2Transport ([#1068](https://github.com/opensearch-project/opensearch-java/pull/1068))
 
 ### Security
 
