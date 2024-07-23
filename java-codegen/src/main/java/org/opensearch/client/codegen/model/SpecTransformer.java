@@ -332,13 +332,13 @@ public class SpecTransformer {
             return mapAllOf(allOf.get());
         }
 
-        var type = schema.getType();
+        var types = schema.getTypes().orElse(null);
 
-        if (type.isEmpty()) {
+        if (types == null || types.size() != 1) {
             return Types.Client.Json.JsonData;
         }
 
-        switch (type.get()) {
+        switch (types.iterator().next()) {
             case Object:
                 return mapObject(schema);
             case Array:
@@ -354,7 +354,7 @@ public class SpecTransformer {
                 return mapNumber(schema);
         }
 
-        throw new UnsupportedOperationException("Can not get type name for: " + type);
+        throw new UnsupportedOperationException("Can not get type name for: " + types);
     }
 
     private Type mapOneOf(List<OpenApiSchema> oneOf) {
@@ -434,6 +434,6 @@ public class SpecTransformer {
         }
         var first = oneOf.get(0);
         var items = second.getItems().orElseThrow();
-        return first.getType().equals(items.getType()) && first.get$ref().equals(items.get$ref());
+        return first.getTypes().equals(items.getTypes()) && first.get$ref().equals(items.get$ref());
     }
 }

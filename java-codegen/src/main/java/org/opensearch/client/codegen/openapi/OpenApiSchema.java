@@ -37,7 +37,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nullable
     private final String description;
     @Nullable
-    private final OpenApiSchemaType type;
+    private final Set<OpenApiSchemaType> types;
     @Nullable
     private final OpenApiSchemaFormat format;
     @Nullable
@@ -79,16 +79,11 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
 
         description = schema.getDescription();
 
-        type = Optional.ofNullable(schema.getTypes()).flatMap(types -> {
-            switch (types.size()) {
-                case 0:
-                    return Optional.empty();
-                case 1:
-                    return Optional.of(types.iterator().next());
-                default:
-                    throw new IllegalArgumentException("Multiple types not yet supported: " + types);
-            }
-        }).or(() -> Optional.ofNullable(schema.getType())).map(OpenApiSchemaType::from).orElse(null);
+        types = Optional.ofNullable(schema.getTypes())
+            .flatMap(types -> !types.isEmpty() ? Optional.of(types) : Optional.empty())
+            .or(() -> Optional.ofNullable(schema.getType()).map(Set::of))
+            .map(types -> types.stream().map(OpenApiSchemaType::from).collect(Collectors.toSet()))
+            .orElse(null);
 
         format = ifNonnull(schema.getFormat(), OpenApiSchemaFormat::from);
 
@@ -125,8 +120,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     }
 
     @Nonnull
-    public Optional<OpenApiSchemaType> getType() {
-        return Optional.ofNullable(type);
+    public Optional<Set<OpenApiSchemaType>> getTypes() {
+        return Sets.unmodifiableOpt(types);
     }
 
     @Nonnull
@@ -136,7 +131,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
 
     public boolean is(@Nonnull OpenApiSchemaType type) {
         Objects.requireNonNull(type, "type must not be null");
-        return getType().map(type::equals).orElse(false);
+        return types != null && types.contains(type);
     }
 
     public boolean isArray() {
@@ -218,8 +213,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
 
     @Nonnull
     public Set<OpenApiSchemaType> determineTypes() {
-        if (type != null) {
-            return Set.of(type);
+        if (types != null) {
+            return Set.copyOf(types);
         } else if (has$ref()) {
             return resolve().determineTypes();
         } else if (allOf != null) {
