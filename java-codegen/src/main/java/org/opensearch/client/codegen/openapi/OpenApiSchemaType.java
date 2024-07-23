@@ -17,6 +17,7 @@ public enum OpenApiSchemaType {
     Array,
     Boolean,
     Integer,
+    Null,
     Number,
     Object,
     String;
