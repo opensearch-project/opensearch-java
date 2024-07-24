@@ -31,7 +31,11 @@ public class PathEncoder {
     static {
         Class<?> clazz = null;
         try {
+<<<<<<< Updated upstream
             // Try Apache HttpClient5 first since this is a default one
+=======
+            // Try Apache HttpClient5 first since this is the "better" encoder
+>>>>>>> Stashed changes
             clazz = Class.forName(HTTP_CLIENT5_UTILS_CLASS);
         } catch (final ClassNotFoundException ex) {
             try {
