@@ -35,5 +35,10 @@ public class PathEncoderTest {
         String multiSegmentString = "a/b/c/_refresh";
         String encodedMultiSegmentString = PathEncoder.encode(multiSegmentString);
         assertEquals("a%2Fb%2Fc%2F_refresh", encodedMultiSegmentString);
+
+        // Test with a string that contains colon segment
+        String colonSegmentString = "a:b:c::2.0";
+        String encodedColonSegmentString = PathEncoder.encode(colonSegmentString);
+        assertEquals("a%3Ab%3Ac%3A%3A2.0", encodedColonSegmentString);
     }
 }
