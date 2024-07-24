@@ -48,6 +48,7 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
+import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.ScriptField;
 import org.opensearch.client.opensearch._types.SearchType;
@@ -191,7 +192,7 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
     @Nullable
     private final Time scroll;
 
-    private final List<String> searchAfter;
+    private final List<FieldValue> searchAfter;
 
     @Nullable
     private final SearchType searchType;
@@ -710,8 +711,19 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
 
     /**
      * API name: {@code search_after}
+     *
+     * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will instead return a {@code List<FieldValue>}.</b></p>
      */
     public final List<String> searchAfter() {
+        return this.searchAfter.stream().map(FieldValue::_toJsonString).collect(Collectors.toList());
+    }
+
+    /**
+     * API name: {@code search_after}
+     *
+     * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will be renamed to replace {@link #searchAfter()}.</b></p>
+     */
+    public final List<FieldValue> searchAfterVals() {
         return this.searchAfter;
     }
 
@@ -1006,8 +1018,8 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
         if (ApiTypeHelper.isDefined(this.searchAfter)) {
             generator.writeKey("search_after");
             generator.writeStartArray();
-            for (String item0 : this.searchAfter) {
-                generator.write(item0);
+            for (FieldValue item0 : this.searchAfter) {
+                item0.serialize(generator, mapper);
 
             }
             generator.writeEnd();
@@ -1143,7 +1155,7 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
             .runtimeMappings(runtimeMappings)
             .scriptFields(scriptFields)
             .scroll(scroll)
-            .searchAfter(searchAfter)
+            .searchAfterVals(searchAfter)
             .searchType(searchType)
             .seqNoPrimaryTerm(seqNoPrimaryTerm)
             .size(size)
@@ -1288,7 +1300,7 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
         private Time scroll;
 
         @Nullable
-        private List<String> searchAfter;
+        private List<FieldValue> searchAfter;
 
         @Nullable
         private SearchType searchType;
@@ -1998,8 +2010,34 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
          * API name: {@code search_after}
          * <p>
          * Adds all elements of <code>list</code> to <code>searchAfter</code>.
+         *
+         * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will instead accept a {@code List<FieldValue>}.</b></p>
          */
         public final Builder searchAfter(List<String> list) {
+            this.searchAfter = _listAddAll(this.searchAfter, FieldValue::of, list);
+            return this;
+        }
+
+        /**
+         * API name: {@code search_after}
+         * <p>
+         * Adds one or more values to <code>searchAfter</code>.
+         *
+         * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will instead accept values of type {@code FieldValue}.</b></p>
+         */
+        public final Builder searchAfter(String value, String... values) {
+            this.searchAfter = _listAdd(this.searchAfter, FieldValue::of, value, values);
+            return this;
+        }
+
+        /**
+         * API name: {@code search_after}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>searchAfter</code>.
+         *
+         * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will be renamed to replace {@link #searchAfter(List)}.</b></p>
+         */
+        public final Builder searchAfterVals(List<FieldValue> list) {
             this.searchAfter = _listAddAll(this.searchAfter, list);
             return this;
         }
@@ -2008,8 +2046,10 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
          * API name: {@code search_after}
          * <p>
          * Adds one or more values to <code>searchAfter</code>.
+         *
+         * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will be renamed to replace {@link #searchAfter(String, String...)}.</b></p>
          */
-        public final Builder searchAfter(String value, String... values) {
+        public final Builder searchAfterVals(FieldValue value, FieldValue... values) {
             this.searchAfter = _listAdd(this.searchAfter, value, values);
             return this;
         }
@@ -2301,7 +2341,7 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
         op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
         op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER), "runtime_mappings");
         op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER), "script_fields");
-        op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "search_after");
+        op.add(Builder::searchAfterVals, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "search_after");
         op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
         op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
