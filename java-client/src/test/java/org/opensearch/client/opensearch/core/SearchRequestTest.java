@@ -11,9 +11,21 @@ package org.opensearch.client.opensearch.core;
 import java.util.Collections;
 import org.junit.Test;
 import org.opensearch.client.json.JsonData;
+import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
 public class SearchRequestTest extends ModelTestCase {
+
+    @Test
+    public void afterSearch() {
+        SearchRequest request = new SearchRequest.Builder().searchAfter("string1", "string2").build();
+
+        assertEquals("{\"search_after\":[\"string1\",\"string2\"]}", toJson(request));
+
+        request = new SearchRequest.Builder().searchAfterVals(FieldValue.of(1), FieldValue.of("string")).build();
+
+        assertEquals("{\"search_after\":[1,\"string\"]}", toJson(request));
+    }
 
     @Test
     public void ext() {

@@ -39,6 +39,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class ObjectBuilderBase {
     private boolean _used = false;
@@ -75,13 +77,30 @@ public class ObjectBuilderBase {
 
     /** Add a value to a (possibly {@code null}) list */
     @SafeVarargs
+    protected static <TOut, TIn> List<TOut> _listAdd(List<TOut> list, Function<TIn, TOut> mapper, TIn value, TIn... values) {
+        List<TOut> mappedValues = values.length > 0 ? Arrays.stream(values).map(mapper).collect(Collectors.toList()) : null;
+        return _listAdd(list, mapper.apply(value), mappedValues);
+    }
+
+    /** Add a value to a (possibly {@code null}) list */
+    @SafeVarargs
     protected static <T> List<T> _listAdd(List<T> list, T value, T... values) {
+        return _listAdd(list, value, values.length > 0 ? Arrays.asList(values) : null);
+    }
+
+    private static <T> List<T> _listAdd(List<T> list, T value, List<T> values) {
         list = _mutableList(list);
         list.add(value);
-        if (values.length > 0) {
-            list.addAll(Arrays.asList(values));
+        if (values != null) {
+            list.addAll(values);
         }
         return list;
+    }
+
+    /** Add all elements of a list to a (possibly {@code null}) list */
+    protected static <TOut, TIn> List<TOut> _listAddAll(List<TOut> list, Function<TIn, TOut> mapper, List<TIn> values) {
+        List<TOut> mappedValues = values != null ? values.stream().map(mapper).collect(Collectors.toList()) : null;
+        return _listAddAll(list, mappedValues);
     }
 
     /** Add all elements of a list to a (possibly {@code null}) list */
