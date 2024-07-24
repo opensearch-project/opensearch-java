@@ -35,9 +35,15 @@ package org.opensearch.client.opensearch.model;
 import org.junit.Assert;
 import org.junit.Test;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
+import org.opensearch.client.opensearch.core.GetRequest;
 import org.opensearch.client.opensearch.indices.RefreshRequest;
 
 public class EndpointTest extends Assert {
+    @Test
+    public void testIdEncoding() {
+        GetRequest req = new GetRequest.Builder().index("db").id("a:b:c::2.0").build();
+        assertEquals("/db/_doc/a%3Ab%3Ac%3A%3A2.0", GetRequest._ENDPOINT.requestUrl(req));
+    }
 
     @Test
     public void testArrayPathParameter() {
