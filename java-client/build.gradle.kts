@@ -80,7 +80,7 @@ java {
     
     toolchain {
       languageVersion = JavaLanguageVersion.of(runtimeJavaVersion.majorVersion)
-      vendor = JvmVendorSpec.ADOPTIUM
+      vendor = JvmVendorSpec.AZUL
     }
 }
 
