@@ -186,7 +186,7 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
         op.add(Builder::custom, CustomNormalizer._DESERIALIZER, "custom");
         op.add(Builder::lowercase, LowercaseNormalizer._DESERIALIZER, "lowercase");
 
-        op.setTypeProperty("type", null);
+        op.setTypeProperty("type", Kind.Custom.jsonValue());
 
     }
 
