@@ -147,6 +147,8 @@ val integrationTest = task<Test>("integrationTest") {
     }
     systemProperty("tests.security.manager", "false")
     // Basic auth settings for integration test
+    // Basic auth settings for integration test
+    systemProperty("tests.rest.cluster", System.getProperty("tests.rest.cluster", null))
     systemProperty("https", System.getProperty("https", "true"))
     systemProperty("user", System.getProperty("user", "admin"))
     systemProperty("password", System.getProperty("password", "admin"))

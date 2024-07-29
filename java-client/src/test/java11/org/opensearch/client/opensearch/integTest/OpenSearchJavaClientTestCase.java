@@ -119,7 +119,7 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
 
     protected String getTestRestCluster() {
         String cluster = System.getProperty("tests.rest.cluster");
-        if (cluster == null) {
+        if (cluster == null || cluster.isEmpty()) {
             cluster = "localhost:9200";
         }
         return cluster;
