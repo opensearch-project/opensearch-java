@@ -21,88 +21,75 @@ import java.util.BitSet;
  * </p>
  */
 public class PercentCodec {
-    private static final BitSet RFC3986_GEN_DELIMS_CHARS = new BitSet(256);
-    private static final BitSet RFC3986_SUB_DELIMS_CHARS = new BitSet(256);
-    private static final BitSet RFC3986_UNRESERVED_CHARS = new BitSet(256);
-    private static final BitSet RFC3986_PATHSAFE_NC_CHARS = new BitSet(256);
-    private static final BitSet RFC3986_PATHSAFE_CHARS = new BitSet(256);
-    private static final BitSet RFC3986_URIC_CHARS = new BitSet(256);
+    private static class Chars {
+        private final BitSet set = new BitSet(256);
 
-    static {
-        RFC3986_GEN_DELIMS_CHARS.set(':');
-        RFC3986_GEN_DELIMS_CHARS.set('/');
-        RFC3986_GEN_DELIMS_CHARS.set('?');
-        RFC3986_GEN_DELIMS_CHARS.set('#');
-        RFC3986_GEN_DELIMS_CHARS.set('[');
-        RFC3986_GEN_DELIMS_CHARS.set(']');
-        RFC3986_GEN_DELIMS_CHARS.set('@');
-
-        RFC3986_SUB_DELIMS_CHARS.set('!');
-        RFC3986_SUB_DELIMS_CHARS.set('$');
-        RFC3986_SUB_DELIMS_CHARS.set('&');
-        RFC3986_SUB_DELIMS_CHARS.set('\'');
-        RFC3986_SUB_DELIMS_CHARS.set('(');
-        RFC3986_SUB_DELIMS_CHARS.set(')');
-        RFC3986_SUB_DELIMS_CHARS.set('*');
-        RFC3986_SUB_DELIMS_CHARS.set('+');
-        RFC3986_SUB_DELIMS_CHARS.set(',');
-        RFC3986_SUB_DELIMS_CHARS.set(';');
-        RFC3986_SUB_DELIMS_CHARS.set('=');
-
-        for (int i = 'a'; i <= 'z'; i++) {
-            RFC3986_UNRESERVED_CHARS.set(i);
+        public void add(char... chars) {
+            for (char c : chars) {
+                set.set(c);
+            }
         }
-        for (int i = 'A'; i <= 'Z'; i++) {
-            RFC3986_UNRESERVED_CHARS.set(i);
+
+        public void addRange(char start, char end) {
+            set.set(start, end + 1);
         }
-        // numeric characters
-        for (int i = '0'; i <= '9'; i++) {
-            RFC3986_UNRESERVED_CHARS.set(i);
+
+        public void add(Chars set) {
+            this.set.or(set.set);
         }
-        RFC3986_UNRESERVED_CHARS.set('-');
-        RFC3986_UNRESERVED_CHARS.set('.');
-        RFC3986_UNRESERVED_CHARS.set('_');
-        RFC3986_UNRESERVED_CHARS.set('~');
 
-        RFC3986_PATHSAFE_NC_CHARS.or(RFC3986_UNRESERVED_CHARS);
-        RFC3986_PATHSAFE_NC_CHARS.or(RFC3986_SUB_DELIMS_CHARS);
-        RFC3986_PATHSAFE_NC_CHARS.set('@');
-
-        RFC3986_PATHSAFE_CHARS.or(RFC3986_PATHSAFE_NC_CHARS);
-        RFC3986_PATHSAFE_CHARS.set(':');
-
-        RFC3986_URIC_CHARS.or(RFC3986_SUB_DELIMS_CHARS);
-        RFC3986_URIC_CHARS.or(RFC3986_UNRESERVED_CHARS);
+        public boolean contains(int c) {
+            return set.get(c);
+        }
     }
 
-    private static final BitSet RFC5987_UNRESERVED_CHARS = new BitSet(256);
+    private static final Chars RFC3986_GEN_DELIMS_CHARS = new Chars() {
+        {
+            add(':', '/', '?', '#', '[', ']', '@');
+        }
+    };
+    private static final Chars RFC3986_SUB_DELIMS_CHARS = new Chars() {
+        {
+            add('!', '$', '&', '\'', '(', ')', '*', '+', ',', ';', '=');
+        }
+    };
+    private static final Chars RFC3986_UNRESERVED_CHARS = new Chars() {
+        {
+            addRange('a', 'z');
+            addRange('A', 'Z');
+            addRange('0', '9');
+            add('-', '.', '_', '~');
+        }
+    };
+    private static final Chars RFC3986_PATH_NO_COLON_CHARS = new Chars() {
+        {
+            add(RFC3986_UNRESERVED_CHARS);
+            add(RFC3986_SUB_DELIMS_CHARS);
+            add('@');
+        }
+    };
+    private static final Chars RFC3986_PATH_CHARS = new Chars() {
+        {
+            add(RFC3986_PATH_NO_COLON_CHARS);
+            add(':');
+        }
+    };
+    private static final Chars RFC3986_URIC_CHARS = new Chars() {
+        {
+            add(RFC3986_SUB_DELIMS_CHARS);
+            add(RFC3986_UNRESERVED_CHARS);
+        }
+    };
 
-    static {
-        // Alphanumeric characters
-        for (int i = 'a'; i <= 'z'; i++) {
-            RFC5987_UNRESERVED_CHARS.set(i);
+    private static final Chars RFC5987_UNRESERVED_CHARS = new Chars() {
+        {
+            addRange('a', 'z');
+            addRange('A', 'Z');
+            addRange('0', '9');
+            // Additional characters as per RFC 5987 attr-char
+            add('!', '#', '$', '&', '+', '-', '.', '^', '_', '`', '|', '~');
         }
-        for (int i = 'A'; i <= 'Z'; i++) {
-            RFC5987_UNRESERVED_CHARS.set(i);
-        }
-        for (int i = '0'; i <= '9'; i++) {
-            RFC5987_UNRESERVED_CHARS.set(i);
-        }
-
-        // Additional characters as per RFC 5987 attr-char
-        RFC5987_UNRESERVED_CHARS.set('!');
-        RFC5987_UNRESERVED_CHARS.set('#');
-        RFC5987_UNRESERVED_CHARS.set('$');
-        RFC5987_UNRESERVED_CHARS.set('&');
-        RFC5987_UNRESERVED_CHARS.set('+');
-        RFC5987_UNRESERVED_CHARS.set('-');
-        RFC5987_UNRESERVED_CHARS.set('.');
-        RFC5987_UNRESERVED_CHARS.set('^');
-        RFC5987_UNRESERVED_CHARS.set('_');
-        RFC5987_UNRESERVED_CHARS.set('`');
-        RFC5987_UNRESERVED_CHARS.set('|');
-        RFC5987_UNRESERVED_CHARS.set('~');
-    }
+    };
 
     private static final int RADIX = 16;
 
@@ -110,7 +97,7 @@ public class PercentCodec {
         final StringBuilder buf,
         final CharSequence content,
         final Charset charset,
-        final BitSet safeChars,
+        final Chars safeChars,
         final boolean blankAsPlus
     ) {
         if (content == null) {
@@ -120,7 +107,7 @@ public class PercentCodec {
         final ByteBuffer bb = (charset != null ? charset : StandardCharsets.UTF_8).encode(cb);
         while (bb.hasRemaining()) {
             final int b = bb.get() & 0xff;
-            if (safeChars.get(b)) {
+            if (safeChars.contains(b)) {
                 buf.append((char) b);
             } else if (blankAsPlus && b == ' ') {
                 buf.append("+");
@@ -165,12 +152,12 @@ public class PercentCodec {
     }
 
     public static final PercentCodec RFC3986_UNRESERVED = new PercentCodec(RFC3986_UNRESERVED_CHARS);
-    public static final PercentCodec RFC3986_PATHSAFE = new PercentCodec(RFC3986_PATHSAFE_CHARS);
+    public static final PercentCodec RFC3986_PATHSAFE = new PercentCodec(RFC3986_PATH_CHARS);
     public static final PercentCodec RFC5987_UNRESERVED = new PercentCodec(RFC5987_UNRESERVED_CHARS);
 
-    private final BitSet unreserved;
+    private final Chars unreserved;
 
-    private PercentCodec(final BitSet unreserved) {
+    private PercentCodec(final Chars unreserved) {
         this.unreserved = unreserved;
     }
 

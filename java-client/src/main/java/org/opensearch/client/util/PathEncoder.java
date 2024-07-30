@@ -28,7 +28,6 @@ public class PathEncoder {
         PathEncoder.codec = codec;
     }
 
-
     public static String encode(String pathSegment) {
         return getCodec().encode(pathSegment);
     }
