@@ -9,12 +9,18 @@
 package org.opensearch.client.util;
 
 public class PathEncoder {
-    public static final PercentCodec DEFAULT_CODEC = PercentCodec.RFC3986_UNRESERVED;
     /**
      * Percent encoding codec that matches Apache HTTP Client 4's path segment encoding.
      */
     @Deprecated
-    public static final PercentCodec APACHE_HTTP_CLIENT_4_COMPAT = PercentCodec.RFC3986_PATHSAFE;
+    public static final PercentCodec APACHE_HTTP_CLIENT_4_EQUIV_CODEC = PercentCodec.RFC3986_PATHSAFE;
+    /**
+     * Percent encoding codec that matches Apache HTTP Client 5's path segment encoding.
+     */
+    public static final PercentCodec APACHE_HTTP_CLIENT_5_EQUIV_CODEC = PercentCodec.RFC3986_UNRESERVED;
+
+    public static final PercentCodec DEFAULT_CODEC = APACHE_HTTP_CLIENT_5_EQUIV_CODEC;
+
     private static PercentCodec codec;
 
     public static PercentCodec getCodec() {
