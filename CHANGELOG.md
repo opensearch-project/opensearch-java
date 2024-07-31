@@ -34,6 +34,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Dependencies
 
 ### Changed
+- Changed URL path encoding to own implementation adapted from Apache HTTP Client 5's ([#1109](https://github.com/opensearch-project/opensearch-java/pull/1109))
 
 ### Deprecated
 
