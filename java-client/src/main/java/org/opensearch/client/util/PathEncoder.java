@@ -8,59 +8,43 @@
 
 package org.opensearch.client.util;
 
-/*
- * SPDX-License-Identifier: Apache-2.0
- *
- * The OpenSearch Contributors require contributions made to
- * this file be licensed under the Apache-2.0 license or a
- * compatible open source license.
- */
-
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
-import java.lang.invoke.MethodType;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.Collections;
+import java.util.Optional;
 
 public class PathEncoder {
-    private final static String HTTP_CLIENT4_UTILS_CLASS = "org.apache.http.client.utils.URLEncodedUtils";
-    private final static String HTTP_CLIENT5_UTILS_CLASS = "org.apache.hc.core5.net.URLEncodedUtils";
-    private final static MethodHandle FORMAT_SEGMENTS_MH;
+    private enum Encoding {
+        RFC3986_PATH(PercentCodec.RFC3986_PATH),
+        HTTP_CLIENT_V4_EQUIV(PercentCodec.RFC3986_PATH),
 
-    static {
-        Class<?> clazz = null;
-        try {
-            // Try Apache HttpClient4 first since this is a default one
-            clazz = Class.forName(HTTP_CLIENT4_UTILS_CLASS);
-        } catch (final ClassNotFoundException ex) {
+        RFC3986_UNRESERVED(PercentCodec.RFC3986_UNRESERVED),
+        HTTP_CLIENT_V5_EQUIV(PercentCodec.RFC3986_UNRESERVED);
+
+        private final PercentCodec percentCodec;
+
+        Encoding(PercentCodec percentCodec) {
+            this.percentCodec = percentCodec;
+        }
+
+        static Optional<Encoding> get(String name) {
             try {
-                // Fallback to Apache HttpClient4
-                clazz = Class.forName(HTTP_CLIENT5_UTILS_CLASS);
-            } catch (final ClassNotFoundException ex1) {
-                clazz = null;
+                return Optional.of(Encoding.valueOf(name.toUpperCase()));
+            } catch (Exception ignored) {
+                return Optional.empty();
             }
-        }
-
-        if (clazz == null) {
-            throw new IllegalStateException(
-                "Either '" + HTTP_CLIENT5_UTILS_CLASS + "' or '" + HTTP_CLIENT4_UTILS_CLASS + "' is required by not found on classpath"
-            );
-        }
-
-        try {
-            FORMAT_SEGMENTS_MH = MethodHandles.lookup()
-                .findStatic(clazz, "formatSegments", MethodType.methodType(String.class, Iterable.class, Charset.class));
-        } catch (final NoSuchMethodException | IllegalAccessException ex) {
-            throw new IllegalStateException("Unable to find 'formatSegments' method in " + clazz + " class");
         }
     }
 
-    public static String encode(String uri) {
-        try {
-            return ((String) FORMAT_SEGMENTS_MH.invoke(Collections.singletonList(uri), StandardCharsets.UTF_8)).substring(1);
-        } catch (final Throwable ex) {
-            throw new RuntimeException("Unable to encode URI: " + uri, ex);
-        }
+    private static final String ENCODING_PROPERTY = "org.opensearch.path.encoding";
+    private static final Encoding ENCODING_DEFAULT = Encoding.HTTP_CLIENT_V5_EQUIV;
+
+    private static final Encoding ENCODING = Optional.ofNullable(System.getProperty(ENCODING_PROPERTY))
+        .flatMap(Encoding::get)
+        .orElse(ENCODING_DEFAULT);
+
+    public static String encode(String pathSegment) {
+        return ENCODING.percentCodec.encode(pathSegment);
+    }
+
+    public static void encode(StringBuilder dest, CharSequence pathSegment) {
+        ENCODING.percentCodec.encode(dest, pathSegment);
     }
 }
