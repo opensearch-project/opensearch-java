@@ -133,6 +133,6 @@ public class SimpleEndpoint<RequestT, ResponseT> implements JsonEndpoint<Request
     }
 
     public static void pathEncode(String src, StringBuilder dest) {
-        dest.append(PathEncoder.encode(src));
+        PathEncoder.encode(dest, src);
     }
 }
