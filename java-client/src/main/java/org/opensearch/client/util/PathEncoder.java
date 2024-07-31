@@ -32,12 +32,13 @@ public class PathEncoder {
             }
         }
     }
+
     private static final String ENCODING_PROPERTY = "org.opensearch.path.encoding";
     private static final Encoding ENCODING_DEFAULT = Encoding.HTTP_CLIENT_V5_EQUIV;
 
     private static final Encoding ENCODING = Optional.ofNullable(System.getProperty(ENCODING_PROPERTY))
-            .flatMap(Encoding::get)
-            .orElse(ENCODING_DEFAULT);
+        .flatMap(Encoding::get)
+        .orElse(ENCODING_DEFAULT);
 
     public static String encode(String pathSegment) {
         return ENCODING.percentCodec.encode(pathSegment);
