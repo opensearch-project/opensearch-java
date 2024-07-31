@@ -8,37 +8,42 @@
 
 package org.opensearch.client.util;
 
+import java.util.Optional;
+
 public class PathEncoder {
-    /**
-     * Percent encoding codec that matches Apache HTTP Client 4's path segment encoding.
-     */
-    @Deprecated
-    public static final PercentCodec APACHE_HTTP_CLIENT_4_EQUIV_CODEC = PercentCodec.RFC3986_PATHSAFE;
-    /**
-     * Percent encoding codec that matches Apache HTTP Client 5's path segment encoding.
-     */
-    public static final PercentCodec APACHE_HTTP_CLIENT_5_EQUIV_CODEC = PercentCodec.RFC3986_UNRESERVED;
+    private enum Encoding {
+        RFC3986_PATH(PercentCodec.RFC3986_PATH),
+        HTTP_CLIENT_V4_EQUIV(PercentCodec.RFC3986_PATH),
 
-    public static final PercentCodec DEFAULT_CODEC = APACHE_HTTP_CLIENT_5_EQUIV_CODEC;
+        RFC3986_UNRESERVED(PercentCodec.RFC3986_UNRESERVED),
+        HTTP_CLIENT_V5_EQUIV(PercentCodec.RFC3986_UNRESERVED);
 
-    private static PercentCodec codec;
+        private final PercentCodec percentCodec;
 
-    public static PercentCodec getCodec() {
-        if (codec == null) {
-            codec = DEFAULT_CODEC;
+        Encoding(PercentCodec percentCodec) {
+            this.percentCodec = percentCodec;
         }
-        return codec;
-    }
 
-    public static void setCodec(PercentCodec codec) {
-        PathEncoder.codec = codec;
+        static Optional<Encoding> get(String name) {
+            try {
+                return Optional.of(Encoding.valueOf(name.toUpperCase()));
+            } catch (Exception ignored) {
+                return Optional.empty();
+            }
+        }
     }
+    private static final String ENCODING_PROPERTY = "org.opensearch.path.encoding";
+    private static final Encoding ENCODING_DEFAULT = Encoding.HTTP_CLIENT_V5_EQUIV;
+
+    private static final Encoding ENCODING = Optional.ofNullable(System.getProperty(ENCODING_PROPERTY))
+            .flatMap(Encoding::get)
+            .orElse(ENCODING_DEFAULT);
 
     public static String encode(String pathSegment) {
-        return getCodec().encode(pathSegment);
+        return ENCODING.percentCodec.encode(pathSegment);
     }
 
     public static void encode(StringBuilder dest, CharSequence pathSegment) {
-        getCodec().encode(dest, pathSegment);
+        ENCODING.percentCodec.encode(dest, pathSegment);
     }
 }

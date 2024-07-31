@@ -22,7 +22,7 @@ public class PercentCodecTest {
     public static Collection<Object[]> testData() {
         return Arrays.asList(
             new Object[][] {
-                // <unencoded>, <encoded_unreserved>, <encoded_pathsafe>
+                // <unencoded>, <encoded_unreserved>, <encoded_path>
                 { "test", "test", "test" },
                 { "abc123", "abc123", "abc123" },
                 { "a/b", "a%2Fb", "a%2Fb" },
@@ -34,12 +34,12 @@ public class PercentCodecTest {
 
     private final String decoded;
     private final String encodedRFC3986Unreserved;
-    private final String encodedRFC3986PathSafe;
+    private final String encodedRFC3986Path;
 
-    public PercentCodecTest(String decoded, String encodedRFC3986Unreserved, String encodedRFC3986PathSafe) {
+    public PercentCodecTest(String decoded, String encodedRFC3986Unreserved, String encodedRFC3986Path) {
         this.decoded = decoded;
         this.encodedRFC3986Unreserved = encodedRFC3986Unreserved;
-        this.encodedRFC3986PathSafe = encodedRFC3986PathSafe;
+        this.encodedRFC3986Path = encodedRFC3986Path;
     }
 
     @Test
@@ -53,12 +53,12 @@ public class PercentCodecTest {
     }
 
     @Test
-    public void test_RFC3986_PATHSAFE_encoding() {
-        assertEquals(this.encodedRFC3986PathSafe, PercentCodec.RFC3986_PATHSAFE.encode(this.decoded));
+    public void test_RFC3986_PATH_encoding() {
+        assertEquals(this.encodedRFC3986Path, PercentCodec.RFC3986_PATH.encode(this.decoded));
     }
 
     @Test
-    public void test_RFC3986_PATHSAFE_decoding() {
-        assertEquals(this.decoded, PercentCodec.RFC3986_PATHSAFE.decode(this.encodedRFC3986PathSafe));
+    public void test_RFC3986_PATH_decoding() {
+        assertEquals(this.decoded, PercentCodec.RFC3986_PATH.decode(this.encodedRFC3986Path));
     }
 }

@@ -20,7 +20,7 @@ import java.util.BitSet;
  * Adapted from Apache HttpComponents HttpCore v5's <a href="https://github.com/apache/httpcomponents-core/blob/e009a923eefe79cf3593efbb0c18a3525ae63669/httpcore5/src/main/java/org/apache/hc/core5/net/PercentCodec.java">PercentCodec.java</a>
  * </p>
  */
-public class PercentCodec {
+class PercentCodec {
     private static class Chars {
         private final BitSet set = new BitSet(256);
 
@@ -152,7 +152,7 @@ public class PercentCodec {
     }
 
     public static final PercentCodec RFC3986_UNRESERVED = new PercentCodec(RFC3986_UNRESERVED_CHARS);
-    public static final PercentCodec RFC3986_PATHSAFE = new PercentCodec(RFC3986_PATH_CHARS);
+    public static final PercentCodec RFC3986_PATH = new PercentCodec(RFC3986_PATH_CHARS);
     public static final PercentCodec RFC5987_UNRESERVED = new PercentCodec(RFC5987_UNRESERVED_CHARS);
 
     private final Chars unreserved;
