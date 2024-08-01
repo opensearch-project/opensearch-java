@@ -3,22 +3,29 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
-- Added `searchAfterVals` to `SearchRequest` to allow passing arbitrary `FieldValue`s to `search_after` ([#1105](https://github.com/opensearch-project/opensearch-java/pull/1105))
 
 ### Dependencies
 
 ### Changed
-- Changed URL path encoding to own implementation adapted from Apache HTTP Client 5's ([#1109](https://github.com/opensearch-project/opensearch-java/pull/1109))
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
-- Fixed error when deserializing a normalizer without 'type' ([#1111](https://github.com/opensearch-project/opensearch-java/pull/1111))
-- Fixed deserialization of SearchRequest when `_source` is an array ([#1117](https://github.com/opensearch-project/opensearch-java/pull/1117))
 
 ### Security
+
+## [2.13.0] - 08/01/2024
+### Added
+- Added `searchAfterVals` to `SearchRequest` to allow passing arbitrary `FieldValue`s to `search_after` ([#1105](https://github.com/opensearch-project/opensearch-java/pull/1105))
+
+### Changed
+- Changed URL path encoding to own implementation adapted from Apache HTTP Client 5's ([#1109](https://github.com/opensearch-project/opensearch-java/pull/1109))
+
+### Fixed
+- Fixed error when deserializing a normalizer without 'type' ([#1111](https://github.com/opensearch-project/opensearch-java/pull/1111))
+- Fixed deserialization of SearchRequest when `_source` is an array ([#1117](https://github.com/opensearch-project/opensearch-java/pull/1117))
 
 ## [2.12.0] - 07/22/2024
 ### Added
@@ -460,7 +467,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.12.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.13.0...2.x
+[2.13.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.12.0...v2.13.0
 [2.12.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.11.1...v2.12.0
 [2.11.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.11.0...v2.11.1
 [2.11.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.4...v2.11.0
