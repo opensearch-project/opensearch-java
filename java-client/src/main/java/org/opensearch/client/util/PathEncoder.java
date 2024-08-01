@@ -44,8 +44,8 @@ public class PathEncoder {
 
     private static final String ENCODING_PROPERTY = "org.opensearch.path.encoding";
     private static final Encoding ENCODING_DEFAULT = isHttpClientV4InClasspath()
-            ? Encoding.HTTP_CLIENT_V4_EQUIV
-            : Encoding.HTTP_CLIENT_V5_EQUIV;
+        ? Encoding.HTTP_CLIENT_V4_EQUIV
+        : Encoding.HTTP_CLIENT_V5_EQUIV;
 
     private static final Encoding ENCODING = Optional.ofNullable(System.getProperty(ENCODING_PROPERTY))
         .flatMap(Encoding::get)
