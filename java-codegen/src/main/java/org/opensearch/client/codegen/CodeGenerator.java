@@ -33,7 +33,9 @@ import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 
 public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final OperationGroup.Matcher OPERATION_MATCHER = OperationGroup.matcher().add(null, "info");
+    private static final OperationGroup.Matcher OPERATION_MATCHER = OperationGroup.matcher()
+        .add(null, "info")
+        .add("dangling_indices", "delete_dangling_index");
 
     public static void main(String[] args) {
         var inputOpt = Option.builder("i")
