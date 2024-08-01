@@ -1,12 +1,25 @@
-    {{^abstract}}
+{{^abstract}}
     /**
      * Builder for {@link {{className}}}.
      */
-    public static class Builder extends {{TYPES.Client.Util.ObjectBuilderBase}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
-    {{/abstract}}
-    {{#abstract}}
+    public static class Builder extends
+{{#extendsOtherShape}}
+        {{extendsType}}.AbstractBuilder<Builder>
+{{/extendsOtherShape}}
+{{^extendsOtherShape}}
+    {{TYPES.Client.Util.ObjectBuilderBase}}
+{{/extendsOtherShape}}
+        implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
+    {{#extendsOtherShape}}
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    {{/extendsOtherShape}}
+{{/abstract}}
+{{#abstract}}
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends {{TYPES.Client.Util.ObjectBuilderBase}} {
-    {{/abstract}}
+{{/abstract}}
     {{#fields}}
         {{^required}}@{{TYPES.Javax.Annotation.Nullable}} {{/required}}private {{type.boxed}} {{name}};
     {{/fields}}

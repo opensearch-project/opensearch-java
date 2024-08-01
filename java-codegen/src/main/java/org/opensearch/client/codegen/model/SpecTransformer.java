@@ -28,11 +28,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.openapi.HttpStatusCode;
 import org.opensearch.client.codegen.openapi.In;
+import org.opensearch.client.codegen.openapi.JsonPointer;
 import org.opensearch.client.codegen.openapi.MimeType;
 import org.opensearch.client.codegen.openapi.OpenApiMediaType;
 import org.opensearch.client.codegen.openapi.OpenApiOperation;
 import org.opensearch.client.codegen.openapi.OpenApiParameter;
 import org.opensearch.client.codegen.openapi.OpenApiPath;
+import org.opensearch.client.codegen.openapi.OpenApiRefElement;
 import org.opensearch.client.codegen.openapi.OpenApiRequestBody;
 import org.opensearch.client.codegen.openapi.OpenApiResponse;
 import org.opensearch.client.codegen.openapi.OpenApiSchema;
@@ -104,7 +106,16 @@ public class SpecTransformer {
             .flatMap(OpenApiResponse::getContent)
             .flatMap(c -> c.get(MimeType.Json))
             .flatMap(OpenApiMediaType::getSchema)
-            .map(OpenApiSchema::resolve)
+            .map(s -> {
+                if (s.get$ref()
+                    .map(OpenApiRefElement.RelativeRef::getPointer)
+                    .flatMap(JsonPointer::getLastKey)
+                    .map("_common:AcknowledgedResponseBase"::equals)
+                    .orElse(false)) {
+                    return OpenApiSchema.builder().withPointer(s.getPointer()).withAllOf(s, OpenApiSchema.ANONYMOUS_OBJECT).build();
+                }
+                return s.resolve();
+            })
             .orElse(OpenApiSchema.ANONYMOUS_OBJECT);
 
         visit(parent, requestShape.getResponseType().getName(), group + ".Response", responseSchema);

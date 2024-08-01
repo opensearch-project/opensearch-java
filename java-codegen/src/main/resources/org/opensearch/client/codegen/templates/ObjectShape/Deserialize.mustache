@@ -9,6 +9,9 @@
 {{#abstract}}
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<BuilderT> op) {
 {{/abstract}}
+    {{#extendsOtherShape}}
+        {{extendsType}}.setup{{extendsType.name}}Deserializer(op);
+    {{/extendsOtherShape}}
     {{#bodyFields}}
         op.add({{#abstract}}Abstract{{/abstract}}Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{wireName}}{{/quoted}});
     {{/bodyFields}}

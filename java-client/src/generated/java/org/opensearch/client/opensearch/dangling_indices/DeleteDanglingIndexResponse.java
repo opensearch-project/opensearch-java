@@ -30,9 +30,14 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.dangling_indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -43,15 +48,18 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: dangling_indices.delete_dangling_index.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
+
     // ---------------------------------------------------------------------------------------------
 
     private DeleteDanglingIndexResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static DeleteDanglingIndexResponse of(Function<Builder, ObjectBuilder<DeleteDanglingIndexResponse>> fn) {
+    public static DeleteDanglingIndexResponse of(
+        Function<DeleteDanglingIndexResponse.Builder, ObjectBuilder<DeleteDanglingIndexResponse>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
@@ -60,7 +68,6 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
     /**
      * Builder for {@link DeleteDanglingIndexResponse}.
      */
-
     public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
         implements
             ObjectBuilder<DeleteDanglingIndexResponse> {
@@ -72,8 +79,7 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
         /**
          * Builds a {@link DeleteDanglingIndexResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public DeleteDanglingIndexResponse build() {
             _checkSingleUse();
@@ -81,7 +87,6 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
             return new DeleteDanglingIndexResponse(this);
         }
     }
-
     // ---------------------------------------------------------------------------------------------
 
     /**
@@ -94,7 +99,5 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
 
     protected static void setupDeleteDanglingIndexResponseDeserializer(ObjectDeserializer<DeleteDanglingIndexResponse.Builder> op) {
         AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-
     }
-
 }

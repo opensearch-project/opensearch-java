@@ -4,6 +4,9 @@
 {{#abstract}}
     protected {{className}}(AbstractBuilder<?> builder) {
 {{/abstract}}
+{{#extendsOtherShape}}
+        super(builder);
+{{/extendsOtherShape}}
 {{#fields}}
 {{#type.isListOrMap}}
     {{#required}}

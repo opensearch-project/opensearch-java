@@ -50,6 +50,11 @@ public class RequestShape extends ObjectShape {
         return operationGroup.getName();
     }
 
+    @Override
+    public boolean extendsOtherShape() {
+        return extendsType != Types.Client.OpenSearch._Types.RequestBase;
+    }
+
     public String getHttpMethod() {
         return Streams.sortedBy(httpMethods.stream(), m -> {
             switch (m) {
