@@ -1,4 +1,9 @@
+{{^abstract}}
     private {{className}}(Builder builder) {
+{{/abstract}}
+{{#abstract}}
+    protected {{className}}(AbstractBuilder<?> builder) {
+{{/abstract}}
 {{#fields}}
 {{#type.isListOrMap}}
     {{#required}}
@@ -18,7 +23,9 @@
 {{/type.isListOrMap}}
 {{/fields}}
     }
+{{^abstract}}
 
     public static {{className}} of({{type.builderFnType}} fn) {
         return fn.apply(new Builder()).build();
     }
+{{/abstract}}

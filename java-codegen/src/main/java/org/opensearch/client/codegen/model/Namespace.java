@@ -140,9 +140,7 @@ public class Namespace {
 
         @Override
         public String toString() {
-            return new ToStringBuilder(this)
-                    .append("type", getType())
-                    .toString();
+            return new ToStringBuilder(this).append("type", getType()).toString();
         }
 
         private static class ClientRef {

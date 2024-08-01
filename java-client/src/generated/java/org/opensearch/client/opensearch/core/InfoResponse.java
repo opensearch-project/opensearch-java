@@ -42,9 +42,9 @@ import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.OpenSearchVersionInfo;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -54,7 +54,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class InfoResponse implements JsonpSerializable {
+public class InfoResponse implements PlainJsonSerializable {
 
     private final String clusterName;
 
@@ -199,7 +199,7 @@ public class InfoResponse implements JsonpSerializable {
          * Required - API name: {@code version}
          */
         public final Builder version(Function<OpenSearchVersionInfo.Builder, ObjectBuilder<OpenSearchVersionInfo>> fn) {
-            return this.version(fn.apply(new OpenSearchVersionInfo.Builder()).build());
+            return version(fn.apply(new OpenSearchVersionInfo.Builder()).build());
         }
 
         /**

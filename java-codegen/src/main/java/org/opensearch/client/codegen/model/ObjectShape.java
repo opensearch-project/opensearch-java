@@ -57,10 +57,10 @@ public class ObjectShape extends Shape {
     }
 
     public Collection<Type> getImplementsTypes() {
-        return !bodyFields.isEmpty() ? List.of(Types.Client.Json.JsonpSerializable) : null;
+        return !bodyFields.isEmpty() ? List.of(Types.Client.Json.PlainJsonSerializable) : null;
     }
 
     public Collection<Type> getAnnotations() {
-        return !bodyFields.isEmpty() ? List.of(Types.Client.Json.JsonpDeserializable) : null;
+        return !bodyFields.isEmpty() && !isAbstract() ? List.of(Types.Client.Json.JsonpDeserializable) : null;
     }
 }

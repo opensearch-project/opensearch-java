@@ -41,7 +41,7 @@ public class TaggedUnionShape extends ObjectShape {
     public Collection<Type> getImplementsTypes() {
         return List.of(
             Types.Client.Util.TaggedUnion(getType().getNestedType("Kind"), Types.Java.Lang.Object),
-            Types.Client.Json.JsonpSerializable
+            Types.Client.Json.PlainJsonSerializable
         );
     }
 

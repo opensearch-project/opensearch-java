@@ -45,6 +45,10 @@ public abstract class Shape {
         return JavaClassKind.Class;
     }
 
+    public boolean isAbstract() {
+        return this.className.endsWith("Base");
+    }
+
     public String getTypedefName() {
         return this.typedefName;
     }
