@@ -74,17 +74,17 @@ public final class Types {
             public static final Type HashMap = Type.builder().pkg(PACKAGE).name("HashMap").build();
 
             public static Type Map(Type keyType, Type valueType) {
-                return Map.withGenericArgs(keyType, valueType);
+                return Map.withTypeParams(keyType, valueType);
             }
 
             public static final Type Map = Type.builder().pkg(PACKAGE).name("Map").build();
 
             public static Type MapEntry(Type keyType, Type valueType) {
-                return Type.builder().pkg(PACKAGE).name("Map.Entry").genericArgs(keyType, valueType).build();
+                return Type.builder().pkg(PACKAGE).name("Map.Entry").typeParams(keyType, valueType).build();
             }
 
             public static Type List(Type valueType) {
-                return Type.builder().pkg(PACKAGE).name("List").genericArgs(valueType).build();
+                return Type.builder().pkg(PACKAGE).name("List").typeParams(valueType).build();
             }
 
             public static final class Concurrent {
@@ -96,7 +96,7 @@ public final class Types {
                 public static final String PACKAGE = Util.PACKAGE + ".function";
 
                 public static Type Function(Type argType, Type returnType) {
-                    return Type.builder().pkg(PACKAGE).name("Function").genericArgs(argType, returnType).build();
+                    return Type.builder().pkg(PACKAGE).name("Function").typeParams(argType, returnType).build();
                 }
             }
 
@@ -121,7 +121,7 @@ public final class Types {
         public static final String PACKAGE = "org.opensearch.client";
 
         public static Type ApiClient(Type transport, Type client) {
-            return ApiClient.withGenericArgs(transport, client);
+            return ApiClient.withTypeParams(transport, client);
         }
 
         public static final Type ApiClient = Type.builder().pkg(PACKAGE).name("ApiClient").build();
@@ -154,6 +154,11 @@ public final class Types {
         public static final class Transport {
             public static final String PACKAGE = Client.PACKAGE + ".transport";
             public static final Type Endpoint = Type.builder().pkg(PACKAGE).name("Endpoint").build();
+
+            public static Type JsonEndpoint(Type requestType, Type responseType, Type errorType) {
+                return JsonEndpoint.withTypeParams(requestType, responseType, errorType);
+            }
+
             public static final Type JsonEndpoint = Type.builder().pkg(PACKAGE).name("JsonEndpoint").build();
             public static final Type OpenSearchTransport = Type.builder().pkg(PACKAGE).name("OpenSearchTransport").build();
             public static final Type TransportOptions = Type.builder().pkg(PACKAGE).name("TransportOptions").build();
@@ -169,14 +174,14 @@ public final class Types {
             public static final Type ApiTypeHelper = Type.builder().pkg(PACKAGE).name("ApiTypeHelper").build();
 
             public static Type ObjectBuilder(Type type) {
-                return ObjectBuilder.withGenericArgs(type);
+                return ObjectBuilder.withTypeParams(type);
             }
 
             public static final Type ObjectBuilder = Type.builder().pkg(PACKAGE).name("ObjectBuilder").build();
             public static final Type ObjectBuilderBase = Type.builder().pkg(PACKAGE).name("ObjectBuilderBase").build();
 
             public static Type TaggedUnion(Type tagType, Type baseType) {
-                return TaggedUnion.withGenericArgs(tagType, baseType);
+                return TaggedUnion.withTypeParams(tagType, baseType);
             }
 
             public static final Type TaggedUnion = Type.builder().pkg(PACKAGE).name("TaggedUnion").build();

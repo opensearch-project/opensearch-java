@@ -45,26 +45,26 @@ public class Type {
 
     private final String pkg;
     private final String name;
-    private final Type[] genericArgs;
+    private final Type[] typeParams;
     private final boolean isEnum;
 
     private Type(Builder builder) {
         this.pkg = builder.pkg;
         this.name = builder.name;
-        this.genericArgs = builder.genericArgs;
+        this.typeParams = builder.typeParams;
         this.isEnum = builder.isEnum;
     }
 
     public Builder toBuilder() {
-        return new Builder().pkg(pkg).name(name).genericArgs(genericArgs).isEnum(isEnum);
+        return new Builder().pkg(pkg).name(name).typeParams(typeParams).isEnum(isEnum);
     }
 
     @Override
     public String toString() {
         String str = name;
-        if (genericArgs != null && genericArgs.length > 0) {
+        if (typeParams != null && typeParams.length > 0) {
             str += "<";
-            str += Arrays.stream(genericArgs).map(Type::toString).collect(Collectors.joining(", "));
+            str += Arrays.stream(typeParams).map(Type::toString).collect(Collectors.joining(", "));
             str += ">";
         }
         return str;
@@ -104,19 +104,19 @@ public class Type {
     public Type getMapEntryType() {
         if (!isMap()) return null;
 
-        return Java.Util.MapEntry(this.genericArgs[0], this.genericArgs[1]);
+        return Java.Util.MapEntry(this.typeParams[0], this.typeParams[1]);
     }
 
     public Type getMapKeyType() {
         if (!isMap()) return null;
 
-        return this.genericArgs[0];
+        return this.typeParams[0];
     }
 
     public Type getMapValueType() {
         if (!isMap()) return null;
 
-        return this.genericArgs[1];
+        return this.typeParams[1];
     }
 
     public boolean isList() {
@@ -126,7 +126,7 @@ public class Type {
     public Type getListValueType() {
         if (!isList()) return null;
 
-        return this.genericArgs[0];
+        return this.typeParams[0];
     }
 
     public boolean isListOrMap() {
@@ -186,15 +186,15 @@ public class Type {
             var dotIdx = name.indexOf('.');
             imports.add(pkg + '.' + (dotIdx > 0 ? name.substring(0, dotIdx) : name));
         }
-        if (genericArgs != null) {
-            for (Type arg : genericArgs) {
+        if (typeParams != null) {
+            for (Type arg : typeParams) {
                 arg.getRequiredImports(imports, currentPkg);
             }
         }
     }
 
-    public Type withGenericArgs(Type... genericArgs) {
-        return toBuilder().genericArgs(genericArgs).build();
+    public Type withTypeParams(Type... typeParams) {
+        return toBuilder().typeParams(typeParams).build();
     }
 
     public Mustache.Lambda queryParamify() {
@@ -204,7 +204,7 @@ public class Type {
     public static final class Builder {
         private String pkg;
         private String name;
-        private Type[] genericArgs;
+        private Type[] typeParams;
         private boolean isEnum;
 
         public Builder pkg(String pkg) {
@@ -217,8 +217,8 @@ public class Type {
             return this;
         }
 
-        public Builder genericArgs(Type... genericArgs) {
-            this.genericArgs = genericArgs;
+        public Builder typeParams(Type... typeParams) {
+            this.typeParams = typeParams;
             return this;
         }
 

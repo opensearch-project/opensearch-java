@@ -45,6 +45,9 @@ import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 
+/**
+ * Client for the namespace.
+ */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
     public OpenSearchClient(OpenSearchTransport transport) {
