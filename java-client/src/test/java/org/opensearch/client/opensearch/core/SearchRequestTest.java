@@ -9,9 +9,12 @@
 package org.opensearch.client.opensearch.core;
 
 import java.util.Collections;
+import java.util.List;
 import org.junit.Test;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.FieldValue;
+import org.opensearch.client.opensearch.core.search.SourceConfig;
+import org.opensearch.client.opensearch.core.search.SourceFilter;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
 public class SearchRequestTest extends ModelTestCase {
@@ -61,5 +64,77 @@ public class SearchRequestTest extends ModelTestCase {
         SearchRequest copied = origin.toBuilder().build();
 
         assertEquals(copied.index(), origin.index());
+    }
+
+    @Test
+    public void canDeserializeSourceAsBoolean() {
+        String json = "{\"query\":{\"match_all\":{}},\"_source\":true,\"size\":1}";
+
+        SearchRequest searchRequest = fromJson(json, SearchRequest._DESERIALIZER);
+
+        SourceConfig _source = searchRequest.source();
+        assertNotNull(_source);
+        assertTrue(_source.isFetch());
+        assertTrue(_source.fetch());
+    }
+
+    @Test
+    public void canDeserializeSourceAsString() {
+        String json = "{\"query\":{\"match_all\":{}},\"_source\":\"_id\",\"size\":1}";
+
+        SearchRequest searchRequest = fromJson(json, SearchRequest._DESERIALIZER);
+
+        SourceConfig _source = searchRequest.source();
+        assertNotNull(_source);
+        assertTrue(_source.isFilter());
+
+        SourceFilter filter = _source.filter();
+        assertNotNull(filter);
+
+        List<String> includes = filter.includes();
+        assertEquals(1, includes.size());
+        assertEquals("_id", includes.get(0));
+
+        assertTrue(filter.excludes().isEmpty());
+    }
+
+    @Test
+    public void canDeserializeSourceAsArray() {
+        String json = "{\"query\":{\"match_all\":{}},\"_source\":[\"_id\"],\"size\":1}";
+
+        SearchRequest searchRequest = fromJson(json, SearchRequest._DESERIALIZER);
+
+        SourceConfig _source = searchRequest.source();
+        assertNotNull(_source);
+        assertTrue(_source.isFilter());
+
+        SourceFilter filter = _source.filter();
+        assertNotNull(filter);
+
+        List<String> includes = filter.includes();
+        assertEquals(1, includes.size());
+        assertEquals("_id", includes.get(0));
+
+        assertTrue(filter.excludes().isEmpty());
+    }
+
+    @Test
+    public void canDeserializeSourceAsObject() {
+        String json = "{\"query\":{\"match_all\":{}},\"_source\":{\"includes\":[\"_id\"]},\"size\":1}";
+
+        SearchRequest searchRequest = fromJson(json, SearchRequest._DESERIALIZER);
+
+        SourceConfig _source = searchRequest.source();
+        assertNotNull(_source);
+        assertTrue(_source.isFilter());
+
+        SourceFilter filter = _source.filter();
+        assertNotNull(filter);
+
+        List<String> includes = filter.includes();
+        assertEquals(1, includes.size());
+        assertEquals("_id", includes.get(0));
+
+        assertTrue(filter.excludes().isEmpty());
     }
 }
