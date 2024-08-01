@@ -139,12 +139,12 @@ public class SpecTransformer {
 
             var httpPath = HttpPath.from(httpPathStr, variant, allPathParams);
 
-            (httpPath.getDeprecation() == null ? canonicalPaths : deprecatedPaths).put(httpPath.getParamNameSet(), httpPath);
+            (httpPath.getDeprecation() == null ? canonicalPaths : deprecatedPaths).put(httpPath.getParamWireNameSet(), httpPath);
 
             if (requiredPathParams != null) {
-                requiredPathParams.retainAll(httpPath.getParamNameSet());
+                requiredPathParams.retainAll(httpPath.getParamWireNameSet());
             } else {
-                requiredPathParams = new HashSet<>(httpPath.getParamNameSet());
+                requiredPathParams = new HashSet<>(httpPath.getParamWireNameSet());
             }
         }
 
