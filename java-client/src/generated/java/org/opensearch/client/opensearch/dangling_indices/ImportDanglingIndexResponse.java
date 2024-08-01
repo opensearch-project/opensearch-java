@@ -30,9 +30,14 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.dangling_indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -43,15 +48,18 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: dangling_indices.import_dangling_index.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
+
     // ---------------------------------------------------------------------------------------------
 
     private ImportDanglingIndexResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static ImportDanglingIndexResponse of(Function<Builder, ObjectBuilder<ImportDanglingIndexResponse>> fn) {
+    public static ImportDanglingIndexResponse of(
+        Function<ImportDanglingIndexResponse.Builder, ObjectBuilder<ImportDanglingIndexResponse>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
@@ -60,7 +68,6 @@ public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
     /**
      * Builder for {@link ImportDanglingIndexResponse}.
      */
-
     public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
         implements
             ObjectBuilder<ImportDanglingIndexResponse> {
@@ -72,8 +79,7 @@ public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
         /**
          * Builds a {@link ImportDanglingIndexResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public ImportDanglingIndexResponse build() {
             _checkSingleUse();
@@ -81,7 +87,6 @@ public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
             return new ImportDanglingIndexResponse(this);
         }
     }
-
     // ---------------------------------------------------------------------------------------------
 
     /**
@@ -94,7 +99,5 @@ public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
 
     protected static void setupImportDanglingIndexResponseDeserializer(ObjectDeserializer<ImportDanglingIndexResponse.Builder> op) {
         AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-
     }
-
 }
