@@ -179,8 +179,13 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
                 );
                 objectMembers.add(member);
                 if (od.shortcutProperty() != null) {
-                    // also add it as a string
-                    addMember(Event.VALUE_STRING, tag, member);
+                    // also add it as the shortcut property events
+                    for (Event e : od.acceptedEvents()) {
+                        if (e == Event.START_OBJECT || e == Event.KEY_NAME) {
+                            continue;
+                        }
+                        addMember(e, tag, member);
+                    }
                 }
             } else {
                 UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member = new SingleMemberHandler<>(tag, deserializer);

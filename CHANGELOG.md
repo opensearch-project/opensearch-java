@@ -42,6 +42,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fixed error when deserializing a normalizer without 'type' ([#1111](https://github.com/opensearch-project/opensearch-java/pull/1111))
+- Fixed deserialization of SearchRequest when `_source` is an array ([#1117](https://github.com/opensearch-project/opensearch-java/pull/1117))
 
 ### Security
 
