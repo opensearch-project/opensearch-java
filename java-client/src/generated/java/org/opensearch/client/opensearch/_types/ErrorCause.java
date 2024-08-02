@@ -102,8 +102,10 @@ public class ErrorCause implements PlainJsonSerializable {
     }
 
     /**
-     * A human-readable explanation of the error, in english<br/>
+     * A human-readable explanation of the error, in english
+     * <p>
      * API name: {@code reason}
+     * </p>
      */
     @Nullable
     public final String reason() {
@@ -118,8 +120,10 @@ public class ErrorCause implements PlainJsonSerializable {
     }
 
     /**
-     * The server stack trace. Present only if the `error_trace=true` parameter was sent with the request.<br/>
+     * The server stack trace. Present only if the `error_trace=true` parameter was sent with the request.
+     * <p>
      * API name: {@code stack_trace}
+     * </p>
      */
     @Nullable
     public final String stackTrace() {
@@ -134,8 +138,10 @@ public class ErrorCause implements PlainJsonSerializable {
     }
 
     /**
-     * Required - The type of error<br/>
+     * Required - The type of error
+     * <p>
      * API name: {@code type}
+     * </p>
      */
     public final String type() {
         return this.type;
@@ -246,8 +252,10 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * A human-readable explanation of the error, in english<br/>
+         * A human-readable explanation of the error, in english
+         * <p>
          * API name: {@code reason}
+         * </p>
          */
         public final Builder reason(@Nullable String value) {
             this.reason = value;
@@ -290,8 +298,10 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * The server stack trace. Present only if the `error_trace=true` parameter was sent with the request.<br/>
+         * The server stack trace. Present only if the `error_trace=true` parameter was sent with the request.
+         * <p>
          * API name: {@code stack_trace}
+         * </p>
          */
         public final Builder stackTrace(@Nullable String value) {
             this.stackTrace = value;
@@ -334,8 +344,10 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * Required - The type of error<br/>
+         * Required - The type of error
+         * <p>
          * API name: {@code type}
+         * </p>
          */
         public final Builder type(String value) {
             this.type = value;

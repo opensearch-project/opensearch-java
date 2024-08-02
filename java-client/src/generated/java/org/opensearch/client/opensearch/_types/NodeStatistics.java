@@ -80,8 +80,10 @@ public class NodeStatistics implements PlainJsonSerializable {
 
     /**
      * Required - Number of nodes that rejected the request or failed to respond. If this value is not 0, a reason for the rejection or
-     * failure is included in the response.<br/>
+     * failure is included in the response.
+     * <p>
      * API name: {@code failed}
+     * </p>
      */
     public final int failed() {
         return this.failed;
@@ -95,16 +97,20 @@ public class NodeStatistics implements PlainJsonSerializable {
     }
 
     /**
-     * Required - Number of nodes that responded successfully to the request.<br/>
+     * Required - Number of nodes that responded successfully to the request.
+     * <p>
      * API name: {@code successful}
+     * </p>
      */
     public final int successful() {
         return this.successful;
     }
 
     /**
-     * Required - Total number of nodes selected by the request.<br/>
+     * Required - Total number of nodes selected by the request.
+     * <p>
      * API name: {@code total}
+     * </p>
      */
     public final int total() {
         return this.total;
@@ -157,8 +163,10 @@ public class NodeStatistics implements PlainJsonSerializable {
 
         /**
          * Required - Number of nodes that rejected the request or failed to respond. If this value is not 0, a reason for the rejection or
-         * failure is included in the response.<br/>
+         * failure is included in the response.
+         * <p>
          * API name: {@code failed}
+         * </p>
          */
         public final Builder failed(int value) {
             this.failed = value;
@@ -201,8 +209,10 @@ public class NodeStatistics implements PlainJsonSerializable {
         }
 
         /**
-         * Required - Number of nodes that responded successfully to the request.<br/>
+         * Required - Number of nodes that responded successfully to the request.
+         * <p>
          * API name: {@code successful}
+         * </p>
          */
         public final Builder successful(int value) {
             this.successful = value;
@@ -210,8 +220,10 @@ public class NodeStatistics implements PlainJsonSerializable {
         }
 
         /**
-         * Required - Total number of nodes selected by the request.<br/>
+         * Required - Total number of nodes selected by the request.
+         * <p>
          * API name: {@code total}
+         * </p>
          */
         public final Builder total(int value) {
             this.total = value;

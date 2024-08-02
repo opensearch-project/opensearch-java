@@ -89,16 +89,20 @@ public class DeleteDanglingIndexRequest extends RequestBase {
     }
 
     /**
-     * Required - Must be set to true in order to delete the dangling index<br/>
+     * Required - Must be set to true in order to delete the dangling index
+     * <p>
      * API name: {@code accept_data_loss}
+     * </p>
      */
     public final boolean acceptDataLoss() {
         return this.acceptDataLoss;
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.<br/>
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
      * API name: {@code cluster_manager_timeout}
+     * </p>
      */
     @Nullable
     public final Time clusterManagerTimeout() {
@@ -106,16 +110,20 @@ public class DeleteDanglingIndexRequest extends RequestBase {
     }
 
     /**
-     * Required - The UUID of the dangling index<br/>
+     * Required - The UUID of the dangling index
+     * <p>
      * API name: {@code index_uuid}
+     * </p>
      */
     public final String indexUuid() {
         return this.indexUuid;
     }
 
     /**
-     * Specify timeout for connection to master<br/>
+     * Specify timeout for connection to master
+     * <p>
      * API name: {@code master_timeout}
+     * </p>
      */
     @Deprecated
     @Nullable
@@ -124,8 +132,10 @@ public class DeleteDanglingIndexRequest extends RequestBase {
     }
 
     /**
-     * Explicit operation timeout<br/>
+     * Explicit operation timeout
+     * <p>
      * API name: {@code timeout}
+     * </p>
      */
     @Nullable
     public final Time timeout() {
@@ -148,8 +158,10 @@ public class DeleteDanglingIndexRequest extends RequestBase {
         private Time timeout;
 
         /**
-         * Required - Must be set to true in order to delete the dangling index<br/>
+         * Required - Must be set to true in order to delete the dangling index
+         * <p>
          * API name: {@code accept_data_loss}
+         * </p>
          */
         public final Builder acceptDataLoss(boolean value) {
             this.acceptDataLoss = value;
@@ -157,8 +169,10 @@ public class DeleteDanglingIndexRequest extends RequestBase {
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.<br/>
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
@@ -166,16 +180,20 @@ public class DeleteDanglingIndexRequest extends RequestBase {
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.<br/>
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * Required - The UUID of the dangling index<br/>
+         * Required - The UUID of the dangling index
+         * <p>
          * API name: {@code index_uuid}
+         * </p>
          */
         public final Builder indexUuid(String value) {
             this.indexUuid = value;
@@ -183,8 +201,10 @@ public class DeleteDanglingIndexRequest extends RequestBase {
         }
 
         /**
-         * Specify timeout for connection to master<br/>
+         * Specify timeout for connection to master
+         * <p>
          * API name: {@code master_timeout}
+         * </p>
          */
         @Deprecated
         public final Builder masterTimeout(@Nullable Time value) {
@@ -193,8 +213,10 @@ public class DeleteDanglingIndexRequest extends RequestBase {
         }
 
         /**
-         * Specify timeout for connection to master<br/>
+         * Specify timeout for connection to master
+         * <p>
          * API name: {@code master_timeout}
+         * </p>
          */
         @Deprecated
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -202,8 +224,10 @@ public class DeleteDanglingIndexRequest extends RequestBase {
         }
 
         /**
-         * Explicit operation timeout<br/>
+         * Explicit operation timeout
+         * <p>
          * API name: {@code timeout}
+         * </p>
          */
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
@@ -211,8 +235,10 @@ public class DeleteDanglingIndexRequest extends RequestBase {
         }
 
         /**
-         * Explicit operation timeout<br/>
+         * Explicit operation timeout
+         * <p>
          * API name: {@code timeout}
+         * </p>
          */
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return timeout(fn.apply(new Time.Builder()).build());

@@ -59,8 +59,10 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
     }
 
     /**
-     * Required - For a successful response, this value is always true. On failure, an exception is returned instead.<br/>
+     * Required - For a successful response, this value is always true. On failure, an exception is returned instead.
+     * <p>
      * API name: {@code acknowledged}
+     * </p>
      */
     public final boolean acknowledged() {
         return this.acknowledged;
@@ -88,8 +90,10 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
         private Boolean acknowledged;
 
         /**
-         * Required - For a successful response, this value is always true. On failure, an exception is returned instead.<br/>
+         * Required - For a successful response, this value is always true. On failure, an exception is returned instead.
+         * <p>
          * API name: {@code acknowledged}
+         * </p>
          */
         public final BuilderT acknowledged(boolean value) {
             this.acknowledged = value;
