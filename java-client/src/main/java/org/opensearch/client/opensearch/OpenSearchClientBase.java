@@ -157,10 +157,6 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
         return new OpenSearchClusterClient(this.transport, this.transportOptions);
     }
 
-    public OpenSearchDanglingIndicesClient danglingIndices() {
-        return new OpenSearchDanglingIndicesClient(this.transport, this.transportOptions);
-    }
-
     public OpenSearchFeaturesClient features() {
         return new OpenSearchFeaturesClient(this.transport, this.transportOptions);
     }

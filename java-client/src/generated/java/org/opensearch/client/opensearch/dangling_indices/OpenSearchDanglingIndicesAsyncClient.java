@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.dangling_indices;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.ErrorResponse;
@@ -46,49 +52,43 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the dangling_indices namespace.
  */
-public class OpenSearchDanglingIndicesClient extends ApiClient<OpenSearchTransport, OpenSearchDanglingIndicesClient> {
-
-    public OpenSearchDanglingIndicesClient(OpenSearchTransport transport) {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class OpenSearchDanglingIndicesAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchDanglingIndicesAsyncClient> {
+    public OpenSearchDanglingIndicesAsyncClient(OpenSearchTransport transport) {
         super(transport, null);
     }
 
-    public OpenSearchDanglingIndicesClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+    public OpenSearchDanglingIndicesAsyncClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
     }
 
     @Override
-    public OpenSearchDanglingIndicesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-        return new OpenSearchDanglingIndicesClient(this.transport, transportOptions);
+    public OpenSearchDanglingIndicesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchDanglingIndicesAsyncClient(this.transport, transportOptions);
     }
 
     // ----- Endpoint: dangling_indices.delete_dangling_index
 
     /**
-     * Deletes the specified dangling index
-     *
-     *
+     * Deletes the specified dangling index.
      */
-
-    public DeleteDanglingIndexResponse deleteDanglingIndex(DeleteDanglingIndexRequest request) throws IOException, OpenSearchException {
+    public CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(DeleteDanglingIndexRequest request) throws IOException,
+        OpenSearchException {
         @SuppressWarnings("unchecked")
         JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
             DeleteDanglingIndexRequest,
             DeleteDanglingIndexResponse,
             ErrorResponse>) DeleteDanglingIndexRequest._ENDPOINT;
 
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
     }
 
     /**
-     * Deletes the specified dangling index
+     * Deletes the specified dangling index.
      *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteDanglingIndexRequest}
-     *
+     * @param fn a function that initializes a builder to create the {@link DeleteDanglingIndexRequest}
      */
-
-    public final DeleteDanglingIndexResponse deleteDanglingIndex(
+    public final CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(
         Function<DeleteDanglingIndexRequest.Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn
     ) throws IOException, OpenSearchException {
         return deleteDanglingIndex(fn.apply(new DeleteDanglingIndexRequest.Builder()).build());
@@ -97,31 +97,25 @@ public class OpenSearchDanglingIndicesClient extends ApiClient<OpenSearchTranspo
     // ----- Endpoint: dangling_indices.import_dangling_index
 
     /**
-     * Imports the specified dangling index
-     *
-     *
+     * Imports the specified dangling index.
      */
-
-    public ImportDanglingIndexResponse importDanglingIndex(ImportDanglingIndexRequest request) throws IOException, OpenSearchException {
+    public CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(ImportDanglingIndexRequest request) throws IOException,
+        OpenSearchException {
         @SuppressWarnings("unchecked")
         JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
             ImportDanglingIndexRequest,
             ImportDanglingIndexResponse,
             ErrorResponse>) ImportDanglingIndexRequest._ENDPOINT;
 
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
     }
 
     /**
-     * Imports the specified dangling index
+     * Imports the specified dangling index.
      *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ImportDanglingIndexRequest}
-     *
+     * @param fn a function that initializes a builder to create the {@link ImportDanglingIndexRequest}
      */
-
-    public final ImportDanglingIndexResponse importDanglingIndex(
+    public final CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(
         Function<ImportDanglingIndexRequest.Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn
     ) throws IOException, OpenSearchException {
         return importDanglingIndex(fn.apply(new ImportDanglingIndexRequest.Builder()).build());
@@ -131,15 +125,12 @@ public class OpenSearchDanglingIndicesClient extends ApiClient<OpenSearchTranspo
 
     /**
      * Returns all dangling indices.
-     *
-     *
      */
-    public ListDanglingIndicesResponse listDanglingIndices() throws IOException, OpenSearchException {
-        return this.transport.performRequest(
+    public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices() throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(
             ListDanglingIndicesRequest._INSTANCE,
             ListDanglingIndicesRequest._ENDPOINT,
             this.transportOptions
         );
     }
-
 }

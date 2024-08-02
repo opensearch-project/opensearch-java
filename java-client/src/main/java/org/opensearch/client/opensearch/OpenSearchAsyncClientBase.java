@@ -154,10 +154,6 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
         return new OpenSearchClusterAsyncClient(this.transport, this.transportOptions);
     }
 
-    public OpenSearchDanglingIndicesAsyncClient danglingIndices() {
-        return new OpenSearchDanglingIndicesAsyncClient(this.transport, this.transportOptions);
-    }
-
     public OpenSearchFeaturesAsyncClient features() {
         return new OpenSearchFeaturesAsyncClient(this.transport, this.transportOptions);
     }
