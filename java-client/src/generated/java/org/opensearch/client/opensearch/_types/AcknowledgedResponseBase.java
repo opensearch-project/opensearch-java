@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import javax.annotation.Generated;
+import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;

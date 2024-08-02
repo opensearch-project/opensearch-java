@@ -27,11 +27,11 @@ public class Field {
     private final boolean isAdditionalProperties;
 
     public Field(
-            @Nonnull String wireName,
-            @Nonnull Type type,
-            boolean required,
-            @Nullable String description,
-            @Nullable Deprecation deprecation
+        @Nonnull String wireName,
+        @Nonnull Type type,
+        boolean required,
+        @Nullable String description,
+        @Nullable Deprecation deprecation
     ) {
         this(wireName, type, required, description, deprecation, false);
     }

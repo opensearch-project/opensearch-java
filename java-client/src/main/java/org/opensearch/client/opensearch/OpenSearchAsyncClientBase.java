@@ -120,7 +120,6 @@ import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
 import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
 import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
 import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
-import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesAsyncClient;
 import org.opensearch.client.opensearch.features.OpenSearchFeaturesAsyncClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesAsyncClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestAsyncClient;

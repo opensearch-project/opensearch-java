@@ -248,9 +248,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.acceptDataLoss != null) {
-                params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
-            }
+            params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
             if (request.clusterManagerTimeout != null) {
                 params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
             }

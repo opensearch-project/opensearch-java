@@ -1,12 +1,12 @@
 {{#isPrimitive}}
-    JsonpDeserializer.{{#toLower}}{{boxed.name}}{{/toLower}}Deserializer()
+    {{TYPES.Client.Json.JsonpDeserializer}}.{{#toLower}}{{boxed.name}}{{/toLower}}Deserializer()
 {{/isPrimitive}}
 {{^isPrimitive}}
     {{#isList}}
-        JsonpDeserializer.arrayDeserializer({{#listValueType}}{{>Type/deserializer}}{{/listValueType}})
+        {{TYPES.Client.Json.JsonpDeserializer}}.arrayDeserializer({{#listValueType}}{{>Type/deserializer}}{{/listValueType}})
     {{/isList}}
     {{#isMap}}
-        JsonpDeserializer.stringMapDeserializer({{#mapValueType}}{{>Type/deserializer}}{{/mapValueType}})
+        {{TYPES.Client.Json.JsonpDeserializer}}.stringMapDeserializer({{#mapValueType}}{{>Type/deserializer}}{{/mapValueType}})
     {{/isMap}}
     {{^isListOrMap}}
         {{name}}._DESERIALIZER
