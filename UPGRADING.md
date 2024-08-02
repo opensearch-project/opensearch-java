@@ -21,3 +21,6 @@ After:
 .searchAfter(FieldValue.of("string1"), FieldValue.of("string2"))
 .searchAfter(List.of(FieldValue.of("String")))
 ```
+
+### DanglingIndex creationDateMillis type
+- The type of `DanglingIndex`'s `creationDateMillis` field has been corrected from a `String` to a `long`.
