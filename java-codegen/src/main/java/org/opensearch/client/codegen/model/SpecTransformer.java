@@ -288,15 +288,15 @@ public class SpecTransformer {
                 )
             );
 
-        var additionalProperties = schema.getAdditionalProperties();
-        if (additionalProperties.isPresent()) {
-            var valueType = mapType(additionalProperties.get());
+        var additionalProperties = schema.getAdditionalProperties().orElse(null);
+        if (additionalProperties != null) {
+            var valueType = mapType(additionalProperties);
             shape.setAdditionalPropertiesField(
                 new Field(
-                    "metadata",
+                    additionalProperties.getTitle().orElseThrow(),
                     Types.Java.Util.Map(Types.Java.Lang.String, valueType),
                     false,
-                    additionalProperties.get().getDescription().orElse(null),
+                    additionalProperties.getDescription().orElse(null),
                     null,
                     true
                 )
