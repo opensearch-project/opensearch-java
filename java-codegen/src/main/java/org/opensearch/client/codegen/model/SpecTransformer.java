@@ -297,7 +297,8 @@ public class SpecTransformer {
                     Types.Java.Util.Map(Types.Java.Lang.String, valueType),
                     false,
                     additionalProperties.get().getDescription().orElse(null),
-                    null
+                    null,
+                    true
                 )
             );
         }

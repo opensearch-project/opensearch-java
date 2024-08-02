@@ -1,1 +1,6 @@
+{{^isAdditionalProperties}}
 * {{#required}}Required - {{/required}}{{#description}}{{.}}<br/>{{/description}}API name: {@code {{wireName}}}
+{{/isAdditionalProperties}}
+{{#isAdditionalProperties}}
+* {{description}}
+{{/isAdditionalProperties}}
