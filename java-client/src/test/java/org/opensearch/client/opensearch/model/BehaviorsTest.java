@@ -147,7 +147,7 @@ public class BehaviorsTest extends ModelTestCase {
             .metadata(MapBuilder.of("index", JsonData.of("test"), "retries", JsonData.of(1)))
             .build();
 
-        err = checkJsonRoundtrip(err, "{\"index\":\"test\",\"retries\":1,\"type\":\"Some type\",\"reason\":\"Some failure\"}");
+        err = checkJsonRoundtrip(err, "{\"index\":\"test\",\"retries\":1,\"reason\":\"Some failure\",\"type\":\"Some type\"}");
 
         assertEquals("Some failure", err.reason());
         assertEquals(1, err.metadata().get("retries").to(int.class).intValue());

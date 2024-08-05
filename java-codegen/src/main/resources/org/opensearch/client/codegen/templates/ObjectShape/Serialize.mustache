@@ -1,3 +1,4 @@
+{{^extendsOtherType}}
     /**
      * Serialize this object to JSON.
      */
@@ -8,6 +9,7 @@
         generator.writeEnd();
     }
 
+{{/extendsOtherType}}
     protected void serializeInternal({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
 {{#additionalPropertiesField}}
     {{#type.directSerializer}}this.{{name}}{{/type.directSerializer}}

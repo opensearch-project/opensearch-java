@@ -24,6 +24,7 @@ public class Field {
     private final String description;
     @Nullable
     private final Deprecation deprecation;
+    private final boolean isAdditionalProperties;
 
     public Field(
         @Nonnull String wireName,
@@ -32,11 +33,23 @@ public class Field {
         @Nullable String description,
         @Nullable Deprecation deprecation
     ) {
+        this(wireName, type, required, description, deprecation, false);
+    }
+
+    public Field(
+        @Nonnull String wireName,
+        @Nonnull Type type,
+        boolean required,
+        @Nullable String description,
+        @Nullable Deprecation deprecation,
+        boolean isAdditionalProperties
+    ) {
         this.wireName = Strings.requireNonBlank(wireName, "wireName must not be null");
         this.type = Objects.requireNonNull(type, "type must not be null");
         this.required = required;
         this.description = description;
         this.deprecation = deprecation;
+        this.isAdditionalProperties = isAdditionalProperties;
     }
 
     @Nonnull

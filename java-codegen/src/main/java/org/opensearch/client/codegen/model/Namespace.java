@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
@@ -96,7 +97,7 @@ public class Namespace {
     private Type getClientType(boolean async, boolean base) {
         var type = Type.builder().pkg(getPackageName()).name(getClientClassName(async, base));
         if (base) {
-            type.genericArgs(getClientType(async, false));
+            type.typeParams(getClientType(async, false));
         }
         return type.build();
     }
@@ -106,7 +107,7 @@ public class Namespace {
         private final Collection<RequestShape> operations;
 
         private Client(Namespace parent, boolean async, Collection<RequestShape> operations) {
-            super(parent, parent.getClientClassName(async, false), null, null);
+            super(parent, parent.getClientClassName(async, false), null, "Client for the " + parent.name + " namespace.");
             this.async = async;
             this.operations = operations;
         }
@@ -135,6 +136,11 @@ public class Namespace {
 
         public boolean isAsync() {
             return this.async;
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this).append("type", getType()).toString();
         }
 
         private static class ClientRef {

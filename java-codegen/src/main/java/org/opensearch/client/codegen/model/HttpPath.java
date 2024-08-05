@@ -64,8 +64,8 @@ public class HttpPath {
         return Lists.filterMap(parts, Part::isParameter, Part::getParameter);
     }
 
-    public Set<String> getParamNameSet() {
-        return parts.stream().filter(Part::isParameter).map(p -> p.getParameter().getName()).collect(Collectors.toSet());
+    public Set<String> getParamWireNameSet() {
+        return parts.stream().filter(Part::isParameter).map(p -> p.getParameter().getWireName()).collect(Collectors.toSet());
     }
 
     public Deprecation getDeprecation() {

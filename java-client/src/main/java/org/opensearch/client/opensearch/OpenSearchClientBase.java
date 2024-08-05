@@ -119,7 +119,6 @@ import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
 import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
 import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
 import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
-import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesClient;
 import org.opensearch.client.opensearch.features.OpenSearchFeaturesClient;
 import org.opensearch.client.opensearch.generic.OpenSearchGenericClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
@@ -155,10 +154,6 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
 
     public OpenSearchClusterClient cluster() {
         return new OpenSearchClusterClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchDanglingIndicesClient danglingIndices() {
-        return new OpenSearchDanglingIndicesClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchFeaturesClient features() {

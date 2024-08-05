@@ -30,9 +30,13 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.dangling_indices;
 
-import java.util.Collections;
+import javax.annotation.Generated;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -42,9 +46,8 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 
 /**
  * Returns all dangling indices.
- *
  */
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ListDanglingIndicesRequest extends RequestBase {
     public ListDanglingIndicesRequest() {}
 
@@ -59,24 +62,12 @@ public class ListDanglingIndicesRequest extends RequestBase {
      * Endpoint "{@code dangling_indices.list_dangling_indices}".
      */
     public static final Endpoint<ListDanglingIndicesRequest, ListDanglingIndicesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "GET";
-
-        },
-
+        request -> "GET",
         // Request path
-        request -> {
-            return "/_dangling";
-
-        },
-
+        request -> "/_dangling",
         // Request parameters
-        request -> {
-            return Collections.emptyMap();
-
-        },
+        SimpleEndpoint.emptyMap(),
         SimpleEndpoint.emptyMap(),
         false,
         ListDanglingIndicesResponse._DESERIALIZER

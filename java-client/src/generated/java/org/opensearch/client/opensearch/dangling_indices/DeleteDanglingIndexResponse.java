@@ -30,9 +30,14 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.dangling_indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -40,61 +45,59 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: dangling_indices.import_dangling_index.Response
+// typedef: dangling_indices.delete_dangling_index.Response
 
 @JsonpDeserializable
-public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
+
     // ---------------------------------------------------------------------------------------------
 
-    private ImportDanglingIndexResponse(Builder builder) {
+    private DeleteDanglingIndexResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static ImportDanglingIndexResponse of(Function<Builder, ObjectBuilder<ImportDanglingIndexResponse>> fn) {
+    public static DeleteDanglingIndexResponse of(
+        Function<DeleteDanglingIndexResponse.Builder, ObjectBuilder<DeleteDanglingIndexResponse>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link ImportDanglingIndexResponse}.
+     * Builder for {@link DeleteDanglingIndexResponse}.
      */
-
     public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<ImportDanglingIndexResponse> {
+            ObjectBuilder<DeleteDanglingIndexResponse> {
         @Override
         protected Builder self() {
             return this;
         }
 
         /**
-         * Builds a {@link ImportDanglingIndexResponse}.
+         * Builds a {@link DeleteDanglingIndexResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public ImportDanglingIndexResponse build() {
+        public DeleteDanglingIndexResponse build() {
             _checkSingleUse();
 
-            return new ImportDanglingIndexResponse(this);
+            return new DeleteDanglingIndexResponse(this);
         }
     }
-
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ImportDanglingIndexResponse}
+     * Json deserializer for {@link DeleteDanglingIndexResponse}
      */
-    public static final JsonpDeserializer<ImportDanglingIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<DeleteDanglingIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        ImportDanglingIndexResponse::setupImportDanglingIndexResponseDeserializer
+        DeleteDanglingIndexResponse::setupDeleteDanglingIndexResponseDeserializer
     );
 
-    protected static void setupImportDanglingIndexResponseDeserializer(ObjectDeserializer<ImportDanglingIndexResponse.Builder> op) {
+    protected static void setupDeleteDanglingIndexResponseDeserializer(ObjectDeserializer<DeleteDanglingIndexResponse.Builder> op) {
         AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-
     }
-
 }

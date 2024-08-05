@@ -28,11 +28,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.openapi.HttpStatusCode;
 import org.opensearch.client.codegen.openapi.In;
+import org.opensearch.client.codegen.openapi.JsonPointer;
 import org.opensearch.client.codegen.openapi.MimeType;
 import org.opensearch.client.codegen.openapi.OpenApiMediaType;
 import org.opensearch.client.codegen.openapi.OpenApiOperation;
 import org.opensearch.client.codegen.openapi.OpenApiParameter;
 import org.opensearch.client.codegen.openapi.OpenApiPath;
+import org.opensearch.client.codegen.openapi.OpenApiRefElement;
 import org.opensearch.client.codegen.openapi.OpenApiRequestBody;
 import org.opensearch.client.codegen.openapi.OpenApiResponse;
 import org.opensearch.client.codegen.openapi.OpenApiSchema;
@@ -104,7 +106,16 @@ public class SpecTransformer {
             .flatMap(OpenApiResponse::getContent)
             .flatMap(c -> c.get(MimeType.Json))
             .flatMap(OpenApiMediaType::getSchema)
-            .map(OpenApiSchema::resolve)
+            .map(s -> {
+                if (s.get$ref()
+                    .map(OpenApiRefElement.RelativeRef::getPointer)
+                    .flatMap(JsonPointer::getLastKey)
+                    .map("_common:AcknowledgedResponseBase"::equals)
+                    .orElse(false)) {
+                    return OpenApiSchema.builder().withPointer(s.getPointer()).withAllOf(s, OpenApiSchema.ANONYMOUS_OBJECT).build();
+                }
+                return s.resolve();
+            })
             .orElse(OpenApiSchema.ANONYMOUS_OBJECT);
 
         visit(parent, requestShape.getResponseType().getName(), group + ".Response", responseSchema);
@@ -139,12 +150,12 @@ public class SpecTransformer {
 
             var httpPath = HttpPath.from(httpPathStr, variant, allPathParams);
 
-            (httpPath.getDeprecation() == null ? canonicalPaths : deprecatedPaths).put(httpPath.getParamNameSet(), httpPath);
+            (httpPath.getDeprecation() == null ? canonicalPaths : deprecatedPaths).put(httpPath.getParamWireNameSet(), httpPath);
 
             if (requiredPathParams != null) {
-                requiredPathParams.retainAll(httpPath.getParamNameSet());
+                requiredPathParams.retainAll(httpPath.getParamWireNameSet());
             } else {
-                requiredPathParams = new HashSet<>(httpPath.getParamNameSet());
+                requiredPathParams = new HashSet<>(httpPath.getParamWireNameSet());
             }
         }
 
@@ -277,16 +288,17 @@ public class SpecTransformer {
                 )
             );
 
-        var additionalProperties = schema.getAdditionalProperties();
-        if (additionalProperties.isPresent()) {
-            var valueType = mapType(additionalProperties.get());
+        var additionalProperties = schema.getAdditionalProperties().orElse(null);
+        if (additionalProperties != null) {
+            var valueType = mapType(additionalProperties);
             shape.setAdditionalPropertiesField(
                 new Field(
-                    "metadata",
+                    additionalProperties.getTitle().orElseThrow(),
                     Types.Java.Util.Map(Types.Java.Lang.String, valueType),
                     false,
-                    additionalProperties.get().getDescription().orElse(null),
-                    null
+                    additionalProperties.getDescription().orElse(null),
+                    null,
+                    true
                 )
             );
         }
