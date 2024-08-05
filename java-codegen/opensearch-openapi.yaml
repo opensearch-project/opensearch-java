@@ -64,7 +64,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
         - $ref: '#/components/parameters/indices.put_alias::query.master_timeout'
@@ -128,7 +128,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.name'
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
@@ -150,7 +150,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.name'
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
@@ -173,7 +173,7 @@ paths:
       x-version-added: '1.0'
       description: Updates index aliases.
       externalDocs:
-        url: https://opensearch.org/docs/latest/api-reference/alias/
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/alias/
       parameters:
         - $ref: '#/components/parameters/indices.update_aliases::query.cluster_manager_timeout'
         - $ref: '#/components/parameters/indices.update_aliases::query.master_timeout'
@@ -195,7 +195,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.name'
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
@@ -217,7 +217,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.name'
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
@@ -5626,6 +5626,108 @@ paths:
         - $ref: '#/components/parameters/_global::query.error_trace'
         - $ref: '#/components/parameters/_global::query.source'
         - $ref: '#/components/parameters/_global::query.filter_path'
+  /_plugins/_sql:
+    post:
+      operationId: sql.query.0
+      x-operation-group: sql.query
+      x-version-added: '1.0'
+      description: Send a SQL/PPL query to the SQL plugin.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/sql.query::query.format'
+        - $ref: '#/components/parameters/sql.query::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.query'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.query@200'
+  /_plugins/_sql/_explain:
+    post:
+      operationId: sql.explain.0
+      x-operation-group: sql.explain
+      x-version-added: '1.0'
+      description: Shows how a query is executed against OpenSearch.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/sql.explain::query.format'
+        - $ref: '#/components/parameters/sql.explain::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.explain'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.explain@200'
+  /_plugins/_sql/close:
+    post:
+      operationId: sql.close.0
+      x-operation-group: sql.close
+      x-version-added: '1.0'
+      description: Clear the cursor context.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/sql.close::query.format'
+        - $ref: '#/components/parameters/sql.close::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.close'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.close@200'
+  /_plugins/_sql/stats:
+    get:
+      operationId: sql.get_stats.0
+      x-operation-group: sql.get_stats
+      x-version-added: '1.0'
+      description: Collect metrics for the plugin within the interval.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
+      parameters:
+        - $ref: '#/components/parameters/sql.get_stats::query.format'
+        - $ref: '#/components/parameters/sql.get_stats::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.get_stats@200'
+    post:
+      operationId: sql.post_stats.1
+      x-operation-group: sql.post_stats
+      x-version-added: '1.0'
+      description: By a stats endpoint, you are able to collect metrics for the plugin within the interval.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
+      parameters:
+        - $ref: '#/components/parameters/sql.post_stats::query.format'
+        - $ref: '#/components/parameters/sql.post_stats::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.post_stats'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.post_stats@200'
   /_plugins/_transform:
     get:
       operationId: transforms.search.0
@@ -7796,7 +7898,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.index'
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
@@ -7884,7 +7986,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.index'
         - $ref: '#/components/parameters/indices.put_alias::path.name'
@@ -7907,7 +8009,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.index'
         - $ref: '#/components/parameters/indices.put_alias::path.name'
@@ -7931,7 +8033,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.index'
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
@@ -7975,7 +8077,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.index'
         - $ref: '#/components/parameters/indices.put_alias::path.name'
@@ -7998,7 +8100,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.index'
         - $ref: '#/components/parameters/indices.put_alias::path.name'
@@ -11601,6 +11703,118 @@ paths:
         - $ref: '#/components/parameters/_global::query.error_trace'
         - $ref: '#/components/parameters/_global::query.source'
         - $ref: '#/components/parameters/_global::query.filter_path'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_sql:
+    post:
+      operationId: sql.query.0_superseded
+      x-operation-group: sql.query
+      x-version-added: '1.0'
+      description: Send a SQL/PPL query to the SQL plugin.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/sql.query::query.format'
+        - $ref: '#/components/parameters/sql.query::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.query'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.query@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_sql/_explain:
+    post:
+      operationId: sql.explain.0_superseded
+      x-operation-group: sql.explain
+      x-version-added: '1.0'
+      description: Shows how a query is executed against OpenSearch.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/sql.explain::query.format'
+        - $ref: '#/components/parameters/sql.explain::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.explain'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.explain@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_sql/close:
+    post:
+      operationId: sql.close.0_superseded
+      x-operation-group: sql.close
+      x-version-added: '1.0'
+      description: Clear the cursor context.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/sql.close::query.format'
+        - $ref: '#/components/parameters/sql.close::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.close'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.close@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_sql/stats:
+    get:
+      operationId: sql.get_stats.0_superseded
+      x-operation-group: sql.get_stats
+      x-version-added: '1.0'
+      description: Collect metrics for the plugin within the interval.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
+      parameters:
+        - $ref: '#/components/parameters/sql.get_stats::query.format'
+        - $ref: '#/components/parameters/sql.get_stats::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.get_stats@200'
+      deprecated: true
+      x-ignorable: true
+    post:
+      operationId: sql.post_stats.1_superseded
+      x-operation-group: sql.post_stats
+      x-version-added: '1.0'
+      description: By a stats endpoint, you are able to collect metrics for the plugin within the interval.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
+      parameters:
+        - $ref: '#/components/parameters/sql.post_stats::query.format'
+        - $ref: '#/components/parameters/sql.post_stats::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.post_stats'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.post_stats@200'
       deprecated: true
       x-ignorable: true
 components:
@@ -21070,6 +21284,81 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
+    sql.close::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+        description: A short version of the Accept header, e.g. json, yaml.
+    sql.close::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results
+      schema:
+        type: boolean
+        default: true
+        description: Specifies whether to escape special characters in the results
+    sql.explain::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+        description: A short version of the Accept header, e.g. json, yaml.
+    sql.explain::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results
+      schema:
+        type: boolean
+        default: true
+        description: Specifies whether to escape special characters in the results
+    sql.get_stats::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+        description: A short version of the Accept header, e.g. json, yaml.
+    sql.get_stats::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results
+      schema:
+        type: boolean
+        default: true
+        description: Specifies whether to escape special characters in the results
+    sql.post_stats::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+        description: A short version of the Accept header, e.g. json, yaml.
+    sql.post_stats::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results
+      schema:
+        type: boolean
+        default: true
+        description: Specifies whether to escape special characters in the results
+    sql.query::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+        description: A short version of the Accept header, e.g. json, yaml.
+    sql.query::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results
+      schema:
+        type: boolean
+        default: true
+        description: Specifies whether to escape special characters in the results
     tasks.cancel::path.task_id:
       in: path
       name: task_id
@@ -22521,18 +22810,7 @@ components:
     ml.search_models:
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              query:
-                type: object
-                description: The query.
-              size:
-                type: integer
-                description: The number of models to return.
-            required:
-              - query
-              - size
+          $ref: '#/components/schemas/ml._common:SearchModelsQuery'
     msearch:
       content:
         application/x-ndjson:
@@ -23212,6 +23490,30 @@ components:
               rename_replacement:
                 type: string
             description: Details of what to restore
+    sql.close:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:SqlClose'
+      required: true
+    sql.explain:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:SqlExplain'
+      required: true
+    sql.post_stats:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:SqlStats'
+      required: true
+    sql.query:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:SqlQuery'
+      required: true
     termvectors:
       content:
         application/json:
@@ -24699,106 +25001,31 @@ components:
     ml.delete_model_group@200:
       content:
         application/json:
-          schema:
-            type: object
+          $ref: '#/components/schemas/ml._common:ModelGroup'
     ml.delete_model@200:
       content:
         application/json:
-          schema:
-            type: object
+          $ref: '#/components/schemas/ml._common:ModelGroup'
     ml.get_model_group@200:
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              name:
-                type: string
-                description: The model group name.
-              latest_version:
-                type: number
-                description: The latest version.
-              description:
-                type: string
-                description: The model group description.
-              access:
-                type: string
-                description: The model group access.
-              created_time:
-                type: integer
-                format: int64
-              last_updated_time:
-                type: integer
-                format: int64
-            required:
-              - access
-              - description
-              - latest_version
-              - name
+          $ref: '#/components/schemas/ml._common:ModelGroup'
     ml.get_task@200:
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              model_id:
-                type: string
-                description: The model ID.
-              state:
-                type: string
-                description: The state.
-                enum:
-                  - CANCELLED
-                  - COMPLETED
-                  - COMPLETED_WITH_ERROR
-                  - CREATED
-                  - FAILED
-                  - RUNNING
-            required:
-              - state
+          $ref: '#/components/schemas/ml._common:Task'
     ml.register_model_group@200:
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              model_group_id:
-                type: string
-                description: The model group ID.
-              status:
-                type: string
-                description: The status.
-            required:
-              - model_group_id
-              - status
+          $ref: '#/components/schemas/ml._common:ModelGroupRegistration'
     ml.register_model@200:
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              task_id:
-                type: string
-                description: The task ID.
-              model_id:
-                type: string
-                description: The model ID.
-              status:
-                type: string
-                description: The status.
-            required:
-              - status
-              - task_id
+          $ref: '#/components/schemas/ml._common:Task'
     ml.search_models@200:
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              hits:
-                $ref: '#/components/schemas/ml._common:SearchModelHits'
-            required:
-              - hits
+          $ref: '#/components/schemas/ml._common:SearchModelsResponse'
     msearch_template@200:
       description: ''
       content:
@@ -25965,6 +26192,36 @@ components:
                   $ref: '#/components/schemas/snapshot.verify_repository:CompactNodeInfo'
             required:
               - nodes
+    sql.close@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:SqlCloseResponse'
+      required: true
+    sql.explain@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:SqlExplainResponse'
+      required: true
+    sql.get_stats@200:
+      content:
+        text/plain:
+          schema:
+            type: string
+      required: true
+    sql.post_stats@200:
+      content:
+        text/plain:
+          schema:
+            type: string
+      required: true
+    sql.query@200:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:SqlQueryResponse'
     tasks.cancel@200:
       description: ''
       content:
@@ -26449,6 +26706,9 @@ components:
             $ref: '#/components/schemas/_common:ErrorCause'
       required:
         - type
+      additionalProperties:
+        title: metadata
+        description: Additional details about the error
     _common:ErrorResponseBase:
       type: object
       properties:
@@ -27531,8 +27791,7 @@ components:
             Specifies any named parameters that are passed into the script as variables.
             Use parameters instead of hard-coded values to decrease compile time.
           type: object
-          additionalProperties:
-            type: object
+          additionalProperties: true
     _common:ScriptField:
       type: object
       properties:
@@ -28097,6 +28356,7 @@ components:
     _common:UnitMillis:
       description: Time unit for milliseconds
       type: number
+      format: int64
     _common:UnitNanos:
       description: Time unit for nanoseconds
       type: number
@@ -33841,8 +34101,8 @@ components:
       type: string
       enum:
         - 'false'
-        - runtime
         - strict
+        - strict_allow_templates
         - 'true'
     _common.mapping:DynamicProperty:
       allOf:
@@ -36106,7 +36366,9 @@ components:
             To return a document, the query term must exactly match the queried field's value, including whitespace and capitalization.
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/_common.query_dsl:TermQuery'
+            anyOf:
+              - $ref: '#/components/schemas/_common.query_dsl:TermQuery'
+              - $ref: '#/components/schemas/_common:FieldValue'
           minProperties: 1
           maxProperties: 1
         terms:
@@ -41704,6 +41966,8 @@ components:
           type: string
         index_uuid:
           type: string
+        creation_date:
+          $ref: '#/components/schemas/_common:DateTime'
         creation_date_millis:
           $ref: '#/components/schemas/_common:EpochTimeUnitMillis'
         node_ids:
@@ -44738,7 +45002,45 @@ components:
       required:
         - relation
         - value
-    ml._common:SearchModelHits:
+    ml._common:ModelGroup:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The model group name.
+        latest_version:
+          type: number
+          description: The latest version.
+        description:
+          type: string
+          description: The model group description.
+        access:
+          type: string
+          description: The model group access.
+        created_time:
+          type: integer
+          format: int64
+        last_updated_time:
+          type: integer
+          format: int64
+      required:
+        - access
+        - description
+        - latest_version
+        - name
+    ml._common:ModelGroupRegistration:
+      type: object
+      properties:
+        model_group_id:
+          type: string
+          description: The model group ID.
+        status:
+          type: string
+          description: The status.
+      required:
+        - model_group_id
+        - status
+    ml._common:SearchModelsHits:
       type: object
       properties:
         total:
@@ -44746,11 +45048,11 @@ components:
         hits:
           type: array
           items:
-            $ref: '#/components/schemas/ml._common:SearchModelHitsHit'
+            $ref: '#/components/schemas/ml._common:SearchModelsHitsHit'
       required:
         - hits
         - total
-    ml._common:SearchModelHitsHit:
+    ml._common:SearchModelsHitsHit:
       type: object
       properties:
         _index:
@@ -44765,6 +45067,62 @@ components:
       required:
         - _id
         - model_id
+    ml._common:SearchModelsQuery:
+      type: object
+      properties:
+        query:
+          type: object
+          description: The query.
+        size:
+          type: integer
+          description: The number of models to return.
+      required:
+        - query
+        - size
+    ml._common:SearchModelsResponse:
+      type: object
+      properties:
+        hits:
+          $ref: '#/components/schemas/ml._common:SearchModelsHits'
+      required:
+        - hits
+    ml._common:Task:
+      type: object
+      properties:
+        model_id:
+          type: string
+          description: The model ID.
+        state:
+          type: string
+          description: The state.
+          enum:
+            - CANCELLED
+            - COMPLETED
+            - COMPLETED_WITH_ERROR
+            - CREATED
+            - FAILED
+            - RUNNING
+        task_type:
+          type: string
+          description: Task type.
+          enum:
+            - DEPLOY_MODEL
+        function_name:
+          type: string
+        worker_node:
+          type: array
+          items:
+            $ref: '#/components/schemas/_common:NodeIds'
+        create_time:
+          type: integer
+          format: int64
+        last_update_time:
+          type: integer
+          format: int64
+        is_async:
+          type: boolean
+      required:
+        - state
     nodes._common:AdaptiveSelection:
       type: object
       properties:
@@ -48503,6 +48861,86 @@ components:
           $ref: '#/components/schemas/_common:Name'
       required:
         - name
+    sql._common:Explain:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: object
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/sql._common:Explain'
+    sql._common:SqlClose:
+      type: object
+      properties:
+        cursor:
+          type: string
+    sql._common:SqlCloseResponse:
+      type: object
+      properties:
+        succeeded:
+          type: boolean
+    sql._common:SqlExplain:
+      type: object
+      properties:
+        query:
+          type: string
+        filter:
+          type: object
+        fetch_size:
+          type: integer
+    sql._common:SqlExplainResponse:
+      type: object
+      properties:
+        root:
+          $ref: '#/components/schemas/sql._common:Explain'
+    sql._common:SqlQuery:
+      type: object
+      properties:
+        query:
+          type: string
+        filter:
+          type: object
+        fetch_size:
+          type: integer
+    sql._common:SqlQueryResponse:
+      type: object
+      properties:
+        schema:
+          type: array
+          items:
+            type: object
+        datarows:
+          type: array
+          items:
+            type: array
+        cursor:
+          type: string
+        total:
+          type: integer
+        size:
+          type: integer
+        status:
+          type: integer
+    sql._common:SqlStats:
+      type: object
+      properties:
+        start_time:
+          type: string
+        end_time:
+          type: object
+        cluster_name:
+          type: object
+        index:
+          type: object
+        query:
+          type: object
+        user:
+          type: object
+        execution_time:
+          type: object
     tasks._common:GroupBy:
       type: string
       enum:

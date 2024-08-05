@@ -56,11 +56,19 @@ public class ObjectShape extends Shape {
         return extendsType;
     }
 
+    public boolean extendsOtherShape() {
+        return extendsType != null;
+    }
+
+    public boolean hasFieldsToSerialize() {
+        return !bodyFields.isEmpty() || additionalPropertiesField != null;
+    }
+
     public Collection<Type> getImplementsTypes() {
-        return !bodyFields.isEmpty() ? List.of(Types.Client.Json.JsonpSerializable) : null;
+        return hasFieldsToSerialize() && !extendsOtherShape() ? List.of(Types.Client.Json.PlainJsonSerializable) : null;
     }
 
     public Collection<Type> getAnnotations() {
-        return !bodyFields.isEmpty() ? List.of(Types.Client.Json.JsonpDeserializable) : null;
+        return (hasFieldsToSerialize() || extendsOtherShape()) && !isAbstract() ? List.of(Types.Client.Json.JsonpDeserializable) : null;
     }
 }

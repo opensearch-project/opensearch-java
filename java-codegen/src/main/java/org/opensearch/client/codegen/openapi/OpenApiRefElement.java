@@ -86,6 +86,11 @@ public abstract class OpenApiRefElement<TSelf extends OpenApiRefElement<TSelf>> 
             return specification.getElement(pointer, clazz);
         }
 
+        @Nonnull
+        public JsonPointer getPointer() {
+            return pointer;
+        }
+
         @Override
         public String toString() {
             return new ToStringBuilder(this).append("pointer", pointer).append("relativeLocation", relativeLocation).toString();
