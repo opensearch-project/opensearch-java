@@ -64,7 +64,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
         - $ref: '#/components/parameters/indices.put_alias::query.master_timeout'
@@ -128,7 +128,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.name'
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
@@ -150,7 +150,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.name'
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
@@ -173,7 +173,7 @@ paths:
       x-version-added: '1.0'
       description: Updates index aliases.
       externalDocs:
-        url: https://opensearch.org/docs/latest/api-reference/alias/
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/alias/
       parameters:
         - $ref: '#/components/parameters/indices.update_aliases::query.cluster_manager_timeout'
         - $ref: '#/components/parameters/indices.update_aliases::query.master_timeout'
@@ -195,7 +195,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.name'
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
@@ -217,7 +217,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.name'
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
@@ -4071,6 +4071,107 @@ paths:
         - $ref: '#/components/parameters/_global::query.error_trace'
         - $ref: '#/components/parameters/_global::query.source'
         - $ref: '#/components/parameters/_global::query.filter_path'
+  /_plugins/_ppl:
+    post:
+      operationId: ppl.query.0
+      x-operation-group: ppl.query
+      x-version-added: '1.0'
+      description: Send a PPL query to the PPL plugin.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/ppl.query::query.format'
+        - $ref: '#/components/parameters/ppl.query::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ppl.query'
+      responses:
+        '200':
+          $ref: '#/components/responses/ppl.query@200'
+  /_plugins/_ppl/_explain:
+    post:
+      operationId: ppl.explain.0
+      x-operation-group: ppl.explain
+      x-version-added: '1.0'
+      description: Shows how a query is executed against OpenSearch.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/ppl.explain::query.format'
+        - $ref: '#/components/parameters/ppl.explain::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ppl.explain'
+      responses:
+        '200':
+          $ref: '#/components/responses/ppl.explain@200'
+  /_plugins/_ppl/stats:
+    get:
+      operationId: ppl.get_stats.0
+      x-operation-group: ppl.get_stats
+      x-version-added: '1.0'
+      description: Collect metrics for the plugin within the interval.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
+      parameters:
+        - $ref: '#/components/parameters/ppl.get_stats::query.format'
+        - $ref: '#/components/parameters/ppl.get_stats::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ppl.get_stats@200'
+    post:
+      operationId: ppl.post_stats.1
+      x-operation-group: ppl.post_stats
+      x-version-added: '1.0'
+      description: By a stats endpoint, you are able to collect metrics for the plugin within the interval.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
+      parameters:
+        - $ref: '#/components/parameters/ppl.post_stats::query.format'
+        - $ref: '#/components/parameters/ppl.post_stats::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ppl.post_stats'
+      responses:
+        '200':
+          $ref: '#/components/responses/ppl.post_stats@200'
+  /_plugins/_query/settings:
+    put:
+      operationId: sql.settings.0
+      x-operation-group: sql.settings
+      x-version-added: '1.0'
+      description: Adds SQL settings to the standard OpenSearch cluster settings.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/settings/
+      parameters:
+        - $ref: '#/components/parameters/sql.settings::query.format'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.settings'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.settings@200'
   /_plugins/_rollup/jobs/{id}:
     delete:
       operationId: rollups.delete.0
@@ -5626,6 +5727,108 @@ paths:
         - $ref: '#/components/parameters/_global::query.error_trace'
         - $ref: '#/components/parameters/_global::query.source'
         - $ref: '#/components/parameters/_global::query.filter_path'
+  /_plugins/_sql:
+    post:
+      operationId: sql.query.0
+      x-operation-group: sql.query
+      x-version-added: '1.0'
+      description: Send a SQL/PPL query to the SQL plugin.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/sql.query::query.format'
+        - $ref: '#/components/parameters/sql.query::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.query'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.query@200'
+  /_plugins/_sql/_explain:
+    post:
+      operationId: sql.explain.0
+      x-operation-group: sql.explain
+      x-version-added: '1.0'
+      description: Shows how a query is executed against OpenSearch.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/sql.explain::query.format'
+        - $ref: '#/components/parameters/sql.explain::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.explain'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.explain@200'
+  /_plugins/_sql/close:
+    post:
+      operationId: sql.close.0
+      x-operation-group: sql.close
+      x-version-added: '1.0'
+      description: Clear the cursor context.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/sql.close::query.format'
+        - $ref: '#/components/parameters/sql.close::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.close'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.close@200'
+  /_plugins/_sql/stats:
+    get:
+      operationId: sql.get_stats.0
+      x-operation-group: sql.get_stats
+      x-version-added: '1.0'
+      description: Collect metrics for the plugin within the interval.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
+      parameters:
+        - $ref: '#/components/parameters/sql.get_stats::query.format'
+        - $ref: '#/components/parameters/sql.get_stats::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.get_stats@200'
+    post:
+      operationId: sql.post_stats.1
+      x-operation-group: sql.post_stats
+      x-version-added: '1.0'
+      description: By a stats endpoint, you are able to collect metrics for the plugin within the interval.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
+      parameters:
+        - $ref: '#/components/parameters/sql.post_stats::query.format'
+        - $ref: '#/components/parameters/sql.post_stats::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.post_stats'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.post_stats@200'
   /_plugins/_transform:
     get:
       operationId: transforms.search.0
@@ -5762,7 +5965,7 @@ paths:
       operationId: transforms.stop.0
       x-operation-group: transforms.stop
       x-version-added: '1.0'
-      description: stop transform.
+      description: Stop transform.
       externalDocs:
         url: https://opensearch.org/docs/latest/im-plugin/index-transforms/transforms-apis/#stop-a-transform-job
       parameters:
@@ -7796,7 +7999,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.index'
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
@@ -7884,7 +8087,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.index'
         - $ref: '#/components/parameters/indices.put_alias::path.name'
@@ -7907,7 +8110,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.index'
         - $ref: '#/components/parameters/indices.put_alias::path.name'
@@ -7931,7 +8134,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.index'
         - $ref: '#/components/parameters/indices.put_alias::query.cluster_manager_timeout'
@@ -7975,7 +8178,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.index'
         - $ref: '#/components/parameters/indices.put_alias::path.name'
@@ -7998,7 +8201,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an alias.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/index-alias/#create-aliases
+        url: https://opensearch.org/docs/latest/api-reference/index-apis/update-alias/
       parameters:
         - $ref: '#/components/parameters/indices.put_alias::path.index'
         - $ref: '#/components/parameters/indices.put_alias::path.name'
@@ -10241,6 +10444,95 @@ paths:
           $ref: '#/components/responses/knn.stats@200'
       deprecated: true
       x-ignorable: true
+  /_opendistro/_ppl:
+    post:
+      operationId: ppl.query.0_superseded
+      x-operation-group: ppl.query
+      x-version-added: '1.0'
+      description: Send a PPL query to the PPL plugin.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/ppl.query::query.format'
+        - $ref: '#/components/parameters/ppl.query::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ppl.query'
+      responses:
+        '200':
+          $ref: '#/components/responses/ppl.query@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_ppl/_explain:
+    post:
+      operationId: ppl.explain.0_superseded
+      x-operation-group: ppl.explain
+      x-version-added: '1.0'
+      description: Shows how a query is executed against OpenSearch.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/ppl.explain::query.format'
+        - $ref: '#/components/parameters/ppl.explain::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ppl.explain'
+      responses:
+        '200':
+          $ref: '#/components/responses/ppl.explain@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_ppl/stats:
+    get:
+      operationId: ppl.get_stats.0_superseded
+      x-operation-group: ppl.get_stats
+      x-version-added: '1.0'
+      description: Collect metrics for the plugin within the interval.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
+      parameters:
+        - $ref: '#/components/parameters/ppl.get_stats::query.format'
+        - $ref: '#/components/parameters/ppl.get_stats::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ppl.get_stats@200'
+      deprecated: true
+      x-ignorable: true
+    post:
+      operationId: ppl.post_stats.1_superseded
+      x-operation-group: ppl.post_stats
+      x-version-added: '1.0'
+      description: By a stats endpoint, you are able to collect metrics for the plugin within the interval.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
+      parameters:
+        - $ref: '#/components/parameters/ppl.post_stats::query.format'
+        - $ref: '#/components/parameters/ppl.post_stats::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ppl.post_stats'
+      responses:
+        '200':
+          $ref: '#/components/responses/ppl.post_stats@200'
+      deprecated: true
+      x-ignorable: true
   /_opendistro/_rollup/jobs/{rollupID}:
     get:
       operationId: rollups.get.0_superseded
@@ -11601,6 +11893,140 @@ paths:
         - $ref: '#/components/parameters/_global::query.error_trace'
         - $ref: '#/components/parameters/_global::query.source'
         - $ref: '#/components/parameters/_global::query.filter_path'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_sql:
+    post:
+      operationId: sql.query.0_superseded
+      x-operation-group: sql.query
+      x-version-added: '1.0'
+      description: Send a SQL/PPL query to the SQL plugin.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/sql.query::query.format'
+        - $ref: '#/components/parameters/sql.query::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.query'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.query@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_sql/_explain:
+    post:
+      operationId: sql.explain.0_superseded
+      x-operation-group: sql.explain
+      x-version-added: '1.0'
+      description: Shows how a query is executed against OpenSearch.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/sql.explain::query.format'
+        - $ref: '#/components/parameters/sql.explain::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.explain'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.explain@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_sql/close:
+    post:
+      operationId: sql.close.0_superseded
+      x-operation-group: sql.close
+      x-version-added: '1.0'
+      description: Clear the cursor context.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
+      parameters:
+        - $ref: '#/components/parameters/sql.close::query.format'
+        - $ref: '#/components/parameters/sql.close::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.close'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.close@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_sql/settings:
+    put:
+      operationId: sql.settings.0_superseded
+      x-operation-group: sql.settings
+      x-version-added: '1.0'
+      description: Adds SQL settings to the standard OpenSearch cluster settings.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/settings/
+      parameters:
+        - $ref: '#/components/parameters/sql.settings::query.format'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.settings'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.settings@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_sql/stats:
+    get:
+      operationId: sql.get_stats.0_superseded
+      x-operation-group: sql.get_stats
+      x-version-added: '1.0'
+      description: Collect metrics for the plugin within the interval.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
+      parameters:
+        - $ref: '#/components/parameters/sql.get_stats::query.format'
+        - $ref: '#/components/parameters/sql.get_stats::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.get_stats@200'
+      deprecated: true
+      x-ignorable: true
+    post:
+      operationId: sql.post_stats.1_superseded
+      x-operation-group: sql.post_stats
+      x-version-added: '1.0'
+      description: By a stats endpoint, you are able to collect metrics for the plugin within the interval.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
+      parameters:
+        - $ref: '#/components/parameters/sql.post_stats::query.format'
+        - $ref: '#/components/parameters/sql.post_stats::query.sanitize'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sql.post_stats'
+      responses:
+        '200':
+          $ref: '#/components/responses/sql.post_stats@200'
       deprecated: true
       x-ignorable: true
 components:
@@ -19475,6 +19901,58 @@ components:
       schema:
         type: string
       required: true
+    ppl.explain::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+    ppl.explain::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results.
+      schema:
+        type: boolean
+        default: true
+    ppl.get_stats::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+    ppl.get_stats::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results.
+      schema:
+        type: boolean
+        default: true
+    ppl.post_stats::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+    ppl.post_stats::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results.
+      schema:
+        type: boolean
+        default: true
+    ppl.query::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+    ppl.query::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results.
+      schema:
+        type: boolean
+        default: true
     put_script::path.context:
       in: path
       name: context
@@ -21070,6 +21548,77 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
+    sql.close::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+    sql.close::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results
+      schema:
+        type: boolean
+        default: true
+    sql.explain::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+    sql.explain::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results
+      schema:
+        type: boolean
+        default: true
+    sql.get_stats::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+    sql.get_stats::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results
+      schema:
+        type: boolean
+        default: true
+    sql.post_stats::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+    sql.post_stats::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results
+      schema:
+        type: boolean
+        default: true
+    sql.query::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
+    sql.query::query.sanitize:
+      name: sanitize
+      in: query
+      description: Specifies whether to escape special characters in the results
+      schema:
+        type: boolean
+        default: true
+    sql.settings::query.format:
+      name: format
+      in: query
+      description: A short version of the Accept header, e.g. json, yaml.
+      schema:
+        type: string
     tasks.cancel::path.task_id:
       in: path
       name: task_id
@@ -22521,18 +23070,7 @@ components:
     ml.search_models:
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              query:
-                type: object
-                description: The query.
-              size:
-                type: integer
-                description: The number of models to return.
-            required:
-              - query
-              - size
+          $ref: '#/components/schemas/ml._common:SearchModelsQuery'
     msearch:
       content:
         application/x-ndjson:
@@ -22609,6 +23147,24 @@ components:
           schema:
             $ref: '#/components/schemas/notifications._common:NotificationsConfig'
       required: true
+    ppl.explain:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:Explain'
+      required: true
+    ppl.post_stats:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:Stats'
+      required: true
+    ppl.query:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:Query'
+      required: true
     put_script:
       content:
         application/json:
@@ -22678,7 +23234,6 @@ components:
           examples:
             RemoteStoreRestore_example1:
               summary: Examples for Post Remote Storage Restore Operation.
-              description: ''
               value:
                 indices:
                   - books
@@ -23212,6 +23767,38 @@ components:
               rename_replacement:
                 type: string
             description: Details of what to restore
+    sql.close:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:SqlClose'
+      required: true
+    sql.explain:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:Explain'
+      required: true
+    sql.post_stats:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:Stats'
+      required: true
+    sql.query:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:Query'
+      required: true
+    sql.settings:
+      content:
+        application/json:
+          schema:
+            anyOf:
+              - $ref: '#/components/schemas/sql._common:SqlSettingsPlain'
+              - $ref: '#/components/schemas/sql._common:SqlSettings'
+      required: true
     termvectors:
       content:
         application/json:
@@ -23285,7 +23872,6 @@ components:
             description: The search definition using the Query DSL
   responses:
     bulk@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23310,7 +23896,6 @@ components:
               - items
               - took
     cat.aliases@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23320,7 +23905,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.aliases:AliasesRecord'
     cat.all_pit_segments@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23330,7 +23914,6 @@ components:
             items:
               $ref: '#/components/schemas/cat._common:CatPitSegmentsRecord'
     cat.allocation@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23340,7 +23923,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.allocation:AllocationRecord'
     cat.cluster_manager@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23350,7 +23932,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.cluster_manager:ClusterManagerRecord'
     cat.count@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23360,7 +23941,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.count:CountRecord'
     cat.fielddata@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23370,7 +23950,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.fielddata:FielddataRecord'
     cat.health@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23395,13 +23974,11 @@ components:
             items:
               $ref: '#/components/schemas/cat.health:HealthRecord'
     cat.help@200:
-      description: ''
       content:
         text/plain:
           schema:
             type: string
     cat.indices@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23426,7 +24003,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.indices:IndicesRecord'
     cat.master@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23436,7 +24012,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.master:MasterRecord'
     cat.nodeattrs@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23446,7 +24021,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.nodeattrs:NodeAttributesRecord'
     cat.nodes@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23456,7 +24030,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.nodes:NodesRecord'
     cat.pending_tasks@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23466,7 +24039,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.pending_tasks:PendingTasksRecord'
     cat.pit_segments@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23476,7 +24048,6 @@ components:
             items:
               $ref: '#/components/schemas/cat._common:CatPitSegmentsRecord'
     cat.plugins@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23486,7 +24057,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.plugins:PluginsRecord'
     cat.recovery@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23496,7 +24066,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.recovery:RecoveryRecord'
     cat.repositories@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23506,7 +24075,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.repositories:RepositoriesRecord'
     cat.segment_replication@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23516,7 +24084,6 @@ components:
             items:
               $ref: '#/components/schemas/cat._common:CatSegmentReplicationRecord'
     cat.segments@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23526,7 +24093,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.segments:SegmentsRecord'
     cat.shards@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23536,7 +24102,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.shards:ShardsRecord'
     cat.snapshots@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23546,7 +24111,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.snapshots:SnapshotsRecord'
     cat.tasks@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23556,7 +24120,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.tasks:TasksRecord'
     cat.templates@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23566,7 +24129,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.templates:TemplatesRecord'
     cat.thread_pool@200:
-      description: ''
       content:
         text/plain:
           type: string
@@ -23576,7 +24138,6 @@ components:
             items:
               $ref: '#/components/schemas/cat.thread_pool:ThreadPoolRecord'
     clear_scroll@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23590,7 +24151,6 @@ components:
               - num_freed
               - succeeded
     cluster.allocation_explain@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23658,25 +24218,19 @@ components:
               - primary
               - shard
     cluster.delete_component_template@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
-    cluster.delete_decommission_awareness@200:
-      description: ''
+    cluster.delete_decommission_awareness@200: {}
     cluster.delete_voting_config_exclusions@200:
-      description: ''
       content:
         application/json: {}
-    cluster.delete_weighted_routing@200:
-      description: ''
+    cluster.delete_weighted_routing@200: {}
     cluster.exists_component_template@200:
-      description: ''
       content:
         application/json: {}
     cluster.get_component_template@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23688,10 +24242,8 @@ components:
                   $ref: '#/components/schemas/cluster._common:ComponentTemplate'
             required:
               - component_templates
-    cluster.get_decommission_awareness@200:
-      description: ''
+    cluster.get_decommission_awareness@200: {}
     cluster.get_settings@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23712,16 +24264,13 @@ components:
             required:
               - persistent
               - transient
-    cluster.get_weighted_routing@200:
-      description: ''
+    cluster.get_weighted_routing@200: {}
     cluster.health@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/cluster.health:HealthResponseBody'
     cluster.pending_tasks@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23734,19 +24283,15 @@ components:
             required:
               - tasks
     cluster.post_voting_config_exclusions@200:
-      description: ''
       content:
         application/json: {}
     cluster.put_component_template@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
-    cluster.put_decommission_awareness@200:
-      description: ''
+    cluster.put_decommission_awareness@200: {}
     cluster.put_settings@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23764,10 +24309,8 @@ components:
               - acknowledged
               - persistent
               - transient
-    cluster.put_weighted_routing@200:
-      description: ''
+    cluster.put_weighted_routing@200: {}
     cluster.remote_info@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23775,7 +24318,6 @@ components:
             additionalProperties:
               $ref: '#/components/schemas/cluster.remote_info:ClusterRemoteInfo'
     cluster.reroute@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23796,19 +24338,16 @@ components:
             required:
               - acknowledged
     cluster.state@200:
-      description: ''
       content:
         application/json:
           schema:
             type: object
     cluster.stats@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/cluster.stats:StatsResponseBase'
     count@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23822,7 +24361,6 @@ components:
               - _shards
               - count
     create_pit@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23836,25 +24374,21 @@ components:
                 type: integer
                 format: int64
     create@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:WriteResponseBase'
     dangling_indices.delete_dangling_index@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     dangling_indices.import_dangling_index@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     dangling_indices.list_dangling_indices@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23871,7 +24405,6 @@ components:
             required:
               - dangling_indices
     delete_all_pits@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23882,13 +24415,11 @@ components:
                 items:
                   $ref: '#/components/schemas/_core._common:PitsDetailsDeleteAll'
     delete_by_query_rethrottle@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/tasks._common:TaskListResponseBase'
     delete_by_query@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23929,7 +24460,6 @@ components:
               version_conflicts:
                 type: number
     delete_pit@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23940,27 +24470,22 @@ components:
                 items:
                   $ref: '#/components/schemas/_core._common:DeletedPit'
     delete_script@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     delete@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:WriteResponseBase'
     exists_source@200:
-      description: ''
       content:
         application/json: {}
     exists@200:
-      description: ''
       content:
         application/json: {}
     explain@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23981,7 +24506,6 @@ components:
               - _index
               - matched
     field_caps@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -23999,7 +24523,6 @@ components:
               - fields
               - indices
     get_all_pits@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24010,7 +24533,6 @@ components:
                 items:
                   $ref: '#/components/schemas/_core._common:PitDetail'
     get_script_context@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24023,7 +24545,6 @@ components:
             required:
               - contexts
     get_script_languages@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24041,7 +24562,6 @@ components:
               - language_contexts
               - types_allowed
     get_script@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24057,31 +24577,26 @@ components:
               - _id
               - found
     get_source@200:
-      description: ''
       content:
         application/json:
           schema:
             type: object
     get@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_core.get:GetResult'
     index@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:WriteResponseBase'
     index@201:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:WriteResponseBase'
     indices.add_block@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24100,7 +24615,6 @@ components:
               - indices
               - shards_acknowledged
     indices.analyze@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24113,13 +24627,11 @@ components:
                 items:
                   $ref: '#/components/schemas/indices.analyze:AnalyzeToken'
     indices.clear_cache@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:ShardsOperationResponseBase'
     indices.clone@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24136,7 +24648,6 @@ components:
               - index
               - shards_acknowledged
     indices.close@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24155,13 +24666,11 @@ components:
               - indices
               - shards_acknowledged
     indices.create_data_stream@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     indices.create@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24178,7 +24687,6 @@ components:
               - index
               - shards_acknowledged
     indices.data_streams_stats@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24209,63 +24717,51 @@ components:
               - data_streams
               - total_store_size_bytes
     indices.delete_alias@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     indices.delete_data_stream@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     indices.delete_index_template@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     indices.delete_template@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     indices.delete@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:IndicesResponseBase'
     indices.exists_alias@200:
-      description: ''
       content:
         application/json: {}
     indices.exists_index_template@200:
-      description: ''
       content:
         application/json: {}
     indices.exists_template@200:
-      description: ''
       content:
         application/json: {}
     indices.exists@200:
-      description: ''
       content:
         application/json: {}
     indices.exists@404:
-      description: ''
       content:
         application/json: {}
     indices.flush@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:ShardsOperationResponseBase'
     indices.forcemerge@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24279,7 +24775,6 @@ components:
                       you can use the task_id to get the status of the task at _tasks/<task_id>
                     type: string
     indices.get_alias@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24287,7 +24782,6 @@ components:
             additionalProperties:
               $ref: '#/components/schemas/indices.get_alias:IndexAliases'
     indices.get_data_stream@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24300,7 +24794,6 @@ components:
             required:
               - data_streams
     indices.get_field_mapping@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24308,7 +24801,6 @@ components:
             additionalProperties:
               $ref: '#/components/schemas/indices.get_field_mapping:TypeFieldMappings'
     indices.get_index_template@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24321,7 +24813,6 @@ components:
             required:
               - index_templates
     indices.get_mapping@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24329,7 +24820,6 @@ components:
             additionalProperties:
               $ref: '#/components/schemas/indices.get_mapping:IndexMappingRecord'
     indices.get_settings@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24337,17 +24827,14 @@ components:
             additionalProperties:
               $ref: '#/components/schemas/indices._common:IndexState'
     indices.get_template@200:
-      description: ''
       content:
         application/json:
           schema:
             type: object
             additionalProperties:
               $ref: '#/components/schemas/indices._common:TemplateMapping'
-    indices.get_upgrade@200:
-      description: ''
+    indices.get_upgrade@200: {}
     indices.get@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24355,7 +24842,6 @@ components:
             additionalProperties:
               $ref: '#/components/schemas/indices._common:IndexState'
     indices.open@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24376,37 +24862,31 @@ components:
                   - shards_acknowledged
                 additionalProperties: false
     indices.put_alias@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     indices.put_index_template@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     indices.put_mapping@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:IndicesResponseBase'
     indices.put_settings@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     indices.put_template@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     indices.recovery@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24414,13 +24894,11 @@ components:
             additionalProperties:
               $ref: '#/components/schemas/indices.recovery:RecoveryStatus'
     indices.refresh@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:ShardsOperationResponseBase'
     indices.resolve_index@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24443,7 +24921,6 @@ components:
               - data_streams
               - indices
     indices.rollover@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24474,7 +24951,6 @@ components:
               - rolled_over
               - shards_acknowledged
     indices.segments@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24490,7 +24966,6 @@ components:
               - _shards
               - indices
     indices.shard_stores@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24503,7 +24978,6 @@ components:
             required:
               - indices
     indices.shrink@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24520,13 +24994,11 @@ components:
               - index
               - shards_acknowledged
     indices.simulate_index_template@200:
-      description: ''
       content:
         application/json:
           schema:
             type: object
     indices.simulate_template@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24541,7 +25013,6 @@ components:
             required:
               - template
     indices.split@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24558,7 +25029,6 @@ components:
               - index
               - shards_acknowledged
     indices.stats@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24576,15 +25046,12 @@ components:
               - _all
               - _shards
     indices.update_aliases@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
-    indices.upgrade@200:
-      description: ''
+    indices.upgrade@200: {}
     indices.validate_query@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24603,7 +25070,6 @@ components:
             required:
               - valid
     info@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24626,13 +25092,11 @@ components:
               - tagline
               - version
     ingest.delete_pipeline@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     ingest.get_pipeline@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24640,7 +25104,6 @@ components:
             additionalProperties:
               $ref: '#/components/schemas/ingest._common:Pipeline'
     ingest.processor_grok@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24653,13 +25116,11 @@ components:
             required:
               - patterns
     ingest.put_pipeline@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     ingest.simulate@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24671,20 +25132,13 @@ components:
                   $ref: '#/components/schemas/ingest.simulate:PipelineSimulation'
             required:
               - docs
-    knn.delete_model@200:
-      description: ''
-    knn.get_model@200:
-      description: ''
-    knn.search_models@200:
-      description: ''
-    knn.stats@200:
-      description: ''
-    knn.train_model@200:
-      description: ''
-    knn.warmup@200:
-      description: ''
+    knn.delete_model@200: {}
+    knn.get_model@200: {}
+    knn.search_models@200: {}
+    knn.stats@200: {}
+    knn.train_model@200: {}
+    knn.warmup@200: {}
     mget@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24699,120 +25153,42 @@ components:
     ml.delete_model_group@200:
       content:
         application/json:
-          schema:
-            type: object
+          $ref: '#/components/schemas/ml._common:ModelGroup'
     ml.delete_model@200:
       content:
         application/json:
-          schema:
-            type: object
+          $ref: '#/components/schemas/ml._common:ModelGroup'
     ml.get_model_group@200:
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              name:
-                type: string
-                description: The model group name.
-              latest_version:
-                type: number
-                description: The latest version.
-              description:
-                type: string
-                description: The model group description.
-              access:
-                type: string
-                description: The model group access.
-              created_time:
-                type: integer
-                format: int64
-              last_updated_time:
-                type: integer
-                format: int64
-            required:
-              - access
-              - description
-              - latest_version
-              - name
+          $ref: '#/components/schemas/ml._common:ModelGroup'
     ml.get_task@200:
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              model_id:
-                type: string
-                description: The model ID.
-              state:
-                type: string
-                description: The state.
-                enum:
-                  - CANCELLED
-                  - COMPLETED
-                  - COMPLETED_WITH_ERROR
-                  - CREATED
-                  - FAILED
-                  - RUNNING
-            required:
-              - state
+          $ref: '#/components/schemas/ml._common:Task'
     ml.register_model_group@200:
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              model_group_id:
-                type: string
-                description: The model group ID.
-              status:
-                type: string
-                description: The status.
-            required:
-              - model_group_id
-              - status
+          $ref: '#/components/schemas/ml._common:ModelGroupRegistration'
     ml.register_model@200:
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              task_id:
-                type: string
-                description: The task ID.
-              model_id:
-                type: string
-                description: The model ID.
-              status:
-                type: string
-                description: The status.
-            required:
-              - status
-              - task_id
+          $ref: '#/components/schemas/ml._common:Task'
     ml.search_models@200:
       content:
         application/json:
-          schema:
-            type: object
-            properties:
-              hits:
-                $ref: '#/components/schemas/ml._common:SearchModelHits'
-            required:
-              - hits
+          $ref: '#/components/schemas/ml._common:SearchModelsResponse'
     msearch_template@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_core.msearch:MultiSearchResult'
     msearch@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_core.msearch:MultiSearchResult'
     mtermvectors@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24824,34 +25200,28 @@ components:
                   $ref: '#/components/schemas/_core.mtermvectors:TermVectorsResult'
             required:
               - docs
-    nodes.hot_threads@200:
-      description: ''
+    nodes.hot_threads@200: {}
     nodes.info@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/nodes.info:ResponseBase'
     nodes.reload_secure_settings@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/nodes.reload_secure_settings:ResponseBase'
     nodes.stats@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/nodes.stats:ResponseBase'
     nodes.usage@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/nodes.usage:ResponseBase'
     notifications.create_config@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24860,31 +25230,26 @@ components:
               config_id:
                 type: string
     notifications.delete_config@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/notifications._common:DeleteConfigsResponse'
     notifications.delete_configs@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/notifications._common:DeleteConfigsResponse'
     notifications.get_config@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/notifications._common:GetConfigsResponse'
     notifications.get_configs@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/notifications._common:GetConfigsResponse'
     notifications.list_channels@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24903,7 +25268,6 @@ components:
                 items:
                   $ref: '#/components/schemas/notifications._common:NotificationChannel'
     notifications.list_features@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24916,7 +25280,6 @@ components:
               plugin_features:
                 $ref: '#/components/schemas/notifications._common:NotificationsPluginFeaturesMap'
     notifications.send_test@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24929,7 +25292,6 @@ components:
                 items:
                   $ref: '#/components/schemas/notifications._common:EventStatus'
     notifications.update_config@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24938,17 +25300,38 @@ components:
               config_id:
                 type: string
     ping@200:
-      description: ''
       content:
         application/json: {}
-    put_script@200:
+    ppl.explain@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:ExplainResponse'
+      required: true
+    ppl.get_stats@200:
+      content:
+        text/plain:
+          schema:
+            type: string
+      required: true
+    ppl.post_stats@200:
+      content:
+        text/plain:
+          schema:
+            type: string
+      required: true
+    ppl.query@200:
       description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:QueryResponse'
+    put_script@200:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     rank_eval@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24971,7 +25354,6 @@ components:
               - failures
               - metric_score
     reindex_rethrottle@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -24984,7 +25366,6 @@ components:
             required:
               - nodes
     reindex@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25025,7 +25406,6 @@ components:
               version_conflicts:
                 type: number
     remote_store.restore@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25038,7 +25418,6 @@ components:
           examples:
             RemoteStoreRestore_example1:
               summary: Examples for Post Remote Storage Restore Operation.
-              description: ''
               value:
                 remote_store:
                   indices:
@@ -25048,7 +25427,6 @@ components:
                     failed: 0
                     successful: 1
     render_search_template@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25060,8 +25438,7 @@ components:
                   type: object
             required:
               - template_output
-    rollups.delete@200:
-      description: ''
+    rollups.delete@200: {}
     rollups.explain@200:
       content:
         application/json:
@@ -25077,12 +25454,9 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/rollups._common:RollupEntity'
-    rollups.start@200:
-      description: ''
-    rollups.stop@200:
-      description: ''
+    rollups.start@200: {}
+    rollups.stop@200: {}
     scripts_painless_execute@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25093,13 +25467,11 @@ components:
             required:
               - result
     scroll@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_core.search:ResponseBody'
     search_pipeline.delete@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25108,13 +25480,11 @@ components:
               acknowledged:
                 type: boolean
     search_pipeline.get@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/search_pipeline._common:SearchPipelineMap'
     search_pipeline.put@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25123,7 +25493,6 @@ components:
               acknowledged:
                 type: boolean
     search_shards@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25148,7 +25517,6 @@ components:
               - nodes
               - shards
     search_template@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25196,265 +25564,221 @@ components:
               - timed_out
               - took
     search@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_core.search:ResponseBody'
     security.authinfo@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:AuthInfo'
     security.authinfo@500:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:InternalServerError'
     security.authtoken@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.cache@501:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:MethodNotImplemented'
     security.change_password@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.config_upgrade_check@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:UpgradeCheck'
     security.config_upgrade_perform@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:UpgradePerform'
     security.create_action_group@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.create_allowlist@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:AllowListConfig'
     security.create_role_mapping@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.create_role@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.create_tenant@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.create_tenant@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.create_update_tenancy_config@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:MultiTenancyConfig'
     security.create_update_tenancy_config@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.create_user_legacy@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.create_user@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.delete_action_group@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.delete_distinguished_name@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.delete_distinguished_name@403:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Unauthorized'
     security.delete_role_mapping@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.delete_role@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.delete_tenant@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.delete_tenant@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.delete_user_legacy@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.delete_user@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.flush_cache@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.generate_obo_token@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:GenerateOBOToken'
     security.generate_obo_token@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.generate_user_token_legacy@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.generate_user_token_legacy@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.generate_user_token@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.generate_user_token@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.get_account_details@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:AccountDetails'
     security.get_action_group@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:ActionGroupsMap'
     security.get_action_groups@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:ActionGroupsMap'
     security.get_allowlist@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:AllowListConfig'
     security.get_audit_configuration@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:AuditConfigWithReadOnly'
     security.get_certificates@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:GetCertificates'
     security.get_certificates@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.get_configuration@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:DynamicConfig'
     security.get_dashboards_info@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:DashboardsInfo'
     security.get_dashboards_info@500:
-      description: ''
       content:
         application/json:
           schema:
@@ -25466,391 +25790,326 @@ components:
           schema:
             $ref: '#/components/schemas/security._common:DistinguishedNames'
     security.get_distinguished_name@403:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Unauthorized'
     security.get_distinguished_names@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:DistinguishedNamesMap'
     security.get_distinguished_names@403:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Unauthorized'
     security.get_permissions_info@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:PermissionsInfo'
     security.get_permissions_info@500:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:InternalServerError'
     security.get_role_mapping@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:RoleMappings'
     security.get_role_mappings@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:RoleMappings'
     security.get_role@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:RolesMap'
     security.get_roles@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:RolesMap'
     security.get_sslinfo@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:SSLInfo'
     security.get_sslinfo@500:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:InternalServerError'
     security.get_tenancy_config@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:MultiTenancyConfig'
     security.get_tenancy_config@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.get_tenant@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:TenantsMap'
     security.get_tenants@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:TenantsMap'
     security.get_tenants@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.get_user_legacy@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:UsersMap'
     security.get_user@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:UsersMap'
     security.get_users_legacy@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:UsersMap'
     security.get_users@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:UsersMap'
     security.health@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:HealthInfo'
     security.migrate@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.migrate@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.patch_action_group@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.patch_action_groups@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.patch_allowlist@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:AllowListConfig'
     security.patch_audit_configuration@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.patch_configuration@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.patch_distinguished_name@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.patch_distinguished_name@403:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Unauthorized'
     security.patch_distinguished_names@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.patch_distinguished_names@403:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Unauthorized'
     security.patch_role_mapping@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.patch_role_mapping@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.patch_role_mappings@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.patch_role_mappings@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.patch_role@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.patch_role@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.patch_roles@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.patch_roles@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.patch_tenant@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.patch_tenant@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.patch_tenants@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.patch_tenants@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.patch_user@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.patch_users@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.post_dashboards_info@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:DashboardsInfo'
     security.post_dashboards_info@500:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:InternalServerError'
     security.reload_http_certificates@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.reload_http_certificates@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.reload_transport_certificates@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.reload_transport_certificates@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.tenant_info@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:TenantInfo'
     security.tenant_info@500:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:InternalServerError'
     security.update_audit_configuration@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.update_configuration@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.update_distinguished_name@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.update_distinguished_name@403:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Unauthorized'
     security.validate@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:Ok'
     security.validate@400:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:BadRequest'
     security.who_am_i_protected@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:WhoAmI'
     security.who_am_i_protected@500:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:InternalServerError'
     security.who_am_i@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:WhoAmI'
     security.who_am_i@500:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common:InternalServerError'
     snapshot.cleanup_repository@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25861,19 +26120,16 @@ components:
             required:
               - results
     snapshot.clone@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     snapshot.create_repository@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     snapshot.create@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25885,19 +26141,16 @@ components:
               snapshot:
                 $ref: '#/components/schemas/snapshot._common:SnapshotInfo'
     snapshot.delete_repository@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     snapshot.delete@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     snapshot.get_repository@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25905,7 +26158,6 @@ components:
             additionalProperties:
               $ref: '#/components/schemas/snapshot._common:Repository'
     snapshot.get@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25929,7 +26181,6 @@ components:
               - remaining
               - total
     snapshot.restore@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25940,7 +26191,6 @@ components:
             required:
               - snapshot
     snapshot.status@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25953,7 +26203,6 @@ components:
             required:
               - snapshots
     snapshot.verify_repository@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25965,14 +26214,46 @@ components:
                   $ref: '#/components/schemas/snapshot.verify_repository:CompactNodeInfo'
             required:
               - nodes
+    sql.close@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:SqlCloseResponse'
+      required: true
+    sql.explain@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:ExplainResponse'
+      required: true
+    sql.get_stats@200:
+      content:
+        text/plain:
+          schema:
+            type: string
+      required: true
+    sql.post_stats@200:
+      content:
+        text/plain:
+          schema:
+            type: string
+      required: true
+    sql.query@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:QueryResponse'
+    sql.settings@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sql._common:SqlSettingsResponse'
     tasks.cancel@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/tasks._common:TaskListResponseBase'
     tasks.get@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -25990,13 +26271,11 @@ components:
               - completed
               - task
     tasks.list@200:
-      description: ''
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/tasks._common:TaskListResponseBase'
     termvectors@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -26022,8 +26301,7 @@ components:
               - _version
               - found
               - took
-    transforms.delete@200:
-      description: ''
+    transforms.delete@200: {}
     transforms.explain@200:
       content:
         application/json:
@@ -26060,7 +26338,6 @@ components:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     update_by_query_rethrottle@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -26073,7 +26350,6 @@ components:
             required:
               - nodes
     update_by_query@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -26114,7 +26390,6 @@ components:
               throttled_until_millis:
                 $ref: '#/components/schemas/_common:DurationValueUnitMillis'
     update@200:
-      description: ''
       content:
         application/json:
           schema:
@@ -26407,9 +26682,7 @@ components:
       pattern: ^([0-9]+)(?:d|h|m|s|ms|micros|nanos)$
       type: string
     _common:DurationLarge:
-      description: |-
-        A date histogram interval. Similar to `Duration` with additional units: `w` (week), `M` (month), `q` (quarter) and
-        `y` (year)
+      description: 'A date histogram interval. Similar to `Duration` with additional units: `w` (week), `M` (month), `q` (quarter) and `y` (year).'
       type: string
     _common:DurationValueUnitMillis:
       allOf:
@@ -26548,7 +26821,7 @@ components:
         - as 4 top/bottom/left/right coordinates
         - as 2 top_left / bottom_right points
         - as 2 top_right / bottom_left points
-        - as a WKT bounding box
+        - as a WKT bounding box.
       oneOf:
         - $ref: '#/components/schemas/_common:CoordsGeoBounds'
         - $ref: '#/components/schemas/_common:TopLeftBottomRightGeoBounds'
@@ -26587,7 +26860,7 @@ components:
         - type: number
         - type: string
     _common:GeoHexCell:
-      description: A map hex cell (H3) reference
+      description: A map hex cell (H3) reference.
       type: string
     _common:GeoLine:
       type: object
@@ -26611,7 +26884,7 @@ components:
         - as a `{lat, long}` object
         - as a geo hash value
         - as a `[lon, lat]` array
-        - as a string in `"<lat>, <lon>"` or WKT point formats
+        - as a string in `"<lat>, <lon>"` or WKT point formats.
       oneOf:
         - $ref: '#/components/schemas/_common:LatLonGeoLocation'
         - $ref: '#/components/schemas/_common:GeoHashLocation'
@@ -26627,7 +26900,7 @@ components:
         - intersects
         - within
     _common:GeoTile:
-      description: A map tile reference, represented as `{zoom}/{x}/{y}`
+      description: A map tile reference, represented as `{zoom}/{x}/{y}`.
       type: string
     _common:GeoTilePrecision:
       type: number
@@ -26946,7 +27219,7 @@ components:
           items:
             type: string
     _common:MinimumShouldMatch:
-      description: The minimum number of terms that should match as integer, percentage or range
+      description: The minimum number of terms that should match as integer, percentage or range.
       oneOf:
         - type: number
         - type: string
@@ -27027,7 +27300,7 @@ components:
         - transform
         - voting_only
     _common:NodeRoles:
-      description: '* @doc_id node-roles'
+      description: Node roles.
       type: array
       items:
         $ref: '#/components/schemas/_common:NodeRole'
@@ -27531,8 +27804,7 @@ components:
             Specifies any named parameters that are passed into the script as variables.
             Use parameters instead of hard-coded values to decrease compile time.
           type: object
-          additionalProperties:
-            type: object
+          additionalProperties: true
     _common:ScriptField:
       type: object
       properties:
@@ -28026,7 +28298,7 @@ components:
         - model_id
         - model_text
     _common:TimeOfDay:
-      description: Time of day, expressed as HH:MM:SS
+      description: Time of day, expressed as HH:MM:SS.
       type: string
     _common:TimeUnit:
       type: string
@@ -28095,13 +28367,13 @@ components:
     _common:ulong:
       type: number
     _common:UnitMillis:
-      description: Time unit for milliseconds
+      description: Time unit for milliseconds.
       type: number
     _common:UnitNanos:
-      description: Time unit for nanoseconds
+      description: Time unit for nanoseconds.
       type: number
     _common:UnitSeconds:
-      description: Time unit for seconds
+      description: Time unit for seconds.
       type: number
     _common:Username:
       type: string
@@ -28125,7 +28397,7 @@ components:
         Although "void" is generally used for the unit type that has only one value, this is to be interpreted as
         the bottom type that has no value at all. Most languages have a unit type, but few have a bottom type.
 
-        See https://en.m.wikipedia.org/wiki/Unit_type and https://en.m.wikipedia.org/wiki/Bottom_type
+        See https://en.m.wikipedia.org/wiki/Unit_type and https://en.m.wikipedia.org/wiki/Bottom_type.
       type: object
     _common:WaitForActiveShardOptions:
       type: string
@@ -33841,8 +34113,8 @@ components:
       type: string
       enum:
         - 'false'
-        - runtime
         - strict
+        - strict_allow_templates
         - 'true'
     _common.mapping:DynamicProperty:
       allOf:
@@ -36106,7 +36378,9 @@ components:
             To return a document, the query term must exactly match the queried field's value, including whitespace and capitalization.
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/_common.query_dsl:TermQuery'
+            anyOf:
+              - $ref: '#/components/schemas/_common.query_dsl:TermQuery'
+              - $ref: '#/components/schemas/_common:FieldValue'
           minProperties: 1
           maxProperties: 1
         terms:
@@ -36401,7 +36675,7 @@ components:
         - SLOP
         - WHITESPACE
     _common.query_dsl:SimpleQueryStringFlags:
-      description: Query flags can be either a single flag or a combination of flags, e.g. `OR|AND|PREFIX`
+      description: Query flags can be either a single flag or a combination of flags, e.g. `OR|AND|PREFIX`.
       allOf:
         - $ref: '#/components/schemas/_common:PipeSeparatedFlagsSimpleQueryStringFlag'
     _common.query_dsl:SimpleQueryStringQuery:
@@ -42053,6 +42327,7 @@ components:
           $ref: '#/components/schemas/_common:Stringifiedboolean'
     indices._common:IndexSettings:
       type: object
+      description: The index settings to be updated.
       properties:
         index:
           $ref: '#/components/schemas/indices._common:IndexSettings'
@@ -42183,7 +42458,6 @@ components:
         store:
           $ref: '#/components/schemas/indices._common:Storage'
       additionalProperties: {}
-      description: The index settings to be updated
     indices._common:IndexSettingsAnalysis:
       type: object
       properties:
@@ -42297,7 +42571,7 @@ components:
           $ref: '#/components/schemas/indices._common:IndexTemplateDataStreamConfiguration'
       required:
         - index_patterns
-      description: New index template definition to be simulated, if no index template name is specified
+      description: New index template definition to be simulated, if no index template name is specified.
     indices._common:IndexTemplateDataStreamConfiguration:
       type: object
       properties:
@@ -44738,7 +45012,45 @@ components:
       required:
         - relation
         - value
-    ml._common:SearchModelHits:
+    ml._common:ModelGroup:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The model group name.
+        latest_version:
+          type: number
+          description: The latest version.
+        description:
+          type: string
+          description: The model group description.
+        access:
+          type: string
+          description: The model group access.
+        created_time:
+          type: integer
+          format: int64
+        last_updated_time:
+          type: integer
+          format: int64
+      required:
+        - access
+        - description
+        - latest_version
+        - name
+    ml._common:ModelGroupRegistration:
+      type: object
+      properties:
+        model_group_id:
+          type: string
+          description: The model group ID.
+        status:
+          type: string
+          description: The status.
+      required:
+        - model_group_id
+        - status
+    ml._common:SearchModelsHits:
       type: object
       properties:
         total:
@@ -44746,11 +45058,11 @@ components:
         hits:
           type: array
           items:
-            $ref: '#/components/schemas/ml._common:SearchModelHitsHit'
+            $ref: '#/components/schemas/ml._common:SearchModelsHitsHit'
       required:
         - hits
         - total
-    ml._common:SearchModelHitsHit:
+    ml._common:SearchModelsHitsHit:
       type: object
       properties:
         _index:
@@ -44765,6 +45077,62 @@ components:
       required:
         - _id
         - model_id
+    ml._common:SearchModelsQuery:
+      type: object
+      properties:
+        query:
+          type: object
+          description: The query.
+        size:
+          type: integer
+          description: The number of models to return.
+      required:
+        - query
+        - size
+    ml._common:SearchModelsResponse:
+      type: object
+      properties:
+        hits:
+          $ref: '#/components/schemas/ml._common:SearchModelsHits'
+      required:
+        - hits
+    ml._common:Task:
+      type: object
+      properties:
+        model_id:
+          type: string
+          description: The model ID.
+        state:
+          type: string
+          description: The state.
+          enum:
+            - CANCELLED
+            - COMPLETED
+            - COMPLETED_WITH_ERROR
+            - CREATED
+            - FAILED
+            - RUNNING
+        task_type:
+          type: string
+          description: Task type.
+          enum:
+            - DEPLOY_MODEL
+        function_name:
+          type: string
+        worker_node:
+          type: array
+          items:
+            $ref: '#/components/schemas/_common:NodeIds'
+        create_time:
+          type: integer
+          format: int64
+        last_update_time:
+          type: integer
+          format: int64
+        is_async:
+          type: boolean
+      required:
+        - state
     nodes._common:AdaptiveSelection:
       type: object
       properties:
@@ -45736,6 +46104,9 @@ components:
           $ref: '#/components/schemas/nodes._common:ShardSearchBackpressureTaskResourceTrackerStats'
         cancellation_stats:
           $ref: '#/components/schemas/nodes._common:ShardSearchBackpressureTaskCancellationStats'
+        completion_count:
+          x-version-added: '3.0'
+          type: number
     nodes._common:ShardSearchPipelineStats:
       type: object
       properties:
@@ -48503,6 +48874,168 @@ components:
           $ref: '#/components/schemas/_common:Name'
       required:
         - name
+    sql._common:Cursor:
+      type: object
+      properties:
+        keep_alive:
+          type: string
+    sql._common:Explain:
+      type: object
+      properties:
+        query:
+          type: string
+        filter:
+          type: object
+        fetch_size:
+          type: integer
+    sql._common:ExplainBody:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: object
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/sql._common:ExplainBody'
+    sql._common:ExplainResponse:
+      type: object
+      properties:
+        root:
+          $ref: '#/components/schemas/sql._common:ExplainBody'
+    sql._common:Plugins:
+      type: object
+      properties:
+        ppl:
+          $ref: '#/components/schemas/sql._common:Ppl'
+        query:
+          $ref: '#/components/schemas/sql._common:PluginsQuery'
+        sql:
+          $ref: '#/components/schemas/sql._common:Sql'
+    sql._common:PluginsQuery:
+      type: object
+      properties:
+        memory_limit:
+          type: string
+        size_limit:
+          anyOf:
+            - type: string
+            - type: integer
+    sql._common:Ppl:
+      type: object
+      properties:
+        enabled:
+          anyOf:
+            - type: boolean
+            - type: string
+    sql._common:Query:
+      type: object
+      properties:
+        query:
+          type: string
+        filter:
+          type: object
+        fetch_size:
+          type: integer
+    sql._common:QueryResponse:
+      type: object
+      properties:
+        schema:
+          type: array
+          items:
+            type: object
+        datarows:
+          type: array
+          items:
+            type: array
+        cursor:
+          type: string
+        total:
+          type: integer
+        size:
+          type: integer
+        status:
+          type: integer
+    sql._common:Sql:
+      type: object
+      properties:
+        enabled:
+          anyOf:
+            - type: boolean
+            - type: string
+        slowlog:
+          anyOf:
+            - type: integer
+            - type: string
+        cursor:
+          $ref: '#/components/schemas/sql._common:Cursor'
+    sql._common:SqlClose:
+      type: object
+      properties:
+        cursor:
+          type: string
+    sql._common:SqlCloseResponse:
+      type: object
+      properties:
+        succeeded:
+          type: boolean
+    sql._common:SqlSettings:
+      type: object
+      properties:
+        transient:
+          $ref: '#/components/schemas/sql._common:Transient'
+    sql._common:SqlSettingsPlain:
+      type: object
+      properties:
+        transient:
+          $ref: '#/components/schemas/sql._common:TransientPlain'
+    sql._common:SqlSettingsResponse:
+      type: object
+      properties:
+        acknowledged:
+          type: boolean
+        persistent:
+          type: object
+        transient:
+          $ref: '#/components/schemas/sql._common:Transient'
+    sql._common:Stats:
+      type: object
+      properties:
+        start_time:
+          type: string
+        end_time:
+          type: object
+        cluster_name:
+          type: object
+        index:
+          type: object
+        query:
+          type: object
+        user:
+          type: object
+        execution_time:
+          type: object
+    sql._common:Transient:
+      type: object
+      properties:
+        plugins:
+          $ref: '#/components/schemas/sql._common:Plugins'
+    sql._common:TransientPlain:
+      type: object
+      properties:
+        plugins.sql.enabled:
+          type: boolean
+        plugins.ppl.enabled:
+          type: boolean
+        plugins.sql.slowlog:
+          type: integer
+        plugins.sql.cursor.keep_alive:
+          type: string
+        plugins.query.memory_limit:
+          type: string
+        plugins.query.size_limit:
+          type: integer
     tasks._common:GroupBy:
       type: string
       enum:
