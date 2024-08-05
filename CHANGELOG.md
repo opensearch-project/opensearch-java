@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `org.junit:junit-bom` from 5.10.2 to 5.10.3
 - Bumps `org.owasp.dependencycheck` from 10.0.2 to 10.0.3
+- Bumps `org.eclipse.parsson:parsson` from 1.1.6 to 1.1.7
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
