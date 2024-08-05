@@ -50,6 +50,11 @@ public class RequestShape extends ObjectShape {
         return operationGroup.getName();
     }
 
+    @Override
+    public boolean extendsOtherShape() {
+        return extendsType != Types.Client.OpenSearch._Types.RequestBase;
+    }
+
     public String getHttpMethod() {
         return Streams.sortedBy(httpMethods.stream(), m -> {
             switch (m) {
@@ -142,6 +147,10 @@ public class RequestShape extends ObjectShape {
 
     public boolean hasAnyRequiredFields() {
         return fields.values().stream().anyMatch(Field::isRequired);
+    }
+
+    public Type getJsonEndpointType() {
+        return Types.Client.Transport.JsonEndpoint(getType(), getResponseType(), Types.Client.OpenSearch._Types.ErrorResponse);
     }
 
     @Nonnull

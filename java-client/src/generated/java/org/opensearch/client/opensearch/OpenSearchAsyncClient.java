@@ -43,9 +43,13 @@ import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
+import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesAsyncClient;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 
+/**
+ * Client for the namespace.
+ */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchAsyncClient> {
     public OpenSearchAsyncClient(OpenSearchTransport transport) {
@@ -59,6 +63,12 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
     @Override
     public OpenSearchAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
         return new OpenSearchAsyncClient(this.transport, transportOptions);
+    }
+
+    // ----- Child clients
+
+    public OpenSearchDanglingIndicesAsyncClient danglingIndices() {
+        return new OpenSearchDanglingIndicesAsyncClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: info

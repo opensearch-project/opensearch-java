@@ -30,9 +30,14 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
@@ -42,22 +47,22 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.AcknowledgedResponseBase
 
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class AcknowledgedResponseBase implements PlainJsonSerializable {
+
     private final boolean acknowledged;
 
     // ---------------------------------------------------------------------------------------------
 
     protected AcknowledgedResponseBase(AbstractBuilder<?> builder) {
-
         this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
-
     }
 
     /**
-     * Required - For a successful response, this value is always true. On failure,
-     * an exception is returned instead.
+     * Required - For a successful response, this value is always true. On failure, an exception is returned instead.
      * <p>
      * API name: {@code acknowledged}
+     * </p>
      */
     public final boolean acknowledged() {
         return this.acknowledged;
@@ -66,6 +71,7 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -73,20 +79,21 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("acknowledged");
         generator.write(this.acknowledged);
 
     }
 
+    // ---------------------------------------------------------------------------------------------
+
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         private Boolean acknowledged;
 
         /**
-         * Required - For a successful response, this value is always true. On failure,
-         * an exception is returned instead.
+         * Required - For a successful response, this value is always true. On failure, an exception is returned instead.
          * <p>
          * API name: {@code acknowledged}
+         * </p>
          */
         public final BuilderT acknowledged(boolean value) {
             this.acknowledged = value;
@@ -94,16 +101,12 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
         }
 
         protected abstract BuilderT self();
-
     }
-
     // ---------------------------------------------------------------------------------------------
+
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAcknowledgedResponseBaseDeserializer(
         ObjectDeserializer<BuilderT> op
     ) {
-
         op.add(AbstractBuilder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
-
     }
-
 }

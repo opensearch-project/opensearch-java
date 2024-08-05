@@ -30,11 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.dangling_indices;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -45,15 +50,18 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: dangling_indices.delete_dangling_index.Request
+// typedef: dangling_indices.import_dangling_index.Request
 
 /**
- * Deletes the specified dangling index
- *
+ * Imports the specified dangling index.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ImportDanglingIndexRequest extends RequestBase {
 
-public class DeleteDanglingIndexRequest extends RequestBase {
     private final boolean acceptDataLoss;
+
+    @Nullable
+    private final Time clusterManagerTimeout;
 
     private final String indexUuid;
 
@@ -62,40 +70,50 @@ public class DeleteDanglingIndexRequest extends RequestBase {
     private final Time masterTimeout;
 
     @Nullable
-    private final Time clusterManagerTimeout;
-
-    @Nullable
     private final Time timeout;
 
     // ---------------------------------------------------------------------------------------------
 
-    private DeleteDanglingIndexRequest(Builder builder) {
-
+    private ImportDanglingIndexRequest(Builder builder) {
         this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
         this.masterTimeout = builder.masterTimeout;
-        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.timeout = builder.timeout;
-
     }
 
-    public static DeleteDanglingIndexRequest of(Function<Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn) {
+    public static ImportDanglingIndexRequest of(
+        Function<ImportDanglingIndexRequest.Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - Must be set to true in order to delete the dangling index
+     * Required - Must be set to true in order to import the dangling index
      * <p>
      * API name: {@code accept_data_loss}
+     * </p>
      */
     public final boolean acceptDataLoss() {
         return this.acceptDataLoss;
     }
 
     /**
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     * </p>
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
+
+    /**
      * Required - The UUID of the dangling index
      * <p>
      * API name: {@code index_uuid}
+     * </p>
      */
     public final String indexUuid() {
         return this.indexUuid;
@@ -105,26 +123,19 @@ public class DeleteDanglingIndexRequest extends RequestBase {
      * Specify timeout for connection to master
      * <p>
      * API name: {@code master_timeout}
+     * </p>
      */
+    @Deprecated
     @Nullable
     public final Time masterTimeout() {
         return this.masterTimeout;
     }
 
     /**
-     * Specify timeout for connection to cluster-manager
-     * <p>
-     * API name: {@code cluster_manager_timeout}
-     */
-    @Nullable
-    public final Time clusterManagerTimeout() {
-        return this.clusterManagerTimeout;
-    }
-
-    /**
      * Explicit operation timeout
      * <p>
      * API name: {@code timeout}
+     * </p>
      */
     @Nullable
     public final Time timeout() {
@@ -134,28 +145,23 @@ public class DeleteDanglingIndexRequest extends RequestBase {
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link DeleteDanglingIndexRequest}.
+     * Builder for {@link ImportDanglingIndexRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteDanglingIndexRequest> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ImportDanglingIndexRequest> {
         private Boolean acceptDataLoss;
-
-        private String indexUuid;
-
-        @Deprecated
-        @Nullable
-        private Time masterTimeout;
-
         @Nullable
         private Time clusterManagerTimeout;
-
+        private String indexUuid;
+        @Nullable
+        private Time masterTimeout;
         @Nullable
         private Time timeout;
 
         /**
-         * Required - Must be set to true in order to delete the dangling index
+         * Required - Must be set to true in order to import the dangling index
          * <p>
          * API name: {@code accept_data_loss}
+         * </p>
          */
         public final Builder acceptDataLoss(boolean value) {
             this.acceptDataLoss = value;
@@ -163,9 +169,31 @@ public class DeleteDanglingIndexRequest extends RequestBase {
         }
 
         /**
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         * </p>
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
+
+        /**
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         * </p>
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
          * Required - The UUID of the dangling index
          * <p>
          * API name: {@code index_uuid}
+         * </p>
          */
         public final Builder indexUuid(String value) {
             this.indexUuid = value;
@@ -176,6 +204,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
          * Specify timeout for connection to master
          * <p>
          * API name: {@code master_timeout}
+         * </p>
          */
         @Deprecated
         public final Builder masterTimeout(@Nullable Time value) {
@@ -187,35 +216,18 @@ public class DeleteDanglingIndexRequest extends RequestBase {
          * Specify timeout for connection to master
          * <p>
          * API name: {@code master_timeout}
+         * </p>
          */
         @Deprecated
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.masterTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Specify timeout for connection to cluster-manager
-         * <p>
-         * API name: {@code cluster_manager_timeout}
-         */
-        public final Builder clusterManagerTimeout(@Nullable Time value) {
-            this.clusterManagerTimeout = value;
-            return this;
-        }
-
-        /**
-         * Specify timeout for connection to cluster-manager
-         * <p>
-         * API name: {@code cluster_manager_timeout}
-         */
-        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+            return masterTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
          * Explicit operation timeout
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
@@ -226,74 +238,56 @@ public class DeleteDanglingIndexRequest extends RequestBase {
          * Explicit operation timeout
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.timeout(fn.apply(new Time.Builder()).build());
+            return timeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * Builds a {@link DeleteDanglingIndexRequest}.
+         * Builds a {@link ImportDanglingIndexRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public DeleteDanglingIndexRequest build() {
+        public ImportDanglingIndexRequest build() {
             _checkSingleUse();
 
-            return new DeleteDanglingIndexRequest(this);
+            return new ImportDanglingIndexRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Endpoint "{@code dangling_indices.delete_dangling_index}".
+     * Endpoint "{@code dangling_indices.import_dangling_index}".
      */
-    public static final Endpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
+    public static final Endpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
-        request -> {
-            return "DELETE";
-
-        },
-
+        request -> "POST",
         // Request path
         request -> {
-            final int _indexUuid = 1 << 0;
-
-            int propsSet = 0;
-
-            propsSet |= _indexUuid;
-
-            if (propsSet == (_indexUuid)) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_dangling");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.indexUuid, buf);
-                return buf.toString();
-            }
-            throw SimpleEndpoint.noPathTemplateFound("path");
-
+            StringBuilder buf = new StringBuilder();
+            buf.append("/_dangling/");
+            SimpleEndpoint.pathEncode(request.indexUuid, buf);
+            return buf.toString();
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
+            params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
             if (request.clusterManagerTimeout != null) {
                 params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
             }
-            params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
             if (request.timeout != null) {
                 params.put("timeout", request.timeout._toJsonString());
             }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         false,
-        DeleteDanglingIndexResponse._DESERIALIZER
+        ImportDanglingIndexResponse._DESERIALIZER
     );
 }

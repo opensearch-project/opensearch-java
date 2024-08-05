@@ -77,16 +77,20 @@
             {{#hasQueryParams}}
             request -> {
                 {{TYPES.Java.Util.Map}}<String, String> params = new {{TYPES.Java.Util.HashMap}}<>();
-                {{#queryParams}}
+            {{#queryParams}}
+            {{^required}}
                 {{#type.isListOrMap}}
                 if ({{TYPES.Client.Util.ApiTypeHelper}}.isDefined(request.{{name}})) {
                 {{/type.isListOrMap}}
                 {{^type.isListOrMap}}
                 if (request.{{name}} != null) {
                 {{/type.isListOrMap}}
+            {{/required}}
                     params.put({{#quoted}}{{wireName}}{{/quoted}}, {{#type.queryParamify}}request.{{name}}{{/type.queryParamify}});
+            {{^required}}
                 }
-                {{/queryParams}}
+            {{/required}}
+            {{/queryParams}}
                 return params;
             },
             {{/hasQueryParams}}
