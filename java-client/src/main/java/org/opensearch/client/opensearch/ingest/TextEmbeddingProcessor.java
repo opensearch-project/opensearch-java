@@ -51,7 +51,7 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
      */
     @Override
     public Processor.Kind _processorKind() {
-        return Processor.Kind.Inference;
+        return Processor.Kind.TextEmbedding;
     }
 
     /**
