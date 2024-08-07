@@ -60,11 +60,13 @@ public class NodeInfo implements PlainJsonSerializable {
 
     private final String buildType;
 
+    @Nullable
     private final String host;
 
     @Nullable
     private final NodeInfoHttp http;
 
+    @Nullable
     private final String ip;
 
     @Nullable
@@ -99,6 +101,7 @@ public class NodeInfo implements PlainJsonSerializable {
     @Nullable
     private final NodeInfoTransport transport;
 
+    @Nullable
     private final String transportAddress;
 
     private final String version;
@@ -117,9 +120,9 @@ public class NodeInfo implements PlainJsonSerializable {
         this.attributes = ApiTypeHelper.unmodifiable(builder.attributes);
         this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
         this.buildType = ApiTypeHelper.requireNonNull(builder.buildType, this, "buildType");
-        this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
+        this.host = builder.host;
         this.http = builder.http;
-        this.ip = ApiTypeHelper.requireNonNull(builder.ip, this, "ip");
+        this.ip = builder.ip;
         this.jvm = builder.jvm;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.network = builder.network;
@@ -132,7 +135,7 @@ public class NodeInfo implements PlainJsonSerializable {
         this.totalIndexingBuffer = builder.totalIndexingBuffer;
         this.totalIndexingBufferInBytes = builder.totalIndexingBufferInBytes;
         this.transport = builder.transport;
-        this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+        this.transportAddress = builder.transportAddress;
         this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
         this.modules = ApiTypeHelper.unmodifiable(builder.modules);
         this.ingest = builder.ingest;
@@ -496,11 +499,13 @@ public class NodeInfo implements PlainJsonSerializable {
 
         private String buildType;
 
+        @Nullable
         private String host;
 
         @Nullable
         private NodeInfoHttp http;
 
+        @Nullable
         private String ip;
 
         @Nullable
@@ -537,6 +542,7 @@ public class NodeInfo implements PlainJsonSerializable {
         @Nullable
         private NodeInfoTransport transport;
 
+        @Nullable
         private String transportAddress;
 
         private String version;
@@ -593,7 +599,7 @@ public class NodeInfo implements PlainJsonSerializable {
          * <p>
          * API name: {@code host}
          */
-        public final Builder host(String value) {
+        public final Builder host(@Nullable String value) {
             this.host = value;
             return this;
         }
@@ -618,7 +624,7 @@ public class NodeInfo implements PlainJsonSerializable {
          * <p>
          * API name: {@code ip}
          */
-        public final Builder ip(String value) {
+        public final Builder ip(@Nullable String value) {
             this.ip = value;
             return this;
         }
@@ -828,7 +834,7 @@ public class NodeInfo implements PlainJsonSerializable {
          * <p>
          * API name: {@code transport_address}
          */
-        public final Builder transportAddress(String value) {
+        public final Builder transportAddress(@Nullable  String value) {
             this.transportAddress = value;
             return this;
         }
