@@ -41,6 +41,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fixed error when deserializing a normalizer without 'type' ([#1111](https://github.com/opensearch-project/opensearch-java/pull/1111))
+- Removed null constraints on NodeInfo fields that are returned null from Amazon OpenSearch Service ([#1131](https://github.com/opensearch-project/opensearch-java/pull/1131))
 
 ### Security
 
