@@ -176,6 +176,7 @@ public class NodeInfo implements PlainJsonSerializable {
      * <p>
      * API name: {@code host}
      */
+    @Nullable
     public final String host() {
         return this.host;
     }
@@ -193,6 +194,7 @@ public class NodeInfo implements PlainJsonSerializable {
      * <p>
      * API name: {@code ip}
      */
+    @Nullable
     public final String ip() {
         return this.ip;
     }
@@ -302,6 +304,7 @@ public class NodeInfo implements PlainJsonSerializable {
      * <p>
      * API name: {@code transport_address}
      */
+    @Nullable
     public final String transportAddress() {
         return this.transportAddress;
     }
@@ -834,7 +837,7 @@ public class NodeInfo implements PlainJsonSerializable {
          * <p>
          * API name: {@code transport_address}
          */
-        public final Builder transportAddress(@Nullable  String value) {
+        public final Builder transportAddress(@Nullable String value) {
             this.transportAddress = value;
             return this;
         }
