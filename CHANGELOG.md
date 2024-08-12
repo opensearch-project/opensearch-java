@@ -13,6 +13,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fixed handling of NodeInfo fields that are not returned by Amazon OpenSearch Service ([#1132](https://github.com/opensearch-project/opensearch-java/pull/1132))
 
 ### Security
 
