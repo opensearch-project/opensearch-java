@@ -179,7 +179,7 @@ dependencies {
     // Apache 2.0
     api("commons-logging:commons-logging:1.3.3")
     compileOnly("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
-    testImplementation("org.hamcrest:hamcrest:2.2")
+    testImplementation("org.hamcrest:hamcrest:3.0")
     testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.1") {
         exclude(group = "junit")
     }
