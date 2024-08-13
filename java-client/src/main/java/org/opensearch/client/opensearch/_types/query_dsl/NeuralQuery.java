@@ -70,7 +70,8 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     }
 
     /**
-     * Required - Search query text.
+     * Required - The query_text if query_image is not set.
+     * Optional - The query_text if query_image is set.
      *
      * @return Search query text.
      */
@@ -79,7 +80,8 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     }
 
     /**
-     * Required - Search query image.
+     * Required - The query_image if query_text is not set.
+     * Optional - The query_image if query_text is set.
      *
      * @return Search query image.
      */
@@ -178,7 +180,8 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         }
 
         /**
-         * Required - Search query text.
+         * Required - The query_text if query_image is not set.
+         * Optional - The query_text if query_image is set.
          *
          * @param queryText Search query text.
          * @return This builder.
@@ -189,7 +192,8 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         }
 
         /**
-         * Required - Search query image.
+         * Required - The query_image if query_text is not set.
+         * Optional - The query_image if query_text is set.
          *
          * @param queryImage Search query image.
          * @return This builder.
