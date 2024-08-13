@@ -234,6 +234,7 @@ public class VariantsTest extends ModelTestCase {
             + "    \"neural\": {\n"
             + "      \"passage_embedding\": {\n"
             + "        \"query_text\": \"Hi world!\",\n"
+            + "        \"query_image\": \"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj+L+U4T8ABu8CpCYJ1DQAAAAASUVORK5CYII=\",\n"
             + "        \"model_id\": \"bQ1J8ooBpBj3wT4HVUsb\",\n"
             + "        \"k\": 100\n"
             + "      }\n"
@@ -245,6 +246,10 @@ public class VariantsTest extends ModelTestCase {
 
         assertEquals("passage_embedding", searchRequest.query().neural().field());
         assertEquals("Hi world!", searchRequest.query().neural().queryText());
+        assertEquals(
+            "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj+L+U4T8ABu8CpCYJ1DQAAAAASUVORK5CYII=",
+            searchRequest.query().neural().queryImage()
+        );
         assertEquals("bQ1J8ooBpBj3wT4HVUsb", searchRequest.query().neural().modelId());
         assertEquals(100, searchRequest.query().neural().k());
     }
