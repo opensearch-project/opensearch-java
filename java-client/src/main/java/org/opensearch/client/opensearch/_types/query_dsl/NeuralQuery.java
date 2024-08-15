@@ -17,6 +17,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.MissingRequiredPropertiesException;
 import org.opensearch.client.util.ObjectBuilder;
 
 @JsonpDeserializable
@@ -24,6 +25,7 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
 
     private final String field;
     private final String queryText;
+    private final String queryImage;
     private final int k;
     @Nullable
     private final String modelId;
@@ -34,7 +36,11 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         super(builder);
 
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-        this.queryText = ApiTypeHelper.requireNonNull(builder.queryText, this, "queryText");
+        if (builder.queryText == null && builder.queryImage == null && !ApiTypeHelper.requiredPropertiesCheckDisabled()) {
+            throw new MissingRequiredPropertiesException(this, "queryText", "queryImage");
+        }
+        this.queryText = builder.queryText;
+        this.queryImage = builder.queryImage;
         this.k = ApiTypeHelper.requireNonNull(builder.k, this, "k");
         this.modelId = builder.modelId;
         this.filter = builder.filter;
@@ -64,12 +70,23 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     }
 
     /**
-     * Required - Search query text.
+     * Required - The query_text if query_image is not set.
+     * Optional - The query_text if query_image is set.
      *
      * @return Search query text.
      */
     public final String queryText() {
         return this.queryText;
+    }
+
+    /**
+     * Required - The query_image if query_text is not set.
+     * Optional - The query_image if query_text is set.
+     *
+     * @return Search query image.
+     */
+    public final String queryImage() {
+        return this.queryImage;
     }
 
     /**
@@ -112,7 +129,13 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
 
         super.serializeInternal(generator, mapper);
 
-        generator.write("query_text", this.queryText);
+        if (this.queryText != null) {
+            generator.write("query_text", this.queryText);
+        }
+
+        if (this.queryImage != null) {
+            generator.write("query_image", this.queryImage);
+        }
 
         if (this.modelId != null) {
             generator.write("model_id", this.modelId);
@@ -129,7 +152,7 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().field(field).queryText(queryText).k(k).modelId(modelId).filter(filter);
+        return new Builder().field(field).queryText(queryText).queryImage(queryImage).k(k).modelId(modelId).filter(filter);
     }
 
     /**
@@ -138,6 +161,7 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     public static class Builder extends QueryBase.AbstractBuilder<NeuralQuery.Builder> implements ObjectBuilder<NeuralQuery> {
         private String field;
         private String queryText;
+        private String queryImage;
         private Integer k;
         @Nullable
         private String modelId;
@@ -156,13 +180,26 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         }
 
         /**
-         * Required - Search query text.
+         * Required - The query_text if query_image is not set.
+         * Optional - The query_text if query_image is set.
          *
          * @param queryText Search query text.
          * @return This builder.
          */
         public NeuralQuery.Builder queryText(@Nullable String queryText) {
             this.queryText = queryText;
+            return this;
+        }
+
+        /**
+         * Required - The query_image if query_text is not set.
+         * Optional - The query_image if query_text is set.
+         *
+         * @param queryImage Search query image.
+         * @return This builder.
+         */
+        public NeuralQuery.Builder queryImage(@Nullable String queryImage) {
+            this.queryImage = queryImage;
             return this;
         }
 
@@ -227,6 +264,7 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         setupQueryBaseDeserializer(op);
 
         op.add(NeuralQuery.Builder::queryText, JsonpDeserializer.stringDeserializer(), "query_text");
+        op.add(NeuralQuery.Builder::queryImage, JsonpDeserializer.stringDeserializer(), "query_image");
         op.add(NeuralQuery.Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
         op.add(NeuralQuery.Builder::k, JsonpDeserializer.integerDeserializer(), "k");
         op.add(NeuralQuery.Builder::filter, Query._DESERIALIZER, "filter");
