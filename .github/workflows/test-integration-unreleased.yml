@@ -16,10 +16,12 @@ jobs:
       matrix:
         entry:
           - { opensearch_ref: '1.x', java: 11 }
-          - { opensearch_ref: '2.x', java: 11 }
+          # See please https://docs.gradle.org/8.10/userguide/upgrading_version_8.html#minimum_daemon_jvm_version
+          - { opensearch_ref: '2.x', java: 11, gradle-runtime: 17 }
           - { opensearch_ref: '2.x', java: 17 }
           - { opensearch_ref: '2.x', java: 21 }
-          - { opensearch_ref: 'main', java: 11 }
+          # See please https://docs.gradle.org/8.10/userguide/upgrading_version_8.html#minimum_daemon_jvm_version
+          - { opensearch_ref: 'main', java: 11, gradle-runtime: 17 }
           - { opensearch_ref: 'main', java: 17 }
           - { opensearch_ref: 'main', java: 21 }
     steps:
@@ -48,10 +50,22 @@ jobs:
           path: opensearch/distribution/archives/linux-tar/build/distributions
           key: ${{ steps.get-key.outputs.key }}
 
+      - name: Set up Gradle JDK runtime
+        if: matrix.entry.gradle-runtime
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.entry.gradle-runtime }}
+          distribution: temurin
+
+      - name: Set JAVA${{ matrix.java }}_HOME
+        shell: bash
+        run: |
+          echo "JAVA${{ matrix.java }}_HOME=$JAVA_HOME_${{ matrix.java }}_${{ runner.arch }}" >> $GITHUB_ENV
+
       - name: Assemble OpenSearch
         if: steps.cache-restore.outputs.cache-hit != 'true'
         working-directory: opensearch
-        run: ./gradlew :distribution:archives:linux-tar:assemble
+        run: ./gradlew :distribution:archives:linux-tar:assemble -Druntime.java=${{ matrix.java }}
 
       - name: Save cached build
         if: steps.cache-restore.outputs.cache-hit != 'true'
