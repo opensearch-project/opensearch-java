@@ -356,6 +356,10 @@ public class ErrorCause implements PlainJsonSerializable {
 
         /**
          * Additional details about the error.
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>metadata</code>.
+         * </p>
          */
         public final Builder metadata(Map<String, JsonData> map) {
             this.metadata = _mapPutAll(this.metadata, map);
@@ -364,6 +368,10 @@ public class ErrorCause implements PlainJsonSerializable {
 
         /**
          * Additional details about the error.
+         *
+         * <p>
+         * Adds an entry to <code>metadata</code>.
+         * </p>
          */
         public final Builder metadata(String key, JsonData value) {
             this.metadata = _mapPut(this.metadata, key, value);
