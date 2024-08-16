@@ -121,13 +121,16 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
 
         }
 
-        generator.writeKey("dangling_indices");
-        generator.writeStartArray();
-        for (DanglingIndex item0 : this.danglingIndices) {
-            item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.danglingIndices)) {
+            generator.writeKey("dangling_indices");
+            generator.writeStartArray();
+            for (DanglingIndex item0 : this.danglingIndices) {
+                item0.serialize(generator, mapper);
+
+            }
+            generator.writeEnd();
 
         }
-        generator.writeEnd();
 
         if (this.nodes != null) {
             generator.writeKey("_nodes");
