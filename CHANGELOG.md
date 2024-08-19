@@ -35,6 +35,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Added
 - Adds `queryImage` (query_image) field to `NeuralQuery`, following definition in ([Neural Query](https://opensearch.org/docs/latest/query-dsl/specialized/neural/)) ([#1137](https://github.com/opensearch-project/opensearch-java/pull/1138))
+- Adds `cancelAfterTimeInterval` to `SearchRequest` and `MsearchRequest` ([#1147](https://github.com/opensearch-project/opensearch-java/pull/1147))
 
 ### Dependencies
 
