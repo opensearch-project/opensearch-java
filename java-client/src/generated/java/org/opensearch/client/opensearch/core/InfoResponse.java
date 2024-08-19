@@ -140,7 +140,6 @@ public class InfoResponse implements PlainJsonSerializable {
 
         generator.writeKey("version");
         this.version.serialize(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -81,7 +81,6 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey("acknowledged");
         generator.write(this.acknowledged);
-
     }
 
     // ---------------------------------------------------------------------------------------------

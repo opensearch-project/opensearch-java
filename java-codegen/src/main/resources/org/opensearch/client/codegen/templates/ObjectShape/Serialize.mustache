@@ -18,24 +18,16 @@
     {{#type.directSerializer}}this.{{name}}{{/type.directSerializer}}
 {{/additionalPropertiesField}}
 {{#bodyFields}}
-    {{#type.isListOrMap}}
-        if ({{TYPES.Client.Util.ApiTypeHelper}}.isDefined(this.{{name}})) {
-    {{/type.isListOrMap}}
-    {{^type.isListOrMap}}
-    {{^required}}
-        if (this.{{name}} != null) {
-    {{/required}}
-    {{/type.isListOrMap}}
+{{^required}}
+        if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
+{{/required}}
             generator.writeKey({{#quoted}}{{wireName}}{{/quoted}});
             {{#type.serializer}}this.{{name}}{{/type.serializer}}
-    {{#type.isListOrMap}}
+{{^required}}
         }
-    {{/type.isListOrMap}}
-    {{^type.isListOrMap}}
-    {{^required}}
-        }
-    {{/required}}
-    {{/type.isListOrMap}}
+{{/required}}
+{{^-last}}
 
+{{/-last}}
 {{/bodyFields}}
     }

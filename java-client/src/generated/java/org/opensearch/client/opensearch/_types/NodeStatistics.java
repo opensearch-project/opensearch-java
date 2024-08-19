@@ -135,10 +135,8 @@ public class NodeStatistics implements PlainJsonSerializable {
             generator.writeStartArray();
             for (ErrorCause item0 : this.failures) {
                 item0.serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
 
         generator.writeKey("successful");
@@ -146,7 +144,6 @@ public class NodeStatistics implements PlainJsonSerializable {
 
         generator.writeKey("total");
         generator.write(this.total);
-
     }
 
     // ---------------------------------------------------------------------------------------------
