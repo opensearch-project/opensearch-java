@@ -57,10 +57,10 @@ jobs:
           java-version: ${{ matrix.entry.gradle-runtime }}
           distribution: temurin
 
-      - name: Set JAVA${{ matrix.java }}_HOME
+      - name: Set JAVA${{ matrix.entry.java }}_HOME
         shell: bash
         run: |
-          echo "JAVA${{ matrix.java }}_HOME=$JAVA_HOME_${{ matrix.java }}_${{ runner.arch }}" >> $GITHUB_ENV
+          echo "JAVA${{ matrix.entry.java }}_HOME=$JAVA_HOME_${{ matrix.entry.java }}_${{ runner.arch }}" >> $GITHUB_ENV
 
       - name: Assemble OpenSearch
         if: steps.cache-restore.outputs.cache-hit != 'true'
