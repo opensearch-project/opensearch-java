@@ -111,6 +111,9 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
     private final String pipeline;
 
     @Nullable
+    private final Time cancelAfterTimeInterval;
+
+    @Nullable
     private final FieldCollapse collapse;
 
     @Nullable
@@ -246,6 +249,7 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
         this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
         this.phaseTook = builder.phaseTook;
         this.pipeline = builder.pipeline;
+        this.cancelAfterTimeInterval = builder.cancelAfterTimeInterval;
         this.collapse = builder.collapse;
         this.defaultOperator = builder.defaultOperator;
         this.df = builder.df;
@@ -403,6 +407,17 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
     @Nullable
     public final String pipeline() {
         return this.pipeline;
+    }
+
+    /**
+     * The time after which the search request will be canceled.
+     * Request-level parameter takes precedence over cancel_after_time_interval cluster setting.
+     * <p>
+     * API name: {@code cancel_after_time_interval}
+     */
+    @Nullable
+    public final Time cancelAfterTimeInterval() {
+        return this.cancelAfterTimeInterval;
     }
 
     /**
@@ -1114,6 +1129,7 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
             .ccsMinimizeRoundtrips(ccsMinimizeRoundtrips)
             .phaseTook(phaseTook)
             .pipeline(pipeline)
+            .cancelAfterTimeInterval(cancelAfterTimeInterval)
             .collapse(collapse)
             .defaultOperator(defaultOperator)
             .df(df)
@@ -1197,6 +1213,9 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
 
         @Nullable
         private String pipeline;
+
+        @Nullable
+        private Time cancelAfterTimeInterval;
 
         @Nullable
         private FieldCollapse collapse;
@@ -1470,6 +1489,27 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
         public final Builder pipeline(@Nullable String value) {
             this.pipeline = value;
             return this;
+        }
+
+        /**
+         * The time after which the search request will be canceled.
+         * Request-level parameter takes precedence over cancel_after_time_interval cluster setting.
+         * <p>
+         * API name: {@code cancel_after_time_interval}
+         */
+        public final Builder cancelAfterTimeInterval(@Nullable Time value) {
+            this.cancelAfterTimeInterval = value;
+            return this;
+        }
+
+        /**
+         * The time after which the search request will be canceled.
+         * Request-level parameter takes precedence over cancel_after_time_interval cluster setting.
+         * <p>
+         * API name: {@code cancel_after_time_interval}
+         */
+        public final Builder cancelAfterTimeInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.cancelAfterTimeInterval(fn.apply(new Time.Builder()).build());
         }
 
         /**
@@ -2283,6 +2323,7 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
 
         op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
         op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggregations", "aggs");
+        op.add(Builder::cancelAfterTimeInterval, Time._DESERIALIZER, "cancel_after_time_interval");
         op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
         op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "docvalue_fields");
         op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
@@ -2404,6 +2445,9 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
             }
             if (request.scroll != null) {
                 params.put("scroll", request.scroll._toJsonString());
+            }
+            if (request.cancelAfterTimeInterval != null) {
+                params.put("cancel_after_time_interval", request.cancelAfterTimeInterval._toJsonString());
             }
             if (request.searchType != null) {
                 params.put("search_type", request.searchType.jsonValue());
