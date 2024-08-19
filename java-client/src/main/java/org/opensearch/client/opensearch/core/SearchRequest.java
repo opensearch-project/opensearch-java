@@ -2323,7 +2323,6 @@ public class SearchRequest extends RequestBase implements PlainJsonSerializable 
 
         op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
         op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggregations", "aggs");
-        op.add(Builder::cancelAfterTimeInterval, Time._DESERIALIZER, "cancel_after_time_interval");
         op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
         op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "docvalue_fields");
         op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");

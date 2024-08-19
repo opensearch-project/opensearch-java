@@ -48,6 +48,7 @@ import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.SearchType;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch.core.msearch.RequestItem;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
@@ -65,6 +66,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
 public class MsearchRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
     @Nullable
     private final Boolean allowNoIndices;
+
+    @Nullable
+    private final Time cancelAfterTimeInterval;
 
     @Nullable
     private final Boolean ccsMinimizeRoundtrips;
@@ -98,6 +102,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
     private MsearchRequest(Builder builder) {
 
         this.allowNoIndices = builder.allowNoIndices;
+        this.cancelAfterTimeInterval = builder.cancelAfterTimeInterval;
         this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.ignoreThrottled = builder.ignoreThrottled;
@@ -132,6 +137,17 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
     @Nullable
     public final Boolean allowNoIndices() {
         return this.allowNoIndices;
+    }
+
+    /**
+     * The time after which the search request will be canceled.
+     * Request-level parameter takes precedence over cancel_after_time_interval cluster setting.
+     * <p>
+     * API name: {@code cancel_after_time_interval}
+     */
+    @Nullable
+    public final Time cancelAfterTimeInterval() {
+        return this.cancelAfterTimeInterval;
     }
 
     /**
@@ -256,6 +272,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
     public Builder toBuilder() {
         return new Builder().allowNoIndices(allowNoIndices)
+            .cancelAfterTimeInterval(cancelAfterTimeInterval)
             .ccsMinimizeRoundtrips(ccsMinimizeRoundtrips)
             .expandWildcards(expandWildcards)
             .ignoreThrottled(ignoreThrottled)
@@ -277,6 +294,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MsearchRequest> {
         @Nullable
         private Boolean allowNoIndices;
+
+        @Nullable
+        private Time cancelAfterTimeInterval;
 
         @Nullable
         private Boolean ccsMinimizeRoundtrips;
@@ -318,6 +338,17 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
          */
         public final Builder allowNoIndices(@Nullable Boolean value) {
             this.allowNoIndices = value;
+            return this;
+        }
+
+        /**
+         * The time after which the search request will be canceled.
+         * Request-level parameter takes precedence over cancel_after_time_interval cluster setting.
+         * <p>
+         * API name: {@code cancel_after_time_interval}
+         */
+        public final Builder cancelAfterTimeInterval(@Nullable Time value) {
+            this.cancelAfterTimeInterval = value;
             return this;
         }
 
@@ -540,6 +571,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
         request -> {
             Map<String, String> params = new HashMap<>();
             params.put("typed_keys", "true");
+            if (request.cancelAfterTimeInterval != null) {
+                params.put("cancel_after_time_interval", request.cancelAfterTimeInterval._toJsonString());
+            }
             if (request.preFilterShardSize != null) {
                 params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
             }
