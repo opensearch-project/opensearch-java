@@ -26,10 +26,10 @@ public class MsearchRequestTest extends ModelTestCase {
     @Test
     public void cancelAfterTimeInterval() {
         Time cancelAfterTimeInterval = Time.of(ti -> ti.time("1000ms"));
-        MsearchRequest request = new MsearchRequest.Builder()
-                                        .index("index")
-                                        .searches(Collections.emptyList())
-                                        .cancelAfterTimeInterval(cancelAfterTimeInterval).build();
+        MsearchRequest request = new MsearchRequest.Builder().index("index")
+            .searches(Collections.emptyList())
+            .cancelAfterTimeInterval(cancelAfterTimeInterval)
+            .build();
 
         assertEquals("[]", toJson(request));
         assertEquals(cancelAfterTimeInterval, request.cancelAfterTimeInterval());
