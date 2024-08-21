@@ -11,6 +11,7 @@ package org.opensearch.client.codegen.openapi;
 import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
 
 import io.swagger.v3.oas.models.media.Schema;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +49,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nullable
     private final List<String> enums;
     @Nullable
+    private final Set<String> deprecatedEnums;
+    @Nullable
     private final OpenApiSchema items;
     @Nullable
     private final OpenApiSchema additionalProperties;
@@ -70,6 +73,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         allOf = builder.allOf;
         oneOf = builder.oneOf;
         enums = builder.enums;
+        deprecatedEnums = builder.deprecatedEnums;
         items = builder.items;
         additionalProperties = builder.additionalProperties;
         properties = builder.properties;
@@ -121,6 +125,11 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         title = schema.getTitle();
 
         pattern = schema.getPattern();
+
+        var extensions = schema.getExtensions();
+
+        //noinspection unchecked
+        deprecatedEnums = Maps.tryGet(extensions, "x-deprecated-enums").map(e -> (Collection<String>) e).map(HashSet::new).orElse(null);
     }
 
     @Nonnull
@@ -201,6 +210,9 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     }
 
     @Nonnull
+    public Optional<Set<String>> getDeprecatedEnums() { return Sets.unmodifiableOpt(deprecatedEnums); }
+
+    @Nonnull
     public Optional<OpenApiSchema> getItems() {
         return Optional.ofNullable(items);
     }
@@ -278,6 +290,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         private List<OpenApiSchema> oneOf;
         @Nullable
         private List<String> enums;
+        @Nullable
+        private Set<String> deprecatedEnums;
         @Nullable
         private OpenApiSchema items;
         @Nullable

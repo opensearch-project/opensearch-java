@@ -251,10 +251,11 @@ public class SpecTransformer {
             visitInto(schema, objShape);
             shape = objShape;
         } else if (schema.isString() && schema.hasEnums()) {
+            var deprecatedEnums = schema.getDeprecatedEnums().orElseGet(Collections::emptySet);
             shape = new EnumShape(
                 parent,
                 className,
-                Lists.map(schema.getEnums().orElseThrow(), EnumShape.Variant::new),
+                Lists.map(schema.getEnums().orElseThrow(), v -> new EnumShape.Variant(v, deprecatedEnums.contains(v))),
                 typedefName,
                 description
             );
@@ -419,7 +420,7 @@ public class SpecTransformer {
     }
 
     private boolean shouldKeepRef(OpenApiSchema schema) {
-        if (schema.isNumber()) {
+        if (schema.isNumber() || schema.isArray()) {
             return false;
         }
         if (schema.isString() && schema.getEnums().isEmpty()) {
