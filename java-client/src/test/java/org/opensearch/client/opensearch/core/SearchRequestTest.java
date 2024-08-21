@@ -13,6 +13,7 @@ import java.util.List;
 import org.junit.Test;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.FieldValue;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.opensearch.core.search.SourceFilter;
 import org.opensearch.client.opensearch.model.ModelTestCase;
@@ -51,6 +52,16 @@ public class SearchRequestTest extends ModelTestCase {
         assertEquals("{}", toJson(request));
         assertEquals("my_pipeline", request.pipeline());
         assertEquals("my_pipeline", SearchRequest._ENDPOINT.queryParameters(request).get("search_pipeline"));
+    }
+
+    @Test
+    public void cancelAfterTimeInterval() {
+        Time cancelAfterTimeInterval = Time.of(ti -> ti.time("1000ms"));
+        SearchRequest request = new SearchRequest.Builder().cancelAfterTimeInterval(cancelAfterTimeInterval).build();
+
+        assertEquals("{}", toJson(request));
+        assertEquals(cancelAfterTimeInterval, request.cancelAfterTimeInterval());
+        assertEquals("1000ms", SearchRequest._ENDPOINT.queryParameters(request).get("cancel_after_time_interval"));
     }
 
     @Test
