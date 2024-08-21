@@ -148,7 +148,7 @@ public class ErrorCause implements PlainJsonSerializable {
     }
 
     /**
-     * Additional details about the error
+     * Additional details about the error.
      */
     public final Map<String, JsonData> metadata() {
         return this.metadata;
@@ -355,7 +355,7 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * Additional details about the error
+         * Additional details about the error.
          */
         public final Builder metadata(Map<String, JsonData> map) {
             this.metadata = _mapPutAll(this.metadata, map);
@@ -363,7 +363,7 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * Additional details about the error
+         * Additional details about the error.
          */
         public final Builder metadata(String key, JsonData value) {
             this.metadata = _mapPut(this.metadata, key, value);
