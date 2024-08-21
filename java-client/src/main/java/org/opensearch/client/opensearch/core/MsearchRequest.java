@@ -353,6 +353,16 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
         }
 
         /**
+         * The time after which the search request will be canceled.
+         * Request-level parameter takes precedence over cancel_after_time_interval cluster setting.
+         * <p>
+         * API name: {@code cancel_after_time_interval}
+         */
+        public final Builder cancelAfterTimeInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.cancelAfterTimeInterval(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
          * If true, network roundtrips between the coordinating node and remote clusters
          * are minimized for cross-cluster search requests.
          * <p>
