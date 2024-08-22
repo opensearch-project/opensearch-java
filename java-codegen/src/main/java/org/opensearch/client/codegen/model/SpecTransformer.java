@@ -292,7 +292,7 @@ public class SpecTransformer {
             var valueSchema = additionalProperties.size() == 1 ? additionalProperties.get(0) : OpenApiSchema.ANONYMOUS_UNTYPED;
             shape.setAdditionalPropertiesField(
                 new Field(
-                    valueSchema.getTitle().orElseThrow(),
+                    valueSchema.getTitle().orElse("metadata"),
                     Types.Java.Util.Map(Types.Java.Lang.String, mapType(valueSchema)),
                     false,
                     valueSchema.getDescription().orElse(null),

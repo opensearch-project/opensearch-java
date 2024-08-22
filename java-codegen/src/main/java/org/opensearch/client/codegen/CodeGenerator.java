@@ -33,7 +33,11 @@ import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 
 public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final OperationGroup.Matcher OPERATION_MATCHER = OperationGroup.matcher().add(null, "info").add("dangling_indices");
+    private static final OperationGroup.Matcher OPERATION_MATCHER = OperationGroup
+            .matcher()
+            .add(null, "info")
+            .add("dangling_indices")
+            .add("ml", "register_model_group");
 
     public static void main(String[] args) {
         var inputOpt = Option.builder("i")
