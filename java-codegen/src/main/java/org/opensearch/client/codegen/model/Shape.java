@@ -46,7 +46,7 @@ public abstract class Shape {
     }
 
     public boolean isAbstract() {
-        return this.className.endsWith("Base");
+        return this.className.endsWith("Base") || this.className.startsWith("Base");
     }
 
     public String getTypedefName() {

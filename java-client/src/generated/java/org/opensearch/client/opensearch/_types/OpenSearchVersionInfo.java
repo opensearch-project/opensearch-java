@@ -192,7 +192,6 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         if (this.buildFlavor != null) {
             generator.writeKey("build_flavor");
             generator.write(this.buildFlavor);
-
         }
 
         generator.writeKey("build_hash");
@@ -218,7 +217,6 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
 
         generator.writeKey("number");
         generator.write(this.number);
-
     }
 
     // ---------------------------------------------------------------------------------------------

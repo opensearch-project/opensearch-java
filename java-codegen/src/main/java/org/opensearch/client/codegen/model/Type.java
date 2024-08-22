@@ -15,6 +15,7 @@ import com.samskivert.mustache.Mustache;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.opensearch.client.codegen.renderer.lambdas.TypeIsDefinedLambda;
 import org.opensearch.client.codegen.renderer.lambdas.TypeQueryParamifyLambda;
 import org.opensearch.client.codegen.renderer.lambdas.TypeSerializerLambda;
 
@@ -199,6 +200,10 @@ public class Type {
 
     public Mustache.Lambda queryParamify() {
         return new TypeQueryParamifyLambda(this);
+    }
+
+    public Mustache.Lambda isDefined() {
+        return new TypeIsDefinedLambda(this);
     }
 
     public static final class Builder {

@@ -11,6 +11,7 @@ package org.opensearch.client.codegen.openapi;
 import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
 
 import io.swagger.v3.oas.models.media.Schema;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ import org.opensearch.client.codegen.utils.Sets;
 public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     private static final JsonPointer ANONYMOUS = JsonPointer.of("<anonymous>");
 
+    public static final OpenApiSchema ANONYMOUS_UNTYPED = builder().withPointer(ANONYMOUS.append("untyped")).build();
     public static final OpenApiSchema ANONYMOUS_OBJECT = builder().withPointer(ANONYMOUS.append("object"))
         .withTypes(OpenApiSchemaType.Object)
         .build();
@@ -44,9 +46,13 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nullable
     private final List<OpenApiSchema> allOf;
     @Nullable
+    private final List<OpenApiSchema> anyOf;
+    @Nullable
     private final List<OpenApiSchema> oneOf;
     @Nullable
     private final List<String> enums;
+    @Nullable
+    private final Set<String> deprecatedEnums;
     @Nullable
     private final OpenApiSchema items;
     @Nullable
@@ -68,8 +74,10 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         types = builder.types;
         format = builder.format;
         allOf = builder.allOf;
+        anyOf = builder.anyOf;
         oneOf = builder.oneOf;
         enums = builder.enums;
+        deprecatedEnums = builder.deprecatedEnums;
         items = builder.items;
         additionalProperties = builder.additionalProperties;
         properties = builder.properties;
@@ -107,6 +115,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         format = ifNonnull(schema.getFormat(), OpenApiSchemaFormat::from);
 
         allOf = children("allOf", schema.getAllOf(), OpenApiSchema::new);
+        anyOf = children("anyOf", schema.getAnyOf(), OpenApiSchema::new);
         oneOf = children("oneOf", schema.getOneOf(), OpenApiSchema::new);
 
         enums = ifNonnull(schema.getEnum(), e -> Lists.map(e, String::valueOf));
@@ -121,6 +130,11 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         title = schema.getTitle();
 
         pattern = schema.getPattern();
+
+        var extensions = schema.getExtensions();
+
+        // noinspection unchecked
+        deprecatedEnums = Maps.tryGet(extensions, "x-deprecated-enums").map(e -> (Collection<String>) e).map(HashSet::new).orElse(null);
     }
 
     @Nonnull
@@ -182,6 +196,15 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         return Lists.unmodifiableOpt(allOf);
     }
 
+    public boolean hasAnyOf() {
+        return anyOf != null && !anyOf.isEmpty();
+    }
+
+    @Nonnull
+    public Optional<List<OpenApiSchema>> getAnyOf() {
+        return Lists.unmodifiableOpt(anyOf);
+    }
+
     public boolean hasOneOf() {
         return oneOf != null && !oneOf.isEmpty();
     }
@@ -198,6 +221,11 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nonnull
     public Optional<List<String>> getEnums() {
         return Lists.unmodifiableOpt(enums);
+    }
+
+    @Nonnull
+    public Optional<Set<String>> getDeprecatedEnums() {
+        return Sets.unmodifiableOpt(deprecatedEnums);
     }
 
     @Nonnull
@@ -230,6 +258,14 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         return Optional.ofNullable(pattern);
     }
 
+    public static Set<OpenApiSchemaType> determineTypes(List<OpenApiSchema> schemas) {
+        return schemas.stream().map(OpenApiSchema::determineTypes).flatMap(Set::stream).collect(Collectors.toSet());
+    }
+
+    private static String schemaTypeString(Set<OpenApiSchemaType> types) {
+        return types.stream().map(OpenApiSchemaType::toString).collect(Collectors.joining(", "));
+    }
+
     @Nonnull
     public Set<OpenApiSchemaType> determineTypes() {
         if (types != null) {
@@ -237,17 +273,25 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         } else if (has$ref()) {
             return resolve().determineTypes();
         } else if (allOf != null) {
-            var types = allOf.stream().map(OpenApiSchema::determineTypes).flatMap(Set::stream).collect(Collectors.toSet());
+            var types = determineTypes(allOf);
             if (types.size() > 1) {
-                var typeString = types.stream().map(OpenApiSchemaType::toString).collect(Collectors.joining(", "));
-                throw new IllegalStateException("allOf schema must have a uniform type [" + getPointer() + "]: " + typeString);
+                throw new IllegalStateException("allOf schema must have a uniform type [" + getPointer() + "]: " + schemaTypeString(types));
             }
             return types;
+        } else if (anyOf != null) {
+            return determineTypes(anyOf);
         } else if (oneOf != null) {
-            return oneOf.stream().map(OpenApiSchema::determineTypes).flatMap(Set::stream).collect(Collectors.toSet());
+            return determineTypes(oneOf);
         }
 
         throw new IllegalStateException("Cannot determine type for schema: " + getPointer());
+    }
+
+    @Nonnull
+    public Optional<OpenApiSchemaType> determineSingleType() {
+        var types = determineTypes();
+        if (types.size() != 1) return Optional.empty();
+        return Optional.of(types.iterator().next());
     }
 
     @Nonnull
@@ -275,9 +319,13 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         @Nullable
         private List<OpenApiSchema> allOf;
         @Nullable
+        private List<OpenApiSchema> anyOf;
+        @Nullable
         private List<OpenApiSchema> oneOf;
         @Nullable
         private List<String> enums;
+        @Nullable
+        private Set<String> deprecatedEnums;
         @Nullable
         private OpenApiSchema items;
         @Nullable

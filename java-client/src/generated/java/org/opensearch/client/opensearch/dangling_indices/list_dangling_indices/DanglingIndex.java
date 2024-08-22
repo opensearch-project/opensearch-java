@@ -132,7 +132,6 @@ public class DanglingIndex implements PlainJsonSerializable {
         if (this.creationDate != null) {
             generator.writeKey("creation_date");
             generator.write(this.creationDate);
-
         }
 
         generator.writeKey("creation_date_millis");
@@ -148,10 +147,8 @@ public class DanglingIndex implements PlainJsonSerializable {
         generator.writeStartArray();
         for (String item0 : this.nodeIds) {
             generator.write(item0);
-
         }
         generator.writeEnd();
-
     }
 
     // ---------------------------------------------------------------------------------------------

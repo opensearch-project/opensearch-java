@@ -1,8 +1,13 @@
 {{>Partials/ClassDeclaration}} {
-    {{#variants}}
-    {{name}}({{#quoted}}{{wireName}}{{/quoted}}){{^-last}},{{/-last}}
-    {{/variants}}
-    ;
+{{#variants}}
+{{^-first}}
+
+{{/-first}}
+{{#deprecated}}
+    @Deprecated
+{{/deprecated}}
+    {{name}}({{#quoted}}{{wireName}}{{/quoted}}){{#-last}};{{/-last}}{{^-last}},{{/-last}}
+{{/variants}}
 
     private final String jsonValue;
 

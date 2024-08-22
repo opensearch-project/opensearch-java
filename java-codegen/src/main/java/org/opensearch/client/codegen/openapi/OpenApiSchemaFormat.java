@@ -17,7 +17,8 @@ public enum OpenApiSchemaFormat {
     Float,
     Double,
     Int32,
-    Int64;
+    Int64,
+    Binary;
 
     private static final Map<String, OpenApiSchemaFormat> VALUES = Maps.createLookupOf(values(), OpenApiSchemaFormat::toString);
 

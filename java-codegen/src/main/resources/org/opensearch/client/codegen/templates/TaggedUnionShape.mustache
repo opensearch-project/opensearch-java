@@ -30,6 +30,7 @@
         return fn.apply(new Builder()).build();
     }
 
+{{#false}}
     public String _toJsonString() {
         switch (_kind) {
         {{#variants}}
@@ -41,6 +42,7 @@
         }
     }
 
+{{/false}}
     {{#variants}}
     /**
      * Is this variant instance of kind {@code {{name}}}?

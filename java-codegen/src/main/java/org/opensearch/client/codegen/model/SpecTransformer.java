@@ -20,7 +20,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.NotImplementedException;
@@ -110,7 +109,7 @@ public class SpecTransformer {
                 if (s.get$ref()
                     .map(OpenApiRefElement.RelativeRef::getPointer)
                     .flatMap(JsonPointer::getLastKey)
-                    .map("_common:AcknowledgedResponseBase"::equals)
+                    .map(k -> k.endsWith("Base"))
                     .orElse(false)) {
                     return OpenApiSchema.builder().withPointer(s.getPointer()).withAllOf(s, OpenApiSchema.ANONYMOUS_OBJECT).build();
                 }
@@ -246,15 +245,16 @@ public class SpecTransformer {
 
         if (schema.isArray()) {
             shape = new ArrayShape(parent, className, mapType(schema), typedefName, description);
-        } else if (schema.isObject() || schema.hasAllOf() || schema.equals(OpenApiSchema.ANONYMOUS_OBJECT)) {
+        } else if (schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object) {
             var objShape = new ObjectShape(parent, className, typedefName, description);
             visitInto(schema, objShape);
             shape = objShape;
         } else if (schema.isString() && schema.hasEnums()) {
+            var deprecatedEnums = schema.getDeprecatedEnums().orElseGet(Collections::emptySet);
             shape = new EnumShape(
                 parent,
                 className,
-                Lists.map(schema.getEnums().orElseThrow(), EnumShape.Variant::new),
+                Lists.map(schema.getEnums().orElseThrow(), v -> new EnumShape.Variant(v, deprecatedEnums.contains(v))),
                 typedefName,
                 description
             );
@@ -280,28 +280,75 @@ public class SpecTransformer {
             schema = allOf.get().get(1);
         }
 
-        final var required = schema.getRequired().orElse(Collections.emptySet());
-        schema.getProperties()
-            .ifPresent(
-                props -> props.forEach(
-                    (k, v) -> shape.addBodyField(new Field(k, mapType(v), required.contains(k), v.getDescription().orElse(null), null))
-                )
-            );
+        final var properties = new HashMap<String, OpenApiSchema>();
+        final var additionalProperties = new ArrayList<OpenApiSchema>();
+        final var required = collectObjectProperties(schema, properties, additionalProperties);
 
-        var additionalProperties = schema.getAdditionalProperties().orElse(null);
-        if (additionalProperties != null) {
-            var valueType = mapType(additionalProperties);
+        properties.forEach(
+            (k, v) -> { shape.addBodyField(new Field(k, mapType(v), required.contains(k), v.getDescription().orElse(null), null)); }
+        );
+
+        if (!additionalProperties.isEmpty()) {
+            var valueSchema = additionalProperties.size() == 1 ? additionalProperties.get(0) : OpenApiSchema.ANONYMOUS_UNTYPED;
             shape.setAdditionalPropertiesField(
                 new Field(
-                    additionalProperties.getTitle().orElseThrow(),
-                    Types.Java.Util.Map(Types.Java.Lang.String, valueType),
+                    valueSchema.getTitle().orElseThrow(),
+                    Types.Java.Util.Map(Types.Java.Lang.String, mapType(valueSchema)),
                     false,
-                    additionalProperties.getDescription().orElse(null),
+                    valueSchema.getDescription().orElse(null),
                     null,
                     true
                 )
             );
         }
+    }
+
+    private Set<String> collectObjectProperties(
+        OpenApiSchema schema,
+        Map<String, OpenApiSchema> properties,
+        List<OpenApiSchema> additionalProperties
+    ) {
+        if (schema.has$ref()) {
+            return collectObjectProperties(schema.resolve(), properties, additionalProperties);
+        }
+
+        if (schema.hasAllOf()) {
+            var required = new HashSet<String>();
+            for (var component : schema.getAllOf().orElseThrow()) {
+                required.addAll(collectObjectProperties(component, properties, additionalProperties));
+            }
+            return required;
+        }
+
+        if (schema.hasAnyOf() || schema.hasOneOf()) {
+            Set<String> required = null;
+            for (var component : schema.getAnyOf().or(schema::getOneOf).orElseThrow()) {
+                var componentRequired = collectObjectProperties(component, properties, additionalProperties);
+                if (required == null) {
+                    required = new HashSet<>(componentRequired);
+                } else {
+                    required.retainAll(componentRequired);
+                }
+            }
+            return required;
+        }
+
+        schema.getProperties().ifPresent(props -> props.forEach((k, v) -> {
+            var existing = properties.get(k);
+            if (existing != null) {
+                var existingType = existing.determineSingleType().orElse(null);
+                var newType = v.determineSingleType().orElse(null);
+                if (existingType != null
+                    && (existingType == OpenApiSchemaType.Object || existingType == OpenApiSchemaType.Array || existingType != newType)) {
+                    v = OpenApiSchema.ANONYMOUS_UNTYPED;
+                }
+            }
+            properties.put(k, v);
+        }));
+
+        schema.getAdditionalProperties().ifPresent(additionalProperties::add);
+
+        return schema.getRequired().orElseGet(Collections::emptySet);
     }
 
     private Type mapType(OpenApiSchema schema) {
@@ -356,8 +403,7 @@ public class SpecTransformer {
             case Array:
                 return mapArray(schema);
             case String:
-                if (schema.getPattern().map("^([0-9]+)(?:d|h|m|s|ms|micros|nanos)$"::equals).orElse(false))
-                    return Types.Client.OpenSearch._Types.Time;
+                if ("_common:Duration".equals(schema.getPointer().getLastKey().orElse(null))) return Types.Client.OpenSearch._Types.Time;
                 return Types.Java.Lang.String;
             case Boolean:
                 return Types.Primitive.Boolean;
@@ -374,7 +420,7 @@ public class SpecTransformer {
             return mapType(oneOf.get(1));
         }
 
-        var types = oneOf.stream().map(OpenApiSchema::determineTypes).flatMap(Set::stream).collect(Collectors.toSet());
+        var types = OpenApiSchema.determineTypes(oneOf);
 
         if (types.size() == 2
             && types.contains(OpenApiSchemaType.String)
@@ -420,7 +466,7 @@ public class SpecTransformer {
     }
 
     private boolean shouldKeepRef(OpenApiSchema schema) {
-        if (schema.isNumber()) {
+        if (schema.isNumber() || schema.isArray()) {
             return false;
         }
         if (schema.isString() && schema.getEnums().isEmpty()) {
@@ -430,8 +476,7 @@ public class SpecTransformer {
             return schema.getOneOf().orElseThrow().stream().allMatch(s -> s.getTitle().isPresent());
         }
         if (schema.getAllOf().isPresent()) {
-            var types = schema.determineTypes();
-            return types.size() == 1 && types.iterator().next().equals(OpenApiSchemaType.Object);
+            return schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object;
         }
         return true;
     }

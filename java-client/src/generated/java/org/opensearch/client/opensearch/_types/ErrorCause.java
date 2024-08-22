@@ -148,7 +148,7 @@ public class ErrorCause implements PlainJsonSerializable {
     }
 
     /**
-     * Additional details about the error
+     * Additional details about the error.
      */
     public final Map<String, JsonData> metadata() {
         return this.metadata;
@@ -168,19 +168,15 @@ public class ErrorCause implements PlainJsonSerializable {
         for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
             generator.writeKey(item0.getKey());
             item0.getValue().serialize(generator, mapper);
-
         }
-
         if (this.causedBy != null) {
             generator.writeKey("caused_by");
             this.causedBy.serialize(generator, mapper);
-
         }
 
         if (this.reason != null) {
             generator.writeKey("reason");
             generator.write(this.reason);
-
         }
 
         if (ApiTypeHelper.isDefined(this.rootCause)) {
@@ -188,16 +184,13 @@ public class ErrorCause implements PlainJsonSerializable {
             generator.writeStartArray();
             for (ErrorCause item0 : this.rootCause) {
                 item0.serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
 
         if (this.stackTrace != null) {
             generator.writeKey("stack_trace");
             generator.write(this.stackTrace);
-
         }
 
         if (ApiTypeHelper.isDefined(this.suppressed)) {
@@ -205,15 +198,12 @@ public class ErrorCause implements PlainJsonSerializable {
             generator.writeStartArray();
             for (ErrorCause item0 : this.suppressed) {
                 item0.serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
 
         generator.writeKey("type");
         generator.write(this.type);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -355,7 +345,11 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * Additional details about the error
+         * Additional details about the error.
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>metadata</code>.
+         * </p>
          */
         public final Builder metadata(Map<String, JsonData> map) {
             this.metadata = _mapPutAll(this.metadata, map);
@@ -363,7 +357,11 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * Additional details about the error
+         * Additional details about the error.
+         *
+         * <p>
+         * Adds an entry to <code>metadata</code>.
+         * </p>
          */
         public final Builder metadata(String key, JsonData value) {
             this.metadata = _mapPut(this.metadata, key, value);

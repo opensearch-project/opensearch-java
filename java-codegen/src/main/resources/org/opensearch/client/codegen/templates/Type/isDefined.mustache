@@ -1,0 +1,6 @@
+{{#type.isListOrMap}}
+{{TYPES.Client.Util.ApiTypeHelper}}.isDefined({{value}})
+{{/type.isListOrMap}}
+{{^type.isListOrMap}}
+{{value}} != null
+{{/type.isListOrMap}}
