@@ -28,8 +28,7 @@ import org.opensearch.client.codegen.utils.Sets;
 public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     private static final JsonPointer ANONYMOUS = JsonPointer.of("<anonymous>");
 
-    public static final OpenApiSchema ANONYMOUS_UNTYPED = builder().withPointer(ANONYMOUS.append("untyped"))
-            .build();
+    public static final OpenApiSchema ANONYMOUS_UNTYPED = builder().withPointer(ANONYMOUS.append("untyped")).build();
     public static final OpenApiSchema ANONYMOUS_OBJECT = builder().withPointer(ANONYMOUS.append("object"))
         .withTypes(OpenApiSchemaType.Object)
         .build();
@@ -134,7 +133,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
 
         var extensions = schema.getExtensions();
 
-        //noinspection unchecked
+        // noinspection unchecked
         deprecatedEnums = Maps.tryGet(extensions, "x-deprecated-enums").map(e -> (Collection<String>) e).map(HashSet::new).orElse(null);
     }
 
@@ -225,7 +224,9 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     }
 
     @Nonnull
-    public Optional<Set<String>> getDeprecatedEnums() { return Sets.unmodifiableOpt(deprecatedEnums); }
+    public Optional<Set<String>> getDeprecatedEnums() {
+        return Sets.unmodifiableOpt(deprecatedEnums);
+    }
 
     @Nonnull
     public Optional<OpenApiSchema> getItems() {

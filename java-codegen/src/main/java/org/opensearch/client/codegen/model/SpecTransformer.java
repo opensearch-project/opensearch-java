@@ -284,15 +284,9 @@ public class SpecTransformer {
         final var additionalProperties = new ArrayList<OpenApiSchema>();
         final var required = collectObjectProperties(schema, properties, additionalProperties);
 
-        properties.forEach((k, v) -> {
-            shape.addBodyField(new Field(
-                    k,
-                    mapType(v),
-                    required.contains(k),
-                    v.getDescription().orElse(null),
-                    null
-            ));
-        });
+        properties.forEach(
+            (k, v) -> { shape.addBodyField(new Field(k, mapType(v), required.contains(k), v.getDescription().orElse(null), null)); }
+        );
 
         if (!additionalProperties.isEmpty()) {
             var valueSchema = additionalProperties.size() == 1 ? additionalProperties.get(0) : OpenApiSchema.ANONYMOUS_UNTYPED;
@@ -310,9 +304,9 @@ public class SpecTransformer {
     }
 
     private Set<String> collectObjectProperties(
-            OpenApiSchema schema,
-            Map<String, OpenApiSchema> properties,
-            List<OpenApiSchema> additionalProperties
+        OpenApiSchema schema,
+        Map<String, OpenApiSchema> properties,
+        List<OpenApiSchema> additionalProperties
     ) {
         if (schema.has$ref()) {
             return collectObjectProperties(schema.resolve(), properties, additionalProperties);
@@ -339,18 +333,18 @@ public class SpecTransformer {
             return required;
         }
 
-        schema.getProperties()
-                .ifPresent(props -> props.forEach((k, v) -> {
-                    var existing = properties.get(k);
-                    if (existing != null) {
-                        var existingType = existing.determineSingleType().orElse(null);
-                        var newType = v.determineSingleType().orElse(null);
-                        if (existingType != null && (existingType == OpenApiSchemaType.Object || existingType == OpenApiSchemaType.Array || existingType != newType)) {
-                            v = OpenApiSchema.ANONYMOUS_UNTYPED;
-                        }
-                    }
-                    properties.put(k, v);
-                }));
+        schema.getProperties().ifPresent(props -> props.forEach((k, v) -> {
+            var existing = properties.get(k);
+            if (existing != null) {
+                var existingType = existing.determineSingleType().orElse(null);
+                var newType = v.determineSingleType().orElse(null);
+                if (existingType != null
+                    && (existingType == OpenApiSchemaType.Object || existingType == OpenApiSchemaType.Array || existingType != newType)) {
+                    v = OpenApiSchema.ANONYMOUS_UNTYPED;
+                }
+            }
+            properties.put(k, v);
+        }));
 
         schema.getAdditionalProperties().ifPresent(additionalProperties::add);
 

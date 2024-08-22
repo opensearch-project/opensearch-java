@@ -167,8 +167,10 @@ public class RequestShape extends ObjectShape {
     private static String classBaseName(@Nonnull OperationGroup operationGroup) {
         Objects.requireNonNull(operationGroup, "operationGroup must not be null");
         switch (operationGroup.toString()) {
-            case "tasks.get": return "GetTasks";
-            default: return Strings.toPascalCase(operationGroup.getName());
+            case "tasks.get":
+                return "GetTasks";
+            default:
+                return Strings.toPascalCase(operationGroup.getName());
         }
     }
 }
