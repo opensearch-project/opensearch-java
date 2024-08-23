@@ -68,6 +68,31 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return deleteModelGroup(fn.apply(new DeleteModelGroupRequest.Builder()).build());
     }
 
+    // ----- Endpoint: ml.delete_task
+
+    /**
+     * Deletes a task.
+     */
+    public DeleteTaskResponse deleteTask(DeleteTaskRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<DeleteTaskRequest, DeleteTaskResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            DeleteTaskRequest,
+            DeleteTaskResponse,
+            ErrorResponse>) DeleteTaskRequest._ENDPOINT;
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Deletes a task.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteTaskRequest}
+     */
+    public final DeleteTaskResponse deleteTask(Function<DeleteTaskRequest.Builder, ObjectBuilder<DeleteTaskRequest>> fn) throws IOException,
+        OpenSearchException {
+        return deleteTask(fn.apply(new DeleteTaskRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.get_task
 
     /**

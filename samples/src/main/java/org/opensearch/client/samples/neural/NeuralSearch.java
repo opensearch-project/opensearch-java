@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch.ml.DeleteModelGroupRequest;
+import org.opensearch.client.opensearch.ml.DeleteTaskRequest;
 import org.opensearch.client.opensearch.ml.GetTaskRequest;
 import org.opensearch.client.opensearch.ml.RegisterModelRequest;
 import org.opensearch.client.samples.SampleClient;
@@ -88,7 +89,7 @@ public class NeuralSearch {
                     case "FAILED":
                         throw new Exception("ML model registration failed: " + modelRegistrationTask.error());
                     default:
-                        //noinspection BusyWait
+                        // noinspection BusyWait
                         Thread.sleep(10_000);
                 }
             }
@@ -103,7 +104,13 @@ public class NeuralSearch {
 
             // TODO: Delete ML model
 
-            // TODO: Delete ML model registration task
+            if (modelRegistrationTaskId != null) {
+                try {
+                    LOGGER.info("Deleting ML model registration task: {}", modelRegistrationTaskId);
+                    var groupDeleted = client.ml().deleteTask(new DeleteTaskRequest.Builder().taskId(modelRegistrationTaskId).build());
+                    LOGGER.info("Deleted ML model registration task: {}", groupDeleted.result());
+                } catch (Exception ignored) {}
+            }
 
             if (modelGroupId != null) {
                 try {

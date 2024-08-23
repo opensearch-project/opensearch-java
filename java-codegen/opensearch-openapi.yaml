@@ -3887,6 +3887,20 @@ paths:
         '200':
           $ref: '#/components/responses/ml.undeploy_model@200'
   /_plugins/_ml/tasks/{task_id}:
+    delete:
+      operationId: ml.delete_task.0
+      x-operation-group: ml.delete_task
+      description: Deletes a task.
+      parameters:
+        - $ref: '#/components/parameters/ml.delete_task::path.task_id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.delete_task@200'
     get:
       operationId: ml.get_task.0
       x-operation-group: ml.get_task
@@ -20036,6 +20050,12 @@ components:
       required: true
       schema:
         type: string
+    ml.delete_task::path.task_id:
+      name: task_id
+      in: path
+      required: true
+      schema:
+        type: string
     ml.deploy_model::path.model_id:
       name: model_id
       in: path
@@ -26135,6 +26155,11 @@ components:
           schema:
             $ref: '#/components/schemas/_common:WriteResponseBase'
     ml.delete_model@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common:WriteResponseBase'
+    ml.delete_task@200:
       content:
         application/json:
           schema:
