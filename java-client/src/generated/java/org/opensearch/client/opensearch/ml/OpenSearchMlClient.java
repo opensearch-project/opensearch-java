@@ -42,6 +42,31 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return new OpenSearchMlClient(this.transport, transportOptions);
     }
 
+    // ----- Endpoint: ml.delete_model
+
+    /**
+     * Deletes a model.
+     */
+    public DeleteModelResponse deleteModel(DeleteModelRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<DeleteModelRequest, DeleteModelResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            DeleteModelRequest,
+            DeleteModelResponse,
+            ErrorResponse>) DeleteModelRequest._ENDPOINT;
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Deletes a model.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteModelRequest}
+     */
+    public final DeleteModelResponse deleteModel(Function<DeleteModelRequest.Builder, ObjectBuilder<DeleteModelRequest>> fn)
+        throws IOException, OpenSearchException {
+        return deleteModel(fn.apply(new DeleteModelRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.delete_model_group
 
     /**

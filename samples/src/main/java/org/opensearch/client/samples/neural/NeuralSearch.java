@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch.ml.DeleteModelGroupRequest;
+import org.opensearch.client.opensearch.ml.DeleteModelRequest;
 import org.opensearch.client.opensearch.ml.DeleteTaskRequest;
 import org.opensearch.client.opensearch.ml.GetTaskRequest;
 import org.opensearch.client.opensearch.ml.RegisterModelRequest;
@@ -102,7 +103,13 @@ public class NeuralSearch {
         } finally {
             // TODO: Undeploy model
 
-            // TODO: Delete ML model
+            if (modelId != null) {
+                try {
+                    LOGGER.info("Deleting ML model: {}", modelId);
+                    var modelDeleted = client.ml().deleteModel(new DeleteModelRequest.Builder().modelId(modelId).build());
+                    LOGGER.info("Deleted ML model: {}", modelDeleted.result());
+                } catch (Exception ignored) {}
+            }
 
             if (modelRegistrationTaskId != null) {
                 try {
