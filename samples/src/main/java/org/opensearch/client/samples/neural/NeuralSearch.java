@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch.ml.DeleteModelGroupRequest;
+import org.opensearch.client.opensearch.ml.GetTaskRequest;
 import org.opensearch.client.opensearch.ml.RegisterModelRequest;
 import org.opensearch.client.samples.SampleClient;
 
@@ -32,6 +33,7 @@ public class NeuralSearch {
         OpenSearchClient client = null;
         String modelGroupId = null;
         String modelRegistrationTaskId = null;
+        String modelId = null;
 
         try {
             client = SampleClient.create();
@@ -75,11 +77,30 @@ public class NeuralSearch {
             modelRegistrationTaskId = modelRegistration.taskId();
             LOGGER.info("ML model registration task: {}", modelRegistrationTaskId);
 
-            // TODO: Poll registration task
+            LOGGER.info("Waiting for ML model registration to complete");
+            modelWait: while (true) {
+                var modelRegistrationTask = client.ml().getTask(new GetTaskRequest.Builder().taskId(modelRegistrationTaskId).build());
+                LOGGER.info("ML model registration: {}", modelRegistrationTask.state());
+                switch (modelRegistrationTask.state()) {
+                    case "COMPLETED":
+                        modelId = modelRegistrationTask.modelId();
+                        break modelWait;
+                    case "FAILED":
+                        throw new Exception("ML model registration failed: " + modelRegistrationTask.error());
+                    default:
+                        //noinspection BusyWait
+                        Thread.sleep(10_000);
+                }
+            }
+            LOGGER.info("ML model registered: {}", modelId);
+
+            // TODO: Deploy model
 
         } catch (Exception e) {
             LOGGER.error("Unexpected exception", e);
         } finally {
+            // TODO: Undeploy model
+
             // TODO: Delete ML model
 
             // TODO: Delete ML model registration task

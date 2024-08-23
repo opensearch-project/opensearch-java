@@ -36,7 +36,7 @@ public class CodeGenerator {
     private static final OperationGroup.Matcher OPERATION_MATCHER = OperationGroup.matcher()
         .add(null, "info")
         .add("dangling_indices")
-        .add("ml", "delete_model_group", "register_model_group", "register_model");
+        .add("ml", "delete_model_group", "get_task", "register_model_group", "register_model");
 
     public static void main(String[] args) {
         var inputOpt = Option.builder("i")
