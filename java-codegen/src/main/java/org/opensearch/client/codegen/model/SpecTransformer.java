@@ -337,9 +337,9 @@ public class SpecTransformer {
         schema.getProperties().ifPresent(props -> props.forEach((propName, propSchema) -> {
             var resolvedPropSchema = propSchema.resolve();
             var isRemoved = propSchema.getVersionRemoved()
-                    .or(resolvedPropSchema::getVersionRemoved)
-                    .map(ver -> ver.isLowerThanOrEqualTo(Versions.V2_0_0))
-                    .orElse(false);
+                .or(resolvedPropSchema::getVersionRemoved)
+                .map(ver -> ver.isLowerThanOrEqualTo(Versions.V2_0_0))
+                .orElse(false);
 
             if (isRemoved) {
                 return;

@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch.ml.DeleteModelGroupRequest;
+import org.opensearch.client.opensearch.ml.RegisterModelRequest;
 import org.opensearch.client.samples.SampleClient;
 
 /**
@@ -30,6 +31,7 @@ public class NeuralSearch {
     public static void main(String[] args) {
         OpenSearchClient client = null;
         String modelGroupId = null;
+        String modelRegistrationTaskId = null;
 
         try {
             client = SampleClient.create();
@@ -53,22 +55,41 @@ public class NeuralSearch {
                         .accessMode("public")
                 );
             if (!"CREATED".equals(groupRegistration.status())) throw new Exception(
-                "Expected ML Model Group to be CREATED, was: " + groupRegistration.status()
+                "Expected ML model group to be CREATED, was: " + groupRegistration.status()
             );
             modelGroupId = groupRegistration.modelGroupId();
-            LOGGER.info("ML Model Group `{}` id: {}", ML_MODEL_GROUP_NAME, modelGroupId);
+            LOGGER.info("ML model group `{}` id: {}", ML_MODEL_GROUP_NAME, modelGroupId);
 
-            // TODO: Register ML Model
+            LOGGER.info("Registering ML model");
+            var modelRegistration = client.ml()
+                .registerModel(
+                    new RegisterModelRequest.Builder().name("huggingface/sentence-transformers/msmarco-distilbert-base-tas-b")
+                        .version("1.0.1")
+                        .modelGroupId(modelGroupId)
+                        .modelFormat("TORCH_SCRIPT")
+                        .build()
+                );
+            if (!"CREATED".equals(modelRegistration.status())) throw new Exception(
+                "Expected ML model registration task to be CREATED, was: " + modelRegistration.status()
+            );
+            modelRegistrationTaskId = modelRegistration.taskId();
+            LOGGER.info("ML model registration task: {}", modelRegistrationTaskId);
+
+            // TODO: Poll registration task
+
         } catch (Exception e) {
             LOGGER.error("Unexpected exception", e);
         } finally {
-            // TODO: Delete ML Model
+            // TODO: Delete ML model
+
+            // TODO: Delete ML model registration task
 
             if (modelGroupId != null) {
                 try {
-                    LOGGER.info("Deleting ML Model Group: {}", modelGroupId);
-                    var groupDeleted = client.ml().deleteModelGroup(new DeleteModelGroupRequest.Builder().modelGroupId(modelGroupId).build());
-                    LOGGER.info("Deleted ML Model Group: {}", groupDeleted.result());
+                    LOGGER.info("Deleting ML model group: {}", modelGroupId);
+                    var groupDeleted = client.ml()
+                        .deleteModelGroup(new DeleteModelGroupRequest.Builder().modelGroupId(modelGroupId).build());
+                    LOGGER.info("Deleted ML model group: {}", groupDeleted.result());
                 } catch (Exception ignored) {}
             }
         }

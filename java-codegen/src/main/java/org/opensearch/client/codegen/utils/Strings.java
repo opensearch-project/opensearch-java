@@ -37,9 +37,11 @@ public final class Strings {
         return str;
     }
 
-    private static final Map<String, String> SPECIAL_CASE_SNAKE_CASE_CONVERSION = new HashMap<>() {{
-        put("noop", "no_op");
-    }};
+    private static final Map<String, String> SPECIAL_CASE_SNAKE_CASE_CONVERSION = new HashMap<>() {
+        {
+            put("noop", "no_op");
+        }
+    };
 
     @Nonnull
     public static String toSnakeCase(@Nonnull String str) {

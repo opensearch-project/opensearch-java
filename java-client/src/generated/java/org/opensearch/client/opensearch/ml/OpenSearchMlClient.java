@@ -92,6 +92,31 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return deleteModelGroup(fn.apply(new DeleteModelGroupRequest.Builder()).build());
     }
 
+    // ----- Endpoint: ml.register_model
+
+    /**
+     * Registers a model.
+     */
+    public RegisterModelResponse registerModel(RegisterModelRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<RegisterModelRequest, RegisterModelResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            RegisterModelRequest,
+            RegisterModelResponse,
+            ErrorResponse>) RegisterModelRequest._ENDPOINT;
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Registers a model.
+     *
+     * @param fn a function that initializes a builder to create the {@link RegisterModelRequest}
+     */
+    public final RegisterModelResponse registerModel(Function<RegisterModelRequest.Builder, ObjectBuilder<RegisterModelRequest>> fn)
+        throws IOException, OpenSearchException {
+        return registerModel(fn.apply(new RegisterModelRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.register_model_group
 
     /**
