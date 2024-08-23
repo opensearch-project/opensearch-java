@@ -29286,6 +29286,7 @@ components:
         - version_map_memory_in_bytes
     _common:SequenceNumber:
       type: number
+      format: int64
     _common:ShardFailure:
       type: object
       properties:
@@ -29602,6 +29603,7 @@ components:
       type: string
     _common:VersionNumber:
       type: number
+      format: int64
     _common:VersionString:
       type: string
     _common:VersionType:
@@ -29671,6 +29673,7 @@ components:
           $ref: '#/components/schemas/_common:IndexName'
         _primary_term:
           type: number
+          format: int64
         result:
           $ref: '#/components/schemas/_common:Result'
         _seq_no:

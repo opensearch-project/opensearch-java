@@ -24,6 +24,8 @@ import javax.annotation.Nullable;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.Sets;
+import org.opensearch.client.codegen.utils.Versions;
+import org.semver4j.Semver;
 
 public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     private static final JsonPointer ANONYMOUS = JsonPointer.of("<anonymous>");
@@ -65,6 +67,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     private final String title;
     @Nullable
     private final String pattern;
+    @Nullable
+    private final Semver versionRemoved;
 
     private OpenApiSchema(@Nonnull Builder builder) {
         super(builder.parent, Objects.requireNonNull(builder.pointer, "pointer must not be null"), builder.$ref, OpenApiSchema.class);
@@ -84,6 +88,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         required = builder.required;
         title = builder.title;
         pattern = builder.pattern;
+        versionRemoved = builder.versionRemoved;
     }
 
     protected OpenApiSchema(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer, @Nonnull Schema<?> schema) {
@@ -135,6 +140,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
 
         // noinspection unchecked
         deprecatedEnums = Maps.tryGet(extensions, "x-deprecated-enums").map(e -> (Collection<String>) e).map(HashSet::new).orElse(null);
+
+        versionRemoved = Maps.tryGet(extensions, "x-version-removed").map(v -> Versions.coerce((String) v)).orElse(null);
     }
 
     @Nonnull
@@ -258,6 +265,11 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         return Optional.ofNullable(pattern);
     }
 
+    @Nonnull
+    public Optional<Semver> getVersionRemoved() {
+        return Optional.ofNullable(versionRemoved);
+    }
+
     public static Set<OpenApiSchemaType> determineTypes(List<OpenApiSchema> schemas) {
         return schemas.stream().map(OpenApiSchema::determineTypes).flatMap(Set::stream).collect(Collectors.toSet());
     }
@@ -338,6 +350,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         private String title;
         @Nullable
         private String pattern;
+        @Nullable
+        private Semver versionRemoved;
 
         @Nonnull
         public Builder withPointer(@Nonnull JsonPointer pointer) {

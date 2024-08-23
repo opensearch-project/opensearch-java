@@ -16,6 +16,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.Deprecation;
 import org.opensearch.client.codegen.utils.Maps;
+import org.opensearch.client.codegen.utils.Versions;
+import org.semver4j.Semver;
 
 public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
     @Nullable
@@ -31,7 +33,7 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
     @Nullable
     private final Boolean isDeprecated;
     @Nullable
-    private final String versionDeprecated;
+    private final Semver versionDeprecated;
     @Nullable
     private final String deprecationMessage;
     @Nullable
@@ -46,7 +48,7 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
         this.schema = child("schema", parameter.getSchema(), OpenApiSchema::new);
         this.isDeprecated = parameter.getDeprecated();
         var extensions = parameter.getExtensions();
-        this.versionDeprecated = Maps.tryGet(extensions, "x-version-deprecated").map(String::valueOf).orElse(null);
+        this.versionDeprecated = Maps.tryGet(extensions, "x-version-deprecated").map(v -> Versions.coerce((String) v)).orElse(null);
         this.deprecationMessage = Maps.tryGet(extensions, "x-deprecation-message").map(String::valueOf).orElse(null);
         this.isGlobal = (Boolean) Maps.tryGet(extensions, "x-global").orElse(null);
     }
