@@ -15,6 +15,7 @@ import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch.ml.DeleteModelGroupRequest;
 import org.opensearch.client.opensearch.ml.DeleteModelRequest;
 import org.opensearch.client.opensearch.ml.DeleteTaskRequest;
+import org.opensearch.client.opensearch.ml.DeployModelRequest;
 import org.opensearch.client.opensearch.ml.GetTaskRequest;
 import org.opensearch.client.opensearch.ml.RegisterModelRequest;
 import org.opensearch.client.samples.SampleClient;
@@ -36,6 +37,7 @@ public class NeuralSearch {
         String modelGroupId = null;
         String modelRegistrationTaskId = null;
         String modelId = null;
+        String modelDeployTaskId = null;
 
         try {
             client = SampleClient.create();
@@ -80,13 +82,13 @@ public class NeuralSearch {
             LOGGER.info("ML model registration task: {}", modelRegistrationTaskId);
 
             LOGGER.info("Waiting for ML model registration to complete");
-            modelWait: while (true) {
+            registerWait: while (true) {
                 var modelRegistrationTask = client.ml().getTask(new GetTaskRequest.Builder().taskId(modelRegistrationTaskId).build());
                 LOGGER.info("ML model registration: {}", modelRegistrationTask.state());
                 switch (modelRegistrationTask.state()) {
                     case "COMPLETED":
                         modelId = modelRegistrationTask.modelId();
-                        break modelWait;
+                        break registerWait;
                     case "FAILED":
                         throw new Exception("ML model registration failed: " + modelRegistrationTask.error());
                     default:
@@ -97,6 +99,33 @@ public class NeuralSearch {
             LOGGER.info("ML model registered: {}", modelId);
 
             // TODO: Deploy model
+            LOGGER.info("Deploying ML model");
+            var modelDeploy = client.ml().deployModel(new DeployModelRequest.Builder()
+                                                              .modelId(modelId)
+                                                              .build());
+            if (!"CREATED".equals(modelDeploy.status())) throw new Exception(
+                    "Expected ML model deploy task to be CREATED, was: " + modelDeploy.status()
+            );
+            modelDeployTaskId = modelDeploy.taskId();
+            LOGGER.info("ML model deploy task: {}", modelDeployTaskId);
+
+            LOGGER.info("Waiting for ML model deployment to complete");
+            deployWait: while (true) {
+                var modelDeployTask = client.ml().getTask(new GetTaskRequest.Builder().taskId(modelDeployTaskId).build());
+                LOGGER.info("ML model deployment: {}", modelDeployTask.state());
+                switch (modelDeployTask.state()) {
+                    case "COMPLETED":
+                        break deployWait;
+                    case "FAILED":
+                        throw new Exception("ML model deployment failed: " + modelDeployTask.error());
+                    default:
+                        // noinspection BusyWait
+                        Thread.sleep(10_000);
+                }
+            }
+            LOGGER.info("ML model deployed");
+
+            // TODO: Create ingest pipeline
 
         } catch (Exception e) {
             LOGGER.error("Unexpected exception", e);
