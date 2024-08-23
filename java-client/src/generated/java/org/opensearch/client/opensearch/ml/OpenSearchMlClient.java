@@ -66,6 +66,32 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return new OpenSearchMlClient(this.transport, transportOptions);
     }
 
+    // ----- Endpoint: ml.delete_model_group
+
+    /**
+     * Deletes a model group.
+     */
+    public DeleteModelGroupResponse deleteModelGroup(DeleteModelGroupRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<DeleteModelGroupRequest, DeleteModelGroupResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            DeleteModelGroupRequest,
+            DeleteModelGroupResponse,
+            ErrorResponse>) DeleteModelGroupRequest._ENDPOINT;
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Deletes a model group.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteModelGroupRequest}
+     */
+    public final DeleteModelGroupResponse deleteModelGroup(
+        Function<DeleteModelGroupRequest.Builder, ObjectBuilder<DeleteModelGroupRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteModelGroup(fn.apply(new DeleteModelGroupRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.register_model_group
 
     /**

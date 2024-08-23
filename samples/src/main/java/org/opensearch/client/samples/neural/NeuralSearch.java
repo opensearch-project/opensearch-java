@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchClient;
+import org.opensearch.client.opensearch.ml.DeleteModelGroupRequest;
 import org.opensearch.client.samples.SampleClient;
 
 /**
@@ -27,7 +28,7 @@ public class NeuralSearch {
     private static final Logger LOGGER = LogManager.getLogger(NeuralSearch.class);
 
     public static void main(String[] args) {
-        OpenSearchClient client;
+        OpenSearchClient client = null;
         String modelGroupId = null;
 
         try {
@@ -57,12 +58,17 @@ public class NeuralSearch {
             modelGroupId = groupRegistration.modelGroupId();
             LOGGER.info("ML Model Group `{}` id: {}", ML_MODEL_GROUP_NAME, modelGroupId);
 
+            // TODO: Register ML Model
         } catch (Exception e) {
             LOGGER.error("Unexpected exception", e);
         } finally {
+            // TODO: Delete ML Model
+
             if (modelGroupId != null) {
                 try {
-                    // TODO: DELETE model group
+                    LOGGER.info("Deleting ML Model Group: {}", modelGroupId);
+                    var groupDeleted = client.ml().deleteModelGroup(new DeleteModelGroupRequest.Builder().modelGroupId(modelGroupId).build());
+                    LOGGER.info("Deleted ML Model Group: {}", groupDeleted.result());
                 } catch (Exception ignored) {}
             }
         }
