@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Adds `cancelAfterTimeInterval` to `SearchRequest` and `MsearchRequest` ([#1147](https://github.com/opensearch-project/opensearch-java/pull/1147))
 
 ### Dependencies
+- Bumps `commons-logging:commons-logging` from 1.3.3 to 1.3.4
 
 ### Changed
 
