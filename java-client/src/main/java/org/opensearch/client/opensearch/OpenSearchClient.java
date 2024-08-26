@@ -126,6 +126,7 @@ import org.opensearch.client.opensearch.features.OpenSearchFeaturesClient;
 import org.opensearch.client.opensearch.generic.OpenSearchGenericClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestClient;
+import org.opensearch.client.opensearch.ml.OpenSearchMlClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesClient;
 import org.opensearch.client.opensearch.shutdown.OpenSearchShutdownClient;
 import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotClient;
@@ -182,6 +183,10 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
 
     public OpenSearchIngestClient ingest() {
         return new OpenSearchIngestClient(this.transport, this.transportOptions);
+    }
+
+    public OpenSearchMlClient ml() {
+        return new OpenSearchMlClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchNodesClient nodes() {
