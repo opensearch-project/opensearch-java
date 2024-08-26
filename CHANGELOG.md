@@ -3,8 +3,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
-- Adds `queryImage` (query_image) field to `NeuralQuery`, following definition in ([Neural Query](https://opensearch.org/docs/latest/query-dsl/specialized/neural/)) ([#1137](https://github.com/opensearch-project/opensearch-java/pull/1138))
-- Adds `cancelAfterTimeInterval` to `SearchRequest` and `MsearchRequest` ([#1147](https://github.com/opensearch-project/opensearch-java/pull/1147))
+- Added `queryImage` (query_image) field to `NeuralQuery`, following definition in ([Neural Query](https://opensearch.org/docs/latest/query-dsl/specialized/neural/)) ([#1137](https://github.com/opensearch-project/opensearch-java/pull/1138))
+- Added `cancelAfterTimeInterval` to `SearchRequest` and `MsearchRequest` ([#1147](https://github.com/opensearch-project/opensearch-java/pull/1147))
+- Added the `ml` namespace operations ([#1158](https://github.com/opensearch-project/opensearch-java/pull/1158))
 
 ### Dependencies
 - Bumps `commons-logging:commons-logging` from 1.3.3 to 1.3.4

@@ -30,10 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -48,7 +53,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _types.ShardFailure
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardFailure implements PlainJsonSerializable {
+
     @Nullable
     private final String index;
 
@@ -65,16 +72,14 @@ public class ShardFailure implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private ShardFailure(Builder builder) {
-
         this.index = builder.index;
         this.node = builder.node;
         this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
         this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
         this.status = builder.status;
-
     }
 
-    public static ShardFailure of(Function<Builder, ObjectBuilder<ShardFailure>> fn) {
+    public static ShardFailure of(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -119,6 +124,7 @@ public class ShardFailure implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -126,17 +132,16 @@ public class ShardFailure implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.index != null) {
             generator.writeKey("index");
             generator.write(this.index);
-
         }
+
         if (this.node != null) {
             generator.writeKey("node");
             generator.write(this.node);
-
         }
+
         generator.writeKey("reason");
         this.reason.serialize(generator, mapper);
 
@@ -146,9 +151,7 @@ public class ShardFailure implements PlainJsonSerializable {
         if (this.status != null) {
             generator.writeKey("status");
             generator.write(this.status);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -156,18 +159,13 @@ public class ShardFailure implements PlainJsonSerializable {
     /**
      * Builder for {@link ShardFailure}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardFailure> {
         @Nullable
         private String index;
-
         @Nullable
         private String node;
-
         private ErrorCause reason;
-
         private Integer shard;
-
         @Nullable
         private String status;
 
@@ -199,7 +197,7 @@ public class ShardFailure implements PlainJsonSerializable {
          * Required - API name: {@code reason}
          */
         public final Builder reason(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-            return this.reason(fn.apply(new ErrorCause.Builder()).build());
+            return reason(fn.apply(new ErrorCause.Builder()).build());
         }
 
         /**
@@ -221,8 +219,7 @@ public class ShardFailure implements PlainJsonSerializable {
         /**
          * Builds a {@link ShardFailure}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public ShardFailure build() {
             _checkSingleUse();
@@ -230,7 +227,6 @@ public class ShardFailure implements PlainJsonSerializable {
             return new ShardFailure(this);
         }
     }
-
     // ---------------------------------------------------------------------------------------------
 
     /**
@@ -242,13 +238,10 @@ public class ShardFailure implements PlainJsonSerializable {
     );
 
     protected static void setupShardFailureDeserializer(ObjectDeserializer<ShardFailure.Builder> op) {
-
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
         op.add(Builder::reason, ErrorCause._DESERIALIZER, "reason");
         op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
-
     }
-
 }
