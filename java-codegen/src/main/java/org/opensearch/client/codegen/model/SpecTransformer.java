@@ -46,7 +46,7 @@ import org.opensearch.client.codegen.utils.Versions;
 public class SpecTransformer {
     private static final Logger LOGGER = LogManager.getLogger();
     @Nonnull
-    private final OperationGroup.Matcher matcher;
+    private final OperationGroupMatcher matcher;
     @Nonnull
     private final Namespace root = new Namespace();
     @Nonnull
@@ -54,7 +54,7 @@ public class SpecTransformer {
     @Nonnull
     private final Map<OpenApiSchema, Type> schemaToType = new ConcurrentHashMap<>();
 
-    public SpecTransformer(@Nonnull OperationGroup.Matcher matcher) {
+    public SpecTransformer(@Nonnull OperationGroupMatcher matcher) {
         this.matcher = Objects.requireNonNull(matcher, "matcher must not be null");
     }
 

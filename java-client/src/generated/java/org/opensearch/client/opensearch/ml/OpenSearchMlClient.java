@@ -143,6 +143,31 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return deployModel(fn.apply(new DeployModelRequest.Builder()).build());
     }
 
+    // ----- Endpoint: ml.get_model_group
+
+    /**
+     * Retrieves a model group.
+     */
+    public GetModelGroupResponse getModelGroup(GetModelGroupRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<GetModelGroupRequest, GetModelGroupResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            GetModelGroupRequest,
+            GetModelGroupResponse,
+            ErrorResponse>) GetModelGroupRequest._ENDPOINT;
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Retrieves a model group.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetModelGroupRequest}
+     */
+    public final GetModelGroupResponse getModelGroup(Function<GetModelGroupRequest.Builder, ObjectBuilder<GetModelGroupRequest>> fn)
+        throws IOException, OpenSearchException {
+        return getModelGroup(fn.apply(new GetModelGroupRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.get_task
 
     /**

@@ -8,6 +8,8 @@
 
 package org.opensearch.client.codegen;
 
+import static org.opensearch.client.codegen.model.OperationGroupMatcher.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,27 +28,18 @@ import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Namespace;
-import org.opensearch.client.codegen.model.OperationGroup;
+import org.opensearch.client.codegen.model.OperationGroupMatcher;
 import org.opensearch.client.codegen.model.ShapeRenderingContext;
 import org.opensearch.client.codegen.model.SpecTransformer;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 
 public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final OperationGroup.Matcher OPERATION_MATCHER = OperationGroup.matcher()
-        .add(null, "info")
-        .add("dangling_indices")
-        .add(
-            "ml",
-            "delete_model",
-            "delete_model_group",
-            "delete_task",
-            "deploy_model",
-            "get_task",
-            "register_model",
-            "register_model_group",
-            "undeploy_model"
-        );
+    private static final OperationGroupMatcher OPERATION_MATCHER = or(
+        and(namespace(""), named("info")),
+        namespace("dangling_indices"),
+        and(namespace("ml"), not(named("search_models")))
+    );
 
     public static void main(String[] args) {
         var inputOpt = Option.builder("i")
