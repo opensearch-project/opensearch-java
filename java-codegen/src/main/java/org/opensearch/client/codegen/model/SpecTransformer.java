@@ -484,7 +484,9 @@ public class SpecTransformer {
         if (schema.isString() && schema.getEnums().isEmpty()) {
             return false;
         }
-        if (schema.isObject() && schema.getProperties().map(Map::isEmpty).orElse(true) && schema.getAdditionalProperties().map(s -> s.getTitle().isEmpty()).orElse(false)) {
+        if (schema.isObject()
+            && schema.getProperties().map(Map::isEmpty).orElse(true)
+            && schema.getAdditionalProperties().map(s -> s.getTitle().isEmpty()).orElse(false)) {
             return false;
         }
         if (schema.getOneOf().isPresent()) {

@@ -9,12 +9,22 @@
 package org.opensearch.client.samples.neural;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch.generic.OpenSearchClientException;
+import org.opensearch.client.opensearch._types.Refresh;
+import org.opensearch.client.opensearch._types.query_dsl.NeuralQuery;
+import org.opensearch.client.opensearch._types.query_dsl.Query;
+import org.opensearch.client.opensearch.core.SearchRequest;
+import org.opensearch.client.opensearch.core.bulk.BulkOperation;
+import org.opensearch.client.opensearch.ingest.Processor;
+import org.opensearch.client.opensearch.ingest.PutPipelineRequest;
+import org.opensearch.client.opensearch.ingest.TextEmbeddingProcessor;
 import org.opensearch.client.opensearch.ml.DeleteModelGroupRequest;
 import org.opensearch.client.opensearch.ml.DeleteModelRequest;
 import org.opensearch.client.opensearch.ml.DeleteTaskRequest;
@@ -42,6 +52,8 @@ public class NeuralSearch {
         String modelRegistrationTaskId = null;
         String modelId = null;
         String modelDeployTaskId = null;
+        boolean createdIngestPipeline = false;
+        boolean createdIndex = false;
 
         try {
             client = SampleClient.create();
@@ -102,7 +114,6 @@ public class NeuralSearch {
             }
             LOGGER.info("ML model registered: {}", modelId);
 
-            // TODO: Deploy model
             LOGGER.info("Deploying ML model");
             var modelDeploy = client.ml().deployModel(new DeployModelRequest.Builder().modelId(modelId).build());
             if (!"CREATED".equals(modelDeploy.status())) throw new Exception(
@@ -127,11 +138,108 @@ public class NeuralSearch {
             }
             LOGGER.info("ML model deployed");
 
-            // TODO: Create ingest pipeline
+            LOGGER.info("Creating ingest pipeline: {}", INGEST_PIPELINE_NAME);
+            client.ingest()
+                .putPipeline(
+                    new PutPipelineRequest.Builder().id(INGEST_PIPELINE_NAME)
+                        .description("A test_embedding ingest pipeline for the opensearch-java " + SAMPLE_NAME + " sample")
+                        .processors(
+                            new Processor.Builder().textEmbedding(
+                                new TextEmbeddingProcessor.Builder().modelId(modelId).fieldMap("text", "passageEmbedding").build()
+                            ).build()
+                        )
+                        .build()
+                );
+            createdIngestPipeline = true;
+            LOGGER.info("Created ingest pipeline");
+
+            LOGGER.info("Creating index: {}", INDEX_NAME);
+            client.indices()
+                .create(
+                    i -> i.index(INDEX_NAME)
+                        .settings(s -> s.index(is -> is.knn(true)).defaultPipeline(INGEST_PIPELINE_NAME))
+                        .mappings(
+                            m -> m.properties("id", p -> p.text(t -> t))
+                                .properties("text", p -> p.text(t -> t))
+                                .properties(
+                                    "passageEmbedding",
+                                    p -> p.knnVector(
+                                        kv -> kv.dimension(768).method(kvm -> kvm.engine("lucene").spaceType("l2").name("hnsw"))
+                                    )
+                                )
+                        )
+                );
+            createdIndex = true;
+            LOGGER.info("Created index");
+
+            LOGGER.info("Indexing documents");
+            var documents = new NeuralSearchDoc[] {
+                new NeuralSearchDoc(
+                    "4319130149.jpg",
+                    "A West Virginia university women 's basketball team , officials , and a small gathering of fans are in a West Virginia arena ."
+                ),
+                new NeuralSearchDoc("1775029934.jpg", "A wild animal races across an uncut field with a minimal amount of trees ."),
+                new NeuralSearchDoc(
+                    "2664027527.jpg",
+                    "People line the stands which advertise Freemont 's orthopedics , a cowboy rides a light brown bucking bronco ."
+                ),
+                new NeuralSearchDoc("4427058951.jpg", "A man who is riding a wild horse in the rodeo is very near to falling off ."),
+                new NeuralSearchDoc(
+                    "2691147709.jpg",
+                    "A rodeo cowboy , wearing a cowboy hat , is being thrown off of a wild white horse ."
+                ) };
+            var bulk = client.bulk(
+                b -> b.index(INDEX_NAME)
+                    .operations(
+                        Arrays.stream(documents)
+                            .map(d -> new BulkOperation.Builder().index(i -> i.id(d.getId()).document(d)).build())
+                            .collect(Collectors.toList())
+                    )
+                    .refresh(Refresh.WaitFor)
+            );
+            LOGGER.info("Indexed {} documents", bulk.items().stream().filter(i -> i.error() == null).count());
+
+            LOGGER.info("Performing neural search for text 'wild west'");
+            var search = client.search(
+                new SearchRequest.Builder().index(INDEX_NAME)
+                    .source(sc -> sc.filter(sf -> sf.excludes("passageEmbedding")))
+                    .query(
+                        new Query.Builder().neural(
+                            new NeuralQuery.Builder().field("passageEmbedding").queryText("wild west").modelId(modelId).k(5).build()
+                        ).build()
+                    )
+                    .build(),
+                NeuralSearchDoc.class
+            );
+            LOGGER.info("Found {} documents", search.hits().hits().size());
+            for (var hit : search.hits().hits()) {
+                LOGGER.info(
+                    "- Document id: {}, score: {}, text: {}",
+                    hit.id(),
+                    hit.score(),
+                    Objects.requireNonNull(hit.source()).getText()
+                );
+            }
         } catch (Exception e) {
             LOGGER.error("Unexpected exception", e);
         } finally {
-            // TODO: Delete ingest pipeline
+            LOGGER.info("-- CLEANING UP --");
+
+            if (createdIndex) {
+                try {
+                    LOGGER.info("Deleting index: {}", INDEX_NAME);
+                    client.indices().delete(d -> d.index(INDEX_NAME));
+                    LOGGER.info("Deleted index");
+                } catch (Exception ignored) {}
+            }
+
+            if (createdIngestPipeline) {
+                try {
+                    LOGGER.info("Deleting ingest pipeline: {}", INGEST_PIPELINE_NAME);
+                    client.ingest().deletePipeline(d -> d.id(INGEST_PIPELINE_NAME));
+                    LOGGER.info("Deleted ingest pipeline");
+                } catch (Exception ignored) {}
+            }
 
             if (modelDeployTaskId != null) {
                 try {
@@ -160,7 +268,7 @@ public class NeuralSearch {
                         } catch (Exception ignored) {}
 
                         try {
-                            //noinspection BusyWait
+                            // noinspection BusyWait
                             Thread.sleep(10_000);
                         } catch (InterruptedException ignored) {}
                     } catch (IOException ignored) {}
@@ -183,6 +291,43 @@ public class NeuralSearch {
                     LOGGER.info("Deleted ML model group: {}", groupDeleted.result());
                 } catch (Exception ignored) {}
             }
+        }
+    }
+
+    private static class NeuralSearchDoc {
+        private String id;
+        private String text;
+        private float[] passageEmbedding;
+
+        public NeuralSearchDoc() {}
+
+        public NeuralSearchDoc(String id, String text) {
+            this.id = id;
+            this.text = text;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        public float[] getPassageEmbedding() {
+            return passageEmbedding;
+        }
+
+        public void setPassageEmbedding(float[] passageEmbedding) {
+            this.passageEmbedding = passageEmbedding;
         }
     }
 }
