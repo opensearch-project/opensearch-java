@@ -94,4 +94,8 @@ public abstract class Shape {
         }
         return imports;
     }
+
+    public boolean needsLegacyLicense() {
+        return !"ml".equals(parent.getName());
+    }
 }

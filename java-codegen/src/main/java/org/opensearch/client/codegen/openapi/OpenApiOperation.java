@@ -20,6 +20,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.Deprecation;
 import org.opensearch.client.codegen.model.OperationGroup;
+import org.opensearch.client.codegen.utils.Versions;
+import org.semver4j.Semver;
 
 public class OpenApiOperation extends OpenApiElement<OpenApiOperation> {
     @Nonnull
@@ -43,7 +45,7 @@ public class OpenApiOperation extends OpenApiElement<OpenApiOperation> {
     @Nullable
     private final String versionAdded;
     @Nullable
-    private final String versionDeprecated;
+    private final Semver versionDeprecated;
     @Nullable
     private final String deprecationMessage;
 
@@ -61,7 +63,7 @@ public class OpenApiOperation extends OpenApiElement<OpenApiOperation> {
         this.requestBody = child("requestBody", operation.getRequestBody(), OpenApiRequestBody::new);
         this.responses = child("responses", operation.getResponses(), OpenApiResponses::new);
         this.versionAdded = ifNonnull(extensions.get("x-version-added"), String::valueOf);
-        this.versionDeprecated = ifNonnull(extensions.get("x-version-deprecated"), String::valueOf);
+        this.versionDeprecated = ifNonnull(extensions.get("x-version-deprecated"), v -> Versions.coerce((String) v));
         this.deprecationMessage = ifNonnull(extensions.get("x-deprecation-message"), String::valueOf);
     }
 

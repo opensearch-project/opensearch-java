@@ -30,24 +30,30 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.Result
+
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum Result implements JsonEnum {
     Created("created"),
 
-    Updated("updated"),
-
     Deleted("deleted"),
-
-    NotFound("not_found"),
 
     NoOp("noop"),
 
-    ;
+    NotFound("not_found"),
+
+    Updated("updated");
 
     private final String jsonValue;
 

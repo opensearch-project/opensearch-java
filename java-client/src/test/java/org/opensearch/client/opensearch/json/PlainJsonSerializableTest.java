@@ -23,7 +23,7 @@ public class PlainJsonSerializableTest extends Assert {
     public void testIndexResponse() {
 
         String expectedStringValue =
-            "{\"_id\":\"id\",\"_index\":\"index\",\"_primary_term\":1,\"result\":\"created\",\"_seq_no\":2,\"_shards\":{\"failed\":1.0,\"successful\":1.0,\"total\":3.0,\"failures\":[{\"index\":\"index\",\"node\":\"node\",\"reason\":{\"reason\":\"Failed to create query.\",\"type\":\"query_shard_exception\"},\"shard\":1,\"status\":\"Failed\"}],\"skipped\":1.0},\"_version\":3}";
+            "{\"_id\":\"id\",\"_index\":\"index\",\"_primary_term\":1,\"result\":\"created\",\"_seq_no\":2,\"_shards\":{\"failed\":1,\"failures\":[{\"index\":\"index\",\"node\":\"node\",\"reason\":{\"reason\":\"Failed to create query.\",\"type\":\"query_shard_exception\"},\"shard\":1,\"status\":\"Failed\"}],\"skipped\":1,\"successful\":1,\"total\":3},\"_version\":3}";
         IndexResponse indexResponse = IndexResponse.of(
             response -> response.result(Result.Created)
                 .index("index")

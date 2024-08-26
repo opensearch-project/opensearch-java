@@ -8,7 +8,9 @@
 
 package org.opensearch.client.codegen.utils;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -35,12 +37,22 @@ public final class Strings {
         return str;
     }
 
+    private static final Map<String, String> SPECIAL_CASE_SNAKE_CASE_CONVERSION = new HashMap<>() {
+        {
+            put("noop", "no_op");
+        }
+    };
+
     @Nonnull
     public static String toSnakeCase(@Nonnull String str) {
         Objects.requireNonNull(str, "str must not be null");
         if (str.isEmpty()) {
             return str;
         }
+
+        var specialCase = SPECIAL_CASE_SNAKE_CASE_CONVERSION.get(str);
+        if (specialCase != null) return specialCase;
+
         return str.replaceAll("([A-Z]+)([A-Z][a-z])", "$1_$2")
             .replaceAll("([a-z\\d])([A-Z])", "$1_$2")
             .replaceAll("(\\s|[-:.])", "_")

@@ -24,3 +24,7 @@ After:
 
 ### DanglingIndex creationDateMillis type
 - The type of `DanglingIndex`'s `creationDateMillis` field has been corrected from a `String` to a `long`.
+
+### ShardStatistics properties types
+- The type of the `total`, `successful` and `failed` fields has been corrected from `Number` to `int`.
+- The type of the `skipped` field has been corrected from `Number` to `Integer`.

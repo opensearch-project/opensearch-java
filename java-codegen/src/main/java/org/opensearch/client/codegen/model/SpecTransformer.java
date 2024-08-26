@@ -41,11 +41,12 @@ import org.opensearch.client.codegen.openapi.OpenApiSchemaFormat;
 import org.opensearch.client.codegen.openapi.OpenApiSchemaType;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 import org.opensearch.client.codegen.utils.Lists;
+import org.opensearch.client.codegen.utils.Versions;
 
 public class SpecTransformer {
     private static final Logger LOGGER = LogManager.getLogger();
     @Nonnull
-    private final OperationGroup.Matcher matcher;
+    private final OperationGroupMatcher matcher;
     @Nonnull
     private final Namespace root = new Namespace();
     @Nonnull
@@ -53,7 +54,7 @@ public class SpecTransformer {
     @Nonnull
     private final Map<OpenApiSchema, Type> schemaToType = new ConcurrentHashMap<>();
 
-    public SpecTransformer(@Nonnull OperationGroup.Matcher matcher) {
+    public SpecTransformer(@Nonnull OperationGroupMatcher matcher) {
         this.matcher = Objects.requireNonNull(matcher, "matcher must not be null");
     }
 
@@ -285,14 +286,14 @@ public class SpecTransformer {
         final var required = collectObjectProperties(schema, properties, additionalProperties);
 
         properties.forEach(
-            (k, v) -> { shape.addBodyField(new Field(k, mapType(v), required.contains(k), v.getDescription().orElse(null), null)); }
+            (k, v) -> shape.addBodyField(new Field(k, mapType(v), required.contains(k), v.getDescription().orElse(null), null))
         );
 
         if (!additionalProperties.isEmpty()) {
             var valueSchema = additionalProperties.size() == 1 ? additionalProperties.get(0) : OpenApiSchema.ANONYMOUS_UNTYPED;
             shape.setAdditionalPropertiesField(
                 new Field(
-                    valueSchema.getTitle().orElseThrow(),
+                    valueSchema.getTitle().orElse("metadata"),
                     Types.Java.Util.Map(Types.Java.Lang.String, mapType(valueSchema)),
                     false,
                     valueSchema.getDescription().orElse(null),
@@ -333,17 +334,28 @@ public class SpecTransformer {
             return required;
         }
 
-        schema.getProperties().ifPresent(props -> props.forEach((k, v) -> {
-            var existing = properties.get(k);
+        schema.getProperties().ifPresent(props -> props.forEach((propName, propSchema) -> {
+            var resolvedPropSchema = propSchema.resolve();
+            var isRemoved = propSchema.getVersionRemoved()
+                .or(resolvedPropSchema::getVersionRemoved)
+                .map(ver -> ver.isLowerThanOrEqualTo(Versions.V2_0_0))
+                .orElse(false);
+
+            if (isRemoved) {
+                return;
+            }
+
+            var existing = properties.get(propName);
             if (existing != null) {
                 var existingType = existing.determineSingleType().orElse(null);
-                var newType = v.determineSingleType().orElse(null);
+                var newType = propSchema.determineSingleType().orElse(null);
                 if (existingType != null
                     && (existingType == OpenApiSchemaType.Object || existingType == OpenApiSchemaType.Array || existingType != newType)) {
-                    v = OpenApiSchema.ANONYMOUS_UNTYPED;
+                    propSchema = OpenApiSchema.ANONYMOUS_UNTYPED;
                 }
             }
-            properties.put(k, v);
+
+            properties.put(propName, propSchema);
         }));
 
         schema.getAdditionalProperties().ifPresent(additionalProperties::add);
@@ -470,6 +482,11 @@ public class SpecTransformer {
             return false;
         }
         if (schema.isString() && schema.getEnums().isEmpty()) {
+            return false;
+        }
+        if (schema.isObject()
+            && schema.getProperties().map(Map::isEmpty).orElse(true)
+            && schema.getAdditionalProperties().map(s -> s.getTitle().isEmpty()).orElse(false)) {
             return false;
         }
         if (schema.getOneOf().isPresent()) {
