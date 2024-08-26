@@ -11,14 +11,15 @@ package org.opensearch.client.codegen.model;
 import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.semver4j.Semver;
 
 public class Deprecation {
     @Nullable
     private final String description;
     @Nullable
-    private final String version;
+    private final Semver version;
 
-    public Deprecation(@Nullable String description, @Nullable String version) {
+    public Deprecation(@Nullable String description, @Nullable Semver version) {
         this.description = description;
         this.version = version;
     }
@@ -29,7 +30,7 @@ public class Deprecation {
     }
 
     @Nonnull
-    public Optional<String> getVersion() {
+    public Optional<Semver> getVersion() {
         return Optional.ofNullable(version);
     }
 }

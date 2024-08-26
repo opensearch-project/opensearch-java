@@ -167,6 +167,9 @@ dependencies {
     implementation("org.apache.maven.resolver", "maven-resolver-api", "1.9.20")
     implementation("org.apache.maven.resolver", "maven-resolver-supplier", "1.9.20")
 
+    // MIT
+    implementation("org.semver4j", "semver4j", "5.3.0")
+
     // EPL-2.0
     testImplementation(platform("org.junit:junit-bom:5.10.3"))
     testImplementation("org.junit.jupiter", "junit-jupiter")
