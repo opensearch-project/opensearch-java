@@ -39,7 +39,7 @@ import org.opensearch.client.samples.SampleClient;
  */
 public class NeuralSearch {
     private static final String SAMPLE_NAME = "neural-search";
-    private static final String RESOURCE_NAME_PREFIX = "csharp-" + SAMPLE_NAME;
+    private static final String RESOURCE_NAME_PREFIX = "java-" + SAMPLE_NAME;
     private static final String ML_MODEL_GROUP_NAME = RESOURCE_NAME_PREFIX + "-model-group";
     private static final String INGEST_PIPELINE_NAME = RESOURCE_NAME_PREFIX + "-ingest-pipeline";
     private static final String INDEX_NAME = RESOURCE_NAME_PREFIX + "-index";
