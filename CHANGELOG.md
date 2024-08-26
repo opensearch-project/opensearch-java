@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bumps `commons-logging:commons-logging` from 1.3.3 to 1.3.4
+- Bumps `io.github.classgraph:classgraph` from 4.8.174 to 4.8.175
 
 ### Changed
 
