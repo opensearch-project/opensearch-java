@@ -126,6 +126,7 @@ import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndic
 import org.opensearch.client.opensearch.features.OpenSearchFeaturesAsyncClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesAsyncClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestAsyncClient;
+import org.opensearch.client.opensearch.ml.OpenSearchMlAsyncClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesAsyncClient;
 import org.opensearch.client.opensearch.shutdown.OpenSearchShutdownAsyncClient;
 import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotAsyncClient;
@@ -179,6 +180,10 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchTransport, OpenSe
 
     public OpenSearchIngestAsyncClient ingest() {
         return new OpenSearchIngestAsyncClient(this.transport, this.transportOptions);
+    }
+
+    public OpenSearchMlAsyncClient ml() {
+        return new OpenSearchMlAsyncClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchNodesAsyncClient nodes() {

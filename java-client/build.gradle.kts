@@ -84,6 +84,14 @@ java {
     }
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir("src/generated/java")
+        }
+    }
+}
+
 tasks.withType<ProcessResources> {
     expand(
         "version" to version,
@@ -185,6 +193,10 @@ dependencies {
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // http://json-b.net/
     implementation("jakarta.json.bind", "jakarta.json.bind-api", "2.0.0")
+
+    // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+    // https://projects.eclipse.org/projects/ee4j.ca
+    implementation("jakarta.annotation", "jakarta.annotation-api", "1.3.5")
 
     // Apache 2.0
 
