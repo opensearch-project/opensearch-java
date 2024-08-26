@@ -38,7 +38,7 @@ public class CodeGenerator {
     private static final OperationGroupMatcher OPERATION_MATCHER = or(
         and(namespace(""), named("info")),
         namespace("dangling_indices"),
-        and(namespace("ml"), not(named("search_models")))
+        and(namespace("ml"), not(named("search_models"))) // TODO: search_models is complex and ideally should re-use the search structures
     );
 
     public static void main(String[] args) {
