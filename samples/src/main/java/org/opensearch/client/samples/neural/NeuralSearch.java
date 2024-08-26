@@ -8,16 +8,20 @@
 
 package org.opensearch.client.samples.neural;
 
+import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchClient;
+import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch.generic.OpenSearchClientException;
 import org.opensearch.client.opensearch.ml.DeleteModelGroupRequest;
 import org.opensearch.client.opensearch.ml.DeleteModelRequest;
 import org.opensearch.client.opensearch.ml.DeleteTaskRequest;
 import org.opensearch.client.opensearch.ml.DeployModelRequest;
 import org.opensearch.client.opensearch.ml.GetTaskRequest;
 import org.opensearch.client.opensearch.ml.RegisterModelRequest;
+import org.opensearch.client.opensearch.ml.UndeployModelRequest;
 import org.opensearch.client.samples.SampleClient;
 
 /**
@@ -100,11 +104,9 @@ public class NeuralSearch {
 
             // TODO: Deploy model
             LOGGER.info("Deploying ML model");
-            var modelDeploy = client.ml().deployModel(new DeployModelRequest.Builder()
-                                                              .modelId(modelId)
-                                                              .build());
+            var modelDeploy = client.ml().deployModel(new DeployModelRequest.Builder().modelId(modelId).build());
             if (!"CREATED".equals(modelDeploy.status())) throw new Exception(
-                    "Expected ML model deploy task to be CREATED, was: " + modelDeploy.status()
+                "Expected ML model deploy task to be CREATED, was: " + modelDeploy.status()
             );
             modelDeployTaskId = modelDeploy.taskId();
             LOGGER.info("ML model deploy task: {}", modelDeployTaskId);
@@ -126,25 +128,50 @@ public class NeuralSearch {
             LOGGER.info("ML model deployed");
 
             // TODO: Create ingest pipeline
-
         } catch (Exception e) {
             LOGGER.error("Unexpected exception", e);
         } finally {
-            // TODO: Undeploy model
+            // TODO: Delete ingest pipeline
+
+            if (modelDeployTaskId != null) {
+                try {
+                    LOGGER.info("Deleting ML model deploy task: {}", modelDeployTaskId);
+                    var taskDeleted = client.ml().deleteTask(new DeleteTaskRequest.Builder().taskId(modelDeployTaskId).build());
+                    LOGGER.info("Deleted ML model deploy task: {}", taskDeleted.result());
+                } catch (Exception ignored) {}
+            }
 
             if (modelId != null) {
-                try {
-                    LOGGER.info("Deleting ML model: {}", modelId);
-                    var modelDeleted = client.ml().deleteModel(new DeleteModelRequest.Builder().modelId(modelId).build());
-                    LOGGER.info("Deleted ML model: {}", modelDeleted.result());
-                } catch (Exception ignored) {}
+                while (true) {
+                    try {
+                        LOGGER.info("Deleting ML model: {}", modelId);
+                        var modelDeleted = client.ml().deleteModel(new DeleteModelRequest.Builder().modelId(modelId).build());
+                        LOGGER.info("Deleted ML model: {}", modelDeleted.result());
+                        break;
+                    } catch (OpenSearchException ex) {
+                        var reason = ex.error() != null ? ex.error().reason() : null;
+
+                        if (reason == null || !reason.contains("Try undeploy")) break;
+
+                        try {
+                            LOGGER.info("Un-deploying ML model: {}", modelId);
+                            client.ml().undeployModel(new UndeployModelRequest.Builder().modelId(modelId).build());
+                            LOGGER.info("Un-deployed ML model");
+                        } catch (Exception ignored) {}
+
+                        try {
+                            //noinspection BusyWait
+                            Thread.sleep(10_000);
+                        } catch (InterruptedException ignored) {}
+                    } catch (IOException ignored) {}
+                }
             }
 
             if (modelRegistrationTaskId != null) {
                 try {
                     LOGGER.info("Deleting ML model registration task: {}", modelRegistrationTaskId);
-                    var groupDeleted = client.ml().deleteTask(new DeleteTaskRequest.Builder().taskId(modelRegistrationTaskId).build());
-                    LOGGER.info("Deleted ML model registration task: {}", groupDeleted.result());
+                    var taskDeleted = client.ml().deleteTask(new DeleteTaskRequest.Builder().taskId(modelRegistrationTaskId).build());
+                    LOGGER.info("Deleted ML model registration task: {}", taskDeleted.result());
                 } catch (Exception ignored) {}
             }
 

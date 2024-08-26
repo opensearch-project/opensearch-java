@@ -44,7 +44,8 @@ public class CodeGenerator {
             "deploy_model",
             "get_task",
             "register_model",
-            "register_model_group"
+            "register_model_group",
+            "undeploy_model"
         );
 
     public static void main(String[] args) {

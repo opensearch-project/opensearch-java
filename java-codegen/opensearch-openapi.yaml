@@ -46361,18 +46361,19 @@ components:
           type: string
       required:
         - state
-    ml._common:UndeployModelResponse:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/ml._common:UndeployModelResponseModels'
-    ml._common:UndeployModelResponseModels:
+    ml._common:UndeployModelNode:
       type: object
       properties:
         stats:
-          $ref: '#/components/schemas/ml._common:UndeployModelResponseStats'
-    ml._common:UndeployModelResponseStats:
+          $ref: '#/components/schemas/ml._common:UndeployModelNodeStats'
+    ml._common:UndeployModelNodeStats:
       type: object
       additionalProperties: true
+    ml._common:UndeployModelResponse:
+      type: object
+      additionalProperties:
+        title: nodes
+        $ref: '#/components/schemas/ml._common:UndeployModelNode'
     nodes._common:AdaptiveSelection:
       type: object
       properties:

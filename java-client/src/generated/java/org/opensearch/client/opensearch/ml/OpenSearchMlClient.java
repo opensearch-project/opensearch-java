@@ -218,4 +218,29 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
     ) throws IOException, OpenSearchException {
         return registerModelGroup(fn.apply(new RegisterModelGroupRequest.Builder()).build());
     }
+
+    // ----- Endpoint: ml.undeploy_model
+
+    /**
+     * Undeploys a model.
+     */
+    public UndeployModelResponse undeployModel(UndeployModelRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<UndeployModelRequest, UndeployModelResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            UndeployModelRequest,
+            UndeployModelResponse,
+            ErrorResponse>) UndeployModelRequest._ENDPOINT;
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Undeploys a model.
+     *
+     * @param fn a function that initializes a builder to create the {@link UndeployModelRequest}
+     */
+    public final UndeployModelResponse undeployModel(Function<UndeployModelRequest.Builder, ObjectBuilder<UndeployModelRequest>> fn)
+        throws IOException, OpenSearchException {
+        return undeployModel(fn.apply(new UndeployModelRequest.Builder()).build());
+    }
 }
