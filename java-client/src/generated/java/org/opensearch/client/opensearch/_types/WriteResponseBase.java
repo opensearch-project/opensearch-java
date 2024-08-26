@@ -30,10 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -45,7 +50,12 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.WriteResponseBase
 
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class WriteResponseBase implements PlainJsonSerializable {
+
+    @Nullable
+    private final Boolean forcedRefresh;
+
     private final String id;
 
     private final String index;
@@ -60,13 +70,10 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
 
     private final long version;
 
-    @Nullable
-    private final Boolean forcedRefresh;
-
     // ---------------------------------------------------------------------------------------------
 
     protected WriteResponseBase(AbstractBuilder<?> builder) {
-
+        this.forcedRefresh = builder.forcedRefresh;
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.primaryTerm = ApiTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
@@ -74,8 +81,14 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         this.seqNo = ApiTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
         this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
         this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
-        this.forcedRefresh = builder.forcedRefresh;
+    }
 
+    /**
+     * API name: {@code forced_refresh}
+     */
+    @Nullable
+    public final Boolean forcedRefresh() {
+        return this.forcedRefresh;
     }
 
     /**
@@ -128,16 +141,9 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
     }
 
     /**
-     * API name: {@code forced_refresh}
-     */
-    @Nullable
-    public final Boolean forcedRefresh() {
-        return this.forcedRefresh;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -145,6 +151,10 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.forcedRefresh != null) {
+            generator.writeKey("forced_refresh");
+            generator.write(this.forcedRefresh);
+        }
 
         generator.writeKey("_id");
         generator.write(this.id);
@@ -157,6 +167,7 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
 
         generator.writeKey("result");
         this.result.serialize(generator, mapper);
+
         generator.writeKey("_seq_no");
         generator.write(this.seqNo);
 
@@ -165,32 +176,28 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
 
         generator.writeKey("_version");
         generator.write(this.version);
-
-        if (this.forcedRefresh != null) {
-            generator.writeKey("forced_refresh");
-            generator.write(this.forcedRefresh);
-
-        }
-
     }
 
+    // ---------------------------------------------------------------------------------------------
+
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
-        private String id;
-
-        private String index;
-
-        private Long primaryTerm;
-
-        private Result result;
-
-        private Long seqNo;
-
-        private ShardStatistics shards;
-
-        private Long version;
-
         @Nullable
         private Boolean forcedRefresh;
+        private String id;
+        private String index;
+        private Long primaryTerm;
+        private Result result;
+        private Long seqNo;
+        private ShardStatistics shards;
+        private Long version;
+
+        /**
+         * API name: {@code forced_refresh}
+         */
+        public final BuilderT forcedRefresh(@Nullable Boolean value) {
+            this.forcedRefresh = value;
+            return self();
+        }
 
         /**
          * Required - API name: {@code _id}
@@ -244,7 +251,7 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
          * Required - API name: {@code _shards}
          */
         public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-            return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+            return shards(fn.apply(new ShardStatistics.Builder()).build());
         }
 
         /**
@@ -255,21 +262,12 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
             return self();
         }
 
-        /**
-         * API name: {@code forced_refresh}
-         */
-        public final BuilderT forcedRefresh(@Nullable Boolean value) {
-            this.forcedRefresh = value;
-            return self();
-        }
-
         protected abstract BuilderT self();
-
     }
-
     // ---------------------------------------------------------------------------------------------
-    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWriteResponseBaseDeserializer(ObjectDeserializer<BuilderT> op) {
 
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWriteResponseBaseDeserializer(ObjectDeserializer<BuilderT> op) {
+        op.add(AbstractBuilder::forcedRefresh, JsonpDeserializer.booleanDeserializer(), "forced_refresh");
         op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "_id");
         op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "_index");
         op.add(AbstractBuilder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
@@ -277,8 +275,5 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         op.add(AbstractBuilder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
         op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
         op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "_version");
-        op.add(AbstractBuilder::forcedRefresh, JsonpDeserializer.booleanDeserializer(), "forced_refresh");
-
     }
-
 }

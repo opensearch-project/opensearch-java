@@ -136,6 +136,12 @@ public class RequestShape extends ObjectShape {
         return pathParams.values();
     }
 
+    @Override
+    public void addBodyField(Field field) {
+        super.addBodyField(field);
+        addField(field);
+    }
+
     private void addField(Field field) {
         fields.put(field.getName(), field);
     }

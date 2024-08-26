@@ -57,7 +57,7 @@ public class TypedKeysTest extends ModelTestCase {
             .timedOut(false)
             .build();
 
-        String json = "{\"took\":1,\"timed_out\":false,\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0},"
+        String json = "{\"took\":1,\"timed_out\":false,\"_shards\":{\"failed\":0,\"successful\":1,\"total\":1},"
             + "\"hits\":{\"total\":{\"relation\":\"eq\",\"value\":0},\"hits\":[]},\"aggregations\":{\"avg#foo\":{\"value\":3.14}}}";
 
         assertEquals(json, toJson(resp));
@@ -95,7 +95,7 @@ public class TypedKeysTest extends ModelTestCase {
             .timedOut(false)
             .build();
 
-        String json = "{\"took\":1,\"timed_out\":false,\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0},"
+        String json = "{\"took\":1,\"timed_out\":false,\"_shards\":{\"failed\":0,\"successful\":1,\"total\":1},"
             + "\"hits\":{\"total\":{\"relation\":\"eq\",\"value\":0},\"hits\":[]},"
             + "\"aggregations\":{\"sterms#foo\":{\"buckets\":["
             + "{\"avg#bar\":{\"value\":1.0},\"doc_count\":1,\"key\":\"key_1\"},"

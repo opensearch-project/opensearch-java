@@ -43,6 +43,7 @@ import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesClient;
+import org.opensearch.client.opensearch.ml.OpenSearchMlClient;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 
@@ -68,6 +69,10 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
 
     public OpenSearchDanglingIndicesClient danglingIndices() {
         return new OpenSearchDanglingIndicesClient(this.transport, this.transportOptions);
+    }
+
+    public OpenSearchMlClient ml() {
+        return new OpenSearchMlClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: info

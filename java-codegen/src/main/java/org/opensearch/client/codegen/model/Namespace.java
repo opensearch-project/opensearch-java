@@ -47,10 +47,11 @@ public class Namespace {
     }
 
     public String getPackageName() {
-        return parent != null ? parent.getPackageName() + "." + getPackageNamePart() : "org.opensearch.client.opensearch";
+        return parent != null ? parent.getPackageName() + "." + getName() : "org.opensearch.client.opensearch";
     }
 
-    private String getPackageNamePart() {
+    @Nonnull
+    public String getName() {
         return name;
     }
 
@@ -70,7 +71,7 @@ public class Namespace {
 
     public void render(ShapeRenderingContext ctx) throws RenderException {
         for (Namespace child : children.values()) {
-            child.render(ctx.forSubDir(child.getPackageNamePart()));
+            child.render(ctx.forSubDir(child.getName()));
         }
 
         for (Shape shape : shapes) {
