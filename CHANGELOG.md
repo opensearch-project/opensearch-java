@@ -8,8 +8,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.eclipse.parsson:parsson` from 1.1.6 to 1.1.7
 - Bumps `org.hamcrest:hamcrest` from 2.2 to 3.0
 - Bumps `com.github.jk1.dependency-license-report` from 2.8 to 2.9
-- Bumps `io.github.classgraph:classgraph` from 4.8.174 to 4.8.175
-- Bumps `commons-logging:commons-logging` from 1.3.3 to 1.3.4
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
@@ -37,9 +35,6 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ## [Unreleased 2.x]
 
 ### Added
-- Added `queryImage` (query_image) field to `NeuralQuery`, following definition in ([Neural Query](https://opensearch.org/docs/latest/query-dsl/specialized/neural/)) ([#1137](https://github.com/opensearch-project/opensearch-java/pull/1138))
-- Added `cancelAfterTimeInterval` to `SearchRequest` and `MsearchRequest` ([#1147](https://github.com/opensearch-project/opensearch-java/pull/1147))
-- Added the `ml` namespace operations ([#1158](https://github.com/opensearch-project/opensearch-java/pull/1158))
 
 ### Dependencies
 
@@ -50,9 +45,21 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
-- Fixed handling of NodeInfo fields that are not returned by Amazon OpenSearch Service ([#1132](https://github.com/opensearch-project/opensearch-java/pull/1132))
 
 ### Security
+
+## [2.14.0] - 08/27/2024
+### Added
+- Added `queryImage` (query_image) field to `NeuralQuery`, following definition in ([Neural Query](https://opensearch.org/docs/latest/query-dsl/specialized/neural/)) ([#1137](https://github.com/opensearch-project/opensearch-java/pull/1138))
+- Added `cancelAfterTimeInterval` to `SearchRequest` and `MsearchRequest` ([#1147](https://github.com/opensearch-project/opensearch-java/pull/1147))
+- Added the `ml` namespace operations ([#1158](https://github.com/opensearch-project/opensearch-java/pull/1158))
+
+### Dependencies
+- Bumps `commons-logging:commons-logging` from 1.3.3 to 1.3.4
+- Bumps `io.github.classgraph:classgraph` from 4.8.174 to 4.8.175
+
+### Fixed
+- Fixed handling of NodeInfo fields that are not returned by Amazon OpenSearch Service ([#1132](https://github.com/opensearch-project/opensearch-java/pull/1132))
 
 ## [2.13.0] - 08/01/2024
 ### Added
@@ -513,7 +520,9 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.12.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.14.0...2.x
+[2.14.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.13.0...v2.14.0
+[2.13.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.12.0...v2.13.0
 [2.12.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.11.1...v2.12.0
 [2.11.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.11.0...v2.11.1
 [2.11.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.4...v2.11.0
