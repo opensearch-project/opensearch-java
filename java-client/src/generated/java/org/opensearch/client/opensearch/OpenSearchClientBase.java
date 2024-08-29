@@ -37,14 +37,14 @@
 package org.opensearch.client.opensearch;
 
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
+import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
-import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesAsyncClient;
-import org.opensearch.client.opensearch.ml.OpenSearchMlAsyncClient;
+import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesClient;
+import org.opensearch.client.opensearch.ml.OpenSearchMlClient;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 
@@ -52,28 +52,19 @@ import org.opensearch.client.transport.TransportOptions;
  * Client for the namespace.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchAsyncClient> {
-    public OpenSearchAsyncClient(OpenSearchTransport transport) {
-        super(transport, null);
-    }
-
-    public OpenSearchAsyncClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Self>> extends ApiClient<OpenSearchTransport, Self> {
+    public OpenSearchClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
-    }
-
-    @Override
-    public OpenSearchAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
-        return new OpenSearchAsyncClient(this.transport, transportOptions);
     }
 
     // ----- Child clients
 
-    public OpenSearchDanglingIndicesAsyncClient danglingIndices() {
-        return new OpenSearchDanglingIndicesAsyncClient(this.transport, this.transportOptions);
+    public OpenSearchDanglingIndicesClient danglingIndices() {
+        return new OpenSearchDanglingIndicesClient(this.transport, this.transportOptions);
     }
 
-    public OpenSearchMlAsyncClient ml() {
-        return new OpenSearchMlAsyncClient(this.transport, this.transportOptions);
+    public OpenSearchMlClient ml() {
+        return new OpenSearchMlClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: info
@@ -81,7 +72,7 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
     /**
      * Returns basic information about the cluster.
      */
-    public CompletableFuture<InfoResponse> info() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
+    public InfoResponse info() throws IOException, OpenSearchException {
+        return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
     }
 }

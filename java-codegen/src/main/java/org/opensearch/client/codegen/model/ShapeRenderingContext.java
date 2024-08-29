@@ -12,10 +12,12 @@ import java.io.File;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import org.opensearch.client.codegen.renderer.JavaCodeFormatter;
 import org.opensearch.client.codegen.renderer.TemplateLoader;
 import org.opensearch.client.codegen.renderer.TemplateRenderer;
 import org.opensearch.client.codegen.renderer.TemplateValueFormatter;
+import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.Strings;
 
 public final class ShapeRenderingContext implements AutoCloseable {
@@ -71,11 +73,20 @@ public final class ShapeRenderingContext implements AutoCloseable {
         return new Builder();
     }
 
-    public static final class Builder {
+    public static final class Builder extends ObjectBuilderBase<ShapeRenderingContext, Builder> {
         private File outputDir;
         private TemplateLoader templateLoader;
         private JavaCodeFormatter javaCodeFormatter;
         private boolean ownedJavaCodeFormatter;
+
+        private Builder() {
+            super(ShapeRenderingContext::new);
+        }
+
+        @Override
+        protected @NotNull Builder self() {
+            return this;
+        }
 
         @Nonnull
         public Builder withOutputDir(@Nonnull File outputDir) {
@@ -117,11 +128,6 @@ public final class ShapeRenderingContext implements AutoCloseable {
                 Objects.requireNonNull(configurator, "configurator must not be null").apply(JavaCodeFormatter.builder()).build(),
                 true
             );
-        }
-
-        @Nonnull
-        public ShapeRenderingContext build() {
-            return new ShapeRenderingContext(this);
         }
     }
 }

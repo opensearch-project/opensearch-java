@@ -61,6 +61,10 @@ public abstract class Shape {
         return Collections.emptyList();
     }
 
+    public TypeParameterDiamond getTypeParameters() {
+        return null;
+    }
+
     public Type getExtendsType() {
         return null;
     }
@@ -70,7 +74,7 @@ public abstract class Shape {
     }
 
     public Type getType() {
-        return Type.builder().pkg(getPackageName()).name(className).build();
+        return Type.builder().withPackage(getPackageName()).withName(className).build();
     }
 
     public Namespace getParent() {

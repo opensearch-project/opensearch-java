@@ -12,12 +12,15 @@ import static org.opensearch.client.codegen.model.Types.Client;
 import static org.opensearch.client.codegen.model.Types.Java;
 
 import com.samskivert.mustache.Mustache;
-import java.util.Arrays;
 import java.util.Set;
-import java.util.stream.Collectors;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.opensearch.client.codegen.renderer.lambdas.TypeIsDefinedLambda;
 import org.opensearch.client.codegen.renderer.lambdas.TypeQueryParamifyLambda;
 import org.opensearch.client.codegen.renderer.lambdas.TypeSerializerLambda;
+import org.opensearch.client.codegen.utils.ObjectBuilderBase;
+import org.opensearch.client.codegen.utils.Strings;
 
 public class Type {
     private static final Set<String> PRIMITIVES = Set.of(
@@ -44,37 +47,41 @@ public class Type {
         return new Builder();
     }
 
-    private final String pkg;
+    @Nullable
+    private final String package_;
+    @Nonnull
     private final String name;
+    @Nullable
     private final Type[] typeParams;
     private final boolean isEnum;
 
     private Type(Builder builder) {
-        this.pkg = builder.pkg;
-        this.name = builder.name;
+        this.package_ = builder.package_;
+        this.name = Strings.requireNonBlank(builder.name, "name must not be blank");
         this.typeParams = builder.typeParams;
         this.isEnum = builder.isEnum;
     }
 
     public Builder toBuilder() {
-        return new Builder().pkg(pkg).name(name).typeParams(typeParams).isEnum(isEnum);
+        return new Builder().withPackage(package_).withName(name).withTypeParameters(typeParams).isEnum(isEnum);
     }
 
     @Override
     public String toString() {
-        String str = name;
-        if (typeParams != null && typeParams.length > 0) {
-            str += "<";
-            str += Arrays.stream(typeParams).map(Type::toString).collect(Collectors.joining(", "));
-            str += ">";
+        var out = new StringBuilder();
+        out.append(name);
+        if (typeParams != null) {
+            TypeParameterDiamond.builder().withParams(typeParams).build().toString(out);
         }
-        return str;
+        return out.toString();
     }
 
+    @Nonnull
     public String getName() {
         return name;
     }
 
+    @Nonnull
     public Type getBoxed() {
         switch (name) {
             case "char":
@@ -171,7 +178,7 @@ public class Type {
     }
 
     public Type getNestedType(String name) {
-        return builder().pkg(pkg).name(this.name + "." + name).build();
+        return builder().withPackage(package_).withName(this.name + "." + name).build();
     }
 
     public Mustache.Lambda serializer() {
@@ -183,9 +190,9 @@ public class Type {
     }
 
     public void getRequiredImports(Set<String> imports, String currentPkg) {
-        if (pkg != null && !pkg.equals(Java.Lang.PACKAGE) && !pkg.equals(currentPkg)) {
+        if (package_ != null && !package_.equals(Java.Lang.PACKAGE) && !package_.equals(currentPkg)) {
             var dotIdx = name.indexOf('.');
-            imports.add(pkg + '.' + (dotIdx > 0 ? name.substring(0, dotIdx) : name));
+            imports.add(package_ + '.' + (dotIdx > 0 ? name.substring(0, dotIdx) : name));
         }
         if (typeParams != null) {
             for (Type arg : typeParams) {
@@ -195,7 +202,7 @@ public class Type {
     }
 
     public Type withTypeParams(Type... typeParams) {
-        return toBuilder().typeParams(typeParams).build();
+        return toBuilder().withTypeParameters(typeParams).build();
     }
 
     public Mustache.Lambda queryParamify() {
@@ -206,34 +213,43 @@ public class Type {
         return new TypeIsDefinedLambda(this);
     }
 
-    public static final class Builder {
-        private String pkg;
+    public static final class Builder extends ObjectBuilderBase<Type, Builder> {
+        private String package_;
         private String name;
         private Type[] typeParams;
         private boolean isEnum;
 
-        public Builder pkg(String pkg) {
-            this.pkg = pkg;
+        private Builder() {
+            super(Type::new);
+        }
+
+        @Override
+        protected @NonNull Builder self() {
             return this;
         }
 
-        public Builder name(String name) {
-            this.name = name;
+        @Nonnull
+        public Builder withPackage(@Nullable String package_) {
+            this.package_ = package_;
             return this;
         }
 
-        public Builder typeParams(Type... typeParams) {
+        @Nonnull
+        public Builder withName(@Nonnull String name) {
+            this.name = Strings.requireNonBlank(name, "name must not be blank");
+            return this;
+        }
+
+        @Nonnull
+        public Builder withTypeParameters(@Nullable Type... typeParams) {
             this.typeParams = typeParams;
             return this;
         }
 
+        @Nonnull
         public Builder isEnum(boolean isEnum) {
             this.isEnum = isEnum;
             return this;
-        }
-
-        public Type build() {
-            return new Type(this);
         }
     }
 }
