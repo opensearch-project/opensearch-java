@@ -12,7 +12,6 @@ import java.io.File;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
-import org.jetbrains.annotations.NotNull;
 import org.opensearch.client.codegen.renderer.JavaCodeFormatter;
 import org.opensearch.client.codegen.renderer.TemplateLoader;
 import org.opensearch.client.codegen.renderer.TemplateRenderer;
@@ -84,7 +83,7 @@ public final class ShapeRenderingContext implements AutoCloseable {
         }
 
         @Override
-        protected @NotNull Builder self() {
+        protected @Nonnull Builder self() {
             return this;
         }
 

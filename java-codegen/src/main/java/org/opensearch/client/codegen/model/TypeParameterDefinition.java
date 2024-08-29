@@ -10,7 +10,6 @@ package org.opensearch.client.codegen.model;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.jetbrains.annotations.NotNull;
 import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.Strings;
 
@@ -18,11 +17,11 @@ public final class TypeParameterDefinition {
     @Nonnull
     private final String name;
     @Nullable
-    private final Type extends_;
+    private final Type extendsType;
 
     private TypeParameterDefinition(Builder builder) {
         this.name = Strings.requireNonBlank(builder.name, "name must not be blank");
-        this.extends_ = builder.extends_;
+        this.extendsType = builder.extendsType;
     }
 
     @Nonnull
@@ -32,12 +31,12 @@ public final class TypeParameterDefinition {
 
     @Nullable
     public Type getExtends() {
-        return extends_;
+        return extendsType;
     }
 
     @Override
     public String toString() {
-        return name + (extends_ != null ? " extends " + extends_ : "");
+        return name + (extendsType != null ? " extends " + extendsType : "");
     }
 
     public static Builder builder() {
@@ -46,14 +45,14 @@ public final class TypeParameterDefinition {
 
     public static final class Builder extends ObjectBuilderBase<TypeParameterDefinition, Builder> {
         private String name;
-        private Type extends_;
+        private Type extendsType;
 
         private Builder() {
             super(TypeParameterDefinition::new);
         }
 
         @Override
-        protected @NotNull Builder self() {
+        protected @Nonnull Builder self() {
             return this;
         }
 
@@ -65,7 +64,7 @@ public final class TypeParameterDefinition {
 
         @Nonnull
         public Builder withExtends(@Nullable Type type) {
-            this.extends_ = type;
+            this.extendsType = type;
             return this;
         }
     }

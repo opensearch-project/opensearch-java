@@ -15,7 +15,6 @@ import com.samskivert.mustache.Mustache;
 import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.opensearch.client.codegen.renderer.lambdas.TypeIsDefinedLambda;
 import org.opensearch.client.codegen.renderer.lambdas.TypeQueryParamifyLambda;
 import org.opensearch.client.codegen.renderer.lambdas.TypeSerializerLambda;
@@ -48,7 +47,7 @@ public class Type {
     }
 
     @Nullable
-    private final String package_;
+    private final String packageName;
     @Nonnull
     private final String name;
     @Nullable
@@ -56,14 +55,14 @@ public class Type {
     private final boolean isEnum;
 
     private Type(Builder builder) {
-        this.package_ = builder.package_;
+        this.packageName = builder.packageName;
         this.name = Strings.requireNonBlank(builder.name, "name must not be blank");
         this.typeParams = builder.typeParams;
         this.isEnum = builder.isEnum;
     }
 
     public Builder toBuilder() {
-        return new Builder().withPackage(package_).withName(name).withTypeParameters(typeParams).isEnum(isEnum);
+        return new Builder().withPackage(packageName).withName(name).withTypeParameters(typeParams).isEnum(isEnum);
     }
 
     @Override
@@ -178,7 +177,7 @@ public class Type {
     }
 
     public Type getNestedType(String name) {
-        return builder().withPackage(package_).withName(this.name + "." + name).build();
+        return builder().withPackage(packageName).withName(this.name + "." + name).build();
     }
 
     public Mustache.Lambda serializer() {
@@ -190,9 +189,9 @@ public class Type {
     }
 
     public void getRequiredImports(Set<String> imports, String currentPkg) {
-        if (package_ != null && !package_.equals(Java.Lang.PACKAGE) && !package_.equals(currentPkg)) {
+        if (packageName != null && !packageName.equals(Java.Lang.PACKAGE) && !packageName.equals(currentPkg)) {
             var dotIdx = name.indexOf('.');
-            imports.add(package_ + '.' + (dotIdx > 0 ? name.substring(0, dotIdx) : name));
+            imports.add(packageName + '.' + (dotIdx > 0 ? name.substring(0, dotIdx) : name));
         }
         if (typeParams != null) {
             for (Type arg : typeParams) {
@@ -214,7 +213,7 @@ public class Type {
     }
 
     public static final class Builder extends ObjectBuilderBase<Type, Builder> {
-        private String package_;
+        private String packageName;
         private String name;
         private Type[] typeParams;
         private boolean isEnum;
@@ -224,13 +223,13 @@ public class Type {
         }
 
         @Override
-        protected @NonNull Builder self() {
+        protected @Nonnull Builder self() {
             return this;
         }
 
         @Nonnull
-        public Builder withPackage(@Nullable String package_) {
-            this.package_ = package_;
+        public Builder withPackage(@Nullable String packageName) {
+            this.packageName = packageName;
             return this;
         }
 

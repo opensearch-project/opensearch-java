@@ -21,7 +21,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.jetbrains.annotations.NotNull;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.ObjectBuilderBase;
@@ -360,7 +359,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         }
 
         @Override
-        protected @NotNull Builder self() {
+        protected @Nonnull Builder self() {
             return this;
         }
 
