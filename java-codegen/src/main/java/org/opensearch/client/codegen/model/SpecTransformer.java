@@ -107,7 +107,7 @@ public class SpecTransformer {
             .map(OpenApiSchema::resolve)
             .orElse(OpenApiSchema.ANONYMOUS_OBJECT);
 
-        visit(parent, requestShape.getResponseType(), group + ".Response", responseSchema);
+        visit(parent, requestShape.getResponseType().getName(), group + ".Response", responseSchema);
     }
 
     @Nonnull

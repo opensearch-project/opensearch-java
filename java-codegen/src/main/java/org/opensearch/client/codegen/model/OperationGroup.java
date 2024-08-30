@@ -36,7 +36,7 @@ public class OperationGroup {
         return new OperationGroup(operationGroup.substring(0, index), operationGroup.substring(index + 1));
     }
 
-    private OperationGroup(@Nullable String namespace, @Nonnull String name) {
+    public OperationGroup(@Nullable String namespace, @Nonnull String name) {
         this.namespace = namespace;
         this.name = Strings.requireNonBlank(name, "name must not be blank");
     }
@@ -49,6 +49,11 @@ public class OperationGroup {
     @Nonnull
     public String getName() {
         return name;
+    }
+
+    @Nonnull
+    public String asTypedefPrefix() {
+        return (namespace == null ? "_global" : namespace) + "." + name;
     }
 
     @Override

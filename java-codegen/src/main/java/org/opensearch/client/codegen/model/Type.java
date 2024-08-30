@@ -70,6 +70,10 @@ public class Type {
         return str;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Type getBoxed() {
         switch (name) {
             case "char":
