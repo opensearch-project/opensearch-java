@@ -78,7 +78,7 @@ public class RequestShape extends ObjectShape {
     }
 
     public Type getResponseType() {
-        return Type.builder().pkg(getPackageName()).name(responseClassName(operationGroup)).build();
+        return Type.builder().withPackage(getPackageName()).withName(responseClassName(operationGroup)).build();
     }
 
     public boolean canBeSingleton() {

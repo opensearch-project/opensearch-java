@@ -17,6 +17,7 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Nonnull;
 import org.apache.commons.io.IOUtils;
+import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.Strings;
 
 public final class TemplateLoader implements Mustache.TemplateLoader {
@@ -57,8 +58,17 @@ public final class TemplateLoader implements Mustache.TemplateLoader {
         return new Builder();
     }
 
-    public static final class Builder {
+    public static final class Builder extends ObjectBuilderBase<TemplateLoader, Builder> {
         private String templatesResourceSubPath;
+
+        private Builder() {
+            super(TemplateLoader::new);
+        }
+
+        @Override
+        protected @Nonnull Builder self() {
+            return this;
+        }
 
         @Nonnull
         public Builder withTemplatesResourceSubPath(@Nonnull String templatesResourceSubPath) {
@@ -71,11 +81,6 @@ public final class TemplateLoader implements Mustache.TemplateLoader {
             }
             this.templatesResourceSubPath = templatesResourceSubPath;
             return this;
-        }
-
-        @Nonnull
-        public TemplateLoader build() {
-            return new TemplateLoader(this);
         }
     }
 }
