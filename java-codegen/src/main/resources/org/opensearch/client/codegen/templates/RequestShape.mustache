@@ -1,4 +1,13 @@
 {{>ObjectShape/ClassDeclaration}} {
+    {{#canBeSingleton}}
+    public {{className}}() {}
+
+    /**
+     * Singleton instance for {@link {{className}}}.
+     */
+    public static final {{className}} _INSTANCE = new {{className}}();
+    {{/canBeSingleton}}
+    {{^canBeSingleton}}
     {{>ObjectShape/Fields}}
 
     // ---------------------------------------------------------------------------------------------
@@ -19,6 +28,7 @@
     // ---------------------------------------------------------------------------------------------
 
     {{>ObjectShape/Deserialize}}{{/hasRequestBody}}
+    {{/canBeSingleton}}
 
     // ---------------------------------------------------------------------------------------------
 
@@ -29,11 +39,21 @@
             // Request method
             request -> {{#quoted}}{{httpMethod}}{{/quoted}},
             // Request path
-            request -> {
+            request ->
                 {{#hasSinglePath}}
-                    {{#firstPath}}{{>RequestShape/HttpPathBuilder}}{{/firstPath}}
+                {{#firstPath}}
+                {{#hasParams}}
+                {
+                    {{>RequestShape/HttpPathBuilder}}
+                }
+                {{/hasParams}}
+                {{^hasParams}}
+                    {{#quoted}}{{this}}{{/quoted}}
+                {{/hasParams}}
+                {{/firstPath}}
                 {{/hasSinglePath}}
                 {{^hasSinglePath}}
+                {
                     {{#indexedPathParams}}
                     final int _{{left}} = 1 << {{right}};
                     {{/indexedPathParams}}
@@ -51,8 +71,8 @@
                     {{/httpPaths}}
 
                     throw {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.noPathTemplateFound("path");
-                {{/hasSinglePath}}
-            },
+                }
+                {{/hasSinglePath}},
             // Request parameters
             {{#hasQueryParams}}
             request -> {
