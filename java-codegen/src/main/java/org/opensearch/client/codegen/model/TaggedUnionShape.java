@@ -16,8 +16,8 @@ import org.opensearch.client.codegen.utils.Lists;
 public class TaggedUnionShape extends ObjectShape {
     private final List<Variant> variants = new ArrayList<>();
 
-    public TaggedUnionShape(Namespace parent, String className, String typedefName) {
-        super(parent, className, typedefName);
+    public TaggedUnionShape(Namespace parent, String className, String typedefName, String description) {
+        super(parent, className, typedefName, description);
     }
 
     public void addVariant(String name, Type type) {
