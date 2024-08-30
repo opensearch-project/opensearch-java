@@ -26,19 +26,27 @@
 
     {{#fields}}
         {{#type.isMap}}
-        {{>ObjectShape/FieldDoc/Basic}}
+        {{>ObjectShape/FieldDoc/MapAddAll}}
         {{#deprecation}}@Deprecated{{/deprecation}}
         public final Builder{{#abstract}}T{{/abstract}} {{name}}({{type}} map) {
             this.{{name}} = _mapPutAll(this.{{name}}, map);
             return {{^abstract}}this{{/abstract}}{{#abstract}}self(){{/abstract}};
         }
 
-        {{>ObjectShape/FieldDoc/Basic}}
+        {{>ObjectShape/FieldDoc/MapAdd}}
         {{#deprecation}}@Deprecated{{/deprecation}}
         public final Builder{{#abstract}}T{{/abstract}} {{name}}({{type.mapKeyType}} key, {{type.mapValueType}} value) {
             this.{{name}} = _mapPut(this.{{name}}, key, value);
             return {{^abstract}}this{{/abstract}}{{#abstract}}self(){{/abstract}};
         }
+        {{#type.mapValueType.hasBuilder}}
+
+        {{>ObjectShape/FieldDoc/MapAddBuilderFn}}
+        {{#deprecation}}@Deprecated{{/deprecation}}
+        public final Builder{{#abstract}}T{{/abstract}} {{name}}(String key, {{type.mapValueType.builderFnType}} fn) {
+            return {{name}}(key, fn.apply(new {{type.mapValueType.builderType}}()).build());
+        }
+        {{/type.mapValueType.hasBuilder}}
         {{/type.isMap}}
         {{#type.isList}}
         {{>ObjectShape/FieldDoc/ListAddAll}}

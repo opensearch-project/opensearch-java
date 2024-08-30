@@ -31,7 +31,8 @@ public abstract class TemplateRenderingLambda implements Mustache.Lambda {
         var renderer = TemplateFragmentUtils.findParentContext(fragment, TemplateGlobalContext.class).orElseThrow().getRenderer();
 
         try {
-            renderer.render(templateName, getContext(fragment), out);
+            var content = renderer.render(templateName, getContext(fragment));
+            out.write(content.strip());
         } catch (RenderException e) {
             throw new RuntimeException(e);
         }
