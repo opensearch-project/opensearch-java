@@ -36,10 +36,6 @@ import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final OperationGroupMatcher OPERATION_MATCHER = none();
-//    private static final OperationGroupMatcher OPERATION_MATCHER = or(
-//        and(namespace(""), named("info")),
-//        and(namespace("ml"), not(named("search_models"))) // TODO: search_models is complex and ideally should re-use the search structures
-//    );
 
     public static void main(String[] args) {
         var inputOpt = Option.builder("i")
