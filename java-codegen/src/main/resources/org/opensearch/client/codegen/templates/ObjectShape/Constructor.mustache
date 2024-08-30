@@ -1,0 +1,34 @@
+{{^abstract}}
+    private {{className}}(Builder builder) {
+{{/abstract}}
+{{#abstract}}
+    protected {{className}}(AbstractBuilder<?> builder) {
+{{/abstract}}
+{{#extendsOtherShape}}
+        super(builder);
+{{/extendsOtherShape}}
+{{#fields}}
+{{#type.isListOrMap}}
+    {{#required}}
+        this.{{name}} = {{TYPES.Client.Util.ApiTypeHelper}}.unmodifiableRequired(builder.{{name}}, this, {{#quoted}}{{name}}{{/quoted}});
+    {{/required}}
+    {{^required}}
+        this.{{name}} = {{TYPES.Client.Util.ApiTypeHelper}}.unmodifiable(builder.{{name}});
+    {{/required}}
+{{/type.isListOrMap}}
+{{^type.isListOrMap}}
+    {{#required}}
+        this.{{name}} = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder.{{name}}, this, {{#quoted}}{{name}}{{/quoted}});
+    {{/required}}
+    {{^required}}
+        this.{{name}} = builder.{{name}};
+    {{/required}}
+{{/type.isListOrMap}}
+{{/fields}}
+    }
+{{^abstract}}
+
+    public static {{className}} of({{type.builderFnType}} fn) {
+        return fn.apply(new Builder()).build();
+    }
+{{/abstract}}

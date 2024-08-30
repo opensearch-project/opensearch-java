@@ -1,0 +1,99 @@
+{{>Partials/ClassDeclaration}} {
+    {{#canBeSingleton}}
+    public {{className}}() {}
+
+    /**
+     * Singleton instance for {@link {{className}}}.
+     */
+    public static final {{className}} _INSTANCE = new {{className}}();
+    {{/canBeSingleton}}
+    {{^canBeSingleton}}
+    {{>ObjectShape/Fields}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Constructor}}
+
+    {{>ObjectShape/Getters}}
+
+    {{#hasRequestBody}}
+    {{>ObjectShape/Serialize}}
+    {{/hasRequestBody}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Builder}}
+    {{#hasRequestBody}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Deserialize}}{{/hasRequestBody}}
+    {{/canBeSingleton}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Endpoint "{@code {{operationGroup}}}".
+     */
+    public static final {{TYPES.Client.Transport.Endpoint}}<{{className}}, {{responseType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}> _ENDPOINT = new {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}<>(
+            // Request method
+            request -> {{#quoted}}{{httpMethod}}{{/quoted}},
+            // Request path
+            request ->
+                {{#hasSinglePath}}
+                {{#firstPath}}
+                {{#hasParams}}
+                {
+                    {{>RequestShape/HttpPathBuilder}}
+                }
+                {{/hasParams}}
+                {{^hasParams}}
+                    {{#quoted}}{{this}}{{/quoted}}
+                {{/hasParams}}
+                {{/firstPath}}
+                {{/hasSinglePath}}
+                {{^hasSinglePath}}
+                {
+                    {{#indexedPathParams}}
+                    final int _{{left}} = 1 << {{right}};
+                    {{/indexedPathParams}}
+
+                    int propsSet = 0;
+
+                    {{#pathParams}}
+                    {{^required}}if ({{#type.isDefined}}request.{{name}}(){{/type.isDefined}}) {{/required}}propsSet |= _{{name}};
+                    {{/pathParams}}
+
+                    {{#httpPaths}}
+                    if (propsSet == {{#hasParams}}({{#params}}{{^-first}} | {{/-first}}_{{name}}{{/params}}){{/hasParams}}{{^hasParams}}0{{/hasParams}}) {
+                        {{>RequestShape/HttpPathBuilder}}
+                    }
+                    {{/httpPaths}}
+
+                    throw {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.noPathTemplateFound("path");
+                }
+                {{/hasSinglePath}},
+            // Request parameters
+            {{#hasQueryParams}}
+            request -> {
+                {{TYPES.Java.Util.Map}}<String, String> params = new {{TYPES.Java.Util.HashMap}}<>();
+            {{#queryParams}}
+            {{^required}}
+                if ({{#type.isDefined}}request.{{name}}{{/type.isDefined}}) {
+            {{/required}}
+                    params.put({{#quoted}}{{wireName}}{{/quoted}}, {{#type.queryParamify}}request.{{name}}{{/type.queryParamify}});
+            {{^required}}
+                }
+            {{/required}}
+            {{/queryParams}}
+                return params;
+            },
+            {{/hasQueryParams}}
+            {{^hasQueryParams}}
+            {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.emptyMap(),
+            {{/hasQueryParams}}
+            {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.emptyMap(),
+            {{hasRequestBody}},
+            {{responseType}}._DESERIALIZER
+    );
+}

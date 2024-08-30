@@ -1,0 +1,22 @@
+{{>Partials/ClassDeclaration}} {
+    {{>ObjectShape/Fields}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Constructor}}
+
+    {{>ObjectShape/Getters}}
+
+{{#hasFieldsToSerialize}}
+    {{>ObjectShape/Serialize}}
+
+{{/hasFieldsToSerialize}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Builder}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Deserialize}}
+}

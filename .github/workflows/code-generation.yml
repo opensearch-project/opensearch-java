@@ -1,0 +1,89 @@
+name: Code Generation
+
+on:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 1' # 00:00 UTC Weekly on Mondays
+
+jobs:
+  up_to_date:
+    name: Ensure Generated Code Is Up To Date
+    # if: github.event_name == 'pull_request'
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Java Client
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Run Code Generator
+        run: ./gradlew :java-codegen:run
+
+      - name: Check For Uncommitted Changes
+        shell: bash -eo pipefail {0}
+        run: |
+          output=$(git status --porcelain)
+          if [ -z "$output" ]; then
+            echo "Clean working directory"
+            exit 0
+          else
+            echo "Dirty working directory"
+            echo "$output"
+            exit 1
+          fi
+
+
+  update_spec:
+    name: Update Specification and Re-generate Code
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && github.repository == 'opensearch-project/opensearch-java')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout Java Client
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Download Latest Spec && Run Code Generator
+        run: ./gradlew :java-codegen:downloadLatestSpec :java-codegen:run
+
+      - name: Get Current Date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+      - name: Generate GitHub App Token
+        if: github.repository == 'opensearch-project/opensearch-java'
+        id: github_app_token
+        uses: tibdex/github-app-token@v1.5.0
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+          installation_id: 22958780
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ steps.github_app_token.outputs.token || secrets.GITHUB_TOKEN }}
+          commit-message: Re-generate client code using latest OpenSearch API specification (${{ steps.date.outputs.date }})
+          title: Re-generated client code using latest OpenSearch API specification
+          body: |
+            Re-generated client code using latest OpenSearch API specification.
+            Date: ${{ steps.date.outputs.date }}
+          branch: code-gen/${{ github.ref_name }}/update
+          signoff: true
+          labels: |
+            autocut

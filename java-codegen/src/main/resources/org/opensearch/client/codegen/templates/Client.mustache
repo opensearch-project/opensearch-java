@@ -1,0 +1,72 @@
+{{>Partials/ClassDeclaration}} {
+{{^base}}
+    public {{className}}({{TYPES.Client.Transport.OpenSearchTransport}} transport) {
+        super(transport, null);
+    }
+
+{{/base}}
+    public {{className}}({{TYPES.Client.Transport.OpenSearchTransport}} transport, @{{TYPES.Javax.Annotation.Nullable}} {{TYPES.Client.Transport.TransportOptions}} transportOptions) {
+        super(transport, transportOptions);
+    }
+{{^base}}
+
+    @Override
+    public {{className}} withTransportOptions(@{{TYPES.Javax.Annotation.Nullable}} {{TYPES.Client.Transport.TransportOptions}} transportOptions) {
+        return new {{className}}(this.transport, transportOptions);
+    }
+{{/base}}
+{{#children}}
+    {{#-first}}
+
+    // ----- Child clients
+    {{/-first}}
+
+    public {{type}} {{#camelCase}}{{name}}{{/camelCase}}() {
+        return new {{type}}(this.transport, this.transportOptions);
+    }
+{{/children}}
+{{#operations}}
+
+    // ----- Endpoint: {{operationGroup}}
+
+    {{#canBeSingleton}}
+    /**
+     * {{description}}
+     */
+    public {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}() throws {{TYPES.Java.Io.IOException}}, {{TYPES.Client.OpenSearch._Types.OpenSearchException}} {
+        return this.transport.performRequest{{#async}}Async{{/async}}({{type}}._INSTANCE, {{type}}._ENDPOINT, this.transportOptions);
+    }
+    {{/canBeSingleton}}
+    {{^canBeSingleton}}
+    /**
+     * {{description}}
+     */
+    public {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{type}} request) throws {{TYPES.Java.Io.IOException}}, {{TYPES.Client.OpenSearch._Types.OpenSearchException}} {
+        @SuppressWarnings("unchecked")
+        {{jsonEndpointType}} endpoint = ({{jsonEndpointType}}) {{type.name}}._ENDPOINT;
+
+        return this.transport.performRequest{{#async}}Async{{/async}}(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * {{description}}
+     *
+     * @param fn a function that initializes a builder to create the {@link {{type}}}
+     */
+    public final {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{type.builderFnType}} fn)
+            throws IOException, OpenSearchException {
+        return {{#camelCase}}{{id}}{{/camelCase}}(fn.apply(new {{type.builderType}}()).build());
+    }
+    {{^hasAnyRequiredFields}}
+
+    /**
+     * {{description}}
+     */
+    public {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}()
+            throws IOException, OpenSearchException {
+        return this.transport.performRequest{{#async}}Async{{/async}}(new {{type.builderType}}().build(), {{type.name}}._ENDPOINT, this.transportOptions);
+    }
+    {{/hasAnyRequiredFields}}
+    {{/canBeSingleton}}
+{{/operations}}
+}

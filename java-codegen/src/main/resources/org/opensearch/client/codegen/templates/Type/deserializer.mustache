@@ -1,0 +1,14 @@
+{{#isPrimitive}}
+    {{TYPES.Client.Json.JsonpDeserializer}}.{{#toLower}}{{boxed.name}}{{/toLower}}Deserializer()
+{{/isPrimitive}}
+{{^isPrimitive}}
+    {{#isList}}
+        {{TYPES.Client.Json.JsonpDeserializer}}.arrayDeserializer({{#listValueType}}{{>Type/deserializer}}{{/listValueType}})
+    {{/isList}}
+    {{#isMap}}
+        {{TYPES.Client.Json.JsonpDeserializer}}.stringMapDeserializer({{#mapValueType}}{{>Type/deserializer}}{{/mapValueType}})
+    {{/isMap}}
+    {{^isListOrMap}}
+        {{name}}._DESERIALIZER
+    {{/isListOrMap}}
+{{/isPrimitive}}

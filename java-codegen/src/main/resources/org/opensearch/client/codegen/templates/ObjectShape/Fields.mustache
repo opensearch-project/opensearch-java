@@ -1,0 +1,12 @@
+{{#fields}}
+{{^-first}}
+
+{{/-first}}
+    {{#deprecation}}@Deprecated{{/deprecation}}
+{{^required}}
+{{^type.isListOrMap}}
+    @{{TYPES.Javax.Annotation.Nullable}}
+{{/type.isListOrMap}}
+{{/required}}
+    private final {{type}} {{name}};
+{{/fields}}
