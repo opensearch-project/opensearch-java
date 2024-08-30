@@ -1,16 +1,20 @@
 {{>Partials/ClassDeclaration}} {
+{{^base}}
     public {{className}}({{TYPES.Client.Transport.OpenSearchTransport}} transport) {
         super(transport, null);
     }
 
+{{/base}}
     public {{className}}({{TYPES.Client.Transport.OpenSearchTransport}} transport, @{{TYPES.Javax.Annotation.Nullable}} {{TYPES.Client.Transport.TransportOptions}} transportOptions) {
         super(transport, transportOptions);
     }
+{{^base}}
 
     @Override
     public {{className}} withTransportOptions(@{{TYPES.Javax.Annotation.Nullable}} {{TYPES.Client.Transport.TransportOptions}} transportOptions) {
         return new {{className}}(this.transport, transportOptions);
     }
+{{/base}}
 {{#children}}
     {{#-first}}
 

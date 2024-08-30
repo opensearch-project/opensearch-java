@@ -387,8 +387,8 @@ public class SpecTransformer {
             visit(schema);
 
             return Type.builder()
-                .pkg(Types.Client.OpenSearch.PACKAGE + "." + schema.getNamespace().orElseThrow())
-                .name(schema.getName().orElseThrow())
+                .withPackage(Types.Client.OpenSearch.PACKAGE + "." + schema.getNamespace().orElseThrow())
+                .withName(schema.getName().orElseThrow())
                 .isEnum(schema.hasEnums())
                 .build();
         }
