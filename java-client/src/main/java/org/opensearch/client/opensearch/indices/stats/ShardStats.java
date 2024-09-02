@@ -33,33 +33,14 @@
 package org.opensearch.client.opensearch.indices.stats;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonpDeserializable;
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.ObjectBuilderDeserializer;
-import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch._types.BulkStats;
-import org.opensearch.client.opensearch._types.CompletionStats;
-import org.opensearch.client.opensearch._types.DocStats;
-import org.opensearch.client.opensearch._types.FielddataStats;
-import org.opensearch.client.opensearch._types.FlushStats;
-import org.opensearch.client.opensearch._types.GetStats;
-import org.opensearch.client.opensearch._types.IndexingStats;
-import org.opensearch.client.opensearch._types.MergesStats;
-import org.opensearch.client.opensearch._types.RecoveryStats;
-import org.opensearch.client.opensearch._types.RefreshStats;
-import org.opensearch.client.opensearch._types.RequestCacheStats;
-import org.opensearch.client.opensearch._types.SearchStats;
-import org.opensearch.client.opensearch._types.SegmentsStats;
-import org.opensearch.client.opensearch._types.StoreStats;
-import org.opensearch.client.opensearch._types.TranslogStats;
-import org.opensearch.client.opensearch._types.WarmerStats;
+import org.opensearch.client.json.*;
+import org.opensearch.client.opensearch._types.*;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+
+import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: indices.stats.ShardStats
 
@@ -110,6 +91,7 @@ public class ShardStats implements PlainJsonSerializable {
     @Nullable
     private final BulkStats bulk;
 
+    @Nullable
     private final ShardsTotalStats shards;
 
     // ---------------------------------------------------------------------------------------------
@@ -302,8 +284,9 @@ public class ShardStats implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code shards}
+     * API name: {@code shards}
      */
+    @Nullable
     public final ShardsTotalStats shards() {
         return this.shards;
     }
@@ -387,9 +370,10 @@ public class ShardStats implements PlainJsonSerializable {
             this.bulk.serialize(generator, mapper);
 
         }
-        generator.writeKey("shards");
-        this.shards.serialize(generator, mapper);
-
+        if (this.shards != null) {
+            generator.writeKey("shards");
+            this.shards.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -444,6 +428,7 @@ public class ShardStats implements PlainJsonSerializable {
         @Nullable
         private BulkStats bulk;
 
+        @Nullable
         private ShardsTotalStats shards;
 
         /**
@@ -777,7 +762,7 @@ public class ShardStats implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code shards}
+         * API name: {@code shards}
          */
         public final Builder shards(ShardsTotalStats value) {
             this.shards = value;
@@ -785,7 +770,7 @@ public class ShardStats implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code shards}
+         * API name: {@code shards}
          */
         public final Builder shards(Function<ShardsTotalStats.Builder, ObjectBuilder<ShardsTotalStats>> fn) {
             return this.shards(fn.apply(new ShardsTotalStats.Builder()).build());
