@@ -321,6 +321,16 @@ spotless {
 
         trimTrailingWhitespace()
         endWithNewline()
+
+        val wildcardImportRegex = Regex("""^import\s+(?:static\s+)?[^*\s]+\.\*;$""", RegexOption.MULTILINE)
+        custom("Refuse wildcard imports") { contents ->
+            // Wildcard imports can't be resolved by spotless itself.
+            // This will require the developer themselves to adhere to best practices.
+            if (wildcardImportRegex.containsMatchIn(contents)) {
+                throw AssertionError("Do not use wildcard imports.  'spotlessApply' cannot resolve this issue.")
+            }
+            contents
+        }
     }
 }
 
