@@ -354,13 +354,12 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         @Nullable
         private Semver versionRemoved;
 
-        private Builder() {
-            super(OpenApiSchema::new);
-        }
+        private Builder() {}
 
+        @Nonnull
         @Override
-        protected @Nonnull Builder self() {
-            return this;
+        protected OpenApiSchema construct() {
+            return new OpenApiSchema(this);
         }
 
         @Nonnull

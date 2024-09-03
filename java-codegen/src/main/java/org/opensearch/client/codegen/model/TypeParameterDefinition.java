@@ -47,13 +47,12 @@ public final class TypeParameterDefinition {
         private String name;
         private Type extendsType;
 
-        private Builder() {
-            super(TypeParameterDefinition::new);
-        }
+        private Builder() {}
 
+        @Nonnull
         @Override
-        protected @Nonnull Builder self() {
-            return this;
+        protected TypeParameterDefinition construct() {
+            return new TypeParameterDefinition(this);
         }
 
         @Nonnull

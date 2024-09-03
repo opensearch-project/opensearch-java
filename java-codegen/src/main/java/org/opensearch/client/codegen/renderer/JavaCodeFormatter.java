@@ -80,13 +80,12 @@ public class JavaCodeFormatter implements AutoCloseable {
         private Path rootDir;
         private File eclipseFormatterConfig;
 
-        private Builder() {
-            super(JavaCodeFormatter::new);
-        }
+        private Builder() {}
 
+        @Nonnull
         @Override
-        protected @Nonnull Builder self() {
-            return this;
+        protected JavaCodeFormatter construct() {
+            return new JavaCodeFormatter(this);
         }
 
         @Nonnull

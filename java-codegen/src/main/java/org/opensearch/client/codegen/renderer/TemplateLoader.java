@@ -61,13 +61,12 @@ public final class TemplateLoader implements Mustache.TemplateLoader {
     public static final class Builder extends ObjectBuilderBase<TemplateLoader, Builder> {
         private String templatesResourceSubPath;
 
-        private Builder() {
-            super(TemplateLoader::new);
-        }
+        private Builder() {}
 
+        @Nonnull
         @Override
-        protected @Nonnull Builder self() {
-            return this;
+        protected TemplateLoader construct() {
+            return new TemplateLoader(this);
         }
 
         @Nonnull
