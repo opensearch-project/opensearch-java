@@ -8,6 +8,8 @@
 
 package org.opensearch.client.opensearch.json;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -34,9 +36,9 @@ public class PlainDeserializableTest {
         List<String> expectedIndexPatterns = Arrays.asList("index_pattern1");
         String expectedNumberOfShards = "2";
 
-        assert expectedName.equals(indexTemplateRequest.name());
-        assert expectedIndexPatterns.equals(indexTemplateRequest.indexPatterns());
-        assert expectedNumberOfShards.equals(indexTemplateRequest.template().settings().numberOfShards());
+        assertEquals(indexTemplateRequest.name(), expectedName);
+        assertEquals(expectedIndexPatterns, indexTemplateRequest.indexPatterns());
+        assertEquals(expectedNumberOfShards, indexTemplateRequest.template().settings().numberOfShards());
 
     }
 }

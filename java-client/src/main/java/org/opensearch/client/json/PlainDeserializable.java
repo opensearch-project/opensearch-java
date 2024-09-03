@@ -38,8 +38,9 @@ public interface PlainDeserializable<B> {
       * **/
     default B withJson(InputStream inputStream) {
         JsonpMapper defaultMapper = JsonpUtils.DEFAULT_JSONP_MAPPER;
-        JsonParser parser = defaultMapper.jsonProvider().createParser(inputStream);
-        return withJson(parser, defaultMapper);
+        try (JsonParser parser = defaultMapper.jsonProvider().createParser(inputStream)) {
+            return withJson(parser, defaultMapper);
+        }
     }
 
     /** Updates object with newly provided JSON properties
@@ -48,8 +49,9 @@ public interface PlainDeserializable<B> {
       * **/
     default B withJson(Reader reader) {
         JsonpMapper defaultMapper = JsonpUtils.DEFAULT_JSONP_MAPPER;
-        JsonParser parser = defaultMapper.jsonProvider().createParser(reader);
-        return withJson(parser, defaultMapper);
+        try (JsonParser parser = defaultMapper.jsonProvider().createParser(reader)) {
+            return withJson(parser, defaultMapper);
+        }
     }
 
 }
