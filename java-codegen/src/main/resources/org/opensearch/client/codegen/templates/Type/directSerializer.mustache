@@ -11,7 +11,12 @@
 {{/type.isList}}
 {{^type.isListOrMap}}
     {{#type.isPrimitive}}
-        generator.write({{value}});
+        {{#type.isNumber}}
+            generator.write({{value}}.doubleValue());
+        {{/type.isNumber}}
+        {{^type.isNumber}}
+            generator.write({{value}});
+        {{/type.isNumber}}
     {{/type.isPrimitive}}
     {{^type.isPrimitive}}
         {{value}}.serialize(generator, mapper);

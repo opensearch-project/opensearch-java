@@ -264,6 +264,14 @@ spotless {
         target("**/*.java")
 
         licenseHeaderFile("../LICENSE_HEADER.txt")
+            .named("PrimaryLicenseHeader")
+            .onlyIfContentMatches("^((?!Licensed to Elasticsearch)[\\s\\S])*$")
+            .delimiter("(package |//-----)")
+
+        licenseHeaderFile("../LICENSE_HEADER_FORKED.txt")
+            .named("ForkedLicenseHeader")
+            .onlyIfContentMatches("Licensed to Elasticsearch")
+            .delimiter("(package |//-----)")
 
         // Use the default importOrder configuration
         importOrder()

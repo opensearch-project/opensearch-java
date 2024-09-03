@@ -31,11 +31,14 @@ import org.opensearch.client.codegen.model.Namespace;
 import org.opensearch.client.codegen.model.OperationGroupMatcher;
 import org.opensearch.client.codegen.model.ShapeRenderingContext;
 import org.opensearch.client.codegen.model.SpecTransformer;
+import org.opensearch.client.codegen.model.overrides.Overrides;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 
 public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final OperationGroupMatcher OPERATION_MATCHER = none();
+    private static final OperationGroupMatcher OPERATION_MATCHER = or(
+        and(namespace("ml"), not(named("search_models"))) // TODO: search_models is complex and ideally should re-use the search structures
+    );
 
     public static void main(String[] args) {
         var inputOpt = Option.builder("i")
@@ -113,7 +116,7 @@ public class CodeGenerator {
 
     private static Namespace parseSpec(URI location) throws ApiSpecificationParseException {
         var spec = OpenApiSpecification.retrieve(location);
-        var transformer = new SpecTransformer(OPERATION_MATCHER);
+        var transformer = new SpecTransformer(OPERATION_MATCHER, Overrides.OVERRIDES);
         transformer.visit(spec);
         return transformer.getRoot();
     }

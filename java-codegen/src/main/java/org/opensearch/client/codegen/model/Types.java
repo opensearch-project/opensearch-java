@@ -67,6 +67,7 @@ public final class Types {
             public static final Type Float = Type.builder().withPackage(PACKAGE).withName("Float").build();
             public static final Type Double = Type.builder().withPackage(PACKAGE).withName("Double").build();
             public static final Type Object = Type.builder().withPackage(PACKAGE).withName("Object").build();
+            public static final Type Number = Type.builder().withPackage(PACKAGE).withName("Number").build();
         }
 
         public static final class Util {

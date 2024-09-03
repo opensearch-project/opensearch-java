@@ -30,11 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -49,31 +54,31 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _types.ShardStatistics
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardStatistics implements PlainJsonSerializable {
+
     private final Number failed;
-
-    private final Number successful;
-
-    private final Number total;
 
     private final List<ShardFailure> failures;
 
     @Nullable
     private final Number skipped;
 
+    private final Number successful;
+
+    private final Number total;
+
     // ---------------------------------------------------------------------------------------------
 
     private ShardStatistics(Builder builder) {
-
         this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
-        this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
         this.failures = ApiTypeHelper.unmodifiable(builder.failures);
         this.skipped = builder.skipped;
-
+        this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
+        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
     }
 
-    public static ShardStatistics of(Function<Builder, ObjectBuilder<ShardStatistics>> fn) {
+    public static ShardStatistics of(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -82,20 +87,6 @@ public class ShardStatistics implements PlainJsonSerializable {
      */
     public final Number failed() {
         return this.failed;
-    }
-
-    /**
-     * Required - API name: {@code successful}
-     */
-    public final Number successful() {
-        return this.successful;
-    }
-
-    /**
-     * Required - API name: {@code total}
-     */
-    public final Number total() {
-        return this.total;
     }
 
     /**
@@ -114,8 +105,23 @@ public class ShardStatistics implements PlainJsonSerializable {
     }
 
     /**
+     * Required - API name: {@code successful}
+     */
+    public final Number successful() {
+        return this.successful;
+    }
+
+    /**
+     * Required - API name: {@code total}
+     */
+    public final Number total() {
+        return this.total;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -123,32 +129,28 @@ public class ShardStatistics implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("failed");
         generator.write(this.failed.doubleValue());
-
-        generator.writeKey("successful");
-        generator.write(this.successful.doubleValue());
-
-        generator.writeKey("total");
-        generator.write(this.total.doubleValue());
 
         if (ApiTypeHelper.isDefined(this.failures)) {
             generator.writeKey("failures");
             generator.writeStartArray();
             for (ShardFailure item0 : this.failures) {
                 item0.serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
+
         if (this.skipped != null) {
             generator.writeKey("skipped");
             generator.write(this.skipped.doubleValue());
-
         }
 
+        generator.writeKey("successful");
+        generator.write(this.successful.doubleValue());
+
+        generator.writeKey("total");
+        generator.write(this.total.doubleValue());
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -156,25 +158,63 @@ public class ShardStatistics implements PlainJsonSerializable {
     /**
      * Builder for {@link ShardStatistics}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStatistics> {
         private Number failed;
-
-        private Number successful;
-
-        private Number total;
-
         @Nullable
         private List<ShardFailure> failures;
-
         @Nullable
         private Number skipped;
+        private Number successful;
+        private Number total;
 
         /**
          * Required - API name: {@code failed}
          */
         public final Builder failed(Number value) {
             this.failed = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code failures}
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>failures</code>.
+         * </p>
+         */
+        public final Builder failures(List<ShardFailure> list) {
+            this.failures = _listAddAll(this.failures, list);
+            return this;
+        }
+
+        /**
+         * API name: {@code failures}
+         *
+         * <p>
+         * Adds one or more values to <code>failures</code>.
+         * </p>
+         */
+        public final Builder failures(ShardFailure value, ShardFailure... values) {
+            this.failures = _listAdd(this.failures, value, values);
+            return this;
+        }
+
+        /**
+         * API name: {@code failures}
+         *
+         * <p>
+         * Adds a value to <code>failures</code> using a builder lambda.
+         * </p>
+         */
+        public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
+            return failures(fn.apply(new ShardFailure.Builder()).build());
+        }
+
+        /**
+         * API name: {@code skipped}
+         */
+        public final Builder skipped(@Nullable Number value) {
+            this.skipped = value;
             return this;
         }
 
@@ -195,47 +235,9 @@ public class ShardStatistics implements PlainJsonSerializable {
         }
 
         /**
-         * API name: {@code failures}
-         * <p>
-         * Adds all elements of <code>list</code> to <code>failures</code>.
-         */
-        public final Builder failures(List<ShardFailure> list) {
-            this.failures = _listAddAll(this.failures, list);
-            return this;
-        }
-
-        /**
-         * API name: {@code failures}
-         * <p>
-         * Adds one or more values to <code>failures</code>.
-         */
-        public final Builder failures(ShardFailure value, ShardFailure... values) {
-            this.failures = _listAdd(this.failures, value, values);
-            return this;
-        }
-
-        /**
-         * API name: {@code failures}
-         * <p>
-         * Adds a value to <code>failures</code> using a builder lambda.
-         */
-        public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
-            return failures(fn.apply(new ShardFailure.Builder()).build());
-        }
-
-        /**
-         * API name: {@code skipped}
-         */
-        public final Builder skipped(@Nullable Number value) {
-            this.skipped = value;
-            return this;
-        }
-
-        /**
          * Builds a {@link ShardStatistics}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public ShardStatistics build() {
             _checkSingleUse();
@@ -243,7 +245,6 @@ public class ShardStatistics implements PlainJsonSerializable {
             return new ShardStatistics(this);
         }
     }
-
     // ---------------------------------------------------------------------------------------------
 
     /**
@@ -255,13 +256,10 @@ public class ShardStatistics implements PlainJsonSerializable {
     );
 
     protected static void setupShardStatisticsDeserializer(ObjectDeserializer<ShardStatistics.Builder> op) {
-
         op.add(Builder::failed, JsonpDeserializer.numberDeserializer(), "failed");
-        op.add(Builder::successful, JsonpDeserializer.numberDeserializer(), "successful");
-        op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
         op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure._DESERIALIZER), "failures");
         op.add(Builder::skipped, JsonpDeserializer.numberDeserializer(), "skipped");
-
+        op.add(Builder::successful, JsonpDeserializer.numberDeserializer(), "successful");
+        op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
     }
-
 }

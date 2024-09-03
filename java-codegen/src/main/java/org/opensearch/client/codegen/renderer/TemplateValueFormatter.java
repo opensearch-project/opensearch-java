@@ -54,13 +54,12 @@ public final class TemplateValueFormatter implements Mustache.Formatter {
     public static final class Builder extends ObjectBuilderBase<TemplateValueFormatter, Builder> {
         private final Map<Class<?>, Formatter<?>> formatters = new HashMap<>();
 
-        private Builder() {
-            super(TemplateValueFormatter::new);
-        }
+        private Builder() {}
 
+        @Nonnull
         @Override
-        protected @Nonnull Builder self() {
-            return this;
+        protected TemplateValueFormatter construct() {
+            return new TemplateValueFormatter(this);
         }
 
         @Nonnull

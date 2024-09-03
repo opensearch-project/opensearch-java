@@ -25,6 +25,8 @@ import javax.annotation.Nonnull;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.opensearch.client.codegen.model.overrides.Overrides;
+import org.opensearch.client.codegen.model.overrides.PropertyOverride;
 import org.opensearch.client.codegen.openapi.HttpStatusCode;
 import org.opensearch.client.codegen.openapi.In;
 import org.opensearch.client.codegen.openapi.JsonPointer;
@@ -48,14 +50,17 @@ public class SpecTransformer {
     @Nonnull
     private final OperationGroupMatcher matcher;
     @Nonnull
+    private final Overrides overrides;
+    @Nonnull
     private final Namespace root = new Namespace();
     @Nonnull
     private final Set<OpenApiSchema> visitedSchemas = new HashSet<>();
     @Nonnull
     private final Map<OpenApiSchema, Type> schemaToType = new ConcurrentHashMap<>();
 
-    public SpecTransformer(@Nonnull OperationGroupMatcher matcher) {
+    public SpecTransformer(@Nonnull OperationGroupMatcher matcher, @Nonnull Overrides overrides) {
         this.matcher = Objects.requireNonNull(matcher, "matcher must not be null");
+        this.overrides = Objects.requireNonNull(overrides, "overrides must not be null");
     }
 
     @Nonnull
@@ -285,9 +290,12 @@ public class SpecTransformer {
         final var additionalProperties = new ArrayList<OpenApiSchema>();
         final var required = collectObjectProperties(schema, properties, additionalProperties);
 
-        properties.forEach(
-            (k, v) -> shape.addBodyField(new Field(k, mapType(v), required.contains(k), v.getDescription().orElse(null), null))
-        );
+        final var overrides = this.overrides.getSchema(schema.getPointer());
+
+        properties.forEach((k, v) -> {
+            var type = overrides.flatMap(so -> so.getProperty(k)).flatMap(PropertyOverride::getMappedType).orElseGet(() -> mapType(v));
+            shape.addBodyField(new Field(k, type, required.contains(k), v.getDescription().orElse(null), null));
+        });
 
         if (!additionalProperties.isEmpty()) {
             var valueSchema = additionalProperties.size() == 1 ? additionalProperties.get(0) : OpenApiSchema.ANONYMOUS_UNTYPED;

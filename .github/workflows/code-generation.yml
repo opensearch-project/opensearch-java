@@ -9,8 +9,7 @@ on:
 jobs:
   up_to_date:
     name: Ensure Generated Code Is Up To Date
-    # if: github.event_name == 'pull_request'
-    if: false
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Java Client
