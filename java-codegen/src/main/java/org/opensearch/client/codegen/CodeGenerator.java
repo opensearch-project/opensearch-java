@@ -113,7 +113,7 @@ public class CodeGenerator {
 
     private static Namespace parseSpec(URI location) throws ApiSpecificationParseException {
         var spec = OpenApiSpecification.retrieve(location);
-        var transformer = new SpecTransformer(OPERATION_MATCHER);
+        var transformer = new SpecTransformer(OPERATION_MATCHER, Overrides.OVERRIDES);
         transformer.visit(spec);
         return transformer.getRoot();
     }

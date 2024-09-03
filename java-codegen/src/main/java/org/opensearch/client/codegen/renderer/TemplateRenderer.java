@@ -88,13 +88,12 @@ public final class TemplateRenderer {
         private TemplateLoader templateLoader;
         private JavaCodeFormatter javaCodeFormatter;
 
-        private Builder() {
-            super(TemplateRenderer::new);
-        }
+        private Builder() {}
 
+        @Nonnull
         @Override
-        protected @Nonnull Builder self() {
-            return this;
+        protected TemplateRenderer construct() {
+            return new TemplateRenderer(this);
         }
 
         @Nonnull

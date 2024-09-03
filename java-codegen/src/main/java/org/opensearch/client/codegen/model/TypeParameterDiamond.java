@@ -54,13 +54,12 @@ public final class TypeParameterDiamond {
     public static class Builder extends ObjectBuilderBase<TypeParameterDiamond, Builder> {
         private Either<Type[], TypeParameterDefinition[]> params;
 
-        private Builder() {
-            super(TypeParameterDiamond::new);
-        }
+        private Builder() {}
 
+        @Nonnull
         @Override
-        protected @Nonnull Builder self() {
-            return this;
+        protected TypeParameterDiamond construct() {
+            return new TypeParameterDiamond(this);
         }
 
         @Nonnull
