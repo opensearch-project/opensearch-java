@@ -41,6 +41,7 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainDeserializable;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -172,7 +173,7 @@ public class SourceField implements PlainJsonSerializable {
      * Builder for {@link SourceField}.
      */
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceField> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceField>, PlainDeserializable<Builder> {
         @Nullable
         private Boolean compress;
 
@@ -262,6 +263,11 @@ public class SourceField implements PlainJsonSerializable {
             _checkSingleUse();
 
             return new SourceField(this);
+        }
+
+        @Override
+        public Builder self() {
+            return this;
         }
     }
 

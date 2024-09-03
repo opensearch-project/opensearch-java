@@ -52,7 +52,7 @@ public class PlainJsonSerializableTest extends Assert {
 
     // Test SearchRequest which implements PlainJsonSerializable
     @Test
-    public void testSearchResponse() {
+    public void testSearchRequest() {
 
         String expectedStringValue =
             "{\"aggregations\":{},\"query\":{\"match\":{\"name\":{\"query\":\"OpenSearch\"}}},\"terminate_after\":5}";
