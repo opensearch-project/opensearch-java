@@ -135,13 +135,7 @@ public class PrefixQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().queryName(queryName())
-            .boost(boost())
-            .field(field)
-            .value(value)
-            .rewrite(rewrite)
-            .value(value)
-            .caseInsensitive(caseInsensitive);
+        return toBuilder(new Builder()).field(field).value(value).rewrite(rewrite).value(value).caseInsensitive(caseInsensitive);
     }
 
     // ---------------------------------------------------------------------------------------------

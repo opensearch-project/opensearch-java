@@ -184,9 +184,7 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().queryName(queryName())
-            .boost(boost())
-            .ignoreUnmapped(ignoreUnmapped)
+        return toBuilder(new Builder()).ignoreUnmapped(ignoreUnmapped)
             .innerHits(innerHits)
             .maxChildren(maxChildren)
             .minChildren(minChildren)

@@ -96,7 +96,7 @@ public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, Q
     }
 
     public Builder toBuilder() {
-        return new Builder().queryName(queryName()).boost(boost()).match(match);
+        return toBuilder(new Builder()).match(match);
     }
 
     // ---------------------------------------------------------------------------------------------

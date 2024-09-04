@@ -108,7 +108,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().queryName(queryName()).boost(boost()).field(field).vector(vector).k(k).filter(filter);
+        return toBuilder(new Builder()).field(field).vector(vector).k(k).filter(filter);
     }
 
     /**

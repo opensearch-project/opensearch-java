@@ -111,7 +111,7 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().queryName(queryName()).boost(boost()).negativeBoost(negativeBoost).negative(negative).positive(positive);
+        return toBuilder(new Builder()).negativeBoost(negativeBoost).negative(negative).positive(positive);
     }
 
     // ---------------------------------------------------------------------------------------------

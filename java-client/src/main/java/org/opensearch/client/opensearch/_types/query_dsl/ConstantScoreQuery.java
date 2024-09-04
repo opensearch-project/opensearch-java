@@ -85,7 +85,7 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().queryName(queryName()).boost(boost()).filter(filter);
+        return toBuilder(new Builder()).filter(filter);
     }
 
     // ---------------------------------------------------------------------------------------------

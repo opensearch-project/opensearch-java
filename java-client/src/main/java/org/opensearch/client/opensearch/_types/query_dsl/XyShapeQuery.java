@@ -112,7 +112,7 @@ public class XyShapeQuery extends QueryBase implements QueryVariant {
     }
 
     public XyShapeQuery.Builder toBuilder() {
-        return new XyShapeQuery.Builder().queryName(queryName()).boost(boost()).field(field).xyShape(xyShape);
+        return toBuilder(new Builder()).field(field).xyShape(xyShape);
     }
 
     // ---------------------------------------------------------------------------------------------

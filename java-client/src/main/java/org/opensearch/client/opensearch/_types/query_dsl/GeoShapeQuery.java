@@ -113,7 +113,7 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().queryName(queryName()).boost(boost()).field(field).shape(shape);
+        return toBuilder(new Builder()).field(field).shape(shape);
     }
 
     // ---------------------------------------------------------------------------------------------

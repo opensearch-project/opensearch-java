@@ -168,9 +168,7 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().queryName(queryName())
-            .boost(boost())
-            .field(field)
+        return toBuilder(new Builder()).field(field)
             .value(value)
             .caseInsensitive(caseInsensitive)
             .flags(flags)

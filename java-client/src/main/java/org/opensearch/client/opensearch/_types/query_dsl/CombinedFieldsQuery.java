@@ -174,9 +174,7 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().queryName(queryName())
-            .boost(boost())
-            .fields(fields)
+        return toBuilder(new Builder()).fields(fields)
             .query(query)
             .autoGenerateSynonymsPhraseQuery(autoGenerateSynonymsPhraseQuery)
             .operator(operator)

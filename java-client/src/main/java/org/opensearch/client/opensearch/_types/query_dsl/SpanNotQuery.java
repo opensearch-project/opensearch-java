@@ -159,7 +159,7 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
     }
 
     public Builder toBuilder() {
-        return new Builder().queryName(queryName()).boost(boost()).dist(dist).exclude(exclude).include(include).post(post).pre(pre);
+        return toBuilder(new Builder()).dist(dist).exclude(exclude).include(include).post(post).pre(pre);
     }
 
     // ---------------------------------------------------------------------------------------------

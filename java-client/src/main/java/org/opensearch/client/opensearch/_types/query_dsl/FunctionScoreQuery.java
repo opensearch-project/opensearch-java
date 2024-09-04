@@ -178,9 +178,7 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().queryName(queryName())
-            .boost(boost())
-            .boostMode(boostMode)
+        return toBuilder(new Builder()).boostMode(boostMode)
             .functions(functions)
             .maxBoost(maxBoost)
             .minScore(minScore)

@@ -497,9 +497,7 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().queryName(queryName())
-            .boost(boost())
-            .allowLeadingWildcard(allowLeadingWildcard)
+        return toBuilder(new Builder()).allowLeadingWildcard(allowLeadingWildcard)
             .analyzer(analyzer)
             .analyzeWildcard(analyzeWildcard)
             .autoGenerateSynonymsPhraseQuery(autoGenerateSynonymsPhraseQuery)
