@@ -294,7 +294,7 @@ public class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().analyzer(analyzer)
+        return toBuilder(new Builder()).analyzer(analyzer)
             .analyzeWildcard(analyzeWildcard)
             .autoGenerateSynonymsPhraseQuery(autoGenerateSynonymsPhraseQuery)
             .defaultOperator(defaultOperator)

@@ -252,7 +252,7 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<IntervalsQu
     }
 
     public Builder toBuilder() {
-        return new Builder()._kind(_kind)._value(_value).field(field);
+        return toBuilder(new Builder())._kind(_kind)._value(_value).field(field);
     }
 
     public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<IntervalsQuery> {

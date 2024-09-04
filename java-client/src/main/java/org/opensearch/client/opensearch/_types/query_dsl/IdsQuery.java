@@ -95,7 +95,7 @@ public class IdsQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().values(values);
+        return toBuilder(new Builder()).values(values);
     }
 
     // ---------------------------------------------------------------------------------------------

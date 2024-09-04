@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
-public class BoostringQueryTest extends ModelTestCase {
+public class BoostingQueryTest extends ModelTestCase {
     @Test
     public void toBuilder() {
         BoostingQuery origin = new BoostingQuery.Builder().negativeBoost(1.0f)

@@ -112,7 +112,7 @@ public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().origin(origin).pivot(pivot).field(field);
+        return toBuilder(new Builder()).origin(origin).pivot(pivot).field(field);
     }
 
     // ---------------------------------------------------------------------------------------------

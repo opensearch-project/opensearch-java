@@ -197,7 +197,7 @@ public class PinnedQuery extends QueryBase implements TaggedUnion<PinnedQuery.Ki
     }
 
     public Builder toBuilder() {
-        return new Builder()._kind(_kind)._value(_value).organic(organic);
+        return toBuilder(new Builder())._kind(_kind)._value(_value).organic(organic);
     }
 
     public static class Builder extends QueryBase.AbstractBuilder<Builder> {
