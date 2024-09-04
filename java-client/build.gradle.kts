@@ -40,7 +40,7 @@ buildscript {
         mavenLocal()
         maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots")
         mavenCentral()
-        maven(url = "https://plugins.gradle.org/m2/")
+        gradlePluginPortal()
     }
 }
 
@@ -50,7 +50,8 @@ plugins {
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "2.8"
     id("org.owasp.dependencycheck") version "10.0.2"
-    id("com.diffplug.spotless") version "6.25.0"
+
+    id("opensearch-java.spotless-conventions")
 }
 
 apply(plugin = "org.owasp.dependencycheck")
@@ -294,31 +295,6 @@ tasks.withType<Jar> {
             "checksum"("algorithm" to "sha-256", "file" to archiveFile.get(), "fileext" to ".sha256")
             "checksum"("algorithm" to "sha-512", "file" to archiveFile.get(), "fileext" to ".sha512")
         }
-    }
-}
-
-spotless {
-    java {
-        target("**/*.java")
-
-        licenseHeaderFile("../LICENSE_HEADER.txt")
-            .named("PrimaryLicenseHeader")
-            .onlyIfContentMatches("^((?!Licensed to Elasticsearch)[\\s\\S])*$")
-            .delimiter("(package |//-----)")
-
-        licenseHeaderFile("../LICENSE_HEADER_FORKED.txt")
-            .named("ForkedLicenseHeader")
-            .onlyIfContentMatches("Licensed to Elasticsearch")
-            .delimiter("(package |//-----)")
-
-        // Use the default importOrder configuration
-        importOrder()
-        removeUnusedImports()
-
-        eclipse().configFile("../buildSrc/formatterConfig.xml")
-
-        trimTrailingWhitespace()
-        endWithNewline()
     }
 }
 
