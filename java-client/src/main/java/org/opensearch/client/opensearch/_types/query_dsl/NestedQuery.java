@@ -151,7 +151,13 @@ public class NestedQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().ignoreUnmapped(ignoreUnmapped).innerHits(innerHits).path(path).query(query).scoreMode(scoreMode);
+        return new Builder().queryName(queryName())
+            .boost(boost())
+            .ignoreUnmapped(ignoreUnmapped)
+            .innerHits(innerHits)
+            .path(path)
+            .query(query)
+            .scoreMode(scoreMode);
     }
 
     // ---------------------------------------------------------------------------------------------

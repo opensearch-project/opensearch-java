@@ -86,7 +86,7 @@ public class ScriptQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().script(script);
+        return new Builder().queryName(queryName()).boost(boost()).script(script);
     }
 
     // ---------------------------------------------------------------------------------------------

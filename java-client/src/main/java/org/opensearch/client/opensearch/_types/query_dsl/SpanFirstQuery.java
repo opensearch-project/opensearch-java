@@ -106,7 +106,7 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
     }
 
     public Builder toBuilder() {
-        return new Builder().end(end).match(match);
+        return new Builder().queryName(queryName()).boost(boost()).end(end).match(match);
     }
 
     // ---------------------------------------------------------------------------------------------

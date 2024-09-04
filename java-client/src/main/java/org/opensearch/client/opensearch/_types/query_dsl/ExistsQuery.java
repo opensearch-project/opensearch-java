@@ -85,7 +85,7 @@ public class ExistsQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().field(field);
+        return new Builder().queryName(queryName()).boost(boost()).field(field);
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -102,7 +102,7 @@ public class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVar
     }
 
     public Builder toBuilder() {
-        return new Builder().clauses(clauses);
+        return new Builder().queryName(queryName()).boost(boost()).clauses(clauses);
     }
 
     // ---------------------------------------------------------------------------------------------

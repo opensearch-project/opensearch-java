@@ -124,7 +124,7 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().id(id).ignoreUnmapped(ignoreUnmapped).type(type);
+        return new Builder().queryName(queryName()).boost(boost()).id(id).ignoreUnmapped(ignoreUnmapped).type(type);
     }
 
     // ---------------------------------------------------------------------------------------------

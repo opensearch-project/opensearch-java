@@ -151,7 +151,13 @@ public class MatchPhraseQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().field(field).analyzer(analyzer).query(query).slop(slop).zeroTermsQuery(zeroTermsQuery);
+        return new Builder().queryName(queryName())
+            .boost(boost())
+            .field(field)
+            .analyzer(analyzer)
+            .query(query)
+            .slop(slop)
+            .zeroTermsQuery(zeroTermsQuery);
     }
 
     // ---------------------------------------------------------------------------------------------

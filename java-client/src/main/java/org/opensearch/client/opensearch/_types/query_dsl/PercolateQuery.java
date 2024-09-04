@@ -228,7 +228,9 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().document(document)
+        return new Builder().queryName(queryName())
+            .boost(boost())
+            .document(document)
             .documents(documents)
             .field(field)
             .id(id)

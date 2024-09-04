@@ -85,7 +85,7 @@ public class TypeQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().value(value);
+        return new Builder().queryName(queryName()).boost(boost()).value(value);
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -152,7 +152,14 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().field(field).queryText(queryText).queryImage(queryImage).k(k).modelId(modelId).filter(filter);
+        return new Builder().queryName(queryName())
+            .boost(boost())
+            .field(field)
+            .queryText(queryText)
+            .queryImage(queryImage)
+            .k(k)
+            .modelId(modelId)
+            .filter(filter);
     }
 
     /**

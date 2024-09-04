@@ -147,7 +147,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().field(field).location(location);
+        return new Builder().queryName(queryName()).boost(boost()).field(field).location(location);
     }
 
     // ---------------------------------------------------------------------------------------------

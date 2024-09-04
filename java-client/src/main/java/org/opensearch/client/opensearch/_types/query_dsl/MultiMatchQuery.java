@@ -363,7 +363,9 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().analyzer(analyzer)
+        return new Builder().queryName(queryName())
+            .boost(boost())
+            .analyzer(analyzer)
             .autoGenerateSynonymsPhraseQuery(autoGenerateSynonymsPhraseQuery)
             .cutoffFrequency(cutoffFrequency)
             .fields(fields)
