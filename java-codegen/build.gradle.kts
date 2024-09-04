@@ -21,7 +21,7 @@ buildscript {
         mavenLocal()
         maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots")
         mavenCentral()
-        maven(url = "https://plugins.gradle.org/m2/")
+        gradlePluginPortal()
     }
     dependencies {
         "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.0.0-SNAPSHOT")
@@ -32,8 +32,9 @@ plugins {
     application
     id("com.github.jk1.dependency-license-report") version "2.9"
     id("org.owasp.dependencycheck") version "10.0.2"
-    id("com.diffplug.spotless") version "6.25.0"
     id("de.undercouch.download") version "5.6.0"
+
+    id("opensearch-java.spotless-conventions")
 }
 apply(plugin = "opensearch.repositories")
 apply(plugin = "org.owasp.dependencycheck")
@@ -259,19 +260,6 @@ tasks.withType<Jar> {
     }
 }
 
-spotless {
-    java {
-        target("**/*.java")
-
-        licenseHeaderFile("../LICENSE_HEADER.txt")
-
-        // Use the default importOrder configuration
-        importOrder()
-        removeUnusedImports()
-
-        eclipse().configFile("../buildSrc/formatterConfig-generated.xml")
-
-        trimTrailingWhitespace()
-        endWithNewline()
-    }
+spotlessConventions {
+    eclipseFormatterConfigFile = rootProject.file("buildSrc/formatterConfig-generated.xml")
 }
