@@ -30,13 +30,19 @@
  * GitHub history for details.
  */
 
-dependencies {
-    implementation("org.ajoberstar.grgit:grgit-gradle:5.2.2")
+plugins {
+    `kotlin-dsl`
 }
 
 repositories {
     mavenLocal()
     maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots")
     mavenCentral()
-    maven(url = "https://plugins.gradle.org/m2/")
+    gradlePluginPortal()
 }
+
+dependencies {
+    implementation("org.ajoberstar.grgit:grgit-gradle:5.2.2")
+    implementation("com.diffplug.spotless", "spotless-plugin-gradle", "6.25.0")
+}
+
