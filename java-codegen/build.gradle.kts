@@ -259,3 +259,7 @@ tasks.withType<Jar> {
         }
     }
 }
+
+spotlessConventions {
+    eclipseFormatterConfigFile = rootProject.file("buildSrc/formatterConfig-generated.xml")
+}

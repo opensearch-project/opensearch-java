@@ -2,6 +2,14 @@ plugins {
     id("com.diffplug.spotless")
 }
 
+interface SpotlessConventionsPluginExtension {
+    val eclipseFormatterConfigFile: RegularFileProperty
+}
+
+val extension = project.extensions.create<SpotlessConventionsPluginExtension>("spotlessConventions")
+
+extension.eclipseFormatterConfigFile.convention(rootProject.layout.projectDirectory.file("buildSrc/formatterConfig.xml"))
+
 spotless {
     java {
         target("**/*.java")
@@ -20,10 +28,14 @@ spotless {
         importOrder()
         removeUnusedImports()
 
-        eclipse().configFile(rootProject.file("buildSrc/formatterConfig.xml"))
+        eclipse().configFile(extension.eclipseFormatterConfigFile)
 
         trimTrailingWhitespace()
         endWithNewline()
+
+        // NOTE: Any time a custom step below is modified, bump this number.
+        // Allows up-to-date checks to work correctly with custom steps.
+        bumpThisNumberIfACustomStepChanges(1)
 
         val wildcardImportRegex = Regex("""^import\s+(?:static\s+)?[^*\s]+\.\*;$""", RegexOption.MULTILINE)
         custom("Refuse wildcard imports") { contents ->
