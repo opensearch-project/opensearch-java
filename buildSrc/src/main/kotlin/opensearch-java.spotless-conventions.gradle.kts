@@ -43,14 +43,14 @@ spotless {
             // This will require the developer themselves to adhere to best practices.
             val wildcardImports = wildcardImportRegex.findAll(contents)
             if (wildcardImports.any()) {
-                throw AssertionError(
-                    """
+                var msg = """
                     Please replace the following wildcard imports with explicit imports ('spotlessApply' cannot resolve this issue):
-
-                    ${wildcardImports.joinToString("\n") { "\t- ${it.value}" }}
-
-                    """.trimIndent()
-                )
+                """.trimIndent()
+                wildcardImports.forEach {
+                    msg += "\n\t- ${it.value}"
+                }
+                msg += "\n"
+                throw AssertionError(msg)
             }
             contents
         }
