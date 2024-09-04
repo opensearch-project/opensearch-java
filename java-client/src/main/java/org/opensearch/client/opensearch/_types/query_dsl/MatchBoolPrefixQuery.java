@@ -235,7 +235,7 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().field(field)
+        return toBuilder(new Builder()).field(field)
             .analyzer(analyzer)
             .fuzziness(fuzziness)
             .fuzzyRewrite(fuzzyRewrite)
