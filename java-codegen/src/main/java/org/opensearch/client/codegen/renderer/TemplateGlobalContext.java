@@ -58,13 +58,12 @@ public final class TemplateGlobalContext implements Mustache.CustomContext {
         private final Map<String, Object> values = new HashMap<>();
         private TemplateRenderer renderer;
 
-        private Builder() {
-            super(TemplateGlobalContext::new);
-        }
+        private Builder() {}
 
+        @Nonnull
         @Override
-        protected @Nonnull Builder self() {
-            return this;
+        protected TemplateGlobalContext construct() {
+            return new TemplateGlobalContext(this);
         }
 
         @Nonnull

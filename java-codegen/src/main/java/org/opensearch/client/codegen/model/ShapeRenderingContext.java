@@ -78,13 +78,12 @@ public final class ShapeRenderingContext implements AutoCloseable {
         private JavaCodeFormatter javaCodeFormatter;
         private boolean ownedJavaCodeFormatter;
 
-        private Builder() {
-            super(ShapeRenderingContext::new);
-        }
+        private Builder() {}
 
+        @Nonnull
         @Override
-        protected @Nonnull Builder self() {
-            return this;
+        protected ShapeRenderingContext construct() {
+            return new ShapeRenderingContext(this);
         }
 
         @Nonnull

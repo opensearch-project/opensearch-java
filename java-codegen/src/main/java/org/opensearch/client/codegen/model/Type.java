@@ -39,7 +39,8 @@ public class Type {
         "float",
         "Float",
         "double",
-        "Double"
+        "Double",
+        "Number"
     );
 
     public static Builder builder() {
@@ -148,6 +149,10 @@ public class Type {
         return PRIMITIVES.contains(name);
     }
 
+    public boolean isNumber() {
+        return "Number".equals(name);
+    }
+
     public boolean isEnum() {
         return isEnum;
     }
@@ -218,13 +223,12 @@ public class Type {
         private Type[] typeParams;
         private boolean isEnum;
 
-        private Builder() {
-            super(Type::new);
-        }
+        private Builder() {}
 
+        @Nonnull
         @Override
-        protected @Nonnull Builder self() {
-            return this;
+        protected Type construct() {
+            return new Type(this);
         }
 
         @Nonnull
