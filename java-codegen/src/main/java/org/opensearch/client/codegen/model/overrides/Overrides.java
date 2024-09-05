@@ -15,7 +15,6 @@ import java.util.Optional;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.codegen.model.Types;
 import org.opensearch.client.codegen.openapi.JsonPointer;
 import org.opensearch.client.codegen.utils.ObjectBuilder;
 import org.opensearch.client.codegen.utils.ObjectBuilderBase;
