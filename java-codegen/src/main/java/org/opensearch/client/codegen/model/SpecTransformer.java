@@ -428,6 +428,7 @@ public class SpecTransformer {
             case Boolean:
                 return Types.Primitive.Boolean;
             case Integer:
+                return mapInteger(schema);
             case Number:
                 return mapNumber(schema);
         }
@@ -444,7 +445,9 @@ public class SpecTransformer {
 
         if (types.size() == 2
             && types.contains(OpenApiSchemaType.String)
-            && (types.contains(OpenApiSchemaType.Boolean) || types.contains(OpenApiSchemaType.Number))) {
+            && (types.contains(OpenApiSchemaType.Boolean)
+                || types.contains(OpenApiSchemaType.Integer)
+                || types.contains(OpenApiSchemaType.Number))) {
             return Types.Java.Lang.String;
         }
 
@@ -469,24 +472,36 @@ public class SpecTransformer {
         return Types.Java.Util.List(items);
     }
 
-    private Type mapNumber(OpenApiSchema schema) {
+    private Type mapInteger(OpenApiSchema schema) {
         var format = schema.getFormat().orElse(OpenApiSchemaFormat.Int32);
         switch (format) {
             case Int32:
                 return Types.Primitive.Int;
             case Int64:
                 return Types.Primitive.Long;
+            default:
+                throw new UnsupportedOperationException(
+                    "Can not get type name for integer [" + schema.getPointer() + "] with format: " + format
+                );
+        }
+    }
+
+    private Type mapNumber(OpenApiSchema schema) {
+        var format = schema.getFormat().orElse(OpenApiSchemaFormat.Float);
+        switch (format) {
             case Float:
                 return Types.Primitive.Float;
             case Double:
                 return Types.Primitive.Double;
             default:
-                throw new UnsupportedOperationException("Can not get type name for integer/number with format: " + format);
+                throw new UnsupportedOperationException(
+                    "Can not get type name for number [" + schema.getPointer() + "] with format: " + format
+                );
         }
     }
 
     private boolean shouldKeepRef(OpenApiSchema schema) {
-        if (schema.isNumber() || schema.isArray()) {
+        if (schema.isInteger() || schema.isNumber() || schema.isArray()) {
             return false;
         }
         if (schema.isString() && schema.getEnums().isEmpty()) {
