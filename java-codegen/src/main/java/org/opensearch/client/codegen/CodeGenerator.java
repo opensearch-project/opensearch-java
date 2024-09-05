@@ -8,7 +8,11 @@
 
 package org.opensearch.client.codegen;
 
-import static org.opensearch.client.codegen.model.OperationGroupMatcher.*;
+import static org.opensearch.client.codegen.model.OperationGroupMatcher.and;
+import static org.opensearch.client.codegen.model.OperationGroupMatcher.named;
+import static org.opensearch.client.codegen.model.OperationGroupMatcher.namespace;
+import static org.opensearch.client.codegen.model.OperationGroupMatcher.not;
+import static org.opensearch.client.codegen.model.OperationGroupMatcher.or;
 
 import java.io.File;
 import java.io.IOException;
