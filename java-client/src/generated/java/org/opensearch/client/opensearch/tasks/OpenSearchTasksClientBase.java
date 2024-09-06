@@ -34,50 +34,57 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch;
+package org.opensearch.client.opensearch.tasks;
 
 import java.io.IOException;
+import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch.core.InfoRequest;
-import org.opensearch.client.opensearch.core.InfoResponse;
-import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesClient;
-import org.opensearch.client.opensearch.ml.OpenSearchMlClient;
-import org.opensearch.client.opensearch.tasks.OpenSearchTasksClient;
+import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.util.ObjectBuilder;
 
 /**
- * Client for the namespace.
+ * Client for the tasks namespace.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Self>> extends ApiClient<OpenSearchTransport, Self> {
-    public OpenSearchClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+public abstract class OpenSearchTasksClientBase<Self extends OpenSearchTasksClientBase<Self>> extends ApiClient<OpenSearchTransport, Self> {
+    public OpenSearchTasksClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
     }
 
-    // ----- Child clients
-
-    public OpenSearchDanglingIndicesClient danglingIndices() {
-        return new OpenSearchDanglingIndicesClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchMlClient ml() {
-        return new OpenSearchMlClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchTasksClient tasks() {
-        return new OpenSearchTasksClient(this.transport, this.transportOptions);
-    }
-
-    // ----- Endpoint: info
+    // ----- Endpoint: tasks.list
 
     /**
-     * Returns basic information about the cluster.
+     * Returns a list of tasks.
      */
-    public InfoResponse info() throws IOException, OpenSearchException {
-        return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
+    public ListResponse list(ListRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<ListRequest, ListResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            ListRequest,
+            ListResponse,
+            ErrorResponse>) ListRequest._ENDPOINT;
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Returns a list of tasks.
+     *
+     * @param fn a function that initializes a builder to create the {@link ListRequest}
+     */
+    public final ListResponse list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn) throws IOException, OpenSearchException {
+        return list(fn.apply(new ListRequest.Builder()).build());
+    }
+
+    /**
+     * Returns a list of tasks.
+     */
+    public ListResponse list() throws IOException, OpenSearchException {
+        return this.transport.performRequest(new ListRequest.Builder().build(), ListRequest._ENDPOINT, this.transportOptions);
     }
 }

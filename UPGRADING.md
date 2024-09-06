@@ -28,3 +28,8 @@ After:
 ### ShardStatistics properties types
 - The type of the `total`, `successful` and `failed` fields has been corrected from `Number` to `int`.
 - The type of the `skipped` field has been corrected from `Number` to `Integer`.
+
+### tasks.State class renamed to tasks.TaskInfo
+- The `tasks.State` class has been renamed to `tasks.TaskInfo`, this affects:
+  - `TaskExecutingNode`'s `tasks` field.
+- The `headers` field is now a `Map<String, String>` instead of a `Map<String, List<String>>`.

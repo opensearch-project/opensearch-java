@@ -35,7 +35,6 @@ package org.opensearch.client.opensearch.tasks;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.JsonEndpoint;
@@ -46,7 +45,7 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the tasks namespace.
  */
-public class OpenSearchTasksClient extends ApiClient<OpenSearchTransport, OpenSearchTasksClient> {
+public class OpenSearchTasksClient extends OpenSearchTasksClientBase<OpenSearchTasksClient> {
 
     public OpenSearchTasksClient(OpenSearchTransport transport) {
         super(transport, null);
@@ -134,46 +133,4 @@ public class OpenSearchTasksClient extends ApiClient<OpenSearchTransport, OpenSe
         OpenSearchException {
         return get(fn.apply(new GetTasksRequest.Builder()).build());
     }
-
-    // ----- Endpoint: tasks.list
-
-    /**
-     * Returns a list of tasks.
-     *
-     *
-     */
-
-    public ListResponse list(ListRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ListRequest, ListResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ListRequest,
-            ListResponse,
-            ErrorResponse>) ListRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns a list of tasks.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ListRequest}
-     *
-     */
-
-    public final ListResponse list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn) throws IOException, OpenSearchException {
-        return list(fn.apply(new ListRequest.Builder()).build());
-    }
-
-    /**
-     * Returns a list of tasks.
-     *
-     *
-     */
-
-    public ListResponse list() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new ListRequest.Builder().build(), ListRequest._ENDPOINT, this.transportOptions);
-    }
-
 }

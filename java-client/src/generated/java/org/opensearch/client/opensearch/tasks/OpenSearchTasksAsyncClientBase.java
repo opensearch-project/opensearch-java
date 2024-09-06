@@ -34,51 +34,61 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch;
+package org.opensearch.client.opensearch.tasks;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch.core.InfoRequest;
-import org.opensearch.client.opensearch.core.InfoResponse;
-import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesAsyncClient;
-import org.opensearch.client.opensearch.ml.OpenSearchMlAsyncClient;
-import org.opensearch.client.opensearch.tasks.OpenSearchTasksAsyncClient;
+import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.util.ObjectBuilder;
 
 /**
- * Client for the namespace.
+ * Client for the tasks namespace.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClientBase<Self>> extends ApiClient<OpenSearchTransport, Self> {
-    public OpenSearchAsyncClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+public abstract class OpenSearchTasksAsyncClientBase<Self extends OpenSearchTasksAsyncClientBase<Self>> extends ApiClient<
+    OpenSearchTransport,
+    Self> {
+    public OpenSearchTasksAsyncClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
     }
 
-    // ----- Child clients
-
-    public OpenSearchDanglingIndicesAsyncClient danglingIndices() {
-        return new OpenSearchDanglingIndicesAsyncClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchMlAsyncClient ml() {
-        return new OpenSearchMlAsyncClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchTasksAsyncClient tasks() {
-        return new OpenSearchTasksAsyncClient(this.transport, this.transportOptions);
-    }
-
-    // ----- Endpoint: info
+    // ----- Endpoint: tasks.list
 
     /**
-     * Returns basic information about the cluster.
+     * Returns a list of tasks.
      */
-    public CompletableFuture<InfoResponse> info() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
+    public CompletableFuture<ListResponse> list(ListRequest request) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<ListRequest, ListResponse, ErrorResponse> endpoint = (JsonEndpoint<
+            ListRequest,
+            ListResponse,
+            ErrorResponse>) ListRequest._ENDPOINT;
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Returns a list of tasks.
+     *
+     * @param fn a function that initializes a builder to create the {@link ListRequest}
+     */
+    public final CompletableFuture<ListResponse> list(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn) throws IOException,
+        OpenSearchException {
+        return list(fn.apply(new ListRequest.Builder()).build());
+    }
+
+    /**
+     * Returns a list of tasks.
+     */
+    public CompletableFuture<ListResponse> list() throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(new ListRequest.Builder().build(), ListRequest._ENDPOINT, this.transportOptions);
     }
 }

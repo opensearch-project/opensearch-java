@@ -30,12 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.tasks;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -43,22 +47,28 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: tasks._types.State
+// typedef: tasks.TaskInfo
 
 @JsonpDeserializable
-public class State implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class TaskInfo implements PlainJsonSerializable {
+
     private final String action;
 
     private final boolean cancellable;
 
     @Nullable
+    private final Boolean cancelled;
+
+    @Nullable
     private final String description;
 
-    private final Map<String, List<String>> headers;
+    private final Map<String, String> headers;
 
     private final long id;
 
@@ -66,6 +76,9 @@ public class State implements PlainJsonSerializable {
 
     @Nullable
     private final String parentTaskId;
+
+    @Nullable
+    private final Time runningTime;
 
     private final long runningTimeInNanos;
 
@@ -78,23 +91,23 @@ public class State implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
-    private State(Builder builder) {
-
+    private TaskInfo(Builder builder) {
         this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
         this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
+        this.cancelled = builder.cancelled;
         this.description = builder.description;
         this.headers = ApiTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
         this.parentTaskId = builder.parentTaskId;
+        this.runningTime = builder.runningTime;
         this.runningTimeInNanos = ApiTypeHelper.requireNonNull(builder.runningTimeInNanos, this, "runningTimeInNanos");
         this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
         this.status = builder.status;
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-
     }
 
-    public static State of(Function<Builder, ObjectBuilder<State>> fn) {
+    public static TaskInfo of(Function<TaskInfo.Builder, ObjectBuilder<TaskInfo>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -113,6 +126,14 @@ public class State implements PlainJsonSerializable {
     }
 
     /**
+     * API name: {@code cancelled}
+     */
+    @Nullable
+    public final Boolean cancelled() {
+        return this.cancelled;
+    }
+
+    /**
      * API name: {@code description}
      */
     @Nullable
@@ -123,7 +144,7 @@ public class State implements PlainJsonSerializable {
     /**
      * Required - API name: {@code headers}
      */
-    public final Map<String, List<String>> headers() {
+    public final Map<String, String> headers() {
         return this.headers;
     }
 
@@ -147,6 +168,14 @@ public class State implements PlainJsonSerializable {
     @Nullable
     public final String parentTaskId() {
         return this.parentTaskId;
+    }
+
+    /**
+     * API name: {@code running_time}
+     */
+    @Nullable
+    public final Time runningTime() {
+        return this.runningTime;
     }
 
     /**
@@ -181,6 +210,7 @@ public class State implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -188,36 +218,30 @@ public class State implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("action");
         generator.write(this.action);
 
         generator.writeKey("cancellable");
         generator.write(this.cancellable);
 
+        if (this.cancelled != null) {
+            generator.writeKey("cancelled");
+            generator.write(this.cancelled);
+        }
+
         if (this.description != null) {
             generator.writeKey("description");
             generator.write(this.description);
-
         }
-        if (ApiTypeHelper.isDefined(this.headers)) {
-            generator.writeKey("headers");
-            generator.writeStartObject();
-            for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
-                generator.writeKey(item0.getKey());
-                generator.writeStartArray();
-                if (item0.getValue() != null) {
-                    for (String item1 : item0.getValue()) {
-                        generator.write(item1);
 
-                    }
-                }
-                generator.writeEnd();
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("headers");
+        generator.writeStartObject();
+        for (Map.Entry<String, String> item0 : this.headers.entrySet()) {
+            generator.writeKey(item0.getKey());
+            generator.write(item0.getValue());
         }
+        generator.writeEnd();
+
         generator.writeKey("id");
         generator.write(this.id);
 
@@ -227,8 +251,13 @@ public class State implements PlainJsonSerializable {
         if (this.parentTaskId != null) {
             generator.writeKey("parent_task_id");
             generator.write(this.parentTaskId);
-
         }
+
+        if (this.runningTime != null) {
+            generator.writeKey("running_time");
+            this.runningTime.serialize(generator, mapper);
+        }
+
         generator.writeKey("running_time_in_nanos");
         generator.write(this.runningTimeInNanos);
 
@@ -238,43 +267,35 @@ public class State implements PlainJsonSerializable {
         if (this.status != null) {
             generator.writeKey("status");
             this.status.serialize(generator, mapper);
-
         }
+
         generator.writeKey("type");
         generator.write(this.type);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link State}.
+     * Builder for {@link TaskInfo}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<State> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TaskInfo> {
         private String action;
-
         private Boolean cancellable;
-
+        @Nullable
+        private Boolean cancelled;
         @Nullable
         private String description;
-
-        private Map<String, List<String>> headers;
-
+        private Map<String, String> headers;
         private Long id;
-
         private String node;
-
         @Nullable
         private String parentTaskId;
-
+        @Nullable
+        private Time runningTime;
         private Long runningTimeInNanos;
-
         private Long startTimeInMillis;
-
         @Nullable
         private Status status;
-
         private String type;
 
         /**
@@ -294,6 +315,14 @@ public class State implements PlainJsonSerializable {
         }
 
         /**
+         * API name: {@code cancelled}
+         */
+        public final Builder cancelled(@Nullable Boolean value) {
+            this.cancelled = value;
+            return this;
+        }
+
+        /**
          * API name: {@code description}
          */
         public final Builder description(@Nullable String value) {
@@ -303,20 +332,24 @@ public class State implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code headers}
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>headers</code>.
+         * Adds all elements of <code>map</code> to <code>headers</code>.
+         * </p>
          */
-        public final Builder headers(Map<String, List<String>> map) {
+        public final Builder headers(Map<String, String> map) {
             this.headers = _mapPutAll(this.headers, map);
             return this;
         }
 
         /**
          * Required - API name: {@code headers}
+         *
          * <p>
          * Adds an entry to <code>headers</code>.
+         * </p>
          */
-        public final Builder headers(String key, List<String> value) {
+        public final Builder headers(String key, String value) {
             this.headers = _mapPut(this.headers, key, value);
             return this;
         }
@@ -343,6 +376,21 @@ public class State implements PlainJsonSerializable {
         public final Builder parentTaskId(@Nullable String value) {
             this.parentTaskId = value;
             return this;
+        }
+
+        /**
+         * API name: {@code running_time}
+         */
+        public final Builder runningTime(@Nullable Time value) {
+            this.runningTime = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code running_time}
+         */
+        public final Builder runningTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return runningTime(fn.apply(new Time.Builder()).build());
         }
 
         /**
@@ -373,7 +421,7 @@ public class State implements PlainJsonSerializable {
          * API name: {@code status}
          */
         public final Builder status(Function<Status.Builder, ObjectBuilder<Status>> fn) {
-            return this.status(fn.apply(new Status.Builder()).build());
+            return status(fn.apply(new Status.Builder()).build());
         }
 
         /**
@@ -385,46 +433,39 @@ public class State implements PlainJsonSerializable {
         }
 
         /**
-         * Builds a {@link State}.
+         * Builds a {@link TaskInfo}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public State build() {
+        public TaskInfo build() {
             _checkSingleUse();
 
-            return new State(this);
+            return new TaskInfo(this);
         }
     }
-
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link State}
+     * Json deserializer for {@link TaskInfo}
      */
-    public static final JsonpDeserializer<State> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<TaskInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        State::setupStateDeserializer
+        TaskInfo::setupTaskInfoDeserializer
     );
 
-    protected static void setupStateDeserializer(ObjectDeserializer<State.Builder> op) {
-
+    protected static void setupTaskInfoDeserializer(ObjectDeserializer<TaskInfo.Builder> op) {
         op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
         op.add(Builder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");
+        op.add(Builder::cancelled, JsonpDeserializer.booleanDeserializer(), "cancelled");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-        op.add(
-            Builder::headers,
-            JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())),
-            "headers"
-        );
+        op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "headers");
         op.add(Builder::id, JsonpDeserializer.longDeserializer(), "id");
         op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
         op.add(Builder::parentTaskId, JsonpDeserializer.stringDeserializer(), "parent_task_id");
+        op.add(Builder::runningTime, Time._DESERIALIZER, "running_time");
         op.add(Builder::runningTimeInNanos, JsonpDeserializer.longDeserializer(), "running_time_in_nanos");
         op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
         op.add(Builder::status, Status._DESERIALIZER, "status");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-
     }
-
 }

@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -22,6 +23,8 @@ import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Namespace {
+    private static final Set<String> PARTIAL_NAMESPACES = Set.of("", "tasks");
+
     private final Namespace parent;
     private final String name;
     private final Map<String, Namespace> children = new TreeMap<>();
@@ -82,7 +85,7 @@ public class Namespace {
 
         if (operations.isEmpty()) return;
 
-        var asBaseClass = "".equals(name);
+        var asBaseClass = PARTIAL_NAMESPACES.contains(name);
 
         new Client(this, false, asBaseClass, operations).render(ctx);
         new Client(this, true, asBaseClass, operations).render(ctx);
