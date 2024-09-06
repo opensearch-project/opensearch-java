@@ -41,9 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -63,13 +61,7 @@ public abstract class OpenSearchTasksClientBase<Self extends OpenSearchTasksClie
      * Returns a list of tasks.
      */
     public ListResponse list(ListRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ListRequest, ListResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ListRequest,
-            ListResponse,
-            ErrorResponse>) ListRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequest(request, ListRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -84,7 +76,7 @@ public abstract class OpenSearchTasksClientBase<Self extends OpenSearchTasksClie
     /**
      * Returns a list of tasks.
      */
-    public ListResponse list() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new ListRequest.Builder().build(), ListRequest._ENDPOINT, this.transportOptions);
+    public final ListResponse list() throws IOException, OpenSearchException {
+        return list(new ListRequest.Builder().build());
     }
 }

@@ -42,9 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -66,13 +64,7 @@ public abstract class OpenSearchTasksAsyncClientBase<Self extends OpenSearchTask
      * Returns a list of tasks.
      */
     public CompletableFuture<ListResponse> list(ListRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ListRequest, ListResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ListRequest,
-            ListResponse,
-            ErrorResponse>) ListRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, ListRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -88,7 +80,7 @@ public abstract class OpenSearchTasksAsyncClientBase<Self extends OpenSearchTask
     /**
      * Returns a list of tasks.
      */
-    public CompletableFuture<ListResponse> list() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(new ListRequest.Builder().build(), ListRequest._ENDPOINT, this.transportOptions);
+    public final CompletableFuture<ListResponse> list() throws IOException, OpenSearchException {
+        return list(new ListRequest.Builder().build());
     }
 }

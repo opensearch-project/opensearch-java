@@ -41,9 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -72,13 +70,7 @@ public class OpenSearchDanglingIndicesClient extends ApiClient<OpenSearchTranspo
      * Deletes the specified dangling index.
      */
     public DeleteDanglingIndexResponse deleteDanglingIndex(DeleteDanglingIndexRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteDanglingIndexRequest,
-            DeleteDanglingIndexResponse,
-            ErrorResponse>) DeleteDanglingIndexRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequest(request, DeleteDanglingIndexRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -98,13 +90,7 @@ public class OpenSearchDanglingIndicesClient extends ApiClient<OpenSearchTranspo
      * Imports the specified dangling index.
      */
     public ImportDanglingIndexResponse importDanglingIndex(ImportDanglingIndexRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ImportDanglingIndexRequest,
-            ImportDanglingIndexResponse,
-            ErrorResponse>) ImportDanglingIndexRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequest(request, ImportDanglingIndexRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
