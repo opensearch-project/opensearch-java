@@ -18,20 +18,22 @@ public abstract class AbstractTasksClientIT extends OpenSearchJavaClientTestCase
     public void list_groupedByNodes() throws IOException {
         final ListResponse response = javaClient().tasks().list(l -> l.groupBy(GroupBy.Nodes));
         assertFalse(response.nodes().isEmpty());
-        assertTrue(response.tasks().isEmpty());
+        assertNull(response.tasks());
     }
 
     @Test
     public void list_groupedByParents() throws IOException {
         final ListResponse response = javaClient().tasks().list(l -> l.groupBy(GroupBy.Parents));
         assertTrue(response.nodes().isEmpty());
-        assertFalse(response.tasks().isEmpty());
+        assertNotNull(response.tasks());
+        assertTrue(response.tasks().isGroupedByParents());
     }
 
     @Test
     public void list_groupedByNone() throws IOException {
         final ListResponse response = javaClient().tasks().list(l -> l.groupBy(GroupBy.None));
         assertTrue(response.nodes().isEmpty());
-        assertFalse(response.tasks().isEmpty());
+        assertNotNull(response.tasks());
+        assertTrue(response.tasks().isGroupedByNone());
     }
 }

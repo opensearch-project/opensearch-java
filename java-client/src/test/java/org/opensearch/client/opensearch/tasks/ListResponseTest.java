@@ -94,7 +94,7 @@ public class ListResponseTest extends ModelTestCase {
             + "}";
 
         final ListResponse response = fromJson(json, ListResponse._DESERIALIZER);
-        assertTrue(response.tasks().isEmpty());
+        assertNull(response.tasks());
 
         final Map<String, TaskExecutingNode> nodes = response.nodes();
         assertNotNull(nodes);
@@ -152,14 +152,17 @@ public class ListResponseTest extends ModelTestCase {
         final ListResponse response = fromJson(json, ListResponse._DESERIALIZER);
         assertTrue(response.nodes().isEmpty());
 
-        final Map<String, Info> tasks = response.tasks();
+        final TaskInfos tasks = response.tasks();
         assertNotNull(tasks);
-        assertEquals(1, tasks.size());
+        assertTrue(tasks.isGroupedByParents());
 
-        final Info task = tasks.get("y2hDJUdMTWa6sNA_0vdF6Q:5306");
+        final Map<String, TaskGroup> groups = tasks.groupedByParents();
+        assertEquals(1, groups.size());
+
+        final TaskGroup task = groups.get("y2hDJUdMTWa6sNA_0vdF6Q:5306");
         assertNotNull(task);
 
-        final List<Info> children = task.children();
+        final List<TaskGroup> children = task.children();
         assertEquals(2, children.size());
 
         assertEquals("cluster:monitor/tasks/lists[n]", children.get(0).action());

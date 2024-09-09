@@ -30,70 +30,70 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch.core;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package org.opensearch.client.opensearch.tasks;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch.tasks.ListResponse;
-import org.opensearch.client.opensearch.tasks.TaskListResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: _global.delete_by_query_rethrottle.Response
+// typedef: tasks.list.Response
 
 @JsonpDeserializable
-public class DeleteByQueryRethrottleResponse extends TaskListResponseBase {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ListResponse extends TaskListResponseBase {
+
     // ---------------------------------------------------------------------------------------------
 
-    private DeleteByQueryRethrottleResponse(Builder builder) {
+    private ListResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static DeleteByQueryRethrottleResponse of(Function<Builder, ObjectBuilder<DeleteByQueryRethrottleResponse>> fn) {
+    public static ListResponse of(Function<ListResponse.Builder, ObjectBuilder<ListResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link DeleteByQueryRethrottleResponse}.
+     * Builder for {@link ListResponse}.
      */
-
-    public static class Builder extends TaskListResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteByQueryRethrottleResponse> {
+    public static class Builder extends TaskListResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<ListResponse> {
         @Override
         protected Builder self() {
             return this;
         }
 
         /**
-         * Builds a {@link DeleteByQueryRethrottleResponse}.
+         * Builds a {@link ListResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public DeleteByQueryRethrottleResponse build() {
+        public ListResponse build() {
             _checkSingleUse();
 
-            return new DeleteByQueryRethrottleResponse(this);
+            return new ListResponse(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link DeleteByQueryRethrottleResponse}
+     * Json deserializer for {@link ListResponse}
      */
-    public static final JsonpDeserializer<DeleteByQueryRethrottleResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ListResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        DeleteByQueryRethrottleResponse::setupDeleteByQueryRethrottleResponseDeserializer
+        ListResponse::setupListResponseDeserializer
     );
 
-    protected static void setupDeleteByQueryRethrottleResponseDeserializer(ObjectDeserializer<DeleteByQueryRethrottleResponse.Builder> op) {
+    protected static void setupListResponseDeserializer(ObjectDeserializer<ListResponse.Builder> op) {
         TaskListResponseBase.setupTaskListResponseBaseDeserializer(op);
-
     }
-
 }

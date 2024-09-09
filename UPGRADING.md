@@ -33,3 +33,8 @@ After:
 - The `tasks.State` class has been renamed to `tasks.TaskInfo`, this affects:
   - `TaskExecutingNode`'s `tasks` field.
 - The `headers` field is now a `Map<String, String>` instead of a `Map<String, List<String>>`.
+
+### tasks.ListResponse properties lifted to tasks.TaskListResponseBase
+- All fields previously defined on `tasks.ListResponse` have been lifted to `tasks.TaskListResponseBase`.
+- `DeleteByQueryRethrottleResponse` now extends `tasks.TaskListResponseBase` instead of `tasks.ListResponse`.
+- The `tasks` field is now a `TaskInfos` union type instead of a `Map<String, Info>` to correctly handle `groupBy` parents or none.
