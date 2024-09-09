@@ -28,3 +28,18 @@ After:
 ### ShardStatistics properties types
 - The type of the `total`, `successful` and `failed` fields has been corrected from `Number` to `int`.
 - The type of the `skipped` field has been corrected from `Number` to `Integer`.
+
+### Unified tasks.Info & tasks.State classes into tasks.TaskInfo
+- The `tasks.Info` and `tasks.State` classes have been unified into `tasks.TaskInfo`, this affects:
+  - `TaskExecutingNode`'s `tasks` field.
+  - `GetTasksResponse`'s `task` field.
+  - `core.update_by_query_rethrottle.UpdateByQueryRethrottleNode`'s `tasks` field.
+- The `headers` field is now a `Map<String, String>` instead of a `Map<String, List<String>>`.
+
+### tasks.ListResponse properties lifted to tasks.TaskListResponseBase
+- All fields previously defined on `tasks.ListResponse` have been lifted to `tasks.TaskListResponseBase`.
+- `DeleteByQueryRethrottleResponse` now extends `tasks.TaskListResponseBase` instead of `tasks.ListResponse`.
+- The `tasks` field is now a `TaskInfos` union type instead of a `Map<String, Info>` to correctly handle `groupBy` parents or none.
+
+### GetTasksResponse response type
+- The type of `GetTasksResponse`'s `response` field has been changed from `tasks.Status` to `tasks.TaskResponse`.

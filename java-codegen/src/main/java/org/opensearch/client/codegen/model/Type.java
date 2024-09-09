@@ -12,6 +12,7 @@ import static org.opensearch.client.codegen.model.Types.Client;
 import static org.opensearch.client.codegen.model.Types.Java;
 
 import com.samskivert.mustache.Mustache;
+import java.util.Optional;
 import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -43,6 +44,7 @@ public class Type {
         "Number"
     );
 
+    @Nonnull
     public static Builder builder() {
         return new Builder();
     }
@@ -53,17 +55,18 @@ public class Type {
     private final String name;
     @Nullable
     private final Type[] typeParams;
-    private final boolean isEnum;
+    private final Shape targetShape;
 
     private Type(Builder builder) {
         this.packageName = builder.packageName;
         this.name = Strings.requireNonBlank(builder.name, "name must not be blank");
         this.typeParams = builder.typeParams;
-        this.isEnum = builder.isEnum;
+        this.targetShape = builder.targetShape;
     }
 
+    @Nonnull
     public Builder toBuilder() {
-        return new Builder().withPackage(packageName).withName(name).withTypeParameters(typeParams).isEnum(isEnum);
+        return new Builder().withPackage(packageName).withName(name).withTypeParameters(typeParams).withTargetShape(targetShape);
     }
 
     @Override
@@ -103,6 +106,11 @@ public class Type {
             default:
                 return this;
         }
+    }
+
+    @Nonnull
+    public Optional<Shape> getTargetShape() {
+        return Optional.ofNullable(targetShape);
     }
 
     public boolean isMap() {
@@ -154,7 +162,7 @@ public class Type {
     }
 
     public boolean isEnum() {
-        return isEnum;
+        return targetShape != null && targetShape instanceof EnumShape;
     }
 
     public boolean isTime() {
@@ -205,7 +213,7 @@ public class Type {
         }
     }
 
-    public Type withTypeParams(Type... typeParams) {
+    public Type withTypeParameters(Type... typeParams) {
         return toBuilder().withTypeParameters(typeParams).build();
     }
 
@@ -221,7 +229,7 @@ public class Type {
         private String packageName;
         private String name;
         private Type[] typeParams;
-        private boolean isEnum;
+        private Shape targetShape;
 
         private Builder() {}
 
@@ -250,8 +258,8 @@ public class Type {
         }
 
         @Nonnull
-        public Builder isEnum(boolean isEnum) {
-            this.isEnum = isEnum;
+        public Builder withTargetShape(Shape shape) {
+            this.targetShape = shape;
             return this;
         }
     }

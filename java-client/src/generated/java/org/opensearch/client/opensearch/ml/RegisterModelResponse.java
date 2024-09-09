@@ -114,6 +114,7 @@ public class RegisterModelResponse implements PlainJsonSerializable {
             return new RegisterModelResponse(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

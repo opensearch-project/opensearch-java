@@ -30,31 +30,42 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.tasks;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: tasks.cancel.Request
+// typedef: tasks.list.Request
 
 /**
- * Cancels a task, if it can be cancelled through an API.
- *
+ * Returns a list of tasks.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ListRequest extends RequestBase {
 
-public class CancelRequest extends RequestBase {
     private final List<String> actions;
+
+    @Nullable
+    private final Boolean detailed;
+
+    @Nullable
+    private final GroupBy groupBy;
 
     private final List<String> nodes;
 
@@ -62,53 +73,75 @@ public class CancelRequest extends RequestBase {
     private final String parentTaskId;
 
     @Nullable
-    private final String taskId;
+    private final Time timeout;
 
     @Nullable
     private final Boolean waitForCompletion;
 
     // ---------------------------------------------------------------------------------------------
 
-    private CancelRequest(Builder builder) {
-
+    private ListRequest(Builder builder) {
         this.actions = ApiTypeHelper.unmodifiable(builder.actions);
+        this.detailed = builder.detailed;
+        this.groupBy = builder.groupBy;
         this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
         this.parentTaskId = builder.parentTaskId;
-        this.taskId = builder.taskId;
+        this.timeout = builder.timeout;
         this.waitForCompletion = builder.waitForCompletion;
-
     }
 
-    public static CancelRequest of(Function<Builder, ObjectBuilder<CancelRequest>> fn) {
+    public static ListRequest of(Function<ListRequest.Builder, ObjectBuilder<ListRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * A comma-separated list of actions that should be cancelled. Leave empty to
-     * cancel all.
+     * Comma-separated list or wildcard expression of actions used to limit the request.
      * <p>
      * API name: {@code actions}
+     * </p>
      */
     public final List<String> actions() {
         return this.actions;
     }
 
     /**
-     * A comma-separated list of node IDs or names to limit the returned
-     * information; use <code>_local</code> to return information from the node
-     * you're connecting to, leave empty to get information from all nodes
+     * If `true`, the response includes detailed information about shard recoveries.
+     * <p>
+     * API name: {@code detailed}
+     * </p>
+     */
+    @Nullable
+    public final Boolean detailed() {
+        return this.detailed;
+    }
+
+    /**
+     * Key used to group tasks in the response.
+     * <p>
+     * API name: {@code group_by}
+     * </p>
+     */
+    @Nullable
+    public final GroupBy groupBy() {
+        return this.groupBy;
+    }
+
+    /**
+     * Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're
+     * connecting to, leave empty to get information from all nodes.
      * <p>
      * API name: {@code nodes}
+     * </p>
      */
     public final List<String> nodes() {
         return this.nodes;
     }
 
     /**
-     * Cancel tasks with specified parent task id (node_id:task_number). Set to -1
-     * to cancel all.
+     * Parent task ID used to limit returned information. To return all tasks, omit this parameter or use a value of `-1`.
      * <p>
      * API name: {@code parent_task_id}
+     * </p>
      */
     @Nullable
     public final String parentTaskId() {
@@ -116,20 +149,21 @@ public class CancelRequest extends RequestBase {
     }
 
     /**
-     * Cancel the task with specified task id (node_id:task_number)
+     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
      * <p>
-     * API name: {@code task_id}
+     * API name: {@code timeout}
+     * </p>
      */
     @Nullable
-    public final String taskId() {
-        return this.taskId;
+    public final Time timeout() {
+        return this.timeout;
     }
 
     /**
-     * Should the request block until the cancellation of the task and its
-     * descendant tasks is completed. Defaults to false
+     * If `true`, the request blocks until the operation is complete.
      * <p>
      * API name: {@code wait_for_completion}
+     * </p>
      */
     @Nullable
     public final Boolean waitForCompletion() {
@@ -139,32 +173,33 @@ public class CancelRequest extends RequestBase {
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link CancelRequest}.
+     * Builder for {@link ListRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CancelRequest> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ListRequest> {
         @Nullable
         private List<String> actions;
-
+        @Nullable
+        private Boolean detailed;
+        @Nullable
+        private GroupBy groupBy;
         @Nullable
         private List<String> nodes;
-
         @Nullable
         private String parentTaskId;
-
         @Nullable
-        private String taskId;
-
+        private Time timeout;
         @Nullable
         private Boolean waitForCompletion;
 
         /**
-         * A comma-separated list of actions that should be cancelled. Leave empty to
-         * cancel all.
+         * Comma-separated list or wildcard expression of actions used to limit the request.
          * <p>
          * API name: {@code actions}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>actions</code>.
+         * </p>
          */
         public final Builder actions(List<String> list) {
             this.actions = _listAddAll(this.actions, list);
@@ -172,12 +207,14 @@ public class CancelRequest extends RequestBase {
         }
 
         /**
-         * A comma-separated list of actions that should be cancelled. Leave empty to
-         * cancel all.
+         * Comma-separated list or wildcard expression of actions used to limit the request.
          * <p>
          * API name: {@code actions}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>actions</code>.
+         * </p>
          */
         public final Builder actions(String value, String... values) {
             this.actions = _listAdd(this.actions, value, values);
@@ -185,13 +222,37 @@ public class CancelRequest extends RequestBase {
         }
 
         /**
-         * A comma-separated list of node IDs or names to limit the returned
-         * information; use <code>_local</code> to return information from the node
-         * you're connecting to, leave empty to get information from all nodes
+         * If `true`, the response includes detailed information about shard recoveries.
+         * <p>
+         * API name: {@code detailed}
+         * </p>
+         */
+        public final Builder detailed(@Nullable Boolean value) {
+            this.detailed = value;
+            return this;
+        }
+
+        /**
+         * Key used to group tasks in the response.
+         * <p>
+         * API name: {@code group_by}
+         * </p>
+         */
+        public final Builder groupBy(@Nullable GroupBy value) {
+            this.groupBy = value;
+            return this;
+        }
+
+        /**
+         * Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node
+         * you're connecting to, leave empty to get information from all nodes.
          * <p>
          * API name: {@code nodes}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>nodes</code>.
+         * </p>
          */
         public final Builder nodes(List<String> list) {
             this.nodes = _listAddAll(this.nodes, list);
@@ -199,13 +260,15 @@ public class CancelRequest extends RequestBase {
         }
 
         /**
-         * A comma-separated list of node IDs or names to limit the returned
-         * information; use <code>_local</code> to return information from the node
-         * you're connecting to, leave empty to get information from all nodes
+         * Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node
+         * you're connecting to, leave empty to get information from all nodes.
          * <p>
          * API name: {@code nodes}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>nodes</code>.
+         * </p>
          */
         public final Builder nodes(String value, String... values) {
             this.nodes = _listAdd(this.nodes, value, values);
@@ -213,10 +276,10 @@ public class CancelRequest extends RequestBase {
         }
 
         /**
-         * Cancel tasks with specified parent task id (node_id:task_number). Set to -1
-         * to cancel all.
+         * Parent task ID used to limit returned information. To return all tasks, omit this parameter or use a value of `-1`.
          * <p>
          * API name: {@code parent_task_id}
+         * </p>
          */
         public final Builder parentTaskId(@Nullable String value) {
             this.parentTaskId = value;
@@ -224,20 +287,31 @@ public class CancelRequest extends RequestBase {
         }
 
         /**
-         * Cancel the task with specified task id (node_id:task_number)
+         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
          * <p>
-         * API name: {@code task_id}
+         * API name: {@code timeout}
+         * </p>
          */
-        public final Builder taskId(@Nullable String value) {
-            this.taskId = value;
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
             return this;
         }
 
         /**
-         * Should the request block until the cancellation of the task and its
-         * descendant tasks is completed. Defaults to false
+         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * <p>
+         * API name: {@code timeout}
+         * </p>
+         */
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return timeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * If `true`, the request blocks until the operation is complete.
          * <p>
          * API name: {@code wait_for_completion}
+         * </p>
          */
         public final Builder waitForCompletion(@Nullable Boolean value) {
             this.waitForCompletion = value;
@@ -245,77 +319,55 @@ public class CancelRequest extends RequestBase {
         }
 
         /**
-         * Builds a {@link CancelRequest}.
+         * Builds a {@link ListRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public CancelRequest build() {
+        public ListRequest build() {
             _checkSingleUse();
 
-            return new CancelRequest(this);
+            return new ListRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Endpoint "{@code tasks.cancel}".
+     * Endpoint "{@code tasks.list}".
      */
-    public static final Endpoint<CancelRequest, CancelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
+    public static final Endpoint<ListRequest, ListResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
-        request -> {
-            return "POST";
-
-        },
-
+        request -> "GET",
         // Request path
-        request -> {
-            final int _taskId = 1 << 0;
-
-            int propsSet = 0;
-
-            if (request.taskId() != null) propsSet |= _taskId;
-
-            if (propsSet == 0) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_tasks");
-                buf.append("/_cancel");
-                return buf.toString();
-            }
-            if (propsSet == (_taskId)) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_tasks");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.taskId, buf);
-                buf.append("/_cancel");
-                return buf.toString();
-            }
-            throw SimpleEndpoint.noPathTemplateFound("path");
-
-        },
-
+        request -> "/_tasks",
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
+            if (ApiTypeHelper.isDefined(request.actions)) {
+                params.put("actions", String.join(",", request.actions));
+            }
+            if (request.detailed != null) {
+                params.put("detailed", String.valueOf(request.detailed));
+            }
+            if (request.groupBy != null) {
+                params.put("group_by", request.groupBy.jsonValue());
+            }
             if (ApiTypeHelper.isDefined(request.nodes)) {
-                params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
+                params.put("nodes", String.join(",", request.nodes));
             }
             if (request.parentTaskId != null) {
                 params.put("parent_task_id", request.parentTaskId);
             }
-            if (ApiTypeHelper.isDefined(request.actions)) {
-                params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
             }
             if (request.waitForCompletion != null) {
                 params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
             }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         false,
-        CancelResponse._DESERIALIZER
+        ListResponse._DESERIALIZER
     );
 }

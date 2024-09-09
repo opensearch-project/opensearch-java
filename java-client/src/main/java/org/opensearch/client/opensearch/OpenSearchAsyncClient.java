@@ -125,7 +125,6 @@ import org.opensearch.client.opensearch.ingest.OpenSearchIngestAsyncClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesAsyncClient;
 import org.opensearch.client.opensearch.shutdown.OpenSearchShutdownAsyncClient;
 import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotAsyncClient;
-import org.opensearch.client.opensearch.tasks.OpenSearchTasksAsyncClient;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
@@ -182,10 +181,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
 
     public OpenSearchSnapshotAsyncClient snapshot() {
         return new OpenSearchSnapshotAsyncClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchTasksAsyncClient tasks() {
-        return new OpenSearchTasksAsyncClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: bulk

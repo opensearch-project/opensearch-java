@@ -101,6 +101,7 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
 
         protected abstract BuilderT self();
     }
+
     // ---------------------------------------------------------------------------------------------
 
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAcknowledgedResponseBaseDeserializer(

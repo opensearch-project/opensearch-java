@@ -245,6 +245,7 @@ public class ShardStatistics implements PlainJsonSerializable {
             return new ShardStatistics(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

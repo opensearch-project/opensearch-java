@@ -30,49 +30,30 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch._types;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
+package org.opensearch.client.opensearch.tasks;
+
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: tasks.GroupBy
+
 @JsonpDeserializable
-public enum NodeRole implements JsonEnum {
-    @Deprecated
-    Master("master"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum GroupBy implements JsonEnum {
+    Nodes("nodes"),
 
-    ClusterManager("cluster_manager"),
+    None("none"),
 
-    Data("data"),
-
-    DataCold("data_cold"),
-
-    DataContent("data_content"),
-
-    DataFrozen("data_frozen"),
-
-    DataHot("data_hot"),
-
-    DataWarm("data_warm"),
-
-    Client("client"),
-
-    Ingest("ingest"),
-
-    Ml("ml"),
-
-    VotingOnly("voting_only"),
-
-    Transform("transform"),
-
-    RemoteClusterClient("remote_cluster_client"),
-
-    CoordinatingOnly("coordinating_only"),
-
-    ;
+    Parents("parents");
 
     private final String jsonValue;
 
-    NodeRole(String jsonValue) {
+    GroupBy(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -80,5 +61,5 @@ public enum NodeRole implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<NodeRole> _DESERIALIZER = new JsonEnum.Deserializer<>(NodeRole.values());
+    public static final JsonEnum.Deserializer<GroupBy> _DESERIALIZER = new JsonEnum.Deserializer<>(GroupBy.values());
 }

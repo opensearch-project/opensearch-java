@@ -30,11 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.tasks;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -44,47 +49,41 @@ import org.opensearch.client.opensearch._types.BaseNode;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: tasks._types.TaskExecutingNode
+// typedef: tasks.TaskExecutingNode
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TaskExecutingNode extends BaseNode {
-    private final Map<String, State> tasks;
+
+    private final Map<String, TaskInfo> tasks;
 
     // ---------------------------------------------------------------------------------------------
 
     private TaskExecutingNode(Builder builder) {
         super(builder);
-
         this.tasks = ApiTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
-
     }
 
-    public static TaskExecutingNode of(Function<Builder, ObjectBuilder<TaskExecutingNode>> fn) {
+    public static TaskExecutingNode of(Function<TaskExecutingNode.Builder, ObjectBuilder<TaskExecutingNode>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code tasks}
      */
-    public final Map<String, State> tasks() {
+    public final Map<String, TaskInfo> tasks() {
         return this.tasks;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
-        if (ApiTypeHelper.isDefined(this.tasks)) {
-            generator.writeKey("tasks");
-            generator.writeStartObject();
-            for (Map.Entry<String, State> item0 : this.tasks.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("tasks");
+        generator.writeStartObject();
+        for (Map.Entry<String, TaskInfo> item0 : this.tasks.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
         }
-
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -92,49 +91,53 @@ public class TaskExecutingNode extends BaseNode {
     /**
      * Builder for {@link TaskExecutingNode}.
      */
-
     public static class Builder extends BaseNode.AbstractBuilder<Builder> implements ObjectBuilder<TaskExecutingNode> {
-        private Map<String, State> tasks;
+        @Override
+        protected Builder self() {
+            return this;
+        }
+
+        private Map<String, TaskInfo> tasks;
 
         /**
          * Required - API name: {@code tasks}
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>tasks</code>.
+         * Adds all elements of <code>map</code> to <code>tasks</code>.
+         * </p>
          */
-        public final Builder tasks(Map<String, State> map) {
+        public final Builder tasks(Map<String, TaskInfo> map) {
             this.tasks = _mapPutAll(this.tasks, map);
             return this;
         }
 
         /**
          * Required - API name: {@code tasks}
+         *
          * <p>
          * Adds an entry to <code>tasks</code>.
+         * </p>
          */
-        public final Builder tasks(String key, State value) {
+        public final Builder tasks(String key, TaskInfo value) {
             this.tasks = _mapPut(this.tasks, key, value);
             return this;
         }
 
         /**
          * Required - API name: {@code tasks}
+         *
          * <p>
-         * Adds an entry to <code>tasks</code> using a builder lambda.
+         * Adds a value to <code>tasks</code> using a builder lambda.
+         * </p>
          */
-        public final Builder tasks(String key, Function<State.Builder, ObjectBuilder<State>> fn) {
-            return tasks(key, fn.apply(new State.Builder()).build());
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
+        public final Builder tasks(String key, Function<TaskInfo.Builder, ObjectBuilder<TaskInfo>> fn) {
+            return tasks(key, fn.apply(new TaskInfo.Builder()).build());
         }
 
         /**
          * Builds a {@link TaskExecutingNode}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public TaskExecutingNode build() {
             _checkSingleUse();
@@ -155,8 +158,6 @@ public class TaskExecutingNode extends BaseNode {
 
     protected static void setupTaskExecutingNodeDeserializer(ObjectDeserializer<TaskExecutingNode.Builder> op) {
         BaseNode.setupBaseNodeDeserializer(op);
-        op.add(Builder::tasks, JsonpDeserializer.stringMapDeserializer(State._DESERIALIZER), "tasks");
-
+        op.add(Builder::tasks, JsonpDeserializer.stringMapDeserializer(TaskInfo._DESERIALIZER), "tasks");
     }
-
 }

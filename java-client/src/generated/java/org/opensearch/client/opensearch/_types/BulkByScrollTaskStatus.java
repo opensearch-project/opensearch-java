@@ -30,11 +30,16 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch.tasks;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
+package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,32 +47,36 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch._types.Retries;
-import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: tasks._types.Status
+// typedef: _types.BulkByScrollTaskStatus
 
 @JsonpDeserializable
-public class Status implements PlainJsonSerializable {
-    private final long batches;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class BulkByScrollTaskStatus implements PlainJsonSerializable {
+
+    private final int batches;
 
     @Nullable
     private final String canceled;
 
-    private final long created;
+    @Nullable
+    private final Long created;
 
     private final long deleted;
 
     private final long noops;
 
-    private final List<String> failures;
-
     private final float requestsPerSecond;
 
     private final Retries retries;
+
+    @Nullable
+    private final Integer sliceId;
+
+    private final List<BulkByScrollTaskStatusOrException> slices;
 
     @Nullable
     private final Time throttled;
@@ -79,50 +88,45 @@ public class Status implements PlainJsonSerializable {
 
     private final long throttledUntilMillis;
 
-    @Nullable
-    private final Boolean timedOut;
-
-    @Nullable
-    private final Long took;
-
     private final long total;
 
-    private final long updated;
+    @Nullable
+    private final Long updated;
 
     private final long versionConflicts;
 
     // ---------------------------------------------------------------------------------------------
 
-    private Status(Builder builder) {
-
+    private BulkByScrollTaskStatus(Builder builder) {
         this.batches = ApiTypeHelper.requireNonNull(builder.batches, this, "batches");
         this.canceled = builder.canceled;
-        this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+        this.created = builder.created;
         this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
         this.noops = ApiTypeHelper.requireNonNull(builder.noops, this, "noops");
-        this.failures = ApiTypeHelper.unmodifiable(builder.failures);
         this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond");
         this.retries = ApiTypeHelper.requireNonNull(builder.retries, this, "retries");
+        this.sliceId = builder.sliceId;
+        this.slices = ApiTypeHelper.unmodifiable(builder.slices);
         this.throttled = builder.throttled;
         this.throttledMillis = ApiTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis");
         this.throttledUntil = builder.throttledUntil;
         this.throttledUntilMillis = ApiTypeHelper.requireNonNull(builder.throttledUntilMillis, this, "throttledUntilMillis");
-        this.timedOut = builder.timedOut;
-        this.took = builder.took;
         this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-        this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated");
+        this.updated = builder.updated;
         this.versionConflicts = ApiTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts");
-
     }
 
-    public static Status of(Function<Builder, ObjectBuilder<Status>> fn) {
+    public static BulkByScrollTaskStatus of(Function<BulkByScrollTaskStatus.Builder, ObjectBuilder<BulkByScrollTaskStatus>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code batches}
+     * Required - The number of scroll responses pulled back by the reindex.
+     * <p>
+     * API name: {@code batches}
+     * </p>
      */
-    public final long batches() {
+    public final int batches() {
         return this.batches;
     }
 
@@ -135,35 +139,41 @@ public class Status implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code created}
+     * The number of documents that were successfully created.
+     * <p>
+     * API name: {@code created}
+     * </p>
      */
-    public final long created() {
+    @Nullable
+    public final Long created() {
         return this.created;
     }
 
     /**
-     * Required - API name: {@code deleted}
+     * Required - The number of documents that were successfully deleted.
+     * <p>
+     * API name: {@code deleted}
+     * </p>
      */
     public final long deleted() {
         return this.deleted;
     }
 
     /**
-     * Required - API name: {@code noops}
+     * Required - The number of documents that were ignored.
+     * <p>
+     * API name: {@code noops}
+     * </p>
      */
     public final long noops() {
         return this.noops;
     }
 
     /**
-     * API name: {@code failures}
-     */
-    public final List<String> failures() {
-        return this.failures;
-    }
-
-    /**
-     * Required - API name: {@code requests_per_second}
+     * Required - The number of requests per second effectively executed during the reindex.
+     * <p>
+     * API name: {@code requests_per_second}
+     * </p>
      */
     public final float requestsPerSecond() {
         return this.requestsPerSecond;
@@ -174,6 +184,21 @@ public class Status implements PlainJsonSerializable {
      */
     public final Retries retries() {
         return this.retries;
+    }
+
+    /**
+     * API name: {@code slice_id}
+     */
+    @Nullable
+    public final Integer sliceId() {
+        return this.sliceId;
+    }
+
+    /**
+     * API name: {@code slices}
+     */
+    public final List<BulkByScrollTaskStatusOrException> slices() {
+        return this.slices;
     }
 
     /**
@@ -207,37 +232,32 @@ public class Status implements PlainJsonSerializable {
     }
 
     /**
-     * API name: {@code timed_out}
-     */
-    @Nullable
-    public final Boolean timedOut() {
-        return this.timedOut;
-    }
-
-    /**
-     * API name: {@code took}
-     */
-    @Nullable
-    public final Long took() {
-        return this.took;
-    }
-
-    /**
-     * Required - API name: {@code total}
+     * Required - The number of documents that were successfully processed.
+     * <p>
+     * API name: {@code total}
+     * </p>
      */
     public final long total() {
         return this.total;
     }
 
     /**
-     * Required - API name: {@code updated}
+     * The number of documents that were successfully updated, for example, a document with same ID already existed prior to reindex
+     * updating it.
+     * <p>
+     * API name: {@code updated}
+     * </p>
      */
-    public final long updated() {
+    @Nullable
+    public final Long updated() {
         return this.updated;
     }
 
     /**
-     * Required - API name: {@code version_conflicts}
+     * Required - The number of version conflicts that reindex hits.
+     * <p>
+     * API name: {@code version_conflicts}
+     * </p>
      */
     public final long versionConflicts() {
         return this.versionConflicts;
@@ -246,6 +266,7 @@ public class Status implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -253,17 +274,18 @@ public class Status implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("batches");
         generator.write(this.batches);
 
         if (this.canceled != null) {
             generator.writeKey("canceled");
             generator.write(this.canceled);
-
         }
-        generator.writeKey("created");
-        generator.write(this.created);
+
+        if (this.created != null) {
+            generator.writeKey("created");
+            generator.write(this.created);
+        }
 
         generator.writeKey("deleted");
         generator.write(this.deleted);
@@ -271,110 +293,91 @@ public class Status implements PlainJsonSerializable {
         generator.writeKey("noops");
         generator.write(this.noops);
 
-        if (ApiTypeHelper.isDefined(this.failures)) {
-            generator.writeKey("failures");
-            generator.writeStartArray();
-            for (String item0 : this.failures) {
-                generator.write(item0);
-
-            }
-            generator.writeEnd();
-
-        }
         generator.writeKey("requests_per_second");
         generator.write(this.requestsPerSecond);
 
         generator.writeKey("retries");
         this.retries.serialize(generator, mapper);
 
+        if (this.sliceId != null) {
+            generator.writeKey("slice_id");
+            generator.write(this.sliceId);
+        }
+
+        if (ApiTypeHelper.isDefined(this.slices)) {
+            generator.writeKey("slices");
+            generator.writeStartArray();
+            for (BulkByScrollTaskStatusOrException item0 : this.slices) {
+                item0.serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+
         if (this.throttled != null) {
             generator.writeKey("throttled");
             this.throttled.serialize(generator, mapper);
-
         }
+
         generator.writeKey("throttled_millis");
         generator.write(this.throttledMillis);
 
         if (this.throttledUntil != null) {
             generator.writeKey("throttled_until");
             this.throttledUntil.serialize(generator, mapper);
-
         }
+
         generator.writeKey("throttled_until_millis");
         generator.write(this.throttledUntilMillis);
 
-        if (this.timedOut != null) {
-            generator.writeKey("timed_out");
-            generator.write(this.timedOut);
-
-        }
-        if (this.took != null) {
-            generator.writeKey("took");
-            generator.write(this.took);
-
-        }
         generator.writeKey("total");
         generator.write(this.total);
 
-        generator.writeKey("updated");
-        generator.write(this.updated);
+        if (this.updated != null) {
+            generator.writeKey("updated");
+            generator.write(this.updated);
+        }
 
         generator.writeKey("version_conflicts");
         generator.write(this.versionConflicts);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link Status}.
+     * Builder for {@link BulkByScrollTaskStatus}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Status> {
-        private Long batches;
-
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkByScrollTaskStatus> {
+        private Integer batches;
         @Nullable
         private String canceled;
-
-        private Long created;
-
-        private Long deleted;
-
-        private Long noops;
-
         @Nullable
-        private List<String> failures;
-
+        private Long created;
+        private Long deleted;
+        private Long noops;
         private Float requestsPerSecond;
-
         private Retries retries;
-
+        @Nullable
+        private Integer sliceId;
+        @Nullable
+        private List<BulkByScrollTaskStatusOrException> slices;
         @Nullable
         private Time throttled;
-
         private Long throttledMillis;
-
         @Nullable
         private Time throttledUntil;
-
         private Long throttledUntilMillis;
-
-        @Nullable
-        private Boolean timedOut;
-
-        @Nullable
-        private Long took;
-
         private Long total;
-
+        @Nullable
         private Long updated;
-
         private Long versionConflicts;
 
         /**
-         * Required - API name: {@code batches}
+         * Required - The number of scroll responses pulled back by the reindex.
+         * <p>
+         * API name: {@code batches}
+         * </p>
          */
-        public final Builder batches(long value) {
+        public final Builder batches(int value) {
             this.batches = value;
             return this;
         }
@@ -388,15 +391,21 @@ public class Status implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code created}
+         * The number of documents that were successfully created.
+         * <p>
+         * API name: {@code created}
+         * </p>
          */
-        public final Builder created(long value) {
+        public final Builder created(@Nullable Long value) {
             this.created = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code deleted}
+         * Required - The number of documents that were successfully deleted.
+         * <p>
+         * API name: {@code deleted}
+         * </p>
          */
         public final Builder deleted(long value) {
             this.deleted = value;
@@ -404,7 +413,10 @@ public class Status implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code noops}
+         * Required - The number of documents that were ignored.
+         * <p>
+         * API name: {@code noops}
+         * </p>
          */
         public final Builder noops(long value) {
             this.noops = value;
@@ -412,27 +424,10 @@ public class Status implements PlainJsonSerializable {
         }
 
         /**
-         * API name: {@code failures}
+         * Required - The number of requests per second effectively executed during the reindex.
          * <p>
-         * Adds all elements of <code>list</code> to <code>failures</code>.
-         */
-        public final Builder failures(List<String> list) {
-            this.failures = _listAddAll(this.failures, list);
-            return this;
-        }
-
-        /**
-         * API name: {@code failures}
-         * <p>
-         * Adds one or more values to <code>failures</code>.
-         */
-        public final Builder failures(String value, String... values) {
-            this.failures = _listAdd(this.failures, value, values);
-            return this;
-        }
-
-        /**
-         * Required - API name: {@code requests_per_second}
+         * API name: {@code requests_per_second}
+         * </p>
          */
         public final Builder requestsPerSecond(float value) {
             this.requestsPerSecond = value;
@@ -451,7 +446,52 @@ public class Status implements PlainJsonSerializable {
          * Required - API name: {@code retries}
          */
         public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
-            return this.retries(fn.apply(new Retries.Builder()).build());
+            return retries(fn.apply(new Retries.Builder()).build());
+        }
+
+        /**
+         * API name: {@code slice_id}
+         */
+        public final Builder sliceId(@Nullable Integer value) {
+            this.sliceId = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code slices}
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>slices</code>.
+         * </p>
+         */
+        public final Builder slices(List<BulkByScrollTaskStatusOrException> list) {
+            this.slices = _listAddAll(this.slices, list);
+            return this;
+        }
+
+        /**
+         * API name: {@code slices}
+         *
+         * <p>
+         * Adds one or more values to <code>slices</code>.
+         * </p>
+         */
+        public final Builder slices(BulkByScrollTaskStatusOrException value, BulkByScrollTaskStatusOrException... values) {
+            this.slices = _listAdd(this.slices, value, values);
+            return this;
+        }
+
+        /**
+         * API name: {@code slices}
+         *
+         * <p>
+         * Adds a value to <code>slices</code> using a builder lambda.
+         * </p>
+         */
+        public final Builder slices(
+            Function<BulkByScrollTaskStatusOrException.Builder, ObjectBuilder<BulkByScrollTaskStatusOrException>> fn
+        ) {
+            return slices(fn.apply(new BulkByScrollTaskStatusOrException.Builder()).build());
         }
 
         /**
@@ -466,7 +506,7 @@ public class Status implements PlainJsonSerializable {
          * API name: {@code throttled}
          */
         public final Builder throttled(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.throttled(fn.apply(new Time.Builder()).build());
+            return throttled(fn.apply(new Time.Builder()).build());
         }
 
         /**
@@ -489,7 +529,7 @@ public class Status implements PlainJsonSerializable {
          * API name: {@code throttled_until}
          */
         public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.throttledUntil(fn.apply(new Time.Builder()).build());
+            return throttledUntil(fn.apply(new Time.Builder()).build());
         }
 
         /**
@@ -501,23 +541,10 @@ public class Status implements PlainJsonSerializable {
         }
 
         /**
-         * API name: {@code timed_out}
-         */
-        public final Builder timedOut(@Nullable Boolean value) {
-            this.timedOut = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code took}
-         */
-        public final Builder took(@Nullable Long value) {
-            this.took = value;
-            return this;
-        }
-
-        /**
-         * Required - API name: {@code total}
+         * Required - The number of documents that were successfully processed.
+         * <p>
+         * API name: {@code total}
+         * </p>
          */
         public final Builder total(long value) {
             this.total = value;
@@ -525,15 +552,22 @@ public class Status implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code updated}
+         * The number of documents that were successfully updated, for example, a document with same ID already existed prior to reindex
+         * updating it.
+         * <p>
+         * API name: {@code updated}
+         * </p>
          */
-        public final Builder updated(long value) {
+        public final Builder updated(@Nullable Long value) {
             this.updated = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code version_conflicts}
+         * Required - The number of version conflicts that reindex hits.
+         * <p>
+         * API name: {@code version_conflicts}
+         * </p>
          */
         public final Builder versionConflicts(long value) {
             this.versionConflicts = value;
@@ -541,48 +575,43 @@ public class Status implements PlainJsonSerializable {
         }
 
         /**
-         * Builds a {@link Status}.
+         * Builds a {@link BulkByScrollTaskStatus}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public Status build() {
+        public BulkByScrollTaskStatus build() {
             _checkSingleUse();
 
-            return new Status(this);
+            return new BulkByScrollTaskStatus(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link Status}
+     * Json deserializer for {@link BulkByScrollTaskStatus}
      */
-    public static final JsonpDeserializer<Status> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<BulkByScrollTaskStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        Status::setupStatusDeserializer
+        BulkByScrollTaskStatus::setupBulkByScrollTaskStatusDeserializer
     );
 
-    protected static void setupStatusDeserializer(ObjectDeserializer<Status.Builder> op) {
-
-        op.add(Builder::batches, JsonpDeserializer.longDeserializer(), "batches");
+    protected static void setupBulkByScrollTaskStatusDeserializer(ObjectDeserializer<BulkByScrollTaskStatus.Builder> op) {
+        op.add(Builder::batches, JsonpDeserializer.integerDeserializer(), "batches");
         op.add(Builder::canceled, JsonpDeserializer.stringDeserializer(), "canceled");
         op.add(Builder::created, JsonpDeserializer.longDeserializer(), "created");
         op.add(Builder::deleted, JsonpDeserializer.longDeserializer(), "deleted");
         op.add(Builder::noops, JsonpDeserializer.longDeserializer(), "noops");
-        op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "failures");
         op.add(Builder::requestsPerSecond, JsonpDeserializer.floatDeserializer(), "requests_per_second");
         op.add(Builder::retries, Retries._DESERIALIZER, "retries");
+        op.add(Builder::sliceId, JsonpDeserializer.integerDeserializer(), "slice_id");
+        op.add(Builder::slices, JsonpDeserializer.arrayDeserializer(BulkByScrollTaskStatusOrException._DESERIALIZER), "slices");
         op.add(Builder::throttled, Time._DESERIALIZER, "throttled");
         op.add(Builder::throttledMillis, JsonpDeserializer.longDeserializer(), "throttled_millis");
         op.add(Builder::throttledUntil, Time._DESERIALIZER, "throttled_until");
         op.add(Builder::throttledUntilMillis, JsonpDeserializer.longDeserializer(), "throttled_until_millis");
-        op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
-        op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
         op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
         op.add(Builder::updated, JsonpDeserializer.longDeserializer(), "updated");
         op.add(Builder::versionConflicts, JsonpDeserializer.longDeserializer(), "version_conflicts");
-
     }
-
 }

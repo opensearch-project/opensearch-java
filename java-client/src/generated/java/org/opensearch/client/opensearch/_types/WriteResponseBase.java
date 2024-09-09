@@ -264,6 +264,7 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
 
         protected abstract BuilderT self();
     }
+
     // ---------------------------------------------------------------------------------------------
 
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWriteResponseBaseDeserializer(ObjectDeserializer<BuilderT> op) {

@@ -365,6 +365,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
             return new GetTaskResponse(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**
