@@ -270,6 +270,7 @@ public abstract class BaseNode implements PlainJsonSerializable {
 
         protected abstract BuilderT self();
     }
+
     // ---------------------------------------------------------------------------------------------
 
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBaseNodeDeserializer(ObjectDeserializer<BuilderT> op) {

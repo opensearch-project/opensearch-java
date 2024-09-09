@@ -227,6 +227,7 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
             return new RegisterModelRequest(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

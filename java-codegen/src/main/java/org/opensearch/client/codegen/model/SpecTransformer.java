@@ -54,7 +54,7 @@ public class SpecTransformer {
     @Nonnull
     private final Namespace root = new Namespace();
     @Nonnull
-    private final Set<OpenApiSchema> visitedSchemas = new HashSet<>();
+    private final Map<OpenApiSchema, Shape> visitedSchemas = new ConcurrentHashMap<>();
     @Nonnull
     private final Map<OpenApiSchema, Type> schemaToType = new ConcurrentHashMap<>();
 
@@ -232,29 +232,26 @@ public class SpecTransformer {
         );
     }
 
-    private void visit(OpenApiSchema schema) {
+    private Shape visit(OpenApiSchema schema) {
         var namespace = schema.getNamespace().orElseThrow();
         var name = schema.getName().orElseThrow();
-        visit(root.child(namespace), name, namespace + "." + name, schema);
+        return visit(root.child(namespace), name, namespace + "." + name, schema);
     }
 
-    private void visit(Namespace parent, String className, String typedefName, OpenApiSchema schema) {
-        if (!visitedSchemas.add(schema)) {
-            return;
+    private Shape visit(Namespace parent, String className, String typedefName, OpenApiSchema schema) {
+        Shape shape = visitedSchemas.get(schema);
+
+        if (shape != null) {
+            return shape;
         }
 
         LOGGER.info("Visiting Schema: {}", schema);
-
-        Shape shape;
 
         var description = schema.getDescription().orElse(null);
 
         if (schema.isArray()) {
             shape = new ArrayShape(parent, className, mapType(schema), typedefName, description);
-        } else if (schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object) {
-            var objShape = new ObjectShape(parent, className, typedefName, description);
-            visitInto(schema, objShape);
-            shape = objShape;
+            visitedSchemas.putIfAbsent(schema, shape);
         } else if (schema.isString() && schema.hasEnums()) {
             var deprecatedEnums = schema.getDeprecatedEnums().orElseGet(Collections::emptySet);
             shape = new EnumShape(
@@ -264,25 +261,37 @@ public class SpecTransformer {
                 typedefName,
                 description
             );
+            visitedSchemas.putIfAbsent(schema, shape);
         } else if (schema.hasOneOf()) {
             var taggedUnion = new TaggedUnionShape(parent, className, typedefName, description);
+            shape = taggedUnion;
+            visitedSchemas.putIfAbsent(schema, shape);
+
             schema.getOneOf().orElseThrow().forEach(s -> {
                 var title = s.getTitle()
                     .orElseThrow(() -> new IllegalStateException("oneOf variant [" + s.getPointer() + "] is missing a `title` tag"));
                 taggedUnion.addVariant(title, mapType(s));
             });
-            shape = taggedUnion;
+        } else if (schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object) {
+            var objShape = new ObjectShape(parent, className, typedefName, description);
+            shape = objShape;
+            visitedSchemas.putIfAbsent(schema, shape);
+
+            visitInto(schema, objShape);
         } else {
             throw new NotImplementedException("Unsupported schema: " + schema);
         }
 
         parent.addShape(shape);
+
+        return shape;
     }
 
     private void visitInto(OpenApiSchema schema, ObjectShape shape) {
         var allOf = schema.getAllOf();
         if (allOf.isPresent()) {
-            shape.setExtendsType(mapType(allOf.get().get(0)));
+            var baseSchema = allOf.get().get(0);
+            shape.setExtendsType(mapType(baseSchema));
             schema = allOf.get().get(1);
         }
 
@@ -392,13 +401,9 @@ public class SpecTransformer {
                 return mapType(schema);
             }
 
-            visit(schema);
+            var shape = visit(schema);
 
-            return Type.builder()
-                .withPackage(Types.Client.OpenSearch.PACKAGE + "." + schema.getNamespace().orElseThrow())
-                .withName(schema.getName().orElseThrow())
-                .isEnum(schema.hasEnums())
-                .build();
+            return shape.getType();
         }
 
         var oneOf = schema.getOneOf();

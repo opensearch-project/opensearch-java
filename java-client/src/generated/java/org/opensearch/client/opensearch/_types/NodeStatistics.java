@@ -238,6 +238,7 @@ public class NodeStatistics implements PlainJsonSerializable {
             return new NodeStatistics(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

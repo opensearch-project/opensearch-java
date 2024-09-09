@@ -212,6 +212,7 @@ public class InfoResponse implements PlainJsonSerializable {
             return new InfoResponse(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

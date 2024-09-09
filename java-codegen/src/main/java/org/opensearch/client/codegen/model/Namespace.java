@@ -119,10 +119,15 @@ public class Namespace {
         @Override
         public TypeParameterDiamond getTypeParameters() {
             if (!base) return null;
-            var thisType = getType().withTypeParams(Type.builder().withName("Self").build());
+            var thisType = getType().withTypeParameters(Type.builder().withName("Self").build());
             return TypeParameterDiamond.builder()
                 .withParams(TypeParameterDefinition.builder().withName("Self").withExtends(thisType).build())
                 .build();
+        }
+
+        @Override
+        public boolean isAbstract() {
+            return base;
         }
 
         @Override

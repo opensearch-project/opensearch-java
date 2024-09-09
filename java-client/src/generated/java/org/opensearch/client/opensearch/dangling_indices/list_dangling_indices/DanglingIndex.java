@@ -231,6 +231,7 @@ public class DanglingIndex implements PlainJsonSerializable {
             return new DanglingIndex(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

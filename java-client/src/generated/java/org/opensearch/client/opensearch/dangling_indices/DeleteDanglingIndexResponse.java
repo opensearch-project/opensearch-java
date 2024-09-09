@@ -87,6 +87,7 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
             return new DeleteDanglingIndexResponse(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**
