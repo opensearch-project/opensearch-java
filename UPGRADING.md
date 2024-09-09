@@ -33,6 +33,7 @@ After:
 - The `tasks.Info` and `tasks.State` classes have been unified into `tasks.TaskInfo`, this affects:
   - `TaskExecutingNode`'s `tasks` field.
   - `GetTasksResponse`'s `task` field.
+  - `core.update_by_query_rethrottle.UpdateByQueryRethrottleNode`'s `tasks` field.
 - The `headers` field is now a `Map<String, String>` instead of a `Map<String, List<String>>`.
 
 ### tasks.ListResponse properties lifted to tasks.TaskListResponseBase

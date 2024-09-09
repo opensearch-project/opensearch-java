@@ -3,7 +3,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.0]
 ### Dependencies
-- Bumps `org.junit:junit-bom` from 5.10.2 to 5.11.0
 - Bumps `org.owasp.dependencycheck` from 10.0.2 to 10.0.4
 - Bumps `org.eclipse.parsson:parsson` from 1.1.6 to 1.1.7
 - Bumps `org.hamcrest:hamcrest` from 2.2 to 3.0
@@ -21,6 +20,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Changed SearchAfter of SearchRequest type to FieldValue instead of String ([#769](https://github.com/opensearch-project/opensearch-java/pull/769))
 - Changed type of `DanglingIndex`'s `creationDateMillis` field from `String` to `long` ([#1124](https://github.com/opensearch-project/opensearch-java/pull/1124))
 - Changed type of `ShardStatistics`'s `total`, `successful`, `failed` & `skipped` fields from `Number` to `int/Integer` ([#1158](https://github.com/opensearch-project/opensearch-java/pull/1158))
+- Unified `tasks.Info` and `tasks.State` classes into `tasks.TaskInfo` ([#1187](https://github.com/opensearch-project/opensearch-java/pull/1187))
 
 ### Deprecated
 - Deprecate RestClientTransport ([#536](https://github.com/opensearch-project/opensearch-java/pull/536))
@@ -29,7 +29,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
-- Fix queries not preserving boost and name when converted to builders ([#1181](https://github.com/opensearch-project/opensearch-java/pull/1181))
+- Fixed deserializing `tasks.ListResponse` when using `GroupBy.None` ([#1187](https://github.com/opensearch-project/opensearch-java/pull/1187))
 
 ### Security
 
@@ -38,6 +38,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Added
 
 ### Dependencies
+- Bumps `org.junit:junit-bom` from 5.10.3 to 5.11.0
 
 ### Changed
 
@@ -46,6 +47,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
+- Fix queries not preserving boost and name when converted to builders ([#1181](https://github.com/opensearch-project/opensearch-java/pull/1181))
 
 ### Security
 
