@@ -51,11 +51,18 @@ import org.opensearch.client.util.ObjectBuilder;
  * Client for the tasks namespace.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public abstract class OpenSearchTasksAsyncClientBase<Self extends OpenSearchTasksAsyncClientBase<Self>> extends ApiClient<
-    OpenSearchTransport,
-    Self> {
-    public OpenSearchTasksAsyncClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+public class OpenSearchTasksAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchTasksAsyncClient> {
+    public OpenSearchTasksAsyncClient(OpenSearchTransport transport) {
+        super(transport, null);
+    }
+
+    public OpenSearchTasksAsyncClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
+    }
+
+    @Override
+    public OpenSearchTasksAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchTasksAsyncClient(this.transport, transportOptions);
     }
 
     // ----- Endpoint: tasks.cancel
@@ -82,6 +89,25 @@ public abstract class OpenSearchTasksAsyncClientBase<Self extends OpenSearchTask
      */
     public final CompletableFuture<CancelResponse> cancel() throws IOException, OpenSearchException {
         return cancel(new CancelRequest.Builder().build());
+    }
+
+    // ----- Endpoint: tasks.get
+
+    /**
+     * Returns information about a task.
+     */
+    public CompletableFuture<GetTasksResponse> get(GetTasksRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, GetTasksRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about a task.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetTasksRequest}
+     */
+    public final CompletableFuture<GetTasksResponse> get(Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn)
+        throws IOException, OpenSearchException {
+        return get(fn.apply(new GetTasksRequest.Builder()).build());
     }
 
     // ----- Endpoint: tasks.list

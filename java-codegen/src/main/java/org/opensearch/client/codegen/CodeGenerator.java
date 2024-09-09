@@ -44,7 +44,7 @@ public class CodeGenerator {
         and(namespace(""), named("info")),
         namespace("dangling_indices"),
         and(namespace("ml"), not(named("search_models"))), // TODO: search_models is complex and ideally should re-use the search structures
-        and(namespace("tasks"), named("cancel", "list"))
+        and(namespace("tasks"))
     );
 
     public static void main(String[] args) {

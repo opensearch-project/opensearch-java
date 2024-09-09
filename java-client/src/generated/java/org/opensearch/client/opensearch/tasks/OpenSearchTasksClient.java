@@ -50,9 +50,18 @@ import org.opensearch.client.util.ObjectBuilder;
  * Client for the tasks namespace.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public abstract class OpenSearchTasksClientBase<Self extends OpenSearchTasksClientBase<Self>> extends ApiClient<OpenSearchTransport, Self> {
-    public OpenSearchTasksClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+public class OpenSearchTasksClient extends ApiClient<OpenSearchTransport, OpenSearchTasksClient> {
+    public OpenSearchTasksClient(OpenSearchTransport transport) {
+        super(transport, null);
+    }
+
+    public OpenSearchTasksClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
+    }
+
+    @Override
+    public OpenSearchTasksClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchTasksClient(this.transport, transportOptions);
     }
 
     // ----- Endpoint: tasks.cancel
@@ -79,6 +88,25 @@ public abstract class OpenSearchTasksClientBase<Self extends OpenSearchTasksClie
      */
     public final CancelResponse cancel() throws IOException, OpenSearchException {
         return cancel(new CancelRequest.Builder().build());
+    }
+
+    // ----- Endpoint: tasks.get
+
+    /**
+     * Returns information about a task.
+     */
+    public GetTasksResponse get(GetTasksRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetTasksRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about a task.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetTasksRequest}
+     */
+    public final GetTasksResponse get(Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn) throws IOException,
+        OpenSearchException {
+        return get(fn.apply(new GetTasksRequest.Builder()).build());
     }
 
     // ----- Endpoint: tasks.list

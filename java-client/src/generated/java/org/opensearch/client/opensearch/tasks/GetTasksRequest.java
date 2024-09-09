@@ -30,11 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.tasks;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -49,10 +54,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 /**
  * Returns information about a task.
- *
  */
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetTasksRequest extends RequestBase {
+
     private final String taskId;
 
     @Nullable
@@ -64,30 +69,30 @@ public class GetTasksRequest extends RequestBase {
     // ---------------------------------------------------------------------------------------------
 
     private GetTasksRequest(Builder builder) {
-
         this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
         this.timeout = builder.timeout;
         this.waitForCompletion = builder.waitForCompletion;
-
     }
 
-    public static GetTasksRequest of(Function<Builder, ObjectBuilder<GetTasksRequest>> fn) {
+    public static GetTasksRequest of(Function<GetTasksRequest.Builder, ObjectBuilder<GetTasksRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - Return the task with specified id (node_id:task_number)
+     * Required - ID of the task.
      * <p>
      * API name: {@code task_id}
+     * </p>
      */
     public final String taskId() {
         return this.taskId;
     }
 
     /**
-     * Explicit operation timeout
+     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
      * <p>
      * API name: {@code timeout}
+     * </p>
      */
     @Nullable
     public final Time timeout() {
@@ -95,9 +100,10 @@ public class GetTasksRequest extends RequestBase {
     }
 
     /**
-     * Wait for the matching tasks to complete (default: false)
+     * If `true`, the request blocks until the task has completed.
      * <p>
      * API name: {@code wait_for_completion}
+     * </p>
      */
     @Nullable
     public final Boolean waitForCompletion() {
@@ -109,20 +115,18 @@ public class GetTasksRequest extends RequestBase {
     /**
      * Builder for {@link GetTasksRequest}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTasksRequest> {
         private String taskId;
-
         @Nullable
         private Time timeout;
-
         @Nullable
         private Boolean waitForCompletion;
 
         /**
-         * Required - Return the task with specified id (node_id:task_number)
+         * Required - ID of the task.
          * <p>
          * API name: {@code task_id}
+         * </p>
          */
         public final Builder taskId(String value) {
             this.taskId = value;
@@ -130,9 +134,10 @@ public class GetTasksRequest extends RequestBase {
         }
 
         /**
-         * Explicit operation timeout
+         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
@@ -140,18 +145,20 @@ public class GetTasksRequest extends RequestBase {
         }
 
         /**
-         * Explicit operation timeout
+         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.timeout(fn.apply(new Time.Builder()).build());
+            return timeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * Wait for the matching tasks to complete (default: false)
+         * If `true`, the request blocks until the task has completed.
          * <p>
          * API name: {@code wait_for_completion}
+         * </p>
          */
         public final Builder waitForCompletion(@Nullable Boolean value) {
             this.waitForCompletion = value;
@@ -161,8 +168,7 @@ public class GetTasksRequest extends RequestBase {
         /**
          * Builds a {@link GetTasksRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public GetTasksRequest build() {
             _checkSingleUse();
@@ -177,43 +183,25 @@ public class GetTasksRequest extends RequestBase {
      * Endpoint "{@code tasks.get}".
      */
     public static final Endpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "GET";
-
-        },
-
+        request -> "GET",
         // Request path
         request -> {
-            final int _taskId = 1 << 0;
-
-            int propsSet = 0;
-
-            propsSet |= _taskId;
-
-            if (propsSet == (_taskId)) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_tasks");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.taskId, buf);
-                return buf.toString();
-            }
-            throw SimpleEndpoint.noPathTemplateFound("path");
-
+            StringBuilder buf = new StringBuilder();
+            buf.append("/_tasks/");
+            SimpleEndpoint.pathEncode(request.taskId, buf);
+            return buf.toString();
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.waitForCompletion != null) {
-                params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
-            }
             if (request.timeout != null) {
                 params.put("timeout", request.timeout._toJsonString());
             }
+            if (request.waitForCompletion != null) {
+                params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+            }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         false,
