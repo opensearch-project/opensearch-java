@@ -55,7 +55,11 @@ public abstract class Shape {
     }
 
     public boolean isAbstract() {
-        var refKinds = incomingReferences.entrySet().stream().filter(e -> !e.getValue().isEmpty()).map(Map.Entry::getKey).collect(Collectors.toSet());
+        var refKinds = incomingReferences.entrySet()
+            .stream()
+            .filter(e -> !e.getValue().isEmpty())
+            .map(Map.Entry::getKey)
+            .collect(Collectors.toSet());
         return !refKinds.isEmpty() && refKinds.stream().noneMatch(ReferenceKind::isConcreteUsage);
     }
 
