@@ -55,6 +55,32 @@ public abstract class OpenSearchTasksClientBase<Self extends OpenSearchTasksClie
         super(transport, transportOptions);
     }
 
+    // ----- Endpoint: tasks.cancel
+
+    /**
+     * Cancels a task, if it can be cancelled through an API.
+     */
+    public CancelResponse cancel(CancelRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, CancelRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Cancels a task, if it can be cancelled through an API.
+     *
+     * @param fn a function that initializes a builder to create the {@link CancelRequest}
+     */
+    public final CancelResponse cancel(Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn) throws IOException,
+        OpenSearchException {
+        return cancel(fn.apply(new CancelRequest.Builder()).build());
+    }
+
+    /**
+     * Cancels a task, if it can be cancelled through an API.
+     */
+    public final CancelResponse cancel() throws IOException, OpenSearchException {
+        return cancel(new CancelRequest.Builder().build());
+    }
+
     // ----- Endpoint: tasks.list
 
     /**

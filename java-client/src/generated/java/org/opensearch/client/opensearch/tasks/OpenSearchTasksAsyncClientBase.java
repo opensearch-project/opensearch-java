@@ -58,6 +58,32 @@ public abstract class OpenSearchTasksAsyncClientBase<Self extends OpenSearchTask
         super(transport, transportOptions);
     }
 
+    // ----- Endpoint: tasks.cancel
+
+    /**
+     * Cancels a task, if it can be cancelled through an API.
+     */
+    public CompletableFuture<CancelResponse> cancel(CancelRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, CancelRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Cancels a task, if it can be cancelled through an API.
+     *
+     * @param fn a function that initializes a builder to create the {@link CancelRequest}
+     */
+    public final CompletableFuture<CancelResponse> cancel(Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn)
+        throws IOException, OpenSearchException {
+        return cancel(fn.apply(new CancelRequest.Builder()).build());
+    }
+
+    /**
+     * Cancels a task, if it can be cancelled through an API.
+     */
+    public final CompletableFuture<CancelResponse> cancel() throws IOException, OpenSearchException {
+        return cancel(new CancelRequest.Builder().build());
+    }
+
     // ----- Endpoint: tasks.list
 
     /**

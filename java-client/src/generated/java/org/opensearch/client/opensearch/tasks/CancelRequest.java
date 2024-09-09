@@ -30,13 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.tasks;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -50,10 +54,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 /**
  * Cancels a task, if it can be cancelled through an API.
- *
  */
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CancelRequest extends RequestBase {
+
     private final List<String> actions;
 
     private final List<String> nodes;
@@ -70,45 +74,42 @@ public class CancelRequest extends RequestBase {
     // ---------------------------------------------------------------------------------------------
 
     private CancelRequest(Builder builder) {
-
         this.actions = ApiTypeHelper.unmodifiable(builder.actions);
         this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
         this.parentTaskId = builder.parentTaskId;
         this.taskId = builder.taskId;
         this.waitForCompletion = builder.waitForCompletion;
-
     }
 
-    public static CancelRequest of(Function<Builder, ObjectBuilder<CancelRequest>> fn) {
+    public static CancelRequest of(Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * A comma-separated list of actions that should be cancelled. Leave empty to
-     * cancel all.
+     * Comma-separated list or wildcard expression of actions used to limit the request.
      * <p>
      * API name: {@code actions}
+     * </p>
      */
     public final List<String> actions() {
         return this.actions;
     }
 
     /**
-     * A comma-separated list of node IDs or names to limit the returned
-     * information; use <code>_local</code> to return information from the node
-     * you're connecting to, leave empty to get information from all nodes
+     * Comma-separated list of node IDs or names used to limit the request.
      * <p>
      * API name: {@code nodes}
+     * </p>
      */
     public final List<String> nodes() {
         return this.nodes;
     }
 
     /**
-     * Cancel tasks with specified parent task id (node_id:task_number). Set to -1
-     * to cancel all.
+     * Parent task ID used to limit the tasks.
      * <p>
      * API name: {@code parent_task_id}
+     * </p>
      */
     @Nullable
     public final String parentTaskId() {
@@ -116,9 +117,10 @@ public class CancelRequest extends RequestBase {
     }
 
     /**
-     * Cancel the task with specified task id (node_id:task_number)
+     * ID of the task.
      * <p>
      * API name: {@code task_id}
+     * </p>
      */
     @Nullable
     public final String taskId() {
@@ -126,10 +128,10 @@ public class CancelRequest extends RequestBase {
     }
 
     /**
-     * Should the request block until the cancellation of the task and its
-     * descendant tasks is completed. Defaults to false
+     * Should the request block until the cancellation of the task and its descendant tasks is completed. Defaults to false
      * <p>
      * API name: {@code wait_for_completion}
+     * </p>
      */
     @Nullable
     public final Boolean waitForCompletion() {
@@ -141,30 +143,27 @@ public class CancelRequest extends RequestBase {
     /**
      * Builder for {@link CancelRequest}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CancelRequest> {
         @Nullable
         private List<String> actions;
-
         @Nullable
         private List<String> nodes;
-
         @Nullable
         private String parentTaskId;
-
         @Nullable
         private String taskId;
-
         @Nullable
         private Boolean waitForCompletion;
 
         /**
-         * A comma-separated list of actions that should be cancelled. Leave empty to
-         * cancel all.
+         * Comma-separated list or wildcard expression of actions used to limit the request.
          * <p>
          * API name: {@code actions}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>actions</code>.
+         * </p>
          */
         public final Builder actions(List<String> list) {
             this.actions = _listAddAll(this.actions, list);
@@ -172,12 +171,14 @@ public class CancelRequest extends RequestBase {
         }
 
         /**
-         * A comma-separated list of actions that should be cancelled. Leave empty to
-         * cancel all.
+         * Comma-separated list or wildcard expression of actions used to limit the request.
          * <p>
          * API name: {@code actions}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>actions</code>.
+         * </p>
          */
         public final Builder actions(String value, String... values) {
             this.actions = _listAdd(this.actions, value, values);
@@ -185,13 +186,14 @@ public class CancelRequest extends RequestBase {
         }
 
         /**
-         * A comma-separated list of node IDs or names to limit the returned
-         * information; use <code>_local</code> to return information from the node
-         * you're connecting to, leave empty to get information from all nodes
+         * Comma-separated list of node IDs or names used to limit the request.
          * <p>
          * API name: {@code nodes}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>nodes</code>.
+         * </p>
          */
         public final Builder nodes(List<String> list) {
             this.nodes = _listAddAll(this.nodes, list);
@@ -199,13 +201,14 @@ public class CancelRequest extends RequestBase {
         }
 
         /**
-         * A comma-separated list of node IDs or names to limit the returned
-         * information; use <code>_local</code> to return information from the node
-         * you're connecting to, leave empty to get information from all nodes
+         * Comma-separated list of node IDs or names used to limit the request.
          * <p>
          * API name: {@code nodes}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>nodes</code>.
+         * </p>
          */
         public final Builder nodes(String value, String... values) {
             this.nodes = _listAdd(this.nodes, value, values);
@@ -213,10 +216,10 @@ public class CancelRequest extends RequestBase {
         }
 
         /**
-         * Cancel tasks with specified parent task id (node_id:task_number). Set to -1
-         * to cancel all.
+         * Parent task ID used to limit the tasks.
          * <p>
          * API name: {@code parent_task_id}
+         * </p>
          */
         public final Builder parentTaskId(@Nullable String value) {
             this.parentTaskId = value;
@@ -224,9 +227,10 @@ public class CancelRequest extends RequestBase {
         }
 
         /**
-         * Cancel the task with specified task id (node_id:task_number)
+         * ID of the task.
          * <p>
          * API name: {@code task_id}
+         * </p>
          */
         public final Builder taskId(@Nullable String value) {
             this.taskId = value;
@@ -234,10 +238,10 @@ public class CancelRequest extends RequestBase {
         }
 
         /**
-         * Should the request block until the cancellation of the task and its
-         * descendant tasks is completed. Defaults to false
+         * Should the request block until the cancellation of the task and its descendant tasks is completed. Defaults to false
          * <p>
          * API name: {@code wait_for_completion}
+         * </p>
          */
         public final Builder waitForCompletion(@Nullable Boolean value) {
             this.waitForCompletion = value;
@@ -247,8 +251,7 @@ public class CancelRequest extends RequestBase {
         /**
          * Builds a {@link CancelRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public CancelRequest build() {
             _checkSingleUse();
@@ -263,13 +266,8 @@ public class CancelRequest extends RequestBase {
      * Endpoint "{@code tasks.cancel}".
      */
     public static final Endpoint<CancelRequest, CancelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "POST";
-
-        },
-
+        request -> "POST",
         // Request path
         request -> {
             final int _taskId = 1 << 0;
@@ -279,40 +277,34 @@ public class CancelRequest extends RequestBase {
             if (request.taskId() != null) propsSet |= _taskId;
 
             if (propsSet == 0) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_tasks");
-                buf.append("/_cancel");
-                return buf.toString();
+                return "/_tasks/_cancel";
             }
             if (propsSet == (_taskId)) {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_tasks");
-                buf.append("/");
+                buf.append("/_tasks/");
                 SimpleEndpoint.pathEncode(request.taskId, buf);
                 buf.append("/_cancel");
                 return buf.toString();
             }
+
             throw SimpleEndpoint.noPathTemplateFound("path");
-
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
+            if (ApiTypeHelper.isDefined(request.actions)) {
+                params.put("actions", String.join(",", request.actions));
+            }
             if (ApiTypeHelper.isDefined(request.nodes)) {
-                params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
+                params.put("nodes", String.join(",", request.nodes));
             }
             if (request.parentTaskId != null) {
                 params.put("parent_task_id", request.parentTaskId);
-            }
-            if (ApiTypeHelper.isDefined(request.actions)) {
-                params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
             }
             if (request.waitForCompletion != null) {
                 params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
             }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         false,

@@ -60,48 +60,6 @@ public class OpenSearchTasksClient extends OpenSearchTasksClientBase<OpenSearchT
         return new OpenSearchTasksClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: tasks.cancel
-
-    /**
-     * Cancels a task, if it can be cancelled through an API.
-     *
-     *
-     */
-
-    public CancelResponse cancel(CancelRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CancelRequest, CancelResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CancelRequest,
-            CancelResponse,
-            ErrorResponse>) CancelRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Cancels a task, if it can be cancelled through an API.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link CancelRequest}
-     *
-     */
-
-    public final CancelResponse cancel(Function<CancelRequest.Builder, ObjectBuilder<CancelRequest>> fn) throws IOException,
-        OpenSearchException {
-        return cancel(fn.apply(new CancelRequest.Builder()).build());
-    }
-
-    /**
-     * Cancels a task, if it can be cancelled through an API.
-     *
-     *
-     */
-
-    public CancelResponse cancel() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new CancelRequest.Builder().build(), CancelRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: tasks.get
 
     /**
